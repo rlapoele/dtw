@@ -32,7 +32,7 @@ Support primitive, semantic, and component layers without forcing every system t
 
 Imports normalize source concepts into the canonical model. Exports adapt the canonical model to each target. Translation may be partial, so every adapter must report assumptions, transformations, and loss.
 
-A standards profile and a vendor-native profile are different targets even when they share syntax. Do not route Figma- or Penpot-shaped data through a permissive “DTCG” path that weakens strict validation.
+A standards profile, a vendor-native profile, and a processor profile are different targets even when they share syntax. Do not route Figma- or Penpot-shaped data through a permissive “DTCG” path that weakens strict validation, and do not treat successful Style Dictionary processing as proof of DTCG conformance.
 
 ## 5. Use DTCG as an interoperability foundation
 

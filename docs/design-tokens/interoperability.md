@@ -2,7 +2,7 @@
 
 ## Purpose and confidence
 
-Interoperability is a core product responsibility, not an afterthought. This document records the architectural direction and the Figma/Penpot findings established during inception and re-verified against public vendor documentation on 29 September 2026.
+Interoperability is a core product responsibility, not an afterthought. This document records the architectural direction and the Figma, Penpot, and Style Dictionary findings established during inception and re-verified against public vendor documentation and source on 29 September 2026.
 
 Third-party capabilities change. The findings below are a design baseline, not a permanent compatibility contract. Exact import/export behavior must be tested against the versions targeted by an implementation.
 
@@ -78,6 +78,7 @@ Treat these as separate profile families with independently versioned fixtures a
 | `dtcg-2025.10` | Strict standards-based interchange | Must not accept or emit vendor dialects as though they were conforming DTCG |
 | `figma-native` | Figma variables, modes, scopes, and `com.figma.*` extensions | Must declare the tested Figma behavior or version and report the supported DTCG subset |
 | `penpot-native` | Penpot token sets, themes, expressions, purpose-specific types, and file envelope | Must not be labeled strict DTCG without an explicit normalization step |
+| `style-dictionary-5.5.5` | Style Dictionary input processing, legacy conversion helpers, and generated platform artifacts | Must not treat successful processing or DTCG-shaped output as proof of DTCG `2025.10` conformance |
 
 Shared parsing utilities are appropriate where the formats overlap. Sharing code must not erase the profile boundaries or weaken strict validation.
 
@@ -130,6 +131,46 @@ Key implications:
 - no native gradient token type was identified in the inception research;
 - a strict DTCG import therefore requires a Penpot-specific normalization step, and a Penpot export requires a target-specific adapter before use by a strict DTCG consumer;
 - documented alignment must not be treated as proof of conformance or extension preservation without fixtures for the chosen Penpot version.
+
+## Style Dictionary findings
+
+**Established research finding for Style Dictionary `5.5.5`, subject to continued version verification**
+
+Style Dictionary is primarily a build and transformation pipeline rather than a native token-authoring format. It can consume token data and generate CSS, Sass, JavaScript, Android, iOS, and other target artifacts. Since version 4 it has recognized the DTCG property envelope, but its own documentation states that the stable DTCG `2025.10` specification is not yet fully supported.
+
+Key implications:
+
+- input processing auto-detects `$value` and `$type`, delegates inherited group `$type` values to tokens, and supports conventional curly-brace aliases;
+- one Style Dictionary instance must use either legacy Style Dictionary syntax or DTCG syntax; the two must not be mixed and accepted input is not evidence of document conformance;
+- the `2025.10` implementation tracker records color, dimension, border, and shadow work as complete, while gradient color handling and object-form duration support remain incomplete and Resolver Module support remains outstanding;
+- the `5.5.5` reference-processing implementation does not provide the complete DTCG `2025.10` behavior for JSON Pointer `$ref`, group `$extends`, or `$root` group-reference semantics;
+- `convertToDTCG`, `convertJSONToDTCG`, and `convertZIPToDTCG` convert legacy property names and can consolidate common types on groups, but they do not make legacy type names or value shapes conforming;
+- for example, the conversion helper does not change a legacy `size` type to `dimension`, a hex color string into the required structured color value, or a unit-bearing string into a DTCG dimension object;
+- the generic `json` output is a serialization of the processed dictionary, not a dedicated DTCG preservation writer; the transformation pipeline flattens and reconstructs token data, so preservation of group-level metadata and unknown extensions must not be assumed;
+- Style Dictionary is not a strict DTCG validator and does not provide a general DTCG-to-DTCG round-trip guarantee;
+- generated CSS or platform code is an intentional target transformation, not a DTCG document and therefore should be judged against its target profile rather than DTCG document conformance.
+
+The appropriate product boundary is:
+
+```text
+canonical model
+      │
+      ├── strict DTCG exporter ──► conforming DTCG document
+      │
+      └── Style Dictionary adapter ──► generated platform artifacts
+```
+
+Style Dictionary may be a useful implementation dependency behind a versioned export adapter. It must not become the canonical model, the strict DTCG validator, or an implicit migration authority.
+
+## Tool-support classification
+
+| Profile | Reads DTCG | Writes DTCG | Conformance assessment | Appropriate use |
+|---|---|---|---|---|
+| `figma-native` | Documented subset of atomic tokens | Native variable/mode JSON with vendor behavior and extensions | Partial processor and mapping coverage | Exchange with Figma variables and modes |
+| `penpot-native` | DTCG-inspired native dialect through Penpot-specific envelopes and value shapes | Penpot token sets/themes dialect | Not strict DTCG `2025.10` without normalization | Exchange with Penpot sets and themes |
+| `style-dictionary-5.5.5` | DTCG property envelope and a useful subset of `2025.10` values and aliases | Conversion helpers emit DTCG-shaped JSON; generic JSON output is processed data | Partial processor coverage; no conformance or preservation guarantee | Compile validated generated input into code and platform artifacts |
+
+These profiles solve different problems. Figma and Penpot adapters translate native design-tool concepts. A Style Dictionary adapter feeds a build processor. None should weaken or replace the strict `dtcg-2025.10` profile.
 
 ## Comparative mapping baseline
 
@@ -194,6 +235,8 @@ Round-trip fidelity may improve if the workbench stores provenance and adapter-o
 - curly-brace aliases, JSON Pointer references, missing targets, and cycles;
 - unknown `$extensions` and extension preservation;
 - DTCG Resolver documents, Figma modes, and Penpot sets/themes as distinct fixtures;
+- Style Dictionary `5.5.5` input, legacy conversion, generic JSON output, and selected platform outputs as distinct fixtures;
+- `$root`, `$extends`, JSON Pointer `$ref`, group metadata, and unknown extensions through the Style Dictionary pipeline;
 - alpha versus opacity;
 - sRGB and at least one wide-gamut color space;
 - `px` and `rem` dimensions;
@@ -210,12 +253,14 @@ The current baseline is grounded in:
 - the pinned local DTCG `2025.10` source under `docs/references/dtcg-2025.10/`;
 - the official [DTCG Format](https://www.w3.org/community/reports/design-tokens/CG-FINAL-format-20251028/), [Color](https://www.w3.org/community/reports/design-tokens/CG-FINAL-color-20251028/), and [Resolver](https://www.w3.org/community/reports/design-tokens/CG-FINAL-resolver-20251028/) reports;
 - Figma's official [variable mode import/export documentation](https://help.figma.com/hc/en-us/articles/15343816063383-Modes-for-variables);
-- Penpot's official [design-token and import/export documentation](https://help.penpot.app/user-guide/design-systems/design-tokens/).
+- Penpot's official [design-token and import/export documentation](https://help.penpot.app/user-guide/design-systems/design-tokens/);
+- Style Dictionary's official [DTCG support overview](https://styledictionary.com/info/dtcg/), [DTCG conversion utilities](https://styledictionary.com/reference/utils/dtcg/), [built-in formats](https://styledictionary.com/reference/hooks/formats/predefined/), and [DTCG `2025.10` implementation tracker](https://github.com/style-dictionary/style-dictionary/issues/1590);
+- the published Style Dictionary `5.5.5` source for [legacy conversion](https://github.com/style-dictionary/style-dictionary/blob/v5.5.5/lib/utils/convertToDTCG.js), [reference resolution](https://github.com/style-dictionary/style-dictionary/blob/v5.5.5/lib/utils/references/resolveReferencesMap.js), [token flattening](https://github.com/style-dictionary/style-dictionary/blob/v5.5.5/lib/utils/flattenTokens.js), and the [processing pipeline](https://github.com/style-dictionary/style-dictionary/blob/v5.5.5/lib/StyleDictionary.js).
 
-Vendor documentation is evidence of intended behavior, not a substitute for adapter fixtures against the exact product versions selected for support.
+Vendor and project documentation is evidence of intended behavior, not a substitute for adapter fixtures against the exact product or package versions selected for support.
 
 ## Additional targets
 
 **Future direction**
 
-CSS custom properties, JavaScript/TypeScript modules, Style Dictionary-like pipelines, Tailwind-oriented output, Sketch, platform-native code, and documentation artifacts are plausible adapters. None is committed, and each needs its own capability profile rather than being grouped under a generic “code export.”
+Style Dictionary `5.5.5` is an established research target but not yet a committed implementation dependency or adapter. CSS custom properties, JavaScript/TypeScript modules, other build pipelines, Tailwind-oriented output, Sketch, platform-native code, and documentation artifacts remain plausible targets. Each needs its own capability profile rather than being grouped under a generic “code export.”

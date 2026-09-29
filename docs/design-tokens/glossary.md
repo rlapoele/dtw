@@ -32,7 +32,7 @@ Transparency encoded as part of a color value. It is not equivalent to applying 
 
 ## Compatibility profile
 
-A versioned contract describing the accepted file shape, supported concepts, constraints, extensions, transformations, diagnostics, and expected round-trip behavior of an import or export target. Strict DTCG, Figma native, and Penpot native are separate profile families.
+A versioned contract describing the accepted file shape, supported concepts, constraints, extensions, transformations, diagnostics, and expected round-trip behavior of an import, processor, or export target. Strict DTCG, Figma native, Penpot native, and Style Dictionary processor behavior are separate profile families.
 
 ## Component token
 
@@ -133,6 +133,10 @@ A stable identifier for a project that remains distinct from its human-readable 
 ## Primitive token
 
 A reusable source value or scale step that does not itself commit to a product-facing semantic role.
+
+## Processor profile
+
+A compatibility profile for a build or translation engine, describing its accepted input subset, validation behavior, transformations, generated outputs, metadata preservation, and known loss. Successful processing under a processor profile does not establish source-document conformance. Style Dictionary `5.5.5` is the current researched example.
 
 ## Provenance
 

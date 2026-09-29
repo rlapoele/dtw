@@ -68,9 +68,9 @@ The existence of an explicit project is decided: users create, open, or import a
 
 ## Interoperability
 
-The stable DTCG `2025.10` reports are the current strict interchange and research baseline. This does not select DTCG as canonical persistence, guarantee complete initial support, or make Figma and Penpot native formats equivalent to DTCG.
+The stable DTCG `2025.10` reports are the current strict interchange and research baseline. This does not select DTCG as canonical persistence, guarantee complete initial support, make Figma and Penpot native formats equivalent to DTCG, or make Style Dictionary acceptance proof of conformance.
 
-1. Which exact Figma and Penpot versions and workflows will the first adapters target?
+1. Which exact Figma, Penpot, and Style Dictionary versions and workflows will the first adapters target?
 2. What level of round-trip fidelity is promised for each target?
 3. How much source provenance should survive normalization?
 4. When should an importer infer semantic roles, and when must it ask the user?
@@ -80,7 +80,8 @@ The stable DTCG `2025.10` reports are the current strict interchange and researc
 8. Which subset of `dtcg-2025.10` must the first strict importer and exporter support?
 9. Which normative DTCG processor behaviors belong in the first conformance suite, including JSON Pointer and extension preservation?
 10. How are vendor extensions reviewed and namespaced?
-11. Which code-oriented export target should be supported first, if any?
+11. Should an initial Style Dictionary adapter only compile validated generated input, or also offer explicitly lossy legacy-to-DTCG migration?
+12. Which code-oriented export target should be supported first, if any?
 
 ## Validation and change management
 
