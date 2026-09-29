@@ -2,14 +2,17 @@
 
 ## Project state
 
-This repository currently contains inception documentation for the Design Token Workbench; it has no application code or established build, test, or package toolchain. The accepted scope is a desktop-first, local-first token workbench. `docs/project/design-system-studio-extension.md` is exploratory and must not override the token-workbench documents.
+This repository currently contains inception documentation for the Design Token Workbench plus a vendored DTCG `2025.10` reference snapshot; it has no application code or established build, test, or package toolchain. The accepted scope is a desktop-first, local-first token workbench. `docs/project/design-system-studio-extension.md` is exploratory and must not override the token-workbench documents.
 
 ## Read before changing direction
 
 - Start with `docs/project/vision.md`, `product-concept.md`, and `principles.md`.
 - Use `docs/project/architecture.md` for implementation boundaries.
 - Use `docs/design-tokens/` for domain language and modeling constraints.
+- Read `docs/design-tokens/interoperability.md` before changing import, export, compatibility, or external-tool behavior.
 - Check `docs/planning/open-questions.md` before making a product, schema, persistence, or technology choice.
+- When resuming substantial work or beginning a new phase, read `docs/status/current.md` for the latest handoff state.
+- For normative DTCG details, start with `docs/references/dtcg-2025.10/README.md` and prefer its linked official reports where report-level conformance context matters.
 
 Treat status labels as meaningful: **established** directions and principles are constraints; working decisions and hypotheses require validation; future possibilities are not commitments; open questions must not be settled implicitly for implementation convenience. If a task requires an unresolved decision, make it explicit and update the affected documents consistently.
 
@@ -20,7 +23,9 @@ Treat status labels as meaningful: **established** directions and principles are
 - Keep value type, semantic role, and composition separate. Preserve primitive, semantic, and component-token layers without requiring every system to use all three.
 - Preserve authored aliases and resolve them deterministically; detect missing references and cycles.
 - Do not conflate color alpha with layer opacity, or gradients with colors.
-- Treat DTCG as the leading interoperability foundation, not as the chosen canonical persistence format.
+- Treat stable DTCG `2025.10` as the current strict interchange baseline, not as the chosen canonical persistence format.
+- Keep strict `dtcg-2025.10`, `figma-native`, `penpot-native`, and versioned Style Dictionary processor profiles distinct. Successful import or processing does not by itself establish document conformance or round-trip fidelity.
+- Treat Style Dictionary `5.5.5` as a researched, partial DTCG processor and possible generated-artifact adapter, not as a committed dependency, strict validator, canonical model, or implicit migration authority.
 - Model import as staged normalization with visible ambiguity and provenance. Model export as deterministic adaptation with explicit compatibility diagnostics.
 - Keep authored canonical data distinct from generated target artifacts.
 - Do not silently invent semantics. AI may explain or propose reviewed changes, but deterministic model operations must remain deterministic.
@@ -39,5 +44,8 @@ Treat status labels as meaningful: **established** directions and principles are
 - Reuse the terminology in `docs/design-tokens/glossary.md`; update the glossary when introducing a durable term.
 - Preserve confidence labels and distinguish current direction from proposals, examples, and future scope.
 - When changing a concept, check vision, product concept, principles, model, taxonomy, interoperability, glossary, architecture, and open questions for contradictions; edit only the affected files.
+- Treat `docs/references/dtcg-2025.10/` as vendored reference material. Do not edit it as project documentation; replace it only through an intentional version/provenance update that preserves its license.
+- Date and version claims about external tools, and re-verify them before turning research findings into adapter behavior.
+- Update `docs/status/current.md` after a material milestone, research conclusion, decision, or handoff. Follow `docs/status/README.md`; status files summarize authoritative documents and must not become a second source of truth.
 - Keep Markdown direct and semantic. Use small diagrams or examples only when they clarify a relationship.
 - There are currently no automated checks. Review changed Markdown, links, terminology, and status claims manually. If code is introduced, document its real commands and test domain behavior independently from Electron, the visible UI, the real filesystem, and the network.
