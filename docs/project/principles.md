@@ -124,10 +124,12 @@ The Chromium renderer should communicate with privileged Electron code through a
 
 **Working decision**
 
-Electron is the leading desktop host because it supplies a known Chromium capability baseline and a mature distribution path. The renderer should remain an HTML, CSS, and JavaScript or TypeScript web application using standard Web APIs wherever suitable. Electron-specific capabilities remain outside the renderer and behind adapters.
+Begin with a desktop-oriented, offline-capable browser application installable as a Progressive Web App, then validate Electron immediately after the first complete vertical slice. Both hosts should reuse the same renderer, application operations, and domain engine. Browser storage, service workers, Electron IPC, and desktop capabilities remain outside the domain and behind explicit adapters.
+
+Electron remains the intended packaged desktop host because it supplies a known Chromium capability baseline, controlled local capabilities, and a mature distribution path. Its renderer should remain an HTML, CSS, and JavaScript or TypeScript web application using standard Web APIs wherever suitable. Electron-specific capabilities remain outside the renderer and behind adapters.
 
 ## 20. Let requirements earn remaining technology choices
 
 **Established principle**
 
-The Electron and restrained-hexagonal directions do not choose a frontend framework, component library, persistence format, database, RPC library, plugin system, or build topology. Select those only when validated requirements and representative prototypes justify them.
+The PWA-first, Electron, and restrained-hexagonal directions do not choose a frontend framework, component library, persistence format, browser store, database, RPC library, plugin system, or build topology. Select those only when validated requirements and representative prototypes justify them.

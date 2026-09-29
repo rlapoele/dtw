@@ -22,11 +22,34 @@ The architecture should:
 - support a conventional download, install, run, and update experience;
 - remain understandable and avoid infrastructure that has not been earned by a concrete requirement.
 
-## Desktop host and web application
+## Initial web host and desktop host
 
 **Working decision**
 
-Electron is the leading desktop host for the initial application. This choice is motivated principally by its bundled, versioned Chromium runtime rather than by access to Node.js alone.
+Implement the first complete vertical slice as a desktop-oriented, offline-capable browser application installable as a Progressive Web App. The PWA is an initial delivery surface for validating the product workflow, not a persistence architecture or a separate version of the token engine.
+
+The browser application should use HTML, CSS, JavaScript or TypeScript, and standard Web APIs. Its manifest, service worker, offline asset cache, browser persistence, and user-mediated file access belong to delivery or infrastructure adapters. They must not define the canonical model, leak into the domain engine, or become prerequisites for application operations that do not inherently require them.
+
+```text
+PWA renderer
+    desktop-oriented web interface
+                 │
+                 ▼
+Application operations
+    project workflows and coordination
+                 │
+                 ▼
+Domain engine
+    token meaning, aliases, validation, transformations
+                 ▲
+                 │ ports
+Browser adapters
+    project storage, backup/restore, file selection, import/export
+```
+
+Browser-managed project storage must remain replaceable. The first browser experience should provide explicit project backup and restore so locally authored work is not available only through one browser origin. Project backup is distinct from exporting a token compatibility profile. The exact browser persistence technology, canonical persistence format, project backup representation, and token interchange profile remain open.
+
+Electron remains the intended packaged desktop host. Validate it as the milestone immediately following the first complete browser vertical slice, before browser-only assumptions spread through the product. This choice is motivated principally by its bundled, versioned Chromium runtime, access to controlled desktop capabilities, and mature distribution path rather than by access to Node.js alone.
 
 The intended desktop application has three execution areas:
 
@@ -47,6 +70,8 @@ Main and background processes
 
 The renderer should behave as a web application. It should not import Node.js or Electron APIs directly. Electron-specific code belongs in the desktop host and bridge.
 
+The Electron application should bundle the renderer as local application content rather than treat the deployed PWA as privileged remote content. The reusable basis is the renderer, application operations, contracts, and domain engine; PWA installation and service-worker behavior need not be carried into the desktop host.
+
 The backend side may be written in JavaScript or TypeScript and can use Node.js and Electron capabilities. Long-running, CPU-intensive, crash-prone, or separately isolatable work may later move into Electron utility processes or workers. Process separation is an implementation choice; it does not define the domain boundaries.
 
 ## Restrained hexagonal architecture
@@ -57,7 +82,7 @@ Use a pragmatic ports-and-adapters, or hexagonal, architecture. The aim is repla
 
 ```text
 Delivery surfaces
-    Electron renderer · CLI · Web UI · MCP · automation
+    PWA · Electron renderer · CLI · MCP · automation
                          │
                          ▼
 Application operations
@@ -172,9 +197,9 @@ Surfaces are thin adapters over the same application operations:
 | Surface | Translation responsibility |
 |---|---|
 | Electron | Preload/API calls and desktop events over IPC |
+| PWA | In-browser calls plus browser storage, file-selection, offline, and installation adapters |
 | CLI | Arguments, standard input/output, and exit codes |
 | MCP | Tool schemas, calls, and structured tool results |
-| Web UI | Browser calls to an in-browser engine or a separate authorized service |
 | Tests | Direct calls with fixtures and in-memory adapters |
 
 No surface should reimplement token semantics. A pure portion of the engine may run directly in a browser or Web Worker. Workflows requiring unrestricted local files, watchers, Git, or subprocesses need an appropriate host adapter or service.
@@ -208,7 +233,9 @@ The core acceptance test for separation is that domain behavior can be exercised
 
 **Working decision**
 
-Use the standard Electron distribution model: bundle the web application, Electron, Chromium, Node.js, and desktop code into platform applications and installers. Electron Forge is the leading packaging tool to validate first.
+The first host should support browser installation as a PWA and offline use for the selected vertical slice. Exact browser support, hosting, update, and cache policies remain open.
+
+For the subsequent desktop host, use the standard Electron distribution model: bundle the web application, Electron, Chromium, Node.js, and desktop code into platform applications and installers. Electron Forge is the leading packaging tool to validate for that milestone.
 
 A production distribution will require platform-specific packaging, code signing, macOS notarization, release hosting, and update policy. End users should not need to install Node.js, Chromium, package managers, or developer tooling.
 
@@ -250,7 +277,7 @@ apps/
 └── web/
 ```
 
-Only packages and applications required by current work should be created. The CLI, MCP, and web surfaces are architectural consumers, not commitments to implement all of them initially.
+Only packages and applications required by current work should be created. The PWA is the first committed implementation host; Electron is the immediately following host-validation milestone. CLI and MCP remain architectural consumers rather than initial implementation commitments.
 
 ## Remaining open choices
 
@@ -260,9 +287,13 @@ This direction does not yet select:
 - canonical persistence format or database;
 - monorepo/build tooling;
 - exact RPC contract library or runtime-schema library;
+- browser persistence, backup, and file-access adapters;
+- supported browsers and PWA hosting or update policy;
 - project manifest and on-disk layout;
 - plugin sandbox or extension system;
 - update provider or release infrastructure;
-- the first CLI, MCP, or browser-delivered workflows.
+- the first CLI or MCP workflows.
 
-Electron should be validated with a vertical prototype that opens or creates a project, watches project files, validates a token graph, renders representative color and gradient previews, exports one target, and produces installable artifacts for the intended platforms.
+The first PWA vertical slice should validate project lifecycle operations, one primary package per project, token grouping and authoring, aliases, validation, resolved-value inspection, and explicit import and export. Its exact user, minimal canonical schema, theme behavior, persistence representation, and first compatibility profile must be decided before implementation.
+
+The immediately following Electron prototype should reuse that renderer and application behavior while replacing browser infrastructure with a typed preload boundary and desktop adapters. It should open or create a workspace-backed project, watch project files, validate the same token graph, export the selected target, and produce an installable artifact for at least one intended platform.

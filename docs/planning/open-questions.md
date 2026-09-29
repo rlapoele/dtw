@@ -13,7 +13,7 @@ Suggested decision states for future use are: `open`, `investigating`, `proposed
 3. How much visual editing is needed versus structured or source-oriented editing?
 4. What does “local-first” require beyond offline availability and local ownership?
 5. Must core use remain account-free permanently, or only at initial launch?
-6. Which capabilities belong in the desktop product versus a future web surface?
+6. Which capabilities remain available in the PWA, and which require the subsequent Electron host or a future ecosystem surface?
 
 ## Canonical model
 
@@ -130,7 +130,8 @@ AI assistance is exploratory and must not be required for core authoring.
 The following directions are decided or selected for validation:
 
 - web-first renderer using HTML, CSS, JavaScript or TypeScript, and standard Web APIs;
-- Electron as the leading desktop host and packaged Chromium runtime;
+- a desktop-oriented, offline-capable PWA as the first implementation host;
+- Electron as the immediately following host-validation milestone and intended packaged desktop runtime;
 - a typed, validated RPC-style preload API over Electron IPC;
 - a restrained hexagonal architecture with a UI-independent token engine, shared application operations, and replaceable adapters;
 - reuse of the same engine and operations from Electron, CLI, web, MCP, automation, and tests where appropriate.
@@ -141,10 +142,10 @@ Remaining questions:
 2. Which runtime-schema and RPC-contract approach keeps the bridge typed without coupling the application to Electron?
 3. What initial package boundaries provide real reuse without creating a premature monorepo taxonomy?
 4. Which work should remain in Electron's main process, and which should move to utility processes or workers?
-5. Which persistence engine, if any, is needed beyond authored project files?
+5. Which browser persistence, backup, and file-access adapters should the PWA use, and which persistence engine, if any, is needed beyond authored project files?
 6. Is a plugin system needed, and if so, for which concrete extension use cases?
 7. How will large token graphs be indexed, resolved, watched, and diffed?
-8. What representative vertical prototype is sufficient to validate Electron, packaging, signing, and OS integration?
+8. What exact acceptance criteria define the first complete PWA vertical slice and the immediately following Electron boundary, packaging, and OS-integration prototype?
 9. Which CLI or MCP workflow should first prove that the application layer is genuinely surface-independent?
 10. What security and trust model governs external commands, adapters, plugins, and remote community content?
 
@@ -159,4 +160,4 @@ Before implementation planning, resolve or narrow at least:
 5. the first target adapter and its compatibility promise;
 6. the MVP boundary;
 7. the minimal project manifest and project/package relationship;
-8. a representative Electron architecture and distribution prototype.
+8. the acceptance boundary between the first PWA vertical slice and the immediately following Electron architecture and distribution prototype.

@@ -117,6 +117,14 @@ The workbench should integrate with normal source-control workflows and make gen
 
 The exact file layout and source-of-truth format are unresolved. A visual editor must coexist safely with manual file editing if files are exposed to users.
 
+**Working decision**
+
+The first implementation should deliver this experience as a desktop-oriented, offline-capable browser application installable as a Progressive Web App. Its first vertical slice should exercise project lifecycle operations, one primary token package per project, token grouping and authoring, aliases, validation, resolved-value inspection, and explicit import and export.
+
+The exact canonical meaning of a collection or set remains open. The first interface may present useful groupings, but it must not silently adopt Figma collections, Penpot sets, browser stores, or another external representation as canonical structure.
+
+Project backup and token interchange are separate responsibilities. The browser experience should provide a way to retain and restore complete project data independently of browser-managed storage, while token import and export must name a specific compatibility profile and report its coverage. Neither the backup representation nor the first token format is selected here.
+
 ## Token packages
 
 **Working hypothesis**
@@ -138,27 +146,29 @@ Package boundaries, dependency semantics, and versioning rules remain open. “P
 Use a restrained hexagonal architecture so the token engine remains independent of the desktop shell and independently testable.
 
 ```text
-Electron · CLI · Web UI · MCP · tests
-                   │
-                   ▼
-       application operations
-                   │
-                   ▼
-             token engine
-                   ▲
-                   │
- filesystem · Git · process · import/export adapters
+PWA · Electron · CLI · MCP · tests
+                  │
+                  ▼
+      application operations
+                  │
+                  ▼
+            token engine
+                  ▲
+                  │
+browser storage · filesystem · Git · import/export adapters
 ```
 
-The Electron renderer is a Chromium web application. A secure isolated preload bridge exposes typed, validated, workbench-specific operations over Electron IPC. The backend coordinates application use cases and controlled OS capabilities. Neither the renderer nor Electron defines the canonical token model.
+The PWA is the first implementation host. Browser persistence, file access, offline caching, and installation are replaceable delivery and infrastructure concerns; UI code and application operations must not depend directly on a particular browser storage API.
 
-The same application operations should be callable directly from a CLI, mapped to MCP tools, or used by a browser surface with suitable storage or service adapters. This is a reuse objective, not a commitment to ship all surfaces in the first release. See `architecture.md` for the complete direction.
+Electron is the next host-validation milestone. Its renderer should reuse the web application while a secure isolated preload bridge exposes typed, validated, workbench-specific operations over Electron IPC. The backend coordinates application use cases and controlled OS capabilities. Neither host defines the canonical token model.
+
+The same application operations should also be callable directly from a CLI, mapped to MCP tools, or used by tests with suitable adapters. This is a reuse objective, not a commitment to ship all surfaces in the first release. See `architecture.md` for the complete direction.
 
 ## Web ecosystem
 
 **Working hypothesis**
 
-The web product is primarily an ecosystem surface:
+A separate future web product may primarily serve as an ecosystem surface. It is distinct from the first authoring PWA, even if both eventually reuse parts of the same renderer and model:
 
 - discover and preview token packages;
 - explore primitives, semantic roles, themes, and relationships;

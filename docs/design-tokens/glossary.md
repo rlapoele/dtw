@@ -60,7 +60,7 @@ The UI- and infrastructure-independent TypeScript implementation of the canonica
 
 ## Electron
 
-The leading desktop-host direction for the initial implementation. Electron supplies a packaged Chromium renderer, Node.js-capable privileged processes, desktop integration, and distribution tooling. It is an outer delivery mechanism rather than part of the canonical token model.
+The intended packaged desktop host, to be validated immediately after the first complete PWA vertical slice. Electron supplies a bundled Chromium renderer, Node.js-capable privileged processes, desktop integration, and distribution tooling. It is an outer delivery mechanism rather than part of the canonical token model.
 
 ## Export
 
@@ -129,6 +129,10 @@ The primary working context for a product, brand, client, or design system. A us
 ## Project identity
 
 A stable identifier for a project that remains distinct from its human-readable name and local directory path.
+
+## Progressive Web App
+
+The first implementation host for the workbench: a desktop-oriented, offline-capable browser application that can be installed through supporting browsers. PWA installation, caching, and browser persistence are delivery concerns and do not define the canonical token model or persistence format.
 
 ## Primitive token
 

@@ -90,15 +90,17 @@ The primary creation experience is desktop-first and local-first. Its intended r
 
 **Working decision**
 
-The current implementation direction is a web-first application hosted by Electron. The interface should use HTML, CSS, JavaScript or TypeScript, and standard Web APIs in a bundled, versioned Chromium runtime. Privileged local capabilities should remain behind a narrow typed bridge to an isolated JavaScript or TypeScript backend.
+The first implementation host will be a desktop-oriented, offline-capable browser application that can be installed as a Progressive Web App. This first surface should validate the core authoring experience without making its browser storage, service worker, or installation model part of the canonical token architecture.
 
-Electron is a host for the web application, not the owner of the token model. The domain engine and application operations should remain reusable from other surfaces such as a CLI, browser UI, MCP server, automated workflow, or tests.
+Electron remains the intended packaged desktop host and should be validated immediately after the first complete browser vertical slice rather than after a large web-only product has accumulated. The Electron application should bundle the same web renderer and connect it to privileged local capabilities through a narrow typed bridge to an isolated JavaScript or TypeScript backend.
+
+The PWA and Electron are delivery surfaces, not owners of the token model. The domain engine and application operations should remain reusable from either host and from other surfaces such as a CLI, MCP server, automated workflow, or tests.
 
 ### Web ecosystem
 
 **Working hypothesis**
 
-A complementary web surface could focus on discovery rather than duplicate the full editor. It may let people preview, compare, discuss, share, and publish token packages that use the same conceptual model.
+A separate future web ecosystem surface could focus on discovery rather than duplicate the full editor. It is distinct from the first authoring PWA. It may let people preview, compare, discuss, share, and publish token packages that use the same conceptual model.
 
 **Future possibility**
 
