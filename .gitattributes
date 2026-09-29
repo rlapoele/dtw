@@ -1,0 +1,5 @@
+# Preserve third-party reference sources exactly and keep them out of language statistics.
+docs/references/dtcg-2025.10/** linguist-vendored whitespace=-trailing-space,-blank-at-eof
+
+# Treat reference artwork as binary.
+*.png binary

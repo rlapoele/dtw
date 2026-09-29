@@ -1,0 +1,49 @@
+# Operating systems
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+Desktop.ini
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Environment and local configuration
+.env
+.env.*
+!.env.example
+*.local
+
+# Dependencies and package-manager caches
+node_modules/
+.pnpm-store/
+.npm/
+.yarn/cache/
+.yarn/unplugged/
+
+# Build and generated output
+dist/
+build/
+out/
+release/
+artifacts/
+coverage/
+.nyc_output/
+*.tsbuildinfo
+
+# Test and browser output
+playwright-report/
+test-results/
+.playwright-browser-runtime.json
+
+# Logs, caches, and temporary files
+*.log
+*.log.*
+.cache/
+.tmp/
+tmp/
+temp/
