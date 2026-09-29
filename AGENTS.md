@@ -47,5 +47,6 @@ Treat status labels as meaningful: **established** directions and principles are
 - Treat `docs/references/dtcg-2025.10/` as vendored reference material. Do not edit it as project documentation; replace it only through an intentional version/provenance update that preserves its license.
 - Date and version claims about external tools, and re-verify them before turning research findings into adapter behavior.
 - Update `docs/status/current.md` after a material milestone, research conclusion, decision, or handoff. Follow `docs/status/README.md`; status files summarize authoritative documents and must not become a second source of truth.
+- Whenever work crystallizes a decision or direction in the repository documentation, include a suggested short commit message in the final handoff.
 - Keep Markdown direct and semantic. Use small diagrams or examples only when they clarify a relationship.
 - There are currently no automated checks. Review changed Markdown, links, terminology, and status claims manually. If code is introduced, document its real commands and test domain behavior independently from Electron, the visible UI, the real filesystem, and the network.
