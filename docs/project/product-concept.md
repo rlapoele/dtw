@@ -66,6 +66,8 @@ Projects should have stable identity independent of a directory name so they can
 
 Offer scale helpers that use deterministic domain calculations to propose series of token values. Users choose which tokens to create; those become independently editable canonical tokens without a live link to a recipe. Curated values remain manually authored. See [scale generation](../design-tokens/conceptual-model.md#scale-generation) for the boundary; initial helper scope is not selected.
 
+Color authoring should offer supported spaces/models and editing/display notations, backed by deterministic domain conversion and manipulation. Keep one authoritative authored color value per applicable theme/condition; alternative representations are derived, and fallbacks are explicit alternatives rather than competing primary values. Initial spaces, operations, and editing policies remain open. See [authored color and alternative representations](../design-tokens/conceptual-model.md#authored-color-and-alternative-representations).
+
 **Working direction — 1 October 2026**
 
 Support authored expressions and meaningful previews for the supported subset. Context-dependent previews should make their context and limitations visible rather than overwrite authored values with observed results. Exact expression grammar, functions, and specimens remain open. See [expressions](../design-tokens/conceptual-model.md#expressions) and [value previews](../design-tokens/conceptual-model.md#value-previews).

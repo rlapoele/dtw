@@ -30,6 +30,20 @@ Suggested decision states for future use are: `open`, `investigating`, `proposed
 
 Expression support is a [working decision](../design-tokens/conceptual-model.md#expressions); its concrete schema and coverage are not selected. Scale generation is [domain behavior](../design-tokens/conceptual-model.md#scale-generation), not a requirement for persisted scale entities or live token dependencies.
 
+## Color values and operations
+
+The [authored-color decision](../design-tokens/conceptual-model.md#authored-color-and-alternative-representations) keeps one authoritative value per applicable theme/condition, preserves a literal's space/model, and treats alternative display representations as derived. Deterministic [color manipulation](../design-tokens/conceptual-model.md#color-manipulation) belongs in the domain engine.
+
+1. Which color spaces/models and editing notations should be supported initially?
+2. What component, alpha, and missing-component schema and validation rules should the canonical literal use?
+3. How do edits in a different representation affect the authored space/model, and how are alias or expression edits handled explicitly?
+4. Which conversion, component-adjustment, mixing, interpolation, and palette-generation operations are initially supported?
+5. Which precision, rounding, hue, alpha, and gamut-mapping policies make each operation deterministic?
+6. Are fallbacks author-managed canonical data, generated adapter output, or both under explicit policies, and how are stale fallbacks handled?
+7. What fixtures and numerical tolerances should validate the chosen algorithms or future color-library dependency?
+
+No color library, canonical schema, universal operation set, or fallback-generation algorithm is selected by these decisions.
+
 ## Authoring helpers and value previews
 
 1. Which scale patterns and parameters should the first helpers support?

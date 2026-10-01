@@ -242,6 +242,16 @@ Namespaced [DTCG extensions](https://www.w3.org/community/reports/design-tokens/
 
 Scale helpers create ordinary tokens; their generation recipes are not required to export those tokens. Do not confuse accepted tokens produced by a helper with generated target artifacts: the former become authored canonical data, while the latter remain derived output.
 
+## Color representation and fallback boundary
+
+**Established direction — 2 October 2026**
+
+Export from the authoritative [authored color](./conceptual-model.md#authored-color-and-alternative-representations), not from a currently selected picker notation, rounded display text, or preview approximation. Preserve the authored color space/model where the target profile supports it; conversions and gamut approximations require explicit policies and compatibility diagnostics.
+
+The [DTCG `2025.10` Color Module](https://www.w3.org/community/reports/design-tokens/CG-FINAL-color-20251028/#format) specifies a primary `colorSpace` and `components`, optional alpha, and an optional six-digit HEX fallback. The fallback's alpha is supplied separately by the color value. This supports interchange of a primary color and fallback; it does not select our canonical schema, require a stored fallback for every token, or establish that every fallback is exactly equivalent to its primary color.
+
+Canonical fallback ownership, automatic generation, gamut-mapping algorithms, precision, and target emission policies remain open. A fallback must not become an independently authoritative copy or silently overwrite the primary value on re-import. Fixtures should test conversion loss and fallback handling separately from theme variants and equivalent display representations.
+
 ## Round-trip strategy
 
 **Working hypothesis**

@@ -176,6 +176,30 @@ A color is a color value and may include an alpha channel. A translucent color t
 color.overlay.scrim → color value with alpha
 ```
 
+#### Authored color and alternative representations
+
+**Established decision — 2 October 2026**
+
+Keep one authoritative authored value for a color token under each applicable theme or condition. That value may be a literal, reference, or supported expression; do not persist independently editable RGB, HSL, HEX, and OKLCH copies as competing sources of truth.
+
+A literal color should retain its explicit color space/model, components, and alpha rather than being reduced to a HEX string or automatically normalized to sRGB. The exact schema and initially supported spaces remain open. Preserve meaningful component information, including missing components where supported, rather than silently treating every missing component as zero.
+
+HEX is a notation for sRGB, not a separate color space. RGB requires a specified space, such as sRGB or Display P3; HSL is an sRGB-based model. OKLCH is another color model. Users should be able to select supported editing/display representations without those representations becoming separate token values. See [CSS color notation](https://www.w3.org/TR/css-color-4/#hex-notation).
+
+Alternative representations are derived from the authoritative color and may be cached as disposable derived data. Merely inspecting another representation must not mutate the token. An accepted edit or explicit conversion updates the authoritative value under a defined editing policy, then invalidates or recalculates derived representations. Editing an alias or expression must not silently replace its authored relationship with a resolved literal.
+
+A fallback is distinct from an equivalent representation: a color outside a target gamut may need an approximation. Keep that distinction visible, report loss, and never overwrite the authored color with a preview or export approximation implicitly. Whether fallbacks are author-managed data or generated adapter output, and how they remain current after edits, is unresolved. Theme/condition variants are different authored decisions, not formatting alternatives.
+
+#### Color manipulation
+
+**Established direction — 2 October 2026**
+
+Deterministic color conversion and manipulation belong in the domain engine, not only in color-picker UI code. Candidate capabilities include component adjustments, mixing/interpolation, and palette generation; their initial coverage is not selected.
+
+Operations must state their color model or interpolation space and applicable parameters. For example, adjusting HSL lightness and adjusting OKLCH lightness are different operations; an unspecified “lighten by 10%” is not a sufficient domain contract. Precision, hue handling, alpha behavior, gamut-mapping policy, and algorithms remain explicit implementation decisions.
+
+Like scale helpers, color helpers may propose candidate values that become ordinary tokens when accepted. This does not establish live dependencies. Retaining a manipulation as an authored expression is a separate expression-support decision. UI controls collect parameters and show candidates; application operations coordinate accepted changes through domain validation.
+
 ### Opacity
 
 **Established distinction**

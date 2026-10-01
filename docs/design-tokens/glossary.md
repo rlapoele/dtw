@@ -30,6 +30,22 @@ A color value, potentially including alpha. In this project, a color is distinct
 
 Transparency encoded as part of a color value. It is not equivalent to applying opacity to an entire element or composited result.
 
+## Color fallback
+
+An explicit alternative color for a target that cannot represent the primary color as intended. It may be an approximation rather than an equivalent representation. Its canonical storage, authoring, and generation policy remain unresolved; a fallback must not silently replace the authored primary value.
+
+## Color gamut
+
+The range of colors a target color space or device can represent. Converting to a smaller gamut may require an explicit approximation policy.
+
+## Color representation
+
+A way of expressing or displaying a color using a color space/model and a notation. Alternative representations are derived, not independently authoritative token values. HEX is an sRGB notation, not a color space; choosing a display representation does not itself mutate the authored token.
+
+## Color space/model
+
+The explicit coordinate system and color interpretation for a literal's components, such as sRGB, HSL, or OKLCH. RGB alone does not identify a particular space. The authored space/model is preserved; the exact canonical schema and supported set remain open.
+
 ## Compatibility profile
 
 A versioned contract describing the accepted file shape, supported concepts, constraints, extensions, transformations, diagnostics, and expected round-trip behavior of an import, processor, or export target. Strict DTCG, Figma native, Penpot native, and Style Dictionary processor behavior are separate profile families.

@@ -1,6 +1,6 @@
 # Current Project Status
 
-> Last updated: 1 October 2026
+> Last updated: 2 October 2026
 >
 > Phase: domain discovery and development scaffolding
 >
@@ -33,20 +33,21 @@ No domain schema or behavior has been implemented. Use the unresolved questions 
 - Recorded working decisions for [export-aware modeling](../design-tokens/conceptual-model.md#export-aware-modeling) and [authored expressions](../design-tokens/conceptual-model.md#expressions), using CSS and strict DTCG `2025.10` as the first modeling cases without selecting adapter order or full coverage.
 - Recorded [context-aware previews](../design-tokens/conceptual-model.md#value-previews) as a working direction, with browser rendering outside the domain and observed results distinct from canonical values.
 - Established [scale helpers](../design-tokens/conceptual-model.md#scale-generation) as deterministic domain calculations: selected results become ordinary editable tokens without a live recipe relationship.
+- Established [color authoring boundaries](../design-tokens/conceptual-model.md#authored-color-and-alternative-representations): one authoritative value per applicable theme/condition, preserved authored space/model, derived display representations, and explicit fallbacks. [Color manipulation](../design-tokens/conceptual-model.md#color-manipulation) belongs in the domain; its initial coverage and policies remain open.
 
 ## Next meaningful actions
 
 1. Select the first user and minimum end-to-end workflow.
-2. Compare small canonical examples with CSS and strict DTCG output and diagnostics; narrow value, alias, expression, and theme semantics before choosing the minimum schema.
+2. Compare small canonical examples with CSS and strict DTCG output and diagnostics; narrow value, color representation/fallback, alias, expression, and theme semantics before choosing the minimum schema.
 3. Decide the persistence boundary relative to DTCG and the minimum project manifest.
-4. Select the first target adapter and state its compatibility promise, including expression handling; define the initial scale-helper and preview subsets.
+4. Select the first target adapter and state its compatibility promise, including expression and color conversion handling; define the initial scale-helper, color-operation, and preview subsets.
 5. Define acceptance criteria for the first PWA vertical slice and the immediately following Electron prototype without prematurely selecting unrelated infrastructure.
 
 These actions propose the order of the remaining decisions. The PWA-first and immediately-following Electron sequence is settled as a working decision; the detailed slice, technologies, schemas, and compatibility promises remain unresolved.
 
 ## Blockers and unresolved decisions
 
-There are no known external blockers. Domain implementation requires explicit choices for the behavior being implemented; product and delivery work remains guided by [`docs/planning/open-questions.md`](../planning/open-questions.md). Token identity, reference representation, expression grammar and typing, theme semantics, persistence, export policies, and initial helper/preview coverage remain unresolved. This milestone changed documentation only; no implementation was started.
+There are no known external blockers. Domain implementation requires explicit choices for the behavior being implemented; product and delivery work remains guided by [`docs/planning/open-questions.md`](../planning/open-questions.md). Token identity, reference representation, expression grammar and typing, theme semantics, persistence, export policies, color-operation and fallback policies, and initial helper/preview coverage remain unresolved. This milestone changed documentation only; no implementation was started.
 
 Do not silently choose a frontend framework, canonical persistence format, browser storage mechanism, database, schema library, plugin system, or package topology beyond the initial scaffold.
 

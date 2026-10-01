@@ -117,6 +117,8 @@ The domain engine owns deterministic design-token meaning and rules, including:
 
 It also owns deterministic scale-generation calculations that return candidate token values. Domain behavior does not have to correspond to a persisted canonical entity: scale recipes are helper inputs, not live relationships among the resulting tokens. See [scale generation](../design-tokens/conceptual-model.md#scale-generation).
 
+Deterministic color conversions and manipulation calculations likewise belong in the domain engine and must be testable without browser color parsing or rendering. Operations use explicit spaces/models and policies; their supported subset, algorithms, and library choices remain open. Color pickers are delivery controls, while target color syntax and compatibility handling belong to adapters. Application operations coordinate accepted edits or candidate creation. See [color manipulation](../design-tokens/conceptual-model.md#color-manipulation).
+
 Its public operations should accept and return serializable domain data. Representative operations include:
 
 ```text
