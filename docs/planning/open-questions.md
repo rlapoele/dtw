@@ -134,13 +134,14 @@ The following directions are decided or selected for validation:
 - Electron as the immediately following host-validation milestone and intended packaged desktop runtime;
 - a typed, validated RPC-style preload API over Electron IPC;
 - a restrained hexagonal architecture with a UI-independent token engine, shared application operations, and replaceable adapters;
-- reuse of the same engine and operations from Electron, CLI, web, MCP, automation, and tests where appropriate.
+- reuse of the same engine and operations from Electron, CLI, web, MCP, automation, and tests where appropriate;
+- TypeScript with strict checking for the initial domain code, Vite for build tooling, Vitest for unit tests, and npm with a lockfile in a single private scaffold package.
 
 Remaining questions:
 
 1. Which frontend framework and component approach best support the editor?
 2. Which runtime-schema and RPC-contract approach keeps the bridge typed without coupling the application to Electron?
-3. What initial package boundaries provide real reuse without creating a premature monorepo taxonomy?
+3. When would package boundaries beyond the initial single-package scaffold provide real reuse without creating a premature monorepo taxonomy?
 4. Which work should remain in Electron's main process, and which should move to utility processes or workers?
 5. Which browser persistence, backup, and file-access adapters should the PWA use, and which persistence engine, if any, is needed beyond authored project files?
 6. Is a plugin system needed, and if so, for which concrete extension use cases?

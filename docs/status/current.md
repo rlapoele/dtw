@@ -1,14 +1,16 @@
 # Current Project Status
 
-> Last updated: 29 September 2026  
-> Phase: inception and discovery  
-> Implementation state: documentation-only; no application code or established build, test, or package toolchain
+> Last updated: 1 October 2026
+>
+> Phase: domain discovery and development scaffolding
+>
+> Implementation state: npm scaffold with TypeScript, Vite, and Vitest; no domain code, tests, or web entry point
 
 ## Current focus
 
-The project has a coherent product, domain, architecture, and interoperability baseline. The delivery sequence is now PWA first and Electron immediately after the first complete vertical slice. The next phase should narrow that slice and the minimum canonical model before selecting unresolved implementation technologies.
+The project has a coherent product, domain, architecture, and interoperability baseline. An initial TypeScript, Vite, and Vitest scaffold is now in place using npm. The immediate next step is to specify a small domain behavior and its identity, reference, value, and diagnostic rules before implementing it with unit tests. The delivery sequence remains PWA first and Electron immediately after the first complete vertical slice.
 
-There is no active implementation milestone. New work should begin from the decision priorities in [`docs/planning/open-questions.md`](../planning/open-questions.md#decision-priorities), not by inferring convenient defaults.
+No domain schema or behavior has been implemented. Use the unresolved questions in [`docs/planning/open-questions.md`](../planning/open-questions.md#decision-priorities) to guide explicit decisions; the scaffold does not settle them.
 
 ## Established baseline
 
@@ -27,6 +29,7 @@ There is no active implementation milestone. New work should begin from the deci
 - Synchronized `AGENTS.md` with the current document map and interoperability constraints.
 - Added this dedicated status-memory and handoff structure.
 - Selected a PWA-first implementation sequence: validate the first complete browser vertical slice, then immediately validate reuse through Electron and desktop adapters before browser-only assumptions accumulate.
+- Created empty `src/` and `test/` directories, installed TypeScript, Vite, and Vitest as npm development dependencies, and added type-check, test, development, build, and preview scripts. See [development commands](../../README.md#development-scaffold) and the [tooling decision](../project/architecture.md#initial-development-tooling).
 
 ## Next meaningful actions
 
@@ -40,13 +43,13 @@ These actions propose the order of the remaining decisions. The PWA-first and im
 
 ## Blockers and unresolved decisions
 
-There are no known external blockers. Product and implementation work is intentionally gated by the unresolved questions summarized in [`docs/planning/open-questions.md`](../planning/open-questions.md), especially its decision priorities.
+There are no known external blockers. Domain implementation requires explicit choices for the behavior being implemented; product and delivery work remains guided by [`docs/planning/open-questions.md`](../planning/open-questions.md). The initial scaffold does not resolve token identity, reference representation, theme semantics, or persistence.
 
-Do not silently choose a frontend framework, canonical persistence format, browser storage mechanism, database, schema library, plugin system, or build topology.
+Do not silently choose a frontend framework, canonical persistence format, browser storage mechanism, database, schema library, plugin system, or package topology beyond the initial scaffold.
 
 ## Verification expectations
 
-The repository currently has no automated checks. For documentation changes:
+Type-check and test commands are documented in [README.md](../../README.md). They currently report no inputs and no tests, respectively; the scaffold has no behavior to verify yet. Build and preview commands await an entry point and generated output. For documentation changes:
 
 - inspect `git status` and the scoped diff;
 - run `git diff --check`;

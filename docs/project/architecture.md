@@ -279,13 +279,21 @@ apps/
 
 Only packages and applications required by current work should be created. The PWA is the first committed implementation host; Electron is the immediately following host-validation milestone. CLI and MCP remain architectural consumers rather than initial implementation commitments.
 
+## Initial development tooling
+
+**Working decision — 1 October 2026**
+
+Start domain implementation in TypeScript with strict type checking, Vite for build tooling, Vitest for unit tests, and npm for dependency management. The initial scaffold is a single private package with `src/` and `test/` directories. No frontend framework, styling library, runtime-schema library, persistence adapter, or domain schema is selected by this scaffold.
+
+Type checking runs separately through `tsc --noEmit`; Vite's TypeScript transformation does not replace it. Domain tests run in Vitest's Node environment while domain behavior remains independent of Node APIs, Electron, the browser, storage, and the network. See the repository [README](../../README.md) for executable commands and the limitations while the source directories are empty.
+
 ## Remaining open choices
 
 This direction does not yet select:
 
 - a frontend framework or component library;
 - canonical persistence format or database;
-- monorepo/build tooling;
+- any future monorepo topology or package split beyond the initial single-package scaffold;
 - exact RPC contract library or runtime-schema library;
 - browser persistence, backup, and file-access adapters;
 - supported browsers and PWA hosting or update policy;

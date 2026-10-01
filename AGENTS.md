@@ -2,7 +2,7 @@
 
 ## Project state
 
-This repository currently contains inception documentation for the Design Token Workbench plus a vendored DTCG `2025.10` reference snapshot; it has no application code or established build, test, or package toolchain. The accepted scope is a desktop-first, local-first token workbench. `docs/project/design-system-studio-extension.md` is exploratory and must not override the token-workbench documents.
+This repository contains inception documentation for the Design Token Workbench, a vendored DTCG `2025.10` reference snapshot, and an npm scaffold using TypeScript, Vite, and Vitest. The `src/` and `test/` directories are initially empty; there is no domain implementation or web entry point. See `README.md` for commands and scaffold limitations. The accepted scope is a desktop-first, local-first token workbench. `docs/project/design-system-studio-extension.md` is exploratory and must not override the token-workbench documents.
 
 ## Read before changing direction
 
@@ -49,4 +49,4 @@ Treat status labels as meaningful: **established** directions and principles are
 - Update `docs/status/current.md` after a material milestone, research conclusion, decision, or handoff. Follow `docs/status/README.md`; status files summarize authoritative documents and must not become a second source of truth.
 - Whenever work crystallizes a decision or direction in the repository documentation, include a suggested short commit message in the final handoff.
 - Keep Markdown direct and semantic. Use small diagrams or examples only when they clarify a relationship.
-- There are currently no automated checks. Review changed Markdown, links, terminology, and status claims manually. If code is introduced, document its real commands and test domain behavior independently from Electron, the visible UI, the real filesystem, and the network.
+- Review changed Markdown, links, terminology, and status claims manually. The scaffold provides `npm run typecheck` and `npm test`, but initially has no source or tests; see `README.md` for their expected empty-input results. As code is introduced, keep its commands documented and test domain behavior independently from Electron, the visible UI, the real filesystem, and the network.
