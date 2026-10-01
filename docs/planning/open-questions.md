@@ -26,7 +26,20 @@ Suggested decision states for future use are: `open`, `investigating`, `proposed
 7. Should a solid paint exist separately from its referenced color?
 8. Are patterns, images, or video fills within scope?
 9. Which reference directions between primitive, semantic, and component layers are allowed?
-10. Are expressions part of the canonical model, and if so, which deterministic expression language is permitted?
+10. Which expression representation, grammar, typing rules, and portable versus CSS-specific operations are permitted initially?
+
+Expression support is a [working decision](../design-tokens/conceptual-model.md#expressions); its concrete schema and coverage are not selected. Scale generation is [domain behavior](../design-tokens/conceptual-model.md#scale-generation), not a requirement for persisted scale entities or live token dependencies.
+
+## Authoring helpers and value previews
+
+1. Which scale patterns and parameters should the first helpers support?
+2. What validation, rounding, units, naming, and collision rules govern candidate creation?
+3. Would saved helper presets be useful, and where would that non-canonical configuration belong?
+4. Which token types and expressions require which preview specimens in the first slice?
+5. What explicit contexts and browser capability baseline should previews support?
+6. How should preview diagnostics distinguish missing context, unsupported rendering, and invalid values or dependencies?
+
+Created tokens have no live link to scale helpers. Context-aware preview is a working direction, not a promise to render every possible value.
 
 ## Taxonomy and naming
 
@@ -81,7 +94,10 @@ The stable DTCG `2025.10` reports are the current strict interchange and researc
 9. Which normative DTCG processor behaviors belong in the first conformance suite, including JSON Pointer and extension preservation?
 10. How are vendor extensions reviewed and namespaced?
 11. Should an initial Style Dictionary adapter only compile validated generated input, or also offer explicitly lossy legacy-to-DTCG migration?
-12. Which code-oriented export target should be supported first, if any?
+12. What initial CSS export profile should be supported, and in which implementation order relative to strict DTCG?
+13. Which expression evaluation, reviewed fallback, blocking, and metadata-preservation policies should each export profile allow?
+
+CSS and strict DTCG `2025.10` are the [first concrete modeling cases](../design-tokens/interoperability.md#initial-modeling-targets-and-expressions), not a selected adapter order or complete coverage promise.
 
 ## Validation and change management
 

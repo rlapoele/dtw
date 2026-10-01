@@ -8,7 +8,7 @@
 
 ## Current focus
 
-The project has a coherent product, domain, architecture, and interoperability baseline. An initial TypeScript, Vite, and Vitest scaffold is now in place using npm. The immediate next step is to specify a small domain behavior and its identity, reference, value, and diagnostic rules before implementing it with unit tests. The delivery sequence remains PWA first and Electron immediately after the first complete vertical slice.
+The project has a coherent product, domain, architecture, and interoperability baseline, plus an initial TypeScript, Vite, and Vitest scaffold using npm. Current work is modeling typed values, references, and expressions against concrete CSS and strict DTCG export cases before implementation. Scale generation is domain behavior without persisted scale entities or live generator dependencies. Context-aware preview remains a working direction. The delivery sequence remains PWA first and Electron immediately after the first complete vertical slice.
 
 No domain schema or behavior has been implemented. Use the unresolved questions in [`docs/planning/open-questions.md`](../planning/open-questions.md#decision-priorities) to guide explicit decisions; the scaffold does not settle them.
 
@@ -30,20 +30,23 @@ No domain schema or behavior has been implemented. Use the unresolved questions 
 - Added this dedicated status-memory and handoff structure.
 - Selected a PWA-first implementation sequence: validate the first complete browser vertical slice, then immediately validate reuse through Electron and desktop adapters before browser-only assumptions accumulate.
 - Created empty `src/` and `test/` directories, installed TypeScript, Vite, and Vitest as npm development dependencies, and added type-check, test, development, build, and preview scripts. See [development commands](../../README.md#development-scaffold) and the [tooling decision](../project/architecture.md#initial-development-tooling).
+- Recorded working decisions for [export-aware modeling](../design-tokens/conceptual-model.md#export-aware-modeling) and [authored expressions](../design-tokens/conceptual-model.md#expressions), using CSS and strict DTCG `2025.10` as the first modeling cases without selecting adapter order or full coverage.
+- Recorded [context-aware previews](../design-tokens/conceptual-model.md#value-previews) as a working direction, with browser rendering outside the domain and observed results distinct from canonical values.
+- Established [scale helpers](../design-tokens/conceptual-model.md#scale-generation) as deterministic domain calculations: selected results become ordinary editable tokens without a live recipe relationship.
 
 ## Next meaningful actions
 
 1. Select the first user and minimum end-to-end workflow.
-2. Define the minimum canonical token schema, including alias and theme semantics.
+2. Compare small canonical examples with CSS and strict DTCG output and diagnostics; narrow value, alias, expression, and theme semantics before choosing the minimum schema.
 3. Decide the persistence boundary relative to DTCG and the minimum project manifest.
-4. Select the first target adapter and state its compatibility promise.
+4. Select the first target adapter and state its compatibility promise, including expression handling; define the initial scale-helper and preview subsets.
 5. Define acceptance criteria for the first PWA vertical slice and the immediately following Electron prototype without prematurely selecting unrelated infrastructure.
 
 These actions propose the order of the remaining decisions. The PWA-first and immediately-following Electron sequence is settled as a working decision; the detailed slice, technologies, schemas, and compatibility promises remain unresolved.
 
 ## Blockers and unresolved decisions
 
-There are no known external blockers. Domain implementation requires explicit choices for the behavior being implemented; product and delivery work remains guided by [`docs/planning/open-questions.md`](../planning/open-questions.md). The initial scaffold does not resolve token identity, reference representation, theme semantics, or persistence.
+There are no known external blockers. Domain implementation requires explicit choices for the behavior being implemented; product and delivery work remains guided by [`docs/planning/open-questions.md`](../planning/open-questions.md). Token identity, reference representation, expression grammar and typing, theme semantics, persistence, export policies, and initial helper/preview coverage remain unresolved. This milestone changed documentation only; no implementation was started.
 
 Do not silently choose a frontend framework, canonical persistence format, browser storage mechanism, database, schema library, plugin system, or package topology beyond the initial scaffold.
 

@@ -115,6 +115,8 @@ The domain engine owns deterministic design-token meaning and rules, including:
 - validation and diagnostics;
 - transformations and semantic change analysis.
 
+It also owns deterministic scale-generation calculations that return candidate token values. Domain behavior does not have to correspond to a persisted canonical entity: scale recipes are helper inputs, not live relationships among the resulting tokens. See [scale generation](../design-tokens/conceptual-model.md#scale-generation).
+
 Its public operations should accept and return serializable domain data. Representative operations include:
 
 ```text
@@ -149,6 +151,18 @@ watchProject
 ```
 
 Operations should usually be coarse enough to avoid a chatty RPC boundary. Fast, temporary interface state may remain in the renderer; operations that enforce domain invariants, mutate canonical project data, persist changes, or create target artifacts belong behind the application boundary.
+
+For scale helpers, the UI collects parameters and presents candidates; the domain calculates them; an application operation coordinates creation of the selected tokens through normal domain validation. Later helper changes do not mutate existing tokens automatically.
+
+## Expression preview boundary
+
+**Working direction — 1 October 2026**
+
+Keep expression/reference semantics in the domain and browser rendering in an outer preview adapter. The domain validates supported expressions and prepares dependencies without relying on DOM or browser measurements. A preview adapter translates supported values into an appropriate specimen, renders under an explicit context, and returns observations and diagnostics. The application layer coordinates the request; no delivery surface should duplicate reference resolution.
+
+Preview context and observed measurements are distinct from authored canonical values. A controlled preview document is a candidate for viewport-dependent specimens; its implementation is not selected. Changing a specimen's width must not be assumed to change viewport-relative units.
+
+Test domain semantics with ordinary unit tests. Browser preview behavior needs separate adapter/integration tests against a declared browser capability baseline. Preview success, canonical validity, and export compatibility are separate outcomes.
 
 ## Project boundary
 

@@ -223,6 +223,25 @@ An exporter should:
 7. report omissions, coercions, flattening, extension use, and alternate artifacts;
 8. make generated output distinguishable from authored canonical data.
 
+## Initial modeling targets and expressions
+
+**Working decision — 1 October 2026**
+
+Use CSS and strict DTCG `2025.10` as the first concrete cases for testing canonical modeling choices. This does not select which adapter is implemented first or settle its supported subset. Fixtures should compare authored values, references, expected output, and compatibility diagnostics rather than assume universal cross-target coverage.
+
+The canonical model's [expression direction](./conceptual-model.md#expressions) goes beyond strict DTCG values. The DTCG `2025.10` Format Module has no generic expression value type; its [dimension definition](https://www.w3.org/community/reports/design-tokens/CG-FINAL-format-20251028/#dimension) requires a numeric value and `px` or `rem` unit. A CSS function string is therefore not a conforming dimension `$value`.
+
+An exporter must distinguish:
+
+- expression emission supported by a named CSS target profile;
+- deterministic context-free evaluation into a valid target value, with a transformation diagnostic;
+- context-dependent evaluation or an author-approved fallback under an explicit policy;
+- unsupported expressions that cannot be represented safely.
+
+Namespaced [DTCG extensions](https://www.w3.org/community/reports/design-tokens/CG-FINAL-format-20251028/#extensions) may preserve optional expression metadata alongside a valid standard value. They do not make an invalid `$value` conforming or guarantee that another tool can reconstruct the expression. Exact fallback, blocking, and extension policies remain unresolved. A preview measurement must not become an export fallback implicitly.
+
+Scale helpers create ordinary tokens; their generation recipes are not required to export those tokens. Do not confuse accepted tokens produced by a helper with generated target artifacts: the former become authored canonical data, while the latter remain derived output.
+
 ## Round-trip strategy
 
 **Working hypothesis**
@@ -263,4 +282,4 @@ Vendor and project documentation is evidence of intended behavior, not a substit
 
 **Future direction**
 
-Style Dictionary `5.5.5` is an established research target but not yet a committed implementation dependency or adapter. CSS custom properties, JavaScript/TypeScript modules, other build pipelines, Tailwind-oriented output, Sketch, platform-native code, and documentation artifacts remain plausible targets. Each needs its own capability profile rather than being grouped under a generic “code export.”
+Style Dictionary `5.5.5` is an established research target but not yet a committed implementation dependency or adapter. CSS is now an initial modeling target as described above, but its implementation and coverage are not selected. JavaScript/TypeScript modules, other build pipelines, Tailwind-oriented output, Sketch, platform-native code, and documentation artifacts remain plausible additional targets. Each needs its own capability profile rather than being grouped under a generic “code export.”

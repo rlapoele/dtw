@@ -66,6 +66,10 @@ The intended packaged desktop host, to be validated immediately after the first 
 
 The deterministic adaptation of canonical data into a target representation, accompanied by compatibility diagnostics.
 
+## Expression
+
+An authored calculation or function-based value definition that may contain token references. Expression support is a working decision; its grammar, representation, result typing, and supported context requirements remain open. An expression is not automatically a new value type.
+
 ## Gradient
 
 A composed visual treatment containing multiple color stops, positions, and geometry. A gradient is not a color.
@@ -146,9 +150,21 @@ A compatibility profile for a build or translation engine, describing its accept
 
 Information about where imported data came from, its source version or path, and target-specific metadata useful for explanation or re-export.
 
+## Preview context
+
+The explicit conditions under which a token specimen is rendered, such as theme, viewport or container dimensions, fonts, and content. Preview observations under that context are distinct from authored canonical values.
+
+## Reference
+
+A relationship identifying another token or a supported part of its value. A whole-value token reference makes the referring token an alias; references can also occur within expressions or composites. The internal representation and initially supported addressing forms remain open.
+
 ## Resolved value
 
-The concrete value obtained after following aliases, applying theme or mode choices, and evaluating any permitted expressions.
+The value obtained after following aliases, applying theme or mode choices, and evaluating permitted expressions where sufficient context is available. Resolution does not imply that every expression can become a context-free literal; browser preview measurements are separate observations.
+
+## Scale helper
+
+An authoring tool whose deterministic domain calculation generates candidate token values from a pattern and parameters. Selected candidates become ordinary canonical tokens without live generator dependencies. A scale recipe is not a required canonical entity; curated progressions are manually authored values.
 
 ## Semantic role
 
@@ -176,7 +192,7 @@ A coherent variation in resolved token values, such as light, dark, high contras
 
 ## Token
 
-A named design decision represented by typed data, a reference, or a composition together with meaning and metadata.
+A named design decision represented by typed data, a reference, an expression, or a composition together with meaning and metadata.
 
 ## Token path
 

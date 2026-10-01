@@ -13,13 +13,21 @@ The workbench needs a canonical, tool-independent model from which it can valida
 A token minimally has:
 
 - a stable identity or path;
-- an authored value or reference;
+- an authored literal, reference, expression, or composition;
 - a value type;
 - optional description and metadata;
 - a place in a layer and semantic vocabulary;
 - theme or condition behavior when applicable.
 
 The exact schema, identity rules, and persistence representation are open.
+
+### Export-aware modeling
+
+**Working decision — 1 October 2026**
+
+Use CSS and strict DTCG `2025.10` as the first concrete export cases when testing the canonical model. Model typed values and relationships with enough information for explicit adaptation, rather than storing target strings as the universal representation. This selects modeling examples, not an adapter implementation order or a promise that every canonical value is representable in both targets.
+
+Before implementing a behavior, compare small canonical examples with their expected exports and compatibility diagnostics. Keep token meaning in the model and target naming, serialization, conversion, and output policies in adapter configuration. Exact schemas and export coverage remain open; see [interoperability](./interoperability.md#initial-modeling-targets-and-expressions).
 
 ## Three independent axes
 
@@ -111,6 +119,42 @@ Reference rules may normally flow primitive → semantic → component, with car
 Aliases are first-class relationships, not text substitutions. The workbench should preserve the authored reference, resolve it deterministically, display the dependency graph, and detect missing or cyclic references.
 
 DTCG-style references such as `{color.neutral.950}` are a strong interchange convention. The internal reference representation remains undecided.
+
+A reference identifies another token or a supported part of its value. An alias token has a reference as its whole authored value; its name is still an ordinary token name. References may also occur inside expressions or composites without making the whole token an alias.
+
+## Expressions
+
+**Working decision — 1 October 2026**
+
+The canonical model should support authored expressions, including CSS-function use cases such as `calc()`, `clamp()`, and `minmax()`. This is not a commitment to accept arbitrary CSS or support every function initially.
+
+An expression is a form of authored value, not automatically a new value type. Its result or target-specific meaning still needs explicit typing: a length calculation and a grid-track definition must not be treated as the same kind of dimension merely because both use CSS functions.
+
+Preserve authored expressions and identifiable token references. Reference analysis, missing-target detection, cycle detection, and type validation must apply to supported expression dependencies as well as whole-token aliases. Context-free evaluation must be distinguished from values that need a viewport, container, font metrics, or other rendering context; missing context must not be replaced by hidden assumptions.
+
+The expression representation, grammar, initial supported functions, typing rules, and evaluation policies remain open. A structured representation is a candidate, not a selected schema. Portable operations and explicitly CSS-specific constructs must remain distinguishable.
+
+## Value previews
+
+**Working direction — 1 October 2026**
+
+Provide meaningful previews for the supported token types and expressions. Rendering may use an explicit context, including the selected theme, viewport or container dimensions, root font size, fonts, and specimen content. A preview result is an observation under that context, not a replacement for the authored canonical value.
+
+The preview should distinguish a rendered result from missing context, unsupported rendering, and invalid values or dependencies, with explanations. Universal preview coverage is not required; the initial supported subset and specimen types remain open. A successful browser preview does not establish export compatibility or DTCG conformance.
+
+Browser rendering and measurement belong outside the domain engine. See the [preview boundary](../project/architecture.md#expression-preview-boundary).
+
+## Scale generation
+
+**Established decision — 1 October 2026**
+
+Scales are authoring helpers for generating a series of candidate token values following a pattern. Their deterministic calculation belongs in the domain engine; they are not merely UI utilities. A scale recipe is not a required persisted entity, token value type, or relationship in the canonical model.
+
+Users supply parameters, inspect candidates, and choose which tokens to create. Application operations create those tokens through the normal naming, typing, and validation rules. Once accepted, the tokens are ordinary authored canonical data, independently editable with no live relationship to the generator. Changing generator parameters later does not automatically update existing tokens.
+
+For example, a helper using a base of `1rem`, a ratio of `1.25`, and four steps could propose `1rem`, `1.25rem`, `1.5625rem`, and `1.953125rem`. This illustrates generation, not a finalized function signature or naming scheme. Curated values are manually chosen by users and need no scale object.
+
+Supported patterns, parameter validation, rounding, naming, collision handling, and initial release scope remain open. Saving helper presets, if later useful, is a separate product/configuration decision and must not silently introduce live scale dependencies.
 
 ## Themes and modes
 
