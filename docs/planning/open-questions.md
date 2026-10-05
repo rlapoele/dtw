@@ -77,10 +77,12 @@ Remaining questions:
 1. Which axes and options belong in the first slice, and which project-defined axes are permitted?
 2. Which constraints make an option combination invalid or unavailable?
 3. When may a token inherit a less-specific value, and when must a validation profile require explicit coverage for a selection?
-4. How are defaults, missing applicable values, and equally specific ambiguities represented and explained in the exact schema?
+4. How should missing applicable values and equally specific ambiguities be represented and explained in validation and resolution results?
 5. How should conditional aliases and expressions be represented, resolved, and diagnosed?
 6. Where are axes, presets, and project activation preferences persisted relative to canonical authored token data?
 7. How should axes and presets map to DTCG Resolver documents, Figma collections/modes, Penpot sets/themes, and CSS activation mechanisms?
+
+The `VariationAxis` aggregate owns one or more stable-identity `VariationOption` entities and identifies one explicit default option. Option order is presentation-only; rename preserves identity; copy creates new identities; and removing referenced axes or options requires a reviewed project-scoped migration.
 
 ## Persistence and project structure
 

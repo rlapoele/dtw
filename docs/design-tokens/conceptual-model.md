@@ -368,7 +368,44 @@ Resolution must be deterministic. Complete omitted selections from axis defaults
 
 Named themes are presets of variation selections, not owners of separate token trees. The authoring interface may display axes and presets hierarchically, as a matrix, or through another useful view without changing the canonical relationships. Adapters may flatten composed selections into target modes, sets, files, selectors, or other target constructs, but must report assumptions, unsupported combinations, and loss explicitly.
 
-The initial axes and options, constraints between combinations, coverage requirements, exact persistence representation, and adapter-specific mappings remain open. Accessibility-related axes need precise meanings: contrast, forced colors, color-vision adaptations, typography, spacing, transparency, and motion must not be collapsed into an undifferentiated accessibility theme. Color-vision adaptations are reviewed authored decisions and do not establish that color alone can carry meaning.
+### VariationAxis and VariationOption
+
+**Working decision — 5 October 2026**
+
+`VariationAxis` is a project-owned aggregate root. `VariationOption` is an identity-bearing entity owned by exactly one axis: it has a stable identity because token conditions and theme presets reference it, but it has no independent lifecycle outside that axis.
+
+```ts
+type VariationAxis = {
+  id: VariationAxisId;
+  projectId: ProjectId;
+  name: VariationAxisName;
+  description?: string;
+  options: readonly VariationOption[];
+  defaultOptionId: VariationOptionId;
+  extensions?: NamespacedExtensions;
+};
+
+type VariationOption = {
+  id: VariationOptionId;
+  name: VariationOptionName;
+  description?: string;
+  extensions?: NamespacedExtensions;
+};
+```
+
+A saved canonical axis contains at least one option and exactly one explicit default whose identity belongs to that axis. Incomplete form state may exist in an editor before saving, but the canonical project does not persist a name-only axis that cannot participate deterministically in resolution. The default is not inferred from option order.
+
+Axis names are unique within a project, and option names are unique within their axis, under the eventual canonical name-normalization rules. Option order is preserved for authoring and deterministic presentation or export, but has no resolution or precedence semantics. The exact name grammar and ordering representation remain open.
+
+Renaming an axis or option preserves its identity and all references. Copying an axis creates a new axis identity and new identities for all copied options; its copied default points to the corresponding new option. An option cannot move to another axis while retaining its identity.
+
+Changing the default preserves axis, option, condition, and preset identities, but changes completion of omitted selections and is therefore a potentially broad semantic change. Adding an option does not automatically require every token to define a value for it; coverage requirements belong to validation profiles.
+
+Removing a referenced option or axis is a project-scoped migration rather than an aggregate-local deletion. The operation must account for defaults, token assignment conditions, theme presets, and future variation constraints. It must not silently delete assignments, rewrite presets, or strip an axis from conditions: removing a selector may collapse distinct normalized conditions into duplicates or produce new ambiguities. A reviewed operation may select replacements, remove affected authored data explicitly, or cancel.
+
+No closed built-in axis-kind enum is selected. Canonical relationships use stable identities rather than inferred meanings from names. If concrete validation, accessibility, or adapter workflows later require explicit standardized meanings, an optional semantic-role mechanism may be introduced without changing axis or option identity.
+
+The initial axes, constraints between combinations, coverage requirements, exact persistence representation, and adapter-specific mappings remain open. Accessibility-related axes need precise meanings: contrast, forced colors, color-vision adaptations, typography, spacing, transparency, and motion must not be collapsed into an undifferentiated accessibility theme. Color-vision adaptations are reviewed authored decisions and do not establish that color alone can carry meaning.
 
 ## Color, opacity, paint, and gradients
 

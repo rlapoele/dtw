@@ -268,7 +268,7 @@ The explicit shape and constraints of a token's data. The canonical foundational
 
 ## Variation axis
 
-An independent canonical dimension along which token values may vary, such as color scheme, contrast, brand, platform, density, or locale. An axis defines named options and a default option; sharing the mechanism does not make different axes semantically equivalent.
+An independent project-owned aggregate root along which token values may vary, such as color scheme, contrast, brand, platform, density, or locale. A saved axis owns at least one Variation option and identifies exactly one explicit default. Sharing the mechanism does not make different axes semantically equivalent.
 
 ## Variation condition
 
@@ -276,7 +276,7 @@ A normalized conjunction of axis-option selections attached to a Token value ass
 
 ## Variation option
 
-A named choice on a variation axis, such as `light` or `dark` on a color-scheme axis.
+An identity-bearing entity owned by one Variation axis, such as `light` or `dark` on a color-scheme axis. Its stable identity is referenced by conditions and theme presets; it has no independent lifecycle outside its axis.
 
 ## Variation selection
 
