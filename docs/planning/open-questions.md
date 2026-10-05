@@ -69,12 +69,17 @@ The decision to omit a redundant `status` node above `info`, `success`, `warning
 
 ## Themes and variability
 
-1. How are themes represented canonically?
-2. Are light/dark, brand, platform, density, contrast, and locale all the same kind of axis?
-3. How do multiple axes compose, and what are the conflict and precedence rules?
-4. Are themes mappings, activated token sets, modes, conditions, or a combination?
-5. How are missing values and fallback behavior handled?
-6. How should themes map to Figma collections/modes and Penpot sets/themes?
+The canonical composition direction is decided: model independent [variation axes](../design-tokens/conceptual-model.md#themes-and-modes), conditional token values, deterministic most-specific resolution, and named presets. User interfaces may present the model hierarchically or as a matrix; adapters may flatten combinations with explicit diagnostics. Different axes share a composition mechanism without becoming semantically equivalent.
+
+Remaining questions:
+
+1. Which axes and options belong in the first slice, and which project-defined axes are permitted?
+2. Which constraints make an option combination invalid or unavailable?
+3. When may a token inherit a less-specific value, and when must a validation profile require explicit coverage for a selection?
+4. How are defaults, missing applicable values, and equally specific ambiguities represented and explained in the exact schema?
+5. How should conditional aliases and expressions be represented, resolved, and diagnosed?
+6. Where are axes, presets, and project activation preferences persisted relative to canonical authored token data?
+7. How should axes and presets map to DTCG Resolver documents, Figma collections/modes, Penpot sets/themes, and CSS activation mechanisms?
 
 ## Persistence and project structure
 

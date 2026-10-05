@@ -158,11 +158,17 @@ Supported patterns, parameter validation, rounding, naming, collision handling, 
 
 ## Themes and modes
 
-**Established need; unresolved model**
+**Working decision — 5 October 2026**
 
-A token identity such as `color.content.primary` should be able to resolve differently in light and dark themes without duplicating the semantic vocabulary. Systems may also vary by brand, density, platform, contrast, or locale.
+Model theme variability canonically through independent variation axes rather than nested theme trees. An axis represents one dimension of variation, such as color scheme, contrast, brand, platform, density, or locale, and defines named options plus a default option. These concerns use the same composition mechanism without implying that they have the same domain meaning.
 
-Open modeling questions include whether these axes are modes, token-set combinations, conditions, or another construct; how axes compose; and how conflicts are resolved.
+A variation selection chooses options across the applicable axes. A token may have an unconditional authored value and conditional authored values whose conditions match a partial selection. This allows a token identity such as `color.content.primary` to resolve differently for light and dark schemes, standard and high contrast, or their combination without duplicating the semantic vocabulary or requiring a complete value copy for every theoretical combination.
+
+Resolution must be deterministic. Complete omitted selections from axis defaults, retain conditional values whose conditions match the active selection, and choose the matching value with the most specific condition. Declaration order is not a semantic tie-breaker: equally specific matches that provide different values are ambiguous and must produce a validation diagnostic. A missing applicable value is also a validation outcome rather than permission to invent one. Aliases and supported expressions resolve under the same active selection and participate in ordinary missing-reference, cycle, and type validation.
+
+Named themes are presets of variation selections, not owners of separate token trees. The authoring interface may display axes and presets hierarchically, as a matrix, or through another useful view without changing the canonical relationships. Adapters may flatten composed selections into target modes, sets, files, selectors, or other target constructs, but must report assumptions, unsupported combinations, and loss explicitly.
+
+The initial axes and options, constraints between combinations, coverage requirements, exact persistence representation, and adapter-specific mappings remain open. Accessibility-related axes need precise meanings: contrast, forced colors, color-vision adaptations, typography, spacing, transparency, and motion must not be collapsed into an undifferentiated accessibility theme. Color-vision adaptations are reviewed authored decisions and do not establish that color alone can carry meaning.
 
 ## Color, opacity, paint, and gradients
 

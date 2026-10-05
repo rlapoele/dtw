@@ -185,12 +185,14 @@ These profiles solve different problems. Figma and Penpot adapters translate nat
 | Radius | Dimension plus semantic metadata/convention | Number + radius scope | Border Radius token | Per-corner composition may differ |
 | Layer opacity | Number/role mapping to determine | Number + opacity scope | Opacity token | Distinct from color alpha |
 | Alias | Curly-brace token reference and JSON Pointer rules | Same-type variable alias; cross-collection metadata may require extension | Curly-brace token alias and expressions | Required syntax, preservation, and error handling |
-| Theme | Separate Resolver document with sets, modifiers, and resolution order | Collections and modes, commonly exchanged as files per mode | Native sets, theme groups, `$themes`, and `$metadata` | No direct structural equivalence |
+| Variation axes and theme presets | Separate Resolver document with sets, modifiers, and resolution order | Collections and modes, commonly exchanged as files per mode | Native sets, theme groups, `$themes`, and `$metadata` | No direct structural equivalence; combinations may require flattening |
 | Typography | `typography` composite with defined singular property names and value shapes | Variables feeding a text style | Typography token with native property/value conventions | Partial decomposition and shape conversion |
 | Shadow/effect | `shadow` composite | Variables feeding effect styles | Shadow token | Multiple effects and target limits |
 | Gradient/paint | `gradient` composite; no general paint type | Fill style; colors may be variables | No native gradient token found | Alternate artifacts and loss |
 
 This table describes mapping direction, not final schemas.
+
+Canonical variation axes remain independent even when a target cannot preserve that structure. An adapter may flatten a selection such as dark plus high contrast into a target mode, set, file, selector, or other artifact. It must make the generated combinations and naming policy deterministic and diagnose unsupported combinations, ambiguity, omitted coverage, and structural loss.
 
 ## Import requirements
 

@@ -134,7 +134,7 @@ selected
 disabled
 ```
 
-The project has not decided whether state is always a final path segment, whether some concepts should be modeled through modes, or how to prevent combinatorial growth. Names such as `default` should be used only when their scope is unambiguous.
+The project has not decided whether interactive state is always a final path segment, whether it may use conditional token values, or how to prevent combinatorial growth. Theme variability uses canonical [variation axes](./conceptual-model.md#themes-and-modes) and should not be duplicated in token names. Names such as `default` should be used only when their scope is unambiguous.
 
 ## Example semantic mappings
 
@@ -152,7 +152,7 @@ color.warning.default    → {color.amber.600}
 color.danger.default     → {color.red.600}
 ```
 
-A theme should normally change mappings, not semantic token names.
+A theme preset should normally change conditional mappings through a variation selection, not semantic token names.
 
 ## Non-color semantic families
 

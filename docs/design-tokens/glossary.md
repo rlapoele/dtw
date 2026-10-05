@@ -46,6 +46,10 @@ A way of expressing or displaying a color using a color space/model and a notati
 
 The explicit coordinate system and color interpretation for a literal's components, such as sRGB, HSL, or OKLCH. RGB alone does not identify a particular space. The authored space/model is preserved; the exact canonical schema and supported set remain open.
 
+## Conditional token value
+
+An authored value associated with a condition that matches a partial variation selection. The most specific matching value is selected deterministically; equally specific conflicting matches are ambiguities rather than declaration-order overrides.
+
 ## Compatibility profile
 
 A versioned contract describing the accepted file shape, supported concepts, constraints, extensions, transformations, diagnostics, and expected round-trip behavior of an import, processor, or export target. Strict DTCG, Figma native, Penpot native, and Style Dictionary processor behavior are separate profile families.
@@ -112,7 +116,7 @@ Model Context Protocol. A possible delivery surface through which tools can expo
 
 ## Mode
 
-A named variation within a collection or theme-like construct, such as light and dark. Figma uses this term specifically; the canonical equivalent is unresolved.
+A named variation within an external collection or theme-like construct, such as light and dark. Figma uses this term specifically. A mode may map to an option on a canonical variation axis or to a flattened combination of options, but it is not itself the canonical composition model.
 
 ## Native profile
 
@@ -168,7 +172,7 @@ Information about where imported data came from, its source version or path, and
 
 ## Preview context
 
-The explicit conditions under which a token specimen is rendered, such as theme, viewport or container dimensions, fonts, and content. Preview observations under that context are distinct from authored canonical values.
+The explicit conditions under which a token specimen is rendered, such as a variation selection, viewport or container dimensions, fonts, and content. Preview observations under that context are distinct from authored canonical values.
 
 ## Reference
 
@@ -176,7 +180,7 @@ A relationship identifying another token or a supported part of its value. A who
 
 ## Resolved value
 
-The value obtained after following aliases, applying theme or mode choices, and evaluating permitted expressions where sufficient context is available. Resolution does not imply that every expression can become a context-free literal; browser preview measurements are separate observations.
+The value obtained after applying a variation selection, following aliases, and evaluating permitted expressions where sufficient context is available. Resolution does not imply that every expression can become a context-free literal; browser preview measurements are separate observations.
 
 ## Scale helper
 
@@ -204,7 +208,11 @@ The organized vocabulary used to classify and name tokens by layer, category, ro
 
 ## Theme
 
-A coherent variation in resolved token values, such as light, dark, high contrast, or a brand. The canonical composition model for multiple theme axes is unresolved.
+A user-facing coherent variation in resolved token values. Canonically, a named theme is a preset of options selected across independent variation axes rather than a separate token tree.
+
+## Theme preset
+
+A named variation selection, such as dark with high contrast. A preset provides a convenient activation and authoring view but does not own duplicated token definitions.
 
 ## Token
 
@@ -217,6 +225,18 @@ A hierarchical human-readable name such as `color.content.primary`. Whether path
 ## Value type
 
 The shape and constraints of a token's data, such as color, number, dimension, string, boolean, or duration. It does not by itself state semantic purpose.
+
+## Variation axis
+
+An independent canonical dimension along which token values may vary, such as color scheme, contrast, brand, platform, density, or locale. An axis defines named options and a default option; sharing the mechanism does not make different axes semantically equivalent.
+
+## Variation option
+
+A named choice on a variation axis, such as `light` or `dark` on a color-scheme axis.
+
+## Variation selection
+
+A choice of options across applicable variation axes. Conditional token values match partial selections; named theme presets provide reusable selections.
 
 ## Workbench
 

@@ -318,6 +318,6 @@ This direction does not yet select:
 - update provider or release infrastructure;
 - the first CLI or MCP workflows.
 
-The first PWA vertical slice should validate project lifecycle operations, one primary package per project, token grouping and authoring, aliases, validation, resolved-value inspection, and explicit import and export. Its exact user, minimal canonical schema, theme behavior, persistence representation, and first compatibility profile must be decided before implementation.
+The first PWA vertical slice should validate project lifecycle operations, one primary package per project, token grouping and authoring, aliases, validation, resolved-value inspection, and explicit import and export. Its exact user, minimal canonical schema, initial variation axes and coverage, persistence representation, and first compatibility profile must be decided before implementation.
 
 The immediately following Electron prototype should reuse that renderer and application behavior while replacing browser infrastructure with a typed preload boundary and desktop adapters. It should open or create a workspace-backed project, watch project files, validate the same token graph, export the selected target, and produce an installable artifact for at least one intended platform.
