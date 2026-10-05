@@ -17,15 +17,15 @@ Suggested decision states for future use are: `open`, `investigating`, `proposed
 
 ## Canonical model
 
-1. What is the minimal canonical token schema?
-2. What exact literal schema, accepted units, and constraints apply to each selected foundational type?
-3. What exact fields, cardinalities, and nested-reference rules apply to typography, shadow, gradient, border, and transition composites?
+1. What exact literal schema, accepted units, and constraints apply to each selected foundational type?
+2. What exact fields, cardinalities, and nested-reference rules apply to typography, shadow, gradient, border, and transition composites?
+3. What is the minimal `ComponentDefinition` schema beyond its project identity and association with component-layer tokens?
 4. Are patterns, images, or video fills within scope, and would they demonstrate a need for a future paint abstraction?
 5. Which reference directions between primitive, semantic, and component layers are allowed?
 6. Which expression abstract syntax tree, typing rules, and portable versus CSS-specific operations are permitted initially?
 7. Which selected foundational types and composites belong in the first implementation slice?
 
-[Project ownership, stable token identity, namespace groups, derived paths, explicit token types, authored-value forms, optional layers and semantic roles, foundational value types, and the initial composite set](../design-tokens/conceptual-model.md) are working decisions. Name-only incomplete tokens are valid project members; definition completeness is derived. The identifier format, local-name grammar, sibling ordering, group-deletion operations, optional group constraints, exact type and composite schemas, and persistence schema remain open.
+[Project ownership, stable token identity, namespace groups, derived paths, the Token aggregate and owned assignment structure, authored-value forms, optional layers and semantic roles, foundational value types, and the initial composite set](../design-tokens/conceptual-model.md) are working decisions. Name-only and typed-but-unassigned tokens are valid project members; definition completeness is derived. The identifier format, local-name grammar, sibling ordering, group-deletion operations, optional group constraints, exact type and composite schemas, and persistence schema remain open.
 
 Expression support is a [working decision](../design-tokens/conceptual-model.md#expressions); its concrete schema and coverage are not selected. Scale generation is [domain behavior](../design-tokens/conceptual-model.md#scale-generation), not a requirement for persisted scale entities or live token dependencies.
 

@@ -137,6 +137,59 @@ A condition applies to the whole assignment. Resolution selects one applicable a
 
 A token with no assignments is a valid authored project member but has an incomplete definition. This is a derived state rather than a stored lifecycle status or an `EmptyValue`. Operations that require a resolved value, including many exports, report the incomplete definition explicitly.
 
+### Token aggregate and assignment structure
+
+**Working decision — 5 October 2026**
+
+`Token` is an aggregate root that can be loaded and changed independently within its project ownership boundary. The Project does not need to be one giant in-memory aggregate merely because it owns all tokens. `TokenValueAssignment` is an owned value object inside its Token; it has no independent stable identity or lifecycle.
+
+The storage-neutral conceptual structure is:
+
+```ts
+type Token = {
+  id: TokenId;
+  projectId: ProjectId;
+  localName: TokenName;
+  parentGroupId: TokenGroupId | null;
+  description?: string;
+  layer?: TokenLayer;
+  semanticRole?: SemanticRoleKey;
+  componentDefinitionId?: ComponentDefinitionId;
+  definition?: TokenDefinition;
+  authoring: {
+    regeneration: "allowed" | "protected";
+  };
+  extensions?: NamespacedExtensions;
+};
+
+type TokenDefinition = {
+  type: TokenType;
+  assignments: readonly TokenValueAssignment[];
+};
+
+type TokenValueAssignment = {
+  condition: VariationCondition;
+  value: AuthoredValue;
+};
+
+type VariationCondition = readonly {
+  axisId: VariationAxisId;
+  optionId: VariationOptionId;
+}[];
+```
+
+The notation documents domain shape rather than selecting TypeScript objects as the persistence format. An absent `definition` represents a name-only token. A present definition with no assignments represents a typed but unassigned token. A definition with assignments represents an authored token. Completeness, validity, and resolvability for a particular variation selection remain derived outcomes rather than stored status fields.
+
+Every assignment stores a condition, including the empty array for the unconditional assignment, so there are not two representations of the same case. A condition is a conjunction of axis-option selections. Within a condition, each axis may occur at most once, every option must belong to its axis, and entries normalize deterministically by axis identity. Normalization does not remove an explicitly selected default option because that condition remains more specific than an omitted axis. A token may have at most one assignment for an identical normalized condition. Assignment order has no semantic meaning and supplies neither priority nor a tie-breaker.
+
+Aggregate-local invariants require assignments to belong to a typed definition and their authored values to be compatible with that type. Changing the type must not silently reinterpret existing assignments. Removing the last assignment leaves a typed but unassigned token; removing the definition returns it to a name-only token.
+
+Project-scoped domain operations validate relationships that cross aggregate boundaries: parent-group ownership, sibling-path uniqueness, variation-axis and option existence, component-definition ownership, reference-target ownership and compatibility, dependency cycles, and ambiguous equally specific matching conditions. These checks do not require the Project entity itself to contain and mutate every Token as one aggregate.
+
+A component-layer token carries a `componentDefinitionId`, and a token with that association uses the component layer. This records the component token alongside its owning component definition without weakening the invariant that both belong to the same project. The exact `ComponentDefinition` structure remains to be defined.
+
+Derived paths, resolved values, active themes or presets, completeness or validity flags, assignment precedence, cached reference targets, generated target values, source-tool type names, and timestamps without a demonstrated product requirement are not canonical Token fields.
+
 ## Token layers
 
 **Working decision — 5 October 2026**

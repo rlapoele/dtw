@@ -58,6 +58,10 @@ A versioned contract describing the accepted file shape, supported concepts, con
 
 A token that expresses a stable design decision for a reusable component or pattern, commonly by referencing a semantic token.
 
+## Component definition
+
+A project-owned definition of a reusable component or pattern. A component-layer token is associated with exactly one component definition in the same project. The component definition's exact properties and ownership of other component concerns remain open.
+
 ## Composite
 
 A named, validated value schema assembled from multiple typed constituent fields. The initial canonical composites are typography, shadow, gradient, border, and transition; a composite is not an arbitrary object.
@@ -224,11 +228,19 @@ A named variation selection, such as dark with high contrast. A preset provides 
 
 ## Token
 
-A project-owned design decision with a stable non-semantic identity, local name, zero or more conditional authored-value assignments, and optional namespace-group parent, value type, layer, semantic role, description, and metadata. A token may be created by name before its definition is complete.
+A project-owned aggregate root representing one design decision. It has a stable non-semantic identity, local name, namespace placement, optional meaning and component-definition association, optional typed definition containing its value assignments, authoring policy, and namespaced extensions. A token may be created by name before its definition is complete.
+
+## Token definition
+
+The optional typed portion of a Token containing one explicit token type and its owned value assignments. Absence represents a name-only token; an empty assignment collection represents a typed but unassigned token.
 
 ## Token identity
 
 A stable, non-semantic, collision-resistant identifier distinct from a token's mutable path. Renaming or moving a token within its project preserves identity; copying, recreating, or transferring it to another project creates a new identity.
+
+## Token value assignment
+
+An identity-less value object owned by a Token definition, pairing one authored value with one normalized variation condition. Assignment order has no semantic meaning, and a Token may contain at most one assignment for an identical normalized condition.
 
 ## Token path
 
@@ -241,6 +253,10 @@ The explicit shape and constraints of a token's data. The canonical foundational
 ## Variation axis
 
 An independent canonical dimension along which token values may vary, such as color scheme, contrast, brand, platform, density, or locale. An axis defines named options and a default option; sharing the mechanism does not make different axes semantically equivalent.
+
+## Variation condition
+
+A normalized conjunction of axis-option selections attached to a Token value assignment. The empty condition is unconditional; each axis may appear at most once, and an explicitly selected default option remains more specific than omission.
 
 ## Variation option
 
