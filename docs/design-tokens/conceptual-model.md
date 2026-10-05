@@ -12,14 +12,50 @@ The workbench needs a canonical, tool-independent model from which it can valida
 
 A token minimally has:
 
-- a stable identity or path;
+- a stable identity distinct from its mutable, derived path;
+- ownership by exactly one project;
+- a local name and optional parent namespace group;
 - an authored literal, reference, expression, or composition;
-- a value type;
+- an explicit value type;
 - optional description and metadata;
 - a place in a layer and semantic vocabulary;
 - theme or condition behavior when applicable.
 
-The exact schema, identity rules, and persistence representation are open.
+The exact schema, identifier format, authored-value representation, and persistence representation remain open.
+
+### Project ownership and identity
+
+**Working decision — 5 October 2026**
+
+A Project is the stable working context and initial ownership boundary. Its core entity has a stable identity, a human-readable name, and an optional description. A project may contain zero tokens; every token belongs to exactly one project through its project identity. No package or relationship entity is required merely to represent that one-to-many ownership.
+
+Project identity is distinct from its workspace location. Moving or renaming a workspace does not change the project. Settings, provenance, export targets, generated-artifact records, and other project-owned concerns may remain associated entities or configuration rather than fields embedded into the core Project entity.
+
+### Token identity and lifecycle
+
+**Working decision — 5 October 2026**
+
+Every token has a stable, non-semantic, collision-resistant identity. Its exact generation format remains open and consumers must not infer token meaning from it. Renaming or moving a token within its project, or changing its value, role, layer, conditions, or metadata, preserves the identity.
+
+Copying a token creates a new identity. Deleting and recreating a token creates a new identity even when the path is reused, and deleted identities are not reused. Copying or moving a token across a project boundary also creates a new identity; external source identifiers remain provenance rather than canonical identity.
+
+### Namespace groups and derived paths
+
+**Working decision — 5 October 2026**
+
+A TokenGroup is a project-owned namespace node with a stable identity, local name, optional description, and either one parent group in the same project or no parent at the project root. A group may be empty. Group ancestry is acyclic; a group cannot be moved into itself or a descendant. Renaming or moving a group preserves its identity and those of all descendants.
+
+Tokens have a local name and either one parent namespace group in the same project or no parent at the project root. A token's human-readable path is derived from its ancestor group names plus its local name. The derived path may be cached for indexing or display, but it is not an independently authored source of truth. Renaming or moving a token or ancestor group changes affected paths without changing token identities. Such a change may still be breaking for path-based exports and consumers and must be visible in semantic change analysis.
+
+Child groups and tokens share one sibling namespace so derived paths remain unambiguous. Deleting a non-empty group requires an explicit operation; descendants must not disappear or be reparented silently. A namespace group has one structural parent and determines paths. Sets, collections, tags, or other potentially multi-membership organization are separate non-structural concepts and do not determine canonical paths.
+
+### Explicit token types
+
+**Working decision — 5 October 2026**
+
+Every canonical token stores its explicit value type. A TokenGroup does not have a token type, and moving a token between groups does not mutate its type. If homogeneous groups become useful, a separately named type constraint or authoring default may be introduced after its semantics are demonstrated; neither replaces the token's explicit type.
+
+DTCG group-level `$type` inheritance is an interchange concern. Importers resolve the effective source type and materialize it on each canonical token while retaining provenance needed for review or re-export. Exporters may consolidate repeated explicit types onto a target group when the selected profile permits it and the transformation is lossless.
 
 ### Export-aware modeling
 
@@ -244,13 +280,13 @@ Whether a solid paint should be modeled explicitly, whether paint is itself a to
 
 A gradient is not a color. It is a composition of colors plus positions and geometry. Some targets represent gradients as reusable styles rather than variables or native tokens, so the canonical model must not pretend that every target can preserve a gradient as a token.
 
-## Token sets and packages
+## Token sets and future packaging
 
 **Working hypothesis**
 
-A token set may group values for authoring, activation, theme composition, or interchange. A token package may be a higher-level distributable artifact containing sets, metadata, documentation, versions, and compatibility information.
+A token set may group values for authoring, activation, theme composition, or interchange without determining canonical paths. A future token or design-system package may be a distributable artifact containing tokens, metadata, documentation, versions, and compatibility information. Packaging is not required by the initial canonical ownership model.
 
-## Project, workspace, and package hierarchy
+## Project and workspace
 
 **Established direction**
 
@@ -258,17 +294,16 @@ A project is the primary working context and ownership boundary for authored wor
 
 ```text
 Project
-└── Token package
-    └── Token sets, groups, and tokens
+└── Namespace groups and tokens
 ```
 
-Every token belongs to a token package, and every package belongs to a project. A project may additionally own settings, import provenance, export-target configuration, compatibility reports, and generated-artifact metadata.
+Every token and namespace group belongs to exactly one project. A project may additionally own settings, import provenance, export-target configuration, compatibility reports, and generated-artifact metadata without embedding all of those concerns into the core Project entity.
 
-A workspace is the local location or environment in which a project is stored and edited. A workspace path is not the project's stable identity. A package is the reusable or distributable token artifact inside the project.
+A workspace is the local location or environment in which a project is stored and edited. A workspace path is not the project's stable identity.
 
 **Working hypothesis**
 
-The first implementation may allow one primary package per project while preserving a path toward multiple packages, package dependencies, and shared packages. The exact relationship between package, collection, set, group, theme, and mode still requires formalization.
+A reusable or distributable package boundary may be introduced later if independent versioning, dependencies, installation, or publication require it. The exact relationship between future packaging, collections, sets, theme presets, and non-structural organization remains open.
 
 ## Extensibility
 
@@ -280,7 +315,7 @@ The canonical model should support namespaced metadata and perhaps custom semant
 
 **Open question**
 
-DTCG is the leading interoperability foundation, but the canonical persisted form may need concepts beyond a single interchange document: provenance, project configuration, adapter metadata, theme composition, package information, or editor state. Persistence should be selected only after the conceptual model and round-trip requirements are tested.
+DTCG is the leading interoperability foundation, but the canonical persisted form may need concepts beyond a single interchange document: stable identities, provenance, project configuration, adapter metadata, theme composition, or editor state. Persistence should be selected only after the conceptual model and round-trip requirements are tested.
 
 ## Engine boundary
 

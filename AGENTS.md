@@ -19,7 +19,9 @@ Treat status labels as meaningful: **established** directions and principles are
 ## Product and model invariants
 
 - Keep the canonical model tool-independent and upstream of Figma, Penpot, DTCG, code formats, and other consumers.
-- A project is the working context. Every token belongs to a package, and every package belongs to a project. Project identity is distinct from its workspace path.
+- A project is the working context and directly owns zero or more tokens. Every token belongs to exactly one project. Project identity is distinct from its workspace path.
+- Tokens and namespace groups have stable, non-semantic identities. Token paths are derived from single-parent namespace-group containment plus local names; non-structural sets or tags do not determine paths.
+- Every token carries its explicit value type. Namespace groups do not define token types; DTCG group-level `$type` inheritance is normalized at the adapter boundary.
 - Keep value type, semantic role, and composition separate. Preserve primitive, semantic, and component-token layers without requiring every system to use all three.
 - Preserve authored aliases and resolve them deterministically; detect missing references and cycles.
 - Do not conflate color alpha with layer opacity, or gradients with colors.

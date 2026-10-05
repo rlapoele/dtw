@@ -108,7 +108,7 @@ Prefer plain data, pure functions, and explicit dependency parameters. Do not in
 
 The domain engine owns deterministic design-token meaning and rules, including:
 
-- canonical token, reference, theme, and package concepts;
+- canonical project, namespace-group, token, reference, and theme concepts;
 - value-type, semantic-role, and composition distinctions;
 - primitive, semantic, and component-token layers;
 - reference resolution and cycle detection;
@@ -122,12 +122,12 @@ Deterministic color conversions and manipulation calculations likewise belong in
 Its public operations should accept and return serializable domain data. Representative operations include:
 
 ```text
-validateTokenPackage
+validateProjectTokens
 resolveTokenGraph
 renameToken
 analyzeReferences
-transformPackage
-comparePackageVersions
+moveTokenGroup
+compareTokenGraphs
 ```
 
 The domain engine does not open files, display dialogs, start processes, or know which surface invoked it.
@@ -170,21 +170,21 @@ Test domain semantics with ordinary unit tests. Browser preview behavior needs s
 
 **Established direction**
 
-A project is the primary user working context. Users create, open, or import a project before creating and editing tokens. Every token belongs to a token package, and every token package belongs to a project.
+A project is the primary user working context. Users create, open, or import a project before creating and editing tokens. A project may contain no tokens, and every token belongs to exactly one project.
 
-Application requests should identify a project and, where necessary, a package. They should not grant the renderer arbitrary filesystem access. The desktop host resolves a project identity to an authorized local workspace and validates all project-relative paths.
+Application requests should identify a project. They should not grant the renderer arbitrary filesystem access. The desktop host resolves a project identity to an authorized local workspace and validates all project-relative paths.
 
 ```text
 surface request: project identity + domain intent
                          │
                          ▼
-application resolves authorized workspace and package
+application resolves authorized workspace and project data
                          │
                          ▼
 domain operation + storage adapter
 ```
 
-The initial product may support one primary token package per project while preserving a model that can later support multiple packages and dependencies.
+Namespace groups and tokens remain project-scoped domain data. A future reusable or distributable package boundary may be added for demonstrated workflows, but it is not required by the initial ownership model.
 
 ## Typed bridge and contracts
 
@@ -318,6 +318,6 @@ This direction does not yet select:
 - update provider or release infrastructure;
 - the first CLI or MCP workflows.
 
-The first PWA vertical slice should validate project lifecycle operations, one primary package per project, token grouping and authoring, aliases, validation, resolved-value inspection, and explicit import and export. Its exact user, minimal canonical schema, initial variation axes and coverage, persistence representation, and first compatibility profile must be decided before implementation.
+The first PWA vertical slice should validate project lifecycle operations, namespace grouping and token authoring, aliases, validation, resolved-value inspection, and explicit import and export. Its exact user, minimal canonical schema, initial variation axes and coverage, persistence representation, and first compatibility profile must be decided before implementation.
 
 The immediately following Electron prototype should reuse that renderer and application behavior while replacing browser infrastructure with a typed preload boundary and desktop adapters. It should open or create a workspace-backed project, watch project files, validate the same token graph, export the selected target, and produce an installable artifact for at least one intended platform.

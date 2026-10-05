@@ -33,6 +33,8 @@ button.primary.background.hover
 
 Not every token needs every segment. Names should express intent rather than encode a target tool, a current primitive value, or an implementation technology.
 
+Canonical paths are derived from namespace-group names plus the token's local name. Value type and primitive, semantic, or component layer remain explicit token properties rather than being inferred from those path segments.
+
 ## Primitive taxonomy
 
 **Working hypothesis**

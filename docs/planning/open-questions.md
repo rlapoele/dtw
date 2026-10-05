@@ -18,15 +18,16 @@ Suggested decision states for future use are: `open`, `investigating`, `proposed
 ## Canonical model
 
 1. What is the minimal canonical token schema?
-2. Is a token path its stable identity, or can a token be renamed without changing identity?
-3. Which value types are foundational?
-4. How are semantic roles represented independently from value types?
-5. Which composites are first-class: typography, shadow, paint, gradient, motion, others?
-6. Is `paint` a token type, a composite family, a usage view, or unnecessary abstraction?
-7. Should a solid paint exist separately from its referenced color?
-8. Are patterns, images, or video fills within scope?
-9. Which reference directions between primitive, semantic, and component layers are allowed?
-10. Which expression representation, grammar, typing rules, and portable versus CSS-specific operations are permitted initially?
+2. Which value types are foundational?
+3. How are semantic roles represented independently from value types?
+4. Which composites are first-class: typography, shadow, paint, gradient, motion, others?
+5. Is `paint` a token type, a composite family, a usage view, or unnecessary abstraction?
+6. Should a solid paint exist separately from its referenced color?
+7. Are patterns, images, or video fills within scope?
+8. Which reference directions between primitive, semantic, and component layers are allowed?
+9. Which expression representation, grammar, typing rules, and portable versus CSS-specific operations are permitted initially?
+
+[Project ownership, stable token identity, namespace groups, derived paths, and explicit token types](../design-tokens/conceptual-model.md#project-ownership-and-identity) are working decisions. The identifier format, local-name grammar, sibling ordering, group-deletion operations, optional group constraints, and exact persistence schema remain open.
 
 Expression support is a [working decision](../design-tokens/conceptual-model.md#expressions); its concrete schema and coverage are not selected. Scale generation is [domain behavior](../design-tokens/conceptual-model.md#scale-generation), not a requirement for persisted scale entities or live token dependencies.
 
@@ -83,20 +84,17 @@ Remaining questions:
 
 ## Persistence and project structure
 
-The existence of an explicit project is decided: users create, open, or import a project before editing tokens; every token belongs to a package; every package belongs to a project.
+The existence of an explicit project is decided: users create, open, or import a project before editing tokens. A project may contain no tokens; every token and namespace group belongs to exactly one project. The initial canonical ownership model does not require a package entity.
 
 1. What is the canonical source-of-truth file format?
 2. What constitutes stable project identity, and how is it preserved when a workspace moves?
-3. What is the initial relationship between project, workspace, and token package?
-4. Does the first release enforce one primary package per project?
-5. Should canonical persistence itself use DTCG, extend it, or use a separate project model with DTCG import/export?
-6. How is adapter-specific metadata stored without polluting the core model?
-7. How are comments, ordering, formatting, and manual edits preserved?
-8. What belongs in authored data, project configuration, caches, and generated output?
-9. Can multiple files form one canonical project, and how are references addressed across them?
-10. How are migrations and project schema versions handled?
-11. Can a project refer to packages outside its workspace, and under what portability rules?
-12. How are recent, missing, moved, duplicated, and imported projects recognized?
+3. Should canonical persistence itself use DTCG, extend it, or use a separate project model with DTCG import/export?
+4. How is adapter-specific metadata stored without polluting the core model?
+5. How are comments, sibling ordering, formatting, and manual edits preserved?
+6. What belongs in authored data, project configuration, caches, and generated output?
+7. Can multiple files form one canonical project, and how are references addressed across them?
+8. How are migrations and project schema versions handled?
+9. How are recent, missing, moved, duplicated, and imported projects recognized?
 
 ## Interoperability
 
@@ -127,7 +125,9 @@ CSS and strict DTCG `2025.10` are the [first concrete modeling cases](../design-
 5. How should semantic diffs represent alias, theme, and resolved-value changes?
 6. Which accessibility checks belong in the workbench, and what context do they require?
 
-## Packages, versions, and forking
+## Future packaging, versions, and forking
+
+Packaging is not part of the initial canonical ownership model. If independent distribution or reuse later requires it:
 
 1. What exactly constitutes a token package?
 2. Can packages depend on or extend other packages?
@@ -195,5 +195,5 @@ Before implementation planning, resolve or narrow at least:
 4. persistence boundaries relative to DTCG;
 5. the first target adapter and its compatibility promise;
 6. the MVP boundary;
-7. the minimal project manifest and project/package relationship;
+7. the minimal project manifest and namespace hierarchy representation;
 8. the acceptance boundary between the first PWA vertical slice and the immediately following Electron architecture and distribution prototype.

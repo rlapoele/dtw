@@ -20,7 +20,7 @@ The tool-independent representation treated as authoritative inside a workbench 
 
 ## Application operation
 
-A meaningful workbench use case that coordinates domain behavior and external capabilities, such as creating a project, validating a package, importing tokens, or exporting a target artifact. Application operations are shared by delivery surfaces.
+A meaningful workbench use case that coordinates domain behavior and external capabilities, such as creating a project, validating project tokens, importing tokens, or exporting a target artifact. Application operations are shared by delivery surfaces.
 
 ## Color
 
@@ -96,7 +96,7 @@ A composed visual treatment containing multiple color stops, positions, and geom
 
 ## Group
 
-A hierarchical organizational construct used to contain tokens or other groups. Its exact canonical semantics versus those of a set remain open.
+A project-owned namespace node with a stable identity, local name, and at most one parent group. Groups and tokens form an acyclic hierarchy from which human-readable token paths are derived. Non-structural sets, collections, or tags do not determine paths.
 
 ## Import
 
@@ -136,7 +136,7 @@ A proposed composite visual treatment applied to an area or stroke, potentially 
 
 ## Package
 
-A reusable or distributable unit owned by a project and containing a token system plus relevant metadata, themes, documentation, versioning, and compatibility information. Every token belongs to a package. The package schema and multi-package dependency semantics are not yet defined.
+A possible future reusable or distributable unit containing a token or broader design-system artifact plus relevant metadata, documentation, versioning, and compatibility information. Packaging is not required by the initial canonical ownership model; its boundaries and dependency semantics remain open.
 
 ## Port
 
@@ -148,7 +148,7 @@ The isolated Electron boundary that exposes a narrow workbench-specific API to t
 
 ## Project
 
-The primary working context for a product, brand, client, or design system. A user creates, opens, or imports a project before editing tokens. A project owns one or more token packages plus relevant settings, provenance, target configuration, and workflow metadata.
+The primary working context and initial ownership boundary for a product, brand, client, or design system. Its core entity has a stable identity, name, and optional description. A project may contain no tokens; every token and namespace group belongs to exactly one project.
 
 ## Project identity
 
@@ -196,7 +196,7 @@ A token named for design intent rather than a raw value, normally referencing a 
 
 ## Set
 
-A named grouping or activation unit for tokens. External tools use sets differently; its canonical relationship to groups and themes remains open.
+A named non-structural grouping or activation unit for tokens. A token may potentially belong to multiple sets without changing its canonical path. External tools use sets differently; their exact canonical and interoperability semantics remain open.
 
 ## Source of truth
 
@@ -216,15 +216,19 @@ A named variation selection, such as dark with high contrast. A preset provides 
 
 ## Token
 
-A named design decision represented by typed data, a reference, an expression, or a composition together with meaning and metadata.
+A project-owned design decision with a stable non-semantic identity, local name, explicit value type, authored value, and optional namespace-group parent, meaning, and metadata.
+
+## Token identity
+
+A stable, non-semantic, collision-resistant identifier distinct from a token's mutable path. Renaming or moving a token within its project preserves identity; copying, recreating, or transferring it to another project creates a new identity.
 
 ## Token path
 
-A hierarchical human-readable name such as `color.content.primary`. Whether paths are also stable identity is an open question.
+A mutable human-readable address such as `color.content.primary`, derived from ancestor namespace-group names and the token's local name. A path is not token identity.
 
 ## Value type
 
-The shape and constraints of a token's data, such as color, number, dimension, string, boolean, or duration. It does not by itself state semantic purpose.
+The explicit shape and constraints of a token's data, such as color, number, dimension, string, boolean, or duration. Every canonical token carries its type; containment does not define it. Value type does not by itself state semantic purpose.
 
 ## Variation axis
 

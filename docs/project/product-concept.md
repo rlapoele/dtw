@@ -22,7 +22,7 @@ It should help people work with a design system as a connected model, not just a
 - Design-system designers defining foundations, semantics, themes, and component decisions.
 - Engineers maintaining token files, transformations, and generated artifacts.
 - Cross-functional teams reviewing how design intent maps into multiple tools and platforms.
-- Authors preparing reusable token packages for other teams or the public.
+- Authors preparing reusable token systems for other teams or the public.
 
 ## Project-centered workflow
 
@@ -33,22 +33,21 @@ A project is the primary working context. Users create, open, or import a projec
 ```text
 Project
 ├── identity and descriptive metadata
-├── one or more token packages
+├── zero or more tokens organized through namespace groups
 ├── project settings and validation profiles
 ├── import sources and provenance
 ├── export targets and compatibility reports
 └── generated artifacts and local workflow metadata
 ```
 
-Every token belongs to a package, and every package belongs to a project. The first product version may support one primary package per project while avoiding assumptions that would prevent multiple packages or dependencies later.
+Every token belongs to exactly one project; a project may contain no tokens. The initial canonical model does not require a package entity or an intermediary entity merely to represent this one-to-many relationship.
 
 A project is distinct from:
 
 - its **workspace**, meaning the local location or environment in which it is stored and edited;
-- a **token package**, meaning a reusable or distributable token artifact owned by the project;
 - a temporary editor session or open window.
 
-Projects should have stable identity independent of a directory name so they can be renamed or moved. The exact manifest, on-disk layout, schema, and identity mechanism remain open.
+The Project entity initially consists of a stable identity, name, and optional description. Its identity remains independent of a directory name so the project can be renamed or moved. Settings, provenance, target configuration, generated-artifact records, and other project-owned concerns need not become fields on the core entity. The exact manifest, on-disk layout, schema, and identity mechanism remain open.
 
 ## Core desktop workflows
 
@@ -129,17 +128,17 @@ The exact file layout and source-of-truth format are unresolved. A visual editor
 
 **Working decision**
 
-The first implementation should deliver this experience as a desktop-oriented, offline-capable browser application installable as a Progressive Web App. Its first vertical slice should exercise project lifecycle operations, one primary token package per project, token grouping and authoring, aliases, validation, resolved-value inspection, and explicit import and export.
+The first implementation should deliver this experience as a desktop-oriented, offline-capable browser application installable as a Progressive Web App. Its first vertical slice should exercise project lifecycle operations, namespace grouping and token authoring, aliases, validation, resolved-value inspection, and explicit import and export.
 
 The exact canonical meaning of a collection or set remains open. The first interface may present useful groupings, but it must not silently adopt Figma collections, Penpot sets, browser stores, or another external representation as canonical structure.
 
 Project backup and token interchange are separate responsibilities. The browser experience should provide a way to retain and restore complete project data independently of browser-managed storage, while token import and export must name a specific compatibility profile and report its coverage. Neither the backup representation nor the first token format is selected here.
 
-## Token packages
+## Future distribution packaging
 
-**Working hypothesis**
+**Future possibility**
 
-A token package may become the portable unit shared between the desktop workbench and a future web ecosystem. It could include:
+A token package or broader design-system package may later become a portable unit shared between the desktop workbench and a future web ecosystem. It could include:
 
 - identity and authorship metadata;
 - a version and changelog;
@@ -147,7 +146,7 @@ A token package may become the portable unit shared between the desktop workbenc
 - compatibility declarations or generated artifacts;
 - documentation, preview information, and license terms.
 
-Package boundaries, dependency semantics, and versioning rules remain open. “Package” currently names a useful product concept, not a finalized schema.
+Packaging is not required by the initial canonical ownership model. Boundaries, dependency semantics, versioning rules, and whether component definitions share a package with tokens remain open and should be introduced only for demonstrated distribution or reuse workflows.
 
 ## Application architecture
 

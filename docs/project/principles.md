@@ -100,7 +100,7 @@ The model should be extensible, but the project should not pre-build registries,
 
 **Established principle**
 
-Users create, open, or import a project before authoring tokens. Every token belongs to a package, and every package belongs to a project. Project identity should be stable independently of its local directory name, while persistence details remain replaceable.
+Users create, open, or import a project before authoring tokens. A project may contain no tokens; every token belongs to exactly one project. Project and token identities should remain stable independently of human-readable names and local directory paths, while persistence details remain replaceable.
 
 ## 16. Keep the domain independent of its surfaces
 

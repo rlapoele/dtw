@@ -210,6 +210,8 @@ An importer should:
 8. report references, expressions, themes, ignored tokens, unsupported constructs, and normalization loss;
 9. require review where normalization changes meaning.
 
+Imported structural groups normalize into the canonical single-parent namespace hierarchy; external sets, tags, or activation units must not silently become path-forming groups. When a source such as strict DTCG inherits `$type` from a group, the importer resolves and stores the effective explicit type on each canonical token. It may retain the source declaration as provenance, but inherited source structure does not make canonical token type dependent on containment.
+
 ## Export requirements
 
 **Established direction**
@@ -224,6 +226,8 @@ An exporter should:
 6. keep vendor data inside valid namespaced extensions when emitting strict DTCG;
 7. report omissions, coercions, flattening, extension use, and alternate artifacts;
 8. make generated output distinguishable from authored canonical data.
+
+Exporters derive target paths from the canonical namespace hierarchy. A profile may consolidate repeated explicit token types into group-level declarations such as DTCG `$type` when that transformation is valid and deterministic. Export optimization must not change canonical authorship or make re-imported token types ambiguous.
 
 ## Initial modeling targets and expressions
 

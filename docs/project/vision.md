@@ -65,11 +65,10 @@ Designers and developers work across multiple products, brands, clients, or desi
 ```text
 User
 └── Projects
-    └── Token packages
-        └── Token groups and tokens
+    └── Token groups and tokens
 ```
 
-Every token belongs to a token package, and every token package belongs to a project. A project provides identity and context for local data, settings, target configurations, and future history. Projects remain locally usable without requiring an account.
+Every token belongs to exactly one project, while a project may exist without tokens. Namespace groups organize tokens and determine their human-readable paths without replacing stable identity. A project provides identity and context for local data, settings, target configurations, and future history. Projects remain locally usable without requiring an account.
 
 ## Product surfaces
 
