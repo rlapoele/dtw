@@ -34,6 +34,7 @@ A project is the primary working context. Users create, open, or import a projec
 Project
 ├── identity and descriptive metadata
 ├── zero or more tokens organized through namespace groups
+├── zero or more component definitions associated with component tokens
 ├── project settings and validation profiles
 ├── import sources and provenance
 ├── export targets and compatibility reports
@@ -60,6 +61,10 @@ The Project entity initially consists of a stable identity, name, and optional d
 - Browse by value type, semantic role, layer, theme, or dependency.
 - Inspect both authored and resolved values.
 - Visualize relationships and downstream usage.
+
+**Working decision — 5 October 2026**
+
+Organize component-token authoring around a project-owned ComponentDefinition. Users may define a component and its initial tokens and bindings in one workflow even though the definition and Tokens remain separate aggregate roots. A deliberately coarse ComponentContract anticipates parts, slots, properties, variant axes, interactive states, and token bindings; detailing those concepts is deferred until a concrete component-authoring slice requires it. This boundary supports component tokens without committing the initial workbench to the broader design-system-studio scope.
 
 **Established decision — 1 October 2026**
 

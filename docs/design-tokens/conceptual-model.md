@@ -186,7 +186,7 @@ Aggregate-local invariants require assignments to belong to a typed definition a
 
 Project-scoped domain operations validate relationships that cross aggregate boundaries: parent-group ownership, sibling-path uniqueness, variation-axis and option existence, component-definition ownership, reference-target ownership and compatibility, dependency cycles, and ambiguous equally specific matching conditions. These checks do not require the Project entity itself to contain and mutate every Token as one aggregate.
 
-A component-layer token carries a `componentDefinitionId`, and a token with that association uses the component layer. This records the component token alongside its owning component definition without weakening the invariant that both belong to the same project. The exact `ComponentDefinition` structure remains to be defined.
+A component-layer token carries a `componentDefinitionId`, and a token with that association uses the component layer. This records the component token alongside its owning component definition without weakening the invariant that both belong to the same project. The minimal ComponentDefinition boundary is described below; its contract internals remain intentionally coarse.
 
 Derived paths, resolved values, active themes or presets, completeness or validity flags, assignment precedence, cached reference targets, generated target values, source-tool type names, and timestamps without a demonstrated product requirement are not canonical Token fields.
 
@@ -238,6 +238,39 @@ button.primary.label.default      → {color.content.on-accent}
 ```
 
 Component tokens are useful when they encode a real contract or themeable decision. They should not be generated merely to mirror every implementation property.
+
+### Component definitions, contracts, and token bindings
+
+**Working decision — 5 October 2026**
+
+A `ComponentDefinition` is a project-owned aggregate root providing stable identity and authoring context for a reusable component or pattern. It remains distinct from any Figma, Penpot, web-framework, or other target-specific component.
+
+```ts
+type ComponentDefinition = {
+  id: ComponentDefinitionId;
+  projectId: ProjectId;
+  name: ComponentName;
+  description?: string;
+  contract: ComponentContract;
+  extensions?: NamespacedExtensions;
+};
+```
+
+The owned `ComponentContract` conceptually accommodates component parts, slots, properties, variant axes, interactive states, and component-token bindings. Those concepts are recorded now so that the model has a deliberate extension boundary, but their detailed fields, cardinalities, constraints, and interactions are deferred. Contract collections may be empty while a component is being defined.
+
+Component-token ownership and component-token usage are related but distinct:
+
+- a component-layer Token stores `componentDefinitionId`, making its one owning component explicit;
+- the ComponentContract may contain token bindings describing how an owned token applies to a part, property, variant selection, state, or combination of those concepts;
+- paths and names do not establish either relationship implicitly.
+
+An owned component token may temporarily remain unbound while authoring is incomplete. Component-level diagnostics can report unbound tokens, invalid targets, or incomplete coverage without turning those derived findings into stored token status.
+
+Tokens remain separate aggregate roots because they participate independently in the project-wide reference, variation, resolution, import, export, and change graphs. The ComponentDefinition does not duplicate an authoritative list of complete Token objects. Component authoring views may compose the definition, its contract, its owned tokens, and resolved bindings as one read model.
+
+Aggregate separation does not prescribe a delayed user workflow. A coarse application operation may define a component, create its initial component tokens, and add their bindings as one validated atomic change. Later component-oriented operations may add, update, bind, or remove tokens while coordinating all affected aggregates. The exact persistence transaction mechanism remains open.
+
+When the internal contract concepts are detailed, parts, slots, properties, variant axes and options, and states should use stable component-local identities so renaming them does not invalidate bindings. Component variants and interactive states must not be conflated automatically with project-level variation axes.
 
 ### Layer rules
 

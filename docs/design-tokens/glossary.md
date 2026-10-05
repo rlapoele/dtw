@@ -60,7 +60,15 @@ A token that expresses a stable design decision for a reusable component or patt
 
 ## Component definition
 
-A project-owned definition of a reusable component or pattern. A component-layer token is associated with exactly one component definition in the same project. The component definition's exact properties and ownership of other component concerns remain open.
+A project-owned aggregate root giving stable identity and authoring context to a reusable component or pattern. It owns a Component contract but not embedded copies of its component Tokens. A component-layer Token is associated with exactly one Component definition in the same project.
+
+## Component contract
+
+The structure owned by a Component definition that conceptually accommodates parts, slots, properties, variant axes, interactive states, and component-token bindings. These concepts form a deliberate future extension boundary; their detailed schemas are not yet defined.
+
+## Component-token binding
+
+A relationship in a Component contract describing how an owned component Token is used by a component part, property, variant selection, interactive state, or combination of those concepts. Binding is distinct from ownership: the Token's `componentDefinitionId` identifies its owning component.
 
 ## Composite
 

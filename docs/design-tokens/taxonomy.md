@@ -198,6 +198,8 @@ input.default.border.focus
 
 The component layer should encode stable decisions needed by consumers. It should not mirror an implementation's complete CSS or property tree.
 
+Component-token ownership and usage are explicit canonical relationships rather than facts inferred from paths. A component-layer Token identifies its owning ComponentDefinition, while the component's contract may bind that token to future part, property, variant, or state concepts. The path remains a human-readable and export-facing namespace, not the component contract.
+
 ## Taxonomy constraints to test
 
 The future schema and editor should explore whether they can:
