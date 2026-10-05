@@ -15,13 +15,13 @@ A token minimally has:
 - a stable identity distinct from its mutable, derived path;
 - ownership by exactly one project;
 - a local name and optional parent namespace group;
-- an authored literal, reference, expression, or composition;
-- an explicit value type;
+- zero or more conditional authored-value assignments;
+- an explicit value type when its definition requires one;
 - optional description and metadata;
-- a place in a layer and semantic vocabulary;
+- optional explicit layer and semantic role;
 - theme or condition behavior when applicable.
 
-The exact schema, identifier format, authored-value representation, and persistence representation remain open.
+A token may therefore be created by name before its type or value is known. Definition completeness is derived from its current fields and assignments; an absent value is not represented by a synthetic empty-value type. The exact serialized schema, identifier format, and persistence representation remain open.
 
 ### Project ownership and identity
 
@@ -53,7 +53,7 @@ Child groups and tokens share one sibling namespace so derived paths remain unam
 
 **Working decision — 5 October 2026**
 
-Every canonical token stores its explicit value type. A TokenGroup does not have a token type, and moving a token between groups does not mutate its type. If homogeneous groups become useful, a separately named type constraint or authoring default may be introduced after its semantics are demonstrated; neither replaces the token's explicit type.
+Every defined canonical token stores its explicit value type. A newly named, incomplete token may temporarily omit its type and authored value; once a typed definition is supplied, its type is stored on the token rather than inferred from its name, layer, role, value syntax, or containment. A TokenGroup does not have a token type, and moving a token between groups does not mutate its type. If homogeneous groups become useful, a separately named type constraint or authoring default may be introduced after its semantics are demonstrated; neither replaces the token's explicit type.
 
 DTCG group-level `$type` inheritance is an interchange concern. Importers resolve the effective source type and materialize it on each canonical token while retaining provenance needed for review or re-export. Exporters may consolidate repeated explicit types onto a target group when the selected profile permits it and the transformation is lossless.
 
@@ -69,35 +69,79 @@ Before implementing a behavior, compare small canonical examples with their expe
 
 ### Value type
 
-**Established distinction**
+**Working decision — 5 October 2026**
 
-The value type describes the shape and constraints of stored data. Candidate foundational types include color, number, dimension, string, boolean, duration, and other types justified by real use cases.
+The value type describes the shape and constraints of stored data. The canonical foundational set is:
 
-The definitive type set is unresolved. External tools may expose either broad storage types or purpose-specific types; neither should be copied automatically.
+```text
+color          number          dimension       percentage
+angle          duration        string          boolean
+fontFamily     fontWeight      cubicBezier
+```
+
+`dimension` represents a length-bearing quantity rather than any arbitrary unit-bearing number. `percentage`, `angle`, and `duration` remain distinct so validation and typed operations do not conflate context-relative proportions, rotation, length, and time. `fontFamily`, `fontWeight`, and `cubicBezier` have domain-specific shapes or constraints that justify explicit types.
+
+Exact literal schemas, accepted units, constraints, and initial implementation coverage remain open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
 
 ### Semantic role
 
-**Established distinction**
+**Working decision — 5 October 2026**
 
-The semantic role states why a value exists: content color, surface color, spacing, radius, layer opacity, motion duration, and so on. Different roles may share a value type while needing different naming, validation, scopes, or export behavior.
+The optional explicit semantic role states why a value exists: content color, surface color, spacing, radius, layer opacity, motion duration, and so on. Different roles may share a value type while needing different naming, validation, scopes, or export behavior. A role is not inferred canonically from the token's path, layer, group, or type, although importers may propose an inferred role for review.
+
+Purpose-specific concepts normally remain roles over foundational types: spacing, sizing, radius, border width, and font size use `dimension`; opacity and unitless line height use `number`; rotation uses `angle`; motion duration uses `duration`; and content, surface, border, or accent purposes use `color`. Adapters may use the role together with type, layer, and path to map into target categories such as scopes, token kinds, or documentation sections.
 
 ### Composition
 
-**Established distinction**
+**Working decision — 5 October 2026**
 
-A composite combines several values into a meaningful treatment. Candidate composites include paint, gradient, typography, shadow/effect, and potentially motion definitions.
+A composite combines several typed fields into a meaningful treatment. The initial canonical composite set is:
+
+```text
+typography     shadow     gradient     border     transition
+```
+
+Each composite has a named, validated schema rather than an arbitrary object shape. Composite fields may contain permitted literal values, references, or expressions. Exact schemas and initial implementation coverage remain open.
 
 ```text
 value type        semantic role          composition
 -----------       ----------------       ----------------
 dimension         spacing                typography
 number            opacity                shadow
-color             content color          gradient / paint
+color             content color          gradient
+duration          motion duration         transition
 ```
 
 The columns answer different questions; an item appearing in one does not force it to be a primitive storage type in another.
 
+Generic `object`, generic `array`, arbitrary `CSS value`, alias, expression, layer names, and theme options are not token types. Alias and expression describe authored-value forms; primitive, semantic, and component describe layers; theme choices belong to variation axes. `paint` is not part of the selected canonical type set: a solid value remains a `color`, while a gradient uses the `gradient` composite.
+
+## Authored values and assignments
+
+**Working decision — 5 October 2026**
+
+A token owns zero or more value assignments. Each assignment pairs one authored value with a normalized condition over variation axes. The empty condition is the unconditional assignment. A token may have at most one assignment for the same normalized condition; an assignment is an owned value object and does not need a stable identity independent of its token.
+
+The canonical authored-value union is:
+
+```text
+LiteralValue | ReferenceValue | ExpressionValue | CompositeValue
+```
+
+- A `LiteralValue` uses the structured schema of the token's value type; it is not a generic CSS string.
+- A `ReferenceValue` identifies another token by stable token identity. Canonical references stay within a project, preserve authorship, require compatible types, and resolve paths only as derived display or interchange addresses. Missing external targets remain staged import data until reconciled rather than becoming valid canonical references.
+- An `ExpressionValue` is a typed structured expression. Portable canonical operations remain distinguishable from explicitly target-specific operations such as supported CSS constructs. The exact abstract syntax tree and operation set remain open.
+- A `CompositeValue` uses one of the named composite schemas. Its constituent fields retain their types and may contain supported references or expressions.
+
+A condition applies to the whole assignment. Resolution selects one applicable assignment before resolving its contents; composite fields do not merge implicitly across matching conditions. Literal, reference, expression, and composite values all participate in deterministic type, dependency, missing-reference, and cycle validation.
+
+A token with no assignments is a valid authored project member but has an incomplete definition. This is a derived state rather than a stored lifecycle status or an `EmptyValue`. Operations that require a resolved value, including many exports, report the incomplete definition explicitly.
+
 ## Token layers
+
+**Working decision — 5 October 2026**
+
+Layer is optional explicit token metadata with the canonical values `primitive`, `semantic`, and `component`. It is not inferred from path or reference shape, and it does not determine the token's value type. A project may use only the layers that serve its system.
 
 ### Primitive layer
 
@@ -154,7 +198,7 @@ Reference rules may normally flow primitive → semantic → component, with car
 
 Aliases are first-class relationships, not text substitutions. The workbench should preserve the authored reference, resolve it deterministically, display the dependency graph, and detect missing or cyclic references.
 
-DTCG-style references such as `{color.neutral.950}` are a strong interchange convention. The internal reference representation remains undecided.
+DTCG-style references such as `{color.neutral.950}` are a strong interchange convention. Canonically, a reference identifies its target by stable token identity within the same project; adapters derive or resolve path-based target addresses at their boundaries. The exact serialized reference shape remains open.
 
 A reference identifies another token or a supported part of its value. An alias token has a reference as its whole authored value; its name is still an ordinary token name. References may also occur inside expressions or composites without making the whole token an alias.
 
@@ -168,7 +212,7 @@ An expression is a form of authored value, not automatically a new value type. I
 
 Preserve authored expressions and identifiable token references. Reference analysis, missing-target detection, cycle detection, and type validation must apply to supported expression dependencies as well as whole-token aliases. Context-free evaluation must be distinguished from values that need a viewport, container, font metrics, or other rendering context; missing context must not be replaced by hidden assumptions.
 
-The expression representation, grammar, initial supported functions, typing rules, and evaluation policies remain open. A structured representation is a candidate, not a selected schema. Portable operations and explicitly CSS-specific constructs must remain distinguishable.
+Expressions use a structured, typed representation rather than an opaque universal string. The exact abstract syntax tree, initial supported operations, detailed typing rules, and evaluation policies remain open. Portable operations and explicitly CSS-specific constructs must remain distinguishable.
 
 ## Value previews
 
@@ -191,6 +235,14 @@ Users supply parameters, inspect candidates, and choose which tokens to create. 
 For example, a helper using a base of `1rem`, a ratio of `1.25`, and four steps could propose `1rem`, `1.25rem`, `1.5625rem`, and `1.953125rem`. This illustrates generation, not a finalized function signature or naming scheme. Curated values are manually chosen by users and need no scale object.
 
 Supported patterns, parameter validation, rounding, naming, collision handling, and initial release scope remain open. Saving helper presets, if later useful, is a separate product/configuration decision and must not silently introduce live scale dependencies.
+
+### Generated change proposals and protection
+
+**Working decision — 5 October 2026**
+
+Palette, scale, accessibility-adaptation, and similar helpers produce a reviewable change proposal rather than mutating canonical tokens directly. A proposal identifies candidate creations, updates, and removals with their rationale and diagnostics. Users may accept or reject changes individually; only accepted changes pass through normal application operations and become authored canonical data. Regeneration must not silently delete tokens or overwrite authored choices.
+
+A token may carry optional authoring metadata that protects it from regeneration. Protected tokens are excluded from generated updates by default and remain visible as skipped or potentially stale relative to the current proposal. Protection does not create a live dependency on a generator and does not change token type, layer, role, or value semantics. A proposal may offer an explicit reviewed override, and protection may also be changed while reviewing a proposal.
 
 ## Themes and modes
 
@@ -259,7 +311,7 @@ Their export destinations may also differ.
 
 ### Paint
 
-**Working hypothesis**
+**Deferred abstraction — 5 October 2026**
 
 Paint is a visual treatment applied to an area or stroke. It may provide a common conceptual home for:
 
@@ -272,11 +324,11 @@ paint
     └── ordered stops → colors + positions
 ```
 
-Whether a solid paint should be modeled explicitly, whether paint is itself a token type, and whether image or pattern fills belong in token scope are unresolved.
+`paint` is not part of the selected canonical token-type set. A solid authored value remains a `color`, and a gradient uses the `gradient` composite. A future paint abstraction should be introduced only if a concrete use case requires one common contract across solid, gradient, image, pattern, or other fills. Whether image or pattern fills belong in token scope remains unresolved.
 
 ### Gradient
 
-**Established distinction; unresolved representation**
+**Established distinction; working composite decision**
 
 A gradient is not a color. It is a composition of colors plus positions and geometry. Some targets represent gradients as reusable styles rather than variables or native tokens, so the canonical model must not pretend that every target can preserve a gradient as a token.
 

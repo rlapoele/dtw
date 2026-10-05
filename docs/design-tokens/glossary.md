@@ -12,7 +12,7 @@ A token value expressed as a reference to another token rather than a duplicated
 
 ## Authored value
 
-The literal, reference, expression, or composition saved by the author before resolution.
+The typed literal, reference, structured expression, or named composite saved by the author before resolution. A token may have multiple authored-value assignments under distinct normalized variation conditions, or none while its definition is incomplete.
 
 ## Canonical model
 
@@ -60,7 +60,11 @@ A token that expresses a stable design decision for a reusable component or patt
 
 ## Composite
 
-A structured value or treatment assembled from multiple constituent values, such as typography, shadow, or gradient.
+A named, validated value schema assembled from multiple typed constituent fields. The initial canonical composites are typography, shadow, gradient, border, and transition; a composite is not an arbitrary object.
+
+## Definition completeness
+
+A derived assessment of whether a token contains the type and authored assignments required for an operation. A name-only token is a valid project member with an incomplete definition; incompleteness is not represented by an `EmptyValue` or a stored lifecycle status.
 
 ## DTCG
 
@@ -88,7 +92,7 @@ The deterministic adaptation of canonical data into a target representation, acc
 
 ## Expression
 
-An authored calculation or function-based value definition that may contain token references. Expression support is a working decision; its grammar, representation, result typing, and supported context requirements remain open. An expression is not automatically a new value type.
+A typed structured calculation or function-based authored value that may contain token references. Portable canonical operations remain distinguishable from explicit target-specific operations. Its exact abstract syntax tree, operation set, and evaluation policies remain open; an expression is not itself a token value type.
 
 ## Gradient
 
@@ -132,7 +136,7 @@ A compositing property applied to a layer, element, or composed result. It is co
 
 ## Paint
 
-A proposed composite visual treatment applied to an area or stroke, potentially including solid and gradient variants. Whether it is a canonical token type is unresolved.
+A possible future abstraction for visual treatments applied to an area or stroke. It is not in the selected canonical token-type set: solid values remain colors and gradients use the gradient composite. It should be introduced only if concrete solid, gradient, image, pattern, or related use cases require a shared contract.
 
 ## Package
 
@@ -176,7 +180,11 @@ The explicit conditions under which a token specimen is rendered, such as a vari
 
 ## Reference
 
-A relationship identifying another token or a supported part of its value. A whole-value token reference makes the referring token an alias; references can also occur within expressions or composites. The internal representation and initially supported addressing forms remain open.
+A typed authored relationship identifying another token in the same project by stable identity. A whole-value reference makes the referring token an alias; references can also occur within expressions or composites. Paths are derived display or interchange addresses rather than canonical reference identity.
+
+## Regeneration protection
+
+Optional authoring metadata that excludes a token from generator-proposed updates by default. Protection preserves an authored choice without creating a live generator dependency; skipped protected tokens remain visible during proposal review.
 
 ## Resolved value
 
@@ -188,7 +196,7 @@ An authoring tool whose deterministic domain calculation generates candidate tok
 
 ## Semantic role
 
-The design-system purpose served by a value, such as content color, surface color, spacing, or radius. It is distinct from storage type.
+Optional explicit token metadata describing the design-system purpose served by a value, such as content color, surface color, spacing, or radius. It is distinct from value type, layer, composition, and path, and may guide validation or target adaptation.
 
 ## Semantic token
 
@@ -216,7 +224,7 @@ A named variation selection, such as dark with high contrast. A preset provides 
 
 ## Token
 
-A project-owned design decision with a stable non-semantic identity, local name, explicit value type, authored value, and optional namespace-group parent, meaning, and metadata.
+A project-owned design decision with a stable non-semantic identity, local name, zero or more conditional authored-value assignments, and optional namespace-group parent, value type, layer, semantic role, description, and metadata. A token may be created by name before its definition is complete.
 
 ## Token identity
 
@@ -228,7 +236,7 @@ A mutable human-readable address such as `color.content.primary`, derived from a
 
 ## Value type
 
-The explicit shape and constraints of a token's data, such as color, number, dimension, string, boolean, or duration. Every canonical token carries its type; containment does not define it. Value type does not by itself state semantic purpose.
+The explicit shape and constraints of a token's data. The canonical foundational set is color, number, dimension, percentage, angle, duration, string, boolean, font family, font weight, and cubic Bézier. A defined token carries its type; a name-only incomplete token may temporarily omit it. Containment does not define type, and type does not by itself state semantic purpose.
 
 ## Variation axis
 

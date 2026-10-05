@@ -158,7 +158,7 @@ A theme preset should normally change conditional mappings through a variation s
 
 ## Non-color semantic families
 
-**Explored direction**
+**Working direction — 5 October 2026**
 
 The broader taxonomy is expected to cover concerns such as:
 
@@ -173,7 +173,9 @@ shadow / elevation
 motion
 ```
 
-These words may denote semantic roles, purpose-specific token kinds, composite definitions, or convenience views. The conceptual model must decide that distinction before a definitive hierarchy is documented.
+Spacing, sizing, radius, border width, and font size are semantic roles over `dimension`; opacity and unitless line height are roles over `number`; and motion duration is a role over `duration`. Typography, shadow, gradient, border, and transition are named composites. Elevation may be a semantic role or convenience vocabulary over shadow and other effects; its exact taxonomy remains open.
+
+These distinctions follow the [canonical type, role, and composition decision](./conceptual-model.md#three-independent-axes). External purpose-specific token kinds may map to these roles without becoming additional canonical value types.
 
 ## Component taxonomy
 

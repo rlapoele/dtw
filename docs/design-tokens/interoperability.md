@@ -180,10 +180,16 @@ These profiles solve different problems. Figma and Penpot adapters translate nat
 | Color alpha | Part of color | Part of Color | Part of Color | Do not confuse with layer opacity |
 | Number | `number` | Number variable | Number token | Role may be lost without metadata |
 | Dimension | Object with `value` and `px` or `rem` unit | Number + scope; documented import requires `px` | Dimension and purpose-specific numeric tokens | Unit and string/object conversion |
+| Percentage | No standalone percentage type | Number variable where the target workflow permits | Purpose-specific mapping required | Context and unit preservation |
+| Angle | No standalone angle type | Number variable where the target workflow permits | Rotation token | Unit and purpose preservation |
+| Duration | Object with numeric value and `ms` unit | Timing variable | Duration mapping requires profile verification | Unit and value-shape conversion |
+| String and boolean | Not in the DTCG foundational type set | String and Boolean variables | Native support varies by token kind | Extension, omission, or alternate artifact may be required |
+| Font family and weight | Dedicated foundational types | Variables may feed text styles | Font-related token types | Ordered families, constraints, and style composition |
+| Cubic Bézier | Four-number array | Easing variable | Easing mapping requires profile verification | Constraint and representation conversion |
 | Spacing | Dimension plus semantic metadata/convention | Number + gap scope | Spacing token | Canonical role vs target type |
 | Sizing | Dimension plus semantic metadata/convention | Number + size scope | Sizing token | Canonical role vs target type |
 | Radius | Dimension plus semantic metadata/convention | Number + radius scope | Border Radius token | Per-corner composition may differ |
-| Layer opacity | Number/role mapping to determine | Number + opacity scope | Opacity token | Distinct from color alpha |
+| Layer opacity | `number` plus canonical semantic role | Number + opacity scope | Opacity token | Distinct from color alpha |
 | Alias | Curly-brace token reference and JSON Pointer rules | Same-type variable alias; cross-collection metadata may require extension | Curly-brace token alias and expressions | Required syntax, preservation, and error handling |
 | Variation axes and theme presets | Separate Resolver document with sets, modifiers, and resolution order | Collections and modes, commonly exchanged as files per mode | Native sets, theme groups, `$themes`, and `$metadata` | No direct structural equivalence; combinations may require flattening |
 | Typography | `typography` composite with defined singular property names and value shapes | Variables feeding a text style | Typography token with native property/value conventions | Partial decomposition and shape conversion |
