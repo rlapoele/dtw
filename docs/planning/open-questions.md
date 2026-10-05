@@ -76,15 +76,17 @@ Remaining questions:
 
 1. Which axes and options belong in the first slice, and which project-defined axes are permitted?
 2. Which constraints make an option combination invalid or unavailable?
-3. When may a token inherit a less-specific value, and when must a validation profile require explicit coverage for a selection?
-4. How should missing applicable values and equally specific ambiguities be represented and explained in validation and resolution results?
-5. How should conditional aliases and expressions be represented, resolved, and diagnosed?
+3. Which validation profiles require explicit assignment coverage instead of accepting a less-specific matching fallback?
+4. What exact structured payload, severity, and retention policy should resolution diagnostics and traces use?
+5. Which expression operations can resolve without external context, and what evaluation-context contracts do the remaining operations require?
 6. What exact persistence representation should store canonical axes and presets, and where should project, workspace, or user activation preferences live?
 7. How should axes and presets map to DTCG Resolver documents, Figma collections/modes, Penpot sets/themes, and CSS activation mechanisms?
 
 The `VariationAxis` aggregate owns one or more stable-identity `VariationOption` entities and identifies one explicit default option. Option order is presentation-only; rename preserves identity; copy creates new identities; and removing referenced axes or options requires a reviewed project-scoped migration.
 
 `ThemePreset` is a project-owned aggregate root containing a named partial variation selection. Omitted axes derive their explicit defaults; the completed selection is not persisted. Presets remain flat, do not own token values, and are never referenced by token assignment conditions. Axis defaults rather than a default-preset flag define the canonical default selection. Active or initially preferred presets belong to separate project, workspace, or user preference state. The exact persistence schema, cross-axis constraint model, activation-preference boundary, and adapter mappings remain open.
+
+The [variation-resolution contract](../design-tokens/conceptual-model.md#variation-resolution-contract) is decided: explicit activation choices override preset selections, remaining axes use defaults, matching conditions compete by axis-count specificity, and every highest-specificity tie is ambiguous. Selected references and expressions resolve under the same completed selection. Resolution returns structured resolved or unresolved outcomes with derived explanatory traces; exact diagnostic payloads and context-dependent expression evaluation remain open.
 
 ## Persistence and project structure
 

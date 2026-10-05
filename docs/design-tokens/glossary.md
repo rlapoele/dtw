@@ -48,7 +48,7 @@ The explicit coordinate system and color interpretation for a literal's componen
 
 ## Conditional token value
 
-An authored value associated with a condition that matches a partial variation selection. The most specific matching value is selected deterministically; equally specific conflicting matches are ambiguities rather than declaration-order overrides.
+An authored value associated with a condition that matches a partial variation selection. The most specific matching value is selected deterministically; multiple distinct equally specific best matches are ambiguous rather than declaration-order overrides, even when their values are currently identical.
 
 ## Compatibility profile
 
@@ -73,6 +73,10 @@ A relationship in a Component contract describing how an owned component Token i
 ## Composite
 
 A named, validated value schema assembled from multiple typed constituent fields. The initial canonical composites are typography, shadow, gradient, border, and transition; a composite is not an arbitrary object.
+
+## Complete variation selection
+
+A derived normalized selection containing exactly one valid option for every project variation axis. Explicit activation choices override preset selections for the same axis, and remaining omissions use axis defaults. It is resolution context rather than separately authored canonical data.
 
 ## Definition completeness
 
@@ -210,6 +214,10 @@ Optional authoring metadata that excludes a token from generator-proposed update
 
 The value obtained after applying a variation selection, following aliases, and evaluating permitted expressions where sufficient context is available. Resolution does not imply that every expression can become a context-free literal; browser preview measurements are separate observations.
 
+## Resolution trace
+
+Derived explanatory data describing selection completion, matching assignment conditions and their specificity, the selected condition, dependency traversal, and any failure point. A trace is not canonical authored data and does not determine resolution behavior.
+
 ## Scale helper
 
 An authoring tool whose deterministic domain calculation generates candidate token values from a pattern and parameters. Selected candidates become ordinary canonical tokens without live generator dependencies. A scale recipe is not a required canonical entity; curated progressions are manually authored values.
@@ -272,7 +280,7 @@ An independent project-owned aggregate root along which token values may vary, s
 
 ## Variation condition
 
-A normalized conjunction of axis-option selections attached to a Token value assignment. The empty condition is unconditional; each axis may appear at most once, and an explicitly selected default option remains more specific than omission.
+A normalized conjunction of axis-option selections attached to a Token value assignment. The empty condition is unconditional; each axis may appear at most once, and an explicitly selected default option remains more specific than omission. Specificity is the number of represented axes; multiple distinct highest-specificity matches are ambiguous regardless of declaration order or current value equality.
 
 ## Variation option
 

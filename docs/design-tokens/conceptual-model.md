@@ -366,7 +366,7 @@ Model theme variability canonically through independent variation axes rather th
 
 A variation selection chooses options across the applicable axes. A token may have an unconditional authored value and conditional authored values whose conditions match a partial selection. This allows a token identity such as `color.content.primary` to resolve differently for light and dark schemes, standard and high contrast, or their combination without duplicating the semantic vocabulary or requiring a complete value copy for every theoretical combination.
 
-Resolution must be deterministic. Complete omitted selections from axis defaults, retain conditional values whose conditions match the active selection, and choose the matching value with the most specific condition. Declaration order is not a semantic tie-breaker: equally specific matches that provide different values are ambiguous and must produce a validation diagnostic. A missing applicable value is also a validation outcome rather than permission to invent one. Aliases and supported expressions resolve under the same active selection and participate in ordinary missing-reference, cycle, and type validation.
+Resolution must be deterministic. Complete omitted selections from axis defaults, retain conditional values whose conditions match the active selection, and choose the matching value with the most specific condition. Declaration order is not a semantic tie-breaker: multiple distinct conditions tied at the highest specificity are ambiguous even if their authored values are currently identical. A missing applicable value is also a validation outcome rather than permission to invent one. Aliases and supported expressions resolve under the same active selection and participate in ordinary missing-reference, cycle, and type validation.
 
 Named themes are presets of variation selections, not owners of separate token trees. Presets select options; token assignments continue to carry conditions expressed through axis and option identities and never depend on a preset identity. The authoring interface may display axes and presets hierarchically, as a matrix, or through another useful view without changing the canonical relationships. Adapters may flatten composed selections into target modes, sets, files, selectors, or other target constructs, but must report assumptions, unsupported combinations, and loss explicitly.
 
@@ -439,6 +439,99 @@ There is no canonical `isDefault` preset flag. Axis defaults define the default 
 Token assignment conditions reference axis and option identities, never a preset identity. Renaming or deleting a preset therefore does not change authored token values. Renaming a preset preserves its identity; changing its selections also preserves identity but may change consumers that reference it. Copying creates a new preset identity, and cross-project copying additionally requires reviewed mapping to new or existing axis and option identities. Removing a preset must explicitly handle preferences, export configurations, or other consumers that reference it, while leaving token assignments unchanged.
 
 Two presets may validly derive the same complete selection because their names can express different authoring intent; tooling may report the duplication without treating it as invalid. Target selectors, media queries, mode names, filenames, and similar mappings belong to adapters or target configuration rather than canonical preset fields.
+
+### Variation-resolution contract
+
+**Working decision — 5 October 2026**
+
+Variation resolution is a deterministic domain pipeline with three distinct operations:
+
+1. normalize, complete, and validate the active variation selection;
+2. select the applicable authored assignment for a token;
+3. resolve the selected authored value and its dependencies under that same completed selection.
+
+Separating assignment selection from value resolution allows the workbench to explain whether failure came from variation matching or from a selected reference, composite, or expression.
+
+#### Complete and validate the active selection
+
+An activation operation may combine a preset's partial selection with temporary explicit choices. Explicit choices replace preset selections for the same axis; remaining omissions use the axis defaults. This precedence belongs to activation state and does not create precedence among token assignments.
+
+The result is a derived `CompleteVariationSelection` containing exactly one valid option for every project axis. Completion rejects duplicate axes, unknown axes, options owned by another axis, and, once defined, invalid cross-axis combinations. The completed selection is normalized deterministically by axis identity and is not persisted as a second source of truth.
+
+```ts
+type CompleteVariationSelection = readonly AxisOptionSelection[];
+```
+
+#### Select the applicable assignment
+
+An assignment condition matches when each of its axis-option entries occurs in the completed selection. Its specificity is the number of axes in its condition. The empty unconditional condition therefore has specificity zero and acts as an ordinary fallback.
+
+The resolver retains the matching assignments with the greatest specificity. Exactly one is selected; none produces `missing`; and more than one distinct condition at the greatest specificity produces `ambiguous`. Declaration order, preset order, option order, token path, and apparent value equality never break a tie.
+
+```ts
+type AssignmentMatch =
+  | {
+      status: "matched";
+      assignment: TokenValueAssignment;
+      specificity: number;
+    }
+  | { status: "missing" }
+  | {
+      status: "ambiguous";
+      candidates: readonly TokenValueAssignment[];
+      specificity: number;
+    };
+```
+
+For example, consider `color.content.primary` under axes `colorScheme` and `contrast`, whose defaults are `light` and `standard`:
+
+| Assignment condition | Authored value | Specificity |
+| --- | --- | ---: |
+| unconditional | `#1f2937` | 0 |
+| `colorScheme=dark` | `#f9fafb` | 1 |
+| `contrast=high` | `#000000` | 1 |
+| `colorScheme=dark, contrast=high` | `#ffffff` | 2 |
+
+A partial selection containing only `colorScheme=dark` completes to `dark, standard` and resolves to `#f9fafb`. The complete selection `dark, high` resolves to `#ffffff`. If the specificity-two assignment did not exist, the two specificity-one assignments would tie and resolution would report an ambiguity rather than prefer one axis implicitly.
+
+#### Resolve the selected authored value
+
+A selected literal can resolve directly. References, expressions, and composite fields resolve recursively under the same completed variation selection: each referenced token independently selects its own most-specific assignment for that selection. The referring assignment does not force its target to use an identical condition.
+
+Expected domain failures are explicit result variants rather than exceptions or invented fallback values. The conceptual result contract is:
+
+```ts
+type TokenResolutionResult =
+  | {
+      status: "resolved";
+      tokenId: TokenId;
+      selection: CompleteVariationSelection;
+      matchedCondition: VariationCondition;
+      value: ResolvedValue;
+      trace: ResolutionTrace;
+      diagnostics: readonly ResolutionDiagnostic[];
+    }
+  | {
+      status: "unresolved";
+      tokenId: TokenId;
+      selection?: CompleteVariationSelection;
+      reason:
+        | "invalid-selection"
+        | "invalid-combination"
+        | "missing-assignment"
+        | "ambiguous-assignment"
+        | "missing-reference"
+        | "reference-cycle"
+        | "type-mismatch"
+        | "unsupported-expression"
+        | "context-required";
+      diagnostics: readonly ResolutionDiagnostic[];
+    };
+```
+
+The notation fixes the meaningful outcome categories, not a persistence schema or final TypeScript module shape. A valid selected expression may still require viewport, font, container, browser, or other evaluation context. Missing context produces `context-required`; the resolver does not invent environmental values, and a target adapter may still be able to preserve or serialize the authored expression under its own compatibility profile.
+
+`ResolutionTrace` is derived explanatory data, not canonical authored data. It may report defaults applied during completion, matching conditions and their specificity, the selected condition, dependency traversal, and the point of failure. Its exact payload and retention policy remain open, but the domain result must contain enough structured diagnostics for delivery surfaces to explain an unresolved outcome without recreating resolution semantics.
 
 ## Color, opacity, paint, and gradients
 
