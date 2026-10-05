@@ -198,10 +198,12 @@ type TokenValueAssignment = {
   value: AuthoredValue;
 };
 
-type VariationCondition = readonly {
+type AxisOptionSelection = {
   axisId: VariationAxisId;
   optionId: VariationOptionId;
-}[];
+};
+
+type VariationCondition = readonly AxisOptionSelection[];
 ```
 
 The notation documents domain shape rather than selecting TypeScript objects as the persistence format. An absent `definition` represents a name-only token. A present definition with no assignments represents a typed but unassigned token. A definition with assignments represents an authored token. Completeness, validity, and resolvability for a particular variation selection remain derived outcomes rather than stored status fields.
@@ -366,7 +368,7 @@ A variation selection chooses options across the applicable axes. A token may ha
 
 Resolution must be deterministic. Complete omitted selections from axis defaults, retain conditional values whose conditions match the active selection, and choose the matching value with the most specific condition. Declaration order is not a semantic tie-breaker: equally specific matches that provide different values are ambiguous and must produce a validation diagnostic. A missing applicable value is also a validation outcome rather than permission to invent one. Aliases and supported expressions resolve under the same active selection and participate in ordinary missing-reference, cycle, and type validation.
 
-Named themes are presets of variation selections, not owners of separate token trees. The authoring interface may display axes and presets hierarchically, as a matrix, or through another useful view without changing the canonical relationships. Adapters may flatten composed selections into target modes, sets, files, selectors, or other target constructs, but must report assumptions, unsupported combinations, and loss explicitly.
+Named themes are presets of variation selections, not owners of separate token trees. Presets select options; token assignments continue to carry conditions expressed through axis and option identities and never depend on a preset identity. The authoring interface may display axes and presets hierarchically, as a matrix, or through another useful view without changing the canonical relationships. Adapters may flatten composed selections into target modes, sets, files, selectors, or other target constructs, but must report assumptions, unsupported combinations, and loss explicitly.
 
 ### VariationAxis and VariationOption
 
@@ -406,6 +408,37 @@ Removing a referenced option or axis is a project-scoped migration rather than a
 No closed built-in axis-kind enum is selected. Canonical relationships use stable identities rather than inferred meanings from names. If concrete validation, accessibility, or adapter workflows later require explicit standardized meanings, an optional semantic-role mechanism may be introduced without changing axis or option identity.
 
 The initial axes, constraints between combinations, coverage requirements, exact persistence representation, and adapter-specific mappings remain open. Accessibility-related axes need precise meanings: contrast, forced colors, color-vision adaptations, typography, spacing, transparency, and motion must not be collapsed into an undifferentiated accessibility theme. Color-vision adaptations are reviewed authored decisions and do not establish that color alone can carry meaning.
+
+### ThemePreset
+
+**Working decision — 5 October 2026**
+
+`ThemePreset` is a project-owned aggregate root that gives a stable identity and name to a reusable partial variation selection. It is an activation and authoring convenience, not a token-value owner or another theme tree.
+
+```ts
+type ThemePreset = {
+  id: ThemePresetId;
+  projectId: ProjectId;
+  name: ThemePresetName;
+  description?: string;
+  selections: VariationSelection;
+  extensions?: NamespacedExtensions;
+};
+
+type VariationSelection = readonly AxisOptionSelection[];
+```
+
+Each axis may occur at most once in a preset selection. Every referenced axis belongs to the same project, and every referenced option belongs to its stated axis. Entries normalize deterministically by axis identity; their stored order has no activation or precedence meaning. Preset names are unique within a project under the eventual canonical name-normalization rules.
+
+A preset may omit any axis. To derive its complete active selection, begin with the explicit default option of every project axis, then replace the axes selected by the preset. An empty selection is therefore valid and represents a named use of all current axis defaults. The completed selection is derived rather than persisted. Adding an axis or changing the default of an omitted axis may change that derived result and is a potentially broad semantic change that impact diagnostics should expose.
+
+Presets do not nest, inherit, extend, or canonically compose with one another. A combined preset explicitly stores the resulting flat partial selection. An authoring operation may apply temporary explicit selection overrides after a preset, but those overrides are activation state rather than part of the preset. Project-level variation constraints, when defined, validate the completed selection; the constraint model remains open.
+
+There is no canonical `isDefault` preset flag. Axis defaults define the default complete selection. A currently active preset or preferred initial preset belongs to project, workspace, or user preference state rather than to token data or the semantic definition of `ThemePreset`.
+
+Token assignment conditions reference axis and option identities, never a preset identity. Renaming or deleting a preset therefore does not change authored token values. Renaming a preset preserves its identity; changing its selections also preserves identity but may change consumers that reference it. Copying creates a new preset identity, and cross-project copying additionally requires reviewed mapping to new or existing axis and option identities. Removing a preset must explicitly handle preferences, export configurations, or other consumers that reference it, while leaving token assignments unchanged.
+
+Two presets may validly derive the same complete selection because their names can express different authoring intent; tooling may report the duplication without treating it as invalid. Target selectors, media queries, mode names, filenames, and similar mappings belong to adapters or target configuration rather than canonical preset fields.
 
 ## Color, opacity, paint, and gradients
 
@@ -495,10 +528,13 @@ A project is the primary working context and ownership boundary for authored wor
 
 ```text
 Project
-└── Namespace groups and tokens
+├── Namespace groups and tokens
+├── Component definitions
+├── Variation axes
+└── Theme presets
 ```
 
-Every token and namespace group belongs to exactly one project. A project may additionally own settings, import provenance, export-target configuration, compatibility reports, and generated-artifact metadata without embedding all of those concerns into the core Project entity.
+Every token, namespace group, component definition, variation axis, and theme preset belongs to exactly one project. This project ownership does not require one giant in-memory aggregate. A project may additionally own settings, import provenance, export-target configuration, compatibility reports, and generated-artifact metadata without embedding all of those concerns into the core Project entity.
 
 A workspace is the local location or environment in which a project is stored and edited. A workspace path is not the project's stable identity.
 

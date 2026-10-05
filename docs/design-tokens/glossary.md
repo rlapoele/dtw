@@ -240,7 +240,7 @@ A user-facing coherent variation in resolved token values. Canonically, a named 
 
 ## Theme preset
 
-A named variation selection, such as dark with high contrast. A preset provides a convenient activation and authoring view but does not own duplicated token definitions.
+A project-owned aggregate root that gives stable identity and a name to a reusable partial variation selection, such as dark with high contrast. Omitted axes derive their current defaults. A preset provides a convenient activation and authoring view but does not own token values, participate in token conditions, nest, or contain target-specific activation mappings.
 
 ## Token
 
@@ -280,7 +280,7 @@ An identity-bearing entity owned by one Variation axis, such as `light` or `dark
 
 ## Variation selection
 
-A choice of options across applicable variation axes. Conditional token values match partial selections; named theme presets provide reusable selections.
+A normalized choice of at most one option from each represented variation axis. A selection may be partial; omitted axes can be completed from their explicit defaults for activation and resolution. Conditional token values match selections, and named theme presets store reusable partial selections.
 
 ## Workbench
 
