@@ -151,11 +151,11 @@ A token owns zero or more value assignments. Each assignment pairs one authored 
 The canonical authored-value union is:
 
 ```text
-LiteralValue | ReferenceValue | ExpressionValue | CompositeValue
+LiteralValue | TokenReference | ExpressionValue | CompositeValue
 ```
 
 - A `LiteralValue` uses the structured schema of the token's value type; it is not a generic CSS string.
-- A `ReferenceValue` identifies another token by stable token identity. Canonical references stay within a project, preserve authorship, require compatible types, and resolve paths only as derived display or interchange addresses. Missing external targets remain staged import data until reconciled rather than becoming valid canonical references.
+- A `TokenReference` identifies another token or a supported part of its value by stable token identity and a schema-relative value path. Canonical references stay within a project, preserve authorship, require compatible types, and do not store derived token paths or target-specific addresses. Unresolved source-specific references remain staged import data until mapped; an invalid canonical reference can still be loaded and preserved for explicit repair.
 - An `ExpressionValue` is a typed structured expression. Portable canonical operations remain distinguishable from explicitly target-specific operations such as supported CSS constructs. The exact abstract syntax tree and operation set remain open.
 - A `CompositeValue` uses one of the named composite schemas. Its constituent fields retain their types and may contain supported references or expressions.
 
@@ -312,9 +312,61 @@ Reference rules may normally flow primitive → semantic → component, with car
 
 Aliases are first-class relationships, not text substitutions. The workbench should preserve the authored reference, resolve it deterministically, display the dependency graph, and detect missing or cyclic references.
 
-DTCG-style references such as `{color.neutral.950}` are a strong interchange convention. Canonically, a reference identifies its target by stable token identity within the same project; adapters derive or resolve path-based target addresses at their boundaries. The exact serialized reference shape remains open.
+DTCG-style references such as `{color.neutral.950}` are a strong interchange convention. Canonically, a reference identifies its target by stable token identity within the same project; adapters derive or resolve path-based target addresses at their boundaries. The exact persisted project schema remains open.
 
 A reference identifies another token or a supported part of its value. An alias token has a reference as its whole authored value; its name is still an ordinary token name. References may also occur inside expressions or composites without making the whole token an alias.
+
+### TokenReference
+
+**Working decision — 5 October 2026**
+
+`TokenReference` is an identity-less authored value object. It identifies one same-project target token and, optionally, a supported part of that token's typed value. It does not have an independent lifecycle or stable identity.
+
+```ts
+type TokenReference = {
+  kind: "token-reference";
+  targetTokenId: TokenId;
+  valuePath: TokenValuePath;
+};
+
+type TokenValuePath = readonly TokenValuePathSegment[];
+
+type TokenValuePathSegment =
+  | {
+      kind: "field";
+      key: ValueFieldKey;
+    }
+  | {
+      kind: "index";
+      index: number;
+    };
+```
+
+An empty `valuePath` is the single canonical representation for a whole-value reference. Field segments use names declared by the target type or composite schema; they are not arbitrary object-property access. Index segments are non-negative integer positions in schema-defined ordered collections. Value paths describe the canonical typed-value shape rather than a persistence document and are not JSON Pointers. Adapters translate them to target syntax where a compatibility profile permits.
+
+For example, a semantic color token can reference a primitive color without retaining its mutable path:
+
+```ts
+const contentPrimary: TokenReference = {
+  kind: "token-reference",
+  targetTokenId: "token-neutral-900",
+  valuePath: [],
+};
+```
+
+Renaming or moving the target does not affect that reference. A reference to the `fontSize` field of a typography token would use `[{ kind: "field", key: "fontSize" }]`. A path into an ordered collection may include an index, but indexes are structurally fragile: reorder and removal operations must update or diagnose inbound references. The first implementation may reject indexed or other part-reference paths until the relevant composite schemas and reviewed migrations exist.
+
+Resolution selects the target token's assignment under the same completed variation selection as the referring token, recursively resolves that target, then navigates the value path. The reference does not store or select a target assignment, condition, preset, or variation option. The referring assignment cannot force the target to use an identical condition.
+
+The reference also does not store the target's current path, project ID, declared type, resolved value, inline fallback, or display label. The same-project invariant makes a project ID redundant; the use site provides the expected type; and paths, labels, and target addresses are derived. Fallback behavior belongs to conditional assignments, an explicit supported expression, or a target compatibility policy rather than every reference.
+
+A whole-value alias must resolve to a value compatible with its token's declared type. Inside a composite or expression, the containing field or operand supplies the expected type. A non-empty value path must be valid for the selected target value and its resulting part must satisfy that expected type. Layer-direction rules remain separate project validation policy rather than reference fields.
+
+Normal authoring operations create references only to existing same-project targets. The loader may nevertheless preserve a structurally recognizable canonical reference whose target or value path is missing after manual edits, merge conflicts, corruption, or failed migrations. Such a reference is invalid but repairable and resolves to an explicit diagnostic; it is never silently deleted or replaced. Source-format references that have not yet been mapped to a canonical target identity remain staged import data instead.
+
+Deleting a referenced token is a reviewed project-scoped migration that exposes inbound references and supports explicit retargeting, replacement with authored values, removal of affected assignments, or cancellation. Changing a target's type or composite shape validates inbound references and may require a migration. Direct self-reference and other selected dependency cycles are invalid.
+
+Copying a referring token within a project normally retains references to the same targets. A reviewed deep copy may remap connected references through an explicit old-to-new identity mapping. Cross-project copying always requires explicit target mapping because canonical references do not cross project boundaries.
 
 ## Expressions
 

@@ -204,7 +204,7 @@ The explicit conditions under which a token specimen is rendered, such as a vari
 
 ## Reference
 
-A typed authored relationship identifying another token in the same project by stable identity. A whole-value reference makes the referring token an alias; references can also occur within expressions or composites. Paths are derived display or interchange addresses rather than canonical reference identity.
+An identity-less typed authored value identifying another token in the same project by stable identity and a schema-relative Token value path. A whole-value reference makes the referring token an alias; references can also occur within expressions or composites. It stores no mutable token path, target type, variation selection, fallback, or resolved value.
 
 ## Regeneration protection
 
@@ -265,6 +265,10 @@ A stable, non-semantic, collision-resistant identifier distinct from a token's m
 ## Token value assignment
 
 An identity-less value object owned by a Token definition, pairing one authored value with one normalized variation condition. Assignment order has no semantic meaning, and a Token may contain at most one assignment for an identical normalized condition.
+
+## Token value path
+
+An ordered sequence of schema-validated field or collection-index segments identifying a supported part of a target token's typed value. The empty path denotes the whole value. It is independent of persistence layout and target syntaxes such as JSON Pointer; indexed paths require explicit handling when collections are reordered or changed.
 
 ## Token path
 

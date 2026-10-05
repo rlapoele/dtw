@@ -235,6 +235,8 @@ An exporter should:
 
 Exporters derive target paths from the canonical namespace hierarchy. A profile may consolidate repeated explicit token types into group-level declarations such as DTCG `$type` when that transformation is valid and deterministic. Export optimization must not change canonical authorship or make re-imported token types ambiguous.
 
+Canonical token references use stable same-project token identities and schema-relative value paths rather than persisted source paths or JSON Pointers. Export adapters derive the current target address and translate supported part paths into the target profile's syntax. Import adapters resolve source paths, curly-brace aliases, JSON Pointer references, or native alias metadata to canonical token identities during staged normalization; unresolved source-specific references remain staged until reviewed. A canonical reference that later becomes invalid remains visible as repairable data with diagnostics rather than being silently removed.
+
 ## Initial modeling targets and expressions
 
 **Working decision — 1 October 2026**
