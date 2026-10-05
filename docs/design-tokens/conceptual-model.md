@@ -83,6 +83,32 @@ fontFamily     fontWeight      cubicBezier
 
 Exact literal schemas, accepted units, constraints, and initial implementation coverage remain open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
 
+#### Exact decimal numeric values and percentages
+
+**Working decision — 5 October 2026**
+
+Canonical numeric literals use a reusable exact finite base-10 `Decimal` value object rather than treating an IEEE-754 binary floating-point value as authoritative. Its storage-neutral representation is a validated canonical decimal string; the implementation may later use a decimal-arithmetic library internally without making that library part of the domain model.
+
+```ts
+type Decimal = string;
+
+type PercentageLiteral = {
+  ratio: Decimal;
+};
+```
+
+A percentage stores a normalized ratio: `50%` becomes `"0.5"`, `12.5%` becomes `"0.125"`, `125%` becomes `"1.25"`, and `-10%` becomes `"-0.1"`. Percentage is a canonical value type rather than a unit accepted by `dimension`: a percentage is context-relative and does not become a length merely because some target contexts accept a length-percentage combination.
+
+Not every value displayed with a percent sign is therefore a percentage token. For example, an opacity may remain a constrained `number` with value `"0.5"` and be displayed as `50%`; a genuinely context-relative value may use the `percentage` type. Percentages are not universally restricted to the ratio range zero through one because negative values and values above one may be valid in supported contexts.
+
+Canonical, calculation, and presentation precision remain separate:
+
+- canonical precision preserves the exact authored decimal value without rounding it for a view;
+- deterministic calculations use an explicit precision and rounding policy appropriate to the operation;
+- editors and adapters may format or round displayed and exported representations without mutating the canonical value.
+
+Trailing zeros are not semantically significant: `"0.5"` and an authored `"0.5000"` denote the same value. If preserving that formatting later proves useful, it belongs to non-semantic authoring metadata. The exact decimal grammar, normalization rules, maximum accepted digits, calculation contexts, and rounding modes remain to be defined before implementation of the affected numeric operations.
+
 ### Semantic role
 
 **Working decision — 5 October 2026**

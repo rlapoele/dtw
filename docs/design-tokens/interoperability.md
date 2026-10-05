@@ -180,7 +180,7 @@ These profiles solve different problems. Figma and Penpot adapters translate nat
 | Color alpha | Part of color | Part of Color | Part of Color | Do not confuse with layer opacity |
 | Number | `number` | Number variable | Number token | Role may be lost without metadata |
 | Dimension | Object with `value` and `px` or `rem` unit | Number + scope; documented import requires `px` | Dimension and purpose-specific numeric tokens | Unit and string/object conversion |
-| Percentage | No standalone percentage type | Number variable where the target workflow permits | Purpose-specific mapping required | Context and unit preservation |
+| Percentage | No standalone percentage type | Number variable where the target workflow permits | Purpose-specific mapping required | Canonical exact decimal ratio requires contextual mapping and explicit precision diagnostics |
 | Angle | No standalone angle type | Number variable where the target workflow permits | Rotation token | Unit and purpose preservation |
 | Duration | Object with numeric value and `ms` unit | Timing variable | Duration mapping requires profile verification | Unit and value-shape conversion |
 | String and boolean | Not in the DTCG foundational type set | String and Boolean variables | Native support varies by token kind | Extension, omission, or alternate artifact may be required |
@@ -249,6 +249,8 @@ An exporter must distinguish:
 - deterministic context-free evaluation into a valid target value, with a transformation diagnostic;
 - context-dependent evaluation or an author-approved fallback under an explicit policy;
 - unsupported expressions that cannot be represented safely.
+
+Canonical numeric values use exact base-10 decimals. Adapters that emit JSON numbers, platform floating-point values, or rounded target strings must apply an explicit deterministic conversion and formatting policy and diagnose material precision loss. A percentage ratio is not implicitly a strict DTCG percentage token because DTCG `2025.10` defines no standalone percentage type; a profile must map it to a supported contextual number, preserve it through a valid extension alongside a conforming value, or report it as unsupported.
 
 Namespaced [DTCG extensions](https://www.w3.org/community/reports/design-tokens/CG-FINAL-format-20251028/#extensions) may preserve optional expression metadata alongside a valid standard value. They do not make an invalid `$value` conforming or guarantee that another tool can reconstruct the expression. Exact fallback, blocking, and extension policies remain unresolved. A preview measurement must not become an export fallback implicitly.
 

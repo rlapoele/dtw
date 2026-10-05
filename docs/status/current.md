@@ -41,6 +41,7 @@ No domain schema or behavior has been implemented. Use the unresolved questions 
 - Established [reviewable generated-change proposals and regeneration protection](../design-tokens/conceptual-model.md#generated-change-proposals-and-protection): helpers do not mutate canonical tokens directly; changes can be accepted or rejected individually; protected tokens are skipped visibly by default; and accepted results have no live generator dependency.
 - Defined the storage-neutral [Token aggregate and assignment structure](../design-tokens/conceptual-model.md#token-aggregate-and-assignment-structure): Token is an independently loaded aggregate root; its optional typed definition owns identity-less conditional assignments; completeness is derived; assignment order has no semantics; and cross-token, group, variation, component, and graph invariants are validated by project-scoped domain operations.
 - Defined the minimal [ComponentDefinition and ComponentContract boundary](../design-tokens/conceptual-model.md#component-definitions-contracts-and-token-bindings): component-token ownership remains explicit on Token; contract bindings describe component usage; component authoring may create definitions, tokens, and bindings atomically; and detailed anatomy, slots, properties, variants, and states are deliberately deferred.
+- Selected [exact decimal numeric values and normalized percentage ratios](../design-tokens/conceptual-model.md#exact-decimal-numeric-values-and-percentages): canonical numeric values do not use binary floating point as their authority; percentages store exact ratios; calculation precision is explicit; and UI or export formatting does not mutate canonical values.
 
 ## Next meaningful actions
 
@@ -54,7 +55,7 @@ These actions propose the order of the remaining decisions. The PWA-first and im
 
 ## Blockers and unresolved decisions
 
-There are no known external blockers. Domain implementation requires explicit choices for the behavior being implemented; product and delivery work remains guided by [`docs/planning/open-questions.md`](../planning/open-questions.md). Exact type and composite schemas, identifier formats, local-name grammar, sibling ordering, expression operations, initial variation axes and coverage rules, persistence, export policies, color-operation and fallback policies, and initial helper/preview coverage remain unresolved. This milestone changed documentation only; no implementation was started.
+There are no known external blockers. Domain implementation requires explicit choices for the behavior being implemented; product and delivery work remains guided by [`docs/planning/open-questions.md`](../planning/open-questions.md). Remaining type and composite schemas, decimal normalization and operation policies, identifier formats, local-name grammar, sibling ordering, expression operations, initial variation axes and coverage rules, persistence, export policies, color-operation and fallback policies, and initial helper/preview coverage remain unresolved. This milestone changed documentation only; no implementation was started.
 
 Do not silently choose a frontend framework, canonical persistence format, browser storage mechanism, database, schema library, plugin system, or package topology beyond the initial scaffold.
 

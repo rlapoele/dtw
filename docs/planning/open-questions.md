@@ -17,7 +17,7 @@ Suggested decision states for future use are: `open`, `investigating`, `proposed
 
 ## Canonical model
 
-1. What exact literal schema, accepted units, and constraints apply to each selected foundational type?
+1. Beyond the decided exact-decimal numeric basis and normalized percentage ratio, what literal schema, accepted units, and constraints apply to each selected foundational type?
 2. What exact fields, cardinalities, and nested-reference rules apply to typography, shadow, gradient, border, and transition composites?
 3. What exact schemas, cardinalities, and rules should eventually define component parts, slots, properties, variant axes, interactive states, and component-token bindings inside `ComponentContract`?
 4. Are patterns, images, or video fills within scope, and would they demonstrate a need for a future paint abstraction?
@@ -28,6 +28,8 @@ Suggested decision states for future use are: `open`, `investigating`, `proposed
 [Project ownership, stable token identity, namespace groups, derived paths, the Token aggregate and owned assignment structure, authored-value forms, optional layers and semantic roles, foundational value types, the initial composite set, and the minimal ComponentDefinition and ComponentContract boundary](../design-tokens/conceptual-model.md) are working decisions. Name-only and typed-but-unassigned tokens are valid project members; definition completeness is derived. Component contracts deliberately anticipate parts, slots, properties, variant axes, interactive states, and token bindings without defining them in detail. The identifier format, local-name grammar, sibling ordering, group-deletion operations, optional group constraints, exact type and composite schemas, and persistence schema remain open.
 
 Expression support is a [working decision](../design-tokens/conceptual-model.md#expressions); its concrete schema and coverage are not selected. Scale generation is [domain behavior](../design-tokens/conceptual-model.md#scale-generation), not a requirement for persisted scale entities or live token dependencies.
+
+Numeric literals use an exact finite base-10 Decimal value object, and percentage literals store normalized ratios. The exact decimal grammar, normalization limits, calculation precision, and rounding policies remain open; display and adapter formatting must not mutate canonical values.
 
 ## Color values and operations
 

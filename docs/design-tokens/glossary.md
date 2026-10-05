@@ -78,6 +78,10 @@ A named, validated value schema assembled from multiple typed constituent fields
 
 A derived assessment of whether a token contains the type and authored assignments required for an operation. A name-only token is a valid project member with an incomplete definition; incompleteness is not represented by an `EmptyValue` or a stored lifecycle status.
 
+## Decimal
+
+An exact finite base-10 numeric value object canonically serialized through validated normalized decimal text rather than an authoritative binary floating-point value. It is reused by numeric literals such as numbers, dimensions, durations, angles, percentages, and cubic-Bézier coordinates. Calculation and formatting precision are separate policies.
+
 ## DTCG
 
 The W3C Design Tokens Community Group and, contextually, its design-token format work. The stable `2025.10` Format, Color, and Resolver reports are the project's current strict interchange baseline. DTCG is not yet the chosen canonical persistence format.
@@ -149,6 +153,10 @@ A compositing property applied to a layer, element, or composed result. It is co
 ## Paint
 
 A possible future abstraction for visual treatments applied to an area or stroke. It is not in the selected canonical token-type set: solid values remain colors and gradients use the gradient composite. It should be introduced only if concrete solid, gradient, image, pattern, or related use cases require a shared contract.
+
+## Percentage
+
+A context-relative numeric value represented canonically as an exact decimal ratio, such as `"0.5"` for `50%`. Percentage is a value type rather than a dimension unit. A percent-formatted editor value may still represent another type, such as a constrained number used for opacity.
 
 ## Package
 
