@@ -88,7 +88,11 @@ A derived assessment of whether a token contains the type and authored assignmen
 
 ## Decimal
 
-An exact finite base-10 numeric value object canonically serialized through validated normalized decimal text rather than an authoritative binary floating-point value. It is reused by numeric literals such as numbers, dimensions, durations, angles, percentages, and cubic-Bézier coordinates. Calculation and formatting precision are separate policies.
+An exact finite base-10 numeric value object canonically serialized through validated normalized ASCII decimal text rather than an authoritative binary floating-point value. Its canonical form has no exponent, redundant leading or trailing zeros, leading plus sign, or negative zero, so each mathematical value has one stored representation. It is reused by numeric literals such as numbers, dimensions, durations, angles, percentages, and cubic-Bézier coordinates. Calculation and formatting precision are separate policies.
+
+## Dimension
+
+A length-bearing foundational value whose initial literal schema contains a Decimal value and one required lowercase unit, `px` or `rem`. The unit remains explicit even when the value is zero. Negative dimensions are valid at the foundational type level; semantic roles and composite fields may impose narrower constraints.
 
 ## DTCG
 
@@ -108,7 +112,7 @@ The UI- and infrastructure-independent TypeScript implementation of the canonica
 
 ## Evaluation context
 
-Explicit serializable facts supplied to deterministic expression evaluation, such as viewport or container dimensions and font measurements. The domain does not obtain these facts from browser globals or the DOM. Evaluation context is distinct from a broader preview context, which may also contain specimen and rendering information.
+Explicit serializable facts supplied to deterministic expression evaluation, such as viewport or container dimensions and font measurements. The first defined key, `font.rootSize`, is a non-negative `px` dimension used to evaluate mixed `px` and `rem` arithmetic; it has no implicit default. The domain does not obtain these facts from browser globals or the DOM. Evaluation context is distinct from a broader preview context, which may also contain specimen and rendering information.
 
 ## Electron
 
@@ -161,6 +165,10 @@ A compatibility profile for the actual interchange behavior of a particular tool
 ## Normalization
 
 The deliberate mapping of source-specific concepts into the canonical model. It may require user review when intent cannot be inferred safely.
+
+## Number
+
+An unconstrained finite exact-decimal foundational value. Positive, negative, fractional, and zero values are valid; purpose-specific constraints such as opacity ranges or integer-only counts belong to the use site or semantic role rather than to the number type itself.
 
 ## Opacity
 

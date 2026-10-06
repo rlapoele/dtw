@@ -81,11 +81,11 @@ fontFamily     fontWeight      cubicBezier
 
 `dimension` represents a length-bearing quantity rather than any arbitrary unit-bearing number. `percentage`, `angle`, and `duration` remain distinct so validation and typed operations do not conflate context-relative proportions, rotation, length, and time. `fontFamily`, `fontWeight`, and `cubicBezier` have domain-specific shapes or constraints that justify explicit types.
 
-Exact literal schemas, accepted units, constraints, and initial implementation coverage remain open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
+The `number` and `dimension` literal schemas and initial `px` and `rem` dimension units are defined below. Exact schemas, constraints, and initial implementation coverage for the remaining foundational types stay open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
 
 #### Exact decimal numeric values and percentages
 
-**Working decision — 5 October 2026**
+**Working decision — 6 October 2026**
 
 Canonical numeric literals use a reusable exact finite base-10 `Decimal` value object rather than treating an IEEE-754 binary floating-point value as authoritative. Its storage-neutral representation is a validated canonical decimal string; the implementation may later use a decimal-arithmetic library internally without making that library part of the domain model.
 
@@ -97,6 +97,12 @@ type PercentageLiteral = {
 };
 ```
 
+Canonical Decimal text uses ASCII digits and `.` as its decimal separator. It has one optional leading minus sign, at least one integer digit, no unnecessary leading integer zeros, and an optional fractional part that ends in a non-zero digit. A leading plus sign, trailing decimal point, exponent notation, `NaN`, and infinities are not canonical. Negative zero normalizes to `"0"`.
+
+For example, `001.2500` normalizes to `"1.25"`, `.5` to `"0.5"`, `1e3` to `"1000"`, `1e-3` to `"0.001"`, and `-0.000` to `"0"`. Editors and import adapters may accept such non-canonical forms when they can parse them losslessly, but canonical data always stores the normalized form. Localized input and display formatting remain delivery concerns.
+
+Decimal equality is numeric rather than lexical. Canonical text therefore has one representation for each accepted finite value; authored trailing zeros are not semantic. Exact maximum digit counts and exponent-expansion limits remain open pending implementation evidence, but they must eventually form one portable validation contract rather than depend accidentally on a parser or arithmetic library.
+
 A percentage stores a normalized ratio: `50%` becomes `"0.5"`, `12.5%` becomes `"0.125"`, `125%` becomes `"1.25"`, and `-10%` becomes `"-0.1"`. Percentage is a canonical value type rather than a unit accepted by `dimension`: a percentage is context-relative and does not become a length merely because some target contexts accept a length-percentage combination.
 
 Not every value displayed with a percent sign is therefore a percentage token. For example, an opacity may remain a constrained `number` with value `"0.5"` and be displayed as `50%`; a genuinely context-relative value may use the `percentage` type. Percentages are not universally restricted to the ratio range zero through one because negative values and values above one may be valid in supported contexts.
@@ -107,7 +113,40 @@ Canonical, calculation, and presentation precision remain separate:
 - deterministic calculations use an explicit precision and rounding policy appropriate to the operation;
 - editors and adapters may format or round displayed and exported representations without mutating the canonical value.
 
-Trailing zeros are not semantically significant: `"0.5"` and an authored `"0.5000"` denote the same value. If preserving that formatting later proves useful, it belongs to non-semantic authoring metadata. The exact decimal grammar, normalization rules, maximum accepted digits, calculation contexts, and rounding modes remain to be defined before implementation of the affected numeric operations.
+If preserving authored numeric formatting later proves useful, it belongs to non-semantic authoring metadata. Calculation contexts and rounding modes remain to be defined only for operations whose exact result is not a finite decimal; the initial number and dimension operations below do not round.
+
+#### Number and dimension literals
+
+**Working decision — 6 October 2026**
+
+`NumberLiteralValue` and `DimensionLiteralValue` are identity-less literal variants:
+
+```ts
+type NumberLiteralValue = {
+  kind: "literal";
+  valueType: "number";
+  value: Decimal;
+};
+
+type DimensionLiteralValue = {
+  kind: "literal";
+  valueType: "dimension";
+  value: Decimal;
+  unit: DimensionUnit;
+};
+
+type DimensionUnit = "px" | "rem";
+```
+
+A foundational `number` accepts any canonical Decimal without a universal range. It may be positive, negative, fractional, or zero. Opacity, unitless line height, gradient position, font weight, and similar purposes retain their own role, field, or distinct-type constraints; they do not narrow every number token. Number and percentage remain different value types.
+
+A foundational `dimension` represents a length-bearing amount. Its unit is lowercase, explicit, and required even when the value is zero. Positive, zero, and negative values are valid at the foundational level because use sites differ; a border-width, radius, blur, offset, or other role or composite field may impose a narrower range. Percentage is not a dimension unit, and a bare Decimal is never interpreted as a dimension implicitly.
+
+The initial canonical unit set is deliberately limited to `px` and `rem`. These units map directly to strict DTCG `2025.10` dimensions and cover fixed and root-font-relative authoring without accepting arbitrary CSS syntax. Additional absolute, local-font, viewport, container, or target-specific units require explicit semantics and compatibility review. Contextual relationships may instead be modeled through expression `ContextReference` operands where that preserves meaning more clearly.
+
+The flattened literal shape does not expose `value` or `unit` automatically as public `TokenValuePath` fields. Initially, both number and dimension literals support only the empty whole-value path. Component-level references into their representation remain deferred until a concrete canonical workflow and strict-DTCG coverage promise justify the additional part types and construction rules.
+
+Editing replaces the literal owned by its assignment or expression operand. Copying preserves its normalized value and unit. Changing `1rem` to `16px` remains an authored semantic change even when one evaluation context makes them numerically equal. Preview conversion and export formatting never mutate the literal.
 
 ### Semantic role
 
@@ -444,9 +483,15 @@ max<T>(T, T) -> T
 clamp<T>(T minimum, T preferred, T maximum) -> T
 ```
 
-These operations use identifiers such as `portable.math.add.v1` and `portable.math.clamp.v1`. `T` is an explicitly enabled ordered numeric type, not an arbitrary token type. Initial implementation should enable only `number` and `dimension` after their literal schemas and unit rules are fixed. Percentage, angle, duration, and other types require their own reviewed applicability rules.
+These operations use identifiers such as `portable.math.add.v1` and `portable.math.clamp.v1`. `T` is an explicitly enabled ordered numeric type, not an arbitrary token type. The initial type instances are `number` and `dimension`; percentage, angle, duration, and other types require their own reviewed applicability rules.
 
-Addition, subtraction, comparison, and clamping require the same canonical value type. Same-unit operations are direct. Cross-unit operations are permitted only when a declared deterministic conversion exists; conversions that require root font size, viewport, container, font metrics, or another environmental value require explicit context. `scale` deliberately restricts multiplication to a quantity and a number. Percentage remains a distinct type rather than an implicit number scalar.
+All six operations are context-free for number operands. Addition, subtraction, scaling, and comparison over finite Decimals are exact and do not round. `scale(number, number)` is the initial explicit multiplication operation.
+
+Dimension addition, subtraction, minimum, maximum, and clamp require dimension operands. Same-unit operations are context-free and preserve the shared unit. `scale(dimension, number)` preserves the dimension operand's unit. A mixed `px` and `rem` operation remains well-typed but requires an explicit root-font-size context. The evaluator converts every `rem` operand to `px`, performs exact arithmetic or comparison, and returns a `px` dimension. It never assumes that `1rem` is `16px`.
+
+Portable clamp requires its resolved minimum to be less than or equal to its resolved maximum. Reversed bounds produce `invalid-expression` with the operation-specific diagnostic code `invalid-clamp-range` rather than inheriting a target's behavior silently. This result category also covers a known operation whose arity, parameters, or evaluated operands violate its contract; `unsupported-expression` remains reserved for an operation the evaluator or target does not support.
+
+`scale` deliberately restricts multiplication to a supported quantity and a number. Percentage remains a distinct type rather than an implicit number scalar.
 
 General quantity multiplication or division, modulo, powers, trigonometry, arbitrary unit cancellation, strings, Boolean branching, user-defined functions, and generic fallback or coalescing are not part of the initial operation set. In particular, unrestricted division would require an explicit policy for non-terminating decimal results.
 
@@ -458,7 +503,7 @@ Evaluation is a pure domain operation over the expression, one completed variati
 
 Canonical numeric inputs remain exact finite base-10 decimals. Operations whose results remain finite decimal values do not round merely for evaluation. An operation that can produce a non-terminating or algorithmically approximate result must define calculation precision and rounding in its versioned contract before it is supported. UI formatting and adapter formatting remain separate and never mutate the authored AST.
 
-A `ContextReference` makes an environmental input visible in the AST. Potential context keys include viewport dimensions, container dimensions, root or current font size, font metrics, and declared browser capabilities. The exact key set and value schemas remain open. The domain receives context facts from its caller; a browser preview adapter may measure them but browser measurement remains outside the domain.
+A `ContextReference` makes an environmental input visible in the AST. The initial dimension algebra defines `font.rootSize` as the context required to combine `px` and `rem`; its value is a non-negative `px` dimension. No default is supplied when it is absent. Potential future context keys include viewport dimensions, container dimensions, current font size, font metrics, and declared browser capabilities. Their exact set and value schemas remain open. The domain receives context facts from its caller; a browser preview adapter may measure them but browser measurement remains outside the domain.
 
 Context-free expressions can resolve directly. A context-dependent expression resolves only when its required context is present and valid. Missing context produces `context-required` with structured requirements rather than a hidden default. Semantics that cannot be expressed as deterministic context inputs remain target-specific or preview-only and may produce `unsupported-expression` in the domain evaluator.
 
@@ -493,13 +538,14 @@ For example, a dimension expression that a CSS adapter may spell as `calc(var(--
     {
       kind: "literal",
       valueType: "dimension",
-      value: { amount: "0.5", unit: "rem" },
+      value: "0.5",
+      unit: "rem",
     },
   ],
 }
 ```
 
-The literal notation is illustrative until the dimension schema is selected. The expression derives a `dimension` result; CSS syntax is generated by an adapter and is not stored as canonical source.
+The expression derives a `dimension` result; CSS syntax is generated by an adapter and is not stored as canonical source.
 
 A future fluid-typography expression may combine `portable.math.clamp.v1`, nested addition and scaling, and an explicit `viewport.width` context reference. A CSS adapter could emit `clamp(1rem, calc(0.875rem + 0.5vw), 1.25rem)` without evaluating it. Domain evaluation would require viewport width and any context needed to compare or convert the participating units. Strict DTCG export should not flatten that fluid behavior to one arbitrary viewport result implicitly.
 
@@ -700,13 +746,14 @@ type TokenResolutionResult =
         | "missing-reference"
         | "reference-cycle"
         | "type-mismatch"
+        | "invalid-expression"
         | "unsupported-expression"
         | "context-required";
       diagnostics: readonly ResolutionDiagnostic[];
     };
 ```
 
-The notation fixes the meaningful outcome categories, not a persistence schema or final TypeScript module shape. A valid selected expression may still require viewport, font, container, browser, or other evaluation context. Missing context produces `context-required`; the resolver does not invent environmental values, and a target adapter may still be able to preserve or serialize the authored expression under its own compatibility profile.
+The notation fixes the meaningful outcome categories, not a persistence schema or final TypeScript module shape. `invalid-expression` identifies a known operation whose structure, parameters, or resolved operands violate its contract; `unsupported-expression` identifies an operation that the evaluator cannot execute. A valid selected expression may still require viewport, font, container, browser, or other evaluation context. Missing context produces `context-required`; the resolver does not invent environmental values, and a target adapter may still be able to preserve or serialize the authored expression under its own compatibility profile.
 
 `ResolutionTrace` is derived explanatory data, not canonical authored data. It may report defaults applied during completion, matching conditions and their specificity, the selected condition, dependency traversal, and the point of failure. Its exact payload and retention policy remain open, but the domain result must contain enough structured diagnostics for delivery surfaces to explain an unresolved outcome without recreating resolution semantics.
 
