@@ -158,9 +158,9 @@ For scale helpers, the UI collects parameters and presents candidates; the domai
 
 ## Expression preview boundary
 
-**Working direction — 1 October 2026**
+**Working decision — 6 October 2026**
 
-Keep expression/reference semantics in the domain and browser rendering in an outer preview adapter. The domain validates supported expressions and prepares dependencies without relying on DOM or browser measurements. A preview adapter translates supported values into an appropriate specimen, renders under an explicit context, and returns observations and diagnostics. The application layer coordinates the request; no delivery surface should duplicate reference resolution.
+Keep expression/reference semantics in the domain and browser rendering in an outer preview adapter. The domain validates the closed typed expression AST, derives result types, extracts token and context dependencies, and evaluates supported operations from explicit serializable inputs without relying on DOM or browser measurements. A preview adapter gathers permitted environmental facts, translates supported values into an appropriate specimen, renders under an explicit context, and returns observations and diagnostics. The application layer coordinates the request; no delivery surface should duplicate reference resolution or operation semantics.
 
 Preview context and observed measurements are distinct from authored canonical values. A controlled preview document is a candidate for viewport-dependent specimens; its implementation is not selected. Changing a specimen's width must not be assumed to change viewport-relative units.
 

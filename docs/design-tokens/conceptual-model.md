@@ -156,7 +156,7 @@ LiteralValue | TokenReference | ExpressionValue | CompositeValue
 
 - A `LiteralValue` uses the structured schema of the token's value type; it is not a generic CSS string.
 - A `TokenReference` identifies another token or a supported part of its value by stable token identity and a schema-relative value path. Canonical references stay within a project, preserve authorship, require compatible types, and do not store derived token paths or target-specific addresses. Unresolved source-specific references remain staged import data until mapped; an invalid canonical reference can still be loaded and preserved for explicit repair.
-- An `ExpressionValue` is a typed structured expression. Portable canonical operations remain distinguishable from explicitly target-specific operations such as supported CSS constructs. The exact abstract syntax tree and operation set remain open.
+- An `ExpressionValue` is an identity-less typed structured expression. Its closed abstract syntax tree contains literals, stable-identity token references, nested expressions, and explicit context references. Portable canonical operations remain distinguishable from explicitly target-specific operations. Result types derive from versioned operation contracts and must match the owning token or composite field; expressions never become arbitrary CSS strings.
 - A `CompositeValue` uses one of the named composite schemas. Its constituent fields retain their types and may contain supported references or expressions.
 
 A condition applies to the whole assignment. Resolution selects one applicable assignment before resolving its contents; composite fields do not merge implicitly across matching conditions. Literal, reference, expression, and composite values all participate in deterministic type, dependency, missing-reference, and cycle validation.
@@ -358,7 +358,7 @@ Renaming or moving the target does not affect that reference. A reference to the
 
 Resolution selects the target token's assignment under the same completed variation selection as the referring token, recursively resolves that target, then navigates the value path. The reference does not store or select a target assignment, condition, preset, or variation option. The referring assignment cannot force the target to use an identical condition.
 
-The reference also does not store the target's current path, project ID, declared type, resolved value, inline fallback, or display label. The same-project invariant makes a project ID redundant; the use site provides the expected type; and paths, labels, and target addresses are derived. Fallback behavior belongs to conditional assignments, an explicit supported expression, or a target compatibility policy rather than every reference.
+The reference also does not store the target's current path, project ID, declared type, resolved value, inline fallback, or display label. The same-project invariant makes a project ID redundant; the use site provides the expected type; and paths, labels, and target addresses are derived. Semantic variation belongs to conditional assignments, while target fallbacks belong to reviewed compatibility policy. A future semantic fallback operation would need an explicit failure contract rather than becoming a generic field on every reference or expression.
 
 A whole-value alias must resolve to a value compatible with its token's declared type. Inside a composite or expression, the containing field or operand supplies the expected type. A non-empty value path must be valid for the selected target value and its resulting part must satisfy that expected type. Layer-direction rules remain separate project validation policy rather than reference fields.
 
@@ -370,15 +370,140 @@ Copying a referring token within a project normally retains references to the sa
 
 ## Expressions
 
-**Working decision — 1 October 2026**
+**Working decision — 6 October 2026**
 
-The canonical model should support authored expressions, including CSS-function use cases such as `calc()`, `clamp()`, and `minmax()`. This is not a commitment to accept arbitrary CSS or support every function initially.
+`ExpressionValue` is an identity-less authored value object owned by a token assignment or a permitted composite field. It has no stable identity or lifecycle outside that containing value. Expressions use a structured, serializable, typed abstract syntax tree rather than an arbitrary CSS string, template language, callback, or general scripting mechanism.
 
-An expression is a form of authored value, not automatically a new value type. Its result or target-specific meaning still needs explicit typing: a length calculation and a grid-track definition must not be treated as the same kind of dimension merely because both use CSS functions.
+The storage-neutral shape is conceptually:
 
-Preserve authored expressions and identifiable token references. Reference analysis, missing-target detection, cycle detection, and type validation must apply to supported expression dependencies as well as whole-token aliases. Context-free evaluation must be distinguished from values that need a viewport, container, font metrics, or other rendering context; missing context must not be replaced by hidden assumptions.
+```ts
+type ExpressionValue = PortableExpression | TargetSpecificExpression;
 
-Expressions use a structured, typed representation rather than an opaque universal string. The exact abstract syntax tree, initial supported operations, detailed typing rules, and evaluation policies remain open. Portable operations and explicitly CSS-specific constructs must remain distinguishable.
+type ExpressionOperand =
+  | LiteralValue
+  | TokenReference
+  | ExpressionValue
+  | ContextReference;
+
+type PortableExpression = {
+  kind: "expression";
+  operation: PortableOperationId;
+  operands: readonly ExpressionOperand[];
+};
+
+type TargetSpecificExpression = {
+  kind: "expression";
+  operation: TargetSpecificOperationId;
+  operands: readonly ExpressionOperand[];
+};
+
+type ContextReference = {
+  kind: "context-reference";
+  key: EvaluationContextKey;
+};
+```
+
+A concrete schema should use a closed discriminated union for supported operations. Operation-specific parameters, such as a color interpolation model, belong to that operation's validated node shape rather than a generic property bag. A structurally recognizable node with an unknown operation identifier may remain loadable for repair or migration, but it is invalid and cannot be evaluated.
+
+Composite values are not generic expression operands initially. A reference may select a supported composite field, and an individual composite field may contain an expression when its schema permits one. Whole-composite construction or transformation remains future capability to justify with a concrete use case.
+
+### Expression typing
+
+An expression's result type is derived rather than stored redundantly on every node. The operation contract supplies operand constraints and a result-type rule:
+
+- a literal operand is self-describing through its literal variant;
+- a `TokenReference` obtains its type from the target token definition and schema-relative value path;
+- a nested expression derives its type recursively;
+- a context reference obtains its type from its context-key contract.
+
+The derived root result must match the owning token's explicit type or the expected type of its containing composite field. The operation's operand slot supplies the expected type for a reference use site. Canonical typing does not implicitly equate percentage with number, combine dimension and percentage, reinterpret a color as another type, or treat a CSS grid-track definition as a dimension. A deliberate conversion requires an explicit supported operation.
+
+### Expression operations
+
+Each operation has an immutable domain contract defining:
+
+- a stable namespaced identifier with a semantic version;
+- whether its semantics are portable or target-specific;
+- its fixed arity and ordered operand slots;
+- operand-type constraints and result-type derivation;
+- unit algebra and conversion requirements;
+- operation-specific parameters;
+- required evaluation context;
+- deterministic evaluation, precision, and rounding behavior.
+
+Portable means that the canonical model defines the operation's semantics, not that every target represents it natively. Target-specific operations remain explicitly namespaced, such as a future `target.css.*` operation, and accept a narrower compatibility range. Operation definitions form a closed domain union rather than a plugin registry. An operation identifier never changes semantics silently; incompatible behavior requires a new versioned identifier.
+
+The smallest sensible portable mathematical family is:
+
+```text
+add<T>(T, T) -> T
+subtract<T>(T, T) -> T
+scale<T>(T, number) -> T
+min<T>(T, T) -> T
+max<T>(T, T) -> T
+clamp<T>(T minimum, T preferred, T maximum) -> T
+```
+
+These operations use identifiers such as `portable.math.add.v1` and `portable.math.clamp.v1`. `T` is an explicitly enabled ordered numeric type, not an arbitrary token type. Initial implementation should enable only `number` and `dimension` after their literal schemas and unit rules are fixed. Percentage, angle, duration, and other types require their own reviewed applicability rules.
+
+Addition, subtraction, comparison, and clamping require the same canonical value type. Same-unit operations are direct. Cross-unit operations are permitted only when a declared deterministic conversion exists; conversions that require root font size, viewport, container, font metrics, or another environmental value require explicit context. `scale` deliberately restricts multiplication to a quantity and a number. Percentage remains a distinct type rather than an implicit number scalar.
+
+General quantity multiplication or division, modulo, powers, trigonometry, arbitrary unit cancellation, strings, Boolean branching, user-defined functions, and generic fallback or coalescing are not part of the initial operation set. In particular, unrestricted division would require an explicit policy for non-terminating decimal results.
+
+CSS `calc()` is an adapter spelling for supported portable arithmetic rather than a canonical operation. CSS `clamp()` can represent portable clamp semantics where the profile supports the operands. CSS `minmax()` is not initially supported because it produces a grid-track definition outside the selected canonical type and composite set.
+
+### Deterministic evaluation and context
+
+Evaluation is a pure domain operation over the expression, one completed variation selection, and an explicit serializable evaluation context. It does not consult the DOM, browser globals, machine locale, current time, random values, or unstated platform defaults.
+
+Canonical numeric inputs remain exact finite base-10 decimals. Operations whose results remain finite decimal values do not round merely for evaluation. An operation that can produce a non-terminating or algorithmically approximate result must define calculation precision and rounding in its versioned contract before it is supported. UI formatting and adapter formatting remain separate and never mutate the authored AST.
+
+A `ContextReference` makes an environmental input visible in the AST. Potential context keys include viewport dimensions, container dimensions, root or current font size, font metrics, and declared browser capabilities. The exact key set and value schemas remain open. The domain receives context facts from its caller; a browser preview adapter may measure them but browser measurement remains outside the domain.
+
+Context-free expressions can resolve directly. A context-dependent expression resolves only when its required context is present and valid. Missing context produces `context-required` with structured requirements rather than a hidden default. Semantics that cannot be expressed as deterministic context inputs remain target-specific or preview-only and may produce `unsupported-expression` in the domain evaluator.
+
+### Dependencies, failures, and authorship
+
+Expression analysis traverses the AST without needing to evaluate it. It extracts token references and value paths, required context keys, target-specific capabilities, and unsupported operations. Project validation can inspect all authored assignments, while resolution follows the assignment selected for the completed variation selection.
+
+Every reference in an expression resolves under the same completed variation selection as the owning token. Each target independently selects its most-specific matching assignment, resolves recursively, navigates its value path, and validates the result against the operation's operand slot. Missing references, invalid paths, type mismatches, and cycles across references, expressions, and composite fields remain explicit failures. Resolution traces are derived and may identify the assignment, value path, and AST location involved; their exact payload remains open.
+
+Evaluation never replaces the stored expression with its result. The AST remains authored truth; a computed result is derived for a particular selection, context, and set of operation contracts.
+
+`ExpressionValue` has no generic fallback field. A semantic variation remains an ordinary conditional assignment. A target export fallback belongs to separate reviewed adapter configuration or export policy. A preview observation never becomes an export fallback implicitly. A future semantic fallback operation would need to define exactly which failures it catches and is not part of the initial operation set.
+
+### Expression lifecycle and copying
+
+Editing structurally replaces or changes the expression owned by its assignment or composite field. AST nodes do not have independent rename, deletion, or identity-preserving lifecycle operations. Operand order remains authored data even for a mathematically commutative operation; the engine does not rewrite `a + b` as `b + a`.
+
+Copying an expression within a project normally retains references to the same target identities. A reviewed deep copy may remap them through an explicit old-to-new identity mapping. Cross-project copying requires explicit target mapping. Unsupported target-specific operations remain visible and diagnosable rather than being dropped.
+
+For example, a dimension expression that a CSS adapter may spell as `calc(var(--space-4) + 0.5rem)` is conceptually:
+
+```ts
+{
+  kind: "expression",
+  operation: "portable.math.add.v1",
+  operands: [
+    {
+      kind: "token-reference",
+      targetTokenId: "space-4",
+      valuePath: [],
+    },
+    {
+      kind: "literal",
+      valueType: "dimension",
+      value: { amount: "0.5", unit: "rem" },
+    },
+  ],
+}
+```
+
+The literal notation is illustrative until the dimension schema is selected. The expression derives a `dimension` result; CSS syntax is generated by an adapter and is not stored as canonical source.
+
+A future fluid-typography expression may combine `portable.math.clamp.v1`, nested addition and scaling, and an explicit `viewport.width` context reference. A CSS adapter could emit `clamp(1rem, calc(0.875rem + 0.5vw), 1.25rem)` without evaluating it. Domain evaluation would require viewport width and any context needed to compare or convert the participating units. Strict DTCG export should not flatten that fluid behavior to one arbitrary viewport result implicitly.
+
+A future color-mix expression must likewise declare its interpolation color space, hue method, alpha behavior, and gamut-mapping policy. For example, mixing two referenced colors with a percentage in OKLCH is not valid canonical behavior until the color literal schema, supported interpolation algorithm, missing-component handling, precision, and gamut rules are selected.
 
 ## Value previews
 
@@ -619,7 +744,7 @@ Deterministic color conversion and manipulation belong in the domain engine, not
 
 Operations must state their color model or interpolation space and applicable parameters. For example, adjusting HSL lightness and adjusting OKLCH lightness are different operations; an unspecified “lighten by 10%” is not a sufficient domain contract. Precision, hue handling, alpha behavior, gamut-mapping policy, and algorithms remain explicit implementation decisions.
 
-Like scale helpers, color helpers may propose candidate values that become ordinary tokens when accepted. This does not establish live dependencies. Retaining a manipulation as an authored expression is a separate expression-support decision. UI controls collect parameters and show candidates; application operations coordinate accepted changes through domain validation.
+Like scale helpers, color helpers may propose candidate values that become ordinary tokens when accepted. This does not establish live dependencies. Retaining a manipulation as an authored expression requires a supported versioned color operation whose interpolation, alpha, gamut, precision, and rounding behavior is explicit; no initial color-expression operation is selected yet. UI controls collect parameters and show candidates; application operations coordinate accepted changes through domain validation.
 
 ### Opacity
 

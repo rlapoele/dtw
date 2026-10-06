@@ -78,6 +78,10 @@ A named, validated value schema assembled from multiple typed constituent fields
 
 A derived normalized selection containing exactly one valid option for every project variation axis. Explicit activation choices override preset selections for the same axis, and remaining omissions use axis defaults. It is resolution context rather than separately authored canonical data.
 
+## Context reference
+
+An identity-less expression operand that names one typed value required from an explicit evaluation context, such as viewport width, container size, or root font size. A context reference does not read the DOM or supply an environmental default; missing required context produces an explicit unresolved result.
+
 ## Definition completeness
 
 A derived assessment of whether a token contains the type and authored assignments required for an operation. A name-only token is a valid project member with an incomplete definition; incompleteness is not represented by an `EmptyValue` or a stored lifecycle status.
@@ -102,6 +106,10 @@ A way of invoking application operations, such as the Electron application, a CL
 
 The UI- and infrastructure-independent TypeScript implementation of the canonical token model, reference resolution, validation, transformations, and other deterministic domain rules.
 
+## Evaluation context
+
+Explicit serializable facts supplied to deterministic expression evaluation, such as viewport or container dimensions and font measurements. The domain does not obtain these facts from browser globals or the DOM. Evaluation context is distinct from a broader preview context, which may also contain specimen and rendering information.
+
 ## Electron
 
 The intended packaged desktop host, to be validated immediately after the first complete PWA vertical slice. Electron supplies a bundled Chromium renderer, Node.js-capable privileged processes, desktop integration, and distribution tooling. It is an outer delivery mechanism rather than part of the canonical token model.
@@ -112,7 +120,11 @@ The deterministic adaptation of canonical data into a target representation, acc
 
 ## Expression
 
-A typed structured calculation or function-based authored value that may contain token references. Portable canonical operations remain distinguishable from explicit target-specific operations. Its exact abstract syntax tree, operation set, and evaluation policies remain open; an expression is not itself a token value type.
+An identity-less structured authored-value AST containing typed literals, stable-identity token references, nested expressions, or explicit context references. Its result type derives from a versioned operation contract and must match the owning token or composite field. Portable canonical operations remain distinguishable from target-specific operations; an expression is not itself a token value type or an arbitrary CSS string.
+
+## Expression operation
+
+A closed, versioned semantic contract identified by a stable namespaced key. It defines portable or target-specific scope, arity, ordered operand typing, result-type derivation, unit algebra, context requirements, and deterministic precision and rounding behavior. Incompatible semantics require a new operation version.
 
 ## Gradient
 

@@ -22,12 +22,12 @@ Suggested decision states for future use are: `open`, `investigating`, `proposed
 3. What exact schemas, cardinalities, and rules should eventually define component parts, slots, properties, variant axes, interactive states, and component-token bindings inside `ComponentContract`?
 4. Are patterns, images, or video fills within scope, and would they demonstrate a need for a future paint abstraction?
 5. Which reference directions between primitive, semantic, and component layers are allowed?
-6. Which expression abstract syntax tree, typing rules, and portable versus CSS-specific operations are permitted initially?
+6. Which additional numeric types, context keys, and explicitly target-specific operations should be enabled after the initial portable number-and-dimension expression subset?
 7. Which selected foundational types and composites belong in the first implementation slice?
 
 [Project ownership, stable token identity, namespace groups, derived paths, the Token aggregate and owned assignment structure, authored-value forms, TokenReference, optional layers and semantic roles, foundational value types, the initial composite set, and the minimal ComponentDefinition and ComponentContract boundary](../design-tokens/conceptual-model.md) are working decisions. Name-only and typed-but-unassigned tokens are valid project members; definition completeness is derived. Component contracts deliberately anticipate parts, slots, properties, variant axes, interactive states, and token bindings without defining them in detail. Canonical references use same-project stable identities and schema-relative value paths; exact legal part paths still depend on the selected literal and composite schemas. The identifier format, local-name grammar, sibling ordering, group-deletion operations, optional group constraints, exact type and composite schemas, and persistence schema remain open.
 
-Expression support is a [working decision](../design-tokens/conceptual-model.md#expressions); its concrete schema and coverage are not selected. Scale generation is [domain behavior](../design-tokens/conceptual-model.md#scale-generation), not a requirement for persisted scale entities or live token dependencies.
+The canonical [ExpressionValue contract](../design-tokens/conceptual-model.md#expressions) is a working decision: expressions are identity-less closed typed AST values; result types derive from versioned portable or target-specific operation contracts; operands may contain literals, stable-identity references, nested expressions, or explicit context references; and fallbacks remain outside the generic AST. The initial portable mathematical family is addition, subtraction, scaling by a number, binary minimum and maximum, and clamp. Implementation should begin with number and dimension only after their schemas and unit rules are fixed. Exact AST persistence, enabled unit conversions, evaluation-context keys, diagnostic payloads, color operations, and target-specific operations remain open. Scale generation is [domain behavior](../design-tokens/conceptual-model.md#scale-generation), not a requirement for persisted scale entities or live token dependencies.
 
 Numeric literals use an exact finite base-10 Decimal value object, and percentage literals store normalized ratios. The exact decimal grammar, normalization limits, calculation precision, and rounding policies remain open; display and adapter formatting must not mutate canonical values.
 
@@ -78,7 +78,7 @@ Remaining questions:
 2. Which constraints make an option combination invalid or unavailable?
 3. Which validation profiles require explicit assignment coverage instead of accepting a less-specific matching fallback?
 4. What exact structured payload, severity, and retention policy should resolution diagnostics and traces use?
-5. Which expression operations can resolve without external context, and what evaluation-context contracts do the remaining operations require?
+5. Which typed evaluation-context keys and value schemas should the first contextual expression and preview slice support?
 6. What exact persistence representation should store canonical axes and presets, and where should project, workspace, or user activation preferences live?
 7. How should axes and presets map to DTCG Resolver documents, Figma collections/modes, Penpot sets/themes, and CSS activation mechanisms?
 
@@ -86,7 +86,7 @@ The `VariationAxis` aggregate owns one or more stable-identity `VariationOption`
 
 `ThemePreset` is a project-owned aggregate root containing a named partial variation selection. Omitted axes derive their explicit defaults; the completed selection is not persisted. Presets remain flat, do not own token values, and are never referenced by token assignment conditions. Axis defaults rather than a default-preset flag define the canonical default selection. Active or initially preferred presets belong to separate project, workspace, or user preference state. The exact persistence schema, cross-axis constraint model, activation-preference boundary, and adapter mappings remain open.
 
-The [variation-resolution contract](../design-tokens/conceptual-model.md#variation-resolution-contract) is decided: explicit activation choices override preset selections, remaining axes use defaults, matching conditions compete by axis-count specificity, and every highest-specificity tie is ambiguous. Selected references and expressions resolve under the same completed selection. Resolution returns structured resolved or unresolved outcomes with derived explanatory traces; exact diagnostic payloads and context-dependent expression evaluation remain open.
+The [variation-resolution contract](../design-tokens/conceptual-model.md#variation-resolution-contract) is decided: explicit activation choices override preset selections, remaining axes use defaults, matching conditions compete by axis-count specificity, and every highest-specificity tie is ambiguous. Selected references and expressions resolve under the same completed selection. Resolution returns structured resolved or unresolved outcomes with derived explanatory traces; exact diagnostic payloads and evaluation-context schemas remain open.
 
 ## Persistence and project structure
 

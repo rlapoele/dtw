@@ -239,22 +239,28 @@ Canonical token references use stable same-project token identities and schema-r
 
 ## Initial modeling targets and expressions
 
-**Working decision — 1 October 2026**
+**Working decision — 6 October 2026**
 
 Use CSS and strict DTCG `2025.10` as the first concrete cases for testing canonical modeling choices. This does not select which adapter is implemented first or settle its supported subset. Fixtures should compare authored values, references, expected output, and compatibility diagnostics rather than assume universal cross-target coverage.
 
-The canonical model's [expression direction](./conceptual-model.md#expressions) goes beyond strict DTCG values. The DTCG `2025.10` Format Module has no generic expression value type; its [dimension definition](https://www.w3.org/community/reports/design-tokens/CG-FINAL-format-20251028/#dimension) requires a numeric value and `px` or `rem` unit. A CSS function string is therefore not a conforming dimension `$value`.
+The canonical [ExpressionValue model](./conceptual-model.md#expressions) goes beyond strict DTCG values. It uses an identity-less closed typed AST with versioned portable or explicitly target-specific operations. A CSS string is not the canonical expression representation: CSS `calc()` is a possible adapter spelling for portable arithmetic, while constructs with distinct target meaning remain target-specific. For example, CSS `minmax()` must not be emitted from a canonical dimension expression because its grid-track result is outside the selected canonical type set.
+
+An expression adapter validates the operation and operands before serialization. It must derive target addresses for every nested `TokenReference`, preserve operand order, apply explicit unit and precision policies, and report any unsupported operation, context requirement, flattening, conversion, or loss. A CSS profile may map supported portable addition, subtraction, scaling, minimum, maximum, and clamp operations to appropriate CSS syntax. That mapping is still profile-specific; portable canonical semantics do not imply native support in every target.
+
+The DTCG `2025.10` Format Module has no generic expression value type; its [dimension definition](https://www.w3.org/community/reports/design-tokens/CG-FINAL-format-20251028/#dimension) requires a numeric value and `px` or `rem` unit. A CSS function string is therefore not a conforming dimension `$value`.
 
 An exporter must distinguish:
 
-- expression emission supported by a named CSS target profile;
-- deterministic context-free evaluation into a valid target value, with a transformation diagnostic;
-- context-dependent evaluation or an author-approved fallback under an explicit policy;
-- unsupported expressions that cannot be represented safely.
+- native expression emission supported by the named target profile;
+- deterministic context-free evaluation into a valid target value under an explicitly enabled transformation policy, with a diagnostic that the authored expression and live dependency were flattened;
+- an author-approved target fallback under separate adapter or export policy;
+- context-dependent or unsupported expressions that must block when they cannot be represented safely.
+
+Strict DTCG export blocks an expression by default unless the selected profile explicitly enables one of the valid-value strategies above. A contextual expression such as fluid typography must not be evaluated at an arbitrary preview viewport and emitted as though that result were universally authored. Expression fallbacks do not live as a generic field in the canonical AST. A semantic variation remains an ordinary conditional token assignment; a target fallback remains a reviewed export concern.
 
 Canonical numeric values use exact base-10 decimals. Adapters that emit JSON numbers, platform floating-point values, or rounded target strings must apply an explicit deterministic conversion and formatting policy and diagnose material precision loss. A percentage ratio is not implicitly a strict DTCG percentage token because DTCG `2025.10` defines no standalone percentage type; a profile must map it to a supported contextual number, preserve it through a valid extension alongside a conforming value, or report it as unsupported.
 
-Namespaced [DTCG extensions](https://www.w3.org/community/reports/design-tokens/CG-FINAL-format-20251028/#extensions) may preserve optional expression metadata alongside a valid standard value. They do not make an invalid `$value` conforming or guarantee that another tool can reconstruct the expression. Exact fallback, blocking, and extension policies remain unresolved. A preview measurement must not become an export fallback implicitly.
+Namespaced [DTCG extensions](https://www.w3.org/community/reports/design-tokens/CG-FINAL-format-20251028/#extensions) may preserve optional expression metadata alongside a valid standard value. They do not make an invalid `$value` conforming or guarantee that another tool can reconstruct the expression. Exact profile-level fallback, blocking, and extension policies remain unresolved. A preview measurement must not become an export fallback implicitly.
 
 Scale helpers create ordinary tokens; their generation recipes are not required to export those tokens. Do not confuse accepted tokens produced by a helper with generated target artifacts: the former become authored canonical data, while the latter remain derived output.
 
