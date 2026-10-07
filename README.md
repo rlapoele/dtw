@@ -2,6 +2,8 @@
 
 A desktop-first, local-first design-token workbench. Product and domain discovery documents live in `docs/`; the latest handoff is in [docs/status/current.md](docs/status/current.md).
 
+The accepted [visual direction and reference image](docs/project/visual-direction.md) guide subsequent interface design and prototyping.
+
 ## Development scaffold
 
 The initial scaffold uses TypeScript, Vite, Vitest, and npm. Dependencies are development-only and `package-lock.json` records their resolved versions. No domain implementation, tests, or web entry point exists yet.

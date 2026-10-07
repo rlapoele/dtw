@@ -8,6 +8,7 @@ This repository contains inception documentation for the Design Token Workbench,
 
 - Start with `docs/project/vision.md`, `product-concept.md`, and `principles.md`.
 - Use `docs/project/architecture.md` for implementation boundaries.
+- For interface design and prototyping, use `docs/project/visual-direction.md` and its accepted reference image; preserve the distinction between visual guidance and unresolved interaction or feature decisions.
 - Use `docs/design-tokens/` for domain language and modeling constraints.
 - Read `docs/design-tokens/interoperability.md` before changing import, export, compatibility, or external-tool behavior.
 - Check `docs/planning/open-questions.md` before making a product, schema, persistence, or technology choice.

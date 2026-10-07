@@ -1,6 +1,6 @@
 # Current Project Status
 
-> Last updated: 6 October 2026
+> Last updated: 7 October 2026
 >
 > Phase: domain discovery and development scaffolding
 >
@@ -9,6 +9,8 @@
 ## Current focus
 
 The project has a coherent product, domain, architecture, and interoperability baseline, plus an initial TypeScript, Vite, and Vitest scaffold using npm. Current work is narrowing the canonical data model against concrete CSS and strict DTCG export cases before implementation. The core model now includes storage-neutral Token, ComponentDefinition, VariationAxis, and ThemePreset aggregates; owned conditional token assignments; identity-less stable-ID TokenReference values with schema-relative value paths; identity-less structured ExpressionValue ASTs with versioned typed operations and explicit context dependencies; and a deliberately coarse ComponentContract boundary for future parts, slots, properties, variants, states, and token bindings. It also covers minimal projects, stable identities, namespace groups with derived paths, incomplete token definitions, optional layers and semantic roles, a selected foundational type set, and named composites. Number and dimension literals now use normalized exact Decimal values; dimensions carry an explicit `px` or `rem` unit in the flattened literal shape. Their initial portable expression algebra defines exact context-free number and same-unit operations, explicit `font.rootSize` context for mixed `px`/`rem`, and distinct invalid-expression outcomes. Theme variability uses independent variation axes, flat named presets, deterministic selection completion and most-specific assignment matching, explicit ambiguity and failure outcomes, and recursive dependency resolution under one completed selection. Scale generation is domain behavior without persisted scale entities or live generator dependencies. Context-aware preview remains a working direction. The delivery sequence remains PWA first and Electron immediately after the first complete vertical slice.
+
+The [Precision-based visual reference](../project/visual-direction.md) is now accepted as visual direction and inspiration for the PWA workbench. Its preferred inspection patterns guide future UI work; the depicted controls and data do not select an initial feature set or settle model and technology questions.
 
 No domain schema or behavior has been implemented. Use the unresolved questions in [`docs/planning/open-questions.md`](../planning/open-questions.md#decision-priorities) to guide explicit decisions; the scaffold does not settle them.
 
@@ -22,6 +24,7 @@ No domain schema or behavior has been implemented. Use the unresolved questions 
 
 ## Recently completed
 
+- Accepted and saved the [refined visual reference](../project/visual-direction.md), combining Precision organization and search with color editing and ramp context, variation comparison, scale specimens, and relationships/resolution traces. Detailed interactions and initial coverage remain open.
 - Initialized Git with `dev` as the default branch and `main` and `releases` as additional branches; configured the GitHub remote at `https://github.com/rlapoele/dtw.git`.
 - Added and documented the pinned DTCG `2025.10` Format, Color, and Resolver reference snapshot.
 - Researched and documented the difference between strict DTCG conformance and Figma, Penpot, and Style Dictionary interoperability behavior.

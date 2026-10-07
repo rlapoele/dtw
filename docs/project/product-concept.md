@@ -15,6 +15,12 @@ The Design Token Workbench is a desktop-first, local-first companion for designe
 
 It should help people work with a design system as a connected model, not just a list of name/value pairs.
 
+## Visual direction
+
+**Established visual direction — 7 October 2026**
+
+Use the [accepted Precision-based visual reference](./visual-direction.md) as inspiration for a crisp, modern designer/developer workbench. The direction combines project-centered navigation and token search with contextual color editing, side-by-side variation comparison, scale specimens, and relationship/value-resolution inspection. The reference guides visual design; exact interactions and initial feature coverage remain open.
+
 ## Primary users
 
 **Working hypothesis**
