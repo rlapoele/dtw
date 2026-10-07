@@ -16,6 +16,14 @@ The reference establishes the visual character and preferred ways to inspect tok
 
 This AI-generated image was refined from a six-territory exploration using the user's selected features, then revised and accepted with neutral workbench chrome on 7 October 2026. The copied image in this repository is the durable reference for future work. The [preceding blue-accent version](./assets/visual-direction-2026-10-07.png) remains available as process history.
 
+### Illustrative OKLCH editor variant
+
+![Neutral Precision-based visual direction with OKLCH selected in the authored-color editor.](./assets/visual-direction-neutral-oklch-2026-10-07.png)
+
+[Open the full-size OKLCH variant](./assets/visual-direction-neutral-oklch-2026-10-07.png).
+
+This variant keeps the accepted visual direction and replaces only the illustrative sRGB editor with an OKLCH editor for the same blue token. It demonstrates how an authored color space and its components could be presented while keeping HEX as a derived display notation. It does not select OKLCH for the initial implementation or settle the open color schema, supported-space, conversion, precision, or editing-policy decisions.
+
 ## Visual character and organization
 
 - Crisp, modern, professional design-tool character, serving designers and developers together.
