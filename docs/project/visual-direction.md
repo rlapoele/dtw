@@ -10,18 +10,19 @@ The reference establishes the visual character and preferred ways to inspect tok
 
 ## Accepted reference
 
-![Accepted Precision-based visual direction: color authoring and variation comparison above scale inspection and relationships with resolution traces.](./assets/visual-direction-2026-10-07.png)
+![Accepted neutral Precision-based visual direction: color authoring and variation comparison above scale inspection and relationships with resolution traces.](./assets/visual-direction-neutral-2026-10-07.png)
 
-[Open the full-size reference](./assets/visual-direction-2026-10-07.png).
+[Open the full-size reference](./assets/visual-direction-neutral-2026-10-07.png).
 
-This AI-generated image was refined from a six-territory exploration using the user's selected features, then accepted on 7 October 2026. The copied image in this repository is the durable reference for future work.
+This AI-generated image was refined from a six-territory exploration using the user's selected features, then revised and accepted with neutral workbench chrome on 7 October 2026. The copied image in this repository is the durable reference for future work. The [preceding blue-accent version](./assets/visual-direction-2026-10-07.png) remains available as process history.
 
 ## Visual character and organization
 
 - Crisp, modern, professional design-tool character, serving designers and developers together.
-- A bright, restrained Precision foundation: white and cool-gray surfaces, blue active states, fine separators, clear typography, and limited rounding and elevation.
+- A bright, restrained Precision foundation: white and cool-gray surfaces, low-chroma anthracite active states, fine separators, clear typography, and limited rounding and elevation.
 - A project-centered workbench with persistent token search, namespace navigation, a central working surface, and a contextual inspector.
 - Purposeful density with enough space to scan names, values, controls, and visual specimens. Use focused views rather than placing every capability on one screen.
+- Nearly achromatic workbench chrome that recedes around the design system being authored. Reserve chromatic emphasis for token content, previews, and semantic feedback whose meaning requires color.
 
 The desired air is that of tools such as AppVision, Penpot, and Figma. This is general inspiration rather than an instruction to copy their branding, structure, or vendor-specific token concepts.
 
