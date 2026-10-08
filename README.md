@@ -6,11 +6,11 @@ The accepted [visual direction and reference image](docs/project/visual-directio
 
 ## Development scaffold and domain core
 
-The scaffold uses TypeScript, Vite, Vitest, and npm. Dependencies are development-only and `package-lock.json` records their resolved versions. The first host-independent domain code implements exact canonical Decimal validation and comparison plus number, dimension, and color literal construction. There is no application-operation layer or web entry point yet.
+The scaffold uses TypeScript, Vite, Vitest, and npm. Dependencies are development-only and `package-lock.json` records their resolved versions. The host-independent domain code implements exact canonical Decimal validation and comparison; number, dimension, and color literal construction; variation axes, conditions, selection completion, assignment matching, and theme presets; and the initial `Token` aggregate lifecycle for the implemented literal subset. There is no application-operation layer or web entry point yet.
 
 The scaffold was verified using Node.js `24.14.1` and npm `11.17.0`, satisfying the installed development tools' engine requirements. Install the locked dependencies with `npm ci`.
 
-- `src/domain/` contains host-independent domain value objects and validation.
+- `src/domain/` contains host-independent domain entities, value objects, and validation.
 - `test/domain/` contains small unit tests named `*.test.ts`.
 
 | Command | Purpose |
