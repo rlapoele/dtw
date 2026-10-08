@@ -22,7 +22,7 @@ This AI-generated image was refined from a six-territory exploration using the u
 
 [Open the full-size OKLCH variant](./assets/visual-direction-neutral-oklch-2026-10-07.png).
 
-This variant keeps the accepted visual direction and replaces only the illustrative sRGB editor with an OKLCH editor for the same blue token. It demonstrates how an authored color space and its components could be presented while keeping HEX as a derived display notation. It does not select OKLCH for the initial implementation or settle the open color schema, supported-space, conversion, precision, or editing-policy decisions.
+This variant keeps the accepted visual direction and replaces only the illustrative sRGB editor with an OKLCH editor for the same blue token. It demonstrates how an authored color space and its components could be presented while keeping HEX as a derived display notation. The model now includes OKLCH independently of this visual reference; the depicted controls do not settle conversion, precision, or editing-policy decisions.
 
 ## Visual character and organization
 
@@ -54,6 +54,6 @@ These patterns supplement the accepted Precision layout and search field. Their 
 
 ## Details still to validate
 
-The [open questions](../planning/open-questions.md) continue to govern the first workflow, feature coverage, supported color spaces and editing policies, initial axes, preview contexts, persistence, technology choices, and export profiles. The Light/Dark, contrast, density, sRGB, HEX, token-name, and value examples in the image do not settle those questions.
+The [open questions](../planning/open-questions.md) continue to govern the first workflow, feature coverage, color editing policies, initial axes, preview contexts, persistence, technology choices, and export profiles. The Light/Dark, contrast, density, sRGB, HEX, token-name, and value examples in the image do not settle those questions.
 
 Exact navigation, inspector placement, comparison interactions, responsive behavior, keyboard and focus behavior, accessibility, and final UI styling remain to be designed and verified in concrete workflows. The accepted reference provides direction for that work; no interface implementation has been started.

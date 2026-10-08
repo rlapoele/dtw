@@ -274,6 +274,10 @@ Scale helpers create ordinary tokens; their generation recipes are not required 
 
 Export from the authoritative [authored color](./conceptual-model.md#authored-color-and-alternative-representations), not from a currently selected picker notation, rounded display text, or preview approximation. Preserve the authored color space/model where the target profile supports it; conversions and gamut approximations require explicit policies and compatibility diagnostics.
 
+The initial canonical `ColorLiteralValue` set is sRGB, Display P3, HSL, OKLAB, and OKLCH. A source color in another DTCG-supported space remains staged import data until the user or an explicit import policy converts, maps, or rejects it. Import must not make an unsupported space appear canonical through an implicit conversion.
+
+Canonical sRGB and Display P3 coordinates may remain outside their nominal `[0, 1]` gamut range so conversion does not silently discard authored information. Strict DTCG `2025.10` export cannot emit those extended coordinates unchanged; the selected profile must block them or apply a reviewed conversion or gamut-mapping policy with diagnostics. A derived target approximation never overwrites the authored coordinates.
+
 The [DTCG `2025.10` Color Module](https://www.w3.org/community/reports/design-tokens/CG-FINAL-color-20251028/#format) specifies a primary `colorSpace` and `components`, optional alpha, and an optional six-digit HEX fallback. The fallback's alpha is supplied separately by the color value. This supports interchange of a primary color and fallback; it does not select our canonical schema, require a stored fallback for every token, or establish that every fallback is exactly equivalent to its primary color.
 
 Canonical fallback ownership, automatic generation, gamut-mapping algorithms, precision, and target emission policies remain open. A fallback must not become an independently authoritative copy or silently overwrite the primary value on re-import. Fixtures should test conversion loss and fallback handling separately from theme variants and equivalent display representations.

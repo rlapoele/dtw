@@ -25,7 +25,7 @@ Suggested decision states for future use are: `open`, `investigating`, `proposed
 6. Which additional numeric types, context keys, and explicitly target-specific operations should be enabled after the initial portable number-and-dimension expression subset?
 7. Which selected foundational types and composites belong in the first implementation slice?
 
-[Project ownership, stable token identity, namespace groups, derived paths, the Token aggregate and owned assignment structure, authored-value forms, TokenReference, optional layers and semantic roles, foundational value types, the initial composite set, and the minimal ComponentDefinition and ComponentContract boundary](../design-tokens/conceptual-model.md) are working decisions. Name-only and typed-but-unassigned tokens are valid project members; definition completeness is derived. Component contracts deliberately anticipate parts, slots, properties, variant axes, interactive states, and token bindings without defining them in detail. Canonical references use same-project stable identities and schema-relative value paths; number and dimension currently expose only the whole-value path. Exact legal part paths for the remaining literal and composite schemas depend on those schemas. The identifier format, local-name grammar, sibling ordering, group-deletion operations, optional group constraints, remaining literal and composite schemas, and persistence schema remain open.
+[Project ownership, stable token identity, namespace groups, derived paths, the Token aggregate and owned assignment structure, authored-value forms, TokenReference, optional layers and semantic roles, foundational value types, the initial composite set, and the minimal ComponentDefinition and ComponentContract boundary](../design-tokens/conceptual-model.md) are working decisions. Name-only and typed-but-unassigned tokens are valid project members; definition completeness is derived. Component contracts deliberately anticipate parts, slots, properties, variant axes, interactive states, and token bindings without defining them in detail. Canonical references use same-project stable identities and schema-relative value paths; number, dimension, and color currently expose only the whole-value path. Exact legal part paths for the remaining literal and composite schemas depend on those schemas. The identifier format, local-name grammar, sibling ordering, group-deletion operations, optional group constraints, remaining literal and composite schemas, and persistence schema remain open.
 
 The canonical [ExpressionValue contract](../design-tokens/conceptual-model.md#expressions) is a working decision: expressions are identity-less closed typed AST values; result types derive from versioned portable or target-specific operation contracts; operands may contain literals, stable-identity references, nested expressions, or explicit context references; and fallbacks remain outside the generic AST. The initial portable mathematical family is addition, subtraction, scaling by a number, binary minimum and maximum, and clamp. Its first type instances are number and dimension: same-unit dimension arithmetic preserves the unit, mixed `px`/`rem` arithmetic requires explicit `font.rootSize` context and returns `px`, and invalid clamp bounds produce `invalid-expression` with `invalid-clamp-range`. Exact AST persistence, additional unit conversions and context keys, other diagnostic payloads, color operations, and target-specific operations remain open. Scale generation is [domain behavior](../design-tokens/conceptual-model.md#scale-generation), not a requirement for persisted scale entities or live token dependencies.
 
@@ -33,17 +33,16 @@ Numeric literals use an exact finite base-10 Decimal value object with one norma
 
 ## Color values and operations
 
-The [authored-color decision](../design-tokens/conceptual-model.md#authored-color-and-alternative-representations) keeps one authoritative value per applicable theme/condition, preserves a literal's space/model, and treats alternative display representations as derived. Deterministic [color manipulation](../design-tokens/conceptual-model.md#color-manipulation) belongs in the domain engine.
+The [color-literal decision](../design-tokens/conceptual-model.md#color-literals) defines one explicit sRGB, Display P3, HSL, OKLAB, or OKLCH space/model, three exact Decimal-or-`"none"` components, and required exact Decimal alpha. Extended RGB coordinates remain authored rather than being clamped, while target profiles diagnose range and gamut incompatibility. The [authored-color decision](../design-tokens/conceptual-model.md#authored-color-and-alternative-representations) keeps one authoritative value per applicable theme/condition and treats alternative display representations as derived. Deterministic [color manipulation](../design-tokens/conceptual-model.md#color-manipulation) belongs in the domain engine.
 
-1. Which color spaces/models and editing notations should be supported initially?
-2. What component, alpha, and missing-component schema and validation rules should the canonical literal use?
-3. How do edits in a different representation affect the authored space/model, and how are alias or expression edits handled explicitly?
-4. Which conversion, component-adjustment, mixing, interpolation, and palette-generation operations are initially supported?
-5. Which precision, rounding, hue, alpha, and gamut-mapping policies make each operation deterministic?
-6. Are fallbacks author-managed canonical data, generated adapter output, or both under explicit policies, and how are stale fallbacks handled?
-7. What fixtures and numerical tolerances should validate the chosen algorithms or future color-library dependency?
+1. Which editing and display notations should be supported initially?
+2. How do edits in a different representation affect the authored space/model, and how are alias or expression edits handled explicitly?
+3. Which conversion, component-adjustment, mixing, interpolation, and palette-generation operations are initially supported?
+4. Which precision, rounding, hue, alpha, and gamut-mapping policies make each operation deterministic?
+5. Are fallbacks author-managed canonical data, generated adapter output, or both under explicit policies, and how are stale fallbacks handled?
+6. What fixtures and numerical tolerances should validate the chosen algorithms or future color-library dependency?
 
-No color library, canonical schema, universal operation set, or fallback-generation algorithm is selected by these decisions.
+No color library, universal operation set, editing policy, or fallback-generation algorithm is selected by these decisions.
 
 ## Authoring helpers and value previews
 

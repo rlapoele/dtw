@@ -38,13 +38,21 @@ An explicit alternative color for a target that cannot represent the primary col
 
 The range of colors a target color space or device can represent. Converting to a smaller gamut may require an explicit approximation policy.
 
+## Color literal
+
+An identity-less authored color value containing one explicit color space/model, exactly three ordered components, and an explicit alpha. The initial canonical spaces are sRGB, Display P3, HSL, OKLAB, and OKLCH. Numeric values use exact Decimal text; RGB coordinates may remain outside their nominal gamut rather than being clamped.
+
 ## Color representation
 
 A way of expressing or displaying a color using a color space/model and a notation. Alternative representations are derived, not independently authoritative token values. HEX is an sRGB notation, not a color space; choosing a display representation does not itself mutate the authored token.
 
 ## Color space/model
 
-The explicit coordinate system and color interpretation for a literal's components, such as sRGB, HSL, or OKLCH. RGB alone does not identify a particular space. The authored space/model is preserved; the exact canonical schema and supported set remain open.
+The explicit coordinate system and color interpretation for a literal's components. The initial canonical set is sRGB, Display P3, HSL, OKLAB, and OKLCH; RGB alone does not identify a particular space. The authored space/model is preserved.
+
+## Missing color component
+
+An authored `"none"` coordinate indicating that one component is missing or not applicable. It is distinct from numeric zero, an omitted component, and an invalid value, and may affect later color conversion or interpolation.
 
 ## Conditional token value
 
