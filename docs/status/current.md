@@ -4,7 +4,7 @@
 >
 > Phase: domain discovery and development scaffolding
 >
-> Implementation state: npm scaffold with TypeScript, Vite, and Vitest; no domain code, tests, or web entry point
+> Implementation state: npm scaffold plus initial TypeScript domain value objects and unit tests; no application-operation layer or web entry point
 
 ## Current focus
 
@@ -12,7 +12,7 @@ The project has a coherent product, domain, architecture, and interoperability b
 
 The [Precision-based visual reference](../project/visual-direction.md) is now accepted as visual direction and inspiration for the PWA workbench. Its neutral anthracite workbench chrome should recede around chromatic token content. Its preferred inspection patterns guide future UI work; the depicted controls and data do not select an initial feature set or settle model and technology questions.
 
-No domain schema or behavior has been implemented. Use the unresolved questions in [`docs/planning/open-questions.md`](../planning/open-questions.md#decision-priorities) to guide explicit decisions; the scaffold does not settle them.
+The first domain behavior now implements canonical Decimal validation and comparison plus number, dimension, and color literal construction. Project, Token, grouping, reference resolution, expressions, variations, application operations, persistence, adapters, and delivery surfaces remain unimplemented. Use the unresolved questions in [`docs/planning/open-questions.md`](../planning/open-questions.md#decision-priorities) to guide explicit decisions; the initial code does not settle them.
 
 ## Established baseline
 
@@ -48,6 +48,7 @@ No domain schema or behavior has been implemented. Use the unresolved questions 
 - Selected [exact decimal numeric values and normalized percentage ratios](../design-tokens/conceptual-model.md#exact-decimal-numeric-values-and-percentages): canonical numeric values do not use binary floating point as their authority; normalized non-exponent text gives each Decimal one stored representation; percentages store exact ratios; calculation precision is explicit; and UI or export formatting does not mutate canonical values.
 - Defined [number and dimension literal schemas](../design-tokens/conceptual-model.md#number-and-dimension-literals): both use the flattened `kind`, `valueType`, and exact `value` shape; dimensions add a required lowercase `px` or `rem` unit, including for zero. Number and dimension references initially address whole values only. Their first portable expression algebra preserves same units, requires explicit non-negative `font.rootSize` context for mixed `px`/`rem`, returns mixed-unit results in `px`, and distinguishes invalid expressions from unsupported operations.
 - Defined the [color literal schema](../design-tokens/conceptual-model.md#color-literals): one identity-less literal preserves an explicit sRGB, Display P3, HSL, OKLAB, or OKLCH space/model; three exact Decimal-or-`"none"` components; and required exact Decimal alpha. Extended RGB coordinates remain canonical rather than being clamped or gamut-mapped, target profiles diagnose incompatibility, and color references initially address the whole value only.
+- Implemented the first host-independent domain value objects and unit tests: canonical Decimal validation and exact comparison; number and `px`/`rem` dimension literal construction; and color literal construction with the five selected spaces, missing components, range validation, extended RGB coordinates, alpha validation, and exact hue normalization.
 - Defined [VariationAxis and VariationOption](../design-tokens/conceptual-model.md#variationaxis-and-variationoption): an axis is a complete project-owned aggregate with one or more stable-identity owned options and one explicit default; option ordering is non-semantic; and referenced options or axes require reviewed project-scoped migration before removal.
 - Defined [ThemePreset](../design-tokens/conceptual-model.md#themepreset) as a stable project-owned named partial variation selection: omitted axes derive their defaults; presets remain flat and own no token values; token conditions never reference presets; and activation preferences and target mappings remain separate concerns.
 - Defined the [variation-resolution contract](../design-tokens/conceptual-model.md#variation-resolution-contract): activation produces one completed selection; assignments match by condition specificity without order-based tie-breaking; all highest-specificity ties are ambiguous; dependencies resolve under the same selection; and expected failures return structured diagnostics and derived traces.
@@ -65,13 +66,13 @@ These actions propose the order of the remaining decisions. The PWA-first and im
 
 ## Blockers and unresolved decisions
 
-There are no known external blockers. Domain implementation requires explicit choices for the behavior being implemented; product and delivery work remains guided by [`docs/planning/open-questions.md`](../planning/open-questions.md). Remaining literal and composite schemas, Decimal resource limits and future non-finite-result calculation policies, identifier formats, local-name grammar, sibling ordering, additional expression units and evaluation-context keys, initial axis selection, cross-axis constraints and coverage profiles, diagnostic payloads, activation-preference ownership, persistence, export policies, color-operation and fallback policies, and initial helper/preview coverage remain unresolved. This milestone changed documentation only; no implementation was started.
+There are no known external blockers. Further domain implementation requires explicit choices for the behavior being implemented; product and delivery work remains guided by [`docs/planning/open-questions.md`](../planning/open-questions.md). Remaining literal and composite schemas, Decimal input-normalization and resource limits, future non-finite-result calculation policies, identifier formats, local-name grammar, sibling ordering, additional expression units and evaluation-context keys, initial axis selection, cross-axis constraints and coverage profiles, diagnostic payloads, activation-preference ownership, persistence, export policies, color-operation and fallback policies, and initial helper/preview coverage remain unresolved. The first code deliberately implements only already-decided literal invariants.
 
 Do not silently choose a frontend framework, canonical persistence format, browser storage mechanism, database, schema library, plugin system, or package topology beyond the initial scaffold.
 
 ## Verification expectations
 
-Type-check and test commands are documented in [README.md](../../README.md). They currently report no inputs and no tests, respectively; the scaffold has no behavior to verify yet. Build and preview commands await an entry point and generated output. For documentation changes:
+Type-check and test commands are documented in [README.md](../../README.md) and validate the current domain core. Build and preview commands await an entry point and generated output. For documentation changes:
 
 - inspect `git status` and the scoped diff;
 - run `git diff --check`;
