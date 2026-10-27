@@ -97,7 +97,7 @@ export function evaluatePortableOperation(
   }
   const values: Decimal[] = [];
   for (const operand of operands) {
-    if (operand.valueType === "color") return invalid("invalid-operands");
+    if (operand.valueType !== "number" && operand.valueType !== "dimension") return invalid("invalid-operands");
     values.push(rootSize !== undefined && operand.valueType === "dimension" && operand.unit === "rem"
       ? multiplyDecimals(operand.value, rootSize) : operand.value);
   }

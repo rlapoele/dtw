@@ -1,3 +1,4 @@
+import type { PercentageLiteralValue } from "./percentage-literal";
 import type { ExpressionValue } from "./expression";
 import { createTokenReference } from "./token-reference";
 import type { TokenReference } from "./token-reference";
@@ -65,7 +66,8 @@ export type SemanticRoleKey = string;
 export type ImplementedLiteralValue =
   | ColorLiteralValue
   | DimensionLiteralValue
-  | NumberLiteralValue;
+  | NumberLiteralValue
+  | PercentageLiteralValue;
 
 export type ImplementedAuthoredValue = ImplementedLiteralValue | TokenReference | ExpressionValue;
 

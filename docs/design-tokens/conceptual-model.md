@@ -81,18 +81,20 @@ fontFamily     fontWeight      cubicBezier
 
 `dimension` represents a length-bearing quantity rather than any arbitrary unit-bearing number. `percentage`, `angle`, and `duration` remain distinct so validation and typed operations do not conflate context-relative proportions, rotation, length, and time. `fontFamily`, `fontWeight`, and `cubicBezier` have domain-specific shapes or constraints that justify explicit types.
 
-The `number`, `dimension`, and `color` literal schemas and initial `px` and `rem` dimension units are defined below. Exact schemas, constraints, and initial implementation coverage for the remaining foundational types stay open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
+The `number`, `dimension`, `percentage`, and `color` literal schemas and initial `px` and `rem` dimension units are defined below. Exact schemas, constraints, and initial implementation coverage for the remaining foundational types stay open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
 
 #### Exact decimal numeric values and percentages
 
-**Working decision — 6 October 2026**
+**Working decision — 6 October 2026; percentage literal schema agreed 27 October 2026**
 
 Canonical numeric literals use a reusable exact finite base-10 `Decimal` value object rather than treating an IEEE-754 binary floating-point value as authoritative. Its storage-neutral representation is a validated canonical decimal string; the implementation may later use a decimal-arithmetic library internally without making that library part of the domain model.
 
 ```ts
 type Decimal = string;
 
-type PercentageLiteral = {
+type PercentageLiteralValue = {
+  kind: "literal";
+  valueType: "percentage";
   ratio: Decimal;
 };
 ```
@@ -104,6 +106,8 @@ For example, `001.2500` normalizes to `"1.25"`, `.5` to `"0.5"`, `1e3` to `"1000
 Decimal equality is numeric rather than lexical. Canonical text therefore has one representation for each accepted finite value; authored trailing zeros are not semantic. Exact maximum digit counts and exponent-expansion limits remain open pending implementation evidence, but they must eventually form one portable validation contract rather than depend accidentally on a parser or arithmetic library.
 
 A percentage stores a normalized ratio: `50%` becomes `"0.5"`, `12.5%` becomes `"0.125"`, `125%` becomes `"1.25"`, and `-10%` becomes `"-0.1"`. Percentage is a canonical value type rather than a unit accepted by `dimension`: a percentage is context-relative and does not become a length merely because some target contexts accept a length-percentage combination.
+
+`PercentageLiteralValue` uses the literal discriminants and a required exact `ratio` field. Construction accepts canonical ratio text directly: `"0.5"` is already the ratio representing `50%`; it does not parse display input such as `"50%"` or divide its argument by one hundred. Assignments require the explicit `percentage` token type, and whole-value aliases preserve that type through resolution. The ratio remains distinct from a number or dimension without implicit conversion. Initially only the empty whole-value reference path is supported; the `ratio` field is not a separately referenceable number. Percentages remain excluded from the current portable number/dimension operations, including the scalar operand of `scale`.
 
 Not every value displayed with a percent sign is therefore a percentage token. For example, an opacity may remain a constrained `number` with value `"0.5"` and be displayed as `50%`; a genuinely context-relative value may use the `percentage` type. Percentages are not universally restricted to the ratio range zero through one because negative values and values above one may be valid in supported contexts.
 
