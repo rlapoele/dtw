@@ -1,3 +1,4 @@
+import type { DurationLiteralValue } from "./duration-literal";
 import type { CubicBezierLiteralValue } from "./cubic-bezier-literal";
 import type { PercentageLiteralValue } from "./percentage-literal";
 import type { ExpressionValue } from "./expression";
@@ -69,7 +70,8 @@ export type ImplementedLiteralValue =
   | DimensionLiteralValue
   | NumberLiteralValue
   | PercentageLiteralValue
-  | CubicBezierLiteralValue;
+  | CubicBezierLiteralValue
+  | DurationLiteralValue;
 
 export type ImplementedAuthoredValue = ImplementedLiteralValue | TokenReference | ExpressionValue;
 

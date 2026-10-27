@@ -81,7 +81,7 @@ fontFamily     fontWeight      cubicBezier
 
 `dimension` represents a length-bearing quantity rather than any arbitrary unit-bearing number. `percentage`, `angle`, and `duration` remain distinct so validation and typed operations do not conflate context-relative proportions, rotation, length, and time. `fontFamily`, `fontWeight`, and `cubicBezier` have domain-specific shapes or constraints that justify explicit types.
 
-The `number`, `dimension`, `percentage`, `color`, and `cubicBezier` literal schemas and initial `px` and `rem` dimension units are defined below. Exact schemas, constraints, and initial implementation coverage for the remaining foundational types stay open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
+The `number`, `dimension`, `percentage`, `duration`, `color`, and `cubicBezier` literal schemas, initial `px` and `rem` dimension units, and initial `ms` and `s` duration units are defined below. Exact schemas, constraints, and initial implementation coverage for the remaining foundational types stay open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
 
 #### Exact decimal numeric values and percentages
 
@@ -151,6 +151,27 @@ The initial canonical unit set is deliberately limited to `px` and `rem`. These 
 The flattened literal shape does not expose `value` or `unit` automatically as public `TokenValuePath` fields. Initially, both number and dimension literals support only the empty whole-value path. Component-level references into their representation remain deferred until a concrete canonical workflow and strict-DTCG coverage promise justify the additional part types and construction rules.
 
 Editing replaces the literal owned by its assignment or expression operand. Copying preserves its normalized value and unit. Changing `1rem` to `16px` remains an authored semantic change even when one evaluation context makes them numerically equal. Preview conversion and export formatting never mutate the literal.
+
+#### Duration literals
+
+**Working decision — 27 October 2026**
+
+`DurationLiteralValue` is an identity-less literal with an exact signed Decimal value and an explicit time unit:
+
+```ts
+type DurationUnit = "ms" | "s";
+
+type DurationLiteralValue = {
+  kind: "literal";
+  valueType: "duration";
+  value: Decimal;
+  unit: DurationUnit;
+};
+```
+
+The unit is required, lowercase, and explicit even for zero. Construction accepts canonical Decimal text and preserves positive, negative, fractional, and zero values. The foundational literal has no universal non-negative constraint; future role or composite fields may impose narrower sign or range constraints. The selected units align with the [vendored DTCG duration reference](../references/dtcg-2025.10/format/types.md#duration). Accepting signed foundational values is a canonical model decision.
+
+The authored unit is preserved without automatic conversion: `"200"` with `"ms"` and `"0.2"` with `"s"` remain distinct authored representations. Assignments require the explicit `duration` type, and whole-value aliases preserve the exact value and unit under the completed variation selection. Duration is distinct from number, dimension, and percentage, with no implicit conversion. Only the empty whole-value reference path is initially supported; `value` and `unit` are not separately referenceable fields. All current expression operations exclude duration quantities and scalars. Time-unit conversion operations, display-string parsing, and transition-composite field constraints remain deferred.
 
 #### Cubic Bézier literals
 
