@@ -77,6 +77,8 @@ The first domain behavior now implements canonical Decimal validation and compar
 
 - Agreed and implemented the [DurationLiteralValue schema](../design-tokens/conceptual-model.md#duration-literals): exact signed Decimal values with required lowercase `ms` or `s` units, including zero. Construction, assignments, whole-value aliases, and variation-aware resolution preserve authored units without conversion. The foundational literal accepts negative values; role and composite sign constraints remain separate. Duration stays excluded from all current expression operations. Part-reference paths, conversion operations, display parsing, and transition field constraints remain deferred.
 
+- Updated the development tooling to Vite `8.3.5` and Vitest `5.0.5`, retaining the existing caret-version policy and refreshing the npm lockfile. Both patch releases support the verified Node.js `24.14.1` runtime. Domain tests, type checking, and an isolated Vite TypeScript production-build smoke test passed; npm audit reported zero vulnerabilities on 27 October 2026. The project still has no web entry point, so the smoke test does not establish an application build.
+
 ## Next meaningful actions
 
 1. Select the next domain increment: detail another foundational literal/composite schema, or decide name normalization and sibling-name uniqueness before extending namespace validation. Compare portable expression examples with CSS and strict DTCG diagnostics before selecting adapter behavior.

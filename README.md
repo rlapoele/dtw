@@ -8,7 +8,7 @@ The accepted [visual direction and reference image](docs/project/visual-directio
 
 The scaffold uses TypeScript, Vite, Vitest, and npm. Dependencies are development-only and `package-lock.json` records their resolved versions. The host-independent domain code implements exact canonical Decimal validation and comparison; number, dimension, percentage, duration, color, and cubic Bézier literal construction; variation axes, conditions, selection completion, assignment matching, and theme presets; the core `Project` entity and initial `Token` aggregate lifecycle; namespace groups, structural validation, and path derivation; stable-ID token references with project-scoped validation; and literal, alias, and portable number/dimension expression resolution. Token assignments accept the implemented literal subset, references, and portable expressions. There is no application-operation layer or web entry point yet.
 
-The scaffold was verified using Node.js `24.14.1` and npm `11.17.0`, satisfying the installed development tools' engine requirements. Install the locked dependencies with `npm ci`.
+The scaffold was verified using Node.js `24.14.1` and npm `11.17.0`, satisfying the installed development tools' engine requirements. Vite `8.3.5` and Vitest `5.0.5` were verified with this runtime on 27 October 2026. Install the locked dependencies with `npm ci`.
 
 - `src/domain/` contains host-independent domain entities, value objects, and validation.
 - `test/domain/` contains small unit tests named `*.test.ts`.
