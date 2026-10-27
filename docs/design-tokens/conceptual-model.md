@@ -81,7 +81,7 @@ fontFamily     fontWeight      cubicBezier
 
 `dimension` represents a length-bearing quantity rather than any arbitrary unit-bearing number. `percentage`, `angle`, and `duration` remain distinct so validation and typed operations do not conflate context-relative proportions, rotation, length, and time. `fontFamily`, `fontWeight`, and `cubicBezier` have domain-specific shapes or constraints that justify explicit types.
 
-The `number`, `dimension`, `percentage`, `duration`, `fontWeight`, `color`, and `cubicBezier` literal schemas, initial `px` and `rem` dimension units, and initial `ms` and `s` duration units are defined below. Exact schemas, constraints, and initial implementation coverage for the remaining foundational types stay open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
+The `number`, `dimension`, `percentage`, `duration`, `fontFamily`, `fontWeight`, `color`, and `cubicBezier` literal schemas, initial `px` and `rem` dimension units, and initial `ms` and `s` duration units are defined below. Exact schemas, constraints, and initial implementation coverage for the remaining foundational types stay open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
 
 #### Exact decimal numeric values and percentages
 
@@ -151,6 +151,34 @@ The initial canonical unit set is deliberately limited to `px` and `rem`. These 
 The flattened literal shape does not expose `value` or `unit` automatically as public `TokenValuePath` fields. Initially, both number and dimension literals support only the empty whole-value path. Component-level references into their representation remain deferred until a concrete canonical workflow and strict-DTCG coverage promise justify the additional part types and construction rules.
 
 Editing replaces the literal owned by its assignment or expression operand. Copying preserves its normalized value and unit. Changing `1rem` to `16px` remains an authored semantic change even when one evaluation context makes them numerically equal. Preview conversion and export formatting never mutate the literal.
+
+#### Font family literals
+
+**Working decision — 27 October 2026**
+
+`FontFamilyLiteralValue` is an identity-less ordered fallback stack with explicit named and generic entries:
+
+```ts
+type GenericFontFamily = "serif" | "sans-serif" | "monospace" | "system-ui";
+
+type FontFamilyEntry =
+  | { kind: "named"; name: string }
+  | { kind: "generic"; family: GenericFontFamily };
+
+type FontFamilyLiteralValue = {
+  kind: "literal";
+  valueType: "fontFamily";
+  families: readonly [FontFamilyEntry, ...FontFamilyEntry[]];
+};
+```
+
+A stack requires at least one explicit entry. Fallback order and duplicate entries are preserved; construction neither inserts a fallback nor sorts or deduplicates the stack. Named entries must contain a nonblank name: trimming is used only to reject empty or whitespace-only text. Accepted names retain their exact case, Unicode representation, punctuation, and surrounding whitespace without parsing or normalization. The constructor copies the array and its entries.
+
+Generic entries initially accept exactly the four lowercase keywords above. A named entry whose name is `"serif"` remains distinct from a generic `serif` entry; no generic meaning is inferred from named text. This is an initial generic vocabulary rather than a complete CSS generic-family implementation. Additional generic families require an explicit extension of the supported vocabulary.
+
+Assignments require the explicit `fontFamily` type. Whole-value aliases preserve the complete stack under one completed variation selection. Each selected assignment supplies the entire stack; entries do not merge across conditions. References inside the stack and part-value reference paths into its representation are deferred. All current arithmetic expression operations exclude font-family quantities and scalars. CSS parsing, font availability or loading checks, and adapter mapping remain deferred.
+
+The [vendored DTCG font-family representation](../references/dtcg-2025.10/format/types.md#font-family) uses a string or an ordered array of strings. Mapping between that representation and explicit named/generic entries requires a reviewed interoperability profile; the canonical distinction does not itself establish unambiguous import or lossless round trips.
 
 #### Font weight literals
 

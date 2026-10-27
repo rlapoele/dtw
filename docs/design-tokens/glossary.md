@@ -138,6 +138,10 @@ An identity-less structured authored-value AST containing typed literals, stable
 
 A closed, versioned semantic contract identified by a stable namespaced key. It defines portable or target-specific scope, arity, ordered operand typing, result-type derivation, unit algebra, context requirements, and deterministic precision and rounding behavior. Incompatible semantics require a new operation version.
 
+## Font family literal
+
+An identity-less ordered fallback stack containing explicit named-family or generic-family entries. The stack is nonempty and preserves order and duplicates. Named entries carry nonblank text without normalization; generic entries use the supported closed vocabulary. Named and generic entries remain distinct even when their text matches. Whole-value aliases address the stack; per-entry references and font availability checks remain deferred.
+
 ## Gradient
 
 A composed visual treatment containing multiple color stops, positions, and geometry. A gradient is not a color.

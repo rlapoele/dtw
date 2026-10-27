@@ -1,3 +1,4 @@
+import type { FontFamilyLiteralValue } from "./font-family-literal";
 import type { FontWeightLiteralValue } from "./font-weight-literal";
 import { createTransition } from "./transition";
 import type { TransitionValue } from "./transition";
@@ -75,7 +76,8 @@ export type ImplementedLiteralValue =
   | PercentageLiteralValue
   | CubicBezierLiteralValue
   | DurationLiteralValue
-  | FontWeightLiteralValue;
+  | FontWeightLiteralValue
+  | FontFamilyLiteralValue;
 
 export type ImplementedAuthoredValue = ImplementedLiteralValue | TokenReference | ExpressionValue | TransitionValue;
 
