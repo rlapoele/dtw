@@ -81,3 +81,39 @@ function compareMagnitude(
 function invertComparison(comparison: DecimalComparison): DecimalComparison {
   return comparison === 0 ? 0 : comparison === 1 ? -1 : 1;
 }
+
+export function addDecimals(left: Decimal, right: Decimal): Decimal {
+  const a = scaledDecimal(left);
+  const b = scaledDecimal(right);
+  const scale = Math.max(a.scale, b.scale);
+  return decimalFromScaled(
+    a.coefficient * 10n ** BigInt(scale - a.scale) +
+      b.coefficient * 10n ** BigInt(scale - b.scale),
+    scale,
+  );
+}
+
+export function subtractDecimals(left: Decimal, right: Decimal): Decimal {
+  const b = scaledDecimal(right);
+  return addDecimals(left, decimalFromScaled(-b.coefficient, b.scale));
+}
+
+export function multiplyDecimals(left: Decimal, right: Decimal): Decimal {
+  const a = scaledDecimal(left);
+  const b = scaledDecimal(right);
+  return decimalFromScaled(a.coefficient * b.coefficient, a.scale + b.scale);
+}
+
+function scaledDecimal(value: Decimal): { coefficient: bigint; scale: number } {
+  const [integer, fraction = ""] = value.split(".");
+  return { coefficient: BigInt(integer + fraction), scale: fraction.length };
+}
+
+function decimalFromScaled(coefficient: bigint, scale: number): Decimal {
+  if (coefficient === 0n) return decimalFromCanonical("0");
+  const negative = coefficient < 0n;
+  const digits = (negative ? -coefficient : coefficient).toString().padStart(scale + 1, "0");
+  const integer = scale === 0 ? digits : digits.slice(0, -scale);
+  const fraction = scale === 0 ? "" : digits.slice(-scale).replace(/0+$/, "");
+  return decimalFromCanonical(`${negative ? "-" : ""}${integer}${fraction ? `.${fraction}` : ""}`);
+}

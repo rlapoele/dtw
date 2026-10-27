@@ -1,3 +1,4 @@
+import type { ExpressionValue } from "./expression";
 import { createTokenReference } from "./token-reference";
 import type { TokenReference } from "./token-reference";
 import type { ColorLiteralValue } from "./color-literal";
@@ -66,7 +67,7 @@ export type ImplementedLiteralValue =
   | DimensionLiteralValue
   | NumberLiteralValue;
 
-export type ImplementedAuthoredValue = ImplementedLiteralValue | TokenReference;
+export type ImplementedAuthoredValue = ImplementedLiteralValue | TokenReference | ExpressionValue;
 
 export type TokenValueAssignment = {
   readonly condition: VariationCondition;

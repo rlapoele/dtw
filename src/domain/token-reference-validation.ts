@@ -1,6 +1,7 @@
 import { selectMostSpecificAssignment } from "./assignment-selection";
 import type { TokenId } from "./identifiers";
-import type { Token, TokenValueAssignment } from "./token";
+import type { ExpressionOperand } from "./expression";
+import type { Token, TokenType, TokenValueAssignment, ImplementedAuthoredValue } from "./token";
 import type { TokenReference } from "./token-reference";
 import type { VariationCondition } from "./variation-condition";
 import type { CompleteVariationSelection } from "./variation-selection";
@@ -21,6 +22,7 @@ export type TokenReferenceDiagnostic =
       readonly tokenId: TokenId;
       readonly targetTokenId: TokenId;
       readonly condition: VariationCondition;
+      readonly operandPath?: readonly number[];
     }
   | {
       readonly code: "token-project-mismatch" | "ambiguous-assignment";
@@ -47,7 +49,7 @@ export function validateProjectTokenReferences(
   }
 
   const diagnostics: TokenReferenceDiagnostic[] = [];
-  const selectedTargets = new Map<TokenId, TokenId>();
+  const selectedTargets = new Map<TokenId, readonly TokenId[]>();
   for (const token of tokens) {
     if (token.projectId !== projectId) {
       diagnostics.push({ code: "token-project-mismatch", tokenId: token.id });
@@ -55,25 +57,27 @@ export function validateProjectTokenReferences(
     }
 
     const assignments = token.definition?.assignments ?? [];
-    const validAssignments = new Set<TokenValueAssignment>();
+    const assignmentTargets = new Map<TokenValueAssignment, readonly TokenId[]>();
     for (const assignment of assignments) {
-      if (assignment.value.kind !== "token-reference") continue;
-      const issues = validateReference(token, assignment.value, tokenById);
-      if (issues.length === 0) validAssignments.add(assignment);
-      for (const code of issues) {
-        diagnostics.push({ code, tokenId: token.id,
-          targetTokenId: assignment.value.targetTokenId,
-          condition: assignment.condition });
+      const targets: TokenId[] = [];
+      for (const use of collectReferenceUses(assignment.value, token.definition!.type)) {
+        const issues = validateReference(use.expectedType, token.projectId, use.reference, tokenById);
+        if (issues.length === 0) targets.push(use.reference.targetTokenId);
+        for (const code of issues) {
+          diagnostics.push({ code, tokenId: token.id,
+            targetTokenId: use.reference.targetTokenId,
+            condition: assignment.condition,
+            ...(use.path.length === 0 ? {} : { operandPath: use.path }) });
+        }
       }
+      assignmentTargets.set(assignment, [...new Set(targets)]);
     }
 
     const match = selectMostSpecificAssignment(assignments, selection);
     if (match.status === "ambiguous") {
       diagnostics.push({ code: "ambiguous-assignment", tokenId: token.id });
-    } else if (match.status === "matched" &&
-      match.assignment.value.kind === "token-reference" &&
-      validAssignments.has(match.assignment)) {
-      selectedTargets.set(token.id, match.assignment.value.targetTokenId);
+    } else if (match.status === "matched") {
+      selectedTargets.set(token.id, assignmentTargets.get(match.assignment) ?? []);
     }
   }
 
@@ -81,7 +85,8 @@ export function validateProjectTokenReferences(
 }
 
 function validateReference(
-  source: Token,
+  expectedType: TokenType,
+  projectId: string,
   reference: TokenReference,
   tokenById: ReadonlyMap<TokenId, Token>,
 ): TokenReferenceIssueCode[] {
@@ -91,40 +96,65 @@ function validateReference(
   const target = tokenById.get(reference.targetTokenId);
   if (target === undefined) {
     issues.push("missing-reference");
-  } else if (target.projectId !== source.projectId) {
+  } else if (target.projectId !== projectId) {
     issues.push("cross-project-reference");
   } else if (target.definition === undefined) {
     issues.push("target-type-missing");
   } else if (reference.valuePath.length === 0 &&
-    target.definition.type !== source.definition?.type) {
+    target.definition.type !== expectedType) {
     issues.push("type-mismatch");
   }
   return issues;
 }
 
-// The selected whole-value alias graph has at most one outgoing edge per token.
-// Iterative traversal avoids call-stack limits for long alias chains.
+function collectReferenceUses(value: ImplementedAuthoredValue, expectedType: TokenType): {
+  reference: TokenReference;
+  expectedType: TokenType;
+  path: readonly number[];
+}[] {
+  const uses: { reference: TokenReference; expectedType: TokenType; path: readonly number[] }[] = [];
+  const stack: { value: ExpressionOperand; expectedType: TokenType; path: readonly number[] }[] = [{ value, expectedType, path: [] }];
+  while (stack.length > 0) {
+    const current = stack.pop()!;
+    if (current.value.kind === "token-reference") uses.push({ reference: current.value, expectedType: current.expectedType, path: current.path });
+    else if (current.value.kind === "expression") {
+      for (let index = current.value.operands.length - 1; index >= 0; index -= 1) {
+        stack.push({ value: current.value.operands[index], expectedType:
+          current.value.operation === "portable.math.scale.v1" && index === 1 ? "number" : current.expectedType, path: [...current.path, index] });
+      }
+    }
+  }
+  return uses;
+}
+
+// Iterative DFS now supports multiple expression-reference edges per token.
 function findSelectedCycles(
-  targets: ReadonlyMap<TokenId, TokenId>,
+  targets: ReadonlyMap<TokenId, readonly TokenId[]>,
 ): TokenReferenceDiagnostic[] {
   const visited = new Set<TokenId>();
   const diagnostics: TokenReferenceDiagnostic[] = [];
   for (const start of targets.keys()) {
-    const path: TokenId[] = [];
-    const positions = new Map<TokenId, number>();
-    let current: TokenId | undefined = start;
-    while (current !== undefined && !visited.has(current)) {
-      const cycleStart = positions.get(current);
-      if (cycleStart !== undefined) {
-        diagnostics.push({ code: "reference-cycle",
-          cycle: [...path.slice(cycleStart), current] });
-        break;
+    if (visited.has(start)) continue;
+    const stack = [{ id: start, next: 0 }];
+    const positions = new Map<TokenId, number>([[start, 0]]);
+    while (stack.length > 0) {
+      const frame = stack[stack.length - 1];
+      const outgoing = targets.get(frame.id) ?? [];
+      if (frame.next === outgoing.length) {
+        positions.delete(frame.id);
+        visited.add(frame.id);
+        stack.pop();
+        continue;
       }
-      positions.set(current, path.length);
-      path.push(current);
-      current = targets.get(current);
+      const target = outgoing[frame.next++];
+      const cycleStart = positions.get(target);
+      if (cycleStart !== undefined) {
+        diagnostics.push({ code: "reference-cycle", cycle: [...stack.slice(cycleStart).map(item => item.id), target] });
+      } else if (!visited.has(target)) {
+        positions.set(target, stack.length);
+        stack.push({ id: target, next: 0 });
+      }
     }
-    for (const id of path) visited.add(id);
   }
   return diagnostics;
 }
