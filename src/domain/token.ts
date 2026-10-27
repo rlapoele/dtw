@@ -1,3 +1,5 @@
+import { createTokenReference } from "./token-reference";
+import type { TokenReference } from "./token-reference";
 import type { ColorLiteralValue } from "./color-literal";
 import type {
   ComponentDefinitionId,
@@ -64,9 +66,11 @@ export type ImplementedLiteralValue =
   | DimensionLiteralValue
   | NumberLiteralValue;
 
+export type ImplementedAuthoredValue = ImplementedLiteralValue | TokenReference;
+
 export type TokenValueAssignment = {
   readonly condition: VariationCondition;
-  readonly value: ImplementedLiteralValue;
+  readonly value: ImplementedAuthoredValue;
 };
 
 export type TokenDefinition = {
@@ -91,7 +95,7 @@ export type Token = {
 
 export type TokenValueAssignmentInput = {
   readonly condition: readonly AxisOptionSelectionInput[];
-  readonly value: ImplementedLiteralValue;
+  readonly value: ImplementedAuthoredValue;
 };
 
 export type TokenDefinitionInput = {
@@ -307,7 +311,7 @@ function createTokenAssignment(
   tokenType: TokenType,
   projectAxes: readonly VariationAxis[],
 ): TokenValueAssignment {
-  if (input.value.valueType !== tokenType) {
+  if (input.value.kind === "literal" && input.value.valueType !== tokenType) {
     throw new RangeError(
       "The authored value is incompatible with the token type",
     );
@@ -316,7 +320,12 @@ function createTokenAssignment(
   const condition = createVariationCondition(input.condition);
   validateVariationSelection(condition, projectAxes);
 
-  return { condition, value: input.value };
+  return {
+    condition,
+    value: input.value.kind === "token-reference"
+      ? createTokenReference(input.value)
+      : input.value,
+  };
 }
 
 function assertConditionIsUnique(
