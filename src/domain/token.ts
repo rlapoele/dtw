@@ -1,3 +1,4 @@
+import type { FontWeightLiteralValue } from "./font-weight-literal";
 import { createTransition } from "./transition";
 import type { TransitionValue } from "./transition";
 import type { DurationLiteralValue } from "./duration-literal";
@@ -73,7 +74,8 @@ export type ImplementedLiteralValue =
   | NumberLiteralValue
   | PercentageLiteralValue
   | CubicBezierLiteralValue
-  | DurationLiteralValue;
+  | DurationLiteralValue
+  | FontWeightLiteralValue;
 
 export type ImplementedAuthoredValue = ImplementedLiteralValue | TokenReference | ExpressionValue | TransitionValue;
 

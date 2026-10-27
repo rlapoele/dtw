@@ -81,7 +81,7 @@ fontFamily     fontWeight      cubicBezier
 
 `dimension` represents a length-bearing quantity rather than any arbitrary unit-bearing number. `percentage`, `angle`, and `duration` remain distinct so validation and typed operations do not conflate context-relative proportions, rotation, length, and time. `fontFamily`, `fontWeight`, and `cubicBezier` have domain-specific shapes or constraints that justify explicit types.
 
-The `number`, `dimension`, `percentage`, `duration`, `color`, and `cubicBezier` literal schemas, initial `px` and `rem` dimension units, and initial `ms` and `s` duration units are defined below. Exact schemas, constraints, and initial implementation coverage for the remaining foundational types stay open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
+The `number`, `dimension`, `percentage`, `duration`, `fontWeight`, `color`, and `cubicBezier` literal schemas, initial `px` and `rem` dimension units, and initial `ms` and `s` duration units are defined below. Exact schemas, constraints, and initial implementation coverage for the remaining foundational types stay open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
 
 #### Exact decimal numeric values and percentages
 
@@ -151,6 +151,24 @@ The initial canonical unit set is deliberately limited to `px` and `rem`. These 
 The flattened literal shape does not expose `value` or `unit` automatically as public `TokenValuePath` fields. Initially, both number and dimension literals support only the empty whole-value path. Component-level references into their representation remain deferred until a concrete canonical workflow and strict-DTCG coverage promise justify the additional part types and construction rules.
 
 Editing replaces the literal owned by its assignment or expression operand. Copying preserves its normalized value and unit. Changing `1rem` to `16px` remains an authored semantic change even when one evaluation context makes them numerically equal. Preview conversion and export formatting never mutate the literal.
+
+#### Font weight literals
+
+**Working decision — 27 October 2026**
+
+`FontWeightLiteralValue` is an identity-less numeric literal with its own type:
+
+```ts
+type FontWeightLiteralValue = {
+  kind: "literal";
+  valueType: "fontWeight";
+  value: Decimal;
+};
+```
+
+The value must be an exact canonical Decimal in the inclusive range one through one thousand. Fractional weights are accepted without rounding to integers or named weights. Range validation uses exact Decimal comparison. The numeric range follows the [vendored DTCG font-weight reference](../references/dtcg-2025.10/format/types.md#font-weight). Named-input parsing and adapter normalization for DTCG string aliases remain deferred; the initial canonical implementation accepts numeric weight text only.
+
+Token assignments require the explicit `fontWeight` type. Whole-value aliases preserve its exact value under the same completed variation selection; an ordinary number with the same numeric value is not implicitly compatible. Initially, only the empty whole-value reference path is supported, and the `value` field is not a separately referenceable number. Font weights remain excluded from all current arithmetic expression operations, including scalar operands. Typography-composite field rules remain separate from this foundational literal.
 
 #### Duration literals
 
