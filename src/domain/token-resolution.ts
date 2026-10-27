@@ -1,3 +1,5 @@
+import { TRANSITION_FIELDS, TRANSITION_FIELD_TYPES, isTransitionFieldValue, isValidTransitionDuration } from "./transition";
+import type { TransitionField, TransitionValue, ResolvedTransitionValue } from "./transition";
 import { evaluatePortableOperation, isPortableOperationId, operationArity, readRootFontSize } from "./expression";
 import type { EvaluationContext, EvaluationContextKey, ExpressionOperand, ExpressionFailure } from "./expression";
 import { selectMostSpecificAssignment } from "./assignment-selection";
@@ -17,6 +19,7 @@ export const TOKEN_RESOLUTION_FAILURE_REASONS = [
   "invalid-expression",
   "unsupported-expression",
   "context-required",
+  "invalid-composite",
 ] as const;
 
 export type TokenResolutionFailureReason =
@@ -32,6 +35,9 @@ export type ResolutionStep = {
 export type ResolutionDiagnostic = {
   readonly code: TokenResolutionFailureReason;
   readonly tokenId: TokenId;
+  readonly field?: TransitionField;
+  readonly fieldOwnerId?: TokenId;
+  readonly compositeCode?: "negative-transition-duration" | "invalid-transition-field";
   readonly expressionCode?: ExpressionFailure["code"];
   readonly operandPath?: readonly number[];
   readonly operation?: string;
@@ -42,13 +48,15 @@ export type ResolutionDiagnostic = {
   readonly actualType?: TokenType;
 };
 
+export type ResolvedValue = ImplementedLiteralValue | ResolvedTransitionValue;
+
 export type TokenResolutionResult =
   | {
       readonly status: "resolved";
       readonly tokenId: TokenId;
       readonly selection: CompleteVariationSelection;
       readonly matchedCondition: VariationCondition;
-      readonly value: ImplementedLiteralValue;
+      readonly value: ResolvedValue;
       readonly trace: readonly ResolutionStep[];
       readonly diagnostics: readonly ResolutionDiagnostic[];
     }
@@ -61,11 +69,15 @@ export type TokenResolutionResult =
       readonly diagnostics: readonly ResolutionDiagnostic[];
     };
 
-type Task =
+type FieldLocation = { field?: TransitionField; fieldOwnerId?: TokenId };
+
+type Task = (
   | { kind: "token"; id: TokenId; expectedType?: TokenType }
   | { kind: "finish-token"; id: TokenId; type: TokenType }
-  | { kind: "value"; value: ExpressionOperand; ownerId: TokenId; expectedType: TokenType; path: readonly number[] }
-  | { kind: "apply"; operation: string; count: number; ownerId: TokenId; path: readonly number[] };
+  | { kind: "value"; value: ExpressionOperand | TransitionValue; ownerId: TokenId; expectedType: TokenType; path: readonly number[] }
+  | { kind: "apply"; operation: string; count: number; ownerId: TokenId; path: readonly number[] }
+  | { kind: "transition"; ownerId: TokenId }
+) & FieldLocation;
 
 // The caller supplies the project snapshot and a selection completed from its
 // axes. Only selected assignments are evaluated; authored data is never changed.
@@ -87,7 +99,7 @@ export function resolveToken(
   const trace: ResolutionStep[] = [];
   const activeIds: TokenId[] = [];
   const positions = new Map<TokenId, number>();
-  const values: ImplementedLiteralValue[] = [];
+  const values: ResolvedValue[] = [];
   const tasks: Task[] = [{ kind: "token", id: rootId }];
 
   function fail(reason: TokenResolutionFailureReason, at: TokenId,
@@ -102,63 +114,81 @@ export function resolveToken(
   // from repeated references in separate operands.
   while (tasks.length > 0) {
     const task = tasks.pop()!;
+    const location: FieldLocation = task.field === undefined ? {} : { field: task.field, fieldOwnerId: task.fieldOwnerId };
     if (task.kind === "token") {
       const current = tokenById.get(task.id);
-      if (current === undefined) return fail("missing-reference", task.id);
-      if (current.projectId !== projectId) return fail("cross-project-reference", task.id);
+      if (current === undefined) return fail("missing-reference", task.id, location);
+      if (current.projectId !== projectId) return fail("cross-project-reference", task.id, location);
       const cycleStart = positions.get(task.id);
-      if (cycleStart !== undefined) return fail("reference-cycle", task.id, { cycle: [...activeIds.slice(cycleStart), task.id] });
+      if (cycleStart !== undefined) return fail("reference-cycle", task.id, { ...location, cycle: [...activeIds.slice(cycleStart), task.id] });
       const definition = current.definition;
-      if (definition === undefined) return fail("missing-assignment", task.id);
+      if (definition === undefined) return fail("missing-assignment", task.id, location);
       if (task.expectedType !== undefined && definition.type !== task.expectedType) {
-        return fail("type-mismatch", task.id, { expectedType: task.expectedType, actualType: definition.type });
+        return fail("type-mismatch", task.id, { ...location, expectedType: task.expectedType, actualType: definition.type });
       }
       const match = selectMostSpecificAssignment(definition.assignments, selection);
-      if (match.status === "missing") return fail("missing-assignment", task.id);
-      if (match.status === "ambiguous") return fail("ambiguous-assignment", task.id, { candidates: match.candidates.map(candidate => candidate.condition) });
+      if (match.status === "missing") return fail("missing-assignment", task.id, location);
+      if (match.status === "ambiguous") return fail("ambiguous-assignment", task.id, { ...location, candidates: match.candidates.map(candidate => candidate.condition) });
       const value = match.assignment.value;
       trace.push({ tokenId: task.id, matchedCondition: match.assignment.condition, specificity: match.specificity,
         ...(value.kind === "token-reference" ? { targetTokenId: value.targetTokenId } : {}) });
       positions.set(task.id, activeIds.length);
       activeIds.push(task.id);
-      tasks.push({ kind: "finish-token", id: task.id, type: definition.type });
-      tasks.push({ kind: "value", value, ownerId: task.id, expectedType: definition.type, path: [] });
+      tasks.push({ kind: "finish-token", id: task.id, type: definition.type, ...location });
+      tasks.push({ kind: "value", value, ownerId: task.id, expectedType: definition.type, path: [], ...location });
     } else if (task.kind === "finish-token") {
       const value = values[values.length - 1];
-      if (value.valueType !== task.type) return fail("type-mismatch", task.id, { expectedType: task.type, actualType: value.valueType });
+      if (value.valueType !== task.type) return fail("type-mismatch", task.id, { ...location, expectedType: task.type, actualType: value.valueType });
       positions.delete(task.id);
       activeIds.pop();
     } else if (task.kind === "apply") {
       const operands = values.splice(values.length - task.count, task.count);
-      const result = evaluatePortableOperation(task.operation, operands, context);
+      const literals = operands.filter((value): value is ImplementedLiteralValue => value.kind === "literal");
+      if (literals.length !== operands.length) return fail("invalid-expression", task.ownerId, { ...location, expressionCode: "invalid-operands", operandPath: task.path });
+      const result = evaluatePortableOperation(task.operation, literals, context);
       if (result.status === "unresolved") return fail(result.reason, task.ownerId, {
-        expressionCode: result.code, operandPath: task.path, operation: task.operation,
+        ...location, expressionCode: result.code, operandPath: task.path, operation: task.operation,
         ...(result.requiredContext === undefined ? {} : { requiredContext: result.requiredContext }),
       });
       values.push(result.value);
+    } else if (task.kind === "transition") {
+      const [duration, delay, timingFunction] = values.splice(values.length - 3, 3);
+      if (duration.valueType !== "duration" || delay.valueType !== "duration" || timingFunction.valueType !== "cubicBezier") {
+        return fail("invalid-composite", task.ownerId, { compositeCode: "invalid-transition-field" });
+      }
+      if (!isValidTransitionDuration(duration)) return fail("invalid-composite", task.ownerId, { compositeCode: "negative-transition-duration", field: "duration", fieldOwnerId: task.ownerId });
+      values.push({ kind: "composite", valueType: "transition", duration, delay, timingFunction });
     } else {
       const { value, ownerId, expectedType, path } = task;
       if (value.kind === "literal") {
         values.push(value);
+      } else if (value.kind === "composite") {
+        for (const field of TRANSITION_FIELDS) {
+          if (!isTransitionFieldValue(value[field], field)) return fail("invalid-composite", ownerId, { compositeCode: "invalid-transition-field", field, fieldOwnerId: ownerId });
+        }
+        tasks.push({ kind: "transition", ownerId });
+        for (const field of [...TRANSITION_FIELDS].reverse()) {
+          tasks.push({ kind: "value", value: value[field], ownerId, expectedType: TRANSITION_FIELD_TYPES[field], path: [], field, fieldOwnerId: ownerId });
+        }
       } else if (value.kind === "token-reference") {
-        if (value.valuePath.length > 0) return fail("unsupported-value-path", ownerId, { operandPath: path });
-        tasks.push({ kind: "token", id: value.targetTokenId, expectedType });
+        if (value.valuePath.length > 0) return fail("unsupported-value-path", ownerId, { ...location, operandPath: path });
+        tasks.push({ kind: "token", id: value.targetTokenId, expectedType, ...location });
       } else if (value.kind === "context-reference") {
         if (value.key !== "font.rootSize") return fail("invalid-expression", ownerId, { expressionCode: "invalid-context", operandPath: path });
         const root = readRootFontSize(context);
         if ("status" in root) return fail(root.reason, ownerId, {
-          expressionCode: root.code, operandPath: path,
+          ...location, expressionCode: root.code, operandPath: path,
           ...(root.requiredContext === undefined ? {} : { requiredContext: root.requiredContext }),
         });
         values.push(root);
       } else {
         if (!isPortableOperationId(value.operation)) return fail("unsupported-expression", ownerId, { expressionCode: "unknown-operation", operandPath: path, operation: value.operation });
         if (value.operands.length !== operationArity(value.operation)) return fail("invalid-expression", ownerId, { expressionCode: "invalid-arity", operandPath: path, operation: value.operation });
-        tasks.push({ kind: "apply", operation: value.operation, count: value.operands.length, ownerId, path });
+        tasks.push({ kind: "apply", operation: value.operation, count: value.operands.length, ownerId, path, ...location });
         for (let index = value.operands.length - 1; index >= 0; index -= 1) {
           tasks.push({ kind: "value", value: value.operands[index], ownerId,
             expectedType: value.operation === "portable.math.scale.v1" && index === 1 ? "number" : expectedType,
-            path: [...path, index] });
+            path: [...path, index], ...location });
         }
       }
     }

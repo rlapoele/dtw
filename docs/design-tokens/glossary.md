@@ -302,6 +302,10 @@ An ordered sequence of schema-validated field or collection-index segments ident
 
 A mutable human-readable address such as `color.content.primary`, derived from ancestor namespace-group names and the token's local name. A path is not token identity.
 
+## Transition
+
+An identity-less composite combining an explicit non-negative duration, a signed delay, and a cubic Bézier timing function. Each field contains its typed literal or a same-project Token reference. References resolve under the same completed variation selection; the duration sign constraint is checked after resolution. Whole-value aliases are supported, while part-value reference paths and field expressions remain deferred.
+
 ## Value type
 
 The explicit shape and constraints of a token's data. The canonical foundational set is color, number, dimension, percentage, angle, duration, string, boolean, font family, font weight, and cubic Bézier. A defined token carries its type; a name-only incomplete token may temporarily omit it. Containment does not define type, and type does not by itself state semantic purpose.

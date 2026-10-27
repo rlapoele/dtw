@@ -1,3 +1,5 @@
+import { createTransition } from "./transition";
+import type { TransitionValue } from "./transition";
 import type { DurationLiteralValue } from "./duration-literal";
 import type { CubicBezierLiteralValue } from "./cubic-bezier-literal";
 import type { PercentageLiteralValue } from "./percentage-literal";
@@ -73,7 +75,7 @@ export type ImplementedLiteralValue =
   | CubicBezierLiteralValue
   | DurationLiteralValue;
 
-export type ImplementedAuthoredValue = ImplementedLiteralValue | TokenReference | ExpressionValue;
+export type ImplementedAuthoredValue = ImplementedLiteralValue | TokenReference | ExpressionValue | TransitionValue;
 
 export type TokenValueAssignment = {
   readonly condition: VariationCondition;
@@ -318,7 +320,7 @@ function createTokenAssignment(
   tokenType: TokenType,
   projectAxes: readonly VariationAxis[],
 ): TokenValueAssignment {
-  if (input.value.kind === "literal" && input.value.valueType !== tokenType) {
+  if ((input.value.kind === "literal" || input.value.kind === "composite") && input.value.valueType !== tokenType) {
     throw new RangeError(
       "The authored value is incompatible with the token type",
     );
@@ -331,7 +333,7 @@ function createTokenAssignment(
     condition,
     value: input.value.kind === "token-reference"
       ? createTokenReference(input.value)
-      : input.value,
+      : input.value.kind === "composite" ? createTransition(input.value) : input.value,
   };
 }
 

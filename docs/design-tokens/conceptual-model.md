@@ -171,7 +171,7 @@ type DurationLiteralValue = {
 
 The unit is required, lowercase, and explicit even for zero. Construction accepts canonical Decimal text and preserves positive, negative, fractional, and zero values. The foundational literal has no universal non-negative constraint; future role or composite fields may impose narrower sign or range constraints. The selected units align with the [vendored DTCG duration reference](../references/dtcg-2025.10/format/types.md#duration). Accepting signed foundational values is a canonical model decision.
 
-The authored unit is preserved without automatic conversion: `"200"` with `"ms"` and `"0.2"` with `"s"` remain distinct authored representations. Assignments require the explicit `duration` type, and whole-value aliases preserve the exact value and unit under the completed variation selection. Duration is distinct from number, dimension, and percentage, with no implicit conversion. Only the empty whole-value reference path is initially supported; `value` and `unit` are not separately referenceable fields. All current expression operations exclude duration quantities and scalars. Time-unit conversion operations, display-string parsing, and transition-composite field constraints remain deferred.
+The authored unit is preserved without automatic conversion: `"200"` with `"ms"` and `"0.2"` with `"s"` remain distinct authored representations. Assignments require the explicit `duration` type, and whole-value aliases preserve the exact value and unit under the completed variation selection. Duration is distinct from number, dimension, and percentage, with no implicit conversion. Only the empty whole-value reference path is initially supported; `value` and `unit` are not separately referenceable fields. All current expression operations exclude duration quantities and scalars. Time-unit conversion operations and display-string parsing remain deferred. Transition-specific sign constraints are defined by the transition composite schema.
 
 #### Cubic Bézier literals
 
@@ -209,7 +209,7 @@ A composite combines several typed fields into a meaningful treatment. The initi
 typography     shadow     gradient     border     transition
 ```
 
-Each composite has a named, validated schema rather than an arbitrary object shape. Composite fields may contain permitted literal values, references, or expressions. Exact schemas and initial implementation coverage remain open.
+Each composite has a named, validated schema rather than an arbitrary object shape. Composite fields may contain permitted literal values, references, or expressions. The transition schema is defined below; schemas and initial implementation coverage for the other composites remain open.
 
 ```text
 value type        semantic role          composition
@@ -223,6 +223,30 @@ duration          motion duration         transition
 The columns answer different questions; an item appearing in one does not force it to be a primitive storage type in another.
 
 Generic `object`, generic `array`, arbitrary `CSS value`, alias, expression, layer names, and theme options are not token types. Alias and expression describe authored-value forms; primitive, semantic, and component describe layers; theme choices belong to variation axes. `paint` is not part of the selected canonical type set: a solid value remains a `color`, while a gradient uses the `gradient` composite.
+
+#### Transition values
+
+**Working decision — 27 October 2026**
+
+`TransitionValue` is an identity-less composite with three required typed fields:
+
+```ts
+type TransitionValue = {
+  kind: "composite";
+  valueType: "transition";
+  duration: DurationLiteralValue | TokenReference;
+  delay: DurationLiteralValue | TokenReference;
+  timingFunction: CubicBezierLiteralValue | TokenReference;
+};
+```
+
+All three fields are explicit; construction supplies no default duration, delay, or timing function. Duration must be non-negative, while delay accepts signed durations. A referenced duration is checked after resolution, so a signed duration token remains independently valid but may be invalid in the `duration` field. A violated composite field constraint produces `invalid-composite` with the failing field; a negative duration uses `negative-transition-duration`. Missing or wrongly typed loaded fields remain diagnosable with `invalid-transition-field`.
+
+The constituent field types follow the [vendored DTCG transition reference](../references/dtcg-2025.10/format/composite-types.md#transition). The non-negative duration and signed delay rules are canonical use-site constraints. Authored time units, control points, and references remain unchanged; resolution produces a derived transition containing only resolved duration and cubic Bézier literals. No field expressions are supported initially.
+
+A `transition` token may contain this composite or a whole-value alias to another transition token. Field references must target same-project tokens of their respective field types. Every dependency independently selects its own assignment under the same completed variation selection. One assignment supplies the entire transition; fields never merge across conditions, and field failures never trigger a less-specific fallback. Project reference validation traverses all authored field references, including inactive assignments, while resolution follows only selected dependencies. Diagnostics identify the field and its owning transition token where applicable.
+
+Whole-transition aliases are supported, but part-value reference paths into transitions or their literals remain deferred. Transition composites are excluded from expression operands and current expression operations. The schema and TypeScript operations do not select a persistence format or an export policy.
 
 ## Authored values and assignments
 
@@ -790,13 +814,14 @@ type TokenResolutionResult =
         | "reference-cycle"
         | "type-mismatch"
         | "invalid-expression"
+        | "invalid-composite"
         | "unsupported-expression"
         | "context-required";
       diagnostics: readonly ResolutionDiagnostic[];
     };
 ```
 
-The notation fixes the meaningful outcome categories, not a persistence schema or final TypeScript module shape. `invalid-expression` identifies a known operation whose structure, parameters, or resolved operands violate its contract; `unsupported-expression` identifies an operation that the evaluator cannot execute. A valid selected expression may still require viewport, font, container, browser, or other evaluation context. Missing context produces `context-required`; the resolver does not invent environmental values, and a target adapter may still be able to preserve or serialize the authored expression under its own compatibility profile.
+The notation fixes the meaningful outcome categories, not a persistence schema or final TypeScript module shape. `invalid-composite` identifies missing or wrongly typed composite fields and violated use-site constraints, including negative resolved transition duration. `invalid-expression` identifies a known operation whose structure, parameters, or resolved operands violate its contract; `unsupported-expression` identifies an operation that the evaluator cannot execute. A valid selected expression may still require viewport, font, container, browser, or other evaluation context. Missing context produces `context-required`; the resolver does not invent environmental values, and a target adapter may still be able to preserve or serialize the authored expression under its own compatibility profile.
 
 `ResolutionTrace` is derived explanatory data, not canonical authored data. It may report defaults applied during completion, matching conditions and their specificity, the selected condition, dependency traversal, and the point of failure. Its exact payload and retention policy remain open, but the domain result must contain enough structured diagnostics for delivery surfaces to explain an unresolved outcome without recreating resolution semantics.
 
