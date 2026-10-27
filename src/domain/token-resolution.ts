@@ -1,10 +1,12 @@
+import { TYPOGRAPHY_FIELDS, TYPOGRAPHY_FIELD_TYPES, isTypographyFieldValue, isNonNegativeTypographyValue } from "./typography";
+import type { TypographyField, ResolvedTypographyValue } from "./typography";
 import { TRANSITION_FIELDS, TRANSITION_FIELD_TYPES, isTransitionFieldValue, isValidTransitionDuration } from "./transition";
-import type { TransitionField, TransitionValue, ResolvedTransitionValue } from "./transition";
+import type { TransitionField, ResolvedTransitionValue } from "./transition";
 import { evaluatePortableOperation, isPortableOperationId, operationArity, readRootFontSize } from "./expression";
 import type { EvaluationContext, EvaluationContextKey, ExpressionOperand, ExpressionFailure } from "./expression";
 import { selectMostSpecificAssignment } from "./assignment-selection";
 import type { TokenId } from "./identifiers";
-import type { ImplementedLiteralValue, Token, TokenType } from "./token";
+import type { ImplementedLiteralValue, ImplementedCompositeValue, Token, TokenType } from "./token";
 import type { VariationCondition } from "./variation-condition";
 import type { CompleteVariationSelection } from "./variation-selection";
 
@@ -35,9 +37,9 @@ export type ResolutionStep = {
 export type ResolutionDiagnostic = {
   readonly code: TokenResolutionFailureReason;
   readonly tokenId: TokenId;
-  readonly field?: TransitionField;
+  readonly field?: TransitionField | TypographyField;
   readonly fieldOwnerId?: TokenId;
-  readonly compositeCode?: "negative-transition-duration" | "invalid-transition-field";
+  readonly compositeCode?: "negative-transition-duration" | "invalid-transition-field" | "negative-typography-font-size" | "negative-typography-line-height" | "invalid-typography-field";
   readonly expressionCode?: ExpressionFailure["code"];
   readonly operandPath?: readonly number[];
   readonly operation?: string;
@@ -48,7 +50,7 @@ export type ResolutionDiagnostic = {
   readonly actualType?: TokenType;
 };
 
-export type ResolvedValue = ImplementedLiteralValue | ResolvedTransitionValue;
+export type ResolvedValue = ImplementedLiteralValue | ResolvedTransitionValue | ResolvedTypographyValue;
 
 export type TokenResolutionResult =
   | {
@@ -69,14 +71,15 @@ export type TokenResolutionResult =
       readonly diagnostics: readonly ResolutionDiagnostic[];
     };
 
-type FieldLocation = { field?: TransitionField; fieldOwnerId?: TokenId };
+type FieldLocation = { field?: TransitionField | TypographyField; fieldOwnerId?: TokenId };
 
 type Task = (
   | { kind: "token"; id: TokenId; expectedType?: TokenType }
   | { kind: "finish-token"; id: TokenId; type: TokenType }
-  | { kind: "value"; value: ExpressionOperand | TransitionValue; ownerId: TokenId; expectedType: TokenType; path: readonly number[] }
+  | { kind: "value"; value: ExpressionOperand | ImplementedCompositeValue; ownerId: TokenId; expectedType: TokenType; path: readonly number[] }
   | { kind: "apply"; operation: string; count: number; ownerId: TokenId; path: readonly number[] }
   | { kind: "transition"; ownerId: TokenId }
+  | { kind: "typography"; ownerId: TokenId }
 ) & FieldLocation;
 
 // The caller supplies the project snapshot and a selection completed from its
@@ -158,17 +161,35 @@ export function resolveToken(
       }
       if (!isValidTransitionDuration(duration)) return fail("invalid-composite", task.ownerId, { compositeCode: "negative-transition-duration", field: "duration", fieldOwnerId: task.ownerId });
       values.push({ kind: "composite", valueType: "transition", duration, delay, timingFunction });
+    } else if (task.kind === "typography") {
+      const [fontFamily, fontSize, fontWeight, letterSpacing, lineHeight] = values.splice(values.length - 5, 5);
+      if (fontFamily.valueType !== "fontFamily" || fontSize.valueType !== "dimension" || fontWeight.valueType !== "fontWeight" || letterSpacing.valueType !== "dimension" || lineHeight.valueType !== "number") {
+        return fail("invalid-composite", task.ownerId, { compositeCode: "invalid-typography-field" });
+      }
+      if (!isNonNegativeTypographyValue(fontSize)) return fail("invalid-composite", task.ownerId, { compositeCode: "negative-typography-font-size", field: "fontSize", fieldOwnerId: task.ownerId });
+      if (!isNonNegativeTypographyValue(lineHeight)) return fail("invalid-composite", task.ownerId, { compositeCode: "negative-typography-line-height", field: "lineHeight", fieldOwnerId: task.ownerId });
+      values.push({ kind: "composite", valueType: "typography", fontFamily, fontSize, fontWeight, letterSpacing, lineHeight });
     } else {
       const { value, ownerId, expectedType, path } = task;
       if (value.kind === "literal") {
         values.push(value);
       } else if (value.kind === "composite") {
-        for (const field of TRANSITION_FIELDS) {
-          if (!isTransitionFieldValue(value[field], field)) return fail("invalid-composite", ownerId, { compositeCode: "invalid-transition-field", field, fieldOwnerId: ownerId });
-        }
-        tasks.push({ kind: "transition", ownerId });
-        for (const field of [...TRANSITION_FIELDS].reverse()) {
-          tasks.push({ kind: "value", value: value[field], ownerId, expectedType: TRANSITION_FIELD_TYPES[field], path: [], field, fieldOwnerId: ownerId });
+        if (value.valueType === "transition") {
+          for (const field of TRANSITION_FIELDS) {
+            if (!isTransitionFieldValue(value[field], field)) return fail("invalid-composite", ownerId, { compositeCode: "invalid-transition-field", field, fieldOwnerId: ownerId });
+          }
+          tasks.push({ kind: "transition", ownerId });
+          for (const field of [...TRANSITION_FIELDS].reverse()) {
+            tasks.push({ kind: "value", value: value[field], ownerId, expectedType: TRANSITION_FIELD_TYPES[field], path: [], field, fieldOwnerId: ownerId });
+          }
+        } else {
+          for (const field of TYPOGRAPHY_FIELDS) {
+            if (!isTypographyFieldValue(value[field], field)) return fail("invalid-composite", ownerId, { compositeCode: "invalid-typography-field", field, fieldOwnerId: ownerId });
+          }
+          tasks.push({ kind: "typography", ownerId });
+          for (const field of [...TYPOGRAPHY_FIELDS].reverse()) {
+            tasks.push({ kind: "value", value: value[field], ownerId, expectedType: TYPOGRAPHY_FIELD_TYPES[field], path: [], field, fieldOwnerId: ownerId });
+          }
         }
       } else if (value.kind === "token-reference") {
         if (value.valuePath.length > 0) return fail("unsupported-value-path", ownerId, { ...location, operandPath: path });

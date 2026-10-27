@@ -255,7 +255,7 @@ A composite combines several typed fields into a meaningful treatment. The initi
 typography     shadow     gradient     border     transition
 ```
 
-Each composite has a named, validated schema rather than an arbitrary object shape. Composite fields may contain permitted literal values, references, or expressions. The transition schema is defined below; schemas and initial implementation coverage for the other composites remain open.
+Each composite has a named, validated schema rather than an arbitrary object shape. Composite fields may contain permitted literal values, references, or expressions. The transition and typography schemas are defined below; schemas and initial implementation coverage for the other composites remain open.
 
 ```text
 value type        semantic role          composition
@@ -269,6 +269,32 @@ duration          motion duration         transition
 The columns answer different questions; an item appearing in one does not force it to be a primitive storage type in another.
 
 Generic `object`, generic `array`, arbitrary `CSS value`, alias, expression, layer names, and theme options are not token types. Alias and expression describe authored-value forms; primitive, semantic, and component describe layers; theme choices belong to variation axes. `paint` is not part of the selected canonical type set: a solid value remains a `color`, while a gradient uses the `gradient` composite.
+
+#### Typography values
+
+**Working decision — 27 October 2026**
+
+`TypographyValue` is an identity-less composite with five required typed fields:
+
+```ts
+type TypographyValue = {
+  kind: "composite";
+  valueType: "typography";
+  fontFamily: FontFamilyLiteralValue | TokenReference;
+  fontSize: DimensionLiteralValue | TokenReference;
+  fontWeight: FontWeightLiteralValue | TokenReference;
+  letterSpacing: DimensionLiteralValue | TokenReference;
+  lineHeight: NumberLiteralValue | TokenReference;
+};
+```
+
+All five fields are explicit, without implicit defaults. Font size and line height must be non-negative, including after reference resolution; zero is accepted. Letter spacing accepts signed dimensions. Line height is a unitless font-size multiplier and remains a number rather than being converted to a length. Font family and weight retain their foundational schemas and constraints. The field types align with the [vendored DTCG typography reference](../references/dtcg-2025.10/format/composite-types.md#typography); the sign rules are canonical use-site constraints.
+
+Construction copies the literal fields and references while preserving authored dimension units, exact numeric values, and font-stack semantics. Assignments require the `typography` type, and whole-typography aliases are supported. Each field reference must target a same-project token with the expected field type, resolved under the same completed variation selection. Referenced number or dimension tokens may independently evaluate supported expressions; direct expressions in typography fields remain deferred.
+
+One selected assignment supplies the complete typography value. Fields do not merge across matching assignments, and a field failure never triggers a less-specific fallback. Resolution produces a derived `ResolvedTypographyValue` whose fields are literals, without mutating authored references. Project reference validation traverses all authored field references, including inactive assignments; cycle detection and resolution use selected dependencies.
+
+Missing or wrongly typed loaded fields produce `invalid-composite` with `invalid-typography-field`. A negative resolved font size or line height produces `negative-typography-font-size` or `negative-typography-line-height` respectively. Diagnostics identify the field and owning typography token where applicable. Part-value paths into the composite, direct field expressions, and whole-composite expression operations remain deferred. This schema does not select persistence or adapter behavior.
 
 #### Transition values
 
@@ -867,7 +893,7 @@ type TokenResolutionResult =
     };
 ```
 
-The notation fixes the meaningful outcome categories, not a persistence schema or final TypeScript module shape. `invalid-composite` identifies missing or wrongly typed composite fields and violated use-site constraints, including negative resolved transition duration. `invalid-expression` identifies a known operation whose structure, parameters, or resolved operands violate its contract; `unsupported-expression` identifies an operation that the evaluator cannot execute. A valid selected expression may still require viewport, font, container, browser, or other evaluation context. Missing context produces `context-required`; the resolver does not invent environmental values, and a target adapter may still be able to preserve or serialize the authored expression under its own compatibility profile.
+The notation fixes the meaningful outcome categories, not a persistence schema or final TypeScript module shape. `invalid-composite` identifies missing or wrongly typed composite fields and violated use-site constraints, including negative resolved transition duration, typography font size, or typography line height. `invalid-expression` identifies a known operation whose structure, parameters, or resolved operands violate its contract; `unsupported-expression` identifies an operation that the evaluator cannot execute. A valid selected expression may still require viewport, font, container, browser, or other evaluation context. Missing context produces `context-required`; the resolver does not invent environmental values, and a target adapter may still be able to preserve or serialize the authored expression under its own compatibility profile.
 
 `ResolutionTrace` is derived explanatory data, not canonical authored data. It may report defaults applied during completion, matching conditions and their specificity, the selected condition, dependency traversal, and the point of failure. Its exact payload and retention policy remain open, but the domain result must contain enough structured diagnostics for delivery surfaces to explain an unresolved outcome without recreating resolution semantics.
 

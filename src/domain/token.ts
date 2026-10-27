@@ -1,3 +1,5 @@
+import { createTypography } from "./typography";
+import type { TypographyValue } from "./typography";
 import type { FontFamilyLiteralValue } from "./font-family-literal";
 import type { FontWeightLiteralValue } from "./font-weight-literal";
 import { createTransition } from "./transition";
@@ -79,7 +81,9 @@ export type ImplementedLiteralValue =
   | FontWeightLiteralValue
   | FontFamilyLiteralValue;
 
-export type ImplementedAuthoredValue = ImplementedLiteralValue | TokenReference | ExpressionValue | TransitionValue;
+export type ImplementedCompositeValue = TransitionValue | TypographyValue;
+
+export type ImplementedAuthoredValue = ImplementedLiteralValue | TokenReference | ExpressionValue | ImplementedCompositeValue;
 
 export type TokenValueAssignment = {
   readonly condition: VariationCondition;
@@ -337,7 +341,9 @@ function createTokenAssignment(
     condition,
     value: input.value.kind === "token-reference"
       ? createTokenReference(input.value)
-      : input.value.kind === "composite" ? createTransition(input.value) : input.value,
+      : input.value.kind === "composite"
+        ? input.value.valueType === "transition" ? createTransition(input.value) : createTypography(input.value)
+        : input.value,
   };
 }
 

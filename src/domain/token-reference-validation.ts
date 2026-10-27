@@ -1,9 +1,11 @@
+import { TYPOGRAPHY_FIELDS, TYPOGRAPHY_FIELD_TYPES, isTypographyFieldValue } from "./typography";
+import type { TypographyField } from "./typography";
 import { TRANSITION_FIELDS, TRANSITION_FIELD_TYPES, isTransitionFieldValue } from "./transition";
-import type { TransitionField, TransitionValue } from "./transition";
+import type { TransitionField } from "./transition";
 import { selectMostSpecificAssignment } from "./assignment-selection";
 import type { TokenId } from "./identifiers";
 import type { ExpressionOperand } from "./expression";
-import type { Token, TokenType, TokenValueAssignment, ImplementedAuthoredValue } from "./token";
+import type { Token, TokenType, TokenValueAssignment, ImplementedAuthoredValue, ImplementedCompositeValue } from "./token";
 import type { TokenReference } from "./token-reference";
 import type { VariationCondition } from "./variation-condition";
 import type { CompleteVariationSelection } from "./variation-selection";
@@ -25,7 +27,7 @@ export type TokenReferenceDiagnostic =
       readonly targetTokenId: TokenId;
       readonly condition: VariationCondition;
       readonly operandPath?: readonly number[];
-      readonly field?: TransitionField;
+      readonly field?: TransitionField | TypographyField;
     }
   | {
       readonly code: "token-project-mismatch" | "ambiguous-assignment";
@@ -115,17 +117,24 @@ function collectReferenceUses(value: ImplementedAuthoredValue, expectedType: Tok
   reference: TokenReference;
   expectedType: TokenType;
   path: readonly number[];
-  field?: TransitionField;
+  field?: TransitionField | TypographyField;
 }[] {
-  const uses: { reference: TokenReference; expectedType: TokenType; path: readonly number[]; field?: TransitionField }[] = [];
-  const stack: { value: ExpressionOperand | TransitionValue; expectedType: TokenType; path: readonly number[]; field?: TransitionField }[] = [{ value, expectedType, path: [] }];
+  const uses: { reference: TokenReference; expectedType: TokenType; path: readonly number[]; field?: TransitionField | TypographyField }[] = [];
+  const stack: { value: ExpressionOperand | ImplementedCompositeValue; expectedType: TokenType; path: readonly number[]; field?: TransitionField | TypographyField }[] = [{ value, expectedType, path: [] }];
   while (stack.length > 0) {
     const current = stack.pop()!;
     if (current.value.kind === "token-reference") uses.push({ reference: current.value, expectedType: current.expectedType, path: current.path, ...(current.field === undefined ? {} : { field: current.field }) });
     else if (current.value.kind === "composite") {
-      for (const field of [...TRANSITION_FIELDS].reverse()) {
-        const fieldValue = current.value[field];
-        if (isTransitionFieldValue(fieldValue, field)) stack.push({ value: fieldValue, expectedType: TRANSITION_FIELD_TYPES[field], path: [], field });
+      if (current.value.valueType === "transition") {
+        for (const field of [...TRANSITION_FIELDS].reverse()) {
+          const fieldValue = current.value[field];
+          if (isTransitionFieldValue(fieldValue, field)) stack.push({ value: fieldValue, expectedType: TRANSITION_FIELD_TYPES[field], path: [], field });
+        }
+      } else {
+        for (const field of [...TYPOGRAPHY_FIELDS].reverse()) {
+          const fieldValue = current.value[field];
+          if (isTypographyFieldValue(fieldValue, field)) stack.push({ value: fieldValue, expectedType: TYPOGRAPHY_FIELD_TYPES[field], path: [], field });
+        }
       }
     }
     else if (current.value.kind === "expression") {

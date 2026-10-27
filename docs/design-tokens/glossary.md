@@ -310,6 +310,10 @@ A mutable human-readable address such as `color.content.primary`, derived from a
 
 An identity-less composite combining an explicit non-negative duration, a signed delay, and a cubic Bézier timing function. Each field contains its typed literal or a same-project Token reference. References resolve under the same completed variation selection; the duration sign constraint is checked after resolution. Whole-value aliases are supported, while part-value reference paths and field expressions remain deferred.
 
+## Typography
+
+An identity-less composite combining explicit font family, font size, font weight, letter spacing, and line-height fields. Each field contains its typed literal or a same-project Token reference. Font size and line height are non-negative after resolution; letter spacing is signed, and line height remains a unitless font-size multiplier. All references resolve under one completed variation selection. Whole-value aliases are supported; part-value paths and direct field expressions remain deferred.
+
 ## Value type
 
 The explicit shape and constraints of a token's data. The canonical foundational set is color, number, dimension, percentage, angle, duration, string, boolean, font family, font weight, and cubic Bézier. A defined token carries its type; a name-only incomplete token may temporarily omit it. Containment does not define type, and type does not by itself state semantic purpose.
