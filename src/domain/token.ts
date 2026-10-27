@@ -1,3 +1,4 @@
+import type { BooleanLiteralValue } from "./boolean-literal";
 import { createTypography } from "./typography";
 import type { TypographyValue } from "./typography";
 import type { FontFamilyLiteralValue } from "./font-family-literal";
@@ -79,7 +80,8 @@ export type ImplementedLiteralValue =
   | CubicBezierLiteralValue
   | DurationLiteralValue
   | FontWeightLiteralValue
-  | FontFamilyLiteralValue;
+  | FontFamilyLiteralValue
+  | BooleanLiteralValue;
 
 export type ImplementedCompositeValue = TransitionValue | TypographyValue;
 

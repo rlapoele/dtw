@@ -81,7 +81,25 @@ fontFamily     fontWeight      cubicBezier
 
 `dimension` represents a length-bearing quantity rather than any arbitrary unit-bearing number. `percentage`, `angle`, and `duration` remain distinct so validation and typed operations do not conflate context-relative proportions, rotation, length, and time. `fontFamily`, `fontWeight`, and `cubicBezier` have domain-specific shapes or constraints that justify explicit types.
 
-The `number`, `dimension`, `percentage`, `duration`, `fontFamily`, `fontWeight`, `color`, and `cubicBezier` literal schemas, initial `px` and `rem` dimension units, and initial `ms` and `s` duration units are defined below. Exact schemas, constraints, and initial implementation coverage for the remaining foundational types stay open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
+The `boolean`, `number`, `dimension`, `percentage`, `duration`, `fontFamily`, `fontWeight`, `color`, and `cubicBezier` literal schemas, initial `px` and `rem` dimension units, and initial `ms` and `s` duration units are defined below. Exact schemas, constraints, and initial implementation coverage for the remaining foundational types stay open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
+
+#### Boolean literals
+
+**Working decision — 27 October 2026**
+
+`BooleanLiteralValue` is an identity-less literal containing an explicit boolean:
+
+```ts
+type BooleanLiteralValue = {
+  kind: "literal";
+  valueType: "boolean";
+  value: boolean;
+};
+```
+
+Construction accepts only actual `true` or `false` values. Strings, numbers, objects, arrays, boxed booleans, null, and undefined are rejected without coercion or a default. Explicit `false` is authored data and never represents a missing assignment or an incomplete definition.
+
+Assignments require the explicit `boolean` type. Whole-value aliases preserve the exact boolean under the same completed variation selection; a more-specific `false` assignment takes precedence over a less-specific `true` normally. Ordinary numbers and strings are not implicitly compatible. Initially, only the empty whole-value reference path is supported; the `value` field is not separately referenceable. Booleans remain excluded from all current expression operations, including scalar operands, and this literal adds no branching or Boolean operations to the expression AST. Adapter mappings and future composite-field applicability remain separate decisions.
 
 #### Exact decimal numeric values and percentages
 
