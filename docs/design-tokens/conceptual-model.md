@@ -81,7 +81,7 @@ fontFamily     fontWeight      cubicBezier
 
 `dimension` represents a length-bearing quantity rather than any arbitrary unit-bearing number. `percentage`, `angle`, and `duration` remain distinct so validation and typed operations do not conflate context-relative proportions, rotation, length, and time. `fontFamily`, `fontWeight`, and `cubicBezier` have domain-specific shapes or constraints that justify explicit types.
 
-The `number`, `dimension`, `percentage`, and `color` literal schemas and initial `px` and `rem` dimension units are defined below. Exact schemas, constraints, and initial implementation coverage for the remaining foundational types stay open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
+The `number`, `dimension`, `percentage`, `color`, and `cubicBezier` literal schemas and initial `px` and `rem` dimension units are defined below. Exact schemas, constraints, and initial implementation coverage for the remaining foundational types stay open. This canonical set is not a promise that every target represents every type losslessly. External tools may expose either broader storage types or more purpose-specific types; neither taxonomy is copied automatically.
 
 #### Exact decimal numeric values and percentages
 
@@ -151,6 +151,24 @@ The initial canonical unit set is deliberately limited to `px` and `rem`. These 
 The flattened literal shape does not expose `value` or `unit` automatically as public `TokenValuePath` fields. Initially, both number and dimension literals support only the empty whole-value path. Component-level references into their representation remain deferred until a concrete canonical workflow and strict-DTCG coverage promise justify the additional part types and construction rules.
 
 Editing replaces the literal owned by its assignment or expression operand. Copying preserves its normalized value and unit. Changing `1rem` to `16px` remains an authored semantic change even when one evaluation context makes them numerically equal. Preview conversion and export formatting never mutate the literal.
+
+#### Cubic Bézier literals
+
+**Working decision — 27 October 2026**
+
+`CubicBezierLiteralValue` is an identity-less literal with four exact Decimal coordinates:
+
+```ts
+type CubicBezierLiteralValue = {
+  kind: "literal";
+  valueType: "cubicBezier";
+  controlPoints: readonly [Decimal, Decimal, Decimal, Decimal];
+};
+```
+
+The coordinate order is `[x1, y1, x2, y2]`, representing the two control points. Both x coordinates must lie in the inclusive range zero through one. There is no ordering constraint between `x1` and `x2`. Both y coordinates accept any finite canonical Decimal, including negative values and values above one for overshoot; they are not clamped. The coordinate order and bounds follow the [vendored DTCG cubic Bézier reference](../references/dtcg-2025.10/format/types.md#cubic-bézier).
+
+Construction requires exactly four canonical Decimal strings and copies the coordinate array. Assignments require the explicit `cubicBezier` token type, and whole-value aliases preserve the literal through variation-aware resolution. Initially, only the empty whole-value reference path is supported: individual coordinates are not separately referenceable numbers. Cubic Bézier values remain excluded from all current arithmetic expression operations, including scalar operands. Curve evaluation, named easing presets, and CSS parsing remain outside this literal schema and implementation.
 
 ### Semantic role
 

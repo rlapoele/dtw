@@ -1,3 +1,4 @@
+import type { CubicBezierLiteralValue } from "./cubic-bezier-literal";
 import type { PercentageLiteralValue } from "./percentage-literal";
 import type { ExpressionValue } from "./expression";
 import { createTokenReference } from "./token-reference";
@@ -67,7 +68,8 @@ export type ImplementedLiteralValue =
   | ColorLiteralValue
   | DimensionLiteralValue
   | NumberLiteralValue
-  | PercentageLiteralValue;
+  | PercentageLiteralValue
+  | CubicBezierLiteralValue;
 
 export type ImplementedAuthoredValue = ImplementedLiteralValue | TokenReference | ExpressionValue;
 
