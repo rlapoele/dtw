@@ -1,3 +1,5 @@
+import { SHADOW_FIELDS, SHADOW_FIELD_TYPES, isShadowFieldValue, isValidShadowBlur } from "./shadow";
+import type { ShadowField, ResolvedShadowLayer, ResolvedShadowValue } from "./shadow";
 import { TYPOGRAPHY_FIELDS, TYPOGRAPHY_FIELD_TYPES, isTypographyFieldValue, isNonNegativeTypographyValue } from "./typography";
 import type { TypographyField, ResolvedTypographyValue } from "./typography";
 import { TRANSITION_FIELDS, TRANSITION_FIELD_TYPES, isTransitionFieldValue, isValidTransitionDuration } from "./transition";
@@ -37,9 +39,10 @@ export type ResolutionStep = {
 export type ResolutionDiagnostic = {
   readonly code: TokenResolutionFailureReason;
   readonly tokenId: TokenId;
-  readonly field?: TransitionField | TypographyField;
+  readonly field?: TransitionField | TypographyField | ShadowField;
   readonly fieldOwnerId?: TokenId;
-  readonly compositeCode?: "negative-transition-duration" | "invalid-transition-field" | "negative-typography-font-size" | "negative-typography-line-height" | "invalid-typography-field";
+  readonly layerIndex?: number;
+  readonly compositeCode?: "negative-transition-duration" | "invalid-transition-field" | "negative-typography-font-size" | "negative-typography-line-height" | "invalid-typography-field" | "invalid-shadow-layers" | "invalid-shadow-field" | "negative-shadow-blur";
   readonly expressionCode?: ExpressionFailure["code"];
   readonly operandPath?: readonly number[];
   readonly operation?: string;
@@ -50,7 +53,7 @@ export type ResolutionDiagnostic = {
   readonly actualType?: TokenType;
 };
 
-export type ResolvedValue = ImplementedLiteralValue | ResolvedTransitionValue | ResolvedTypographyValue;
+export type ResolvedValue = ImplementedLiteralValue | ResolvedTransitionValue | ResolvedTypographyValue | ResolvedShadowValue;
 
 export type TokenResolutionResult =
   | {
@@ -71,7 +74,7 @@ export type TokenResolutionResult =
       readonly diagnostics: readonly ResolutionDiagnostic[];
     };
 
-type FieldLocation = { field?: TransitionField | TypographyField; fieldOwnerId?: TokenId };
+type FieldLocation = { field?: TransitionField | TypographyField | ShadowField; fieldOwnerId?: TokenId; layerIndex?: number };
 
 type Task = (
   | { kind: "token"; id: TokenId; expectedType?: TokenType }
@@ -80,6 +83,7 @@ type Task = (
   | { kind: "apply"; operation: string; count: number; ownerId: TokenId; path: readonly number[] }
   | { kind: "transition"; ownerId: TokenId }
   | { kind: "typography"; ownerId: TokenId }
+  | { kind: "shadow"; ownerId: TokenId; count: number }
 ) & FieldLocation;
 
 // The caller supplies the project snapshot and a selection completed from its
@@ -117,7 +121,7 @@ export function resolveToken(
   // from repeated references in separate operands.
   while (tasks.length > 0) {
     const task = tasks.pop()!;
-    const location: FieldLocation = task.field === undefined ? {} : { field: task.field, fieldOwnerId: task.fieldOwnerId };
+    const location: FieldLocation = task.field === undefined ? {} : { field: task.field, fieldOwnerId: task.fieldOwnerId, ...(task.layerIndex === undefined ? {} : { layerIndex: task.layerIndex }) };
     if (task.kind === "token") {
       const current = tokenById.get(task.id);
       if (current === undefined) return fail("missing-reference", task.id, location);
@@ -161,6 +165,18 @@ export function resolveToken(
       }
       if (!isValidTransitionDuration(duration)) return fail("invalid-composite", task.ownerId, { compositeCode: "negative-transition-duration", field: "duration", fieldOwnerId: task.ownerId });
       values.push({ kind: "composite", valueType: "transition", duration, delay, timingFunction });
+    } else if (task.kind === "shadow") {
+      const fields = values.splice(values.length - task.count * SHADOW_FIELDS.length, task.count * SHADOW_FIELDS.length);
+      const layers: ResolvedShadowLayer[] = [];
+      for (let layerIndex = 0; layerIndex < task.count; layerIndex += 1) {
+        const [color, offsetX, offsetY, blur, spread, inset] = fields.slice(layerIndex * SHADOW_FIELDS.length, (layerIndex + 1) * SHADOW_FIELDS.length);
+        if (color.valueType !== "color" || offsetX.valueType !== "dimension" || offsetY.valueType !== "dimension" || blur.valueType !== "dimension" || spread.valueType !== "dimension" || inset.valueType !== "boolean") {
+          return fail("invalid-composite", task.ownerId, { compositeCode: "invalid-shadow-field", layerIndex });
+        }
+        if (!isValidShadowBlur(blur)) return fail("invalid-composite", task.ownerId, { compositeCode: "negative-shadow-blur", layerIndex, field: "blur", fieldOwnerId: task.ownerId });
+        layers.push({ color, offsetX, offsetY, blur, spread, inset });
+      }
+      values.push({ kind: "composite", valueType: "shadow", layers: layers as [ResolvedShadowLayer, ...ResolvedShadowLayer[]] });
     } else if (task.kind === "typography") {
       const [fontFamily, fontSize, fontWeight, letterSpacing, lineHeight] = values.splice(values.length - 5, 5);
       if (fontFamily.valueType !== "fontFamily" || fontSize.valueType !== "dimension" || fontWeight.valueType !== "fontWeight" || letterSpacing.valueType !== "dimension" || lineHeight.valueType !== "number") {
@@ -182,6 +198,21 @@ export function resolveToken(
           for (const field of [...TRANSITION_FIELDS].reverse()) {
             tasks.push({ kind: "value", value: value[field], ownerId, expectedType: TRANSITION_FIELD_TYPES[field], path: [], field, fieldOwnerId: ownerId });
           }
+        } else if (value.valueType === "shadow") {
+          if (!Array.isArray(value.layers) || value.layers.length === 0) return fail("invalid-composite", ownerId, { compositeCode: "invalid-shadow-layers" });
+          for (let layerIndex = 0; layerIndex < value.layers.length; layerIndex += 1) {
+            const layer = value.layers[layerIndex];
+            if (typeof layer !== "object" || layer === null) return fail("invalid-composite", ownerId, { compositeCode: "invalid-shadow-layers", layerIndex });
+            for (const field of SHADOW_FIELDS) {
+              if (!isShadowFieldValue(layer[field], field)) return fail("invalid-composite", ownerId, { compositeCode: "invalid-shadow-field", layerIndex, field, fieldOwnerId: ownerId });
+            }
+          }
+          tasks.push({ kind: "shadow", ownerId, count: value.layers.length });
+          for (let layerIndex = value.layers.length - 1; layerIndex >= 0; layerIndex -= 1) {
+            for (const field of [...SHADOW_FIELDS].reverse()) {
+              tasks.push({ kind: "value", value: value.layers[layerIndex][field], ownerId, expectedType: SHADOW_FIELD_TYPES[field], path: [], field, fieldOwnerId: ownerId, layerIndex });
+            }
+          }
         } else {
           for (const field of TYPOGRAPHY_FIELDS) {
             if (!isTypographyFieldValue(value[field], field)) return fail("invalid-composite", ownerId, { compositeCode: "invalid-typography-field", field, fieldOwnerId: ownerId });
@@ -195,7 +226,7 @@ export function resolveToken(
         if (value.valuePath.length > 0) return fail("unsupported-value-path", ownerId, { ...location, operandPath: path });
         tasks.push({ kind: "token", id: value.targetTokenId, expectedType, ...location });
       } else if (value.kind === "context-reference") {
-        if (value.key !== "font.rootSize") return fail("invalid-expression", ownerId, { expressionCode: "invalid-context", operandPath: path });
+        if (value.key !== "font.rootSize") return fail("invalid-expression", ownerId, { ...location, expressionCode: "invalid-context", operandPath: path });
         const root = readRootFontSize(context);
         if ("status" in root) return fail(root.reason, ownerId, {
           ...location, expressionCode: root.code, operandPath: path,
@@ -203,8 +234,8 @@ export function resolveToken(
         });
         values.push(root);
       } else {
-        if (!isPortableOperationId(value.operation)) return fail("unsupported-expression", ownerId, { expressionCode: "unknown-operation", operandPath: path, operation: value.operation });
-        if (value.operands.length !== operationArity(value.operation)) return fail("invalid-expression", ownerId, { expressionCode: "invalid-arity", operandPath: path, operation: value.operation });
+        if (!isPortableOperationId(value.operation)) return fail("unsupported-expression", ownerId, { ...location, expressionCode: "unknown-operation", operandPath: path, operation: value.operation });
+        if (value.operands.length !== operationArity(value.operation)) return fail("invalid-expression", ownerId, { ...location, expressionCode: "invalid-arity", operandPath: path, operation: value.operation });
         tasks.push({ kind: "apply", operation: value.operation, count: value.operands.length, ownerId, path, ...location });
         for (let index = value.operands.length - 1; index >= 0; index -= 1) {
           tasks.push({ kind: "value", value: value.operands[index], ownerId,

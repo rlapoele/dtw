@@ -1,3 +1,5 @@
+import { SHADOW_FIELDS, SHADOW_FIELD_TYPES, isShadowFieldValue } from "./shadow";
+import type { ShadowField } from "./shadow";
 import { TYPOGRAPHY_FIELDS, TYPOGRAPHY_FIELD_TYPES, isTypographyFieldValue } from "./typography";
 import type { TypographyField } from "./typography";
 import { TRANSITION_FIELDS, TRANSITION_FIELD_TYPES, isTransitionFieldValue } from "./transition";
@@ -27,7 +29,8 @@ export type TokenReferenceDiagnostic =
       readonly targetTokenId: TokenId;
       readonly condition: VariationCondition;
       readonly operandPath?: readonly number[];
-      readonly field?: TransitionField | TypographyField;
+      readonly field?: TransitionField | TypographyField | ShadowField;
+      readonly layerIndex?: number;
     }
   | {
       readonly code: "token-project-mismatch" | "ambiguous-assignment";
@@ -73,7 +76,8 @@ export function validateProjectTokenReferences(
             targetTokenId: use.reference.targetTokenId,
             condition: assignment.condition,
             ...(use.path.length === 0 ? {} : { operandPath: use.path }),
-            ...(use.field === undefined ? {} : { field: use.field }) });
+            ...(use.field === undefined ? {} : { field: use.field }),
+            ...(use.layerIndex === undefined ? {} : { layerIndex: use.layerIndex }) });
         }
       }
       assignmentTargets.set(assignment, [...new Set(targets)]);
@@ -117,18 +121,29 @@ function collectReferenceUses(value: ImplementedAuthoredValue, expectedType: Tok
   reference: TokenReference;
   expectedType: TokenType;
   path: readonly number[];
-  field?: TransitionField | TypographyField;
+  field?: TransitionField | TypographyField | ShadowField;
+  layerIndex?: number;
 }[] {
-  const uses: { reference: TokenReference; expectedType: TokenType; path: readonly number[]; field?: TransitionField | TypographyField }[] = [];
-  const stack: { value: ExpressionOperand | ImplementedCompositeValue; expectedType: TokenType; path: readonly number[]; field?: TransitionField | TypographyField }[] = [{ value, expectedType, path: [] }];
+  const uses: { reference: TokenReference; expectedType: TokenType; path: readonly number[]; field?: TransitionField | TypographyField | ShadowField; layerIndex?: number }[] = [];
+  const stack: { value: ExpressionOperand | ImplementedCompositeValue; expectedType: TokenType; path: readonly number[]; field?: TransitionField | TypographyField | ShadowField; layerIndex?: number }[] = [{ value, expectedType, path: [] }];
   while (stack.length > 0) {
     const current = stack.pop()!;
-    if (current.value.kind === "token-reference") uses.push({ reference: current.value, expectedType: current.expectedType, path: current.path, ...(current.field === undefined ? {} : { field: current.field }) });
+    if (current.value.kind === "token-reference") uses.push({ reference: current.value, expectedType: current.expectedType, path: current.path, ...(current.field === undefined ? {} : { field: current.field }), ...(current.layerIndex === undefined ? {} : { layerIndex: current.layerIndex }) });
     else if (current.value.kind === "composite") {
       if (current.value.valueType === "transition") {
         for (const field of [...TRANSITION_FIELDS].reverse()) {
           const fieldValue = current.value[field];
           if (isTransitionFieldValue(fieldValue, field)) stack.push({ value: fieldValue, expectedType: TRANSITION_FIELD_TYPES[field], path: [], field });
+        }
+      } else if (current.value.valueType === "shadow") {
+        if (!Array.isArray(current.value.layers)) continue;
+        for (let layerIndex = current.value.layers.length - 1; layerIndex >= 0; layerIndex -= 1) {
+          const layer = current.value.layers[layerIndex];
+          if (typeof layer !== "object" || layer === null) continue;
+          for (const field of [...SHADOW_FIELDS].reverse()) {
+            const fieldValue = layer[field];
+            if (isShadowFieldValue(fieldValue, field)) stack.push({ value: fieldValue, expectedType: SHADOW_FIELD_TYPES[field], path: [], field, layerIndex });
+          }
         }
       } else {
         for (const field of [...TYPOGRAPHY_FIELDS].reverse()) {

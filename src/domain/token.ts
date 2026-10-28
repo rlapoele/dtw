@@ -1,3 +1,5 @@
+import { createShadow } from "./shadow";
+import type { ShadowValue } from "./shadow";
 import type { BooleanLiteralValue } from "./boolean-literal";
 import { createTypography } from "./typography";
 import type { TypographyValue } from "./typography";
@@ -83,7 +85,7 @@ export type ImplementedLiteralValue =
   | FontFamilyLiteralValue
   | BooleanLiteralValue;
 
-export type ImplementedCompositeValue = TransitionValue | TypographyValue;
+export type ImplementedCompositeValue = TransitionValue | TypographyValue | ShadowValue;
 
 export type ImplementedAuthoredValue = ImplementedLiteralValue | TokenReference | ExpressionValue | ImplementedCompositeValue;
 
@@ -344,9 +346,17 @@ function createTokenAssignment(
     value: input.value.kind === "token-reference"
       ? createTokenReference(input.value)
       : input.value.kind === "composite"
-        ? input.value.valueType === "transition" ? createTransition(input.value) : createTypography(input.value)
+        ? copyCompositeValue(input.value)
         : input.value,
   };
+}
+
+function copyCompositeValue(value: ImplementedCompositeValue): ImplementedCompositeValue {
+  switch (value.valueType) {
+    case "transition": return createTransition(value);
+    case "typography": return createTypography(value);
+    case "shadow": return createShadow(value);
+  }
 }
 
 function assertConditionIsUnique(

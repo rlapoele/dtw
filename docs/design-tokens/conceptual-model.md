@@ -314,6 +314,36 @@ One selected assignment supplies the complete typography value. Fields do not me
 
 Missing or wrongly typed loaded fields produce `invalid-composite` with `invalid-typography-field`. A negative resolved font size or line height produces `negative-typography-font-size` or `negative-typography-line-height` respectively. Diagnostics identify the field and owning typography token where applicable. Part-value paths into the composite, direct field expressions, and whole-composite expression operations remain deferred. This schema does not select persistence or adapter behavior.
 
+#### Shadow values
+
+**Working decision — 28 October 2026**
+
+`ShadowValue` is an identity-less composite containing an ordered, non-empty stack of identity-less `ShadowLayer` values:
+
+```ts
+type ShadowLayer = {
+  color: ColorLiteralValue | TokenReference;
+  offsetX: DimensionLiteralValue | TokenReference;
+  offsetY: DimensionLiteralValue | TokenReference;
+  blur: DimensionLiteralValue | TokenReference;
+  spread: DimensionLiteralValue | TokenReference;
+  inset: BooleanLiteralValue | TokenReference;
+};
+type ShadowValue = {
+  kind: "composite";
+  valueType: "shadow";
+  layers: readonly [ShadowLayer, ...ShadowLayer[]];
+};
+```
+
+All six fields are required without defaults, including explicit `inset: false` represented by a boolean literal. Offsets and spread accept signed dimensions; blur must be non-negative, including after reference resolution. Zero blur is valid. Layer order and duplicates are preserved. Construction copies the stack, layers, constituent literals, and references while preserving authored dimension units, exact values, color space, missing color components, and alpha. Color alpha remains distinct from layer opacity; this schema introduces no opacity field.
+
+A `shadow` token accepts this composite or a whole-value alias to another shadow token. Field references must target same-project tokens with the corresponding color, dimension, or boolean type. Every dependency resolves under the same completed variation selection. Referenced dimension tokens may independently evaluate supported expressions, but direct expressions in layer fields remain deferred. One selected assignment supplies the entire stack; layers and fields never merge across assignments, and failures never trigger a less-specific fallback.
+
+Resolution derives `ResolvedShadowValue` with literal fields without mutating authored references. Project reference validation traverses all authored layer-field references, including inactive assignments, while cycle detection and resolution follow selected dependencies. Field diagnostics include a zero-based `layerIndex` and field; resolution also identifies the owning shadow token. Malformed loaded stacks produce `invalid-composite` with `invalid-shadow-layers`; malformed fields use `invalid-shadow-field`; negative resolved blur uses `negative-shadow-blur`.
+
+The [vendored DTCG shadow reference](../references/dtcg-2025.10/format/composite-types.md#shadow) informs the field vocabulary. The canonical model always uses a stack and requires an explicit boolean inset field. DTCG's single-object form, optional inset default, and array-entry references require future adapter policies; this decision does not establish import/export behavior or conformance. Whole-layer references, references to other stacks inside a stack, part-value paths, direct field expressions, CSS parsing, and whole-shadow expression operations remain deferred. An empty stack is not a representation for a no-shadow value in this increment.
+
 #### Transition values
 
 **Working decision — 27 October 2026**

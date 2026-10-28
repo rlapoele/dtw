@@ -278,6 +278,14 @@ The organized vocabulary used to classify and name tokens by layer, category, ro
 
 A user-facing coherent variation in resolved token values. Canonically, a named theme is a preset of options selected across independent variation axes rather than a separate token tree.
 
+## Shadow
+
+An identity-less composite value containing an ordered, non-empty stack of shadow layers. A shadow token's selected assignment supplies the entire stack.
+
+## Shadow layer
+
+An identity-less constituent of a shadow value, with explicit color, horizontal and vertical dimension offsets, non-negative dimension blur, signed dimension spread, and boolean inset fields. Each field accepts its typed literal or a token reference. Layer order is meaningful; layers have no stable identity or independent lifecycle.
+
 ## Theme preset
 
 A project-owned aggregate root that gives stable identity and a name to a reusable partial variation selection, such as dark with high contrast. Omitted axes derive their current defaults. A preset provides a convenient activation and authoring view but does not own token values, participate in token conditions, nest, or contain target-specific activation mappings.
