@@ -2,7 +2,7 @@
 
 ## Project state
 
-This repository contains inception documentation for the Design Token Workbench, a vendored DTCG `2025.10` reference snapshot, and an npm scaffold using TypeScript, Vite, and Vitest. The `src/` and `test/` directories are initially empty; there is no domain implementation or web entry point. See `README.md` for commands and scaffold limitations. The accepted scope is a desktop-first, local-first token workbench. `docs/project/design-system-studio-extension.md` is exploratory and must not override the token-workbench documents.
+This repository contains product and domain documentation for the Design Token Workbench, a vendored DTCG `2025.10` reference snapshot, and an npm scaffold using TypeScript, Vite, and Vitest with a host-independent domain core and unit tests. There is no application-operation layer or web entry point yet. See `README.md` for commands and scaffold limitations. The accepted scope is a desktop-first, local-first token workbench. `docs/project/design-system-studio-extension.md` is exploratory and must not override the token-workbench documents.
 
 ## Read before changing direction
 
@@ -16,6 +16,15 @@ This repository contains inception documentation for the Design Token Workbench,
 - For normative DTCG details, start with `docs/references/dtcg-2025.10/README.md` and prefer its linked official reports where report-level conformance context matters.
 
 Treat status labels as meaningful: **established** directions and principles are constraints; working decisions and hypotheses require validation; future possibilities are not commitments; open questions must not be settled implicitly for implementation convenience. If a task requires an unresolved decision, make it explicit and update the affected documents consistently.
+
+## Increment collaboration
+
+- For substantial feature increments, explicitly delegate to separate analyst, developer, and reviewer subagents following [the workflow and role briefs](docs/workflow/agent-roles.md). The main chat coordinates user questions and handoffs. Small fixes and editorial changes do not require this workflow.
+- Use [increment contracts and completion reports](docs/increments/README.md). Start implementation only after the user agrees the contract and authorizes implementation; drafts and templates are not approval.
+- Start developer and reviewer agents with fresh conversation contexts and explicit references to the authoritative documents. Give the reviewer an identified stable snapshot; do not seed its initial brief with the developer's rationale or conclusions.
+- Use one code-writing agent at a time. Resolve findings with evidence and recheck affected behavior. Surface material ambiguities or scope changes; continue routine work within agreed scope without repeated approval.
+- If subagents are unavailable, state that limitation rather than implying an independent review occurred. Role instructions do not create separate permission boundaries.
+- Setting up or editing the workflow does not authorize opening or implementing the next application increment.
 
 ## Product and model invariants
 
@@ -52,4 +61,4 @@ Treat status labels as meaningful: **established** directions and principles are
 - Update `docs/status/current.md` after a material milestone, research conclusion, decision, or handoff. Follow `docs/status/README.md`; status files summarize authoritative documents and must not become a second source of truth.
 - Whenever work crystallizes a decision or direction in the repository documentation, include a suggested short commit message in the final handoff.
 - Keep Markdown direct and semantic. Use small diagrams or examples only when they clarify a relationship.
-- Review changed Markdown, links, terminology, and status claims manually. The scaffold provides `npm run typecheck` and `npm test`, but initially has no source or tests; see `README.md` for their expected empty-input results. As code is introduced, keep its commands documented and test domain behavior independently from Electron, the visible UI, the real filesystem, and the network.
+- Review changed Markdown, links, terminology, and status claims manually. The scaffold provides `npm run typecheck` and `npm test` for the current domain core; see `README.md` for command scope and build limitations. Keep commands documented and test domain behavior independently from Electron, the visible UI, the real filesystem, and the network.

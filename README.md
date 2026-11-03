@@ -4,6 +4,10 @@ A desktop-first, local-first design-token workbench. Product and domain discover
 
 The accepted [visual direction and reference image](docs/project/visual-direction.md) guide subsequent interface design and prototyping.
 
+## Development workflow
+
+Substantial increments use separate analyst, developer, and reviewer agents with an agreed contract and acceptance evidence. See the [workflow and role instructions](docs/workflow/agent-roles.md) and [increment templates](docs/increments/README.md). No application increment has been opened by this setup.
+
 ## Development scaffold and domain core
 
 The scaffold uses TypeScript, Vite, Vitest, and npm. Dependencies are development-only and `package-lock.json` records their resolved versions. The host-independent domain code implements exact canonical Decimal validation and comparison; boolean, number, dimension, percentage, duration, font family, font weight, color, and cubic Bézier literal construction; variation axes, conditions, selection completion, assignment matching, and theme presets; the core `Project` entity and initial `Token` aggregate lifecycle; namespace groups, structural validation, and path derivation; stable-ID token references with project-scoped validation; and literal, alias, and portable number/dimension expression resolution. Token assignments accept the implemented literal subset, references, portable expressions, and the transition, typography, and shadow composites. There is no application-operation layer or web entry point yet.

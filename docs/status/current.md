@@ -1,6 +1,6 @@
 # Current Project Status
 
-> Last updated: 28 October 2026
+> Last updated: 3 November 2026
 >
 > Phase: domain foundation implemented; first application workflow planning next
 >
@@ -24,6 +24,8 @@ The first domain behavior now implements canonical Decimal validation and compar
 
 ## Recently completed
 
+- Established the [analyst → developer → reviewer workflow](../workflow/agent-roles.md) and reusable [increment contract and completion templates](../increments/README.md). This is documentation setup only: no application increment has been opened or agreed, and the next application decisions remain unresolved.
+
 - Accepted and saved the [refined visual reference](../project/visual-direction.md), combining neutral anthracite Precision organization and search with color editing and ramp context, variation comparison, scale specimens, and relationships/resolution traces. Detailed interactions and initial coverage remain open.
 - Initialized Git with `dev` as the default branch and `main` and `releases` as additional branches; configured the GitHub remote at `https://github.com/rlapoele/dtw.git`.
 - Added and documented the pinned DTCG `2025.10` Format, Color, and Resolver reference snapshot.
@@ -32,7 +34,7 @@ The first domain behavior now implements canonical Decimal validation and compar
 - Synchronized `AGENTS.md` with the current document map and interoperability constraints.
 - Added this dedicated status-memory and handoff structure.
 - Selected a PWA-first implementation sequence: validate the first complete browser vertical slice, then immediately validate reuse through Electron and desktop adapters before browser-only assumptions accumulate.
-- Created empty `src/` and `test/` directories, installed TypeScript, Vite, and Vitest as npm development dependencies, and added type-check, test, development, build, and preview scripts. See [development commands](../../README.md#development-scaffold) and the [tooling decision](../project/architecture.md#initial-development-tooling).
+- Created empty `src/` and `test/` directories, installed TypeScript, Vite, and Vitest as npm development dependencies, and added type-check, test, development, build, and preview scripts. See [development commands](../../README.md#development-scaffold-and-domain-core) and the [tooling decision](../project/architecture.md#initial-development-tooling).
 - Recorded [export-aware modeling](../design-tokens/conceptual-model.md#export-aware-modeling) using CSS and strict DTCG `2025.10` as the first modeling cases without selecting adapter order or full coverage.
 - Defined [ExpressionValue](../design-tokens/conceptual-model.md#expressions) as an identity-less, structured, serializable typed AST. Versioned operation contracts derive result types and define arity, operand typing, unit algebra, context, precision, and rounding; literals, stable-identity references, nested expressions, and explicit context references form operands; authored ASTs survive evaluation; and generic inline fallbacks are excluded. The initial portable mathematical family is addition, subtraction, scaling, binary minimum and maximum, and clamp.
 - Recorded [context-aware previews](../design-tokens/conceptual-model.md#value-previews) as a working direction, with browser rendering outside the domain and observed results distinct from canonical values.
