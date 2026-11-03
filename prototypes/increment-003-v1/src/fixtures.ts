@@ -1,3 +1,4 @@
+import { colorPreview } from './color-tools';
 export type Space = 'srgb' | 'display-p3' | 'hsl' | 'oklab' | 'oklch';
 export type Color = { space: Space; components: [string, string, string]; alpha: string };
 export type Value = { mode: 'literal'; color: Color } | { mode: 'reference'; target: string };
@@ -15,13 +16,8 @@ export const seed: Token[] = [
  {id:'text-primary',name:'primary',group:'color / content',layer:'Semantic',description:'Primary readable text.',value:{mode:'reference',target:'neutral-900'}},
 ];
 export const path = (t: Token) => `${t.group ? t.group+' / ' : ''}${t.name || '(unnamed)'}`;
-// Presentation-only bounded specimen. Numeric conversion never writes back to fields.
-export function preview(c?: Color): string | undefined {
- if (!c || c.space !== 'srgb') return;
- const numbers=c.components.map(Number), alpha=Number(c.alpha);
- if (c.components.some(v=>v.trim()==='' || v==='none') || c.alpha.trim()==='' || ![...numbers,alpha].every(n=>Number.isFinite(n)&&n>=0&&n<=1)) return;
- return `color(srgb ${c.components.join(' ')} / ${c.alpha})`;
-}
+// Approximate specimen only; conversion never writes back to authored fields.
+export const preview = (c?: Color): string | undefined => colorPreview(c).css;
 // One-hop specimen, intentionally not a graph resolver. Targets in this design are literals.
 export function specimen(t: Token, tokens: Token[]): Color | undefined {
  const v=t.value;

@@ -7,11 +7,13 @@
     "dev": "vite --host 127.0.0.1 --port 4173 --strictPort",
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort"
+    "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort",
+    "test": "node --test test/color-tools.test.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.9.0",
     "class-variance-authority": "0.7.1",
+    "colorjs.io": "0.7.1",
     "react": "19.3.1",
     "react-dom": "19.3.1"
   },
