@@ -8,7 +8,7 @@ The directory keeps its V1 name to preserve the existing preview setup. [V2 note
 
 ## Agreed requests for next designer revision
 
-**Agreed by the user on 3 November 2026; implemented in prototype V3 for user review.** These requests amend the isolated prototype, not the production application contract. User approval for analyst review remains pending; no downstream review has started.
+**Agreed by the user on 3 November 2026; implemented in prototype V3 for user review.** These requests amend the isolated prototype, not the production application contract. The user subsequently approved V4 for analyst review on 3 November 2026. The [analyst assessment](../../docs/increments/003-visible-color-authoring.md#analyst-review--v4-3-november-2026) records remaining decisions; final agreement and implementation authorization remain pending.
 
 ### DR-1 — Keep the applied color visible
 
@@ -41,7 +41,7 @@ A separate designer prepared **V3 on 3 November 2026**. Show the actual prototyp
 
 ## V4 — Responsive panes and select chevrons
 
-**User-requested prototype revision, 3 November 2026; awaiting user review.** This revision adds an Outline `ChevronDownIcon` inset 12px from the end of every native select. Native selection semantics and keyboard behavior remain; 38px end padding keeps text clear of the decorative, pointer-transparent icon. A shared local `Select` presentation component covers editor controls and create/rename dialogs without adding a dependency.
+**User-requested prototype revision, 3 November 2026; approved by the user for analyst review.** This revision adds an Outline `ChevronDownIcon` inset 12px from the end of every native select. Native selection semantics and keyboard behavior remain; 38px end padding keeps text clear of the decorative, pointer-transparent icon. A shared local `Select` presentation component covers editor controls and create/rename dialogs without adding a dependency.
 
 The left **Project groups** and right **Token inspector** panes have visible keyboard-accessible collapse/reopen buttons with `aria-expanded` and `aria-controls`. Pane contents remain mounted behind an explicit `hidden` rule, preserving selected tokens, both draft forms, raw entries, entry scale and current inspection tab. Hiding a pane never applies or discards edits; hidden controls leave the tab order. The toggle stays visible/focused when its contents are hidden.
 
@@ -175,6 +175,6 @@ V3.1 verification: isolated typecheck, production build, all 8 existing conversi
 - Designer browser access remained unavailable. The coordinator performed CUA interaction/rendered checks: desktop collapse/reopen preserved a pending reference to `neutral / 900` while the applied color stayed blue; tablet at **820 × 1000** kept the inspector at the right with groups initially collapsed and inset select arrows; mobile at **390 × 844** started with both panes collapsed.
 - The first mobile check exposed document scrolling during inspector expansion/focus. Viewport containment was corrected and the token panel now anchors its absolute live-status paragraph to its own scroll area. Coordinator rechecks observed **scrollY 0**, document height **844**, and root top **0** after expansion and target selection/Tab. Inspector scrolling exposed Cancel/Apply; collapse/reopen retained the pending reference and Cancel restored the applied baseline. The final build retains that bounded layout. These checks are scoped samples, not a formal keyboard/accessibility certification or an independent reviewer assessment.
 - Screenshots: [desktop](../../output/playwright/003-designer-v4-desktop.png), [collapsed rails](../../output/playwright/003-designer-v4-collapsed.png), [tablet](../../output/playwright/003-designer-v4-tablet.png), [mobile collapsed](../../output/playwright/003-designer-v4-mobile-collapsed.png), [mobile expanded](../../output/playwright/003-designer-v4-mobile-expanded.png), [mobile actions reached](../../output/playwright/003-designer-v4-mobile-actions.png).
-- Existing fixture, one-hop specimen, temporary-session and numerical limitations remain. No production integration or analyst/reviewer handoff occurred. User review of V4 remains pending.
+- Existing fixture, one-hop specimen, temporary-session and numerical limitations remain. No production integration or analyst/reviewer handoff occurred. The user subsequently approved V4 for analyst review; the [analyst assessment](../../docs/increments/003-visible-color-authoring.md#analyst-review--v4-3-november-2026) records remaining decisions and missing-state design coverage. Final contract/design agreement and application implementation authorization remain pending.
 
 Suggested commit only if later requested: `design: add responsive collapsible panes to prototype v4`.
