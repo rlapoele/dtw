@@ -2,11 +2,13 @@
 
 > Last updated: 3 November 2026
 >
-> Phase: domain foundation implemented; first application increment completed and independently reviewed
+> Phase: Increment 001 completed; next application increment proposed for agreement
 >
 > Implementation state: npm scaffold, host-independent domain core, initial application operations and in-memory adapter; no web entry point
 
 ## Current focus
+
+A separate analyst has proposed [Increment 002: Color value revision](../increments/002-color-value-revision.md) to extend the create-only application workflow with explicit revision and alias retargeting/repair, dependent resolution checks, and atomic cycle rejection. Its contract is **Draft / Not started / not agreed**. The next workflow priority, permitted value-form changes, edited-token eligibility, and broken-data write policy await user decisions. No implementation or developer/reviewer work is authorized for Increment 002.
 
 The separate analyst prepared [Increment 001: In-memory authoring workflow](../increments/001-in-memory-authoring-workflow.md) for project creation, namespace organization, literal color and semantic-alias authoring, and authored/resolved inspection through shared application operations. The user agreed D1–D4 and authorized implementation with separate developer and reviewer agents on 3 November 2026; the contract is **Agreed / Completed**. Its agreed enabling scope excludes a visible UI and durable storage and does not complete the first PWA slice. Scope is limited to unconditional color authoring, grouping and one group rename, caller-supplied IDs, and in-memory coordination with explicit failed-command behavior. Sibling-name enforcement is explicitly deferred; broader product and persistence decisions remain open.
 
@@ -25,6 +27,8 @@ The first domain behavior now implements canonical Decimal validation and compar
 - The official DTCG `2025.10` Markdown sources are vendored as reference material under [`docs/references/dtcg-2025.10/`](../references/dtcg-2025.10/README.md).
 
 ## Recently completed
+
+- Prepared [Increment 002](../increments/002-color-value-revision.md) with a separate analyst, comparing color revision with retention/backup and UI alternatives. Recommendations remain proposals. Baseline type checking and all 654 tests passed; these do not verify the proposed behavior.
 
 - Reviewed project-owned documentation against `src/` on 3 November 2026. Corrected stale implementation/coverage wording, the storage-adapter glossary definition, the strict DTCG duration-unit table, and the distinction between conceptual activation outcomes and the current precompleted-selection resolver API. Fixed sparse color-component and Bézier-coordinate arrays bypassing explicit-value validation; regression tests cover required positions and application rejection without a write. Type checking and all 654 tests passed after the fixes. Project-owned local file links and 73 heading links checked successfully. The earlier Increment 001 completion evidence remains historical; this review is a subsequent small fix.
 
@@ -100,7 +104,7 @@ The first domain behavior now implements canonical Decimal validation and compar
 
 ## Next meaningful actions
 
-1. Use the [completed Increment 001 report](../increments/001-in-memory-authoring-workflow.md#completion-report) to select and contract the next concrete authoring/PWA increment. No next increment is authorized by this handoff.
+1. Review the [draft Increment 002](../increments/002-color-value-revision.md), resolve its four decision bundles, and agree its scope before authorizing implementation. Retention/backup and a visible authoring slice remain alternative priorities; the draft does not select their subsequent order.
 2. Decide the persistence boundary relative to DTCG and the minimum project manifest needed by that workflow.
 3. Select the first target adapter and state its compatibility promise, including expression and color conversion handling; compare small CSS and strict DTCG output and diagnostic fixtures.
 4. Extend the implemented shared operations only as required by the selected PWA workflow. Define the immediately following Electron prototype's acceptance boundary.
