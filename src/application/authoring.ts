@@ -2,7 +2,7 @@ import { createProject } from "../domain/project";
 import type { Project, ProjectInput } from "../domain/project";
 import { createColorLiteral } from "../domain/color-literal";
 import type { ColorLiteralInput } from "../domain/color-literal";
-import { createToken } from "../domain/token";
+import { addTokenAssignment, createToken, removeTokenAssignment } from "../domain/token";
 import type { Token } from "../domain/token";
 import { createTokenGroup, renameTokenGroup } from "../domain/token-group";
 import type { TokenGroup, TokenGroupInput } from "../domain/token-group";
@@ -42,6 +42,12 @@ export type CreateColorTokenInput = {
   readonly value:
     | (ColorLiteralInput & { readonly kind: "literal" })
     | { readonly kind: "token-reference"; readonly targetTokenId: string; readonly valuePath: readonly [] };
+};
+
+export type ReviseColorTokenInput = {
+  readonly projectId: string;
+  readonly tokenId: string;
+  readonly value: CreateColorTokenInput["value"];
 };
 
 export type ProjectReadback = {
@@ -151,6 +157,35 @@ export function createAuthoringOperations(storage: ProjectStorage) {
         return { status: "failure", error: { code: "invalid-domain-input", message: error.message } };
       }
       return accept({ ...result.value, tokens: [...result.value.tokens, token] }, token);
+    },
+
+    reviseColorToken(input: ReviseColorTokenInput): ApplicationResult<Token> {
+      const result = load(input.projectId);
+      if (result.status === "failure") return result;
+      const token = result.value.tokens.find(token => token.id === input.tokenId && token.projectId === input.projectId);
+      if (token === undefined) return missingEntity("token", input.tokenId);
+      let revised: Token;
+      try {
+        const assignments = token.definition?.assignments;
+        const assignment = assignments?.[0];
+        if (token.definition?.type !== "color" || token.layer === "component" ||
+          assignments?.length !== 1 || assignment === undefined || assignment.condition.length !== 0 ||
+          !(assignment.value.kind === "token-reference" ||
+            (assignment.value.kind === "literal" && assignment.value.valueType === "color"))) {
+          throw new RangeError("Color revision requires one unconditional color literal or reference on a non-component token");
+        }
+        if (input.value.kind !== "literal" && input.value.kind !== "token-reference") {
+          throw new RangeError("Color revision requires an explicit color literal or reference");
+        }
+        const value = input.value.kind === "literal" ? createColorLiteral(input.value) : createTokenReference(input.value);
+        // Both pure steps operate on detached data; only the final checked
+        // candidate is committed, never the intermediate unassigned token.
+        revised = addTokenAssignment(removeTokenAssignment(token, []), { condition: [], value }, []);
+      } catch (error) {
+        if (!(error instanceof RangeError)) throw error;
+        return { status: "failure", error: { code: "invalid-domain-input", message: error.message } };
+      }
+      return accept({ ...result.value, tokens: result.value.tokens.map(current => current.id === input.tokenId ? revised : current) }, revised);
     },
 
     inspectToken(projectId: string, tokenId: string): ApplicationResult<TokenInspection> {

@@ -164,6 +164,14 @@ For scale helpers, the UI collects parameters and presents candidates; the domai
 
 Normal authoring checks same-project structural and reference relationships before commit. Reads preserve repairable authored data and domain diagnostics. Sibling-name collision enforcement is explicitly deferred, so structural validation does not guarantee unambiguous paths. This is an enabling increment without a UI or durable storage; it does not complete the PWA slice or select its deferred technologies and interchange profile.
 
+### Color value revision increment
+
+**Agreed enabling scope — 3 November 2026**
+
+[Increment 002](../increments/002-color-value-revision.md) extends the same in-memory operations with explicit revision of an existing color token's sole unconditional assignment. Supplied literals and whole-value references may replace one another deliberately; token identity, namespace placement, type, metadata, and regeneration policy remain unchanged. Regeneration protection does not block explicit manual editing. Dependent aliases resolve from current authored data, without persisted resolved values or implicit flattening.
+
+Validate the complete candidate namespace and reference graph before one atomic commit. Reject cycles and invalid targets; a repair is accepted only if no namespace/reference diagnostics remain, so unrelated errors still block it. This scope excludes UI, incomplete-token completion, conditional editing, progressive repair, durable storage, and further host/adapter choices.
+
 ## Expression preview boundary
 
 **Working decision — 6 October 2026**

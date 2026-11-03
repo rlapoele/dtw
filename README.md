@@ -39,6 +39,7 @@ Type checking and tests validate the domain core and in-memory authoring workflo
 - `createProject(input)` creates empty project metadata using a supplied ID.
 - `createGroup(input)` creates a root or nested namespace group in the specified project.
 - `createColorToken(input)` creates one explicitly typed color token with a structured literal or whole-value reference and one unconditional assignment. Identity, name, parent, and regeneration policy are explicit; layer and semantic role remain optional metadata. No layers or roles are inferred.
+- `reviseColorToken({ projectId, tokenId, value })` replaces an existing color token's sole unconditional literal or reference with the complete supplied literal or whole-value reference, including deliberate changes between those forms. All other token data is preserved, including regeneration protection, which permits explicit manual edits. Incomplete, conditional, component-layer, and expression/composite-bearing edited tokens are ineligible. A recognizable broken reference can be repaired only when the replacement clears all candidate namespace/reference diagnostics; unrelated remaining diagnostics block the edit.
 - `renameGroup(projectId, groupId, localName)` preserves identities and references while derived paths change.
 - `readProject(projectId)` returns project metadata and authored groups/tokens alongside domain-derived path results.
 - `inspectToken(projectId, tokenId)` returns authored data, its path result, and a separate domain resolution result with selection, trace, and diagnostics.
