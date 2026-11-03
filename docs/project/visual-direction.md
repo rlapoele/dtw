@@ -31,6 +31,7 @@ This variant keeps the accepted visual direction and replaces only the illustrat
 - A project-centered workbench with persistent token search, namespace navigation, a central working surface, and a contextual inspector.
 - Purposeful density with enough space to scan names, values, controls, and visual specimens. Use focused views rather than placing every capability on one screen.
 - Nearly achromatic workbench chrome that recedes around the design system being authored. Reserve chromatic emphasis for token content, previews, and semantic feedback whose meaning requires color.
+- Use [Heroicons Outline](https://heroicons.com/) for interface icons (user direction, 3 November 2026). Keep icon sizing and stroke treatment consistent, and preserve accessible control labels. This visual choice does not select a production integration package.
 
 The desired air is that of tools such as AppVision, Penpot, and Figma. This is general inspiration rather than an instruction to copy their branding, structure, or vendor-specific token concepts.
 

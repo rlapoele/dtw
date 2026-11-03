@@ -1,14 +1,14 @@
-# Increment 003 — Designer proposal V2
+# Increment 003 — Designer proposal V3.1
 
 **3 November 2026. Interactive design revision for user feedback, before analyst review.**
 
-V2 adds the requested explicit **0–255 sRGB entry scale** and **draft conversion between all five color spaces**, while preserving the neutral workbench layout and literal/reference boundary. It is an isolated, disposable prototype. No production stack, conversion library, precision/gamut policy, domain behavior or implementation has been agreed through this artifact.
+V3.1 refines V3 iconography at the user’s request with **Heroicons Outline**. V3 implements agreed **DR-1 and DR-2**: side-by-side applied/draft colors and separately retained Literal/Reference drafts, preserving V2’s explicit **0–255 sRGB entry scale** and **draft conversion between all five color spaces**. It is an isolated, disposable prototype. No production stack, conversion library, precision/gamut policy, domain behavior or implementation has been agreed through this artifact.
 
-The directory keeps its V1 name to preserve the existing preview setup. [V1 design notes](DESIGN-V1.md) retain the prior proposal, original limitations and subsequent normalized-sRGB guidance. V1 screenshots remain in `../../output/playwright/003-designer-v1-*`. V2 supersedes V1's blank-on-space-switch behavior and sRGB-only preview restriction; it does not retroactively establish any acceptance criterion.
+The directory keeps its V1 name to preserve the existing preview setup. [V2 notes](DESIGN-V2.md) preserve the preceding proposal and verification. [V1 design notes](DESIGN-V1.md) retain the prior proposal, original limitations and subsequent normalized-sRGB guidance. V1 screenshots remain in `../../output/playwright/003-designer-v1-*`. V2 supersedes V1's blank-on-space-switch behavior and sRGB-only preview restriction; it does not retroactively establish any acceptance criterion.
 
 ## Agreed requests for next designer revision
 
-**Agreed by the user on 3 November 2026; not implemented.** These requests amend the next prototype revision, not the production application contract. V2 remains the current artifact. No designer work or downstream review is started by this handoff.
+**Agreed by the user on 3 November 2026; implemented in prototype V3 for user review.** These requests amend the isolated prototype, not the production application contract. User approval for analyst review remains pending; no downstream review has started.
 
 ### DR-1 — Keep the applied color visible
 
@@ -37,11 +37,31 @@ Inactive drafts are temporary interface state, not additional canonical token va
 
 ### Resume and review gate
 
-Resume with a **separate designer subagent**, using these requests and the [designer workflow](../../docs/workflow/agent-roles.md#designer-brief). Produce an identified next revision (V3), document its checks and limits, and **show it to the user for review first**. Any material design ambiguity should be brought back to the user. Do not pass the result to an analyst, reviewer or developer until the user approves that next handoff. Prototype approval, analyst assessment, final contract/design agreement and application implementation authorization remain distinct steps.
+A separate designer prepared **V3 on 3 November 2026**. Show the actual prototype to the user before any analyst/reviewer/developer handoff. User approval for that handoff, analyst assessment, final contract/design agreement and application implementation authorization remain distinct.
 
-Suggested resume instruction:
+## V3.1 — Outline icon refinement
 
-> Resume Increment 003 with a separate designer. Update the isolated prototype to implement agreed DR-1 and DR-2 in its design notes, preserving V2 behavior. Show me the resulting V3 for review before any analyst/reviewer handoff or application implementation.
+**User-requested direction, 3 November 2026:** use [Heroicons Outline](https://heroicons.com/) for icons. The isolated prototype now imports official React components from `@heroicons/react/24/outline`, pinned to **2.2.0** in this artifact’s package and lockfile. [Official usage documentation](https://github.com/tailwindlabs/heroicons#react) was checked on that date. No root dependency or production stack choice changes.
+
+Decorative character icons are replaced for the workbench mark, session information, all-tokens navigation, group chevron/folders, add actions, search and reference indicators. Icons inherit the surrounding neutral color and use consistent sizing; all are `aria-hidden`. Text button names and field labels remain accessible. The project’s `S` monogram and meaningful text separators remain text. DR-1/DR-2 interaction behavior is preserved.
+
+## V3 interaction notes
+
+- **Applied color** and **Draft preview** are labeled side by side above the authoring controls, in both forms. The applied specimen and summary use applied token data only. Missing resolution, incomplete inputs and unsupported preview gamut retain explicit unavailable explanations.
+- Form switches preserve the literal color space, components, alpha, sRGB entry scale and raw byte text, plus the independent reference target. Edits in either form contribute to departure protection, including edits hidden in the inactive form. Switching alone never applies a value.
+- **Cancel** discards both forms and restores the applied editing baseline. **Apply changes** validates/commits only the active form; rejection preserves both drafts. Success starts a fresh baseline for that authored value and clears the old inactive draft. The active literal entry scale remains selected after literal Apply; reopening another token starts normalized entry.
+- An applied alias starts its literal form with empty channels; its resolved color is never silently copied into a new literal. The current reference target stays visible in the selector even if an earlier fixture edit changed that target into an alias; the existing one-hop preview limitation remains explicit.
+
+## Try V3
+
+1. Select `color / blue / 500`, choose **0–255 scale** and enter `250, 30, 30`, alpha `0.6`. Applied color remains blue beside the translucent red draft.
+2. Switch to **Reference**, choose `color / neutral / 900`, then switch back. The literal values, alpha and byte scale return. Switch again: the selected reference target returns.
+3. Return to Literal and replace Red with `0.`. Switch away and back: this incomplete raw text is retained, its draft specimen is unavailable, and Apply is disabled until corrected. Cancel restores the applied baseline and clears both pending forms.
+4. With a fresh sample, draft a literal on `color / blue / 500`, switch to Reference and choose `color / accent / primary`. Apply rejects the cycle without changing the applied blue. Both the reference selection and the inactive literal draft remain available.
+5. Edit only a reference target, return to the unchanged literal form, then select another token. The departure dialog still protects the hidden reference edit. Keep editing restores it; Discard draft removes both pending forms without transferring them to another token.
+6. Apply a valid literal or reference, then edit and Cancel. Both specimens and the applied summary follow the new applied baseline. When that baseline is an alias, its new literal draft is empty.
+
+Screenshots: [literal draft](../../output/playwright/003-designer-v3-literal.png), [reference draft](../../output/playwright/003-designer-v3-reference.png).
 
 ## View and run
 
@@ -69,7 +89,7 @@ Selecting another **Color space** deliberately converts the current literal draf
 
 Incomplete byte entries retain their visible text. They suppress the draft specimen, disable Apply, and block space/entry-scale changes with a clear message, so an older normalized value cannot be applied as though it were the unfinished entry. Cancel discards both raw entry text and normalized draft changes. Incomplete normalized fields remain in the draft and fail explicit submission/conversion; their preview explains invalid input. Missing `none` is distinct from incomplete or invalid numeric text.
 
-## Try V2
+## Preserved V2 interactions
 
 1. Select `color / blue / 500`, choose **0–255 scale**, and enter Red `250`, Green `30`, Blue `30`. The specimen becomes red. Apply and inspect the normalized applied values: `[0.980392156863, 0.117647058824, 0.117647058824]`. The `color / accent / primary` specimen follows the applied primitive through the existing one-hop sample relationship.
 2. Toggle between entry scales before editing. Apply remains disabled; the stored/draft normalized text stays unchanged, including long precise strings. Type a long normalized decimal to inspect string preservation, then toggle without applying. Merely displaying approximate byte coordinates does not rewrite it.
@@ -96,7 +116,7 @@ These are **prototype policies only**, not proposed changes to the exact domain 
 
 ## Scope and acceptance-criteria mapping
 
-| Draft criterion | V2 design evidence | Remaining limits |
+| Draft criterion | Prototype design evidence | Remaining limits |
 | --- | --- | --- |
 | AC-1 | Seeded project, groups, token creation, group rename and search remain. | No create-project/empty-session flow or robust duplicate-name/identity UI. Groups remain string-only presentation data; nested rename semantics are not modeled. |
 | AC-2 | Literal/reference boundary, explicit apply/cancel, authored/resolved separation, retargeting and dependent specimens remain. | Still one-hop fixture specimens; no actual operation or reference graph engine. |
@@ -121,15 +141,14 @@ Primary sources checked 3 November 2026:
 
 No remote API receives color/project data. Color.js runs locally in this prototype's browser bundle. Using it here does not choose it for production.
 
-## Verification
+## V3 verification
 
-- Node `24.14.1`, npm `11.17.0`.
-- `npm test`: **8 focused Node tests passed**. They cover byte mapping/fractions/extended channels and noise-free derived byte displays across all five space roundtrips; unchanged long strings on representation toggle; known red/HSL/OKLAB coordinates; all 25 source/target space pairs and `1e-8` sRGB roundtrip tolerance; preserved alpha; black/white/gray and qualified `none` hue; invalid/incomplete/missing/non-finite input; P3 out-of-gamut raw coordinates; and formatting boundaries.
-- `npm run typecheck`: strict TypeScript passed in both the isolated prototype and repository root (root check verifies its existing type boundary only).
-- `npm run build`: passed, with real Color.js in the built bundle.
-- Retained loopback preview serves the rebuilt artifact; V1 HTTP 200 evidence remains. Coordinator performs V2 browser checks in a fresh tab, without reloading the user's existing tabs.
-- Designer visually inspected V2 captures `../../output/playwright/003-designer-v2-byte-mode.jpg` and `../../output/playwright/003-designer-v2-converted-oklch.jpg`: entry-scale selection, red draft/applied-blue distinction, normalized summary, converted OKLCH fields and alpha specimen are clear, without observed overlap. These are limited desktop observations, not an accessibility assessment.
-- Coordinator browser check observed entry-mode-only change leaving Apply disabled; `250,30,30` becoming the red normalized draft while applied blue stayed unchanged; alpha `0.4` preserved through HSL/OKLCH; and successful five-space selection with consistent specimens. The final derived-byte-display polish is additionally checked by helper tests; further runtime outcomes remain coordinator-owned.
-- `git diff --check`: passed. No analyst/reviewer review or production acceptance claim.
+- `npm test`: all **8 existing conversion-helper tests passed**. No conversion helper changed; these tests do not test the UI draft session.
+- `npm run typecheck` and `npm run build`: passed in the isolated prototype.
+- Separate designer’s CUA browser checks covered alias-to-literal blank initialization; literal/reference preservation; byte scale, `250,30,30`, alpha and incomplete raw `0.` retention; rejected indirect-cycle Apply; hidden-draft departure protection and Keep editing; valid literal/reference Apply and new baselines; Cancel of both forms; converted OKLCH retention; and token departure without draft leaks. Applied unresolved specimens were checked using the existing one-hop fixture limitation. Console warning/error log was empty during the checked session.
+- Desktop screenshots show both specimens above authoring controls. A 320px layout check found document width 320px and the comparison contained at x=20…300; the temporary viewport override was reset. These are limited browser observations, not formal accessibility or responsive certification.
+- `git diff --check`: passed. No analyst/reviewer review or production acceptance claim. Existing one-hop specimens, fixture diagnostics and all numerical/provenance limitations above remain.
 
-Suggested commit only if later requested: `design: add rgb entry scales and color conversion to prototype`.
+V3.1 verification: isolated typecheck, production build, all 8 existing conversion-helper tests and `git diff --check` passed. Designer browser access was unavailable for this refinement; the coordinator performed the CUA rendered check and observed aligned outline icons in the header, notice, navigation, folders, add actions, search, alias rows and reference box, with the applied/draft comparison intact. [V3.1 screenshot](../../output/playwright/003-designer-v3-1-outline.png) records that coordinator check. No new interaction behavior was introduced or independently reviewed.
+
+Suggested commit only if later requested: `design: refine prototype icons with Heroicons Outline`.

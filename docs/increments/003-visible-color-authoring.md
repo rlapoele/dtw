@@ -93,11 +93,15 @@ The user requested an isolated initial prototype at [prototypes/increment-003-v1
 
 On 3 November 2026, the user requested an explicit sRGB 0–255 input mode with normalized underlying values, and synchronized component conversion when changing the draft color space. The designer prepared the isolated V2 prototype to explore these behaviors; it is presented for user feedback before analyst review. This extends the earlier prototype scope, which deliberately cleared components and omitted conversions. Original application acceptance criteria remain unchanged pending user review and subsequent analyst assessment. Prototype-only byte/conversion precision and dependency choices do not select canonical domain conversion policies or production dependencies.
 
-## Design exploration — next revision agreed, pending designer work
+## Design exploration — V3 prepared for user review
 
 On 3 November 2026, the user agreed two required prototype changes: keep the applied color visible beside the draft preview until successful Apply, and preserve separate Literal/Reference drafts across authoring-mode switches. The [agreed designer requests DR-1 and DR-2](../../prototypes/increment-003-v1/README.md#agreed-requests-for-next-designer-revision) own the observable behavior, Apply/Cancel boundaries and resume instructions.
 
-These changes are recorded for a later separate designer revision (V3); they are not implemented and do not approve V2 for downstream review. The user must review the resulting prototype before approving any analyst/reviewer handoff. The application contract remains draft; no production implementation is authorized by this agreement.
+On 3 November 2026, the user resumed work with a separate designer, who prepared V3 in the same isolated prototype directory. V3 adds labeled applied/draft previews and retains separate Literal/Reference drafts, including raw sRGB entry text, until Cancel or successful Apply resets the editing baseline. The [prototype notes](../../prototypes/increment-003-v1/README.md) own its viewing instructions, verification evidence and limits.
+
+V3 is awaiting user feedback and approval for any analyst/reviewer handoff; no such handoff has occurred. The application contract and acceptance criteria remain draft, including the earlier conversion/preview scope pending analyst assessment. No production implementation is authorized by this prototype revision.
+
+On 3 November 2026, the user requested Heroicons Outline for icons. The separate designer prepared V3.1 of the isolated prototype accordingly; this is visual feedback and does not approve an analyst/reviewer handoff. The [visual direction](../project/visual-direction.md#visual-character-and-organization) records the icon choice.
 
 ## Agreed amendments
 

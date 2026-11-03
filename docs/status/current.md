@@ -2,13 +2,13 @@
 
 > Last updated: 3 November 2026
 >
-> Phase: Increment 003 prototype revision requests agreed; designer work pending
+> Phase: Increment 003 designer prototype V3.1 prepared; user review pending
 >
 > Implementation state: npm scaffold, host-independent domain core, initial application operations and in-memory adapter; no web entry point
 
 ## Current focus
 
-The user agreed Increment 003 D1–D3 and requested a separate designer's isolated [prototype](../../prototypes/increment-003-v1/) using Vite, strict React/TypeScript, Tailwind v4 and shadcn/ui with Base UI primitives in a neutral theme. V2 explores explicit sRGB 0–255 entry with normalized values and synchronized draft color-space conversions. The user has now agreed [DR-1 and DR-2](../../prototypes/increment-003-v1/README.md#agreed-requests-for-next-designer-revision): keep the applied color visible alongside the draft preview and preserve Literal/Reference drafts across switching. These required changes are documented for a later separate designer revision (V3), not implemented. Show that revision to the user before any analyst/reviewer handoff. No agent work is started by this handoff. Production conversion semantics, application acceptance criteria, final contract/design agreement and application implementation authorization remain pending.
+The user agreed Increment 003 D1–D3 and requested a separate designer's isolated [prototype](../../prototypes/increment-003-v1/) using Vite, strict React/TypeScript, Tailwind v4 and shadcn/ui with Base UI primitives in a neutral theme. V2 explores explicit sRGB 0–255 entry with normalized values and synchronized draft color-space conversions. The user has now agreed [DR-1 and DR-2](../../prototypes/increment-003-v1/README.md#agreed-requests-for-next-designer-revision): keep the applied color visible alongside the draft preview and preserve Literal/Reference drafts across switching. A separate designer has implemented these requests in V3 of the isolated prototype, with labeled applied/draft previews and separate temporary form drafts. V3.1 adds the user-requested [Heroicons Outline direction](../project/visual-direction.md#visual-character-and-organization). The updated prototype is being presented to the user; feedback and approval for any analyst/reviewer handoff remain pending. No downstream handoff has occurred. Production conversion semantics, application acceptance criteria, final contract/design agreement and application implementation authorization remain pending.
 
 The [increment workflow](../workflow/agent-roles.md) now includes a designer for substantial interaction/interface decisions and explicitly requested design exploration. Design proposals go to the user for feedback and approval before analyst review; material revisions repeat that sequence. Final contract/design agreement and implementation authorization remain separate. This workflow update does not start design work, amend existing agreements, or authorize Increment 003 implementation.
 
@@ -34,7 +34,7 @@ The first domain behavior now implements canonical Decimal validation and compar
 
 ## Recently completed
 
-- Recorded the user-agreed [next designer requests DR-1 and DR-2](../../prototypes/increment-003-v1/README.md#agreed-requests-for-next-designer-revision), with observable Apply/Cancel and draft-retention behavior and a resume instruction. This milestone is documentation only; prototype changes and user review remain pending.
+- Prepared the separate designer’s V3 of the [isolated Increment 003 prototype](../../prototypes/increment-003-v1/README.md), implementing agreed DR-1/DR-2: applied/draft color comparison and retained Literal/Reference drafts with explicit Apply/Cancel baselines. The prototype notes record checks and limitations. User feedback and approval for downstream handoff remain pending; the application contract remains draft.
 
 - Iterated the isolated [designer prototype to V2](../../prototypes/increment-003-v1/README.md): explicit normalized/0–255 sRGB entry and synchronized draft conversion across all five supported spaces. Eight focused helper tests, strict checking/build, and browser checks cover normalized storage, representation-only switches, alpha, partial entries, conversions and bounded previews. Numerical/display policies and Color.js are prototype choices only; production source/dependencies and application acceptance criteria remain unchanged. User review is pending before analyst assessment.
 
@@ -118,7 +118,7 @@ The first domain behavior now implements canonical Decimal validation and compar
 
 ## Next meaningful actions
 
-1. When the user resumes designer work, use a separate designer to implement agreed DR-1/DR-2 in an identified V3 prototype, preserving V2 behavior. Present it to the user before any analyst/reviewer handoff. After approval for analyst review, resolve findings and seek final contract/design agreement and explicit application implementation authorization.
+1. Collect user feedback on the presented V3.1 prototype and iterate with the separate designer if requested. Obtain user approval before any analyst/reviewer handoff. After approval for analyst review, resolve findings and seek final contract/design agreement and explicit application implementation authorization.
 2. Decide the persistence boundary relative to DTCG and the minimum project manifest needed by that workflow.
 3. Select the first target adapter and state its compatibility promise, including expression and color conversion handling; compare small CSS and strict DTCG output and diagnostic fixtures.
 4. Extend the implemented shared operations only as required by the selected PWA workflow. Define the immediately following Electron prototype's acceptance boundary.

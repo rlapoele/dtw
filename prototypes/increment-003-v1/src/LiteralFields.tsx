@@ -1,12 +1,10 @@
 import type { Color, Space } from './fixtures';
-import { byteIssue, colorPreview, convertColor, editByteChannel, srgbEntry } from './color-tools';
+import { byteIssue, convertColor, editByteChannel, srgbEntry } from './color-tools';
 import type { InputMode, Triple } from './color-tools';
-import { Swatch } from './Editor';
 const labels:Record<Space,[string,string,string]>={srgb:['Red','Green','Blue'],'display-p3':['Red','Green','Blue'],hsl:['Hue (°)','Saturation (%)','Lightness (%)'],oklab:['Lightness','a','b'],oklch:['Lightness','Chroma','Hue (°)']};
 export function LiteralFields({color,mode,byteText,onMode,onBytes,onChange,onError}:{color:Color;mode:InputMode;byteText:Triple|null;onMode:(m:InputMode)=>void;onBytes:(t:Triple|null)=>void;onChange:(c:Color)=>void;onError:(e:string)=>void}){
  const inputs=color.space==='srgb'&&mode==='bytes'?byteText??srgbEntry(color,'bytes'):color.components;
  const incomplete=color.space==='srgb'&&mode==='bytes'?byteIssue(inputs):undefined;
- const specimen=colorPreview(color);
  function changeSpace(space:Space){
   if(incomplete){onError(incomplete);return;}
   const result=convertColor(color,space);
@@ -28,6 +26,5 @@ export function LiteralFields({color,mode,byteText,onMode,onBytes,onChange,onErr
  <div className="grid grid-cols-3 gap-3">{inputs.map((value,index)=><label className="field" key={index}>{labels[color.space][index]}<input type="text" value={value} autoComplete="off" spellCheck={false} aria-describedby="exact-note editor-error" aria-invalid={Boolean(incomplete)||undefined} onChange={e=>changeComponent(index,e.target.value)}/></label>)}</div>
  <label className="field alpha-field">Alpha<input type="text" value={color.alpha} aria-describedby="exact-note editor-error" onChange={e=>onChange({...color,alpha:e.target.value})}/></label>
  <p id="exact-note" className="helper">{color.space==='srgb'?(mode==='bytes'?<>0–255 entry is divided by 255 for the normalized draft. Fractions are allowed. For a red specimen, try <code>250, 30, 30</code>. </>:<>sRGB channels use 0–1: <code>1</code> means full intensity (255 in the other entry scale). For pure red, enter <code>1, 0, 0</code>. </>):null}Components accept decimal text or <code>none</code>. Alpha stays 0–1. Changing space converts the draft approximately; Apply commits it for this session.</p>
- <div className="draft-preview">{!incomplete&&<Swatch color={color} large/>}<div><strong>Draft preview</strong><p className="helper">{incomplete?'Finish all channel entries to preview or apply.':specimen.message}</p></div></div>
- {color.space==='srgb'&&mode==='bytes'&&!incomplete&&<p className="helper mono mt-3 break-words">Normalized draft: [{color.components.join(', ')}]</p>}</>;
+</>;
 }
