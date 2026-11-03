@@ -4,7 +4,7 @@
 
 - Contract status: Draft
 - Delivery status: Not started
-- Agreement: [not yet agreed; when agreed, record date and scope of user's agreement]
+- Agreement: [not yet agreed; record date, scope of final contract/design agreement where applicable, and implementation authorization]
 - References: [links to relevant owning documents and constraints]
 
 ## Outcome
@@ -32,6 +32,15 @@
 ## Verification approach
 
 [How each criterion will be demonstrated: behavior tests, browser observations, artifacts, or other appropriate evidence. Identify checks that cannot yet be performed.]
+
+## Design proposals and review
+
+- Applicability: [designer required for substantial interaction/interface decisions, explicitly requested, or not applicable with reason]
+- Proposal: [artifact paths/links, revision identity, viewing instructions, interaction details, and explicit illustrative or unresolved details]
+- User review: [feedback and revisions; date and identified proposal approved for analyst review, or pending]
+- Analyst review: [after user approval only; criterion/constraint checks, findings, dispositions, and reviewed revision]
+- Material revisions: [return to user before renewed analyst review; record each affected revision and approval]
+- Final design agreement: [pending or date and identified artifacts agreed alongside the resulting contract; approval for analyst review alone does not authorize implementation]
 
 ## Review baseline
 

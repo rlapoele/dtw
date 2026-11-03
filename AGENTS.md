@@ -20,8 +20,9 @@ Treat status labels as meaningful: **established** directions and principles are
 ## Increment collaboration
 
 - For substantial feature increments, explicitly delegate to separate analyst, developer, and reviewer subagents following [the workflow and role briefs](docs/workflow/agent-roles.md). The main chat coordinates user questions and handoffs. Small fixes and editorial changes do not require this workflow.
+- Add a separate designer subagent for substantial interaction or interface decisions, or explicitly requested design exploration. Surface wireframes, mockups, or prototypes to the user and iterate before sending the identified proposal to the analyst for review. Material design revisions return to the user before renewed analyst review. Approval for analyst review is distinct from final contract/design agreement and implementation authorization.
 - Use [increment contracts and completion reports](docs/increments/README.md). Start implementation only after the user agrees the contract and authorizes implementation; drafts and templates are not approval.
-- Start developer and reviewer agents with fresh conversation contexts and explicit references to the authoritative documents. Give the reviewer an identified stable snapshot; do not seed its initial brief with the developer's rationale or conclusions.
+- Start developer and reviewer agents with fresh conversation contexts and explicit references to the authoritative documents and agreed design artifacts where applicable. Give the reviewer an identified stable snapshot; do not seed its initial brief with the developer's rationale or conclusions.
 - Use one code-writing agent at a time. Resolve findings with evidence and recheck affected behavior. Surface material ambiguities or scope changes; continue routine work within agreed scope without repeated approval.
 - If subagents are unavailable, state that limitation rather than implying an independent review occurred. Role instructions do not create separate permission boundaries.
 - Setting up or editing the workflow does not authorize opening or implementing the next application increment.

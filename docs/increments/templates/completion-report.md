@@ -18,6 +18,7 @@
 
 - Checks: [commands or manual checks, actual outcomes, and skipped checks with reasons]
 - Reviewer: [agent/task identifier and reviewed scope; say if independent review was unavailable]
+- Design verification: [agreed artifact revision, implementation fidelity/interaction/accessibility evidence, optional designer check and findings; or not applicable]
 - Findings: [finding, fix or evidence-based disposition, and recheck result; or no actionable findings]
 - Unresolved disagreements: [details or none]
 
