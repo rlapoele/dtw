@@ -2,11 +2,13 @@
 
 > Last updated: 3 November 2026
 >
-> Phase: domain foundation implemented; first application workflow planning next
+> Phase: domain foundation implemented; first application increment contract drafted, awaiting decisions and agreement
 >
 > Implementation state: npm scaffold plus initial TypeScript domain entities, value objects, and unit tests; no application-operation layer or web entry point
 
 ## Current focus
+
+The separate analyst has drafted [Increment 001: In-memory authoring workflow](../increments/001-in-memory-authoring-workflow.md) for project creation, namespace organization, literal color and semantic-alias authoring, and authored/resolved inspection through shared application operations. The contract is **Draft / Not started / not agreed**. Its proposed enabling scope excludes a visible UI and durable storage and does not complete the first PWA slice. Workflow scope, sibling-collision coverage, storage/identity boundaries, and command failure policy require explicit agreement before implementation. No developer or reviewer agent has been launched for this increment.
 
 The project has a coherent product, domain, architecture, and interoperability baseline, plus an initial TypeScript, Vite, and Vitest scaffold using npm. Current work is incrementally implementing settled canonical domain behavior while continuing to narrow the model against concrete CSS and strict DTCG export cases. The core model now includes storage-neutral Token, ComponentDefinition, VariationAxis, and ThemePreset aggregates; owned conditional token assignments; identity-less stable-ID TokenReference values with schema-relative value paths; identity-less structured ExpressionValue ASTs with versioned typed operations and explicit context dependencies; and a deliberately coarse ComponentContract boundary for future parts, slots, properties, variants, states, and token bindings. It also covers minimal projects, stable identities, namespace groups with derived paths, incomplete token definitions, optional layers and semantic roles, a selected foundational type set, and named composites. Number, dimension, and color literals now use normalized exact Decimal values. Dimensions carry an explicit `px` or `rem` unit. Color literals preserve one explicit sRGB, Display P3, HSL, OKLAB, or OKLCH representation, missing components, required alpha, and extended RGB coordinates without implicit gamut mapping. The initial portable expression algebra defines exact context-free number and same-unit operations, explicit `font.rootSize` context for mixed `px`/`rem`, and distinct invalid-expression outcomes. Theme variability uses independent variation axes, flat named presets, deterministic selection completion and most-specific assignment matching, explicit ambiguity and failure outcomes, and recursive dependency resolution under one completed selection. Scale generation is domain behavior without persisted scale entities or live generator dependencies. Context-aware preview remains a working direction. The delivery sequence remains PWA first and Electron immediately after the first complete vertical slice.
 
@@ -24,7 +26,8 @@ The first domain behavior now implements canonical Decimal validation and compar
 
 ## Recently completed
 
-- Established the [analyst → developer → reviewer workflow](../workflow/agent-roles.md) and reusable [increment contract and completion templates](../increments/README.md). This is documentation setup only: no application increment has been opened or agreed, and the next application decisions remain unresolved.
+- Prepared the [first application increment contract](../increments/001-in-memory-authoring-workflow.md) with a separate analyst, grounded in the existing domain implementation. It remains an unapproved proposal; no application implementation has started. Baseline type checking and all 614 domain tests passed on 3 November 2026; these checks do not establish proposed application behavior.
+- Established the [analyst → developer → reviewer workflow](../workflow/agent-roles.md) and reusable [increment contract and completion templates](../increments/README.md). Workflow setup did not authorize application implementation.
 
 - Accepted and saved the [refined visual reference](../project/visual-direction.md), combining neutral anthracite Precision organization and search with color editing and ramp context, variation comparison, scale specimens, and relationships/resolution traces. Detailed interactions and initial coverage remain open.
 - Initialized Git with `dev` as the default branch and `main` and `releases` as additional branches; configured the GitHub remote at `https://github.com/rlapoele/dtw.git`.
@@ -95,7 +98,7 @@ The first domain behavior now implements canonical Decimal validation and compar
 
 ## Next meaningful actions
 
-1. Select the first user and minimum end-to-end workflow, with explicit acceptance criteria for the first application operations and PWA slice.
+1. Review [Increment 001](../increments/001-in-memory-authoring-workflow.md), resolve its four decision bundles, and agree the contract before authorizing implementation. Keep this enabling operation workflow distinct from selecting the full PWA user workflow and acceptance criteria.
 2. Decide the persistence boundary relative to DTCG and the minimum project manifest needed by that workflow.
 3. Select the first target adapter and state its compatibility promise, including expression and color conversion handling; compare small CSS and strict DTCG output and diagnostic fixtures.
 4. Implement the shared application operations that coordinate the existing domain behavior. Define the immediately following Electron prototype's acceptance boundary.
