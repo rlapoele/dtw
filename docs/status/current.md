@@ -2,11 +2,13 @@
 
 > Last updated: 3 November 2026
 >
-> Phase: Increment 002 completed and independently reviewed
+> Phase: Increment 002 completed; Increment 003 proposed for agreement
 >
 > Implementation state: npm scaffold, host-independent domain core, initial application operations and in-memory adapter; no web entry point
 
 ## Current focus
+
+A separate analyst has drafted [Increment 003: Visible color authoring](../increments/003-visible-color-authoring.md), comparing durable retention/backup with a first visible authoring slice. The recommendation is a reusable, session-only browser renderer to test the existing create→alias→revise→inspect workflow. Its contract is **Draft / Not started / not agreed**. Priority versus retention, structured editing/preview scope, session identity/defaults, and renderer/milestone choices await user agreement. Data would remain temporary; this proposal does not fulfill or relax the complete PWA backup/restore requirement. No implementation or developer/reviewer work is authorized for Increment 003.
 
 A separate analyst prepared [Increment 002: Color value revision](../increments/002-color-value-revision.md) to extend the create-only application workflow with explicit revision and alias retargeting/repair, dependent resolution checks, and atomic cycle rejection. The user agreed D1–D4 and authorized implementation without UI followed by separate review on 3 November 2026. Its contract is **Agreed / Completed**. Scope permits explicit literal/reference replacement only for existing single unconditional color assignments, preserving metadata and whole-candidate validation; unrelated diagnostics block repairs.
 
@@ -27,6 +29,8 @@ The first domain behavior now implements canonical Decimal validation and compar
 - The official DTCG `2025.10` Markdown sources are vendored as reference material under [`docs/references/dtcg-2025.10/`](../references/dtcg-2025.10/README.md).
 
 ## Recently completed
+
+- Prepared [Increment 003](../increments/003-visible-color-authoring.md) with a separate analyst and an explicit retention/backup versus visible-authoring comparison. Renderer technology, session defaults, preview scope, and sequencing are recommendations only. Baseline type checking and 689 tests passed; these checks do not verify proposed UI behavior.
 
 - Prepared [Increment 002](../increments/002-color-value-revision.md) with a separate analyst, comparing color revision with retention/backup and UI alternatives. The four recommended choices are agreed; implementation and independent review are complete. Type checking and 689 tests across 27 files passed, including 35 new revision tests. The separate reviewer reproduced the checks and reported no actionable findings; see the contract completion report for acceptance evidence and limits.
 
@@ -104,7 +108,7 @@ The first domain behavior now implements canonical Decimal validation and compar
 
 ## Next meaningful actions
 
-1. Use the [completed Increment 002 report](../increments/002-color-value-revision.md#completion-report) to select and contract the next concrete workflow. Retention/backup and a visible authoring slice remain alternatives; their subsequent order is not selected. No next increment is authorized by this handoff.
+1. Review [draft Increment 003](../increments/003-visible-color-authoring.md), choose visible session-only learning or retention/backup, and resolve the draft's decision bundles before authorizing implementation. No next increment is authorized by this handoff.
 2. Decide the persistence boundary relative to DTCG and the minimum project manifest needed by that workflow.
 3. Select the first target adapter and state its compatibility promise, including expression and color conversion handling; compare small CSS and strict DTCG output and diagnostic fixtures.
 4. Extend the implemented shared operations only as required by the selected PWA workflow. Define the immediately following Electron prototype's acceptance boundary.
