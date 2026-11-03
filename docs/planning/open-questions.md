@@ -192,6 +192,8 @@ Remaining questions:
 
 ## Decision priorities
 
+**Narrowed for Increment 001 — 3 November 2026:** the user agreed the [in-memory authoring contract](../increments/001-in-memory-authoring-workflow.md): unconditional color literal/semantic-alias authoring through application operations, caller-supplied IDs, a narrow project-scoped in-memory storage port, explicit failed-command behavior, and deferred sibling-name enforcement. This enabling scope leaves the full PWA workflow, durable persistence/manifest, first adapter/profile, and Electron acceptance boundary open.
+
 The domain foundation is sufficient to plan the first application workflow; implementing every remaining value type is not a prerequisite. Following the shadow increment, prioritize the first end-to-end workflow and its acceptance criteria. Additional domain concepts should follow demonstrated needs.
 
 Before implementation planning, resolve or narrow at least:

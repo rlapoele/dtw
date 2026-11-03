@@ -6,16 +6,18 @@ The accepted [visual direction and reference image](docs/project/visual-directio
 
 ## Development workflow
 
-Substantial increments use separate analyst, developer, and reviewer agents with an agreed contract and acceptance evidence. See the [workflow and role instructions](docs/workflow/agent-roles.md) and [increment templates](docs/increments/README.md). No application increment has been opened by this setup.
+Substantial increments use separate analyst, developer, and reviewer agents with an agreed contract and acceptance evidence. See the [workflow and role instructions](docs/workflow/agent-roles.md), [increment templates](docs/increments/README.md), and [Increment 001 contract](docs/increments/001-in-memory-authoring-workflow.md).
 
 ## Development scaffold and domain core
 
-The scaffold uses TypeScript, Vite, Vitest, and npm. Dependencies are development-only and `package-lock.json` records their resolved versions. The host-independent domain code implements exact canonical Decimal validation and comparison; boolean, number, dimension, percentage, duration, font family, font weight, color, and cubic Bézier literal construction; variation axes, conditions, selection completion, assignment matching, and theme presets; the core `Project` entity and initial `Token` aggregate lifecycle; namespace groups, structural validation, and path derivation; stable-ID token references with project-scoped validation; and literal, alias, and portable number/dimension expression resolution. Token assignments accept the implemented literal subset, references, portable expressions, and the transition, typography, and shadow composites. There is no application-operation layer or web entry point yet.
+The scaffold uses TypeScript, Vite, Vitest, and npm. Dependencies are development-only and `package-lock.json` records their resolved versions. The host-independent domain code implements exact canonical Decimal validation and comparison; boolean, number, dimension, percentage, duration, font family, font weight, color, and cubic Bézier literal construction; variation axes, conditions, selection completion, assignment matching, and theme presets; the core `Project` entity and initial `Token` aggregate lifecycle; namespace groups, structural validation, and path derivation; stable-ID token references with project-scoped validation; and literal, alias, and portable number/dimension expression resolution. Token assignments accept the implemented literal subset, references, portable expressions, and the transition, typography, and shadow composites. Shared application operations now provide a narrow in-memory color-authoring workflow; there is no web entry point or durable storage yet.
 
 The scaffold was verified using Node.js `24.14.1` and npm `11.17.0`, satisfying the installed development tools' engine requirements. Vite `8.3.5` and Vitest `5.0.5` were verified with this runtime on 27 October 2026. Install the locked dependencies with `npm ci`.
 
 - `src/domain/` contains host-independent domain entities, value objects, and validation.
-- `test/domain/` contains small unit tests named `*.test.ts`.
+- `src/application/` coordinates authoring through an explicit project storage port.
+- `src/adapters/` contains the in-memory project storage adapter.
+- `test/domain/`, `test/application/`, and `test/adapters/` contain tests named `*.test.ts`.
 
 | Command | Purpose |
 |---|---|
@@ -28,7 +30,27 @@ The scaffold was verified using Node.js `24.14.1` and npm `11.17.0`, satisfying 
 
 The TypeScript configuration enables strict checking and includes `src/**/*.ts` and `test/**/*.ts`. Its default environment excludes browser and Node global types to keep the domain code independent of either host. Dependency declaration checking is skipped because the Vite and Vitest declarations reference host event types that are intentionally absent; project source and tests remain strictly checked. Vitest uses its default Node test environment.
 
-Type checking and unit tests validate the current domain core. Building still requires a Vite entry point, and preview requires generated output.
+Type checking and tests validate the domain core and in-memory authoring workflow. Building still requires a Vite entry point, and preview requires generated output.
+
+## In-memory application authoring
+
+`createAuthoringOperations(storage)` in [src/application/authoring.ts](src/application/authoring.ts) accepts the explicit [ProjectStorage port](src/application/project-storage.ts). Supply `new InMemoryProjectStorage()` from [src/adapters/in-memory-project-storage.ts](src/adapters/in-memory-project-storage.ts). Calls are synchronous and sequential with one writer; this port does not define a canonical file schema or a concurrent-write protocol.
+
+- `createProject(input)` creates empty project metadata using a supplied ID.
+- `createGroup(input)` creates a root or nested namespace group in the specified project.
+- `createColorToken(input)` creates one explicitly typed color token with a structured literal or whole-value reference and one unconditional assignment. Identity, name, parent, and regeneration policy are explicit; layer and semantic role remain optional metadata. No layers or roles are inferred.
+- `renameGroup(projectId, groupId, localName)` preserves identities and references while derived paths change.
+- `readProject(projectId)` returns project metadata and authored groups/tokens alongside domain-derived path results.
+- `inspectToken(projectId, tokenId)` returns authored data, its path result, and a separate domain resolution result with selection, trace, and diagnostics.
+- `validateProject(projectId)` returns separate namespace structural and reference diagnostics. It does not establish complete definitions, assignment coverage, resolution success, or name uniqueness.
+
+Operations return `{ status: "ok", value }` or `{ status: "failure", error }`. Expected failures distinguish missing entities, duplicate identities, invalid constructor input, invalid candidate relationships, and storage failures. Modifications check the candidate before committing once; rejected commands leave stored data unchanged. The storage port requires atomic replacement or unchanged state on failure. Unexpected programmer exceptions propagate.
+
+The in-memory adapter copies preloaded fixtures, committed inputs, and loaded outputs so caller mutations cannot alter stored authored data. Preloaded repairable fixtures test existing domain diagnostics; they are not an import/loader API. Normal authoring rejects missing/foreign targets and incompatible declared types, while typed-but-unassigned color targets remain referenceable and resolve to `missing-assignment`.
+
+This enabling workflow has no axes or presets, UI, import/export, durable save/open, or backup. Sibling-name collision checks remain explicitly deferred, so structural success does not guarantee unique paths. [Application workflow tests](test/application/authoring.test.ts) and [repairable-data tests](test/application/repairable-data.test.ts) demonstrate the boundary without selecting a host or persistence format.
+
+## Domain API notes
 
 Reference construction validates the structural field/index path representation and preserves broken references for repair. `validateProjectTokenReferences(projectId, tokens, selection)` reports target existence, project ownership, declared-type compatibility, and unsupported value paths for all authored reference assignments. It also reports ambiguous selected assignments and cycles under the supplied completed project selection. Supply the complete token snapshot and a selection completed from that project's axes. Currently only whole-value references (`valuePath: []`) are supported; non-empty paths remain diagnosable data. This validation does not resolve values or establish assignment coverage for every possible variation selection. Aggregate-local construction and assignment changes must be followed by project validation before accepting authored changes.
 

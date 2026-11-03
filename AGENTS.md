@@ -2,7 +2,7 @@
 
 ## Project state
 
-This repository contains product and domain documentation for the Design Token Workbench, a vendored DTCG `2025.10` reference snapshot, and an npm scaffold using TypeScript, Vite, and Vitest with a host-independent domain core and unit tests. There is no application-operation layer or web entry point yet. See `README.md` for commands and scaffold limitations. The accepted scope is a desktop-first, local-first token workbench. `docs/project/design-system-studio-extension.md` is exploratory and must not override the token-workbench documents.
+This repository contains product and domain documentation for the Design Token Workbench, a vendored DTCG `2025.10` reference snapshot, and an npm scaffold using TypeScript, Vite, and Vitest with a host-independent domain core, in-memory application authoring operations, and tests. There is no web entry point or durable storage yet. See `README.md` for commands and scaffold limitations. The accepted scope is a desktop-first, local-first token workbench. `docs/project/design-system-studio-extension.md` is exploratory and must not override the token-workbench documents.
 
 ## Read before changing direction
 

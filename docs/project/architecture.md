@@ -156,6 +156,14 @@ Operations should usually be coarse enough to avoid a chatty RPC boundary. Fast,
 
 For scale helpers, the UI collects parameters and presents candidates; the domain calculates them; an application operation coordinates creation of the selected tokens through normal domain validation. Later helper changes do not mutate existing tokens automatically.
 
+### First application-operation increment
+
+**Agreed enabling scope — 3 November 2026**
+
+[Increment 001](../increments/001-in-memory-authoring-workflow.md) proves project/group creation, unconditional color literal and semantic-alias authoring, group renaming, validation, and authored/resolved inspection through shared operations. Use caller-supplied opaque identities and a narrow project-scoped storage port with an in-memory adapter. Operational snapshots hold project metadata and separate group/token collections; they are coordination data, not a canonical persistence schema or a larger Project aggregate. Calls are sequential with one writer; failed commands and storage commits leave stored state unchanged.
+
+Normal authoring checks same-project structural and reference relationships before commit. Reads preserve repairable authored data and domain diagnostics. Sibling-name collision enforcement is explicitly deferred, so structural validation does not guarantee unambiguous paths. This is an enabling increment without a UI or durable storage; it does not complete the PWA slice or select its deferred technologies and interchange profile.
+
 ## Expression preview boundary
 
 **Working decision — 6 October 2026**
