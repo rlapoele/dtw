@@ -24,6 +24,29 @@ The [Precision-based visual reference](../project/visual-direction.md) is now ac
 
 The first domain behavior now implements canonical Decimal validation and comparison; boolean, number, dimension, percentage, duration, font family, font weight, color, and cubic Bézier literal construction; variation axes and their owned options; normalized variation conditions and selections; selection completion; most-specific assignment matching; theme presets; the core Project entity and initial Token lifecycle; namespace groups with structural validation, immutable moves, and segment-array path derivation; stable-ID token references with project-scoped validation; and literal, alias, and portable number/dimension expression resolution. Token assignments currently accept boolean, number, dimension, percentage, duration, font family, font weight, color, and cubic Bézier literals, token references, the portable expression subset, and transition, typography, and shadow composites. The application operations and in-memory adapter now coordinate the agreed color authoring and revision workflows. Other composite resolution, remaining literal schemas, durable persistence, external adapters, and delivery surfaces remain unimplemented. Use the unresolved questions in [`docs/planning/open-questions.md`](../planning/open-questions.md#decision-priorities) to guide explicit decisions; the initial code does not settle them.
 
+## Resume in a new chat
+
+Handoff prepared on 3 November 2026 for continuation on 4 November or later. The repository documents are sufficient to resume; the previous chat, agents and browser sessions are not required.
+
+1. Read `AGENTS.md` and this status, then inspect current Git state/history. The completed V4 analyst review is recorded in commit `6096388`; V4’s reviewed prototype snapshot is `a9f7e557214018bfef7965bc4f31d54c385c1ce6`.
+2. Read [Increment 003 and its analyst review](../increments/003-visible-color-authoring.md#analyst-review--v4-3-november-2026), the [V4 prototype notes](../../prototypes/increment-003-v1/README.md#v4--responsive-panes-and-select-chevrons), and [agent workflow](../workflow/agent-roles.md). Follow their owning-document links as needed.
+3. Bring the remaining decisions back to the user: bounded color-entry/conversion/preview policies, D4 production stack/milestone boundary, and the missing-state designer supplement. Retaining V4’s requested UX is the analyst’s recommendation. The user has not yet authorized those follow-ups or application implementation; do not infer either from this handoff.
+4. If the user requests the supplement, use a separate designer and show material additions to the user before renewed analyst review. Final contract/design agreement and implementation authorization remain separate. New chats must dispatch fresh agents rather than depend on previous agent identifiers.
+
+The prototype is disposable, seeded and session-only. Closing Codex or reloading can lose browser draft edits, but its source, screenshots, design notes and review are repository artifacts. Do not assume the preview process survives. If preview is needed, run from `prototypes/increment-003-v1/`:
+
+```sh
+npm ci
+npm run build
+npm run preview
+```
+
+The isolated preview uses `http://127.0.0.1:4173/`. Check whether the port is already serving this artifact before starting another process. These prototype commands do not verify production application acceptance.
+
+Suggested first message in the new project chat:
+
+> Read AGENTS.md and docs/status/current.md. Resume Increment 003 after the V4 analyst review. Summarize the remaining decisions and propose the next bounded preparation step before starting it. Preserve V4’s requested interaction direction; do not implement the application yet.
+
 ## Established baseline
 
 - The product is a desktop-first, local-first Design Token Workbench upstream of external tools and code targets. See [`vision.md`](../project/vision.md) and [`product-concept.md`](../project/product-concept.md).
