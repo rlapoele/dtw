@@ -2,15 +2,17 @@
 
 > Last updated: 3 November 2026
 >
-> Phase: Increment 002 completed; Increment 003 proposed for agreement
+> Phase: Increment 003 designer prototype V1 presented; awaiting user feedback
 >
 > Implementation state: npm scaffold, host-independent domain core, initial application operations and in-memory adapter; no web entry point
 
 ## Current focus
 
+The user agreed Increment 003 D1–D3 and requested a separate designer's [initial prototype](../../prototypes/increment-003-v1/) using Vite, strict React/TypeScript, Tailwind v4 and shadcn/ui with Base UI primitives in a neutral theme. The [V1 design notes](../../prototypes/increment-003-v1/README.md) identify the artifact, viewing commands, checks and illustrative-state limitations. It is isolated from production source/dependencies. V1 is presented to the user; iterate on feedback before any analyst review. Final contract/design agreement and application implementation authorization remain pending.
+
 The [increment workflow](../workflow/agent-roles.md) now includes a designer for substantial interaction/interface decisions and explicitly requested design exploration. Design proposals go to the user for feedback and approval before analyst review; material revisions repeat that sequence. Final contract/design agreement and implementation authorization remain separate. This workflow update does not start design work, amend existing agreements, or authorize Increment 003 implementation.
 
-A separate analyst has drafted [Increment 003: Visible color authoring](../increments/003-visible-color-authoring.md), comparing durable retention/backup with a first visible authoring slice. The recommendation is a reusable, session-only browser renderer to test the existing create→alias→revise→inspect workflow. Its contract is **Draft / Not started / not agreed**. Priority versus retention, structured editing/preview scope, session identity/defaults, and renderer/milestone choices await user agreement. Data would remain temporary; this proposal does not fulfill or relax the complete PWA backup/restore requirement. No implementation or developer/reviewer work is authorized for Increment 003.
+A separate analyst has drafted [Increment 003: Visible color authoring](../increments/003-visible-color-authoring.md), comparing durable retention/backup with a first visible authoring slice. The recommendation is a reusable, session-only browser renderer to test the existing create→alias→revise→inspect workflow. Its contract remains **Draft / Not started**, with D1–D3 agreed and renderer/design exploration pending. Data would remain temporary; this proposal does not fulfill or relax the complete PWA backup/restore requirement. No implementation or developer/reviewer work is authorized for Increment 003.
 
 A separate analyst prepared [Increment 002: Color value revision](../increments/002-color-value-revision.md) to extend the create-only application workflow with explicit revision and alias retargeting/repair, dependent resolution checks, and atomic cycle rejection. The user agreed D1–D4 and authorized implementation without UI followed by separate review on 3 November 2026. Its contract is **Agreed / Completed**. Scope permits explicit literal/reference replacement only for existing single unconditional color assignments, preserving metadata and whole-candidate validation; unrelated diagnostics block repairs.
 
@@ -31,6 +33,8 @@ The first domain behavior now implements canonical Decimal validation and compar
 - The official DTCG `2025.10` Markdown sources are vendored as reference material under [`docs/references/dtcg-2025.10/`](../references/dtcg-2025.10/README.md).
 
 ## Recently completed
+
+- Prepared the separate designer's [Increment 003 V1 prototype](../../prototypes/increment-003-v1/README.md) in the requested stack and light neutral direction. Its isolated strict type check and production build pass; designer desktop inspection and coordinator sample interaction checks are recorded in the artifact notes. The prototype is presentation-only, with seeded/illustrative behavior and no application integration or analyst review.
 
 - Prepared [Increment 003](../increments/003-visible-color-authoring.md) with a separate analyst and an explicit retention/backup versus visible-authoring comparison. Renderer technology, session defaults, preview scope, and sequencing are recommendations only. Baseline type checking and 689 tests passed; these checks do not verify proposed UI behavior.
 
@@ -110,7 +114,7 @@ The first domain behavior now implements canonical Decimal validation and compar
 
 ## Next meaningful actions
 
-1. Review [draft Increment 003](../increments/003-visible-color-authoring.md), choose visible session-only learning or retention/backup, and resolve the draft's decision bundles before authorizing implementation. No next increment is authorized by this handoff.
+1. Present the designer's initial Increment 003 prototype to the user. Iterate until the identified proposal is approved for analyst review; then resolve analyst findings and seek final contract/design agreement before application implementation.
 2. Decide the persistence boundary relative to DTCG and the minimum project manifest needed by that workflow.
 3. Select the first target adapter and state its compatibility promise, including expression and color conversion handling; compare small CSS and strict DTCG output and diagnostic fixtures.
 4. Extend the implemented shared operations only as required by the selected PWA workflow. Define the immediately following Electron prototype's acceptance boundary.
