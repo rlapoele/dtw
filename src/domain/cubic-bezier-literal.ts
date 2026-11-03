@@ -17,7 +17,8 @@ export function createCubicBezierLiteral(
     throw new RangeError("A cubic Bézier literal requires exactly four coordinates");
   }
 
-  const [x1, y1, x2, y2] = controlPoints.map(decimalFromCanonical);
+  // Visit holes so missing coordinates cannot survive as undefined values.
+  const [x1, y1, x2, y2] = Array.from(controlPoints, decimalFromCanonical);
   for (const x of [x1, x2]) {
     if (compareDecimals(x, zero) < 0 || compareDecimals(x, one) > 0) {
       throw new RangeError("Cubic Bézier x coordinates must be between zero and one");

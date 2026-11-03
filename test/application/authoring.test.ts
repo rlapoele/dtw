@@ -112,6 +112,7 @@ describe("rejected commands and storage boundary", () => {
   it.each([
     { colorSpace: "srgb", components: ["0.10", "0", "0"], alpha: "1" },
     { colorSpace: "srgb", components: ["0", "0"], alpha: "1" },
+    { colorSpace: "srgb", components: new Array<string>(3), alpha: "1" },
     { colorSpace: "rgb", components: ["0", "0", "0"], alpha: "1" },
     { colorSpace: "srgb", components: ["0", "0", "0"], alpha: "1.1" },
     { colorSpace: "srgb", components: ["#fff", "0", "0"], alpha: "1" },

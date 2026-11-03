@@ -42,7 +42,8 @@ export function createColorLiteral(
     throw new RangeError("A color requires exactly three components");
   }
 
-  const components = input.components.map(parseComponent) as [
+  // Visit holes as well as present entries: every component must be explicit.
+  const components = Array.from(input.components, parseComponent) as [
     ColorComponent,
     ColorComponent,
     ColorComponent,

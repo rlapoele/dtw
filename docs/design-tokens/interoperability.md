@@ -182,7 +182,7 @@ These profiles solve different problems. Figma and Penpot adapters translate nat
 | Dimension | Object with `value` and `px` or `rem` unit | Number + scope; documented import requires `px` | Dimension and purpose-specific numeric tokens | Unit and string/object conversion |
 | Percentage | No standalone percentage type | Number variable where the target workflow permits | Purpose-specific mapping required | Canonical exact decimal ratio requires contextual mapping and explicit precision diagnostics |
 | Angle | No standalone angle type | Number variable where the target workflow permits | Rotation token | Unit and purpose preservation |
-| Duration | Object with numeric value and `ms` unit | Timing variable | Duration mapping requires profile verification | Unit and value-shape conversion |
+| Duration | Object with numeric value and `ms` or `s` unit | Timing variable | Duration mapping requires profile verification | Unit and value-shape conversion |
 | String and boolean | Not in the DTCG foundational type set | String and Boolean variables | Native support varies by token kind | Extension, omission, or alternate artifact may be required |
 | Font family and weight | Dedicated foundational types | Variables may feed text styles | Font-related token types | Ordered families, constraints, and style composition |
 | Cubic Bézier | Four-number array | Easing variable | Easing mapping requires profile verification | Constraint and representation conversion |

@@ -4,6 +4,8 @@
 
 This document records the current conceptual model. It deliberately separates established distinctions from hypotheses that still need formal schemas and examples.
 
+Conceptual schemas and operations are not an implementation inventory. See the [current source coverage](../../README.md#development-scaffold-and-domain-core) and [application workflow](../../README.md#in-memory-application-authoring). `ComponentDefinition`/`ComponentContract`, namespaced extension fields, scale helpers, color conversions, and previews remain unimplemented. Component association IDs alone do not validate component-definition existence.
+
 ## Canonical model
 
 **Established direction**
@@ -117,7 +119,7 @@ type PercentageLiteralValue = {
 };
 ```
 
-Canonical Decimal text uses ASCII digits and `.` as its decimal separator. It has one optional leading minus sign, at least one integer digit, no unnecessary leading integer zeros, and an optional fractional part that ends in a non-zero digit. A leading plus sign, trailing decimal point, exponent notation, `NaN`, and infinities are not canonical. Negative zero normalizes to `"0"`.
+Canonical Decimal text uses ASCII digits and `.` as its decimal separator. It has one optional leading minus sign, at least one integer digit, no unnecessary leading integer zeros, and an optional fractional part that ends in a non-zero digit. A leading plus sign, trailing decimal point, exponent notation, `NaN`, and infinities are not canonical. The normalized representation of negative zero is `"0"`. The current `decimalFromCanonical` constructor validates already canonical text; it rejects non-canonical spellings, including negative zero, rather than normalizing them.
 
 For example, `001.2500` normalizes to `"1.25"`, `.5` to `"0.5"`, `1e3` to `"1000"`, `1e-3` to `"0.001"`, and `-0.000` to `"0"`. Editors and import adapters may accept such non-canonical forms when they can parse them losslessly, but canonical data always stores the normalized form. Localized input and display formatting remain delivery concerns.
 
@@ -273,7 +275,7 @@ A composite combines several typed fields into a meaningful treatment. The initi
 typography     shadow     gradient     border     transition
 ```
 
-Each composite has a named, validated schema rather than an arbitrary object shape. Composite fields may contain permitted literal values, references, or expressions. The transition and typography schemas are defined below; schemas and initial implementation coverage for the other composites remain open.
+Each composite has a named, validated schema rather than an arbitrary object shape. Composite fields may contain permitted literal values, references, or expressions. The transition, typography, and shadow schemas are defined below and implemented. Gradient and border schemas and their implementation coverage remain open.
 
 ```text
 value type        semantic role          composition
@@ -932,6 +934,8 @@ type TokenResolutionResult =
         | "ambiguous-assignment"
         | "missing-reference"
         | "reference-cycle"
+        | "cross-project-reference"
+        | "unsupported-value-path"
         | "type-mismatch"
         | "invalid-expression"
         | "invalid-composite"
@@ -941,7 +945,11 @@ type TokenResolutionResult =
     };
 ```
 
-The notation fixes the meaningful outcome categories, not a persistence schema or final TypeScript module shape. `invalid-composite` identifies missing or wrongly typed composite fields and violated use-site constraints, including negative resolved transition duration, typography font size, or typography line height. `invalid-expression` identifies a known operation whose structure, parameters, or resolved operands violate its contract; `unsupported-expression` identifies an operation that the evaluator cannot execute. A valid selected expression may still require viewport, font, container, browser, or other evaluation context. Missing context produces `context-required`; the resolver does not invent environmental values, and a target adapter may still be able to preserve or serialize the authored expression under its own compatibility profile.
+The notation fixes the meaningful outcome categories, not a persistence schema or final TypeScript module shape.
+
+The current TypeScript `resolveToken` API requires a caller-supplied completed selection; selection construction/completion validates inputs separately and throws `RangeError` for invalid selections. It does not currently return `invalid-selection` or implement cross-axis `invalid-combination` checks. Non-empty value paths return `unsupported-value-path`, and foreign project dependencies return `cross-project-reference`. These distinctions must remain visible when a later application operation coordinates variation activation.
+
+`invalid-composite` identifies missing or wrongly typed composite fields and violated use-site constraints, including negative resolved transition duration, typography font size, or typography line height. `invalid-expression` identifies a known operation whose structure, parameters, or resolved operands violate its contract; `unsupported-expression` identifies an operation that the evaluator cannot execute. A valid selected expression may still require viewport, font, container, browser, or other evaluation context. Missing context produces `context-required`; the resolver does not invent environmental values, and a target adapter may still be able to preserve or serialize the authored expression under its own compatibility profile.
 
 `ResolutionTrace` is derived explanatory data, not canonical authored data. It may report defaults applied during completion, matching conditions and their specificity, the selected condition, dependency traversal, and the point of failure. Its exact payload and retention policy remain open, but the domain result must contain enough structured diagnostics for delivery surfaces to explain an unresolved outcome without recreating resolution semantics.
 

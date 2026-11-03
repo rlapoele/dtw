@@ -309,7 +309,7 @@ Only packages and applications required by current work should be created. The P
 
 Start domain implementation in TypeScript with strict type checking, Vite for build tooling, Vitest for unit tests, and npm for dependency management. The initial scaffold is a single private package with `src/` and `test/` directories. No frontend framework, styling library, runtime-schema library, persistence adapter, or domain schema is selected by this scaffold.
 
-Type checking runs separately through `tsc --noEmit`; Vite's TypeScript transformation does not replace it. Domain tests run in Vitest's Node environment while domain behavior remains independent of Node APIs, Electron, the browser, storage, and the network. See the repository [README](../../README.md) for executable commands and the limitations while the source directories are empty.
+Type checking runs separately through `tsc --noEmit`; Vite's TypeScript transformation does not replace it. Domain tests run in Vitest's Node environment while domain behavior remains independent of Node APIs, Electron, the browser, storage, and the network. See the repository [README](../../README.md) for executable commands and the remaining build/preview limitation: there is no web entry point yet.
 
 ## Remaining open choices
 

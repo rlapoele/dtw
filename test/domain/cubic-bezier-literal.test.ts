@@ -56,6 +56,11 @@ describe("createCubicBezierLiteral", () => {
       expect(() => createCubicBezierLiteral(points)).toThrow(RangeError);
     }
   });
+  it.each([0, 1, 2, 3])("rejects a missing coordinate at index %s in a sparse array", index => {
+    const points = ["0", "0", "1", "1"];
+    delete points[index];
+    expect(() => createCubicBezierLiteral(points)).toThrow(RangeError);
+  });
   it("copies the input coordinate array", () => {
     const points = ["0", "0", "1", "1"];
     const literal = createCubicBezierLiteral(points);

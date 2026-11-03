@@ -4,7 +4,7 @@ This glossary defines terms as used in the inception documents. Definitions desc
 
 ## Adapter
 
-A target- or source-specific translator between an external representation and the canonical model. Importers and exporters are adapters.
+An implementation of a port that connects application/domain behavior to an external capability or representation. Storage adapters provide project storage; importers and exporters translate between external representations and the canonical model.
 
 ## Alias
 
@@ -200,7 +200,7 @@ A possible future reusable or distributable unit containing a token or broader d
 
 ## Port
 
-An application- or domain-owned contract for an external capability, such as project storage, Git, a process runner, or an adapter registry. Infrastructure adapters implement ports.
+An application- or domain-owned contract for an external capability, such as project storage, Git, a process runner, or import/export capabilities. Infrastructure adapters implement ports.
 
 ## Preload bridge
 

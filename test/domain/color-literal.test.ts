@@ -116,6 +116,17 @@ describe("createColorLiteral", () => {
     ).toThrow(RangeError);
   });
 
+  it.each(["srgb", "display-p3", "hsl", "oklab", "oklch"])(
+    "rejects sparse component arrays for %s instead of treating holes as components",
+    (colorSpace) => {
+      for (let index = 0; index < 3; index += 1) {
+        const components = ["0", "0", "0"];
+        delete components[index];
+        expect(() => createColorLiteral({ colorSpace, components, alpha: "1" })).toThrow(RangeError);
+      }
+    },
+  );
+
   it("rejects an unsupported color space", () => {
     expect(() =>
       createColorLiteral({
