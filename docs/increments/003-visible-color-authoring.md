@@ -103,6 +103,12 @@ V3 is awaiting user feedback and approval for any analyst/reviewer handoff; no s
 
 On 3 November 2026, the user requested Heroicons Outline for icons. The separate designer prepared V3.1 of the isolated prototype accordingly; this is visual feedback and does not approve an analyst/reviewer handoff. The [visual direction](../project/visual-direction.md#visual-character-and-organization) records the icon choice.
 
+## Design exploration — V4 responsive panels
+
+On 3 November 2026, the user requested an inset Heroicons dropdown arrow, a collapsible project-groups panel initially collapsed on smaller viewports, and a whole inspector that collapses to the right on desktop/tablet and to the bottom on mobile. A separate designer prepared V4 of the isolated prototype for user feedback. Panel collapse must preserve temporary drafts and selection without applying values. The [prototype notes](../../prototypes/increment-003-v1/README.md) own the proposed breakpoints, initial states and verification evidence.
+
+These requests authorize prototype iteration. The resulting responsive proposal must return to the user before any analyst/reviewer handoff; production acceptance criteria and application implementation remain pending.
+
 ## Agreed amendments
 
 3 November 2026 — User agreed D1–D3 and requested the V1 designer prototype. The earlier D4 recommendation remains historical draft context until replaced by an agreed renderer/design decision. No application implementation is authorized.

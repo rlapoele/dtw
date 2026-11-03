@@ -1,8 +1,8 @@
-# Increment 003 — Designer proposal V3.1
+# Increment 003 — Designer proposal V4
 
 **3 November 2026. Interactive design revision for user feedback, before analyst review.**
 
-V3.1 refines V3 iconography at the user’s request with **Heroicons Outline**. V3 implements agreed **DR-1 and DR-2**: side-by-side applied/draft colors and separately retained Literal/Reference drafts, preserving V2’s explicit **0–255 sRGB entry scale** and **draft conversion between all five color spaces**. It is an isolated, disposable prototype. No production stack, conversion library, precision/gamut policy, domain behavior or implementation has been agreed through this artifact.
+V4 explores collapsible responsive panes and inset **Heroicons Outline** select chevrons at the user’s request. V3.1 established outline iconography. V3 implements agreed **DR-1 and DR-2**: side-by-side applied/draft colors and separately retained Literal/Reference drafts, preserving V2’s explicit **0–255 sRGB entry scale** and **draft conversion between all five color spaces**. It is an isolated, disposable prototype. No production stack, conversion library, precision/gamut policy, domain behavior or implementation has been agreed through this artifact.
 
 The directory keeps its V1 name to preserve the existing preview setup. [V2 notes](DESIGN-V2.md) preserve the preceding proposal and verification. [V1 design notes](DESIGN-V1.md) retain the prior proposal, original limitations and subsequent normalized-sRGB guidance. V1 screenshots remain in `../../output/playwright/003-designer-v1-*`. V2 supersedes V1's blank-on-space-switch behavior and sRGB-only preview restriction; it does not retroactively establish any acceptance criterion.
 
@@ -38,6 +38,24 @@ Inactive drafts are temporary interface state, not additional canonical token va
 ### Resume and review gate
 
 A separate designer prepared **V3 on 3 November 2026**. Show the actual prototype to the user before any analyst/reviewer/developer handoff. User approval for that handoff, analyst assessment, final contract/design agreement and application implementation authorization remain distinct.
+
+## V4 — Responsive panes and select chevrons
+
+**User-requested prototype revision, 3 November 2026; awaiting user review.** This revision adds an Outline `ChevronDownIcon` inset 12px from the end of every native select. Native selection semantics and keyboard behavior remain; 38px end padding keeps text clear of the decorative, pointer-transparent icon. A shared local `Select` presentation component covers editor controls and create/rename dialogs without adding a dependency.
+
+The left **Project groups** and right **Token inspector** panes have visible keyboard-accessible collapse/reopen buttons with `aria-expanded` and `aria-controls`. Pane contents remain mounted behind an explicit `hidden` rule, preserving selected tokens, both draft forms, raw entries, entry scale and current inspection tab. Hiding a pane never applies or discards edits; hidden controls leave the tab order. The toggle stays visible/focused when its contents are hidden.
+
+Prototype-only layout choices:
+
+- **Desktop, 1120px and above:** both panes initially expanded, collapsing toward their respective outer edges into 52px rails.
+- **Tablet, 768–1119px:** groups initially collapsed; inspector initially expanded at the right. Both can reopen independently. The token list and inspector scroll independently; the inspector remains beside the token list.
+- **Mobile, below 768px:** both panes initially collapsed. Groups reopen above the token list. The inspector reopens in a bottom row with its own scrolling; it shares the remaining height with the token list (approximately 55/45) and uses a persistent 43px reopen bar while collapsed. It occupies layout space rather than covering content. Groups are capped at 22dvh so the list and bottom inspector remain reachable.
+- These are page-load defaults only. Resizing preserves the user’s current expanded/collapsed choices and does not automatically hide focused controls. Selecting or creating a token reopens the inspector; existing unapplied-edit departure confirmation still runs before changing the selected token.
+- The app uses the available viewport height. Header, notice and footer remain in flow; pane contents scroll to expose all fields and Apply/Cancel actions. There is no new drawer library, storage or production architecture choice.
+
+Try editing a literal in byte mode, switch to Reference and choose a target, then collapse/reopen the inspector in each layout. Both drafts should return unchanged. On mobile, collapse the bottom inspector to browse tokens, then select a token to reopen it. In each layout, open a group or create-token dialog to inspect the same inset select treatment.
+
+V4 verification and desktop/tablet/mobile screenshots are recorded below. No analyst/reviewer handoff or application implementation is authorized by this revision.
 
 ## V3.1 — Outline icon refinement
 
@@ -151,4 +169,12 @@ No remote API receives color/project data. Color.js runs locally in this prototy
 
 V3.1 verification: isolated typecheck, production build, all 8 existing conversion-helper tests and `git diff --check` passed. Designer browser access was unavailable for this refinement; the coordinator performed the CUA rendered check and observed aligned outline icons in the header, notice, navigation, folders, add actions, search, alias rows and reference box, with the applied/draft comparison intact. [V3.1 screenshot](../../output/playwright/003-designer-v3-1-outline.png) records that coordinator check. No new interaction behavior was introduced or independently reviewed.
 
-Suggested commit only if later requested: `design: refine prototype icons with Heroicons Outline`.
+## V4 verification
+
+- Isolated `npm run typecheck` and `npm run build` passed. `npm test` passed all **8 existing conversion-helper tests**; these do not test pane interaction state. `git diff --check` passed. No dependencies were added for V4.
+- Designer browser access remained unavailable. The coordinator performed CUA interaction/rendered checks: desktop collapse/reopen preserved a pending reference to `neutral / 900` while the applied color stayed blue; tablet at **820 × 1000** kept the inspector at the right with groups initially collapsed and inset select arrows; mobile at **390 × 844** started with both panes collapsed.
+- The first mobile check exposed document scrolling during inspector expansion/focus. Viewport containment was corrected and the token panel now anchors its absolute live-status paragraph to its own scroll area. Coordinator rechecks observed **scrollY 0**, document height **844**, and root top **0** after expansion and target selection/Tab. Inspector scrolling exposed Cancel/Apply; collapse/reopen retained the pending reference and Cancel restored the applied baseline. The final build retains that bounded layout. These checks are scoped samples, not a formal keyboard/accessibility certification or an independent reviewer assessment.
+- Screenshots: [desktop](../../output/playwright/003-designer-v4-desktop.png), [collapsed rails](../../output/playwright/003-designer-v4-collapsed.png), [tablet](../../output/playwright/003-designer-v4-tablet.png), [mobile collapsed](../../output/playwright/003-designer-v4-mobile-collapsed.png), [mobile expanded](../../output/playwright/003-designer-v4-mobile-expanded.png), [mobile actions reached](../../output/playwright/003-designer-v4-mobile-actions.png).
+- Existing fixture, one-hop specimen, temporary-session and numerical limitations remain. No production integration or analyst/reviewer handoff occurred. User review of V4 remains pending.
+
+Suggested commit only if later requested: `design: add responsive collapsible panes to prototype v4`.
