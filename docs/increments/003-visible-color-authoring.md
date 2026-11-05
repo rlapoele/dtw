@@ -7,6 +7,8 @@
 
 ## Outcome
 
+**Preparation update — 5 November 2026:** the user authorized a [bounded color-policy proposal](003-color-policy-proposal.md) following V4 review finding 1. It is **Proposed / Not agreed** and does not amend D2 or AC-3. UX/UI changes will be captured separately before final implementation agreement; D4, final design/contract agreement and implementation authorization remain pending.
+
 Let a design-system author create a project, organize a small color vocabulary, author a primitive and semantic alias, revise their values, and understand the resulting relationship through a desktop-oriented browser interface.
 
 The proposed value is immediate interaction feedback: can an author distinguish an authored alias from its resolved color, deliberately change the dependency, and understand a rejected cycle without reading tests or calling APIs? It is a **session-only authoring prototype**, with a reusable renderer, rather than a durable workbench. It is suitable for trying the workflow with disposable examples, not retaining real project work.

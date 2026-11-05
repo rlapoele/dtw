@@ -1,12 +1,14 @@
 # Current Project Status
 
-> Last updated: 3 November 2026
+> Last updated: 5 November 2026
 >
-> Phase: Increment 003 V4 analyst assessment completed; decisions and design supplement pending
+> Phase: Increment 003 color-policy proposal prepared; user review and design follow-ups pending
 >
 > Implementation state: npm scaffold, host-independent domain core, initial application operations and in-memory adapter; no web entry point
 
 ## Current focus
+
+On 5 November 2026, the user authorized preparation of a bounded color-policy proposal following the V4 analyst assessment. UX/UI changes will be captured and addressed separately before final implementation agreement. The separate analyst prepared the [color-policy proposal](../increments/003-color-policy-proposal.md), recommending exact direct entry, explicit significant-digit rounding for calculated candidates, bounded conversion/missing-component behavior, separate approximate previews and a numerical/library verification gate. The proposal remains **Proposed / Not agreed**; it does not amend agreed D2/AC-3, select a production dependency, agree the final contract/design, or authorize application implementation.
 
 The user agreed Increment 003 D1–D3 and requested a separate designer's isolated [prototype](../../prototypes/increment-003-v1/) using Vite, strict React/TypeScript, Tailwind v4 and shadcn/ui with Base UI primitives in a neutral theme. V2 explores explicit sRGB 0–255 entry with normalized values and synchronized draft color-space conversions. The user has now agreed [DR-1 and DR-2](../../prototypes/increment-003-v1/README.md#agreed-requests-for-next-designer-revision): keep the applied color visible alongside the draft preview and preserve Literal/Reference drafts across switching. A separate designer has implemented these requests in V3 of the isolated prototype, with labeled applied/draft previews and separate temporary form drafts. V3.1 adds the user-requested [Heroicons Outline direction](../project/visual-direction.md#visual-character-and-organization). V4 adds the user-requested inset dropdown chevrons and collapsible responsive panels: sidebar collapsed initially below 1120px, inspector at the right on desktop/tablet and at the bottom below 768px. Collapse preserves drafts; exact breakpoints and page-load defaults remain prototype proposals documented in the artifact. On 3 November 2026, the user said V4 looks good and explicitly authorized analyst review against the Increment 003 contract. The separate analyst assessed V4 at commit `a9f7e557214018bfef7965bc4f31d54c385c1ce6`; the [review](../increments/003-visible-color-authoring.md#analyst-review--v4-3-november-2026) identifies a color-entry/conversion/preview policy gap, unresolved D4 production-stack/milestone agreement, and missing project-start/identity/failure design states. The recommendation retains V4’s interaction direction while preparing a bounded numerical-policy proposal and compact designer supplement. These follow-ups are proposals, not implementation authority. Production conversion semantics, application acceptance criteria, final contract/design agreement and application implementation authorization remain pending.
 
@@ -26,11 +28,11 @@ The first domain behavior now implements canonical Decimal validation and compar
 
 ## Resume in a new chat
 
-Handoff prepared on 3 November 2026 for continuation on 4 November or later. The repository documents are sufficient to resume; the previous chat, agents and browser sessions are not required.
+Handoff updated on 5 November 2026 for continued Increment 003 preparation. The repository documents are sufficient to resume; the previous chat, agents and browser sessions are not required.
 
 1. Read `AGENTS.md` and this status, then inspect current Git state/history. The completed V4 analyst review is recorded in commit `6096388`; V4’s reviewed prototype snapshot is `a9f7e557214018bfef7965bc4f31d54c385c1ce6`.
-2. Read [Increment 003 and its analyst review](../increments/003-visible-color-authoring.md#analyst-review--v4-3-november-2026), the [V4 prototype notes](../../prototypes/increment-003-v1/README.md#v4--responsive-panes-and-select-chevrons), and [agent workflow](../workflow/agent-roles.md). Follow their owning-document links as needed.
-3. Bring the remaining decisions back to the user: bounded color-entry/conversion/preview policies, D4 production stack/milestone boundary, and the missing-state designer supplement. Retaining V4’s requested UX is the analyst’s recommendation. The user has not yet authorized those follow-ups or application implementation; do not infer either from this handoff.
+2. Read the [color-policy proposal](../increments/003-color-policy-proposal.md), [Increment 003 and its analyst review](../increments/003-visible-color-authoring.md#analyst-review--v4-3-november-2026), the [V4 prototype notes](../../prototypes/increment-003-v1/README.md#v4--responsive-panes-and-select-chevrons), and [agent workflow](../workflow/agent-roles.md). Follow their owning-document links as needed.
+3. Bring the remaining decisions back to the user: bounded color-entry/conversion/preview policies, D4 production stack/milestone boundary, and the missing-state designer supplement. Retaining V4’s requested UX is the analyst’s recommendation. The authorized color-policy proposal is prepared and awaits user review; the renderer decision, separate UX/UI changes, designer supplement and application implementation remain pending.
 4. If the user requests the supplement, use a separate designer and show material additions to the user before renewed analyst review. Final contract/design agreement and implementation authorization remain separate. New chats must dispatch fresh agents rather than depend on previous agent identifiers.
 
 The prototype is disposable, seeded and session-only. Closing Codex or reloading can lose browser draft edits, but its source, screenshots, design notes and review are repository artifacts. Do not assume the preview process survives. If preview is needed, run from `prototypes/increment-003-v1/`:
@@ -45,7 +47,7 @@ The isolated preview uses `http://127.0.0.1:4173/`. Check whether the port is al
 
 Suggested first message in the new project chat:
 
-> Read AGENTS.md and docs/status/current.md. Resume Increment 003 after the V4 analyst review. Summarize the remaining decisions and propose the next bounded preparation step before starting it. Preserve V4’s requested interaction direction; do not implement the application yet.
+> Read AGENTS.md and docs/status/current.md. Resume Increment 003 after the V4 analyst review. Read the color-policy preparation status and summarize the remaining decisions. Preserve V4’s requested interaction direction; do not implement the application yet.
 
 ## Established baseline
 
@@ -56,6 +58,8 @@ Suggested first message in the new project chat:
 - The official DTCG `2025.10` Markdown sources are vendored as reference material under [`docs/references/dtcg-2025.10/`](../references/dtcg-2025.10/README.md).
 
 ## Recently completed
+
+- Prepared the separate analyst’s [bounded color-policy proposal](../increments/003-color-policy-proposal.md), with measured byte/library observations, proposed behavior and numerical validation gates. Policies remain unagreed; production code/dependencies and the prior D2/AC-3 agreement are unchanged. UX/UI revisions remain a separate pre-agreement follow-up.
 
 - Completed the authorized separate analyst review of V4 against Increment 003 and owning constraints. The [contract review](../increments/003-visible-color-authoring.md#analyst-review--v4-3-november-2026) maps AC-1–AC-8, distinguishes existing implementation obligations from three pre-agreement gaps, and records evidence/assumptions/limits. No production acceptance or implementation is claimed.
 
@@ -145,7 +149,7 @@ Suggested first message in the new project chat:
 
 ## Next meaningful actions
 
-1. Resolve the [V4 analyst findings](../increments/003-visible-color-authoring.md#findings-and-required-decisions) with the user: propose bounded color-entry/conversion/preview behavior, close D4, and prepare a compact designer supplement for already-required missing states. Present material design additions to the user before renewed analyst review. Final contract/design agreement and explicit application implementation authorization remain pending.
+1. Review the [color-policy proposal](../increments/003-color-policy-proposal.md) with the user, then resolve the remaining [V4 analyst findings](../increments/003-visible-color-authoring.md#findings-and-required-decisions): capture/address separate UX/UI changes, close D4, and prepare a compact designer supplement for already-required missing states. Present material design additions to the user before renewed analyst review. Final contract/design agreement and explicit application implementation authorization remain pending.
 2. Decide the persistence boundary relative to DTCG and the minimum project manifest needed by that workflow.
 3. Select the first target adapter and state its compatibility promise, including expression and color conversion handling; compare small CSS and strict DTCG output and diagnostic fixtures.
 4. Extend the implemented shared operations only as required by the selected PWA workflow. Define the immediately following Electron prototype's acceptance boundary.
