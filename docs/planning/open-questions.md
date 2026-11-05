@@ -42,7 +42,9 @@ The [color-literal decision](../design-tokens/conceptual-model.md#color-literals
 5. Are fallbacks author-managed canonical data, generated adapter output, or both under explicit policies, and how are stale fallbacks handled?
 6. What fixtures and numerical tolerances should validate the chosen algorithms or future color-library dependency?
 
-No color library, universal operation set, editing policy, or fallback-generation algorithm is selected by these decisions.
+**Narrowed for Increment 003 — agreed 5 November 2026:** the user agreed the [bounded color-policy bundle](../increments/003-color-policy-proposal.md), also recorded in [color manipulation](../design-tokens/conceptual-model.md#color-manipulation). Exact direct entry/identity/alpha are retained; sRGB byte edits use exact decimal division with 18-significant-digit ties-to-even rounding only for nonterminating results; explicit literal space conversions use 12 significant digits, ties to even, and existing constructor validation. Missing/powerless components, near-neutral preservation, bounded calculation refusal and illustrative cross-space sRGB previews have scoped policies. The agreed initial preview allowance and operation limits still require numerical evidence; algorithm/constants, accuracy thresholds and candidate-library evaluation remain engineering gates. No implementation is authorized.
+
+These questions remain open beyond that bounded subset. No production color library, universal operation set, fallback-generation algorithm or global Decimal resource policy is selected. UX/UI changes, D4 and final Increment 003 design/contract agreement remain pending; behavioral agreement does not validate the prototype's calculations.
 
 ## Authoring helpers and value previews
 

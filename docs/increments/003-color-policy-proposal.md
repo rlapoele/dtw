@@ -1,14 +1,15 @@
 # Increment 003: color-policy proposal
 
-- Status: **Proposed — not agreed**; prepared by the separate analyst on 5 November 2026.
+- Status: **Behavior bundle agreed — 5 November 2026**; implementation not authorized. Prepared by the separate analyst; the filename retains its proposal-stage identity.
 - Parent: [Increment 003](003-visible-color-authoring.md), especially [V4 review finding 1](003-visible-color-authoring.md#1-before-agreement-reconcile-d2ac-3-with-requested-conversion-and-preview-ux).
-- Authorization: prepare this proposal. UX/UI changes will be captured separately before final implementation agreement. This document does not amend agreed D2, select a production dependency, accept V4 as final design, or authorize implementation.
+- Agreement: the user confirmed that this behavior bundle matches the intended direction and explicitly requested recording it as agreed. Its numerical validation and candidate-library gates remain required; agreement is not proof of calculation accuracy or dependency suitability.
+- Authorization: record the agreement and capture UX/UI changes separately before final implementation agreement. The dated amendment updates D2 and the corresponding draft Scope/AC-3/verification. No production dependency, final V4 design, whole contract or implementation is authorized.
 
-## Recommendation for user review
+## Agreed behavior bundle
 
-Keep V4's ability to edit sRGB on a 0–255 scale, convert a literal draft between the five supported spaces, and show a bounded approximate specimen. Give those capabilities an explicit numerical contract:
+Keep V4's ability to edit sRGB on a 0–255 scale, convert a literal draft between the five supported spaces, and show a bounded approximate specimen. Use the following bounded numerical policy:
 
-| Concern | Recommended policy | Consequence for the author |
+| Concern | Agreed policy | Consequence for the author |
 | --- | --- | --- |
 | Direct component entry | Preserve exact canonical Decimal values; use the existing constructor and range rules. | Long decimals, `none`, extended RGB and alpha retain their meaning. |
 | sRGB 0–255 entry | Divide edited channels by 255 using decimal arithmetic; keep terminating results exact, otherwise round to 18 significant digits, ties to even. | Fractional and extended entries work; repeating ratios are explicitly approximate. |
@@ -17,9 +18,9 @@ Keep V4's ability to edit sRGB on a 0–255 scale, convert a literal draft betwe
 | Extended values and failures | Never gamut-map or clamp authored candidates. Reject conversion when the target canonical schema or the bounded calculation service cannot represent it. | The current space, values and drafts survive a failed conversion. Exact editing remains available. |
 | Specimens | Render numeric in-range sRGB, or an approximate conversion to it; withhold unsupported/out-of-gamut previews. | Specimen failure does not invalidate an otherwise valid authored color. |
 
-**Reason for the precision choices:** 18 significant digits make decimal byte division independent of binary floating point. General color transforms are approximate; 12 significant digits give room for binary calculation noise while preserving very small nonzero magnitudes. Neither count claims that the algorithms have that many accurate digits. Their accuracy is a separate verification gate below. These are recommended engineering defaults for this bounded operation, not a global Decimal precision setting.
+**Reason for the precision choices:** 18 significant digits make decimal byte division independent of binary floating point. General color transforms are approximate; 12 significant digits give room for binary calculation noise while preserving very small nonzero magnitudes. Neither count claims that the algorithms have that many accurate digits. Their accuracy is a separate verification gate below. These agreed numerical defaults apply to this bounded operation, subject to the verification gate; they are not a global Decimal precision setting.
 
-The user decision is whether to accept this behavior bundle, including explicit approximation and bounded refusal. The analyst recommends it. Numerical fixture validation and candidate-library evaluation are engineering work; the user should not have to choose tolerances or library internals.
+The user agreed this behavior bundle, including explicit approximation and bounded refusal. Numerical fixture validation and candidate-library evaluation remain engineering work; the user is not being asked to choose tolerances or library internals. A failed gate requires evidence and an explicit policy revision rather than silently changing agreed behavior.
 
 ## Boundaries retained
 
@@ -27,7 +28,7 @@ The [exact color model](../design-tokens/conceptual-model.md#color-literals) and
 
 Included calculations are sRGB entry-scale adaptation and literal conversion among `srgb`, `display-p3`, `hsl`, `oklab`, and `oklch`. Same-space requests are identity operations. Excluded are HEX/pickers, interpolation/mixing, lightness adjustments, ramps, color expressions, automatic fallbacks, gamut mapping and target compatibility. No persistence representation changes.
 
-The proposal concerns numerical behavior. The control that triggers conversion, disclosure placement and other UX/UI changes return through the designer/user/analyst loop before final agreement. The existing missing-state supplement, D4 renderer/milestone decision and final implementation authorization remain pending.
+This agreement concerns numerical behavior. The control that triggers conversion, disclosure placement and other UX/UI changes return through the designer/user/analyst loop before final agreement. The existing missing-state supplement, D4 renderer/milestone decision and final implementation authorization remain pending.
 
 ## Exact editing and entry-scale adaptation
 
@@ -58,7 +59,7 @@ Long exact source coordinates may lose low-order digits in a deliberate conversi
 
 ### Bounded calculation and target failures
 
-Recommended initial calculation guards, subject to the fixture gate: each numeric component sent through a cross-space transform must have absolute magnitude zero or between `1e-100` and `1e6`, inclusive, and at most 4,096 text characters before conversion. Normalize hue by the existing constructor before checking. Apply these guards to intermediate/final results too; reject non-finite results, nonzero underflow, excess output length or a target-schema violation. Alpha is copied exactly and does not pass through the numerical transform. These conservative service limits cover ordinary and extended editing without treating every finite Decimal as a safe floating-point calculation.
+Agreed initial calculation guards, subject to the fixture gate: each numeric component sent through a cross-space transform must have absolute magnitude zero or between `1e-100` and `1e6`, inclusive, and at most 4,096 text characters before conversion. Normalize hue by the existing constructor before checking. Apply these guards to intermediate/final results too; reject non-finite results, nonzero underflow, excess output length or a target-schema violation. Alpha is copied exactly and does not pass through the numerical transform. These conservative service limits cover ordinary and extended editing without treating every finite Decimal as a safe floating-point calculation.
 
 For exact byte arithmetic/derived multiplication, use the 4,096-character input guard and a 4,200-character output budget, without the binary magnitude guard. Check budgets before allocating large powers/expanded output. An unsupported byte representation does not change its normalized source.
 
@@ -72,23 +73,23 @@ Failures return a distinguishable reason: invalid input, unsupported missing com
 
 Preview is a disposable rendering calculation outside the domain; it may reuse the verified conversion kernel but cannot write its output into authored fields. Use explicit sRGB CSS serialization, never a general library serializer with hidden gamut mapping. Direct sRGB gamut checks compare exact Decimal values to 0 and 1, so `1.000000000001` is outside even if binary conversion or formatting would round it to 1.
 
-For other eligible spaces, use raw converted sRGB coordinates. Recommend an absolute boundary-noise allowance of `1e-10` per channel for preview only: within `[-1e-10, 1 + 1e-10]`, snap display-only overshoots to the nearest boundary; beyond it, withhold the specimen. Label successful cross-space previews approximate. This is an engineering proposal requiring boundary fixtures, not a perceptual tolerance, target compatibility test or proof of exact gamut membership. If the allowance cannot be justified by observed conversion error, revise it rather than widen it until tests pass.
+For other eligible spaces, use raw converted sRGB coordinates. Use the agreed initial absolute boundary-noise allowance of `1e-10` per channel for preview only, subject to boundary validation: within `[-1e-10, 1 + 1e-10]`, snap display-only overshoots to the nearest boundary; beyond it, withhold the specimen. Label successful cross-space previews approximate. This remains an unverified engineering parameter requiring boundary fixtures, not a perceptual tolerance, target compatibility test or proof of exact gamut membership. If the allowance cannot be justified by observed conversion error, revise it rather than widen it until tests pass.
 
 Unavailable preview reasons distinguish invalid/incomplete text, unsupported missing components, calculation limits/failure, unresolved value and outside the bounded sRGB preview gamut. Authored extended RGB remains valid. Show exact text and the explanation; no browser-selected gamut-mapped fallback is substituted. Preview at alpha zero still retains underlying channels and alpha; a checkerboard is only a visual aid. Monitor, browser and color management can affect appearance; this slice promises an illustrative specimen, not display calibration or exact cross-device reproduction.
 
 ## Domain/application boundary and library evaluation
 
-The [architecture](../project/architecture.md#domain-engine) already puts deterministic authored conversion in the portable domain. Implementing this proposal would add only pure literal conversion and sRGB byte-entry candidate calculations with explicit policy/version and failure results. The application continues to validate/commit accepted edits through existing operations; delivery code owns incomplete text, draft mode and specimen rendering. No token is mutated by a calculation. No registry, generic plugin interface, color-expression family or package split is warranted.
+The [architecture](../project/architecture.md#domain-engine) already puts deterministic authored conversion in the portable domain. Implementing this agreement would add only pure literal conversion and sRGB byte-entry candidate calculations with explicit policy/version and failure results. The application continues to validate/commit accepted edits through existing operations; delivery code owns incomplete text, draft mode and specimen rendering. No token is mutated by a calculation. No registry, generic plugin interface, color-expression family or package split is warranted.
 
 **Candidate, not selected:** evaluate Color.js `0.7.1`, already isolated in the prototype, as a local calculation dependency behind that boundary. Its [supported spaces](https://colorjs.io/docs/spaces) cover the required models, with canonical `display-p3` mapped locally to library `p3`. Its [gamut documentation](https://colorjs.io/docs/gamut-mapping), checked 5 November 2026, distinguishes coordinate conversion from lossy gamut mapping and notes serializer defaults. Do not use `.toGamut()` or default `.toString()` for authored candidates.
 
-Local installed-source/runtime inspection found a consequential default: conversion to OKLCH uses a near-achromatic rectangular-axis test and can replace nonzero chroma with zero/hue `null`. This differs from the proposed policy. For example, source sRGB `[0.000000000000001, 0, 0]` converts through installed Color.js directly to OKLCH chroma `0`, hue `null`; converting to OKLAB and computing raw polar coordinates gives approximately chroma `0.000001098159548534976`, hue `29.23388027962786` degrees.
+Local installed-source/runtime inspection found a consequential default: conversion to OKLCH uses a near-achromatic rectangular-axis test and can replace nonzero chroma with zero/hue `null`. This differs from the agreed policy. For example, source sRGB `[0.000000000000001, 0, 0]` converts through installed Color.js directly to OKLCH chroma `0`, hue `null`; converting to OKLAB and computing raw polar coordinates gives approximately chroma `0.000001098159548534976`, hue `29.23388027962786` degrees.
 
 Recommendation: evaluate a narrow route using the library for verified rectangular transforms and explicit raw OKLAB↔OKLCH polar formulas under project policy, rather than accepting that hidden threshold or forking its global registry. The candidate is acceptable only if all routes preserve the policy, host independence and numerical fixtures. Confirm exact installed version/provenance, license, dependency/bundle effects and compatibility during technical preparation. No claim is made that `0.7.1` is the latest release. If the candidate cannot satisfy the gate, bring back a bounded alternative and its cost; do not silently replace these policies with library behavior.
 
 ## Representative fixtures and verification gate
 
-The following are **proposed expected behavior** unless marked measured. They specify acceptance work for an eventual implementation, not passing tests today.
+The following specify **expected behavior under the agreed bundle** unless marked measured. They remain unverified acceptance work for an eventual implementation; measured candidate observations are not automatically accepted accuracy oracles.
 
 | Fixture | Expected result/evidence |
 | --- | --- |
@@ -105,7 +106,7 @@ The following are **proposed expected behavior** unless marked measured. They sp
 | `none` in every position; incomplete `-`, `0.`, invalid `1e2` | Preserve source/text; only the two exactly powerless missing-hue forms are convertible. |
 | Alpha `0`, `1`, long exact ratio | No premultiplication, erasure or binary readback of alpha; color calculations independent of it. |
 | P3 green `[0, 1, 0]` → sRGB | Extended channels remain; unavailable sRGB preview; no clipping or gamut mapping. |
-| Direct sRGB `1.000000000001`; converted boundary overshoots | First withholds preview by exact comparison. Converted values inside/outside the proposed `1e-10` preview allowance test both sides without changing the source. |
+| Direct sRGB `1.000000000001`; converted boundary overshoots | First withholds preview by exact comparison. Converted values inside/outside the agreed initial `1e-10` preview allowance test both sides without changing the source. |
 | Hue rounds to `360`; negative/large entered hue | Constructor normalizes final hue; no invalid `360` candidate and no binary normalization of directly authored hue. |
 | Target invalid after conversion/rounding; over-limit input/result; non-finite stub | Distinct failure; no changed space, field, token or success claim. Canonical exact editing outside calculation limits remains possible. |
 | Repeated round trip, 100 cycles | Measure drift on ordinary bounded fixtures, report it, and compare against the cumulative bound below; never expect original decimal text. |
@@ -119,9 +120,9 @@ sRGB red → OKLCH:  [0.6279553639214311, 0.2576833038053608, 29.23388027962784]
 P3 green → sRGB:   [-0.5116049825853448, 1.0182656579378029, -0.3106746212905826]
 ```
 
-Python Decimal arithmetic with precision 18 and `ROUND_HALF_EVEN` independently reproduced the byte results above (trailing zeros normalized in the table). The existing isolated prototype `npm test` passes all eight helper tests; these verify its older policies, not this proposal. Project-owned local file links and the scoped Markdown diff were checked. No new production code or calculation implementation exists yet; no browser, root regression or cross-runtime policy validation is claimed.
+Python Decimal arithmetic with precision 18 and `ROUND_HALF_EVEN` independently reproduced the byte results above (trailing zeros normalized in the table). The existing isolated prototype `npm test` passes all eight helper tests; these verify its older policies, not the newly agreed bundle. Project-owned local file links and the scoped Markdown diff were checked. No new production code or calculation implementation exists yet; no browser, root regression or cross-runtime policy validation is claimed.
 
-Recommended engineering gate before claiming this policy implemented:
+Required engineering gate before claiming this policy implemented (the quantitative accuracy thresholds below remain validation proposals, not measured guarantees):
 
 1. Freeze the equations/constants and operation policy identity, and record independent expected fixtures from the dated CSS reference or a separately checked high-precision calculation. Comparing only against the same library does not validate it.
 2. Verify decimal byte results and formatter outputs exactly. Test general conversion numerically: for ordinary fixtures with RGB coordinates in `[-1, 2]`, compare after conversion to a common sRGB basis, proposing maximum absolute channel error `1e-8` per directed conversion and `1e-6` over 100 round trips. Check OKLAB components within `1e-8`; compare chromatic hue with a wrapped angular bound `1e-5` degrees when chroma is at least `1e-4`. These are proposed validation thresholds, not measured accuracy or universal bounds over every accepted magnitude. Below that chroma, compare rectangular coordinates rather than unstable angle. Test tiny/large calculation-domain limits and cancellation separately; published service guards alone do not establish accuracy throughout that domain.
@@ -129,10 +130,10 @@ Recommended engineering gate before claiming this policy implemented:
 4. Record runtime/package versions and cross-runtime fixture results for Node and the supported browser. Decimal arithmetic/formatting must be exact; general transforms have a versioned algorithm and bounded numerical equivalence, not an unverified promise of byte-identical transcendental results across all JavaScript engines. Material differences require policy/algorithm review, not widened thresholds.
 5. Preserve existing domain/application tests and add meaningful pure-operation tests plus browser checks for draft preservation, explicit Apply, aliases and unavailable specimens. A passing prototype helper suite does not satisfy this gate.
 
-If these proposed limits or tolerances fail, return the evidence and revise the policy before final agreement/acceptance. Do not silently reduce coverage, erase near-neutral coordinates, clamp invalid results or loosen thresholds to obtain passing checks.
+If the agreed initial limits or proposed validation tolerances fail, return the evidence for an explicit policy amendment before final implementation agreement/acceptance. Do not silently reduce coverage, erase near-neutral coordinates, clamp invalid results or loosen thresholds to obtain passing checks.
 
 ## Agreement and follow-up
 
-Review this as one recommended behavior bundle. Any requested change is recorded here before amending the contract. Once agreed, update only the affected color-model/open-question sections and amend Increment 003 Scope, D2, AC-3 and verification together with a dated agreement record. Keep prototype history labeled as history. The proposal does not require importing its code or selecting every dependency.
+5 November 2026 — The user agreed this behavior bundle and asked to capture UX/UI changes next, before final implementation agreement, with no implementation started. The affected color-model/open-question sections and Increment 003 Scope, D2, AC-3 and verification now record that bounded agreement. Prototype history remains history. No prototype code or production dependency is selected by this agreement.
 
 Then address the user's separately captured UX/UI changes and required missing-state supplement, close D4, and identify the resulting design/contract for final agreement. Material design revisions return to the user before renewed analyst review. Implementation starts only after explicit authorization under the project workflow.

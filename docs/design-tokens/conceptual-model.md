@@ -1024,11 +1024,19 @@ A fallback is distinct from an equivalent representation: a color outside a targ
 
 **Established direction — 2 October 2026**
 
-Deterministic color conversion and manipulation belong in the domain engine, not only in color-picker UI code. Candidate capabilities include component adjustments, mixing/interpolation, and palette generation; their initial coverage is not selected.
+Deterministic color conversion and manipulation belong in the domain engine, not only in color-picker UI code. Candidate capabilities include component adjustments, mixing/interpolation, and palette generation; their initial coverage is not selected. The bounded literal-conversion/entry-scale subset agreed for Increment 003 is recorded below.
 
-Operations must state their color model or interpolation space and applicable parameters. For example, adjusting HSL lightness and adjusting OKLCH lightness are different operations; an unspecified “lighten by 10%” is not a sufficient domain contract. Precision, hue handling, alpha behavior, gamut-mapping policy, and algorithms remain explicit implementation decisions.
+Operations must state their color model or interpolation space and applicable parameters. For example, adjusting HSL lightness and adjusting OKLCH lightness are different operations; an unspecified “lighten by 10%” is not a sufficient domain contract. Precision, hue handling, alpha behavior, gamut-mapping policy, and algorithms require explicit decisions. The Increment 003 subset below narrows these policies without selecting a universal operation family or production library.
 
 Like scale helpers, color helpers may propose candidate values that become ordinary tokens when accepted. This does not establish live dependencies. Retaining a manipulation as an authored expression requires a supported versioned color operation whose interpolation, alpha, gamut, precision, and rounding behavior is explicit; no initial color-expression operation is selected yet. UI controls collect parameters and show candidates; application operations coordinate accepted changes through domain validation.
+
+**Bounded working decision — Increment 003, agreed 5 November 2026; not implemented**
+
+The user agreed the [Increment 003 color-policy bundle](../increments/003-color-policy-proposal.md), which owns its scoped numerical details, fixtures and remaining verification gates. It adds pure sRGB entry-scale candidate calculations and explicit literal conversions among the existing five spaces; application operations still commit only accepted edits. It does not change canonical literal schemas, introduce a color-expression operation, select a production dependency or authorize implementation.
+
+Direct canonical input, alpha and same-space requests remain exact. Derived 0–255 inspection does not change authored coordinates; deliberate byte edits use exact decimal division, retaining terminating quotients and otherwise rounding to 18 significant digits, ties to even. Cross-space candidates use 12 significant digits, ties to even, followed by existing constructor validation and hue normalization. No authored clamping or gamut mapping is allowed. Other missing components block conversion except the scoped exactly powerless missing-hue cases; exact neutrals and tiny nonzero chroma follow explicit policies rather than implicit library thresholds.
+
+Calculation-service limits and illustrative sRGB previews are bounded separately from canonical validity. Preview cannot write authored data; its agreed initial cross-space boundary allowance remains subject to evidence. Algorithm/constants, numerical accuracy and candidate-library suitability require the bundle's engineering gate; agreement does not establish implementation correctness. Broader operations, global Decimal resource limits, fallback generation and target compatibility remain open. UX/UI and final contract agreement follow separately before implementation authorization.
 
 ### Opacity
 
