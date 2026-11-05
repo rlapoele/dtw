@@ -88,6 +88,10 @@ Canonical schema/manifest and versioning, durable adapters and asynchronous appl
 - Coordinator reports baseline `npm run typecheck` and `npm test` passed: 689 tests across 27 files. The analyst inspected source/tests and did not independently rerun those checks. Baseline checks are not evidence for this proposed UI.
 - Implementation/review snapshot: not established; no implementation is authorized. Record the actual base and stable reviewed snapshot after agreement, preserving unrelated changes.
 
+## Design exploration — V5 prepared for user review
+
+5 November 2026 — The user requested a separate designer proposal covering the [three UX/UI requests](003-ux-ui-change-capture.md) and V4 missing states, with presentation to the user before analyst review and no application implementation. The designer prepared [V5 and its interaction/state notes](../../prototypes/increment-003-v1/DESIGN-V5.md) in the isolated prototype. It proposes anchored view-only color-space exploration, native component sliders alongside precise entry, responsive refinements, and project-start/identity/failure/inspect-only states. Sampled coordinator browser evidence and limits are recorded in the artifact. V5 is presented for user feedback; approval for analyst review, formal interaction/scope amendments, D4, final design/contract agreement and implementation authorization remain pending. Existing numerical helpers are illustrative and do not implement the agreed numerical bundle.
+
 ## Design exploration — V1
 
 The design-exploration sections below are historical records of their dated versions and handoffs. Later review/agreement records supersede their then-pending claims; none authorizes implementation.

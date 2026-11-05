@@ -1,7 +1,7 @@
 # Increment 003: UX/UI change capture
 
 - Captured: **5 November 2026**, from the user's V4 feedback, by a separate designer.
-- Status: **User requests captured; detailed design and contract amendments pending**.
+- Status: **V5 designer proposal prepared for user review; design agreement and contract amendments pending**.
 - Parent: [Increment 003](003-visible-color-authoring.md). Numerical baseline: [agreed color-policy bundle](003-color-policy-proposal.md).
 - Authorization: capture requirements and check existing prototype coverage. No application or prototype implementation is authorized. This document records requests, a user-delegated interaction baseline, source observations and open decisions; it is not a final design or approval for analyst review.
 
@@ -55,6 +55,8 @@ The [V4 verification notes](../../prototypes/increment-003-v1/README.md#v4-verif
 **Remaining verification/design coverage:** whole create→edit→alias→inspect flow at representative widths and short/landscape heights; expanded-pane combinations; long exact values/paths/errors; dialogs; focus/order/visibility; 200% zoom and reflow; touch targets; mobile virtual keyboard; assistive-technology feedback; and any new graphical component controls. Include the still-missing project-start/identity/failure states from the [V4 analyst review](003-visible-color-authoring.md#3-before-final-design-agreement-complete-the-missing-state-handoff-without-redesigning-v4). Exact breakpoints and pane proportions remain design proposals. No formal accessibility conformance claim is made.
 
 ## Next handoff
+
+On 5 November 2026, the user confirmed no further changes for now and requested the designer proposal before analyst review. The separate designer prepared [V5](../../prototypes/increment-003-v1/DESIGN-V5.md), presented for user feedback. No approval for analyst review, final agreement or application implementation is inferred.
 
 Use UX-1’s user-delegated view-only baseline to prepare an identified designer proposal covering these requests and the missing-state supplement. Present material proposals to the user before analyst review. After the user approves the proposal for that review, the analyst reconciles Scope, D2, AC-3/AC-7 and the numerical-policy interaction section as needed. Final contract/design agreement and explicit implementation authorization remain separate.
 
