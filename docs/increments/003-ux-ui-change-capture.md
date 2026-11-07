@@ -1,9 +1,9 @@
 # Increment 003: UX/UI change capture
 
 - Captured: **5 November 2026**, from the user's V4 feedback, by a separate designer.
-- Status: **V5 designer proposal prepared for user review; design agreement and contract amendments pending**.
+- Status: **V6 approved for analyst review on 7 November 2026; final design/contract agreement and implementation authorization pending**.
 - Parent: [Increment 003](003-visible-color-authoring.md). Numerical baseline: [agreed color-policy bundle](003-color-policy-proposal.md).
-- Authorization: capture requirements and check existing prototype coverage. No application or prototype implementation is authorized. This document records requests, a user-delegated interaction baseline, source observations and open decisions; it is not a final design or approval for analyst review.
+- Authorization: the original capture was documentation-only. Subsequent dated entries record isolated prototype approvals and the user’s V6 analyst-review authorization. No application implementation is authorized; this capture is not final design/contract agreement.
 
 ## UX-1 — Preserve the draft color across space exploration
 
@@ -119,3 +119,10 @@ Following the designer’s full quality review, the user requested a focused pro
 The user approved the [complete focused improvement bundle](003-design-improvement-proposal.md) with option A and authorized the separate designer to prepare isolated V6. This includes compact persistent Applied/Draft header feedback, readable coordinate text, missing-target identity, current navigation semantics, read-failure mutation blocking, modal dimming and the navigation-matching inspector surface. Show the actual updated prototype to the user before analyst review. Application implementation remains unauthorized.
 
 The designer prepared [V6](../../prototypes/increment-003-v1/DESIGN-V6.md). The actual artifact and scoped browser evidence are presented for user review; approval of this artifact for analyst review remains pending.
+
+
+## V6 approved for analyst review — 7 November 2026
+
+The user said: “V6 looks good. Have the analyst review it against the Increment 003 contract and bring any gaps or decisions back to me. Don't start application implementation yet.” This authorizes analyst review of committed V6 (`c5adac537f1cfdf962fec25e8ffe49f62df70403`) only. Final design/contract agreement and implementation authorization remain separate.
+
+The separate analyst completed the [V6 review](003-v6-analyst-review.md) against snapshot `c5adac537f1cfdf962fec25e8ffe49f62df70403`. It recommends retaining V6 while reconciling contract language, clarifying creation and the collapsed wide-rail exception, and closing D4. Findings return to the user; no application implementation or further prototype revision is authorized.

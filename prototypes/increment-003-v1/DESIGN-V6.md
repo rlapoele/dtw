@@ -1,8 +1,8 @@
 # Increment 003 — Designer proposal V6
 
-**7 November 2026 · Focused F1–F7 bundle and option A approved for isolated prototyping; actual artifact awaits user review before analyst review.**
+**7 November 2026 · Focused F1–F7 bundle and option A approved for isolated prototyping; user approved the actual artifact for analyst review on 7 November 2026.**
 
-This revision follows the [approved focused improvement proposal](../../docs/increments/003-design-improvement-proposal.md) and [V5.2.4 design review](../../docs/increments/003-prototype-design-review.md). It preserves the accepted visual direction and earlier interactions. No application implementation, final contract/design agreement, dependency selection or analyst review is authorized.
+This revision follows the [approved focused improvement proposal](../../docs/increments/003-design-improvement-proposal.md) and [V5.2.4 design review](../../docs/increments/003-prototype-design-review.md). It preserves the accepted visual direction and earlier interactions. The user subsequently said V6 looks good and authorized analyst review against Increment 003. No application implementation, final contract/design agreement or production dependency selection is authorized.
 
 ## Review V6
 
@@ -51,7 +51,7 @@ Designer checks: isolated `npm run typecheck`, `npm run build` and all **8 exist
 
 The coordinator performs live browser checks and records actual outcomes/screenshots separately. Verify ordinary/unavailable/reference/applied-only header states, read-failure affordances, real modal backdrops and focus, meaningful-value contrast, right/bottom panel surfaces, narrow header fit, selected context and previous draft/scroll semantics. Actual zoom, screen readers and real virtual keyboards remain distinct checks.
 
-Show this identified artifact to the user before analyst review. Material changes return through the designer/user sequence. Final contract/design agreement and explicit application implementation authorization remain pending.
+The user approved this artifact for analyst review on 7 November 2026. The separate [V6 analyst report](../../docs/increments/003-v6-analyst-review.md) records remaining contract/decision work; it does not authorize a prototype revision or application implementation. Material changes return through the designer/user sequence. Final contract/design agreement and explicit application implementation authorization remain pending.
 
 Suggested commit: `design: address focused workbench review findings in v6`.
 
