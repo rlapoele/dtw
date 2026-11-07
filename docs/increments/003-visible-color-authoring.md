@@ -88,6 +88,14 @@ Canonical schema/manifest and versioning, durable adapters and asynchronous appl
 - Coordinator reports baseline `npm run typecheck` and `npm test` passed: 689 tests across 27 files. The analyst inspected source/tests and did not independently rerun those checks. Baseline checks are not evidence for this proposed UI.
 - Implementation/review snapshot: not established; no implementation is authorized. Record the actual base and stable reviewed snapshot after agreement, preserving unrelated changes.
 
+## Focused improvement proposal — 7 November 2026
+
+The user requested a designer proposal for the review findings plus a subtly distinct inspector background, before prototype changes. The [proposal](003-design-improvement-proposal.md) maps F1–F7, recommends compact persistent feedback in the existing header and a navigation-matched inspector surface, and compares an additional feedback band. Its static board is a proposal asset outside the unchanged prototype. User feedback and approval of a direction/prototype revision remain pending; no analyst review, final contract/design agreement or application implementation is authorized.
+
+## Designer quality review — V5.2.4, 7 November 2026
+
+After saying the updated prototype looks good, the user requested a complete designer assessment of usability, UI clarity, aesthetics and additional relevant quality criteria. The [review](003-prototype-design-review.md) retains the visual direction and identifies five focused priorities plus a lower-priority modal consistency concern. Its eight-stage walkthrough uses fresh coordinator browser captures and clearly attributes designer source/image assessment. This is the designer’s self-assessment, not an independent implementation review or analyst contract review. No fixes were authorized or made; findings return to the user before design proposals, revisions or downstream review. Final design/contract agreement and application implementation remain pending.
+
 ## Design exploration — V5.2 prepared for user review
 
 7 November 2026 — After assessing the user’s V5.1 feedback, the separate designer recommended proportional 2:1 controls with a protected precision-field minimum and inspector top reset after an accepted switch to a different token. The user approved both for isolated prototyping. [V5.2](../../prototypes/increment-003-v1/DESIGN-V5-2.md) is presented for user review, with scoped checks and limits in its guide. Same-token continuation and rejected departure preserve drafts and scroll position. No analyst review, final contract/design agreement or application implementation is authorized.

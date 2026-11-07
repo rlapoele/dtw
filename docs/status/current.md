@@ -2,11 +2,15 @@
 
 > Last updated: 7 November 2026
 >
-> Phase: Increment 003 V5.2.4 rounded-track/action-button polish prepared; user review before analyst
+> Phase: Increment 003 focused improvement proposal prepared; user approval before prototype changes
 >
 > Implementation state: npm scaffold, host-independent domain core, initial application operations and in-memory adapter; no web entry point
 
 ## Current focus
+
+On 7 November 2026, the user requested a focused designer proposal for the quality-review findings, preserving the current visual direction, plus assessment of a subtly distinct inspector background (potentially matching the navigation panel). Present the proposal before any prototype changes. The separate designer prepared the [focused improvement proposal](../increments/003-design-improvement-proposal.md) and a static comparison board outside the prototype. It recommends compact applied/draft feedback in the existing inspector header (option A), a shared navigation/inspector neutral surface, readable value text and clearer exceptional/current states; an extra feedback band is option B. The static board was rendered and inspected. User choice/feedback on the bundle and option is pending; no prototype revision, analyst review or application implementation is authorized.
+
+On 7 November 2026, the user said the updated prototype looks good and requested a complete designer review of usability, UI clarity, aesthetics and any further relevant quality criteria. The separate designer completed the [V5.2.4 design review](../increments/003-prototype-design-review.md), using fresh coordinator browser evidence. It recommends retaining the visual direction and addressing five focused priorities: active-value contrast, visible color feedback during edits, missing-target labels, active navigation semantics, and read-failure action eligibility. A lower-priority modal-backdrop inconsistency is also recorded. No prototype edits were made or authorized by this review. This is designer assessment of its own proposal, not independent implementation review or analyst contract review. Return findings and recommendations to the user before any changes or downstream handoff.
 
 Latest refinement, 7 November 2026: the user approved the designer’s scoped rounded-track and compact action-button proposal. The designer prepared the isolated [V5.2.4 revision](../../prototypes/increment-003-v1/DESIGN-V5-2.md), with pill-shaped visible tracks and consistent 32px standard / 28px small action buttons, horizontal padding twice vertical padding, and preserved structural/icon-control layouts. Scoped browser checks confirm equal project-start sizing, rounded tracks and retained keyboard/hit-area behavior. The artifact is shown for user review before analyst review. No application implementation is authorized.
 
@@ -46,7 +50,7 @@ Handoff updated on 5 November 2026 for continued Increment 003 preparation. The 
 
 1. Read `AGENTS.md` and this status, then inspect current Git state/history. The completed V4 analyst review is recorded in commit `6096388`; V4’s reviewed prototype snapshot is `a9f7e557214018bfef7965bc4f31d54c385c1ce6`.
 2. Read the [color-policy proposal](../increments/003-color-policy-proposal.md), [Increment 003 and its analyst review](../increments/003-visible-color-authoring.md#analyst-review--v4-3-november-2026), the [V4 prototype notes](../../prototypes/increment-003-v1/README.md#v4--responsive-panes-and-select-chevrons), and [agent workflow](../workflow/agent-roles.md). Follow their owning-document links as needed.
-3. Read the [latest V5.2 proposal and browser evidence](../../prototypes/increment-003-v1/DESIGN-V5-2.md); collect user feedback on the identified revision before analyst review. The [UX/UI capture](../increments/003-ux-ui-change-capture.md) records its three requests and delegated view-only baseline. The color-policy bundle is agreed, with engineering verification gates retained. D4 production stack/milestone boundary, the missing-state designer supplement, final contract/design agreement and implementation authorization remain pending. Do not start application implementation.
+3. Read the [focused improvement proposal](../increments/003-design-improvement-proposal.md), its [review baseline](../increments/003-prototype-design-review.md) and [V5.2 artifact notes](../../prototypes/increment-003-v1/DESIGN-V5-2.md). Collect user feedback on the proposed bundle and feedback option before any prototype changes or analyst review. The [UX/UI capture](../increments/003-ux-ui-change-capture.md) records its three requests and delegated view-only baseline. The color-policy bundle is agreed, with engineering verification gates retained. D4 production stack/milestone boundary, the missing-state designer supplement, final contract/design agreement and implementation authorization remain pending. Do not start application implementation.
 4. V5 includes the requested missing-state supplement. Iterate with a separate designer on user feedback; show material revisions to the user before renewed analyst review. Final contract/design agreement and implementation authorization remain separate. New chats must dispatch fresh agents rather than depend on previous agent identifiers.
 
 The prototype is disposable, seeded and session-only. Closing Codex or reloading can lose browser draft edits, but its source, screenshots, design notes and review are repository artifacts. Do not assume the preview process survives. If preview is needed, run from `prototypes/increment-003-v1/`:
@@ -72,6 +76,10 @@ Suggested first message in the new project chat:
 - The official DTCG `2025.10` Markdown sources are vendored as reference material under [`docs/references/dtcg-2025.10/`](../references/dtcg-2025.10/README.md).
 
 ## Recently completed
+
+- Prepared and presented the designer’s [focused improvement proposal](../increments/003-design-improvement-proposal.md), with static A/B header-feedback layouts, inspector-surface and text-contrast recommendations, F1–F7 mapping and proposed verification. Only proposal documents/static assets were created; current V5.2.4 remains unchanged. User approval is required before prototype work.
+
+- Completed the [full designer quality review](../increments/003-prototype-design-review.md) of V5.2.4, with eight walkthrough stages, criteria assessments, fresh screenshots and attributed coordinator runtime observations. No broad redesign is recommended. Findings and recommendations await user discussion before any fixes; this is not independent implementation review or analyst contract review.
 
 - Prepared and presented the separate designer’s [V5.2](../../prototypes/increment-003-v1/DESIGN-V5-2.md) after approval of proportional controls and new-token inspection reset. Isolated typecheck/build and eight existing helper tests pass. Scoped browser observations verify 2:1 widths, narrow-field minimum, accepted different-token reset and retained same-token/pending-edit scroll behavior. User review precedes analyst review; no application implementation is authorized.
 
@@ -171,7 +179,7 @@ Suggested first message in the new project chat:
 
 ## Next meaningful actions
 
-1. Collect user feedback on [V5.2](../../prototypes/increment-003-v1/DESIGN-V5-2.md) and iterate through assessed directions before analyst review; then reconcile its interaction/scope amendments and remaining [V4 analyst findings](../increments/003-visible-color-authoring.md#findings-and-required-decisions), including D4. Preserve the [agreed color-policy bundle](../increments/003-color-policy-proposal.md) and its engineering verification gates. Present material design additions to the user before renewed analyst review. Final contract/design agreement and explicit application implementation authorization remain pending.
+1. Discuss the [focused improvement proposal](../increments/003-design-improvement-proposal.md), agree the bundle/feedback layout with the user and obtain explicit prototype-revision authorization before changes; user review of any resulting artifact still precedes analyst review; then reconcile its interaction/scope amendments and remaining [V4 analyst findings](../increments/003-visible-color-authoring.md#findings-and-required-decisions), including D4. Preserve the [agreed color-policy bundle](../increments/003-color-policy-proposal.md) and its engineering verification gates. Present material design additions to the user before renewed analyst review. Final contract/design agreement and explicit application implementation authorization remain pending.
 2. Decide the persistence boundary relative to DTCG and the minimum project manifest needed by that workflow.
 3. Select the first target adapter and state its compatibility promise, including expression and color conversion handling; compare small CSS and strict DTCG output and diagnostic fixtures.
 4. Extend the implemented shared operations only as required by the selected PWA workflow. Define the immediately following Electron prototype's acceptance boundary.

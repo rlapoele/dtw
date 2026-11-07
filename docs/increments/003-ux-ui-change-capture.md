@@ -108,3 +108,7 @@ The user explicitly requested implementation of stronger selected-token left bar
 ## Rounded tracks and compact action buttons — 7 November 2026
 
 The user requested rounded visible slider bars, action-button horizontal padding at least 1.5 times vertical padding across sizes/variants, and Create project matching Explore sample project. After the designer’s assessment, the user approved pill-shaped 12px tracks with existing larger interaction areas, standard 32px action buttons (6px vertical / 12px horizontal insets) and small 28px action buttons (4px vertical / 8px horizontal insets). The agreed scope preserves structural token rows, tabs, navigation, pane toggles, mode controls and square icon-control layouts. The separate designer is preparing the isolated revision and must show it before analyst review. Application implementation remains unauthorized.
+
+## Focused improvement proposal and inspector surface — 7 November 2026
+
+Following the designer’s full quality review, the user requested a focused proposal for its findings while preserving the current visual direction. The user also suggested a subtly different inspector background, potentially the same as the left navigation panel, to distinguish the right/bottom inspector from the token list. The designer must assess this as part of the proposal, including surface hierarchy, readability and editing context, then show it before any prototype changes. No implementation or analyst review is authorized.
