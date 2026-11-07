@@ -51,3 +51,18 @@ After the designer identified the unlayered heading reset overriding Tailwind’
 The badge refinement in V5.2.1 remains. The toolbar continues to identify the V5.2 series; actual-artifact review still precedes analyst review. No numerical helper, dependency, operation or production source changed. Isolated typecheck/build and scoped diff checks pass; numerical tests were not repeated for heading spacing alone. Coordinator screenshot evidence is recorded separately.
 
 Coordinator visual check — 7 November 2026: the rebuilt resolved tab at 649×952 shows clear separation between the final detail-row divider and Resolution trace, with the scoped 28px rule in place. The trace content/spacing below the heading is retained. [Updated trace spacing](../../output/playwright/003-designer-v5-2-2-trace-spacing.jpg). The viewport override was reset and the resolved view remains open for user review; no broader behavioral checks were repeated for this spacing-only correction.
+
+## V5.2.3 — Selection-indicator weight, 7 November 2026
+
+The user explicitly requested stronger selection borders in the token list and Resolved & trace tab, plus the same treatment for comparable elements elsewhere. The designer increased the two existing line-based selection indicators from **2px to 4px**, the next spacing step, making selection easier to distinguish while retaining the neutral palette and geometry.
+
+Inventory and scope:
+
+- The shared selected-token-row rule covers ordinary color/alias rows, duplicate-identity fixtures and the inspect-only Number row. All now receive a 4px left selection bar.
+- The shared active-tab rule covers **Authored value** as well as **Resolved & trace**. Both now receive a 4px underline when active. There are no other custom tab/line-based selection patterns in this prototype.
+- Project/group navigation in both sidebar and drawer uses a filled active surface and stronger text; Literal/Reference uses a filled segmented control. These remain their existing patterns. No new selection bars were invented.
+- Dividers, input/swatch borders, slider thumbs and keyboard focus outlines are separate functions and retain their weights. No layout dimensions, interactions, numerical helper, dependency or production source changed.
+
+This source inventory is not a full accessibility audit. Isolated typecheck/build and diff checks pass; numerical helper tests were not repeated for line-weight styling. Coordinator browser samples are recorded separately. Actual-artifact user review still precedes analyst review, and no application implementation is authorized.
+
+Coordinator visual check — 7 November 2026: at 649×952, the selected color-token bar and both inspector-tab active states were checked in the rebuilt preview. The 4px shared rules give the same selection weight to Authored value and Resolved & trace. Screenshots: [Authored tab](../../output/playwright/003-designer-v5-2-3-authored.jpg), [Resolved tab](../../output/playwright/003-designer-v5-2-3-resolved.jpg). The inspect-only row shares the token-row rule but was not separately exercised in this visual pass. Navigation/mode fills were reviewed in source as distinct patterns. The viewport override was reset and the resolved view remains open for user review. Broader behavioral/numerical checks were not repeated for this visual-only revision.

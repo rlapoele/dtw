@@ -100,3 +100,7 @@ The user asked about the scope of “Applied value” in Resolved & trace. It de
 ## Resolution-trace spacing — 7 November 2026
 
 The user requested more space above Resolution trace. The separate designer assessed the missing intended margin and recommended restoring a scoped 28px gap without changing other headings or the space below this title. The user approved this isolated prototype fix and requested presentation before analyst review; no application implementation is authorized.
+
+## Selection-indicator weight — 7 November 2026
+
+The user explicitly requested implementation of stronger selected-token left bars and active-tab underlines, plus the same treatment for other comparable elements found in the prototype. The separate designer reviewed selection patterns and selected the next weight step, 2px to 4px, for shared token-row and inspector-tab indicator rules. These shared rules also cover the Authored value tab and inspect-only Number row. Navigation and Literal/Reference selection use filled surfaces; no new bars, global border thickening or focus-outline changes are implied. The isolated revision returns to user review before analyst review; no application implementation is authorized.

@@ -1,6 +1,8 @@
-# Increment 003 — Designer proposal V5.2.2
+# Increment 003 — Designer proposal V5.2.3
 
-**Latest: 7 November 2026 — [V5.2.2 trace spacing](DESIGN-V5-2.md#v522--trace-section-spacing-refinement-7-november-2026).** Following designer assessment and user approval, the intended 28px gap above Resolution trace is restored with a scoped rule. The adjacent Applied value badge and other V5.2 behavior remain unchanged. Actual-artifact user review precedes analyst review; no application implementation is authorized.
+**Latest: 7 November 2026 — [V5.2.3 selection indicators](DESIGN-V5-2.md#v523--selection-indicator-weight-7-november-2026).** The shared selected-token bar and active-tab underline are now 4px, including ordinary/inspect-only rows and both inspection tabs. The designer reviewed comparable states; filled navigation/mode treatments and non-selection borders retain their existing patterns. Actual-artifact user review precedes analyst review; no application implementation is authorized.
+
+**V5.2.2 history: 7 November 2026 — [V5.2.2 trace spacing](DESIGN-V5-2.md#v522--trace-section-spacing-refinement-7-november-2026).** Following designer assessment and user approval, the intended 28px gap above Resolution trace is restored with a scoped rule. The adjacent Applied value badge and other V5.2 behavior remain unchanged. Actual-artifact user review precedes analyst review; no application implementation is authorized.
 
 **V5.2.1 history: 7 November 2026 — [V5.2.1 badge refinement](DESIGN-V5-2.md#v521--resolved-view-badge-refinement-7-november-2026).** Following designer assessment and user approval, the existing Applied value badge is grouped directly beside Resolved color. Other V5.2 behavior is unchanged; user review precedes analyst review and no application implementation is authorized.
 
