@@ -81,3 +81,7 @@ I agree that a new token should begin with its identity and applied/draft contex
 Resetting on a new identity costs some position continuity when comparing tokens, but it avoids presenting a newly selected token halfway down another token's editor. The selected-list-row reveal remains independent. Do not scroll the document or move keyboard focus merely to perform the reset.
 
 If the user approves these two refinements, prepare the isolated prototype revision and show it again before analyst review. Existing numerical limitations, unrelated V5.1 behavior and application implementation boundaries remain unchanged.
+
+### Refinement approval — 7 November 2026
+
+The user approved both recommendations above and authorized the separate designer to prepare the isolated prototype revision, then show it before analyst review. Approval covers proportional controls with the narrow-screen precision minimum and accepted-different-token scroll reset. It does not authorize analyst review, final contract/design agreement or application implementation.

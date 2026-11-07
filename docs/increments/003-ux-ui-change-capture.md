@@ -88,3 +88,11 @@ The user supplied two additional annotated comments at 649×952:
 - **V5.1-R2 — Inspector entry point:** when selecting a token while the inspector is open, show the new token from the top of the inspector rather than retaining the preceding token’s scroll position.
 
 The separate designer is assessing these requests before any further prototype edits, following the user's assessment-first workflow. Approval of a specific treatment remains pending; no analyst review or application implementation is authorized.
+
+On 7 November 2026, the user approved both assessed V5.1 refinements: a 2:1 usable-width ratio with a protected precision-field minimum, and inspector top reset after an accepted switch to a different token. A separate designer is preparing the isolated revision; the artifact must return to the user before analyst review. No application implementation is authorized.
+
+The separate designer prepared [V5.2](../../prototypes/increment-003-v1/DESIGN-V5-2.md), presented to the user on 7 November 2026 with scoped browser evidence. Approval of the refinements for prototyping is separate from review of the artifact; analyst review and application implementation remain unauthorized.
+
+## V5.2 badge placement — 7 November 2026
+
+The user asked about the scope of “Applied value” in Resolved & trace. It describes the applied-state resolution view (specimen, components, alpha and trace). After the separate designer assessed the placement, the user approved grouping the existing badge immediately beside “Resolved color,” with a small gap, unchanged styling and narrow wrapping. The designer is applying this isolated visual refinement; no copy/semantics change, analyst review or application implementation is authorized. The revised artifact returns to the user.

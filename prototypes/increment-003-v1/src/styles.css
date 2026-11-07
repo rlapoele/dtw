@@ -40,3 +40,9 @@ html,body,#root{height:100%;overflow:clip;overflow-anchor:none}body{position:fix
 .selection-context{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border:1px solid var(--border);border-radius:var(--radius);padding:12px;margin:0 0 16px;background:var(--muted);font-size:11px}.selection-context p{min-width:0}.selection-context p>span{display:block;color:var(--muted-foreground);overflow-wrap:anywhere}.selection-context .button{font-size:11px;min-height:40px}
 /* Keep focus scrolling inside inspector-content; the shell/header must not scroll. */
 .inspector-shell{overflow:clip}
+
+/* V5.2: proportional adjustment/precision columns; retain a usable exact field on narrow screens. */
+.component-control{grid-template-columns:minmax(0,2fr) minmax(7rem,1fr)}
+
+/* V5.2.1: group resolved-view context with its heading. */
+.resolved-heading{justify-content:flex-start;gap:8px;flex-wrap:wrap}

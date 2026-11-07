@@ -1,6 +1,10 @@
-# Increment 003 — Designer proposal V5.1
+# Increment 003 — Designer proposal V5.2.1
 
-**Latest: 7 November 2026 — [V5.1 proposal and review guide](DESIGN-V5-1.md).** The user selected option A from the designer’s assessment before prototype edits. V5.1 pairs left sliders with right precision fields, elevates the in-layout mobile inspector with visible selected-row context, and replaces compact navigation with a modal left drawer. User review of this artifact is pending before analyst review; no application implementation is authorized.
+**Latest: 7 November 2026 — [V5.2.1 badge refinement](DESIGN-V5-2.md#v521--resolved-view-badge-refinement-7-november-2026).** Following designer assessment and user approval, the existing Applied value badge is grouped directly beside Resolved color. Other V5.2 behavior is unchanged; user review precedes analyst review and no application implementation is authorized.
+
+**V5.2 history: 7 November 2026 — [V5.2 proposal and review guide](DESIGN-V5-2.md).** After the designer’s assessment and user approval, V5.2 balances slider/precision fields at 2:1 with a protected input minimum, and starts a different accepted token selection at the inspector’s top. Same-token continuation preserves reading position and drafts. User review of the actual artifact remains pending before analyst review; no application implementation is authorized.
+
+**V5.1 history: 7 November 2026 — [V5.1 proposal and review guide](DESIGN-V5-1.md).** The user selected option A from the designer’s assessment before prototype edits. V5.1 pairs left sliders with right precision fields, elevates the in-layout mobile inspector with visible selected-row context, and replaces compact navigation with a modal left drawer. User review of this artifact is pending before analyst review; no application implementation is authorized.
 
 **V5 history: 5 November 2026 — [V5 proposal and review guide](DESIGN-V5.md).** V5 covers view-only color-space exploration with exact draft restoration, native component sliders plus precision fields, responsive refinements, project creation/empty state and a separate missing-state review gallery. User review is pending before analyst review; no application implementation is authorized. The prototype numerical helper retains V4 limitations and does not implement the agreed production numerical policy.
 

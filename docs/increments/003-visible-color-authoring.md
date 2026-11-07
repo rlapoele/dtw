@@ -88,6 +88,10 @@ Canonical schema/manifest and versioning, durable adapters and asynchronous appl
 - Coordinator reports baseline `npm run typecheck` and `npm test` passed: 689 tests across 27 files. The analyst inspected source/tests and did not independently rerun those checks. Baseline checks are not evidence for this proposed UI.
 - Implementation/review snapshot: not established; no implementation is authorized. Record the actual base and stable reviewed snapshot after agreement, preserving unrelated changes.
 
+## Design exploration — V5.2 prepared for user review
+
+7 November 2026 — After assessing the user’s V5.1 feedback, the separate designer recommended proportional 2:1 controls with a protected precision-field minimum and inspector top reset after an accepted switch to a different token. The user approved both for isolated prototyping. [V5.2](../../prototypes/increment-003-v1/DESIGN-V5-2.md) is presented for user review, with scoped checks and limits in its guide. Same-token continuation and rejected departure preserve drafts and scroll position. No analyst review, final contract/design agreement or application implementation is authorized.
+
 ## Design exploration — V5.1 option A prepared for user review
 
 7 November 2026 — Following the user’s annotated V5 feedback and requested assessment-first sequence, the separate designer prepared [options and a recommendation](003-v5-design-assessment.md). The user selected option A for isolated prototyping. The resulting [V5.1 artifact](../../prototypes/increment-003-v1/DESIGN-V5-1.md) refines component row alignment, elevated mobile inspector/selected-row context and compact modal navigation; its guide records scoped checks and limits. It is presented for user feedback before analyst review. Direction approval does not accept the artifact or amend the final contract. No analyst review, final design/contract agreement or application implementation is authorized.
