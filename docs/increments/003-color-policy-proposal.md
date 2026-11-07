@@ -1,19 +1,19 @@
 # Increment 003: color-policy proposal
 
-- Status: **Behavior bundle agreed — 5 November 2026**; implementation not authorized. Prepared by the separate analyst; the filename retains its proposal-stage identity.
+- Status: **Numerical behavior bundle agreed — 5 November 2026; V6 interaction reconciliation for final user review — 7 November 2026**; implementation not authorized. Prepared by the separate analyst; the filename retains its proposal-stage identity.
 - Parent: [Increment 003](003-visible-color-authoring.md), especially [V4 review finding 1](003-visible-color-authoring.md#1-before-agreement-reconcile-d2ac-3-with-requested-conversion-and-preview-ux).
 - Agreement: the user confirmed that this behavior bundle matches the intended direction and explicitly requested recording it as agreed. Its numerical validation and candidate-library gates remain required; agreement is not proof of calculation accuracy or dependency suitability.
-- Authorization: record the agreement and capture UX/UI changes separately before final implementation agreement. The dated amendment updates D2 and the corresponding draft Scope/AC-3/verification. No production dependency, final V4 design, whole contract or implementation is authorized.
+- Authorization: the user requested reconciliation with reviewed V6 on 7 November 2026 and adoption of the recommended renderer stack and disclosed initial black literal. This updates the interaction trigger and corresponding reconciled contract; numerical precision, limits and gates are unchanged. Final whole-contract/design agreement and application implementation remain unauthorized. Color.js remains a candidate, not a selected production dependency.
 
 ## Agreed behavior bundle
 
-Keep V4's ability to edit sRGB on a 0–255 scale, convert a literal draft between the five supported spaces, and show a bounded approximate specimen. Use the following bounded numerical policy:
+Keep sRGB 0–255 editing, pure conversion among the five supported spaces and bounded approximate specimens. The reconciled V6 interaction distinguishes passive derived views from deliberate component edits that promote a representation to the literal draft. Use the following bounded numerical policy:
 
 | Concern | Agreed policy | Consequence for the author |
 | --- | --- | --- |
 | Direct component entry | Preserve exact canonical Decimal values; use the existing constructor and range rules. | Long decimals, `none`, extended RGB and alpha retain their meaning. |
 | sRGB 0–255 entry | Divide edited channels by 255 using decimal arithmetic; keep terminating results exact, otherwise round to 18 significant digits, ties to even. | Fractional and extended entries work; repeating ratios are explicitly approximate. |
-| Space conversion | Generate an approximate candidate with 12 significant digits per calculated component, ties to even; retain alpha exactly. | Conversion changes the draft, with the new space/value committed only by Apply. |
+| Space conversion | Generate an approximate candidate with 12 significant digits per calculated component, ties to even; retain alpha exactly. | Passive viewing leaves the authoritative draft unchanged; a deliberate component edit in another representation promotes that representation. Only Apply commits the authoritative draft. |
 | Missing and powerless components | Convert a missing hue only at exactly zero saturation/chroma. Preserve all other missing components and explain why conversion is unavailable. Do not automatically erase small nonzero chroma. | No missing component silently becomes zero, and near-neutral colors retain authored distinctions. |
 | Extended values and failures | Never gamut-map or clamp authored candidates. Reject conversion when the target canonical schema or the bounded calculation service cannot represent it. | The current space, values and drafts survive a failed conversion. Exact editing remains available. |
 | Specimens | Render numeric in-range sRGB, or an approximate conversion to it; withhold unsupported/out-of-gamut previews. | Specimen failure does not invalidate an otherwise valid authored color. |
@@ -26,9 +26,9 @@ The user agreed this behavior bundle, including explicit approximation and bound
 
 The [exact color model](../design-tokens/conceptual-model.md#color-literals) and [authored/derived distinction](../design-tokens/conceptual-model.md#authored-color-and-alternative-representations) remain authoritative. One authored literal has one space, three components and explicit alpha. Aliases remain relationships; switching editor mode, inspecting a converted representation or previewing a resolved alias never flattens one into a literal.
 
-Included calculations are sRGB entry-scale adaptation and literal conversion among `srgb`, `display-p3`, `hsl`, `oklab`, and `oklch`. Same-space requests are identity operations. Excluded are HEX/pickers, interpolation/mixing, lightness adjustments, ramps, color expressions, automatic fallbacks, gamut mapping and target compatibility. No persistence representation changes.
+Included calculations are sRGB entry-scale adaptation and literal conversion among `srgb`, `display-p3`, `hsl`, `oklab`, and `oklch`. Same-space requests are identity operations. Native one-dimensional component/alpha sliders supplement exact entry under the [identified design](003-visible-color-authoring.md#identified-v6-design-and-draft-session-behavior); their intervals do not change these numerical rules. Excluded are HEX/two-dimensional pickers, interpolation/mixing, standalone manipulation operations such as relative lightness adjustments, ramps, color expressions, automatic fallbacks, gamut mapping and target compatibility. Direct editing of a literal lightness component remains included. No persistence representation changes.
 
-This agreement concerns numerical behavior. The control that triggers conversion, disclosure placement and other UX/UI changes return through the designer/user/analyst loop before final agreement. The existing missing-state supplement, D4 renderer/milestone decision and final implementation authorization remain pending.
+The 5 November agreement concerns numerical behavior. On 7 November the user requested reconciliation with V6 following analyst review and adopted the production stack and disclosed initial black value. The interaction trigger below now reflects V6; the parent contract identifies responsive/sliders/draft behavior and the written creation disclosure for final user review. Whole-contract/design agreement and application implementation authorization remain pending; the renderer choice does not select a color calculation dependency.
 
 ## Exact editing and entry-scale adaptation
 
@@ -40,7 +40,14 @@ This agreement concerns numerical behavior. The control that triggers conversion
 
 ## Space conversion and rounding
 
-Conversion is a pure candidate calculation, with the current literal and a target space as input. It does not write the project. Repeated requests in an unchanged target space are no-ops and return the exact input, including numeric powerless hue and alpha. Each successful change of space uses the current candidate as its source; this is deliberately allowed to accumulate approximation. A round trip is not undo and need not restore source text. Cancel returns to the applied baseline under the agreed draft rules.
+Conversion remains a pure candidate calculation with a literal and target space as input; it never writes the project. Same-space requests return the exact input, including numeric powerless hue and alpha. The following V6 interaction reconciliation supersedes the original 5 November cumulative-space-switching trigger without changing the calculation policy:
+
+- The literal editing session owns one authoritative draft plus a displayed space. Each alternate representation derives directly from that authoritative draft, never from another passive view. Changing views alone changes neither authorship nor dirty state; any unedited multi-space trip back restores the exact authoritative component/alpha text.
+- A deliberate component edit in another representation promotes that calculated representation to the authoritative draft, replacing the edited channel with entered exact text and using this bundle's calculated-value rules for other channels. Incomplete text remains a delivery draft, not a valid literal; Apply remains blocked until constructor-valid. Promotion invalidates stale derived representations/raw byte caches. Alpha-only edits update the exact alpha on the existing authoritative draft without changing its space.
+- Apply commits the authoritative draft even when a different representation is displayed; absent an authored edit it is unavailable. Successful Apply resets the view/baseline to the committed authored space and clears the inactive form draft. Rejection retains both form drafts. Cancel discards both and restores the applied baseline. Mode switches/pane collapse retain independent literal/reference fields, view, scale and raw text; an alias is never flattened by viewing.
+- Valid raw byte text survives passive browsing; real edits in another space invalidate stale byte text. Incomplete/invalid text or failed calculation preserves current view, raw text and source rather than discarding them or applying an older normalized value. Entry-scale adaptation still follows the exact per-channel rules above.
+
+Repeated deliberately promoted edits or sequential calls that intentionally use one conversion output as the next source may accumulate approximation. Such a calculated round trip is not undo and need not restore source text. This kernel behavior is tested separately from passive editor browsing, which must restore exact text without cumulative writes.
 
 Use a fixed, documented algorithm/version: extended sRGB/Display P3 transfer functions and D65-based transforms, HSL as an sRGB model, and OKLAB/OKLCH rectangular/polar transforms. The [CSS Color 4 conversion sections and sample code](https://www.w3.org/TR/2026/CRD-css-color-4-20261103/#color-conversion-code), checked 5 November 2026, are reference material for equations and fixtures. That document is a Candidate Recommendation Draft; its sample code is informative. It is not adopted as the canonical schema, CSS parser behavior, or a blanket conformance promise.
 
@@ -55,7 +62,7 @@ Long exact source coordinates may lose low-order digits in a deliberate conversi
 - Other missing components block conversion, including missing hue at nonzero saturation/chroma. Preview uses the same eligibility rule. No general CSS missing-component interpolation semantics are introduced.
 - Detect exact neutral source cases using exact input values: equal numeric RGB channels, HSL saturation zero or lightness exactly 0/100, OKLAB axes both zero, or OKLCH chroma zero. Where target neutrality is representable, give HSL zero saturation and `none` hue; OKLCH zero chroma and `none` hue; OKLAB zero axes; RGB equal channels. This prevents matrix residue from manufacturing a chromatic hue for exact neutral input. Neutral RGB outside the destination schema's allowed lightness range still fails validation.
 - For other sources, retain computed nonzero chroma and numeric hue, even if tiny. Do not inherit a library's near-neutral threshold. If an intermediate calculation collapses a distinction needed to form a valid result, refuse rather than invent a hue. This does not promise preservation of arbitrarily small differences through floating-point arithmetic.
-- A numeric powerless source hue survives identity/direct editing. A cross-space round trip can lose that original hue; it cannot be recovered from a neutral color and is not reconstructed.
+- A numeric powerless source hue survives identity/direct editing. A deliberately promoted/calculated cross-space round trip can lose that original hue; it cannot be recovered from a neutral color and is not reconstructed.
 
 ### Bounded calculation and target failures
 
@@ -109,7 +116,8 @@ The following specify **expected behavior under the agreed bundle** unless marke
 | Direct sRGB `1.000000000001`; converted boundary overshoots | First withholds preview by exact comparison. Converted values inside/outside the agreed initial `1e-10` preview allowance test both sides without changing the source. |
 | Hue rounds to `360`; negative/large entered hue | Constructor normalizes final hue; no invalid `360` candidate and no binary normalization of directly authored hue. |
 | Target invalid after conversion/rounding; over-limit input/result; non-finite stub | Distinct failure; no changed space, field, token or success claim. Canonical exact editing outside calculation limits remains possible. |
-| Repeated round trip, 100 cycles | Measure drift on ordinary bounded fixtures, report it, and compare against the cumulative bound below; never expect original decimal text. |
+| Repeated deliberate/kernel round trip, 100 cycles | Measure drift on ordinary bounded fixtures, report it, and compare against the cumulative bound below; never expect original decimal text from sequential calculated outputs. |
+| Passive multi-space editor exploration and return | Restore exact current draft components/alpha; do not dirty or promote it. Verify pending edits, view/scale/raw text, alpha-only changes, independent forms, Apply/Cancel and failed representation retention separately from kernel drift. |
 
 **Measured on 5 November 2026:** read-only Node probes of installed Color.js `0.7.1` gave the following raw floating-point coordinates. These are observations of a candidate, not independent accuracy or accepted canonical-output oracles:
 
@@ -136,4 +144,4 @@ If the agreed initial limits or proposed validation tolerances fail, return the 
 
 5 November 2026 — The user agreed this behavior bundle and asked to capture UX/UI changes next, before final implementation agreement, with no implementation started. The affected color-model/open-question sections and Increment 003 Scope, D2, AC-3 and verification now record that bounded agreement. Prototype history remains history. No prototype code or production dependency is selected by this agreement.
 
-Then address the user's separately captured UX/UI changes and required missing-state supplement, close D4, and identify the resulting design/contract for final agreement. Material design revisions return to the user before renewed analyst review. Implementation starts only after explicit authorization under the project workflow.
+7 November 2026 — Following V6 analyst review, the user adopted the recommended production renderer stack and initial opaque-black literal disclosed before Create, and requested contract reconciliation with V6. The interaction amendment above and [reconciled parent contract](003-visible-color-authoring.md) now distinguish exact passive exploration from approximate promoted edits. The numerical precision, limits, candidate-library status and verification gates remain unchanged. The written creation disclosure is presented as a supplement, not claimed as existing prototype UI. Final whole-contract/design agreement and implementation authorization remain pending. Material design revisions return through the user/designer/analyst sequence; no application implementation starts under this documentation request.

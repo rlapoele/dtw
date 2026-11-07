@@ -1,7 +1,7 @@
 # Increment 003: UX/UI change capture
 
 - Captured: **5 November 2026**, from the user's V4 feedback, by a separate designer.
-- Status: **V6 approved for analyst review on 7 November 2026; final design/contract agreement and implementation authorization pending**.
+- Status: **V6 reviewed; 7 November reconciliation requested with the renderer stack and disclosed black creation value selected. Consolidated agreement returns for final user review; implementation is unauthorized**.
 - Parent: [Increment 003](003-visible-color-authoring.md). Numerical baseline: [agreed color-policy bundle](003-color-policy-proposal.md).
 - Authorization: the original capture was documentation-only. Subsequent dated entries record isolated prototype approvals and the user’s V6 analyst-review authorization. No application implementation is authorized; this capture is not final design/contract agreement.
 
@@ -126,3 +126,10 @@ The designer prepared [V6](../../prototypes/increment-003-v1/DESIGN-V6.md). The 
 The user said: “V6 looks good. Have the analyst review it against the Increment 003 contract and bring any gaps or decisions back to me. Don't start application implementation yet.” This authorizes analyst review of committed V6 (`c5adac537f1cfdf962fec25e8ffe49f62df70403`) only. Final design/contract agreement and implementation authorization remain separate.
 
 The separate analyst completed the [V6 review](003-v6-analyst-review.md) against snapshot `c5adac537f1cfdf962fec25e8ffe49f62df70403`. It recommends retaining V6 while reconciling contract language, clarifying creation and the collapsed wide-rail exception, and closing D4. Findings return to the user; no application implementation or further prototype revision is authorized.
+
+
+## Contract reconciliation requested — 7 November 2026
+
+After the V6 analyst report, the user adopted the recommended production stack and disclosure of the initial opaque black literal before Create, then requested reconciliation of Increment 003 with V6 and presentation of the updated agreement. The [contract](003-visible-color-authoring.md) and [numerical policy](003-color-policy-proposal.md) own the reconciled wording. This includes view-only exploration, explicit promotion on component edits, alpha-only source retention, independent drafts, bounded sliders, responsive behavior and the disclosed icon-only collapsed wide rail. Exact empty names remain preserved.
+
+The added creation disclosure is a written design supplement for review, not a claim that committed V6 already displays it. No prototype code or application implementation is authorized by this documentation request. Final user review of the consolidated agreement remains pending.

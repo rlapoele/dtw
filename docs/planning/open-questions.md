@@ -44,7 +44,7 @@ The [color-literal decision](../design-tokens/conceptual-model.md#color-literals
 
 **Narrowed for Increment 003 — agreed 5 November 2026:** the user agreed the [bounded color-policy bundle](../increments/003-color-policy-proposal.md), also recorded in [color manipulation](../design-tokens/conceptual-model.md#color-manipulation). Exact direct entry/identity/alpha are retained; sRGB byte edits use exact decimal division with 18-significant-digit ties-to-even rounding only for nonterminating results; explicit literal space conversions use 12 significant digits, ties to even, and existing constructor validation. Missing/powerless components, near-neutral preservation, bounded calculation refusal and illustrative cross-space sRGB previews have scoped policies. The agreed initial preview allowance and operation limits still require numerical evidence; algorithm/constants, accuracy thresholds and candidate-library evaluation remain engineering gates. No implementation is authorized.
 
-These questions remain open beyond that bounded subset. No production color library, universal operation set, fallback-generation algorithm or global Decimal resource policy is selected. UX/UI changes, D4 and final Increment 003 design/contract agreement remain pending; behavioral agreement does not validate the prototype's calculations.
+These questions remain open beyond that bounded subset. No production color library, universal operation set, fallback-generation algorithm or global Decimal resource policy is selected. On 7 November 2026 the user selected the renderer stack and requested reconciliation with V6’s view-only interaction and bounded sliders/responsive behavior. The [updated contract](../increments/003-visible-color-authoring.md) and numerical bundle own that reconciliation. Final review of the consolidated agreement and implementation authorization remain pending; behavioral agreement does not validate prototype calculations.
 
 ## Authoring helpers and value previews
 
@@ -181,7 +181,7 @@ The following directions are decided or selected for validation:
 
 Remaining questions:
 
-1. Which frontend framework and component approach best support the editor?
+1. For the [7 November selected renderer/component direction](../project/architecture.md#increment-003-renderer-selection), which exact compatible versions and integration satisfy delivery isolation, accessibility, license and bundle constraints? React/strict TypeScript/Vite, Tailwind v4, locally owned shadcn/ui-style Base UI components, neutral Precision treatment and Heroicons Outline are selected for Increment 003; numerical-library selection remains separate.
 2. Which runtime-schema and RPC-contract approach keeps the bridge typed without coupling the application to Electron?
 3. When would package boundaries beyond the initial single-package scaffold provide real reuse without creating a premature monorepo taxonomy?
 4. Which work should remain in Electron's main process, and which should move to utility processes or workers?

@@ -2,7 +2,7 @@
 
 **7 November 2026 · Focused F1–F7 bundle and option A approved for isolated prototyping; user approved the actual artifact for analyst review on 7 November 2026.**
 
-This revision follows the [approved focused improvement proposal](../../docs/increments/003-design-improvement-proposal.md) and [V5.2.4 design review](../../docs/increments/003-prototype-design-review.md). It preserves the accepted visual direction and earlier interactions. The user subsequently said V6 looks good and authorized analyst review against Increment 003. No application implementation, final contract/design agreement or production dependency selection is authorized.
+This revision follows the [approved focused improvement proposal](../../docs/increments/003-design-improvement-proposal.md) and [V5.2.4 design review](../../docs/increments/003-prototype-design-review.md). It preserves the accepted visual direction and earlier interactions. The user subsequently said V6 looks good and authorized analyst review against Increment 003. The subsequent stack/default decisions are recorded in the contract reconciliation below; they do not authorize application implementation, final contract/design agreement or adoption of the prototype’s exact dependency pins.
 
 ## Review V6
 
@@ -63,3 +63,8 @@ The frozen V6 build was checked at desktop, tablet and narrow mobile sizes, incl
 ![Desktop V6](../../output/playwright/v6-review-2026-11-07/01-desktop.jpg)
 
 ![Mobile V6 editing](../../output/playwright/v6-review-2026-11-07/14-mobile-editing.jpg)
+
+
+## Contract reconciliation and creation disclosure — 7 November 2026
+
+The user subsequently selected the recommended application renderer stack and disclosure of the initial black literal before Create, and requested the [updated Increment 003 agreement](../../docs/increments/003-visible-color-authoring.md). That contract owns the written creation supplement and reconciled interaction/acceptance criteria. Committed V6 remains the reviewed artifact; its create dialog does not yet contain the new disclosure. No prototype code was changed for this reconciliation. Final consolidated-agreement review and application implementation authorization remain separate.

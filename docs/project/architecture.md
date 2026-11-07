@@ -315,15 +315,25 @@ Only packages and applications required by current work should be created. The P
 
 **Working decision — 1 October 2026**
 
-Start domain implementation in TypeScript with strict type checking, Vite for build tooling, Vitest for unit tests, and npm for dependency management. The initial scaffold is a single private package with `src/` and `test/` directories. No frontend framework, styling library, runtime-schema library, persistence adapter, or domain schema is selected by this scaffold.
+Start domain implementation in TypeScript with strict type checking, Vite for build tooling, Vitest for unit tests, and npm for dependency management. The initial scaffold is a single private package with `src/` and `test/` directories. That original scaffold did not select a frontend framework, styling library, runtime-schema library, persistence adapter or domain schema. The later Increment 003 renderer selection below narrows delivery tooling only.
 
 Type checking runs separately through `tsc --noEmit`; Vite's TypeScript transformation does not replace it. Domain tests run in Vitest's Node environment while domain behavior remains independent of Node APIs, Electron, the browser, storage, and the network. See the repository [README](../../README.md) for executable commands and the remaining build/preview limitation: there is no web entry point yet.
+
+## Increment 003 renderer selection
+
+**Agreed delivery direction — 7 November 2026; not implemented**
+
+The user selected React with strict TypeScript and Vite, Tailwind v4, locally owned shadcn/ui-style components based on Base UI, the neutral Precision visual direction and Heroicons Outline for the application renderer. This closes the frontend/component direction for the [bounded Increment 003 contract](../increments/003-visible-color-authoring.md); exact compatible dependency versions, integration, licenses and bundle effects still require verification. It does not select Color.js or any other production color-calculation library.
+
+Keep the existing single package and scope TSX/browser types to delivery code. Domain/application checks remain host-independent. No router, general state-management library, backend or package split is introduced by this choice. The renderer consumes application operations rather than copying prototype namespace/reference semantics. Prototype code and dependency pins are exploratory evidence, not automatically approved for production reuse.
+
+Increment 003 remains session-only and does not complete the PWA. Retention/independent backup, interchange and install/offline acceptance remain later scoped work before the complete browser milestone and immediately following Electron validation. Neither this renderer decision nor the reconciled contract authorizes implementation.
 
 ## Remaining open choices
 
 This direction does not yet select:
 
-- a frontend framework or component library;
+- exact compatible versions/integration of the selected Increment 003 renderer and component tooling;
 - canonical persistence format or database;
 - any future monorepo topology or package split beyond the initial single-package scaffold;
 - exact RPC contract library or runtime-schema library;
