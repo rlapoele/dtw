@@ -79,3 +79,12 @@ The user clarified that the designer must form its own opinion on requested chan
 The separate designer’s [assessment and options](003-v5-design-assessment.md) recommend a refined split workbench (A), with a focus-sheet alternative (B). The user subsequently approved option A for isolated prototyping on 7 November 2026; option B is not selected. The updated artifact must return to the user before analyst review. No application implementation is authorized.
 
 Option A was prototyped by the separate designer as [V5.1](../../prototypes/increment-003-v1/DESIGN-V5-1.md) and presented for user review on 7 November 2026. Scoped browser evidence and limits are in the artifact guide; no approval for analyst review or application implementation is inferred.
+
+## V5.1 review feedback — 7 November 2026
+
+The user supplied two additional annotated comments at 649×952:
+
+- **V5.1-R1 — Component proportions:** sliders occupy too much horizontal space; assess approximately two-thirds slider and one-third precision input while keeping labels above fields, alignment, exact values and narrow-layout usability.
+- **V5.1-R2 — Inspector entry point:** when selecting a token while the inspector is open, show the new token from the top of the inspector rather than retaining the preceding token’s scroll position.
+
+The separate designer is assessing these requests before any further prototype edits, following the user's assessment-first workflow. Approval of a specific treatment remains pending; no analyst review or application implementation is authorized.

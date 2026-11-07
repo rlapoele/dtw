@@ -56,3 +56,28 @@ The in-app browser checked the loopback preview. These are scoped prototype obse
 Screenshots: [paired controls at 796px](../../output/playwright/003-designer-v5-1-controls.jpg), [compact navigation](../../output/playwright/003-designer-v5-1-navigation.jpg), [selected-row context at 649px](../../output/playwright/003-designer-v5-1-mobile.jpg), [corrected short-mobile inspector](../../output/playwright/003-designer-v5-1-short-mobile.jpg).
 
 Final screenshots and exact-return/filter checks use the corrected build. Initial drawer keyboard/draft checks preceded its outer-overflow-only correction. Full keyboard coverage, screen readers, actual zoom, real-device touch/virtual keyboard, arbitrary long rows and all landscape heights remain unverified. Reduced-motion and backdrop/Close behavior are specified in source but were not exhaustively exercised in this run. Numerical helpers remain illustrative.
+
+## Designer assessment of V5.1 feedback — 7 November 2026
+
+**Proposed refinements for user approval; no prototype edits or builds made for this assessment.** The designer inspected the recorded 649px V5.1 screenshot and current row/selection source. This is not a new live browser audit.
+
+### Give precision entry a proportional share
+
+I agree with the suggested **two-thirds slider / one-third input** as the normal balance. The current fixed 7rem input leaves the slider taking roughly four-fifths of the row in the 649px example, while long saturation values are hard to read. A proportional field makes the two editing methods feel more balanced.
+
+Recommend a **2:1 split of the usable row width after the gap**, for every component including alpha, while retaining a **7rem minimum for the precision field**. At narrow widths such as 320px, protect that minimum and let the slider use the remaining space rather than force a cramped one-third field. Preserve the same vertical alignment, label-above-input arrangement, native slider behavior and exact text scrolling. The tradeoff is less pointer travel on the slider; finer exact entry remains available, and no precision or numerical policy changes.
+
+### Begin a newly selected token at the inspector's top
+
+I agree that a new token should begin with its identity and applied/draft context visible. The current editor changes with selection, but its outer scrolling content can retain the previous token's reading position.
+
+| User action | Recommended scroll behavior |
+| --- | --- |
+| Select a different token, with no pending edits | After selection succeeds and its content appears, set only the inspector content's scroll position to the top. |
+| Select a different token with pending edits | Wait for the departure decision. **Discard draft** accepts the switch and starts the new token at the top. **Keep editing** retains the original token, drafts and scroll position. |
+| Select the current token again, or collapse/reopen its inspector | Preserve its scroll position and drafts; this is continuation, not a new selection. |
+| Edit a value, Apply or Cancel | Do not add a new top-reset rule. Preserve the existing operation/focus behavior. |
+
+Resetting on a new identity costs some position continuity when comparing tokens, but it avoids presenting a newly selected token halfway down another token's editor. The selected-list-row reveal remains independent. Do not scroll the document or move keyboard focus merely to perform the reset.
+
+If the user approves these two refinements, prepare the isolated prototype revision and show it again before analyst review. Existing numerical limitations, unrelated V5.1 behavior and application implementation boundaries remain unchanged.

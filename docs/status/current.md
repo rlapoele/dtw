@@ -2,11 +2,13 @@
 
 > Last updated: 7 November 2026
 >
-> Phase: Increment 003 V5.1 option A prototype prepared; awaiting user feedback before analyst
+> Phase: Increment 003 V5.1 feedback assessment; further prototype edits await direction approval
 >
 > Implementation state: npm scaffold, host-independent domain core, initial application operations and in-memory adapter; no web entry point
 
 ## Current focus
+
+Latest feedback, 7 November 2026: the user requested assessment of a two-thirds/one-third slider/input proportion and resetting inspector content to the top when selecting a token. The separate designer’s [assessment addendum](../../prototypes/increment-003-v1/DESIGN-V5-1.md#designer-assessment-of-v51-feedback--7-november-2026) recommends a 2:1 usable-width split with a protected 7rem precision-field minimum, and inspector top reset only after an accepted switch to a different token. User approval is pending before further prototype edits. V5.1 remains the current interactive artifact; analyst review and application implementation remain unauthorized. See the [captured feedback](../increments/003-ux-ui-change-capture.md#v51-review-feedback--7-november-2026).
 
 On 7 November 2026, the user reviewed V5 and requested [three scoped refinements](../increments/003-ux-ui-change-capture.md#v5-review-feedback--7-november-2026): side-by-side slider/input rows with labels above inputs, an elevated mobile inspector that keeps the selected token visible, and compact navigation as a left slide-in drawer with a header trigger. The user clarified that the designer must assess the requests and visual design, propose options/ideas, and obtain feedback and approval before prototype edits. The direct-edit approach was paused before any source/build changes; V5 remains the current artifact. The separate designer prepared the [V5 design assessment](../increments/003-v5-design-assessment.md), recommending a refined split workbench (A) and explaining a focus-sheet alternative (B). The user selected option A; the separate designer prepared [V5.1](../../prototypes/increment-003-v1/DESIGN-V5-1.md), presented to the user before analyst review. It pairs sliders/precision fields, elevates the mobile inspector with selected-row context, and adds compact modal navigation. Scoped coordinator browser evidence and remaining limits are recorded in its guide, including a corrected short-screen inspector containment issue. User feedback/approval for analyst review remains pending. Option B is not selected. Final contract/design agreement remains pending. No application implementation is authorized.
 
