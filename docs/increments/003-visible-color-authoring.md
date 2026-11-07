@@ -140,6 +140,14 @@ The [evidence report](003-guards-cancellation-report.md), [independent review](0
 
 After user disposition, prepare a short route-and-refusal specification identifying stages, failure categories and required regression fixtures before any eventual kernel implementation. This specification and production implementation are not started or authorized by the completed research. Missing routes, broader cancellation coverage, browser/runtime checks and application integration remain gates. Existing numerical limits, rounding and preview allowance remain unchanged; contract status stays Agreed and delivery Not started.
 
+## Color-engine options comparison — 8 November 2026
+
+The user requested comparison of Color.js, Culori and owned conversion/manipulation code against precision and maintenance requirements, without implementation, and confirmed mixing/gradients as future product needs. The [comparison](003-color-engine-options-comparison.md) and [independent review](003-color-engine-options-review.md) record pinned-source evidence, ownership costs and uncertainty. No probes, installs, code/dependency changes or production selection occurred.
+
+The recommendation is to retain upstream manipulation capability as the long-term direction to validate, preferably one conversion/manipulation backend if a small verified policy adapter can satisfy requirements. Culori is the first comparative-evidence candidate, not a selected engine or measured accuracy winner; Color.js retains existing runtime evidence. A narrow owned conversion kernel plus upstream manipulation is a fallback if strict observability requires it, with explicit conversion/gamut/alpha/hue seam costs. Full manipulation ownership is not justified by current evidence. Future mixing/gradients materially increase the value of reuse, while remaining outside Increment 003.
+
+The existing guard/refusal proposals remain unagreed and no numerical rule is relaxed. Recommended next evidence, only after scope authorization: clarify guard/refusal requirements, then compare pinned Culori against existing independent fixtures and a small explicitly provisional mixing/gradient seam matrix, measuring actual route reuse before choosing library adaptation versus owned hotspots. Broadening the current binary calculation basis to arbitrary precision requires explicit review; it is not a drop-in arithmetic backend. This assessment supersedes neither the agreed authoring model nor the staged implementation authorization boundary.
+
 ## Review baseline
 
 - Planning baseline: clean `dev` at `bd47b34e834654b9cfa57b808158816840b1d0bb`, independently verified by the analyst on 3 November 2026 before drafting.

@@ -1,12 +1,14 @@
 # Current Project Status
 
-> Last updated: 7 November 2026
+> Last updated: 8 November 2026
 >
-> Phase: Increment 003 guard/cancellation evidence complete; proposed clarifications returned for user decision
+> Phase: Color-engine options assessment complete; comparative evidence/engine decision pending, no implementation authorized
 >
 > Implementation state: npm scaffold, host-independent domain core, in-memory application operations; no application web entry point. Increment 003 delivery remains Not started.
 
 ## Current focus
+
+The user requested a source-based comparison of Color.js, Culori and owned color code, including precision and lifecycle maintenance, and confirmed future mixing/gradient requirements. The separate analyst completed the [comparison](../increments/003-color-engine-options-comparison.md), with [independent review](../increments/003-color-engine-options-review.md). Long-term reuse is favored, with Culori first for comparative evidence rather than declared winner; a narrow strict kernel/upstream hybrid remains conditional on guard needs and seam costs. No new probes, installs or code/dependency changes were made. Future mixing/gradient semantics remain open and are not added to Increment 003. No engine has been selected.
 
 The user authorized the bounded [intermediate-guard/cancellation investigation](../increments/003-visible-color-authoring.md#intermediate-guards-and-cancellation-investigation), requesting evidence and recommendation. The completed [evidence report](../increments/003-guards-cancellation-report.md) and [independent review](../increments/003-guards-cancellation-review.md) identify 24 targeted cases and a reproducible frozen snapshot. Both required review findings were corrected/rechecked. Observable routes catch internal violations, including neutral linearization, and demonstrate useful ordinary acceptance; cube-root distinction loss and stage/scalar interpretation differences remain explicit. Application implementation and production dependencies are unchanged.
 
@@ -34,6 +36,8 @@ Read AGENTS.md, this status, Git state and the owning Increment 003 contract, nu
 
 ## Recently completed
 
+- Completed and independently reviewed the source-based Color.js/Culori/owned-module comparison, revised for confirmed future mixing/gradients. It distinguishes measured Color.js results from unmeasured pinned Culori source, numeric limitations from output formatting, and small policy adapters from full engine ownership. No implementation or dependency choice occurred.
+
 - Completed the bounded guard/cancellation investigation and independent review. Tiny-gray intermediate guard omission and cbrt conservative-rule labeling were corrected and rechecked. Final 24-case artifacts reproduce byte for byte. Proposed observable-route/named-stage/refusal clarifications return for user decision; no numerical policy or production dependencies changed.
 
 - Completed the bounded numerical feasibility report with reproducible scratch artifacts and independent evidence review. Exact decimal samples and representative conversion/drift/boundary checks support a narrow raw polar route; default neutral suppression and missing all-stage guard enforcement prevent production selection. No policy or production dependency changed.
@@ -46,6 +50,8 @@ Read AGENTS.md, this status, Git state and the owning Increment 003 contract, nu
 - [Increment 001](../increments/001-in-memory-authoring-workflow.md) and [Increment 002](../increments/002-color-value-revision.md) remain the completed operation-only foundations. They do not authorize Increment 003 delivery work.
 
 ## Next meaningful actions
+
+Review the color-engine assessment with the user before choosing implementation ownership. Resolve the pending guard/refusal clarification, then seek authorization for the smallest comparative Culori fixture/route and provisional future-manipulation seam evidence. Do not treat the recommendation as a backend selection or permission to execute probes.
 
 1. Discuss the completed numerical evidence and recommended bounded follow-up: observable intermediate guard enforcement and cancellation refusal before selecting a calculation route. A small explicit CSS-equation kernel is an alternative if the candidate cannot expose/enforce stages. The bounded research is complete. Discuss the [proposed named-stage guard inventory and conservative refusal clarification](../increments/003-visible-color-authoring.md#guard-and-cancellation-evidence-and-proposed-clarification), then prepare a short route-and-refusal specification only after user disposition. No clarification, further implementation or production dependency change is authorized yet.
 2. Keep technical evidence work explicit: compatible dependencies/build isolation, numerical kernel/reference fixtures and library suitability, real application readback/failure atomicity, IDs/alias chains/protected-color behavior, and full responsive/keyboard/zoom/error-announcement checks. This list is pending work, not authorization to start it.

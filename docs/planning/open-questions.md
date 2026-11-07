@@ -35,6 +35,8 @@ Numeric literals use an exact finite base-10 Decimal value object with one norma
 
 The [color-literal decision](../design-tokens/conceptual-model.md#color-literals) defines one explicit sRGB, Display P3, HSL, OKLAB, or OKLCH space/model, three exact Decimal-or-`"none"` components, and required exact Decimal alpha. Extended RGB coordinates remain authored rather than being clamped, while target profiles diagnose range and gamut incompatibility. The [authored-color decision](../design-tokens/conceptual-model.md#authored-color-and-alternative-representations) keeps one authoritative value per applicable theme/condition and treats alternative display representations as derived. Deterministic [color manipulation](../design-tokens/conceptual-model.md#color-manipulation) belongs in the domain engine.
 
+**Confirmed future needs — 8 November 2026:** color mixing and gradient calculation must be considered in long-term engine selection and ownership cost. This does not add them to Increment 003. Interpolation space, hue path, alpha treatment, stop/position/geometry semantics, gamut/precision policy and operation/serialization contracts remain to be specified.
+
 1. Which editing and display notations should be supported initially?
 2. How do edits in a different representation affect the authored space/model, and how are alias or expression edits handled explicitly?
 3. Which conversion, component-adjustment, mixing, interpolation, and palette-generation operations are initially supported?

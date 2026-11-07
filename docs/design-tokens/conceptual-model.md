@@ -1024,7 +1024,7 @@ A fallback is distinct from an equivalent representation: a color outside a targ
 
 **Established direction — 2 October 2026**
 
-Deterministic color conversion and manipulation belong in the domain engine, not only in color-picker UI code. Candidate capabilities include component adjustments, mixing/interpolation, and palette generation; their initial coverage is not selected. The bounded literal-conversion/entry-scale subset agreed for Increment 003 is recorded below.
+Deterministic color conversion and manipulation belong in the domain engine, not only in color-picker UI code. On 8 November 2026 the user confirmed color mixing and gradient calculation as future product requirements. Their operation contracts and delivery timing remain open; gradient structure/geometry is distinct from its color interpolation. Component adjustments and palette generation remain candidate capabilities. This confirmation does not expand the bounded literal-conversion/entry-scale subset agreed for Increment 003, recorded below.
 
 Operations must state their color model or interpolation space and applicable parameters. For example, adjusting HSL lightness and adjusting OKLCH lightness are different operations; an unspecified “lighten by 10%” is not a sufficient domain contract. Precision, hue handling, alpha behavior, gamut-mapping policy, and algorithms require explicit decisions. The Increment 003 subset below narrows these policies without selecting a universal operation family or production library.
 
