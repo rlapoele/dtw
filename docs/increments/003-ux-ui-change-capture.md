@@ -61,3 +61,21 @@ On 5 November 2026, the user confirmed no further changes for now and requested 
 Use UX-1’s user-delegated view-only baseline to prepare an identified designer proposal covering these requests and the missing-state supplement. Present material proposals to the user before analyst review. After the user approves the proposal for that review, the analyst reconciles Scope, D2, AC-3/AC-7 and the numerical-policy interaction section as needed. Final contract/design agreement and explicit implementation authorization remain separate.
 
 This capture used source and the repository's attributed historical verification notes only. No current browser, rendered audit, new screenshots, runtime interaction tests or accessibility certification were performed. No prototype/application source or dependencies changed.
+
+## V5 review feedback — 7 November 2026
+
+The user supplied three annotated browser comments for designer assessment and a proposed direction before any prototype revision or analyst review:
+
+- **V5-R1 — Align component controls:** put the slider on the left and precise input on the right at the same vertical level; put the component label above its input. Apply the layout consistently to component/alpha controls while preserving exact input and unavailable-range behavior.
+- **V5-R2 — Elevate the mobile inspector and retain selection context:** give the bottom inspector a light shadow so it reads as above the token list in visual depth. When it opens, scroll the token-list container as necessary to keep the selected token visible. The coordinator interprets “visually above” as elevation, not moving the inspector to the top; the revised artifact returns to the user for feedback.
+- **V5-R3 — Compact navigation drawer:** on viewports too narrow for persistent left navigation, replace the top accordion with a panel that slides in from the left and covers underlying content. Propose a visible header control at the left to open it. Exact compact breakpoint and drawer geometry are design choices to review. Preserve keyboard/modal behavior, motion preferences, focus return and pending drafts.
+
+These are scoped requests for the isolated prototype. No analyst review, final contract/design agreement or application implementation is authorized.
+
+### Designer assessment before prototype edits — 7 November 2026
+
+The user clarified that the designer must form its own opinion on requested changes and visual design, propose options or ideas for user feedback, and only then implement approved prototype changes. The coordinator paused the direct-edit approach; no prototype source or build changes had been made. V5 remains the current interactive artifact. Next: designer assessment and reviewable options, user feedback/approval of direction, then any authorized isolated prototype revision; user review of that artifact still precedes analyst review. This sequence does not authorize application implementation.
+
+The separate designer’s [assessment and options](003-v5-design-assessment.md) recommend a refined split workbench (A), with a focus-sheet alternative (B). The user subsequently approved option A for isolated prototyping on 7 November 2026; option B is not selected. The updated artifact must return to the user before analyst review. No application implementation is authorized.
+
+Option A was prototyped by the separate designer as [V5.1](../../prototypes/increment-003-v1/DESIGN-V5-1.md) and presented for user review on 7 November 2026. Scoped browser evidence and limits are in the artifact guide; no approval for analyst review or application implementation is inferred.

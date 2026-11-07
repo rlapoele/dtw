@@ -1,6 +1,8 @@
-# Increment 003 — Designer proposal V5
+# Increment 003 — Designer proposal V5.1
 
-**Latest: 5 November 2026 — [V5 proposal and review guide](DESIGN-V5.md).** V5 covers view-only color-space exploration with exact draft restoration, native component sliders plus precision fields, responsive refinements, project creation/empty state and a separate missing-state review gallery. User review is pending before analyst review; no application implementation is authorized. The prototype numerical helper retains V4 limitations and does not implement the agreed production numerical policy.
+**Latest: 7 November 2026 — [V5.1 proposal and review guide](DESIGN-V5-1.md).** The user selected option A from the designer’s assessment before prototype edits. V5.1 pairs left sliders with right precision fields, elevates the in-layout mobile inspector with visible selected-row context, and replaces compact navigation with a modal left drawer. User review of this artifact is pending before analyst review; no application implementation is authorized.
+
+**V5 history: 5 November 2026 — [V5 proposal and review guide](DESIGN-V5.md).** V5 covers view-only color-space exploration with exact draft restoration, native component sliders plus precision fields, responsive refinements, project creation/empty state and a separate missing-state review gallery. User review is pending before analyst review; no application implementation is authorized. The prototype numerical helper retains V4 limitations and does not implement the agreed production numerical policy.
 
 ## V4 history
 
