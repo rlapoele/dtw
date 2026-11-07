@@ -46,3 +46,6 @@ html,body,#root{height:100%;overflow:clip;overflow-anchor:none}body{position:fix
 
 /* V5.2.1: group resolved-view context with its heading. */
 .resolved-heading{justify-content:flex-start;gap:8px;flex-wrap:wrap}
+
+/* V5.2.2: retain the intended trace-section gap above the heading reset. */
+.trace-heading{margin-top:28px}

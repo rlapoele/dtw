@@ -96,3 +96,7 @@ The separate designer prepared [V5.2](../../prototypes/increment-003-v1/DESIGN-V
 ## V5.2 badge placement — 7 November 2026
 
 The user asked about the scope of “Applied value” in Resolved & trace. It describes the applied-state resolution view (specimen, components, alpha and trace). After the separate designer assessed the placement, the user approved grouping the existing badge immediately beside “Resolved color,” with a small gap, unchanged styling and narrow wrapping. The designer is applying this isolated visual refinement; no copy/semantics change, analyst review or application implementation is authorized. The revised artifact returns to the user.
+
+## Resolution-trace spacing — 7 November 2026
+
+The user requested more space above Resolution trace. The separate designer assessed the missing intended margin and recommended restoring a scoped 28px gap without changing other headings or the space below this title. The user approved this isolated prototype fix and requested presentation before analyst review; no application implementation is authorized.

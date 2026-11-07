@@ -1,6 +1,8 @@
-# Increment 003 — Designer proposal V5.2.1
+# Increment 003 — Designer proposal V5.2.2
 
-**Latest: 7 November 2026 — [V5.2.1 badge refinement](DESIGN-V5-2.md#v521--resolved-view-badge-refinement-7-november-2026).** Following designer assessment and user approval, the existing Applied value badge is grouped directly beside Resolved color. Other V5.2 behavior is unchanged; user review precedes analyst review and no application implementation is authorized.
+**Latest: 7 November 2026 — [V5.2.2 trace spacing](DESIGN-V5-2.md#v522--trace-section-spacing-refinement-7-november-2026).** Following designer assessment and user approval, the intended 28px gap above Resolution trace is restored with a scoped rule. The adjacent Applied value badge and other V5.2 behavior remain unchanged. Actual-artifact user review precedes analyst review; no application implementation is authorized.
+
+**V5.2.1 history: 7 November 2026 — [V5.2.1 badge refinement](DESIGN-V5-2.md#v521--resolved-view-badge-refinement-7-november-2026).** Following designer assessment and user approval, the existing Applied value badge is grouped directly beside Resolved color. Other V5.2 behavior is unchanged; user review precedes analyst review and no application implementation is authorized.
 
 **V5.2 history: 7 November 2026 — [V5.2 proposal and review guide](DESIGN-V5-2.md).** After the designer’s assessment and user approval, V5.2 balances slider/precision fields at 2:1 with a protected input minimum, and starts a different accepted token selection at the inspector’s top. Same-token continuation preserves reading position and drafts. User review of the actual artifact remains pending before analyst review; no application implementation is authorized.
 

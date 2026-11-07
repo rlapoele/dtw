@@ -2,11 +2,13 @@
 
 > Last updated: 7 November 2026
 >
-> Phase: Increment 003 V5.2.1 badge polish prepared; user review before analyst
+> Phase: Increment 003 V5.2.2 trace-spacing polish prepared; user review before analyst
 >
 > Implementation state: npm scaffold, host-independent domain core, initial application operations and in-memory adapter; no web entry point
 
 ## Current focus
+
+Latest refinement, 7 November 2026: after designer assessment, the user approved restoring the intended 28px gap above Resolution trace with a scoped heading rule. The designer prepared the isolated [V5.2.2 spacing fix](../../prototypes/increment-003-v1/DESIGN-V5-2.md), shown to the user after a scoped browser visual check. User feedback remains pending before analyst review. Application implementation remains unauthorized.
 
 Latest refinement, 7 November 2026: after designer assessment, the user approved placing the Applied value badge immediately beside Resolved color with a small gap and narrow wrapping. The designer prepared the isolated [V5.2.1 polish update](../../prototypes/increment-003-v1/DESIGN-V5-2.md), shown to the user before analyst review. The coordinator verified the adjacent 8px placement and narrow containment; user feedback remains pending. The prototype toolbar retains the V5.2 series label. The applied-state meaning of the resolved tab remains unchanged. No application implementation is authorized.
 
