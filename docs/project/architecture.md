@@ -323,11 +323,21 @@ Type checking runs separately through `tsc --noEmit`; Vite's TypeScript transfor
 
 **Agreed delivery direction — 7 November 2026; not implemented**
 
-The user selected React with strict TypeScript and Vite, Tailwind v4, locally owned shadcn/ui-style components based on Base UI, the neutral Precision visual direction and Heroicons Outline for the application renderer. This closes the frontend/component direction for the [bounded Increment 003 contract](../increments/003-visible-color-authoring.md); exact compatible dependency versions, integration, licenses and bundle effects still require verification. It does not select Color.js or any other production color-calculation library.
+The user selected React with strict TypeScript and Vite, Tailwind v4, locally owned shadcn/ui-style components based on Base UI, the neutral Precision visual direction and Heroicons Outline for the application renderer. This closes the frontend/component direction for the [bounded Increment 003 contract](../increments/003-visible-color-authoring.md); exact compatible dependency versions, integration, licenses and bundle effects still require verification. This renderer decision alone did not select a color-calculation library; the separate 8 November decision below selects Culori.
 
 Keep the existing single package and scope TSX/browser types to delivery code. Domain/application checks remain host-independent. No router, general state-management library, backend or package split is introduced by this choice. The renderer consumes application operations rather than copying prototype namespace/reference semantics. Prototype code and dependency pins are exploratory evidence, not automatically approved for production reuse.
 
 Increment 003 remains session-only and does not complete the PWA. Retention/independent backup, interchange and install/offline acceptance remain later scoped work before the complete browser milestone and immediately following Electron validation. Neither this renderer decision nor the reconciled contract authorizes implementation.
+
+## Increment 003 color-calculation backend
+
+**Agreed backend direction and simpler numerical contract — 8 November 2026; not implemented**
+
+The user selected Culori behind the domain's small pure calculation boundary under the [approved numerical amendment](../increments/003-color-policy-proposal.md#approved-numerical-amendment--8-november-2026). DTW retains exact canonical strings, alpha, identity/passive-view preservation, units, missing/neutral eligibility, deterministic formatting, validation and safe failure handling; Culori supplies approximate conversions. Domain/application code remains independent of renderer, browser, Node, filesystem and host APIs. No registry, package split, custom conversion equations or arbitrary-precision backend is planned.
+
+Culori `4.0.2` is the independently measured qualification baseline, not a claim about the latest release or an installed production pin. Exact production pinning, package compatibility, license/provenance, selective imports/bundle effects and Node/browser integration remain verification work. The boundary-only numerical contract replaces internal-stage magnitude, underflow and cancellation certification; it does not weaken exact authored-data preservation or authorize hidden gamut mapping/clamping. The known exceptional tiny-red→HSL defect is handled as an unavailable representation with source/drafts intact, not silently corrected or claimed fixed. Future mixing/gradient semantics remain separately scoped.
+
+This records approved direction only. No source, dependency or lockfile change, installation or application/prototype implementation is authorized.
 
 ## Remaining open choices
 
