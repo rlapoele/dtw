@@ -1,0 +1,164 @@
+{
+  "cases": 180,
+  "pairs": 25,
+  "statuses": {
+    "success": 173,
+    "target-schema-incompatibility": 7
+  },
+  "statusMismatch": [
+    {
+      "id": "srgb-8-hsl",
+      "status": "target-schema-incompatibility",
+      "expectedObservedStatus": "target-schema-incompatibility",
+      "agreedFixtureStatus": "success",
+      "statusAssertionPass": true,
+      "statusMatchesAgreedFixture": false,
+      "rawSrgbError": 3.999585967218e-19,
+      "candidateMetrics": "not-applicable-refusal",
+      "accuracyPass": null
+    }
+  ],
+  "accuracyFailures": [],
+  "maxima": {
+    "rawSrgbError": {
+      "id": "srgb-2-oklch",
+      "status": "success",
+      "expectedObservedStatus": "success",
+      "agreedFixtureStatus": "success",
+      "statusAssertionPass": true,
+      "statusMatchesAgreedFixture": true,
+      "rawSrgbError": 2.2127716616166654e-14,
+      "rawHueError": 7e-14,
+      "candidateSrgbError": 1.0292361366012729e-10,
+      "candidateHueError": 4.4387e-10,
+      "accuracyPass": true
+    },
+    "candidateSrgbError": {
+      "id": "srgb-2-oklch",
+      "status": "success",
+      "expectedObservedStatus": "success",
+      "agreedFixtureStatus": "success",
+      "statusAssertionPass": true,
+      "statusMatchesAgreedFixture": true,
+      "rawSrgbError": 2.2127716616166654e-14,
+      "rawHueError": 7e-14,
+      "candidateSrgbError": 1.0292361366012729e-10,
+      "candidateHueError": 4.4387e-10,
+      "accuracyPass": true
+    },
+    "rawOklabError": {
+      "id": "srgb-3-oklab",
+      "status": "success",
+      "expectedObservedStatus": "success",
+      "agreedFixtureStatus": "success",
+      "statusAssertionPass": true,
+      "statusMatchesAgreedFixture": true,
+      "rawSrgbError": 1.5345653551216586e-15,
+      "rawOklabError": 5.690524940826115e-16,
+      "candidateSrgbError": 1.2708153551216584e-15,
+      "candidateOklabError": 5.690524940826115e-16,
+      "accuracyPass": true
+    },
+    "candidateOklabError": {
+      "id": "srgb-2-oklab",
+      "status": "success",
+      "expectedObservedStatus": "success",
+      "agreedFixtureStatus": "success",
+      "statusAssertionPass": true,
+      "statusMatchesAgreedFixture": true,
+      "rawSrgbError": 6.44786863817485e-15,
+      "rawOklabError": 1.1057839991643217e-16,
+      "candidateSrgbError": 2.517692566821624e-11,
+      "candidateOklabError": 4.421894216000836e-13,
+      "accuracyPass": true
+    },
+    "rawHueError": {
+      "id": "oklab-5-oklch",
+      "status": "success",
+      "expectedObservedStatus": "success",
+      "agreedFixtureStatus": "success",
+      "statusAssertionPass": true,
+      "statusMatchesAgreedFixture": true,
+      "rawSrgbError": 7.572465452437171e-16,
+      "rawHueError": 1e-13,
+      "candidateSrgbError": 1.2220037886043492e-13,
+      "candidateHueError": 1e-13,
+      "accuracyPass": true
+    },
+    "candidateHueError": {
+      "id": "srgb-2-oklch",
+      "status": "success",
+      "expectedObservedStatus": "success",
+      "agreedFixtureStatus": "success",
+      "statusAssertionPass": true,
+      "statusMatchesAgreedFixture": true,
+      "rawSrgbError": 2.2127716616166654e-14,
+      "rawHueError": 7e-14,
+      "candidateSrgbError": 1.0292361366012729e-10,
+      "candidateHueError": 4.4387e-10,
+      "accuracyPass": true
+    }
+  },
+  "frozenColorjsMaxima": {
+    "rawSrgbError": {
+      "id": "srgb-2-oklab",
+      "ordinary": true,
+      "rawSrgbError": 1.6713498145703114e-14,
+      "status": "success",
+      "rawOklabError": 3.3942160008356784e-16,
+      "candidateSrgbError": 2.517692566821624e-11,
+      "candidateOklabError": 4.421894216000836e-13
+    },
+    "candidateSrgbError": {
+      "id": "srgb-2-oklch",
+      "ordinary": true,
+      "rawSrgbError": 1.3885629976766976e-14,
+      "status": "success",
+      "rawHueError": 3e-14,
+      "candidateSrgbError": 1.0292361366012729e-10,
+      "candidateHueError": 4.4387e-10
+    },
+    "rawOklabError": {
+      "id": "oklch-1-oklab",
+      "ordinary": true,
+      "rawSrgbError": 8.708711352008026e-16,
+      "status": "success",
+      "rawOklabError": 3.847987241194044e-16,
+      "candidateSrgbError": 8.708711352008026e-16,
+      "candidateOklabError": 3.847987241194044e-16
+    },
+    "candidateOklabError": {
+      "id": "srgb-2-oklab",
+      "ordinary": true,
+      "rawSrgbError": 1.6713498145703114e-14,
+      "status": "success",
+      "rawOklabError": 3.3942160008356784e-16,
+      "candidateSrgbError": 2.517692566821624e-11,
+      "candidateOklabError": 4.421894216000836e-13
+    },
+    "rawHueError": {
+      "id": "oklab-5-oklch",
+      "ordinary": true,
+      "rawSrgbError": 7.572465452437171e-16,
+      "status": "success",
+      "rawHueError": 1e-13,
+      "candidateSrgbError": 1.2220037886043492e-13,
+      "candidateHueError": 1e-13
+    },
+    "candidateHueError": {
+      "id": "srgb-2-oklch",
+      "ordinary": true,
+      "rawSrgbError": 1.3885629976766976e-14,
+      "status": "success",
+      "rawHueError": 3e-14,
+      "candidateSrgbError": 1.0292361366012729e-10,
+      "candidateHueError": 4.4387e-10
+    }
+  },
+  "mixCount": 28,
+  "mixPass": true,
+  "guardCases": 24,
+  "maxCycleDrift": 8.17827805477e-12,
+  "cycleCompleted": 12,
+  "maxBoundaryOvershoot": 2.8329560919360118e-14
+}

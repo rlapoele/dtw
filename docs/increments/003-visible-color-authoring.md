@@ -148,6 +148,16 @@ The recommendation is to retain upstream manipulation capability as the long-ter
 
 The existing guard/refusal proposals remain unagreed and no numerical rule is relaxed. Recommended next evidence, only after scope authorization: clarify guard/refusal requirements, then compare pinned Culori against existing independent fixtures and a small explicitly provisional mixing/gradient seam matrix, measuring actual route reuse before choosing library adaptation versus owned hotspots. Broadening the current binary calculation basis to arbitrary precision requires explicit review; it is not a drop-in arithmetic backend. This assessment supersedes neither the agreed authoring model nor the staged implementation authorization boundary.
 
+## Culori qualification
+
+**Authorized isolated research — 8 November 2026; completed and independently reviewed.** The user requested empirical qualification of pinned Culori against the same independent fixtures, including future mixing/gradient fit, with evidence and recommendation. Application implementation and production dependency changes remain excluded. An exact registry package may be fetched/verified/unpacked only in an isolated temporary location without lifecycle scripts or root/prototype installation.
+
+Research artifacts belong under `output/experiments/003-culori-qualification/`. Preserve earlier frozen artifacts. Compare raw library output, a documented minimal DTW policy adapter, and requirements that remain unimplemented. Reuse the same 180 conversion cases/independent expectations; add the known guard/cancellation cases and a small analytically checkable mixing/gradient seam matrix. Future interpolation-space, hue, alpha, missing-component and gamut choices are provisional test policies, not new agreed operation contracts. Guard granularity and conservative cancellation proposals remain unagreed and can be compared as hypotheses without blocking research.
+
+Report finite metrics, explicit expected statuses, every adapter intervention, executed-route/opaque boundaries, package integrity/provenance, nonmutation limits and reproducible evidence. Freeze artifacts for independent review. This authorization selects neither Culori nor an owned kernel and does not add mixing/gradient implementation to Increment 003.
+
+The [qualification report](003-culori-qualification-report.md) and [independent evidence review](003-culori-qualification-review.md) record the frozen results: 173 constructor-valid cases, six expected extended-HSL refusals and one unexpected tiny-red HSL refusal; all 28 provisional analytic manipulation cases pass. Ordinary sampled accuracy does not establish all-stage guard enforcement. Culori's opaque conversion stages and unstable tiny-red HSL denominator prevent qualification through the measured minimal adapter. Recommendation: retain upstream interpolation reuse as a viable future path, and resolve the guard/uncertainty contract before selecting a bounded owned conversion route or custom Culori conversions. This is a recommendation, not engine selection or authorization to implement. The full numerical gate remains open.
+
 ## Review baseline
 
 - Planning baseline: clean `dev` at `bd47b34e834654b9cfa57b808158816840b1d0bb`, independently verified by the analyst on 3 November 2026 before drafting.

@@ -1,0 +1,19 @@
+{
+  "baseline": "37abfa5de16bb5200301595f5649c023d9a4a1d7",
+  "frozenManifests": [
+    {
+      "manifest": "003-numerical-feasibility/SHA256SUMS",
+      "status": "all entries verified",
+      "entries": 10
+    },
+    {
+      "manifest": "003-guards-cancellation/SHA256SUMS",
+      "status": "all entries verified",
+      "entries": 18
+    }
+  ],
+  "trackedChanges": [
+    "docs/increments/003-visible-color-authoring.md",
+    "docs/status/current.md"
+  ]
+}
