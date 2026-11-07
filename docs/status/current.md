@@ -2,11 +2,13 @@
 
 > Last updated: 7 November 2026
 >
-> Phase: Increment 003 V5.2.3 selection-indicator polish prepared; user review before analyst
+> Phase: Increment 003 V5.2.4 rounded-track/action-button polish prepared; user review before analyst
 >
 > Implementation state: npm scaffold, host-independent domain core, initial application operations and in-memory adapter; no web entry point
 
 ## Current focus
+
+Latest refinement, 7 November 2026: the user approved the designer’s scoped rounded-track and compact action-button proposal. The designer prepared the isolated [V5.2.4 revision](../../prototypes/increment-003-v1/DESIGN-V5-2.md), with pill-shaped visible tracks and consistent 32px standard / 28px small action buttons, horizontal padding twice vertical padding, and preserved structural/icon-control layouts. Scoped browser checks confirm equal project-start sizing, rounded tracks and retained keyboard/hit-area behavior. The artifact is shown for user review before analyst review. No application implementation is authorized.
 
 Latest refinement, 7 November 2026: the user explicitly authorized stronger selection indicators and consistent treatment elsewhere. The separate designer prepared [V5.2.3](../../prototypes/increment-003-v1/DESIGN-V5-2.md): selected token-row bars and shared inspector-tab underlines increase from 2px to 4px, also covering the unannotated Authored tab and inspect-only row. Navigation/mode selections retain filled-surface patterns. Scoped browser visual checks of the ordinary row and both tabs are recorded in the guide. User review precedes analyst review; no application implementation is authorized.
 

@@ -13,6 +13,6 @@ const buttonVariants = cva(
  },size:{default:'h-8 px-3',sm:'h-7 px-2'}},defaultVariants:{variant:'default',size:'default'}}
 );
 function Button({ className, variant='outline', size='default', ...props }: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>){
- return <ButtonPrimitive data-slot="button" className={buttonVariants({variant,size,className:typeof className==='string'?`button ${className}`:'button'})} {...props}/>;
+ return <ButtonPrimitive data-slot="button" data-size={size} className={buttonVariants({variant,size,className:typeof className==='string'?`button ${className}`:'button'})} {...props}/>;
 }
 export {Button,buttonVariants};
