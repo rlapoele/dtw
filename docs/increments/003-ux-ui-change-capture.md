@@ -112,3 +112,10 @@ The user requested rounded visible slider bars, action-button horizontal padding
 ## Focused improvement proposal and inspector surface — 7 November 2026
 
 Following the designer’s full quality review, the user requested a focused proposal for its findings while preserving the current visual direction. The user also suggested a subtly different inspector background, potentially the same as the left navigation panel, to distinguish the right/bottom inspector from the token list. The designer must assess this as part of the proposal, including surface hierarchy, readability and editing context, then show it before any prototype changes. No implementation or analyst review is authorized.
+
+
+## Focused improvement bundle approval — 7 November 2026
+
+The user approved the [complete focused improvement bundle](003-design-improvement-proposal.md) with option A and authorized the separate designer to prepare isolated V6. This includes compact persistent Applied/Draft header feedback, readable coordinate text, missing-target identity, current navigation semantics, read-failure mutation blocking, modal dimming and the navigation-matching inspector surface. Show the actual updated prototype to the user before analyst review. Application implementation remains unauthorized.
+
+The designer prepared [V6](../../prototypes/increment-003-v1/DESIGN-V6.md). The actual artifact and scoped browser evidence are presented for user review; approval of this artifact for analyst review remains pending.

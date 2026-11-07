@@ -1,6 +1,8 @@
-# Increment 003 — Designer proposal V5.2.4
+# Increment 003 — Designer proposal V6
 
-**Latest: 7 November 2026 — [V5.2.4 rounded tracks and compact actions](DESIGN-V5-2.md#v524--rounded-tracks-and-compact-actions-7-november-2026).** Following designer assessment and user scope approval, visible gradient tracks are pill-rounded and action buttons use consistent 32px/28px sizing. Create project matches Explore sample project. Approved structural-control layouts remain unchanged. Actual-artifact user review precedes analyst review; no application implementation is authorized.
+**Latest: 7 November 2026 — [V6 focused improvement proposal](DESIGN-V6.md).** Following approval of the F1–F7 bundle and option A, V6 adds compact persistent Applied/Draft header context, stronger meaningful-value text, truthful missing-target labels, current navigation semantics, read-failure mutation eligibility, visible confirmation backdrops and a subtle navigation-matching inspector surface. User review of the actual artifact precedes analyst review; no application implementation is authorized.
+
+**V5.2.4 history: 7 November 2026 — [V5.2.4 rounded tracks and compact actions](DESIGN-V5-2.md#v524--rounded-tracks-and-compact-actions-7-november-2026).** Following designer assessment and user scope approval, visible gradient tracks are pill-rounded and action buttons use consistent 32px/28px sizing. Create project matches Explore sample project. Approved structural-control layouts remain unchanged. Actual-artifact user review precedes analyst review; no application implementation is authorized.
 
 **V5.2.3 history: 7 November 2026 — [V5.2.3 selection indicators](DESIGN-V5-2.md#v523--selection-indicator-weight-7-november-2026).** The shared selected-token bar and active-tab underline are now 4px, including ordinary/inspect-only rows and both inspection tabs. The designer reviewed comparable states; filled navigation/mode treatments and non-selection borders retain their existing patterns. Actual-artifact user review precedes analyst review; no application implementation is authorized.
 

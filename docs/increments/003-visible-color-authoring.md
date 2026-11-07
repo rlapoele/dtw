@@ -90,7 +90,7 @@ Canonical schema/manifest and versioning, durable adapters and asynchronous appl
 
 ## Focused improvement proposal — 7 November 2026
 
-The user requested a designer proposal for the review findings plus a subtly distinct inspector background, before prototype changes. The [proposal](003-design-improvement-proposal.md) maps F1–F7, recommends compact persistent feedback in the existing header and a navigation-matched inspector surface, and compares an additional feedback band. Its static board is a proposal asset outside the unchanged prototype. User feedback and approval of a direction/prototype revision remain pending; no analyst review, final contract/design agreement or application implementation is authorized.
+The user requested a designer proposal for the review findings plus a subtly distinct inspector background, before prototype changes. The [proposal](003-design-improvement-proposal.md) maps F1–F7, recommends compact persistent feedback in the existing header and a navigation-matched inspector surface, and compares an additional feedback band. Its static board remains a proposal asset. The user approved the entire bundle with option A and authorized isolated prototyping. The designer prepared [V6](../../prototypes/increment-003-v1/DESIGN-V6.md), now presented for user review with scoped browser evidence. Approval for analyst review, final contract/design agreement and application implementation remain pending.
 
 ## Designer quality review — V5.2.4, 7 November 2026
 

@@ -1,8 +1,8 @@
 # Increment 003 — Focused design improvement proposal
 
-**Proposed · 7 November 2026 · User feedback required before prototype changes.**
+**Approved for isolated prototyping · 7 November 2026 · Option A selected.**
 
-This follows the [V5.2.4 designer review](003-prototype-design-review.md) and the user's additional request to distinguish the inspector surface from the token list. Existing review captures are the evidence baseline; this is not a new audit. The current visual direction, authored-value model, numeric policies, independent drafts and session-only boundary remain constraints. No prototype code, build, dependency or canonical document has changed for this proposal.
+This follows the [V5.2.4 designer review](003-prototype-design-review.md) and the user's additional request to distinguish the inspector surface from the token list. Existing review captures are the evidence baseline; this is not a new audit. The current visual direction, authored-value model, numeric policies, independent drafts and session-only boundary remain constraints. The proposal itself changed no prototype code, build, dependency or canonical document. The user subsequently approved the complete F1–F7 bundle with option A and authorized the designer to prepare V6 in the isolated prototype. The resulting artifact must return to the user before analyst review; this is not final design/contract agreement or application implementation authorization.
 
 ## Recommendation and reviewable visual
 
@@ -84,7 +84,7 @@ After user approval of the proposal, the isolated artifact should demonstrate:
 - **F5/F6:** read failure blocks mutation affordances until Retry succeeds; drafts survive; confirmation backdrop visibly dims the workspace; forward/reverse Tab boundaries, dismissal and focus return still work.
 - **Regression:** selected token remains visible, list/document scrolling stays separated, collapsed state survives, other accepted interactions remain. Actual zoom and screen-reader checks are additional evidence, not replaced by viewport screenshots.
 
-The user should approve **the cohesive bundle and feedback option A or B**, or request changes. Pixels/colors above are concrete starting recommendations, not a demand that the user choose arbitrary tolerances. Approval authorizes preparation of an identified prototype revision only when explicitly requested. Show that actual artifact to the user before analyst review; final contract/design agreement and application implementation authorization remain separate.
+**Decision recorded — 7 November 2026:** the user approved the cohesive bundle with **option A** and explicitly requested an isolated prototype update. The designer is preparing V6. Show that actual artifact to the user before analyst review; final contract/design agreement and application implementation authorization remain separate.
 
 ## Preparation evidence
 
