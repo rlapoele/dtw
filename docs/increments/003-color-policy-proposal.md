@@ -144,6 +144,12 @@ If the agreed initial limits or proposed validation tolerances fail, return the 
 
 The authorized [feasibility report](003-numerical-feasibility-report.md) records independent reference comparisons, exact decimal fixtures, tiny-color incompatibility in the default candidate route, sampled accuracy/boundary residue and guard/cancellation gaps. The [independent research review](003-numerical-feasibility-review.md) verifies reproduction and limits. This is representative Node-only evidence, not completion of the engineering gate. Numerical precision, limits and proposed thresholds remain unchanged; no production library is selected. Observable intermediate guard enforcement and cancellation detection are the recommended next investigation before integration. Application implementation and production dependency changes remain unauthorized.
 
+## Guard/cancellation evidence — 7 November 2026
+
+The completed [bounded investigation](003-guards-cancellation-report.md) and [independent review](003-guards-cancellation-review.md) provide reproducible stage/cancellation evidence with both review corrections resolved. Observable routes can catch internal violations while retaining useful ordinary samples; exact-neutral branches must still guard their linearized coordinate. Named-stage versus scalar guarding changes one sampled acceptance result. Cube-root pair collapse is measured, but its automatic refusal remains a conservative research hypothesis rather than adopted policy.
+
+The [parent contract’s proposed clarifications](003-visible-color-authoring.md#guard-and-cancellation-evidence-and-proposed-clarification) recommend a versioned named-coordinate guard inventory and a narrowly documented conservative refusal rule before a route-and-refusal specification. These are proposals requiring user disposition; this evidence section changes no guard scope, magnitude limits, formatting, preview allowance or accuracy threshold. Application implementation, production dependency changes and library selection remain unauthorized.
+
 ## Agreement and follow-up
 
 5 November 2026 — The user agreed this behavior bundle and asked to capture UX/UI changes next, before final implementation agreement, with no implementation started. The affected color-model/open-question sections and Increment 003 Scope, D2, AC-3 and verification now record that bounded agreement. Prototype history remains history. No prototype code or production dependency is selected by this agreement.
@@ -152,3 +158,6 @@ The authorized [feasibility report](003-numerical-feasibility-report.md) records
 
 
 7 November 2026 — The user approved the consolidated Increment 003 agreement and creation disclosure. The V6 interaction amendment is agreed; numerical precision, limits, preview policy and verification gates remain unchanged and unverified. The [proposed numerical feasibility check](003-visible-color-authoring.md#numerical-feasibility-preparation) is a recommendation, not authority to run probes or implement/integrate calculations. Delivery remains Not started; Color.js is not selected.
+
+
+7 November 2026 — The user authorized the [bounded intermediate-guard/cancellation investigation](003-visible-color-authoring.md#intermediate-guards-and-cancellation-investigation). This authorizes isolated evidence collection only; numerical limits and refusal policy are unchanged. Material interpretation/precision ambiguities return for a decision rather than becoming implicit policy. Application implementation and production dependency changes remain unauthorized.

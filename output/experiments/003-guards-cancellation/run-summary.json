@@ -1,0 +1,17 @@
+{
+  "cases": 24,
+  "coordinateReading": {
+    "sampled-success": 16,
+    "required-refusal": 6,
+    "conservative-refusal": 1,
+    "identity": 1
+  },
+  "scalarReading": {
+    "sampled-success": 15,
+    "required-refusal": 7,
+    "conservative-refusal": 1,
+    "identity": 1
+  },
+  "allInputUnchanged": true,
+  "maxMeasuredLabAbs": 1.4551915228366852e-11
+}
