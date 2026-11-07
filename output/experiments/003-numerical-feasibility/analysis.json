@@ -1,0 +1,2478 @@
+{
+  "summary": {
+    "caseCount": 180,
+    "pairCount": 25,
+    "ordinaryCount": 180,
+    "statuses": {
+      "success": 174,
+      "target-schema-incompatibility": 6
+    },
+    "maxima": {
+      "rawSrgbError": {
+        "id": "srgb-2-oklab",
+        "ordinary": true,
+        "rawSrgbError": 1.6713498145703114e-14,
+        "status": "success",
+        "rawOklabError": 3.3942160008356784e-16,
+        "candidateSrgbError": 2.517692566821624e-11,
+        "candidateOklabError": 4.421894216000836e-13
+      },
+      "candidateSrgbError": {
+        "id": "srgb-2-oklch",
+        "ordinary": true,
+        "rawSrgbError": 1.3885629976766976e-14,
+        "status": "success",
+        "rawHueError": 3e-14,
+        "candidateSrgbError": 1.0292361366012729e-10,
+        "candidateHueError": 4.4387e-10
+      },
+      "rawOklabError": {
+        "id": "oklch-1-oklab",
+        "ordinary": true,
+        "rawSrgbError": 8.708711352008026e-16,
+        "status": "success",
+        "rawOklabError": 3.847987241194044e-16,
+        "candidateSrgbError": 8.708711352008026e-16,
+        "candidateOklabError": 3.847987241194044e-16
+      },
+      "candidateOklabError": {
+        "id": "srgb-2-oklab",
+        "ordinary": true,
+        "rawSrgbError": 1.6713498145703114e-14,
+        "status": "success",
+        "rawOklabError": 3.3942160008356784e-16,
+        "candidateSrgbError": 2.517692566821624e-11,
+        "candidateOklabError": 4.421894216000836e-13
+      },
+      "rawHueError": {
+        "id": "oklab-5-oklch",
+        "ordinary": true,
+        "rawSrgbError": 7.572465452437171e-16,
+        "status": "success",
+        "rawHueError": 1e-13,
+        "candidateSrgbError": 1.2220037886043492e-13,
+        "candidateHueError": 1e-13
+      },
+      "candidateHueError": {
+        "id": "srgb-2-oklch",
+        "ordinary": true,
+        "rawSrgbError": 1.3885629976766976e-14,
+        "status": "success",
+        "rawHueError": 3e-14,
+        "candidateSrgbError": 1.0292361366012729e-10,
+        "candidateHueError": 4.4387e-10
+      }
+    },
+    "accuracyFailures": [],
+    "refusals": [
+      {
+        "id": "srgb-6-hsl",
+        "result": {
+          "status": "target-schema-incompatibility",
+          "message": "saturation is outside its accepted range",
+          "components": [
+            "215",
+            "120",
+            "50"
+          ],
+          "inputUnchanged": true
+        }
+      },
+      {
+        "id": "display-p3-1-hsl",
+        "result": {
+          "status": "target-schema-incompatibility",
+          "message": "saturation is outside its accepted range",
+          "components": [
+            "356.517340107",
+            "152.345744039",
+            "43.3162194433"
+          ],
+          "inputUnchanged": true
+        }
+      },
+      {
+        "id": "display-p3-2-hsl",
+        "result": {
+          "status": "target-schema-incompatibility",
+          "message": "saturation is outside its accepted range",
+          "components": [
+            "127.88028828",
+            "301.951723303",
+            "25.3330337676"
+          ],
+          "inputUnchanged": true
+        }
+      },
+      {
+        "id": "display-p3-6-hsl",
+        "result": {
+          "status": "target-schema-incompatibility",
+          "message": "saturation is outside its accepted range",
+          "components": [
+            "212.152955363",
+            "149.616242294",
+            "45.759759971"
+          ],
+          "inputUnchanged": true
+        }
+      },
+      {
+        "id": "oklab-5-hsl",
+        "result": {
+          "status": "target-schema-incompatibility",
+          "message": "saturation is outside its accepted range",
+          "components": [
+            "123.857344859",
+            "673.715441696",
+            "7.0762746218"
+          ],
+          "inputUnchanged": true
+        }
+      },
+      {
+        "id": "oklch-5-hsl",
+        "result": {
+          "status": "target-schema-incompatibility",
+          "message": "saturation is outside its accepted range",
+          "components": [
+            "69.7583568357",
+            "635.896162118",
+            "6.10132044153"
+          ],
+          "inputUnchanged": true
+        }
+      }
+    ],
+    "special": [
+      {
+        "name": "missing-srgb-0",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "none",
+            "0",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "oklab",
+        "result": {
+          "status": "unsupported-missing-components",
+          "message": "unsupported-missing-components",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-srgb-1",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "0",
+            "none",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "oklab",
+        "result": {
+          "status": "unsupported-missing-components",
+          "message": "unsupported-missing-components",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-srgb-2",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "0",
+            "0",
+            "none"
+          ],
+          "alpha": "0"
+        },
+        "target": "oklab",
+        "result": {
+          "status": "unsupported-missing-components",
+          "message": "unsupported-missing-components",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-display-p3-0",
+        "input": {
+          "colorSpace": "display-p3",
+          "components": [
+            "none",
+            "0",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "unsupported-missing-components",
+          "message": "unsupported-missing-components",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-display-p3-1",
+        "input": {
+          "colorSpace": "display-p3",
+          "components": [
+            "0",
+            "none",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "unsupported-missing-components",
+          "message": "unsupported-missing-components",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-display-p3-2",
+        "input": {
+          "colorSpace": "display-p3",
+          "components": [
+            "0",
+            "0",
+            "none"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "unsupported-missing-components",
+          "message": "unsupported-missing-components",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-hsl-0",
+        "input": {
+          "colorSpace": "hsl",
+          "components": [
+            "none",
+            "0",
+            "50"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "success",
+          "value": {
+            "kind": "literal",
+            "valueType": "color",
+            "colorSpace": "srgb",
+            "components": [
+              "0.5",
+              "0.5",
+              "0.5"
+            ],
+            "alpha": "0"
+          },
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-hsl-1",
+        "input": {
+          "colorSpace": "hsl",
+          "components": [
+            "0",
+            "none",
+            "50"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "unsupported-missing-components",
+          "message": "unsupported-missing-components",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-hsl-2",
+        "input": {
+          "colorSpace": "hsl",
+          "components": [
+            "0",
+            "0",
+            "none"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "unsupported-missing-components",
+          "message": "unsupported-missing-components",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-oklab-0",
+        "input": {
+          "colorSpace": "oklab",
+          "components": [
+            "none",
+            "0",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "unsupported-missing-components",
+          "message": "unsupported-missing-components",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-oklab-1",
+        "input": {
+          "colorSpace": "oklab",
+          "components": [
+            "0.5",
+            "none",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "unsupported-missing-components",
+          "message": "unsupported-missing-components",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-oklab-2",
+        "input": {
+          "colorSpace": "oklab",
+          "components": [
+            "0.5",
+            "0",
+            "none"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "unsupported-missing-components",
+          "message": "unsupported-missing-components",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-oklch-0",
+        "input": {
+          "colorSpace": "oklch",
+          "components": [
+            "none",
+            "0",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "unsupported-missing-components",
+          "message": "unsupported-missing-components",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-oklch-1",
+        "input": {
+          "colorSpace": "oklch",
+          "components": [
+            "0.5",
+            "none",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "unsupported-missing-components",
+          "message": "unsupported-missing-components",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-oklch-2",
+        "input": {
+          "colorSpace": "oklch",
+          "components": [
+            "0.5",
+            "0",
+            "none"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "success",
+          "value": {
+            "kind": "literal",
+            "valueType": "color",
+            "colorSpace": "srgb",
+            "components": [
+              "0.388572859046",
+              "0.388572859046",
+              "0.388572859046"
+            ],
+            "alpha": "0"
+          },
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-chromatic-hsl",
+        "input": {
+          "colorSpace": "hsl",
+          "components": [
+            "none",
+            "1",
+            "50"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "unsupported-missing-components",
+          "message": "unsupported-missing-components",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "missing-chromatic-oklch",
+        "input": {
+          "colorSpace": "oklch",
+          "components": [
+            "0.5",
+            "0.1",
+            "none"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "unsupported-missing-components",
+          "message": "unsupported-missing-components",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "invalid--",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "-",
+            "0",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "oklab",
+        "result": {
+          "status": "invalid-input",
+          "message": "Value is not canonical Decimal text",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "invalid-0.",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "0.",
+            "0",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "oklab",
+        "result": {
+          "status": "invalid-input",
+          "message": "Value is not canonical Decimal text",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "invalid-1e2",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "1e2",
+            "0",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "oklab",
+        "result": {
+          "status": "invalid-input",
+          "message": "Value is not canonical Decimal text",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "alpha-0",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "1",
+            "0",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "oklab",
+        "result": {
+          "status": "success",
+          "value": {
+            "kind": "literal",
+            "valueType": "color",
+            "colorSpace": "oklab",
+            "components": [
+              "0.627955363921",
+              "0.224863068426",
+              "0.125846277331"
+            ],
+            "alpha": "0"
+          },
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "alpha-1",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "1",
+            "0",
+            "0"
+          ],
+          "alpha": "1"
+        },
+        "target": "oklab",
+        "result": {
+          "status": "success",
+          "value": {
+            "kind": "literal",
+            "valueType": "color",
+            "colorSpace": "oklab",
+            "components": [
+              "0.627955363921",
+              "0.224863068426",
+              "0.125846277331"
+            ],
+            "alpha": "1"
+          },
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "alpha-0.123456789123456789123456789",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "1",
+            "0",
+            "0"
+          ],
+          "alpha": "0.123456789123456789123456789"
+        },
+        "target": "oklab",
+        "result": {
+          "status": "success",
+          "value": {
+            "kind": "literal",
+            "valueType": "color",
+            "colorSpace": "oklab",
+            "components": [
+              "0.627955363921",
+              "0.224863068426",
+              "0.125846277331"
+            ],
+            "alpha": "0.123456789123456789123456789"
+          },
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "long-exact-identity",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "0.123456789123456789123456789",
+            "none",
+            "0"
+          ],
+          "alpha": "0.123456789123456789123456789"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "success",
+          "value": {
+            "kind": "literal",
+            "valueType": "color",
+            "colorSpace": "srgb",
+            "components": [
+              "0.123456789123456789123456789",
+              "none",
+              "0"
+            ],
+            "alpha": "0.123456789123456789123456789"
+          },
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "numeric-powerless-identity",
+        "input": {
+          "colorSpace": "oklch",
+          "components": [
+            "0.5",
+            "0",
+            "270"
+          ],
+          "alpha": "0"
+        },
+        "target": "oklch",
+        "result": {
+          "status": "success",
+          "value": {
+            "kind": "literal",
+            "valueType": "color",
+            "colorSpace": "oklch",
+            "components": [
+              "0.5",
+              "0",
+              "270"
+            ],
+            "alpha": "0"
+          },
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "rounded-hue-360",
+        "input": {
+          "colorSpace": "oklab",
+          "components": [
+            "0.5",
+            "0.1",
+            "-0.00000000000001"
+          ],
+          "alpha": "0"
+        },
+        "target": "oklch",
+        "result": {
+          "status": "success",
+          "value": {
+            "kind": "literal",
+            "valueType": "color",
+            "colorSpace": "oklch",
+            "components": [
+              "0.5",
+              "0.1",
+              "0"
+            ],
+            "alpha": "0"
+          },
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "negative-large-hue",
+        "input": {
+          "colorSpace": "hsl",
+          "components": [
+            "-360000000000000000001",
+            "50",
+            "50"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "success",
+          "value": {
+            "kind": "literal",
+            "valueType": "color",
+            "colorSpace": "srgb",
+            "components": [
+              "0.75",
+              "0.25",
+              "0.258333333333"
+            ],
+            "alpha": "0"
+          },
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "guard-102-000000001",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+            "0",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "oklab",
+        "result": {
+          "status": "success",
+          "value": {
+            "kind": "literal",
+            "valueType": "color",
+            "colorSpace": "oklab",
+            "components": [
+              "0.000000000000000000000000000000000124215160045",
+              "0.0000000000000000000000000000000000444799163085",
+              "0.0000000000000000000000000000000000248935137396"
+            ],
+            "alpha": "0"
+          },
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "guard-103-000000001",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "0.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+            "0",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "oklab",
+        "result": {
+          "status": "calculation-limit",
+          "message": "calculation-limit",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "guard-7-1000000",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "1000000",
+            "0",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "oklab",
+        "result": {
+          "status": "target-schema-incompatibility",
+          "message": "lightness is outside its accepted range",
+          "components": [
+            "37960.054378",
+            "13593.0271409",
+            "7607.43805245"
+          ],
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "guard-7-1000001",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "1000001",
+            "0",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "oklab",
+        "result": {
+          "status": "calculation-limit",
+          "message": "calculation-limit",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "guard-4097-000000001",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+            "0",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "oklab",
+        "result": {
+          "status": "calculation-limit",
+          "message": "calculation-limit",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "underflow-endpoint",
+        "input": {
+          "colorSpace": "oklab",
+          "components": [
+            "0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+            "0",
+            "0"
+          ],
+          "alpha": "0"
+        },
+        "target": "srgb",
+        "result": {
+          "status": "calculation-limit",
+          "message": "calculation-limit",
+          "inputUnchanged": true
+        }
+      },
+      {
+        "name": "cancellation-collapsed-distinction",
+        "input": {
+          "colorSpace": "srgb",
+          "components": [
+            "0.5000000000000000000000001",
+            "0.5",
+            "0.5"
+          ],
+          "alpha": "0"
+        },
+        "target": "oklch",
+        "result": {
+          "status": "numerical-failure",
+          "message": "numerical-failure",
+          "inputUnchanged": true
+        }
+      }
+    ],
+    "stages": [
+      {
+        "input": "1e-100",
+        "linear": [
+          7.739938080495356e-102,
+          0,
+          0
+        ],
+        "xyz": [
+          3.191879251284515e-102,
+          1.645812738943578e-102,
+          1.4961933990396147e-103
+        ],
+        "oklab": [
+          1.2421516004458485e-34,
+          4.4479916308479516e-35,
+          2.489351373960025e-35
+        ]
+      },
+      {
+        "input": "1e6",
+        "linear": [
+          220899205674266.94,
+          0,
+          0
+        ],
+        "xyz": [
+          91096799985226.48,
+          46971787492382.41,
+          4270162499307.4863
+        ],
+        "oklab": [
+          37960.05437800097,
+          13593.027140912376,
+          7607.438052453206
+        ]
+      }
+    ],
+    "byteBudgets": [
+      {
+        "name": "4096-char-input",
+        "inputLength": 4096,
+        "status": "success",
+        "outputLength": 4116,
+        "nonzero": true
+      },
+      {
+        "name": "4097-char-input",
+        "inputLength": 4097,
+        "status": "calculation-limit"
+      },
+      {
+        "name": "4096-char-integer",
+        "inputLength": 4096,
+        "status": "success",
+        "outputLength": 4096,
+        "nonzero": true
+      }
+    ],
+    "cycles": [
+      {
+        "input": [
+          "0.2",
+          "0.4",
+          "0.6"
+        ],
+        "via": "display-p3",
+        "status": "success",
+        "completed": 100,
+        "final": [
+          "0.2",
+          "0.4",
+          "0.6"
+        ],
+        "maxAbsSrgbError": 0
+      },
+      {
+        "input": [
+          "0.2",
+          "0.4",
+          "0.6"
+        ],
+        "via": "hsl",
+        "status": "success",
+        "completed": 100,
+        "final": [
+          "0.2",
+          "0.4",
+          "0.6"
+        ],
+        "maxAbsSrgbError": 0
+      },
+      {
+        "input": [
+          "0.2",
+          "0.4",
+          "0.6"
+        ],
+        "via": "oklab",
+        "status": "success",
+        "completed": 100,
+        "final": [
+          "0.2",
+          "0.4",
+          "0.6"
+        ],
+        "maxAbsSrgbError": 0
+      },
+      {
+        "input": [
+          "0.2",
+          "0.4",
+          "0.6"
+        ],
+        "via": "oklch",
+        "status": "success",
+        "completed": 100,
+        "final": [
+          "0.199999999998",
+          "0.4",
+          "0.6"
+        ],
+        "maxAbsSrgbError": 2.0000112677109882e-12
+      },
+      {
+        "input": [
+          "1",
+          "0",
+          "0"
+        ],
+        "via": "display-p3",
+        "status": "success",
+        "completed": 100,
+        "final": [
+          "1",
+          "0.00000000000082463199897",
+          "-0.00000000000030548411023"
+        ],
+        "maxAbsSrgbError": 8.2463199897e-13
+      },
+      {
+        "input": [
+          "1",
+          "0",
+          "0"
+        ],
+        "via": "hsl",
+        "status": "success",
+        "completed": 100,
+        "final": [
+          "1",
+          "0",
+          "0"
+        ],
+        "maxAbsSrgbError": 0
+      },
+      {
+        "input": [
+          "1",
+          "0",
+          "0"
+        ],
+        "via": "oklab",
+        "status": "success",
+        "completed": 100,
+        "final": [
+          "0.999999999999",
+          "-0.000000000000675718300758",
+          "-0.00000000000817774015172"
+        ],
+        "maxAbsSrgbError": 8.17774015172e-12
+      },
+      {
+        "input": [
+          "1",
+          "0",
+          "0"
+        ],
+        "via": "oklch",
+        "status": "success",
+        "completed": 100,
+        "final": [
+          "0.999999999999",
+          "0.00000000000237626659235",
+          "0.00000000000327408142264"
+        ],
+        "maxAbsSrgbError": 3.27408142264e-12
+      },
+      {
+        "input": [
+          "0.5",
+          "0.5",
+          "0.5"
+        ],
+        "via": "display-p3",
+        "status": "success",
+        "completed": 100,
+        "final": [
+          "0.5",
+          "0.5",
+          "0.5"
+        ],
+        "maxAbsSrgbError": 0
+      },
+      {
+        "input": [
+          "0.5",
+          "0.5",
+          "0.5"
+        ],
+        "via": "hsl",
+        "status": "success",
+        "completed": 100,
+        "final": [
+          "0.5",
+          "0.5",
+          "0.5"
+        ],
+        "maxAbsSrgbError": 0
+      },
+      {
+        "input": [
+          "0.5",
+          "0.5",
+          "0.5"
+        ],
+        "via": "oklab",
+        "status": "success",
+        "completed": 100,
+        "final": [
+          "0.5",
+          "0.5",
+          "0.5"
+        ],
+        "maxAbsSrgbError": 0
+      },
+      {
+        "input": [
+          "0.5",
+          "0.5",
+          "0.5"
+        ],
+        "via": "oklch",
+        "status": "success",
+        "completed": 100,
+        "final": [
+          "0.5",
+          "0.5",
+          "0.5"
+        ],
+        "maxAbsSrgbError": 0
+      }
+    ]
+  },
+  "comparisons": [
+    {
+      "id": "srgb-0-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-0-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 5.667050859575392e-17,
+      "status": "success",
+      "candidateSrgbError": 4.992418951281247e-13
+    },
+    {
+      "id": "srgb-0-hsl",
+      "ordinary": true,
+      "rawSrgbError": 5.6e-17,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-0-oklab",
+      "ordinary": true,
+      "rawSrgbError": 2.3984769906867117e-16,
+      "status": "success",
+      "rawOklabError": 1.5450927915338122e-16,
+      "candidateSrgbError": 2.790694507498374e-13,
+      "candidateOklabError": 2.0818549072084662e-13
+    },
+    {
+      "id": "srgb-0-oklch",
+      "ordinary": true,
+      "rawSrgbError": 2.45166848624291e-16,
+      "status": "success",
+      "rawHueError": 6e-14,
+      "candidateSrgbError": 1.3432826426802648e-12,
+      "candidateHueError": 1.7546e-10
+    },
+    {
+      "id": "srgb-1-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-1-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 4.345037811278274e-16,
+      "status": "success",
+      "candidateSrgbError": 8.251851307137163e-13
+    },
+    {
+      "id": "srgb-1-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-1-oklab",
+      "ordinary": true,
+      "rawSrgbError": 5.818717015550608e-15,
+      "status": "success",
+      "rawOklabError": 3.2755822709509236e-16,
+      "candidateSrgbError": 8.177382291466426e-12,
+      "candidateOklabError": 4.3123344228152974e-13
+    },
+    {
+      "id": "srgb-1-oklch",
+      "ordinary": true,
+      "rawSrgbError": 5.735321429218257e-15,
+      "status": "success",
+      "rawHueError": 4.6e-14,
+      "candidateSrgbError": 3.273096905445831e-12,
+      "candidateHueError": 2.7886e-11
+    },
+    {
+      "id": "srgb-2-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-2-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 1.4649517401876595e-15,
+      "status": "success",
+      "candidateSrgbError": 3.070502551338037e-12
+    },
+    {
+      "id": "srgb-2-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-2-oklab",
+      "ordinary": true,
+      "rawSrgbError": 1.6713498145703114e-14,
+      "status": "success",
+      "rawOklabError": 3.3942160008356784e-16,
+      "candidateSrgbError": 2.517692566821624e-11,
+      "candidateOklabError": 4.421894216000836e-13
+    },
+    {
+      "id": "srgb-2-oklch",
+      "ordinary": true,
+      "rawSrgbError": 1.3885629976766976e-14,
+      "status": "success",
+      "rawHueError": 3e-14,
+      "candidateSrgbError": 1.0292361366012729e-10,
+      "candidateHueError": 4.4387e-10
+    },
+    {
+      "id": "srgb-3-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-3-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 3.0841139094193765e-16,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-3-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-3-oklab",
+      "ordinary": true,
+      "rawSrgbError": 2.5359026256154446e-16,
+      "status": "success",
+      "rawOklabError": 7.123938211363151e-17,
+      "candidateSrgbError": 1.2708153551216584e-15,
+      "candidateOklabError": 5.690524940826115e-16
+    },
+    {
+      "id": "srgb-3-oklch",
+      "ordinary": true,
+      "rawSrgbError": 2.535902625615444e-16,
+      "status": "success",
+      "candidateSrgbError": 1.2708153551216584e-15
+    },
+    {
+      "id": "srgb-4-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-4-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-4-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-4-oklab",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "rawOklabError": 0.0,
+      "candidateSrgbError": 0.0,
+      "candidateOklabError": 0.0
+    },
+    {
+      "id": "srgb-4-oklch",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-5-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-5-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 6e-17,
+      "status": "success",
+      "candidateSrgbError": 4e-70
+    },
+    {
+      "id": "srgb-5-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-5-oklab",
+      "ordinary": true,
+      "rawSrgbError": 3.4618111503533015e-16,
+      "status": "success",
+      "rawOklabError": 1.563049320120812e-16,
+      "candidateSrgbError": 1.7757158313149253e-13,
+      "candidateOklabError": 1.5245630493201207e-13
+    },
+    {
+      "id": "srgb-5-oklch",
+      "ordinary": true,
+      "rawSrgbError": 3.461811150353298e-16,
+      "status": "success",
+      "candidateSrgbError": 1.7757158313149253e-13
+    },
+    {
+      "id": "srgb-6-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-6-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 2.2585074581394316e-16,
+      "status": "success",
+      "candidateSrgbError": 1.921578777622119e-12
+    },
+    {
+      "id": "srgb-6-hsl",
+      "ordinary": true,
+      "rawSrgbError": 5e-17,
+      "status": "target-schema-incompatibility"
+    },
+    {
+      "id": "srgb-6-oklab",
+      "ordinary": true,
+      "rawSrgbError": 2.278025050967237e-16,
+      "status": "success",
+      "rawOklabError": 1.3670365228138344e-16,
+      "candidateSrgbError": 6.800626881381132e-13,
+      "candidateOklabError": 3.830869831153919e-13
+    },
+    {
+      "id": "srgb-6-oklch",
+      "ordinary": true,
+      "rawSrgbError": 2.5213065418641777e-16,
+      "status": "success",
+      "rawHueError": 0.0,
+      "candidateSrgbError": 9.486474851603845e-12,
+      "candidateHueError": 2.159e-10
+    },
+    {
+      "id": "srgb-7-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-7-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 4.446949324825426e-16,
+      "status": "success",
+      "candidateSrgbError": 2.2494017628021242e-13
+    },
+    {
+      "id": "srgb-7-hsl",
+      "ordinary": true,
+      "rawSrgbError": 1.6657201129198342e-16,
+      "status": "success",
+      "candidateSrgbError": 5.000665720119998e-13
+    },
+    {
+      "id": "srgb-7-oklab",
+      "ordinary": true,
+      "rawSrgbError": 5.868360614331656e-16,
+      "status": "success",
+      "rawOklabError": 2.597813920729015e-16,
+      "candidateSrgbError": 7.797615646565887e-14,
+      "candidateOklabError": 6.704009105179377e-14
+    },
+    {
+      "id": "srgb-7-oklch",
+      "ordinary": true,
+      "rawSrgbError": 5.868360614331419e-16,
+      "status": "success",
+      "candidateSrgbError": 7.797615646600885e-14
+    },
+    {
+      "id": "srgb-8-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-8-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 4.3642887292112575e-32,
+      "status": "success",
+      "candidateSrgbError": 4.523580516079286e-28
+    },
+    {
+      "id": "srgb-8-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "srgb-8-oklab",
+      "ordinary": true,
+      "rawSrgbError": 8.204328050261971e-31,
+      "status": "success",
+      "rawOklabError": 1.1617030526414952e-21,
+      "candidateSrgbError": 7.148366547831366e-28,
+      "candidateOklabError": 8.402522687439604e-19
+    },
+    {
+      "id": "srgb-8-oklch",
+      "ordinary": true,
+      "rawSrgbError": 9.861850227996982e-31,
+      "status": "success",
+      "candidateSrgbError": 3.273685866019776e-27
+    },
+    {
+      "id": "display-p3-0-srgb",
+      "ordinary": true,
+      "rawSrgbError": 6.351436636091072e-17,
+      "status": "success",
+      "candidateSrgbError": 3.552064856336391e-13
+    },
+    {
+      "id": "display-p3-0-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "display-p3-0-hsl",
+      "ordinary": true,
+      "rawSrgbError": 5.1889994661584395e-17,
+      "status": "success",
+      "candidateSrgbError": 2.2905935200059405e-12
+    },
+    {
+      "id": "display-p3-0-oklab",
+      "ordinary": true,
+      "rawSrgbError": 2.7781979517545596e-16,
+      "status": "success",
+      "rawOklabError": 8.297190992131275e-17,
+      "candidateSrgbError": 9.605700610273712e-13,
+      "candidateOklabError": 3.0420403877633925e-13
+    },
+    {
+      "id": "display-p3-0-oklch",
+      "ordinary": true,
+      "rawSrgbError": 5.007064468162154e-16,
+      "status": "success",
+      "rawHueError": 6e-14,
+      "candidateSrgbError": 2.3511196856223594e-12,
+      "candidateHueError": 4.195e-10
+    },
+    {
+      "id": "display-p3-1-srgb",
+      "ordinary": true,
+      "rawSrgbError": 1.9525907717251427e-16,
+      "status": "success",
+      "candidateSrgbError": 4.838422871802342e-12
+    },
+    {
+      "id": "display-p3-1-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "display-p3-1-hsl",
+      "ordinary": true,
+      "rawSrgbError": 3.14168577930255e-16,
+      "status": "target-schema-incompatibility"
+    },
+    {
+      "id": "display-p3-1-oklab",
+      "ordinary": true,
+      "rawSrgbError": 2.953017089081684e-16,
+      "status": "success",
+      "rawOklabError": 7.880439836800206e-17,
+      "candidateSrgbError": 1.6516064513631343e-12,
+      "candidateOklabError": 3.5606219300828037e-13
+    },
+    {
+      "id": "display-p3-1-oklch",
+      "ordinary": true,
+      "rawSrgbError": 5.577733790995465e-16,
+      "status": "success",
+      "rawHueError": 1.8e-14,
+      "candidateSrgbError": 9.988287992721166e-13,
+      "candidateHueError": 3.943e-12
+    },
+    {
+      "id": "display-p3-2-srgb",
+      "ordinary": true,
+      "rawSrgbError": 2.255494142513909e-16,
+      "status": "success",
+      "candidateSrgbError": 2.1973255494142513e-12
+    },
+    {
+      "id": "display-p3-2-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "display-p3-2-hsl",
+      "ordinary": true,
+      "rawSrgbError": 2.0952673858808282e-16,
+      "status": "target-schema-incompatibility"
+    },
+    {
+      "id": "display-p3-2-oklab",
+      "ordinary": true,
+      "rawSrgbError": 3.227975214178207e-16,
+      "status": "success",
+      "rawOklabError": 1.5754436637449802e-16,
+      "candidateSrgbError": 1.8427598507638726e-12,
+      "candidateOklabError": 3.756647079556685e-13
+    },
+    {
+      "id": "display-p3-2-oklch",
+      "ordinary": true,
+      "rawSrgbError": 1.2297730390021993e-15,
+      "status": "success",
+      "rawHueError": 2e-14,
+      "candidateSrgbError": 9.799523864852664e-12,
+      "candidateHueError": 3.716e-10
+    },
+    {
+      "id": "display-p3-3-srgb",
+      "ordinary": true,
+      "rawSrgbError": 2e-16,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "display-p3-3-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "display-p3-3-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "display-p3-3-oklab",
+      "ordinary": true,
+      "rawSrgbError": 7.27204896547262e-16,
+      "status": "success",
+      "rawOklabError": 3.746370768487715e-16,
+      "candidateSrgbError": 1.2708153551216584e-15,
+      "candidateOklabError": 5.690524940826115e-16
+    },
+    {
+      "id": "display-p3-3-oklch",
+      "ordinary": true,
+      "rawSrgbError": 7.272048965472619e-16,
+      "status": "success",
+      "candidateSrgbError": 1.2708153551216584e-15
+    },
+    {
+      "id": "display-p3-4-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "display-p3-4-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "display-p3-4-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "display-p3-4-oklab",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "rawOklabError": 0.0,
+      "candidateSrgbError": 0.0,
+      "candidateOklabError": 0.0
+    },
+    {
+      "id": "display-p3-4-oklch",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "display-p3-5-srgb",
+      "ordinary": true,
+      "rawSrgbError": 1e-16,
+      "status": "success",
+      "candidateSrgbError": 2e-70
+    },
+    {
+      "id": "display-p3-5-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "display-p3-5-hsl",
+      "ordinary": true,
+      "rawSrgbError": 1.1102230246251565e-16,
+      "status": "success",
+      "candidateSrgbError": 2e-70
+    },
+    {
+      "id": "display-p3-5-oklab",
+      "ordinary": true,
+      "rawSrgbError": 3.4618111503533015e-16,
+      "status": "success",
+      "rawOklabError": 1.563049320120812e-16,
+      "candidateSrgbError": 1.7757158313149253e-13,
+      "candidateOklabError": 1.5245630493201207e-13
+    },
+    {
+      "id": "display-p3-5-oklch",
+      "ordinary": true,
+      "rawSrgbError": 3.461811150353298e-16,
+      "status": "success",
+      "candidateSrgbError": 1.7757158313149253e-13
+    },
+    {
+      "id": "display-p3-6-srgb",
+      "ordinary": true,
+      "rawSrgbError": 1.0664986134598164e-16,
+      "status": "success",
+      "candidateSrgbError": 4.538106649861346e-12
+    },
+    {
+      "id": "display-p3-6-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "display-p3-6-hsl",
+      "ordinary": true,
+      "rawSrgbError": 9.46095931013741e-17,
+      "status": "target-schema-incompatibility"
+    },
+    {
+      "id": "display-p3-6-oklab",
+      "ordinary": true,
+      "rawSrgbError": 3.2208025744320286e-16,
+      "status": "success",
+      "rawOklabError": 7.030323835085456e-17,
+      "candidateSrgbError": 7.275599375869802e-13,
+      "candidateOklabError": 3.703527831797991e-13
+    },
+    {
+      "id": "display-p3-6-oklch",
+      "ordinary": true,
+      "rawSrgbError": 3.1982815014137704e-16,
+      "status": "success",
+      "rawHueError": 0.0,
+      "candidateSrgbError": 2.821483660960369e-12,
+      "candidateHueError": 1.117e-10
+    },
+    {
+      "id": "display-p3-7-srgb",
+      "ordinary": true,
+      "rawSrgbError": 1.3755459035968756e-16,
+      "status": "success",
+      "candidateSrgbError": 2.2494017628021242e-13
+    },
+    {
+      "id": "display-p3-7-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "display-p3-7-hsl",
+      "ordinary": true,
+      "rawSrgbError": 1.918541721703425e-16,
+      "status": "success",
+      "candidateSrgbError": 4.087918541812893e-13
+    },
+    {
+      "id": "display-p3-7-oklab",
+      "ordinary": true,
+      "rawSrgbError": 2.340953334608372e-16,
+      "status": "success",
+      "rawOklabError": 1.109684805987719e-16,
+      "candidateSrgbError": 1.0592595731099944e-13,
+      "candidateOklabError": 9.118903151940123e-14
+    },
+    {
+      "id": "display-p3-7-oklch",
+      "ordinary": true,
+      "rawSrgbError": 2.340953334609887e-16,
+      "status": "success",
+      "candidateSrgbError": 1.0592595730915213e-13
+    },
+    {
+      "id": "hsl-0-srgb",
+      "ordinary": true,
+      "rawSrgbError": 1e-16,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-0-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 1.6276823026838685e-16,
+      "status": "success",
+      "candidateSrgbError": 4.992418951281247e-13
+    },
+    {
+      "id": "hsl-0-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-0-oklab",
+      "ordinary": true,
+      "rawSrgbError": 2.1122221395244612e-16,
+      "status": "success",
+      "rawOklabError": 1.5450927915338122e-16,
+      "candidateSrgbError": 2.790694507498374e-13,
+      "candidateOklabError": 2.0818549072084662e-13
+    },
+    {
+      "id": "hsl-0-oklch",
+      "ordinary": true,
+      "rawSrgbError": 2.5497161283294874e-16,
+      "status": "success",
+      "rawHueError": 3e-14,
+      "candidateSrgbError": 1.3432826426802648e-12,
+      "candidateHueError": 1.7546e-10
+    },
+    {
+      "id": "hsl-1-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-1-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 4.345037811278274e-16,
+      "status": "success",
+      "candidateSrgbError": 8.251851307137163e-13
+    },
+    {
+      "id": "hsl-1-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-1-oklab",
+      "ordinary": true,
+      "rawSrgbError": 5.818717015550608e-15,
+      "status": "success",
+      "rawOklabError": 3.2755822709509236e-16,
+      "candidateSrgbError": 8.177382291466426e-12,
+      "candidateOklabError": 4.3123344228152974e-13
+    },
+    {
+      "id": "hsl-1-oklch",
+      "ordinary": true,
+      "rawSrgbError": 5.735321429218257e-15,
+      "status": "success",
+      "rawHueError": 4.6e-14,
+      "candidateSrgbError": 3.273096905445831e-12,
+      "candidateHueError": 2.7886e-11
+    },
+    {
+      "id": "hsl-2-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-2-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 1.4649517401876595e-15,
+      "status": "success",
+      "candidateSrgbError": 3.070502551338037e-12
+    },
+    {
+      "id": "hsl-2-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-2-oklab",
+      "ordinary": true,
+      "rawSrgbError": 1.6713498145703114e-14,
+      "status": "success",
+      "rawOklabError": 3.3942160008356784e-16,
+      "candidateSrgbError": 2.517692566821624e-11,
+      "candidateOklabError": 4.421894216000836e-13
+    },
+    {
+      "id": "hsl-2-oklch",
+      "ordinary": true,
+      "rawSrgbError": 1.3885629976766976e-14,
+      "status": "success",
+      "rawHueError": 3e-14,
+      "candidateSrgbError": 1.0292361366012729e-10,
+      "candidateHueError": 4.4387e-10
+    },
+    {
+      "id": "hsl-3-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-3-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 3.0841139094193765e-16,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-3-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-3-oklab",
+      "ordinary": true,
+      "rawSrgbError": 2.5359026256154446e-16,
+      "status": "success",
+      "rawOklabError": 7.123938211363151e-17,
+      "candidateSrgbError": 1.2708153551216584e-15,
+      "candidateOklabError": 5.690524940826115e-16
+    },
+    {
+      "id": "hsl-3-oklch",
+      "ordinary": true,
+      "rawSrgbError": 2.535902625615444e-16,
+      "status": "success",
+      "candidateSrgbError": 1.2708153551216584e-15
+    },
+    {
+      "id": "hsl-4-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-4-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-4-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-4-oklab",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "rawOklabError": 0.0,
+      "candidateSrgbError": 0.0,
+      "candidateOklabError": 0.0
+    },
+    {
+      "id": "hsl-4-oklch",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-5-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-5-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 6e-17,
+      "status": "success",
+      "candidateSrgbError": 4e-70
+    },
+    {
+      "id": "hsl-5-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-5-oklab",
+      "ordinary": true,
+      "rawSrgbError": 3.4618111503533015e-16,
+      "status": "success",
+      "rawOklabError": 1.563049320120812e-16,
+      "candidateSrgbError": 1.7757158313149253e-13,
+      "candidateOklabError": 1.5245630493201207e-13
+    },
+    {
+      "id": "hsl-5-oklch",
+      "ordinary": true,
+      "rawSrgbError": 3.461811150353298e-16,
+      "status": "success",
+      "candidateSrgbError": 1.7757158313149253e-13
+    },
+    {
+      "id": "hsl-6-srgb",
+      "ordinary": true,
+      "rawSrgbError": 1.6666666666666665e-26,
+      "status": "success",
+      "candidateSrgbError": 5e-15
+    },
+    {
+      "id": "hsl-6-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 1.67960642639709e-16,
+      "status": "success",
+      "candidateSrgbError": 5e-15
+    },
+    {
+      "id": "hsl-6-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "hsl-6-oklab",
+      "ordinary": true,
+      "rawSrgbError": 3.0496104010451553e-16,
+      "status": "success",
+      "rawOklabError": 9.783778353027832e-17,
+      "candidateSrgbError": 1.79488892467652e-13,
+      "candidateOklabError": 1.545725534444401e-13
+    },
+    {
+      "id": "hsl-6-oklch",
+      "ordinary": true,
+      "rawSrgbError": 3.0496104010451464e-16,
+      "status": "success",
+      "candidateSrgbError": 1.7948889246765724e-13
+    },
+    {
+      "id": "oklab-0-srgb",
+      "ordinary": true,
+      "rawSrgbError": 2.4852269992426023e-16,
+      "status": "success",
+      "candidateSrgbError": 1.7280971969805355e-13
+    },
+    {
+      "id": "oklab-0-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 3.0013705121519464e-16,
+      "status": "success",
+      "candidateSrgbError": 3.33972958970831e-13
+    },
+    {
+      "id": "oklab-0-hsl",
+      "ordinary": true,
+      "rawSrgbError": 2.37872113488952e-16,
+      "status": "success",
+      "candidateSrgbError": 1.3072921525776228e-12
+    },
+    {
+      "id": "oklab-0-oklab",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "rawOklabError": 0.0,
+      "candidateSrgbError": 0.0,
+      "candidateOklabError": 0.0
+    },
+    {
+      "id": "oklab-0-oklch",
+      "ordinary": true,
+      "rawSrgbError": 3.535913278732258e-16,
+      "status": "success",
+      "rawHueError": 6e-14,
+      "candidateSrgbError": 4.713205938342362e-13,
+      "candidateHueError": 6e-14
+    },
+    {
+      "id": "oklab-1-srgb",
+      "ordinary": true,
+      "rawSrgbError": 3.6153325709387314e-16,
+      "status": "success",
+      "candidateSrgbError": 3.9994421992085534e-16
+    },
+    {
+      "id": "oklab-1-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 4.0359021180356133e-16,
+      "status": "success",
+      "candidateSrgbError": 3.9994421992085534e-16
+    },
+    {
+      "id": "oklab-1-hsl",
+      "ordinary": true,
+      "rawSrgbError": 3.9994421992085534e-16,
+      "status": "success",
+      "candidateSrgbError": 3.9994421992085534e-16
+    },
+    {
+      "id": "oklab-1-oklab",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "rawOklabError": 0.0,
+      "candidateSrgbError": 0.0,
+      "candidateOklabError": 0.0
+    },
+    {
+      "id": "oklab-1-oklch",
+      "ordinary": true,
+      "rawSrgbError": 8.708711352008026e-16,
+      "status": "success",
+      "candidateSrgbError": 8.708711352008026e-16
+    },
+    {
+      "id": "oklab-2-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "oklab-2-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "oklab-2-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "oklab-2-oklab",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "rawOklabError": 0.0,
+      "candidateSrgbError": 0.0,
+      "candidateOklabError": 0.0
+    },
+    {
+      "id": "oklab-2-oklch",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "oklab-3-srgb",
+      "ordinary": true,
+      "rawSrgbError": 1.1039525089484173e-16,
+      "status": "success",
+      "candidateSrgbError": 3.345896047491052e-13
+    },
+    {
+      "id": "oklab-3-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 1.0894300667778591e-16,
+      "status": "success",
+      "candidateSrgbError": 3.345896047491052e-13
+    },
+    {
+      "id": "oklab-3-hsl",
+      "ordinary": true,
+      "rawSrgbError": 1.3243985581987306e-16,
+      "status": "success",
+      "candidateSrgbError": 3.345896047491052e-13
+    },
+    {
+      "id": "oklab-3-oklab",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "rawOklabError": 0.0,
+      "candidateSrgbError": 0.0,
+      "candidateOklabError": 0.0
+    },
+    {
+      "id": "oklab-3-oklch",
+      "ordinary": true,
+      "rawSrgbError": 3.661562078691439e-16,
+      "status": "success",
+      "candidateSrgbError": 3.661562078691439e-16
+    },
+    {
+      "id": "oklab-4-srgb",
+      "ordinary": true,
+      "rawSrgbError": 3.543372347803181e-16,
+      "status": "success",
+      "candidateSrgbError": 3.367456627652197e-13
+    },
+    {
+      "id": "oklab-4-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 1.810844555914691e-16,
+      "status": "success",
+      "candidateSrgbError": 3.367456627652197e-13
+    },
+    {
+      "id": "oklab-4-hsl",
+      "ordinary": true,
+      "rawSrgbError": 3.4171637664308443e-16,
+      "status": "success",
+      "candidateSrgbError": 3.353794424156244e-13
+    },
+    {
+      "id": "oklab-4-oklab",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "rawOklabError": 0.0,
+      "candidateSrgbError": 0.0,
+      "candidateOklabError": 0.0
+    },
+    {
+      "id": "oklab-4-oklch",
+      "ordinary": true,
+      "rawSrgbError": 3.6615620786914175e-16,
+      "status": "success",
+      "candidateSrgbError": 3.6615620786914175e-16
+    },
+    {
+      "id": "oklab-5-srgb",
+      "ordinary": true,
+      "rawSrgbError": 2.2357468845602733e-16,
+      "status": "success",
+      "candidateSrgbError": 4.708694407254736e-13
+    },
+    {
+      "id": "oklab-5-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 1.160954403512519e-16,
+      "status": "success",
+      "candidateSrgbError": 3.290824181322279e-13
+    },
+    {
+      "id": "oklab-5-hsl",
+      "ordinary": true,
+      "rawSrgbError": 1.4786414575260682e-16,
+      "status": "target-schema-incompatibility"
+    },
+    {
+      "id": "oklab-5-oklab",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "rawOklabError": 0.0,
+      "candidateSrgbError": 0.0,
+      "candidateOklabError": 0.0
+    },
+    {
+      "id": "oklab-5-oklch",
+      "ordinary": true,
+      "rawSrgbError": 7.572465452437171e-16,
+      "status": "success",
+      "rawHueError": 1e-13,
+      "candidateSrgbError": 1.2220037886043492e-13,
+      "candidateHueError": 1e-13
+    },
+    {
+      "id": "oklch-0-srgb",
+      "ordinary": true,
+      "rawSrgbError": 1.247327406139562e-15,
+      "status": "success",
+      "candidateSrgbError": 6.179790978205712e-14
+    },
+    {
+      "id": "oklch-0-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 6.531724598585249e-16,
+      "status": "success",
+      "candidateSrgbError": 2.0293483977600526e-12
+    },
+    {
+      "id": "oklch-0-hsl",
+      "ordinary": true,
+      "rawSrgbError": 1.3369381604201902e-15,
+      "status": "success",
+      "candidateSrgbError": 2.874291670394885e-12
+    },
+    {
+      "id": "oklch-0-oklab",
+      "ordinary": true,
+      "rawSrgbError": 2.763260351981997e-15,
+      "status": "success",
+      "rawOklabError": 2.0534744497267027e-16,
+      "candidateSrgbError": 6.366871407864415e-13,
+      "candidateOklabError": 4.407534744497267e-14
+    },
+    {
+      "id": "oklch-0-oklch",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "rawHueError": 0.0,
+      "candidateSrgbError": 0.0,
+      "candidateHueError": 0.0
+    },
+    {
+      "id": "oklch-1-srgb",
+      "ordinary": true,
+      "rawSrgbError": 3.6153325709387314e-16,
+      "status": "success",
+      "candidateSrgbError": 3.9994421992085534e-16
+    },
+    {
+      "id": "oklch-1-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 4.0359021180356133e-16,
+      "status": "success",
+      "candidateSrgbError": 3.9994421992085534e-16
+    },
+    {
+      "id": "oklch-1-hsl",
+      "ordinary": true,
+      "rawSrgbError": 3.9994421992085534e-16,
+      "status": "success",
+      "candidateSrgbError": 3.9994421992085534e-16
+    },
+    {
+      "id": "oklch-1-oklab",
+      "ordinary": true,
+      "rawSrgbError": 8.708711352008026e-16,
+      "status": "success",
+      "rawOklabError": 3.847987241194044e-16,
+      "candidateSrgbError": 8.708711352008026e-16,
+      "candidateOklabError": 3.847987241194044e-16
+    },
+    {
+      "id": "oklch-1-oklch",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "oklch-2-srgb",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "oklch-2-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "oklch-2-hsl",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "oklch-2-oklab",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "rawOklabError": 0.0,
+      "candidateSrgbError": 0.0,
+      "candidateOklabError": 0.0
+    },
+    {
+      "id": "oklch-2-oklch",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "oklch-3-srgb",
+      "ordinary": true,
+      "rawSrgbError": 1.1039525089484173e-16,
+      "status": "success",
+      "candidateSrgbError": 3.345896047491052e-13
+    },
+    {
+      "id": "oklch-3-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 1.0894300667778591e-16,
+      "status": "success",
+      "candidateSrgbError": 3.345896047491052e-13
+    },
+    {
+      "id": "oklch-3-hsl",
+      "ordinary": true,
+      "rawSrgbError": 1.3243985581987306e-16,
+      "status": "success",
+      "candidateSrgbError": 3.345896047491052e-13
+    },
+    {
+      "id": "oklch-3-oklab",
+      "ordinary": true,
+      "rawSrgbError": 3.661562078691439e-16,
+      "status": "success",
+      "rawOklabError": 1.923993620597022e-16,
+      "candidateSrgbError": 3.661562078691439e-16,
+      "candidateOklabError": 1.923993620597022e-16
+    },
+    {
+      "id": "oklch-3-oklch",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "oklch-4-srgb",
+      "ordinary": true,
+      "rawSrgbError": 3.0367283099612523e-16,
+      "status": "success",
+      "candidateSrgbError": 3.368963271690039e-13
+    },
+    {
+      "id": "oklch-4-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 2.982930444060959e-16,
+      "status": "success",
+      "candidateSrgbError": 3.368963271690039e-13
+    },
+    {
+      "id": "oklch-4-hsl",
+      "ordinary": true,
+      "rawSrgbError": 3.020742753214067e-16,
+      "status": "success",
+      "candidateSrgbError": 3.3538278243523195e-13
+    },
+    {
+      "id": "oklch-4-oklab",
+      "ordinary": true,
+      "rawSrgbError": 3.6615620786914175e-16,
+      "status": "success",
+      "rawOklabError": 1.9239936205970234e-16,
+      "candidateSrgbError": 3.66156207868196e-16,
+      "candidateOklabError": 1.9239936205926363e-16
+    },
+    {
+      "id": "oklch-4-oklch",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "candidateSrgbError": 0.0
+    },
+    {
+      "id": "oklch-5-srgb",
+      "ordinary": true,
+      "rawSrgbError": 1.583369673776322e-16,
+      "status": "success",
+      "candidateSrgbError": 4.023835788421885e-13
+    },
+    {
+      "id": "oklch-5-display-p3",
+      "ordinary": true,
+      "rawSrgbError": 1.5034096400585694e-16,
+      "status": "success",
+      "candidateSrgbError": 5.87249619182116e-13
+    },
+    {
+      "id": "oklch-5-hsl",
+      "ordinary": true,
+      "rawSrgbError": 3.3809641393575097e-16,
+      "status": "target-schema-incompatibility"
+    },
+    {
+      "id": "oklch-5-oklab",
+      "ordinary": true,
+      "rawSrgbError": 5.588253622315274e-16,
+      "status": "success",
+      "rawOklabError": 3.7987328723519897e-16,
+      "candidateSrgbError": 3.3337747149794725e-13,
+      "candidateOklabError": 2.24228157405795e-13
+    },
+    {
+      "id": "oklch-5-oklch",
+      "ordinary": true,
+      "rawSrgbError": 0.0,
+      "status": "success",
+      "rawHueError": 0.0,
+      "candidateSrgbError": 0.0,
+      "candidateHueError": 0.0
+    }
+  ]
+}

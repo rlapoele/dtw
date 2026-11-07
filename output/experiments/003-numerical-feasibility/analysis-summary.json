@@ -1,0 +1,205 @@
+{
+  "caseCount": 180,
+  "pairCount": 25,
+  "ordinaryCount": 180,
+  "statuses": {
+    "success": 174,
+    "target-schema-incompatibility": 6
+  },
+  "maxima": {
+    "rawSrgbError": {
+      "id": "srgb-2-oklab",
+      "ordinary": true,
+      "rawSrgbError": 1.6713498145703114e-14,
+      "status": "success",
+      "rawOklabError": 3.3942160008356784e-16,
+      "candidateSrgbError": 2.517692566821624e-11,
+      "candidateOklabError": 4.421894216000836e-13
+    },
+    "candidateSrgbError": {
+      "id": "srgb-2-oklch",
+      "ordinary": true,
+      "rawSrgbError": 1.3885629976766976e-14,
+      "status": "success",
+      "rawHueError": 3e-14,
+      "candidateSrgbError": 1.0292361366012729e-10,
+      "candidateHueError": 4.4387e-10
+    },
+    "rawOklabError": {
+      "id": "oklch-1-oklab",
+      "ordinary": true,
+      "rawSrgbError": 8.708711352008026e-16,
+      "status": "success",
+      "rawOklabError": 3.847987241194044e-16,
+      "candidateSrgbError": 8.708711352008026e-16,
+      "candidateOklabError": 3.847987241194044e-16
+    },
+    "candidateOklabError": {
+      "id": "srgb-2-oklab",
+      "ordinary": true,
+      "rawSrgbError": 1.6713498145703114e-14,
+      "status": "success",
+      "rawOklabError": 3.3942160008356784e-16,
+      "candidateSrgbError": 2.517692566821624e-11,
+      "candidateOklabError": 4.421894216000836e-13
+    },
+    "rawHueError": {
+      "id": "oklab-5-oklch",
+      "ordinary": true,
+      "rawSrgbError": 7.572465452437171e-16,
+      "status": "success",
+      "rawHueError": 1e-13,
+      "candidateSrgbError": 1.2220037886043492e-13,
+      "candidateHueError": 1e-13
+    },
+    "candidateHueError": {
+      "id": "srgb-2-oklch",
+      "ordinary": true,
+      "rawSrgbError": 1.3885629976766976e-14,
+      "status": "success",
+      "rawHueError": 3e-14,
+      "candidateSrgbError": 1.0292361366012729e-10,
+      "candidateHueError": 4.4387e-10
+    }
+  },
+  "accuracyFailures": [],
+  "refusals": [
+    {
+      "id": "srgb-6-hsl",
+      "result": {
+        "status": "target-schema-incompatibility",
+        "message": "saturation is outside its accepted range",
+        "components": [
+          "215",
+          "120",
+          "50"
+        ],
+        "inputUnchanged": true
+      }
+    },
+    {
+      "id": "display-p3-1-hsl",
+      "result": {
+        "status": "target-schema-incompatibility",
+        "message": "saturation is outside its accepted range",
+        "components": [
+          "356.517340107",
+          "152.345744039",
+          "43.3162194433"
+        ],
+        "inputUnchanged": true
+      }
+    },
+    {
+      "id": "display-p3-2-hsl",
+      "result": {
+        "status": "target-schema-incompatibility",
+        "message": "saturation is outside its accepted range",
+        "components": [
+          "127.88028828",
+          "301.951723303",
+          "25.3330337676"
+        ],
+        "inputUnchanged": true
+      }
+    },
+    {
+      "id": "display-p3-6-hsl",
+      "result": {
+        "status": "target-schema-incompatibility",
+        "message": "saturation is outside its accepted range",
+        "components": [
+          "212.152955363",
+          "149.616242294",
+          "45.759759971"
+        ],
+        "inputUnchanged": true
+      }
+    },
+    {
+      "id": "oklab-5-hsl",
+      "result": {
+        "status": "target-schema-incompatibility",
+        "message": "saturation is outside its accepted range",
+        "components": [
+          "123.857344859",
+          "673.715441696",
+          "7.0762746218"
+        ],
+        "inputUnchanged": true
+      }
+    },
+    {
+      "id": "oklch-5-hsl",
+      "result": {
+        "status": "target-schema-incompatibility",
+        "message": "saturation is outside its accepted range",
+        "components": [
+          "69.7583568357",
+          "635.896162118",
+          "6.10132044153"
+        ],
+        "inputUnchanged": true
+      }
+    }
+  ],
+  "stages": [
+    {
+      "input": "1e-100",
+      "linear": [
+        7.739938080495356e-102,
+        0,
+        0
+      ],
+      "xyz": [
+        3.191879251284515e-102,
+        1.645812738943578e-102,
+        1.4961933990396147e-103
+      ],
+      "oklab": [
+        1.2421516004458485e-34,
+        4.4479916308479516e-35,
+        2.489351373960025e-35
+      ]
+    },
+    {
+      "input": "1e6",
+      "linear": [
+        220899205674266.94,
+        0,
+        0
+      ],
+      "xyz": [
+        91096799985226.48,
+        46971787492382.41,
+        4270162499307.4863
+      ],
+      "oklab": [
+        37960.05437800097,
+        13593.027140912376,
+        7607.438052453206
+      ]
+    }
+  ],
+  "byteBudgets": [
+    {
+      "name": "4096-char-input",
+      "inputLength": 4096,
+      "status": "success",
+      "outputLength": 4116,
+      "nonzero": true
+    },
+    {
+      "name": "4097-char-input",
+      "inputLength": 4097,
+      "status": "calculation-limit"
+    },
+    {
+      "name": "4096-char-integer",
+      "inputLength": 4096,
+      "status": "success",
+      "outputLength": 4096,
+      "nonzero": true
+    }
+  ]
+}

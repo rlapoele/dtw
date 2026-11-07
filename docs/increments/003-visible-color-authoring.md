@@ -107,13 +107,19 @@ Canonical schema/manifest and versioning, durable adapters and asynchronous appl
 - Run `npm run typecheck`, `npm test`, `npm run build`, `npm run preview` for the real-browser production check, and `git diff --check` (AC-8). Scope delivery types/configuration and dependencies explicitly; document any needed browser-test command once agreed. Map developer and separate reviewer evidence to AC IDs in the eventual completion report.
 - No durable-recovery, full-PWA/install/offline, external interchange, concurrency or Electron evidence is claimed. In-memory browser success leaves the asynchronous delivery/storage risk open.
 
-## Proposed next technical preparation — not authorized or started
+## Numerical feasibility preparation
 
-**Recommendation — 7 November 2026:** perform a bounded numerical feasibility check before delivery integration. Evaluate the existing Color.js candidate with isolated reproducible calculations against the agreed numerical policy and independent reference fixtures. Start with exact byte arithmetic/ties-to-even formatting, neutral/tiny-nonzero preservation, boundary conversions, target-schema refusal and source/draft preservation on failure. Measure whether the proposed accuracy thresholds and preview-only allowance are supportable; do not treat the current prototype helper as an oracle.
+**Authorized bounded research — 7 November 2026; completed as a feasibility sample, not full numerical acceptance:** the user approved the proposed check and requested an evidence report, recommendation and gaps/decisions. Perform a bounded numerical feasibility check before delivery integration. Evaluate the existing Color.js candidate with isolated reproducible calculations against the agreed numerical policy and independent reference fixtures. Start with exact byte arithmetic/ties-to-even formatting, neutral/tiny-nonzero preservation, boundary conversions, target-schema refusal and source/draft preservation on failure. Measure whether the proposed accuracy thresholds and preview-only allowance are supportable; do not treat the current prototype helper as an oracle.
 
 Deliver one evidence report with candidate version/provenance, fixture inputs, independent expected values, measured results, limitations and a recommended candidate route or bounded alternative. Keep any scratch probes outside production and prototype source/dependencies. Stop when evidence supports the next validation phase or identifies a concrete incompatibility; return that evidence without weakening agreed rules. A representative feasibility pass does not close the full all-space/cross-runtime engineering gate or select a production dependency.
 
-This proposal authorizes no execution. Application/UI/domain implementation, production integration, dependency changes, persistence and broader color features remain excluded. Obtain authorization for this bounded preparation before running calculations or writing probes; application implementation requires separate explicit authorization.
+Authorization covers isolated scratch calculations/probes and the evidence report only. Application/UI/domain implementation, production integration, dependency changes, persistence and broader color features remain excluded. Production dependencies and prototype code stay unchanged; application implementation requires separate explicit authorization.
+
+## Numerical feasibility outcome — 7 November 2026
+
+The [evidence report](003-numerical-feasibility-report.md) and [independent research review](003-numerical-feasibility-review.md) identify the frozen scratch artifacts and checks. Nineteen exact arithmetic/formatting fixtures and 180 representative color cases cover all 25 space pairs; 174 candidates validate and six HSL targets correctly refuse. The default Color.js OKLCH path loses tiny nonzero chroma; an explicit raw polar route is promising on sampled accuracy and boundary residue. Endpoint checks do not enforce the agreed intermediate guards, and general cancellation/underflow coverage remains open. These samples do not select a dependency or close AC-3, preview/browser, application or full engineering gates.
+
+Recommendation: investigate observable stage guards and cancellation refusal in a separately bounded follow-up before library selection or delivery integration. If the candidate cannot expose/enforce those stages, compare a small explicit CSS-equation kernel and its maintenance cost; do not relax the agreed policy. Before reusing the scratch analyzer as a validation gate, require expected statuses, complete finite metrics and only justified powerless-hue substitution, as the independent review notes. That follow-up is proposed, not started. Application implementation and production dependency changes remain unauthorized; delivery remains Not started.
 
 ## Review baseline
 
@@ -252,3 +258,6 @@ Once the resulting contract/design is agreed and implementation authorized, impl
 - **Coordinator-owned follow-up:** update status and prototype handoff wording to record this review; after decisions, reconcile only affected architecture/color/open-question documents. Keep historical prototype notes identified as history. No owning-source changes outside this contract were made by the analyst.
 
 Suggested commit message: `docs: record increment 003 V4 analyst review`.
+
+
+7 November 2026 — The user subsequently authorized the bounded numerical feasibility check, requesting its evidence report, recommendation and gaps/decisions. Scratch research is authorized; application implementation and production dependency changes are expressly excluded. Delivery remains Not started.

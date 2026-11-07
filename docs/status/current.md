@@ -2,11 +2,13 @@
 
 > Last updated: 7 November 2026
 >
-> Phase: Increment 003 agreement approved; numerical feasibility preparation proposed, not authorized
+> Phase: Increment 003 bounded numerical feasibility complete; evidence and next investigation returned to user
 >
 > Implementation state: npm scaffold, host-independent domain core, in-memory application operations; no application web entry point. Increment 003 delivery remains Not started.
 
 ## Current focus
+
+The user authorized the bounded numerical feasibility check and requested an evidence report, recommendation and gaps/decisions. The investigation used isolated scratch probes and existing installed dependencies with independent reference fixtures; application/prototype source and production dependencies remain unchanged. The [evidence report](../increments/003-numerical-feasibility-report.md) and [independent review](../increments/003-numerical-feasibility-review.md) record reproduction, sampled results and limits. Default OKLCH conversion loses tiny chroma; a raw polar route is promising, with intermediate guard/cancellation enforcement still unresolved. No production dependency is selected.
 
 The user reviewed V6, authorized the separate [analyst review](../increments/003-v6-analyst-review.md), then adopted its recommended renderer stack and disclosure of the initial black literal before Create. The user requested reconciliation of the [Increment 003 agreement](../increments/003-visible-color-authoring.md) with V6 and presentation before any application implementation. The user subsequently approved the consolidated agreement and creation disclosure. Contract status is Agreed; delivery remains Not started. Application implementation is unauthorized.
 
@@ -30,6 +32,8 @@ Read AGENTS.md, this status, Git state and the owning Increment 003 contract, nu
 
 ## Recently completed
 
+- Completed the bounded numerical feasibility report with reproducible scratch artifacts and independent evidence review. Exact decimal samples and representative conversion/drift/boundary checks support a narrow raw polar route; default neutral suppression and missing all-stage guard enforcement prevent production selection. No policy or production dependency changed.
+
 - User approved the reconciled Increment 003 agreement and creation disclosure on 7 November 2026; the contract records the approved snapshot. A bounded numerical feasibility step is proposed, not executed.
 
 - Separate designer prepared V6 after user-approved focused F1–F7 improvements. [Scoped browser evidence](../../output/playwright/v6-review-2026-11-07/observations.md) records sampled desktop/mobile states, retained drafts, failed/successful Apply, modal focus/backdrops and surfaces. Isolated build/typecheck/eight helper tests were reported; these do not satisfy production numerical or accessibility gates.
@@ -39,13 +43,13 @@ Read AGENTS.md, this status, Git state and the owning Increment 003 contract, nu
 
 ## Next meaningful actions
 
-1. Present the [proposed numerical feasibility check](../increments/003-visible-color-authoring.md#proposed-next-technical-preparation-not-authorized-or-started) and obtain authorization before execution. Use isolated reproducible probes/independent fixtures to assess exact byte arithmetic, neutral/tiny-nonzero behavior, boundaries, target refusal and failure preservation. Return an evidence report and bounded recommendation; do not change production/prototype code/dependencies or weaken policy.
+1. Discuss the completed numerical evidence and recommended bounded follow-up: observable intermediate guard enforcement and cancellation refusal before selecting a calculation route. A small explicit CSS-equation kernel is an alternative if the candidate cannot expose/enforce stages. This follow-up is proposed, not started; no policy change is recommended and no application implementation is authorized.
 2. Keep technical evidence work explicit: compatible dependencies/build isolation, numerical kernel/reference fixtures and library suitability, real application readback/failure atomicity, IDs/alias chains/protected-color behavior, and full responsive/keyboard/zoom/error-announcement checks. This list is pending work, not authorization to start it.
 3. The agreement is approved. Only after explicit implementation authorization, hand the identified contract/design/supplement to a fresh developer, followed by independent review of a stable implementation snapshot. Humans stage/commit/push.
 
 ## Blockers and unresolved decisions
 
-The consolidated agreement and written creation disclosure are approved. Application implementation and execution of the proposed technical preparation remain unauthorized. Numerical accuracy, preview boundary allowance and candidate-library suitability are not established by prototype helpers. Exact delivery dependency versions/integration and real operation/accessibility evidence are unverified. The creation supplement is written, not rendered in V6. Durable storage, backup representation, interchange, offline/install and Electron integration remain separately scoped future work; Increment 003 is an intentionally incomplete session-only browser slice. See [open questions](../planning/open-questions.md) for remaining model/host choices.
+The consolidated agreement and written creation disclosure are approved. The authorized representative feasibility check is complete; its proposed follow-up has not started. Application implementation and production dependency changes remain unauthorized. Representative Node evidence supports further evaluation, but numerical accuracy across the service domain, preview boundary allowance and candidate-library suitability are not fully established. Intermediate guards, cancellation and cross-runtime/real preview evidence remain open. Exact delivery dependency versions/integration and real operation/accessibility evidence are unverified. The creation supplement is written, not rendered in V6. Durable storage, backup representation, interchange, offline/install and Electron integration remain separately scoped future work; Increment 003 is an intentionally incomplete session-only browser slice. See [open questions](../planning/open-questions.md) for remaining model/host choices.
 
 ## Verification expectations
 

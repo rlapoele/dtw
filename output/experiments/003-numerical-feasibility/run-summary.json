@@ -1,0 +1,268 @@
+{
+  "provenance": {
+    "node": "v24.14.1",
+    "v8": "13.6.233.17-node.44",
+    "platform": "darwin",
+    "arch": "arm64",
+    "candidate": "0.7.1",
+    "license": "MIT",
+    "lock": {
+      "version": "0.7.1",
+      "resolved": "https://registry.npmjs.org/colorjs.io/-/colorjs.io-0.7.1.tgz",
+      "integrity": "sha512-LY7OHnJZxHwT5UlzNa9bbhHHDbzB6yE5+3MIPwJEQKRvSCt/T4G7epsj+9j2BExUIIfXFIJGsIXUKdfrK9Q5tA==",
+      "license": "MIT",
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/color"
+      }
+    },
+    "runtimeDependencies": {},
+    "import": "prototypes/increment-003-v1/node_modules/colorjs.io/src/index.js"
+  },
+  "decimalPass": true,
+  "cases": 180,
+  "statusCounts": {
+    "success": 174,
+    "target-schema-incompatibility": 6
+  },
+  "tiny": {
+    "id": "srgb-8-oklch",
+    "space": "srgb",
+    "input": [
+      "0.000000000000001",
+      "0",
+      "0"
+    ],
+    "target": "oklch",
+    "expected": [
+      "0.000002676134498279159747731256039538855828642846149930105059333577742866587",
+      "0.000001098159548534974741959181067268663585141293298568827215251218530353152",
+      "29.233880279627893"
+    ],
+    "expectedSrgb": [
+      "0.0000000000000009999999999999993153067353130495936013344045902194080504470356336529053",
+      "0.0000000000000000000000000000003467510979418539235093426696060354096082517525978574863823128",
+      "-0.00000000000000000000000000000000159833904785735793133347386903151087318729064092629789204"
+    ],
+    "defaultRaw": [
+      0.0000026761344982791597,
+      0,
+      null
+    ],
+    "narrowRaw": [
+      0.0000026761344982791597,
+      0.000001098159548534976,
+      29.23388027962784
+    ],
+    "candidate": {
+      "status": "success",
+      "value": {
+        "kind": "literal",
+        "valueType": "color",
+        "colorSpace": "oklch",
+        "components": [
+          "0.00000267613449828",
+          "0.00000109815954853",
+          "29.2338802796"
+        ],
+        "alpha": "0.123456789123456789123456789"
+      },
+      "inputUnchanged": true
+    }
+  },
+  "cycles": [
+    {
+      "input": [
+        "0.2",
+        "0.4",
+        "0.6"
+      ],
+      "via": "display-p3",
+      "status": "success",
+      "completed": 100,
+      "final": [
+        "0.2",
+        "0.4",
+        "0.6"
+      ],
+      "maxAbsSrgbError": 0
+    },
+    {
+      "input": [
+        "0.2",
+        "0.4",
+        "0.6"
+      ],
+      "via": "hsl",
+      "status": "success",
+      "completed": 100,
+      "final": [
+        "0.2",
+        "0.4",
+        "0.6"
+      ],
+      "maxAbsSrgbError": 0
+    },
+    {
+      "input": [
+        "0.2",
+        "0.4",
+        "0.6"
+      ],
+      "via": "oklab",
+      "status": "success",
+      "completed": 100,
+      "final": [
+        "0.2",
+        "0.4",
+        "0.6"
+      ],
+      "maxAbsSrgbError": 0
+    },
+    {
+      "input": [
+        "0.2",
+        "0.4",
+        "0.6"
+      ],
+      "via": "oklch",
+      "status": "success",
+      "completed": 100,
+      "final": [
+        "0.199999999998",
+        "0.4",
+        "0.6"
+      ],
+      "maxAbsSrgbError": 2.0000112677109882e-12
+    },
+    {
+      "input": [
+        "1",
+        "0",
+        "0"
+      ],
+      "via": "display-p3",
+      "status": "success",
+      "completed": 100,
+      "final": [
+        "1",
+        "0.00000000000082463199897",
+        "-0.00000000000030548411023"
+      ],
+      "maxAbsSrgbError": 8.2463199897e-13
+    },
+    {
+      "input": [
+        "1",
+        "0",
+        "0"
+      ],
+      "via": "hsl",
+      "status": "success",
+      "completed": 100,
+      "final": [
+        "1",
+        "0",
+        "0"
+      ],
+      "maxAbsSrgbError": 0
+    },
+    {
+      "input": [
+        "1",
+        "0",
+        "0"
+      ],
+      "via": "oklab",
+      "status": "success",
+      "completed": 100,
+      "final": [
+        "0.999999999999",
+        "-0.000000000000675718300758",
+        "-0.00000000000817774015172"
+      ],
+      "maxAbsSrgbError": 8.17774015172e-12
+    },
+    {
+      "input": [
+        "1",
+        "0",
+        "0"
+      ],
+      "via": "oklch",
+      "status": "success",
+      "completed": 100,
+      "final": [
+        "0.999999999999",
+        "0.00000000000237626659235",
+        "0.00000000000327408142264"
+      ],
+      "maxAbsSrgbError": 3.27408142264e-12
+    },
+    {
+      "input": [
+        "0.5",
+        "0.5",
+        "0.5"
+      ],
+      "via": "display-p3",
+      "status": "success",
+      "completed": 100,
+      "final": [
+        "0.5",
+        "0.5",
+        "0.5"
+      ],
+      "maxAbsSrgbError": 0
+    },
+    {
+      "input": [
+        "0.5",
+        "0.5",
+        "0.5"
+      ],
+      "via": "hsl",
+      "status": "success",
+      "completed": 100,
+      "final": [
+        "0.5",
+        "0.5",
+        "0.5"
+      ],
+      "maxAbsSrgbError": 0
+    },
+    {
+      "input": [
+        "0.5",
+        "0.5",
+        "0.5"
+      ],
+      "via": "oklab",
+      "status": "success",
+      "completed": 100,
+      "final": [
+        "0.5",
+        "0.5",
+        "0.5"
+      ],
+      "maxAbsSrgbError": 0
+    },
+    {
+      "input": [
+        "0.5",
+        "0.5",
+        "0.5"
+      ],
+      "via": "oklch",
+      "status": "success",
+      "completed": 100,
+      "final": [
+        "0.5",
+        "0.5",
+        "0.5"
+      ],
+      "maxAbsSrgbError": 0
+    }
+  ],
+  "maxBoundaryOvershoot": 3.46947470752923e-14
+}
