@@ -1,14 +1,14 @@
 # Increment 003: Visible color authoring
 
-- Contract status: Draft
-- Review state: Reconciled for final user review
+- Contract status: Agreed
+- Review state: Updated contract, V6 design and written creation disclosure approved by the user — 7 November 2026
 - Delivery status: Not started
-- Agreement: D1–D3 agreed on 3 November 2026; the bounded numerical bundle amending D2 agreed on 5 November. On 7 November the user approved V6 for analyst review, then explicitly adopted the recommended production stack and the initial black literal disclosed before Create, and requested reconciliation with V6. This document now brings the reviewed interactions and written creation supplement together for final user review. Whole-contract/design agreement remains pending; application implementation is expressly unauthorized. Numerical/library gates remain open; Color.js is not selected.
+- Agreement: D1–D3 agreed on 3 November 2026; the bounded numerical bundle amending D2 agreed on 5 November. On 7 November the user approved V6 for analyst review, then explicitly adopted the recommended production stack and the initial black literal disclosed before Create, and requested reconciliation with V6. The user subsequently approved this updated agreement and creation disclosure. The approved text is the reconciliation committed as `14b2783a872accb4264965976d24c14a40406ddb`, including the identified V6 design and written creation supplement. Application implementation is expressly unauthorized. Numerical/library gates remain open; Color.js is not selected.
 - References: [vision](../project/vision.md), [initial project experience](../project/product-concept.md#initial-project-experience), [principles](../project/principles.md), [architecture](../project/architecture.md#initial-web-host-and-desktop-host), [visual direction](../project/visual-direction.md), [authored values](../design-tokens/conceptual-model.md#authored-values-and-assignments), [references](../design-tokens/conceptual-model.md#tokenreference), [color literals](../design-tokens/conceptual-model.md#color-literals), [interoperability](../design-tokens/interoperability.md), [taxonomy](../design-tokens/taxonomy.md), [glossary](../design-tokens/glossary.md), [open questions](../planning/open-questions.md#decision-priorities), completed [001](001-in-memory-authoring-workflow.md) and [002](002-color-value-revision.md), [agent workflow](../workflow/agent-roles.md).
 
 ## Outcome
 
-**Reconciliation — 7 November 2026:** this is the updated agreement text requested after the [V6 analyst review](003-v6-analyst-review.md), based on [V6](../../prototypes/increment-003-v1/DESIGN-V6.md) at `c5adac537f1cfdf962fec25e8ffe49f62df70403`. The production stack and disclosed black creation value are agreed subdecisions. View-only exploration, separate drafts, component sliders, responsive behavior and the wide collapsed-rail exception are reconciled below with the [numerical bundle](003-color-policy-proposal.md); its precision, limits and evidence gates are unchanged. The [written creation supplement](#written-design-supplement-initial-literal-before-create) is part of the proposed final design and is not a claim that the current prototype renders the disclosure. Final agreement on this identified contract, V6 and supplement remains pending. Delivery is Not started; do not begin application implementation.
+**Reconciliation — 7 November 2026:** this is the updated agreement text requested after the [V6 analyst review](003-v6-analyst-review.md), based on [V6](../../prototypes/increment-003-v1/DESIGN-V6.md) at `c5adac537f1cfdf962fec25e8ffe49f62df70403`. The production stack and disclosed black creation value are agreed subdecisions. View-only exploration, separate drafts, component sliders, responsive behavior and the wide collapsed-rail exception are reconciled below with the [numerical bundle](003-color-policy-proposal.md); its precision, limits and evidence gates are unchanged. The [written creation supplement](#written-design-supplement-initial-literal-before-create) is part of the agreed design and is not a claim that the current prototype renders the disclosure. The user approved this identified contract, V6 design and supplement on 7 November 2026. This does not authorize implementation or establish verification results. Delivery is Not started; do not begin application implementation.
 
 Let a design-system author create a project, organize a small color vocabulary, author a primitive and semantic alias, revise their values, and understand the resulting relationship through a desktop-oriented browser interface.
 
@@ -40,7 +40,7 @@ The proposed value is immediate interaction feedback: can an author distinguish 
 
 ## Acceptance criteria
 
-AC-1–AC-8 are the reconciled criteria for final user review, not completed acceptance. They incorporate the agreed numerical bundle, adopted stack and creation default, and the identified V6 interaction design. No wording authorizes implementation or claims numerical validation.
+AC-1–AC-8 are the agreed criteria, not completed acceptance. They incorporate the agreed numerical bundle, adopted stack and creation default, and the identified V6 interaction design. No wording authorizes implementation or claims numerical validation.
 
 - AC-1: From an empty browser page, an author creates a project, root and nested namespace groups, and a literal color token at the root or in a group; the project may remain empty. The host supplies opaque identities to application calls; names are preserved exactly, including empty project names. An `(unnamed project)` label is presentation only, never a replacement stored name. The disclosed initial literal is deliberately created before opening revision; failed creation retains inputs without a write. Group rename refreshes derived paths without changing identities or alias targets. Selection and target controls use stable IDs and visibly disambiguate duplicate/empty names and duplicate derived paths; structural validation is not labeled name uniqueness.
 - AC-2: The author creates a semantic-layer alias to an existing same-project color token, sees its authored target separately from its resolved color and ordered domain trace, revises the primitive and sees dependent inspection refresh to the new value. New manual creations explicitly receive `regeneration: "allowed"` under agreed D3. Retargeting and literal↔reference replacement require explicit submission; switching form mode or inspecting a token never overwrites its stored value or silently copies a resolved literal. Value revision preserves all other token data and regeneration policy, including a protected color test fixture, which remains manually editable with protection visibly retained. Existing descriptions, semantic roles and other metadata remain available read-only. Eligible targets include valid same-project color alias chains; no primitive-only or layer-direction restriction is introduced.
@@ -70,7 +70,7 @@ AC-1–AC-8 are the reconciled criteria for final user review, not completed acc
 
 ### Identified V6 design and draft-session behavior
 
-The design for final review is [V6](../../prototypes/increment-003-v1/DESIGN-V6.md) at the snapshot above, its preserved [V5](../../prototypes/increment-003-v1/DESIGN-V5.md), [V5.1](../../prototypes/increment-003-v1/DESIGN-V5-1.md) and [V5.2](../../prototypes/increment-003-v1/DESIGN-V5-2.md) interactions, and the written creation supplement below. Later V6 treatment governs where the historical guides differ. Their numerical helpers, string-group model, static identity examples, one-hop resolver and failure examples remain deliberate fixtures; real operations and policy govern implementation.
+The agreed design is [V6](../../prototypes/increment-003-v1/DESIGN-V6.md) at the snapshot above, its preserved [V5](../../prototypes/increment-003-v1/DESIGN-V5.md), [V5.1](../../prototypes/increment-003-v1/DESIGN-V5-1.md) and [V5.2](../../prototypes/increment-003-v1/DESIGN-V5-2.md) interactions, and the written creation supplement below. Later V6 treatment governs where the historical guides differ. Their numerical helpers, string-group model, static identity examples, one-hop resolver and failure examples remain deliberate fixtures; real operations and policy govern implementation.
 
 - One authoritative literal draft anchors every derived view. Passive multi-space trips restore exact source text; actual component edits promote the displayed representation and invalidate stale derived views/raw byte caches. Alpha-only edits preserve authored space. Incomplete text or failed representation calculation keeps current view, source and raw text correctable; it never submits an older candidate in their place. Entry-scale exploration preserves exact normalized values and valid raw byte text while browsing; a real edit in another space invalidates stale byte text.
 - Separate Literal/Reference drafts, raw text and scale survive mode switches/collapse. Cancel restores the applied baseline and discards both. Rejection retains both; successful Apply commits only the active form, clears the inactive form and resets the view to the submitted authored space. Inspecting an alias never copies a resolved literal. Departure confirmation covers edits in either form.
@@ -82,7 +82,7 @@ The design for final review is [V6](../../prototypes/increment-003-v1/DESIGN-V6.
 
 ### Written design supplement: initial literal before Create
 
-**Agreed default; proposed disclosure presentation for final user review — 7 November 2026.** Keep the compact Name / Group / optional Layer creation form. Before its Create button, show the initial color as text (optionally with an illustrative swatch), available in keyboard/screen-reader order:
+**Default and written disclosure presentation agreed — 7 November 2026.** Keep the compact Name / Group / optional Layer creation form. Before its Create button, show the initial color as text (optionally with an illustrative swatch), available in keyboard/screen-reader order:
 
 > **Initial value**
 >
@@ -92,7 +92,7 @@ The design for final review is [V6](../../prototypes/increment-003-v1/DESIGN-V6.
 
 Type remains explicitly Color. Create authors the disclosed literal through the real application operation using the entered exact name, placement and layer, then opens the editor. It does not create an incomplete token. Cancel writes nothing; failure retains all form inputs and reports the failing creation operation without a success claim. Project names, including empty text, are preserved exactly; display-only unnamed labels do not become stored defaults.
 
-This is a written design supplement, not an assertion that V6 currently displays this copy. Its placement/copy is presented with the updated agreement for final review; no prototype or application implementation is authorized by recording it. A change to value-entry-before-creation would be a different design, outside this reconciliation.
+This is a written design supplement, not an assertion that V6 currently displays this copy. The user approved its placement/copy with the updated agreement; no prototype or application implementation is authorized by recording it. A change to value-entry-before-creation would be a different design, outside this reconciliation.
 
 ### Deferred
 
@@ -106,6 +106,14 @@ Canonical schema/manifest and versioning, durable adapters and asynchronous appl
 - Manually verify keyboard flow, focus, labels/error announcements, non-color cues, desktop/tablet/mobile and short-height layouts, long values/diagnostics, actual 200% browser zoom and recorded assistive-technology/virtual-keyboard coverage; record browser/version, viewport and observations rather than claiming formal WCAG conformance (AC-7). Inspect against the accepted reference for visual direction, not pixel equality.
 - Run `npm run typecheck`, `npm test`, `npm run build`, `npm run preview` for the real-browser production check, and `git diff --check` (AC-8). Scope delivery types/configuration and dependencies explicitly; document any needed browser-test command once agreed. Map developer and separate reviewer evidence to AC IDs in the eventual completion report.
 - No durable-recovery, full-PWA/install/offline, external interchange, concurrency or Electron evidence is claimed. In-memory browser success leaves the asynchronous delivery/storage risk open.
+
+## Proposed next technical preparation — not authorized or started
+
+**Recommendation — 7 November 2026:** perform a bounded numerical feasibility check before delivery integration. Evaluate the existing Color.js candidate with isolated reproducible calculations against the agreed numerical policy and independent reference fixtures. Start with exact byte arithmetic/ties-to-even formatting, neutral/tiny-nonzero preservation, boundary conversions, target-schema refusal and source/draft preservation on failure. Measure whether the proposed accuracy thresholds and preview-only allowance are supportable; do not treat the current prototype helper as an oracle.
+
+Deliver one evidence report with candidate version/provenance, fixture inputs, independent expected values, measured results, limitations and a recommended candidate route or bounded alternative. Keep any scratch probes outside production and prototype source/dependencies. Stop when evidence supports the next validation phase or identifies a concrete incompatibility; return that evidence without weakening agreed rules. A representative feasibility pass does not close the full all-space/cross-runtime engineering gate or select a production dependency.
+
+This proposal authorizes no execution. Application/UI/domain implementation, production integration, dependency changes, persistence and broader color features remain excluded. Obtain authorization for this bounded preparation before running calculations or writing probes; application implementation requires separate explicit authorization.
 
 ## Review baseline
 
@@ -168,6 +176,9 @@ On 3 November 2026, the user requested an inset Heroicons dropdown arrow, a coll
 These requests authorize prototype iteration. The resulting responsive proposal must return to the user before any analyst/reviewer handoff; production acceptance criteria and application implementation remain pending.
 
 ## Agreed amendments
+
+7 November 2026 — The user explicitly approved the updated Increment 003 agreement and creation disclosure (reconciliation snapshot `14b2783a872accb4264965976d24c14a40406ddb`) and asked to record them as agreed and propose the next technical preparation step. Contract status is now Agreed; delivery remains Not started. The numerical feasibility check above is proposed only. No application implementation or technical preparation execution is authorized.
+
 
 7 November 2026 — After the V6 analyst report, the user said: “Yes, adopt the recommended stack and disclose the initial black value before Create. Reconcile the Increment 003 contract with V6 and show me the updated agreement. Don't start application implementation yet.” The production renderer direction and disclosed initial opaque-black value are adopted. The analyst reconciled the contract/policy with V6 and added the written creation supplement for final user review. The whole revised agreement remains a reconciled draft; implementation is expressly unauthorized.
 

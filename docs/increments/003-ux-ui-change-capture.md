@@ -1,9 +1,9 @@
 # Increment 003: UX/UI change capture
 
 - Captured: **5 November 2026**, from the user's V4 feedback, by a separate designer.
-- Status: **V6 reviewed; 7 November reconciliation requested with the renderer stack and disclosed black creation value selected. Consolidated agreement returns for final user review; implementation is unauthorized**.
+- Status: **V6 reviewed; 7 November reconciliation requested with the renderer stack and disclosed black creation value selected. Consolidated agreement and creation disclosure approved on 7 November 2026; implementation is unauthorized**.
 - Parent: [Increment 003](003-visible-color-authoring.md). Numerical baseline: [agreed color-policy bundle](003-color-policy-proposal.md).
-- Authorization: the original capture was documentation-only. Subsequent dated entries record isolated prototype approvals and the user’s V6 analyst-review authorization. No application implementation is authorized; this capture is not final design/contract agreement.
+- Authorization: the original capture was documentation-only. Subsequent dated entries record isolated prototype approvals and the user’s V6 analyst-review authorization. No application implementation is authorized; the owning contract records the subsequent final agreement.
 
 ## UX-1 — Preserve the draft color across space exploration
 
@@ -133,3 +133,8 @@ The separate analyst completed the [V6 review](003-v6-analyst-review.md) against
 After the V6 analyst report, the user adopted the recommended production stack and disclosure of the initial opaque black literal before Create, then requested reconciliation of Increment 003 with V6 and presentation of the updated agreement. The [contract](003-visible-color-authoring.md) and [numerical policy](003-color-policy-proposal.md) own the reconciled wording. This includes view-only exploration, explicit promotion on component edits, alpha-only source retention, independent drafts, bounded sliders, responsive behavior and the disclosed icon-only collapsed wide rail. Exact empty names remain preserved.
 
 The added creation disclosure is a written design supplement for review, not a claim that committed V6 already displays it. No prototype code or application implementation is authorized by this documentation request. Final user review of the consolidated agreement remains pending.
+
+
+## Updated agreement approved — 7 November 2026
+
+The user approved the reconciled Increment 003 agreement and creation disclosure at reconciliation snapshot `14b2783a872accb4264965976d24c14a40406ddb`. The owning contract is Agreed, delivery Not started. The user requested only a proposal for the next technical preparation step: the numerical feasibility check is recommended but not authorized or executed. No application implementation or prototype code change is authorized.

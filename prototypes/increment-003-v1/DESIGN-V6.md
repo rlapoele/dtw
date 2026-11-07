@@ -1,8 +1,8 @@
 # Increment 003 — Designer proposal V6
 
-**7 November 2026 · Focused F1–F7 bundle and option A approved for isolated prototyping; user approved the actual artifact for analyst review on 7 November 2026.**
+**7 November 2026 · Focused F1–F7 bundle and option A approved for isolated prototyping; user approved the actual artifact for analyst review, then approved V6 with the reconciled contract and written creation disclosure on 7 November 2026.**
 
-This revision follows the [approved focused improvement proposal](../../docs/increments/003-design-improvement-proposal.md) and [V5.2.4 design review](../../docs/increments/003-prototype-design-review.md). It preserves the accepted visual direction and earlier interactions. The user subsequently said V6 looks good and authorized analyst review against Increment 003. The subsequent stack/default decisions are recorded in the contract reconciliation below; they do not authorize application implementation, final contract/design agreement or adoption of the prototype’s exact dependency pins.
+This revision follows the [approved focused improvement proposal](../../docs/increments/003-design-improvement-proposal.md) and [V5.2.4 design review](../../docs/increments/003-prototype-design-review.md). It preserves the accepted visual direction and earlier interactions. The user subsequently said V6 looks good and authorized analyst review against Increment 003. The subsequent stack/default decisions are recorded in the contract reconciliation below; the user subsequently approved the consolidated contract/design and creation disclosure. Application implementation and adoption of the prototype’s exact dependency pins remain unauthorized.
 
 ## Review V6
 
@@ -51,7 +51,7 @@ Designer checks: isolated `npm run typecheck`, `npm run build` and all **8 exist
 
 The coordinator performs live browser checks and records actual outcomes/screenshots separately. Verify ordinary/unavailable/reference/applied-only header states, read-failure affordances, real modal backdrops and focus, meaningful-value contrast, right/bottom panel surfaces, narrow header fit, selected context and previous draft/scroll semantics. Actual zoom, screen readers and real virtual keyboards remain distinct checks.
 
-The user approved this artifact for analyst review on 7 November 2026. The separate [V6 analyst report](../../docs/increments/003-v6-analyst-review.md) records remaining contract/decision work; it does not authorize a prototype revision or application implementation. Material changes return through the designer/user sequence. Final contract/design agreement and explicit application implementation authorization remain pending.
+The user approved this artifact for analyst review on 7 November 2026. The separate [V6 analyst report](../../docs/increments/003-v6-analyst-review.md) records remaining contract/decision work; it does not authorize a prototype revision or application implementation. Material changes return through the designer/user sequence. The user subsequently approved the updated contract/design and written creation disclosure on 7 November 2026; explicit application implementation authorization remains pending.
 
 Suggested commit: `design: address focused workbench review findings in v6`.
 
@@ -68,3 +68,8 @@ The frozen V6 build was checked at desktop, tablet and narrow mobile sizes, incl
 ## Contract reconciliation and creation disclosure — 7 November 2026
 
 The user subsequently selected the recommended application renderer stack and disclosure of the initial black literal before Create, and requested the [updated Increment 003 agreement](../../docs/increments/003-visible-color-authoring.md). That contract owns the written creation supplement and reconciled interaction/acceptance criteria. Committed V6 remains the reviewed artifact; its create dialog does not yet contain the new disclosure. No prototype code was changed for this reconciliation. Final consolidated-agreement review and application implementation authorization remain separate.
+
+
+## Final agreement recorded — 7 November 2026
+
+The user approved the updated Increment 003 agreement and written creation disclosure, identifying V6 plus that supplement as the agreed design. The contract records the approved reconciliation snapshot. Application delivery remains Not started, and the current prototype still lacks the new written disclosure. No prototype edits were authorized or made by recording approval. The proposed numerical feasibility preparation has not been authorized or executed.
