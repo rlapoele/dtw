@@ -1,0 +1,23 @@
+### Result
+[{"prefix":"paired-baseline","x":0,"width":320,"height":900,"transform":"matrix(1, 0, 0, 1, 0, 0)","starting":false},{"prefix":"final","x":0,"width":320,"height":900,"transform":"matrix(1, 0, 0, 1, 0, 0)","starting":false}]
+### Ran Playwright code
+```js
+await (async page => {
+ const states=[];
+ for(const [url,prefix] of [['http://127.0.0.1:5184','paired-baseline'],['http://127.0.0.1:5173','final']]) {
+  await page.setViewportSize({width:768,height:900});await page.goto(url);
+  await page.getByRole('button',{name:'Create project',exact:true}).click();
+  await page.getByRole('button',{name:'Open project navigation'}).click();
+  await page.getByRole('dialog',{name:'Project navigation'}).waitFor();
+  await page.waitForFunction(()=>{const e=document.querySelector('.navigation-drawer');return e&&e.getBoundingClientRect().left>=-0.1&&!e.hasAttribute('data-starting-style')});
+  const state=await page.locator('.navigation-drawer').evaluate(e=>({x:e.getBoundingClientRect().x,width:e.getBoundingClientRect().width,height:e.getBoundingClientRect().height,transform:getComputedStyle(e).transform,starting:e.hasAttribute('data-starting-style')}));states.push({prefix,...state});
+  await page.screenshot({path:`output/playwright/increment-004-refactor/${prefix}-drawer.png`});
+  await page.screenshot({path:`output/playwright/increment-004-refactor/${prefix}-drawer-open.png`});
+  await page.keyboard.press('Escape');
+  await page.waitForFunction(()=>document.activeElement?.getAttribute('aria-label')==='Open project navigation');
+ }
+ return states;
+})(page);
+```
+### Events
+- New console entries: .playwright-cli/console-2026-11-08T18-19-07-995Z.log#L5-L6

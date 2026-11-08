@@ -1,0 +1,9 @@
+### Result
+{
+  "calls": 0,
+  "classes": "dialog-popup fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-background border border-border p-7 overflow-auto "
+}
+### Ran Playwright code
+```js
+await page.evaluate('() => (({calls:window.callbackCalls,classes:document.querySelector("[role=dialog]").className}))');
+```

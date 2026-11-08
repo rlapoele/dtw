@@ -17,7 +17,7 @@ The scaffold was verified using Node.js `24.14.1` and npm `11.17.0`, satisfying 
 - `src/domain/` contains host-independent domain entities, value objects, and validation.
 - `src/application/` coordinates authoring through an explicit project storage port.
 - `src/adapters/` contains the in-memory project storage adapter.
-- `src/presentation/` contains the React renderer, disposable specimens and independent presentation drafts.
+- `src/presentation/` contains the React renderer, disposable specimens and independent presentation drafts. App coordinates operations, drafts and departure protection; `ProjectNavigation`, `TokenList` and `CreationDialog` own screen rendering. Small owned controls under `components/` compose Tailwind utilities over Base UI or native HTML. `styles.css` centralizes the semantic palette and preserves scoped dense typography, panel geometry and native preview/range exceptions. Native text fields retain exact raw strings; selects and ranges remain native.
 - `test/domain/`, `test/application/`, `test/adapters/` and `test/presentation/` contain tests named `*.test.ts`.
 
 Project module imports use `@domain/…`, `@application/…`, `@adapters/…` and `@presentation/…`; test fixtures use `@tests/…`. TypeScript maps these in `tsconfig.json`; Vite and Vitest share the runtime mappings exported by `vite.config.ts`. The test config's relative import of that Vite configuration is a bootstrap dependency, not an application-module import. Aliases do not change the architectural dependency rules.
@@ -26,14 +26,14 @@ Project module imports use `@domain/…`, `@application/…`, `@adapters/…` an
 
 Historical review/research manifests retain the paths and import text of their identified snapshots. After the presentation rename and alias refactor, verify those manifests against their original commits rather than rewriting historical evidence to match the current tree.
 
-| Command | Purpose |
-|---|---|
-| `npm run typecheck` | Check host-independent source/tests, browser/TSX and build-tool types separately |
-| `npm test` | Run Vitest once |
-| `npm run test:watch` | Run Vitest in watch mode |
-| `npm run dev -- --host 127.0.0.1` | Open the session-only browser authoring app |
-| `npm run build` | Check both type scopes, then build the browser app |
-| `npm run preview` | Preview an existing Vite production build |
+| Command                           | Purpose                                                                          |
+| --------------------------------- | -------------------------------------------------------------------------------- |
+| `npm run typecheck`               | Check host-independent source/tests, browser/TSX and build-tool types separately |
+| `npm test`                        | Run Vitest once                                                                  |
+| `npm run test:watch`              | Run Vitest in watch mode                                                         |
+| `npm run dev -- --host 127.0.0.1` | Open the session-only browser authoring app                                      |
+| `npm run build`                   | Check both type scopes, then build the browser app                               |
+| `npm run preview`                 | Preview an existing Vite production build                                        |
 
 All TypeScript configurations enable strict checking. The base configuration includes domain/application/adapters and pure tests, excluding the UI; `tsconfig.presentation.json` adds browser libraries and JSX for presentation and the isolated browser fixture. `tsconfig.tools.json` checks Vite/Vitest configuration with Node types; `@types/node` is a development dependency only. The base configuration excludes browser and Node global types, and the browser configuration does not include Node globals. Dependency declaration checking is skipped because the Vite and Vitest declarations reference host event types that are intentionally absent; project source and tests remain strictly checked. Vitest uses its default Node test environment and explicitly includes `test/**/*.test.ts`; historical isolated prototype tests keep their own package and runner.
 

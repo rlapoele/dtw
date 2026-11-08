@@ -1,8 +1,8 @@
 # Increment 004: Presentation refactor
 
-- Contract status: Draft
-- Delivery status: Not started
-- Agreement: assessment and planning requested on 8 November 2026; this contract is not yet agreed and implementation is not authorized.
+- Contract status: Agreed
+- Delivery status: Completed
+- Agreement: the user reviewed, committed and pushed this plan, then explicitly authorized all included tasks in order on 8 November 2026. Implementation is authorized within this contract; staging/commits/pushes remain human-controlled.
 - References: [architecture](../project/architecture.md), [visual direction](../project/visual-direction.md), [Increment 003 contract and completion](003-visible-color-authoring.md), [numerical policy](003-color-policy-proposal.md), [V6 design](../../prototypes/increment-003-v1/DESIGN-V6.md), [implementation review](003-implementation-review.md), [browser evidence](../../output/playwright/increment-003-implementation/observations.md), [agent workflow](../workflow/agent-roles.md).
 
 ## Outcome
@@ -35,7 +35,7 @@ Excluded: domain/application/storage behavior changes; numerical-policy or sessi
 - Established: retain the accepted React/strict TypeScript/Vite, Tailwind v4, locally owned Base UI components and Heroicons stack, existing aliases, application boundaries and session-only limits. Métiers360's utility-based owned Button variants/sizes, Input, NativeSelect, Badge and minimal themed CSS are an organizational reference; their palette, dimensions and application semantics are not a DTW design contract.
 - Proposed: implement class composition with the smallest readable local helper/maps necessary for actual components. Do not add a variant library, class-merging dependency or component kit by default. If a dependency becomes necessary, explain its concrete benefit, alternatives, compatibility/license and cost, and obtain scoped authorization before installation.
 - Proposed CSS exceptions: retain focused native range track/thumb pseudo-elements, illustrative/checkerboard gradients and dynamic authored-preview styles; explicit responsive/panel geometry may remain in named CSS rules/custom properties when standard utilities cannot preserve it. Each exception needs an owner, reason and parity check. These exceptions do not permit arbitrary component styling to migrate wholesale into CSS variables.
-- Resolve before implementation: user agreement to this contract and explicit implementation authorization. The baseline inventory must distinguish currently rendered behavior from historical intentions; discrepancies that imply a material visual/interaction change return to the user. No unresolved product or numerical policy is delegated to implementation convenience.
+- Authorization recorded: user agreement and explicit implementation authorization received on 8 November 2026. The baseline inventory must distinguish currently rendered behavior from historical intentions; discrepancies that imply a material visual/interaction change return to the user. No unresolved product or numerical policy is delegated to implementation convenience.
 - Deferred: new product/design direction and the existing [open questions](../planning/open-questions.md), including durable retention and backup/restore.
 
 ## Ordered implementation plan
@@ -66,18 +66,52 @@ Run `npm run typecheck`, `npm test`, `npm run build` and `git diff --check` for 
 ## Design proposals and review
 
 - Applicability: no new design direction or prototype is proposed. The completed V6-based application plus its creation disclosure is the fidelity target; current runtime baseline resolves implementation details, not new product semantics.
-- Proposal: this preservation strategy and the T1 value/exception inventory; no implementation artifact exists yet.
-- User review: contract review pending. Approval of the assessment/planning request does not authorize implementation.
+- Proposal: the agreed preservation strategy and the T1 value/exception inventory; implementation evidence is recorded as work progresses.
+- User review: the user reviewed, committed and pushed the plan and authorized its implementation on 8 November 2026.
 - Analyst review: this initial draft maps the four findings to AC-1–AC-4 and preservation obligations to AC-5–AC-7. No new design artifact has been approved or reviewed.
 - Material revisions: any meaningful geometry, color, interaction or accessibility change requires a designer proposal surfaced to the user before analyst review and renewed final agreement for the affected scope.
-- Final design agreement: pending agreement to preserve the identified baseline. A separate designer fidelity check of implementation supplements independent review; it does not replace it.
+- Final design agreement: preserving the identified baseline was agreed with implementation authorization on 8 November 2026. A separate designer fidelity check of implementation supplements independent review; it does not replace it.
 
 ## Review baseline
 
 Planning inspection on 8 November 2026: HEAD `73dbe48cc1a616b39172b387267c93687f23e047`; working tree clean before this new draft. The coordinator updates the status handoff separately; verify Git directly before delivery.
 
-Before implementation, record the actual base commit and all pre-existing changes. Before independent review, pause edits and identify the reviewed commit or exact uncommitted diff plus included new files. Supply fresh-context developer/reviewer briefs with this contract, agreed baseline/design references and authoritative documents; do not seed the reviewer's initial brief with developer conclusions.
+Implementation base: `8ab986f` (committed plan); working tree clean before authorization/status recording. Before implementation, recheck the actual base commit and all pre-existing changes. Before independent review, pause edits and identify the reviewed commit or exact uncommitted diff plus included new files. Supply fresh-context developer/reviewer briefs with this contract, agreed baseline/design references and authoritative documents; do not seed the reviewer's initial brief with developer conclusions.
 
 ## Agreed amendments
 
-None. This document is a planning draft; no completion report or acceptance evidence is claimed.
+8 November 2026 — The user approved the reviewed plan and authorized all included tasks in order. The preservation criteria and scope are unchanged. No completion or acceptance evidence is claimed by this authorization.
+
+
+## Completion report
+
+**Completed — 8 November 2026.** All six planned tasks were delivered under the agreed scope. The current authoring workflow and accepted visual direction are preserved within the recorded browser/review coverage. Changes remain for human Git review, staging and commit.
+
+### Result and evidence
+
+| Criterion | Delivered result and evidence |
+| --- | --- |
+| AC-1 | Replaced chronological prototype overrides with utilities at actual component owners and consolidated residual CSS. Stylesheet reduced from 1,981 to 483 formatted lines; no arbitrary line-count target determined acceptance. Removed confirmed dead rules, unreachable sizing exclusions, orphan selector and `!important` workarounds. See the [final CSS disposition inventory](../../output/playwright/increment-004-refactor/final-evidence.md#final-css-disposition-and-ownership). |
+| AC-2 | Button owns typed variants/sizes, including structural roles, and preserves Base UI callback/string classes, props/ref/render, disabled and keyboard behavior. Existing production control dimensions were retained. Rendered API checks exercise the actual boundaries. |
+| AC-3 | Owned Input, Field, Badge, DialogContent, inspection tabs and Swatch complement native Select and Button. ProjectNavigation, TokenList and CreationDialog own rendering; App retains shared state, application operations, departure protection and focus coordination. Required dialog callback-composition finding R1 was corrected and independently rechecked. |
+| AC-4 | Ordinary presentation uses standard numeric Tailwind utilities and centralized semantic palette roles. Named responsive thresholds preserve the existing transitions. Narrow inherited typography, precise panel geometry and native/pseudo-element effects remain documented exceptions; incidental 3/5px corners use stock 4px rounding with designer acceptance. No dependency or custom measurement-token catalogue was added. |
+| AC-5 | No changes to domain/application/adapters, session, readback, preview or exact-range calculation code. Existing 894 tests remain intact. Real-browser checks cover raw/exact/incomplete/none values, passive views, independent drafts, aliases, stable identity, failure retention and dirty departure. |
+| AC-6 | Settled paired baseline/current comparisons cover 13 viewport sizes, responsive thresholds and short height; independent reviewer repeated the comparison. Authoring, focus, hidden controls, selection reveal and scrolling checks passed. Actual browser Page zoom 200% measured 720×450 CSS pixels/DPR2 from fixed 1440×900/DPR1. Separate designer comparisons and live 320px checks found no material regression. Baseline 22px navigation glyph was restored inside the unchanged 44px trigger. |
+| AC-7 | Developer checks and fresh-context independent review completed against identified snapshots; R1 resolved and targeted rechecks passed. [Implementation review](004-implementation-review.md) and [design fidelity review](004-design-fidelity-review.md) record independent scope, evidence and limits. No required findings remain. |
+
+The [authoritative evidence index](../../output/playwright/increment-004-refactor/final-evidence.md) distinguishes final captures, original baseline, interim attempts and R1 correction evidence. The initial [25-file manifest](../../output/playwright/increment-004-refactor/review-snapshot.sha256) is preserved as historical review identity; the [R1 manifest](../../output/playwright/increment-004-refactor/review-snapshot-r1.sha256) identifies the final reviewed source/test/README/architecture. Coordinator completion/status and reviewer reports are outside those source manifests.
+
+### Checks and review dispositions
+
+- Final developer run: `npm test` **894 tests / 32 files**; strict typechecks, production build and `git diff --check` pass. Production JS **400.78 kB** and CSS **32.69 kB**; these are measurements, not budgets.
+- Independent initial review reran tests/typechecks/build, settled baseline comparisons, Button API and authoring/failure/focus/identity/scroll checks. R1 reproduced that DialogContent accepted but discarded callback classes. A new rendered regression failed before the fix and passed afterward; the reviewer independently confirmed popup state, owned/caller/string classes, undefined handling, props/ref/render and focus return on the final snapshot.
+- Optional orphan selector removed. Designer's optional navigation-icon fidelity difference was restored and rechecked. No material design revision or policy change was required.
+- Main coordinator verified final snapshot hashes, protected-path/dependency nonmutation, scoped diff whitespace and local documentation links. README and architecture describe the delivered component/styling ownership.
+
+### Limits and handoff
+
+This is preservation evidence for sampled states, not exhaustive pixel equality, formal WCAG certification or universal browser/color-management correctness. Screen-reader, physical mobile/keyboard, virtual-keyboard and Firefox/WebKit runtime sessions were not performed. The independent reviewer inspected actual zoom evidence but did not repeat the browser-setting operation; the designer's interrupted additional live checks remain disclosed in its report. Earlier complete browser evidence and unaffected checks are attributed rather than claimed as repeated after the narrow R1 patch.
+
+Session-only storage, numerical policy and known Culori tiny-red HSL refusal remain unchanged. No production dependencies, frozen prototypes/research, previous-increment evidence or vendored references changed. No staging, commits, pushes, deployment or publication were performed.
+
+Next action: human review/stage/commit of the completed refactor. Suggested commit: `refactor: compose presentation controls with Tailwind utilities`. Future retention/backup work remains separately scoped.

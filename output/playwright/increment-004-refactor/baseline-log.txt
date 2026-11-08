@@ -1,0 +1,15 @@
+### Ran Playwright code
+```js
+await (async (page) => {
+ const dir='output/playwright/increment-004-refactor';
+ await page.setViewportSize({width:1440,height:900});
+ await page.screenshot({path:dir+'/baseline-start.png'});
+ await page.getByRole('button',{name:'Create project',exact:true}).click();
+ await page.getByRole('button',{name:'New token',exact:true}).first().click();
+ await page.getByLabel('Name',{exact:true}).fill('primary');
+ await page.getByRole('button',{name:'Create',exact:true}).click();
+ const styles=await page.locator('button,input,select').evaluateAll(els=>els.map(e=>{const s=getComputedStyle(e);return {text:e.textContent,classes:e.className,type:e.getAttribute('type'),height:s.height,width:s.width,padding:s.padding,font:s.font,border:s.border,radius:s.borderRadius,background:s.backgroundColor,color:s.color}}));
+ console.log(JSON.stringify(styles));
+ for(const [w,h] of [[1440,900],[1500,900],[1499,900],[1120,900],[1119,900],[768,900],[767,900],[320,740],[1440,480]]){await page.setViewportSize({width:w,height:h});await page.screenshot({path:dir+`/baseline-${w}-${h}.png`});}
+})(page);
+```

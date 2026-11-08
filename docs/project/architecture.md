@@ -82,6 +82,8 @@ Use a pragmatic ports-and-adapters, or hexagonal, architecture. The aim is repla
 
 **Source naming — 8 November 2026:** `src/presentation/` contains the React UI, styles, editor drafts and disposable browser previews; `src/application/` contains host-independent use-case coordination. The user approved renaming the former `delivery` folder to `presentation` for clarity, with the same dependency boundaries. Matching tests and UI type configuration use `test/presentation/` and `tsconfig.presentation.json`. The broader term “delivery surface” below also covers possible non-UI entry points such as CLI or MCP; those need not live under `presentation`. Source/test imports use `@domain`, `@application`, `@adapters`, `@presentation` and `@tests` mappings; these improve path clarity without permitting new dependencies between layers. TypeScript paths and shared Vite/Vitest aliases resolve the same folders. Build configuration is checked separately in `tsconfig.tools.json` with development-only Node types; domain/application checks and browser code retain their own host scopes.
 
+**Presentation ownership — Increment 004, 8 November 2026:** App retains application-operation coordination, draft/departure state, readback and focus policy. ProjectNavigation, TokenList and CreationDialog render their existing responsibilities; reusable controls, dialog shells, tabs and swatches are locally owned under `src/presentation/components/`. Ordinary presentation uses Tailwind utilities and semantic palette roles. The stylesheet owns only the retained dense typography foundation, explicit responsive panel/precision geometry, modal/drawer effects, native slider pseudo-elements and illustrative checkerboards. These presentation components do not parse authored strings or reimplement token semantics.
+
 ```text
 Delivery surfaces
     PWA · Electron renderer · CLI · MCP · automation
@@ -228,13 +230,13 @@ Dangerous general capabilities such as `readAnyPath` or `executeArbitraryCommand
 
 Surfaces are thin adapters over the same application operations:
 
-| Surface | Translation responsibility |
-|---|---|
-| Electron | Preload/API calls and desktop events over IPC |
-| PWA | In-browser calls plus browser storage, file-selection, offline, and installation adapters |
-| CLI | Arguments, standard input/output, and exit codes |
-| MCP | Tool schemas, calls, and structured tool results |
-| Tests | Direct calls with fixtures and in-memory adapters |
+| Surface  | Translation responsibility                                                                |
+| -------- | ----------------------------------------------------------------------------------------- |
+| Electron | Preload/API calls and desktop events over IPC                                             |
+| PWA      | In-browser calls plus browser storage, file-selection, offline, and installation adapters |
+| CLI      | Arguments, standard input/output, and exit codes                                          |
+| MCP      | Tool schemas, calls, and structured tool results                                          |
+| Tests    | Direct calls with fixtures and in-memory adapters                                         |
 
 No surface should reimplement token semantics. A pure portion of the engine may run directly in a browser or Web Worker. Workflows requiring unrestricted local files, watchers, Git, or subprocesses need an appropriate host adapter or service.
 

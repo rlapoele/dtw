@@ -1,0 +1,2 @@
+### Error
+Error: DialogContent callback or owned classes lost

@@ -1,3 +1,9 @@
+import { CreationDialog } from "@presentation/CreationDialog";
+import { TokenList } from "@presentation/TokenList";
+import { ProjectNavigation } from "@presentation/ProjectNavigation";
+import { DialogContent } from "@presentation/components/dialog-content";
+import { Field } from "@presentation/components/field";
+import { Input } from "@presentation/components/input";
 import {
   useCallback,
   useEffect,
@@ -11,23 +17,18 @@ import {
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  FolderIcon,
   InformationCircleIcon,
   PlusIcon,
   Square3Stack3DIcon,
-  Squares2X2Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { createAuthoringOperations } from "@application/authoring";
-import type {
-  ProjectReadback,
-  TokenInspection,
-} from "@application/authoring";
+import type { ProjectReadback, TokenInspection } from "@application/authoring";
 import type { ProjectStorage } from "@application/project-storage";
 import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
 import { Button } from "@presentation/components/button";
-import { Select } from "@presentation/Select";
-import { Editor, Swatch } from "@presentation/Editor";
+import { Editor } from "@presentation/Editor";
+import { Swatch } from "@presentation/components/swatch";
 import type { Feedback } from "@presentation/Editor";
 import { failureText, pathLabel, resolvedColor } from "@presentation/readback";
 import { colorPreview } from "@presentation/preview";
@@ -239,103 +240,62 @@ export function App({
     requestAnimationFrame(() => panelRef.current?.focus());
   }
   const navigation = (
-    <>
-      <div className="sidebar-project">
-        <span className="project-icon" aria-hidden="true">
-          T
-        </span>
-        <div>
-          <strong>{project?.project.name || "(unnamed project)"}</strong>
-          <span>Color foundations</span>
-        </div>
-      </div>
-      <div className="nav-label">Library</div>
-      <Button
-        variant="ghost"
-        className={`nav-item ${group === "all" ? "active" : ""}`}
-        aria-current={group === "all" ? "true" : undefined}
-        onClick={() => {
-          setGroup("all");
-          setNavigationOpen(false);
-        }}
-      >
-        <Squares2X2Icon className="icon" />
-        All tokens<span className="count">{project?.tokens.length ?? 0}</span>
-      </Button>
-      <div className="group-tree">
-        {project?.groups.map((g) => (
-          <Button
-            key={g.authored.id}
-            variant="ghost"
-            className={`nav-item group-item ${group === g.authored.id ? "active" : ""}`}
-            aria-current={group === g.authored.id ? "true" : undefined}
-            onClick={() => {
-              setGroup(g.authored.id);
-              setNavigationOpen(false);
-            }}
-          >
-            <FolderIcon className="icon" />
-            <span className="group-label">
-              {pathLabel(g.path)}
-              <small className="mono">{g.authored.id}</small>
-            </span>
-          </Button>
-        ))}
-      </div>
-      <Button
-        className="nav-item add-group"
-        variant="ghost"
-        disabled={!!readFailure}
-        onClick={() => {
-          setNavigationOpen(false);
-          open("group");
-        }}
-      >
-        <PlusIcon className="icon" />
-        New group
-      </Button>
-      <div className="sidebar-bottom">
-        <span className="eyebrow">Project</span>
-        <p>
-          One vocabulary.
-          <br />
-          Clear relationships.
-        </p>
-        <span className="helper">{project?.groups.length ?? 0} groups</span>
-      </div>
-    </>
+    <ProjectNavigation
+      drawer={compact}
+      project={project}
+      group={group}
+      unavailable={!!readFailure}
+      onSelect={(id) => {
+        setGroup(id);
+        setNavigationOpen(false);
+      }}
+      onCreateGroup={() => {
+        setNavigationOpen(false);
+        open("group");
+      }}
+    />
   );
   const header = (
-    <header className="topbar">
+    <header
+      className={`topbar small:h-13 short:h-11 shrink-0 border-b border-border h-16 flex items-center ${projectId && compact ? "pl-2 pr-6 gap-2 density:pr-4" : "px-6 gap-5 density:px-4 density:gap-3"}`}
+    >
       {projectId && compact && (
         <Button
           variant="ghost"
           aria-label="Open project navigation"
+          size="icon"
           className="navigation-trigger"
           onClick={() => setNavigationOpen(true)}
         >
-          <Bars3Icon className="icon" />
+          <Bars3Icon className="icon block w-5.5 h-5.5 shrink-0" />
         </Button>
       )}
-      <div className="brand">
-        <Square3Stack3DIcon className="icon" />
-        <strong>Token Workbench</strong>
+      <div className="brand flex items-center gap-2.5">
+        <Square3Stack3DIcon className="icon block w-4 h-4 shrink-0" />
+        <strong className="density:text-xs/normal">Token Workbench</strong>
       </div>
-      <span className="project-title">
+      <span className="project-title small:hidden min-w-0 wrap-anywhere text-muted-foreground">
         {projectId && (project?.project.name || "(unnamed project)")}
       </span>
-      <span className="session-label">Session only</span>
+      <span className="session-label text-caption border border-border px-2.25 py-0.75 rounded ml-auto font-semibold bg-muted">
+        Session only
+      </span>
     </header>
   );
   if (!projectId)
     return (
-      <div className="app-shell">
+      <div className="app-shell flex h-dvh min-h-0 flex-col overflow-clip bg-background">
         {header}
-        <main className="project-start">
-          <span className="eyebrow">A project is your starting point</span>
-          <h1>Create a color vocabulary</h1>
-          <p>Organize colors, connect references and understand each value.</p>
+        <main className="project-start small:px-6 small:py-8 short:pt-6 mx-auto px-7 py-15 overflow-auto">
+          <span className="eyebrow uppercase text-muted-foreground font-semibold">
+            A project is your starting point
+          </span>
+          <h1 className="my-3">Create a color vocabulary</h1>
+          <p className="text-muted-foreground">
+            Organize colors, connect references and understand each value.
+          </p>
           <form
+            className="mt-8"
             onSubmit={(e) => {
               e.preventDefault();
               const id = crypto.randomUUID();
@@ -351,23 +311,26 @@ export function App({
               setMessage("Project created for this session.");
             }}
           >
-            <label className="field">
+            <Field>
               Project name
-              <input
+              <Input
                 value={projectName}
                 onChange={(e) => setProjectName(e.target.value)}
               />
-            </label>
+            </Field>
             <Button variant="default" type="submit">
               Create project
             </Button>
           </form>
           {error && (
-            <p className="error" role="alert">
+            <p
+              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+              role="alert"
+            >
               {error}
             </p>
           )}
-          <p className="session-start-notice">
+          <p className="session-start-notice text-caption mt-4.5">
             Work exists only in this page. Reloading, closing or leaving
             discards your project.
           </p>
@@ -375,25 +338,35 @@ export function App({
       </div>
     );
   return (
-    <div className="app-shell">
-      <a className="skip-link" href="#tokens">
+    <div className="app-shell flex h-dvh min-h-0 flex-col overflow-clip bg-background">
+      <a
+        className="skip-link fixed -top-20 left-5 z-20 bg-background focus:top-2.5 p-2"
+        href="#tokens"
+      >
         Skip to tokens
       </a>
       {header}
-      <div className="session-notice">
-        <InformationCircleIcon className="icon" aria-hidden="true" />
+      <div className="session-notice density:justify-start small:annotation small:min-h-9 small:px-4 small:py-1.5 short:py-1 short:px-4 short:min-h-7 shrink-0 border-b border-border bg-notice text-notice-foreground text-caption px-5 py-2 min-h-9 flex items-center justify-center gap-2">
+        <InformationCircleIcon
+          className="icon block w-4 h-4 shrink-0"
+          aria-hidden="true"
+        />
         <span>
           Work exists only in this page. Reloading, closing or leaving will
           discard all changes.
         </span>
       </div>
       <div
-        className={`workbench ${compact ? "compact-navigation" : ""} ${sidebarExpanded ? "groups-expanded" : "groups-collapsed"} ${inspectorExpanded ? "inspector-expanded" : "inspector-collapsed"}`}
+        className={`workbench grid flex-1 h-0 min-h-0 overflow-hidden ${compact ? "compact-navigation" : ""} ${sidebarExpanded ? "groups-expanded" : "groups-collapsed"} ${inspectorExpanded ? "inspector-expanded" : "inspector-collapsed"}`}
       >
         {!compact && (
-          <nav className="sidebar" aria-label="Project groups">
+          <nav
+            className="sidebar flex min-h-0 flex-col overflow-hidden border-r border-border bg-surface"
+            aria-label="Project groups"
+          >
             <Button
               variant="ghost"
+              size="pane"
               className="pane-toggle sidebar-toggle"
               aria-label={
                 sidebarExpanded
@@ -405,26 +378,33 @@ export function App({
               onClick={() => setSidebarExpanded(!sidebarExpanded)}
             >
               {sidebarExpanded ? (
-                <ChevronLeftIcon className="icon" />
+                <ChevronLeftIcon className="icon block w-4 h-4 shrink-0" />
               ) : (
-                <ChevronRightIcon className="icon" />
+                <ChevronRightIcon className="icon block w-4 h-4 shrink-0" />
               )}
               <span>Project groups</span>
             </Button>
             <div
               id="project-groups-content"
               hidden={!sidebarExpanded}
-              className="sidebar-content"
+              className="sidebar-content flex-1 px-3 pt-5.5 pb-5 flex flex-col min-h-0 overflow-auto"
             >
               {navigation}
             </div>
           </nav>
         )}
-        <main id="tokens" ref={panelRef} tabIndex={-1} className="token-panel">
-          <div className="panel-header">
+        <main
+          id="tokens"
+          ref={panelRef}
+          tabIndex={-1}
+          className="token-panel relative min-w-0 min-h-0 overflow-auto"
+        >
+          <div className="panel-header source-compact:items-start compact:flex-wrap mb-6.5 flex justify-between items-center gap-3">
             <div>
-              <span className="eyebrow">Tokens</span>
-              <h1>
+              <span className="eyebrow uppercase text-muted-foreground font-semibold">
+                Tokens
+              </span>
+              <h1 className="my-1.5 small-title">
                 {group === "all"
                   ? "All colors"
                   : pathLabel(
@@ -432,20 +412,24 @@ export function App({
                         ?.path ?? { status: "derived", path: [] },
                     )}
               </h1>
-              <p>Build a vocabulary, then connect its meaning.</p>
+              <p className="text-xs/normal text-muted-foreground">
+                Build a vocabulary, then connect its meaning.
+              </p>
             </div>
             <Button
               variant="default"
+              size="panel"
               disabled={!!readFailure}
               onClick={() => open("token")}
             >
-              <PlusIcon className="icon" />
+              <PlusIcon className="icon block w-4 h-4 shrink-0" />
               New token
             </Button>
           </div>
-          <div className="list-tools">
-            <label className="search">
-              <input
+          <div className="list-tools compact:flex-wrap narrow:gap-2 flex gap-3 items-center mb-5">
+            <label className="search tablet:min-w-25 flex-1 max-w-75 relative">
+              <Input
+                appearance="search"
                 type="search"
                 aria-label="Search color tokens"
                 placeholder="Search colors…"
@@ -461,12 +445,14 @@ export function App({
           </div>
           {readFailure ? (
             <section
-              className="error"
+              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
               role="alert"
               tabIndex={-1}
               id="read-error"
             >
-              <h2>Could not read the project</h2>
+              <h2 className="text-sm/normal mb-2">
+                Could not read the project
+              </h2>
               <p>{readFailure}</p>
               <p>
                 Mutation is unavailable. Last successful data and drafts are
@@ -486,9 +472,10 @@ export function App({
           ) : (
             <>
               {selected && !visible.some((t) => t.authored.id === selected) && (
-                <section className="selection-context">
-                  <p>Selected token is outside this list.</p>
+                <section className="selection-context flex-wrap border border-border rounded-md mb-4 text-caption flex items-center justify-between gap-3 p-3 bg-muted">
+                  <p className="mt-2">Selected token is outside this list.</p>
                   <Button
+                    size="selection"
                     onClick={() => {
                       setGroup("all");
                       setQuery("");
@@ -503,85 +490,21 @@ export function App({
                   </Button>
                 </section>
               )}
-              <div className="token-table">
-                <div className="table-heading">
-                  <span>Token</span>
-                  <span>Authored value</span>
-                </div>
-                {visible.map((t) => {
-                  const v = t.authored.definition?.assignments[0]?.value,
-                    preview = colorPreview(
-                      resolvedColor(inspection(t.authored.id)),
-                    );
-                  return (
-                    <button
-                      key={t.authored.id}
-                      type="button"
-                      className={`token-row ${selected === t.authored.id ? "selected" : ""}`}
-                      aria-pressed={selected === t.authored.id}
-                      onClick={() => choose(t.authored.id)}
-                    >
-                      <Swatch css={preview.css} />
-                      <span className="token-identity">
-                        <strong>{pathLabel(t.path)}</strong>
-                        <small>
-                          {t.authored.layer ?? "Unspecified"} ·{" "}
-                          {t.authored.definition?.type ?? "Unassigned"} ·{" "}
-                          {t.authored.id}
-                        </small>
-                      </span>
-                      <span className="value-summary mono">
-                        {v?.kind === "token-reference" ? (
-                          <>
-                            {project?.tokens.find(
-                              (x) => x.authored.id === v.targetTokenId,
-                            )
-                              ? pathLabel(
-                                  project.tokens.find(
-                                    (x) => x.authored.id === v.targetTokenId,
-                                  )!.path,
-                                )
-                              : "Missing target"}
-                            <small>{v.targetTokenId}</small>
-                          </>
-                        ) : v?.kind === "literal" && v.valueType === "color" ? (
-                          <>
-                            {v.colorSpace}
-                            <small>{v.components.join(" · ")}</small>
-                          </>
-                        ) : (
-                          (v?.kind ?? "No assignment")
-                        )}
-                      </span>
-                    </button>
-                  );
-                })}
-                {visible.length === 0 && (
-                  <div className="empty">
-                    <h2>
-                      {query
-                        ? "No matching colors"
-                        : project?.tokens.length
-                          ? "This group is empty"
-                          : "Your project is empty"}
-                    </h2>
-                    <p>
-                      Create a color at the root, or add a group to organize it.
-                    </p>
-                    <Button
-                      onClick={() => (query ? setQuery("") : open("token"))}
-                    >
-                      {query ? "Clear search" : "New token"}
-                    </Button>
-                  </div>
-                )}
-              </div>
+              <TokenList
+                project={project}
+                visible={visible}
+                selected={selected}
+                query={query}
+                inspect={inspection}
+                onSelect={choose}
+                onEmptyAction={() => (query ? setQuery("") : open("token"))}
+              />
             </>
           )}
-          <section className="project-diagnostics">
+          <section className="project-diagnostics text-caption mt-6">
             <details>
               <summary>Project diagnostics · namespace and references</summary>
-              <pre className="exact-data">
+              <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
                 {project && !readFailure
                   ? JSON.stringify(
                       operations.validateProject(projectId),
@@ -592,19 +515,24 @@ export function App({
               </pre>
             </details>
           </section>
-          <p role="status" className="helper">
+          <p role="status" className="helper text-muted-foreground font-normal">
             {message}
           </p>
         </main>
-        <section className="inspector-shell" aria-label="Token inspector pane">
-          <div className="inspector-header">
-            <span className="inspector-region-title">Token inspector</span>
+        <section
+          className="inspector-shell small:border-l-0 small:border-t small:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l border-border bg-surface"
+          aria-label="Token inspector pane"
+        >
+          <div className="inspector-header border-b border-border bg-surface h-11 min-h-11 shrink-0 flex items-center gap-2 pl-3 min-w-0">
+            <span className="inspector-region-title flex-1 text-caption leading-3.5 min-w-0 font-medium">
+              Token inspector
+            </span>
             {!readFailure &&
             shown &&
             eligible(shown.authored) &&
             feedback?.tokenId === selected ? (
               <section
-                className="inspector-feedback"
+                className="inspector-feedback flex items-center gap-2 shrink-0"
                 aria-label="Applied and draft color context"
               >
                 {(
@@ -613,16 +541,27 @@ export function App({
                     ...(feedback.tab === "resolved" ? [] : ["draft"]),
                   ] as ("applied" | "draft")[]
                 ).map((k) => (
-                  <div key={k} className="inspector-preview-context">
-                    <span className="preview-context-label">
+                  <div
+                    key={k}
+                    className="inspector-preview-context text-caption leading-3.5 flex flex-col items-center justify-center gap-0.5 w-16 min-w-0"
+                  >
+                    <span className="preview-context-label text-secondary">
                       {k === "applied" ? "Applied" : "Draft"}
                     </span>
                     {feedback[k] ? (
-                      <span className="header-specimen" aria-hidden="true">
-                        <span style={{ background: feedback[k] }} />
+                      <span
+                        className="header-specimen rounded border border-specimen-border block w-9 h-4 overflow-hidden"
+                        aria-hidden="true"
+                      >
+                        <span
+                          className="block size-full"
+                          style={{ background: feedback[k] }}
+                        />
                       </span>
                     ) : (
-                      <span className="preview-unavailable">Unavailable</span>
+                      <span className="preview-unavailable text-caption leading-4 text-secondary">
+                        Unavailable
+                      </span>
                     )}
                     <span className="sr-only">
                       {
@@ -635,7 +574,7 @@ export function App({
                 ))}
               </section>
             ) : (
-              <span className="inspector-header-status">
+              <span className="inspector-header-status text-caption leading-4 text-secondary">
                 {readFailure
                   ? "Unavailable"
                   : selected
@@ -645,7 +584,8 @@ export function App({
             )}
             <Button
               variant="ghost"
-              className="pane-toggle inspector-toggle"
+              size="icon"
+              className="pane-toggle inspector-toggle shrink-0 rounded-none"
               aria-label={
                 inspectorExpanded
                   ? "Collapse token inspector"
@@ -656,22 +596,26 @@ export function App({
               onClick={() => setInspectorExpanded(!inspectorExpanded)}
             >
               {inspectorExpanded ? (
-                <ChevronRightIcon className="icon side-direction" />
+                <ChevronRightIcon className="icon block w-4 h-4 shrink-0 side-direction small:hidden" />
               ) : (
-                <ChevronLeftIcon className="icon side-direction" />
+                <ChevronLeftIcon className="icon block w-4 h-4 shrink-0 side-direction small:hidden" />
               )}
-              <ChevronDownIcon className="icon bottom-direction" />
+              <ChevronDownIcon className="icon block w-4 h-4 shrink-0 bottom-direction small:block hidden" />
             </Button>
           </div>
           <div
             id="token-inspector-content"
-            className="inspector-content"
+            className="inspector-content flex-1 bg-surface overflow-auto min-h-0"
             hidden={!inspectorExpanded}
           >
             {readFailure && (
-              <div className="empty">
-                <h2>Inspection unavailable</h2>
-                <p>Retry reading the project.</p>
+              <div className="empty px-5 py-17.5 text-center text-muted-foreground">
+                <h2 className="text-foreground text-base/normal">
+                  Inspection unavailable
+                </h2>
+                <p className="text-xs/normal mt-2 mb-5">
+                  Retry reading the project.
+                </p>
               </div>
             )}
             {shown && project ? (
@@ -702,47 +646,57 @@ export function App({
               />
             ) : (
               !readFailure && (
-                <div className="empty">
-                  <h2>No token selected</h2>
-                  <p>Select or create a color token.</p>
+                <div className="empty px-5 py-17.5 text-center text-muted-foreground">
+                  <h2 className="text-foreground text-base/normal">
+                    No token selected
+                  </h2>
+                  <p className="text-xs/normal mt-2 mb-5">
+                    Select or create a color token.
+                  </p>
                 </div>
               )
             )}
           </div>
         </section>
       </div>
-      <footer className="statusbar">
+      <footer className="statusbar narrow:flex-wrap small:px-4 small:py-1.5 short:hidden shrink-0 flex justify-between gap-4 border-t border-border bg-surface text-status px-5 py-2">
         <span>{project?.tokens.length ?? 0} tokens</span>
-        <span>Memory only · No recovery after reload</span>
+        <span className="small:hidden">
+          Memory only · No recovery after reload
+        </span>
       </footer>
       <Dialog.Root
         open={compact && navigationOpen}
         onOpenChange={setNavigationOpen}
       >
         <Dialog.Portal>
-          <Dialog.Backdrop className="navigation-backdrop" />
+          <Dialog.Backdrop className="navigation-backdrop fixed inset-0 z-30 bg-scrim" />
           <Dialog.Popup
-            className="navigation-drawer"
+            className="navigation-drawer fixed top-0 bottom-0 left-0 z-35 border-r border-border bg-background flex flex-col overflow-hidden"
             finalFocus={() =>
               document.querySelector<HTMLElement>(
                 '[aria-label="Open project navigation"]',
               )
             }
           >
-            <div className="navigation-heading">
-              <Dialog.Title>Project navigation</Dialog.Title>
+            <div className="navigation-heading border-b border-border px-4 py-3 flex items-center justify-between gap-3 shrink-0">
+              <Dialog.Title className="text-sm/normal">
+                Project navigation
+              </Dialog.Title>
               <Dialog.Close
-                render={<Button variant="ghost" />}
+                render={<Button variant="ghost" size="icon" />}
                 aria-label="Close project navigation"
               >
-                <XMarkIcon className="icon" />
+                <XMarkIcon className="icon block w-4 h-4 shrink-0" />
               </Dialog.Close>
             </div>
             <Dialog.Description className="sr-only">
               Browse groups. Closing preserves drafts.
             </Dialog.Description>
-            <nav className="navigation-content">
-              <div className="sidebar-content">{navigation}</div>
+            <nav className="navigation-content flex-1 flex flex-col min-h-0 overflow-hidden">
+              <div className="sidebar-content flex-1 px-3 py-6 flex flex-col min-h-0 overflow-auto">
+                {navigation}
+              </div>
             </nav>
           </Dialog.Popup>
         </Dialog.Portal>
@@ -753,157 +707,48 @@ export function App({
           if (!o) setPending(null);
         }}
       >
-        <Dialog.Portal>
-          <Dialog.Backdrop forceRender className="dialog-backdrop" />
-          <Dialog.Popup className="dialog-popup">
-            <Dialog.Title>Discard unapplied changes?</Dialog.Title>
-            <Dialog.Description>
-              Both drafts will be discarded. Applied data is unchanged.
-            </Dialog.Description>
-            <div className="dialog-actions">
-              <Dialog.Close render={<Button />}>Keep editing</Dialog.Close>
-              <Button
-                variant="default"
-                onClick={() => {
-                  pending?.();
-                  setPending(null);
-                  setDirty(false);
-                  setEditorVersion((v) => v + 1);
-                }}
-              >
-                Discard draft
-              </Button>
-            </div>
-          </Dialog.Popup>
-        </Dialog.Portal>
-      </Dialog.Root>
-      <Dialog.Root
-        open={dialog !== null}
-        onOpenChange={(o) => {
-          if (!o) setDialog(null);
-        }}
-      >
-        <Dialog.Portal>
-          <Dialog.Backdrop forceRender className="dialog-backdrop" />
-          <Dialog.Popup
-            className="dialog-popup"
-            finalFocus={() => panelRef.current}
-          >
-            <Dialog.Title>
-              {dialog === "token"
-                ? "Create a color token"
-                : dialog === "rename"
-                  ? "Rename group"
-                  : "Create a group"}
-            </Dialog.Title>
-            <Dialog.Description>
-              {dialog === "token"
-                ? "Start with an explicit Color literal."
-                : "Groups organize paths; names do not define types."}
-            </Dialog.Description>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                create();
+        <DialogContent className="dialog-popup">
+          <Dialog.Title className="dialog-title mb-2.5">
+            Discard unapplied changes?
+          </Dialog.Title>
+          <Dialog.Description className="text-xs/normal text-muted-foreground mb-6">
+            Both drafts will be discarded. Applied data is unchanged.
+          </Dialog.Description>
+          <div className="dialog-actions justify-end flex gap-2.5 mt-6">
+            <Dialog.Close render={<Button />}>Keep editing</Dialog.Close>
+            <Button
+              variant="default"
+              onClick={() => {
+                pending?.();
+                setPending(null);
+                setDirty(false);
+                setEditorVersion((v) => v + 1);
               }}
             >
-              <label className="field">
-                Name
-                <input
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  aria-describedby="creation-error"
-                />
-              </label>
-              {dialog !== "rename" && (
-                <label className="field">
-                  {dialog === "token" ? "Group" : "Parent group"}
-                  <Select
-                    value={parent}
-                    onChange={(e) => setParent(e.target.value)}
-                  >
-                    <option value="">Project root</option>
-                    {project?.groups.map((g) => (
-                      <option key={g.authored.id} value={g.authored.id}>
-                        {pathLabel(g.path)} · {g.authored.id}
-                      </option>
-                    ))}
-                  </Select>
-                </label>
-              )}
-              {dialog === "token" && (
-                <>
-                  <label className="field">
-                    Layer
-                    <Select
-                      value={layer}
-                      onChange={(e) => setLayer(e.target.value)}
-                    >
-                      <option value="">Unspecified</option>
-                      <option value="primitive">Primitive</option>
-                      <option value="semantic">Semantic</option>
-                    </Select>
-                  </label>
-                  <section className="creation-disclosure">
-                    <h3>Initial value</h3>
-                    <p>
-                      sRGB · Red 0 · Green 0 · Blue 0 · Alpha 1 (opaque black)
-                    </p>
-                    <p>
-                      Create starts with this color. You can revise it or
-                      explicitly replace it with a reference in the editor.
-                    </p>
-                  </section>
-                </>
-              )}
-              {readFailure && (
-                <div
-                  className="error"
-                  id="dialog-read-error"
-                  tabIndex={-1}
-                  role="status"
-                >
-                  <p>
-                    Project unavailable. Inputs retained; Retry reading the
-                    project to resume.
-                  </p>
-                  <Button
-                    onClick={() => {
-                      if (read(projectId))
-                        setMessage("Project read succeeded.");
-                    }}
-                  >
-                    Retry reading project
-                  </Button>
-                </div>
-              )}
-              {error ? (
-                <p
-                  ref={formError}
-                  tabIndex={-1}
-                  id="creation-error"
-                  className="error"
-                  role="alert"
-                >
-                  {error}
-                </p>
-              ) : (
-                <span id="creation-error" />
-              )}
-              <div className="dialog-actions">
-                <Dialog.Close render={<Button />}>Cancel</Dialog.Close>
-                <Button
-                  type="submit"
-                  variant="default"
-                  disabled={!!readFailure}
-                >
-                  {dialog === "rename" ? "Rename group" : "Create"}
-                </Button>
-              </div>
-            </form>
-          </Dialog.Popup>
-        </Dialog.Portal>
+              Discard draft
+            </Button>
+          </div>
+        </DialogContent>
       </Dialog.Root>
+      <CreationDialog
+        dialog={dialog}
+        project={project}
+        name={name}
+        parent={parent}
+        layer={layer}
+        readFailure={readFailure}
+        error={error}
+        formError={formError}
+        finalFocus={() => panelRef.current}
+        onClose={() => setDialog(null)}
+        onCreate={create}
+        onNameChange={setName}
+        onParentChange={setParent}
+        onLayerChange={setLayer}
+        onRetry={() => {
+          if (read(projectId)) setMessage("Project read succeeded.");
+        }}
+      />
     </div>
   );
 }

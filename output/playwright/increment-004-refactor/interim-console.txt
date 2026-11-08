@@ -1,0 +1,8 @@
+### Result
+Total messages: 53 (Errors: 0, Warnings: 0)
+Returning 1 messages for level "info"
+
+[INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:5173/node_modules/.vite/deps/react-dom_client.js?v=c70544bf:15801
+### Page
+- Page URL: http://127.0.0.1:5173/
+- Page Title: Design Token Workbench

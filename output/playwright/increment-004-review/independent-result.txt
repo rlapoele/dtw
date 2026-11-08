@@ -1,0 +1,48 @@
+### Result
+["exact long/incomplete/none text, passive views, mode/collapse/tab retention, rejected apply, selected reveal/focus",{"width":1500,"scroll":1500,"grid":"228px 872px 400px","rows":"769.5px"},{"width":1499,"scroll":1499,"grid":"212px 911px 376px","rows":"769.5px"},{"width":1120,"scroll":1120,"grid":"212px 532px 376px","rows":"769.5px"},{"width":1119,"scroll":1119,"grid":"176px 623px 320px","rows":"769.5px"},{"width":901,"scroll":901,"grid":"581px 320px","rows":"769.5px"},{"width":900,"scroll":900,"grid":"580px 320px","rows":"769.5px"},{"width":768,"scroll":768,"grid":"448px 320px","rows":"769.5px"},{"width":767,"scroll":767,"grid":"767px","rows":"314.188px 471.312px"},{"width":541,"scroll":541,"grid":"541px","rows":"314.188px 471.312px"},{"width":540,"scroll":540,"grid":"540px","rows":"314.188px 471.312px"},{"width":320,"scroll":320,"grid":"320px","rows":"247.391px 371.109px"},{"width":1440,"scroll":1440,"grid":"212px 852px 376px","rows":"408px"},"drawer Escape/focus return and modal Escape"]
+### Ran Playwright code
+```js
+await (async page => {
+ const log=[]; const b=n=>page.getByRole('button',{name:n,exact:true});
+ await page.goto('http://127.0.0.1:5173');await page.setViewportSize({width:1440,height:900});
+ await page.getByLabel('Project name').fill('Review'); await b('Create project').click();await b('New token').first().click();
+ await page.getByLabel('Name',{exact:true}).fill('a');await b('Create').click();
+ await page.getByLabel('Red',{exact:true}).fill('0.123456789123456789123456789');await b('Apply changes').click();
+ await page.getByRole('combobox',{name:'View color space',exact:true}).selectOption('oklch');await page.getByRole('combobox',{name:'View color space',exact:true}).selectOption('srgb');
+ if(await page.getByLabel('Red',{exact:true}).inputValue()!=='0.123456789123456789123456789')throw Error('passive exact string');
+ await page.getByLabel('Red',{exact:true}).fill('-');await b('Reference').click();await b('Literal color').click();
+ if(await page.getByLabel('Red',{exact:true}).inputValue()!=='-')throw Error('incomplete draft');
+ await b('Apply changes').click();await page.getByRole('alert').waitFor();
+ if(await page.getByLabel('Red',{exact:true}).inputValue()!=='-')throw Error('rejection retention');
+ await b('Cancel').click();
+ await page.getByLabel('Green',{exact:true}).fill('none');
+ if(await page.getByLabel('Green slider',{exact:true}).count())throw Error('none coerced to range');
+ await b('Collapse token inspector').click();
+ if(await page.getByLabel('Green',{exact:true}).isVisible())throw Error('collapsed contents visible');
+ await b('Expand token inspector').click();
+ if(await page.getByLabel('Green',{exact:true}).inputValue()!=='none')throw Error('collapse draft retention');
+ await b('Cancel').click(); await page.getByRole('tab',{name:'Resolved & trace'}).click();
+ await page.getByRole('tabpanel',{name:'Resolved & trace'}).waitFor(); await page.getByLabel('Red',{exact:true}).waitFor({state:'hidden'});
+ await page.getByRole('tab',{name:'Authored value'}).click();
+ await page.getByRole('searchbox').fill('not present');await b('Show selected token').click();
+ await page.waitForFunction(()=>document.activeElement?.matches('.token-row[aria-pressed=true]'));
+ log.push('exact long/incomplete/none text, passive views, mode/collapse/tab retention, rejected apply, selected reveal/focus');
+ for(const [w,h] of [[1500,900],[1499,900],[1120,900],[1119,900],[901,900],[900,900],[768,900],[767,900],[541,900],[540,900],[320,740],[1440,480]]) {
+  await page.setViewportSize({width:w,height:h});
+  const metrics=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,grid:getComputedStyle(document.querySelector('.workbench')).gridTemplateColumns,rows:getComputedStyle(document.querySelector('.workbench')).gridTemplateRows}));
+  if(metrics.scroll>w)throw Error('horizontal page overflow '+w);
+  await page.locator('.editor-actions').scrollIntoViewIfNeeded(); if(!await b('Apply changes').isVisible())throw Error('lost apply '+w);
+  await page.screenshot({path:`output/playwright/increment-004-review/review-${w}-${h}.png`});log.push(metrics);
+ }
+ await page.setViewportSize({width:768,height:900});await b('Open project navigation').click();
+ await page.getByRole('dialog',{name:'Project navigation'}).waitFor();
+ await page.keyboard.press('Escape');await page.getByRole('dialog').waitFor({state:'hidden'});
+ if(!await b('Open project navigation').evaluate(e=>document.activeElement===e))throw Error('drawer focus return');
+ await b('New token').first().click();await page.getByLabel('Name',{exact:true}).fill('modal');await page.keyboard.press('Escape');
+ await page.getByRole('dialog').waitFor({state:'hidden'});
+ log.push('drawer Escape/focus return and modal Escape');return log;
+}
+)(page);
+```
+### Events
+- New console entries: .playwright-cli/console-2026-11-08T18-19-30-858Z.log#L4-L5

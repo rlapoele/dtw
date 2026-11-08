@@ -1,0 +1,2 @@
+async page=>{
+await page.goto('http://127.0.0.1:5173');await page.getByRole('button',{name:'Create project',exact:true}).click();await page.getByRole('button',{name:'New token',exact:true}).first().click();await page.getByLabel('Name',{exact:true}).fill('tab');await page.getByRole('button',{name:'Create',exact:true}).click();await page.getByRole('tab',{name:'Resolved & trace'}).click();await page.waitForTimeout(200);return await page.locator('[role=tabpanel]').evaluateAll(es=>es.map(e=>({html:e.outerHTML.slice(0,400),display:getComputedStyle(e).display})));}

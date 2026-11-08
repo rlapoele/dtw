@@ -1,0 +1,14 @@
+### Result
+{"consoleErrors":[]}
+### Ran Playwright code
+```js
+await (async page => { const errors=[];const listener=m=>{if(m.type()==='error')errors.push(m.text())}; page.on('console',listener);await page.goto('http://127.0.0.1:4184');await page.getByRole('button',{name:'Create project',exact:true}).click();await page.getByRole('button',{name:'New token',exact:true}).first().click();await page.getByLabel('Name',{exact:true}).fill('console check');await page.getByRole('button',{name:'Create',exact:true}).click();page.off('console',listener);if(errors.length)throw Error(JSON.stringify(errors));return {consoleErrors:errors};})(page);
+```
+### Open tabs
+- 0: (current) [Design Token Workbench](http://127.0.0.1:4184/)
+- 1: [Design Token Workbench](http://127.0.0.1:5184/)
+### Page
+- Page URL: http://127.0.0.1:4184/
+- Page Title: Design Token Workbench
+### Events
+- New console entries: .playwright-cli/console-2026-11-08T18-00-43-012Z.log#L28

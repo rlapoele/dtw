@@ -1,0 +1,197 @@
+### Ran Playwright code
+```js
+await (async (page) => {
+  await page.goto("http://127.0.0.1:5173/");
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.getByLabel("Project name").fill("");
+  await page
+    .getByRole("button", { name: "Create project", exact: true })
+    .click();
+  await page.getByRole("heading", { name: "Your project is empty" }).waitFor();
+  await page.getByRole("button", { name: "New group", exact: true }).click();
+  await page.getByLabel("Name", { exact: true }).fill("colors");
+  await page.getByRole("button", { name: "Create", exact: true }).click();
+  await page.getByRole("button", { name: "New group", exact: true }).click();
+  await page.getByLabel("Name", { exact: true }).fill("blue");
+  await page.getByRole("button", { name: "Create", exact: true }).click();
+  await page
+    .getByRole("button", { name: "New token", exact: true })
+    .first()
+    .click();
+  if (
+    !(await page
+      .getByText("sRGB · Red 0 · Green 0 · Blue 0 · Alpha 1 (opaque black)", {
+        exact: true,
+      })
+      .isVisible())
+  )
+    throw Error("Missing creation disclosure");
+  await page.getByLabel("Name", { exact: true }).fill("500");
+  await page
+    .getByRole("combobox", { name: "Layer", exact: true })
+    .selectOption("primitive");
+  await page.getByRole("button", { name: "Create", exact: true }).click();
+  await page
+    .getByLabel("Red", { exact: true })
+    .fill("0.123456789123456789123456789");
+  await page.getByLabel("Green", { exact: true }).fill("0.4");
+  await page.getByLabel("Blue", { exact: true }).fill("0.6");
+  await page
+    .getByRole("button", { name: "Apply changes", exact: true })
+    .click();
+  await page
+    .getByRole("combobox", { name: "View color space", exact: true })
+    .selectOption("oklab");
+  await page
+    .getByRole("combobox", { name: "View color space", exact: true })
+    .selectOption("hsl");
+  await page
+    .getByRole("combobox", { name: "View color space", exact: true })
+    .selectOption("srgb");
+  if (
+    (await page.getByLabel("Red", { exact: true }).inputValue()) !==
+    "0.123456789123456789123456789"
+  )
+    throw Error("Passive view changed exact source");
+  if (
+    await page
+      .getByRole("button", { name: "Apply changes", exact: true })
+      .isEnabled()
+  )
+    throw Error("Passive view dirtied source");
+  await page
+    .getByRole("button", { name: "New token", exact: true })
+    .first()
+    .click();
+  await page.getByLabel("Name", { exact: true }).fill("primary");
+  await page
+    .getByRole("combobox", { name: "Layer", exact: true })
+    .selectOption("semantic");
+  await page.getByRole("button", { name: "Create", exact: true }).click();
+  await page.getByRole("button", { name: "Reference", exact: true }).click();
+  const options = await page
+    .getByRole("combobox", { name: "Target token", exact: true })
+    .locator("option")
+    .allTextContents();
+  const target = (
+    await page
+      .getByRole("combobox", { name: "Target token", exact: true })
+      .locator("option")
+      .all()
+  ).find;
+  const blueId = await page
+    .getByRole("combobox", { name: "Target token", exact: true })
+    .locator("option")
+    .filter({ hasText: "colors / blue / 500" })
+    .getAttribute("value");
+  await page
+    .getByRole("combobox", { name: "Target token", exact: true })
+    .selectOption(blueId);
+  await page
+    .getByRole("button", { name: "Apply changes", exact: true })
+    .click();
+  await page.getByRole("tab", { name: "Resolved & trace" }).click();
+  if (
+    !(await page
+      .getByRole("tabpanel", { name: "Resolved & trace" })
+      .locator(".exact-data")
+      .first()
+      .innerText()
+      .then((t) => t.includes("0.123456789123456789123456789")))
+  )
+    throw Error("Alias resolved incorrectly");
+  await page
+    .getByRole("button")
+    .filter({
+      has: page.locator(".token-identity strong", {
+        hasText: "colors / blue / 500",
+      }),
+    })
+    .click();
+  await page.getByRole("button", { name: "Reference", exact: true }).click();
+  const primaryId = await page
+    .getByRole("combobox", { name: "Target token", exact: true })
+    .locator("option")
+    .filter({ hasText: "primary" })
+    .getAttribute("value");
+  await page
+    .getByRole("combobox", { name: "Target token", exact: true })
+    .selectOption(primaryId);
+  await page
+    .getByRole("button", { name: "Apply changes", exact: true })
+    .click();
+  await page
+    .getByRole("alert")
+    .filter({ hasText: "reference-cycle" })
+    .waitFor();
+  if (
+    (await page
+      .getByRole("combobox", { name: "Target token", exact: true })
+      .inputValue()) !== primaryId
+  )
+    throw Error("Rejected draft lost");
+  await page.getByRole("button", { name: "Cancel", exact: true }).click();
+  await page.getByLabel("Red", { exact: true }).fill("0.8");
+  await page
+    .getByRole("button", { name: "Apply changes", exact: true })
+    .click();
+  await page.screenshot({
+    path: "output/playwright/increment-004-refactor/final-02-authored-desktop.png",
+  });
+  await page
+    .getByRole("button")
+    .filter({
+      has: page.locator(".token-identity strong", { hasText: "primary" }),
+    })
+    .click();
+  await page.getByRole("tab", { name: "Resolved & trace" }).click();
+  if (
+    !(await page
+      .getByRole("tabpanel", { name: "Resolved & trace" })
+      .locator(".exact-data")
+      .first()
+      .innerText()
+      .then((t) => t.includes("0.8")))
+  )
+    throw Error("Dependent alias not refreshed");
+  await page.screenshot({
+    path: "output/playwright/increment-004-refactor/final-03-trace-desktop.png",
+  });
+  await page.getByRole("tab", { name: "Authored value" }).click();
+  await page
+    .getByRole("button", { name: "Literal color", exact: true })
+    .click();
+  if ((await page.getByLabel("Red", { exact: true }).inputValue()) !== "")
+    throw Error("Alias was flattened into literal draft");
+  await page.getByLabel("Red", { exact: true }).fill("0.2");
+  await page.getByRole("button", { name: "Reference", exact: true }).click();
+  await page.getByRole("button", { name: "Collapse token inspector" }).click();
+  await page.getByRole("button", { name: "Expand token inspector" }).click();
+  await page
+    .getByRole("button", { name: "Literal color", exact: true })
+    .click();
+  if ((await page.getByLabel("Red", { exact: true }).inputValue()) !== "0.2")
+    throw Error("Hidden draft lost");
+  await page
+    .getByRole("button")
+    .filter({
+      has: page.locator(".token-identity strong", {
+        hasText: "colors / blue / 500",
+      }),
+    })
+    .click();
+  await page
+    .getByRole("dialog", { name: "Discard unapplied changes?" })
+    .waitFor();
+  await page.getByRole("button", { name: "Keep editing" }).click();
+  if ((await page.getByLabel("Red", { exact: true }).inputValue()) !== "0.2")
+    throw Error("Rejected departure lost draft");
+  await page.getByRole("button", { name: "Cancel", exact: true }).click();
+  await page.reload();
+  await page
+    .getByRole("heading", { name: "Create a color vocabulary" })
+    .waitFor();
+})(page);
+```
+### Events
+- New console entries: .playwright-cli/console-2026-11-08T18-00-43-012Z.log#L9-L10

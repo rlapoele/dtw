@@ -1,0 +1,113 @@
+import type { ProjectReadback } from "@application/authoring";
+import {
+  FolderIcon,
+  PlusIcon,
+  Squares2X2Icon,
+} from "@heroicons/react/24/outline";
+import { Button } from "@presentation/components/button";
+import { pathLabel } from "@presentation/readback";
+export function ProjectNavigation({
+  drawer,
+  project,
+  group,
+  unavailable,
+  onSelect,
+  onCreateGroup,
+}: {
+  drawer: boolean;
+  project: ProjectReadback | undefined;
+  group: string;
+  unavailable: boolean;
+  onSelect: (group: string) => void;
+  onCreateGroup: () => void;
+}) {
+  return (
+    <>
+      <div
+        className={`sidebar-project source-compact:gap-2 flex items-center gap-2.5 ${drawer ? "px-2 pb-6" : "px-2 pb-7.5 source-compact:px-1 source-compact:pb-6.25"}`}
+      >
+        <span
+          className="project-icon place-items-center border border-border bg-background text-xs/normal font-heading h-8 w-8 grid"
+          aria-hidden="true"
+        >
+          T
+        </span>
+        <div>
+          <strong className="block text-xs/normal source-compact:text-caption">
+            {project?.project.name || "(unnamed project)"}
+          </strong>
+          <span className="block text-caption text-muted-foreground">
+            Color foundations
+          </span>
+        </div>
+      </div>
+      <div className="nav-label uppercase text-muted-foreground font-semibold px-3 pb-2.5">
+        Library
+      </div>
+      <Button
+        variant="navigation"
+        size="navigation"
+        className={`nav-item w-full ${group === "all" ? "active" : ""}`}
+        aria-current={group === "all" ? "true" : undefined}
+        onClick={() => {
+          onSelect("all");
+        }}
+      >
+        <Squares2X2Icon className="icon block w-4 h-4 shrink-0" />
+        All tokens
+        <span className="count ml-auto text-secondary font-normal">
+          {project?.tokens.length ?? 0}
+        </span>
+      </Button>
+      <div className="group-tree">
+        {project?.groups.map((g) => (
+          <Button
+            key={g.authored.id}
+            variant="navigation"
+            size="group"
+            className={`nav-item w-full group-item ${group === g.authored.id ? "active" : ""}`}
+            aria-current={group === g.authored.id ? "true" : undefined}
+            onClick={() => {
+              onSelect(g.authored.id);
+            }}
+          >
+            <FolderIcon className="icon block w-4 h-4 shrink-0" />
+            <span className="group-label whitespace-normal block min-w-0 text-left wrap-anywhere">
+              {pathLabel(g.path)}
+              <small className="block text-secondary font-mono">
+                {g.authored.id}
+              </small>
+            </span>
+          </Button>
+        ))}
+      </div>
+      <Button
+        className="nav-item w-full add-group text-muted-foreground mt-4"
+        variant="navigation"
+        size="navigation"
+        disabled={unavailable}
+        onClick={() => {
+          onCreateGroup();
+        }}
+      >
+        <PlusIcon className="icon block w-4 h-4 shrink-0" />
+        New group
+      </Button>
+      <div
+        className={`sidebar-bottom mt-auto px-3 pt-8 pb-1 ${drawer ? "" : "density:hidden"}`}
+      >
+        <span className="eyebrow uppercase text-muted-foreground font-semibold">
+          Project
+        </span>
+        <p className="my-2 text-secondary">
+          One vocabulary.
+          <br />
+          Clear relationships.
+        </p>
+        <span className="helper text-muted-foreground font-normal">
+          {project?.groups.length ?? 0} groups
+        </span>
+      </div>
+    </>
+  );
+}

@@ -1,0 +1,11 @@
+### Result
+{"button":[44,44],"icon":[22,22]}
+### Ran Playwright code
+```js
+await (async page=>{ await page.setViewportSize({width:768,height:900}); await page.goto("http://127.0.0.1:5173"); await page.getByRole("button",{name:"Create project",exact:true}).click(); const b=page.getByRole("button",{name:"Open project navigation",exact:true}); const dimensions=await b.evaluate(e=>({button:[e.getBoundingClientRect().width,e.getBoundingClientRect().height],icon:[e.querySelector("svg").getBoundingClientRect().width,e.querySelector("svg").getBoundingClientRect().height]})); if(dimensions.icon[0]!==22||dimensions.icon[1]!==22||dimensions.button[0]!==44||dimensions.button[1]!==44)throw Error(JSON.stringify(dimensions)); await b.click();await page.getByRole("dialog",{name:"Project navigation"}).waitFor();await page.keyboard.press("Escape");return dimensions;})(page);
+```
+### Page
+- Page URL: http://127.0.0.1:5173/
+- Page Title: Design Token Workbench
+### Events
+- New console entries: .playwright-cli/console-2026-11-08T18-20-33-343Z.log#L12

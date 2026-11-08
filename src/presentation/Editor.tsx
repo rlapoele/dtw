@@ -1,3 +1,7 @@
+import { Swatch } from "@presentation/components/swatch";
+import { InspectionTabs } from "@presentation/components/inspection-tabs";
+import { Badge } from "@presentation/components/badge";
+import { Field } from "@presentation/components/field";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Tabs } from "@base-ui/react/tabs";
 import { createColorLiteral } from "@domain/color-literal";
@@ -22,16 +26,6 @@ export type Feedback = {
   appliedMessage: string;
   draftMessage: string;
 };
-export function Swatch({ css }: { css?: string }) {
-  return (
-    <span
-      className={`swatch ${css ? "" : "swatch-unavailable"}`}
-      aria-hidden="true"
-    >
-      <span style={{ background: css }} />
-    </span>
-  );
-}
 export function Editor({
   inspection: i,
   project,
@@ -139,40 +133,44 @@ export function Editor({
   }
   return (
     <aside
-      className="inspector"
+      className="inspector small:min-h-0 flex min-w-0 min-h-full flex-col bg-surface"
       aria-label="Selected token"
       hidden={readUnavailable}
     >
-      <div className="inspector-heading">
-        <span className="eyebrow">
+      <div className="inspector-heading source-compact:p-5 bg-surface">
+        <span className="eyebrow uppercase text-muted-foreground font-semibold">
           {token.definition?.type ?? "Unassigned"} token
         </span>
-        <h2>{pathLabel(i.path)}</h2>
-        <p>{token.description ?? "No description"}</p>
+        <h2 className="wrap-anywhere">{pathLabel(i.path)}</h2>
+        <p className="text-caption text-muted-foreground wrap-anywhere">
+          {token.description ?? "No description"}
+        </p>
         <div className="flex gap-2 mt-3">
-          <span className="badge">{token.layer ?? "Unspecified layer"}</span>
-          <span className="badge">
-            {editable ? "Unconditional" : "Inspection only"}
-          </span>
+          <Badge>{token.layer ?? "Unspecified layer"}</Badge>
+          <Badge>{editable ? "Unconditional" : "Inspection only"}</Badge>
         </div>
-        <p className="helper mono break-words">Token {token.id}</p>
+        <p className="helper text-caption text-muted-foreground font-normal mono break-words">
+          Token {token.id}
+        </p>
       </div>
       <Tabs.Root value={tab} onValueChange={setTab}>
-        <Tabs.List className="tabs" aria-label="Token inspection">
-          <Tabs.Tab value="authored">Authored value</Tabs.Tab>
-          <Tabs.Tab value="resolved">Resolved &amp; trace</Tabs.Tab>
-        </Tabs.List>
-        <Tabs.Panel value="authored" className="editor-body">
+        <InspectionTabs />
+        <Tabs.Panel
+          value="authored"
+          className="editor-body source-compact:p-5 bg-surface p-6"
+        >
           {editable ? (
             <>
-              <div className="section-title">
+              <div className="section-title flex items-center justify-between mb-5">
                 <h3>Value</h3>
-                {dirty && <span className="badge">Draft</span>}
+                {dirty && <Badge>Draft</Badge>}
               </div>
               <fieldset>
                 <legend>Value source</legend>
-                <div className="mode-switch">
+                <div className="mode-switch border border-border bg-mode flex p-0.75 rounded-md gap-0.75">
                   <Button
+                    variant="mode"
+                    size="mode"
                     ref={modeRef}
                     aria-pressed={session.mode === "literal"}
                     onClick={() => {
@@ -183,6 +181,8 @@ export function Editor({
                     Literal color
                   </Button>
                   <Button
+                    variant="mode"
+                    size="mode"
                     aria-pressed={session.mode === "reference"}
                     onClick={() => {
                       setSession({ ...session, mode: "reference" });
@@ -205,7 +205,7 @@ export function Editor({
                 />
               ) : (
                 <>
-                  <label className="field">
+                  <Field>
                     Target token
                     <Select
                       value={session.reference}
@@ -237,21 +237,24 @@ export function Editor({
                           </option>
                         ))}
                     </Select>
-                  </label>
-                  <p id="reference-note" className="helper">
+                  </Field>
+                  <p
+                    id="reference-note"
+                    className="helper text-muted-foreground font-normal"
+                  >
                     Whole color value. Alias chains remain linked by identity;
                     cycles are rejected on Apply.
                   </p>
                 </>
               )}
-              <p className="helper preview-detail">
+              <p className="helper text-muted-foreground font-normal preview-detail mt-3 wrap-anywhere">
                 Draft preview: {draft.message}
               </p>
               {error ? (
                 <p
                   ref={errorRef}
                   tabIndex={-1}
-                  className="error"
+                  className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
                   id="editor-error"
                   role="alert"
                 >
@@ -260,7 +263,7 @@ export function Editor({
               ) : (
                 <span id="editor-error" />
               )}
-              <div className="editor-actions">
+              <div className="editor-actions sticky z-1 flex justify-end gap-2 mt-5.5 mb-2.5 border-t border-border bg-surface py-3">
                 <Button disabled={!dirty} onClick={cancel}>
                   Cancel
                 </Button>
@@ -272,7 +275,10 @@ export function Editor({
                   Apply changes
                 </Button>
               </div>
-              <p className="helper" role="status">
+              <p
+                className="helper text-muted-foreground font-normal"
+                role="status"
+              >
                 {notice ||
                   (dirty
                     ? "Changes are not applied yet."
@@ -280,66 +286,86 @@ export function Editor({
               </p>
             </>
           ) : (
-            <p className="error">
+            <p className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4">
               Inspection only: this token is outside the unconditional
               primitive/semantic color revision flow. Its data is retained.
             </p>
           )}
-          <section className="applied-summary">
-            <h3>Currently applied</h3>
-            <pre className="exact-data">{JSON.stringify(value, null, 2)}</pre>
+          <section className="applied-summary border-t border-border mt-7 pt-5">
+            <h3 className="mb-3.5">Currently applied</h3>
+            <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
+              {JSON.stringify(value, null, 2)}
+            </pre>
           </section>
-          <section className="applied-summary">
-            <h3>Metadata · read only</h3>
+          <section className="applied-summary border-t border-border mt-7 pt-5">
+            <h3 className="mb-3.5">Metadata · read only</h3>
             <dl className="details">
-              <div>
-                <dt>Regeneration</dt>
-                <dd>{token.authoring.regeneration}</dd>
+              <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+                <dt className="text-muted-foreground">Regeneration</dt>
+                <dd className="text-right wrap-anywhere">
+                  {token.authoring.regeneration}
+                </dd>
               </div>
-              <div>
-                <dt>Semantic role</dt>
-                <dd>{token.semanticRole ?? "Unspecified"}</dd>
+              <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+                <dt className="text-muted-foreground">Semantic role</dt>
+                <dd className="text-right wrap-anywhere">
+                  {token.semanticRole ?? "Unspecified"}
+                </dd>
               </div>
-              <div>
-                <dt>Parent group ID</dt>
-                <dd>{token.parentGroupId ?? "Project root"}</dd>
+              <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+                <dt className="text-muted-foreground">Parent group ID</dt>
+                <dd className="text-right wrap-anywhere">
+                  {token.parentGroupId ?? "Project root"}
+                </dd>
               </div>
             </dl>
             <details>
               <summary>All authored data</summary>
-              <pre className="exact-data">{JSON.stringify(token, null, 2)}</pre>
+              <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
+                {JSON.stringify(token, null, 2)}
+              </pre>
             </details>
           </section>
         </Tabs.Panel>
-        <Tabs.Panel value="resolved" className="editor-body">
-          <div className="section-title resolved-heading">
+        <Tabs.Panel
+          value="resolved"
+          className="editor-body source-compact:p-5 bg-surface p-6"
+        >
+          <div className="section-title flex items-center justify-between mb-5 resolved-heading flex-wrap justify-start gap-2">
             <h3>Resolved value</h3>
-            <span className="badge">Applied value</span>
+            <Badge>Applied value</Badge>
           </div>
-          <div className="resolved-preview">
+          <div className="resolved-preview flex flex-col items-stretch gap-2 my-5.5">
             <Swatch css={applied.css} />
-            <p className="helper">{applied.message}</p>
+            <p className="helper text-muted-foreground font-normal">
+              {applied.message}
+            </p>
           </div>
           {i.resolution.status === "resolved" ? (
-            <pre className="exact-data">
+            <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
               {JSON.stringify(i.resolution.value, null, 2)}
             </pre>
           ) : (
-            <p className="error" role="status">
+            <p
+              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+              role="status"
+            >
               Unresolved: {i.resolution.reason}. Authored data retained.
             </p>
           )}
-          <h3 className="trace-heading">Resolution trace</h3>
-          <ol className="trace">
+          <h3 className="trace-heading mt-7">Resolution trace</h3>
+          <ol className="trace list-none mt-4.5 mb-6 p-0">
             {i.resolution.trace.map((step, index) => {
               const t = project.tokens.find(
                 (t) => t.authored.id === step.tokenId,
               );
               return (
-                <li key={index}>
-                  <span className="trace-dot" />
-                  <strong>{t ? pathLabel(t.path) : step.tokenId}</strong>
-                  <small className="mono">
+                <li className="relative pb-6 pl-6" key={index}>
+                  <span className="trace-dot size-2.75 left-0 top-1 border-2 border-trace bg-background absolute rounded-full" />
+                  <strong className="block text-caption font-medium wrap-anywhere">
+                    {t ? pathLabel(t.path) : step.tokenId}
+                  </strong>
+                  <small className="mono block mt-1 text-muted-foreground">
                     {step.tokenId}
                     {step.targetTokenId
                       ? ` → ${step.targetTokenId}`
@@ -350,12 +376,12 @@ export function Editor({
             })}
           </ol>
           <h3>Resolution diagnostics</h3>
-          <pre className="exact-data">
+          <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
             {JSON.stringify(i.resolution.diagnostics, null, 2)}
           </pre>
         </Tabs.Panel>
       </Tabs.Root>
-      <div className="inspector-foot">
+      <div className="inspector-foot density:mt-5 small:mt-0 border-t border-border bg-surface px-6 py-4 mt-auto flex justify-between text-muted-foreground">
         <span>Regeneration</span>
         <span>{token.authoring.regeneration}</span>
       </div>

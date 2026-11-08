@@ -1,0 +1,9 @@
+### Result
+{"innerWidth":720,"innerHeight":450,"dpr":2,"scale":1,"scrollWidth":720}
+### Ran Playwright code
+```js
+await (async page => { await page.getByRole('combobox',{name:'Page zoom',exact:true}).selectOption({label:'200%'}); await page.screenshot({path:'output/playwright/increment-004-refactor/final-realzoom-settings.png'}); await page.goto('http://127.0.0.1:4184'); return await page.evaluate(()=>({innerWidth,innerHeight,dpr:devicePixelRatio,scale:visualViewport.scale,scrollWidth:document.documentElement.scrollWidth})); })(page);
+```
+### Page
+- Page URL: http://127.0.0.1:4184/
+- Page Title: Design Token Workbench

@@ -1,0 +1,33 @@
+async page => {
+ await page.setViewportSize({width:1440,height:900});
+ await page.goto('http://127.0.0.1:5173/test/browser/fixture.html');
+ const button=(name)=>page.getByRole('button',{name,exact:true});
+ const row=name=>page.locator('.token-row').filter({has:page.locator('.token-identity strong',{hasText:name})});
+ await button('New group').click();await page.getByLabel('Name',{exact:true}).fill('retained-group');
+ await page.evaluate(()=>window.dtwFixture.failCommit(true));await button('Create').click();
+ await page.getByRole('alert').filter({hasText:'Create group failed'}).waitFor();
+ if(await page.getByLabel('Name',{exact:true}).inputValue()!=='retained-group')throw Error('Group draft lost');
+ await page.evaluate(()=>window.dtwFixture.failCommit(false));await button('Create').click();
+ const original=await page.evaluate(()=>window.dtwFixture.snapshot());const id=original.value.groups[0].id;
+ await button('Rename group').click();await page.getByLabel('Name',{exact:true}).fill('renamed-group');
+ await page.evaluate(()=>window.dtwFixture.failCommit(true));await button('Rename group').last().click();
+ await page.getByRole('alert').filter({hasText:'Rename failed'}).waitFor();
+ if(await page.getByLabel('Name',{exact:true}).inputValue()!=='renamed-group')throw Error('Rename draft lost');
+ await page.evaluate(()=>window.dtwFixture.failCommit(false));await button('Rename group').last().click();
+ const renamed=await page.evaluate(()=>window.dtwFixture.snapshot());if(renamed.value.groups[0].id!==id||renamed.value.groups[0].localName!=='renamed-group')throw Error('Group identity changed');
+ await page.getByRole('button').filter({hasText:'All tokens'}).first().click();await row('protected-color').click();
+ await page.locator('#token-inspector-content').evaluate(e=>e.scrollTop=240);
+ const scroll=await page.locator('#token-inspector-content').evaluate(e=>e.scrollTop);
+ await button('Collapse token inspector').click();await button('Expand token inspector').click();
+ if(await page.locator('#token-inspector-content').evaluate(e=>e.scrollTop)!==scroll)throw Error('Inspector reopen lost scroll');
+ await page.getByRole('searchbox').fill('alias');
+ await button('Show selected token').click();
+ if(await page.getByRole('searchbox').inputValue()!=='')throw Error('Selected reveal kept filter');
+ await page.waitForFunction(()=>document.activeElement?.matches('.token-row[aria-pressed=true]'));
+ await row('alias').click();
+ if(await page.locator('#token-inspector-content').evaluate(e=>e.scrollTop)!==0)throw Error('New selection did not reset scroll');
+ await button('Literal color').click();await page.getByLabel('Red',{exact:true}).fill('0.7');
+ await row('protected-color').click();await button('Discard draft').click();
+ if(await page.getByLabel('Red',{exact:true}).inputValue()!=='0.2')throw Error('Accepted departure failed');
+ return 'PASS group/create/rename failure retention; stable group identity; selection/filter focus; inspector scroll restore/reset; accepted dirty departure';
+}

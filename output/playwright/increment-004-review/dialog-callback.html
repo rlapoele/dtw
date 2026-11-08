@@ -1,0 +1,10 @@
+<!doctype html><html><body><div id="root"></div><script type="module">
+import React from '/node_modules/.vite/deps/react.js';
+import client from '/node_modules/.vite/deps/react-dom_client.js';
+const {createRoot}=client;
+import {Dialog} from '/node_modules/.vite/deps/@base-ui_react_dialog.js?v=e3db6452';
+import {DialogContent} from '/src/presentation/components/dialog-content.tsx';
+import '/src/presentation/styles.css';
+window.callbackCalls=0;
+createRoot(document.getElementById('root')).render(React.createElement(Dialog.Root,{open:true},React.createElement(DialogContent,{className:state=>{window.callbackCalls++;return 'review-callback';}},React.createElement(Dialog.Title,null,'Review callback'),React.createElement(Dialog.Description,null,'Callback acceptance'))));
+</script></body></html>

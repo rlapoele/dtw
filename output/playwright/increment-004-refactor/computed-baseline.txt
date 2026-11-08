@@ -1,0 +1,168 @@
+### Result
+[
+  {
+    "text": "Project groups",
+    "class": "button h-8 px-3 inline-flex items-center justify-center gap-2 rounded-md text-xs font-medium border border-transparent hover:bg-muted pane-toggle sidebar-toggle",
+    "height": "44px",
+    "padding": "0px 16px",
+    "font": "11px / 16.5px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "All tokens1",
+    "class": "button h-8 px-3 inline-flex items-center justify-center gap-2 rounded-md text-xs font-medium border border-transparent hover:bg-muted nav-item active",
+    "height": "36px",
+    "padding": "0px 12px",
+    "font": "600 12px / 18px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "New group",
+    "class": "button h-8 px-3 inline-flex items-center justify-center gap-2 rounded-md text-xs font-medium border border-transparent hover:bg-muted nav-item add-group",
+    "height": "36px",
+    "padding": "0px 12px",
+    "font": "12px / 18px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "New token",
+    "class": "button h-8 px-3 inline-flex items-center justify-center gap-2 rounded-md text-xs font-medium border bg-primary text-primary-foreground border-primary ",
+    "height": "32px",
+    "padding": "0px 12px",
+    "font": "13px / 19.5px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "",
+    "class": "",
+    "height": "34px",
+    "padding": "0px 10px 0px 34px",
+    "font": "12px / 18px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "primaryUnspecified · color · 2bb12e15-9982-4a4b-b3a8-060895c5e423srgb0 · 0 · 0",
+    "class": "token-row selected",
+    "height": "76px",
+    "padding": "12px",
+    "font": "13px / 19.5px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "",
+    "class": "button h-8 px-3 inline-flex items-center justify-center gap-2 rounded-md text-xs font-medium border border-transparent hover:bg-muted pane-toggle inspector-toggle",
+    "height": "44px",
+    "padding": "0px",
+    "font": "11px / 16.5px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "Authored value",
+    "class": "",
+    "height": "42px",
+    "padding": "0px",
+    "font": "600 11px / 16.5px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "Resolved & trace",
+    "class": "",
+    "height": "42px",
+    "padding": "0px",
+    "font": "11px / 16.5px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "Literal color",
+    "class": "button h-8 px-3 inline-flex items-center justify-center gap-2 rounded-md text-xs font-medium border border-border bg-background hover:bg-muted ",
+    "height": "32px",
+    "padding": "0px 12px",
+    "font": "11px / 16.5px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "Reference",
+    "class": "button h-8 px-3 inline-flex items-center justify-center gap-2 rounded-md text-xs font-medium border border-border bg-background hover:bg-muted ",
+    "height": "32px",
+    "padding": "0px 12px",
+    "font": "11px / 16.5px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "sRGBDisplay P3HSLOKLABOKLCH",
+    "class": "",
+    "height": "40px",
+    "padding": "0px 38px 0px 10px",
+    "font": "500 12px / 18px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "Normalized · 0–10–255 scale",
+    "class": "",
+    "height": "40px",
+    "padding": "0px 38px 0px 10px",
+    "font": "500 12px / 18px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "",
+    "class": "",
+    "height": "40px",
+    "padding": "0px 10px",
+    "font": "500 12px / 18px SFMono-Regular, Consolas, monospace"
+  },
+  {
+    "text": "",
+    "class": "component-range",
+    "height": "40px",
+    "padding": "0px",
+    "font": "13px / 19.5px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "",
+    "class": "",
+    "height": "40px",
+    "padding": "0px 10px",
+    "font": "500 12px / 18px SFMono-Regular, Consolas, monospace"
+  },
+  {
+    "text": "",
+    "class": "component-range",
+    "height": "40px",
+    "padding": "0px",
+    "font": "13px / 19.5px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "",
+    "class": "",
+    "height": "40px",
+    "padding": "0px 10px",
+    "font": "500 12px / 18px SFMono-Regular, Consolas, monospace"
+  },
+  {
+    "text": "",
+    "class": "component-range",
+    "height": "40px",
+    "padding": "0px",
+    "font": "13px / 19.5px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "",
+    "class": "",
+    "height": "40px",
+    "padding": "0px 10px",
+    "font": "500 12px / 18px SFMono-Regular, Consolas, monospace"
+  },
+  {
+    "text": "",
+    "class": "component-range alpha-range",
+    "height": "40px",
+    "padding": "0px",
+    "font": "13px / 19.5px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "Cancel",
+    "class": "button h-8 px-3 inline-flex items-center justify-center gap-2 rounded-md text-xs font-medium border border-border bg-background hover:bg-muted ",
+    "height": "32px",
+    "padding": "0px 12px",
+    "font": "13px / 19.5px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  },
+  {
+    "text": "Apply changes",
+    "class": "button h-8 px-3 inline-flex items-center justify-center gap-2 rounded-md text-xs font-medium border bg-primary text-primary-foreground border-primary ",
+    "height": "32px",
+    "padding": "0px 12px",
+    "font": "13px / 19.5px Inter, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif"
+  }
+]
+### Ran Playwright code
+```js
+await page.evaluate('() => (Array.from(document.querySelectorAll("button,input,select")).map(e=>{const s=getComputedStyle(e);return {text:e.textContent,class:e.className,height:s.height,padding:s.padding,font:s.font}}))');
+```
