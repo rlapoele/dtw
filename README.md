@@ -8,29 +8,36 @@ The accepted [visual direction and reference image](docs/project/visual-directio
 
 Substantial increments use separate analyst, developer, and reviewer agents with an agreed contract and acceptance evidence. A designer joins for substantial interaction or interface decisions: the user reviews and requests changes to design proposals before analyst review, then agrees the resulting contract and design before authorizing implementation. See the [workflow and role instructions](docs/workflow/agent-roles.md), [increment templates](docs/increments/README.md), and [Increment 001 contract](docs/increments/001-in-memory-authoring-workflow.md).
 
-## Development scaffold and domain core
+## Browser authoring and domain core
 
-The scaffold uses TypeScript, Vite, Vitest, and npm. Dependencies are development-only and `package-lock.json` records their resolved versions. The host-independent domain code implements exact canonical Decimal validation and comparison; boolean, number, dimension, percentage, duration, font family, font weight, color, and cubic Bézier literal construction; variation axes, conditions, selection completion, assignment matching, and theme presets; the core `Project` entity and initial `Token` aggregate lifecycle; namespace groups, structural validation, and path derivation; stable-ID token references with project-scoped validation; and literal, alias, and portable number/dimension expression resolution. Token assignments accept the implemented literal subset, references, portable expressions, and the transition, typography, and shadow composites. Shared application operations now provide a narrow in-memory color-authoring workflow; there is no web entry point or durable storage yet.
+The scaffold uses TypeScript, Vite, Vitest, and npm. The browser renderer uses React, Base UI, Tailwind and Heroicons; pure bounded color calculations use Culori. `package-lock.json` records exact resolved versions. The host-independent domain code implements exact canonical Decimal validation and comparison; boolean, number, dimension, percentage, duration, font family, font weight, color, and cubic Bézier literal construction; variation axes, conditions, selection completion, assignment matching, and theme presets; the core `Project` entity and initial `Token` aggregate lifecycle; namespace groups, structural validation, and path derivation; stable-ID token references with project-scoped validation; and literal, alias, and portable number/dimension expression resolution. Token assignments accept the implemented literal subset, references, portable expressions, and the transition, typography, and shadow composites. Shared application operations now provide a narrow in-memory color-authoring workflow; the browser now exposes those operations through a session-only color-authoring interface. There is no durable storage.
 
 The scaffold was verified using Node.js `24.14.1` and npm `11.17.0`, satisfying the installed development tools' engine requirements. Vite `8.3.5` and Vitest `5.0.5` were verified with this runtime on 27 October 2026. Install the locked dependencies with `npm ci`.
 
 - `src/domain/` contains host-independent domain entities, value objects, and validation.
 - `src/application/` coordinates authoring through an explicit project storage port.
 - `src/adapters/` contains the in-memory project storage adapter.
-- `test/domain/`, `test/application/`, and `test/adapters/` contain tests named `*.test.ts`.
+- `src/delivery/` contains the React renderer, disposable specimens and independent delivery drafts.
+- `test/domain/`, `test/application/`, `test/adapters/` and `test/delivery/` contain tests named `*.test.ts`.
 
 | Command | Purpose |
 |---|---|
-| `npm run typecheck` | Check source and test types with TypeScript |
+| `npm run typecheck` | Check host-independent source/tests, then browser/TSX types separately |
 | `npm test` | Run Vitest once |
 | `npm run test:watch` | Run Vitest in watch mode |
-| `npm run dev` | Start the Vite development server when a web entry point is added |
-| `npm run build` | Check types, then build with Vite when an entry point is added |
+| `npm run dev -- --host 127.0.0.1` | Open the session-only browser authoring app |
+| `npm run build` | Check both type scopes, then build the browser app |
 | `npm run preview` | Preview an existing Vite production build |
 
-The TypeScript configuration enables strict checking and includes `src/**/*.ts` and `test/**/*.ts`. Its default environment excludes browser and Node global types to keep the domain code independent of either host. Dependency declaration checking is skipped because the Vite and Vitest declarations reference host event types that are intentionally absent; project source and tests remain strictly checked. Vitest uses its default Node test environment.
+Both TypeScript configurations enable strict checking. The base configuration includes domain/application/adapters and pure tests, excluding the UI; `tsconfig.delivery.json` adds browser libraries and JSX for delivery and the isolated browser fixture. Its default environment excludes browser and Node global types to keep the domain code independent of either host. Dependency declaration checking is skipped because the Vite and Vitest declarations reference host event types that are intentionally absent; project source and tests remain strictly checked. Vitest uses its default Node test environment and explicitly includes `test/**/*.test.ts`; historical isolated prototype tests keep their own package and runner.
 
-Type checking and tests validate the domain core and in-memory authoring workflow. Building still requires a Vite entry point, and preview requires generated output.
+Start from an empty page, create a project (including an exact empty name), organize root/nested groups, and create a disclosed opaque-black Color token. Revise exact literals or explicitly replace them with ID-linked references. Apply is explicit; mode switches and passive color-space exploration retain independent drafts. Reloading, closing or leaving loses all project data. No browser persistence or project network service is used. This is not the complete PWA: retention/backup, interchange, install/offline and Electron remain deferred.
+
+Calculated representations are approximate and can be unavailable. Direct canonical Decimal entry and alpha remain exact; Culori `4.0.2` is bounded by the [agreed numerical policy](docs/increments/003-color-policy-proposal.md). No authored gamut mapping or clamping occurs. The known exceptional tiny-red → HSL defect safely returns numerical unavailability with source intact. Mixing, gradients, HEX and a two-dimensional picker are outside this increment.
+
+Build before `npm run preview -- --host 127.0.0.1 --port 4173 --strictPort`. The production entry always starts empty. For acceptance testing only, the development server also serves `http://127.0.0.1:5173/test/browser/fixture.html` (append `?broken=true` for two retained missing references). This explicit test entry injects controlled storage failures, protected metadata and an inspect-only Number; it is excluded from the production build and is not a loader/import API. Its `window.dtwFixture` test controls are documented in [implementation evidence](output/playwright/increment-003-implementation/observations.md).
+
+The [implementation evidence](output/playwright/increment-003-implementation/observations.md) records dependency provenance/licenses, independent numerical fixtures, browser checks and coverage limits. The test reference JSON is copied unchanged from the frozen high-precision CSS Color 4 research fixture; the tests do not use Culori output as their expected oracle.
 
 ## In-memory application authoring
 

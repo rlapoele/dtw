@@ -317,33 +317,33 @@ Only packages and applications required by current work should be created. The P
 
 Start domain implementation in TypeScript with strict type checking, Vite for build tooling, Vitest for unit tests, and npm for dependency management. The initial scaffold is a single private package with `src/` and `test/` directories. That original scaffold did not select a frontend framework, styling library, runtime-schema library, persistence adapter or domain schema. The later Increment 003 renderer selection below narrows delivery tooling only.
 
-Type checking runs separately through `tsc --noEmit`; Vite's TypeScript transformation does not replace it. Domain tests run in Vitest's Node environment while domain behavior remains independent of Node APIs, Electron, the browser, storage, and the network. See the repository [README](../../README.md) for executable commands and the remaining build/preview limitation: there is no web entry point yet.
+Type checking runs separately through `tsc --noEmit`; Vite's TypeScript transformation does not replace it. Domain tests run in Vitest's Node environment while domain behavior remains independent of Node APIs, Electron, the browser, storage, and the network. See the repository [README](../../README.md) for executable commands. Increment 003 now provides the session-only browser entry; host-independent checks remain separate from browser/TSX checks.
 
 ## Increment 003 renderer selection
 
-**Agreed delivery direction — 7 November 2026; not implemented**
+**Agreed delivery direction — 7 November 2026; implemented within Increment 003 on 8 November**
 
-The user selected React with strict TypeScript and Vite, Tailwind v4, locally owned shadcn/ui-style components based on Base UI, the neutral Precision visual direction and Heroicons Outline for the application renderer. This closes the frontend/component direction for the [bounded Increment 003 contract](../increments/003-visible-color-authoring.md); exact compatible dependency versions, integration, licenses and bundle effects still require verification. This renderer decision alone did not select a color-calculation library; the separate 8 November decision below selects Culori.
+The user selected React with strict TypeScript and Vite, Tailwind v4, locally owned shadcn/ui-style components based on Base UI, the neutral Precision visual direction and Heroicons Outline for the application renderer. This closes the frontend/component direction for the [bounded Increment 003 contract](../increments/003-visible-color-authoring.md); installed direct pins, declared licenses, type/build integration and measured bundle effects are recorded in its [completion report](../increments/003-visible-color-authoring.md#completion-report), with scoped browser/accessibility limits. This renderer decision alone did not select a color-calculation library; the separate 8 November decision below selects Culori.
 
 Keep the existing single package and scope TSX/browser types to delivery code. Domain/application checks remain host-independent. No router, general state-management library, backend or package split is introduced by this choice. The renderer consumes application operations rather than copying prototype namespace/reference semantics. Prototype code and dependency pins are exploratory evidence, not automatically approved for production reuse.
 
-Increment 003 remains session-only and does not complete the PWA. Retention/independent backup, interchange and install/offline acceptance remain later scoped work before the complete browser milestone and immediately following Electron validation. Neither this renderer decision nor the reconciled contract authorizes implementation.
+Increment 003 remains session-only and does not complete the PWA. Retention/independent backup, interchange and install/offline acceptance remain later scoped work before the complete browser milestone and immediately following Electron validation. The renderer decision alone did not authorize implementation; the user subsequently authorized Increment 003 implementation on 8 November under its agreed contract.
 
 ## Increment 003 color-calculation backend
 
-**Agreed backend direction and simpler numerical contract — 8 November 2026; not implemented**
+**Agreed backend direction and simpler numerical contract — 8 November 2026; implemented within Increment 003**
 
 The user selected Culori behind the domain's small pure calculation boundary under the [approved numerical amendment](../increments/003-color-policy-proposal.md#approved-numerical-amendment--8-november-2026). DTW retains exact canonical strings, alpha, identity/passive-view preservation, units, missing/neutral eligibility, deterministic formatting, validation and safe failure handling; Culori supplies approximate conversions. Domain/application code remains independent of renderer, browser, Node, filesystem and host APIs. No registry, package split, custom conversion equations or arbitrary-precision backend is planned.
 
-Culori `4.0.2` is the independently measured qualification baseline, not a claim about the latest release or an installed production pin. Exact production pinning, package compatibility, license/provenance, selective imports/bundle effects and Node/browser integration remain verification work. The boundary-only numerical contract replaces internal-stage magnitude, underflow and cancellation certification; it does not weaken exact authored-data preservation or authorize hidden gamut mapping/clamping. The known exceptional tiny-red→HSL defect is handled as an unavailable representation with source/drafts intact, not silently corrected or claimed fixed. Future mixing/gradient semantics remain separately scoped.
+Culori `4.0.2` is both the independently measured qualification baseline and installed application pin, with `@types/culori` `4.0.1`. Package integrity, declared licenses, selective imports/bundle effects and scoped Node/browser integration are recorded in the [completion report](../increments/003-visible-color-authoring.md#completion-report); this is not a latest-version or universal compatibility claim. The boundary-only numerical contract replaces internal-stage magnitude, underflow and cancellation certification; it does not weaken exact authored-data preservation or authorize hidden gamut mapping/clamping. The known exceptional tiny-red→HSL defect is handled as an unavailable representation with source/drafts intact, not silently corrected or claimed fixed. Future mixing/gradient semantics remain separately scoped.
 
-This records approved direction only. No source, dependency or lockfile change, installation or application/prototype implementation is authorized.
+The direction approval alone did not authorize implementation. After technical preparation, the user explicitly authorized Increment 003 implementation on 8 November, including necessary application, dependency and lockfile changes under the agreed contract. This does not authorize broader host/storage/interchange scope or rewriting historical prototype/research artifacts.
 
 ## Remaining open choices
 
 This direction does not yet select:
 
-- exact compatible versions/integration of the selected Increment 003 renderer and component tooling;
+- future upgrades or broader browser qualification beyond the installed Increment 003 renderer/component pins and scoped evidence;
 - canonical persistence format or database;
 - any future monorepo topology or package split beyond the initial single-package scaffold;
 - exact RPC contract library or runtime-schema library;

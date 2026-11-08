@@ -1,14 +1,15 @@
 # Increment 003: Visible color authoring
 
 - Contract status: Agreed
-- Review state: V6 and creation disclosure approved 7 November; simpler numerical contract and Culori direction approved 8 November 2026
-- Delivery status: Not started
-- Agreement: D1–D3 agreed on 3 November 2026; the bounded numerical bundle amending D2 agreed on 5 November. On 7 November the user approved V6 for analyst review, then explicitly adopted the recommended production stack and the initial black literal disclosed before Create, and requested reconciliation with V6. The user subsequently approved this updated agreement and creation disclosure. The 7 November approved text is the reconciliation committed as `14b2783a872accb4264965976d24c14a40406ddb`, including the identified V6 design and written creation supplement. Application implementation is expressly unauthorized. The simpler numerical amendment and Culori direction were approved on 8 November 2026; integration and remaining numerical/browser gates stay open. No application implementation or dependency installation is authorized.
+- Review state: V6/creation disclosure and simpler numerical contract agreed; implementation independently reviewed, R1 corrected and rechecked — 8 November 2026
+- Delivery status: Completed
+- Implementation authorization: On 8 November 2026 the user said, “Go ahead with the implementation of this increment.” This authorizes the agreed Increment 003 application, necessary production dependencies/configuration and verification under the [technical preparation plan](003-technical-preparation-plan.md). Historical preparation-only prohibitions below describe their dated phase and are superseded for this implementation. It does not authorize broader product scope, staging, commits or pushes.
+- Agreement: D1–D3 agreed on 3 November 2026; the bounded numerical bundle amending D2 agreed on 5 November. On 7 November the user approved V6 for analyst review, then explicitly adopted the recommended production stack and the initial black literal disclosed before Create, and requested reconciliation with V6. The user subsequently approved this updated agreement and creation disclosure. The 7 November approved text is the reconciliation committed as `14b2783a872accb4264965976d24c14a40406ddb`, including the identified V6 design and written creation supplement. Implementation was not authorized by that approval alone. The simpler numerical amendment and Culori direction were approved on 8 November 2026; integration and remaining numerical/browser gates stay open. The subsequent implementation authorization above now permits necessary delivery/dependency work.
 - References: [vision](../project/vision.md), [initial project experience](../project/product-concept.md#initial-project-experience), [principles](../project/principles.md), [architecture](../project/architecture.md#initial-web-host-and-desktop-host), [visual direction](../project/visual-direction.md), [authored values](../design-tokens/conceptual-model.md#authored-values-and-assignments), [references](../design-tokens/conceptual-model.md#tokenreference), [color literals](../design-tokens/conceptual-model.md#color-literals), [interoperability](../design-tokens/interoperability.md), [taxonomy](../design-tokens/taxonomy.md), [glossary](../design-tokens/glossary.md), [open questions](../planning/open-questions.md#decision-priorities), completed [001](001-in-memory-authoring-workflow.md) and [002](002-color-value-revision.md), [agent workflow](../workflow/agent-roles.md).
 
 ## Outcome
 
-**Reconciliation — 7 November 2026:** this is the updated agreement text requested after the [V6 analyst review](003-v6-analyst-review.md), based on [V6](../../prototypes/increment-003-v1/DESIGN-V6.md) at `c5adac537f1cfdf962fec25e8ffe49f62df70403`. The production stack and disclosed black creation value are agreed subdecisions. View-only exploration, separate drafts, component sliders, responsive behavior and the wide collapsed-rail exception are reconciled below with the [numerical bundle](003-color-policy-proposal.md); its numerical provisions now include the approved 8 November amendment below. The [written creation supplement](#written-design-supplement-initial-literal-before-create) is part of the agreed design and is not a claim that the current prototype renders the disclosure. The user approved this identified contract, V6 design and supplement on 7 November 2026. This does not authorize implementation or establish verification results. Delivery is Not started; do not begin application implementation.
+**Reconciliation — 7 November 2026:** this is the updated agreement text requested after the [V6 analyst review](003-v6-analyst-review.md), based on [V6](../../prototypes/increment-003-v1/DESIGN-V6.md) at `c5adac537f1cfdf962fec25e8ffe49f62df70403`. The production stack and disclosed black creation value are agreed subdecisions. View-only exploration, separate drafts, component sliders, responsive behavior and the wide collapsed-rail exception are reconciled below with the [numerical bundle](003-color-policy-proposal.md); its numerical provisions now include the approved 8 November amendment below. The [written creation supplement](#written-design-supplement-initial-literal-before-create) is part of the agreed design and is not a claim that the current prototype renders the disclosure. The user approved this identified contract, V6 design and supplement on 7 November 2026. This does not authorize implementation or establish verification results. Delivery is now Completed under the subsequent explicit implementation authorization and completion evidence below.
 
 Let a design-system author create a project, organize a small color vocabulary, author a primitive and semantic alias, revise their values, and understand the resulting relationship through a desktop-oriented browser interface.
 
@@ -78,7 +79,7 @@ The user approved the simpler numerical proposal and Culori direction, then auth
 - Keep authored gamut mapping/clamping prohibited and the display-only preview `1e-10` allowance unchanged. Failures preserve applied/source/draft data. Ordinary representative palette and boundary fixtures must succeed; no success guarantee is made for every source under the service cap. Culori's known sRGB `[0.000000000000001, 0, 0]` → HSL defect may initially return an unavailable representation safely. It is still a real defect, not a fixed/passing conversion or permission for a silent clamp.
 - Select Culori behind a small owned policy boundary. Version `4.0.2` is the measured qualification baseline; eventual production pinning, compatibility, license/provenance, import/bundle and browser integration remain checks. No owned conversion equations, arbitrary-precision backend or internal-stage certification is planned. Mixing/gradient operation semantics remain future scope.
 
-The proposed representative numerical thresholds remain engineering checks, not universal all-input guarantees. Earlier frozen reports and reviews remain historical evidence under their stricter contract; their named-stage/cancellation and owned-kernel proposals are superseded, not pending decisions. Delivery remains Not started. No application/prototype implementation, installation or production dependency change is authorized.
+The proposed representative numerical thresholds remain engineering checks, not universal all-input guarantees. Earlier frozen reports and reviews remain historical evidence under their stricter contract; their named-stage/cancellation and owned-kernel proposals are superseded, not pending decisions. The amendment initially authorized documentation only. The later explicit implementation authorization above starts delivery and permits necessary dependencies; prototype and frozen research remain historical artifacts.
 
 ### Identified V6 design and draft-session behavior
 
@@ -319,3 +320,50 @@ Suggested commit message: `docs: record increment 003 V4 analyst review`.
 
 
 7 November 2026 — The user authorized the bounded intermediate-guard/cancellation investigation and requested evidence and recommendation, explicitly excluding application implementation and production dependency changes. This extends scratch research authority only; delivery remains Not started.
+
+
+## Completion report
+
+- Delivery status: **Completed**
+- Date: 8 November 2026
+- Reviewed snapshot: base `733db0c57027aa6d077edcc7e52f8ae0b2b30849` plus the uncommitted implementation and new files identified by the [final 29-file manifest](../../output/playwright/increment-003-implementation/review-snapshot-r1.sha256), SHA-256 `dbb28a443eae81bcf4712d0c49f15f441e215c7d16fcd7ac34f1af008dc40514`. The original 27-file manifest is retained separately. Coordinator completion/status edits are outside the implementation manifest; no staging, commits or pushes were performed.
+
+### Result
+
+Delivered the real session-only React browser authoring app using existing application operations and in-memory storage: project/root/nested groups and rename, disclosed opaque-black creation, exact literal and stable-ID reference revision, authored/resolved inspection, domain alias traces and diagnostics. V6 drafts, sliders, preview feedback, responsive panels, modal navigation and keyboard interactions are implemented. Culori supplies approximate conversion under the approved simpler numerical policy; exact byte arithmetic, canonical data, alpha and passive views remain project-owned. The historical prototype is not the application's data/operation implementation.
+
+### Acceptance evidence
+
+| Criterion | Evidence and result | Status |
+| --- | --- | --- |
+| AC-1 | Real creation/readback, exact empty names, root/nested groups, rename preserving UUIDs, ID labels and initial-value disclosure; independent browser checks and application suites. | Verified in scope |
+| AC-2 | Actual literal/reference operations, ordered domain resolution trace, indirect/self-cycle refusal and dependent refresh; no flattened authored aliases. | Verified in scope |
+| AC-3 | Independent 180-case reference data across 25 pairs, exact/18-digit byte and 12-digit formatter tests, Node/browser numerical checks, exact passive views and real Apply readback; R1 exact visual-interval correction independently rechecked. | Verified in scope |
+| AC-4 | Actual namespace/reference diagnostics, missing-target IDs, failed commit/read/create retention, protected metadata and blocked one-edit repair; controlled development-only fixture. | Verified in scope |
+| AC-5 | Independent Literal/Reference drafts, blank alias literal form, raw invalid bytes, alpha-only authorship, collapse, Apply/Cancel/departure and failed-operation nonmutation; browser and delivery tests. | Verified in scope |
+| AC-6 | Default empty entry, persistent session-loss disclosure, reload opens empty; source inspection and browser checks find no project persistence/network service. | Verified in scope |
+| AC-7 | Scoped V6 designer check, desktop/tablet/320px/short-height checks, native keyboard/modal focus and error behavior, plus actual Chrome Page zoom 200% with independent zoom-state readback. Screen-reader/on-device coverage limits recorded below. | Verified in scope |
+| AC-8 | Separate strict host-independent and browser type scopes; real production build/preview; 894 tests in 32 files; selected dependency pins/integrity and declared licenses inspected; independent code/browser review. | Verified in scope |
+
+Detailed commands, fixture provenance, browser flows, screenshots and limitations are in the [implementation evidence](../../output/playwright/increment-003-implementation/observations.md) and [independent review](003-implementation-review.md). Reference test JSON has the same parsed independently computed data as the frozen research fixture; formatting differs. Earlier research and vendored/prototype files remain unchanged.
+
+### Checks and independent review
+
+- Fresh developer `/root/increment003_developer` implemented the agreed slices. Fresh reviewer `/root/increment003_reviewer` independently ran `npm run typecheck`, `npm test`, `npm run build` and `git diff --check`; all passed after R1. **894 tests / 32 files**; Node `24.14.1`, npm `11.17.0`, browser Chrome `156.0.0.0` on macOS.
+- Final production assets: JavaScript 388.07 kB / 121.03 kB gzip; CSS 39.93 kB / 8.95 kB gzip. No bundle-size threshold or universal runtime/numerical bound is claimed. `npm run preview -- --host 127.0.0.1 --port 4173 --strictPort` serves the production app; the separate failure fixture is development-only and excluded from that build.
+- Designer `/root/increment003_design_check` inspected actual screenshots and a separate live 320px flow against V6; no actionable fidelity regression. Actual-zoom screenshot review supplements live mobile checking; it is not a second complete independent zoom journey.
+- R1 (P2): exact values just outside visual ranges could round onto an endpoint when slider eligibility used Number. Added exact Decimal interval classification and seven meaningful regression tests; the independent reviewer rechecked RGB, alpha, raw bytes, hue and OKLAB bounds in production. **Resolved; no required findings remain.** No numerical or interaction agreement was weakened.
+- Actual 200% zoom used Chrome's Page zoom setting in a disposable persistent profile, not CSS/page-scale/viewport emulation: a fixed 1440×900 viewport produced a 720×450 CSS viewport, DPR 2 and no horizontal overflow. Creation, exact edits, error correction and panel/drawer controls were exercised; the reviewer independently verified the zoom state.
+- No unresolved review disagreement. Three historical numerical research manifests still verify; no frozen evidence was rewritten to imply new acceptance.
+
+### Decisions made
+
+The implementation follows the agreed React/Base UI/Tailwind/Heroicons renderer and Culori backend. Exact installed direct pins are in the root manifest/lockfile and implementation evidence. The separate development fixture and scoped type/test configurations are routine implementation choices, not a new persistence/import API, product feature or package topology. Future mixing/gradient semantics remain unselected.
+
+### Limits and remaining work
+
+This is the bounded session-only slice, not a complete PWA or durable workbench. Reloading, closing or leaving discards data; no save/backup, interchange, offline/install, Electron, concurrent editing or mixing/gradient feature is delivered. The exceptional tiny-red HSL defect remains an explicit safe unavailable result, not a library fix. Browser specimens are illustrative, not calibrated or color-management conformance. No screen-reader session or physical mobile touch/virtual-keyboard session was performed; automated keyboard/DOM checks and recorded layouts do not claim formal WCAG certification. Representative numerical tests do not prove accuracy across every admitted magnitude or certify hidden arithmetic.
+
+### Next step
+
+User review of the running app and human Git review/staging/commit. Durable retention plus independent backup/restore remains the proposed next product contract, before the remaining full-PWA and Electron milestones. This completion report does not authorize that next increment, publishing or deployment.
