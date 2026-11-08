@@ -2,11 +2,13 @@
 
 > Last updated: 8 November 2026
 >
-> Phase: Simpler numerical contract and Culori approved; documentation reconciled, implementation unauthorized
+> Phase: Increment 003 technical preparation plan ready; implementation unauthorized
 >
 > Implementation state: npm scaffold, host-independent domain core, in-memory application operations; no application web entry point. Increment 003 delivery remains Not started.
 
 ## Current focus
+
+The user asked to proceed with the proposed next technical preparation step. The [delivery preparation plan](../increments/003-technical-preparation-plan.md) records candidate dependency versions, read-only local engine/peer checks, source provenance, ordered implementation slices and AC-linked verification. This is planning only: no install, source/configuration/dependency change or new numerical/build/browser acceptance. The plan leaves the approved agreement/design unchanged; its candidate pins require routine validation during the first authorized setup.
 
 On 8 November 2026 the user approved the simpler numerical contract and use of Culori, then authorized documentation reconciliation only. The [Increment 003 agreement](../increments/003-visible-color-authoring.md) and [numerical policy](../increments/003-color-policy-proposal.md) own the amendment. Authored values, alpha, identity and passive multi-space return remain exact; derived conversions use approximate Culori calculations with deterministic formatting. The `1e6` ceiling applies to inputs only; text/output budgets, finite boundary checks and final constructor validation remain. The lower magnitude floor, internal magnitude/underflow inspection and general cancellation/distinction-preservation certification are removed. Tiny distinctions can disappear in derived representations without rewriting the exact source.
 
@@ -36,6 +38,8 @@ Read AGENTS.md, this status, Git state and the owning Increment 003 contract, nu
 
 ## Recently completed
 
+- Prepared the bounded Increment 003 technical plan with concrete candidate pins, declared compatibility evidence and six ordered delivery slices. Published Culori declaration metadata and actual TypeScript integration remain routine setup checks; no broad numerical investigation or additional product approval stage is introduced.
+
 - User approved the simpler numerical contract and Culori on 8 November; reconciled the agreement, numerical policy and affected model/architecture/open questions. This records a decision and its accepted rare-refusal trade-off, not implementation or new numerical qualification.
 
 - Completed and independently reproduced the bounded Culori qualification: same 180 conversion fixtures, 24 guard controls and 28 analytic interpolation cases. Under the earlier strict contract, the tiny-red HSL defect and hidden stages prevented minimal-adapter qualification. The later approved amendment removes internal-stage certification and explicitly accepts the tiny-red safe-refusal limitation; future interpolation reuse remains viable.
@@ -55,7 +59,7 @@ Read AGENTS.md, this status, Git state and the owning Increment 003 contract, nu
 
 ## Next meaningful actions
 
-Present the revised agreement to the user. Do not start application implementation, install Culori or alter production dependencies under this documentation authorization. If the user authorizes further technical preparation, scope exact package/version compatibility, license/bundle effects and the boundary/fixture/browser verification plan against the amended contract. No owned conversion engine or arbitrary-precision investigation is required by this agreement.
+Present the [technical preparation plan](../increments/003-technical-preparation-plan.md) and its read-only compatibility findings to the user. The next action is explicit authorization to implement Increment 003 against the already agreed contract, V6 and creation supplement. Start with scoped tooling/browser setup, then pure Culori/byte operations and the real authoring flow in the plan's order. Routine pin/integrity/type compatibility checks belong to that setup; no new internal-math research or backend selection is needed. The plan itself does not authorize installation, application implementation or production dependency changes.
 
 Only after explicit implementation authorization, hand the identified contract/V6/creation supplement and current numerical policy to a fresh developer, followed by independent review of a stable implementation snapshot. Humans stage/commit/push.
 
@@ -65,6 +69,6 @@ The numerical simplification and Culori selection are agreed; the earlier guard/
 
 ## Verification expectations
 
-For this documentation reconciliation: inspect the scoped diff; check Markdown/link targets and status/terminology consistency; run `git diff --check`; confirm no application/prototype source, dependencies or vendored references changed. Do not report domain/prototype test reruns for this editorial work.
+For this technical preparation plan: inspect the scoped diff; check Markdown/link targets and status/terminology consistency; run `git diff --check`; confirm no application/prototype source, dependencies or vendored references changed. Do not report domain/prototype test reruns for this editorial work.
 
 For eventual implementation: follow the criterion-linked verification in the owning contract and numerical policy. Existing [README commands](../../README.md) currently cover the scaffold/domain/application core; actual delivery build/browser checks must be established within the selected stack without weakening host-independent checks.
