@@ -2,19 +2,21 @@
 
 > Last updated: 8 November 2026
 >
-> Phase: Increment 003 completed; presentation IDE configuration fix ready for Git review
+> Phase: Increment 003 completed; Increment 004 presentation refactor planning
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
 
+**Presentation refactor planning — 8 November 2026:** the user accepted the CSS/UI code-quality assessment and requested a plan covering accumulated prototype CSS, the incomplete Button API/sizing contract, reusable UI composition, and inconsistent use of design scales/theme values. The [Increment 004 draft](../increments/004-presentation-refactor.md) proposes a Tailwind utility-based refactor preserving current functionality and the approved visual direction. Planning is authorized; implementation and dependency changes are not. The draft requires baseline evidence, bounded migration slices and independent review rather than treating existing behavior tests as proof of CSS/component quality.
+
 **IDE configuration follow-up — 8 November 2026:** WebStorm reported TS2307 on aliases only in `src/presentation`. A local `src/presentation/tsconfig.json` now extends the existing browser configuration, giving automatic IDE project discovery a standard nearby filename while retaining the root host-independent exclusion and explicit CLI scopes. Alias definitions and application code are unchanged. Command-line checks of the effective local config, typechecks, production build and all 894 tests pass. The user reports that the change appears to fix the WebStorm diagnostics; no IDE settings or alias definitions were changed.
 
-**Naming/import follow-up — 8 November 2026:** after committing and pushing the implementation, the user approved `delivery` → `presentation` and requested import aliases. The source/test folders and UI configuration are now `src/presentation/`, `test/presentation/` and `tsconfig.presentation.json`. Source/test module imports use `@domain`, `@application`, `@adapters`, `@presentation` and `@tests`; TypeScript and Vite/Vitest resolve the same folders. A separate `tsconfig.tools.json` and development-only @types/node 24.19.2 keep Node types confined to build configuration. No application/domain logic changed. Typechecks, 894 tests and build pass; production JavaScript/CSS bytes are identical to the pre-rename build. That naming/import follow-up was committed as `6f5416d`; the subsequent IDE-discovery fix remains unstaged/uncommitted.
+**Naming/import follow-up — 8 November 2026:** after committing and pushing the implementation, the user approved `delivery` → `presentation` and requested import aliases. The source/test folders and UI configuration are now `src/presentation/`, `test/presentation/` and `tsconfig.presentation.json`. Source/test module imports use `@domain`, `@application`, `@adapters`, `@presentation` and `@tests`; TypeScript and Vite/Vitest resolve the same folders. A separate `tsconfig.tools.json` and development-only @types/node 24.19.2 keep Node types confined to build configuration. No application/domain logic changed. Typechecks, 894 tests and build pass; production JavaScript/CSS bytes are identical to the pre-rename build. That naming/import follow-up was committed as `6f5416d`; the subsequent IDE-discovery fix was committed as `73dbe48`. The user reports having committed and pushed both follow-ups.
 
 Historical implementation and research manifests describe their original paths/imports and commit snapshots (the completed implementation is committed as `05db8e9`), not the renamed working tree. They and the historical prototype remain unchanged; do not regenerate old evidence to match the rename. Current paths/aliases are documented in the README and architecture.
 
-Increment 003 is **Completed** under the approved contract, V6 plus creation disclosure and simpler Culori numerical policy. The [completion report](../increments/003-visible-color-authoring.md#completion-report), [independent review](../increments/003-implementation-review.md) and [browser/numerical evidence](../../output/playwright/increment-003-implementation/observations.md) own the delivered behavior, verification and limits. The user subsequently committed and pushed that implementation; the current naming/import follow-up awaits human review.
+Increment 003 is **Completed** under the approved contract, V6 plus creation disclosure and simpler Culori numerical policy. The [completion report](../increments/003-visible-color-authoring.md#completion-report), [independent review](../increments/003-implementation-review.md) and [browser/numerical evidence](../../output/playwright/increment-003-implementation/observations.md) own the delivered behavior, verification and limits. The user subsequently committed and pushed that implementation; the naming/import and IDE follow-ups have also been committed by the user.
 
 The app starts empty and supports exact project names, root/nested groups and rename, disclosed opaque-black color creation, exact literal/reference editing, stable-ID paths/aliases, domain resolution traces and diagnostics. Independent drafts, passive multi-space restoration, explicit Apply/Cancel, sliders, preview context, responsive panels and modal navigation follow V6. Failed reads/commits preserve source and drafts; controlled failure/inspect-only/broken-reference fixtures are development-only and excluded from the production bundle.
 
@@ -40,9 +42,9 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-Human Git review/staging/commit of the IDE-discovery fix. Proposed commit: `fix: make presentation TypeScript config discoverable`. No deployment, publication or next increment is authorized by completion.
+Review the [Increment 004 draft plan](../increments/004-presentation-refactor.md), resolve any material parity/scale decisions, and obtain agreement and explicit implementation authorization before application changes. No deployment or publication is authorized.
 
-The recommended next product contract is durable retention plus independent backup/restore. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, repair/restore semantics, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not start them without a scoped request.
+After the presentation refactor, the recommended next product contract remains durable retention plus independent backup/restore. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, repair/restore semantics, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not start them without a scoped request.
 
 ## Resume and verification
 
