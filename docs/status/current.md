@@ -2,13 +2,15 @@
 
 > Last updated: 8 November 2026
 >
-> Phase: Increment 003 completed; presentation naming and import-alias follow-up ready for Git review
+> Phase: Increment 003 completed; presentation IDE configuration fix ready for Git review
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
 
-**Naming/import follow-up — 8 November 2026:** after committing and pushing the implementation, the user approved `delivery` → `presentation` and requested import aliases. The source/test folders and UI configuration are now `src/presentation/`, `test/presentation/` and `tsconfig.presentation.json`. Source/test module imports use `@domain`, `@application`, `@adapters`, `@presentation` and `@tests`; TypeScript and Vite/Vitest resolve the same folders. A separate `tsconfig.tools.json` and development-only @types/node 24.19.2 keep Node types confined to build configuration. No application/domain logic changed. Typechecks, 894 tests and build pass; production JavaScript/CSS bytes are identical to the pre-rename build. The follow-up remains unstaged/uncommitted.
+**IDE configuration follow-up — 8 November 2026:** WebStorm reported TS2307 on aliases only in `src/presentation`. A local `src/presentation/tsconfig.json` now extends the existing browser configuration, giving automatic IDE project discovery a standard nearby filename while retaining the root host-independent exclusion and explicit CLI scopes. Alias definitions and application code are unchanged. Command-line checks of the effective local config, typechecks, production build and all 894 tests pass. The user reports that the change appears to fix the WebStorm diagnostics; no IDE settings or alias definitions were changed.
+
+**Naming/import follow-up — 8 November 2026:** after committing and pushing the implementation, the user approved `delivery` → `presentation` and requested import aliases. The source/test folders and UI configuration are now `src/presentation/`, `test/presentation/` and `tsconfig.presentation.json`. Source/test module imports use `@domain`, `@application`, `@adapters`, `@presentation` and `@tests`; TypeScript and Vite/Vitest resolve the same folders. A separate `tsconfig.tools.json` and development-only @types/node 24.19.2 keep Node types confined to build configuration. No application/domain logic changed. Typechecks, 894 tests and build pass; production JavaScript/CSS bytes are identical to the pre-rename build. That naming/import follow-up was committed as `6f5416d`; the subsequent IDE-discovery fix remains unstaged/uncommitted.
 
 Historical implementation and research manifests describe their original paths/imports and commit snapshots (the completed implementation is committed as `05db8e9`), not the renamed working tree. They and the historical prototype remain unchanged; do not regenerate old evidence to match the rename. Current paths/aliases are documented in the README and architecture.
 
@@ -38,7 +40,7 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-Human Git review/staging/commit of the naming/import follow-up. Proposed commit: `refactor: rename presentation layer and add import aliases`. No deployment, publication or next increment is authorized by completion.
+Human Git review/staging/commit of the IDE-discovery fix. Proposed commit: `fix: make presentation TypeScript config discoverable`. No deployment, publication or next increment is authorized by completion.
 
 The recommended next product contract is durable retention plus independent backup/restore. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, repair/restore semantics, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not start them without a scoped request.
 

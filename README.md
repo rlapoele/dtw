@@ -22,6 +22,8 @@ The scaffold was verified using Node.js `24.14.1` and npm `11.17.0`, satisfying 
 
 Project module imports use `@domain/…`, `@application/…`, `@adapters/…` and `@presentation/…`; test fixtures use `@tests/…`. TypeScript maps these in `tsconfig.json`; Vite and Vitest share the runtime mappings exported by `vite.config.ts`. The test config's relative import of that Vite configuration is a bootstrap dependency, not an application-module import. Aliases do not change the architectural dependency rules.
 
+`src/presentation/tsconfig.json` extends the browser configuration locally so IDEs can discover the presentation project despite its exclusion from the root host-independent check. The root `tsconfig.presentation.json` remains the build/typecheck entry and also covers the development browser fixture.
+
 Historical review/research manifests retain the paths and import text of their identified snapshots. After the presentation rename and alias refactor, verify those manifests against their original commits rather than rewriting historical evidence to match the current tree.
 
 | Command | Purpose |
