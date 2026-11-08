@@ -108,3 +108,19 @@ describe("independent 180-case CSS reference corpus", () => {
       expect(roundSignificant(input, n)).toBe(output);
   });
 });
+
+// Independently fixed CSS fixtures exercise both adapter directions for every
+// space with distinct coordinates, including HSL percentages and Lab axes.
+describe("component-identity adapter order", () => {
+  for (const fixture of fixtures.filter((f) => f.id.includes("-0-"))) {
+    it(fixture.id, () => {
+      const result = convertColor(createColorLiteral({ colorSpace: fixture.space, components: fixture.input, alpha: "0.37" }), fixture.target as ColorSpace);
+      expect(result.ok).toBe(true);
+      if (!result.ok) return;
+      fixture.expected.forEach((expected, index) => {
+        expect(Math.abs(Number(result.value.components[index]) - Number(expected))).toBeLessThan(1e-7);
+      });
+      expect(result.value.alpha).toBe("0.37");
+    });
+  }
+});

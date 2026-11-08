@@ -30,6 +30,10 @@ A color value, potentially including alpha. In this project, a color is distinct
 
 Transparency encoded as part of a color value. It is not equivalent to applying opacity to an entire element or composited result.
 
+## Color component identity
+
+The semantic name of a color coordinate, such as red, hue, lightness, or the OKLab a axis. A shared host-independent definition gives each supported color space its three identities in canonical tuple order, reused for validation, conversion mapping, labels and readable summaries. This is distinct from stable token/group identity: component names are not new stored ID fields or independently referenceable token parts. Alpha remains separate.
+
 ## Color fallback
 
 An explicit alternative color for a target that cannot represent the primary color as intended. It may be an approximation rather than an equivalent representation. Its canonical storage, authoring, and generation policy remain unresolved; a fallback must not silently replace the authored primary value.

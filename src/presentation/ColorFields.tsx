@@ -1,3 +1,4 @@
+import { COLOR_COMPONENTS, COMPONENT_NAMES, componentSuffix } from "@domain/color-components";
 import { Field } from "@presentation/components/field";
 import { Input } from "@presentation/components/input";
 import type { CSSProperties } from "react";
@@ -13,33 +14,23 @@ import {
 } from "@presentation/session";
 import type { DraftSession } from "@presentation/session";
 import { visualRangeState } from "@presentation/visual-range";
-const labels: Record<ColorSpace, [string, string, string]> = {
-  srgb: ["Red", "Green", "Blue"],
-  "display-p3": ["Red", "Green", "Blue"],
-  hsl: ["Hue (°)", "Saturation (%)", "Lightness (%)"],
-  oklab: ["Lightness", "a", "b"],
-  oklch: ["Lightness", "Chroma", "Hue (°)"],
-};
-export const spaceName = (space: ColorSpace) =>
-  space === "srgb"
-    ? "sRGB"
-    : space === "display-p3"
-      ? "Display P3"
-      : space.toUpperCase();
+import { spaceName } from "@presentation/authored-color";
+export { spaceName } from "@presentation/authored-color";
 function illustrativeGradient(space: ColorSpace, index: number): string {
-  if ((space === "hsl" && index === 0) || (space === "oklch" && index === 2))
+  const identity = COLOR_COMPONENTS[space][index];
+  if (identity === "hue")
     return "linear-gradient(to right,#e33333,#d3c825,#30b94c,#31c8cb,#3655e1,#b737cd,#e33333)";
   if (space === "srgb" || space === "display-p3")
-    return `linear-gradient(to right,#222,${["#e45c5c", "#4f9e61", "#557bd0"][index]})`;
+    return `linear-gradient(to right,#222,${({ red: "#e45c5c", green: "#4f9e61", blue: "#557bd0" } as Record<string, string>)[identity]})`;
   if (space === "hsl")
-    return index === 2
+    return identity === "lightness"
       ? "linear-gradient(to right,#111,#999,#fff)"
       : "linear-gradient(to right,#9b9b9b,#4b78bd)";
-  if (space === "oklab" && index > 0)
-    return index === 1
+  if (space === "oklab" && identity !== "lightness")
+    return identity === "a"
       ? "linear-gradient(to right,#389d70,#aaa,#c4598e)"
       : "linear-gradient(to right,#5670be,#aaa,#c1ae45)";
-  if (space === "oklch" && index === 1)
+  if (space === "oklch" && identity === "chroma")
     return "linear-gradient(to right,#aaa,#456bc8)";
   return "linear-gradient(to right,#111,#fff)";
 }
@@ -129,16 +120,17 @@ export function ColorFields({
       )}
       <div className="component-controls">
         {values.map((value, i) => {
-          const hue =
-            (d.colorSpace === "hsl" && i === 0) ||
-            (d.colorSpace === "oklch" && i === 2);
-          const min = d.colorSpace === "oklab" && i > 0 ? -0.4 : 0,
+          const identity = COLOR_COMPONENTS[d.colorSpace][i];
+          const suffix = componentSuffix(d.colorSpace, identity);
+          const label = COMPONENT_NAMES[identity] + (suffix ? ` (${suffix})` : "");
+          const hue = identity === "hue";
+          const min = d.colorSpace === "oklab" && identity !== "lightness" ? -0.4 : 0,
             max = hue
               ? 359.9
               : d.colorSpace === "hsl"
                 ? 100
-                : (d.colorSpace === "oklab" && i > 0) ||
-                    (d.colorSpace === "oklch" && i === 1)
+                : (d.colorSpace === "oklab" && identity !== "lightness") ||
+                    (d.colorSpace === "oklch" && identity === "chroma")
                   ? 0.4
                   : bytes
                     ? 255
@@ -152,7 +144,7 @@ export function ColorFields({
               key={d.colorSpace + "-" + i}
             >
               <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-1.5 m-0 text-caption font-medium">
-                <span>{labels[d.colorSpace][i]}</span>
+                <span>{label}</span>
                 <Input
                   className="small:h-11 small:min-h-11"
                   value={value}
@@ -179,7 +171,7 @@ export function ColorFields({
                         ),
                       } as CSSProperties
                     }
-                    aria-label={labels[d.colorSpace][i] + " slider"}
+                    aria-label={label + " slider"}
                     aria-valuetext={value}
                     onChange={(e) => change(i, e.target.value)}
                   />

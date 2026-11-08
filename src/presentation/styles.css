@@ -235,13 +235,6 @@
 .inspector-collapsed .inspector-toggle {
   border-bottom: 0;
 }
-.table-heading span:last-child,
-.value-summary {
-  width: 42%;
-}
-.value-summary {
-  max-width: 42%;
-}
 .token-row {
   min-height: 76px;
 }
@@ -305,10 +298,6 @@
   .token-panel {
     padding: 28px 18px;
   }
-  .value-summary {
-    width: 37%;
-    max-width: 37%;
-  }
 }
 @media (max-width: 900px) {
   .token-row {
@@ -337,11 +326,6 @@
   }
   .token-panel {
     padding: 24px 16px;
-  }
-  .table-heading span:last-child,
-  .value-summary {
-    width: 34%;
-    max-width: 34%;
   }
 
   .workbench.compact-navigation {
@@ -395,10 +379,6 @@
     max-height: 100%;
   }
 
-  .value-summary {
-    width: 34%;
-    max-width: 34%;
-  }
 
   .component-control {
     grid-template-rows: auto 44px auto;

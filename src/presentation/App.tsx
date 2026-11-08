@@ -57,6 +57,7 @@ export function App({
       null,
     ),
     [name, setName] = useState(""),
+    [description, setDescription] = useState(""),
     [parent, setParent] = useState(""),
     [layer, setLayer] = useState("");
   const [compact, setCompact] = useState(() => window.innerWidth < 1120),
@@ -168,6 +169,7 @@ export function App({
               .localName ?? "")
           : "",
       );
+      setDescription("");
       setParent(group === "all" ? "" : group);
       setError("");
       setDialog(kind);
@@ -185,6 +187,7 @@ export function App({
             projectId,
             id: crypto.randomUUID(),
             localName: name,
+            ...(description === "" ? {} : { description }),
             parentGroupId: parent || null,
             type: "color",
             regeneration: "allowed",
@@ -223,6 +226,7 @@ export function App({
       return;
     }
     setDialog(null);
+    setDescription("");
     setError("");
     setDirty(false);
     setEditorVersion((v) => v + 1);
@@ -734,13 +738,15 @@ export function App({
         dialog={dialog}
         project={project}
         name={name}
+        description={description}
+        onDescriptionChange={setDescription}
         parent={parent}
         layer={layer}
         readFailure={readFailure}
         error={error}
         formError={formError}
         finalFocus={() => panelRef.current}
-        onClose={() => setDialog(null)}
+        onClose={() => { setDialog(null); setDescription(""); }}
         onCreate={create}
         onNameChange={setName}
         onParentChange={setParent}

@@ -84,6 +84,8 @@ Use a pragmatic ports-and-adapters, or hexagonal, architecture. The aim is repla
 
 **Presentation ownership — Increment 004, 8 November 2026:** App retains application-operation coordination, draft/departure state, readback and focus policy. ProjectNavigation, TokenList and CreationDialog render their existing responsibilities; reusable controls, dialog shells, tabs and swatches are locally owned under `src/presentation/components/`. Ordinary presentation uses Tailwind utilities and semantic palette roles. The stylesheet owns only the retained dense typography foundation, explicit responsive panel/precision geometry, modal/drawer effects, native slider pseudo-elements and illustrative checkerboards. These presentation components do not parse authored strings or reimplement token semantics.
 
+**Component interpretation — Increment 005, 8 November 2026:** `src/domain/color-components.ts` defines the five spaces' closed semantic component identities/order and small readable name/unit metadata. Constructor validation and color calculations consume that order; Culori channel keys, modes and HSL scaling remain in the calculation integration boundary. `authored-color.ts` derives exact named text and `AuthoredValue` shares it between token rows and the applied inspector without changing canonical tuples or raw JSON. CreationDialog renders the token-only description textarea; App passes nonempty text unchanged through the existing operation and preserves it with failed form state. No model shape or numerical policy changed.
+
 ```text
 Delivery surfaces
     PWA · Electron renderer · CLI · MCP · automation

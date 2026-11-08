@@ -1,4 +1,8 @@
 import {
+  COLOR_COMPONENTS,
+  type ColorComponentIdentity,
+} from "@domain/color-components";
+import {
   converter,
   useMode,
   modeRgb,
@@ -162,22 +166,33 @@ const modes: Record<ColorSpace, Mode> = {
   oklab: "oklab",
   oklch: "oklch",
 };
-const channels: Record<ColorSpace, readonly string[]> = {
-  srgb: ["r", "g", "b"],
-  "display-p3": ["r", "g", "b"],
-  hsl: ["h", "s", "l"],
-  oklab: ["l", "a", "b"],
-  oklch: ["l", "c", "h"],
+const channelKey: Record<ColorComponentIdentity, string> = {
+  red: "r",
+  green: "g",
+  blue: "b",
+  hue: "h",
+  saturation: "s",
+  lightness: "l",
+  chroma: "c",
+  a: "a",
+  b: "b",
 };
+function coordinate(c: ColorLiteralValue, identity: ColorComponentIdentity) {
+  const identities: readonly ColorComponentIdentity[] = COLOR_COMPONENTS[c.colorSpace];
+  const index = identities.indexOf(identity);
+  return c.components[index];
+}
 function neutral(c: ColorLiteralValue) {
-  const v = c.components;
   return c.colorSpace === "srgb" || c.colorSpace === "display-p3"
-    ? v[0] === v[1] && v[1] === v[2]
+    ? coordinate(c, "red") === coordinate(c, "green") &&
+      coordinate(c, "green") === coordinate(c, "blue")
     : c.colorSpace === "hsl"
-      ? v[1] === "0" || v[2] === "0" || v[2] === "100"
+      ? coordinate(c, "saturation") === "0" ||
+        coordinate(c, "lightness") === "0" ||
+        coordinate(c, "lightness") === "100"
       : c.colorSpace === "oklab"
-        ? v[1] === "0" && v[2] === "0"
-        : v[1] === "0";
+        ? coordinate(c, "a") === "0" && coordinate(c, "b") === "0"
+        : coordinate(c, "chroma") === "0";
 }
 export function rawColorCoordinates(
   source: ColorLiteralValue,
@@ -193,20 +208,17 @@ export function rawColorCoordinates(
   const components = [...source.components];
   const s = source.colorSpace;
   if (components.includes("none")) {
+    const identities = COLOR_COMPONENTS[s] as readonly ColorComponentIdentity[];
+    const hue = identities.indexOf("hue");
+    const power = identities.indexOf(s === "hsl" ? "saturation" : "chroma");
+    const lightness = identities.indexOf("lightness");
     if (
-      s === "hsl" &&
-      components[0] === "none" &&
-      components[1] === "0" &&
-      components[2] !== "none"
+      (s === "hsl" || s === "oklch") &&
+      components[hue] === "none" &&
+      components[power] === "0" &&
+      components[lightness] !== "none"
     )
-      components[0] = decimalFromCanonical("0");
-    else if (
-      s === "oklch" &&
-      components[2] === "none" &&
-      components[1] === "0" &&
-      components[0] !== "none"
-    )
-      components[2] = decimalFromCanonical("0");
+      components[hue] = decimalFromCanonical("0");
     else
       return fail(
         "unsupported-missing-components",
@@ -241,9 +253,9 @@ export function rawColorCoordinates(
   const input = {
     mode: modes[s],
     ...Object.fromEntries(
-      channels[s].map((key, i) => [
-        key,
-        s === "hsl" && i > 0 ? values[i] / 100 : values[i],
+      COLOR_COMPONENTS[s].map((identity, i) => [
+        channelKey[identity],
+        s === "hsl" && identity !== "hue" ? values[i] / 100 : values[i],
       ]),
     ),
   } as Color;
@@ -251,19 +263,23 @@ export function rawColorCoordinates(
   if (!converted)
     return fail("numerical-failure", "Calculation produced no representation.");
   const record = converted as unknown as Record<string, unknown>;
-  let result: (number | "none")[] = channels[target].map((key, i) => {
-    const x = record[key];
+  let result: (number | "none")[] = COLOR_COMPONENTS[target].map((identity) => {
+    const x = record[channelKey[identity]];
     return typeof x === "number"
-      ? target === "hsl" && i > 0
+      ? target === "hsl" && identity !== "hue"
         ? x * 100
         : x
       : NaN;
   });
   if (neutral(source)) {
-    if (target === "hsl") result = ["none", 0, result[2]];
-    else if (target === "oklch") result = [result[0], 0, "none"];
-    else if (target === "oklab") result = [result[0], 0, 0];
-    else result = [result[0], result[0], result[0]];
+    const identities: readonly ColorComponentIdentity[] = COLOR_COMPONENTS[target];
+    const lightness = result[identities.indexOf("lightness")];
+    const rgb = result[identities.indexOf("red")];
+    result = identities.map((identity) => {
+      if (identity === "hue") return "none";
+      if (identity === "lightness") return lightness;
+      return target === "srgb" || target === "display-p3" ? rgb : 0;
+    });
   }
   // Culori omits powerless hue for some approximately collapsed near-neutral results.
   // It is not an exact-neutral source; expose unavailability instead of inventing hue.

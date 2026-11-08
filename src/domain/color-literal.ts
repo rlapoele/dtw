@@ -1,3 +1,4 @@
+import { COLOR_COMPONENTS } from "@domain/color-components";
 import { compareDecimals, decimalFromCanonical } from "@domain/decimal";
 import type { Decimal } from "@domain/decimal";
 
@@ -74,23 +75,15 @@ function validateAndNormalizeComponents(
   colorSpace: ColorSpace,
   components: [ColorComponent, ColorComponent, ColorComponent],
 ): void {
-  switch (colorSpace) {
-    case "srgb":
-    case "display-p3":
-      return;
-    case "hsl":
-      components[0] = normalizeHue(components[0]);
-      assertOptionalInRange(components[1], zero, hundred, "saturation");
-      assertOptionalInRange(components[2], zero, hundred, "lightness");
-      return;
-    case "oklab":
-      assertOptionalInRange(components[0], zero, one, "lightness");
-      return;
-    case "oklch":
-      assertOptionalInRange(components[0], zero, one, "lightness");
-      assertOptionalMinimum(components[1], zero, "chroma");
-      components[2] = normalizeHue(components[2]);
-  }
+  COLOR_COMPONENTS[colorSpace].forEach((identity, index) => {
+    const value = components[index];
+    if (identity === "hue") components[index] = normalizeHue(value);
+    else if (colorSpace === "hsl")
+      assertOptionalInRange(value, zero, hundred, identity);
+    else if (identity === "lightness")
+      assertOptionalInRange(value, zero, one, identity);
+    else if (identity === "chroma") assertOptionalMinimum(value, zero, identity);
+  });
 }
 
 function normalizeHue(component: ColorComponent): ColorComponent {

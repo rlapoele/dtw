@@ -13,6 +13,8 @@ export function CreationDialog({
   dialog,
   project,
   name,
+  description,
+  onDescriptionChange,
   parent,
   layer,
   readFailure,
@@ -29,6 +31,8 @@ export function CreationDialog({
   dialog: "token" | "group" | "rename" | null;
   project: ProjectReadback | undefined;
   name: string;
+  description: string;
+  onDescriptionChange: (value: string) => void;
   parent: string;
   layer: string;
   readFailure: string;
@@ -76,6 +80,10 @@ export function CreationDialog({
               aria-describedby="creation-error"
             />
           </Field>
+          {dialog === "token" && <Field>
+            Description (optional)
+            <textarea rows={2} value={description} onChange={(e) => onDescriptionChange(e.target.value)} className="w-full min-w-0 rounded-md border border-border bg-background text-foreground px-2.5 py-2 text-xs/normal hover:border-control-hover resize-y" />
+          </Field>}
           {dialog !== "rename" && (
             <Field>
               {dialog === "token" ? "Group" : "Parent group"}

@@ -2,13 +2,17 @@
 
 > Last updated: 8 November 2026
 >
-> Phase: Increment 004 completed; development startup fix ready for review
+> Phase: Increment 005 token details and shared color components completed
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
 
-**Development startup fix — 8 November 2026:** after committing and pushing Increment 004 (`48ba69e`), the user reported Vite dependency-scan errors. A fresh `npm run dev` reproduced automatic scanning of saved review HTML whose imports referenced transient `node_modules/.vite/deps` files. `vite.config.ts` now limits `optimizeDeps.entries` to `index.html` and maintained `test/browser/*.html` fixtures; the [README](../../README.md) documents the boundary. Historical artifacts remain unchanged. Forced fresh scanning and plain startup pass; application creation and both browser fixtures load without page errors. All 894 tests, typechecks, production build and diff whitespace pass. Verification servers are stopped after checking so the IDE can bind its port. This configuration/documentation fix awaits human review and commit.
+**Increment 005 completed — 8 November 2026:** the user authorized description capture, stacked named values, responsive description presentation and a shared component definition. The [agreed contract and completion report](../increments/005-token-details-and-color-components.md#completion-report) record delivery: exact optional descriptions at creation; pane-width Description column/compact preview; readable literal/reference applied values; one host-independent semantic component order reused by constructor, calculation integration, editor and summaries. The canonical tuple/alpha and numerical policy remain unchanged. Existing metadata editing, persistence and new dependencies remain outside scope.
+
+Final checks pass: 934 tests/33 files, strict typechecks, production build, maintained dev-entry startup and diff whitespace. [Independent review](../increments/005-implementation-review.md) resolved a two-line compact description clamp defect and found no remaining required findings or verification gaps within recorded coverage. [IAB evidence](../../output/increment-005/coordinator-browser-evidence.md) covers actual changed flows/layout; [user-authorized isolated Chrome evidence](../../output/increment-005-zoom/evidence.md) verifies actual200% page zoom and changed authoring behavior. Browser execution is explicitly attributed; reviewer source/tests/SSR checks were independent, its live-browser binding unavailable. Screen-reader/physical-device/virtual-keyboard and exhaustive cross-engine coverage remain limits. The updated production example remains open in an in-app browser tab at `http://127.0.0.1:4185/`. Completed changes await human Git review/staging/commit; agents have not staged, committed, pushed or deployed.
+
+**Development startup fix — 8 November 2026:** after committing and pushing Increment 004 (`48ba69e`), the user reported Vite dependency-scan errors. A fresh `npm run dev` reproduced automatic scanning of saved review HTML whose imports referenced transient `node_modules/.vite/deps` files. `vite.config.ts` now limits `optimizeDeps.entries` to `index.html` and maintained `test/browser/*.html` fixtures; the [README](../../README.md) documents the boundary. Historical artifacts remain unchanged. Forced fresh scanning and plain startup pass; application creation and both browser fixtures load without page errors. All 894 tests, typechecks, production build and diff whitespace pass. Verification servers are stopped after checking so the IDE can bind its port. The user committed and pushed this fix as `b54c876`; plain startup was subsequently confirmed working.
 
 **Presentation refactor completed — 8 November 2026:** the user reviewed, committed and pushed the plan, then authorized all tasks. The [agreed Increment 004 contract and completion report](../increments/004-presentation-refactor.md#completion-report) records the delivered Tailwind utility-based styling, explicit Button API, owned UI components and navigation/list/creation rendering. CSS is consolidated from 1,981 to 483 formatted lines, with documented typography, native rendering and precise geometry exceptions. Current functionality and the accepted visual direction are preserved within scoped evidence. No domain/application/session calculation or dependency changes.
 
@@ -46,7 +50,7 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-Human review/stage/commit of the development startup configuration fix. Suggested commit: `fix: scope Vite dependency scanning to maintained entries`. No deployment, publication or next product increment is authorized by completion.
+Human review/stage/commit of [completed Increment 005](../increments/005-token-details-and-color-components.md#completion-report). Suggested commit: `feat: add token descriptions and shared color component details`. No deployment, publication or next product increment is authorized by completion.
 
 The recommended next product contract remains durable retention plus independent backup/restore. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, repair/restore semantics, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not start them without a scoped request.
 

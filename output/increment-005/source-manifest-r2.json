@@ -1,0 +1,79 @@
+{
+  "base": "b54c876",
+  "kind": "uncommitted implementation snapshot; coordinator-owned contract/status excluded",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "083925a20c00799fe386adeee5d80f6130dde9499b28ff1d113d91bf0bf4f5f4"
+    },
+    {
+      "path": "docs/project/architecture.md",
+      "sha256": "d410988da73e4089976d536603a3ceedf9d00641e3afdb1efce8bff63758b30f"
+    },
+    {
+      "path": "src/domain/color-calculation.ts",
+      "sha256": "30bea3bba8dbbbe6b1428365839086c31bb7bcbb6819a1da7acd98890d25b69d"
+    },
+    {
+      "path": "src/domain/color-components.ts",
+      "sha256": "a6800369d6a1aad6b58dcee913aa31e07a66dacf231af98e020bc0c975980a31"
+    },
+    {
+      "path": "src/domain/color-literal.ts",
+      "sha256": "771445cbab24174ea75adc15da0399ece1b6db5df65f23ea00b8d3594be0fe44"
+    },
+    {
+      "path": "src/presentation/App.tsx",
+      "sha256": "ecf1d94d388352467b48494833f340e6c246cda952cecede7a88808dae3825a8"
+    },
+    {
+      "path": "src/presentation/AuthoredValue.tsx",
+      "sha256": "7c49e85216746f599452b8d29e899ccc05b13ad46bcecd47422da7f31e70c7b9"
+    },
+    {
+      "path": "src/presentation/ColorFields.tsx",
+      "sha256": "9f3d7b6f9a3fc42f2affd03a4c4ae801de7a47db623105cc88ea7a15a4a33bf5"
+    },
+    {
+      "path": "src/presentation/CreationDialog.tsx",
+      "sha256": "7c0b03c2d665fe9e42764778059f6318537c00764c2aa0886da0165c00118275"
+    },
+    {
+      "path": "src/presentation/Editor.tsx",
+      "sha256": "0b9ba1a3d739411c0be9dc653ebe91f80a2a79161c8e60a7ac0b52865d471d79"
+    },
+    {
+      "path": "src/presentation/TokenList.tsx",
+      "sha256": "f5929ebad2a716921a9b4b388f3024d864135f44fd12add5aaa38832a2baa856"
+    },
+    {
+      "path": "src/presentation/authored-color.ts",
+      "sha256": "1660203de590fdd295ffc663885ab910011396c7d44e6f9dceb5eb6ac32cf48a"
+    },
+    {
+      "path": "src/presentation/styles.css",
+      "sha256": "708198ee9f77ba662ea17d833765e96dfff1deebefa75fa7b8492c28f09f9ac8"
+    },
+    {
+      "path": "test/application/authoring.test.ts",
+      "sha256": "5e77482f509f13275360dbf3639529bb2a90252794285b650b633317e4f3434b"
+    },
+    {
+      "path": "test/browser/increment005.html",
+      "sha256": "9c01f9c1a6338c03f965a484a40eedd1f88a11f98ce6467b684683ffd4f383fe"
+    },
+    {
+      "path": "test/browser/increment005.tsx",
+      "sha256": "62045f05b51448c5a9c7fad4415eb9e50091dd95afaf05ad9c5d9cf1673ea4b5"
+    },
+    {
+      "path": "test/domain/color-reference.test.ts",
+      "sha256": "24646d1aa1230cfeabd74101059bf2e4dfbb7b6892e621ea02902cf37593c8ec"
+    },
+    {
+      "path": "test/presentation/authored-value.test.ts",
+      "sha256": "6c2b39015e9c35ea7aee2e4fd7ffe7ce80cc37f3677abf32ba9d8cc8861a6a3c"
+    }
+  ],
+  "revision": "r2: compact wrapping list coordinate pairs; expanded inspector retained"
+}

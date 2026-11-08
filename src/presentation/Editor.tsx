@@ -1,3 +1,4 @@
+import { AuthoredValue } from "@presentation/AuthoredValue";
 import { Swatch } from "@presentation/components/swatch";
 import { InspectionTabs } from "@presentation/components/inspection-tabs";
 import { Badge } from "@presentation/components/badge";
@@ -142,7 +143,7 @@ export function Editor({
           {token.definition?.type ?? "Unassigned"} token
         </span>
         <h2 className="wrap-anywhere">{pathLabel(i.path)}</h2>
-        <p className="text-caption text-muted-foreground wrap-anywhere">
+        <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
           {token.description ?? "No description"}
         </p>
         <div className="flex gap-2 mt-3">
@@ -293,9 +294,7 @@ export function Editor({
           )}
           <section className="applied-summary border-t border-border mt-7 pt-5">
             <h3 className="mb-3.5">Currently applied</h3>
-            <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
-              {JSON.stringify(value, null, 2)}
-            </pre>
+            <div className="text-caption"><AuthoredValue value={value} project={project} /></div>
           </section>
           <section className="applied-summary border-t border-border mt-7 pt-5">
             <h3 className="mb-3.5">Metadata · read only</h3>

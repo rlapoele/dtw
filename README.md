@@ -45,6 +45,10 @@ Calculated representations are approximate and can be unavailable. Direct canoni
 
 Build before `npm run preview -- --host 127.0.0.1 --port 4173 --strictPort`. The production entry always starts empty. For acceptance testing only, the development server also serves `http://127.0.0.1:5173/test/browser/fixture.html` (append `?broken=true` for two retained missing references). This explicit test entry injects controlled storage failures, protected metadata and an inspect-only Number; it is excluded from the production build and is not a loader/import API. Its `window.dtwFixture` test controls are documented in [implementation evidence](output/playwright/increment-003-implementation/observations.md).
 
+Increment 005 adds an optional exact description during token creation, a two-line list preview and a full inspector description. Authored literals share named exact coordinate/Alpha summaries; aliases retain relationships and raw canonical JSON remains under All authored data. The token table uses its allocated container width: below Tailwind's `@3xl` (48rem), description moves beneath token identity; wider tables have aligned Token, Description and Authored value columns. Description editing remains outside scope.
+
+The maintained `test/browser/increment005.html?broken=true` development fixture adds all five spaces, long exact strings, `none`, multiline descriptions and visible storage-failure controls. Test-only Alt+Shift+R and Alt+Shift+C toggle read and commit failures even while a creation modal is open. It is excluded from production and provides no persistence/import API.
+
 The [implementation evidence](output/playwright/increment-003-implementation/observations.md) records dependency provenance/licenses, independent numerical fixtures, browser checks and coverage limits. The test reference JSON is copied unchanged from the frozen high-precision CSS Color 4 research fixture; the tests do not use Culori output as their expected oracle.
 
 ## In-memory application authoring

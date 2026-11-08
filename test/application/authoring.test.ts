@@ -238,3 +238,16 @@ class ControlledStorage implements ProjectStorage {
     return this.failCommit ? { status: "failure", message: "Commit unavailable" } : this.delegate.commit(snapshot);
   }
 }
+
+describe("token creation descriptions", () => {
+  it.each([undefined, "", "  ", " First line\nSecond line  "])("retains exact optional description %j through real creation and revision", (description) => {
+    const { app } = setup();
+    const token = ok(app.createColorToken({
+      ...literalInput, parentGroupId: null, description,
+    }));
+    expect(token.description).toBe(description);
+    expect(ok(app.readProject("p")).tokens[0].authored.description).toBe(description);
+    const revised = ok(app.reviseColorToken({ projectId: "p", tokenId: token.id, value: { kind: "literal", colorSpace: "hsl", components: ["37", "42", "63"], alpha: "0.5" } }));
+    expect(revised.description).toBe(description);
+  });
+});
