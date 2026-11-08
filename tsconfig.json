@@ -9,8 +9,15 @@
     "verbatimModuleSyntax": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "types": []
+    "types": [],
+    "paths": {
+      "@domain/*": ["./src/domain/*"],
+      "@application/*": ["./src/application/*"],
+      "@adapters/*": ["./src/adapters/*"],
+      "@presentation/*": ["./src/presentation/*"],
+      "@tests/*": ["./test/*"]
+    }
   },
   "include": ["src/**/*.ts", "test/**/*.ts"],
-  "exclude": ["src/delivery"]
+  "exclude": ["src/presentation"]
 }

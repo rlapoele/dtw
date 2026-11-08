@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { createTokenReference } from "../../src/domain/token-reference";
-import { createToken, addTokenAssignment, renameToken } from "../../src/domain/token";
-import type { Token, TokenValueAssignmentInput } from "../../src/domain/token";
-import { createNumberLiteral } from "../../src/domain/numeric-literals";
-import { validateProjectTokenReferences } from "../../src/domain/token-reference-validation";
-import { createVariationAxis } from "../../src/domain/variation-axis";
-import { completeVariationSelection, createVariationSelection } from "../../src/domain/variation-selection";
+import { createTokenReference } from "@domain/token-reference";
+import { createToken, addTokenAssignment, renameToken } from "@domain/token";
+import type { Token, TokenValueAssignmentInput } from "@domain/token";
+import { createNumberLiteral } from "@domain/numeric-literals";
+import { validateProjectTokenReferences } from "@domain/token-reference-validation";
+import { createVariationAxis } from "@domain/variation-axis";
+import { completeVariationSelection, createVariationSelection } from "@domain/variation-selection";
 
 const axis = createVariationAxis({
   id: "scheme", projectId: "project", name: "Scheme",

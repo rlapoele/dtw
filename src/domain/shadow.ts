@@ -1,12 +1,12 @@
-import { compareDecimals, decimalFromCanonical } from "./decimal";
-import { createColorLiteral } from "./color-literal";
-import type { ColorLiteralValue } from "./color-literal";
-import { createBooleanLiteral } from "./boolean-literal";
-import type { BooleanLiteralValue } from "./boolean-literal";
-import { createDimensionLiteral } from "./numeric-literals";
-import type { DimensionLiteralValue } from "./numeric-literals";
-import { createTokenReference } from "./token-reference";
-import type { TokenReference } from "./token-reference";
+import { compareDecimals, decimalFromCanonical } from "@domain/decimal";
+import { createColorLiteral } from "@domain/color-literal";
+import type { ColorLiteralValue } from "@domain/color-literal";
+import { createBooleanLiteral } from "@domain/boolean-literal";
+import type { BooleanLiteralValue } from "@domain/boolean-literal";
+import { createDimensionLiteral } from "@domain/numeric-literals";
+import type { DimensionLiteralValue } from "@domain/numeric-literals";
+import { createTokenReference } from "@domain/token-reference";
+import type { TokenReference } from "@domain/token-reference";
 
 export const SHADOW_FIELDS = ["color", "offsetX", "offsetY", "blur", "spread", "inset"] as const;
 export type ShadowField = (typeof SHADOW_FIELDS)[number];

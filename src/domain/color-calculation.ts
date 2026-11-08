@@ -14,17 +14,17 @@ import {
   useMode,
 );
 import type { Color, Mode } from "culori";
-import { createColorLiteral } from "./color-literal";
+import { createColorLiteral } from "@domain/color-literal";
 import type {
   ColorLiteralInput,
   ColorLiteralValue,
   ColorSpace,
-} from "./color-literal";
+} from "@domain/color-literal";
 import {
   compareDecimals,
   decimalFromCanonical,
   multiplyDecimals,
-} from "./decimal";
+} from "@domain/decimal";
 
 export type CalculationFailure =
   | "invalid-input"

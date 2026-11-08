@@ -1,5 +1,5 @@
-import { decimalFromCanonical } from "./decimal";
-import type { Decimal } from "./decimal";
+import { decimalFromCanonical } from "@domain/decimal";
+import type { Decimal } from "@domain/decimal";
 
 export const DURATION_UNITS = ["ms", "s"] as const;
 

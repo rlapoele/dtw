@@ -1,4 +1,4 @@
-import type { ProjectId, TokenGroupId } from "./identifiers";
+import type { ProjectId, TokenGroupId } from "@domain/identifiers";
 
 export type TokenGroupName = string;
 

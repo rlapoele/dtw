@@ -1,17 +1,17 @@
 import { describe, expect, it } from "vitest";
-import { createAuthoringOperations } from "../../src/application/authoring";
-import type { ApplicationResult, CreateColorTokenInput } from "../../src/application/authoring";
-import { InMemoryProjectStorage } from "../../src/adapters/in-memory-project-storage";
-import type { ProjectSnapshot, ProjectStorage, StorageResult } from "../../src/application/project-storage";
-import { createProject } from "../../src/domain/project";
-import { createToken } from "../../src/domain/token";
-import type { ImplementedAuthoredValue, Token, TokenDefinitionInput, TokenValueAssignment } from "../../src/domain/token";
-import { createTokenReference } from "../../src/domain/token-reference";
-import type { TokenValuePath } from "../../src/domain/token-reference";
-import { createColorLiteral } from "../../src/domain/color-literal";
-import { createTokenGroup } from "../../src/domain/token-group";
-import { createExpression } from "../../src/domain/expression";
-import { createNumberLiteral } from "../../src/domain/numeric-literals";
+import { createAuthoringOperations } from "@application/authoring";
+import type { ApplicationResult, CreateColorTokenInput } from "@application/authoring";
+import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
+import type { ProjectSnapshot, ProjectStorage, StorageResult } from "@application/project-storage";
+import { createProject } from "@domain/project";
+import { createToken } from "@domain/token";
+import type { ImplementedAuthoredValue, Token, TokenDefinitionInput, TokenValueAssignment } from "@domain/token";
+import { createTokenReference } from "@domain/token-reference";
+import type { TokenValuePath } from "@domain/token-reference";
+import { createColorLiteral } from "@domain/color-literal";
+import { createTokenGroup } from "@domain/token-group";
+import { createExpression } from "@domain/expression";
+import { createNumberLiteral } from "@domain/numeric-literals";
 
 function ok<T>(result: ApplicationResult<T>): T {
   expect(result.status).toBe("ok");

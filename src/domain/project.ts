@@ -1,4 +1,4 @@
-import type { ProjectId } from "./identifiers";
+import type { ProjectId } from "@domain/identifiers";
 
 export type ProjectName = string;
 

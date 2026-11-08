@@ -2,13 +2,17 @@
 
 > Last updated: 8 November 2026
 >
-> Phase: Increment 003 completed and independently reviewed; user/Git review handoff
+> Phase: Increment 003 completed; presentation naming and import-alias follow-up ready for Git review
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
 
-Increment 003 is **Completed** under the approved contract, V6 plus creation disclosure and simpler Culori numerical policy. The [completion report](../increments/003-visible-color-authoring.md#completion-report), [independent review](../increments/003-implementation-review.md) and [browser/numerical evidence](../../output/playwright/increment-003-implementation/observations.md) own the delivered behavior, verification and limits. No staging, commits or pushes were performed; the human reviews the diff and running app.
+**Naming/import follow-up — 8 November 2026:** after committing and pushing the implementation, the user approved `delivery` → `presentation` and requested import aliases. The source/test folders and UI configuration are now `src/presentation/`, `test/presentation/` and `tsconfig.presentation.json`. Source/test module imports use `@domain`, `@application`, `@adapters`, `@presentation` and `@tests`; TypeScript and Vite/Vitest resolve the same folders. A separate `tsconfig.tools.json` and development-only @types/node 24.19.2 keep Node types confined to build configuration. No application/domain logic changed. Typechecks, 894 tests and build pass; production JavaScript/CSS bytes are identical to the pre-rename build. The follow-up remains unstaged/uncommitted.
+
+Historical implementation and research manifests describe their original paths/imports and commit snapshots (the completed implementation is committed as `05db8e9`), not the renamed working tree. They and the historical prototype remain unchanged; do not regenerate old evidence to match the rename. Current paths/aliases are documented in the README and architecture.
+
+Increment 003 is **Completed** under the approved contract, V6 plus creation disclosure and simpler Culori numerical policy. The [completion report](../increments/003-visible-color-authoring.md#completion-report), [independent review](../increments/003-implementation-review.md) and [browser/numerical evidence](../../output/playwright/increment-003-implementation/observations.md) own the delivered behavior, verification and limits. The user subsequently committed and pushed that implementation; the current naming/import follow-up awaits human review.
 
 The app starts empty and supports exact project names, root/nested groups and rename, disclosed opaque-black color creation, exact literal/reference editing, stable-ID paths/aliases, domain resolution traces and diagnostics. Independent drafts, passive multi-space restoration, explicit Apply/Cancel, sliders, preview context, responsive panels and modal navigation follow V6. Failed reads/commits preserve source and drafts; controlled failure/inspect-only/broken-reference fixtures are development-only and excluded from the production bundle.
 
@@ -20,7 +24,7 @@ Culori 4.0.2 with @types/culori 4.0.1 supplies approximate conversions behind th
 - Developer corrected R1 and the independent reviewer rechecked it: slider eligibility now uses exact Decimal interval comparisons before Number rendering. No required findings remain. The final 29-file implementation manifest identifies the reviewed code; the original snapshot is preserved.
 - Browser evidence covers real authoring/alias/cycle/failure flows, representative numerical fixtures, desktop/tablet/320px/short-height layouts, keyboard/modal focus and actual browser Page zoom 200%. The reviewer independently verified zoom state; developer interaction evidence and designer screenshot inspection supplement it.
 - Separate designer checked V6 fidelity and a live mobile flow; no actionable regression. Screen-reader and physical mobile touch/virtual-keyboard sessions were not performed; no formal WCAG, full color-management or universal numerical claim is made.
-- Three historical numerical research manifests still verify. Their stricter internal-guard/owned-kernel recommendations are superseded by the approved simpler contract; frozen research, prototype and vendored references remain unchanged.
+- Three historical numerical research manifests are retained for verification against their original source snapshots. Their stricter internal-guard/owned-kernel recommendations are superseded by the approved simpler contract; frozen research, prototype and vendored references remain unchanged.
 
 ## Run and inspect
 
@@ -34,7 +38,7 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-User review of the implemented app and human Git review/staging/commit. Proposed commit: `feat: deliver session-only color token authoring`. No deployment, publication or next increment is authorized by completion.
+Human Git review/staging/commit of the naming/import follow-up. Proposed commit: `refactor: rename presentation layer and add import aliases`. No deployment, publication or next increment is authorized by completion.
 
 The recommended next product contract is durable retention plus independent backup/restore. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, repair/restore semantics, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not start them without a scoped request.
 

@@ -1,4 +1,4 @@
-import type { ProjectSnapshot, ProjectStorage, StorageResult } from "../application/project-storage";
+import type { ProjectSnapshot, ProjectStorage, StorageResult } from "@application/project-storage";
 
 export class InMemoryProjectStorage implements ProjectStorage {
   private readonly projects = new Map<string, ProjectSnapshot>();

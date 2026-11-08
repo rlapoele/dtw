@@ -1,4 +1,4 @@
-import { compareDecimals, decimalFromCanonical } from "../domain/decimal";
+import { compareDecimals, decimalFromCanonical } from "@domain/decimal";
 
 export type VisualRangeState = "available" | "outside" | "missing" | "invalid";
 

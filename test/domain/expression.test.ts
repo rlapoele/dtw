@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { addDecimals, subtractDecimals, multiplyDecimals, decimalFromCanonical } from "../../src/domain/decimal";
-import { createExpression, evaluatePortableOperation, analyzeExpression } from "../../src/domain/expression";
-import { createNumberLiteral as number, createDimensionLiteral as dimension } from "../../src/domain/numeric-literals";
-import { createColorLiteral } from "../../src/domain/color-literal";
-import { createTokenReference } from "../../src/domain/token-reference";
+import { addDecimals, subtractDecimals, multiplyDecimals, decimalFromCanonical } from "@domain/decimal";
+import { createExpression, evaluatePortableOperation, analyzeExpression } from "@domain/expression";
+import { createNumberLiteral as number, createDimensionLiteral as dimension } from "@domain/numeric-literals";
+import { createColorLiteral } from "@domain/color-literal";
+import { createTokenReference } from "@domain/token-reference";
 
 const decimal = decimalFromCanonical;
 const op = (name: string) => `portable.math.${name}.v1`;

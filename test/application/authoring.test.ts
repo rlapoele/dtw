@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { createAuthoringOperations } from "../../src/application/authoring";
-import { InMemoryProjectStorage } from "../../src/adapters/in-memory-project-storage";
-import type { ApplicationResult, CreateColorTokenInput } from "../../src/application/authoring";
-import type { ProjectSnapshot, ProjectStorage, StorageResult } from "../../src/application/project-storage";
+import { createAuthoringOperations } from "@application/authoring";
+import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
+import type { ApplicationResult, CreateColorTokenInput } from "@application/authoring";
+import type { ProjectSnapshot, ProjectStorage, StorageResult } from "@application/project-storage";
 
 function ok<T>(result: ApplicationResult<T>): T {
   expect(result.status).toBe("ok");

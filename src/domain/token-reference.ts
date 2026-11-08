@@ -1,4 +1,4 @@
-import type { TokenId } from "./identifiers";
+import type { TokenId } from "@domain/identifiers";
 
 export type TokenValuePathSegment =
   | { readonly kind: "field"; readonly key: string }

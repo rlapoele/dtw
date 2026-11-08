@@ -1,12 +1,12 @@
 import { describe, it, expect } from "vitest";
-import fixtures from "./color-reference-fixtures.json";
-import { createColorLiteral } from "../../src/domain/color-literal";
-import type { ColorSpace } from "../../src/domain/color-literal";
+import fixtures from "@tests/domain/color-reference-fixtures.json";
+import { createColorLiteral } from "@domain/color-literal";
+import type { ColorSpace } from "@domain/color-literal";
 import {
   convertColor,
   rawColorCoordinates,
   roundSignificant,
-} from "../../src/domain/color-calculation";
+} from "@domain/color-calculation";
 // Independent CSS Color 4 high-precision references, copied unchanged from the
 // frozen 003-numerical-feasibility/reference.json (see its README for equations).
 // Reference near-neutral hue is intentionally not an accuracy oracle.

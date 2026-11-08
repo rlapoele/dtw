@@ -1,19 +1,19 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Tabs } from "@base-ui/react/tabs";
-import { createColorLiteral } from "../domain/color-literal";
+import { createColorLiteral } from "@domain/color-literal";
 import type {
   TokenInspection,
   ProjectReadback,
   ApplicationResult,
-} from "../application/authoring";
-import type { Token } from "../domain/token";
-import type { ReviseColorTokenInput } from "../application/authoring";
-import { Button } from "./components/button";
-import { Select } from "./Select";
-import { ColorFields } from "./ColorFields";
-import { baseline, eligible, literalIssue } from "./session";
-import { colorPreview } from "./preview";
-import { failureText, pathLabel, resolvedColor } from "./readback";
+} from "@application/authoring";
+import type { Token } from "@domain/token";
+import type { ReviseColorTokenInput } from "@application/authoring";
+import { Button } from "@presentation/components/button";
+import { Select } from "@presentation/Select";
+import { ColorFields } from "@presentation/ColorFields";
+import { baseline, eligible, literalIssue } from "@presentation/session";
+import { colorPreview } from "@presentation/preview";
+import { failureText, pathLabel, resolvedColor } from "@presentation/readback";
 export type Feedback = {
   tokenId: string;
   tab: string;

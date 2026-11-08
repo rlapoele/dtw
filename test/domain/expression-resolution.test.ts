@@ -1,14 +1,14 @@
 import { describe, expect, it } from "vitest";
-import type { ExpressionValue } from "../../src/domain/expression";
-import { createExpression } from "../../src/domain/expression";
-import { createNumberLiteral as number, createDimensionLiteral as dimension } from "../../src/domain/numeric-literals";
-import { createToken } from "../../src/domain/token";
-import type { ImplementedAuthoredValue } from "../../src/domain/token";
-import { createTokenReference } from "../../src/domain/token-reference";
-import { resolveToken } from "../../src/domain/token-resolution";
-import { validateProjectTokenReferences } from "../../src/domain/token-reference-validation";
-import { createVariationAxis } from "../../src/domain/variation-axis";
-import { completeVariationSelection, createVariationSelection } from "../../src/domain/variation-selection";
+import type { ExpressionValue } from "@domain/expression";
+import { createExpression } from "@domain/expression";
+import { createNumberLiteral as number, createDimensionLiteral as dimension } from "@domain/numeric-literals";
+import { createToken } from "@domain/token";
+import type { ImplementedAuthoredValue } from "@domain/token";
+import { createTokenReference } from "@domain/token-reference";
+import { resolveToken } from "@domain/token-resolution";
+import { validateProjectTokenReferences } from "@domain/token-reference-validation";
+import { createVariationAxis } from "@domain/variation-axis";
+import { completeVariationSelection, createVariationSelection } from "@domain/variation-selection";
 
 const axis = createVariationAxis({ id: "scheme", projectId: "p", name: "Scheme", options: [{ id: "light", name: "Light" }, { id: "dark", name: "Dark" }], defaultOptionId: "light" });
 const light = completeVariationSelection([axis], createVariationSelection([]), createVariationSelection([]));

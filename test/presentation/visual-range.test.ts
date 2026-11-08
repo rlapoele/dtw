@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { visualRangeState } from "../../src/delivery/visual-range";
+import { visualRangeState } from "@presentation/visual-range";
 
 // These exact coordinates collapse onto a binary Number endpoint. The range
 // must be withheld rather than displaying a thumb for that different value.

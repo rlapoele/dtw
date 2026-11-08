@@ -1,20 +1,20 @@
-import { createProject } from "../domain/project";
-import type { Project, ProjectInput } from "../domain/project";
-import { createColorLiteral } from "../domain/color-literal";
-import type { ColorLiteralInput } from "../domain/color-literal";
-import { addTokenAssignment, createToken, removeTokenAssignment } from "../domain/token";
-import type { Token } from "../domain/token";
-import { createTokenGroup, renameTokenGroup } from "../domain/token-group";
-import type { TokenGroup, TokenGroupInput } from "../domain/token-group";
-import { createTokenReference } from "../domain/token-reference";
-import { deriveTokenGroupPath, deriveTokenPath, validateProjectNamespace } from "../domain/namespace";
-import type { NamespaceDiagnostic, NamespacePathResult } from "../domain/namespace";
-import { validateProjectTokenReferences } from "../domain/token-reference-validation";
-import type { TokenReferenceDiagnostic } from "../domain/token-reference-validation";
-import { resolveToken } from "../domain/token-resolution";
-import type { TokenResolutionResult } from "../domain/token-resolution";
-import { completeVariationSelection, createVariationSelection } from "../domain/variation-selection";
-import type { ProjectSnapshot, ProjectStorage } from "./project-storage";
+import { createProject } from "@domain/project";
+import type { Project, ProjectInput } from "@domain/project";
+import { createColorLiteral } from "@domain/color-literal";
+import type { ColorLiteralInput } from "@domain/color-literal";
+import { addTokenAssignment, createToken, removeTokenAssignment } from "@domain/token";
+import type { Token } from "@domain/token";
+import { createTokenGroup, renameTokenGroup } from "@domain/token-group";
+import type { TokenGroup, TokenGroupInput } from "@domain/token-group";
+import { createTokenReference } from "@domain/token-reference";
+import { deriveTokenGroupPath, deriveTokenPath, validateProjectNamespace } from "@domain/namespace";
+import type { NamespaceDiagnostic, NamespacePathResult } from "@domain/namespace";
+import { validateProjectTokenReferences } from "@domain/token-reference-validation";
+import type { TokenReferenceDiagnostic } from "@domain/token-reference-validation";
+import { resolveToken } from "@domain/token-resolution";
+import type { TokenResolutionResult } from "@domain/token-resolution";
+import { completeVariationSelection, createVariationSelection } from "@domain/variation-selection";
+import type { ProjectSnapshot, ProjectStorage } from "@application/project-storage";
 
 export type ApplicationFailure = {
   readonly status: "failure";

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { colorPreview } from "../../src/delivery/preview";
+import { colorPreview } from "@presentation/preview";
 const c = (components: string[], colorSpace = "srgb") => ({
   colorSpace,
   components,

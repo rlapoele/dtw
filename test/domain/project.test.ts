@@ -4,7 +4,7 @@ import {
   createProject,
   renameProject,
   changeProjectDescription,
-} from "../../src/domain/project";
+} from "@domain/project";
 
 describe("createProject", () => {
   it("creates a project without requiring tokens or a workspace location", () => {

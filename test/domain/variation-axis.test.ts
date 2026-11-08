@@ -6,7 +6,7 @@ import {
   createVariationAxis,
   renameVariationAxis,
   renameVariationOption,
-} from "../../src/domain/variation-axis";
+} from "@domain/variation-axis";
 
 describe("createVariationAxis", () => {
   it("creates a project-owned axis with an explicit owned default", () => {

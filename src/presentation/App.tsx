@@ -18,20 +18,20 @@ import {
   Squares2X2Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { createAuthoringOperations } from "../application/authoring";
+import { createAuthoringOperations } from "@application/authoring";
 import type {
   ProjectReadback,
   TokenInspection,
-} from "../application/authoring";
-import type { ProjectStorage } from "../application/project-storage";
-import { InMemoryProjectStorage } from "../adapters/in-memory-project-storage";
-import { Button } from "./components/button";
-import { Select } from "./Select";
-import { Editor, Swatch } from "./Editor";
-import type { Feedback } from "./Editor";
-import { failureText, pathLabel, resolvedColor } from "./readback";
-import { colorPreview } from "./preview";
-import { eligible } from "./session";
+} from "@application/authoring";
+import type { ProjectStorage } from "@application/project-storage";
+import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
+import { Button } from "@presentation/components/button";
+import { Select } from "@presentation/Select";
+import { Editor, Swatch } from "@presentation/Editor";
+import type { Feedback } from "@presentation/Editor";
+import { failureText, pathLabel, resolvedColor } from "@presentation/readback";
+import { colorPreview } from "@presentation/preview";
+import { eligible } from "@presentation/session";
 export function App({
   storage = new InMemoryProjectStorage(),
   initialProjectId,

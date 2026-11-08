@@ -4,12 +4,12 @@ import {
   createThemePreset,
   renameThemePreset,
   replaceThemePresetSelections,
-} from "../../src/domain/theme-preset";
-import { createVariationAxis } from "../../src/domain/variation-axis";
+} from "@domain/theme-preset";
+import { createVariationAxis } from "@domain/variation-axis";
 import {
   completeVariationSelection,
   createVariationSelection,
-} from "../../src/domain/variation-selection";
+} from "@domain/variation-selection";
 
 const colorAxis = createVariationAxis({
   id: "axis-color",

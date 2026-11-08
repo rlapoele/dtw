@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { createColorLiteral } from "../../src/domain/color-literal";
-import { createNumberLiteral } from "../../src/domain/numeric-literals";
+import { createColorLiteral } from "@domain/color-literal";
+import { createNumberLiteral } from "@domain/numeric-literals";
 import {
   addTokenAssignment,
   changeTokenType,
@@ -11,8 +11,8 @@ import {
   removeTokenAssignment,
   removeTokenDefinition,
   renameToken,
-} from "../../src/domain/token";
-import { createVariationAxis } from "../../src/domain/variation-axis";
+} from "@domain/token";
+import { createVariationAxis } from "@domain/variation-axis";
 
 const colorAxis = createVariationAxis({
   id: "axis-color",

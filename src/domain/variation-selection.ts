@@ -1,9 +1,9 @@
-import type { VariationAxis } from "./variation-axis";
+import type { VariationAxis } from "@domain/variation-axis";
 import type {
   AxisOptionSelection,
   AxisOptionSelectionInput,
-} from "./variation-condition";
-import { createVariationCondition } from "./variation-condition";
+} from "@domain/variation-condition";
+import { createVariationCondition } from "@domain/variation-condition";
 
 declare const variationSelectionBrand: unique symbol;
 declare const completeVariationSelectionBrand: unique symbol;

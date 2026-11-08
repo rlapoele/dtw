@@ -2,13 +2,13 @@ import { describe, it, expect } from "vitest";
 import {
   createColorLiteral,
   COLOR_SPACES,
-} from "../../src/domain/color-literal";
+} from "@domain/color-literal";
 import {
   convertColor,
   byteToNormalized,
   normalizedToByte,
   roundSignificant,
-} from "../../src/domain/color-calculation";
+} from "@domain/color-calculation";
 const color = (components = ["0.2", "0.4", "0.6"], colorSpace = "srgb") =>
   createColorLiteral({ colorSpace, components, alpha: "0.123456789123456789" });
 describe("bounded color calculations", () => {

@@ -1,11 +1,11 @@
-import type { ColorLiteralInput, ColorSpace } from "../domain/color-literal";
-import { createColorLiteral } from "../domain/color-literal";
+import type { ColorLiteralInput, ColorSpace } from "@domain/color-literal";
+import { createColorLiteral } from "@domain/color-literal";
 import {
   byteToNormalized,
   convertColor,
   normalizedToByte,
-} from "../domain/color-calculation";
-import type { ImplementedAuthoredValue, Token } from "../domain/token";
+} from "@domain/color-calculation";
+import type { ImplementedAuthoredValue, Token } from "@domain/token";
 export type LiteralDraft = {
   colorSpace: ColorSpace;
   components: [string, string, string];

@@ -2,7 +2,7 @@ import type {
   ProjectId,
   VariationAxisId,
   VariationOptionId,
-} from "./identifiers";
+} from "@domain/identifiers";
 
 export type VariationAxisName = string;
 export type VariationOptionName = string;

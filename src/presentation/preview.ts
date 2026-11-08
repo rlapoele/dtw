@@ -1,7 +1,7 @@
-import { createColorLiteral } from "../domain/color-literal";
-import type { ColorLiteralInput } from "../domain/color-literal";
-import { compareDecimals, decimalFromCanonical } from "../domain/decimal";
-import { rawColorCoordinates } from "../domain/color-calculation";
+import { createColorLiteral } from "@domain/color-literal";
+import type { ColorLiteralInput } from "@domain/color-literal";
+import { compareDecimals, decimalFromCanonical } from "@domain/decimal";
+import { rawColorCoordinates } from "@domain/color-calculation";
 export function colorPreview(input?: ColorLiteralInput): {
   css?: string;
   message: string;

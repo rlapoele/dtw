@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
 
-import { createColorLiteral } from "../../src/domain/color-literal";
-import { createDimensionLiteral, createNumberLiteral } from "../../src/domain/numeric-literals";
-import { createToken } from "../../src/domain/token";
-import type { Token, TokenValueAssignmentInput } from "../../src/domain/token";
-import { createTokenReference } from "../../src/domain/token-reference";
-import { resolveToken } from "../../src/domain/token-resolution";
-import { createVariationAxis } from "../../src/domain/variation-axis";
-import { completeVariationSelection, createVariationSelection } from "../../src/domain/variation-selection";
+import { createColorLiteral } from "@domain/color-literal";
+import { createDimensionLiteral, createNumberLiteral } from "@domain/numeric-literals";
+import { createToken } from "@domain/token";
+import type { Token, TokenValueAssignmentInput } from "@domain/token";
+import { createTokenReference } from "@domain/token-reference";
+import { resolveToken } from "@domain/token-resolution";
+import { createVariationAxis } from "@domain/variation-axis";
+import { completeVariationSelection, createVariationSelection } from "@domain/variation-selection";
 
 const axes = [
   createVariationAxis({

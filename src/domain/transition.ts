@@ -1,10 +1,10 @@
-import { compareDecimals, decimalFromCanonical } from "./decimal";
-import { createDurationLiteral } from "./duration-literal";
-import type { DurationLiteralValue } from "./duration-literal";
-import { createCubicBezierLiteral } from "./cubic-bezier-literal";
-import type { CubicBezierLiteralValue } from "./cubic-bezier-literal";
-import { createTokenReference } from "./token-reference";
-import type { TokenReference } from "./token-reference";
+import { compareDecimals, decimalFromCanonical } from "@domain/decimal";
+import { createDurationLiteral } from "@domain/duration-literal";
+import type { DurationLiteralValue } from "@domain/duration-literal";
+import { createCubicBezierLiteral } from "@domain/cubic-bezier-literal";
+import type { CubicBezierLiteralValue } from "@domain/cubic-bezier-literal";
+import { createTokenReference } from "@domain/token-reference";
+import type { TokenReference } from "@domain/token-reference";
 
 export const TRANSITION_FIELDS = ["duration", "delay", "timingFunction"] as const;
 export type TransitionField = (typeof TRANSITION_FIELDS)[number];

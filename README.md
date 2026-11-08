@@ -17,19 +17,23 @@ The scaffold was verified using Node.js `24.14.1` and npm `11.17.0`, satisfying 
 - `src/domain/` contains host-independent domain entities, value objects, and validation.
 - `src/application/` coordinates authoring through an explicit project storage port.
 - `src/adapters/` contains the in-memory project storage adapter.
-- `src/delivery/` contains the React renderer, disposable specimens and independent delivery drafts.
-- `test/domain/`, `test/application/`, `test/adapters/` and `test/delivery/` contain tests named `*.test.ts`.
+- `src/presentation/` contains the React renderer, disposable specimens and independent presentation drafts.
+- `test/domain/`, `test/application/`, `test/adapters/` and `test/presentation/` contain tests named `*.test.ts`.
+
+Project module imports use `@domain/…`, `@application/…`, `@adapters/…` and `@presentation/…`; test fixtures use `@tests/…`. TypeScript maps these in `tsconfig.json`; Vite and Vitest share the runtime mappings exported by `vite.config.ts`. The test config's relative import of that Vite configuration is a bootstrap dependency, not an application-module import. Aliases do not change the architectural dependency rules.
+
+Historical review/research manifests retain the paths and import text of their identified snapshots. After the presentation rename and alias refactor, verify those manifests against their original commits rather than rewriting historical evidence to match the current tree.
 
 | Command | Purpose |
 |---|---|
-| `npm run typecheck` | Check host-independent source/tests, then browser/TSX types separately |
+| `npm run typecheck` | Check host-independent source/tests, browser/TSX and build-tool types separately |
 | `npm test` | Run Vitest once |
 | `npm run test:watch` | Run Vitest in watch mode |
 | `npm run dev -- --host 127.0.0.1` | Open the session-only browser authoring app |
 | `npm run build` | Check both type scopes, then build the browser app |
 | `npm run preview` | Preview an existing Vite production build |
 
-Both TypeScript configurations enable strict checking. The base configuration includes domain/application/adapters and pure tests, excluding the UI; `tsconfig.delivery.json` adds browser libraries and JSX for delivery and the isolated browser fixture. Its default environment excludes browser and Node global types to keep the domain code independent of either host. Dependency declaration checking is skipped because the Vite and Vitest declarations reference host event types that are intentionally absent; project source and tests remain strictly checked. Vitest uses its default Node test environment and explicitly includes `test/**/*.test.ts`; historical isolated prototype tests keep their own package and runner.
+All TypeScript configurations enable strict checking. The base configuration includes domain/application/adapters and pure tests, excluding the UI; `tsconfig.presentation.json` adds browser libraries and JSX for presentation and the isolated browser fixture. `tsconfig.tools.json` checks Vite/Vitest configuration with Node types; `@types/node` is a development dependency only. The base configuration excludes browser and Node global types, and the browser configuration does not include Node globals. Dependency declaration checking is skipped because the Vite and Vitest declarations reference host event types that are intentionally absent; project source and tests remain strictly checked. Vitest uses its default Node test environment and explicitly includes `test/**/*.test.ts`; historical isolated prototype tests keep their own package and runner.
 
 Start from an empty page, create a project (including an exact empty name), organize root/nested groups, and create a disclosed opaque-black Color token. Revise exact literals or explicitly replace them with ID-linked references. Apply is explicit; mode switches and passive color-space exploration retain independent drafts. Reloading, closing or leaving loses all project data. No browser persistence or project network service is used. This is not the complete PWA: retention/backup, interchange, install/offline and Electron remain deferred.
 

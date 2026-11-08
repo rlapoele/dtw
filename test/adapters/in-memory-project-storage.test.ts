@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { InMemoryProjectStorage } from "../../src/adapters/in-memory-project-storage";
-import { createProject } from "../../src/domain/project";
-import { createToken } from "../../src/domain/token";
-import { createColorLiteral } from "../../src/domain/color-literal";
+import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
+import { createProject } from "@domain/project";
+import { createToken } from "@domain/token";
+import { createColorLiteral } from "@domain/color-literal";
 
 describe("in-memory storage isolation", () => {
   it("isolates preloaded data, committed candidates, and loaded snapshots", () => {

@@ -1,12 +1,12 @@
-import { compareDecimals, decimalFromCanonical } from "./decimal";
-import { createFontFamilyLiteral } from "./font-family-literal";
-import type { FontFamilyLiteralValue } from "./font-family-literal";
-import { createFontWeightLiteral } from "./font-weight-literal";
-import type { FontWeightLiteralValue } from "./font-weight-literal";
-import { createDimensionLiteral, createNumberLiteral } from "./numeric-literals";
-import type { DimensionLiteralValue, NumberLiteralValue } from "./numeric-literals";
-import { createTokenReference } from "./token-reference";
-import type { TokenReference } from "./token-reference";
+import { compareDecimals, decimalFromCanonical } from "@domain/decimal";
+import { createFontFamilyLiteral } from "@domain/font-family-literal";
+import type { FontFamilyLiteralValue } from "@domain/font-family-literal";
+import { createFontWeightLiteral } from "@domain/font-weight-literal";
+import type { FontWeightLiteralValue } from "@domain/font-weight-literal";
+import { createDimensionLiteral, createNumberLiteral } from "@domain/numeric-literals";
+import type { DimensionLiteralValue, NumberLiteralValue } from "@domain/numeric-literals";
+import { createTokenReference } from "@domain/token-reference";
+import type { TokenReference } from "@domain/token-reference";
 
 export const TYPOGRAPHY_FIELDS = ["fontFamily", "fontSize", "fontWeight", "letterSpacing", "lineHeight"] as const;
 export type TypographyField = (typeof TYPOGRAPHY_FIELDS)[number];

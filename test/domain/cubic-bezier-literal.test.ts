@@ -1,15 +1,15 @@
 import { describe, expect, it } from "vitest";
 
-import { createCubicBezierLiteral } from "../../src/domain/cubic-bezier-literal";
-import { createNumberLiteral, createDimensionLiteral } from "../../src/domain/numeric-literals";
-import { createToken, addTokenAssignment } from "../../src/domain/token";
-import type { ImplementedAuthoredValue } from "../../src/domain/token";
-import { createTokenReference } from "../../src/domain/token-reference";
-import { validateProjectTokenReferences } from "../../src/domain/token-reference-validation";
-import { resolveToken } from "../../src/domain/token-resolution";
-import { createExpression, evaluatePortableOperation, PORTABLE_OPERATION_IDS } from "../../src/domain/expression";
-import { createVariationAxis } from "../../src/domain/variation-axis";
-import { completeVariationSelection, createVariationSelection } from "../../src/domain/variation-selection";
+import { createCubicBezierLiteral } from "@domain/cubic-bezier-literal";
+import { createNumberLiteral, createDimensionLiteral } from "@domain/numeric-literals";
+import { createToken, addTokenAssignment } from "@domain/token";
+import type { ImplementedAuthoredValue } from "@domain/token";
+import { createTokenReference } from "@domain/token-reference";
+import { validateProjectTokenReferences } from "@domain/token-reference-validation";
+import { resolveToken } from "@domain/token-resolution";
+import { createExpression, evaluatePortableOperation, PORTABLE_OPERATION_IDS } from "@domain/expression";
+import { createVariationAxis } from "@domain/variation-axis";
+import { completeVariationSelection, createVariationSelection } from "@domain/variation-selection";
 
 const axis = createVariationAxis({
   id: "motion", projectId: "p", name: "Motion",

@@ -1,14 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { createAuthoringOperations } from "../../src/application/authoring";
-import type { ApplicationResult } from "../../src/application/authoring";
-import type { ProjectSnapshot } from "../../src/application/project-storage";
-import { InMemoryProjectStorage } from "../../src/adapters/in-memory-project-storage";
-import { createProject } from "../../src/domain/project";
-import { createToken } from "../../src/domain/token";
-import type { Token, TokenDefinitionInput } from "../../src/domain/token";
-import { createTokenGroup } from "../../src/domain/token-group";
-import { createTokenReference } from "../../src/domain/token-reference";
-import type { TokenValuePath } from "../../src/domain/token-reference";
+import { createAuthoringOperations } from "@application/authoring";
+import type { ApplicationResult } from "@application/authoring";
+import type { ProjectSnapshot } from "@application/project-storage";
+import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
+import { createProject } from "@domain/project";
+import { createToken } from "@domain/token";
+import type { Token, TokenDefinitionInput } from "@domain/token";
+import { createTokenGroup } from "@domain/token-group";
+import { createTokenReference } from "@domain/token-reference";
+import type { TokenValuePath } from "@domain/token-reference";
 
 function ok<T>(result: ApplicationResult<T>): T {
   expect(result.status).toBe("ok");

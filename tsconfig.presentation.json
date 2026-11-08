@@ -6,9 +6,8 @@
     "types": ["vite/client"]
   },
   "include": [
-    "src/delivery/**/*.ts",
-    "src/delivery/**/*.tsx",
-    "vite.config.ts",
+    "src/presentation/**/*.ts",
+    "src/presentation/**/*.tsx",
     "test/browser/**/*.tsx"
   ],
   "exclude": []

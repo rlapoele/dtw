@@ -1,12 +1,12 @@
-import type { ProjectId, ThemePresetId } from "./identifiers";
-import type { VariationAxis } from "./variation-axis";
-import type { AxisOptionSelectionInput } from "./variation-condition";
-import type { VariationSelection } from "./variation-selection";
+import type { ProjectId, ThemePresetId } from "@domain/identifiers";
+import type { VariationAxis } from "@domain/variation-axis";
+import type { AxisOptionSelectionInput } from "@domain/variation-condition";
+import type { VariationSelection } from "@domain/variation-selection";
 import {
   assertVariationAxesBelongToProject,
   createVariationSelection,
   validateVariationSelection,
-} from "./variation-selection";
+} from "@domain/variation-selection";
 
 export type ThemePresetName = string;
 

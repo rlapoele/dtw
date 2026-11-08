@@ -1,16 +1,16 @@
-import { SHADOW_FIELDS, SHADOW_FIELD_TYPES, isShadowFieldValue, isValidShadowBlur } from "./shadow";
-import type { ShadowField, ResolvedShadowLayer, ResolvedShadowValue } from "./shadow";
-import { TYPOGRAPHY_FIELDS, TYPOGRAPHY_FIELD_TYPES, isTypographyFieldValue, isNonNegativeTypographyValue } from "./typography";
-import type { TypographyField, ResolvedTypographyValue } from "./typography";
-import { TRANSITION_FIELDS, TRANSITION_FIELD_TYPES, isTransitionFieldValue, isValidTransitionDuration } from "./transition";
-import type { TransitionField, ResolvedTransitionValue } from "./transition";
-import { evaluatePortableOperation, isPortableOperationId, operationArity, readRootFontSize } from "./expression";
-import type { EvaluationContext, EvaluationContextKey, ExpressionOperand, ExpressionFailure } from "./expression";
-import { selectMostSpecificAssignment } from "./assignment-selection";
-import type { TokenId } from "./identifiers";
-import type { ImplementedLiteralValue, ImplementedCompositeValue, Token, TokenType } from "./token";
-import type { VariationCondition } from "./variation-condition";
-import type { CompleteVariationSelection } from "./variation-selection";
+import { SHADOW_FIELDS, SHADOW_FIELD_TYPES, isShadowFieldValue, isValidShadowBlur } from "@domain/shadow";
+import type { ShadowField, ResolvedShadowLayer, ResolvedShadowValue } from "@domain/shadow";
+import { TYPOGRAPHY_FIELDS, TYPOGRAPHY_FIELD_TYPES, isTypographyFieldValue, isNonNegativeTypographyValue } from "@domain/typography";
+import type { TypographyField, ResolvedTypographyValue } from "@domain/typography";
+import { TRANSITION_FIELDS, TRANSITION_FIELD_TYPES, isTransitionFieldValue, isValidTransitionDuration } from "@domain/transition";
+import type { TransitionField, ResolvedTransitionValue } from "@domain/transition";
+import { evaluatePortableOperation, isPortableOperationId, operationArity, readRootFontSize } from "@domain/expression";
+import type { EvaluationContext, EvaluationContextKey, ExpressionOperand, ExpressionFailure } from "@domain/expression";
+import { selectMostSpecificAssignment } from "@domain/assignment-selection";
+import type { TokenId } from "@domain/identifiers";
+import type { ImplementedLiteralValue, ImplementedCompositeValue, Token, TokenType } from "@domain/token";
+import type { VariationCondition } from "@domain/variation-condition";
+import type { CompleteVariationSelection } from "@domain/variation-selection";
 
 export const TOKEN_RESOLUTION_FAILURE_REASONS = [
   "missing-assignment",

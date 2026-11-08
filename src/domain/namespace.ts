@@ -1,6 +1,6 @@
-import type { TokenGroupId, TokenId } from "./identifiers";
-import type { Token } from "./token";
-import type { TokenGroup } from "./token-group";
+import type { TokenGroupId, TokenId } from "@domain/identifiers";
+import type { Token } from "@domain/token";
+import type { TokenGroup } from "@domain/token-group";
 
 // An operation input, not a persisted Project aggregate or ownership list.
 export type ProjectNamespaceSnapshot = {

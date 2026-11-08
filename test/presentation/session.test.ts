@@ -1,18 +1,18 @@
 import { describe, it, expect } from "vitest";
-import type { DraftSession } from "../../src/delivery/session";
+import type { DraftSession } from "@presentation/session";
 import {
   baseline,
   changeView,
   editComponent,
   fields,
-} from "../../src/delivery/session";
-import { createColorLiteral } from "../../src/domain/color-literal";
+} from "@presentation/session";
+import { createColorLiteral } from "@domain/color-literal";
 const original = createColorLiteral({
   colorSpace: "srgb",
   components: ["0.123456789123456789123456789", "0.4", "0.6"],
   alpha: "0.123456789123456789",
 });
-describe("delivery draft session", () => {
+describe("presentation draft session", () => {
   it("restores exact authoritative text after any passive views", () => {
     let s = baseline(original);
     for (const v of ["oklab", "hsl", "oklch", "display-p3", "srgb"] as const)

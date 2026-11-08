@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   createDimensionLiteral,
   createNumberLiteral,
-} from "../../src/domain/numeric-literals";
+} from "@domain/numeric-literals";
 
 describe("createNumberLiteral", () => {
   it("creates a number literal from canonical Decimal text", () => {

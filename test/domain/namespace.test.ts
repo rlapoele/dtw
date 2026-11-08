@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
 
-import { createTokenGroup, renameTokenGroup } from "../../src/domain/token-group";
-import { createToken, renameToken } from "../../src/domain/token";
-import { createNumberLiteral } from "../../src/domain/numeric-literals";
+import { createTokenGroup, renameTokenGroup } from "@domain/token-group";
+import { createToken, renameToken } from "@domain/token";
+import { createNumberLiteral } from "@domain/numeric-literals";
 import {
   validateProjectNamespace, deriveTokenPath, deriveTokenGroupPath,
   moveTokenGroup, moveTokenInNamespace,
-} from "../../src/domain/namespace";
-import type { ProjectNamespaceSnapshot } from "../../src/domain/namespace";
+} from "@domain/namespace";
+import type { ProjectNamespaceSnapshot } from "@domain/namespace";
 
 const group = (id: string, localName: string, parentGroupId: string | null = null, projectId = "p") =>
   createTokenGroup({ id, projectId, localName, parentGroupId });

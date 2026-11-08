@@ -80,6 +80,8 @@ The backend side may be written in JavaScript or TypeScript and can use Node.js 
 
 Use a pragmatic ports-and-adapters, or hexagonal, architecture. The aim is replaceable boundaries and independent testing, not architectural ceremony.
 
+**Source naming — 8 November 2026:** `src/presentation/` contains the React UI, styles, editor drafts and disposable browser previews; `src/application/` contains host-independent use-case coordination. The user approved renaming the former `delivery` folder to `presentation` for clarity, with the same dependency boundaries. Matching tests and UI type configuration use `test/presentation/` and `tsconfig.presentation.json`. The broader term “delivery surface” below also covers possible non-UI entry points such as CLI or MCP; those need not live under `presentation`. Source/test imports use `@domain`, `@application`, `@adapters`, `@presentation` and `@tests` mappings; these improve path clarity without permitting new dependencies between layers. TypeScript paths and shared Vite/Vitest aliases resolve the same folders. Build configuration is checked separately in `tsconfig.tools.json` with development-only Node types; domain/application checks and browser code retain their own host scopes.
+
 ```text
 Delivery surfaces
     PWA · Electron renderer · CLI · MCP · automation

@@ -4,7 +4,7 @@ import {
   areVariationConditionsEqual,
   createVariationCondition,
   variationConditionSpecificity,
-} from "../../src/domain/variation-condition";
+} from "@domain/variation-condition";
 
 describe("createVariationCondition", () => {
   it("represents an unconditional assignment as an empty condition", () => {

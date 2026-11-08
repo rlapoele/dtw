@@ -1,9 +1,9 @@
-import type { NamespacePathResult } from "../domain/namespace";
+import type { NamespacePathResult } from "@domain/namespace";
 import type {
   ApplicationFailure,
   TokenInspection,
-} from "../application/authoring";
-import type { ColorLiteralValue } from "../domain/color-literal";
+} from "@application/authoring";
+import type { ColorLiteralValue } from "@domain/color-literal";
 export function pathLabel(path: NamespacePathResult) {
   return path.status === "derived"
     ? path.path.map((x) => (x === "" ? "(unnamed)" : x)).join(" / ")

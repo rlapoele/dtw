@@ -1,5 +1,5 @@
-import { compareDecimals, decimalFromCanonical } from "./decimal";
-import type { Decimal } from "./decimal";
+import { compareDecimals, decimalFromCanonical } from "@domain/decimal";
+import type { Decimal } from "@domain/decimal";
 
 export const COLOR_SPACES = [
   "srgb",

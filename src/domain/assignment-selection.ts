@@ -1,9 +1,9 @@
 import type {
   AxisOptionSelection,
   VariationCondition,
-} from "./variation-condition";
-import { variationConditionSpecificity } from "./variation-condition";
-import type { CompleteVariationSelection } from "./variation-selection";
+} from "@domain/variation-condition";
+import { variationConditionSpecificity } from "@domain/variation-condition";
+import type { CompleteVariationSelection } from "@domain/variation-selection";
 
 export type AssignmentMatch<TAssignment> =
   | {

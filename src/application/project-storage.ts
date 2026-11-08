@@ -1,6 +1,6 @@
-import type { Project } from "../domain/project";
-import type { Token } from "../domain/token";
-import type { TokenGroup } from "../domain/token-group";
+import type { Project } from "@domain/project";
+import type { Token } from "@domain/token";
+import type { TokenGroup } from "@domain/token-group";
 
 // Operational coordination data, not a canonical aggregate or file schema.
 // This workflow has no axes or presets and authors unconditional assignments.

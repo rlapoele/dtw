@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { createColorLiteral } from "../../src/domain/color-literal";
+import { createColorLiteral } from "@domain/color-literal";
 
 describe("createColorLiteral", () => {
   it.each(["srgb", "display-p3"] as const)(

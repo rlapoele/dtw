@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
 
-import { selectMostSpecificAssignment } from "../../src/domain/assignment-selection";
-import { createVariationAxis } from "../../src/domain/variation-axis";
-import { createVariationCondition } from "../../src/domain/variation-condition";
+import { selectMostSpecificAssignment } from "@domain/assignment-selection";
+import { createVariationAxis } from "@domain/variation-axis";
+import { createVariationCondition } from "@domain/variation-condition";
 import {
   completeVariationSelection,
   createVariationSelection,
-} from "../../src/domain/variation-selection";
+} from "@domain/variation-selection";
 
 describe("selectMostSpecificAssignment", () => {
   const axes = [

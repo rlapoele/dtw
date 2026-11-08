@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   compareDecimals,
   decimalFromCanonical,
-} from "../../src/domain/decimal";
+} from "@domain/decimal";
 
 describe("decimalFromCanonical", () => {
   it.each([

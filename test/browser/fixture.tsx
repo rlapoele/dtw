@@ -1,17 +1,17 @@
 // Explicit test-only entry, excluded from the production build. Never a project loader.
 import { createRoot } from "react-dom/client";
-import { App } from "../../src/delivery/App";
-import "../../src/delivery/styles.css";
-import { InMemoryProjectStorage } from "../../src/adapters/in-memory-project-storage";
-import { createProject } from "../../src/domain/project";
-import { createToken } from "../../src/domain/token";
-import { createColorLiteral } from "../../src/domain/color-literal";
-import { createTokenReference } from "../../src/domain/token-reference";
-import { createNumberLiteral } from "../../src/domain/numeric-literals";
+import { App } from "@presentation/App";
+import "@presentation/styles.css";
+import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
+import { createProject } from "@domain/project";
+import { createToken } from "@domain/token";
+import { createColorLiteral } from "@domain/color-literal";
+import { createTokenReference } from "@domain/token-reference";
+import { createNumberLiteral } from "@domain/numeric-literals";
 import type {
   ProjectSnapshot,
   ProjectStorage,
-} from "../../src/application/project-storage";
+} from "@application/project-storage";
 const literal = createColorLiteral({
   colorSpace: "srgb",
   components: ["0.2", "0.4", "0.6"],

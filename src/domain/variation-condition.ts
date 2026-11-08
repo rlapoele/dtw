@@ -1,7 +1,7 @@
 import type {
   VariationAxisId,
   VariationOptionId,
-} from "./identifiers";
+} from "@domain/identifiers";
 
 export type AxisOptionSelection = {
   readonly axisId: VariationAxisId;

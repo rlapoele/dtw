@@ -1,11 +1,11 @@
 import type { CSSProperties } from "react";
-import { COLOR_SPACES } from "../domain/color-literal";
-import type { ColorSpace } from "../domain/color-literal";
-import { normalizedToByte } from "../domain/color-calculation";
-import { Select } from "./Select";
-import { changeView, displayed, editComponent, fields } from "./session";
-import type { DraftSession } from "./session";
-import { visualRangeState } from "./visual-range";
+import { COLOR_SPACES } from "@domain/color-literal";
+import type { ColorSpace } from "@domain/color-literal";
+import { normalizedToByte } from "@domain/color-calculation";
+import { Select } from "@presentation/Select";
+import { changeView, displayed, editComponent, fields } from "@presentation/session";
+import type { DraftSession } from "@presentation/session";
+import { visualRangeState } from "@presentation/visual-range";
 const labels: Record<ColorSpace, [string, string, string]> = {
   srgb: ["Red", "Green", "Blue"],
   "display-p3": ["Red", "Green", "Blue"],

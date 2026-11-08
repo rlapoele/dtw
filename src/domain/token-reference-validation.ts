@@ -1,16 +1,16 @@
-import { SHADOW_FIELDS, SHADOW_FIELD_TYPES, isShadowFieldValue } from "./shadow";
-import type { ShadowField } from "./shadow";
-import { TYPOGRAPHY_FIELDS, TYPOGRAPHY_FIELD_TYPES, isTypographyFieldValue } from "./typography";
-import type { TypographyField } from "./typography";
-import { TRANSITION_FIELDS, TRANSITION_FIELD_TYPES, isTransitionFieldValue } from "./transition";
-import type { TransitionField } from "./transition";
-import { selectMostSpecificAssignment } from "./assignment-selection";
-import type { TokenId } from "./identifiers";
-import type { ExpressionOperand } from "./expression";
-import type { Token, TokenType, TokenValueAssignment, ImplementedAuthoredValue, ImplementedCompositeValue } from "./token";
-import type { TokenReference } from "./token-reference";
-import type { VariationCondition } from "./variation-condition";
-import type { CompleteVariationSelection } from "./variation-selection";
+import { SHADOW_FIELDS, SHADOW_FIELD_TYPES, isShadowFieldValue } from "@domain/shadow";
+import type { ShadowField } from "@domain/shadow";
+import { TYPOGRAPHY_FIELDS, TYPOGRAPHY_FIELD_TYPES, isTypographyFieldValue } from "@domain/typography";
+import type { TypographyField } from "@domain/typography";
+import { TRANSITION_FIELDS, TRANSITION_FIELD_TYPES, isTransitionFieldValue } from "@domain/transition";
+import type { TransitionField } from "@domain/transition";
+import { selectMostSpecificAssignment } from "@domain/assignment-selection";
+import type { TokenId } from "@domain/identifiers";
+import type { ExpressionOperand } from "@domain/expression";
+import type { Token, TokenType, TokenValueAssignment, ImplementedAuthoredValue, ImplementedCompositeValue } from "@domain/token";
+import type { TokenReference } from "@domain/token-reference";
+import type { VariationCondition } from "@domain/variation-condition";
+import type { CompleteVariationSelection } from "@domain/variation-selection";
 
 export const TOKEN_REFERENCE_ISSUE_CODES = [
   "missing-reference",

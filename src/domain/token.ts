@@ -1,42 +1,42 @@
-import { createShadow } from "./shadow";
-import type { ShadowValue } from "./shadow";
-import type { BooleanLiteralValue } from "./boolean-literal";
-import { createTypography } from "./typography";
-import type { TypographyValue } from "./typography";
-import type { FontFamilyLiteralValue } from "./font-family-literal";
-import type { FontWeightLiteralValue } from "./font-weight-literal";
-import { createTransition } from "./transition";
-import type { TransitionValue } from "./transition";
-import type { DurationLiteralValue } from "./duration-literal";
-import type { CubicBezierLiteralValue } from "./cubic-bezier-literal";
-import type { PercentageLiteralValue } from "./percentage-literal";
-import type { ExpressionValue } from "./expression";
-import { createTokenReference } from "./token-reference";
-import type { TokenReference } from "./token-reference";
-import type { ColorLiteralValue } from "./color-literal";
+import { createShadow } from "@domain/shadow";
+import type { ShadowValue } from "@domain/shadow";
+import type { BooleanLiteralValue } from "@domain/boolean-literal";
+import { createTypography } from "@domain/typography";
+import type { TypographyValue } from "@domain/typography";
+import type { FontFamilyLiteralValue } from "@domain/font-family-literal";
+import type { FontWeightLiteralValue } from "@domain/font-weight-literal";
+import { createTransition } from "@domain/transition";
+import type { TransitionValue } from "@domain/transition";
+import type { DurationLiteralValue } from "@domain/duration-literal";
+import type { CubicBezierLiteralValue } from "@domain/cubic-bezier-literal";
+import type { PercentageLiteralValue } from "@domain/percentage-literal";
+import type { ExpressionValue } from "@domain/expression";
+import { createTokenReference } from "@domain/token-reference";
+import type { TokenReference } from "@domain/token-reference";
+import type { ColorLiteralValue } from "@domain/color-literal";
 import type {
   ComponentDefinitionId,
   ProjectId,
   TokenGroupId,
   TokenId,
-} from "./identifiers";
+} from "@domain/identifiers";
 import type {
   DimensionLiteralValue,
   NumberLiteralValue,
-} from "./numeric-literals";
-import type { VariationAxis } from "./variation-axis";
+} from "@domain/numeric-literals";
+import type { VariationAxis } from "@domain/variation-axis";
 import type {
   AxisOptionSelectionInput,
   VariationCondition,
-} from "./variation-condition";
+} from "@domain/variation-condition";
 import {
   areVariationConditionsEqual,
   createVariationCondition,
-} from "./variation-condition";
+} from "@domain/variation-condition";
 import {
   assertVariationAxesBelongToProject,
   validateVariationSelection,
-} from "./variation-selection";
+} from "@domain/variation-selection";
 
 export const TOKEN_TYPES = [
   "color",

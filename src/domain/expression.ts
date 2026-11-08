@@ -1,9 +1,9 @@
-import { addDecimals, subtractDecimals, multiplyDecimals, compareDecimals, decimalFromCanonical } from "./decimal";
-import type { Decimal } from "./decimal";
-import { createNumberLiteral, createDimensionLiteral } from "./numeric-literals";
-import type { DimensionLiteralValue } from "./numeric-literals";
-import type { ImplementedLiteralValue } from "./token";
-import type { TokenReference } from "./token-reference";
+import { addDecimals, subtractDecimals, multiplyDecimals, compareDecimals, decimalFromCanonical } from "@domain/decimal";
+import type { Decimal } from "@domain/decimal";
+import { createNumberLiteral, createDimensionLiteral } from "@domain/numeric-literals";
+import type { DimensionLiteralValue } from "@domain/numeric-literals";
+import type { ImplementedLiteralValue } from "@domain/token";
+import type { TokenReference } from "@domain/token-reference";
 
 export const PORTABLE_OPERATION_IDS = [
   "portable.math.add.v1", "portable.math.subtract.v1", "portable.math.scale.v1",
