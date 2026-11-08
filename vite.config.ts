@@ -13,4 +13,6 @@ export const moduleAliases = {
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: { alias: moduleAliases },
+  // Saved prototypes/review HTML are evidence, not dependency-scan entry points.
+  optimizeDeps: { entries: ["index.html", "test/browser/*.html"] },
 });

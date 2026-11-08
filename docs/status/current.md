@@ -2,15 +2,17 @@
 
 > Last updated: 8 November 2026
 >
-> Phase: Increment 003 completed; Increment 004 presentation refactor completed
+> Phase: Increment 004 completed; development startup fix ready for review
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
 
+**Development startup fix — 8 November 2026:** after committing and pushing Increment 004 (`48ba69e`), the user reported Vite dependency-scan errors. A fresh `npm run dev` reproduced automatic scanning of saved review HTML whose imports referenced transient `node_modules/.vite/deps` files. `vite.config.ts` now limits `optimizeDeps.entries` to `index.html` and maintained `test/browser/*.html` fixtures; the [README](../../README.md) documents the boundary. Historical artifacts remain unchanged. Forced fresh scanning and plain startup pass; application creation and both browser fixtures load without page errors. All 894 tests, typechecks, production build and diff whitespace pass. Verification servers are stopped after checking so the IDE can bind its port. This configuration/documentation fix awaits human review and commit.
+
 **Presentation refactor completed — 8 November 2026:** the user reviewed, committed and pushed the plan, then authorized all tasks. The [agreed Increment 004 contract and completion report](../increments/004-presentation-refactor.md#completion-report) records the delivered Tailwind utility-based styling, explicit Button API, owned UI components and navigation/list/creation rendering. CSS is consolidated from 1,981 to 483 formatted lines, with documented typography, native rendering and precise geometry exceptions. Current functionality and the accepted visual direction are preserved within scoped evidence. No domain/application/session calculation or dependency changes.
 
-Final developer checks pass: 894 tests/32 files, strict typechecks, production build and diff whitespace. The [independent implementation review](../increments/004-implementation-review.md) found one required dialog callback API correction; it was fixed with a failing-then-passing rendered regression and independently rechecked. No required findings remain. The [designer fidelity review](../increments/004-design-fidelity-review.md) found no material regression; the optional navigation glyph difference was restored and rechecked. [Final evidence](../../output/playwright/increment-004-refactor/final-evidence.md) indexes paired responsive comparisons, authoring/failure/focus/scroll checks, actual 200% browser zoom and final source identity. Screen-reader/physical-device/virtual-keyboard and cross-engine runtime coverage remain explicit limits. Completed changes await human Git review/staging/commit; nothing has been staged, committed, pushed or deployed by agents.
+Final developer checks pass: 894 tests/32 files, strict typechecks, production build and diff whitespace. The [independent implementation review](../increments/004-implementation-review.md) found one required dialog callback API correction; it was fixed with a failing-then-passing rendered regression and independently rechecked. No required findings remain. The [designer fidelity review](../increments/004-design-fidelity-review.md) found no material regression; the optional navigation glyph difference was restored and rechecked. [Final evidence](../../output/playwright/increment-004-refactor/final-evidence.md) indexes paired responsive comparisons, authoring/failure/focus/scroll checks, actual 200% browser zoom and final source identity. Screen-reader/physical-device/virtual-keyboard and cross-engine runtime coverage remain explicit limits. The user committed and pushed this completed refactor as `48ba69e`; no agent staged, committed, pushed or deployed it.
 
 **IDE configuration follow-up — 8 November 2026:** WebStorm reported TS2307 on aliases only in `src/presentation`. A local `src/presentation/tsconfig.json` now extends the existing browser configuration, giving automatic IDE project discovery a standard nearby filename while retaining the root host-independent exclusion and explicit CLI scopes. Alias definitions and application code are unchanged. Command-line checks of the effective local config, typechecks, production build and all 894 tests pass. The user reports that the change appears to fix the WebStorm diagnostics; no IDE settings or alias definitions were changed.
 
@@ -44,7 +46,7 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-Human review/stage/commit of the [completed Increment 004 refactor](../increments/004-presentation-refactor.md#completion-report). Suggested commit: `refactor: compose presentation controls with Tailwind utilities`. No deployment, publication or next product increment is authorized by completion.
+Human review/stage/commit of the development startup configuration fix. Suggested commit: `fix: scope Vite dependency scanning to maintained entries`. No deployment, publication or next product increment is authorized by completion.
 
 The recommended next product contract remains durable retention plus independent backup/restore. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, repair/restore semantics, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not start them without a scoped request.
 
