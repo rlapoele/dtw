@@ -5,7 +5,7 @@ import {
   Squares2X2Icon,
 } from "@heroicons/react/24/outline";
 import { Button } from "@presentation/components/button";
-import { pathLabel } from "@presentation/readback";
+import { identityLabels } from "@presentation/readback";
 export function ProjectNavigation({
   drawer,
   project,
@@ -21,6 +21,7 @@ export function ProjectNavigation({
   onSelect: (group: string) => void;
   onCreateGroup: () => void;
 }) {
+  const labels = identityLabels(project?.groups ?? [], ["Project root", "All tokens"]);
   return (
     <>
       <div
@@ -73,10 +74,7 @@ export function ProjectNavigation({
           >
             <FolderIcon className="icon block w-4 h-4 shrink-0" />
             <span className="group-label whitespace-normal block min-w-0 text-left wrap-anywhere">
-              {pathLabel(g.path)}
-              <small className="block text-secondary font-mono">
-                {g.authored.id}
-              </small>
+              {labels.get(g.authored.id)}
             </span>
           </Button>
         ))}

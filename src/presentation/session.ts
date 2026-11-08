@@ -1,10 +1,7 @@
 import type { ColorLiteralInput, ColorSpace } from "@domain/color-literal";
 import { createColorLiteral } from "@domain/color-literal";
-import {
-  byteToNormalized,
-  convertColor,
-  normalizedToByte,
-} from "@domain/color-calculation";
+import { convertColor } from "@domain/color-calculation";
+import { integerByteDisplay, integerByteIssue, integerByteToNormalized } from "@presentation/integer-rgb";
 import type { ImplementedAuthoredValue, Token } from "@domain/token";
 export type LiteralDraft = {
   colorSpace: ColorSpace;
@@ -19,6 +16,7 @@ export type DraftSession = {
   scale: "normalized" | "bytes";
   byteText: [string, string, string] | null;
   byteInvalid: boolean;
+  byteEdited: [boolean, boolean, boolean];
   edited: boolean;
 };
 export function baseline(value?: ImplementedAuthoredValue): DraftSession {
@@ -42,6 +40,7 @@ export function baseline(value?: ImplementedAuthoredValue): DraftSession {
     scale: "normalized",
     byteText: null,
     byteInvalid: false,
+    byteEdited: [false, false, false],
     edited: false,
   };
 }
@@ -82,7 +81,7 @@ export function fields(s: DraftSession): [string, string, string] {
   const d = displayed(s);
   return d.colorSpace === "srgb" && s.scale === "bytes"
     ? (s.byteText ??
-        (d.components.map((x) => normalizedToByte(x).text) as [
+        (d.components.map((x) => integerByteDisplay(x).text) as [
           string,
           string,
           string,
@@ -111,23 +110,19 @@ export function editComponent(
   if (bytes) {
     const raw: [string, string, string] = [...fields(s)];
     raw[index] = text;
+    const byteEdited: [boolean, boolean, boolean] = [...s.byteEdited];
+    byteEdited[index] = true;
     try {
-      components[index] = byteToNormalized(text);
+      components[index] = integerByteToNormalized(text);
     } catch {
-      return { ...s, byteText: raw, byteInvalid: true, edited: true };
+      return { ...s, byteText: raw, byteEdited, byteInvalid: true, edited: true };
     }
-    const invalid = raw.some((x) => {
-      try {
-        byteToNormalized(x);
-        return false;
-      } catch {
-        return true;
-      }
-    });
+    const invalid = raw.some((x, i) => byteEdited[i] && integerByteIssue(x) !== undefined);
     return {
       ...s,
       literal: { ...d, components },
       byteText: raw,
+      byteEdited,
       byteInvalid: invalid,
       edited: true,
     };
@@ -137,6 +132,7 @@ export function editComponent(
     ...s,
     literal: { ...d, components },
     byteText: null,
+    byteEdited: [false, false, false],
     byteInvalid: false,
     edited: true,
   };

@@ -44,9 +44,49 @@ describe("presentation draft session", () => {
     expect(s.byteInvalid).toBe(true);
     expect(() => changeView(s, "hsl")).toThrow();
     s = editComponent(s, 1, "127.5");
+    expect(s.byteInvalid).toBe(true);
+    s = editComponent(s, 1, "130");
     expect(s.literal.components[0]).toBe(original.components[0]);
-    expect(s.literal.components[1]).toBe("0.5");
+    expect(s.literal.components[1]).toBe("0.509803921568627451");
     expect(fields(s)[0]).toBe(initial[0]);
     expect(s.byteInvalid).toBe(false);
+  });
+});
+
+
+describe("integer RGB draft isolation", () => {
+  const exact = createColorLiteral({ colorSpace: "srgb", components: ["0.2314", "0.41234567890123456789", "0.67890123456789"], alpha: "0.1234567890123456789" });
+  it("displays rounded channels without editing; only explicit Green changes", () => {
+    const start: DraftSession = { ...baseline(exact), scale: "bytes" };
+    expect(fields(start)).toEqual(["59", "105", "173"]);
+    expect(start.edited).toBe(false);
+    const edited = editComponent(start, 1, "130");
+    expect(edited.literal.components).toEqual([exact.components[0], "0.509803921568627451", exact.components[2]]);
+    expect(edited.literal.alpha).toBe(exact.alpha);
+    const returned = changeView(changeView(edited, "oklab"), "srgb");
+    expect(fields(returned)).toEqual(["59", "130", "173"]);
+    expect(returned.literal).toEqual(edited.literal);
+    expect(editComponent(start, 0, "59").literal.components).toEqual(["0.231372549019607843", exact.components[1], exact.components[2]]);
+  });
+  it("retains invalid raw text across other edits, mode changes and correction", () => {
+    let s: DraftSession = { ...baseline(exact), scale: "bytes" };
+    s = editComponent(s, 0, "59.5");
+    s = editComponent({ ...s, mode: "reference" }, 1, "130");
+    expect(s.byteInvalid).toBe(true);
+    expect(fields(s)).toEqual(["59.5", "130", "173"]);
+    expect(() => changeView(s, "hsl")).toThrow();
+    s = editComponent({ ...s, mode: "literal" }, 0, "59");
+    expect(s.byteInvalid).toBe(false);
+    expect(s.literal.components[2]).toBe(exact.components[2]);
+  });
+  it("retains RGB for alpha-only edits and accepts extended integers and none", () => {
+    const s: DraftSession = { ...baseline(exact), scale: "bytes" };
+    const alpha = { ...s, literal: { ...s.literal, alpha: "0.37" }, edited: true };
+    expect(alpha.literal.components).toEqual(exact.components);
+    expect(editComponent(s, 0, "-255").literal.components[0]).toBe("-1");
+    expect(editComponent(s, 0, "510").literal.components[0]).toBe("2");
+    expect(editComponent(s, 0, "none").literal.components[0]).toBe("none");
+    for (const raw of ["-", "1.", "01", "+1", "-0", "1.5", "1e2", " 1"])
+      expect(editComponent(s, 0, raw).byteInvalid).toBe(true);
   });
 });

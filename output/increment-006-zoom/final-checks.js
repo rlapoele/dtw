@@ -1,0 +1,33 @@
+async page => {
+  const broken=page.context().pages().find(p=>p.url().includes('broken=true'));
+  await broken.getByRole('button',{name:/^broken-a Unspecified/}).click();
+  const target=broken.getByRole('combobox',{name:'Target token',exact:true});
+  const missingChoice=await target.locator('option:checked').evaluate(n=>({value:n.value,text:n.textContent}));
+  if(missingChoice.text!=='Missing target'||missingChoice.value!=='missing-broken-a')throw Error('Missing target display/value mismatch');
+  const summary=broken.locator('.applied-summary').first();
+  const summaryText=await summary.textContent();if(!summaryText.includes('Missing target')||summaryText.includes('missing-broken-a'))throw Error('Readable missing summary exposes ID');
+  await broken.getByText('All authored data',{exact:true}).click();
+  const raw=JSON.parse(await broken.locator('details').filter({has:broken.getByText('All authored data',{exact:true})}).locator('pre').textContent());
+  if(raw.definition.assignments[0].value.targetTokenId!=='missing-broken-a')throw Error('Missing raw target lost');
+  await summary.evaluate(el=>el.scrollIntoView({block:'center'}));
+  await broken.screenshot({path:'output/increment-006-zoom/missing-reference-200.png'});
+  const fixture=page.context().pages().find(p=>p.url().endsWith('/test/browser/increment006.html'));
+  await fixture.getByRole('button',{name:'Collapse token inspector',exact:true}).click();
+  await fixture.setViewportSize({width:640,height:1440});
+  const narrow=await fixture.evaluate(()=>({width:innerWidth,height:innerHeight,dpr:devicePixelRatio,scale:visualViewport.scale,scrollWidth:document.documentElement.scrollWidth}));
+  const footer=fixture.getByRole('contentinfo');await footer.scrollIntoViewIfNeeded();const footerBox=await footer.boundingBox();
+  if(narrow.width!==320||narrow.height!==720||narrow.dpr!==2||narrow.scrollWidth>320||!footerBox||footerBox.x<0||footerBox.x+footerBox.width>320||footerBox.y+footerBox.height>720)throw Error(JSON.stringify({narrow,footerBox}));
+  await fixture.screenshot({path:'output/increment-006-zoom/narrow-footer-200.png'});
+  await page.getByRole('button',{name:'Expand token inspector',exact:true}).click();
+  await page.getByRole('combobox',{name:'RGB entry scale',exact:true}).selectOption('bytes');
+  const note=page.getByText('Approximate · exact normalized 0.2314',{exact:true});
+  await note.evaluate(el=>el.scrollIntoView({block:'center'}));
+  const noteBox=await note.boundingBox(),actionsBox=await page.locator('.editor-actions').boundingBox();
+  if(!noteBox||!actionsBox||noteBox.y+noteBox.height>actionsBox.y)throw Error('Centered approximation occluded');
+  await page.screenshot({path:'output/increment-006-zoom/approximation-visible-200.png'});
+  const settings=page.context().pages().find(p=>p.url()==='chrome://settings/appearance');
+  await settings.getByRole('combobox',{name:'Page zoom',exact:true}).selectOption({label:'100%'});
+  await page.bringToFront();await page.waitForFunction(()=>devicePixelRatio===1&&innerWidth===1440);
+  const restored=await page.evaluate(()=>({width:innerWidth,height:innerHeight,dpr:devicePixelRatio,scale:visualViewport.scale,scrollWidth:document.documentElement.scrollWidth}));
+  return {pass:true,missingChoice,summaryText,rawTarget:raw.definition.assignments[0].value.targetTokenId,narrow,footerBox,noteBox,actionsBox,restored};
+}

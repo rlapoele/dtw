@@ -4,7 +4,7 @@ import { Input } from "@presentation/components/input";
 import type { CSSProperties } from "react";
 import { COLOR_SPACES } from "@domain/color-literal";
 import type { ColorSpace } from "@domain/color-literal";
-import { normalizedToByte } from "@domain/color-calculation";
+import { integerByteDisplay, integerByteIssue } from "@presentation/integer-rgb";
 import { Select } from "@presentation/Select";
 import {
   changeView,
@@ -100,7 +100,7 @@ export function ColorFields({
               }
               try {
                 if (e.target.value === "bytes")
-                  d.components.forEach(normalizedToByte);
+                  d.components.forEach(integerByteDisplay);
                 onChange({
                   ...s,
                   scale: e.target.value as DraftSession["scale"],
@@ -136,7 +136,11 @@ export function ColorFields({
                     ? 255
                     : 1;
           const step = hue || d.colorSpace === "hsl" ? 0.1 : bytes ? 1 : 0.001;
-          const rangeState = visualRangeState(value, String(min), String(max));
+          const issue = bytes && s.byteEdited[i] ? integerByteIssue(value) : undefined;
+          const approximate = bytes && !s.byteEdited[i] && integerByteDisplay(d.components[i]).approximate;
+          const rangeState = bytes && !s.byteEdited[i]
+            ? visualRangeState(d.components[i], "0", "1")
+            : issue ? "invalid" : visualRangeState(value, String(min), String(max));
           const available = rangeState === "available";
           return (
             <div
@@ -149,8 +153,8 @@ export function ColorFields({
                   className="small:h-11 small:min-h-11"
                   value={value}
                   spellCheck={false}
-                  aria-describedby={`range-note-${i} editor-error`}
-                  aria-invalid={s.byteInvalid || undefined}
+                  aria-describedby={`range-note-${i} byte-note-${i} editor-error`}
+                  aria-invalid={!!issue || undefined}
                   onChange={(e) => change(i, e.target.value)}
                 />
               </label>
@@ -192,6 +196,9 @@ export function ColorFields({
                       : "Complete exact entry to use slider."}
                 </p>
               )}
+              {bytes && <p id={`byte-note-${i}`} className={`col-span-2 text-caption mt-1 wrap-anywhere ${issue ? "text-destructive" : "text-muted-foreground"}`}>
+                {issue ?? (approximate ? `Approximate · exact normalized ${d.components[i]}` : "")}
+              </p>}
               <p className="sr-only" id={`range-note-${i}`}>
                 Illustrative range {min} to {max}, step {step}. Exact values are
                 retained.
@@ -242,7 +249,7 @@ export function ColorFields({
         )}
       </div>
       <p className="helper text-muted-foreground font-normal">
-        Exact canonical decimal text or none; alpha 0–1. Sliders are
+        {bytes ? "Canonical whole numbers or none on the 0–255 scale" : "Exact canonical decimal text or none"}; alpha 0–1. Sliders are
         illustrative stepped edits. Derived views and byte displays may be
         approximate. Apply uses {s.literal.colorSpace}.
       </p>

@@ -1,0 +1,37 @@
+async page => {
+  const p=page.context().pages().find(p=>p.url().includes('/test/browser/increment006.html'));
+  const errors=[];p.on('pageerror',e=>errors.push(e.message));
+  await p.getByRole('button',{name:/^protected-color primitive/}).click();
+  await p.getByRole('combobox',{name:'RGB entry scale',exact:true}).selectOption('bytes');
+  await p.getByRole('textbox',{name:'Green',exact:true}).fill('130');
+  await p.getByRole('checkbox',{name:'Fail commits',exact:true}).check();
+  await p.getByRole('button',{name:'Apply changes',exact:true}).click();
+  await p.getByRole('alert').waitFor();
+  const errorFocus=await p.evaluate(()=>({role:document.activeElement?.getAttribute('role'),text:document.activeElement?.textContent}));
+  if(errorFocus.role!=='alert'||!errorFocus.text.includes('Controlled commit failure'))throw Error(JSON.stringify(errorFocus));
+  if(await p.getByRole('textbox',{name:'Red',exact:true}).inputValue()!=='59'||await p.getByRole('textbox',{name:'Green',exact:true}).inputValue()!=='130')throw Error('Commit lost raw draft');
+  await p.screenshot({path:'output/increment-006-zoom/commit-error-focus-200.png'});
+  await p.getByRole('checkbox',{name:'Fail commits',exact:true}).uncheck();
+  await p.getByRole('checkbox',{name:'Fail reads',exact:true}).check();
+  await p.getByRole('button',{name:'Retry reading project',exact:true}).first().waitFor();
+  await p.getByRole('checkbox',{name:'Fail reads',exact:true}).uncheck();
+  await p.getByRole('textbox',{name:'Green',exact:true}).waitFor();
+  if(await p.getByRole('textbox',{name:'Red',exact:true}).inputValue()!=='59'||await p.getByRole('textbox',{name:'Green',exact:true}).inputValue()!=='130')throw Error('Read retry lost draft');
+  await p.getByRole('button',{name:'Apply changes',exact:true}).click();
+  await p.getByText('All authored data',{exact:true}).click();
+  const token=JSON.parse(await p.locator('details').filter({has:p.getByText('All authored data',{exact:true})}).locator('pre').textContent());
+  const value=token.definition.assignments[0].value;
+  if(JSON.stringify(value.components)!==JSON.stringify(['0.2314','0.509803921568627451','0.67890123456789'])||value.alpha!=='0.1234567890123456789')throw Error('Failed/retry damaged exact data');
+  await p.getByText('All authored data',{exact:true}).click();
+  await p.getByRole('button',{name:'Collapse token inspector',exact:true}).click();
+  await p.getByRole('button',{name:'New token',exact:true}).click();
+  const options=await p.getByRole('combobox',{name:'Group',exact:true}).locator('option').evaluateAll(nodes=>nodes.map(n=>({value:n.value,text:n.textContent})));
+  if(new Set(options.map(o=>o.text)).size!==options.length)throw Error('Group choices collide');
+  for(const id of ['common-long-prefix-group-a','common-long-prefix-group-b','root-named-group']) if(!options.some(o=>o.value===id&&o.text.includes(id)))throw Error('Group identity mismatch');
+  await p.getByRole('combobox',{name:'Group',exact:true}).selectOption('common-long-prefix-group-b');
+  await p.screenshot({path:'output/increment-006-zoom/group-choices-200.png'});
+  await p.getByRole('button',{name:'Cancel',exact:true}).click();
+  await p.getByRole('dialog',{name:'Create a color token',exact:true}).waitFor({state:'hidden'});
+  await p.getByRole('button',{name:'Open project navigation',exact:true}).click();
+  return {pass:true,value,errorFocus,groupOptions:options,errors,navigation:await p.locator('body').ariaSnapshot()};
+}

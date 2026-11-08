@@ -1,0 +1,35 @@
+async page => {
+  const p=page.context().pages().find(p=>p.url().includes('/test/browser/increment006.html'));
+  const dialog=p.getByRole('dialog',{name:'Project navigation',exact:true});
+  const navButtons=await dialog.getByRole('button').allTextContents();
+  for(const text of ['same group · common-long-prefix-group-a','same group · common-long-prefix-group-b','Project root · root-named-group'])if(!navButtons.includes(text))throw Error('Navigation label missing: '+text);
+  await p.screenshot({path:'output/increment-006-zoom/navigation-200.png'});
+  await dialog.getByRole('button',{name:'All tokens 21',exact:true}).click();
+  await p.getByRole('button',{name:'alias semantic · color Reference protected-color',exact:true}).click();
+  await p.getByRole('combobox',{name:'Target token',exact:true}).selectOption('nested-token');
+  await p.getByRole('button',{name:'Apply changes',exact:true}).click();
+  await p.getByRole('button',{name:'Open project navigation',exact:true}).click();
+  await p.getByRole('button',{name:'same group · common-long-prefix-group-a',exact:true}).click();
+  await p.getByRole('button',{name:/^same group \/ nested Unspecified/}).click();
+  await p.getByRole('button',{name:'Rename group',exact:true}).click();
+  const rename=p.getByRole('dialog',{name:'Rename group',exact:true});
+  await rename.getByRole('textbox',{name:'Name',exact:true}).fill('renamed group');
+  await rename.getByRole('button',{name:'Rename group',exact:true}).click();
+  await rename.waitFor({state:'hidden'});
+  await p.getByRole('heading',{name:'renamed group / nested',exact:true}).waitFor();
+  await p.getByText('All authored data',{exact:true}).click();
+  const raw=JSON.parse(await p.locator('details').filter({has:p.getByText('All authored data',{exact:true})}).locator('pre').textContent());
+  if(raw.id!=='nested-token'||raw.parentGroupId!=='common-long-prefix-group-a')throw Error('Rename changed selection identity');
+  await p.getByText('All authored data',{exact:true}).click();
+  await p.getByRole('button',{name:'Open project navigation',exact:true}).click();
+  await p.getByRole('button',{name:'All tokens 21',exact:true}).click();
+  await p.getByRole('button',{name:'alias semantic · color Reference renamed group / nested',exact:true}).click();
+  const choices=await p.getByRole('combobox',{name:'Target token',exact:true}).locator('option').evaluateAll(nodes=>nodes.map(n=>({value:n.value,text:n.textContent})));
+  if(await p.getByRole('combobox',{name:'Target token',exact:true}).inputValue()!=='nested-token')throw Error('Alias target changed after rename');
+  await p.getByText('All authored data',{exact:true}).click();
+  const alias=JSON.parse(await p.locator('details').filter({has:p.getByText('All authored data',{exact:true})}).locator('pre').textContent());
+  if(alias.definition.assignments[0].value.targetTokenId!=='nested-token')throw Error('Raw target mismatch');
+  await p.screenshot({path:'output/increment-006-zoom/rename-reference-200.png'});
+  const broken=await page.context().newPage();await broken.goto('http://127.0.0.1:5186/test/browser/increment006.html?broken=true');
+  return {pass:true,navButtons,selectedTokenId:raw.id,parentGroupId:raw.parentGroupId,aliasTarget:alias.definition.assignments[0].value.targetTokenId,choices,brokenSnapshot:await broken.locator('body').ariaSnapshot()};
+}

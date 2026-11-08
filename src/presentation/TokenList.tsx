@@ -2,7 +2,7 @@ import { AuthoredValue } from "@presentation/AuthoredValue";
 import type { ProjectReadback, TokenInspection } from "@application/authoring";
 import { Button } from "@presentation/components/button";
 import { Swatch } from "@presentation/components/swatch";
-import { pathLabel, resolvedColor } from "@presentation/readback";
+import { identityLabels, resolvedColor } from "@presentation/readback";
 import { colorPreview } from "@presentation/preview";
 export function TokenList({
   project,
@@ -21,6 +21,7 @@ export function TokenList({
   onSelect: (id: string) => void;
   onEmptyAction: () => void;
 }) {
+  const labels = identityLabels(project?.tokens ?? visible);
   return (
     <div className="token-table @container border-t border-border">
       <div className="table-heading border-b border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 gap-3 text-muted-foreground">
@@ -42,11 +43,11 @@ export function TokenList({
             <span className="flex gap-3 min-w-0 items-start"><Swatch css={preview.css} />
             <span className="token-identity flex-1 min-w-0">
               <strong className="block text-xs/normal small:text-caption token-name wrap-anywhere">
-                {pathLabel(t.path)}
+                {labels.get(t.authored.id)}
               </strong>
               <small className="block text-secondary mt-1 wrap-anywhere">
                 {t.authored.layer ?? "Unspecified"} ·{" "}
-                {t.authored.definition?.type ?? "Unassigned"} · {t.authored.id}
+                {t.authored.definition?.type ?? "Unassigned"}
               </small>
               {t.authored.description !== undefined && <span className="@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-secondary">{t.authored.description}</span>}
             </span>

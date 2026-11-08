@@ -1,7 +1,7 @@
 import { authoredColorCoordinates, spaceName } from "@presentation/authored-color";
 import type { Token } from "@domain/token";
 import type { ProjectReadback } from "@application/authoring";
-import { pathLabel } from "@presentation/readback";
+import { identityLabels } from "@presentation/readback";
 
 type Value = NonNullable<Token["definition"]>["assignments"][number]["value"];
 
@@ -21,9 +21,8 @@ export function AuthoredValue({
       <span className="block min-w-0 wrap-anywhere">
         <span className="block">Reference</span>
         <span className="block text-secondary mt-1">
-          {target ? pathLabel(target.path) : "Missing target"}
+          {target ? identityLabels(project?.tokens ?? []).get(target.authored.id) : "Missing target"}
         </span>
-        <small className="block text-secondary mt-1">{value.targetTokenId}</small>
       </span>
     );
   }

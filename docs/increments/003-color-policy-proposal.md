@@ -1,6 +1,6 @@
 # Increment 003: color-policy proposal
 
-- Status: **Numerical behavior bundle agreed 5 November 2026; V6 reconciliation approved 7 November; simpler numerical contract and Culori direction approved 8 November 2026**; implemented and independently reviewed 8 November within the scoped acceptance evidence. The filename retains its proposal-stage identity.
+- Status: **Numerical behavior bundle agreed 5 November 2026; V6 reconciliation approved 7 November; simpler numerical contract and Culori direction approved 8 November 2026**; that baseline was implemented and independently reviewed 8 November within the scoped acceptance evidence. The subsequent **integer-control amendment agreed 8 November** is implemented and independently reviewed within the scoped [Increment 006 completion evidence](006-integer-rgb-and-identity-presentation.md#completion-report). The filename retains its proposal-stage identity.
 - Parent: [Increment 003](003-visible-color-authoring.md), especially [V4 review finding 1](003-visible-color-authoring.md#1-before-agreement-reconcile-d2ac-3-with-requested-conversion-and-preview-ux).
 - Agreement: the user approved the simpler numerical proposal and Culori direction on 8 November 2026 and authorized documentation reconciliation only. The current rules below supersede conflicting earlier intermediate-guard, cancellation and candidate-library provisions. Agreement is not evidence of implementation correctness or completed integration.
 - Authorization: the 7 November V6 agreement, renderer direction and disclosed initial black literal remain intact. After the 8 November numerical amendment and technical preparation, the user explicitly authorized Increment 003 implementation. Necessary application/dependency work and verification may proceed under the parent contract; earlier dated preparation-only prohibitions are historical. This does not authorize changing the numerical agreement or broader future scope.
@@ -15,6 +15,12 @@ The known sRGB `[0.000000000000001, 0, 0]` → HSL saturation defect remains a r
 
 Exact input/alpha/identity, passive view restoration, byte arithmetic, 12-significant-digit derived formatting, missing-component eligibility, exact-neutral handling, no authored gamut mapping/clamping, and the preview-only `1e-10` allowance remain unchanged. Future mixing and gradients stay separately scoped. That amendment approval authorized documentation only; the subsequent explicit implementation authorization recorded in the parent contract now starts delivery.
 
+## Approved integer-control amendment — 8 November 2026
+
+After reviewing the integer-control recommendation, the user explicitly authorized implementing it together with quieter token-ID presentation in [Increment 006](006-integer-rgb-and-identity-presentation.md). The existing sRGB **0–255 scale** becomes a whole-number-oriented UI control. Passive fractional scaled coordinates display the nearest integer, ties to even, with a clear approximation indication; Normalized · 0–1 remains exact. Scale/view changes and unchanged Apply cannot round authored coordinates. Only explicitly edited channels use byte division; fractional raw entry in this UI is invalid, retained for correction and never silently rounded. Signed/extended integers and `none` remain supported, with the nominal slider interval unchanged. Alpha is unchanged.
+
+This supersedes fractional UI entry and the previous 12-significant-digit byte display in the current entry-scale rules below. It changes neither the canonical model nor the decimal-capable pure byte calculation APIs; their existing fractional fixtures remain valid. Exact decimal multiplication must precede nearest-integer display rounding, without a prior Number or significant-digit approximation. Existing calculation budgets and failure retention remain required. The amendment records the agreed behavior; the [Increment 006 completion report](006-integer-rgb-and-identity-presentation.md#completion-report) owns delivered coverage and verification limits.
+
 ## Agreed behavior bundle
 
 Keep sRGB 0–255 editing, pure conversion among the five supported spaces and bounded approximate specimens. The reconciled V6 interaction distinguishes passive derived views from deliberate component edits that promote a representation to the literal draft. Use the following bounded numerical policy:
@@ -22,7 +28,7 @@ Keep sRGB 0–255 editing, pure conversion among the five supported spaces and b
 | Concern | Agreed policy | Consequence for the author |
 | --- | --- | --- |
 | Direct component entry | Preserve exact canonical Decimal values; use the existing constructor and range rules. | Long decimals, `none`, extended RGB and alpha retain their meaning. |
-| sRGB 0–255 entry | Divide edited channels by 255 using decimal arithmetic; keep terminating results exact, otherwise round to 18 significant digits, ties to even. | Fractional and extended entries work; repeating ratios are explicitly approximate. |
+| sRGB 0–255 UI entry | Accept canonical whole-number text or `none`; divide explicitly edited channels by 255 using decimal arithmetic, retaining terminating results exactly and otherwise rounding to 18 significant digits, ties to even. | Passive fractional scaled coordinates show nearest integers with clear approximation; signed/extended integers work. Normalized input remains exact and untouched channels never round. |
 | Space conversion | Generate an approximate candidate with 12 significant digits per calculated component, ties to even; retain alpha exactly. | Passive viewing leaves the authoritative draft unchanged; a deliberate component edit in another representation promotes that representation. Only Apply commits the authoritative draft. |
 | Missing and powerless components | Convert a missing hue only at exactly zero saturation/chroma. Preserve other missing components and explain why conversion is unavailable. Keep exact-neutral semantics without adding a near-neutral threshold. | Missing components do not silently become zero. Exact source distinctions remain stored; derived near-neutral hue and tiny distinctions are approximate. |
 | Extended values and failures | Never gamut-map or clamp authored candidates. Reject conversion when the target canonical schema or the bounded calculation service cannot represent it. | The current space, values and drafts survive a failed conversion. Exact editing remains available. |
@@ -43,8 +49,8 @@ The 5 November agreement concerns numerical behavior. On 7 November the user req
 ## Exact editing and entry-scale adaptation
 
 1. Use the existing canonical Decimal grammar and color constructor. Do not route direct normalized entry through `Number`, browser CSS parsing or a library serializer. Noncanonical/incomplete text remains a correctable delivery draft and cannot be submitted as a valid literal. Existing exact modulo-360 hue normalization remains visible after successful submission.
-2. Selecting 0–255 versus normalized entry is display-only. It must not dirty the literal or replace any exact normalized coordinate. Calculate derived byte coordinates by exact multiplication by 255, then display at most 12 significant digits, ties to even, without exponent or negative zero. Indicate that a shortened derived value is approximate. Raw byte text being edited stays visible until accepted/discarded under the agreed form behavior.
-3. A deliberate byte edit affects only that channel: exact decimal division by 255, retaining the exact terminating quotient where possible; otherwise round once to 18 significant digits, ties to even. Trim trailing fractional zeros and expand exponents for canonical output. Negative and greater-than-255 values remain extended sRGB coordinates; fractional bytes are permitted. `none` stays `none`. Untouched channels and alpha stay exact.
+2. Selecting 0–255 versus normalized entry is display-only. It must not dirty the literal or replace any exact normalized coordinate. Calculate derived byte coordinates by exact multiplication by 255, then display the nearest whole number, ties to even, without exponent or negative zero. Clearly indicate approximation whenever the exact product is fractional; exact integers and `none` have no rounding indicator. Do not first reduce the exact product to Number or significant-digit formatted text. Raw byte text being edited stays visible until accepted/discarded under the agreed form behavior.
+3. A deliberate byte edit affects only that channel: exact decimal division by 255, retaining the exact terminating quotient where possible; otherwise round once to 18 significant digits, ties to even. Trim trailing fractional zeros and expand exponents for canonical output. Negative and greater-than-255 whole numbers remain extended sRGB coordinates. This UI accepts canonical whole-number text or `none`; fractional raw text remains invalid and correctable rather than being rounded. The general pure byte calculation API remains decimal-capable. `none` stays `none`. Untouched channels and alpha stay exact.
 4. An entry-scale toggle followed by an unchanged submission of a shortened displayed byte value must not count as a channel edit. Track the original coordinate and actual input edits rather than reparsing all displayed fields on Apply. Replacing a field with newly typed text, even if it looks identical, is an explicit edit.
 5. Incomplete/invalid byte text blocks Apply and representation/conversion requests that would discard that text. Explain the issue and preserve both raw text and the underlying draft; do not apply an older normalized value in its place.
 
@@ -63,7 +69,7 @@ Use a fixed, documented algorithm/version: extended sRGB/Display P3 transfer fun
 
 For calculated numeric components, round to 12 significant decimal digits with ties to even, then serialize to canonical non-exponent Decimal. Specify rounding over the shortest round-tripping decimal text of each finite binary calculation result; do not inherit `toFixed` rounding or round at every intermediate matrix step. Strip negative zero. Run the resulting complete candidate through the existing constructor after rounding: hue normalization therefore also handles a rounded `360` as `0`. Retain the original alpha text, even at alpha zero; never premultiply components for this conversion.
 
-Long exact source coordinates may lose low-order digits in a deliberate conversion; this is disclosed as a newly calculated candidate. Same-space requests, entry-scale inspection and previews cannot cause that loss. Fixed fractional rounding is rejected: the prototype's 12 fractional places turn a nonzero byte edit `0.000000000001 / 255` into zero, while significant-digit rounding preserves its magnitude.
+Long exact source coordinates may lose low-order digits in a deliberate conversion; this is disclosed as a newly calculated candidate. Same-space requests, entry-scale inspection and previews cannot cause that loss. Fixed fractional rounding is rejected: the prototype's 12 fractional places turn the general byte calculation `0.000000000001 / 255` into zero, while significant-digit rounding preserves its magnitude.
 
 ### Missing components and near-neutral colors
 
@@ -111,9 +117,9 @@ The following specify **expected behavior under the agreed bundle** unless marke
 | Fixture | Expected result/evidence |
 | --- | --- |
 | Direct sRGB channel `0.123456789123456789123456789`, long alpha, plus `none` | Exact readback after allowed submission; unchanged after entry-scale inspection, preview and identity conversion. |
-| Byte `127.5`, `510`, `-255` | Exactly `0.5`, `2`, `-1`; no integer rounding or clipping. |
+| Pure calculation API byte `127.5`, `510`, `-255` | Exactly `0.5`, `2`, `-1`; no integer rounding or clipping in the API. The integer-oriented UI rejects `127.5`, while accepting `510` and `-255`. |
 | Byte `1`, `30`, `128`, `250`, `254` | Respectively `0.00392156862745098039`, `0.117647058823529412`, `0.50196078431372549`, `0.980392156862745098`, `0.99607843137254902` under 18-significant-digit ties-to-even policy. |
-| Byte `0.000000000001` | `0.00000000000000392156862745098039`, not zero. |
+| Pure calculation API byte `0.000000000001` | `0.00000000000000392156862745098039`, not zero. |
 | Decimal rounding unit fixtures | Exercise positive/negative halfway cases, carry across powers of ten, exponent expansion, negative zero and terminating exact quotients separately from color equations. |
 | sRGB red `[1, 0, 0]` → HSL | `[0, 100, 50]`, alpha exactly copied. |
 | sRGB red → P3 / OKLAB / OKLCH | Compare independent reference values and the measured candidate observations below; validate canonical candidates after formatting. |
@@ -166,7 +172,7 @@ The [parent contract’s historical proposed clarifications](003-visible-color-a
 
 ## Agreement and follow-up
 
-The dated entries preserve their then-current states. The approved 8 November amendment and current normative sections above govern where these historical records differ.
+The dated entries preserve their then-current states. The approved 8 November numerical and integer-control amendments and current normative sections above govern where these historical records differ.
 
 5 November 2026 — The user agreed this behavior bundle and asked to capture UX/UI changes next, before final implementation agreement, with no implementation started. The affected color-model/open-question sections and Increment 003 Scope, D2, AC-3 and verification now record that bounded agreement. Prototype history remains history. No prototype code or production dependency is selected by this agreement.
 
@@ -183,3 +189,5 @@ The dated entries preserve their then-current states. The approved 8 November am
 8 November 2026 — After the technical preparation plan, the user explicitly authorized implementation of Increment 003. The approved numerical rules are unchanged. Required application/dependency integration and criterion-linked verification may now proceed; staging, commits and pushes remain human-controlled.
 
 8 November 2026 — Implementation and independent correction recheck completed under the agreed rules: 894 tests, strict typechecks/build, representative Node/browser numerical fixtures and real authoring/failure/zoom checks. The [completion report](003-visible-color-authoring.md#completion-report) owns coverage and limits. This does not promote historical strict research requirements or claim all-domain accuracy.
+
+8 November 2026 — The user approved the integer-oriented 0–255 control recommendation and quieter stable-ID presentation, explicitly requesting implementation of both. The current integer-control amendment supersedes fractional UI entry and prior derived byte-display precision only; canonical normalized values, decimal-capable calculation APIs and historical evidence are preserved. [Increment 006](006-integer-rgb-and-identity-presentation.md) records the bounded agreed contract and completed delivery evidence.

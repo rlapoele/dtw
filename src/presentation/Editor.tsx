@@ -18,7 +18,7 @@ import { Select } from "@presentation/Select";
 import { ColorFields } from "@presentation/ColorFields";
 import { baseline, eligible, literalIssue } from "@presentation/session";
 import { colorPreview } from "@presentation/preview";
-import { failureText, pathLabel, resolvedColor } from "@presentation/readback";
+import { identityLabels, failureText, pathLabel, resolvedColor } from "@presentation/readback";
 export type Feedback = {
   tokenId: string;
   tab: string;
@@ -82,6 +82,10 @@ export function Editor({
     () => onFeedback(JSON.parse(feedbackText) as Feedback),
     [feedbackText, onFeedback],
   );
+  const tokenLabels = identityLabels(project.tokens);
+  const referenceChoices = project.tokens.filter(t => t.authored.definition?.type === "color");
+  const referenceLabels = identityLabels(referenceChoices, undefined, token.id);
+  const groupLabels = identityLabels(project.groups, ["Project root", "All tokens"]);
   const editable = eligible(token);
   function apply() {
     if (readUnavailable) {
@@ -142,7 +146,7 @@ export function Editor({
         <span className="eyebrow uppercase text-muted-foreground font-semibold">
           {token.definition?.type ?? "Unassigned"} token
         </span>
-        <h2 className="wrap-anywhere">{pathLabel(i.path)}</h2>
+        <h2 className="wrap-anywhere">{tokenLabels.get(token.id)}</h2>
         <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
           {token.description ?? "No description"}
         </p>
@@ -150,9 +154,6 @@ export function Editor({
           <Badge>{token.layer ?? "Unspecified layer"}</Badge>
           <Badge>{editable ? "Unconditional" : "Inspection only"}</Badge>
         </div>
-        <p className="helper text-caption text-muted-foreground font-normal mono break-words">
-          Token {token.id}
-        </p>
       </div>
       <Tabs.Root value={tab} onValueChange={setTab}>
         <InspectionTabs />
@@ -226,15 +227,12 @@ export function Editor({
                           (t) => t.authored.id === session.reference,
                         ) && (
                           <option value={session.reference}>
-                            Missing target · {session.reference}
+                            Missing target
                           </option>
                         )}
-                      {project.tokens
-                        .filter((t) => t.authored.definition?.type === "color")
-                        .map((t) => (
+                      {referenceChoices.map((t) => (
                           <option key={t.authored.id} value={t.authored.id}>
-                            {pathLabel(t.path)} · {t.authored.id}
-                            {t.authored.id === token.id ? " (this token)" : ""}
+                            {referenceLabels.get(t.authored.id)}
                           </option>
                         ))}
                     </Select>
@@ -312,9 +310,9 @@ export function Editor({
                 </dd>
               </div>
               <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
-                <dt className="text-muted-foreground">Parent group ID</dt>
+                <dt className="text-muted-foreground">Parent group</dt>
                 <dd className="text-right wrap-anywhere">
-                  {token.parentGroupId ?? "Project root"}
+                  {token.parentGroupId ? groupLabels.get(token.parentGroupId) ?? "Missing group" : "Project root"}
                 </dd>
               </div>
             </dl>

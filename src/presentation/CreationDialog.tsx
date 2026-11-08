@@ -6,7 +6,7 @@ import { Button } from "@presentation/components/button";
 import { Field } from "@presentation/components/field";
 import { Input } from "@presentation/components/input";
 import { Select } from "@presentation/Select";
-import { pathLabel } from "@presentation/readback";
+import { identityLabels } from "@presentation/readback";
 
 /** Creation and rename rendering; App owns drafts, operations, readback and focus policy. */
 export function CreationDialog({
@@ -46,6 +46,7 @@ export function CreationDialog({
   onParentChange: (value: string) => void;
   onLayerChange: (value: string) => void;
 }) {
+  const labels = identityLabels(project?.groups ?? [], ["Project root", "All tokens"]);
   return (
     <Dialog.Root
       open={dialog !== null}
@@ -94,7 +95,7 @@ export function CreationDialog({
                 <option value="">Project root</option>
                 {project?.groups.map((g) => (
                   <option key={g.authored.id} value={g.authored.id}>
-                    {pathLabel(g.path)} · {g.authored.id}
+                    {labels.get(g.authored.id)}
                   </option>
                 ))}
               </Select>

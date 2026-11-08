@@ -30,7 +30,7 @@ import { Button } from "@presentation/components/button";
 import { Editor } from "@presentation/Editor";
 import { Swatch } from "@presentation/components/swatch";
 import type { Feedback } from "@presentation/Editor";
-import { failureText, pathLabel, resolvedColor } from "@presentation/readback";
+import { identityLabels, failureText, pathLabel, resolvedColor } from "@presentation/readback";
 import { colorPreview } from "@presentation/preview";
 import { eligible } from "@presentation/session";
 export function App({
@@ -411,10 +411,7 @@ export function App({
               <h1 className="my-1.5 small-title">
                 {group === "all"
                   ? "All colors"
-                  : pathLabel(
-                      project?.groups.find((g) => g.authored.id === group)
-                        ?.path ?? { status: "derived", path: [] },
-                    )}
+                  : identityLabels(project?.groups ?? [], ["Project root", "All tokens"]).get(group) ?? "Missing group"}
               </h1>
               <p className="text-xs/normal text-muted-foreground">
                 Build a vocabulary, then connect its meaning.

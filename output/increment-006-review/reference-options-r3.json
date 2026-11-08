@@ -1,0 +1,10 @@
+[
+  {
+    "value": "self",
+    "text": "x (this token) · self"
+  },
+  {
+    "value": "other",
+    "text": "x (this token) · other"
+  }
+]
