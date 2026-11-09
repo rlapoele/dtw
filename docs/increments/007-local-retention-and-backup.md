@@ -52,6 +52,31 @@ copy/remap/merge, project deletion, new token authoring capabilities, progressiv
 repair, install/offline acceptance, Electron, encryption and undo/redo/history.
 No package/framework/database/schema-library selection follows from V1.
 
+## Required name for new projects
+
+**User-requested creation direction — 9 November 2026:** require a project name
+when creating a new project. This improves identification in Projects and removes
+the need for a new untitled-project creation path. It does not establish identity,
+name uniqueness or storage/recovery guarantees.
+
+**Proposed interpretation for final agreement:** reject empty and whitespace-only
+creation input with an associated field error, while preserving accepted text
+exactly. Test blankness without silently trimming, normalizing, changing case or
+generating a name. Duplicate names remain permitted and distinguishable by stable
+identity. Enforce the creation rule at the application command boundary as well
+as the interface; it is not a new universal canonical-data invariant.
+
+Existing supported unnamed projects remain readable and restorable with a truthful
+presentation fallback. Do not rename them or reject an otherwise supported backup
+merely to apply a new-creation rule retrospectively. The current production model,
+API and tests intentionally permit opaque empty names and remain unchanged until
+implementation is authorized. This amendment affects new projects only, not token
+or group naming. V1 is unchanged; represent required-name validation in the next
+authorized design revision.
+
+This narrows one creation UX choice but does not resolve D-1–D-6 or the unavailable
+first-read state in R-4. A named project can still have unavailable content.
+
 ## Acceptance criteria
 
 These IDs are stable draft criteria. D-1–D-6 must be resolved and incorporated before
@@ -150,6 +175,12 @@ final agreement; dependent criteria do not establish a settled implementation po
   usable compact/zoomed layout under existing presentation conventions. Pending,
   inspect-only, stale, diagnostic, empty and unavailable states are distinguishable.
   Prototype component reuse alone is not acceptance evidence.
+- **AC-19 — Required new-project name:** creation requires a user-supplied name.
+  Under the proposed blankness policy above, empty/whitespace-only submission
+  reports an associated error, preserves form input and creates no retained project
+  or catalogue entry. Accepted name text remains exact; duplicate names are allowed.
+  Supported existing unnamed data remains reopenable/restorable without rewriting
+  it. Verify application-boundary enforcement separately from interface validation.
 
 ## Supported-data acceptance matrix to complete
 
@@ -213,6 +244,9 @@ policies remain outside this bounded agreement. See [open questions](../planning
   flows (AC-18). Record exact browsers/viewports and limits. Follow existing test,
   strict typecheck and build commands; a fresh reviewer checks an identified stable
   implementation snapshot after implementation is separately authorized.
+- Creation-name checks (AC-19) cover empty/whitespace-only rejection, exact accepted
+  Unicode/whitespace-bearing names, duplicate names, unchanged form/storage after
+  rejection, and preserved reopening/restoration of supported unnamed projects.
 
 No application checks were run for this documentation draft. Prototype build/runtime
 observations are attributed in the review and cannot establish these criteria.

@@ -106,6 +106,13 @@ direction. Lightweight read/write separation and future undo/redo readiness are
 agreed; history remains outside scope. Final contract/design agreement and
 implementation authorization remain pending. The frozen prototype is illustrative.
 
+The user subsequently requested mandatory names for new project creation. The
+[creation-name amendment](../increments/007-local-retention-and-backup.md#required-name-for-new-projects)
+proposes nonblank validation with exact accepted-text preservation, duplicate-name
+support and continued readability/restoration of supported unnamed projects. It
+does not tighten token/group names or settle canonical name grammar. This narrows
+creation UX, not the six technical/data-policy blockers below.
+
 The Draft contract's D-1–D-6 group the implementation blockers:
 
 - **Technical qualification:** storage/acknowledgment and unknown-outcome recovery;
