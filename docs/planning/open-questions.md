@@ -154,6 +154,16 @@ changed; preserving raw input cannot imply automatic overwrite, merge or takeove
 D-1/D-5 must cover still-unknown/check-failed outcomes and retry/exit limits.
 Material resulting design revisions return to the user before renewed analyst review.
 
+The [storage/acknowledgement/concurrency proposal](../increments/007-storage-acknowledgement-and-concurrency-proposal.md)
+now offers concrete D-1/D-4 recommendations and D-5/D-6 implications for user review:
+native IndexedDB, transaction-complete acknowledgement with strict durability hint,
+Web Locks plus atomic revisions, and live-session outcome reconciliation with no
+blind replay. It compares user-visible files/OPFS/Electron filesystem adapters and
+recommends a shared model/codec/application boundary across different host adapters.
+Default background ownership versus optional hidden release, exact browser
+qualification and stronger durable command recovery are explicit tradeoffs.
+These recommendations are not agreement or qualification; D-1/D-4/D-5/D-6 remain open.
+
 1. What is the canonical source-of-truth file format?
 2. What constitutes stable project identity, and how is it preserved when a workspace moves?
 3. Should canonical persistence itself use DTCG, extend it, or use a separate project model with DTCG import/export?

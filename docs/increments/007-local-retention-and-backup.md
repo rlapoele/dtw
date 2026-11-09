@@ -226,6 +226,17 @@ D-2 and D-3 are **agreed policy**. D-1/D-4/D-5/D-6 remain **open**; their
 recommendations require user agreement and technical evidence. No adapter, codec,
 format version, runtime library or concurrency mechanism has been selected.
 
+**New proposal for user review — 9 November 2026:** the
+[storage, acknowledgement and concurrency proposal](007-storage-acknowledgement-and-concurrency-proposal.md)
+recommends native IndexedDB for the browser host, strict-hint transaction-complete
+acknowledgement, Web Locks plus revision checks, and bounded live-session outcome
+reconciliation without a durable intent journal by default. It compares a real
+user-file-first PWA alternative and future Electron filesystem adapters, keeping
+canonical data/codec/application semantics independent of host storage. Browser
+qualification targets and representation implications are proposed; full D-6
+codec/resource choices follow separately. D-1/D-4/D-5/D-6 remain open; this text
+selects no adapter or capability policy and authorizes no implementation.
+
 | ID | Resolve before agreement/implementation | Analyst recommendation and evidence needed |
 | --- | --- | --- |
 | D-1 | Browser persistence adapter, exact acknowledgment/atomicity boundary, catalogue consistency, and interrupted/unknown-outcome recovery. | Qualify one simple adapter over authoritative project state. Specify observable completion/failure and reconciliation; no hardware-permanence guarantee. Prove abort/no partial project/catalogue and crash/reopen outcomes. No technology selected. |
