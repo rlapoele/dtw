@@ -2,11 +2,13 @@
 
 > Last updated: 9 November 2026
 >
-> Phase: Increment 007 V1 analyst review completed; contract Draft; production remains at completed maintenance
+> Phase: Increment 007 prototype V2 ready for user review; contract Draft; production remains at completed maintenance
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
+
+**Increment 007 V2 ready for user review — 9 November 2026:** following committed name refinement `d6fc1e0`, the user authorized the designer to prepare V2 with required project names and the analyst's missing recovery states. The separate [V2 proposal](../../prototypes/increment-007-v2/DESIGN-V2.md) preserves V1 and production code. Isolated strict TypeScript/build checks passed; [coordinator observations](../../output/increment-007-prototype-v2/observations.md) cover blank/exact names, unavailable first reads after creation/restoration, known versus uncertain outcomes, draft/form preservation, replacement protection invalidation and selected focus/compact behavior. These are simulated interaction checks, not persistence/concurrency qualification or full accessibility evidence. V2 is identified by its [manifest](../../output/increment-007-prototype-v2/manifest.json) and must return to the user before renewed analyst review. Contract D-1–D-6, final agreement and production implementation authorization remain pending. No staging, commits or pushes were performed.
 
 **Increment 007 creation-name refinement — 9 November 2026:** after the user committed/pushed the analyst documentation as `cf3b8f9`, they proposed requiring a name when creating a project. The [Draft contract amendment](../increments/007-local-retention-and-backup.md#required-name-for-new-projects) records this creation direction and AC-19; nonblank validation, exact accepted text and application-boundary enforcement are the proposed interpretation. Existing supported unnamed projects remain readable/restorable, duplicate names do not establish identity, and token/group naming is unchanged. This simplifies creation UX but does not remove D-1–D-6 or the unavailable first-read design gap. Only documentation changed; prototype and production remain unchanged, and final agreement/implementation authorization are pending.
 
@@ -64,7 +66,7 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-User review of the [analyst findings](../increments/007-design-review.md) and [Draft contract decisions D-1–D-6](../increments/007-local-retention-and-backup.md#decisions-and-open-questions). Recommended follow-up is a scoped designer revision for missing recovery states plus bounded technical qualification and product/data-policy agreement. No prototype revision has yet been authorized from these findings. Maintenance is committed as `4171dbc`; V1 as `3b69671`. No production implementation, deployment or publication is authorized. Staging, commits and pushes remain with the user.
+User review/iteration of [Increment 007 V2](../../prototypes/increment-007-v2/DESIGN-V2.md) before explicit approval for renewed analyst review. The [Draft contract decisions D-1–D-6](../increments/007-local-retention-and-backup.md#decisions-and-open-questions) still need bounded technical qualification and product/data-policy agreement. Maintenance is committed as `4171dbc`; V1 as `3b69671`; the required-name refinement as `d6fc1e0`. No production implementation, deployment or publication is authorized. Staging, commits and pushes remain with the user.
 
 The Increment 007 contract is Draft and requires its recorded decisions and resulting design before final agreement. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, exact restore admissibility, concurrency enforcement, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not settle them through prototype convenience.
 

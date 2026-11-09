@@ -264,8 +264,20 @@ observations are attributed in the review and cannot establish these criteria.
   admissibility, concurrency, unavailable-state and verification completion.
 - Sample-only field limits, token-only data, simulated storage/ownership, JSON shape
   and fixtures do not select production semantics. Preserve V1 unchanged.
-- Material revisions: pending; coordinator returns material design changes to the
-  user before renewed analyst review, particularly no-loaded-snapshot recovery.
+- Material revision V2: on 9 November 2026 the user authorized a separate designer
+  prototype with required new-project names and the analyst's missing recovery
+  states. V2 must be shown to the user before renewed analyst review. V1 remains
+  frozen; neither V2 preparation nor its review authorizes production implementation.
+- V2 proposal: [design notes and walkthrough](../../prototypes/increment-007-v2/DESIGN-V2.md),
+  [identified snapshot](../../output/increment-007-prototype-v2/manifest.json) and
+  [coordinator observations](../../output/increment-007-prototype-v2/observations.md).
+  Isolated typecheck/build and scoped browser checks passed. The prototype presents
+  required-name validation, unavailable first reads, uncertain-outcome recovery,
+  preserved drafts/forms after access loss and invalidated replacement protection.
+  These simulations do not resolve storage/data-policy blockers D-1–D-6 or establish
+  production acceptance. V2 is ready for user review; R-3–R-6 responses have not yet
+  received renewed analyst review.
+- User approval of V2 for renewed analyst review: pending.
 - Final contract/design agreement: pending. Implementation authorization: pending.
 
 ## Review baseline and amendments
