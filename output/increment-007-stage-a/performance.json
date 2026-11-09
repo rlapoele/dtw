@@ -1,0 +1,181 @@
+{
+  "definition": "20 non-injected observations after one warm-up; median average middle pair; p95 nearest rank ceil(.95*n)=19; milliseconds; write includes pre-read/open, conservatively contains dispatch-to-complete",
+  "chrome": {
+    "performance-100": {
+      "encode": {
+        "n": 20,
+        "median": 1.400000000372529,
+        "p95": 1.699999999254942,
+        "max": 1.7000000029802322
+      },
+      "decode": {
+        "n": 20,
+        "median": 1,
+        "p95": 1.199999999254942,
+        "max": 1.199999999254942
+      },
+      "write": {
+        "n": 20,
+        "median": 1.699999999254942,
+        "p95": 2.699999999254942,
+        "max": 3.699999999254942
+      },
+      "list": {
+        "n": 20,
+        "median": 0.19999999925494194,
+        "p95": 0.30000000074505806,
+        "max": 0.30000000074505806
+      },
+      "longtasks": {
+        "count": 0,
+        "maxMs": 0
+      }
+    },
+    "performance-1000": {
+      "encode": {
+        "n": 20,
+        "median": 12.899999998509884,
+        "p95": 13.5,
+        "max": 13.699999999254942
+      },
+      "decode": {
+        "n": 20,
+        "median": 8.849999999627471,
+        "p95": 9.600000001490116,
+        "max": 9.700000002980232
+      },
+      "write": {
+        "n": 20,
+        "median": 3.5,
+        "p95": 3.899999998509884,
+        "max": 3.900000002235174
+      },
+      "list": {
+        "n": 20,
+        "median": 0.19999999925494194,
+        "p95": 0.30000000074505806,
+        "max": 0.30000000074505806
+      },
+      "longtasks": {
+        "count": 0,
+        "maxMs": 0
+      }
+    },
+    "maximum-codec-write-20": {
+      "encode": {
+        "n": 20,
+        "median": 110.59999999962747,
+        "p95": 123.70000000298023,
+        "max": 131.59999999776483
+      },
+      "decode": {
+        "n": 20,
+        "median": 90.75,
+        "p95": 97.60000000149012,
+        "max": 99.19999999925494
+      },
+      "write": {
+        "n": 20,
+        "median": 7.250000001862645,
+        "p95": 9.899999998509884,
+        "max": 11.5
+      },
+      "list": {
+        "n": 20,
+        "median": 0.30000000074505806,
+        "p95": 0.4000000022351742,
+        "max": 0.5
+      },
+      "longtasks": {
+        "count": 20,
+        "maxMs": 229
+      }
+    },
+    "worker-max-codec-20": {
+      "encode": {
+        "n": 20,
+        "median": 369.69999999925494,
+        "p95": 829.5,
+        "max": 833.3000000007451
+      },
+      "decode": {
+        "n": 20,
+        "median": 269.15000000037253,
+        "p95": 637.3999999985099,
+        "max": 684.6000000014901
+      },
+      "mainThreadLongtasks": [],
+      "equality": true,
+      "samples": 21
+    },
+    "maximumCatalogueRead": {
+      "n": 20,
+      "median": 28.449999999254942,
+      "p95": 33.399999998509884,
+      "max": 35.69999999925494
+    },
+    "maximumCatalogueObservedSerializedBytes": 209715200
+  },
+  "safari": {
+    "performance-100": {
+      "encode": {
+        "n": 20,
+        "median": 2,
+        "p95": 2,
+        "max": 2
+      },
+      "decode": {
+        "n": 20,
+        "median": 1,
+        "p95": 1,
+        "max": 1
+      },
+      "write": {
+        "n": 20,
+        "median": 5,
+        "p95": 5,
+        "max": 11
+      },
+      "list": {
+        "n": 20,
+        "median": 1,
+        "p95": 1,
+        "max": 1
+      },
+      "longtasks": {
+        "count": 0,
+        "maxMs": 0
+      }
+    },
+    "performance-1000": {
+      "encode": {
+        "n": 20,
+        "median": 10,
+        "p95": 11,
+        "max": 12
+      },
+      "decode": {
+        "n": 20,
+        "median": 7,
+        "p95": 8,
+        "max": 12
+      },
+      "write": {
+        "n": 20,
+        "median": 8,
+        "p95": 11,
+        "max": 17
+      },
+      "list": {
+        "n": 20,
+        "median": 1,
+        "p95": 1,
+        "max": 3
+      },
+      "longtasks": {
+        "count": 0,
+        "maxMs": 0
+      }
+    }
+  }
+}

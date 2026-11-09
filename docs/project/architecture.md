@@ -47,7 +47,7 @@ Browser adapters
     project storage, backup/restore, file selection, import/export
 ```
 
-Browser-managed project storage must remain replaceable. The first browser experience should provide explicit project backup and restore so locally authored work is not available only through one browser origin. Project backup is distinct from exporting a token compatibility profile. Increment 007 selects IndexedDB as the browser storage direction below; canonical persistence format, project backup representation and token interchange profile remain open.
+Browser-managed project storage must remain replaceable. The first browser experience should provide explicit project backup and restore so locally authored work is not available only through one browser origin. Project backup is distinct from exporting a token compatibility profile. Increment 007 selects IndexedDB and the bounded versioned backup/retained representations below. A broader desktop workspace persistence layout and token interchange profile remain open.
 
 Electron remains the intended packaged desktop host. Validate it as the milestone immediately following the first complete browser vertical slice, before browser-only assumptions spread through the product. This choice is motivated principally by its bundled, versioned Chromium runtime, access to controlled desktop capabilities, and mature distribution path rather than by access to Node.js alone.
 
@@ -172,10 +172,18 @@ atomic expected-revision checks. Keep live-session outcome reconciliation bounde
 no durable intent journal is selected. Retain ordinary background ownership.
 A later Electron filesystem adapter shares canonical representation/validation and
 application contracts; it does not reuse browser storage APIs. Version concepts for
-storage layout, authored envelope and portable backup remain distinct. Full codec,
-parser and resource choices, exact supported browser builds and technical qualification
-remain pending. The [agreed direction](../increments/007-storage-acknowledgement-and-concurrency-proposal.md)
+storage layout, authored envelope and portable backup remain distinct. F-1–F-5 codec/parser/resource policy is now agreed below; exact supported browser
+builds and technical qualification remain pending. The [agreed direction](../increments/007-storage-acknowledgement-and-concurrency-proposal.md)
 owns details and unselected alternatives. This agreement does not authorize implementation.
+
+**Format/resource agreement — 9 November 2026:** F-1–F-5 select a versioned
+UTF-8 JSON portable backup and separate retained-record wrapper, strict duplicate-
+aware boundary decoding using jsonc-parser 3.3.1, explicit admission ceilings and
+bounded derived work that preserves authored source. The
+[agreed format/resource policy](../increments/007-format-decoder-and-resource-proposal.md)
+owns exact representation and limits. Only isolated Stage A qualification, including
+its parser dependency, is authorized; production code/dependencies remain unchanged.
+This bounded envelope does not settle a future multi-file desktop workspace layout.
 
 ### Increment 007 read and write boundary direction
 

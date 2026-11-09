@@ -1,0 +1,686 @@
+{
+  "start": "2026-11-09T15:28:03.146Z",
+  "mode": "native Safari isolated WebDriver automation session; no normal-profile/cross-session durability claim",
+  "cases": [
+    {
+      "name": "Q01-Q18 capability",
+      "status": "observed",
+      "ms": 19,
+      "value": {
+        "secure": true,
+        "locks": true,
+        "strict": "strict",
+        "fileInput": true,
+        "persisted": false,
+        "download": true,
+        "performanceEntries": [
+          "event",
+          "first-input",
+          "largest-contentful-paint",
+          "mark",
+          "measure",
+          "navigation",
+          "paint",
+          "resource"
+        ],
+        "estimate": {
+          "quota": 82463372084,
+          "usage": 81
+        },
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+        "indexedDB": true
+      }
+    },
+    {
+      "name": "Q16 full supported exact codec roundtrip and decoder adversaries",
+      "status": "observed",
+      "ms": 20,
+      "value": {
+        "exact": true,
+        "rejected": [
+          true,
+          true,
+          true
+        ],
+        "counts": {
+          "maxDepth": 12,
+          "fileBytes": 10372,
+          "snapshotBytes": 10251,
+          "values": 697,
+          "strings": 6591,
+          "lexical": 2607
+        }
+      }
+    },
+    {
+      "name": "Q02-Q03 native abort and synthetic quota",
+      "status": "observed",
+      "ms": 15,
+      "value": {
+        "aborted": {
+          "status": "aborted"
+        },
+        "quota": {
+          "status": "injected-quota"
+        },
+        "events": [
+          {
+            "persisted": false,
+            "seq": 1,
+            "visibility": "visible",
+            "type": "pageshow"
+          },
+          {
+            "seq": 2,
+            "type": "upgrade",
+            "old": 1
+          },
+          {
+            "seq": 3,
+            "id": "",
+            "durability": "strict",
+            "type": "dispatch",
+            "command": "base"
+          },
+          {
+            "seq": 4,
+            "id": "",
+            "type": "request-success",
+            "command": "base"
+          },
+          {
+            "seq": 5,
+            "id": "",
+            "type": "complete",
+            "command": "base"
+          },
+          {
+            "seq": 6,
+            "id": "",
+            "durability": "strict",
+            "type": "dispatch",
+            "command": "aborted"
+          },
+          {
+            "seq": 7,
+            "id": "",
+            "type": "request-success",
+            "command": "aborted"
+          },
+          {
+            "seq": 8,
+            "id": "",
+            "conflict": false,
+            "type": "abort",
+            "command": "aborted",
+            "error": null
+          },
+          {
+            "seq": 9,
+            "id": "",
+            "durability": "strict",
+            "type": "dispatch",
+            "command": "quota"
+          },
+          {
+            "seq": 10,
+            "type": "injected-quota"
+          },
+          {
+            "seq": 11,
+            "id": "",
+            "conflict": false,
+            "type": "abort",
+            "command": "quota",
+            "error": null
+          }
+        ],
+        "equal": true
+      }
+    },
+    {
+      "name": "Q05 two own automation windows exclusive locks 3/order",
+      "status": "observed",
+      "ms": 536,
+      "value": [
+        {
+          "reverse": false,
+          "i": 0,
+          "first": true,
+          "contender": false,
+          "distinct": true
+        },
+        {
+          "reverse": false,
+          "i": 1,
+          "first": true,
+          "contender": false,
+          "distinct": true
+        },
+        {
+          "reverse": false,
+          "i": 2,
+          "first": true,
+          "contender": false,
+          "distinct": true
+        },
+        {
+          "reverse": true,
+          "i": 0,
+          "first": true,
+          "contender": false,
+          "distinct": true
+        },
+        {
+          "reverse": true,
+          "i": 1,
+          "first": true,
+          "contender": false,
+          "distinct": true
+        },
+        {
+          "reverse": true,
+          "i": 2,
+          "first": true,
+          "contender": false,
+          "distinct": true
+        }
+      ]
+    },
+    {
+      "name": "Q06 transaction CAS 3/order explicit equal-expected gate",
+      "status": "observed",
+      "ms": 36,
+      "value": {
+        "runs": [
+          {
+            "i": 0,
+            "outcomes": [
+              {
+                "status": "accepted",
+                "revision": "cas0a"
+              },
+              {
+                "status": "conflict"
+              }
+            ],
+            "after": {
+              "revision": "cas0a",
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "lastAcceptedCommand": {
+                "commandId": "cas0a",
+                "operation": "restoreProject",
+                "result": {
+                  "id": "a|b",
+                  "entityKind": "project"
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "a|b",
+                  "name": ""
+                },
+                "groups": [],
+                "tokens": []
+              }
+            },
+            "reverse": false
+          },
+          {
+            "i": 1,
+            "outcomes": [
+              {
+                "status": "accepted",
+                "revision": "cas1a"
+              },
+              {
+                "status": "conflict"
+              }
+            ],
+            "after": {
+              "revision": "cas1a",
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "lastAcceptedCommand": {
+                "commandId": "cas1a",
+                "operation": "restoreProject",
+                "result": {
+                  "id": "a|b",
+                  "entityKind": "project"
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "a|b",
+                  "name": ""
+                },
+                "groups": [],
+                "tokens": []
+              }
+            },
+            "reverse": false
+          },
+          {
+            "i": 2,
+            "outcomes": [
+              {
+                "status": "accepted",
+                "revision": "cas2a"
+              },
+              {
+                "status": "conflict"
+              }
+            ],
+            "after": {
+              "revision": "cas2a",
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "lastAcceptedCommand": {
+                "commandId": "cas2a",
+                "operation": "restoreProject",
+                "result": {
+                  "id": "a|b",
+                  "entityKind": "project"
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "a|b",
+                  "name": ""
+                },
+                "groups": [],
+                "tokens": []
+              }
+            },
+            "reverse": false
+          },
+          {
+            "i": 0,
+            "outcomes": [
+              {
+                "status": "accepted",
+                "revision": "cas0b"
+              },
+              {
+                "status": "conflict"
+              }
+            ],
+            "after": {
+              "revision": "cas0b",
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "lastAcceptedCommand": {
+                "commandId": "cas0b",
+                "operation": "restoreProject",
+                "result": {
+                  "id": "",
+                  "entityKind": "project"
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "",
+                  "name": ""
+                },
+                "groups": [],
+                "tokens": []
+              }
+            },
+            "reverse": true
+          },
+          {
+            "i": 1,
+            "outcomes": [
+              {
+                "status": "accepted",
+                "revision": "cas1b"
+              },
+              {
+                "status": "conflict"
+              }
+            ],
+            "after": {
+              "revision": "cas1b",
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "lastAcceptedCommand": {
+                "commandId": "cas1b",
+                "operation": "restoreProject",
+                "result": {
+                  "id": "",
+                  "entityKind": "project"
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "",
+                  "name": ""
+                },
+                "groups": [],
+                "tokens": []
+              }
+            },
+            "reverse": true
+          },
+          {
+            "i": 2,
+            "outcomes": [
+              {
+                "status": "accepted",
+                "revision": "cas2b"
+              },
+              {
+                "status": "conflict"
+              }
+            ],
+            "after": {
+              "revision": "cas2b",
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "lastAcceptedCommand": {
+                "commandId": "cas2b",
+                "operation": "restoreProject",
+                "result": {
+                  "id": "",
+                  "entityKind": "project"
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "",
+                  "name": ""
+                },
+                "groups": [],
+                "tokens": []
+              }
+            },
+            "reverse": true
+          }
+        ],
+        "note": "Same event-loop barrier, two native transactions. Cross-window CAS race remains unverified."
+      }
+    },
+    {
+      "name": "Q08 delayed dispatch fence",
+      "status": "observed",
+      "ms": 4,
+      "value": {
+        "delayed": "never-dispatched",
+        "issued": 0,
+        "record": null
+      }
+    },
+    {
+      "name": "Q13 blocked upgrade/versionchange",
+      "status": "observed",
+      "ms": 6,
+      "value": [
+        "versionchange",
+        "blocked",
+        "upgrade",
+        "complete"
+      ]
+    },
+    {
+      "name": "Q18 persistent request",
+      "status": "observed",
+      "ms": 3,
+      "value": {
+        "persist": false,
+        "estimate": {
+          "quota": 82463372084,
+          "usage": 17805
+        },
+        "persisted": false
+      }
+    },
+    {
+      "name": "performance-100",
+      "status": "observed",
+      "ms": 184,
+      "value": {
+        "heap": null,
+        "timing": {
+          "encode": [
+            2,
+            2,
+            2,
+            1,
+            2,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2,
+            1,
+            1,
+            2
+          ],
+          "decode": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "write": [
+            5,
+            5,
+            5,
+            4,
+            5,
+            5,
+            5,
+            4,
+            4,
+            4,
+            5,
+            3,
+            4,
+            3,
+            4,
+            5,
+            5,
+            5,
+            11,
+            4
+          ],
+          "list": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "longtasks": []
+        },
+        "kind": "normal",
+        "n": 100,
+        "counts": {
+          "maxDepth": 8,
+          "fileBytes": 23273,
+          "snapshotBytes": 23152,
+          "values": 1606,
+          "strings": 14523,
+          "lexical": 6142
+        }
+      }
+    },
+    {
+      "name": "performance-1000",
+      "status": "observed",
+      "ms": 599,
+      "value": {
+        "heap": null,
+        "timing": {
+          "encode": [
+            12,
+            11,
+            11,
+            9,
+            11,
+            10,
+            10,
+            10,
+            11,
+            11,
+            11,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            11
+          ],
+          "decode": [
+            12,
+            8,
+            7,
+            8,
+            7,
+            7,
+            7,
+            8,
+            7,
+            7,
+            7,
+            7,
+            7,
+            8,
+            7,
+            8,
+            7,
+            7,
+            7,
+            7
+          ],
+          "write": [
+            8,
+            8,
+            17,
+            11,
+            10,
+            8,
+            9,
+            7,
+            8,
+            7,
+            8,
+            7,
+            8,
+            7,
+            8,
+            8,
+            8,
+            8,
+            9,
+            8
+          ],
+          "list": [
+            1,
+            3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "longtasks": []
+        },
+        "kind": "normal",
+        "n": 1000,
+        "counts": {
+          "maxDepth": 8,
+          "fileBytes": 232973,
+          "snapshotBytes": 232852,
+          "values": 16006,
+          "strings": 146823,
+          "lexical": 61042
+        }
+      }
+    }
+  ],
+  "origin": "http://127.0.0.1:53640",
+  "capabilities": {
+    "safari:platformVersion": "27.2",
+    "safari:automaticInspection": false,
+    "webkit:WebRTC": {
+      "DisableICECandidateFiltering": false,
+      "DisableInsecureMediaCapture": false
+    },
+    "webkit:alwaysAllowAutoplay": false,
+    "browserVersion": "27.2",
+    "strictFileInteractability": false,
+    "browserName": "Safari",
+    "safari:useSimulator": false,
+    "safari:platformBuildVersion": "26B123",
+    "setWindowRect": true,
+    "acceptInsecureCerts": false,
+    "safari:automaticProfiling": false,
+    "pageLoadStrategy": "eager",
+    "safari:experimentalWebSocketUrl": false,
+    "platformName": "macOS",
+    "safari:diagnose": false
+  },
+  "limitations": [
+    "No maximum stress: safe external termination of shared Safari browser is unauthorized; own WebDriver session deletion is not proof it interrupts blocked arithmetic.",
+    "No Safari force kill, cross-session durability, actual freeze/resume or bfcache evidence.",
+    "No Safari native file-picker/download/lifecycle or real quota/eviction tests.",
+    "PerformanceObserver longtask capability recorded; absence of entries without support is not responsiveness evidence."
+  ],
+  "end": "2026-11-09T15:28:05.420Z"
+}

@@ -1,22 +1,25 @@
 # Increment 007: storage and concurrency qualification plan
 
-**Proposed plan — 9 November 2026. No experiments executed.** Baseline
-`d83a9e91f061ca6519849096e49ec1fc2c112d72`. The
-[Draft AC-1–19](007-local-retention-and-backup.md),
+**Agreed plan — 9 November 2026; isolated Stage A executed and independently reviewed with partial qualification.**
+The user agreed F-1–F-5 and this plan after committing planning review as `21196be`;
+parser installation inside the isolated harness is authorized if needed. No
+production Increment 007 implementation is authorized. The original planning
+baseline was `d83a9e91f061ca6519849096e49ec1fc2c112d72`.
+The [Draft AC-1–19](007-local-retention-and-backup.md),
 [agreed coverage/admissibility](007-backup-coverage-and-restore-policy-proposal.md),
 [agreed storage direction](007-storage-acknowledgement-and-concurrency-proposal.md)
-and [proposed format/resources](007-format-decoder-and-resource-proposal.md)
-are the expected behavior. Proposed F-1–F-5 need agreement; this plan creates no
-implementation, runtime experiment or destructive-test authorization.
+and [agreed format/resources](007-format-decoder-and-resource-proposal.md)
+are the expected behavior. Agreement establishes policy and qualification targets,
+not passing results, product implementation authority or hardware permanence.
 
 ## Two stages, separate authorization
 
-**Stage A — isolated mechanism qualification:** after separate user authorization,
+**Stage A — isolated mechanism qualification (authorized):**
 a disposable narrowly scoped harness can test native IDB/Web Locks/lifecycle/file
-mechanisms **and codec/resource feasibility** against the proposed F-1–F-5 policy.
-That separately authorized feasibility stage permits measuring proposed limits
+mechanisms **and codec/resource feasibility** against the agreed F-1–F-5 policy.
+This authorized feasibility stage permits measuring agreed limits
 before final agreement, without authorizing product implementation. Parser package
-installation, if needed in that harness, also needs that explicit authorization.
+installation, if needed in that harness, is included in the authorization.
 It does not implement the product, prove V2 usability or establish all ACs. There is no current retained adapter or existing command to run these cases.
 Record harness source/manifest and independent findings; stop for material unsupported
 mechanisms instead of quietly changing agreed policy.
@@ -85,21 +88,23 @@ unresolved nondeterminism/failures. Three runs are a reproducibility minimum, no
 probability bound or exhaustive scheduling proof. Lifecycle/termination observations
 must identify which intervention actually occurred, not infer it from a delay.
 
-## Performance experiments and provisional acceptance targets
+## Performance experiments and agreed qualification targets
 
-Targets below are review proposals, not measurements or existing quality constraints.
+Targets below are agreed qualification targets, not measurements or established
+product performance claims.
 Stage A may measure disposable codec/IDB workloads; Stage B measures actual UI/app
 acceptance. Label them separately; harness speed is not delivered product evidence.
 User feedback on 9 November treats 1,000 tokens as exceptionally large and the
 proposed capacity limits as more than sufficient. Therefore distinguish a typical
 100-token fixture, a 1,000-token large case, and defensive maximum-capacity stress.
-The user did not lower the 10,000-token ceiling or agree these timing targets.
+The user did not lower the 10,000-token ceiling; subsequent explicit agreement
+adopted the qualification plan and its targets.
 The proposal's [dated scale references](007-format-decoder-and-resource-proposal.md#dated-scale-references-and-interpretation)
 provide context: Supernova's 2024 survey bands and Figma's February 2026 report of
 7,400+ Primer tokens use unestablished counting definitions for this comparison.
 They neither establish a current representative baseline nor equate to DTW authored
 identities. Keep target workloads distinct from a universal claim that larger
-systems cannot exist; fixtures, caps and timing proposals remain unchanged.
+systems cannot exist; fixtures, caps and qualification targets remain unchanged.
 Measure on the captured primary test machine after a warm-up, with at least 20
 non-injected runs per workload/browser; report all values, median, p95 definition
 (nearest-rank), maximum, fixture hash and rejected/refused cases. Record cold startup
@@ -107,25 +112,25 @@ separately. No universal device claim follows.
 
 | Workload | Starting review target |
 | --- | --- |
-| Normal accepted command, typical 100-token fixture | Proposed p95 dispatch→transaction-complete ≤250 ms; UI success only afterward. |
-| Accepted command, exceptionally large 1,000-token fixture | Proposed p95 ≤1,000 ms; report actual observations independently of typical-case results. |
+| Normal accepted command, typical 100-token fixture | Target p95 dispatch→transaction-complete ≤250 ms; UI success only afterward. |
+| Accepted command, exceptionally large 1,000-token fixture | Target p95 ≤1,000 ms; report actual observations independently of typical-case results. |
 | Defensive maximum admitted snapshot | Safety and bounded completion first; record latency/work/memory and refusals. No typical-use latency requirement or qualified numerical deadline is inferred; agree a stress completion bound after feasibility evidence. |
-| Projects list: typical/large cases versus 25 maximum-sized records | Proposed ≤2,000 ms for typical/large catalogue fixtures, whose project counts must be recorded. Maximum catalogue is defensive stress: 25×8 MiB is 200 MiB serialized read workload; measure bounded completion/memory without implying real-world prevalence or a qualified deadline. |
-| Backup decode/validate/generate: typical/large versus maximum | Proposed each ≤2,000 ms for 100/1,000-token fixtures. Defensive maximum measures bounded completion; no uncontrolled task/heap growth or call-stack failure, and no typical-use latency inference. |
+| Projects list: typical/large cases versus 25 maximum-sized records | Target ≤2,000 ms for typical/large catalogue fixtures, whose project counts must be recorded. Maximum catalogue is defensive stress: 25×8 MiB is 200 MiB serialized read workload; measure bounded completion/memory without implying real-world prevalence or a qualified deadline. |
+| Backup decode/validate/generate: typical/large versus maximum | Target each ≤2,000 ms for 100/1,000-token fixtures. Defensive maximum measures bounded completion; no uncontrolled task/heap growth or call-stack failure, and no typical-use latency inference. |
 | UI responsiveness during non-IDB domain/codec work | No single blocking task >100 ms as an initial target; if exceeded, propose bounded scheduling/worker scope and requalify rather than silently relax limits. |
 
 Refusal at a documented admitted boundary, catastrophic heap growth, uncontrolled
 BigInt work or stack overflow is a failure needing investigation, not “expected
 large data.” A correctly rejected over-budget fixture passes correctness while its
-bounded rejection cost is still measured. If proposed timing/resource limits conflict,
+bounded rejection cost is still measured. If agreed timing/resource limits conflict,
 return the evidence and choices to the user; do not replace exact values with rounded
 ones, shrink fixtures or lower the quality bar quietly.
 
-## Proposed stress-harness watchdog
+## Agreed stress-harness watchdog
 
-For future authorized stress runs, propose an **external 30-second wall-clock
+For authorized Stage A stress runs, use an **external 30-second wall-clock
 watchdog per stress case**, starting after documented fixture setup and ending at
-its terminal measured result. This is an unagreed harness safety choice, not a
+its terminal measured result. This is an agreed harness safety boundary, not a
 product latency limit or evidence of supported capacity. An independent supervisor
 must be able to terminate only the disposable harness worker/page/process; an
 in-page timer cannot be the sole watchdog for blocked synchronous arithmetic.
@@ -145,7 +150,7 @@ A revised watchdog needs explicit recorded rationale, not a silent threshold inc
 | --- | --- |
 | Full-wrapper lexical admission consistency | Same-analyst planning correction at review baseline `a648ed4`: normal-command/retained/output admission now explicitly checks the generated wrapper, not just semantic/snapshot limits. Q-17 requires writer/counter/decoder equality. No executed verification. |
 | Stress bounded-completion readiness | Proposed external 30-second watchdog above makes future safety termination reviewable; neither the watchdog nor maximum-capacity completion is qualified. |
-| F-1–F-5 and performance thresholds | Still for user review; capacity sufficiency feedback does not settle format/parser, derived-work policy or measured timing. No experiment authorization follows from this planning review. |
+| F-1–F-5 and qualification targets | Subsequently agreed by the user, with isolated Stage A and its parser dependency authorized. Technical evidence remains pending; Stage B is unauthorized. |
 | F-5 resource-unavailable/incomplete-report UI | Material interaction beyond V2 remains pending designer proposal/user review before implementation. No new authored-invalid classification or silent data truncation. |
 | Recovery/conflict feedback and unsupported retained data | Preserve agreed S-4/D-2/D-3 behavior; identify any concrete screens needed for unknown evidence, retained-but-unavailable, changed-baseline reapply and over-budget refusal in the final design handoff. Material additions return to user review; this plan does not approve them by implication. |
 
@@ -169,5 +174,16 @@ or hardware durability test is authorized or planned by default. Simulated event
 can establish application handling; actual termination can establish only that
 intervention. A strict-hint property/event trace never proves an fsync or immunity
 from power loss. API research is in the linked agreed storage document; no new API
-support or measured performance claim is made here. This plan and format/resources
-remain for user review; no tests, experiments, app edits or qualification ran.
+support or measured performance claim is made here. At the original planning handoff no tests, experiments, app edits or qualification
+had run. Subsequent Stage A results belong in its separate evidence report; no
+production implementation is authorized.
+
+## Executed Stage A record
+
+See the [developer report](../../output/increment-007-stage-a/report.md) and
+[independent review](../../output/increment-007-stage-a/independent-review.md)
+for actual commands, source/evidence manifests, corrected findings, measurements
+and unverified cases. Native transaction/ownership/capacity mechanisms and codec/file
+subsets do not establish all ACs. Preserve the recorded main-thread responsiveness
+failure and worker feasibility evidence; no blanket supported-browser/capacity or
+production implementation claim follows. Stage B remains unauthorized.

@@ -1,0 +1,265 @@
+{
+  "started": "2026-11-09T15:29:47.290Z",
+  "codec": [
+    {
+      "name": "positive exact nested expression and malformed inline composite",
+      "pass": true
+    },
+    {
+      "name": "canonical fractions reject trailing zero; unsupported literal rejects",
+      "pass": true
+    },
+    {
+      "name": "32 nested AST expressions admitted; 33 rejected",
+      "pass": true
+    },
+    {
+      "name": "font-family 255/256/257 entries",
+      "pass": true
+    }
+  ],
+  "native": [
+    {
+      "name": "request-success then explicit abort rollback",
+      "cap": {
+        "secure": true,
+        "indexedDB": true,
+        "locks": true,
+        "strict": "strict",
+        "persisted": false,
+        "estimate": {
+          "quota": 10737420760,
+          "usage": 2520,
+          "usageDetails": {
+            "indexedDB": 2520
+          }
+        },
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "download": true,
+        "fileInput": true
+      },
+      "abort": {
+        "status": "aborted"
+      },
+      "exact": true,
+      "events": [
+        {
+          "seq": 1,
+          "type": "pageshow",
+          "persisted": false,
+          "visibility": "visible"
+        },
+        {
+          "seq": 2,
+          "type": "upgrade",
+          "old": 1
+        },
+        {
+          "seq": 3,
+          "type": "dispatch",
+          "id": "p",
+          "command": "initial",
+          "durability": "strict"
+        },
+        {
+          "seq": 4,
+          "type": "request-success",
+          "id": "p",
+          "command": "initial"
+        },
+        {
+          "seq": 5,
+          "type": "complete",
+          "id": "p",
+          "command": "initial"
+        },
+        {
+          "seq": 6,
+          "type": "dispatch",
+          "id": "p",
+          "command": "abort",
+          "durability": "strict"
+        },
+        {
+          "seq": 7,
+          "type": "request-success",
+          "id": "p",
+          "command": "abort"
+        },
+        {
+          "seq": 8,
+          "type": "abort",
+          "id": "p",
+          "command": "abort",
+          "conflict": false
+        }
+      ]
+    },
+    {
+      "name": "exclusive empty-ID lock",
+      "label": "A-first",
+      "i": 0,
+      "first": true,
+      "second": false
+    },
+    {
+      "name": "exclusive empty-ID lock",
+      "label": "A-first",
+      "i": 1,
+      "first": true,
+      "second": false
+    },
+    {
+      "name": "exclusive empty-ID lock",
+      "label": "A-first",
+      "i": 2,
+      "first": true,
+      "second": false
+    },
+    {
+      "name": "exclusive empty-ID lock",
+      "label": "B-first",
+      "i": 0,
+      "first": true,
+      "second": false
+    },
+    {
+      "name": "exclusive empty-ID lock",
+      "label": "B-first",
+      "i": 1,
+      "first": true,
+      "second": false
+    },
+    {
+      "name": "exclusive empty-ID lock",
+      "label": "B-first",
+      "i": 2,
+      "first": true,
+      "second": false
+    },
+    {
+      "name": "forced held transaction before contender",
+      "label": "A-first",
+      "i": 0,
+      "issued": true,
+      "conflict": {
+        "status": "conflict"
+      },
+      "after": {
+        "revision": "first",
+        "snapshot": {
+          "project": {
+            "id": "review-A-first0",
+            "name": ""
+          },
+          "groups": [],
+          "tokens": []
+        }
+      }
+    },
+    {
+      "name": "forced held transaction before contender",
+      "label": "A-first",
+      "i": 1,
+      "issued": true,
+      "conflict": {
+        "status": "conflict"
+      },
+      "after": {
+        "revision": "first",
+        "snapshot": {
+          "project": {
+            "id": "review-A-first1",
+            "name": ""
+          },
+          "groups": [],
+          "tokens": []
+        }
+      }
+    },
+    {
+      "name": "forced held transaction before contender",
+      "label": "A-first",
+      "i": 2,
+      "issued": true,
+      "conflict": {
+        "status": "conflict"
+      },
+      "after": {
+        "revision": "first",
+        "snapshot": {
+          "project": {
+            "id": "review-A-first2",
+            "name": ""
+          },
+          "groups": [],
+          "tokens": []
+        }
+      }
+    },
+    {
+      "name": "forced held transaction before contender",
+      "label": "B-first",
+      "i": 0,
+      "issued": true,
+      "conflict": {
+        "status": "conflict"
+      },
+      "after": {
+        "revision": "first",
+        "snapshot": {
+          "project": {
+            "id": "review-B-first0",
+            "name": ""
+          },
+          "groups": [],
+          "tokens": []
+        }
+      }
+    },
+    {
+      "name": "forced held transaction before contender",
+      "label": "B-first",
+      "i": 1,
+      "issued": true,
+      "conflict": {
+        "status": "conflict"
+      },
+      "after": {
+        "revision": "first",
+        "snapshot": {
+          "project": {
+            "id": "review-B-first1",
+            "name": ""
+          },
+          "groups": [],
+          "tokens": []
+        }
+      }
+    },
+    {
+      "name": "forced held transaction before contender",
+      "label": "B-first",
+      "i": 2,
+      "issued": true,
+      "conflict": {
+        "status": "conflict"
+      },
+      "after": {
+        "revision": "first",
+        "snapshot": {
+          "project": {
+            "id": "review-B-first2",
+            "name": ""
+          },
+          "groups": [],
+          "tokens": []
+        }
+      }
+    }
+  ],
+  "origin": "http://127.0.0.1:53682",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-independent-review-4ky6k3",
+  "browser": "156.0.8078.80",
+  "ended": "2026-11-09T15:29:48.170Z"
+}

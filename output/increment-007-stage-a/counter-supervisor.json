@@ -1,0 +1,7 @@
+{
+  "watchdogMs": 30000,
+  "expired": false,
+  "exitCode": 0,
+  "ms": 146,
+  "scope": "only child Node isolated counter probe"
+}

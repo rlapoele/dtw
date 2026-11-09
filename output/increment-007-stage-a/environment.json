@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-09T15:29:12.658Z",
+  "platform": "darwin",
+  "arch": "arm64",
+  "osRelease": "27.2.0",
+  "memoryBytes": 38654705664,
+  "freeMemoryBytesAtSummary": 1730297856,
+  "cpuModel": "Apple M3 Pro",
+  "cpuCount": 11,
+  "node": "v24.14.1",
+  "npm": "11.17.0",
+  "macOS": "27.2 build26B123",
+  "chrome": "156.0.8078.80 installed /Applications/Google Chrome.app",
+  "safari": "27.2 (22625.2.8.11.9)",
+  "playwright": "1.60.0 cached module; browser uses installed Chrome, not bundled Chromium",
+  "parser": {
+    "version": "3.3.1",
+    "license": "MIT",
+    "productionDependencies": {},
+    "entireESMDistributionBytes": 89541,
+    "entireESMGzipBytes": 15495,
+    "note": "Not a production bundle/tree-shaking measurement; HTTP harness serves ESM modules directly. Exact tarball integrity in isolated package-lock.json."
+  }
+}

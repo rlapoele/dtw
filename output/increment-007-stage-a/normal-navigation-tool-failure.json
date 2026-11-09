@@ -1,0 +1,735 @@
+{
+  "origin": "http://127.0.0.1:53320",
+  "start": "2026-11-09T15:21:40.766Z",
+  "cases": [
+    {
+      "name": "Q01-Q18 capability",
+      "status": "observed",
+      "elapsed": 22,
+      "value": {
+        "secure": true,
+        "indexedDB": true,
+        "locks": true,
+        "strict": "strict",
+        "persisted": false,
+        "estimate": {
+          "quota": 10737420738,
+          "usage": 2498,
+          "usageDetails": {
+            "indexedDB": 2498
+          }
+        },
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "download": true,
+        "fileInput": true
+      }
+    },
+    {
+      "name": "Q02 terminal ordering",
+      "status": "observed",
+      "elapsed": 4,
+      "value": {
+        "aborted": {
+          "status": "aborted"
+        },
+        "equal": true,
+        "events": [
+          {
+            "seq": 1,
+            "type": "pageshow",
+            "persisted": false,
+            "visibility": "visible"
+          },
+          {
+            "seq": 2,
+            "type": "upgrade",
+            "old": 1
+          },
+          {
+            "seq": 3,
+            "type": "dispatch",
+            "id": "p",
+            "command": "base",
+            "durability": "strict"
+          },
+          {
+            "seq": 4,
+            "type": "request-success",
+            "id": "p",
+            "command": "base"
+          },
+          {
+            "seq": 5,
+            "type": "complete",
+            "id": "p",
+            "command": "base"
+          },
+          {
+            "seq": 6,
+            "type": "dispatch",
+            "id": "p",
+            "command": "abort",
+            "durability": "strict"
+          },
+          {
+            "seq": 7,
+            "type": "request-success",
+            "id": "p",
+            "command": "abort"
+          },
+          {
+            "seq": 8,
+            "type": "abort",
+            "id": "p",
+            "command": "abort",
+            "conflict": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "Q03 synthetic quota",
+      "status": "observed",
+      "elapsed": 2,
+      "value": {
+        "result": {
+          "status": "injected-quota"
+        },
+        "unchanged": true
+      }
+    },
+    {
+      "name": "Q05 exclusive locks 3 runs each ordering",
+      "status": "observed",
+      "elapsed": 32,
+      "value": [
+        {
+          "label": "a-first",
+          "i": 0,
+          "acquired": true,
+          "loser": false,
+          "distinct": true
+        },
+        {
+          "label": "a-first",
+          "i": 1,
+          "acquired": true,
+          "loser": false,
+          "distinct": true
+        },
+        {
+          "label": "a-first",
+          "i": 2,
+          "acquired": true,
+          "loser": false,
+          "distinct": true
+        },
+        {
+          "label": "b-first",
+          "i": 0,
+          "acquired": true,
+          "loser": false,
+          "distinct": true
+        },
+        {
+          "label": "b-first",
+          "i": 1,
+          "acquired": true,
+          "loser": false,
+          "distinct": true
+        },
+        {
+          "label": "b-first",
+          "i": 2,
+          "acquired": true,
+          "loser": false,
+          "distinct": true
+        }
+      ]
+    },
+    {
+      "name": "Q06 CAS barriers 3 per ordering",
+      "status": "observed",
+      "elapsed": 35,
+      "value": [
+        {
+          "order": 0,
+          "i": 0,
+          "id": "a|b",
+          "expected": null,
+          "writes": [
+            {
+              "status": "accepted",
+              "revision": "cas-0-0-a"
+            },
+            {
+              "status": "conflict"
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "cas-0-0-a",
+            "lastAcceptedCommand": {
+              "commandId": "cas-0-0-a",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": "a|b"
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "a|b",
+                "name": ""
+              },
+              "groups": [],
+              "tokens": []
+            }
+          }
+        },
+        {
+          "order": 0,
+          "i": 1,
+          "id": "a|b",
+          "expected": "cas-0-0-a",
+          "writes": [
+            {
+              "status": "accepted",
+              "revision": "cas-0-1-a"
+            },
+            {
+              "status": "conflict"
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "cas-0-1-a",
+            "lastAcceptedCommand": {
+              "commandId": "cas-0-1-a",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": "a|b"
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "a|b",
+                "name": ""
+              },
+              "groups": [],
+              "tokens": []
+            }
+          }
+        },
+        {
+          "order": 0,
+          "i": 2,
+          "id": "a|b",
+          "expected": "cas-0-1-a",
+          "writes": [
+            {
+              "status": "accepted",
+              "revision": "cas-0-2-a"
+            },
+            {
+              "status": "conflict"
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "cas-0-2-a",
+            "lastAcceptedCommand": {
+              "commandId": "cas-0-2-a",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": "a|b"
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "a|b",
+                "name": ""
+              },
+              "groups": [],
+              "tokens": []
+            }
+          }
+        },
+        {
+          "order": 1,
+          "i": 0,
+          "id": "",
+          "expected": null,
+          "writes": [
+            {
+              "status": "accepted",
+              "revision": "cas-1-0-a"
+            },
+            {
+              "status": "conflict"
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "cas-1-0-a",
+            "lastAcceptedCommand": {
+              "commandId": "cas-1-0-a",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": ""
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "",
+                "name": ""
+              },
+              "groups": [],
+              "tokens": []
+            }
+          }
+        },
+        {
+          "order": 1,
+          "i": 1,
+          "id": "",
+          "expected": "cas-1-0-a",
+          "writes": [
+            {
+              "status": "accepted",
+              "revision": "cas-1-1-a"
+            },
+            {
+              "status": "conflict"
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "cas-1-1-a",
+            "lastAcceptedCommand": {
+              "commandId": "cas-1-1-a",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": ""
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "",
+                "name": ""
+              },
+              "groups": [],
+              "tokens": []
+            }
+          }
+        },
+        {
+          "order": 1,
+          "i": 2,
+          "id": "",
+          "expected": "cas-1-1-a",
+          "writes": [
+            {
+              "status": "accepted",
+              "revision": "cas-1-2-a"
+            },
+            {
+              "status": "conflict"
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "cas-1-2-a",
+            "lastAcceptedCommand": {
+              "commandId": "cas-1-2-a",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": ""
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "",
+                "name": ""
+              },
+              "groups": [],
+              "tokens": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Q08-Q09 dispatch fence/reconciliation",
+      "status": "observed",
+      "elapsed": 3,
+      "value": {
+        "issued": 0,
+        "delayedResult": "never-dispatched",
+        "probe": null,
+        "actualAcceptance": {
+          "status": "accepted",
+          "revision": "receipt-1"
+        },
+        "matching": {
+          "commandId": "receipt-1",
+          "operation": "restoreProject",
+          "result": {
+            "entityKind": "project",
+            "id": "receipt"
+          }
+        },
+        "later": {
+          "commandId": "receipt-2",
+          "operation": "restoreProject",
+          "result": {
+            "entityKind": "project",
+            "id": "receipt"
+          }
+        },
+        "classification": {
+          "matching": "accepted",
+          "laterWithoutPriorObservedReceipt": "unknown",
+          "missing": "unknown",
+          "incarnationChanged": "unknown",
+          "readFailure": "unknown"
+        },
+        "note": "Classifications are mechanism demonstration, no application recovery implementation."
+      }
+    },
+    {
+      "name": "Q11 actual hide/show + freeze/resume",
+      "status": "observed",
+      "elapsed": 318,
+      "value": {
+        "whileBackground": false,
+        "whileFrozen": false,
+        "events": [
+          {
+            "seq": 1,
+            "type": "pageshow",
+            "persisted": false,
+            "visibility": "visible"
+          },
+          {
+            "seq": 2,
+            "type": "upgrade",
+            "old": 1
+          },
+          {
+            "seq": 3,
+            "type": "dispatch",
+            "id": "p",
+            "command": "base",
+            "durability": "strict"
+          },
+          {
+            "seq": 4,
+            "type": "request-success",
+            "id": "p",
+            "command": "base"
+          },
+          {
+            "seq": 5,
+            "type": "complete",
+            "id": "p",
+            "command": "base"
+          },
+          {
+            "seq": 6,
+            "type": "dispatch",
+            "id": "p",
+            "command": "abort",
+            "durability": "strict"
+          },
+          {
+            "seq": 7,
+            "type": "request-success",
+            "id": "p",
+            "command": "abort"
+          },
+          {
+            "seq": 8,
+            "type": "abort",
+            "id": "p",
+            "command": "abort",
+            "conflict": false
+          },
+          {
+            "seq": 9,
+            "type": "dispatch",
+            "id": "p",
+            "command": "quota",
+            "durability": "strict"
+          },
+          {
+            "seq": 10,
+            "type": "injected-quota"
+          },
+          {
+            "seq": 11,
+            "type": "abort",
+            "id": "p",
+            "command": "quota",
+            "conflict": false
+          },
+          {
+            "seq": 12,
+            "type": "lock-acquired",
+            "id": "p"
+          },
+          {
+            "seq": 13,
+            "type": "lock-release",
+            "id": "p"
+          },
+          {
+            "seq": 14,
+            "type": "lock-acquired",
+            "id": "p"
+          },
+          {
+            "seq": 15,
+            "type": "lock-release",
+            "id": "p"
+          },
+          {
+            "seq": 16,
+            "type": "lock-acquired",
+            "id": "p"
+          },
+          {
+            "seq": 17,
+            "type": "lock-release",
+            "id": "p"
+          },
+          {
+            "seq": 18,
+            "type": "inspect-only",
+            "id": "p"
+          },
+          {
+            "seq": 19,
+            "type": "lock-acquired",
+            "id": "p/other"
+          },
+          {
+            "seq": 20,
+            "type": "lock-release",
+            "id": "p/other"
+          },
+          {
+            "seq": 21,
+            "type": "inspect-only",
+            "id": "p"
+          },
+          {
+            "seq": 22,
+            "type": "lock-acquired",
+            "id": "p/other"
+          },
+          {
+            "seq": 23,
+            "type": "lock-release",
+            "id": "p/other"
+          },
+          {
+            "seq": 24,
+            "type": "inspect-only",
+            "id": "p"
+          },
+          {
+            "seq": 25,
+            "type": "lock-acquired",
+            "id": "p/other"
+          },
+          {
+            "seq": 26,
+            "type": "lock-release",
+            "id": "p/other"
+          },
+          {
+            "seq": 27,
+            "type": "dispatch",
+            "id": "a|b",
+            "command": "cas-0-0-a",
+            "durability": "strict"
+          },
+          {
+            "seq": 28,
+            "type": "request-success",
+            "id": "a|b",
+            "command": "cas-0-0-a"
+          },
+          {
+            "seq": 29,
+            "type": "complete",
+            "id": "a|b",
+            "command": "cas-0-0-a"
+          },
+          {
+            "seq": 30,
+            "type": "dispatch",
+            "id": "a|b",
+            "command": "cas-0-1-a",
+            "durability": "strict"
+          },
+          {
+            "seq": 31,
+            "type": "request-success",
+            "id": "a|b",
+            "command": "cas-0-1-a"
+          },
+          {
+            "seq": 32,
+            "type": "complete",
+            "id": "a|b",
+            "command": "cas-0-1-a"
+          },
+          {
+            "seq": 33,
+            "type": "dispatch",
+            "id": "a|b",
+            "command": "cas-0-2-a",
+            "durability": "strict"
+          },
+          {
+            "seq": 34,
+            "type": "request-success",
+            "id": "a|b",
+            "command": "cas-0-2-a"
+          },
+          {
+            "seq": 35,
+            "type": "complete",
+            "id": "a|b",
+            "command": "cas-0-2-a"
+          },
+          {
+            "seq": 36,
+            "type": "dispatch",
+            "id": "",
+            "command": "cas-1-0-b",
+            "durability": "strict"
+          },
+          {
+            "seq": 37,
+            "type": "revision-conflict",
+            "id": ""
+          },
+          {
+            "seq": 38,
+            "type": "abort",
+            "id": "",
+            "command": "cas-1-0-b",
+            "conflict": true
+          },
+          {
+            "seq": 39,
+            "type": "dispatch",
+            "id": "",
+            "command": "cas-1-1-b",
+            "durability": "strict"
+          },
+          {
+            "seq": 40,
+            "type": "revision-conflict",
+            "id": ""
+          },
+          {
+            "seq": 41,
+            "type": "abort",
+            "id": "",
+            "command": "cas-1-1-b",
+            "conflict": true
+          },
+          {
+            "seq": 42,
+            "type": "dispatch",
+            "id": "",
+            "command": "cas-1-2-b",
+            "durability": "strict"
+          },
+          {
+            "seq": 43,
+            "type": "revision-conflict",
+            "id": ""
+          },
+          {
+            "seq": 44,
+            "type": "abort",
+            "id": "",
+            "command": "cas-1-2-b",
+            "conflict": true
+          },
+          {
+            "seq": 45,
+            "type": "dispatch",
+            "id": "receipt",
+            "command": "receipt-1",
+            "durability": "strict"
+          },
+          {
+            "seq": 46,
+            "type": "request-success",
+            "id": "receipt",
+            "command": "receipt-1"
+          },
+          {
+            "seq": 47,
+            "type": "complete",
+            "id": "receipt",
+            "command": "receipt-1"
+          },
+          {
+            "seq": 48,
+            "type": "dispatch",
+            "id": "receipt",
+            "command": "receipt-2",
+            "durability": "strict"
+          },
+          {
+            "seq": 49,
+            "type": "request-success",
+            "id": "receipt",
+            "command": "receipt-2"
+          },
+          {
+            "seq": 50,
+            "type": "complete",
+            "id": "receipt",
+            "command": "receipt-2"
+          },
+          {
+            "seq": 51,
+            "type": "lock-acquired",
+            "id": "lifecycle"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Q11 bfcache navigation",
+      "status": "failed",
+      "elapsed": 30026,
+      "error": "TimeoutError: page.goBack: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for navigation until \"load\"\u001b[22m\n\u001b[2m    - navigated to \"http://127.0.0.1:53320/\"\u001b[22m\n",
+      "stack": "page.goBack: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for navigation until \"load\"\u001b[22m\n\u001b[2m    - navigated to \"http://127.0.0.1:53320/\"\u001b[22m\n\n    at /Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/research/increment-007-stage-a/run.mjs:17:143\n    at async caseRun (/Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/research/increment-007-stage-a/run.mjs:7:287)\n    at async file:///Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/research/increment-007-stage-a/run.mjs:17:1"
+    }
+  ],
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-stage-a-28rpR7",
+  "mode": "normal persistent disposable profile",
+  "browserVersion": "156.0.8078.80",
+  "browserPID": 20119,
+  "error": "TimeoutError: page.goBack: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for navigation until \"load\"\u001b[22m\n\u001b[2m    - navigated to \"http://127.0.0.1:53320/\"\u001b[22m\n"
+}

@@ -1,0 +1,23 @@
+{
+  "encode": {
+    "n": 20,
+    "median": 119.64999999850988,
+    "p95": 140.60000000149012,
+    "max": 142.90000000223517
+  },
+  "decode": {
+    "n": 20,
+    "median": 90.90000000037253,
+    "p95": 100,
+    "max": 105.89999999850988
+  },
+  "wallMs": 5118,
+  "mainThreadLongtasks": [],
+  "exact": true,
+  "samplesIncludingWarmup": 21,
+  "source": {
+    "codec.mjs": "3ac7cfb2f71967a76fb06dffbf65465ff924b92dcece36462bf048f48e1636d0",
+    "worker.mjs": "0a23407a1daee1038ea13ce45eb30c64a7b03a71e97fc4e5985eaf0534b7e015",
+    "worker-blob-followup.mjs": "cefaa984c2b01602792d0da1437576cfa681e0816689b8dfaee00c137a62b6a1"
+  }
+}

@@ -1,0 +1,10 @@
+// Independent counter probes, deliberately bypassing intersecting earlier budgets.
+// These establish helper limits, never a whole-candidate admission claim.
+import test from 'node:test';import assert from 'node:assert/strict';import parser from 'jsonc-parser';import {makeCodec,semantic,validateSnapshot,arithmeticGuard} from './codec.mjs';import {fixture,number} from './fixtures.mjs';const codec=makeCodec(parser),utf=x=>new TextEncoder().encode(x);
+const add=(a,b)=>({kind:'expression',operation:'portable.math.add.v1',operands:[a,b]});function tree(n){if(n===1)return number();if(n%2===0)return {kind:'expression',operation:'portable.math.clamp.v1',operands:[tree(n-3),number(),number()]};let a=Math.floor((n-1)/2);if(a%2===0)a--;return add(tree(a),tree(n-1-a));}
+test('semantic-value counter199999/200000/200001 before shape checking',()=>{for(const n of [199999,200000,200001]){try{semantic(Array(n-1).fill(null));assert.fail();}catch(e){assert.equal(e.code,n<=200000?'shape':'values');}}});
+test('ASTtotal99999/100000/100001 independent validator helper (other caps intersect)',()=>{for(const total of [99999,100000,100001]){semantic(fixture(0));const s=fixture(98);let left=total;for(const t of s.tokens){const n=Math.min(1024,left);t.definition.assignments[0].value=tree(n);left-=n;}assert.equal(left,0);total<=100000?validateSnapshot(s):assert.throws(()=>validateSnapshot(s),/ast-count/);}});
+test('rawnumeric token15/16/17 and safeinteger exact edges',()=>{codec.scan(utf('1'.repeat(15)));codec.scan(utf('1'.repeat(16)));assert.throws(()=>codec.scan(utf('1'.repeat(17))),/numeric-lexeme/);codec.scan(utf('9007199254740991'));assert.throws(()=>codec.scan(utf('9007199254740992')),/numeric-lexeme/);});
+test('derived fractional scale8191/8192/8193 refused before allocation',()=>{for(const scale of [8191,8192,8193]){const a='0.'+'0'.repeat(scale-2)+'1';// total digits=scale, fraction=scale-1. multiply0.1 adds1
+assert.throws(()=>arithmeticGuard(a,'0.1','multiply'),/evaluation-unavailable/); // conservative digit bound hits first; scale is not independently reachable here
+}});

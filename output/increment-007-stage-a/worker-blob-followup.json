@@ -1,0 +1,149 @@
+{
+  "start": "2026-11-09T15:39:49.343Z",
+  "source": {
+    "codec.mjs": "3ac7cfb2f71967a76fb06dffbf65465ff924b92dcece36462bf048f48e1636d0",
+    "worker.mjs": "0a23407a1daee1038ea13ce45eb30c64a7b03a71e97fc4e5985eaf0534b7e015",
+    "worker-blob-followup.mjs": "cefaa984c2b01602792d0da1437576cfa681e0816689b8dfaee00c137a62b6a1"
+  },
+  "origin": "http://127.0.0.1:53993",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-stage-a-blob-WZeneL",
+  "blob": {
+    "events": [
+      {
+        "type": "willBegin",
+        "frameId": "1F377C813355792521EB75647E564D53",
+        "guid": "53753d93-cbf5-4e1a-887a-f3826754f1c3",
+        "url": "blob:http://127.0.0.1:53993/5df177b9-b3c8-4bdf-87c4-cb6ff29ef692",
+        "suggestedFilename": "dtw-stage-a-blob.json"
+      },
+      {
+        "type": "progress",
+        "guid": "53753d93-cbf5-4e1a-887a-f3826754f1c3",
+        "totalBytes": 10372,
+        "receivedBytes": 0,
+        "state": "inProgress"
+      },
+      {
+        "type": "progress",
+        "guid": "53753d93-cbf5-4e1a-887a-f3826754f1c3",
+        "totalBytes": 10372,
+        "receivedBytes": 10372,
+        "state": "inProgress"
+      },
+      {
+        "type": "progress",
+        "guid": "53753d93-cbf5-4e1a-887a-f3826754f1c3",
+        "totalBytes": 10372,
+        "receivedBytes": 10372,
+        "state": "inProgress"
+      },
+      {
+        "type": "progress",
+        "guid": "53753d93-cbf5-4e1a-887a-f3826754f1c3",
+        "totalBytes": 10372,
+        "receivedBytes": 10372,
+        "state": "inProgress"
+      },
+      {
+        "type": "progress",
+        "guid": "53753d93-cbf5-4e1a-887a-f3826754f1c3",
+        "totalBytes": 10372,
+        "receivedBytes": 10372,
+        "state": "inProgress"
+      },
+      {
+        "type": "progress",
+        "guid": "53753d93-cbf5-4e1a-887a-f3826754f1c3",
+        "totalBytes": 10372,
+        "receivedBytes": 10372,
+        "state": "completed",
+        "filePath": "/Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/output/increment-007-stage-a/downloads/53753d93-cbf5-4e1a-887a-f3826754f1c3"
+      }
+    ],
+    "file": "output/increment-007-stage-a/downloads/53753d93-cbf5-4e1a-887a-f3826754f1c3",
+    "bytes": 10372,
+    "hash": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+    "expectedHash": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+    "exact": true
+  },
+  "worker": {
+    "encode": [
+      127,
+      122.40000000223517,
+      124.20000000298023,
+      119.5,
+      129.10000000149012,
+      140.60000000149012,
+      142.90000000223517,
+      122.5,
+      126.39999999850988,
+      118.69999999925494,
+      117.5,
+      122.09999999776483,
+      119.79999999701977,
+      111.30000000074506,
+      111.09999999776483,
+      111.39999999850988,
+      109.90000000223517,
+      110.39999999850988,
+      113.69999999925494,
+      110.69999999925494
+    ],
+    "decode": [
+      96.5,
+      93,
+      95.69999999925494,
+      94.80000000074506,
+      91.10000000149012,
+      105.89999999850988,
+      100,
+      90.69999999925494,
+      91.20000000298023,
+      96.10000000149012,
+      90.59999999776483,
+      95.5,
+      90,
+      85.80000000074506,
+      88.20000000298023,
+      86.10000000149012,
+      88,
+      86,
+      86.5,
+      85.60000000149012
+    ],
+    "equality": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "counts": {
+      "values": 17007,
+      "strings": 1514293,
+      "lexical": 65046,
+      "maxDepth": 8,
+      "snapshotBytes": 8388608,
+      "fileBytes": 8388729
+    },
+    "samples": 21,
+    "mainThreadLongtasks": [],
+    "wallMs": 5118
+  },
+  "end": "2026-11-09T15:39:55.479Z"
+}

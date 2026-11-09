@@ -1,0 +1,307 @@
+{
+  "baseCommit": "21196be5fee369ee5983dc910c3d544dad16cff2",
+  "date": "2026-11-09",
+  "scope": "Stage A qualification only; final source plus explicitly separated historical evidence; independent reviewer-owned files excluded",
+  "initialSource": "output/increment-007-stage-a/initial-source/ (exact bytes matching original core manifest research entries)",
+  "intermediateSource": "output/increment-007-stage-a/intermediate-source/codec.mjs (hash matches followup-results.json source.codec.mjs)",
+  "finalExecution": "output/increment-007-stage-a/worker-blob-followup.json contains final codec/worker/runner hashes; final-codec-tests.txt covers21 tests",
+  "portableLogs": "*.txt included; ignored *.log excluded; original core manifest retained as historical superseded record",
+  "files": {
+    "output/increment-007-stage-a/boundary-more-tests.txt": {
+      "sha256": "a9565dc63769f4697ccb25d716cc16d8e3c38097d63105b5004b04ab63c66939",
+      "bytes": 527
+    },
+    "output/increment-007-stage-a/chrome-core-manifest.json": {
+      "sha256": "406fefc38fc4f471d7ecb143bece0e629395c6523cd60b06ba1e122f2e5a42cb",
+      "bytes": 3033
+    },
+    "output/increment-007-stage-a/chrome-results.json": {
+      "sha256": "3e15b0b60e05a1f6736b932dd616976c64202a16aed3288ca626735ce537996c",
+      "bytes": 62967
+    },
+    "output/increment-007-stage-a/codec-tests.txt": {
+      "sha256": "0466ac167f980207d073c3717374caeb49ad8475c3748ffad35c835d4a11c222",
+      "bytes": 817
+    },
+    "output/increment-007-stage-a/counter-boundaries.txt": {
+      "sha256": "b9e98c0b7aa361b5547162b2bf10f8fee4ea4de9bee4c3e856d7a3f703609642",
+      "bytes": 448
+    },
+    "output/increment-007-stage-a/counter-scale-intersection-first-attempt.txt": {
+      "sha256": "8a014dfb96813b8a0b0b4b88e9abd7cfce1e03fe6d2e41a2632bf112bb686336",
+      "bytes": 1631
+    },
+    "output/increment-007-stage-a/counter-supervisor.json": {
+      "sha256": "2f577c3bd2abb8a574e03966adcd456d79bac92c78f857b46c6072a14d9b1766",
+      "bytes": 129
+    },
+    "output/increment-007-stage-a/dependencies.txt": {
+      "sha256": "27dbbb7ebb65be1c9a55c75255ee0a8d7124e77d82f1be5a6500406e7fedcec5",
+      "bytes": 169
+    },
+    "output/increment-007-stage-a/downloads/53753d93-cbf5-4e1a-887a-f3826754f1c3": {
+      "sha256": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+      "bytes": 10372
+    },
+    "output/increment-007-stage-a/downloads/86e7b666-9305-46ed-b70f-7094eb93cc90": {
+      "sha256": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+      "bytes": 10372
+    },
+    "output/increment-007-stage-a/environment.json": {
+      "sha256": "8752730eedbe615e130a9689a3a9d1e62534827239680a5b76bf36bd721afa6c",
+      "bytes": 837
+    },
+    "output/increment-007-stage-a/exploratory-private-chrome-results.json": {
+      "sha256": "8e1aaae36f7a2ecdd2d261b876c3b9077c8750fae5731e7e1321db117c737da3",
+      "bytes": 53287
+    },
+    "output/increment-007-stage-a/exploratory-private-run.txt": {
+      "sha256": "3685bafe81920a30daccc8a1931f87b92fbd2511bc4bc69e29303109c9b46ddb",
+      "bytes": 2471
+    },
+    "output/increment-007-stage-a/extra-download-tool-failure.json": {
+      "sha256": "51875202e1a645623f873c3f021d1b8b736c1204edbda5e4b057fac7165c2213",
+      "bytes": 6561
+    },
+    "output/increment-007-stage-a/extra-download-tool-failure.txt": {
+      "sha256": "2a906fb71a18cf5d4267c9d0bb0ea4f5ca52dabe500b1b9f3096d10d70e70af8",
+      "bytes": 806
+    },
+    "output/increment-007-stage-a/extra-results.json": {
+      "sha256": "3712644296e1d9a2b468fb9cd975323f030bdad8e7fa2c029e8f24e41ff953f1",
+      "bytes": 75032
+    },
+    "output/increment-007-stage-a/extra.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "output/increment-007-stage-a/final-codec-tests.txt": {
+      "sha256": "843b697dd8ab79160675baafad60df7c41aa9cdbf1a6c35dc2d7b4f3da0124c3",
+      "bytes": 1903
+    },
+    "output/increment-007-stage-a/final-worker-performance.json": {
+      "sha256": "55088cafb61ed7393627277448899d01bf4efbc45d06fad34d254491be9915c5",
+      "bytes": 626
+    },
+    "output/increment-007-stage-a/fixtures.json": {
+      "sha256": "5448ed9fd20bb90a73f02d43e3c5ae24cec265568b3151aeb741762503ce68a4",
+      "bytes": 1971
+    },
+    "output/increment-007-stage-a/followup-performance.json": {
+      "sha256": "0473b8a4cc6547f62a85d65fb6635c141dc2dcd502334eb613bd53e0eb6b481a",
+      "bytes": 767
+    },
+    "output/increment-007-stage-a/followup-results.json": {
+      "sha256": "e0331b419be8f3027992eb959b9bfd5e8d0ea32c103309eb2092db0a4f5f9bf9",
+      "bytes": 67578
+    },
+    "output/increment-007-stage-a/followup-run.txt": {
+      "sha256": "440567d7a45a5fec8f0e34b0842172c2027b1b21b5a0836b1e0d70c61d17cf42",
+      "bytes": 852
+    },
+    "output/increment-007-stage-a/initial-source/ARCHIVE.md": {
+      "sha256": "3ca8e67d17afc64a9555271f414b73ff3578834541a7e725e6a0d0b4a0d55a2a",
+      "bytes": 281
+    },
+    "output/increment-007-stage-a/initial-source/README.md": {
+      "sha256": "702144d7eb1aec5373725be7d203ea9f0e2059e217c4c713c014b8103e7d14f9",
+      "bytes": 2589
+    },
+    "output/increment-007-stage-a/initial-source/browser.mjs": {
+      "sha256": "928e547a87d2c984bb566097c989274bac5f6fbd35e4476e3cb12fcd2721dc71",
+      "bytes": 6162
+    },
+    "output/increment-007-stage-a/initial-source/codec.mjs": {
+      "sha256": "115b2bbe18ad3d6ff346d9f032554ef1bc8603c551ab6ef4c1c8e320cc023231",
+      "bytes": 13571
+    },
+    "output/increment-007-stage-a/initial-source/codec.test.mjs": {
+      "sha256": "f8b2aa6011dffa46d1b366a9b7fd3600a6c2254538da5530d3c818d6ce4a146e",
+      "bytes": 5146
+    },
+    "output/increment-007-stage-a/initial-source/extra.mjs": {
+      "sha256": "d0a0afb63a0d664c785985515ce0fe7113d756d19644c692115ad3ae6e1f0916",
+      "bytes": 7204
+    },
+    "output/increment-007-stage-a/initial-source/fixtures.mjs": {
+      "sha256": "3ed2e8ac5b31472c2cd55164f8fac41f2eaa928e9755c62514ba2f5f6eedb29a",
+      "bytes": 3411
+    },
+    "output/increment-007-stage-a/initial-source/index.html": {
+      "sha256": "a7938a41eab5d6435859508a00db06eff1c689641eafa25ad04c6743d5ffcb63",
+      "bytes": 185
+    },
+    "output/increment-007-stage-a/initial-source/package-lock.json": {
+      "sha256": "1e63f72627ba2af46bc9b0879ec1986a62c0f9063cdaec6e5e53b6672dc58eb9",
+      "bytes": 525
+    },
+    "output/increment-007-stage-a/initial-source/package.json": {
+      "sha256": "787880d2c6e061005423d3e47bc327026c64084061fd1bd98ea104a3a3d9f57c",
+      "bytes": 177
+    },
+    "output/increment-007-stage-a/initial-source/run.mjs": {
+      "sha256": "8033bc9f58ed578846b10c18b6674b9d120188051e2cfcbef656375e8d8d19c2",
+      "bytes": 10203
+    },
+    "output/increment-007-stage-a/initial-source/safari-probe.mjs": {
+      "sha256": "6c9f76767c264a5e2fe999acc4b13654e6b2a9701f27f585300b9026c0e34e95",
+      "bytes": 1199
+    },
+    "output/increment-007-stage-a/initial-source/worker.mjs": {
+      "sha256": "0a23407a1daee1038ea13ce45eb30c64a7b03a71e97fc4e5985eaf0534b7e015",
+      "bytes": 769
+    },
+    "output/increment-007-stage-a/intermediate-source/codec.mjs": {
+      "sha256": "4436432a94a4f3a7c5c57d4a523434264554441ac500642467119fe17da978aa",
+      "bytes": 16423
+    },
+    "output/increment-007-stage-a/lifecycle-document-listener-first.json": {
+      "sha256": "8e28537effd3512f5ef78e12cffa48741040a909566fc56107edbe74c985dd80",
+      "bytes": 844
+    },
+    "output/increment-007-stage-a/lifecycle-followup.json": {
+      "sha256": "133df66a85dfb99a733c3ae4f7075b1ec073e570fd1fefb734f9320e2ea4c6da",
+      "bytes": 1002
+    },
+    "output/increment-007-stage-a/lifecycle-followup.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "output/increment-007-stage-a/normal-navigation-tool-failure.json": {
+      "sha256": "e040b11398d2213936215fe67aca98228e736410b276fb1320be6f7c183c93d1",
+      "bytes": 18523
+    },
+    "output/increment-007-stage-a/normal-navigation-tool-failure.txt": {
+      "sha256": "ac052da24c1e410ded7ca29fb9177c60b4b0106a877583f75e638aef57f4efd3",
+      "bytes": 1151
+    },
+    "output/increment-007-stage-a/performance.json": {
+      "sha256": "f38916024da4058db9c11e3559d779623fb01cade0368db8ab27b8835293f40c",
+      "bytes": 3884
+    },
+    "output/increment-007-stage-a/preflight-tests.txt": {
+      "sha256": "4f2dbb9635726ee151542d0408d3f4556dba2c2d055139f643bd034bdc897051",
+      "bytes": 412
+    },
+    "output/increment-007-stage-a/report.md": {
+      "sha256": "d66487a2e60f23ea2efbafda29fb5b78276b2d8537824579f7e13df21e0a7386",
+      "bytes": 24912
+    },
+    "output/increment-007-stage-a/review-followup-codec-tests.txt": {
+      "sha256": "3b7ad389221eadb5a00ced0be1630e3b9fcfff0c47414864f41db4fed61f5260",
+      "bytes": 1519
+    },
+    "output/increment-007-stage-a/run.txt": {
+      "sha256": "8aee676f682bbf7b1cf2748b66837d4808414cff0e734b930de022230b56f572",
+      "bytes": 2528
+    },
+    "output/increment-007-stage-a/safari-probe.json": {
+      "sha256": "b7a4ff4ea2e059516e8289b201369b1815afa45d98a2fa9b7863d19d0d935269",
+      "bytes": 1053
+    },
+    "output/increment-007-stage-a/safari-results.json": {
+      "sha256": "381fa32f65c504f6f99930560c6d671f749e12ec0064975033f52cdad8900dcd",
+      "bytes": 15602
+    },
+    "output/increment-007-stage-a/safari.txt": {
+      "sha256": "a46abd95fdf35861fc515d91b100a0cb7af19334917213cdeda7e739adf0f7f7",
+      "bytes": 444
+    },
+    "output/increment-007-stage-a/worker-blob-followup.json": {
+      "sha256": "4b5f316496262ec0306bc5d85f71e9a4a34f45ff34169672e2c40e1f11ebee96",
+      "bytes": 3877
+    },
+    "output/increment-007-stage-a/worker-blob-followup.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "research/increment-007-stage-a/README.md": {
+      "sha256": "378626e76df5be05fb0e5151d091934f3442595aea709ef19e452ce995a375ec",
+      "bytes": 3410
+    },
+    "research/increment-007-stage-a/boundary-more.test.mjs": {
+      "sha256": "edab4fa900dc2dc89e79329cbbcaa698b323dad6ec2cac9b234955e614fbaeb3",
+      "bytes": 2869
+    },
+    "research/increment-007-stage-a/browser.mjs": {
+      "sha256": "928e547a87d2c984bb566097c989274bac5f6fbd35e4476e3cb12fcd2721dc71",
+      "bytes": 6162
+    },
+    "research/increment-007-stage-a/codec.mjs": {
+      "sha256": "3ac7cfb2f71967a76fb06dffbf65465ff924b92dcece36462bf048f48e1636d0",
+      "bytes": 16590
+    },
+    "research/increment-007-stage-a/codec.test.mjs": {
+      "sha256": "f8b2aa6011dffa46d1b366a9b7fd3600a6c2254538da5530d3c818d6ce4a146e",
+      "bytes": 5146
+    },
+    "research/increment-007-stage-a/counter-boundaries.test.mjs": {
+      "sha256": "ddc94d329435c42088a4544890af7c76015bca11952004fddcccf726b9bcddf6",
+      "bytes": 2092
+    },
+    "research/increment-007-stage-a/counter-supervisor.mjs": {
+      "sha256": "d8679f468cea484df3ded7a11e5be6d3b9c847663688b1dbf1ce2047a24bceeb",
+      "bytes": 788
+    },
+    "research/increment-007-stage-a/extra.mjs": {
+      "sha256": "d0a0afb63a0d664c785985515ce0fe7113d756d19644c692115ad3ae6e1f0916",
+      "bytes": 7204
+    },
+    "research/increment-007-stage-a/fixtures.mjs": {
+      "sha256": "3ed2e8ac5b31472c2cd55164f8fac41f2eaa928e9755c62514ba2f5f6eedb29a",
+      "bytes": 3411
+    },
+    "research/increment-007-stage-a/followup-browser.mjs": {
+      "sha256": "f55e91d434cf78b80cade8d9ff2e66a8e9f676c44511dbadc088058ac3fb2745",
+      "bytes": 3105
+    },
+    "research/increment-007-stage-a/followup-run.mjs": {
+      "sha256": "0d6cfed09fdc94b469b8ec5f9ba28837838628e154119df1cdfcbcc1ef1414eb",
+      "bytes": 14397
+    },
+    "research/increment-007-stage-a/index.html": {
+      "sha256": "a7938a41eab5d6435859508a00db06eff1c689641eafa25ad04c6743d5ffcb63",
+      "bytes": 185
+    },
+    "research/increment-007-stage-a/lifecycle-followup.mjs": {
+      "sha256": "40cc7b07b0f3e73f0074486cb5f423578d746c7d8ba156c629db99e6202a4f6a",
+      "bytes": 3443
+    },
+    "research/increment-007-stage-a/package-lock.json": {
+      "sha256": "1e63f72627ba2af46bc9b0879ec1986a62c0f9063cdaec6e5e53b6672dc58eb9",
+      "bytes": 525
+    },
+    "research/increment-007-stage-a/package.json": {
+      "sha256": "1857d16565c2a76ff41a0665ff50a4d0b4d51876b4a0e0bd5e27a4cf82f5e86f",
+      "bytes": 173
+    },
+    "research/increment-007-stage-a/preflight.test.mjs": {
+      "sha256": "7135c3ce6afef096dbe2f82792c9ef90f40c82b723ce46d7e7f97885b08222f7",
+      "bytes": 2154
+    },
+    "research/increment-007-stage-a/run.mjs": {
+      "sha256": "8033bc9f58ed578846b10c18b6674b9d120188051e2cfcbef656375e8d8d19c2",
+      "bytes": 10203
+    },
+    "research/increment-007-stage-a/safari-probe.mjs": {
+      "sha256": "6c9f76767c264a5e2fe999acc4b13654e6b2a9701f27f585300b9026c0e34e95",
+      "bytes": 1199
+    },
+    "research/increment-007-stage-a/safari.mjs": {
+      "sha256": "0a86d6d3f474147ffd871eaf0c626a949d7412dcf166e114f99430a840e4ede3",
+      "bytes": 7954
+    },
+    "research/increment-007-stage-a/summarize.mjs": {
+      "sha256": "32bd6d8b4823a95a0240bece46254ac2a5a0be184b608737cd11430083b430c4",
+      "bytes": 3666
+    },
+    "research/increment-007-stage-a/worker-blob-followup.mjs": {
+      "sha256": "cefaa984c2b01602792d0da1437576cfa681e0816689b8dfaee00c137a62b6a1",
+      "bytes": 4466
+    },
+    "research/increment-007-stage-a/worker.mjs": {
+      "sha256": "0a23407a1daee1038ea13ce45eb30c64a7b03a71e97fc4e5985eaf0534b7e015",
+      "bytes": 769
+    }
+  }
+}

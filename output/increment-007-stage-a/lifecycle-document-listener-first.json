@@ -1,0 +1,31 @@
+{
+  "origin": "http://127.0.0.1:53940",
+  "start": "2026-11-09T15:37:37.078Z",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-stage-a-lifecycle-VSP2KQ",
+  "before": {
+    "visibility": "visible",
+    "owned": true,
+    "draft": {
+      "literal": "invalid",
+      "reference": "missing",
+      "form": "unfinished"
+    }
+  },
+  "background": {
+    "visibility": "visible",
+    "events": []
+  },
+  "backgroundContender": false,
+  "frozenContender": false,
+  "after": {
+    "visibility": "visible",
+    "events": [],
+    "draft": {
+      "literal": "invalid",
+      "reference": "missing",
+      "form": "unfinished"
+    }
+  },
+  "limits": "Real document-targeted lifecycle events and raw JS draft preservation only; production resumption/revalidation/reapply UI remains unimplemented.",
+  "end": "2026-11-09T15:37:37.697Z"
+}

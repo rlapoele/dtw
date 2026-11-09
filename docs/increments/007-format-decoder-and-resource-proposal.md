@@ -1,29 +1,34 @@
 # Increment 007: format, decoder and resource proposal
 
-**Proposed for user review — 9 November 2026.** Baseline
-`d83a9e91f061ca6519849096e49ec1fc2c112d72`. No formats, package installation or limits
-below are agreed. [D-2/D-3 coverage](007-backup-coverage-and-restore-policy-proposal.md)
-and [S-1–S-6 storage direction](007-storage-acknowledgement-and-concurrency-proposal.md)
-remain agreed. [Qualification plan](007-storage-concurrency-qualification-plan.md)
-is future work, not evidence. Final agreement/implementation remain unauthorized.
+**Agreed policy — 9 November 2026; Stage A qualification authorized.**
+The user agreed F-1–F-5 and the qualification plan after committing planning review
+as `21196be`, and authorized isolated Stage A work including the parser dependency
+if needed. Production Increment 007 implementation remains unauthorized. The
+proposal was prepared against `d83a9e91f061ca6519849096e49ec1fc2c112d72`.
+[D-2/D-3 coverage](007-backup-coverage-and-restore-policy-proposal.md) and
+[S-1–S-6 storage direction](007-storage-acknowledgement-and-concurrency-proposal.md)
+remain agreed. The [qualification plan](007-storage-concurrency-qualification-plan.md)
+owns Stage A scope; agreement is not technical qualification or final contract/design
+agreement. The existing filename is retained for stable references.
 
-## Five decisions for review
+## Five agreed decisions
 
-| Bundle | Recommended choice | Alternative/cost |
+| Bundle | Agreed choice | Unselected alternative/cost |
 | --- | --- | --- |
 | F-1: portable format | One uncompressed UTF-8 JSON project backup, exact five-member wrapper below, format version 1 and authored envelope version 1. No browser revisions/outcomes or derived data in backup. | ZIP/multiple files add archive/path and cross-file failure work without current need. DTCG would lose the agreed envelope. |
 | F-2: strict decoder | Fatal UTF-8 decode; reject BOM, duplicate decoded keys, invalid JSON and unknown members. Build prototype-safe records and apply explicit supported-shape validators without coercion/defaulting/normalization. | Native JSON.parse alone loses duplicate-member evidence. A general schema framework is unnecessary for this closed envelope. |
-| F-3: parsing dependency | Propose exact `jsonc-parser` 3.3.1, MIT, used only for bounded token scanning/strict visitor parsing. Own domain-aware runtime checks. No new schema-library dependency. | A handwritten JSON parser avoids a package but adds a language implementation to maintain. Native parse plus a homemade duplicate detector still needs trustworthy string/token handling. |
+| F-3: parsing dependency | Use exact `jsonc-parser` 3.3.1, MIT, used only for bounded token scanning/strict visitor parsing. Own domain-aware runtime checks. No new schema-library dependency. | A handwritten JSON parser avoids a package but adds a language implementation to maintain. Native parse plus a homemade duplicate detector still needs trustworthy string/token handling. |
 | F-4: admission limits | Adopt the concrete initial ceilings below consistently for accepted commands, retained loading, backup generation and restore, subject to measurement before final agreement. | Lower limits improve bounded cost but exclude more valid authored work. Higher limits need evidence. These are explicit new resource exclusions, not pre-existing canonical constraints. |
 | F-5: derived work | Add explicit evaluation/derived-output work ceilings, separate from admissible authored data. Stop before costly arithmetic/expansion, report representation/evaluation unavailable, retain authored source. | Literal/AST depth limits alone do not bound repeated alias/AST expansion or BigInt multiplication. Rejecting every costly-but-valid AST would narrow agreed admissibility instead of preserving it. |
 
-F-3 needs dependency/license/integrity/bundle checks if installation is later
-separately authorized. F-4/F-5 need user agreement because they bound previously
-unbounded data/work. No measurement or security certification is claimed.
+F-3 dependency/license/integrity/bundle checks are part of authorized isolated
+qualification. F-4/F-5 explicitly bound previously unbounded data/work; the user
+agreed this policy, with technical capacity and performance evidence still pending.
+No measurement or security certification follows from agreement.
 
 ## Exact portable wrapper and retained boundaries
 
-Proposed top-level required members, no others:
+Agreed top-level required members, no others:
 
 ```json
 {
@@ -129,19 +134,20 @@ not replace them. Invalid UTF-8 bytes differ from valid JSON containing an escap
 lone surrogate. Lexical escape spelling is not authored data: `"a"`/`"\u0061"`
 represent the same string. No new identifier/name grammar is selected.
 
-## Proposed admission ceilings — unmeasured hypotheses
+## Agreed admission ceilings — qualification pending
 
 All maxima inclusive. Reject the entire candidate at first exceeded ceiling;
 identify limit/path/observed count and preserve prior retained state plus draft/form.
-These numbers are proposed starting values, **not measured safe capacity**.
+These ceilings are agreed for qualification, **not yet measured safe capacity**.
 
-**User capacity feedback — 9 November 2026:** the user said the proposed limits
+**Earlier user capacity feedback — 9 November 2026:** the user said the proposed limits
 are more than sufficient and that exceeding 1,000 tokens would already be an
 exceptionally large real-world design system. Keep the 10,000-token defensive
 ceiling; this feedback is not a request to lower it, a benchmark qualification,
-or agreement to F-1/F-2/F-3/F-5. Performance thresholds remain proposals.
+or by itself agreement to F-1/F-2/F-3/F-5. The subsequent explicit agreement above
+adopts all five policies and the qualification plan.
 
-| Resource | Proposed ceiling and precise scope |
+| Resource | Agreed ceiling and precise scope |
 | --- | --- |
 | Incoming backup file | 16 MiB = 16,777,216 bytes, including whitespace/wrapper. No decompression. |
 | Snapshot size | 8 MiB = 8,388,608 bytes in deterministic compact UTF-8 JSON of the snapshot; same accounting for retained admission and backup generation. Wrapper headroom keeps a generated compact backup under the input ceiling. |
@@ -193,7 +199,7 @@ the actual writer and decoder at boundaries, including wrapper overhead. Reject
 cycles/accessors/non-plain/sparse/nonserializable objects at the typed adapter boundary;
 no getters execute during validation of untrusted in-memory inputs.
 
-**Compatibility consequence requiring agreement:** these limits newly exclude some
+**Agreed compatibility consequence:** these limits newly exclude some
 otherwise valid long strings/Decimals, large projects, long paths/collections and
 ASTs. They do not reinterpret that data as malformed domain semantics. An existing
 or injected over-budget source stays untouched with explicit unsupported-size and
@@ -219,7 +225,7 @@ Larger reported systems exist; that does not change this user's intended workloa
 100 typical, 1,000 exceptionally large, 10,000 defensive capacity. No caps or
 unmeasured performance assumptions change because of these references.
 
-## Derived-operation ceilings — separate proposed policy
+## Derived-operation ceilings — agreed policy, qualification pending
 
 [Decimal arithmetic](../../src/domain/decimal.ts) constructs BigInts and powers of
 10; [color construction](../../src/domain/color-literal.ts) normalizes hue similarly.
@@ -228,7 +234,7 @@ stack but has no current expansion/output budget. Small authored DAGs can revisi
 subgraphs many times; repeated scaling can expand derived digits. AST/input limits
 alone therefore cannot certify bounded runtime work.
 
-Propose, requiring explicit agreement:
+The agreed qualification policy is:
 
 - Per root inspection: 10,000 scheduled evaluation/alias/field tasks, counted **before**
   pushing/traversing, including revisits. Per requested inspection batch: 50,000 tasks;
@@ -270,5 +276,18 @@ Distinguish encoding/syntax/duplicate-member, unsupported format/version/field,
 shape/identity/ownership, resource admission, supported diagnostic, retained-write-
 readback failure and unknown outcome. Error payloads carry bounded location/code;
 do not echo megabytes of raw data into alerts/logs. Future diagnostic names in this
-proposal are categories, not invented existing domain codes. No implementation,
-parser installation, tests, benchmarks or browser observations were performed.
+proposal are categories, not invented existing domain codes. At the original planning handoff no implementation, parser installation, tests,
+benchmarks or browser observations had been performed. Subsequent Stage A evidence
+is recorded separately under the qualification plan; production implementation is
+not authorized.
+
+## Stage A evidence and remaining qualification
+
+The [developer qualification report](../../output/increment-007-stage-a/report.md)
+and [independent review](../../output/increment-007-stage-a/independent-review.md)
+record executed mechanism/resource subsets, source identities and explicit gaps.
+The synchronous maximum codec exceeded the 100 ms main-thread target; a dedicated
+worker trial is a feasibility option, not an agreed production scheduling choice.
+Actual lifecycle, Safari normal-profile/restart/maximum stress, native OS picker
+and production-wide integration remain unqualified. Policy agreement is unchanged;
+implementation authority and final contract/design agreement remain separate.

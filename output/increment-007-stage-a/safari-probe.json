@@ -1,0 +1,37 @@
+{
+  "time": "2026-11-09T15:26:36.318Z",
+  "command": "/usr/bin/safaridriver -p 19177",
+  "preferenceChanged": false,
+  "status": {
+    "value": {
+      "message": "",
+      "ready": true
+    }
+  },
+  "httpStatus": 200,
+  "sessionResponse": {
+    "value": {
+      "sessionId": "66A7FFA1-45E4-4C18-B1F2-2D647E813FEA",
+      "capabilities": {
+        "safari:platformVersion": "27.2",
+        "safari:automaticInspection": false,
+        "webkit:WebRTC": {
+          "DisableICECandidateFiltering": false,
+          "DisableInsecureMediaCapture": false
+        },
+        "webkit:alwaysAllowAutoplay": false,
+        "browserVersion": "27.2",
+        "strictFileInteractability": false,
+        "browserName": "Safari",
+        "safari:useSimulator": false,
+        "safari:automaticProfiling": false,
+        "setWindowRect": true,
+        "acceptInsecureCerts": false,
+        "safari:platformBuildVersion": "26B123",
+        "safari:experimentalWebSocketUrl": false,
+        "platformName": "macOS",
+        "safari:diagnose": false
+      }
+    }
+  }
+}

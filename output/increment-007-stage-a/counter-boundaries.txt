@@ -1,0 +1,12 @@
+✔ semantic-value counter199999/200000/200001 before shape checking (41.570542ms)
+✔ ASTtotal99999/100000/100001 independent validator helper (other caps intersect) (35.971375ms)
+✔ rawnumeric token15/16/17 and safeinteger exact edges (0.391459ms)
+✔ derived fractional scale8191/8192/8193 refused before allocation (0.118083ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 118.319541

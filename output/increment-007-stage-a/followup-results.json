@@ -1,0 +1,2746 @@
+{
+  "start": "2026-11-09T15:36:55.371Z",
+  "source": {
+    "codec.mjs": "4436432a94a4f3a7c5c57d4a523434264554441ac500642467119fe17da978aa",
+    "browser.mjs": "928e547a87d2c984bb566097c989274bac5f6fbd35e4476e3cb12fcd2721dc71",
+    "followup-browser.mjs": "f55e91d434cf78b80cade8d9ff2e66a8e9f676c44511dbadc088058ac3fb2745",
+    "worker.mjs": "0a23407a1daee1038ea13ce45eb30c64a7b03a71e97fc4e5985eaf0534b7e015",
+    "followup-run.mjs": "0d6cfed09fdc94b469b8ec5f9ba28837838628e154119df1cdfcbcc1ef1414eb"
+  },
+  "cases": [
+    {
+      "name": "Chrome-controlled-issuance-races",
+      "status": "observed",
+      "ms": 62,
+      "value": [
+        {
+          "engine": "Chrome",
+          "seeded": false,
+          "order": 0,
+          "i": 0,
+          "a": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 1,
+                "type": "issued",
+                "command": "first",
+                "id": "race-false-0-0"
+              }
+            ]
+          },
+          "b": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 1,
+                "type": "issued",
+                "command": "second",
+                "id": "race-false-0-0"
+              }
+            ]
+          },
+          "release": [
+            {
+              "seq": 2,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "outcomes": [
+            {
+              "status": "accepted",
+              "reads": 68
+            },
+            {
+              "status": "conflict",
+              "reads": 1
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "first",
+            "lastAcceptedCommand": {
+              "commandId": "first",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": "race-false-0-0"
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "race-false-0-0",
+                "name": "first"
+              },
+              "groups": [],
+              "tokens": []
+            }
+          },
+          "pass": true
+        },
+        {
+          "engine": "Chrome",
+          "seeded": false,
+          "order": 0,
+          "i": 1,
+          "a": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 5,
+                "type": "issued",
+                "command": "first",
+                "id": "race-false-0-1"
+              }
+            ]
+          },
+          "b": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 3,
+                "type": "issued",
+                "command": "second",
+                "id": "race-false-0-1"
+              }
+            ]
+          },
+          "release": [
+            {
+              "seq": 6,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "outcomes": [
+            {
+              "status": "accepted",
+              "reads": 30
+            },
+            {
+              "status": "conflict",
+              "reads": 1
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "first",
+            "lastAcceptedCommand": {
+              "commandId": "first",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": "race-false-0-1"
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "race-false-0-1",
+                "name": "first"
+              },
+              "groups": [],
+              "tokens": []
+            }
+          },
+          "pass": true
+        },
+        {
+          "engine": "Chrome",
+          "seeded": false,
+          "order": 0,
+          "i": 2,
+          "a": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 9,
+                "type": "issued",
+                "command": "first",
+                "id": "race-false-0-2"
+              }
+            ]
+          },
+          "b": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 5,
+                "type": "issued",
+                "command": "second",
+                "id": "race-false-0-2"
+              }
+            ]
+          },
+          "release": [
+            {
+              "seq": 10,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "outcomes": [
+            {
+              "status": "accepted",
+              "reads": 32
+            },
+            {
+              "status": "conflict",
+              "reads": 1
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "first",
+            "lastAcceptedCommand": {
+              "commandId": "first",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": "race-false-0-2"
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "race-false-0-2",
+                "name": "first"
+              },
+              "groups": [],
+              "tokens": []
+            }
+          },
+          "pass": true
+        },
+        {
+          "engine": "Chrome",
+          "seeded": false,
+          "order": 1,
+          "i": 0,
+          "a": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 7,
+                "type": "issued",
+                "command": "first",
+                "id": "race-false-1-0"
+              }
+            ]
+          },
+          "b": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 13,
+                "type": "issued",
+                "command": "second",
+                "id": "race-false-1-0"
+              }
+            ]
+          },
+          "release": [
+            {
+              "seq": 8,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "outcomes": [
+            {
+              "status": "accepted",
+              "reads": 73
+            },
+            {
+              "status": "conflict",
+              "reads": 1
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "first",
+            "lastAcceptedCommand": {
+              "commandId": "first",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": "race-false-1-0"
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "race-false-1-0",
+                "name": "first"
+              },
+              "groups": [],
+              "tokens": []
+            }
+          },
+          "pass": true
+        },
+        {
+          "engine": "Chrome",
+          "seeded": false,
+          "order": 1,
+          "i": 1,
+          "a": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 11,
+                "type": "issued",
+                "command": "first",
+                "id": "race-false-1-1"
+              }
+            ]
+          },
+          "b": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 15,
+                "type": "issued",
+                "command": "second",
+                "id": "race-false-1-1"
+              }
+            ]
+          },
+          "release": [
+            {
+              "seq": 12,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "outcomes": [
+            {
+              "status": "accepted",
+              "reads": 35
+            },
+            {
+              "status": "conflict",
+              "reads": 1
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "first",
+            "lastAcceptedCommand": {
+              "commandId": "first",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": "race-false-1-1"
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "race-false-1-1",
+                "name": "first"
+              },
+              "groups": [],
+              "tokens": []
+            }
+          },
+          "pass": true
+        },
+        {
+          "engine": "Chrome",
+          "seeded": false,
+          "order": 1,
+          "i": 2,
+          "a": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 15,
+                "type": "issued",
+                "command": "first",
+                "id": "race-false-1-2"
+              }
+            ]
+          },
+          "b": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 17,
+                "type": "issued",
+                "command": "second",
+                "id": "race-false-1-2"
+              }
+            ]
+          },
+          "release": [
+            {
+              "seq": 16,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "outcomes": [
+            {
+              "status": "accepted",
+              "reads": 34
+            },
+            {
+              "status": "conflict",
+              "reads": 1
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "first",
+            "lastAcceptedCommand": {
+              "commandId": "first",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": "race-false-1-2"
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "race-false-1-2",
+                "name": "first"
+              },
+              "groups": [],
+              "tokens": []
+            }
+          },
+          "pass": true
+        },
+        {
+          "engine": "Chrome",
+          "seeded": true,
+          "order": 0,
+          "i": 0,
+          "a": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 19,
+                "type": "issued",
+                "command": "first",
+                "id": "race-true-0-0"
+              }
+            ]
+          },
+          "b": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 19,
+                "type": "issued",
+                "command": "second",
+                "id": "race-true-0-0"
+              }
+            ]
+          },
+          "release": [
+            {
+              "seq": 20,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "outcomes": [
+            {
+              "status": "accepted",
+              "reads": 38
+            },
+            {
+              "status": "conflict",
+              "reads": 1
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "first",
+            "lastAcceptedCommand": {
+              "commandId": "first",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": "race-true-0-0"
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "race-true-0-0",
+                "name": "first"
+              },
+              "groups": [],
+              "tokens": []
+            }
+          },
+          "pass": true
+        },
+        {
+          "engine": "Chrome",
+          "seeded": true,
+          "order": 0,
+          "i": 1,
+          "a": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 23,
+                "type": "issued",
+                "command": "first",
+                "id": "race-true-0-1"
+              }
+            ]
+          },
+          "b": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 21,
+                "type": "issued",
+                "command": "second",
+                "id": "race-true-0-1"
+              }
+            ]
+          },
+          "release": [
+            {
+              "seq": 24,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "outcomes": [
+            {
+              "status": "accepted",
+              "reads": 37
+            },
+            {
+              "status": "conflict",
+              "reads": 1
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "first",
+            "lastAcceptedCommand": {
+              "commandId": "first",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": "race-true-0-1"
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "race-true-0-1",
+                "name": "first"
+              },
+              "groups": [],
+              "tokens": []
+            }
+          },
+          "pass": true
+        },
+        {
+          "engine": "Chrome",
+          "seeded": true,
+          "order": 0,
+          "i": 2,
+          "a": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 27,
+                "type": "issued",
+                "command": "first",
+                "id": "race-true-0-2"
+              }
+            ]
+          },
+          "b": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 23,
+                "type": "issued",
+                "command": "second",
+                "id": "race-true-0-2"
+              }
+            ]
+          },
+          "release": [
+            {
+              "seq": 28,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "outcomes": [
+            {
+              "status": "accepted",
+              "reads": 28
+            },
+            {
+              "status": "conflict",
+              "reads": 1
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "first",
+            "lastAcceptedCommand": {
+              "commandId": "first",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": "race-true-0-2"
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "race-true-0-2",
+                "name": "first"
+              },
+              "groups": [],
+              "tokens": []
+            }
+          },
+          "pass": true
+        },
+        {
+          "engine": "Chrome",
+          "seeded": true,
+          "order": 1,
+          "i": 0,
+          "a": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 25,
+                "type": "issued",
+                "command": "first",
+                "id": "race-true-1-0"
+              }
+            ]
+          },
+          "b": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 31,
+                "type": "issued",
+                "command": "second",
+                "id": "race-true-1-0"
+              }
+            ]
+          },
+          "release": [
+            {
+              "seq": 26,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "outcomes": [
+            {
+              "status": "accepted",
+              "reads": 27
+            },
+            {
+              "status": "conflict",
+              "reads": 1
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "first",
+            "lastAcceptedCommand": {
+              "commandId": "first",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": "race-true-1-0"
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "race-true-1-0",
+                "name": "first"
+              },
+              "groups": [],
+              "tokens": []
+            }
+          },
+          "pass": true
+        },
+        {
+          "engine": "Chrome",
+          "seeded": true,
+          "order": 1,
+          "i": 1,
+          "a": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 29,
+                "type": "issued",
+                "command": "first",
+                "id": "race-true-1-1"
+              }
+            ]
+          },
+          "b": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 33,
+                "type": "issued",
+                "command": "second",
+                "id": "race-true-1-1"
+              }
+            ]
+          },
+          "release": [
+            {
+              "seq": 30,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "outcomes": [
+            {
+              "status": "accepted",
+              "reads": 32
+            },
+            {
+              "status": "conflict",
+              "reads": 1
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "first",
+            "lastAcceptedCommand": {
+              "commandId": "first",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": "race-true-1-1"
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "race-true-1-1",
+                "name": "first"
+              },
+              "groups": [],
+              "tokens": []
+            }
+          },
+          "pass": true
+        },
+        {
+          "engine": "Chrome",
+          "seeded": true,
+          "order": 1,
+          "i": 2,
+          "a": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 33,
+                "type": "issued",
+                "command": "first",
+                "id": "race-true-1-2"
+              }
+            ]
+          },
+          "b": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 35,
+                "type": "issued",
+                "command": "second",
+                "id": "race-true-1-2"
+              }
+            ]
+          },
+          "release": [
+            {
+              "seq": 34,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "outcomes": [
+            {
+              "status": "accepted",
+              "reads": 43
+            },
+            {
+              "status": "conflict",
+              "reads": 1
+            }
+          ],
+          "after": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "first",
+            "lastAcceptedCommand": {
+              "commandId": "first",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": "race-true-1-2"
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "race-true-1-2",
+                "name": "first"
+              },
+              "groups": [],
+              "tokens": []
+            }
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "Chrome-issued-unobserved-serialized-probes",
+      "status": "observed",
+      "ms": 8,
+      "value": {
+        "probes": [
+          {
+            "abort": false,
+            "issue": {
+              "issued": true,
+              "events": [
+                {
+                  "seq": 37,
+                  "type": "issued",
+                  "command": "uncertain",
+                  "id": "suppressed-false"
+                }
+              ]
+            },
+            "probeIssued": {
+              "issued": true,
+              "events": [
+                {
+                  "seq": 37,
+                  "type": "probe-issued",
+                  "id": "suppressed-false"
+                }
+              ]
+            },
+            "release": [
+              {
+                "seq": 38,
+                "type": "gate-release",
+                "command": "uncertain"
+              }
+            ],
+            "nativeOnly": {
+              "status": "accepted",
+              "reads": 30
+            },
+            "probe": {
+              "record": {
+                "recordVersion": 1,
+                "authoredVersion": 1,
+                "revision": "uncertain",
+                "lastAcceptedCommand": {
+                  "commandId": "uncertain",
+                  "operation": "restoreProject",
+                  "result": {
+                    "entityKind": "project",
+                    "id": "suppressed-false"
+                  }
+                },
+                "snapshot": {
+                  "project": {
+                    "id": "suppressed-false",
+                    "name": "uncertain"
+                  },
+                  "groups": [],
+                  "tokens": []
+                }
+              },
+              "serialized": true,
+              "decoded": true,
+              "incarnation": "i1"
+            },
+            "classification": "accepted",
+            "pass": true
+          },
+          {
+            "abort": true,
+            "issue": {
+              "issued": true,
+              "events": [
+                {
+                  "seq": 41,
+                  "type": "issued",
+                  "command": "uncertain",
+                  "id": "suppressed-true"
+                }
+              ]
+            },
+            "probeIssued": {
+              "issued": true,
+              "events": [
+                {
+                  "seq": 40,
+                  "type": "probe-issued",
+                  "id": "suppressed-true"
+                }
+              ]
+            },
+            "release": [
+              {
+                "seq": 42,
+                "type": "gate-release",
+                "command": "uncertain"
+              }
+            ],
+            "nativeOnly": {
+              "status": "aborted",
+              "reads": 42
+            },
+            "probe": {
+              "record": null,
+              "serialized": true,
+              "decoded": true,
+              "incarnation": "i1"
+            },
+            "classification": "rejected",
+            "pass": true
+          }
+        ],
+        "classifications": [
+          {
+            "name": "matching",
+            "expected": "accepted",
+            "actual": "accepted",
+            "pass": true
+          },
+          {
+            "name": "later",
+            "expected": "unknown",
+            "actual": "unknown",
+            "pass": true
+          },
+          {
+            "name": "missingMetadata",
+            "expected": "unknown",
+            "actual": "unknown",
+            "pass": true
+          },
+          {
+            "name": "incarnationChanged",
+            "expected": "unknown",
+            "actual": "unknown",
+            "pass": true
+          },
+          {
+            "name": "readFailure",
+            "expected": "unknown",
+            "actual": "unknown",
+            "pass": true
+          },
+          {
+            "name": "unprovableOrder",
+            "expected": "unknown",
+            "actual": "unknown",
+            "pass": true
+          },
+          {
+            "name": "fencedUnchanged",
+            "expected": "rejected",
+            "actual": "rejected",
+            "pass": true
+          },
+          {
+            "name": "futureDispatchNotFenced",
+            "expected": "unknown",
+            "actual": "unknown",
+            "pass": true
+          },
+          {
+            "name": "neverDispatched",
+            "expected": "rejected",
+            "actual": "rejected",
+            "pass": true
+          },
+          {
+            "name": "terminalAbort",
+            "expected": "rejected",
+            "actual": "rejected",
+            "pass": true
+          },
+          {
+            "name": "alreadyObservedAccepted",
+            "expected": "accepted",
+            "actual": "accepted",
+            "pass": true
+          }
+        ],
+        "note": "Terminal handlers log mechanism facts, but application-facing observation intentionally withheld until serialized probe. No product recovery UI/port is implemented."
+      }
+    },
+    {
+      "name": "Chrome-materialized-catalogue-100",
+      "status": "observed",
+      "ms": 11,
+      "value": {
+        "n": 100,
+        "projects": 1,
+        "samples": [
+          0.09999999776482582,
+          0.30000000074505806,
+          0.19999999925494194,
+          0.5,
+          0.19999999925494194,
+          0.30000000074505806,
+          0.09999999776482582,
+          0.20000000298023224,
+          0.29999999701976776,
+          0.10000000149011612,
+          0.19999999925494194,
+          0.19999999925494194,
+          0.09999999776482582,
+          0.19999999925494194,
+          0.19999999925494194,
+          0.19999999925494194,
+          0.20000000298023224,
+          0.19999999925494194,
+          0.10000000149011612,
+          0.19999999925494194
+        ],
+        "content": [
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "name": "Chrome-materialized-catalogue-1000",
+      "status": "observed",
+      "ms": 26,
+      "value": {
+        "n": 1000,
+        "projects": 1,
+        "samples": [
+          0.8000000007450581,
+          1,
+          0.8000000007450581,
+          0.8000000007450581,
+          0.8000000007450581,
+          0.8000000007450581,
+          1.199999999254942,
+          0.8999999985098839,
+          0.9000000022351742,
+          1.199999999254942,
+          0.8000000007450581,
+          0.8000000007450581,
+          0.8000000007450581,
+          0.6999999992549419,
+          1,
+          0.8999999985098839,
+          0.9000000022351742,
+          0.8000000007450581,
+          1.5,
+          1
+        ],
+        "content": [
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ],
+          [
+            {
+              "id": "p",
+              "name": "Stage A synthetic",
+              "tokens": 1000,
+              "groups": 0,
+              "revision": "setup"
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "name": "Chrome-nativeHTTPdownload-and-independent-file-input",
+      "status": "observed",
+      "ms": 310,
+      "value": {
+        "events": [
+          {
+            "type": "willBegin",
+            "frameId": "D178B3C2AFCB11B68B4BE0E1EDD18B72",
+            "guid": "86e7b666-9305-46ed-b70f-7094eb93cc90",
+            "url": "http://127.0.0.1:53886/independent-backup.json",
+            "suggestedFilename": "dtw-stage-a-download.json"
+          },
+          {
+            "type": "progress",
+            "guid": "86e7b666-9305-46ed-b70f-7094eb93cc90",
+            "totalBytes": 10372,
+            "receivedBytes": 0,
+            "state": "inProgress"
+          },
+          {
+            "type": "progress",
+            "guid": "86e7b666-9305-46ed-b70f-7094eb93cc90",
+            "totalBytes": 10372,
+            "receivedBytes": 10372,
+            "state": "inProgress"
+          },
+          {
+            "type": "progress",
+            "guid": "86e7b666-9305-46ed-b70f-7094eb93cc90",
+            "totalBytes": 10372,
+            "receivedBytes": 10372,
+            "state": "inProgress"
+          },
+          {
+            "type": "progress",
+            "guid": "86e7b666-9305-46ed-b70f-7094eb93cc90",
+            "totalBytes": 10372,
+            "receivedBytes": 10372,
+            "state": "inProgress"
+          },
+          {
+            "type": "progress",
+            "guid": "86e7b666-9305-46ed-b70f-7094eb93cc90",
+            "totalBytes": 10372,
+            "receivedBytes": 10372,
+            "state": "inProgress"
+          },
+          {
+            "type": "progress",
+            "guid": "86e7b666-9305-46ed-b70f-7094eb93cc90",
+            "totalBytes": 10372,
+            "receivedBytes": 10372,
+            "state": "completed",
+            "filePath": "/Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/output/increment-007-stage-a/downloads/86e7b666-9305-46ed-b70f-7094eb93cc90"
+          }
+        ],
+        "empty": null,
+        "downloadFile": "output/increment-007-stage-a/downloads/86e7b666-9305-46ed-b70f-7094eb93cc90",
+        "downloadBytes": 10372,
+        "downloadHash": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+        "expectedHash": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+        "exactBytes": true,
+        "restored": {
+          "result": {
+            "exact": true
+          },
+          "error": null
+        },
+        "note": "Actual browser HTTP download + file input change + nativeIDB restore into independent port origin. NativeOS picker automation/cancellation remains unverified."
+      }
+    },
+    {
+      "name": "Chrome-revised-worker-max20",
+      "status": "observed",
+      "ms": 26334,
+      "value": {
+        "encode": [
+          528.1999999992549,
+          509.3999999985099,
+          635.1999999992549,
+          575.4000000022352,
+          631.9000000022352,
+          450.5,
+          644.6000000014901,
+          761.1000000014901,
+          541.2999999970198,
+          450.19999999925494,
+          592.6999999992549,
+          402.69999999925494,
+          533.5999999977648,
+          838.6000000014901,
+          732.8000000007451,
+          670.8999999985099,
+          826.6999999992549,
+          801.3000000007451,
+          790.1999999992549,
+          853.2000000029802
+        ],
+        "decode": [
+          401.6000000014901,
+          387,
+          493.6000000014901,
+          643.6999999992549,
+          327.19999999925494,
+          444.4000000022352,
+          506.19999999925494,
+          456.8999999985099,
+          311,
+          321.6000000014901,
+          377.69999999925494,
+          390.4000000022352,
+          470,
+          543.6000000014901,
+          544.1999999992549,
+          423.80000000074506,
+          622.3000000007451,
+          540.1000000014901,
+          696.8999999985099,
+          624.5999999977648
+        ],
+        "equality": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "samples": 21,
+        "mainThreadLongtasks": []
+      }
+    },
+    {
+      "name": "Safari-controlled-issuance-races",
+      "status": "observed",
+      "ms": 1423,
+      "value": [
+        {
+          "seeded": false,
+          "order": 0,
+          "i": 0,
+          "issuedFirst": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 1,
+                "id": "sf-false-0-0",
+                "type": "issued",
+                "command": "first"
+              }
+            ]
+          },
+          "issuedSecond": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 1,
+                "id": "sf-false-0-0",
+                "type": "issued",
+                "command": "second"
+              }
+            ]
+          },
+          "released": [
+            {
+              "seq": 2,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "won": {
+            "status": "accepted",
+            "reads": 1249
+          },
+          "lost": {
+            "status": "conflict",
+            "reads": 1
+          },
+          "pass": true
+        },
+        {
+          "seeded": false,
+          "order": 0,
+          "i": 1,
+          "issuedFirst": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 5,
+                "id": "sf-false-0-1",
+                "type": "issued",
+                "command": "first"
+              }
+            ]
+          },
+          "issuedSecond": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 3,
+                "id": "sf-false-0-1",
+                "type": "issued",
+                "command": "second"
+              }
+            ]
+          },
+          "released": [
+            {
+              "seq": 6,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "won": {
+            "status": "accepted",
+            "reads": 1310
+          },
+          "lost": {
+            "status": "conflict",
+            "reads": 1
+          },
+          "pass": true
+        },
+        {
+          "seeded": false,
+          "order": 0,
+          "i": 2,
+          "issuedFirst": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 9,
+                "id": "sf-false-0-2",
+                "type": "issued",
+                "command": "first"
+              }
+            ]
+          },
+          "issuedSecond": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 5,
+                "id": "sf-false-0-2",
+                "type": "issued",
+                "command": "second"
+              }
+            ]
+          },
+          "released": [
+            {
+              "seq": 10,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "won": {
+            "status": "accepted",
+            "reads": 1578
+          },
+          "lost": {
+            "status": "conflict",
+            "reads": 1
+          },
+          "pass": true
+        },
+        {
+          "seeded": false,
+          "order": 1,
+          "i": 0,
+          "issuedFirst": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 7,
+                "id": "sf-false-1-0",
+                "type": "issued",
+                "command": "first"
+              }
+            ]
+          },
+          "issuedSecond": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 13,
+                "id": "sf-false-1-0",
+                "type": "issued",
+                "command": "second"
+              }
+            ]
+          },
+          "released": [
+            {
+              "seq": 8,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "won": {
+            "status": "accepted",
+            "reads": 1130
+          },
+          "lost": {
+            "status": "conflict",
+            "reads": 1
+          },
+          "pass": true
+        },
+        {
+          "seeded": false,
+          "order": 1,
+          "i": 1,
+          "issuedFirst": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 11,
+                "id": "sf-false-1-1",
+                "type": "issued",
+                "command": "first"
+              }
+            ]
+          },
+          "issuedSecond": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 15,
+                "id": "sf-false-1-1",
+                "type": "issued",
+                "command": "second"
+              }
+            ]
+          },
+          "released": [
+            {
+              "seq": 12,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "won": {
+            "status": "accepted",
+            "reads": 1248
+          },
+          "lost": {
+            "status": "conflict",
+            "reads": 1
+          },
+          "pass": true
+        },
+        {
+          "seeded": false,
+          "order": 1,
+          "i": 2,
+          "issuedFirst": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 15,
+                "id": "sf-false-1-2",
+                "type": "issued",
+                "command": "first"
+              }
+            ]
+          },
+          "issuedSecond": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 17,
+                "id": "sf-false-1-2",
+                "type": "issued",
+                "command": "second"
+              }
+            ]
+          },
+          "released": [
+            {
+              "seq": 16,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "won": {
+            "status": "accepted",
+            "reads": 1739
+          },
+          "lost": {
+            "status": "conflict",
+            "reads": 1
+          },
+          "pass": true
+        },
+        {
+          "seeded": true,
+          "order": 0,
+          "i": 0,
+          "issuedFirst": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 19,
+                "id": "sf-true-0-0",
+                "type": "issued",
+                "command": "first"
+              }
+            ]
+          },
+          "issuedSecond": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 19,
+                "id": "sf-true-0-0",
+                "type": "issued",
+                "command": "second"
+              }
+            ]
+          },
+          "released": [
+            {
+              "seq": 20,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "won": {
+            "status": "accepted",
+            "reads": 1209
+          },
+          "lost": {
+            "status": "conflict",
+            "reads": 1
+          },
+          "pass": true
+        },
+        {
+          "seeded": true,
+          "order": 0,
+          "i": 1,
+          "issuedFirst": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 23,
+                "id": "sf-true-0-1",
+                "type": "issued",
+                "command": "first"
+              }
+            ]
+          },
+          "issuedSecond": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 21,
+                "id": "sf-true-0-1",
+                "type": "issued",
+                "command": "second"
+              }
+            ]
+          },
+          "released": [
+            {
+              "seq": 24,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "won": {
+            "status": "accepted",
+            "reads": 1242
+          },
+          "lost": {
+            "status": "conflict",
+            "reads": 1
+          },
+          "pass": true
+        },
+        {
+          "seeded": true,
+          "order": 0,
+          "i": 2,
+          "issuedFirst": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 27,
+                "id": "sf-true-0-2",
+                "type": "issued",
+                "command": "first"
+              }
+            ]
+          },
+          "issuedSecond": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 23,
+                "id": "sf-true-0-2",
+                "type": "issued",
+                "command": "second"
+              }
+            ]
+          },
+          "released": [
+            {
+              "seq": 28,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "won": {
+            "status": "accepted",
+            "reads": 1324
+          },
+          "lost": {
+            "status": "conflict",
+            "reads": 1
+          },
+          "pass": true
+        },
+        {
+          "seeded": true,
+          "order": 1,
+          "i": 0,
+          "issuedFirst": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 25,
+                "id": "sf-true-1-0",
+                "type": "issued",
+                "command": "first"
+              }
+            ]
+          },
+          "issuedSecond": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 31,
+                "id": "sf-true-1-0",
+                "type": "issued",
+                "command": "second"
+              }
+            ]
+          },
+          "released": [
+            {
+              "seq": 26,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "won": {
+            "status": "accepted",
+            "reads": 1241
+          },
+          "lost": {
+            "status": "conflict",
+            "reads": 1
+          },
+          "pass": true
+        },
+        {
+          "seeded": true,
+          "order": 1,
+          "i": 1,
+          "issuedFirst": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 29,
+                "id": "sf-true-1-1",
+                "type": "issued",
+                "command": "first"
+              }
+            ]
+          },
+          "issuedSecond": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 33,
+                "id": "sf-true-1-1",
+                "type": "issued",
+                "command": "second"
+              }
+            ]
+          },
+          "released": [
+            {
+              "seq": 30,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "won": {
+            "status": "accepted",
+            "reads": 1279
+          },
+          "lost": {
+            "status": "conflict",
+            "reads": 1
+          },
+          "pass": true
+        },
+        {
+          "seeded": true,
+          "order": 1,
+          "i": 2,
+          "issuedFirst": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 33,
+                "id": "sf-true-1-2",
+                "type": "issued",
+                "command": "first"
+              }
+            ]
+          },
+          "issuedSecond": {
+            "issued": true,
+            "events": [
+              {
+                "seq": 35,
+                "id": "sf-true-1-2",
+                "type": "issued",
+                "command": "second"
+              }
+            ]
+          },
+          "released": [
+            {
+              "seq": 34,
+              "type": "gate-release",
+              "command": "first"
+            }
+          ],
+          "won": {
+            "status": "accepted",
+            "reads": 1245
+          },
+          "lost": {
+            "status": "conflict",
+            "reads": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "name": "Safari-issued-unobserved-serialized-probes",
+      "status": "observed",
+      "ms": 242,
+      "value": {
+        "probes": [
+          {
+            "abort": false,
+            "issue": {
+              "issued": true,
+              "events": [
+                {
+                  "seq": 37,
+                  "id": "suppressed-false",
+                  "type": "issued",
+                  "command": "uncertain"
+                }
+              ]
+            },
+            "probeIssued": {
+              "issued": true,
+              "events": [
+                {
+                  "seq": 37,
+                  "type": "probe-issued",
+                  "id": "suppressed-false"
+                }
+              ]
+            },
+            "release": [
+              {
+                "seq": 38,
+                "type": "gate-release",
+                "command": "uncertain"
+              }
+            ],
+            "nativeOnly": {
+              "status": "accepted",
+              "reads": 1528
+            },
+            "probe": {
+              "incarnation": "i1",
+              "serialized": true,
+              "record": {
+                "revision": "uncertain",
+                "recordVersion": 1,
+                "authoredVersion": 1,
+                "lastAcceptedCommand": {
+                  "commandId": "uncertain",
+                  "operation": "restoreProject",
+                  "result": {
+                    "id": "suppressed-false",
+                    "entityKind": "project"
+                  }
+                },
+                "snapshot": {
+                  "project": {
+                    "id": "suppressed-false",
+                    "name": "uncertain"
+                  },
+                  "groups": [],
+                  "tokens": []
+                }
+              },
+              "decoded": true
+            },
+            "classification": "accepted",
+            "pass": true
+          },
+          {
+            "abort": true,
+            "issue": {
+              "issued": true,
+              "events": [
+                {
+                  "seq": 41,
+                  "id": "suppressed-true",
+                  "type": "issued",
+                  "command": "uncertain"
+                }
+              ]
+            },
+            "probeIssued": {
+              "issued": true,
+              "events": [
+                {
+                  "seq": 40,
+                  "type": "probe-issued",
+                  "id": "suppressed-true"
+                }
+              ]
+            },
+            "release": [
+              {
+                "seq": 42,
+                "type": "gate-release",
+                "command": "uncertain"
+              }
+            ],
+            "nativeOnly": {
+              "status": "aborted",
+              "reads": 1341
+            },
+            "probe": {
+              "incarnation": "i1",
+              "serialized": true,
+              "record": null,
+              "decoded": true
+            },
+            "classification": "rejected",
+            "pass": true
+          }
+        ],
+        "classifications": [
+          {
+            "actual": "accepted",
+            "expected": "accepted",
+            "name": "matching",
+            "pass": true
+          },
+          {
+            "actual": "unknown",
+            "expected": "unknown",
+            "name": "later",
+            "pass": true
+          },
+          {
+            "actual": "unknown",
+            "expected": "unknown",
+            "name": "missingMetadata",
+            "pass": true
+          },
+          {
+            "actual": "unknown",
+            "expected": "unknown",
+            "name": "incarnationChanged",
+            "pass": true
+          },
+          {
+            "actual": "unknown",
+            "expected": "unknown",
+            "name": "readFailure",
+            "pass": true
+          },
+          {
+            "actual": "unknown",
+            "expected": "unknown",
+            "name": "unprovableOrder",
+            "pass": true
+          },
+          {
+            "actual": "rejected",
+            "expected": "rejected",
+            "name": "fencedUnchanged",
+            "pass": true
+          },
+          {
+            "actual": "unknown",
+            "expected": "unknown",
+            "name": "futureDispatchNotFenced",
+            "pass": true
+          },
+          {
+            "actual": "rejected",
+            "expected": "rejected",
+            "name": "neverDispatched",
+            "pass": true
+          },
+          {
+            "actual": "rejected",
+            "expected": "rejected",
+            "name": "terminalAbort",
+            "pass": true
+          },
+          {
+            "actual": "accepted",
+            "expected": "accepted",
+            "name": "alreadyObservedAccepted",
+            "pass": true
+          }
+        ],
+        "note": "Terminal handlers log mechanism facts, but application-facing observation intentionally withheld until serialized probe. No product recovery UI/port is implemented."
+      }
+    },
+    {
+      "name": "Safari-materialized-catalogue-100",
+      "status": "observed",
+      "ms": 31,
+      "value": {
+        "n": 100,
+        "samples": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0
+        ],
+        "content": [
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 100,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ]
+        ],
+        "projects": 1
+      }
+    },
+    {
+      "name": "Safari-materialized-catalogue-1000",
+      "status": "observed",
+      "ms": 43,
+      "value": {
+        "n": 1000,
+        "samples": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0
+        ],
+        "content": [
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ],
+          [
+            {
+              "tokens": 1000,
+              "id": "p",
+              "revision": "setup",
+              "name": "Stage A synthetic",
+              "groups": 0
+            }
+          ]
+        ],
+        "projects": 1
+      }
+    }
+  ],
+  "origin": "http://127.0.0.1:53886",
+  "freshOrigin": "http://127.0.0.1:53887",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-stage-a-followup-eHYRNe",
+  "safariCapabilities": {
+    "safari:platformVersion": "27.2",
+    "safari:automaticInspection": false,
+    "webkit:WebRTC": {
+      "DisableICECandidateFiltering": false,
+      "DisableInsecureMediaCapture": false
+    },
+    "webkit:alwaysAllowAutoplay": false,
+    "browserVersion": "27.2",
+    "strictFileInteractability": false,
+    "browserName": "Safari",
+    "safari:useSimulator": false,
+    "safari:platformBuildVersion": "26B123",
+    "setWindowRect": true,
+    "acceptInsecureCerts": false,
+    "safari:automaticProfiling": false,
+    "pageLoadStrategy": "eager",
+    "safari:experimentalWebSocketUrl": false,
+    "platformName": "macOS",
+    "safari:diagnose": false
+  },
+  "end": "2026-11-09T15:37:25.816Z"
+}

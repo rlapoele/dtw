@@ -25,9 +25,9 @@ Suggested decision states for future use are: `open`, `investigating`, `proposed
 6. Which additional numeric types, context keys, and explicitly target-specific operations should be enabled after the initial portable number-and-dimension expression subset?
 7. Which selected foundational types and composites belong in the first implementation slice?
 
-[Project ownership, stable token identity, namespace groups, derived paths, the Token aggregate and owned assignment structure, authored-value forms, TokenReference, optional layers and semantic roles, foundational value types, the initial composite set, and the minimal ComponentDefinition and ComponentContract boundary](../design-tokens/conceptual-model.md) are working decisions. Name-only and typed-but-unassigned tokens are valid project members; definition completeness is derived. Component contracts deliberately anticipate parts, slots, properties, variant axes, interactive states, and token bindings without defining them in detail. Canonical references use same-project stable identities and schema-relative value paths; boolean, number, dimension, percentage, duration, font family, numeric font weight, color, and cubic Bézier currently expose only the whole-value path. The transition composite accepts duration, delay, and timing-function literals or same-project typed references; duration is non-negative after resolution, delay is signed, and field expressions and part-value paths remain deferred. The typography composite requires font family, font size, font weight, letter spacing, and unitless line height as typed literals or references; font size and line height are non-negative after resolution, letter spacing is signed, and direct field expressions and part-value paths remain deferred. The shadow composite contains a non-empty ordered stack of layers with required color, offsetX, offsetY, blur, spread, and explicit boolean inset fields as typed literals or references. Blur is non-negative after resolution; offsets and spread are signed. Whole-layer or nested-stack references, direct field expressions, and part-value paths remain deferred. Exact legal part paths for the remaining literal and composite schemas depend on those schemas. The identifier format, local-name grammar, sibling ordering, group-deletion operations, optional group constraints, remaining literal and composite schemas, and persistence schema remain open.
+[Project ownership, stable token identity, namespace groups, derived paths, the Token aggregate and owned assignment structure, authored-value forms, TokenReference, optional layers and semantic roles, foundational value types, the initial composite set, and the minimal ComponentDefinition and ComponentContract boundary](../design-tokens/conceptual-model.md) are working decisions. Name-only and typed-but-unassigned tokens are valid project members; definition completeness is derived. Component contracts deliberately anticipate parts, slots, properties, variant axes, interactive states, and token bindings without defining them in detail. Canonical references use same-project stable identities and schema-relative value paths; boolean, number, dimension, percentage, duration, font family, numeric font weight, color, and cubic Bézier currently expose only the whole-value path. The transition composite accepts duration, delay, and timing-function literals or same-project typed references; duration is non-negative after resolution, delay is signed, and field expressions and part-value paths remain deferred. The typography composite requires font family, font size, font weight, letter spacing, and unitless line height as typed literals or references; font size and line height are non-negative after resolution, letter spacing is signed, and direct field expressions and part-value paths remain deferred. The shadow composite contains a non-empty ordered stack of layers with required color, offsetX, offsetY, blur, spread, and explicit boolean inset fields as typed literals or references. Blur is non-negative after resolution; offsets and spread are signed. Whole-layer or nested-stack references, direct field expressions, and part-value paths remain deferred. Exact legal part paths for the remaining literal and composite schemas depend on those schemas. The identifier format, local-name grammar, sibling ordering, group-deletion operations, optional group constraints, remaining literal and composite schemas, and broader workspace persistence schema remain open; Increment 007’s bounded backup/retained representation is now agreed below.
 
-The canonical [ExpressionValue contract](../design-tokens/conceptual-model.md#expressions) is a working decision: expressions are identity-less closed typed AST values; result types derive from versioned portable or target-specific operation contracts; operands may contain literals, stable-identity references, nested expressions, or explicit context references; and fallbacks remain outside the generic AST. The initial portable mathematical family is addition, subtraction, scaling by a number, binary minimum and maximum, and clamp. Its first type instances are number and dimension: same-unit dimension arithmetic preserves the unit, mixed `px`/`rem` arithmetic requires explicit `font.rootSize` context and returns `px`, and invalid clamp bounds produce `invalid-expression` with `invalid-clamp-range`. Exact AST persistence, additional unit conversions and context keys, other diagnostic payloads, color operations, and target-specific operations remain open. Scale generation is [domain behavior](../design-tokens/conceptual-model.md#scale-generation), not a requirement for persisted scale entities or live token dependencies.
+The canonical [ExpressionValue contract](../design-tokens/conceptual-model.md#expressions) is a working decision: expressions are identity-less closed typed AST values; result types derive from versioned portable or target-specific operation contracts; operands may contain literals, stable-identity references, nested expressions, or explicit context references; and fallbacks remain outside the generic AST. The initial portable mathematical family is addition, subtraction, scaling by a number, binary minimum and maximum, and clamp. Its first type instances are number and dimension: same-unit dimension arithmetic preserves the unit, mixed `px`/`rem` arithmetic requires explicit `font.rootSize` context and returns `px`, and invalid clamp bounds produce `invalid-expression` with `invalid-clamp-range`. Increment 007’s agreed representation below preserves the supported portable AST grammar. Broader AST persistence, additional unit conversions and context keys, other diagnostic payloads, color operations, and target-specific operations remain open. Scale generation is [domain behavior](../design-tokens/conceptual-model.md#scale-generation), not a requirement for persisted scale entities or live token dependencies.
 
 Numeric literals use an exact finite base-10 Decimal value object with one normalized, non-exponent text representation, and percentage literals store normalized ratios. Maximum accepted digit counts, exponent-expansion resource limits, and policies for future operations whose results are not finite decimals remain open; display and adapter formatting must not mutate canonical values.
 
@@ -163,22 +163,26 @@ Chrome/Safari macOS qualification targets are agreed; supported builds await evi
 A future Electron filesystem adapter shares the model/codec/application boundary.
 User-visible file-first PWA storage, hidden release and stronger durable command
 recovery remain unselected alternatives. D-1/D-4 policy is resolved, technical
-qualification remains pending, and D-6 codec/parser/resource choices remain open.
+qualification remains pending, and D-6 technical qualification remains pending; its policy is now agreed below.
 Version separation and rejecting unsupported versions without speculative migrations
 are agreed. No final contract/design agreement or implementation authorization follows.
 
-The [format/decoder/resource proposal](../increments/007-format-decoder-and-resource-proposal.md)
-now supplies concrete F-1–F-5 choices for user review: one versioned UTF-8 JSON
-backup wrapper; strict duplicate-aware/prototype-safe decoding; proposed
-`jsonc-parser` 3.3.1 pin; explicit unmeasured admission ceilings; separate bounded
-derived evaluation that preserves valid authored ASTs. Size/work limits newly
-exclude some previously unbounded cases and require explicit agreement, not silent
-redefinition of support. D-6 remains open. The
-[storage/concurrency qualification plan](../increments/007-storage-concurrency-qualification-plan.md)
-identifies future mechanism and implementation cases, fixtures, environment capture
-and stop criteria. No tests, storage experiments, package installs or browser
-qualification ran; final contract/design agreement and implementation authorization
-remain pending.
+**D-6 policy and Stage A agreed — 9 November 2026:** the user agreed F-1–F-5 in
+[format/decoder/resources](../increments/007-format-decoder-and-resource-proposal.md)
+and the [qualification plan](../increments/007-storage-concurrency-qualification-plan.md).
+Versioned UTF-8 JSON, strict duplicate-aware decoding, jsonc-parser 3.3.1, explicit
+admission limits and separate derived-work guards are selected for qualification.
+The user authorized isolated Stage A including its parser dependency; technical
+qualification is in progress, not established. Production implementation and final
+contract/design agreement remain unauthorized. The broader questions below cover
+future canonical workspace evolution beyond this bounded backup/retention envelope.
+
+[Stage A evidence](../../output/increment-007-stage-a/report.md) and
+[independent review](../../output/increment-007-stage-a/independent-review.md)
+now distinguish tested native mechanisms from unqualified integration/lifecycle
+and Safari normal-retention/maximum-stress behavior. Maximum synchronous codec
+work exceeded the main-thread target; worker/bounded scheduling remains an
+implementation direction to settle before final agreement, with source preserved.
 
 1. What is the canonical source-of-truth file format?
 2. What constitutes stable project identity, and how is it preserved when a workspace moves?

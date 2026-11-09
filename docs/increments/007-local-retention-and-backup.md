@@ -233,7 +233,8 @@ are agreed; exact supported builds require evidence. A later Electron filesystem
 adapter shares model/codec/application semantics. User-file-first PWA storage,
 hidden-tab release and durable per-command reload recovery are unselected alternatives.
 D-1/D-4 policy is resolved, with technical qualification pending; D-5 support
-qualification and D-6 codec/parser/resource choices remain open. This agreement
+qualification and D-6 technical evidence remain pending. F-1–F-5 codec/parser/
+resource policy is now agreed below. This agreement
 is not final contract/design agreement or implementation authorization.
 
 | ID | Resolve before agreement/implementation | Analyst recommendation and evidence needed |
@@ -243,27 +244,33 @@ is not final contract/design agreement or implementation authorization.
 | D-3 | **Agreed:** restore/durable-load admissibility and identity scope. | P-3/P-4 and the linked allowlist are adopted: supported readable diagnostics remain inspectable, malformed/ambiguous/foreign/unknown content rejects whole, normal authoring checks remain unchanged. Decoder mechanics/limits remain D-6. |
 | D-4 | **Direction agreed; qualification pending:** single-writer acquisition/release, owner crash/suspension recovery, stale revisions, same-ID restore race, replacement protection validity and changed-baseline draft/form recovery policy. | Require atomic revision checks in addition to ownership; bind protection/acknowledgement to current revision. Prototype inspect-only scenario is not evidence. Qualify supported browser behavior and fail closed where exclusivity is unavailable. Raw-input preservation is not automatic merge or takeover; define review/reapply and target-change handling before enabling a recovered write. Web Locks plus atomic revisions and the linked review/reapply policy are agreed; technical qualification remains pending. |
 | D-5 | **Capability policy/targets agreed; exact supported builds pending:** supported browser/version/capability baseline, behavior when storage/ownership APIs are unavailable, browser reload/close guards and recovery limits. | Declare the narrow tested baseline before promising support; distinguish retained from independently backed up. Native page-exit behavior needs explicit limits, while in-app departure must preserve drafts. Installation/offline remain excluded. |
-| D-6 | Version compatibility/migration policy, runtime decoding approach/library, byte/entity/depth/string/Decimal budgets and resource-failure feedback. | Agreed version separation and first-version rejection of unsupported versions avoid speculative migrations. Set bounded budgets from fixtures/measurements without rewriting exact values or imposing the color-calculation input cap on persistence. No runtime-schema dependency selected. |
+| D-6 | **F-1–F-5 policy agreed; qualification pending:** version compatibility/migration policy, runtime decoding approach/library, byte/entity/depth/string/Decimal budgets and resource-failure feedback. | Agreed version separation and first-version rejection of unsupported versions avoid speculative migrations. Set bounded budgets from fixtures/measurements without rewriting exact values or imposing the color-calculation input cap on persistence. The agreed parser is jsonc-parser 3.3.1; no general runtime-schema framework is selected. |
 
 The replacement flow's user-confirmed backup protection is agreed direction; D-4
 specifies its revision safety and recovery details. Broader canonical file layout,
 future migrations, privacy profiles, cross-host persistence and future history
 policies remain outside this bounded agreement. See [open questions](../planning/open-questions.md#persistence-and-project-structure).
 
-## Remaining format/resources proposal and qualification plan
+## Agreed format/resources and authorized Stage A
 
-**Prepared for user review — 9 November 2026:** the
-[format, decoder and resource proposal](007-format-decoder-and-resource-proposal.md)
-provides F-1–F-5: exact portable UTF-8 JSON wrapper/version concepts, strict decoding,
-a proposed pinned parsing dependency, unmeasured admission limits and separate
-bounded derived evaluation. New size/work ceilings require explicit agreement;
-they do not silently narrow the agreed coverage or authorize normalization.
-The [qualification plan](007-storage-concurrency-qualification-plan.md) maps AC-1–19
-and agreed policies to future fixtures, race barriers, environments and pass/fail
-evidence. It separates a separately authorized disposable mechanism harness from
-later implementation acceptance. No experiment, installation or app change ran.
-D-6 remains open; actual D-1/D-4/D-5 qualification remains pending. Final agreement
-and implementation authorization remain pending.
+**Agreed and authorized — 9 November 2026:** the user agreed F-1–F-5 in the
+[format, decoder and resource policy](007-format-decoder-and-resource-proposal.md)
+and the [qualification plan](007-storage-concurrency-qualification-plan.md).
+This adopts the versioned UTF-8 JSON wrapper, strict duplicate-aware decoding,
+jsonc-parser 3.3.1, explicit admission ceilings and separate bounded derived work.
+The plan's targets and external 30-second stress watchdog are agreed for qualification;
+they are not passing performance/capacity evidence. Isolated Stage A harness work
+and its parser dependency are authorized. Stage A evidence is kept in
+`output/increment-007-stage-a/`; production source/dependencies and prototypes are
+outside its writable scope. Final contract/design agreement, material design
+additions beyond V2 and Increment 007 implementation authorization remain pending.
+
+The [Stage A report](../../output/increment-007-stage-a/report.md) and
+[independent review](../../output/increment-007-stage-a/independent-review.md)
+record partial mechanism qualification, not acceptance of this application contract.
+Maximum main-thread codec work failed its responsiveness target; the worker trial
+is an option for final scheduling review. Remaining lifecycle/browser/picker and
+product integration gaps stay explicit. No production implementation is authorized.
 
 ## Verification approach
 

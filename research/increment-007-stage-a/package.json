@@ -1,0 +1,1 @@
+{"name":"dtw-increment-007-stage-a","private":true,"type":"module","scripts":{"test":"node --test *.test.mjs","run":"node run.mjs"},"dependencies":{"jsonc-parser":"3.3.1"}}

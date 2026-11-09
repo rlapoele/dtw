@@ -1,0 +1,1 @@
+Exact original core source bytes, before independent review followups. Reconstruct original research directory from these files plus npm ci using the archived lock. Original manifest hashes apply; portable .txt copies replace globally ignored .log files in the final evidence set.

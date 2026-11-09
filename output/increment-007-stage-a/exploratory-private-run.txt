@@ -1,0 +1,74 @@
+START Q01-Q18 capability
+DONE Q01-Q18 capability 18
+START Q02 terminal ordering
+DONE Q02 terminal ordering 3
+START Q03 synthetic quota
+DONE Q03 synthetic quota 2
+START Q05 exclusive locks 3 runs each ordering
+DONE Q05 exclusive locks 3 runs each ordering 19
+START Q06 CAS barriers 3 per ordering
+DONE Q06 CAS barriers 3 per ordering 29
+START Q08-Q09 dispatch fence/reconciliation
+DONE Q08-Q09 dispatch fence/reconciliation 2
+START Q11 actual hide/show + freeze/resume
+DONE Q11 actual hide/show + freeze/resume 41
+START Q11 bfcache navigation
+DONE Q11 bfcache navigation 42
+START Q12 normal owner close
+DONE Q12 normal owner close 57
+START Q13 blocked upgrade/versionchange
+DONE Q13 blocked upgrade/versionchange 2
+START Q18 persistent request
+DONE Q18 persistent request 8
+START Q16 coverage native IDB exact readback
+DONE Q16 coverage native IDB exact readback 10
+START performance-100
+DONE performance-100 87
+START performance-1000
+DONE performance-1000 530
+START maximum-codec-write-20
+DONE maximum-codec-write-20 4475
+START maximum-catalogue-setup
+DONE maximum-catalogue-setup 50
+START maximum-catalogue-read--1
+DONE maximum-catalogue-read--1 420
+START maximum-catalogue-read-0
+DONE maximum-catalogue-read-0 422
+START maximum-catalogue-read-1
+DONE maximum-catalogue-read-1 419
+START maximum-catalogue-read-2
+DONE maximum-catalogue-read-2 424
+START maximum-catalogue-read-3
+DONE maximum-catalogue-read-3 440
+START maximum-catalogue-read-4
+DONE maximum-catalogue-read-4 417
+START maximum-catalogue-read-5
+DONE maximum-catalogue-read-5 421
+START maximum-catalogue-read-6
+DONE maximum-catalogue-read-6 419
+START maximum-catalogue-read-7
+DONE maximum-catalogue-read-7 434
+START maximum-catalogue-read-8
+DONE maximum-catalogue-read-8 427
+START maximum-catalogue-read-9
+DONE maximum-catalogue-read-9 430
+START maximum-catalogue-read-10
+DONE maximum-catalogue-read-10 419
+START maximum-catalogue-read-11
+DONE maximum-catalogue-read-11 425
+START maximum-catalogue-read-12
+DONE maximum-catalogue-read-12 422
+START maximum-catalogue-read-13
+DONE maximum-catalogue-read-13 419
+START maximum-catalogue-read-14
+DONE maximum-catalogue-read-14 427
+START maximum-catalogue-read-15
+DONE maximum-catalogue-read-15 415
+START maximum-catalogue-read-16
+DONE maximum-catalogue-read-16 409
+START maximum-catalogue-read-17
+DONE maximum-catalogue-read-17 412
+START maximum-catalogue-read-18
+DONE maximum-catalogue-read-18 411
+START maximum-catalogue-read-19
+DONE maximum-catalogue-read-19 411

@@ -320,6 +320,13 @@ exit paths.
 
 ## D-6: representation implications and next bounded proposal
 
+**Subsequent agreement — 9 November 2026:** the user agreed F-1–F-5 in the
+[format/decoder/resource policy](007-format-decoder-and-resource-proposal.md) and
+its [qualification plan](007-storage-concurrency-qualification-plan.md), authorizing
+isolated Stage A including the parser dependency. This resolves the policy choices
+left open below; technical evidence remains pending. Production implementation
+remains unauthorized. The original sequencing rationale is retained here.
+
 Recommend storage-layout 1 and authored-envelope 1 as distinct provisional version
 concepts, **not adopted formats**. IDB can retain the agreed plain data without a
 Number conversion of Decimal text. The adapter adds revision/incarnation/command

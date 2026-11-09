@@ -1,0 +1,11 @@
+✔ preallocation counters equal actual writer/scanner on whole fixtures (175.60075ms)
+✔ early semantic budgets reject before serialization hooks/getters (4.8485ms)
+✔ valid snapshot below semantic/byte caps whose emitted wrapper exceeds lexical cap rejects before serialization (210.662291ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 436.406958

@@ -1,0 +1,2209 @@
+{
+  "cases": [
+    {
+      "name": "Q01-Q02 setup throw, request error->abort, unsupported record unchanged",
+      "result": {
+        "setup": "NotFoundError",
+        "events": [
+          "request-success",
+          "request-error",
+          "abort"
+        ],
+        "after": null
+      },
+      "ms": 17
+    },
+    {
+      "name": "Q06 distinct-project concurrent writes 3 barriers",
+      "result": [
+        {
+          "results": [
+            {
+              "status": "accepted",
+              "revision": "distinct0-0"
+            },
+            {
+              "status": "accepted",
+              "revision": "distinct0-1"
+            }
+          ],
+          "after": [
+            {
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "revision": "distinct0-0",
+              "lastAcceptedCommand": {
+                "commandId": "distinct0-0",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "space "
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "space ",
+                  "name": "same"
+                },
+                "groups": [],
+                "tokens": []
+              }
+            },
+            {
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "revision": "distinct0-1",
+              "lastAcceptedCommand": {
+                "commandId": "distinct0-1",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "space"
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "space",
+                  "name": "same"
+                },
+                "groups": [],
+                "tokens": []
+              }
+            }
+          ]
+        },
+        {
+          "results": [
+            {
+              "status": "accepted",
+              "revision": "distinct1-0"
+            },
+            {
+              "status": "accepted",
+              "revision": "distinct1-1"
+            }
+          ],
+          "after": [
+            {
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "revision": "distinct1-0",
+              "lastAcceptedCommand": {
+                "commandId": "distinct1-0",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "space "
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "space ",
+                  "name": "same"
+                },
+                "groups": [],
+                "tokens": []
+              }
+            },
+            {
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "revision": "distinct1-1",
+              "lastAcceptedCommand": {
+                "commandId": "distinct1-1",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "space"
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "space",
+                  "name": "same"
+                },
+                "groups": [],
+                "tokens": []
+              }
+            }
+          ]
+        },
+        {
+          "results": [
+            {
+              "status": "accepted",
+              "revision": "distinct2-0"
+            },
+            {
+              "status": "accepted",
+              "revision": "distinct2-1"
+            }
+          ],
+          "after": [
+            {
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "revision": "distinct2-0",
+              "lastAcceptedCommand": {
+                "commandId": "distinct2-0",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "space "
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "space ",
+                  "name": "same"
+                },
+                "groups": [],
+                "tokens": []
+              }
+            },
+            {
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "revision": "distinct2-1",
+              "lastAcceptedCommand": {
+                "commandId": "distinct2-1",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "space"
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "space",
+                  "name": "same"
+                },
+                "groups": [],
+                "tokens": []
+              }
+            }
+          ]
+        }
+      ],
+      "ms": 15
+    },
+    {
+      "name": "Q08 issued acceptance then serialized readonly probe",
+      "result": {
+        "result": {
+          "status": "accepted",
+          "revision": "issued-command"
+        },
+        "probe": {
+          "recordVersion": 1,
+          "authoredVersion": 1,
+          "revision": "issued-command",
+          "lastAcceptedCommand": {
+            "commandId": "issued-command",
+            "operation": "restoreProject",
+            "result": {
+              "entityKind": "project",
+              "id": "issued"
+            }
+          },
+          "snapshot": {
+            "project": {
+              "id": "issued",
+              "name": ""
+            },
+            "groups": [],
+            "tokens": []
+          }
+        },
+        "events": [
+          {
+            "seq": 12,
+            "type": "dispatch",
+            "id": "issued",
+            "command": "issued-command",
+            "durability": "strict"
+          },
+          {
+            "seq": 13,
+            "type": "request-success",
+            "id": "issued",
+            "command": "issued-command"
+          },
+          {
+            "seq": 14,
+            "type": "complete",
+            "id": "issued",
+            "command": "issued-command"
+          }
+        ]
+      },
+      "ms": 2
+    },
+    {
+      "name": "download and actual file input into independent loopback hostname origin",
+      "error": "TimeoutError: page.waitForEvent: Timeout 5000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================",
+      "ms": 5012
+    },
+    {
+      "name": "Q12 real own-browser SIGKILL after committed barrier/restart",
+      "result": {
+        "oldPID": 20739,
+        "newPID": 20835,
+        "intervention": "SIGKILL own Chrome parent after transaction complete/readback; no power interruption",
+        "before": {
+          "record": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "committed-before-kill",
+            "lastAcceptedCommand": {
+              "commandId": "committed-before-kill",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": ""
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "",
+                "name": "",
+                "description": "é 😀 \ud800"
+              },
+              "groups": [
+                {
+                  "id": "",
+                  "projectId": "",
+                  "localName": "",
+                  "parentGroupId": "cycle"
+                },
+                {
+                  "id": "cycle",
+                  "projectId": "",
+                  "localName": "",
+                  "parentGroupId": ""
+                }
+              ],
+              "tokens": [
+                {
+                  "id": "v0",
+                  "projectId": "",
+                  "localName": "v0",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "color",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "color",
+                          "colorSpace": "srgb",
+                          "components": [
+                            "-0.0001",
+                            "none",
+                            "1.9"
+                          ],
+                          "alpha": "0"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v1",
+                  "projectId": "",
+                  "localName": "v1",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "number",
+                          "value": "-12.00000001"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v2",
+                  "projectId": "",
+                  "localName": "v2",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "dimension",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "dimension",
+                          "value": "1",
+                          "unit": "px"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v3",
+                  "projectId": "",
+                  "localName": "v3",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "percentage",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "percentage",
+                          "ratio": "2.5"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v4",
+                  "projectId": "",
+                  "localName": "v4",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "duration",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "duration",
+                          "value": "0",
+                          "unit": "ms"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v5",
+                  "projectId": "",
+                  "localName": "v5",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "boolean",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "boolean",
+                          "value": false
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v6",
+                  "projectId": "",
+                  "localName": "v6",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "fontFamily",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "fontFamily",
+                          "families": [
+                            {
+                              "kind": "named",
+                              "name": " serif "
+                            },
+                            {
+                              "kind": "generic",
+                              "family": "serif"
+                            },
+                            {
+                              "kind": "named",
+                              "name": " serif "
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v7",
+                  "projectId": "",
+                  "localName": "v7",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "fontWeight",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "fontWeight",
+                          "value": "450.5"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v8",
+                  "projectId": "",
+                  "localName": "v8",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "cubicBezier",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "cubicBezier",
+                          "controlPoints": [
+                            "0",
+                            "-1",
+                            "1",
+                            "2"
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v9",
+                  "projectId": "",
+                  "localName": "v9",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "transition",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "composite",
+                          "valueType": "transition",
+                          "duration": {
+                            "kind": "literal",
+                            "valueType": "duration",
+                            "value": "0",
+                            "unit": "ms"
+                          },
+                          "delay": {
+                            "kind": "literal",
+                            "valueType": "duration",
+                            "value": "-1",
+                            "unit": "s"
+                          },
+                          "timingFunction": {
+                            "kind": "literal",
+                            "valueType": "cubicBezier",
+                            "controlPoints": [
+                              "0",
+                              "-1",
+                              "1",
+                              "2"
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v10",
+                  "projectId": "",
+                  "localName": "v10",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "typography",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "composite",
+                          "valueType": "typography",
+                          "fontFamily": {
+                            "kind": "literal",
+                            "valueType": "fontFamily",
+                            "families": [
+                              {
+                                "kind": "named",
+                                "name": " serif "
+                              },
+                              {
+                                "kind": "generic",
+                                "family": "serif"
+                              },
+                              {
+                                "kind": "named",
+                                "name": " serif "
+                              }
+                            ]
+                          },
+                          "fontSize": {
+                            "kind": "literal",
+                            "valueType": "dimension",
+                            "value": "1",
+                            "unit": "px"
+                          },
+                          "fontWeight": {
+                            "kind": "literal",
+                            "valueType": "fontWeight",
+                            "value": "450.5"
+                          },
+                          "letterSpacing": {
+                            "kind": "literal",
+                            "valueType": "dimension",
+                            "value": "1",
+                            "unit": "px"
+                          },
+                          "lineHeight": {
+                            "kind": "literal",
+                            "valueType": "number",
+                            "value": "1"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v11",
+                  "projectId": "",
+                  "localName": "v11",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "shadow",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "composite",
+                          "valueType": "shadow",
+                          "layers": [
+                            {
+                              "color": {
+                                "kind": "literal",
+                                "valueType": "color",
+                                "colorSpace": "srgb",
+                                "components": [
+                                  "-0.0001",
+                                  "none",
+                                  "1.9"
+                                ],
+                                "alpha": "0"
+                              },
+                              "offsetX": {
+                                "kind": "literal",
+                                "valueType": "dimension",
+                                "value": "1",
+                                "unit": "px"
+                              },
+                              "offsetY": {
+                                "kind": "literal",
+                                "valueType": "dimension",
+                                "value": "1",
+                                "unit": "px"
+                              },
+                              "blur": {
+                                "kind": "literal",
+                                "valueType": "dimension",
+                                "value": "1",
+                                "unit": "px"
+                              },
+                              "spread": {
+                                "kind": "literal",
+                                "valueType": "dimension",
+                                "value": "1",
+                                "unit": "px"
+                              },
+                              "inset": {
+                                "kind": "literal",
+                                "valueType": "boolean",
+                                "value": false
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "display-p3",
+                  "projectId": "",
+                  "localName": "display-p3",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "color",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "color",
+                          "colorSpace": "display-p3",
+                          "components": [
+                            "1",
+                            "0",
+                            "0"
+                          ],
+                          "alpha": "1"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "hsl",
+                  "projectId": "",
+                  "localName": "hsl",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "color",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "color",
+                          "colorSpace": "hsl",
+                          "components": [
+                            "359.1",
+                            "100",
+                            "0"
+                          ],
+                          "alpha": "1"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "oklab",
+                  "projectId": "",
+                  "localName": "oklab",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "color",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "color",
+                          "colorSpace": "oklab",
+                          "components": [
+                            "1",
+                            "0",
+                            "0"
+                          ],
+                          "alpha": "1"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "oklch",
+                  "projectId": "",
+                  "localName": "oklch",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "color",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "color",
+                          "colorSpace": "oklch",
+                          "components": [
+                            "1",
+                            "0",
+                            "0"
+                          ],
+                          "alpha": "1"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "add",
+                  "projectId": "",
+                  "localName": "add",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "expression",
+                          "operation": "portable.math.add.v1",
+                          "operands": [
+                            {
+                              "kind": "token-reference",
+                              "targetTokenId": "missing",
+                              "valuePath": []
+                            },
+                            {
+                              "kind": "context-reference",
+                              "key": "font.rootSize"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "subtract",
+                  "projectId": "",
+                  "localName": "subtract",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "expression",
+                          "operation": "portable.math.subtract.v1",
+                          "operands": [
+                            {
+                              "kind": "token-reference",
+                              "targetTokenId": "missing",
+                              "valuePath": []
+                            },
+                            {
+                              "kind": "context-reference",
+                              "key": "font.rootSize"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "scale",
+                  "projectId": "",
+                  "localName": "scale",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "expression",
+                          "operation": "portable.math.scale.v1",
+                          "operands": [
+                            {
+                              "kind": "token-reference",
+                              "targetTokenId": "missing",
+                              "valuePath": []
+                            },
+                            {
+                              "kind": "context-reference",
+                              "key": "font.rootSize"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "min",
+                  "projectId": "",
+                  "localName": "min",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "expression",
+                          "operation": "portable.math.min.v1",
+                          "operands": [
+                            {
+                              "kind": "token-reference",
+                              "targetTokenId": "missing",
+                              "valuePath": []
+                            },
+                            {
+                              "kind": "context-reference",
+                              "key": "font.rootSize"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "max",
+                  "projectId": "",
+                  "localName": "max",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "expression",
+                          "operation": "portable.math.max.v1",
+                          "operands": [
+                            {
+                              "kind": "token-reference",
+                              "targetTokenId": "missing",
+                              "valuePath": []
+                            },
+                            {
+                              "kind": "context-reference",
+                              "key": "font.rootSize"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "clamp",
+                  "projectId": "",
+                  "localName": "clamp",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "expression",
+                          "operation": "portable.math.clamp.v1",
+                          "operands": [
+                            {
+                              "kind": "literal",
+                              "valueType": "number",
+                              "value": "1"
+                            },
+                            {
+                              "kind": "literal",
+                              "valueType": "number",
+                              "value": "1"
+                            },
+                            {
+                              "kind": "literal",
+                              "valueType": "number",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "__proto__",
+                  "projectId": "",
+                  "localName": "__proto__",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "token-reference",
+                          "targetTokenId": "missing",
+                          "valuePath": [
+                            {
+                              "kind": "field",
+                              "key": "x"
+                            },
+                            {
+                              "kind": "index",
+                              "index": 0
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": " ",
+                  "projectId": "",
+                  "localName": " ",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "token-reference",
+                          "targetTokenId": "missing",
+                          "valuePath": [
+                            {
+                              "kind": "field",
+                              "key": "x"
+                            },
+                            {
+                              "kind": "index",
+                              "index": 0
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "a/b",
+                  "projectId": "",
+                  "localName": "a/b",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "token-reference",
+                          "targetTokenId": "missing",
+                          "valuePath": [
+                            {
+                              "kind": "field",
+                              "key": "x"
+                            },
+                            {
+                              "kind": "index",
+                              "index": 0
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "a|b",
+                  "projectId": "",
+                  "localName": "a|b",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "token-reference",
+                          "targetTokenId": "missing",
+                          "valuePath": [
+                            {
+                              "kind": "field",
+                              "key": "x"
+                            },
+                            {
+                              "kind": "index",
+                              "index": 0
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "\ud800",
+                  "projectId": "",
+                  "localName": "\ud800",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "token-reference",
+                          "targetTokenId": "missing",
+                          "valuePath": [
+                            {
+                              "kind": "field",
+                              "key": "x"
+                            },
+                            {
+                              "kind": "index",
+                              "index": 0
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "",
+                  "projectId": "",
+                  "localName": "",
+                  "parentGroupId": "missing",
+                  "description": "",
+                  "layer": "component",
+                  "componentDefinitionId": "__proto__",
+                  "authoring": {
+                    "regeneration": "protected"
+                  }
+                },
+                {
+                  "id": "unassigned-angle",
+                  "projectId": "",
+                  "localName": "unassigned-angle",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "angle",
+                    "assignments": []
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "unassigned-string",
+                  "projectId": "",
+                  "localName": "unassigned-string",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "string",
+                    "assignments": []
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "unassigned-gradient",
+                  "projectId": "",
+                  "localName": "unassigned-gradient",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "gradient",
+                    "assignments": []
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "unassigned-border",
+                  "projectId": "",
+                  "localName": "unassigned-border",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "border",
+                    "assignments": []
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                }
+              ]
+            }
+          },
+          "events": [
+            {
+              "seq": 15,
+              "type": "dispatch",
+              "id": "",
+              "command": "committed-before-kill",
+              "durability": "strict"
+            },
+            {
+              "seq": 16,
+              "type": "request-success",
+              "id": "",
+              "command": "committed-before-kill"
+            },
+            {
+              "seq": 17,
+              "type": "complete",
+              "id": "",
+              "command": "committed-before-kill"
+            },
+            {
+              "seq": 18,
+              "type": "lock-acquired",
+              "id": "crash-owner"
+            }
+          ]
+        },
+        "after": {
+          "record": {
+            "recordVersion": 1,
+            "authoredVersion": 1,
+            "revision": "committed-before-kill",
+            "lastAcceptedCommand": {
+              "commandId": "committed-before-kill",
+              "operation": "restoreProject",
+              "result": {
+                "entityKind": "project",
+                "id": ""
+              }
+            },
+            "snapshot": {
+              "project": {
+                "id": "",
+                "name": "",
+                "description": "é 😀 \ud800"
+              },
+              "groups": [
+                {
+                  "id": "",
+                  "projectId": "",
+                  "localName": "",
+                  "parentGroupId": "cycle"
+                },
+                {
+                  "id": "cycle",
+                  "projectId": "",
+                  "localName": "",
+                  "parentGroupId": ""
+                }
+              ],
+              "tokens": [
+                {
+                  "id": "v0",
+                  "projectId": "",
+                  "localName": "v0",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "color",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "color",
+                          "colorSpace": "srgb",
+                          "components": [
+                            "-0.0001",
+                            "none",
+                            "1.9"
+                          ],
+                          "alpha": "0"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v1",
+                  "projectId": "",
+                  "localName": "v1",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "number",
+                          "value": "-12.00000001"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v2",
+                  "projectId": "",
+                  "localName": "v2",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "dimension",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "dimension",
+                          "value": "1",
+                          "unit": "px"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v3",
+                  "projectId": "",
+                  "localName": "v3",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "percentage",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "percentage",
+                          "ratio": "2.5"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v4",
+                  "projectId": "",
+                  "localName": "v4",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "duration",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "duration",
+                          "value": "0",
+                          "unit": "ms"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v5",
+                  "projectId": "",
+                  "localName": "v5",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "boolean",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "boolean",
+                          "value": false
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v6",
+                  "projectId": "",
+                  "localName": "v6",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "fontFamily",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "fontFamily",
+                          "families": [
+                            {
+                              "kind": "named",
+                              "name": " serif "
+                            },
+                            {
+                              "kind": "generic",
+                              "family": "serif"
+                            },
+                            {
+                              "kind": "named",
+                              "name": " serif "
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v7",
+                  "projectId": "",
+                  "localName": "v7",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "fontWeight",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "fontWeight",
+                          "value": "450.5"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v8",
+                  "projectId": "",
+                  "localName": "v8",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "cubicBezier",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "cubicBezier",
+                          "controlPoints": [
+                            "0",
+                            "-1",
+                            "1",
+                            "2"
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v9",
+                  "projectId": "",
+                  "localName": "v9",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "transition",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "composite",
+                          "valueType": "transition",
+                          "duration": {
+                            "kind": "literal",
+                            "valueType": "duration",
+                            "value": "0",
+                            "unit": "ms"
+                          },
+                          "delay": {
+                            "kind": "literal",
+                            "valueType": "duration",
+                            "value": "-1",
+                            "unit": "s"
+                          },
+                          "timingFunction": {
+                            "kind": "literal",
+                            "valueType": "cubicBezier",
+                            "controlPoints": [
+                              "0",
+                              "-1",
+                              "1",
+                              "2"
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v10",
+                  "projectId": "",
+                  "localName": "v10",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "typography",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "composite",
+                          "valueType": "typography",
+                          "fontFamily": {
+                            "kind": "literal",
+                            "valueType": "fontFamily",
+                            "families": [
+                              {
+                                "kind": "named",
+                                "name": " serif "
+                              },
+                              {
+                                "kind": "generic",
+                                "family": "serif"
+                              },
+                              {
+                                "kind": "named",
+                                "name": " serif "
+                              }
+                            ]
+                          },
+                          "fontSize": {
+                            "kind": "literal",
+                            "valueType": "dimension",
+                            "value": "1",
+                            "unit": "px"
+                          },
+                          "fontWeight": {
+                            "kind": "literal",
+                            "valueType": "fontWeight",
+                            "value": "450.5"
+                          },
+                          "letterSpacing": {
+                            "kind": "literal",
+                            "valueType": "dimension",
+                            "value": "1",
+                            "unit": "px"
+                          },
+                          "lineHeight": {
+                            "kind": "literal",
+                            "valueType": "number",
+                            "value": "1"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "v11",
+                  "projectId": "",
+                  "localName": "v11",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "shadow",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "composite",
+                          "valueType": "shadow",
+                          "layers": [
+                            {
+                              "color": {
+                                "kind": "literal",
+                                "valueType": "color",
+                                "colorSpace": "srgb",
+                                "components": [
+                                  "-0.0001",
+                                  "none",
+                                  "1.9"
+                                ],
+                                "alpha": "0"
+                              },
+                              "offsetX": {
+                                "kind": "literal",
+                                "valueType": "dimension",
+                                "value": "1",
+                                "unit": "px"
+                              },
+                              "offsetY": {
+                                "kind": "literal",
+                                "valueType": "dimension",
+                                "value": "1",
+                                "unit": "px"
+                              },
+                              "blur": {
+                                "kind": "literal",
+                                "valueType": "dimension",
+                                "value": "1",
+                                "unit": "px"
+                              },
+                              "spread": {
+                                "kind": "literal",
+                                "valueType": "dimension",
+                                "value": "1",
+                                "unit": "px"
+                              },
+                              "inset": {
+                                "kind": "literal",
+                                "valueType": "boolean",
+                                "value": false
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "display-p3",
+                  "projectId": "",
+                  "localName": "display-p3",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "color",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "color",
+                          "colorSpace": "display-p3",
+                          "components": [
+                            "1",
+                            "0",
+                            "0"
+                          ],
+                          "alpha": "1"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "hsl",
+                  "projectId": "",
+                  "localName": "hsl",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "color",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "color",
+                          "colorSpace": "hsl",
+                          "components": [
+                            "359.1",
+                            "100",
+                            "0"
+                          ],
+                          "alpha": "1"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "oklab",
+                  "projectId": "",
+                  "localName": "oklab",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "color",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "color",
+                          "colorSpace": "oklab",
+                          "components": [
+                            "1",
+                            "0",
+                            "0"
+                          ],
+                          "alpha": "1"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "oklch",
+                  "projectId": "",
+                  "localName": "oklch",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "color",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "literal",
+                          "valueType": "color",
+                          "colorSpace": "oklch",
+                          "components": [
+                            "1",
+                            "0",
+                            "0"
+                          ],
+                          "alpha": "1"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "add",
+                  "projectId": "",
+                  "localName": "add",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "expression",
+                          "operation": "portable.math.add.v1",
+                          "operands": [
+                            {
+                              "kind": "token-reference",
+                              "targetTokenId": "missing",
+                              "valuePath": []
+                            },
+                            {
+                              "kind": "context-reference",
+                              "key": "font.rootSize"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "subtract",
+                  "projectId": "",
+                  "localName": "subtract",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "expression",
+                          "operation": "portable.math.subtract.v1",
+                          "operands": [
+                            {
+                              "kind": "token-reference",
+                              "targetTokenId": "missing",
+                              "valuePath": []
+                            },
+                            {
+                              "kind": "context-reference",
+                              "key": "font.rootSize"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "scale",
+                  "projectId": "",
+                  "localName": "scale",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "expression",
+                          "operation": "portable.math.scale.v1",
+                          "operands": [
+                            {
+                              "kind": "token-reference",
+                              "targetTokenId": "missing",
+                              "valuePath": []
+                            },
+                            {
+                              "kind": "context-reference",
+                              "key": "font.rootSize"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "min",
+                  "projectId": "",
+                  "localName": "min",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "expression",
+                          "operation": "portable.math.min.v1",
+                          "operands": [
+                            {
+                              "kind": "token-reference",
+                              "targetTokenId": "missing",
+                              "valuePath": []
+                            },
+                            {
+                              "kind": "context-reference",
+                              "key": "font.rootSize"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "max",
+                  "projectId": "",
+                  "localName": "max",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "expression",
+                          "operation": "portable.math.max.v1",
+                          "operands": [
+                            {
+                              "kind": "token-reference",
+                              "targetTokenId": "missing",
+                              "valuePath": []
+                            },
+                            {
+                              "kind": "context-reference",
+                              "key": "font.rootSize"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "clamp",
+                  "projectId": "",
+                  "localName": "clamp",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "expression",
+                          "operation": "portable.math.clamp.v1",
+                          "operands": [
+                            {
+                              "kind": "literal",
+                              "valueType": "number",
+                              "value": "1"
+                            },
+                            {
+                              "kind": "literal",
+                              "valueType": "number",
+                              "value": "1"
+                            },
+                            {
+                              "kind": "literal",
+                              "valueType": "number",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "__proto__",
+                  "projectId": "",
+                  "localName": "__proto__",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "token-reference",
+                          "targetTokenId": "missing",
+                          "valuePath": [
+                            {
+                              "kind": "field",
+                              "key": "x"
+                            },
+                            {
+                              "kind": "index",
+                              "index": 0
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": " ",
+                  "projectId": "",
+                  "localName": " ",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "token-reference",
+                          "targetTokenId": "missing",
+                          "valuePath": [
+                            {
+                              "kind": "field",
+                              "key": "x"
+                            },
+                            {
+                              "kind": "index",
+                              "index": 0
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "a/b",
+                  "projectId": "",
+                  "localName": "a/b",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "token-reference",
+                          "targetTokenId": "missing",
+                          "valuePath": [
+                            {
+                              "kind": "field",
+                              "key": "x"
+                            },
+                            {
+                              "kind": "index",
+                              "index": 0
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "a|b",
+                  "projectId": "",
+                  "localName": "a|b",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "token-reference",
+                          "targetTokenId": "missing",
+                          "valuePath": [
+                            {
+                              "kind": "field",
+                              "key": "x"
+                            },
+                            {
+                              "kind": "index",
+                              "index": 0
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "\ud800",
+                  "projectId": "",
+                  "localName": "\ud800",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "kind": "token-reference",
+                          "targetTokenId": "missing",
+                          "valuePath": [
+                            {
+                              "kind": "field",
+                              "key": "x"
+                            },
+                            {
+                              "kind": "index",
+                              "index": 0
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "",
+                  "projectId": "",
+                  "localName": "",
+                  "parentGroupId": "missing",
+                  "description": "",
+                  "layer": "component",
+                  "componentDefinitionId": "__proto__",
+                  "authoring": {
+                    "regeneration": "protected"
+                  }
+                },
+                {
+                  "id": "unassigned-angle",
+                  "projectId": "",
+                  "localName": "unassigned-angle",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "angle",
+                    "assignments": []
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "unassigned-string",
+                  "projectId": "",
+                  "localName": "unassigned-string",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "string",
+                    "assignments": []
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "unassigned-gradient",
+                  "projectId": "",
+                  "localName": "unassigned-gradient",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "gradient",
+                    "assignments": []
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                {
+                  "id": "unassigned-border",
+                  "projectId": "",
+                  "localName": "unassigned-border",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "border",
+                    "assignments": []
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                }
+              ]
+            }
+          },
+          "newOwnership": true
+        },
+        "exact": true
+      },
+      "ms": 720
+    }
+  ],
+  "start": "2026-11-09T15:24:55.232Z",
+  "origin": "http://127.0.0.1:53462",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-stage-a-restart-nACozm",
+  "end": "2026-11-09T15:25:01.645Z"
+}

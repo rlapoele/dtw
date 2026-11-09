@@ -1,0 +1,25 @@
+START Q01-Q18 capability
+DONE Q01-Q18 capability 22
+START Q02 terminal ordering
+DONE Q02 terminal ordering 4
+START Q03 synthetic quota
+DONE Q03 synthetic quota 2
+START Q05 exclusive locks 3 runs each ordering
+DONE Q05 exclusive locks 3 runs each ordering 32
+START Q06 CAS barriers 3 per ordering
+DONE Q06 CAS barriers 3 per ordering 35
+START Q08-Q09 dispatch fence/reconciliation
+DONE Q08-Q09 dispatch fence/reconciliation 3
+START Q11 actual hide/show + freeze/resume
+DONE Q11 actual hide/show + freeze/resume 318
+START Q11 bfcache navigation
+page.goBack: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for navigation until "load"[22m
+[2m    - navigated to "http://127.0.0.1:53320/"[22m
+
+    at /Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/research/increment-007-stage-a/run.mjs:17:143
+    at async caseRun (/Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/research/increment-007-stage-a/run.mjs:7:287)
+    at async file:///Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/research/increment-007-stage-a/run.mjs:17:1 {
+  name: 'TimeoutError'
+}

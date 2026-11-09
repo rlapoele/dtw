@@ -1,0 +1,13 @@
+✔ AST expression depth and per-assignment operand boundary triples (22.796458ms)
+✔ font stack and shadow ordered collection boundary triples (26.28725ms)
+✔ aggregate snapshot UTF16 string budget boundary triples (109.251584ms)
+✔ repeated DAG scheduling stops before task10001 without expansion/source changes (0.528458ms)
+✔ derived digit guard threshold triples and conservative admission (0.150583ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 204.019625

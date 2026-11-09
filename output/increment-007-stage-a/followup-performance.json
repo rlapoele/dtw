@@ -1,0 +1,38 @@
+{
+  "Chrome-materialized-catalogue-100": {
+    "n": 20,
+    "median": 0.19999999925494194,
+    "p95": 0.30000000074505806,
+    "maximum": 0.5,
+    "projects": 1,
+    "tokens": 100,
+    "materialized": true
+  },
+  "Chrome-materialized-catalogue-1000": {
+    "n": 20,
+    "median": 0.849999999627471,
+    "p95": 1.199999999254942,
+    "maximum": 1.5,
+    "projects": 1,
+    "tokens": 1000,
+    "materialized": true
+  },
+  "Safari-materialized-catalogue-100": {
+    "n": 20,
+    "median": 0.0,
+    "p95": 1,
+    "maximum": 1,
+    "projects": 1,
+    "tokens": 100,
+    "materialized": true
+  },
+  "Safari-materialized-catalogue-1000": {
+    "n": 20,
+    "median": 1.0,
+    "p95": 1,
+    "maximum": 1,
+    "projects": 1,
+    "tokens": 1000,
+    "materialized": true
+  }
+}

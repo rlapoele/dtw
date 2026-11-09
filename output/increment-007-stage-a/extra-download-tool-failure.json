@@ -1,0 +1,246 @@
+{
+  "cases": [
+    {
+      "name": "Q01-Q02 setup throw, request error->abort, unsupported record unchanged",
+      "result": {
+        "setup": "NotFoundError",
+        "events": [
+          "request-success",
+          "request-error",
+          "abort"
+        ],
+        "after": null
+      },
+      "ms": 19
+    },
+    {
+      "name": "Q06 distinct-project concurrent writes 3 barriers",
+      "result": [
+        {
+          "results": [
+            {
+              "status": "accepted",
+              "revision": "distinct0-0"
+            },
+            {
+              "status": "accepted",
+              "revision": "distinct0-1"
+            }
+          ],
+          "after": [
+            {
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "revision": "distinct0-0",
+              "lastAcceptedCommand": {
+                "commandId": "distinct0-0",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "space "
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "space ",
+                  "name": "same"
+                },
+                "groups": [],
+                "tokens": []
+              }
+            },
+            {
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "revision": "distinct0-1",
+              "lastAcceptedCommand": {
+                "commandId": "distinct0-1",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "space"
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "space",
+                  "name": "same"
+                },
+                "groups": [],
+                "tokens": []
+              }
+            }
+          ]
+        },
+        {
+          "results": [
+            {
+              "status": "accepted",
+              "revision": "distinct1-0"
+            },
+            {
+              "status": "accepted",
+              "revision": "distinct1-1"
+            }
+          ],
+          "after": [
+            {
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "revision": "distinct1-0",
+              "lastAcceptedCommand": {
+                "commandId": "distinct1-0",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "space "
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "space ",
+                  "name": "same"
+                },
+                "groups": [],
+                "tokens": []
+              }
+            },
+            {
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "revision": "distinct1-1",
+              "lastAcceptedCommand": {
+                "commandId": "distinct1-1",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "space"
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "space",
+                  "name": "same"
+                },
+                "groups": [],
+                "tokens": []
+              }
+            }
+          ]
+        },
+        {
+          "results": [
+            {
+              "status": "accepted",
+              "revision": "distinct2-0"
+            },
+            {
+              "status": "accepted",
+              "revision": "distinct2-1"
+            }
+          ],
+          "after": [
+            {
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "revision": "distinct2-0",
+              "lastAcceptedCommand": {
+                "commandId": "distinct2-0",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "space "
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "space ",
+                  "name": "same"
+                },
+                "groups": [],
+                "tokens": []
+              }
+            },
+            {
+              "recordVersion": 1,
+              "authoredVersion": 1,
+              "revision": "distinct2-1",
+              "lastAcceptedCommand": {
+                "commandId": "distinct2-1",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "space"
+                }
+              },
+              "snapshot": {
+                "project": {
+                  "id": "space",
+                  "name": "same"
+                },
+                "groups": [],
+                "tokens": []
+              }
+            }
+          ]
+        }
+      ],
+      "ms": 16
+    },
+    {
+      "name": "Q08 issued acceptance then serialized readonly probe",
+      "result": {
+        "result": {
+          "status": "accepted",
+          "revision": "issued-command"
+        },
+        "probe": {
+          "recordVersion": 1,
+          "authoredVersion": 1,
+          "revision": "issued-command",
+          "lastAcceptedCommand": {
+            "commandId": "issued-command",
+            "operation": "restoreProject",
+            "result": {
+              "entityKind": "project",
+              "id": "issued"
+            }
+          },
+          "snapshot": {
+            "project": {
+              "id": "issued",
+              "name": ""
+            },
+            "groups": [],
+            "tokens": []
+          }
+        },
+        "events": [
+          {
+            "seq": 12,
+            "type": "dispatch",
+            "id": "issued",
+            "command": "issued-command",
+            "durability": "strict"
+          },
+          {
+            "seq": 13,
+            "type": "request-success",
+            "id": "issued",
+            "command": "issued-command"
+          },
+          {
+            "seq": 14,
+            "type": "complete",
+            "id": "issued",
+            "command": "issued-command"
+          }
+        ]
+      },
+      "ms": 2
+    }
+  ],
+  "start": "2026-11-09T15:24:04.720Z",
+  "origin": "http://127.0.0.1:53419",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-stage-a-restart-fpaG6U"
+}

@@ -1,0 +1,10 @@
+Q01-Q18 capability observed
+Q16 full supported exact codec roundtrip and decoder adversaries observed
+Q02-Q03 native abort and synthetic quota observed
+Q05 two own automation windows exclusive locks 3/order observed
+Q06 transaction CAS 3/order explicit equal-expected gate observed
+Q08 delayed dispatch fence observed
+Q13 blocked upgrade/versionchange observed
+Q18 persistent request observed
+performance-100 observed
+performance-1000 observed

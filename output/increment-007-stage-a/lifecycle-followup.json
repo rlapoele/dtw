@@ -1,0 +1,33 @@
+{
+  "origin": "http://127.0.0.1:53968",
+  "start": "2026-11-09T15:38:29.480Z",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-stage-a-lifecycle-YQ9Zq4",
+  "before": {
+    "visibility": "visible",
+    "owned": true,
+    "draft": {
+      "literal": "invalid",
+      "reference": "missing",
+      "form": "unfinished"
+    }
+  },
+  "hideWait": "TimeoutError: page.waitForFunction: Timeout 3000ms exceeded.",
+  "background": {
+    "visibility": "visible",
+    "events": []
+  },
+  "backgroundContender": false,
+  "frozenContender": false,
+  "resumeWait": "TimeoutError: page.waitForFunction: Timeout 3000ms exceeded.",
+  "after": {
+    "visibility": "visible",
+    "events": [],
+    "draft": {
+      "literal": "invalid",
+      "reference": "missing",
+      "form": "unfinished"
+    }
+  },
+  "limits": "Real document-targeted lifecycle events and raw JS draft preservation only; production resumption/revalidation/reapply UI remains unimplemented.",
+  "end": "2026-11-09T15:38:36.719Z"
+}

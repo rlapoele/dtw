@@ -1,0 +1,29 @@
+✔ AST expression depth and per-assignment operand boundary triples (47.884208ms)
+✔ font stack and shadow ordered collection boundary triples (45.660416ms)
+✔ aggregate snapshot UTF16 string budget boundary triples (211.963625ms)
+✔ repeated DAG scheduling stops before task10001 without expansion/source changes (1.016709ms)
+✔ derived digit guard threshold triples and conservative admission (0.397917ms)
+✔ all supported fixture variants + diagnostics preserve exact authored data (9.3665ms)
+✔ strict scan/visitor adversaries and opaque key safety (1.2445ms)
+✔ unknown/malformed versus supported diagnostic AST/reference (1.4055ms)
+✔ single-string, Decimal, token/group and ordered collection boundary triples (336.338625ms)
+✔ full wrapper exact 8 MiB and +1, input file 16 MiB +/-1 (2894.363583ms)
+✔ container depth rejects before recursive visitor, getter/cycles/sparse guards (0.663084ms)
+✔ derived tasks/batch/digits/scale bounded before work; input preserved (0.186875ms)
+✔ raw-string/lexical/container scanner boundary triples (73.828417ms)
+✔ semantic-value counter199999/200000/200001 before shape checking (94.924833ms)
+✔ ASTtotal99999/100000/100001 independent validator helper (other caps intersect) (63.569417ms)
+✔ rawnumeric token15/16/17 and safeinteger exact edges (1.035833ms)
+✔ derived fractional scale8191/8192/8193 refused before allocation (0.395875ms)
+✔ preallocation counters equal actual writer/scanner on whole fixtures (282.845875ms)
+✔ early semantic budgets reject before serialization hooks/getters (6.537541ms)
+✔ valid snapshot below semantic/byte caps whose emitted wrapper exceeds lexical cap rejects before serialization (247.239667ms)
+✔ array hidden accessor/prototype cannot be invoked by serializer (0.242666ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3417.333709

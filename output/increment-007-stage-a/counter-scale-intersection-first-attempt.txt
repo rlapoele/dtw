@@ -1,0 +1,31 @@
+✔ semantic-value counter199999/200000/200001 before shape checking (43.594416ms)
+✔ ASTtotal99999/100000/100001 independent validator helper (other caps intersect) (36.758125ms)
+✔ rawnumeric token15/16/17 and safeinteger exact edges (0.401791ms)
+✖ derived fractional scale8191/8192/8193 refused before allocation (0.118792ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123.587292
+
+✖ failing tests:
+
+test at research/increment-007-stage-a/counter-boundaries.test.mjs:8:1
+✖ derived fractional scale8191/8192/8193 refused before allocation (0.118792ms)
+  Error: evaluation-unavailable 
+      at fail (file:///Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/research/increment-007-stage-a/codec.mjs:3:58)
+      at arithmeticGuard (file:///Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/research/increment-007-stage-a/codec.mjs:45:383)
+      at TestContext.<anonymous> (file:///Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/research/increment-007-stage-a/counter-boundaries.test.mjs:9:29)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    code: 'evaluation-unavailable',
+    path: '',
+    observed: undefined
+  }

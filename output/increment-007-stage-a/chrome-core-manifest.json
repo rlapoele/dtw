@@ -1,0 +1,29 @@
+{
+  "baseCommit": "21196be5fee369ee5983dc910c3d544dad16cff2",
+  "scope": "Frozen Chrome/codec core before Safari extension; no further edits to these listed research files",
+  "files": {
+    "output/increment-007-stage-a/chrome-results.json": "3e15b0b60e05a1f6736b932dd616976c64202a16aed3288ca626735ce537996c",
+    "output/increment-007-stage-a/codec-tests.log": "0466ac167f980207d073c3717374caeb49ad8475c3748ffad35c835d4a11c222",
+    "output/increment-007-stage-a/exploratory-private-chrome-results.json": "8e1aaae36f7a2ecdd2d261b876c3b9077c8750fae5731e7e1321db117c737da3",
+    "output/increment-007-stage-a/exploratory-private-run.log": "3685bafe81920a30daccc8a1931f87b92fbd2511bc4bc69e29303109c9b46ddb",
+    "output/increment-007-stage-a/extra-download-tool-failure.json": "51875202e1a645623f873c3f021d1b8b736c1204edbda5e4b057fac7165c2213",
+    "output/increment-007-stage-a/extra-download-tool-failure.log": "2a906fb71a18cf5d4267c9d0bb0ea4f5ca52dabe500b1b9f3096d10d70e70af8",
+    "output/increment-007-stage-a/extra-results.json": "3712644296e1d9a2b468fb9cd975323f030bdad8e7fa2c029e8f24e41ff953f1",
+    "output/increment-007-stage-a/extra.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "output/increment-007-stage-a/normal-navigation-tool-failure.json": "e040b11398d2213936215fe67aca98228e736410b276fb1320be6f7c183c93d1",
+    "output/increment-007-stage-a/normal-navigation-tool-failure.log": "ac052da24c1e410ded7ca29fb9177c60b4b0106a877583f75e638aef57f4efd3",
+    "output/increment-007-stage-a/run.log": "8aee676f682bbf7b1cf2748b66837d4808414cff0e734b930de022230b56f572",
+    "research/increment-007-stage-a/README.md": "702144d7eb1aec5373725be7d203ea9f0e2059e217c4c713c014b8103e7d14f9",
+    "research/increment-007-stage-a/browser.mjs": "928e547a87d2c984bb566097c989274bac5f6fbd35e4476e3cb12fcd2721dc71",
+    "research/increment-007-stage-a/codec.mjs": "115b2bbe18ad3d6ff346d9f032554ef1bc8603c551ab6ef4c1c8e320cc023231",
+    "research/increment-007-stage-a/codec.test.mjs": "f8b2aa6011dffa46d1b366a9b7fd3600a6c2254538da5530d3c818d6ce4a146e",
+    "research/increment-007-stage-a/extra.mjs": "d0a0afb63a0d664c785985515ce0fe7113d756d19644c692115ad3ae6e1f0916",
+    "research/increment-007-stage-a/fixtures.mjs": "3ed2e8ac5b31472c2cd55164f8fac41f2eaa928e9755c62514ba2f5f6eedb29a",
+    "research/increment-007-stage-a/index.html": "a7938a41eab5d6435859508a00db06eff1c689641eafa25ad04c6743d5ffcb63",
+    "research/increment-007-stage-a/package-lock.json": "1e63f72627ba2af46bc9b0879ec1986a62c0f9063cdaec6e5e53b6672dc58eb9",
+    "research/increment-007-stage-a/package.json": "787880d2c6e061005423d3e47bc327026c64084061fd1bd98ea104a3a3d9f57c",
+    "research/increment-007-stage-a/run.mjs": "8033bc9f58ed578846b10c18b6674b9d120188051e2cfcbef656375e8d8d19c2",
+    "research/increment-007-stage-a/safari-probe.mjs": "6c9f76767c264a5e2fe999acc4b13654e6b2a9701f27f585300b9026c0e34e95",
+    "research/increment-007-stage-a/worker.mjs": "0a23407a1daee1038ea13ce45eb30c64a7b03a71e97fc4e5985eaf0534b7e015"
+  }
+}

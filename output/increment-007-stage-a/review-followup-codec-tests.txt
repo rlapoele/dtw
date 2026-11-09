@@ -1,0 +1,25 @@
+✔ AST expression depth and per-assignment operand boundary triples (24.0985ms)
+✔ font stack and shadow ordered collection boundary triples (25.424292ms)
+✔ aggregate snapshot UTF16 string budget boundary triples (161.093916ms)
+✔ repeated DAG scheduling stops before task10001 without expansion/source changes (0.607291ms)
+✔ derived digit guard threshold triples and conservative admission (0.17125ms)
+✔ all supported fixture variants + diagnostics preserve exact authored data (7.586375ms)
+✔ strict scan/visitor adversaries and opaque key safety (0.661208ms)
+✔ unknown/malformed versus supported diagnostic AST/reference (0.564292ms)
+✔ single-string, Decimal, token/group and ordered collection boundary triples (235.396792ms)
+✔ full wrapper exact 8 MiB and +1, input file 16 MiB +/-1 (2517.563166ms)
+✔ container depth rejects before recursive visitor, getter/cycles/sparse guards (0.625834ms)
+✔ derived tasks/batch/digits/scale bounded before work; input preserved (0.1885ms)
+✔ raw-string/lexical/container scanner boundary triples (62.607042ms)
+✔ semantic-value counter199999/200000/200001 before shape checking (49.729666ms)
+✔ ASTtotal99999/100000/100001 independent validator helper (other caps intersect) (41.831ms)
+✔ rawnumeric token15/16/17 and safeinteger exact edges (0.46425ms)
+✔ derived fractional scale8191/8192/8193 refused before allocation (0.149833ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2899.933541
