@@ -193,6 +193,16 @@ final agreement; dependent criteria do not establish a settled implementation po
 
 ## Supported-data acceptance matrix to complete
 
+**Analyst proposal for user review — 9 November 2026:** the
+[backup coverage and restore policy proposal](007-backup-coverage-and-restore-policy-proposal.md)
+provides four concrete choices, full field/value coverage and an admissibility
+allowlist for D-2/D-3. It recommends a project/groups/tokens envelope, all implemented
+unconditional values/incomplete forms, explicit inspect-only preservation of paired
+component associations, and whole rejection of unsupported conditional context and
+unknown content. The context tradeoff and exclusions require explicit user review.
+It proposes applying the same classifications to backup generation, durable loading
+and restore. No recommendation is adopted; D-2/D-3 and the matrix below remain open.
+
 D-2 is blocking: “supported” must be an explicit versioned matrix, not “anything the
 color editor displays” or every conceptual future feature. Minimum coverage must
 include everything the current operational project snapshot can legitimately retain,

@@ -114,6 +114,15 @@ support and continued readability/restoration of supported unnamed projects. It
 does not tighten token/group names or settle canonical name grammar. This narrows
 creation UX, not the six technical/data-policy blockers below.
 
+A [concrete analyst proposal](../increments/007-backup-coverage-and-restore-policy-proposal.md)
+now presents D-2/D-3 choices for user review: complete declared project/groups/tokens
+coverage; inspect-only component-association preservation with an unverified-context
+notice; exclusion of conditional systems without their authored context; explicit
+repairable diagnostics versus shape/ownership rejection; kind/project-scoped IDs
+and whole rejection of unknown data. It explicitly identifies the minimum-coverage
+tradeoff rather than treating all preloaded test objects as a backup schema.
+Recommendations are not agreement: D-2/D-3 remain open, as do the other blockers.
+
 The Draft contract's D-1–D-6 group the implementation blockers:
 
 - **Technical qualification:** storage/acknowledgment and unknown-outcome recovery;
