@@ -174,8 +174,22 @@ coverage or claiming a fast catalogue from tiny fixtures.
 Use the same admission/serialization policy for candidate commands, restored files,
 retained loads and generated backups. Never accept a normal authoring command that
 creates an unbackuppable snapshot under these limits. Count the accepted candidate,
-not only the edited token. File syntax bounds don't apply literally to IDB objects,
-but equivalent semantic limits and deterministic snapshot-size limits do. Reject
+not only the edited token. Before accepting a normal command or retained candidate,
+validate the **complete generated portable wrapper** against all output lexical,
+container-depth, raw-string/numeric-token and total-file limits too, in addition to
+semantic and snapshot-size limits. In particular, 200,000 semantic values and an
+8 MiB snapshot do not alone prove the emitted wrapper fits 500,000 lexical tokens.
+Use the actual deterministic encoder or a proven budget-equivalent counting encoder;
+validate/count before durable acceptance, without evaluating authored ASTs. Generation
+and restore must use the same definitions. Fixed wrapper keys/version values and the
+24-character createdAt form contribute to the full-wrapper count; do not account
+only for snapshot tokens or treat metadata as free. Incoming noncanonical whitespace/
+escape spellings separately consume the incoming file/raw-token budgets.
+
+IDB objects have no input lexical spelling, but their emitted full-wrapper projection
+must pass these exact output constraints before admission. Retained record metadata
+has its separate closed shape/bounds and is not backed up. Qualify the counter against
+the actual writer and decoder at boundaries, including wrapper overhead. Reject
 cycles/accessors/non-plain/sparse/nonserializable objects at the typed adapter boundary;
 no getters execute during validation of untrusted in-memory inputs.
 

@@ -74,7 +74,7 @@ Stage B applies to all cases; A means a disposable mechanism subset is useful fi
 | Q-14 B: draft conflict | AC-4/8/9/16 | Ownership loss/conflict with invalid raw literal, reference draft and unfinished create/rename form. Same baseline resumes explicitly; changed value requires deliberate review/reapply; removed/ineligible target blocks action without losing raw input or recreating data. Test ordinary current repairs still require whole-candidate checks. |
 | Q-15 B: full backup/restore | AC-9–15/17; P-1–4/F-1–3 | Actual download and file-picker restore in a fresh isolated origin/profile. Compare complete authored structures/strings/arrays/IDs; exclude drafts and internal revisions/outcomes. Unsupported/corrupt/duplicate fields/foreign IDs/version/resource input rejects whole, readable diagnostics remain preserved and inspectable. |
 | Q-16 A/B: decoder adversaries | AC-9/11/13; F-2/3 | Fatal UTF-8, BOM, escaped duplicate keys, comments/trailing commas/multiple roots, unknown `__proto__` structural key, allowed same-text ID, null/absence, unpaired escaped surrogate, numeric exponent/unsafe index, malformed AST versus valid unresolved AST. No prototype mutation, normalization or partial parse acceptance; original files untouched. |
-| Q-17 A/B: resource/derived safety | AC-4/9–13/17; F-4/5 | Validate every boundary, long exact Decimals, repeated DAG evaluation and scaling growth. Admission does not evaluate AST. All commands/backups/load/restore use same ceilings. Derived guard triggers before over-budget allocation/expansion, preserves source and reports unavailable rather than invalid authored data. Include max-cap project plus one new token/group and exact rejected draft preservation. |
+| Q-17 A/B: resource/derived safety | AC-4/9–13/17; F-4/5 | Validate every boundary, long exact Decimals, repeated DAG evaluation and scaling growth. Admission does not evaluate AST. All commands/backups/load/restore use same ceilings. Derived guard triggers before over-budget allocation/expansion, preserves source and reports unavailable rather than invalid authored data. Include max-cap project plus one new token/group and exact rejected draft preservation. For normal-command/retained candidates near semantic and lexical boundaries, count the generated full wrapper including fixed metadata, then pass its actual emitted bytes through its own decoder: every accepted candidate must restore exactly; an otherwise small snapshot whose wrapper exceeds lexical limits must reject before acceptance. |
 | Q-18 A/B: storage policy | AC-2/7/12; S-5 | Record persist granted/denied/unavailable and quota estimate uncertainty; no grant proves independent backup/permanence. Separate normal/private profile observations; private mode remains outside durable-support promise. File-origin/loopback/deployed origins remain independent; no automatic transfer. |
 | Q-19 B: accessibility/name | AC-1/8/18/19 | Keyboard-only modal/departure/recovery/replacement flow; safe Escape, associated errors/status, focus containment/return; actual 200% browser zoom and specified compact widths. Blank new name rejects exactly; accepted Unicode/whitespace stays exact; existing unnamed restore preserved. Record actual viewport/zoom, not requested-only dimensions. |
 | Q-20 B: architecture/regression | AC-9/17 + existing contracts | Run documented typechecks/tests/build after implementation; check domain/application remain browser-independent, no per-render async storage reads, no duplicated semantic decoder in UI, no unrequested history/dependencies. Independent reviewer checks stable snapshot plus bounded browser evidence. |
@@ -120,6 +120,34 @@ large data.” A correctly rejected over-budget fixture passes correctness while
 bounded rejection cost is still measured. If proposed timing/resource limits conflict,
 return the evidence and choices to the user; do not replace exact values with rounded
 ones, shrink fixtures or lower the quality bar quietly.
+
+## Proposed stress-harness watchdog
+
+For future authorized stress runs, propose an **external 30-second wall-clock
+watchdog per stress case**, starting after documented fixture setup and ending at
+its terminal measured result. This is an unagreed harness safety choice, not a
+product latency limit or evidence of supported capacity. An independent supervisor
+must be able to terminate only the disposable harness worker/page/process; an
+in-page timer cannot be the sole watchdog for blocked synchronous arithmetic.
+Record the setup boundary, exact supervision/termination mechanism and any deliberate
+race barriers separately; do not hide measured execution by relabelling it setup.
+
+Expiry records failure/inconclusive evidence, stops that stress run and escalation
+to larger workloads, and returns findings for review. It cannot count as bounded
+completion or a passing maximum-capacity claim. Preserve logs/available before-after
+evidence; do not retry until the termination/outcome and suspected resource path
+have been reviewed. Never use the watchdog to terminate a user's browser/session.
+A revised watchdog needs explicit recorded rationale, not a silent threshold increase.
+
+## Planning-review dispositions and remaining design work
+
+| Item | Current disposition / required next step |
+| --- | --- |
+| Full-wrapper lexical admission consistency | Same-analyst planning correction at review baseline `a648ed4`: normal-command/retained/output admission now explicitly checks the generated wrapper, not just semantic/snapshot limits. Q-17 requires writer/counter/decoder equality. No executed verification. |
+| Stress bounded-completion readiness | Proposed external 30-second watchdog above makes future safety termination reviewable; neither the watchdog nor maximum-capacity completion is qualified. |
+| F-1–F-5 and performance thresholds | Still for user review; capacity sufficiency feedback does not settle format/parser, derived-work policy or measured timing. No experiment authorization follows from this planning review. |
+| F-5 resource-unavailable/incomplete-report UI | Material interaction beyond V2 remains pending designer proposal/user review before implementation. No new authored-invalid classification or silent data truncation. |
+| Recovery/conflict feedback and unsupported retained data | Preserve agreed S-4/D-2/D-3 behavior; identify any concrete screens needed for unknown evidence, retained-but-unavailable, changed-baseline reapply and over-budget refusal in the final design handoff. Material additions return to user review; this plan does not approve them by implication. |
 
 ## Evidence, stop criteria and handoff
 
