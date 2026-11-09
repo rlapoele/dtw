@@ -355,6 +355,12 @@ remains in the reviewed flows; full prototype/production parity is not certified
 
 Production scheduling/placement is still to be settled against the preserved
 main-thread responsiveness failure; Stage A's worker option is not selected by V3.
+The [production scheduling and browser-scope proposal](007-production-scheduling-and-browser-scope-proposal.md)
+recommends B-1–B-5 for user review only: one application worker per tab, bounded
+renderer reads, session-only fencing/recovery, both normal-profile native macOS
+Chrome/Safari on exact qualified builds, and staged mechanism/product gates.
+Worker-required capability/placement and these bounded gates are proposed additions,
+not selected by the existing policies or this Draft. No new evidence is claimed.
 Exact supported-build scope and residual mechanism qualification remain bounded
 readiness items. Product integration/Stage B evidence comes after separately
 authorized implementation, not from speculative claims of passing all ACs now.

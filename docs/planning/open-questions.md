@@ -183,6 +183,11 @@ now distinguish tested native mechanisms from unqualified integration/lifecycle
 and Safari normal-retention/maximum-stress behavior. Maximum synchronous codec
 work exceeded the main-thread target; worker/bounded scheduling remains an
 implementation direction to settle before final agreement, with source preserved.
+The [B-1–B-5 scheduling/browser-scope proposal](../increments/007-production-scheduling-and-browser-scope-proposal.md)
+now recommends one application worker per tab, bounded renderer projections,
+session-only fencing and both native macOS engines on exact qualified builds.
+These placement/capability and stage-gate choices remain proposed for user review;
+no new experiment or production implementation is authorized.
 
 1. What is the canonical source-of-truth file format?
 2. What constitutes stable project identity, and how is it preserved when a workspace moves?

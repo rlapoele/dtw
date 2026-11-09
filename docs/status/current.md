@@ -2,11 +2,13 @@
 
 > Last updated: 9 November 2026
 >
-> Phase: Increment 007 V3 revision-2 analyst review completed; contract Draft
+> Phase: Increment 007 scheduling/browser-scope recommendations ready for review; contract Draft
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
+
+**Increment 007 scheduling and browser-scope proposal — 9 November 2026:** after committing the revision-2 review as `721d95e`, the user requested concrete analyst recommendations before finalizing the contract. The [five proposed choices B-1–B-5](../increments/007-production-scheduling-and-browser-scope-proposal.md) recommend one application worker per tab for bounded codec/domain work, coherent reads/commands and native storage/ownership adapters; narrow asynchronous calls with renderer-held raw inputs/attempt correlation; both native normal-profile Chrome and Safari on exact qualified macOS builds/HTTPS; a bounded mechanism followup before final agreement; and unchanged data/performance targets. This broader placement and required-worker capability are new proposals, not established by Stage A's codec-only trial. Worker failure/unknown outcomes, bounded renderer transfers/catalogue scans, safe cancellation and residual native lifecycle/file/restart qualification are explicit. The Draft, qualification plan and open questions link the proposal without adopting it. No new experiment, prototype, application, dependency or browser-session work occurred. Final agreement and production implementation remain unauthorized; staging, commits and pushes remain with the user.
 
 **Increment 007 V3 revision-2 analyst recheck — 9 November 2026:** after committing the correction as `2805b0c`, the user approved it for renewed analyst review. The [recheck](../increments/007-v3-analyst-review.md#revision-2-recheck--9-november-2026) verifies the separate ten-file snapshot and closes V3-R1 at design level: recovery/check and guarded departure remain reachable inside the active local mutation dialog, preserving inputs and same-attempt semantics. The analyst compared the complete original inspector sections/controls against production source and attributed coordinator browser evidence. Core content is present; two nonblocking specimen caveats remain for ordinary missing-data/header fallbacks and invalid-draft error association. The [Draft contract](../increments/007-local-retention-and-backup.md) explicitly preserves their production behavior under AC-18/20; no full behavioral/layout/accessibility parity is certified. No blocking design finding remains in the reviewed flows. Scheduling/placement and bounded supported-build/qualification scope remain open. Final contract/design agreement and production implementation remain unauthorized.
 
@@ -96,7 +98,7 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-Review the updated Draft and revision-2 analyst dispositions. Recommended next planning work is to settle bounded production scheduling/placement and supported-build/qualification scope, preserving agreed policies and the recorded fallback/error-association obligations. Then identify the resulting contract/design for final user agreement and obtain implementation authorization. No further prototype or production implementation starts with this handoff. Preserve existing sessions, V1/V2 and Stage A; staging, commits and pushes remain with the user.
+Review and select B-1–B-5 in the scheduling/browser-scope proposal. If agreed, explicitly authorize the bounded isolated mechanism followup; no new qualification begins with this documentation handoff. Review its actual results/gaps before final contract/design agreement and implementation authorization. Preserve the production baseline, revision-2 inspector obligations, existing sessions, V1/V2 and Stage A. Staging, commits and pushes remain with the user.
 
 The Increment 007 contract is Draft and requires its recorded decisions and resulting design before final agreement. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, concurrency qualification, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not settle them through prototype convenience.
 

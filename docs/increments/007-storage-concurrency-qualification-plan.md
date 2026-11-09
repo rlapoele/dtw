@@ -187,3 +187,12 @@ and unverified cases. Native transaction/ownership/capacity mechanisms and codec
 subsets do not establish all ACs. Preserve the recorded main-thread responsiveness
 failure and worker feasibility evidence; no blanket supported-browser/capacity or
 production implementation claim follows. Stage B remains unauthorized.
+
+## Proposed production placement and support handoff
+
+The [B-1–B-5 proposal](007-production-scheduling-and-browser-scope-proposal.md)
+recommends application/IDB/ownership execution in one worker per tab and exact-build
+normal-profile Chrome/Safari macOS qualification. Its bounded pre-implementation
+followup, worker-required capability and Stage B scope await user choice/authorization.
+This link does not amend the agreed targets, authorize new experiments, or qualify
+worker placement, normal Safari retention/lifecycle or product integration.
