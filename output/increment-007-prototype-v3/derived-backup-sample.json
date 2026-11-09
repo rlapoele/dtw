@@ -1,0 +1,73 @@
+{
+  "prototype": "DTW007-SIMULATION",
+  "version": 1,
+  "created": "2026-11-09T21:31:51.175Z",
+  "project": {
+    "id": "p-studio",
+    "name": "Studio foundations",
+    "updated": "Today, 10:42",
+    "tokens": [
+      {
+        "id": "t-brand",
+        "name": "color.brand.500",
+        "value": "0.231372549019607843",
+        "description": "Primary brand color. Exact authored data is retained."
+      },
+      {
+        "id": "t-content",
+        "name": "color.content.primary",
+        "value": "",
+        "alias": "t-brand",
+        "description": "Primary content follows the brand foundation."
+      },
+      {
+        "id": "t-surface",
+        "name": "color.surface.canvas",
+        "value": "0.98",
+        "description": "Canvas foundation."
+      },
+      {
+        "id": "t-expression",
+        "name": "size.calculated",
+        "value": "",
+        "description": "Authored expression preserved; derived evaluation is unavailable.",
+        "inspectOnly": true,
+        "authored": {
+          "kind": "expression",
+          "operation": "portable.math.scale.v1",
+          "operands": [
+            {
+              "kind": "token-reference",
+              "targetTokenId": "t-expression-base",
+              "valuePath": []
+            },
+            {
+              "kind": "literal",
+              "valueType": "number",
+              "value": "2"
+            }
+          ]
+        }
+      },
+      {
+        "id": "t-expression-base",
+        "name": "size.base",
+        "value": "",
+        "description": "Exact numeric source.",
+        "inspectOnly": true,
+        "authored": {
+          "kind": "literal",
+          "valueType": "number",
+          "value": "4"
+        }
+      }
+    ],
+    "groups": [
+      {
+        "id": "g-color",
+        "name": "color",
+        "parentGroupId": null
+      }
+    ]
+  }
+}

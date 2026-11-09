@@ -1,6 +1,6 @@
 # Increment 007 — post-qualification design assessment
 
-**Designer recommendation · 9 November 2026 · awaiting user direction.**
+**Direction approved for V3 prototype preparation · 9 November 2026.**
 Assessment baseline: clean `dev` at `12fa814`. This document proposes the smallest
 material additions to V2; it approves no design, prototype edit or implementation.
 V2 was subsequently approved **for analyst review**; historical “review pending”
@@ -9,6 +9,12 @@ The increment contract remains Draft. Agreed coverage, storage and F-1–F-5 pol
 are constraints; Stage A is partial mechanism qualification, not product delivery.
 
 ## Recommendation and decision
+
+**Subsequent user authorization:** after committing this assessment as `50d9f67`,
+the user approved the recommended direction and authorized a separate V3 prototype.
+Show the actual artifact to the user before renewed analyst review. This authorizes
+prototype preparation only; final design/contract agreement and production
+implementation remain pending. The original recommendation below is preserved.
 
 Keep the existing Projects/workbench/inspector and staged restore design. Prepare
 one bounded **V3 supplement** showing local resource feedback, deliberate recovered

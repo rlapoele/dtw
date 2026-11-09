@@ -1,12 +1,15 @@
 # Increment 007: local retention, reopening and project backup
 
-- Contract status: **Draft — analyst proposal, 9 November 2026.**
+- Contract status: **Draft — analyst updated after V3 review, 9 November 2026.**
 - Delivery status: **Not started; implementation is not authorized.**
 - Agreement: direction and isolated prototype preparation agreed 9 November;
   user subsequently approved identified V1 **for analyst review only** and V2
-  **for renewed analyst review only** on that date.
+  **for renewed analyst review only** on that date. V3 was also approved for renewed
+  analyst review, with explicit production-baseline preservation; one required
+  design finding remains in the V3 review.
   Final contract/design agreement and implementation authorization remain pending.
-- Production baseline: `4171dbc`; V1 review snapshot: `3b69671`; V2: `7014e75`.
+- Production baseline: `4171dbc`; V1 review snapshot: `3b69671`; V2: `7014e75`;
+  V3: base `50d9f67` plus its frozen ten-file manifest.
 
 ## Outcome
 
@@ -23,7 +26,9 @@ a browser-local Projects launch surface, independent backups, staged identity-
 preserving restore and explicit same-ID whole-project replacement. Successful
 retention followed by failed readback is distinct from a rejected write. Design
 for one writable tab per project with other tabs inspect-only; enforcement is
-unqualified. These behavioral directions do not select storage or schemas.
+partially qualified only in isolated Stage A mechanisms. The policies below now
+select storage/format direction; production integration and support claims remain
+unqualified.
 
 The agreed [application boundary](../project/architecture.md#increment-007-read-and-write-boundary-direction)
 uses explicit read/write interfaces over one authoritative retained state. Reads
@@ -51,7 +56,9 @@ Excluded: token compatibility-profile import/export, lossy normalization, cloud,
 accounts, synchronization, privacy profiles/authentication, durable drafts,
 copy/remap/merge, project deletion, new token authoring capabilities, progressive
 repair, install/offline acceptance, Electron, encryption and undo/redo/history.
-No package/framework/database/schema-library selection follows from either prototype.
+Prototype mechanics select no additional technology. The separately agreed storage
+and format policies below own native IndexedDB and jsonc-parser 3.3.1; no general
+schema framework is selected.
 
 ## Required name for new projects
 
@@ -75,15 +82,16 @@ implementation is authorized. This amendment affects new projects only, not toke
 or group naming. V1 is unchanged; V2 represents the required-name validation
 proposal without changing production behavior.
 
-This narrows one creation UX choice without settling storage or recovery qualification. The renewed V2
-review resolves R-4 as a design-state omission, not production acceptance: a named
+This narrows one creation UX choice without settling storage or recovery
+qualification. The renewed V2 review resolves R-4 as a design-state omission, not production acceptance: a named
 project can still have unavailable content.
 
 ## Acceptance criteria
 
-These IDs are stable draft criteria. D-2/D-3 policy is agreed below. D-1/D-4/D-5/D-6
-must be resolved and incorporated before final agreement; dependent criteria do not
-establish a settled implementation mechanism.
+These IDs are stable draft criteria. D-2/D-3, S-1–S-6 and F-1–F-5 policies are
+agreed below. Remaining scheduling/placement, supported-build scope, required design
+correction and qualification/Stage B evidence are distinguished from those agreements;
+no acceptance criterion is claimed implemented by prototype or Stage A evidence.
 
 - **AC-1 — Launch/catalogue:** launch shows Projects in this browser with New project,
   retained-project choices and Restore backup. Empty, loading and failed catalogue
@@ -107,7 +115,8 @@ establish a settled implementation mechanism.
   documented interruption/unknown-outcome policy reconciles authoritative state
   before repeating a potentially accepted command; it never invents rollback.
   Outcome-check failure or a still-unknown result preserves input and blocks unsafe
-  resubmission, with explicit retry/exit limits to be agreed under D-1/D-5.
+  resubmission under the agreed live-session policy. AC-23 specifies guarded
+  departure without claiming rollback or reconstructing a verdict after reload.
 - **AC-6 — Retained but unreadable:** acknowledged write followed by read failure is
   reported as retained with stale/unavailable display. Prior coherent snapshot, if
   any, belongs to that same project and is labelled stale; with no prior snapshot,
@@ -172,7 +181,7 @@ establish a settled implementation mechanism.
   coherent refresh/recovery before writing. Recovery cannot silently rebase or apply
   a draft over a changed baseline: retain its original project/entity/revision
   association, revalidate current eligibility and define deliberate review/reapply
-  or cancellation under D-4. Concurrent writes to distinct projects
+  or cancellation under the agreed D-4 recovery policy. Concurrent writes to distinct projects
   cannot corrupt the catalogue or each other's snapshots.
 - **AC-17 — Boundaries:** deterministic domain semantics stay host-independent;
   browser retention, file access and ownership mechanisms are adapters behind explicit
@@ -191,6 +200,51 @@ establish a settled implementation mechanism.
   exact; duplicate names are allowed.
   Supported existing unnamed data remains reopenable/restorable without rewriting
   it. Verify application-boundary enforcement separately from interface validation.
+
+- **AC-20 — Preserve the production baseline:** the next production version retains
+  existing token-list swatches, collision-safe names/paths, layer/type labels, exact
+  authored values/references, responsive Description column/preview and list/search/
+  group/navigation/create/rename actions. Preserve inspector descriptions and metadata/
+  semantic roles, complete three-component plus alpha exact inputs and eligible sliders,
+  all five view spaces and normalized/integer sRGB entry scales. Preserve byte
+  approximation indications, exact untouched components/alpha, aliases/IDs/metadata,
+  applied/draft separation and previews, authored/resolved/trace/raw inspection and
+  existing keyboard/focus, pane/scroll and responsive behavior under prior contracts.
+  Simplified V3 controls/content are permitted exploratory specimens only; they do
+  not authorize removing/changing these production capabilities or invent new metadata
+  editing. Integrate pending/recovery/resource states into the existing owned controls.
+- **AC-21 — Local resource feedback:** distinguish incoming/candidate/retained-record/
+  whole-backup admission refusal from unavailable derived evaluation and incomplete
+  diagnostic display. Admission failure changes no retained state and preserves raw
+  input; details use actual bounded measurements/units. No partial backup/load, native
+  input truncation or automatic retry of an unchanged deterministic limit. Valid costly
+  ASTs/aliases stay exact and backuppable; unavailable derived results do not become
+  authored-invalid. Incomplete reports never imply complete checks/all-clear or permit
+  bypassing admission; structural checks remain complete within the agreed input bounds.
+- **AC-22 — Deliberate recovered input:** compare previous applied/current applied/
+  preserved input when its original baseline changed. Review opens comparison only;
+  explicit Reapply performs one fresh validated revision-checked command. Preserve
+  both literal/reference raw sessions and view/scale choices. Changed create/rename
+  forms show the original target/parent identity and entered fields before submission;
+  absent/ineligible targets keep selectable input and block mutation without recreation,
+  retargeting, conversion or merge. Unchanged baseline still requires explicit Apply.
+- **AC-23 — Unknown result and reachable safe departure:** Check retained result and
+  failed-check feedback remain reachable inside **every active mutation dialog** and
+  the workbench. Keep affected writes/duplicates blocked and input intact while unknown.
+  Review before leaving initially focuses Stay here; Escape returns to intact input.
+  Leave is available only after application proof that late dispatch/publication cannot
+  affect another loaded context; it warns that an issued write may already be retained
+  and session input is discarded, not rolled back. If proof is unavailable, keep Stay/
+  check reachable with explicit not-ready feedback. Leaving/reload never replays the
+  attempt; reopening reads latest retained state without a fabricated command verdict.
+- **AC-24 — Identity-safe all-content inspection:** All content is a quiet secondary
+  entry below All tokens and reachable from namespace diagnostics. Show every admitted
+  group/token independently of ancestry, including empty/unreachable/cyclic groups.
+  Selection keys use project/kind/exact ID with absence separate from empty/whitespace
+  IDs; names/derived paths do not establish identity. Preserve normal healthy navigation.
+  Show truthful unavailable-path reasons, full exact identity/context/raw canonical data
+  with selectable text, and unverified component-ownership notices. No invented partial
+  paths, reparenting, hidden records, move/delete/general repair or new authoring scope.
 
 ## Agreed supported-data matrix and restore admissibility
 
@@ -216,9 +270,9 @@ The same rules govern backup generation, retained loading and restoration.
 - Preserve normal authoring validation and existing repair eligibility; acceptance
   with diagnostics adds no progressive repair or new authoring capability.
 
-This settles coverage/admissibility, not codec/wrapper/schema version, decoder or
-resource limits (D-6), or storage/atomicity/concurrency/browser feasibility
-(D-1/D-4/D-5). Acceptance evidence and final agreement remain pending.
+Coverage/admissibility is agreed here; separate storage and format/resource
+agreements below own those choices. D-1/D-4/D-5/D-6 technical/integration evidence
+and final contract/design agreement remain pending.
 
 ## Decisions and open questions
 
@@ -240,11 +294,11 @@ is not final contract/design agreement or implementation authorization.
 | ID | Resolve before agreement/implementation | Analyst recommendation and evidence needed |
 | --- | --- | --- |
 | D-1 | **Direction agreed; qualification pending:** browser persistence adapter, exact acknowledgment/atomicity boundary, catalogue consistency, and interrupted/unknown-outcome recovery. | Qualify one simple adapter over authoritative project state. Specify observable completion/failure and reconciliation; no hardware-permanence guarantee. Prove abort/no partial project/catalogue and crash/reopen outcomes. Native IndexedDB and the linked live-session recovery policy are agreed; technical qualification remains pending. |
-| D-2 | **Agreed:** supported authored envelope and coverage matrix. | P-1/P-2/P-4 of the linked policy are adopted, including unconditional-only scope and explicit context/unknown-content exclusions. Representation/version/resource decisions remain D-6; implementation evidence remains pending. |
-| D-3 | **Agreed:** restore/durable-load admissibility and identity scope. | P-3/P-4 and the linked allowlist are adopted: supported readable diagnostics remain inspectable, malformed/ambiguous/foreign/unknown content rejects whole, normal authoring checks remain unchanged. Decoder mechanics/limits remain D-6. |
+| D-2 | **Agreed:** supported authored envelope and coverage matrix. | P-1/P-2/P-4 of the linked policy are adopted, including unconditional-only scope and explicit context/unknown-content exclusions. Representation/version/resource policy is separately agreed under D-6; implementation evidence remains pending. |
+| D-3 | **Agreed:** restore/durable-load admissibility and identity scope. | P-3/P-4 and the linked allowlist are adopted: supported readable diagnostics remain inspectable, malformed/ambiguous/foreign/unknown content rejects whole, normal authoring checks remain unchanged. Decoder/limit integration and qualification remain pending under D-6. |
 | D-4 | **Direction agreed; qualification pending:** single-writer acquisition/release, owner crash/suspension recovery, stale revisions, same-ID restore race, replacement protection validity and changed-baseline draft/form recovery policy. | Require atomic revision checks in addition to ownership; bind protection/acknowledgement to current revision. Prototype inspect-only scenario is not evidence. Qualify supported browser behavior and fail closed where exclusivity is unavailable. Raw-input preservation is not automatic merge or takeover; define review/reapply and target-change handling before enabling a recovered write. Web Locks plus atomic revisions and the linked review/reapply policy are agreed; technical qualification remains pending. |
 | D-5 | **Capability policy/targets agreed; exact supported builds pending:** supported browser/version/capability baseline, behavior when storage/ownership APIs are unavailable, browser reload/close guards and recovery limits. | Declare the narrow tested baseline before promising support; distinguish retained from independently backed up. Native page-exit behavior needs explicit limits, while in-app departure must preserve drafts. Installation/offline remain excluded. |
-| D-6 | **F-1–F-5 policy agreed; qualification pending:** version compatibility/migration policy, runtime decoding approach/library, byte/entity/depth/string/Decimal budgets and resource-failure feedback. | Agreed version separation and first-version rejection of unsupported versions avoid speculative migrations. Set bounded budgets from fixtures/measurements without rewriting exact values or imposing the color-calculation input cap on persistence. The agreed parser is jsonc-parser 3.3.1; no general runtime-schema framework is selected. |
+| D-6 | **F-1–F-5 policy agreed; qualification pending:** version compatibility/migration policy, runtime decoding approach/library, byte/entity/depth/string/Decimal budgets and resource-failure feedback. | Agreed version separation and first-version rejection of unsupported versions avoid speculative migrations. Verify the agreed bounded budgets against fixtures/measurements without rewriting exact values or imposing the color-calculation input cap on persistence. The agreed parser is jsonc-parser 3.3.1; no general runtime-schema framework is selected. |
 
 The replacement flow's user-confirmed backup protection is agreed direction; D-4
 specifies its revision safety and recovery details. Broader canonical file layout,
@@ -262,8 +316,9 @@ The plan's targets and external 30-second stress watchdog are agreed for qualifi
 they are not passing performance/capacity evidence. Isolated Stage A harness work
 and its parser dependency are authorized. Stage A evidence is kept in
 `output/increment-007-stage-a/`; production source/dependencies and prototypes are
-outside its writable scope. Final contract/design agreement, material design
-additions beyond V2 and Increment 007 implementation authorization remain pending.
+outside its writable scope. V3 design additions have received approval for analyst
+review only. Final contract/design agreement and Increment 007 implementation
+authorization remain pending.
 
 The [Stage A report](../../output/increment-007-stage-a/report.md) and
 [independent review](../../output/increment-007-stage-a/independent-review.md)
@@ -271,6 +326,26 @@ record partial mechanism qualification, not acceptance of this application contr
 Maximum main-thread codec work failed its responsiveness target; the worker trial
 is an option for final scheduling review. Remaining lifecycle/browser/picker and
 product integration gaps stay explicit. No production implementation is authorized.
+
+## V3 review and remaining readiness
+
+On 9 November 2026 the user approved V3 for renewed analyst review, explicitly
+permitting simplified prototype content while requiring the production preservation
+in AC-20. [V3 analyst review](007-v3-analyst-review.md) identifies the frozen ten-file
+[manifest](../../output/increment-007-prototype-v3/manifest.json) and
+[attributed evidence boundaries](../../output/increment-007-prototype-v3/observations.md).
+All ten hashes/byte sizes match; V1/V2 remain unchanged. Resource/refusal, recovered
+input, unknown-departure and all-content specimens are coherent in scope, but
+**V3-R1 remains required:** the Supplement token-creation modal has no reachable
+Check/Review-before-leaving actions after an unknown result. Correct it before final
+agreement; material changes return to user review before renewed analyst review.
+
+Production scheduling/placement is still to be settled against the preserved
+main-thread responsiveness failure; Stage A's worker option is not selected by V3.
+Exact supported-build scope and residual mechanism qualification remain bounded
+readiness items. Product integration/Stage B evidence comes after separately
+authorized implementation, not from speculative claims of passing all ACs now.
+Policies D-2/D-3/S-1–S-6/F-1–F-5 are not reopened. Contract remains Draft / Not started.
 
 ## Verification approach
 
@@ -301,6 +376,14 @@ product integration gaps stay explicit. No production implementation is authoriz
 - Creation-name checks (AC-19) cover empty/whitespace-only rejection and focus, exact accepted
   Unicode/whitespace-bearing names, duplicate names, unchanged form/storage after
   rejection, and preserved reopening/restoration of supported unnamed projects.
+
+- AC-20 regression evidence must exercise actual baseline components and production
+  flows (not merely imported component names), including three components/alpha,
+  passive view/scale restoration, per-channel byte isolation, row swatches/metadata/
+  descriptions and aliases, search/group/create/rename, keyboard/focus and responsive
+  behavior. AC-21–24 add resource/refusal, exact recovery, every-dialog unknown-state
+  access and full kind/opaque-ID all-content scenarios. Final-composition runtime
+  evidence is required for implementation acceptance; prototype parity is not required.
 
 No application checks were run for this documentation draft. Prototype build/runtime
 observations are attributed in the review and cannot establish these criteria.
@@ -339,6 +422,10 @@ observations are attributed in the review and cannot establish these criteria.
   data-policy choices and R-6 broader verification remain. AC-19 is represented in
   V2, not delivered in production. No new material prototype revision is required
   by this bounded review; resulting material policy/design changes return to the user.
+- V3: [design notes](../../prototypes/increment-007-v3/DESIGN-V3.md), frozen manifest
+  and [analyst review](007-v3-analyst-review.md), approved for renewed analyst review
+  on 9 November 2026. Final corrected composition has source/type/build evidence;
+  earlier images/sample do not verify its runtime. V3-R1 remains unresolved.
 - Final contract/design agreement: pending. Implementation authorization: pending.
 
 ## Review baseline and amendments

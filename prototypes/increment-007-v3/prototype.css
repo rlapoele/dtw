@@ -1,0 +1,18 @@
+@import "../../src/presentation/styles.css";
+@source "../../src/presentation";
+@source "./BaselineInspector.tsx";
+@source "./main.tsx";
+/* Prototype-only geometry; production semantic theme and owned controls remain authoritative. */
+.project-hub{max-width:1050px}.project-sidebar{width:220px}.token-inspector{width:400px}.prototype-dialog{width:min(560px,calc(100vw - 32px));max-height:calc(100dvh - 48px)}
+.prototype-dialog input:not([type=checkbox]),.prototype-dialog textarea,.prototype-lab select,.fixture-controls select{display:block;width:100%;background:var(--background);border:1px solid var(--border);border-radius:var(--radius);padding:8px 10px;margin-top:6px;color:var(--foreground)}
+.prototype-dialog input[type=checkbox]{width:16px;height:16px;margin-top:2px}.prototype-dialog textarea{min-height:96px;resize:vertical}.prototype-lab select{width:auto;margin:0;padding:4px 8px}.prototype-dialog input[type=file]{font-size:12px}.prototype-lab{min-height:46px}.project-row:focus-visible,.token-row:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+@media(max-width:1000px){.project-sidebar{width:150px}.token-inspector{width:360px}.prototype-lab{flex-wrap:wrap}.prototype-lab span{display:block;margin-left:0}}@media(max-width:760px){.workbench{flex-wrap:wrap;overflow:auto}.project-sidebar{width:100%;border-right:0;border-bottom:1px solid var(--border);padding:12px;display:flex;align-items:center;gap:12px}.project-sidebar p{display:none}.project-sidebar>div{padding:8px;flex:1}.token-inspector{width:100%;border-left:0;border-top:1px solid var(--border)}.workbench>section{flex-basis:100%;overflow:visible}.prototype-lab select{max-width:220px}header{flex-wrap:wrap}}
+
+/* V2 external review strip accommodates longer lifecycle scenarios at compact widths. */
+.prototype-lab{flex-wrap:wrap}.prototype-lab label{min-width:0}.prototype-lab select{max-width:250px}.prototype-hint{flex-shrink:0}
+@media(max-width:540px){.prototype-lab>label{flex-wrap:wrap}.prototype-lab select{max-width:210px}.prototype-lab .fixture-controls{flex-wrap:wrap}.prototype-dialog .flex.justify-end{flex-wrap:wrap}}
+
+@source "./Supplement.tsx";
+/* V3 specimen-only list/identity geometry; shares existing semantic palette. */
+.content-row{display:grid;grid-template-columns:1fr;gap:6px;width:100%;text-align:left;padding:16px 12px;border-bottom:1px solid var(--border);overflow-wrap:anywhere}.content-row:hover{background:var(--muted)}.content-row:focus-visible,summary:focus-visible{outline:2px solid var(--ring);outline-offset:2px}.source-text{white-space:pre-wrap;overflow-wrap:anywhere;user-select:text}.identity-grid{display:grid;grid-template-columns:1fr;gap:6px;overflow-wrap:anywhere}.identity-grid dd{font-family:monospace;white-space:pre-wrap;margin-bottom:8px}.prototype-dialog{overflow-y:auto}.prototype-lab input[type=checkbox]{width:auto}.token-inspector,.prototype-dialog{min-width:0}summary{cursor:pointer}h3[tabindex],h1[tabindex]{outline-offset:4px}
+@media(max-width:760px){.project-sidebar{flex-wrap:wrap}.project-sidebar>.button{width:auto}.content-row{padding:12px 8px}.token-inspector{flex-basis:100%}.prototype-hint{max-height:96px;overflow:auto}}

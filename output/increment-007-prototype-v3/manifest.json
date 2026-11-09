@@ -1,0 +1,48 @@
+{
+  "baseline": "50d9f67",
+  "date": "2026-11-09",
+  "scope": "V3 frozen source for renewed analyst review; no production implementation authority",
+  "files": {
+    "prototypes/increment-007-v3/BaselineInspector.tsx": {
+      "sha256": "7690326c495e7ec7499eaf87c9daa183c67d804a2a35d42f9dbf5a650ed4c8d2",
+      "bytes": 8415
+    },
+    "prototypes/increment-007-v3/DESIGN-V3.md": {
+      "sha256": "7fe524d8521c06dfb4ee71646358481600cc64ea0c8df48a024ffb5efa6902c8",
+      "bytes": 15692
+    },
+    "prototypes/increment-007-v3/Supplement.tsx": {
+      "sha256": "88e190e4cdcf2cf63d07144db04e84dd6a81b89a595090a66a7c74c9864cbac8",
+      "bytes": 20554
+    },
+    "prototypes/increment-007-v3/baseline-adapter.ts": {
+      "sha256": "748fe6fc2532c060929fbed9f4f081a8895cb32ddb8492b620fc0e0c48660fb5",
+      "bytes": 2838
+    },
+    "prototypes/increment-007-v3/index.html": {
+      "sha256": "0de87704286a48cdd8ae2ef139be28407d0da22c34d31967b8a9bdb0ef01f309",
+      "bytes": 263
+    },
+    "prototypes/increment-007-v3/main.tsx": {
+      "sha256": "c845164d1d290a3750486526dca18951dbca5e4454f757f65345385a4959c668",
+      "bytes": 36004
+    },
+    "prototypes/increment-007-v3/prototype.css": {
+      "sha256": "622563987b6807dd7b0289057b9e836f909231cb92534943779eafee110fb74e",
+      "bytes": 3239
+    },
+    "prototypes/increment-007-v3/specimens.ts": {
+      "sha256": "66c5bc45fdcc8646f95a9f11ac4476b1759b15a9be4133311ef6daedda37bd4e",
+      "bytes": 5126
+    },
+    "prototypes/increment-007-v3/tsconfig.json": {
+      "sha256": "5feca4ba3ae9cbd8ec09412c2b16571c7ede85fd040b1c9342148bff0ebcaf4d",
+      "bytes": 461
+    },
+    "prototypes/increment-007-v3/vite.config.ts": {
+      "sha256": "698c7e2713444209d7ff39c3ee8b167dfc5e937f679cd9bb4f0f3166862802fe",
+      "bytes": 762
+    }
+  },
+  "evidence_limits": "Existing screenshots/sample predate final baseline composition and do not verify it. Final composition has source/typecheck/build evidence only."
+}
