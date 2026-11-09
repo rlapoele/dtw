@@ -1,15 +1,20 @@
 # Increment 007: storage, acknowledgement and concurrency proposal
 
-**Analyst proposal for user review — 9 November 2026.** Repository baseline
-`fd4072b2147753b3c91473f8ed18098a51932020`. D-1/D-4/D-5/D-6 remain open.
+**Agreed direction — 9 November 2026; not implemented or technically qualified.**
+The user agreed the recommended S-1–S-6 direction after reviewing the filesystem/
+Electron comparison. The proposal was prepared against repository baseline
+`fd4072b2147753b3c91473f8ed18098a51932020`. D-1/D-4 policy is agreed; D-5
+capability policy and qualification targets are agreed, with exact supported builds
+pending qualification. D-6 version separation is agreed; codec/parser/resource
+choices remain open. Alternatives below are not selected.
 The [agreed D-2/D-3 policy](007-backup-coverage-and-restore-policy-proposal.md)
 is preserved, including exact values, opaque IDs, diagnostic loading and whole
 rejection of unsupported data. This is research/planning only, not qualification,
 final contract agreement, implementation or permission to install dependencies.
 
-## Recommended coherent first version
+## Agreed first-version direction
 
-| Bundle | Recommendation for review | Tradeoff / alternative |
+| Bundle | Agreed direction | Tradeoff / unselected alternative |
 | --- | --- | --- |
 | S-1: retained state | One browser IndexedDB database, native API behind one small adapter; complete supported snapshots in project records. Derive Projects from those same records. Evolve current synchronous application/storage operations to asynchronous acceptance and explicit snapshot reads. | A thin library can reduce event plumbing but is not justified or selected yet. localStorage, OPFS and user files are not selected as authoritative retention; files remain independent backup. |
 | S-2: acknowledgement | Request `strict` durability for authored/command-metadata writes and wait for transaction `complete`. Never report request success as retained success. No silent relaxed/default fallback when strict capability is unavailable. | Strict adds latency/energy cost. Relaxed completion is an alternative policy with a weaker acknowledged persistence boundary, requiring explicit revised agreement. No physical permanence guarantee follows from strict. |
@@ -18,17 +23,16 @@ final contract agreement, implementation or permission to install dependencies.
 | S-5: capability and lifecycle | HTTPS top-level desktop browser; loopback development kept distinct. Qualification targets current stable desktop Chrome and Safari on macOS first, exact builds recorded later. Fail closed for missing required capabilities; no session-only fallback disguised as retention. | Additional OS/browser combinations require their own evidence. Optional hidden-tab release is a separate user-visible policy choice, not a platform requirement or proven crash detector. |
 | S-6: representation/version | Native structured plain-data records with separate storage-layout version, authored-envelope version, opaque revision and recovery metadata. Portable backup version is distinct. Sequence complete backup syntax/parser/resource policy as the next D-6 proposal before implementation. | Avoid coupling the browser's database layout to the portable backup file. This recommendation does not resolve duplicate-key parsing, migration or measured limits by choosing JSON implicitly. |
 
-Recommended next step: agree or amend these six bundles, then prepare the bounded
-D-6 codec/version/budget proposal and the qualification plan. Do not describe D-1/4/5
-as technically qualified merely because the direction is accepted.
+Next step: prepare the bounded D-6 codec/version/budget proposal and qualification
+plan. Agreement on direction does not establish technical qualification of D-1/4/5.
 
 ## Filesystem and the future Electron host
 
 The user's question about choosing files now for Electron is material. My
 recommendation remains **IndexedDB for this browser increment, a filesystem adapter
 for the later Electron host, and one shared supported-data codec/validation and
-application acceptance contract**. This is a recommendation, not an adopted host
-storage choice. The portable codec and application ports are the migration seam;
+application acceptance contract**. This host-adapter direction is agreed; the later Electron adapter is not
+implemented or authorized by this agreement. The portable codec and application ports are the migration seam;
 choosing the same low-level storage API in both hosts is not required for reuse.
 
 | Meaning of “filesystem” | Benefit and actual cost |
@@ -213,7 +217,7 @@ releases remaining locks. Those rules do not establish a freeze timeout or autho
 stealing a suspended tab's lock.
 [Web Locks specification](https://www.w3.org/TR/web-locks/)
 
-Proposed adapter policy:
+Agreed adapter policy:
 
 - Request an exclusive project lock with nonwaiting acquisition (`ifAvailable`).
   Use an injective, versioned encoding of `['dtw', 'project', exactProjectId]`, not
@@ -364,6 +368,7 @@ qualified limits remain blockers before final implementation authorization.
 Application/adapter tests and fresh isolated browser checks require separate
 implementation/qualification authorization; none ran for this document. No browser
 session, executable spike, retained record, dependency or production file was changed.
-D-1/D-4/D-5/D-6, final design/contract agreement and implementation authorization remain
-open. Suggested review sequence is S-1–S-4 first, lifecycle/browser targets next,
-then the D-6 follow-up; this avoids reopening the agreed coverage/admissibility policy.
+D-1/D-4/D-5 technical qualification, remaining D-6 choices, final design/contract
+agreement and implementation authorization remain pending. The next bounded
+proposal covers D-6 and the qualification plan, preserving the agreed coverage/
+admissibility and storage direction.

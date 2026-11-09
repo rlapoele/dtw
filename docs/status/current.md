@@ -2,11 +2,13 @@
 
 > Last updated: 9 November 2026
 >
-> Phase: Increment 007 D-2/D-3 policy agreed; D-1/D-4/D-5/D-6 open; contract Draft
+> Phase: Increment 007 storage direction agreed; technical qualification and remaining D-6 choices pending; contract Draft
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
+
+**Increment 007 storage direction agreed — 9 November 2026:** the user agreed the recommended S-1–S-6 [storage direction](../increments/007-storage-acknowledgement-and-concurrency-proposal.md): native IndexedDB for the browser, strict-hint transaction-complete acknowledgement, Web Locks plus atomic revisions, ordinary background ownership and bounded live-session reconciliation without a durable intent journal. A future Electron filesystem adapter shares canonical data/codec/application semantics. Capability policy and Chrome/Safari macOS qualification targets, version separation and no speculative first-version migrations are agreed. D-1/D-4 policy is resolved; technical qualification, exact supported builds and remaining D-6 codec/parser/resource choices are pending. The Draft, architecture and open questions reflect the agreement. Documentation checks only; no implementation or prototype changes. Final contract/design agreement and implementation authorization remain pending.
 
 **Increment 007 storage/acknowledgement/concurrency proposal — 9 November 2026:** following the user-committed D-2/D-3 agreement at `fd4072b`, the analyst prepared a [proposal for review](../increments/007-storage-acknowledgement-and-concurrency-proposal.md): native IndexedDB for browser retention, strict-hint transaction-complete acknowledgement, Web Locks plus atomic revision checks, and live-session outcome reconciliation without a durable intent journal by default. The user's filesystem/Electron question is addressed through a comparison of user-visible files, OPFS and a later Electron filesystem adapter; shared canonical representation, validation and application contracts preserve host independence. The real file-first PWA alternative requires revised permissions/reopening/recovery design. Ordinary background ownership is recommended; hidden release is an explicit alternative. Exact browser builds await qualification, and full D-6 codec/parser/resource choices remain a bounded follow-up. D-1/D-4/D-5/D-6 remain open; D-2/D-3 remain agreed. Documentation/source checks only; no implementation, runtime qualification, prototype, dependency or browser-session changes. Final agreement and implementation authorization remain pending.
 
@@ -74,9 +76,9 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-Prepare concrete recommendations/qualification for remaining [D-1/D-4/D-5/D-6](../increments/007-local-retention-and-backup.md#decisions-and-open-questions): storage acknowledgement and atomicity, ownership/recovery and changed-baseline handling, browser support, and representation/version/decoder/resource policy. D-2/D-3 coverage/admissibility is agreed and should not be reopened implicitly. Bring material resulting interactions to the user; obtain final design/contract agreement before separate implementation authorization. No production implementation, deployment or publication is authorized. Staging, commits and pushes remain with the user.
+Prepare the bounded D-6 codec/version/parser/resource proposal and technical qualification plan for the agreed [storage direction](../increments/007-storage-acknowledgement-and-concurrency-proposal.md). D-2/D-3 coverage/admissibility and D-1/D-4 policy are agreed; D-5 exact supported builds and technical evidence remain pending. Bring material resulting interactions to the user; obtain final design/contract agreement before separate implementation authorization. No production implementation, deployment or publication is authorized. Staging, commits and pushes remain with the user.
 
-The Increment 007 contract is Draft and requires its recorded decisions and resulting design before final agreement. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, exact restore admissibility, concurrency enforcement, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not settle them through prototype convenience.
+The Increment 007 contract is Draft and requires its recorded decisions and resulting design before final agreement. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, concurrency qualification, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not settle them through prototype convenience.
 
 ## Resume and verification
 

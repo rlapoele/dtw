@@ -154,15 +154,18 @@ changed; preserving raw input cannot imply automatic overwrite, merge or takeove
 D-1/D-5 must cover still-unknown/check-failed outcomes and retry/exit limits.
 Material resulting design revisions return to the user before renewed analyst review.
 
-The [storage/acknowledgement/concurrency proposal](../increments/007-storage-acknowledgement-and-concurrency-proposal.md)
-now offers concrete D-1/D-4 recommendations and D-5/D-6 implications for user review:
-native IndexedDB, transaction-complete acknowledgement with strict durability hint,
-Web Locks plus atomic revisions, and live-session outcome reconciliation with no
-blind replay. It compares user-visible files/OPFS/Electron filesystem adapters and
-recommends a shared model/codec/application boundary across different host adapters.
-Default background ownership versus optional hidden release, exact browser
-qualification and stronger durable command recovery are explicit tradeoffs.
-These recommendations are not agreement or qualification; D-1/D-4/D-5/D-6 remain open.
+**Storage direction agreed — 9 November 2026:** the user agreed S-1–S-6 of the
+[storage/acknowledgement/concurrency direction](../increments/007-storage-acknowledgement-and-concurrency-proposal.md):
+native IndexedDB, strict-hint transaction-complete acknowledgement, Web Locks plus
+atomic revisions, ordinary background ownership and live-session reconciliation
+without a durable intent journal or blind replay. Browser capability policy and
+Chrome/Safari macOS qualification targets are agreed; supported builds await evidence.
+A future Electron filesystem adapter shares the model/codec/application boundary.
+User-visible file-first PWA storage, hidden release and stronger durable command
+recovery remain unselected alternatives. D-1/D-4 policy is resolved, technical
+qualification remains pending, and D-6 codec/parser/resource choices remain open.
+Version separation and rejecting unsupported versions without speculative migrations
+are agreed. No final contract/design agreement or implementation authorization follows.
 
 1. What is the canonical source-of-truth file format?
 2. What constitutes stable project identity, and how is it preserved when a workspace moves?

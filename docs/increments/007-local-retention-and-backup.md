@@ -222,29 +222,28 @@ resource limits (D-6), or storage/atomicity/concurrency/browser feasibility
 
 ## Decisions and open questions
 
-D-2 and D-3 are **agreed policy**. D-1/D-4/D-5/D-6 remain **open**; their
-recommendations require user agreement and technical evidence. No adapter, codec,
-format version, runtime library or concurrency mechanism has been selected.
-
-**New proposal for user review — 9 November 2026:** the
-[storage, acknowledgement and concurrency proposal](007-storage-acknowledgement-and-concurrency-proposal.md)
-recommends native IndexedDB for the browser host, strict-hint transaction-complete
-acknowledgement, Web Locks plus revision checks, and bounded live-session outcome
-reconciliation without a durable intent journal by default. It compares a real
-user-file-first PWA alternative and future Electron filesystem adapters, keeping
-canonical data/codec/application semantics independent of host storage. Browser
-qualification targets and representation implications are proposed; full D-6
-codec/resource choices follow separately. D-1/D-4/D-5/D-6 remain open; this text
-selects no adapter or capability policy and authorizes no implementation.
+D-2 and D-3 are **agreed policy**. The user also agreed S-1–S-6 of the
+[storage, acknowledgement and concurrency direction](007-storage-acknowledgement-and-concurrency-proposal.md)
+on 9 November 2026: native browser IndexedDB; strict-hint transaction-complete
+acknowledgement; Web Locks plus atomic revision checks; ordinary background
+ownership; live-session reconciliation without a durable intent journal; and
+separate storage, authored-envelope and portable-backup version concepts.
+Browser capability policy and initial Chrome/Safari macOS qualification targets
+are agreed; exact supported builds require evidence. A later Electron filesystem
+adapter shares model/codec/application semantics. User-file-first PWA storage,
+hidden-tab release and durable per-command reload recovery are unselected alternatives.
+D-1/D-4 policy is resolved, with technical qualification pending; D-5 support
+qualification and D-6 codec/parser/resource choices remain open. This agreement
+is not final contract/design agreement or implementation authorization.
 
 | ID | Resolve before agreement/implementation | Analyst recommendation and evidence needed |
 | --- | --- | --- |
-| D-1 | Browser persistence adapter, exact acknowledgment/atomicity boundary, catalogue consistency, and interrupted/unknown-outcome recovery. | Qualify one simple adapter over authoritative project state. Specify observable completion/failure and reconciliation; no hardware-permanence guarantee. Prove abort/no partial project/catalogue and crash/reopen outcomes. No technology selected. |
+| D-1 | **Direction agreed; qualification pending:** browser persistence adapter, exact acknowledgment/atomicity boundary, catalogue consistency, and interrupted/unknown-outcome recovery. | Qualify one simple adapter over authoritative project state. Specify observable completion/failure and reconciliation; no hardware-permanence guarantee. Prove abort/no partial project/catalogue and crash/reopen outcomes. Native IndexedDB and the linked live-session recovery policy are agreed; technical qualification remains pending. |
 | D-2 | **Agreed:** supported authored envelope and coverage matrix. | P-1/P-2/P-4 of the linked policy are adopted, including unconditional-only scope and explicit context/unknown-content exclusions. Representation/version/resource decisions remain D-6; implementation evidence remains pending. |
 | D-3 | **Agreed:** restore/durable-load admissibility and identity scope. | P-3/P-4 and the linked allowlist are adopted: supported readable diagnostics remain inspectable, malformed/ambiguous/foreign/unknown content rejects whole, normal authoring checks remain unchanged. Decoder mechanics/limits remain D-6. |
-| D-4 | Single-writer acquisition/release, owner crash/suspension recovery, stale revisions, same-ID restore race, replacement protection validity and changed-baseline draft/form recovery policy. | Require atomic revision checks in addition to ownership; bind protection/acknowledgement to current revision. Prototype inspect-only scenario is not evidence. Qualify supported browser behavior and fail closed where exclusivity is unavailable. Raw-input preservation is not automatic merge or takeover; define review/reapply and target-change handling before enabling a recovered write. No lease/locking technology selected. |
-| D-5 | Supported browser/version/capability baseline, behavior when storage/ownership APIs are unavailable, browser reload/close guards and recovery limits. | Declare the narrow tested baseline before promising support; distinguish retained from independently backed up. Native page-exit behavior needs explicit limits, while in-app departure must preserve drafts. Installation/offline remain excluded. |
-| D-6 | Version compatibility/migration policy, runtime decoding approach/library, byte/entity/depth/string/Decimal budgets and resource-failure feedback. | First version may block unsupported versions explicitly rather than implement speculative migrations; confirm policy. Set bounded budgets from fixtures/measurements without rewriting exact values or imposing the color-calculation input cap on persistence. No runtime-schema dependency selected. |
+| D-4 | **Direction agreed; qualification pending:** single-writer acquisition/release, owner crash/suspension recovery, stale revisions, same-ID restore race, replacement protection validity and changed-baseline draft/form recovery policy. | Require atomic revision checks in addition to ownership; bind protection/acknowledgement to current revision. Prototype inspect-only scenario is not evidence. Qualify supported browser behavior and fail closed where exclusivity is unavailable. Raw-input preservation is not automatic merge or takeover; define review/reapply and target-change handling before enabling a recovered write. Web Locks plus atomic revisions and the linked review/reapply policy are agreed; technical qualification remains pending. |
+| D-5 | **Capability policy/targets agreed; exact supported builds pending:** supported browser/version/capability baseline, behavior when storage/ownership APIs are unavailable, browser reload/close guards and recovery limits. | Declare the narrow tested baseline before promising support; distinguish retained from independently backed up. Native page-exit behavior needs explicit limits, while in-app departure must preserve drafts. Installation/offline remain excluded. |
+| D-6 | Version compatibility/migration policy, runtime decoding approach/library, byte/entity/depth/string/Decimal budgets and resource-failure feedback. | Agreed version separation and first-version rejection of unsupported versions avoid speculative migrations. Set bounded budgets from fixtures/measurements without rewriting exact values or imposing the color-calculation input cap on persistence. No runtime-schema dependency selected. |
 
 The replacement flow's user-confirmed backup protection is agreed direction; D-4
 specifies its revision safety and recovery details. Broader canonical file layout,

@@ -47,7 +47,7 @@ Browser adapters
     project storage, backup/restore, file selection, import/export
 ```
 
-Browser-managed project storage must remain replaceable. The first browser experience should provide explicit project backup and restore so locally authored work is not available only through one browser origin. Project backup is distinct from exporting a token compatibility profile. The exact browser persistence technology, canonical persistence format, project backup representation, and token interchange profile remain open.
+Browser-managed project storage must remain replaceable. The first browser experience should provide explicit project backup and restore so locally authored work is not available only through one browser origin. Project backup is distinct from exporting a token compatibility profile. Increment 007 selects IndexedDB as the browser storage direction below; canonical persistence format, project backup representation and token interchange profile remain open.
 
 Electron remains the intended packaged desktop host. Validate it as the milestone immediately following the first complete browser vertical slice, before browser-only assumptions spread through the product. This choice is motivated principally by its bundled, versioned Chromium runtime, access to controlled desktop capabilities, and mature distribution path rather than by access to Node.js alone.
 
@@ -161,6 +161,21 @@ watchProject
 Operations should usually be coarse enough to avoid a chatty RPC boundary. Fast, temporary interface state may remain in the renderer; operations that enforce domain invariants, mutate canonical project data, persist changes, or create target artifacts belong behind the application boundary.
 
 For scale helpers, the UI collects parameters and presents candidates; the domain calculates them; an application operation coordinates creation of the selected tokens through normal domain validation. Later helper changes do not mutate existing tokens automatically.
+
+### Increment 007 storage direction
+
+**Agreed 9 November 2026; not implemented or technically qualified.**
+
+Use native IndexedDB for browser retention behind a small adapter, with strict-hint
+transaction-complete acknowledgement, Web Locks for project editing ownership and
+atomic expected-revision checks. Keep live-session outcome reconciliation bounded;
+no durable intent journal is selected. Retain ordinary background ownership.
+A later Electron filesystem adapter shares canonical representation/validation and
+application contracts; it does not reuse browser storage APIs. Version concepts for
+storage layout, authored envelope and portable backup remain distinct. Full codec,
+parser and resource choices, exact supported browser builds and technical qualification
+remain pending. The [agreed direction](../increments/007-storage-acknowledgement-and-concurrency-proposal.md)
+owns details and unselected alternatives. This agreement does not authorize implementation.
 
 ### Increment 007 read and write boundary direction
 
@@ -379,10 +394,10 @@ The direction approval alone did not authorize implementation. After technical p
 This direction does not yet select:
 
 - future upgrades or broader browser qualification beyond the installed Increment 003 renderer/component pins and scoped evidence;
-- canonical persistence format or database;
+- canonical persistence format; IndexedDB is the agreed Increment 007 browser database direction, pending qualification;
 - any future monorepo topology or package split beyond the initial single-package scaffold;
 - exact RPC contract library or runtime-schema library;
-- browser persistence, backup, and file-access adapters;
+- detailed browser persistence implementation, backup and file-access adapters;
 - supported browsers and PWA hosting or update policy;
 - project manifest and on-disk layout;
 - plugin sandbox or extension system;
