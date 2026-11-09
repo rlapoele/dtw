@@ -167,6 +167,19 @@ qualification remains pending, and D-6 codec/parser/resource choices remain open
 Version separation and rejecting unsupported versions without speculative migrations
 are agreed. No final contract/design agreement or implementation authorization follows.
 
+The [format/decoder/resource proposal](../increments/007-format-decoder-and-resource-proposal.md)
+now supplies concrete F-1–F-5 choices for user review: one versioned UTF-8 JSON
+backup wrapper; strict duplicate-aware/prototype-safe decoding; proposed
+`jsonc-parser` 3.3.1 pin; explicit unmeasured admission ceilings; separate bounded
+derived evaluation that preserves valid authored ASTs. Size/work limits newly
+exclude some previously unbounded cases and require explicit agreement, not silent
+redefinition of support. D-6 remains open. The
+[storage/concurrency qualification plan](../increments/007-storage-concurrency-qualification-plan.md)
+identifies future mechanism and implementation cases, fixtures, environment capture
+and stop criteria. No tests, storage experiments, package installs or browser
+qualification ran; final contract/design agreement and implementation authorization
+remain pending.
+
 1. What is the canonical source-of-truth file format?
 2. What constitutes stable project identity, and how is it preserved when a workspace moves?
 3. Should canonical persistence itself use DTCG, extend it, or use a separate project model with DTCG import/export?

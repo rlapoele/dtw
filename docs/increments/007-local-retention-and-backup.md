@@ -250,6 +250,21 @@ specifies its revision safety and recovery details. Broader canonical file layou
 future migrations, privacy profiles, cross-host persistence and future history
 policies remain outside this bounded agreement. See [open questions](../planning/open-questions.md#persistence-and-project-structure).
 
+## Remaining format/resources proposal and qualification plan
+
+**Prepared for user review — 9 November 2026:** the
+[format, decoder and resource proposal](007-format-decoder-and-resource-proposal.md)
+provides F-1–F-5: exact portable UTF-8 JSON wrapper/version concepts, strict decoding,
+a proposed pinned parsing dependency, unmeasured admission limits and separate
+bounded derived evaluation. New size/work ceilings require explicit agreement;
+they do not silently narrow the agreed coverage or authorize normalization.
+The [qualification plan](007-storage-concurrency-qualification-plan.md) maps AC-1–19
+and agreed policies to future fixtures, race barriers, environments and pass/fail
+evidence. It separates a separately authorized disposable mechanism harness from
+later implementation acceptance. No experiment, installation or app change ran.
+D-6 remains open; actual D-1/D-4/D-5 qualification remains pending. Final agreement
+and implementation authorization remain pending.
+
 ## Verification approach
 
 - Application/port tests map AC-1–8/14–17 to detached snapshots and focused async fake
