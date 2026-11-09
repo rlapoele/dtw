@@ -126,3 +126,90 @@ The [Draft](007-local-retention-and-backup.md) preserves AC-1–19 and adds AC-2
 for explicit baseline parity and the V3 state obligations. No policy or criterion is
 relaxed to fit the specimen. Documentation checks are hash/byte identity, source/
 prose/link review and `git diff --check`; no fresh application verification is claimed.
+
+## Revision 2 recheck — 9 November 2026
+
+**V3-R1 closed for this design review. No remaining blocking design finding in the
+reviewed flows; full production parity is not certified.** The user approved this
+identified correction for renewed analyst review only. The original review/finding
+above remains historical; final contract/design agreement and implementation
+remain pending.
+
+Reviewed clean HEAD `2805b0cb702f86177b3010710ebf06e9c85187c2`, containing the
+[revision-2 manifest](../../output/increment-007-prototype-v3/revision-2/manifest.json)
+(base `52e8009`, ten files). Manifest SHA-256:
+`fd493c34f89bd473afe58f406f23c8c9e7b89a69b0ff5ca1a8187566b5d4c8c6`.
+Independently verified all ten hashes and byte sizes; V1/V2 original hashes match.
+Revision-2 [observations](../../output/increment-007-prototype-v3/revision-2/observations.md)
+and images are coordinator evidence, not analyst execution. They cover local-form
+recovery/failed check, safe/unsafe exit, accepted/rejected outcomes and representative
+list/inspector paths, plus isolated type/build checks. No analyst browser/test/build
+run or user-tab operation occurred.
+
+### V3-R1 source recheck and disposition
+
+`main.tsx:102` passes the root attempt's `recoveryMessage`, `exitSafe`, `onCheck`
+and `onLeave` into Supplement. Its local dialog (`Supplement.tsx:100–110`) now
+renders Check retained result and Review before leaving within the active focus
+boundary. Failed checks reuse root feedback without resetting form state. Duplicate
+Create/Cancel stay blocked while unknown; checking invokes the existing root
+reconciliation, not a new command or creation ID.
+
+Departure review replaces local dialog content, keeps the live form state, initially
+focuses Stay here (`49/101–103`), and Escape/Stay returns to the preserved name field
+through the existing focus request. Unsafe Leave is disabled; safe Leave invokes
+root `leaveUnknown`, which clears the simulated pending callback and returns to
+Projects without resubmission. Known acceptance publishes once and invokes the
+original form-completion callback; known rejection does not invoke it, retains the
+fields and enables correction only after unknown clears (`main.tsx:45–65`, Supplement
+submit callback). Coordinator observations support these selected paths, including
+exact whitespace/multiline inputs. These simulated callback semantics do not prove
+actual cancellation fencing, late transaction handling or durable concurrency safety.
+
+### Independent inspector content comparison
+
+Compared the entire current production Editor, ColorFields, App-owned feedback,
+TokenList, session and Increment 005/006 requirements to revision-2 source, not just
+the designer's matrix. Core inspector sections/controls are present:
+
+| Production content | Revision-2 source disposition / evidence limit |
+| --- | --- |
+| Header Applied/Draft context; heading/description/type/layer/eligibility | Present in BaselineInspector `35–41`; authored/resolved tab changes preserve appropriate Applied context. Header eligibility/unavailable branches and absent-description fallback are not fully equivalent; see C-1 below. |
+| Three exact component inputs/eligible sliders, alpha input/slider, five views, normalized/integer RGB scale and approximation notes | Production ColorFields/session reused. Coordinator exercised representative passive view/scale exactness. No exhaustive per-channel, unavailable-range, powerless/missing or numerical edge-case parity claim. |
+| Literal/reference source controls, target choices/note, preview, Value/Draft status, Apply/Cancel/completion | Present (`42–49` and supplied actions). Pending/unknown guards add the reviewed async state. Ordinary source-switch dirty behavior/Cancel remain prototype composition differences, not replacements for production semantics; validation association caveat C-2 remains. |
+| Currently applied; metadata regeneration/role/parent; raw authored/identity details | Present (`51–52`); group labels derive identity-safe names with exact IDs in details. Component/removal recovery supplements inspection. UI-shaped specimen backup still does not define canonical codec. |
+| Authored/Resolved & trace tabs; Applied value badge; resolved/unresolved data/specimen; trace IDs/targets and diagnostics | Present (`37–38/54`), with separate resource-unavailable state. Representative alias trace observed; complete diagnostic/eligibility branches not runtime-certified. |
+| Separate regeneration footer and list content | Footer present (`56`); production TokenList still supplies swatches, responsive descriptions, layer/type, names and authored summaries. Source presence does not prove production scrolling/layout or full shell/navigation parity. |
+
+Two concrete nonblocking **specimen fidelity caveats**, retained as production
+AC-18/20 obligations rather than silently waived:
+
+- **C-1 — ordinary missing-data/header fallbacks:** production Editor uses
+  `token.description ?? 'No description'`; BaselineInspector `36` uses removed-input
+  wording instead. Its fixture Token requires a description string, so it does not
+  actually demonstrate the ordinary existing-token/absent-description case. Likewise,
+  App gates header specimens on eligibility and shows Unavailable/Inspection only/
+  Select a token; BaselineInspector always renders its specimen header. Production
+  must retain truthful no-description and appropriate eligibility/unavailable/empty-
+  selection feedback; do not apply removed-target recovery wording to existing data.
+- **C-2 — candidate-error association:** Supplement `95` renders invalid draft text
+  under `draft-error`, while ColorFields/reference controls describe `editor-error`
+  and BaselineInspector `47` fills that target only for its separate field/view error.
+  Thus presence of original field-error UI does not establish associated candidate
+  errors. Production must associate each invalid-draft/error with its actual controls
+  and preserve accessible status/focus; test normalized and byte invalid input and
+  reference/candidate failure paths explicitly.
+
+These caveats do not recreate the modal trap or require full exploratory-shell
+parity. They prevent claiming the whole original inspector is behaviorally identical.
+The Draft now names these fallback/error obligations without changing AC IDs or
+weakening preserved production behavior. No prototype correction is made here.
+
+### Current readiness
+
+The required V3-R1 correction has been reviewed; no new material flow contradiction
+was found. Remaining scheduling/placement and bounded support/qualification handoff
+from the original review stay open. Stage A remains partial and the worker option
+unselected; implementation/Stage B, full accessibility/responsive/parity checks and
+final contract/design agreement are not inferred from this closure. All P/S/F policy
+agreements, Draft / Not started and the separate implementation gate are preserved.

@@ -5,11 +5,13 @@
 - Agreement: direction and isolated prototype preparation agreed 9 November;
   user subsequently approved identified V1 **for analyst review only** and V2
   **for renewed analyst review only** on that date. V3 was also approved for renewed
-  analyst review, with explicit production-baseline preservation; one required
-  design finding remains in the V3 review.
+  analyst review, with explicit production-baseline preservation. Revision 2 was
+  subsequently approved for renewed analyst review; V3-R1 is closed at design level,
+  with documented specimen fidelity caveats and production obligations.
   Final contract/design agreement and implementation authorization remain pending.
 - Production baseline: `4171dbc`; V1 review snapshot: `3b69671`; V2: `7014e75`;
-  V3: base `50d9f67` plus its frozen ten-file manifest.
+  V3 original: base `50d9f67` plus frozen manifest; revision 2: committed `2805b0c`
+  with its separate ten-file manifest (artifact base `52e8009`).
 
 ## Outcome
 
@@ -89,8 +91,8 @@ project can still have unavailable content.
 ## Acceptance criteria
 
 These IDs are stable draft criteria. D-2/D-3, S-1–S-6 and F-1–F-5 policies are
-agreed below. Remaining scheduling/placement, supported-build scope, required design
-correction and qualification/Stage B evidence are distinguished from those agreements;
+agreed below. Remaining scheduling/placement, supported-build scope and
+qualification/Stage B evidence are distinguished from those agreements;
 no acceptance criterion is claimed implemented by prototype or Stage A evidence.
 
 - **AC-1 — Launch/catalogue:** launch shows Projects in this browser with New project,
@@ -212,7 +214,12 @@ no acceptance criterion is claimed implemented by prototype or Stage A evidence.
   existing keyboard/focus, pane/scroll and responsive behavior under prior contracts.
   Simplified V3 controls/content are permitted exploratory specimens only; they do
   not authorize removing/changing these production capabilities or invent new metadata
-  editing. Integrate pending/recovery/resource states into the existing owned controls.
+  editing. Retain truthful ordinary missing-description feedback (No description),
+  header eligibility/unavailable/empty-selection states and the separate regeneration
+  footer; removed-target recovery wording must not replace ordinary data fallbacks.
+  Associate actual invalid-draft/candidate errors with their fields and preserve
+  accessible error/status focus, including normalized/byte/reference failure paths.
+  Integrate pending/recovery/resource states into the existing owned controls.
 - **AC-21 — Local resource feedback:** distinguish incoming/candidate/retained-record/
   whole-backup admission refusal from unavailable derived evaluation and incomplete
   diagnostic display. Admission failure changes no retained state and preserves raw
@@ -335,10 +342,16 @@ in AC-20. [V3 analyst review](007-v3-analyst-review.md) identifies the frozen te
 [manifest](../../output/increment-007-prototype-v3/manifest.json) and
 [attributed evidence boundaries](../../output/increment-007-prototype-v3/observations.md).
 All ten hashes/byte sizes match; V1/V2 remain unchanged. Resource/refusal, recovered
-input, unknown-departure and all-content specimens are coherent in scope, but
-**V3-R1 remains required:** the Supplement token-creation modal has no reachable
-Check/Review-before-leaving actions after an unknown result. Correct it before final
-agreement; material changes return to user review before renewed analyst review.
+input, unknown-departure and all-content specimens are coherent in scope.
+**V3-R1 is closed by the renewed revision-2 review:** its active token form now
+exposes the same attempt's Check/failed-check and guarded safe-departure actions.
+The user approved that identified correction for renewed analyst review only.
+[Revision-2 manifest](../../output/increment-007-prototype-v3/revision-2/manifest.json)
+and [coordinator observations](../../output/increment-007-prototype-v3/revision-2/observations.md)
+identify the corrected snapshot and scoped browser evidence. The review records
+nonblocking missing-data/header fallback and invalid-draft error-association caveats;
+AC-18/20 explicitly preserve the production behavior. No blocking design finding
+remains in the reviewed flows; full prototype/production parity is not certified.
 
 Production scheduling/placement is still to be settled against the preserved
 main-thread responsiveness failure; Stage A's worker option is not selected by V3.
@@ -425,7 +438,12 @@ observations are attributed in the review and cannot establish these criteria.
 - V3: [design notes](../../prototypes/increment-007-v3/DESIGN-V3.md), frozen manifest
   and [analyst review](007-v3-analyst-review.md), approved for renewed analyst review
   on 9 November 2026. Final corrected composition has source/type/build evidence;
-  earlier images/sample do not verify its runtime. V3-R1 remains unresolved.
+  earlier images/sample do not verify that original composition's runtime.
+- V3 revision 2: user approved renewed analyst review on 9 November 2026;
+  [recheck](007-v3-analyst-review.md#revision-2-recheck--9-november-2026) closes V3-R1
+  at design level using the separate manifest, source and attributed observations.
+  Core inspector sections/controls are present, with documented fallback/error
+  fidelity caveats; production preservation remains binding. This is not final agreement.
 - Final contract/design agreement: pending. Implementation authorization: pending.
 
 ## Review baseline and amendments
