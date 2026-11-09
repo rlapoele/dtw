@@ -181,8 +181,8 @@ UTF-8 JSON portable backup and separate retained-record wrapper, strict duplicat
 aware boundary decoding using jsonc-parser 3.3.1, explicit admission ceilings and
 bounded derived work that preserves authored source. The
 [agreed format/resource policy](../increments/007-format-decoder-and-resource-proposal.md)
-owns exact representation and limits. Only isolated Stage A qualification, including
-its parser dependency, is authorized; production code/dependencies remain unchanged.
+owns exact representation and limits. Isolated Stage A and the agreed bounded worker
+qualification followup below are authorized; production code/dependencies remain unchanged.
 This bounded envelope does not settle a future multi-file desktop workspace layout.
 
 ### Increment 007 read and write boundary direction
@@ -209,6 +209,24 @@ Keep accepted before/after state available at the explicit atomic write boundary
 to support future undo/redo. No history representation, recording, lifetime,
 inverse-command mechanism or undo UI is part of Increment 007. This is bounded
 evolution of the existing application layer, not a history framework.
+
+**Browser execution placement agreed — 9 November 2026:** B-1–B-5 select one dedicated
+module worker per tab for coarse application reads/commands, codec/validation/derived
+work and native IndexedDB/Web Locks adapters. The renderer owns presentation and
+session-only raw inputs/attempt correlation, receiving bounded detached revisioned
+results. Worker APIs stay outside the host-independent application/domain core;
+there is one authoritative retained database and no generic RPC framework or worker
+pool. Worker availability is a required browser capability; failure handling preserves
+unknown-versus-rejected-versus-retained outcomes without synchronous fallback or replay.
+The [agreed placement and qualification gates](../increments/007-production-scheduling-and-browser-scope-proposal.md)
+own details, catalogue strategy and exact-build normal-profile Chrome/Safari targets.
+This broader placement is not qualified by the earlier codec-worker experiment.
+The user authorized its bounded isolated developer followup and independent review,
+not production implementation or final contract/design agreement.
+The [reviewed worker followup](../../output/increment-007-worker-qualification/independent-review.md)
+records partial native mechanism evidence and corrected harness findings. Its
+renderer responsiveness failure and remaining watchdog/HTTPS/host gaps prevent
+a blanket qualification claim; no new rendering approach is selected implicitly.
 
 ### First application-operation increment
 

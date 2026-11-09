@@ -1,0 +1,1452 @@
+{
+  "engine": "chrome",
+  "start": "2026-11-09T22:31:21.956Z",
+  "cases": [
+    {
+      "id": "W01-startup-csp-worker-capabilities",
+      "status": "pass",
+      "wallMs": 22,
+      "value": {
+        "secure": true,
+        "worker": true,
+        "indexedDB": true,
+        "locks": true,
+        "strict": "strict",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+      }
+    },
+    {
+      "id": "W02-strict-complete-abort-exact-prior",
+      "status": "pass",
+      "wallMs": 45,
+      "value": {
+        "accepted": {
+          "status": "retained",
+          "revision": "base",
+          "dispatchCompleteMs": 1.2000000001862645
+        },
+        "aborted": {
+          "status": "aborted",
+          "dispatchCompleteMs": 0.5
+        },
+        "after": {
+          "project": "",
+          "revision": "base",
+          "incarnation": "incarnation-1",
+          "projection": {
+            "name": "",
+            "first": {
+              "id": "v0",
+              "projectId": "",
+              "localName": "v0",
+              "parentGroupId": null,
+              "definition": {
+                "type": "color",
+                "assignments": [
+                  {
+                    "condition": [],
+                    "value": {
+                      "kind": "literal",
+                      "valueType": "color",
+                      "colorSpace": "srgb",
+                      "components": [
+                        "-0.0001",
+                        "none",
+                        "1.9"
+                      ],
+                      "alpha": "0"
+                    }
+                  }
+                ]
+              },
+              "authoring": {
+                "regeneration": "allowed"
+              }
+            },
+            "count": 32
+          },
+          "latest": {
+            "commandId": "base",
+            "operation": "restoreProject",
+            "result": {
+              "entityKind": "project",
+              "id": ""
+            }
+          },
+          "exactCoverage": true
+        },
+        "events": [
+          {
+            "seq": 1,
+            "type": "pageshow",
+            "time": 29.200000000186265,
+            "persisted": false,
+            "visibility": "visible"
+          },
+          {
+            "seq": 1,
+            "type": "module-ready",
+            "time": 63.10000000055879,
+            "event": true
+          },
+          {
+            "seq": 2,
+            "type": "lock-acquired",
+            "time": 213.30000000074506,
+            "event": true,
+            "project": ""
+          },
+          {
+            "seq": 3,
+            "type": "read-complete",
+            "time": 230.20000000018626,
+            "event": true,
+            "project": "",
+            "revision": null
+          },
+          {
+            "seq": 4,
+            "type": "prepared",
+            "time": 230.30000000074506,
+            "event": true,
+            "command": "base"
+          },
+          {
+            "seq": 5,
+            "type": "issued",
+            "time": 232.20000000018626,
+            "event": true,
+            "command": "base",
+            "project": "",
+            "durability": "strict"
+          },
+          {
+            "seq": 6,
+            "type": "request-success",
+            "time": 232.70000000018626,
+            "event": true,
+            "command": "base"
+          },
+          {
+            "seq": 7,
+            "type": "complete",
+            "time": 233.40000000037253,
+            "event": true,
+            "command": "base"
+          },
+          {
+            "seq": 8,
+            "type": "read-complete",
+            "time": 247.80000000074506,
+            "event": true,
+            "project": "",
+            "revision": "base"
+          },
+          {
+            "seq": 9,
+            "type": "prepared",
+            "time": 247.80000000074506,
+            "event": true,
+            "command": "aborted"
+          },
+          {
+            "seq": 10,
+            "type": "issued",
+            "time": 249.5,
+            "event": true,
+            "command": "aborted",
+            "project": "",
+            "durability": "strict"
+          },
+          {
+            "seq": 11,
+            "type": "request-success",
+            "time": 250,
+            "event": true,
+            "command": "aborted"
+          },
+          {
+            "seq": 12,
+            "type": "abort",
+            "time": 250,
+            "event": true,
+            "command": "aborted",
+            "reason": "aborted"
+          },
+          {
+            "seq": 13,
+            "type": "read-complete",
+            "time": 251.70000000018626,
+            "event": true,
+            "project": "",
+            "revision": "base"
+          }
+        ]
+      }
+    },
+    {
+      "id": "W03-worker-locks-both-orders-three",
+      "status": "pass",
+      "wallMs": 24,
+      "value": [
+        {
+          "reverse": false,
+          "i": 0,
+          "first": true,
+          "second": false,
+          "distinct": true
+        },
+        {
+          "reverse": false,
+          "i": 1,
+          "first": true,
+          "second": false,
+          "distinct": true
+        },
+        {
+          "reverse": false,
+          "i": 2,
+          "first": true,
+          "second": false,
+          "distinct": true
+        },
+        {
+          "reverse": true,
+          "i": 0,
+          "first": true,
+          "second": false,
+          "distinct": true
+        },
+        {
+          "reverse": true,
+          "i": 1,
+          "first": true,
+          "second": false,
+          "distinct": true
+        },
+        {
+          "reverse": true,
+          "i": 2,
+          "first": true,
+          "second": false,
+          "distinct": true
+        }
+      ]
+    },
+    {
+      "id": "W04-exact-transfer-opaque-surrogate-values",
+      "status": "pass",
+      "wallMs": 21,
+      "value": {
+        "exact": true,
+        "detached": true,
+        "counts": {
+          "values": 697,
+          "strings": 6626,
+          "lexical": 2607,
+          "maxDepth": 12,
+          "snapshotBytes": 10286,
+          "fileBytes": 10407
+        },
+        "fixtureSha256": "590682c07ab35318225b5e06f59ab6fee43b77e92f6b864b627db017bd414059"
+      }
+    },
+    {
+      "id": "W05a-worker-confirmed-cancel-no-future-dispatch",
+      "status": "pass",
+      "wallMs": 36,
+      "value": [
+        {
+          "cancel": {
+            "status": "never-dispatched",
+            "stopped": true
+          },
+          "late": {
+            "status": "never-dispatched"
+          },
+          "read": {
+            "project": "cancel0",
+            "absent": true,
+            "incarnation": "incarnation-1"
+          }
+        },
+        {
+          "cancel": {
+            "status": "never-dispatched",
+            "stopped": true
+          },
+          "late": {
+            "status": "never-dispatched"
+          },
+          "read": {
+            "project": "cancel1",
+            "absent": true,
+            "incarnation": "incarnation-1"
+          }
+        },
+        {
+          "cancel": {
+            "status": "never-dispatched",
+            "stopped": true
+          },
+          "late": {
+            "status": "never-dispatched"
+          },
+          "read": {
+            "project": "cancel2",
+            "absent": true,
+            "incarnation": "incarnation-1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "W05b-death-after-send-preserved-input-ordered-check",
+      "status": "fail",
+      "wallMs": 35,
+      "error": "Error: page.evaluate: Error: Error: attempt\n    at worker.onmessage (http://127.0.0.1:52226/research/increment-007-worker-qualification/page.mjs:7:279)"
+    },
+    {
+      "id": "W05c-publication-identity-fence",
+      "status": "pass",
+      "wallMs": 1,
+      "value": {
+        "matching": true,
+        "wrongProject": false,
+        "oldGeneration": false
+      }
+    },
+    {
+      "id": "W06-coherent-read-and-cursor-summary",
+      "status": "pass",
+      "wallMs": 12,
+      "value": {
+        "one": {
+          "project": "",
+          "revision": "base",
+          "incarnation": "incarnation-1",
+          "projection": {
+            "name": "",
+            "first": {
+              "id": "v0",
+              "projectId": "",
+              "localName": "v0",
+              "parentGroupId": null,
+              "definition": {
+                "type": "color",
+                "assignments": [
+                  {
+                    "condition": [],
+                    "value": {
+                      "kind": "literal",
+                      "valueType": "color",
+                      "colorSpace": "srgb",
+                      "components": [
+                        "-0.0001",
+                        "none",
+                        "1.9"
+                      ],
+                      "alpha": "0"
+                    }
+                  }
+                ]
+              },
+              "authoring": {
+                "regeneration": "allowed"
+              }
+            },
+            "count": 32
+          },
+          "latest": {
+            "commandId": "base",
+            "operation": "restoreProject",
+            "result": {
+              "entityKind": "project",
+              "id": ""
+            }
+          },
+          "exactCoverage": true
+        },
+        "rows": {
+          "rows": [
+            {
+              "project": "",
+              "name": "",
+              "tokens": 32,
+              "groups": 2,
+              "revision": "base",
+              "status": "supported"
+            }
+          ],
+          "bytes": 10251,
+          "workerMs": 2.6000000005587935
+        }
+      }
+    },
+    {
+      "id": "W07-revision-protection-capacity-subsets",
+      "status": "pass",
+      "wallMs": 274,
+      "value": {
+        "stale": {
+          "status": "revision-conflict",
+          "dispatchCompleteMs": 0.30000000074505806
+        },
+        "protection": {
+          "status": "protection-conflict",
+          "dispatchCompleteMs": 0.2999999998137355
+        },
+        "full": {
+          "status": "capacity",
+          "dispatchCompleteMs": 0.20000000018626451
+        },
+        "rows": 25
+      }
+    },
+    {
+      "id": "W08-cold-worker-startup",
+      "status": "pass",
+      "wallMs": 424,
+      "value": [
+        {
+          "ms": 77,
+          "c": {
+            "secure": true,
+            "worker": true,
+            "indexedDB": true,
+            "locks": true,
+            "strict": "strict",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+          }
+        },
+        {
+          "ms": 60,
+          "c": {
+            "secure": true,
+            "worker": true,
+            "indexedDB": true,
+            "locks": true,
+            "strict": "strict",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+          }
+        },
+        {
+          "ms": 63,
+          "c": {
+            "secure": true,
+            "worker": true,
+            "indexedDB": true,
+            "locks": true,
+            "strict": "strict",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+          }
+        }
+      ]
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-100",
+      "status": "pass",
+      "wallMs": 538,
+      "value": {
+        "warmup": 1,
+        "samples": [
+          {
+            "encodeMs": 6.599999999627471,
+            "decodeMs": 6.2999999998137355,
+            "workerMs": 13,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 14.5,
+            "rendererDomMs": 0.599999999627471,
+            "endToPaintMs": 31.700000000186265,
+            "longTasks": [],
+            "eventLoopLags": [
+              6.400000000372529,
+              0
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 8.200000000186265,
+            "decodeMs": 3.2999999998137355,
+            "workerMs": 11.5,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 12.599999999627471,
+            "rendererDomMs": 0.2999999998137355,
+            "endToPaintMs": 15.099999999627471,
+            "longTasks": [],
+            "eventLoopLags": [
+              3.8999999994412065
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 4.099999999627471,
+            "decodeMs": 2.5,
+            "workerMs": 6.599999999627471,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 7.599999999627471,
+            "rendererDomMs": 0.20000000018626451,
+            "endToPaintMs": 14.299999999813735,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              0
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 7.3999999994412065,
+            "decodeMs": 2.6000000005587935,
+            "workerMs": 10.100000000558794,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 10.899999999441206,
+            "rendererDomMs": 0.20000000018626451,
+            "endToPaintMs": 16,
+            "longTasks": [],
+            "eventLoopLags": [
+              7.900000000372529
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 3.599999999627471,
+            "decodeMs": 4.2999999998137355,
+            "workerMs": 7.8999999994412065,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 8.900000000372529,
+            "rendererDomMs": 0.2999999998137355,
+            "endToPaintMs": 15,
+            "longTasks": [],
+            "eventLoopLags": [
+              0.599999999627471
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 6.300000000745058,
+            "decodeMs": 5.599999999627471,
+            "workerMs": 11.900000000372529,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 14.599999999627471,
+            "rendererDomMs": 0.599999999627471,
+            "endToPaintMs": 23.399999999441206,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              5.099999999627471
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 8.700000000186265,
+            "decodeMs": 6.400000000372529,
+            "workerMs": 15.100000000558794,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 17.299999999813735,
+            "rendererDomMs": 0.599999999627471,
+            "endToPaintMs": 31.5,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              1.5,
+              0
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 3.7000000001862645,
+            "decodeMs": 2.599999999627471,
+            "workerMs": 6.2999999998137355,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 7.599999999627471,
+            "rendererDomMs": 0.7000000001862645,
+            "endToPaintMs": 14.200000000186265,
+            "longTasks": [],
+            "eventLoopLags": [
+              4.800000000745058,
+              0
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 9.200000000186265,
+            "decodeMs": 4.2999999998137355,
+            "workerMs": 13.599999999627471,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 16.90000000037253,
+            "rendererDomMs": 0.599999999627471,
+            "endToPaintMs": 31.90000000037253,
+            "longTasks": [],
+            "eventLoopLags": [
+              0.10000000055879354,
+              0.599999999627471,
+              0
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 7.400000000372529,
+            "decodeMs": 2.099999999627471,
+            "workerMs": 9.699999999254942,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 11.5,
+            "rendererDomMs": 0.7999999998137355,
+            "endToPaintMs": 15.400000000372529,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              2.099999999627471
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 7,
+            "decodeMs": 5.7999999998137355,
+            "workerMs": 12.899999999441206,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 14.200000000186265,
+            "rendererDomMs": 0.2999999998137355,
+            "endToPaintMs": 30.600000000558794,
+            "longTasks": [],
+            "eventLoopLags": [
+              0.6000000005587935,
+              0,
+              0
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 5.900000000372529,
+            "decodeMs": 4,
+            "workerMs": 9.900000000372529,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 13.200000000186265,
+            "rendererDomMs": 0.599999999627471,
+            "endToPaintMs": 15.700000000186265,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              3.7000000001862645
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 5.900000000372529,
+            "decodeMs": 3.5,
+            "workerMs": 9.400000000372529,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 10.899999999441206,
+            "rendererDomMs": 0.40000000037252903,
+            "endToPaintMs": 14,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              0
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 7.900000000372529,
+            "decodeMs": 5.2999999998137355,
+            "workerMs": 13.200000000186265,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 14.099999999627471,
+            "rendererDomMs": 0.30000000074505806,
+            "endToPaintMs": 15.900000000372529,
+            "longTasks": [],
+            "eventLoopLags": [
+              6.5
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 6.7000000001862645,
+            "decodeMs": 6.7999999998137355,
+            "workerMs": 13.700000000186265,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 15,
+            "rendererDomMs": 0.599999999627471,
+            "endToPaintMs": 30,
+            "longTasks": [],
+            "eventLoopLags": [
+              6.599999999627471,
+              0
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 9.600000000558794,
+            "decodeMs": 5.599999999627471,
+            "workerMs": 15.299999999813735,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 17,
+            "rendererDomMs": 0.7000000001862645,
+            "endToPaintMs": 31.200000000186265,
+            "longTasks": [],
+            "eventLoopLags": [
+              9.099999999627471,
+              0
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 11,
+            "decodeMs": 4.900000000372529,
+            "workerMs": 16,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 20.09999999962747,
+            "rendererDomMs": 0.7000000001862645,
+            "endToPaintMs": 31.200000000186265,
+            "longTasks": [],
+            "eventLoopLags": [
+              17.600000000558794,
+              0
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 9.400000000372529,
+            "decodeMs": 5.7999999998137355,
+            "workerMs": 15.299999999813735,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 16.300000000745058,
+            "rendererDomMs": 0.599999999627471,
+            "endToPaintMs": 31.40000000037253,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              7,
+              0
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 9.900000000372529,
+            "decodeMs": 6.7999999998137355,
+            "workerMs": 16.799999999813735,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 19.59999999962747,
+            "rendererDomMs": 0.6000000005587935,
+            "endToPaintMs": 31.09999999962747,
+            "longTasks": [],
+            "eventLoopLags": [
+              12,
+              0
+            ],
+            "rendererByteLength": 23273
+          },
+          {
+            "encodeMs": 7.5,
+            "decodeMs": 5.400000000372529,
+            "workerMs": 13,
+            "exact": true,
+            "counts": {
+              "values": 1606,
+              "strings": 14523,
+              "lexical": 6142,
+              "maxDepth": 8,
+              "snapshotBytes": 23152,
+              "fileBytes": 23273
+            },
+            "roundtripMs": 14.900000000372529,
+            "rendererDomMs": 0.5,
+            "endToPaintMs": 31,
+            "longTasks": [],
+            "eventLoopLags": [
+              12.199999999254942,
+              1.800000000745058
+            ],
+            "rendererByteLength": 23273
+          }
+        ]
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-1000",
+      "status": "pass",
+      "wallMs": 3228,
+      "value": {
+        "warmup": 1,
+        "samples": [
+          {
+            "encodeMs": 71.70000000018626,
+            "decodeMs": 54.5,
+            "workerMs": 126.40000000037253,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 140.80000000074506,
+            "rendererDomMs": 2.699999999254942,
+            "endToPaintMs": 155.70000000018626,
+            "longTasks": [],
+            "eventLoopLags": [
+              21.200000000186265,
+              21.59999999962747,
+              58.90000000037253,
+              16.399999999441206
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 87.79999999981374,
+            "decodeMs": 37.299999999813735,
+            "workerMs": 125.3999999994412,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 136.40000000037253,
+            "rendererDomMs": 2.2000000001862645,
+            "endToPaintMs": 150.40000000037253,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              38,
+              0,
+              0,
+              23,
+              41.59999999962747
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 38.69999999925494,
+            "decodeMs": 25.5,
+            "workerMs": 64.3999999994412,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 77.1000000005588,
+            "rendererDomMs": 1.7000000001862645,
+            "endToPaintMs": 88.20000000018626,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              62.299999999813735,
+              1.400000000372529
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 47.90000000037253,
+            "decodeMs": 46.799999999813735,
+            "workerMs": 94.70000000018626,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 103.30000000074506,
+            "rendererDomMs": 0.8999999994412065,
+            "endToPaintMs": 111,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              43.5,
+              0,
+              25.399999999441206,
+              0
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 59.09999999962747,
+            "decodeMs": 68.29999999981374,
+            "workerMs": 127.79999999981374,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 152.70000000018626,
+            "rendererDomMs": 4,
+            "endToPaintMs": 171.79999999981374,
+            "longTasks": [],
+            "eventLoopLags": [
+              3.5,
+              71.29999999981374,
+              50.700000000186265,
+              11.299999999813735
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 89.5,
+            "decodeMs": 67.79999999981374,
+            "workerMs": 157.5,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 167.70000000018626,
+            "rendererDomMs": 3.2000000001862645,
+            "endToPaintMs": 178.90000000037253,
+            "longTasks": [],
+            "eventLoopLags": [
+              0.5,
+              42.299999999813735,
+              51,
+              47.10000000055879
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 75.5,
+            "decodeMs": 52.200000000186265,
+            "workerMs": 127.8999999994412,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 138.70000000018626,
+            "rendererDomMs": 2.400000000372529,
+            "endToPaintMs": 163.5,
+            "longTasks": [],
+            "eventLoopLags": [
+              78.79999999981374,
+              66.3999999994412
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 91.1000000005588,
+            "decodeMs": 72.09999999962747,
+            "workerMs": 163.5,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 191.5,
+            "rendererDomMs": 3.7000000001862645,
+            "endToPaintMs": 212.09999999962747,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              93.5,
+              26.40000000037253,
+              58.700000000186265
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 62.89999999944121,
+            "decodeMs": 46,
+            "workerMs": 109.09999999962747,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 123.40000000037253,
+            "rendererDomMs": 4,
+            "endToPaintMs": 143.59999999962747,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              96.40000000037253,
+              21.09999999962747
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 73.40000000037253,
+            "decodeMs": 61.200000000186265,
+            "workerMs": 135.1000000005588,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 150.30000000074506,
+            "rendererDomMs": 3.7999999998137355,
+            "endToPaintMs": 170.70000000018626,
+            "longTasks": [],
+            "eventLoopLags": [
+              17.700000000186265,
+              14.099999999627471,
+              112.6000000005588
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 71.6000000005588,
+            "decodeMs": 55.700000000186265,
+            "workerMs": 127.6000000005588,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 139.70000000018626,
+            "rendererDomMs": 7.7999999998137355,
+            "endToPaintMs": 156.79999999981374,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              0,
+              98.79999999981374,
+              25.799999999813735
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 58.90000000037253,
+            "decodeMs": 23.699999999254942,
+            "workerMs": 82.79999999981374,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 97.80000000074506,
+            "rendererDomMs": 1.7999999998137355,
+            "endToPaintMs": 123.90000000037253,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              58,
+              45.700000000186265
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 73.3999999994412,
+            "decodeMs": 46.10000000055879,
+            "workerMs": 119.80000000074506,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 135.59999999962747,
+            "rendererDomMs": 5.5,
+            "endToPaintMs": 152.5,
+            "longTasks": [],
+            "eventLoopLags": [
+              1.599999999627471,
+              35.90000000037253,
+              9.099999999627471,
+              6.6000000005587935,
+              52.89999999944121
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 85.3999999994412,
+            "decodeMs": 38.60000000055879,
+            "workerMs": 124.40000000037253,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 137.8999999994412,
+            "rendererDomMs": 2.099999999627471,
+            "endToPaintMs": 157.09999999962747,
+            "longTasks": [],
+            "eventLoopLags": [
+              9.800000000745058,
+              35.59999999962747,
+              86.40000000037253
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 69.79999999981374,
+            "decodeMs": 52.40000000037253,
+            "workerMs": 122.5,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 143,
+            "rendererDomMs": 3.7000000001862645,
+            "endToPaintMs": 160.20000000018626,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              12.399999999441206,
+              0,
+              93.3999999994412,
+              12.299999999813735
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 78.5,
+            "decodeMs": 39.700000000186265,
+            "workerMs": 118.6000000005588,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 131.59999999962747,
+            "rendererDomMs": 1.900000000372529,
+            "endToPaintMs": 143.09999999962747,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              66.5,
+              35.89999999944121,
+              8.200000000186265
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 71.70000000018626,
+            "decodeMs": 28.200000000186265,
+            "workerMs": 100.1000000005588,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 111,
+            "rendererDomMs": 2,
+            "endToPaintMs": 120.90000000037253,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              66,
+              27.799999999813735
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 50.799999999813735,
+            "decodeMs": 40.200000000186265,
+            "workerMs": 91.29999999981374,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 102.40000000037253,
+            "rendererDomMs": 4.599999999627471,
+            "endToPaintMs": 119.29999999981374,
+            "longTasks": [],
+            "eventLoopLags": [
+              27.700000000186265,
+              13.400000000372529,
+              51.09999999962747
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 81.29999999981374,
+            "decodeMs": 35.59999999962747,
+            "workerMs": 117.3999999994412,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 126.09999999962747,
+            "rendererDomMs": 2.2999999998137355,
+            "endToPaintMs": 139.8999999994412,
+            "longTasks": [],
+            "eventLoopLags": [
+              0,
+              84.1000000005588,
+              32.299999999813735
+            ],
+            "rendererByteLength": 232973
+          },
+          {
+            "encodeMs": 64.20000000018626,
+            "decodeMs": 52.09999999962747,
+            "workerMs": 116.3999999994412,
+            "exact": true,
+            "counts": {
+              "values": 16006,
+              "strings": 146823,
+              "lexical": 61042,
+              "maxDepth": 8,
+              "snapshotBytes": 232852,
+              "fileBytes": 232973
+            },
+            "roundtripMs": 139.3999999994412,
+            "rendererDomMs": 10.5,
+            "endToPaintMs": 165.59999999962747,
+            "longTasks": [],
+            "eventLoopLags": [
+              55.299999999813735,
+              0,
+              85.79999999981374
+            ],
+            "rendererByteLength": 232973
+          }
+        ]
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max",
+      "status": "fail",
+      "wallMs": 30036,
+      "error": "Error: page.evaluate: Target page, context or browser has been closed"
+    }
+  ],
+  "source": {
+    "worker.mjs": "a0e383d8886af9b8200882561d463902a85473d526a485a7541aadefa2a119b4",
+    "page.mjs": "a667a49c67d772be09e7e2c9b4d3b0669783728d0159d77eac8c591ef3c7645d",
+    "protocol.mjs": "835971d4aa4da58fdb619d7553f1e2a08f0ac184700d5b8d7eb0f84360787a92",
+    "run.mjs": "23ce675c29638450375ea0f21aa4969f53bc7899a614ff196e12906ea427466b",
+    "server.mjs": "f40b69ca9e0a16156b1fd36778f48b1b3e53dcd9b6db5b8e0675d2cf151776b8"
+  },
+  "scope": "Synthetic worker boundary and DOM, not production application/React parity",
+  "environment": {
+    "macOS": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B123\n",
+    "node": "v24.14.1",
+    "hardware": "Mac15,6 Apple M3 Pro 36 GiB"
+  },
+  "origin": "http://127.0.0.1:52226",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-worker-qualification-i9QbMA",
+  "pid": 13160,
+  "browserVersion": "157.0.8103.50",
+  "profileMode": "normal persistent disposable profile",
+  "watchdog": {
+    "id": "W08-worker-codec-transfer-dom-max",
+    "elapsed": 30001,
+    "action": "SIGKILL own disposable Chrome child"
+  },
+  "error": "Error: page.evaluate: Target page, context or browser has been closed",
+  "end": "2026-11-09T22:31:57.441Z"
+}

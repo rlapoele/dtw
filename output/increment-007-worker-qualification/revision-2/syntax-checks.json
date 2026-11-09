@@ -1,0 +1,62 @@
+[
+  {
+    "file": "research/increment-007-worker-qualification/worker.mjs",
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "file": "research/increment-007-worker-qualification/run.mjs",
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "file": "research/increment-007-worker-qualification/manual.mjs",
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "file": "research/increment-007-worker-qualification/chrome-manual-smoke.mjs",
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "file": "research/increment-007-worker-qualification/summarize.mjs",
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "file": "research/increment-007-worker-qualification/page.mjs",
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "file": "research/increment-007-worker-qualification/protocol.test.mjs",
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "file": "research/increment-007-worker-qualification/protocol.mjs",
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "file": "research/increment-007-worker-qualification/revision-2-regressions.mjs",
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "file": "research/increment-007-worker-qualification/automated-page.mjs",
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "file": "research/increment-007-worker-qualification/chrome-host.mjs",
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "file": "research/increment-007-worker-qualification/server.mjs",
+    "exitCode": 0,
+    "stderr": ""
+  }
+]

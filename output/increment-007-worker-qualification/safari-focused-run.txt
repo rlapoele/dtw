@@ -1,0 +1,8 @@
+START safari W01-startup-csp-worker-capabilities
+END W01-startup-csp-worker-capabilities pass
+START safari W05b-death-after-send-preserved-input-ordered-check
+END W05b-death-after-send-preserved-input-ordered-check pass
+START safari W05d-missing-metadata-counterexample
+END W05d-missing-metadata-counterexample pass
+START safari W08-cold-worker-startup
+END W08-cold-worker-startup pass

@@ -1,0 +1,1851 @@
+{
+  "engine": "chrome",
+  "start": "2026-11-09T22:35:20.935Z",
+  "cases": [
+    {
+      "id": "W01-startup-csp-worker-capabilities",
+      "status": "pass",
+      "wallMs": 25,
+      "value": {
+        "secure": true,
+        "worker": true,
+        "indexedDB": true,
+        "locks": true,
+        "strict": "strict",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+      }
+    },
+    {
+      "id": "W02-strict-complete-abort-exact-prior",
+      "status": "pass",
+      "wallMs": 96,
+      "value": {
+        "accepted": {
+          "status": "retained",
+          "revision": "base",
+          "dispatchCompleteMs": 1.7999999998137355
+        },
+        "aborted": {
+          "status": "aborted",
+          "dispatchCompleteMs": 0.599999999627471
+        },
+        "after": {
+          "project": "",
+          "revision": "base",
+          "incarnation": "incarnation-1",
+          "projection": {
+            "name": "",
+            "first": {
+              "id": "v0",
+              "projectId": "",
+              "localName": "v0",
+              "parentGroupId": null,
+              "definition": {
+                "type": "color",
+                "assignments": [
+                  {
+                    "condition": [],
+                    "value": {
+                      "kind": "literal",
+                      "valueType": "color",
+                      "colorSpace": "srgb",
+                      "components": [
+                        "-0.0001",
+                        "none",
+                        "1.9"
+                      ],
+                      "alpha": "0"
+                    }
+                  }
+                ]
+              },
+              "authoring": {
+                "regeneration": "allowed"
+              }
+            },
+            "count": 32
+          },
+          "latest": {
+            "commandId": "base",
+            "operation": "restoreProject",
+            "result": {
+              "entityKind": "project",
+              "id": ""
+            }
+          },
+          "exactCoverage": true
+        },
+        "events": [
+          {
+            "seq": 1,
+            "type": "pageshow",
+            "time": 57.09999999962747,
+            "persisted": false,
+            "visibility": "visible"
+          },
+          {
+            "seq": 1,
+            "type": "module-ready",
+            "time": 95.59999999962747,
+            "event": true
+          },
+          {
+            "seq": 2,
+            "type": "lock-acquired",
+            "time": 198.79999999981374,
+            "event": true,
+            "project": ""
+          },
+          {
+            "seq": 3,
+            "type": "read-complete",
+            "time": 245,
+            "event": true,
+            "project": "",
+            "revision": null
+          },
+          {
+            "seq": 4,
+            "type": "prepared",
+            "time": 245,
+            "event": true,
+            "command": "base"
+          },
+          {
+            "seq": 5,
+            "type": "issued",
+            "time": 247.40000000037253,
+            "event": true,
+            "command": "base",
+            "project": "",
+            "durability": "strict"
+          },
+          {
+            "seq": 6,
+            "type": "request-success",
+            "time": 248.20000000018626,
+            "event": true,
+            "command": "base"
+          },
+          {
+            "seq": 7,
+            "type": "complete",
+            "time": 249.09999999962747,
+            "event": true,
+            "command": "base"
+          },
+          {
+            "seq": 8,
+            "type": "read-complete",
+            "time": 278.20000000018626,
+            "event": true,
+            "project": "",
+            "revision": "base"
+          },
+          {
+            "seq": 9,
+            "type": "prepared",
+            "time": 278.40000000037253,
+            "event": true,
+            "command": "aborted"
+          },
+          {
+            "seq": 10,
+            "type": "issued",
+            "time": 280.20000000018626,
+            "event": true,
+            "command": "aborted",
+            "project": "",
+            "durability": "strict"
+          },
+          {
+            "seq": 11,
+            "type": "request-success",
+            "time": 280.79999999981374,
+            "event": true,
+            "command": "aborted"
+          },
+          {
+            "seq": 12,
+            "type": "abort",
+            "time": 280.79999999981374,
+            "event": true,
+            "command": "aborted",
+            "reason": "aborted"
+          },
+          {
+            "seq": 13,
+            "type": "read-complete",
+            "time": 287.29999999981374,
+            "event": true,
+            "project": "",
+            "revision": "base"
+          }
+        ]
+      }
+    },
+    {
+      "id": "W03-worker-locks-both-orders-three",
+      "status": "pass",
+      "wallMs": 26,
+      "value": [
+        {
+          "reverse": false,
+          "i": 0,
+          "first": true,
+          "second": false,
+          "distinct": true
+        },
+        {
+          "reverse": false,
+          "i": 1,
+          "first": true,
+          "second": false,
+          "distinct": true
+        },
+        {
+          "reverse": false,
+          "i": 2,
+          "first": true,
+          "second": false,
+          "distinct": true
+        },
+        {
+          "reverse": true,
+          "i": 0,
+          "first": true,
+          "second": false,
+          "distinct": true
+        },
+        {
+          "reverse": true,
+          "i": 1,
+          "first": true,
+          "second": false,
+          "distinct": true
+        },
+        {
+          "reverse": true,
+          "i": 2,
+          "first": true,
+          "second": false,
+          "distinct": true
+        }
+      ]
+    },
+    {
+      "id": "W04-exact-transfer-opaque-surrogate-values",
+      "status": "pass",
+      "wallMs": 33,
+      "value": {
+        "exact": true,
+        "detached": true,
+        "counts": {
+          "values": 697,
+          "strings": 6626,
+          "lexical": 2607,
+          "maxDepth": 12,
+          "snapshotBytes": 10286,
+          "fileBytes": 10407
+        },
+        "fixtureSha256": "590682c07ab35318225b5e06f59ab6fee43b77e92f6b864b627db017bd414059"
+      }
+    },
+    {
+      "id": "W05a-worker-confirmed-cancel-no-future-dispatch",
+      "status": "pass",
+      "wallMs": 49,
+      "value": [
+        {
+          "cancel": {
+            "status": "never-dispatched",
+            "stopped": true
+          },
+          "late": {
+            "status": "never-dispatched"
+          },
+          "read": {
+            "project": "cancel0",
+            "absent": true,
+            "incarnation": "incarnation-1"
+          }
+        },
+        {
+          "cancel": {
+            "status": "never-dispatched",
+            "stopped": true
+          },
+          "late": {
+            "status": "never-dispatched"
+          },
+          "read": {
+            "project": "cancel1",
+            "absent": true,
+            "incarnation": "incarnation-1"
+          }
+        },
+        {
+          "cancel": {
+            "status": "never-dispatched",
+            "stopped": true
+          },
+          "late": {
+            "status": "never-dispatched"
+          },
+          "read": {
+            "project": "cancel2",
+            "absent": true,
+            "incarnation": "incarnation-1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "W05b-death-after-send-preserved-input-ordered-check",
+      "status": "pass",
+      "wallMs": 135,
+      "value": [
+        {
+          "initial": {
+            "observed": {
+              "error": "Error: worker-terminated: outcome unknown after send"
+            },
+            "rawPreserved": true,
+            "attempt": {
+              "command": "death-0",
+              "expected": null,
+              "incarnation": "incarnation-1",
+              "raw": " .invalid raw \ud800",
+              "protection": "baseline-protection"
+            },
+            "initialClassification": "unknown"
+          },
+          "unproved": {
+            "status": "unknown",
+            "proof": {
+              "ownership": true,
+              "stopped": false,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            "revision": "death-0"
+          },
+          "proved": {
+            "status": "retained",
+            "proof": {
+              "ownership": true,
+              "stopped": true,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            "revision": "death-0"
+          },
+          "events": [
+            {
+              "seq": 49,
+              "type": "read-complete",
+              "time": 412.40000000037253,
+              "event": true,
+              "project": "death0",
+              "revision": null
+            },
+            {
+              "seq": 50,
+              "type": "prepared",
+              "time": 412.40000000037253,
+              "event": true,
+              "command": "death-0"
+            },
+            {
+              "seq": 51,
+              "type": "issued",
+              "time": 414.59999999962747,
+              "event": true,
+              "command": "death-0",
+              "project": "death0",
+              "durability": "strict"
+            },
+            {
+              "seq": 53,
+              "type": "worker-terminated",
+              "time": 415.09999999962747,
+              "generation": 1
+            },
+            {
+              "seq": 1,
+              "type": "module-ready",
+              "time": 435.90000000037253,
+              "event": true
+            },
+            {
+              "seq": 2,
+              "type": "lock-acquired",
+              "time": 438.5,
+              "event": true,
+              "project": "death0"
+            },
+            {
+              "seq": 3,
+              "type": "recovery-ownership",
+              "time": 438.5,
+              "event": true,
+              "project": "death0"
+            },
+            {
+              "seq": 4,
+              "type": "read-complete",
+              "time": 439.09999999962747,
+              "event": true,
+              "project": "death0",
+              "revision": "death-0"
+            },
+            {
+              "seq": 5,
+              "type": "recovery-proof",
+              "time": 445.09999999962747,
+              "event": true,
+              "project": "death0",
+              "ownership": true,
+              "stopped": false,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            {
+              "seq": 6,
+              "type": "recovery-ownership",
+              "time": 447.09999999962747,
+              "event": true,
+              "project": "death0"
+            },
+            {
+              "seq": 7,
+              "type": "read-complete",
+              "time": 447.40000000037253,
+              "event": true,
+              "project": "death0",
+              "revision": "death-0"
+            },
+            {
+              "seq": 8,
+              "type": "recovery-proof",
+              "time": 451.59999999962747,
+              "event": true,
+              "project": "death0",
+              "ownership": true,
+              "stopped": true,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            }
+          ]
+        },
+        {
+          "initial": {
+            "observed": {
+              "error": "Error: worker-terminated: outcome unknown after send"
+            },
+            "rawPreserved": true,
+            "attempt": {
+              "command": "death-1",
+              "expected": null,
+              "incarnation": "incarnation-1",
+              "raw": " .invalid raw \ud800",
+              "protection": "baseline-protection"
+            },
+            "initialClassification": "unknown"
+          },
+          "unproved": {
+            "status": "unknown",
+            "proof": {
+              "ownership": true,
+              "stopped": false,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            "revision": null
+          },
+          "proved": {
+            "status": "rejected",
+            "proof": {
+              "ownership": true,
+              "stopped": true,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            "revision": null
+          },
+          "events": [
+            {
+              "seq": 11,
+              "type": "read-complete",
+              "time": 473.20000000018626,
+              "event": true,
+              "project": "death1",
+              "revision": null
+            },
+            {
+              "seq": 12,
+              "type": "prepared",
+              "time": 473.20000000018626,
+              "event": true,
+              "command": "death-1"
+            },
+            {
+              "seq": 13,
+              "type": "issued",
+              "time": 474.79999999981374,
+              "event": true,
+              "command": "death-1",
+              "project": "death1",
+              "durability": "strict"
+            },
+            {
+              "seq": 67,
+              "type": "worker-terminated",
+              "time": 474.90000000037253,
+              "generation": 2
+            },
+            {
+              "seq": 1,
+              "type": "module-ready",
+              "time": 487.29999999981374,
+              "event": true
+            },
+            {
+              "seq": 2,
+              "type": "lock-acquired",
+              "time": 488.90000000037253,
+              "event": true,
+              "project": "death1"
+            },
+            {
+              "seq": 3,
+              "type": "recovery-ownership",
+              "time": 488.90000000037253,
+              "event": true,
+              "project": "death1"
+            },
+            {
+              "seq": 4,
+              "type": "read-complete",
+              "time": 489.20000000018626,
+              "event": true,
+              "project": "death1",
+              "revision": null
+            },
+            {
+              "seq": 5,
+              "type": "recovery-proof",
+              "time": 489.20000000018626,
+              "event": true,
+              "project": "death1",
+              "ownership": true,
+              "stopped": false,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            {
+              "seq": 6,
+              "type": "recovery-ownership",
+              "time": 490.20000000018626,
+              "event": true,
+              "project": "death1"
+            },
+            {
+              "seq": 7,
+              "type": "read-complete",
+              "time": 490.29999999981374,
+              "event": true,
+              "project": "death1",
+              "revision": null
+            },
+            {
+              "seq": 8,
+              "type": "recovery-proof",
+              "time": 490.29999999981374,
+              "event": true,
+              "project": "death1",
+              "ownership": true,
+              "stopped": true,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            }
+          ]
+        },
+        {
+          "initial": {
+            "observed": {
+              "error": "Error: worker-terminated: outcome unknown after send"
+            },
+            "rawPreserved": true,
+            "attempt": {
+              "command": "death-2",
+              "expected": null,
+              "incarnation": "incarnation-1",
+              "raw": " .invalid raw \ud800",
+              "protection": "baseline-protection"
+            },
+            "initialClassification": "unknown"
+          },
+          "unproved": {
+            "status": "unknown",
+            "proof": {
+              "ownership": true,
+              "stopped": false,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            "revision": null
+          },
+          "proved": {
+            "status": "rejected",
+            "proof": {
+              "ownership": true,
+              "stopped": true,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            "revision": null
+          },
+          "events": [
+            {
+              "seq": 11,
+              "type": "read-complete",
+              "time": 518.9000000003725,
+              "event": true,
+              "project": "death2",
+              "revision": null
+            },
+            {
+              "seq": 12,
+              "type": "prepared",
+              "time": 518.9000000003725,
+              "event": true,
+              "command": "death-2"
+            },
+            {
+              "seq": 13,
+              "type": "issued",
+              "time": 520.5999999996275,
+              "event": true,
+              "command": "death-2",
+              "project": "death2",
+              "durability": "strict"
+            },
+            {
+              "seq": 81,
+              "type": "worker-terminated",
+              "time": 520.5999999996275,
+              "generation": 3
+            },
+            {
+              "seq": 1,
+              "type": "module-ready",
+              "time": 532.7000000001863,
+              "event": true
+            },
+            {
+              "seq": 2,
+              "type": "lock-acquired",
+              "time": 534.2999999998137,
+              "event": true,
+              "project": "death2"
+            },
+            {
+              "seq": 3,
+              "type": "recovery-ownership",
+              "time": 534.2999999998137,
+              "event": true,
+              "project": "death2"
+            },
+            {
+              "seq": 4,
+              "type": "read-complete",
+              "time": 534.7000000001863,
+              "event": true,
+              "project": "death2",
+              "revision": null
+            },
+            {
+              "seq": 5,
+              "type": "recovery-proof",
+              "time": 534.7999999998137,
+              "event": true,
+              "project": "death2",
+              "ownership": true,
+              "stopped": false,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            {
+              "seq": 6,
+              "type": "recovery-ownership",
+              "time": 535.7000000001863,
+              "event": true,
+              "project": "death2"
+            },
+            {
+              "seq": 7,
+              "type": "read-complete",
+              "time": 536,
+              "event": true,
+              "project": "death2",
+              "revision": null
+            },
+            {
+              "seq": 8,
+              "type": "recovery-proof",
+              "time": 536,
+              "event": true,
+              "project": "death2",
+              "ownership": true,
+              "stopped": true,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W05c-publication-identity-fence",
+      "status": "pass",
+      "wallMs": 0,
+      "value": {
+        "matching": true,
+        "wrongProject": false,
+        "oldGeneration": false
+      }
+    },
+    {
+      "id": "W06-coherent-read-and-cursor-summary",
+      "status": "pass",
+      "wallMs": 13,
+      "value": {
+        "one": {
+          "project": "",
+          "revision": "base",
+          "incarnation": "incarnation-1",
+          "projection": {
+            "name": "",
+            "first": {
+              "id": "v0",
+              "projectId": "",
+              "localName": "v0",
+              "parentGroupId": null,
+              "definition": {
+                "type": "color",
+                "assignments": [
+                  {
+                    "condition": [],
+                    "value": {
+                      "kind": "literal",
+                      "valueType": "color",
+                      "colorSpace": "srgb",
+                      "components": [
+                        "-0.0001",
+                        "none",
+                        "1.9"
+                      ],
+                      "alpha": "0"
+                    }
+                  }
+                ]
+              },
+              "authoring": {
+                "regeneration": "allowed"
+              }
+            },
+            "count": 32
+          },
+          "latest": {
+            "commandId": "base",
+            "operation": "restoreProject",
+            "result": {
+              "entityKind": "project",
+              "id": ""
+            }
+          },
+          "exactCoverage": true
+        },
+        "rows": {
+          "rows": [
+            {
+              "project": "",
+              "name": "",
+              "tokens": 32,
+              "groups": 2,
+              "revision": "base",
+              "status": "supported"
+            },
+            {
+              "project": "death0",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "death-0",
+              "status": "supported"
+            }
+          ],
+          "bytes": 33908,
+          "workerMs": 5.6000000005587935
+        }
+      }
+    },
+    {
+      "id": "W07-revision-protection-capacity-subsets",
+      "status": "pass",
+      "wallMs": 336,
+      "value": {
+        "stale": {
+          "status": "revision-conflict",
+          "dispatchCompleteMs": 0.20000000018626451
+        },
+        "protection": {
+          "status": "protection-conflict",
+          "dispatchCompleteMs": 0.2999999998137355
+        },
+        "full": {
+          "status": "capacity",
+          "dispatchCompleteMs": 0.09999999962747097
+        },
+        "rows": 25
+      }
+    },
+    {
+      "id": "W08-cold-worker-startup",
+      "status": "pass",
+      "wallMs": 241,
+      "value": [
+        {
+          "ms": 79,
+          "c": {
+            "secure": true,
+            "worker": true,
+            "indexedDB": true,
+            "locks": true,
+            "strict": "strict",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+          }
+        },
+        {
+          "ms": 85,
+          "c": {
+            "secure": true,
+            "worker": true,
+            "indexedDB": true,
+            "locks": true,
+            "strict": "strict",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+          }
+        },
+        {
+          "ms": 62,
+          "c": {
+            "secure": true,
+            "worker": true,
+            "indexedDB": true,
+            "locks": true,
+            "strict": "strict",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+          }
+        }
+      ]
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max--1",
+      "status": "pass",
+      "wallMs": 1275,
+      "value": {
+        "encodeMs": 680.9000000003725,
+        "decodeMs": 435.20000000018626,
+        "workerMs": 1147.6000000005588,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1252.3999999994412,
+        "rendererDomMs": 2.2000000001862645,
+        "visibility": "visible",
+        "endToPaintMs": 1272.3999999994412,
+        "longTasks": [],
+        "eventLoopLags": [
+          21.300000000745058,
+          94.79999999981374,
+          14.5,
+          75.59999999962747,
+          0,
+          29.40000000037253,
+          34.200000000186265,
+          9.699999999254942,
+          89.70000000018626,
+          91.1000000005588,
+          95.3999999994412,
+          30.600000000558794,
+          18.699999999254942,
+          3.300000000745058,
+          97.59999999962747,
+          45.09999999962747,
+          0,
+          82,
+          75.59999999962747,
+          77.70000000018626,
+          17.700000000186265,
+          0,
+          39.59999999962747,
+          21.700000000186265
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": true
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-0",
+      "status": "pass",
+      "wallMs": 1266,
+      "value": {
+        "encodeMs": 616,
+        "decodeMs": 441.5,
+        "workerMs": 1130.0999999996275,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1240.7000000001863,
+        "rendererDomMs": 3.7999999998137355,
+        "visibility": "visible",
+        "endToPaintMs": 1262.0999999996275,
+        "longTasks": [],
+        "eventLoopLags": [
+          0,
+          74.30000000074506,
+          92.59999999962747,
+          0.5,
+          6.7000000001862645,
+          88.20000000018626,
+          87.09999999962747,
+          96.59999999962747,
+          88,
+          84.5,
+          95.90000000037253,
+          44,
+          55.200000000186265,
+          92.20000000018626,
+          66.59999999962747,
+          53.799999999813735,
+          41.60000000055879,
+          21.799999999813735
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-1",
+      "status": "pass",
+      "wallMs": 1119,
+      "value": {
+        "encodeMs": 615.2000000001863,
+        "decodeMs": 343.5,
+        "workerMs": 1004.4000000003725,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1100.0999999996275,
+        "rendererDomMs": 5.2000000001862645,
+        "visibility": "visible",
+        "endToPaintMs": 1115.7999999998137,
+        "longTasks": [],
+        "eventLoopLags": [
+          3.7999999998137355,
+          90.70000000018626,
+          93.29999999981374,
+          19.299999999813735,
+          55.10000000055879,
+          64.79999999981374,
+          23.5,
+          98.5,
+          71.3999999994412,
+          77.5,
+          0,
+          90.5,
+          90.90000000037253,
+          1.7999999998137355,
+          9.700000000186265,
+          41,
+          10.700000000186265,
+          104
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-2",
+      "status": "pass",
+      "wallMs": 1080,
+      "value": {
+        "encodeMs": 541.6000000005588,
+        "decodeMs": 385.3999999994412,
+        "workerMs": 976.7000000001863,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1060.7000000001863,
+        "rendererDomMs": 2.6000000005587935,
+        "visibility": "visible",
+        "endToPaintMs": 1078,
+        "longTasks": [],
+        "eventLoopLags": [
+          0,
+          98,
+          18.5,
+          50,
+          1.099999999627471,
+          11.400000000372529,
+          96.79999999981374,
+          11.799999999813735,
+          10,
+          6.5,
+          92.70000000018626,
+          54.09999999962747,
+          71.20000000018626,
+          74.90000000037253,
+          47.799999999813735,
+          35.89999999944121,
+          92.30000000074506,
+          14.799999999813735,
+          8.700000000186265,
+          55.09999999962747,
+          22.200000000186265
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-3",
+      "status": "pass",
+      "wallMs": 1106,
+      "value": {
+        "encodeMs": 487.20000000018626,
+        "decodeMs": 427.59999999962747,
+        "workerMs": 957.0999999996275,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1082.199999999255,
+        "rendererDomMs": 3.900000000372529,
+        "visibility": "visible",
+        "endToPaintMs": 1103.7999999998137,
+        "longTasks": [],
+        "eventLoopLags": [
+          0,
+          47.89999999944121,
+          96.29999999981374,
+          29.90000000037253,
+          0.20000000018626451,
+          46.89999999944121,
+          0,
+          91.79999999981374,
+          4.7999999998137355,
+          94.70000000018626,
+          60.799999999813735,
+          95.09999999962747,
+          81.70000000018626,
+          98.29999999981374,
+          22.200000000186265,
+          98,
+          47.60000000055879,
+          14.299999999813735
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-4",
+      "status": "pass",
+      "wallMs": 1153,
+      "value": {
+        "encodeMs": 525.8999999994412,
+        "decodeMs": 445.30000000074506,
+        "workerMs": 1016.9000000003725,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1131.5,
+        "rendererDomMs": 3.7000000001862645,
+        "visibility": "visible",
+        "endToPaintMs": 1150,
+        "longTasks": [],
+        "eventLoopLags": [
+          1,
+          70.79999999981374,
+          87.09999999962747,
+          93.1000000005588,
+          8,
+          97.5,
+          84.3999999994412,
+          87.30000000074506,
+          94.79999999981374,
+          76.29999999981374,
+          24.90000000037253,
+          61.799999999813735,
+          9.299999999813735,
+          56,
+          85.40000000037253,
+          3.2999999998137355,
+          14.799999999813735,
+          18
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-5",
+      "status": "pass",
+      "wallMs": 1171,
+      "value": {
+        "encodeMs": 567,
+        "decodeMs": 433.69999999925494,
+        "workerMs": 1050,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1153.2999999998137,
+        "rendererDomMs": 2.099999999627471,
+        "visibility": "visible",
+        "endToPaintMs": 1166.3999999994412,
+        "longTasks": [],
+        "eventLoopLags": [
+          99.59999999962747,
+          100.40000000037253,
+          37.299999999813735,
+          85,
+          22.09999999962747,
+          19.800000000745058,
+          94.79999999981374,
+          18,
+          60.89999999944121,
+          47.80000000074506,
+          83.79999999981374,
+          83.3999999994412,
+          60.60000000055879,
+          16.799999999813735,
+          67.70000000018626,
+          56.09999999962747,
+          46
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-6",
+      "status": "pass",
+      "wallMs": 1132,
+      "value": {
+        "encodeMs": 569,
+        "decodeMs": 393.40000000037253,
+        "workerMs": 1008.9000000003725,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1113,
+        "rendererDomMs": 3.2999999998137355,
+        "visibility": "visible",
+        "endToPaintMs": 1129.2999999998137,
+        "longTasks": [],
+        "eventLoopLags": [
+          0,
+          95,
+          58.5,
+          96.29999999981374,
+          83.90000000037253,
+          24.5,
+          0,
+          83.29999999981374,
+          91.40000000037253,
+          0,
+          91.20000000018626,
+          46.799999999813735,
+          91.90000000037253,
+          2.599999999627471,
+          6.7000000001862645,
+          22.09999999962747,
+          55.90000000037253,
+          69.09999999962747,
+          30.5
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-7",
+      "status": "pass",
+      "wallMs": 1123,
+      "value": {
+        "encodeMs": 516.9000000003725,
+        "decodeMs": 465.8999999994412,
+        "workerMs": 1024.5999999996275,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1108.5,
+        "rendererDomMs": 3.5,
+        "visibility": "visible",
+        "endToPaintMs": 1120.7999999998137,
+        "longTasks": [],
+        "eventLoopLags": [
+          0,
+          97.5,
+          46.89999999944121,
+          48.40000000037253,
+          95,
+          16,
+          69.79999999981374,
+          95.40000000037253,
+          92.8999999994412,
+          92.70000000018626,
+          92.79999999981374,
+          3.900000000372529,
+          95.29999999981374,
+          9.700000000186265,
+          78.8999999994412,
+          32.10000000055879
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-8",
+      "status": "pass",
+      "wallMs": 1145,
+      "value": {
+        "encodeMs": 530,
+        "decodeMs": 426,
+        "workerMs": 1000,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1123.7000000001863,
+        "rendererDomMs": 4.7000000001862645,
+        "visibility": "visible",
+        "endToPaintMs": 1141.7999999998137,
+        "longTasks": [],
+        "eventLoopLags": [
+          0,
+          32.09999999962747,
+          95.6000000005588,
+          53.5,
+          11.299999999813735,
+          6.2000000001862645,
+          98.20000000018626,
+          64,
+          47.59999999962747,
+          71.59999999962747,
+          90.1000000005588,
+          92.59999999962747,
+          36.60000000055879,
+          25.699999999254942,
+          48.40000000037253,
+          88,
+          96.59999999962747,
+          13.400000000372529
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-9",
+      "status": "pass",
+      "wallMs": 1087,
+      "value": {
+        "encodeMs": 494.8999999994412,
+        "decodeMs": 400.70000000018626,
+        "workerMs": 943.9000000003725,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1068.3999999994412,
+        "rendererDomMs": 3.2000000001862645,
+        "visibility": "visible",
+        "endToPaintMs": 1084.5,
+        "longTasks": [],
+        "eventLoopLags": [
+          0,
+          11.400000000372529,
+          90.40000000037253,
+          39.799999999813735,
+          10.099999999627471,
+          96.70000000018626,
+          22.5,
+          7.7999999998137355,
+          15.200000000186265,
+          95.59999999962747,
+          100.1000000005588,
+          98.20000000018626,
+          41.299999999813735,
+          91.59999999962747,
+          76.20000000018626,
+          68.70000000018626,
+          16.399999999441206,
+          13.700000000186265,
+          8.299999999813735
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-10",
+      "status": "pass",
+      "wallMs": 1184,
+      "value": {
+        "encodeMs": 553.7999999998137,
+        "decodeMs": 437.5,
+        "workerMs": 1046.5,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1169.7000000001863,
+        "rendererDomMs": 2.599999999627471,
+        "visibility": "visible",
+        "endToPaintMs": 1181.2000000001863,
+        "longTasks": [],
+        "eventLoopLags": [
+          0,
+          91.90000000037253,
+          83,
+          82,
+          80,
+          13,
+          99.70000000018626,
+          98.69999999925494,
+          23.100000000558794,
+          77.5,
+          95.29999999981374,
+          10.299999999813735,
+          46,
+          17.200000000186265,
+          0,
+          79.69999999925494,
+          9.200000000186265,
+          102.40000000037253
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-11",
+      "status": "pass",
+      "wallMs": 1171,
+      "value": {
+        "encodeMs": 629.2999999998137,
+        "decodeMs": 379,
+        "workerMs": 1057.5999999996275,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1155.1000000005588,
+        "rendererDomMs": 2.2999999998137355,
+        "visibility": "visible",
+        "endToPaintMs": 1168.2000000001863,
+        "longTasks": [],
+        "eventLoopLags": [
+          0,
+          35.10000000055879,
+          15.199999999254942,
+          94.1000000005588,
+          78.3999999994412,
+          27.40000000037253,
+          97.20000000018626,
+          105.8999999994412,
+          52.80000000074506,
+          22.899999999441206,
+          13.200000000186265,
+          94.79999999981374,
+          94.79999999981374,
+          90.70000000018626,
+          87.79999999981374,
+          37.30000000074506,
+          60.299999999813735
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-12",
+      "status": "pass",
+      "wallMs": 1130,
+      "value": {
+        "encodeMs": 534.7000000001863,
+        "decodeMs": 429.59999999962747,
+        "workerMs": 1009.4000000003725,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1111.8999999994412,
+        "rendererDomMs": 2.1000000005587935,
+        "visibility": "visible",
+        "endToPaintMs": 1127.7999999998137,
+        "longTasks": [],
+        "eventLoopLags": [
+          5.7999999998137355,
+          90.90000000037253,
+          34,
+          45.69999999925494,
+          14,
+          82.20000000018626,
+          64.90000000037253,
+          42.799999999813735,
+          81.79999999981374,
+          61.5,
+          38.40000000037253,
+          82.29999999981374,
+          15.200000000186265,
+          100,
+          76.8999999994412,
+          52.700000000186265,
+          13.299999999813735,
+          49.90000000037253
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-13",
+      "status": "pass",
+      "wallMs": 1153,
+      "value": {
+        "encodeMs": 548.7999999998137,
+        "decodeMs": 438.70000000018626,
+        "workerMs": 1030.5,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1135.2000000001863,
+        "rendererDomMs": 2.699999999254942,
+        "visibility": "visible",
+        "endToPaintMs": 1148.7999999998137,
+        "longTasks": [],
+        "eventLoopLags": [
+          0,
+          81.79999999981374,
+          0.7999999998137355,
+          0.6000000005587935,
+          38.39999999944121,
+          95.90000000037253,
+          47.799999999813735,
+          92.70000000018626,
+          21.59999999962747,
+          12.200000000186265,
+          50,
+          73.5,
+          91.20000000018626,
+          88.70000000018626,
+          6.699999999254942,
+          21.800000000745058,
+          87.69999999925494,
+          12.300000000745058,
+          0,
+          31.799999999813735,
+          16,
+          25.299999999813735,
+          31.700000000186265
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-14",
+      "status": "pass",
+      "wallMs": 1135,
+      "value": {
+        "encodeMs": 520.6000000005588,
+        "decodeMs": 451.29999999981374,
+        "workerMs": 1020.0999999996275,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1115.2999999998137,
+        "rendererDomMs": 3.099999999627471,
+        "visibility": "visible",
+        "endToPaintMs": 1131.5999999996275,
+        "longTasks": [],
+        "eventLoopLags": [
+          0,
+          0,
+          99.5,
+          69.09999999962747,
+          88.1000000005588,
+          39.5,
+          88.20000000018626,
+          13.299999999813735,
+          0,
+          92.70000000018626,
+          80.09999999962747,
+          73.1000000005588,
+          31.5,
+          92,
+          50.59999999962747,
+          96.1000000005588,
+          62.799999999813735
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-15",
+      "status": "pass",
+      "wallMs": 1032,
+      "value": {
+        "encodeMs": 525.8000000007451,
+        "decodeMs": 336.8999999994412,
+        "workerMs": 905.5,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1017.2000000001863,
+        "rendererDomMs": 2.900000000372529,
+        "visibility": "visible",
+        "endToPaintMs": 1029.2000000001863,
+        "longTasks": [],
+        "eventLoopLags": [
+          0.2999999998137355,
+          81.20000000018626,
+          47.799999999813735,
+          79.70000000018626,
+          15.399999999441206,
+          75.90000000037253,
+          69,
+          89.40000000037253,
+          96.5,
+          55.39999999944121,
+          97,
+          93.20000000018626,
+          67.59999999962747,
+          24.700000000186265
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-16",
+      "status": "pass",
+      "wallMs": 1045,
+      "value": {
+        "encodeMs": 481.8999999994412,
+        "decodeMs": 404.40000000037253,
+        "workerMs": 925.7000000001863,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1021.2999999998137,
+        "rendererDomMs": 10.200000000186265,
+        "visibility": "visible",
+        "endToPaintMs": 1042.2999999998137,
+        "longTasks": [],
+        "eventLoopLags": [
+          0,
+          41,
+          61.09999999962747,
+          8.599999999627471,
+          7.800000000745058,
+          6.3999999994412065,
+          27.299999999813735,
+          50.200000000186265,
+          96.6000000005588,
+          100.19999999925494,
+          98,
+          30.200000000186265,
+          48.799999999813735,
+          57.5,
+          33.10000000055879,
+          55.59999999962747,
+          60.5,
+          89.20000000018626
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-17",
+      "status": "pass",
+      "wallMs": 1154,
+      "value": {
+        "encodeMs": 522.4000000003725,
+        "decodeMs": 474.79999999981374,
+        "workerMs": 1030.7000000001863,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1132.7999999998137,
+        "rendererDomMs": 2.6000000005587935,
+        "visibility": "visible",
+        "endToPaintMs": 1150,
+        "longTasks": [],
+        "eventLoopLags": [
+          53.700000000186265,
+          40,
+          70.79999999981374,
+          9.200000000186265,
+          13.899999999441206,
+          100,
+          96.70000000018626,
+          85.5,
+          40.200000000186265,
+          37.40000000037253,
+          83.5,
+          46.09999999962747,
+          89.09999999962747,
+          19,
+          11,
+          8.800000000745058,
+          49.59999999962747,
+          18.200000000186265,
+          92.70000000018626
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-18",
+      "status": "pass",
+      "wallMs": 1112,
+      "value": {
+        "encodeMs": 501.5,
+        "decodeMs": 431.59999999962747,
+        "workerMs": 978.0999999996275,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1090,
+        "rendererDomMs": 4.7999999998137355,
+        "visibility": "visible",
+        "endToPaintMs": 1109.5999999996275,
+        "longTasks": [],
+        "eventLoopLags": [
+          0,
+          0,
+          93.40000000037253,
+          90.8999999994412,
+          14.299999999813735,
+          4.7000000001862645,
+          75.20000000018626,
+          80.79999999981374,
+          78.79999999981374,
+          101.1000000005588,
+          82.70000000018626,
+          92,
+          92,
+          88.5,
+          23.399999999441206,
+          0,
+          41.200000000186265
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-19",
+      "status": "pass",
+      "wallMs": 1246,
+      "value": {
+        "encodeMs": 575.5999999996275,
+        "decodeMs": 470.5,
+        "workerMs": 1103,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1226.199999999255,
+        "rendererDomMs": 3.800000000745058,
+        "visibility": "visible",
+        "endToPaintMs": 1243.199999999255,
+        "longTasks": [],
+        "eventLoopLags": [
+          0.7999999998137355,
+          93,
+          90.09999999962747,
+          6.300000000745058,
+          72.19999999925494,
+          24.300000000745058,
+          48.19999999925494,
+          81,
+          22.100000000558794,
+          99.8999999994412,
+          96.70000000018626,
+          34.60000000055879,
+          66.19999999925494,
+          85.90000000037253,
+          43.40000000037253,
+          85.5,
+          98,
+          18.5
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    }
+  ],
+  "source": {
+    "worker.mjs": "bd54d9ffed04d545833e713db05a0db90bdc633cbcbf871343f89e02d6f66c6e",
+    "automated-page.mjs": "bad44f2689066e324fe23786e6dfd40dd79566be38ec6f86855eb9fb5b76bdef",
+    "automated.html": "287be56b3785f75dab3ecc232952f4d906e163bc5323338899756011fc39c5a6",
+    "protocol.mjs": "c375992510bf465a1230ca3872538ad0a394ee93309ceaa830270f635d0d8ff6",
+    "run.mjs": "d6459514f5819907774d556a4cf9288af76f33849ca720750466e5b61747f361",
+    "server.mjs": "f40b69ca9e0a16156b1fd36778f48b1b3e53dcd9b6db5b8e0675d2cf151776b8"
+  },
+  "scope": "Synthetic worker boundary and DOM, not production application/React parity",
+  "environment": {
+    "macOS": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B123\n",
+    "node": "v24.14.1",
+    "hardware": "Mac15,6 Apple M3 Pro 36 GiB"
+  },
+  "origin": "http://127.0.0.1:52356",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-worker-qualification-xeiZGT",
+  "pid": 13801,
+  "chromeStderr": "\nDevTools listening on ws://127.0.0.1:52358/devtools/browser/d654327c-1589-4227-87d7-43fbcba37f15\nTrying to load the allocator multiple times. This is *not* supported.\nCreated TensorFlow Lite XNNPACK delegate for CPU.\n[14009:149983:1109/233540.384416:VERBOSE1:chrome/updater/updater.cc:380] Version: 159.0.8140.0, opt, ARM_64, command line: /Users/rlapoele-pro/Library/Application Support/Google/GoogleUpdater/159.0.8140.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --wake-all --enable-logging --vmodule=*/components/update_client/*=2,*/chrome/enterprise_companion/*=2,*/chrome/updater/*=2\n[14009:149983:1109/233540.384918:VERBOSE1:chrome/updater/updater.cc:383] OS version: 27.2.0, arch: arm64, System uptime (seconds): 8195, parent pid: 13801\n[14009:149983:1109/233540.386727:VERBOSE1:chrome/updater/updater.cc:388] Available disk space in install directory (/Users/rlapoele-pro/Library/Application Support/Google/GoogleUpdater): 213958193152B (199.264GiB) / 494384795648B (460.432GiB)\n[14009:149983:1109/233540.386753:VERBOSE1:chrome/updater/updater.cc:392] Available disk space in temporary directory (/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/): 213958193152B (199.264GiB) / 494384795648B (460.432GiB)\n[14009:149983:1109/233540.386826:VERBOSE2:chrome/updater/event_history.cc:266] Emitted a UPDATER_PROCESS START event to the history log\n[14011:149987:1109/233540.395916:VERBOSE1:chrome/updater/updater.cc:380] Version: 159.0.8140.0, opt, ARM_64, command line: /Users/rlapoele-pro/Library/Application Support/Google/GoogleUpdater/159.0.8140.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --crash-handler --database=/Users/rlapoele-pro/Library/Application Support/Google/GoogleUpdater/159.0.8140.0/Crashpad --url=https://clients2.google.com/cr/report --annotation=prod=Update4 --annotation=ver=159.0.8140.0 --attachment=/Users/rlapoele-pro/Library/Application Support/Google/GoogleUpdater/updater.log --attachment=/Users/rlapoele-pro/Library/Application Support/Google/GoogleUpdater/updater_history.jsonl --handshake-fd=6 --enable-logging --vmodule=*/components/update_client/*=2,*/chrome/enterprise_companion/*=2,*/chrome/updater/*=2\n[14011:149987:1109/233540.396427:VERBOSE1:chrome/updater/updater.cc:383] OS version: 27.2.0, arch: arm64, System uptime (seconds): 8195, parent pid: 1\n[14011:149987:1109/233540.398171:VERBOSE1:chrome/updater/updater.cc:388] Available disk space in install directory (/Users/rlapoele-pro/Library/Application Support/Google/GoogleUpdater): 213958189056B (199.264GiB) / 494384795648B (460.432GiB)\n[14011:149987:1109/233540.398198:VERBOSE1:chrome/updater/updater.cc:392] Available disk space in temporary directory (/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/): 213958189056B (199.264GiB) / 494384795648B (460.432GiB)\n[14011:149987:1109/233540.398280:VERBOSE2:chrome/updater/event_history.cc:266] Emitted a UPDATER_PROCESS START event to the history log\n[14009:149983:1109/233540.398665:VERBOSE1:chrome/updater/crash_reporter.cc:121] Crash handler launched and ready.\n[14009:149983:1109/233540.399194:VERBOSE1:chrome/updater/crash_client.cc:109] Found 0 completed crash reports\n[14009:149983:1109/233540.399253:VERBOSE1:chrome/updater/crash_client.cc:132] Found 0 pending crash reports\n[14009:149983:1109/233540.399317:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/rlapoele-pro/Library/Application Support/Google/RLZ/Crashpad/settings.dat: No such file or directory (2)\n[14009:149983:1109/233540.399329:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/rlapoele-pro/Library/Application Support/Google/Measurement/Crashpad/settings.dat: No such file or directory (2)\n[14009:149983:1109/233540.399340:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/rlapoele-pro/Library/Application Support/Google/RemoteConfig/Crashpad/settings.dat: No such file or directory (2)\n[14009:149983:1109/233540.399378:VERBOSE1:chrome/updater/updater.cc:107] Crash reporting initialized.\n[14009:149996:1109/233540.399639:VERBOSE1:chrome/updater/app/app_wakeall.cc:58] Launching `/Users/rlapoele-pro/Library/Application Support/Google/GoogleUpdater/159.0.8140.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --wake`\n[14012:150002:1109/233540.407376:VERBOSE1:chrome/updater/updater.cc:380] Version: 159.0.8140.0, opt, ARM_64, command line: /Users/rlapoele-pro/Library/Application Support/Google/GoogleUpdater/159.0.8140.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --wake --enable-logging --vmodule=*/components/update_client/*=2,*/chrome/enterprise_companion/*=2,*/chrome/updater/*=2\n[14012:150002:1109/233540.407798:VERBOSE1:chrome/updater/updater.cc:383] OS version: 27.2.0, arch: arm64, System uptime (seconds): 8195, parent pid: 14009\n[14012:150002:1109/233540.409295:VERBOSE1:chrome/updater/updater.cc:388] Available disk space in install directory (/Users/rlapoele-pro/Library/Application Support/Google/GoogleUpdater): 213958184960B (199.264GiB) / 494384795648B (460.432GiB)\n[14012:150002:1109/233540.409316:VERBOSE1:chrome/updater/updater.cc:392] Available disk space in temporary directory (/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/): 213958184960B (199.264GiB) / 494384795648B (460.432GiB)\n[14012:150002:1109/233540.409375:VERBOSE2:chrome/updater/event_history.cc:266] Emitted a UPDATER_PROCESS START event to the history log\n[14014:150006:1109/233540.416966:VERBOSE1:chrome/updater/updater.cc:380] Version: 159.0.8140.0, opt, ARM_64, command line: /Users/rlapoele-pro/Library/Application Support/Google/GoogleUpdater/159.0.8140.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --crash-handler --database=/Users/rlapoele-pro/Library/Application Support/Google/GoogleUpdater/159.0.8140.0/Crashpad --url=https://clients2.google.com/cr/report --annotation=prod=Update4 --annotation=ver=159.0.8140.0 --attachment=/Users/rlapoele-pro/Library/Application Support/Google/GoogleUpdater/updater.log --attachment=/Users/rlapoele-pro/Library/Application Support/Google/GoogleUpdater/updater_history.jsonl --handshake-fd=6 --enable-logging --vmodule=*/components/update_client/*=2,*/chrome/enterprise_companion/*=2,*/chrome/updater/*=2\n[14014:150006:1109/233540.417332:VERBOSE1:chrome/updater/updater.cc:383] OS version: 27.2.0, arch: arm64, System uptime (seconds): 8195, parent pid: 1\n[14014:150006:1109/233540.418631:VERBOSE1:chrome/updater/updater.cc:388] Available disk space in install directory (/Users/rlapoele-pro/Library/Application Support/Google/GoogleUpdater): 213958184960B (199.264GiB) / 494384795648B (460.432GiB)\n[14014:150006:1109/233540.418650:VERBOSE1:chrome/updater/updater.cc:392] Available disk space in temporary directory (/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/): 213958184960B (199.264GiB) / 494384795648B (460.432GiB)\n[14014:150006:1109/233540.418707:VERBOSE2:chrome/updater/event_history.cc:266] Emitted a UPDATER_PROCESS START event to the history log\n[14012:150002:1109/233540.419024:VERBOSE1:chrome/updater/crash_reporter.cc:121] Crash handler launched and ready.\n[14012:150002:1109/233540.419550:VERBOSE1:chrome/updater/crash_client.cc:109] Found 0 completed crash reports\n[14012:150002:1109/233540.419617:VERBOSE1:chrome/updater/crash_client.cc:132] Found 0 pending crash reports\n[14012:150002:1109/233540.419688:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/rlapoele-pro/Library/Application Support/Google/RLZ/Crashpad/settings.dat: No such file or directory (2)\n[14012:150002:1109/233540.419702:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/rlapoele-pro/Library/Application Support/Google/Measurement/Crashpad/settings.dat: No such file or directory (2)\n[14012:150002:1109/233540.419714:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/rlapoele-pro/Library/Application Support/Google/RemoteConfig/Crashpad/settings.dat: No such file or directory (2)\n[14012:150002:1109/233540.419748:VERBOSE1:chrome/updater/updater.cc:107] Crash reporting initialized.\n[14012:150002:1109/233540.419909:VERBOSE1:chrome/updater/ipc/update_service_internal_proxy_mojo.cc:61] Run\n",
+  "browserVersion": "157.0.8103.50",
+  "profileMode": "normal persistent disposable profile",
+  "error": "Error: diagnostic same-maximum-only run complete; deliberate stop before escalation",
+  "end": "2026-11-09T22:35:46.809Z",
+  "browserDisconnectedAt": "2026-11-09T22:35:46.813Z"
+}

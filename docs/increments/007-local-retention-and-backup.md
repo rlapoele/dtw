@@ -356,11 +356,20 @@ remains in the reviewed flows; full prototype/production parity is not certified
 Production scheduling/placement is still to be settled against the preserved
 main-thread responsiveness failure; Stage A's worker option is not selected by V3.
 The [production scheduling and browser-scope proposal](007-production-scheduling-and-browser-scope-proposal.md)
-recommends B-1–B-5 for user review only: one application worker per tab, bounded
+records agreed B-1–B-5 (9 November 2026): one application worker per tab, bounded
 renderer reads, session-only fencing/recovery, both normal-profile native macOS
 Chrome/Safari on exact qualified builds, and staged mechanism/product gates.
-Worker-required capability/placement and these bounded gates are proposed additions,
-not selected by the existing policies or this Draft. No new evidence is claimed.
+Worker-required capability/placement and these bounded gates are now agreed. The
+user authorized an isolated developer qualification followup and independent review,
+not production implementation. No new passing evidence is established by agreement.
+The [reviewed isolated followup](../../output/increment-007-worker-qualification/independent-review.md)
+now closes the recreated-database and overlapping-preparation harness findings.
+Its [report](../../output/increment-007-worker-qualification/report.md) and
+[revision-2 snapshot](../../output/increment-007-worker-qualification/manifest.json)
+record partial native-worker/host evidence. Eager maximum-list responsiveness fails
+the 100 ms target; Safari pending-command watchdog preemption and HTTPS remain
+unqualified. Other native and product integration limits remain explicit. No new
+render strategy or weaker budget is selected by these results.
 Exact supported-build scope and residual mechanism qualification remain bounded
 readiness items. Product integration/Stage B evidence comes after separately
 authorized implementation, not from speculative claims of passing all ACs now.

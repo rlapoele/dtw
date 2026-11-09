@@ -1,16 +1,24 @@
 # Increment 007 — production scheduling and browser qualification scope
 
-**Proposed for user review — 9 November 2026. Not agreed or implemented.**
+**B-1–B-5 agreed — 9 November 2026; bounded isolated qualification followup authorized.**
+Production Increment 007 implementation remains unauthorized.
 Baseline: clean `721d95e4470f42916c04a1bf62ca0bd5c90d95e3`. This closes the
 remaining *recommendation* work, not qualification or final contract agreement.
 Keep P-1–P-4, S-1–S-6, F-1–F-5, AC-1–24 and Draft / Not started unchanged.
+
+After committing this proposal as `b84b152`, the user agreed B-1–B-5 and authorized
+the bounded isolated followup with a developer subagent followed by an independent
+reviewer. Agreement selects direction and qualification gates, not passing evidence,
+final contract/design agreement or production implementation. Followup source/evidence
+live separately under `research/increment-007-worker-qualification/` and
+`output/increment-007-worker-qualification/`; original Stage A remains frozen.
 
 ## Recommended decisions
 
 | Choice | Recommendation for approval | Material alternative / cost |
 | --- | --- | --- |
 | B-1 — execution placement | One dedicated module worker per browser tab hosts coarse application operations, native IDB and Web Locks adapters, codec/admission and bounded derived inspection. Renderer keeps raw editor/form sessions and presentation. | Codec-only worker leaves candidate construction, retained validation, IDB cloning and catalogue/derived work on the renderer. Chunking all that work there adds yielding/cancellation complexity; the existing maximum synchronous failure rules out accepting the current path unchanged. |
-| B-2 — boundary and recovery | Narrow typed asynchronous application calls/results; one mutation attempt at a time, session-only cancellation/dispatch fencing and same-attempt reconciliation. No durable journal, automatic replay or synchronous fallback. Worker availability becomes an additional required capability, subject to approval here; S-5 alone did not select it. | Main-thread ownership/write coordination plus compute worker is viable but adds cross-context handoff of entire candidates and another ownership/dispatch race boundary. |
+| B-2 — boundary and recovery | Narrow typed asynchronous application calls/results; one mutation attempt at a time, session-only cancellation/dispatch fencing and same-attempt reconciliation. No durable journal, automatic replay or synchronous fallback. Worker availability becomes an additional required capability, agreed here; S-5 alone did not select it. | Main-thread ownership/write coordination plus compute worker is viable but adds cross-context handoff of entire candidates and another ownership/dispatch race boundary. |
 | B-3 — first browser scope | Both native desktop Chrome and Safari on macOS, normal persistent profiles, top-level HTTPS, on the exact qualified builds. Loopback is a separate development target. No private-mode retention support promise. | Chrome-only release is smaller but changes the agreed two-engine target; do not silently defer Safari. Wider OS/browser or installed-PWA scope requires separate evidence. |
 | B-4 — readiness gates | A bounded pre-implementation worker/host mechanism followup, then final contract/design agreement and implementation authorization, then Stage B product acceptance in both engines. | Deferring every mechanism uncertainty to implementation risks discovering that the selected placement cannot meet the preserved scope. Product acceptance cannot run before the product exists. |
 | B-5 — performance/qualification verdict | Keep agreed input/work limits and timing targets; qualify all significant renderer costs as well as worker work. A failed target returns evidence/options, not smaller fixtures or rounded values. | Lower caps or relaxed responsiveness are substantive revised agreements, not routine implementation fixes. |
@@ -182,3 +190,21 @@ Routine implementation may choose helper names, message unions and existing-comp
 integration within these boundaries. Splitting authority, changing recovery guarantees,
 durable journaling, weakening budgets/support targets or material new UI requires
 explicit review. This proposal introduces no new authored format or domain semantics.
+
+## Executed followup and independent review — 10 November 2026
+
+The authorized isolated followup is recorded in the [developer handoff](../../output/increment-007-worker-qualification/report.md),
+[revision-2 manifest](../../output/increment-007-worker-qualification/manifest.json)
+and [independent review/recheck](../../output/increment-007-worker-qualification/independent-review.md).
+The reviewer closed two corrected harness defects: recreated-database identity and
+overlapping mutation preparation. No actionable harness finding remains. Native
+worker/storage/ownership/exact-transfer subsets and user-assisted normal Safari
+restart/backup/picker observations are scoped evidence, not production acceptance.
+
+Qualification remains partial: Chrome's eager maximum entity display produced
+170/137 ms long tasks against the unchanged 100 ms target; safe Safari preemption
+while a WebDriver command is pending is unqualified; HTTPS was unavailable. Other
+native lifecycle/picker, catalogue contention and application/Stage B gaps remain
+explicit in the reports. These findings do not lower budgets, exclude Safari,
+select a new rendering interaction or authorize production implementation. B-1–B-5
+remain agreed directions; final contract/design agreement awaits the remaining gates.

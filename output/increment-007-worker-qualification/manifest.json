@@ -1,0 +1,488 @@
+{
+  "revision": 2,
+  "baseCommit": "b84b1524596a0589e73680b769db0ed56b20396d",
+  "frozenAt": "2026-11-09T22:59:34.488771+00:00",
+  "scope": "Developer-owned isolated mechanism qualification revision2 correcting initial R1/R2; pending independent recheck. No production implementation or performance rerun.",
+  "excludedReviewerOwned": [
+    "output/increment-007-worker-qualification/independent-review.md",
+    "output/increment-007-worker-qualification/reviewer-probes/**"
+  ],
+  "excludedSelf": "output/increment-007-worker-qualification/manifest.json",
+  "previousManifest": {
+    "path": "output/increment-007-worker-qualification/manifest-revision-1.json",
+    "sha256": "f225e8f4c93fbbf8c53d906544d4b594f908615b12755ef346060df774f217df",
+    "files": 95
+  },
+  "supersededRevision1Paths": {
+    "research/increment-007-worker-qualification/worker.mjs": "output/increment-007-worker-qualification/revision-1-source/worker.mjs",
+    "research/increment-007-worker-qualification/protocol.mjs": "output/increment-007-worker-qualification/revision-1-source/protocol.mjs",
+    "research/increment-007-worker-qualification/protocol.test.mjs": "output/increment-007-worker-qualification/revision-1-source/protocol.test.mjs",
+    "research/increment-007-worker-qualification/README.md": "output/increment-007-worker-qualification/revision-1-source/README.md",
+    "output/increment-007-worker-qualification/report.md": "output/increment-007-worker-qualification/revision-1-source/report.md",
+    "output/increment-007-worker-qualification/verdicts.json": "output/increment-007-worker-qualification/revision-1-source/verdicts.json"
+  },
+  "targetedExecutionSource": "output/increment-007-worker-qualification/revision-2/executed-source/",
+  "unchangedPerformanceEvidence": "Original main/focused source maps and archives retained; no performance rerun on revision2 coordination/metadata source",
+  "files": {
+    "research/increment-007-worker-qualification/README.md": {
+      "bytes": 6818,
+      "sha256": "0ae91fcdc6e3443117815109a921f415df14d72975619999aede8f8b5bd2536b"
+    },
+    "research/increment-007-worker-qualification/automated-page.mjs": {
+      "bytes": 3834,
+      "sha256": "39c32ffbacaec0fa9e836c3661f2a95f1563978e4af02cd690b35d5ffa5aec1b"
+    },
+    "research/increment-007-worker-qualification/automated.html": {
+      "bytes": 425,
+      "sha256": "287be56b3785f75dab3ecc232952f4d906e163bc5323338899756011fc39c5a6"
+    },
+    "research/increment-007-worker-qualification/chrome-host.mjs": {
+      "bytes": 6146,
+      "sha256": "1c2388be878123c79a318dd05f65b9a26f04e78c4974bf2d31634c3ff1ae7d7c"
+    },
+    "research/increment-007-worker-qualification/chrome-manual-smoke.mjs": {
+      "bytes": 1502,
+      "sha256": "dfe94cf84daf4aeedc3dae8caa8d72a5cc649169d79f4b446df0606d5a7c2af6"
+    },
+    "research/increment-007-worker-qualification/index.html": {
+      "bytes": 415,
+      "sha256": "4ddb267edc5bb30c9a6ce5464048a4b4fa30643f5fa2cfaf5b8f2be475f192dd"
+    },
+    "research/increment-007-worker-qualification/manual.html": {
+      "bytes": 1086,
+      "sha256": "d2e1292f825d523092e2f11ff77df623ed8a87d030e00f69c3e2616812d5c720"
+    },
+    "research/increment-007-worker-qualification/manual.mjs": {
+      "bytes": 2896,
+      "sha256": "e0dce36d3ae775410d4c7907cc70e6a140fd343d5ef382fb9820f29fc013ca19"
+    },
+    "research/increment-007-worker-qualification/page.mjs": {
+      "bytes": 3538,
+      "sha256": "a667a49c67d772be09e7e2c9b4d3b0669783728d0159d77eac8c591ef3c7645d"
+    },
+    "research/increment-007-worker-qualification/protocol.mjs": {
+      "bytes": 2733,
+      "sha256": "3b30bbebc791edc1915b2260a047f33210c5a18786abd6c9de5f1b093581cabd"
+    },
+    "research/increment-007-worker-qualification/protocol.test.mjs": {
+      "bytes": 2151,
+      "sha256": "53bd3df6c4bb75ef5d0af80e59bffe3d245d640f90c051f5ff6f7268e6ea4163"
+    },
+    "research/increment-007-worker-qualification/revision-2-regressions.mjs": {
+      "bytes": 10895,
+      "sha256": "20be9fe5cce7b8043f94e7bd330857d7a84887a3b1b21b54b53d054d62a8f59e"
+    },
+    "research/increment-007-worker-qualification/run.mjs": {
+      "bytes": 17481,
+      "sha256": "6e534d4787a552708199e902a0c686c73865fa7656d9612ab8be87823e1d1b72"
+    },
+    "research/increment-007-worker-qualification/server.mjs": {
+      "bytes": 2189,
+      "sha256": "f40b69ca9e0a16156b1fd36778f48b1b3e53dcd9b6db5b8e0675d2cf151776b8"
+    },
+    "research/increment-007-worker-qualification/summarize.mjs": {
+      "bytes": 2347,
+      "sha256": "0f521b88c281997b8386b0416389abacb52a6543b43585a0eac254ca7aaa78a3"
+    },
+    "research/increment-007-worker-qualification/worker.mjs": {
+      "bytes": 11513,
+      "sha256": "629f7ab86ff8578b134f0f999f1d33dcb19e0e451bde286c2dd32b7c3d205839"
+    },
+    "output/increment-007-worker-qualification/chrome-attempt1.json": {
+      "bytes": 1170,
+      "sha256": "60e17dc363b3fa545a89d8c709e85a934814ebfa832c2ea4bb562b497d820fcd"
+    },
+    "output/increment-007-worker-qualification/chrome-attempt2.json": {
+      "bytes": 1170,
+      "sha256": "7939dcf0c065017c002bbe95ad53036fe29d59b6ba59ca5b87bd31baa56654b2"
+    },
+    "output/increment-007-worker-qualification/chrome-attempt3.json": {
+      "bytes": 42648,
+      "sha256": "f3a8d8784c1444bbcec23387b55995db06295ea9f8b839268c90a06695ba93a3"
+    },
+    "output/increment-007-worker-qualification/chrome-attempt4.json": {
+      "bytes": 28432,
+      "sha256": "464887afd7c79ca0c0b06a0f0b9a0cbfe3baa928eef87f5243f6bf427c93b666"
+    },
+    "output/increment-007-worker-qualification/chrome-attempt5.json": {
+      "bytes": 58254,
+      "sha256": "d7dbdd9dcec7744977906613266ad74a5646a924ae2e1c09283fa60898fac4cb"
+    },
+    "output/increment-007-worker-qualification/chrome-host-results.json": {
+      "bytes": 11289,
+      "sha256": "0e3f5c57a0a6755976d0100d2e6442a0e4af5224154d1f06a8ecc1c9d3f86b11"
+    },
+    "output/increment-007-worker-qualification/chrome-host-run.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "output/increment-007-worker-qualification/chrome-memory-sample.json": {
+      "bytes": 1399,
+      "sha256": "d477324fa40a372ca586f95570326bfe49469ac08fd7e78c6d1ffc6cc0052623"
+    },
+    "output/increment-007-worker-qualification/chrome-results.json": {
+      "bytes": 291906,
+      "sha256": "762f62799b65c685db4a6fd11de83ac55e804f23f3b7607cc4f3a4e4a3e477b0"
+    },
+    "output/increment-007-worker-qualification/chrome-run.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "output/increment-007-worker-qualification/chrome-run2.txt": {
+      "bytes": 174,
+      "sha256": "392c0e7e8520b32732dcef78383795c347d33fa58d993e4685ba9937028e1e14"
+    },
+    "output/increment-007-worker-qualification/chrome-run3.txt": {
+      "bytes": 1351,
+      "sha256": "10678ccc4cc7a6b89deee27511eeaaab89fe0f0349bf22326f54f764bcbae91d"
+    },
+    "output/increment-007-worker-qualification/chrome-run4.txt": {
+      "bytes": 1457,
+      "sha256": "e0703194852adbaefb143a29a1b591ecdc8e13c127195928d0049276e6e30ed4"
+    },
+    "output/increment-007-worker-qualification/chrome-run5.txt": {
+      "bytes": 3075,
+      "sha256": "aa87588a76e237ca0bde0f8368342f86b642dc76ff10e7b0f7713d863115af3c"
+    },
+    "output/increment-007-worker-qualification/chrome-run6.txt": {
+      "bytes": 16949,
+      "sha256": "e4c254f4399f77eb3571d8cc09d75383be5eed8f94ef496dfe676d1ec512194c"
+    },
+    "output/increment-007-worker-qualification/downloads/0bf91a7e-8859-4add-a76e-b97ac85544f5": {
+      "bytes": 10407,
+      "sha256": "590682c07ab35318225b5e06f59ab6fee43b77e92f6b864b627db017bd414059"
+    },
+    "output/increment-007-worker-qualification/executed-source-attempt1/page.mjs": {
+      "bytes": 3538,
+      "sha256": "a667a49c67d772be09e7e2c9b4d3b0669783728d0159d77eac8c591ef3c7645d"
+    },
+    "output/increment-007-worker-qualification/executed-source-attempt1/protocol.mjs": {
+      "bytes": 2405,
+      "sha256": "835971d4aa4da58fdb619d7553f1e2a08f0ac184700d5b8d7eb0f84360787a92"
+    },
+    "output/increment-007-worker-qualification/executed-source-attempt1/run.mjs": {
+      "bytes": 14159,
+      "sha256": "f7663f2e70c2d2021a6f62fb20101e9b47826c78c7734793e05f31118943c240"
+    },
+    "output/increment-007-worker-qualification/executed-source-attempt1/server.mjs": {
+      "bytes": 2189,
+      "sha256": "217a6dabd6883cc360bd61034f71a52acf107f83c60a455b69c1bda893db5e3f"
+    },
+    "output/increment-007-worker-qualification/executed-source-attempt1/worker.mjs": {
+      "bytes": 10118,
+      "sha256": "a0e383d8886af9b8200882561d463902a85473d526a485a7541aadefa2a119b4"
+    },
+    "output/increment-007-worker-qualification/executed-source-attempt2/page.mjs": {
+      "bytes": 3538,
+      "sha256": "a667a49c67d772be09e7e2c9b4d3b0669783728d0159d77eac8c591ef3c7645d"
+    },
+    "output/increment-007-worker-qualification/executed-source-attempt2/protocol.mjs": {
+      "bytes": 2405,
+      "sha256": "835971d4aa4da58fdb619d7553f1e2a08f0ac184700d5b8d7eb0f84360787a92"
+    },
+    "output/increment-007-worker-qualification/executed-source-attempt2/run.mjs": {
+      "bytes": 14245,
+      "sha256": "23ce675c29638450375ea0f21aa4969f53bc7899a614ff196e12906ea427466b"
+    },
+    "output/increment-007-worker-qualification/executed-source-attempt2/server.mjs": {
+      "bytes": 2189,
+      "sha256": "217a6dabd6883cc360bd61034f71a52acf107f83c60a455b69c1bda893db5e3f"
+    },
+    "output/increment-007-worker-qualification/executed-source-attempt2/worker.mjs": {
+      "bytes": 10118,
+      "sha256": "a0e383d8886af9b8200882561d463902a85473d526a485a7541aadefa2a119b4"
+    },
+    "output/increment-007-worker-qualification/executed-source-focused/automated-page.mjs": {
+      "bytes": 3834,
+      "sha256": "39c32ffbacaec0fa9e836c3661f2a95f1563978e4af02cd690b35d5ffa5aec1b"
+    },
+    "output/increment-007-worker-qualification/executed-source-focused/automated.html": {
+      "bytes": 425,
+      "sha256": "287be56b3785f75dab3ecc232952f4d906e163bc5323338899756011fc39c5a6"
+    },
+    "output/increment-007-worker-qualification/executed-source-focused/protocol.mjs": {
+      "bytes": 2548,
+      "sha256": "01fe99ad575aac6c16a1b6da8e0ac78f1b9d07060f46f6a0c96c8ed0771e3408"
+    },
+    "output/increment-007-worker-qualification/executed-source-focused/run.mjs": {
+      "bytes": 17483,
+      "sha256": "d262da19096e14bda26da347206a67ac140f4c5a5e95c25d253b82f56ee11bc3"
+    },
+    "output/increment-007-worker-qualification/executed-source-focused/server.mjs": {
+      "bytes": 2189,
+      "sha256": "f40b69ca9e0a16156b1fd36778f48b1b3e53dcd9b6db5b8e0675d2cf151776b8"
+    },
+    "output/increment-007-worker-qualification/executed-source-focused/worker.mjs": {
+      "bytes": 10556,
+      "sha256": "fcd5b26e08fcdbd59dc40a500345c3b43464c5b7449cce79312925b9460af93f"
+    },
+    "output/increment-007-worker-qualification/executed-source-host/chrome-host.mjs": {
+      "bytes": 6134,
+      "sha256": "3b90d5b37e22a406dc43713a52735d0455c60a0a621fe5bef780d5f56e76f0c0"
+    },
+    "output/increment-007-worker-qualification/executed-source-main/automated-page.mjs": {
+      "bytes": 3834,
+      "sha256": "39c32ffbacaec0fa9e836c3661f2a95f1563978e4af02cd690b35d5ffa5aec1b"
+    },
+    "output/increment-007-worker-qualification/executed-source-main/automated.html": {
+      "bytes": 425,
+      "sha256": "287be56b3785f75dab3ecc232952f4d906e163bc5323338899756011fc39c5a6"
+    },
+    "output/increment-007-worker-qualification/executed-source-main/protocol.mjs": {
+      "bytes": 2548,
+      "sha256": "01fe99ad575aac6c16a1b6da8e0ac78f1b9d07060f46f6a0c96c8ed0771e3408"
+    },
+    "output/increment-007-worker-qualification/executed-source-main/run.mjs": {
+      "bytes": 16099,
+      "sha256": "a3f030667ffdf3fa66d74aab2713a0f1c1a43b173eec44fcc1b916b162f4a37e"
+    },
+    "output/increment-007-worker-qualification/executed-source-main/server.mjs": {
+      "bytes": 2189,
+      "sha256": "f40b69ca9e0a16156b1fd36778f48b1b3e53dcd9b6db5b8e0675d2cf151776b8"
+    },
+    "output/increment-007-worker-qualification/executed-source-main/worker.mjs": {
+      "bytes": 10556,
+      "sha256": "fcd5b26e08fcdbd59dc40a500345c3b43464c5b7449cce79312925b9460af93f"
+    },
+    "output/increment-007-worker-qualification/executed-source-run3/page.mjs": {
+      "bytes": 3538,
+      "sha256": "a667a49c67d772be09e7e2c9b4d3b0669783728d0159d77eac8c591ef3c7645d"
+    },
+    "output/increment-007-worker-qualification/executed-source-run3/protocol.mjs": {
+      "bytes": 2405,
+      "sha256": "835971d4aa4da58fdb619d7553f1e2a08f0ac184700d5b8d7eb0f84360787a92"
+    },
+    "output/increment-007-worker-qualification/executed-source-run3/run.mjs": {
+      "bytes": 14245,
+      "sha256": "23ce675c29638450375ea0f21aa4969f53bc7899a614ff196e12906ea427466b"
+    },
+    "output/increment-007-worker-qualification/executed-source-run3/server.mjs": {
+      "bytes": 2189,
+      "sha256": "f40b69ca9e0a16156b1fd36778f48b1b3e53dcd9b6db5b8e0675d2cf151776b8"
+    },
+    "output/increment-007-worker-qualification/executed-source-run3/worker.mjs": {
+      "bytes": 10118,
+      "sha256": "a0e383d8886af9b8200882561d463902a85473d526a485a7541aadefa2a119b4"
+    },
+    "output/increment-007-worker-qualification/executed-source-run4/automated-page.mjs": {
+      "bytes": 3697,
+      "sha256": "bad44f2689066e324fe23786e6dfd40dd79566be38ec6f86855eb9fb5b76bdef"
+    },
+    "output/increment-007-worker-qualification/executed-source-run4/automated.html": {
+      "bytes": 425,
+      "sha256": "287be56b3785f75dab3ecc232952f4d906e163bc5323338899756011fc39c5a6"
+    },
+    "output/increment-007-worker-qualification/executed-source-run4/protocol.mjs": {
+      "bytes": 2405,
+      "sha256": "835971d4aa4da58fdb619d7553f1e2a08f0ac184700d5b8d7eb0f84360787a92"
+    },
+    "output/increment-007-worker-qualification/executed-source-run4/run.mjs": {
+      "bytes": 14454,
+      "sha256": "7ca9da769848f38acb9343e8737e4cdcf43fe155376f0b60c452d19b2a4b5411"
+    },
+    "output/increment-007-worker-qualification/executed-source-run4/server.mjs": {
+      "bytes": 2189,
+      "sha256": "f40b69ca9e0a16156b1fd36778f48b1b3e53dcd9b6db5b8e0675d2cf151776b8"
+    },
+    "output/increment-007-worker-qualification/executed-source-run4/worker.mjs": {
+      "bytes": 10118,
+      "sha256": "a0e383d8886af9b8200882561d463902a85473d526a485a7541aadefa2a119b4"
+    },
+    "output/increment-007-worker-qualification/executed-source-run5/automated-page.mjs": {
+      "bytes": 3697,
+      "sha256": "bad44f2689066e324fe23786e6dfd40dd79566be38ec6f86855eb9fb5b76bdef"
+    },
+    "output/increment-007-worker-qualification/executed-source-run5/automated.html": {
+      "bytes": 425,
+      "sha256": "287be56b3785f75dab3ecc232952f4d906e163bc5323338899756011fc39c5a6"
+    },
+    "output/increment-007-worker-qualification/executed-source-run5/protocol.mjs": {
+      "bytes": 2523,
+      "sha256": "c375992510bf465a1230ca3872538ad0a394ee93309ceaa830270f635d0d8ff6"
+    },
+    "output/increment-007-worker-qualification/executed-source-run5/run.mjs": {
+      "bytes": 14919,
+      "sha256": "d6459514f5819907774d556a4cf9288af76f33849ca720750466e5b61747f361"
+    },
+    "output/increment-007-worker-qualification/executed-source-run5/server.mjs": {
+      "bytes": 2189,
+      "sha256": "f40b69ca9e0a16156b1fd36778f48b1b3e53dcd9b6db5b8e0675d2cf151776b8"
+    },
+    "output/increment-007-worker-qualification/executed-source-run5/worker.mjs": {
+      "bytes": 10265,
+      "sha256": "bd54d9ffed04d545833e713db05a0db90bdc633cbcbf871343f89e02d6f66c6e"
+    },
+    "output/increment-007-worker-qualification/manifest-revision-1.json": {
+      "bytes": 18919,
+      "sha256": "f225e8f4c93fbbf8c53d906544d4b594f908615b12755ef346060df774f217df"
+    },
+    "output/increment-007-worker-qualification/manual-download-expected.json": {
+      "bytes": 177,
+      "sha256": "dd8b4712fb41c7edbf28b482027207d51111c22f55e19cc2a2fc5a705d410620"
+    },
+    "output/increment-007-worker-qualification/manual-route-smoke.json": {
+      "bytes": 2750,
+      "sha256": "7cea08528fe17988c961ad5d64795a2e323a674d7ece2096b5ec6e273df8541c"
+    },
+    "output/increment-007-worker-qualification/manual-server-source/manual.html": {
+      "bytes": 1086,
+      "sha256": "d2e1292f825d523092e2f11ff77df623ed8a87d030e00f69c3e2616812d5c720"
+    },
+    "output/increment-007-worker-qualification/manual-server-source/manual.mjs": {
+      "bytes": 2896,
+      "sha256": "e0dce36d3ae775410d4c7907cc70e6a140fd343d5ef382fb9820f29fc013ca19"
+    },
+    "output/increment-007-worker-qualification/manual-server-source/page.mjs": {
+      "bytes": 3538,
+      "sha256": "a667a49c67d772be09e7e2c9b4d3b0669783728d0159d77eac8c591ef3c7645d"
+    },
+    "output/increment-007-worker-qualification/manual-server-source/protocol.mjs": {
+      "bytes": 2405,
+      "sha256": "835971d4aa4da58fdb619d7553f1e2a08f0ac184700d5b8d7eb0f84360787a92"
+    },
+    "output/increment-007-worker-qualification/manual-server-source/server.mjs": {
+      "bytes": 2146,
+      "sha256": "43733a8221e33ac548547dd0d3eea199018e5140bad827a78a2996a9c853dd31"
+    },
+    "output/increment-007-worker-qualification/manual-server-source/worker.mjs": {
+      "bytes": 10118,
+      "sha256": "a0e383d8886af9b8200882561d463902a85473d526a485a7541aadefa2a119b4"
+    },
+    "output/increment-007-worker-qualification/manual-user-events.jsonl": {
+      "bytes": 28704,
+      "sha256": "7dd3739df2b127fbdc5e36b527fad31c751393f5e93bf33ea866769952b795e3"
+    },
+    "output/increment-007-worker-qualification/original-stage-a-integrity.json": {
+      "bytes": 133,
+      "sha256": "29b8514af89705ff562cda79d875c589dcd5ebc965c96c801553acb4c90e5493"
+    },
+    "output/increment-007-worker-qualification/report.md": {
+      "bytes": 19946,
+      "sha256": "ef3cc4fafa8f58e9d6fcc6defc28eb56e64cf22679207a23718a05f2fed2cdfb"
+    },
+    "output/increment-007-worker-qualification/revision-1-source/README.md": {
+      "bytes": 5454,
+      "sha256": "117f8210ad7bb68bb3017cc94fc520ff57169be3c637d2465a75b6156ff6dddb"
+    },
+    "output/increment-007-worker-qualification/revision-1-source/protocol.mjs": {
+      "bytes": 2548,
+      "sha256": "01fe99ad575aac6c16a1b6da8e0ac78f1b9d07060f46f6a0c96c8ed0771e3408"
+    },
+    "output/increment-007-worker-qualification/revision-1-source/protocol.test.mjs": {
+      "bytes": 1844,
+      "sha256": "1b014a2e4e7c8646906bb121f0f4b95ebfd4a721c808daf809d0b975931b4abd"
+    },
+    "output/increment-007-worker-qualification/revision-1-source/report.md": {
+      "bytes": 16346,
+      "sha256": "c5566498b371c751bd83c91306d2aa9e2e7fcfd2548d4c478c94e57157750553"
+    },
+    "output/increment-007-worker-qualification/revision-1-source/verdicts.json": {
+      "bytes": 1026,
+      "sha256": "fb0c191256717e5d17b5b443f98e2d9e645e92ec24d456a3af9b649353d9a6da"
+    },
+    "output/increment-007-worker-qualification/revision-1-source/worker.mjs": {
+      "bytes": 10556,
+      "sha256": "fcd5b26e08fcdbd59dc40a500345c3b43464c5b7449cce79312925b9460af93f"
+    },
+    "output/increment-007-worker-qualification/revision-2/chrome-results.json": {
+      "bytes": 49757,
+      "sha256": "d3426495847093c9a968a31db21432ae080289d8968424f2ca4250311565c58c"
+    },
+    "output/increment-007-worker-qualification/revision-2/executed-source/automated-page.mjs": {
+      "bytes": 3834,
+      "sha256": "39c32ffbacaec0fa9e836c3661f2a95f1563978e4af02cd690b35d5ffa5aec1b"
+    },
+    "output/increment-007-worker-qualification/revision-2/executed-source/protocol.mjs": {
+      "bytes": 2733,
+      "sha256": "3b30bbebc791edc1915b2260a047f33210c5a18786abd6c9de5f1b093581cabd"
+    },
+    "output/increment-007-worker-qualification/revision-2/executed-source/revision-2-regressions.mjs": {
+      "bytes": 10895,
+      "sha256": "20be9fe5cce7b8043f94e7bd330857d7a84887a3b1b21b54b53d054d62a8f59e"
+    },
+    "output/increment-007-worker-qualification/revision-2/executed-source/server.mjs": {
+      "bytes": 2189,
+      "sha256": "f40b69ca9e0a16156b1fd36778f48b1b3e53dcd9b6db5b8e0675d2cf151776b8"
+    },
+    "output/increment-007-worker-qualification/revision-2/executed-source/worker.mjs": {
+      "bytes": 11513,
+      "sha256": "629f7ab86ff8578b134f0f999f1d33dcb19e0e451bde286c2dd32b7c3d205839"
+    },
+    "output/increment-007-worker-qualification/revision-2/safari-results.json": {
+      "bytes": 48369,
+      "sha256": "8bb9d34cd8a04d0cca71d604c6baf279ae0d8ad89d76d1803d5cf29d2b21523f"
+    },
+    "output/increment-007-worker-qualification/revision-2/syntax-checks.json": {
+      "bytes": 1432,
+      "sha256": "bd7a28f63fbc2bff431f7c7ccaf57bb0507bb79599bea6ea122b3dc125f06e93"
+    },
+    "output/increment-007-worker-qualification/revision-2-chrome-run.txt": {
+      "bytes": 335,
+      "sha256": "8224988a0582ab3b5ebf1f658b3a3b4aed83d2ca76a40570da2cb091fb6fe754"
+    },
+    "output/increment-007-worker-qualification/revision-2-incarnation-red.txt": {
+      "bytes": 1579,
+      "sha256": "2983364ce020e1a3952ce93c82d59dd9776d8cb413e1127a368797f7d3c42ed2"
+    },
+    "output/increment-007-worker-qualification/revision-2-safari-run.txt": {
+      "bytes": 335,
+      "sha256": "8224988a0582ab3b5ebf1f658b3a3b4aed83d2ca76a40570da2cb091fb6fe754"
+    },
+    "output/increment-007-worker-qualification/revision-2-tests.txt": {
+      "bytes": 533,
+      "sha256": "1bb9793ec6fae2abb7ca90b205e1801857c1fa3c5e609747d99d2910001d4446"
+    },
+    "output/increment-007-worker-qualification/safari-attempt1.json": {
+      "bytes": 263367,
+      "sha256": "3bbedce8b1033387f4e7206ef7138a21109ba027e1b8b197eb9f8a4a41f31e4b"
+    },
+    "output/increment-007-worker-qualification/safari-focused-results.json": {
+      "bytes": 16866,
+      "sha256": "9cb1e33ccff9edfddbd1d45f9dcd349bc1c141f7502ff919ca64b11c5be07b1d"
+    },
+    "output/increment-007-worker-qualification/safari-focused-run.txt": {
+      "bytes": 386,
+      "sha256": "48419b58c8883810e5528dd63774232ddd5b0d1a8bedfd60a6e86a20788573df"
+    },
+    "output/increment-007-worker-qualification/safari-results.json": {
+      "bytes": 263367,
+      "sha256": "3bbedce8b1033387f4e7206ef7138a21109ba027e1b8b197eb9f8a4a41f31e4b"
+    },
+    "output/increment-007-worker-qualification/safari-run.txt": {
+      "bytes": 16976,
+      "sha256": "cec11739ed8e97d76dc3335bf1bef1de16c7b62dadd5e576a34a13e27364416a"
+    },
+    "output/increment-007-worker-qualification/summary.json": {
+      "bytes": 20624,
+      "sha256": "215fa2b08f0bce440eb1ea43b1422f2c0ceea8bcaea34cc5b8fdafe888f80a87"
+    },
+    "output/increment-007-worker-qualification/syntax-checks.json": {
+      "bytes": 816,
+      "sha256": "d40fae01c68830a5d517c0073ebed86c7fc59817066f8f5f489f58c6348e7a22"
+    },
+    "output/increment-007-worker-qualification/tests-final.txt": {
+      "bytes": 455,
+      "sha256": "8a5bc78c36b8da9ba02999089e7cc17fb7e056d959e9e9c86f6e6adb6836f086"
+    },
+    "output/increment-007-worker-qualification/tests-green.txt": {
+      "bytes": 383,
+      "sha256": "37313b415dea22dd1291dec8f77687f89fe2a3fff670b6562ef20e0f8bb84909"
+    },
+    "output/increment-007-worker-qualification/tests-metadata-green.txt": {
+      "bytes": 454,
+      "sha256": "9bfe3e3d11ea41a0f8fa1b205ddbf9957edcc248e0d504a3cd43921455c4019b"
+    },
+    "output/increment-007-worker-qualification/tests-metadata-red.txt": {
+      "bytes": 1502,
+      "sha256": "f5d0925ee9215011a5e711a4160b63744f4f4607a27e12b61bd0b2643febde2f"
+    },
+    "output/increment-007-worker-qualification/tests-red.txt": {
+      "bytes": 1733,
+      "sha256": "049487056a214374a659705ad7b1fb4bb7207c401cda972c0005c2a48555252d"
+    },
+    "output/increment-007-worker-qualification/verdicts.json": {
+      "bytes": 1381,
+      "sha256": "61a02cfc64c6f55db57ae26eb8a383fd77e960d1f26866f75188d1b189a3c96d"
+    }
+  }
+}

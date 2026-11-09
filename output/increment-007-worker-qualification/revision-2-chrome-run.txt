@@ -1,0 +1,5 @@
+R1-accepted-reset-recreated-database-remains-unknown pass
+R1-normal-retained-absence-and-malformed-incarnation-controls pass
+R2-overlapping-prepare-and-double-dispatch-cannot-overwrite pass
+R2-failed-preparation-and-cancelled-attempt-do-not-clear-new-slot pass
+R2-cancel-during-preparation-fences-continuation-and-keeps-next-slot pass

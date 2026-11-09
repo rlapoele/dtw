@@ -1,0 +1,1029 @@
+{
+  "engine": "chrome",
+  "start": "2026-11-09T22:33:07.267Z",
+  "cases": [
+    {
+      "id": "W01-startup-csp-worker-capabilities",
+      "status": "pass",
+      "wallMs": 23,
+      "value": {
+        "secure": true,
+        "worker": true,
+        "indexedDB": true,
+        "locks": true,
+        "strict": "strict",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+      }
+    },
+    {
+      "id": "W02-strict-complete-abort-exact-prior",
+      "status": "pass",
+      "wallMs": 47,
+      "value": {
+        "accepted": {
+          "status": "retained",
+          "revision": "base",
+          "dispatchCompleteMs": 1.099999999627471
+        },
+        "aborted": {
+          "status": "aborted",
+          "dispatchCompleteMs": 0.6000000005587935
+        },
+        "after": {
+          "project": "",
+          "revision": "base",
+          "incarnation": "incarnation-1",
+          "projection": {
+            "name": "",
+            "first": {
+              "id": "v0",
+              "projectId": "",
+              "localName": "v0",
+              "parentGroupId": null,
+              "definition": {
+                "type": "color",
+                "assignments": [
+                  {
+                    "condition": [],
+                    "value": {
+                      "kind": "literal",
+                      "valueType": "color",
+                      "colorSpace": "srgb",
+                      "components": [
+                        "-0.0001",
+                        "none",
+                        "1.9"
+                      ],
+                      "alpha": "0"
+                    }
+                  }
+                ]
+              },
+              "authoring": {
+                "regeneration": "allowed"
+              }
+            },
+            "count": 32
+          },
+          "latest": {
+            "commandId": "base",
+            "operation": "restoreProject",
+            "result": {
+              "entityKind": "project",
+              "id": ""
+            }
+          },
+          "exactCoverage": true
+        },
+        "events": [
+          {
+            "seq": 1,
+            "type": "pageshow",
+            "time": 83.59999999962747,
+            "persisted": false,
+            "visibility": "visible"
+          },
+          {
+            "seq": 1,
+            "type": "module-ready",
+            "time": 138.5,
+            "event": true
+          },
+          {
+            "seq": 2,
+            "type": "lock-acquired",
+            "time": 242.3999999994412,
+            "event": true,
+            "project": ""
+          },
+          {
+            "seq": 3,
+            "type": "read-complete",
+            "time": 256.5,
+            "event": true,
+            "project": "",
+            "revision": null
+          },
+          {
+            "seq": 4,
+            "type": "prepared",
+            "time": 256.5,
+            "event": true,
+            "command": "base"
+          },
+          {
+            "seq": 5,
+            "type": "issued",
+            "time": 258.5,
+            "event": true,
+            "command": "base",
+            "project": "",
+            "durability": "strict"
+          },
+          {
+            "seq": 6,
+            "type": "request-success",
+            "time": 258.8999999994412,
+            "event": true,
+            "command": "base"
+          },
+          {
+            "seq": 7,
+            "type": "complete",
+            "time": 259.59999999962747,
+            "event": true,
+            "command": "base"
+          },
+          {
+            "seq": 8,
+            "type": "read-complete",
+            "time": 278.79999999981374,
+            "event": true,
+            "project": "",
+            "revision": "base"
+          },
+          {
+            "seq": 9,
+            "type": "prepared",
+            "time": 279,
+            "event": true,
+            "command": "aborted"
+          },
+          {
+            "seq": 10,
+            "type": "issued",
+            "time": 280.3999999994412,
+            "event": true,
+            "command": "aborted",
+            "project": "",
+            "durability": "strict"
+          },
+          {
+            "seq": 11,
+            "type": "request-success",
+            "time": 280.8999999994412,
+            "event": true,
+            "command": "aborted"
+          },
+          {
+            "seq": 12,
+            "type": "abort",
+            "time": 281,
+            "event": true,
+            "command": "aborted",
+            "reason": "aborted"
+          },
+          {
+            "seq": 13,
+            "type": "read-complete",
+            "time": 282.59999999962747,
+            "event": true,
+            "project": "",
+            "revision": "base"
+          }
+        ]
+      }
+    },
+    {
+      "id": "W03-worker-locks-both-orders-three",
+      "status": "pass",
+      "wallMs": 22,
+      "value": [
+        {
+          "reverse": false,
+          "i": 0,
+          "first": true,
+          "second": false,
+          "distinct": true
+        },
+        {
+          "reverse": false,
+          "i": 1,
+          "first": true,
+          "second": false,
+          "distinct": true
+        },
+        {
+          "reverse": false,
+          "i": 2,
+          "first": true,
+          "second": false,
+          "distinct": true
+        },
+        {
+          "reverse": true,
+          "i": 0,
+          "first": true,
+          "second": false,
+          "distinct": true
+        },
+        {
+          "reverse": true,
+          "i": 1,
+          "first": true,
+          "second": false,
+          "distinct": true
+        },
+        {
+          "reverse": true,
+          "i": 2,
+          "first": true,
+          "second": false,
+          "distinct": true
+        }
+      ]
+    },
+    {
+      "id": "W04-exact-transfer-opaque-surrogate-values",
+      "status": "pass",
+      "wallMs": 27,
+      "value": {
+        "exact": true,
+        "detached": true,
+        "counts": {
+          "values": 697,
+          "strings": 6626,
+          "lexical": 2607,
+          "maxDepth": 12,
+          "snapshotBytes": 10286,
+          "fileBytes": 10407
+        },
+        "fixtureSha256": "590682c07ab35318225b5e06f59ab6fee43b77e92f6b864b627db017bd414059"
+      }
+    },
+    {
+      "id": "W05a-worker-confirmed-cancel-no-future-dispatch",
+      "status": "pass",
+      "wallMs": 34,
+      "value": [
+        {
+          "cancel": {
+            "status": "never-dispatched",
+            "stopped": true
+          },
+          "late": {
+            "status": "never-dispatched"
+          },
+          "read": {
+            "project": "cancel0",
+            "absent": true,
+            "incarnation": "incarnation-1"
+          }
+        },
+        {
+          "cancel": {
+            "status": "never-dispatched",
+            "stopped": true
+          },
+          "late": {
+            "status": "never-dispatched"
+          },
+          "read": {
+            "project": "cancel1",
+            "absent": true,
+            "incarnation": "incarnation-1"
+          }
+        },
+        {
+          "cancel": {
+            "status": "never-dispatched",
+            "stopped": true
+          },
+          "late": {
+            "status": "never-dispatched"
+          },
+          "read": {
+            "project": "cancel2",
+            "absent": true,
+            "incarnation": "incarnation-1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "W05b-death-after-send-preserved-input-ordered-check",
+      "status": "pass",
+      "wallMs": 117,
+      "value": [
+        {
+          "initial": {
+            "observed": {
+              "error": "Error: worker-terminated: outcome unknown after send"
+            },
+            "rawPreserved": true,
+            "attempt": {
+              "command": "death-0",
+              "expected": null,
+              "incarnation": "incarnation-1",
+              "raw": " .invalid raw \ud800",
+              "protection": "baseline-protection"
+            },
+            "initialClassification": "unknown"
+          },
+          "unproved": {
+            "status": "unknown",
+            "proof": {
+              "ownership": true,
+              "stopped": false,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            "revision": "death-0"
+          },
+          "proved": {
+            "status": "retained",
+            "proof": {
+              "ownership": true,
+              "stopped": true,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            "revision": "death-0"
+          },
+          "events": [
+            {
+              "seq": 49,
+              "type": "read-complete",
+              "time": 386.09999999962747,
+              "event": true,
+              "project": "death0",
+              "revision": null
+            },
+            {
+              "seq": 50,
+              "type": "prepared",
+              "time": 386.09999999962747,
+              "event": true,
+              "command": "death-0"
+            },
+            {
+              "seq": 51,
+              "type": "issued",
+              "time": 388.20000000018626,
+              "event": true,
+              "command": "death-0",
+              "project": "death0",
+              "durability": "strict"
+            },
+            {
+              "seq": 53,
+              "type": "worker-terminated",
+              "time": 388.3999999994412,
+              "generation": 1
+            },
+            {
+              "seq": 1,
+              "type": "module-ready",
+              "time": 399.8999999994412,
+              "event": true
+            },
+            {
+              "seq": 2,
+              "type": "lock-acquired",
+              "time": 401.20000000018626,
+              "event": true,
+              "project": "death0"
+            },
+            {
+              "seq": 3,
+              "type": "recovery-ownership",
+              "time": 401.29999999981374,
+              "event": true,
+              "project": "death0"
+            },
+            {
+              "seq": 4,
+              "type": "read-complete",
+              "time": 401.70000000018626,
+              "event": true,
+              "project": "death0",
+              "revision": "death-0"
+            },
+            {
+              "seq": 5,
+              "type": "recovery-proof",
+              "time": 401.70000000018626,
+              "event": true,
+              "project": "death0",
+              "ownership": true,
+              "stopped": false,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            {
+              "seq": 6,
+              "type": "recovery-ownership",
+              "time": 403.09999999962747,
+              "event": true,
+              "project": "death0"
+            },
+            {
+              "seq": 7,
+              "type": "read-complete",
+              "time": 403.29999999981374,
+              "event": true,
+              "project": "death0",
+              "revision": "death-0"
+            },
+            {
+              "seq": 8,
+              "type": "recovery-proof",
+              "time": 403.29999999981374,
+              "event": true,
+              "project": "death0",
+              "ownership": true,
+              "stopped": true,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            }
+          ]
+        },
+        {
+          "initial": {
+            "observed": {
+              "error": "Error: worker-terminated: outcome unknown after send"
+            },
+            "rawPreserved": true,
+            "attempt": {
+              "command": "death-1",
+              "expected": null,
+              "incarnation": "incarnation-1",
+              "raw": " .invalid raw \ud800",
+              "protection": "baseline-protection"
+            },
+            "initialClassification": "unknown"
+          },
+          "unproved": {
+            "status": "unknown",
+            "proof": {
+              "ownership": true,
+              "stopped": false,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            "revision": null
+          },
+          "proved": {
+            "status": "rejected",
+            "proof": {
+              "ownership": true,
+              "stopped": true,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            "revision": null
+          },
+          "events": [
+            {
+              "seq": 11,
+              "type": "read-complete",
+              "time": 424.70000000018626,
+              "event": true,
+              "project": "death1",
+              "revision": null
+            },
+            {
+              "seq": 12,
+              "type": "prepared",
+              "time": 424.70000000018626,
+              "event": true,
+              "command": "death-1"
+            },
+            {
+              "seq": 13,
+              "type": "issued",
+              "time": 426.5,
+              "event": true,
+              "command": "death-1",
+              "project": "death1",
+              "durability": "strict"
+            },
+            {
+              "seq": 67,
+              "type": "worker-terminated",
+              "time": 426.59999999962747,
+              "generation": 2
+            },
+            {
+              "seq": 1,
+              "type": "module-ready",
+              "time": 437.79999999981374,
+              "event": true
+            },
+            {
+              "seq": 2,
+              "type": "lock-acquired",
+              "time": 438.8999999994412,
+              "event": true,
+              "project": "death1"
+            },
+            {
+              "seq": 3,
+              "type": "recovery-ownership",
+              "time": 438.8999999994412,
+              "event": true,
+              "project": "death1"
+            },
+            {
+              "seq": 4,
+              "type": "read-complete",
+              "time": 439.3999999994412,
+              "event": true,
+              "project": "death1",
+              "revision": null
+            },
+            {
+              "seq": 5,
+              "type": "recovery-proof",
+              "time": 439.3999999994412,
+              "event": true,
+              "project": "death1",
+              "ownership": true,
+              "stopped": false,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            {
+              "seq": 6,
+              "type": "recovery-ownership",
+              "time": 440.59999999962747,
+              "event": true,
+              "project": "death1"
+            },
+            {
+              "seq": 7,
+              "type": "read-complete",
+              "time": 440.8999999994412,
+              "event": true,
+              "project": "death1",
+              "revision": null
+            },
+            {
+              "seq": 8,
+              "type": "recovery-proof",
+              "time": 440.8999999994412,
+              "event": true,
+              "project": "death1",
+              "ownership": true,
+              "stopped": true,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            }
+          ]
+        },
+        {
+          "initial": {
+            "observed": {
+              "error": "Error: worker-terminated: outcome unknown after send"
+            },
+            "rawPreserved": true,
+            "attempt": {
+              "command": "death-2",
+              "expected": null,
+              "incarnation": "incarnation-1",
+              "raw": " .invalid raw \ud800",
+              "protection": "baseline-protection"
+            },
+            "initialClassification": "unknown"
+          },
+          "unproved": {
+            "status": "unknown",
+            "proof": {
+              "ownership": true,
+              "stopped": false,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            "revision": null
+          },
+          "proved": {
+            "status": "rejected",
+            "proof": {
+              "ownership": true,
+              "stopped": true,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            "revision": null
+          },
+          "events": [
+            {
+              "seq": 11,
+              "type": "read-complete",
+              "time": 473.8999999994412,
+              "event": true,
+              "project": "death2",
+              "revision": null
+            },
+            {
+              "seq": 12,
+              "type": "prepared",
+              "time": 474,
+              "event": true,
+              "command": "death-2"
+            },
+            {
+              "seq": 13,
+              "type": "issued",
+              "time": 475.29999999981374,
+              "event": true,
+              "command": "death-2",
+              "project": "death2",
+              "durability": "strict"
+            },
+            {
+              "seq": 81,
+              "type": "worker-terminated",
+              "time": 475.29999999981374,
+              "generation": 3
+            },
+            {
+              "seq": 1,
+              "type": "module-ready",
+              "time": 486.09999999962747,
+              "event": true
+            },
+            {
+              "seq": 2,
+              "type": "lock-acquired",
+              "time": 487.5,
+              "event": true,
+              "project": "death2"
+            },
+            {
+              "seq": 3,
+              "type": "recovery-ownership",
+              "time": 487.5,
+              "event": true,
+              "project": "death2"
+            },
+            {
+              "seq": 4,
+              "type": "read-complete",
+              "time": 487.8999999994412,
+              "event": true,
+              "project": "death2",
+              "revision": null
+            },
+            {
+              "seq": 5,
+              "type": "recovery-proof",
+              "time": 487.8999999994412,
+              "event": true,
+              "project": "death2",
+              "ownership": true,
+              "stopped": false,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            },
+            {
+              "seq": 6,
+              "type": "recovery-ownership",
+              "time": 488.8999999994412,
+              "event": true,
+              "project": "death2"
+            },
+            {
+              "seq": 7,
+              "type": "read-complete",
+              "time": 489.09999999962747,
+              "event": true,
+              "project": "death2",
+              "revision": null
+            },
+            {
+              "seq": 8,
+              "type": "recovery-proof",
+              "time": 489.09999999962747,
+              "event": true,
+              "project": "death2",
+              "ownership": true,
+              "stopped": true,
+              "ordered": true,
+              "incarnation": "incarnation-1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W05c-publication-identity-fence",
+      "status": "pass",
+      "wallMs": 1,
+      "value": {
+        "matching": true,
+        "wrongProject": false,
+        "oldGeneration": false
+      }
+    },
+    {
+      "id": "W06-coherent-read-and-cursor-summary",
+      "status": "pass",
+      "wallMs": 14,
+      "value": {
+        "one": {
+          "project": "",
+          "revision": "base",
+          "incarnation": "incarnation-1",
+          "projection": {
+            "name": "",
+            "first": {
+              "id": "v0",
+              "projectId": "",
+              "localName": "v0",
+              "parentGroupId": null,
+              "definition": {
+                "type": "color",
+                "assignments": [
+                  {
+                    "condition": [],
+                    "value": {
+                      "kind": "literal",
+                      "valueType": "color",
+                      "colorSpace": "srgb",
+                      "components": [
+                        "-0.0001",
+                        "none",
+                        "1.9"
+                      ],
+                      "alpha": "0"
+                    }
+                  }
+                ]
+              },
+              "authoring": {
+                "regeneration": "allowed"
+              }
+            },
+            "count": 32
+          },
+          "latest": {
+            "commandId": "base",
+            "operation": "restoreProject",
+            "result": {
+              "entityKind": "project",
+              "id": ""
+            }
+          },
+          "exactCoverage": true
+        },
+        "rows": {
+          "rows": [
+            {
+              "project": "",
+              "name": "",
+              "tokens": 32,
+              "groups": 2,
+              "revision": "base",
+              "status": "supported"
+            },
+            {
+              "project": "death0",
+              "name": "Stage A synthetic",
+              "tokens": 100,
+              "groups": 0,
+              "revision": "death-0",
+              "status": "supported"
+            }
+          ],
+          "bytes": 33908,
+          "workerMs": 6.099999999627471
+        }
+      }
+    },
+    {
+      "id": "W07-revision-protection-capacity-subsets",
+      "status": "pass",
+      "wallMs": 270,
+      "value": {
+        "stale": {
+          "status": "revision-conflict",
+          "dispatchCompleteMs": 0.2999999998137355
+        },
+        "protection": {
+          "status": "protection-conflict",
+          "dispatchCompleteMs": 0.30000000074505806
+        },
+        "full": {
+          "status": "capacity",
+          "dispatchCompleteMs": 0.10000000055879354
+        },
+        "rows": 25
+      }
+    },
+    {
+      "id": "W08-cold-worker-startup",
+      "status": "pass",
+      "wallMs": 227,
+      "value": [
+        {
+          "ms": 82,
+          "c": {
+            "secure": true,
+            "worker": true,
+            "indexedDB": true,
+            "locks": true,
+            "strict": "strict",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+          }
+        },
+        {
+          "ms": 74,
+          "c": {
+            "secure": true,
+            "worker": true,
+            "indexedDB": true,
+            "locks": true,
+            "strict": "strict",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+          }
+        },
+        {
+          "ms": 58,
+          "c": {
+            "secure": true,
+            "worker": true,
+            "indexedDB": true,
+            "locks": true,
+            "strict": "strict",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+          }
+        }
+      ]
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max--1",
+      "status": "pass",
+      "wallMs": 1199,
+      "value": {
+        "encodeMs": 591.0999999996275,
+        "decodeMs": 441.20000000018626,
+        "workerMs": 1078.9000000003725,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1181.5,
+        "rendererDomMs": 1.7000000001862645,
+        "visibility": "visible",
+        "endToPaintMs": 1195.5,
+        "longTasks": [],
+        "eventLoopLags": [
+          0,
+          46.200000000186265,
+          30,
+          3.400000000372529,
+          76.8999999994412,
+          95.29999999981374,
+          5.7000000001862645,
+          92.20000000018626,
+          79.20000000018626,
+          42.200000000186265,
+          41,
+          19.09999999962747,
+          10,
+          47,
+          16.700000000186265,
+          88.59999999962747,
+          40.90000000037253,
+          50.89999999944121,
+          66.80000000074506,
+          2.699999999254942,
+          12.300000000745058,
+          20.5,
+          32.19999999925494,
+          45.5
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": true
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-0",
+      "status": "pass",
+      "wallMs": 1159,
+      "value": {
+        "encodeMs": 483.79999999981374,
+        "decodeMs": 509.40000000037253,
+        "workerMs": 1028.6000000005588,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1128.4000000003725,
+        "rendererDomMs": 5.8999999994412065,
+        "visibility": "visible",
+        "endToPaintMs": 1153.7999999998137,
+        "longTasks": [],
+        "eventLoopLags": [
+          5,
+          35.700000000186265,
+          36.200000000186265,
+          48.799999999813735,
+          9.400000000372529,
+          11.799999999813735,
+          95.20000000018626,
+          79.8999999994412,
+          62.700000000186265,
+          78.79999999981374,
+          46.40000000037253,
+          37.299999999813735,
+          81.1000000005588,
+          25.299999999813735,
+          18.399999999441206,
+          72.30000000074506,
+          78.59999999962747,
+          94.79999999981374,
+          51.90000000037253
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-1",
+      "status": "pass",
+      "wallMs": 1153,
+      "value": {
+        "encodeMs": 585.3999999994412,
+        "decodeMs": 355.30000000074506,
+        "workerMs": 989.6000000005588,
+        "exact": true,
+        "counts": {
+          "values": 17007,
+          "strings": 1514293,
+          "lexical": 65046,
+          "maxDepth": 8,
+          "snapshotBytes": 8388608,
+          "fileBytes": 8388729
+        },
+        "roundtripMs": 1130.1000000005588,
+        "rendererDomMs": 4.8999999994412065,
+        "visibility": "visible",
+        "endToPaintMs": 1149.2999999998137,
+        "longTasks": [],
+        "eventLoopLags": [
+          4,
+          23.59999999962747,
+          40.299999999813735,
+          6.1000000005587935,
+          64.09999999962747,
+          14.100000000558794,
+          66,
+          33.59999999962747,
+          90.79999999981374,
+          95.6000000005588,
+          7.699999999254942,
+          47.90000000037253,
+          47.700000000186265,
+          95.59999999962747,
+          22.799999999813735,
+          26.5,
+          46.700000000186265,
+          94.40000000037253,
+          93.79999999981374,
+          35.09999999962747
+        ],
+        "rendererByteLength": 8388729,
+        "warmup": false
+      }
+    },
+    {
+      "id": "W08-worker-codec-transfer-dom-max-2",
+      "status": "fail",
+      "wallMs": 366,
+      "error": "Error: page.evaluate: Target page, context or browser has been closed"
+    }
+  ],
+  "source": {
+    "worker.mjs": "a0e383d8886af9b8200882561d463902a85473d526a485a7541aadefa2a119b4",
+    "automated-page.mjs": "bad44f2689066e324fe23786e6dfd40dd79566be38ec6f86855eb9fb5b76bdef",
+    "automated.html": "287be56b3785f75dab3ecc232952f4d906e163bc5323338899756011fc39c5a6",
+    "protocol.mjs": "835971d4aa4da58fdb619d7553f1e2a08f0ac184700d5b8d7eb0f84360787a92",
+    "run.mjs": "7ca9da769848f38acb9343e8737e4cdcf43fe155376f0b60c452d19b2a4b5411",
+    "server.mjs": "f40b69ca9e0a16156b1fd36778f48b1b3e53dcd9b6db5b8e0675d2cf151776b8"
+  },
+  "scope": "Synthetic worker boundary and DOM, not production application/React parity",
+  "environment": {
+    "macOS": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B123\n",
+    "node": "v24.14.1",
+    "hardware": "Mac15,6 Apple M3 Pro 36 GiB"
+  },
+  "origin": "http://127.0.0.1:52288",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-worker-qualification-PXMCZv",
+  "pid": 13479,
+  "browserVersion": "157.0.8103.50",
+  "profileMode": "normal persistent disposable profile",
+  "error": "Error: page.evaluate: Target page, context or browser has been closed",
+  "end": "2026-11-09T22:33:12.802Z"
+}

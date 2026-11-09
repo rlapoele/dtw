@@ -1,0 +1,73 @@
+{
+  "time": "2026-11-09T22:38:41.718Z",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-worker-qualification-FlUQkr",
+  "rows": [
+    {
+      "pid": 14162,
+      "parent": 14152,
+      "rssKiB": 325920
+    },
+    {
+      "pid": 14168,
+      "parent": 14162,
+      "rssKiB": 102272
+    },
+    {
+      "pid": 14169,
+      "parent": 14162,
+      "rssKiB": 71872
+    },
+    {
+      "pid": 14172,
+      "parent": 14162,
+      "rssKiB": 38880
+    },
+    {
+      "pid": 14175,
+      "parent": 14162,
+      "rssKiB": 135088
+    },
+    {
+      "pid": 14177,
+      "parent": 14162,
+      "rssKiB": 583424
+    },
+    {
+      "pid": 14178,
+      "parent": 14162,
+      "rssKiB": 88480
+    },
+    {
+      "pid": 14179,
+      "parent": 14162,
+      "rssKiB": 121904
+    },
+    {
+      "pid": 14180,
+      "parent": 14162,
+      "rssKiB": 79904
+    },
+    {
+      "pid": 14181,
+      "parent": 14162,
+      "rssKiB": 79488
+    },
+    {
+      "pid": 14182,
+      "parent": 14162,
+      "rssKiB": 83552
+    },
+    {
+      "pid": 14229,
+      "parent": 14162,
+      "rssKiB": 64080
+    },
+    {
+      "pid": 14230,
+      "parent": 14162,
+      "rssKiB": 92448
+    }
+  ],
+  "totalRssKiB": 1867312,
+  "scope": "One sampled own Chrome process tree RSS after maximum catalogue scans; shared pages/native browsers excluded; RSS may double-count shared mappings; not peak or worker-specific heap bound"
+}

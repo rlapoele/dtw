@@ -1,0 +1,201 @@
+{
+  "origin": "http://127.0.0.1:52698",
+  "profile": "/tmp/dtw-independent-worker-review-Gj7XTG",
+  "build": "157.0.8103.50",
+  "reset": {
+    "attempt": {
+      "command": "accepted-before-reset",
+      "expected": null,
+      "incarnation": "incarnation-1",
+      "bytes": 24162
+    },
+    "write": {
+      "status": "retained",
+      "revision": "accepted-before-reset",
+      "dispatchCompleteMs": 1
+    },
+    "before": {
+      "project": "reset-proof",
+      "revision": "accepted-before-reset",
+      "incarnation": "incarnation-1",
+      "projection": {
+        "name": "Stage A synthetic",
+        "first": {
+          "id": "t0",
+          "projectId": "reset-proof",
+          "localName": "t0",
+          "parentGroupId": null,
+          "definition": {
+            "type": "number",
+            "assignments": [
+              {
+                "condition": [],
+                "value": {
+                  "value": "1",
+                  "kind": "literal",
+                  "valueType": "number"
+                }
+              }
+            ]
+          },
+          "authoring": {
+            "regeneration": "allowed"
+          }
+        },
+        "count": 100
+      },
+      "latest": {
+        "commandId": "accepted-before-reset",
+        "operation": "restoreProject",
+        "result": {
+          "entityKind": "project",
+          "id": "reset-proof"
+        }
+      },
+      "exactCoverage": false
+    },
+    "after": {
+      "status": "rejected",
+      "proof": {
+        "ownership": true,
+        "stopped": true,
+        "ordered": true,
+        "incarnation": "incarnation-1"
+      },
+      "revision": null
+    },
+    "events": [
+      {
+        "seq": 1,
+        "type": "pageshow",
+        "time": 25.90000000037253,
+        "persisted": false,
+        "visibility": "visible"
+      },
+      {
+        "seq": 1,
+        "type": "module-ready",
+        "time": 46,
+        "event": true
+      },
+      {
+        "seq": 2,
+        "type": "lock-acquired",
+        "time": 57.70000000111759,
+        "event": true,
+        "project": "reset-proof"
+      },
+      {
+        "seq": 3,
+        "type": "read-complete",
+        "time": 69.60000000149012,
+        "event": true,
+        "project": "reset-proof",
+        "revision": null
+      },
+      {
+        "seq": 4,
+        "type": "prepared",
+        "time": 69.60000000149012,
+        "event": true,
+        "command": "accepted-before-reset"
+      },
+      {
+        "seq": 5,
+        "type": "issued",
+        "time": 69.90000000037253,
+        "event": true,
+        "command": "accepted-before-reset",
+        "project": "reset-proof",
+        "durability": "strict"
+      },
+      {
+        "seq": 6,
+        "type": "request-success",
+        "time": 70.20000000111759,
+        "event": true,
+        "command": "accepted-before-reset"
+      },
+      {
+        "seq": 7,
+        "type": "complete",
+        "time": 70.80000000074506,
+        "event": true,
+        "command": "accepted-before-reset"
+      },
+      {
+        "seq": 8,
+        "type": "read-complete",
+        "time": 71.10000000149012,
+        "event": true,
+        "project": "reset-proof",
+        "revision": "accepted-before-reset"
+      },
+      {
+        "seq": 10,
+        "type": "worker-terminated",
+        "time": 75.60000000149012,
+        "generation": 1
+      },
+      {
+        "seq": 1,
+        "type": "module-ready",
+        "time": 84.40000000037253,
+        "event": true
+      },
+      {
+        "seq": 2,
+        "type": "lock-acquired",
+        "time": 86.10000000149012,
+        "event": true,
+        "project": "reset-proof"
+      },
+      {
+        "seq": 3,
+        "type": "recovery-ownership",
+        "time": 86.10000000149012,
+        "event": true,
+        "project": "reset-proof"
+      },
+      {
+        "seq": 4,
+        "type": "read-complete",
+        "time": 88,
+        "event": true,
+        "project": "reset-proof",
+        "revision": null
+      },
+      {
+        "seq": 5,
+        "type": "recovery-proof",
+        "time": 88,
+        "event": true,
+        "project": "reset-proof",
+        "ownership": true,
+        "stopped": true,
+        "ordered": true,
+        "incarnation": "incarnation-1"
+      }
+    ]
+  },
+  "concurrentPrepare": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "command": "parallel1",
+        "expected": null,
+        "incarnation": "incarnation-1",
+        "bytes": 23859
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "command": "parallel2",
+        "expected": null,
+        "incarnation": "incarnation-1",
+        "bytes": 23859
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+✔ closed bounded messages reject unknown, missing and excessive inputs (0.426792ms)
+✔ absence cannot establish rejection without all fencing/ordering/baseline facts (0.084334ms)
+✔ publication fences request, project, revision and renderer generation (0.063875ms)
+✖ missing command metadata in a present baseline is unknown (0.360959ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 36.944458
+
+✖ failing tests:
+
+test at research/increment-007-worker-qualification/protocol.test.mjs:23:1
+✖ missing command metadata in a present baseline is unknown (0.360959ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'rejected'
+  - 'unknown'
+  
+      at TestContext.<anonymous> (file:///Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/research/increment-007-worker-qualification/protocol.test.mjs:25:9)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'rejected',
+    expected: 'unknown',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

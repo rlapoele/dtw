@@ -188,11 +188,24 @@ subsets do not establish all ACs. Preserve the recorded main-thread responsivene
 failure and worker feasibility evidence; no blanket supported-browser/capacity or
 production implementation claim follows. Stage B remains unauthorized.
 
-## Proposed production placement and support handoff
+## Agreed production placement and authorized qualification followup
 
 The [B-1–B-5 proposal](007-production-scheduling-and-browser-scope-proposal.md)
-recommends application/IDB/ownership execution in one worker per tab and exact-build
+records agreed application/IDB/ownership execution in one worker per tab and exact-build
 normal-profile Chrome/Safari macOS qualification. Its bounded pre-implementation
-followup, worker-required capability and Stage B scope await user choice/authorization.
-This link does not amend the agreed targets, authorize new experiments, or qualify
-worker placement, normal Safari retention/lifecycle or product integration.
+followup and worker-required capability were agreed on 9 November 2026 after commit
+`b84b152`. The user authorized isolated followup source/evidence in
+`research/increment-007-worker-qualification/` and
+`output/increment-007-worker-qualification/`, followed by independent review. Original
+Stage A remains frozen. The agreement preserves targets and does not itself qualify
+worker placement, normal Safari retention/lifecycle or product integration. Stage B
+and production implementation remain unauthorized.
+
+The followup [report](../../output/increment-007-worker-qualification/report.md) and
+[independent recheck](../../output/increment-007-worker-qualification/independent-review.md),
+completed 10 November 2026, preserve initial failures and corrected R1/R2 evidence.
+Both harness findings are closed; qualification remains partial. Chrome eager
+maximum-list responsiveness fails, Safari pending-command preemption is unqualified,
+and HTTPS is unavailable. Remaining lifecycle/native-file/catalogue-contention and
+Stage B gaps are not silently waived. No further experiment or rendering change is
+authorized by this result record.

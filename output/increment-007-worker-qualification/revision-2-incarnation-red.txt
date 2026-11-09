@@ -1,0 +1,38 @@
+✔ closed bounded messages reject unknown, missing and excessive inputs (0.475709ms)
+✔ absence cannot establish rejection without all fencing/ordering/baseline facts (0.08875ms)
+✔ publication fences request, project, revision and renderer generation (0.071042ms)
+✔ missing command metadata in a present baseline is unknown (0.0475ms)
+✖ missing or malformed incarnation is never recovery evidence (0.769375ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43.772917
+
+✖ failing tests:
+
+test at research/increment-007-worker-qualification/protocol.test.mjs:28:1
+✖ missing or malformed incarnation is never recovery evidence (0.769375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'rejected'
+  - 'unknown'
+  
+      at TestContext.<anonymous> (file:///Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/research/increment-007-worker-qualification/protocol.test.mjs:30:70)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'rejected',
+    expected: 'unknown',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

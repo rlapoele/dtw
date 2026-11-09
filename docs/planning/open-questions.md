@@ -184,10 +184,16 @@ and Safari normal-retention/maximum-stress behavior. Maximum synchronous codec
 work exceeded the main-thread target; worker/bounded scheduling remains an
 implementation direction to settle before final agreement, with source preserved.
 The [B-1–B-5 scheduling/browser-scope proposal](../increments/007-production-scheduling-and-browser-scope-proposal.md)
-now recommends one application worker per tab, bounded renderer projections,
+records user-agreed one application worker per tab, bounded renderer projections,
 session-only fencing and both native macOS engines on exact qualified builds.
-These placement/capability and stage-gate choices remain proposed for user review;
-no new experiment or production implementation is authorized.
+On 9 November 2026 the user authorized a bounded isolated qualification followup
+with developer and independent reviewer. Technical results/support claims remain
+pending; final agreement and production implementation remain unauthorized.
+The [reviewed isolated followup](../../output/increment-007-worker-qualification/independent-review.md)
+now closes two harness defects but leaves the eager maximum-list responsiveness
+failure, Safari pending-command watchdog preemption, unavailable HTTPS and other
+host/product acceptance gaps explicit. A bounded rendering direction and remaining
+qualification evidence still need resolution; no budgets or support targets changed.
 
 1. What is the canonical source-of-truth file format?
 2. What constitutes stable project identity, and how is it preserved when a workspace moves?

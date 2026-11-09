@@ -1,0 +1,45 @@
+{
+  "scope": "Mechanism qualification only; raw pass means assertion/completion, not gate acceptance",
+  "rendererBlockingTarget": {
+    "targetMs": 100,
+    "status": "fail",
+    "actualLongTasksOverTarget": [
+      {
+        "case": "W08-worker-codec-transfer-dom-entities-1",
+        "start": 32145.200000000186,
+        "duration": 170
+      },
+      {
+        "case": "W08-worker-codec-transfer-dom-entities-12",
+        "start": 40692.800000000745,
+        "duration": 137
+      }
+    ]
+  },
+  "https": {
+    "status": "not-run",
+    "reason": "User reported no deployed HTTPS host"
+  },
+  "safariExternalSupervision": {
+    "status": "inconclusive",
+    "reason": "Idle-command own-tab close of CPU-blocked worker proven; in-flight execute/async preemption not proven; no expiry occurred; current runner fails closed before defensive stress"
+  },
+  "production": {
+    "status": "not-run",
+    "authorization": "Draft/Not started; implementation unauthorized"
+  },
+  "independentReview": {
+    "status": "initial-findings-recorded-recheck-pending",
+    "findings": [
+      "R1 database recreation incarnation",
+      "R2 overlapping prepare reservation"
+    ]
+  },
+  "revision2": {
+    "status": "developer-corrections-await-independent-recheck",
+    "nodeTests": 5,
+    "nativeCasesPerEngine": 5,
+    "performanceRerun": false,
+    "evidenceDirectory": "revision-2/"
+  }
+}

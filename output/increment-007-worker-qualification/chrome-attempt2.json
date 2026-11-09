@@ -1,0 +1,25 @@
+{
+  "engine": "chrome",
+  "start": "2026-11-09T22:30:58.693Z",
+  "cases": [],
+  "source": {
+    "worker.mjs": "a0e383d8886af9b8200882561d463902a85473d526a485a7541aadefa2a119b4",
+    "page.mjs": "a667a49c67d772be09e7e2c9b4d3b0669783728d0159d77eac8c591ef3c7645d",
+    "protocol.mjs": "835971d4aa4da58fdb619d7553f1e2a08f0ac184700d5b8d7eb0f84360787a92",
+    "run.mjs": "23ce675c29638450375ea0f21aa4969f53bc7899a614ff196e12906ea427466b",
+    "server.mjs": "217a6dabd6883cc360bd61034f71a52acf107f83c60a455b69c1bda893db5e3f"
+  },
+  "scope": "Synthetic worker boundary and DOM, not production application/React parity",
+  "environment": {
+    "macOS": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B123\n",
+    "node": "v24.14.1",
+    "hardware": "Mac15,6 Apple M3 Pro 36 GiB"
+  },
+  "origin": "http://127.0.0.1:52185",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-worker-qualification-pDHj1U",
+  "pid": 12979,
+  "browserVersion": "157.0.8103.50",
+  "profileMode": "normal persistent disposable profile",
+  "error": "Error: page.waitForFunction: Target page, context or browser has been closed",
+  "end": "2026-11-09T22:31:05.067Z"
+}

@@ -1,0 +1,150 @@
+{
+  "origin": "http://127.0.0.1:53045",
+  "profile": "/tmp/dtw-independent-worker-recheck-Zwr2lf",
+  "scope": "Own headless native Chrome; focused regressions; read delay injected only for explicitly named deferred project",
+  "build": "157.0.8103.50",
+  "workerSha256": "629f7ab86ff8578b134f0f999f1d33dcb19e0e451bde286c2dd32b7c3d205839",
+  "cases": {
+    "reset": {
+      "retained": {
+        "status": "retained",
+        "revision": "accepted-before-reset",
+        "dispatchCompleteMs": 0.8999999985098839
+      },
+      "attempt": {
+        "command": "accepted-before-reset",
+        "expected": null,
+        "incarnation": "c58a8482-90de-4b8b-b452-861a47f4b185",
+        "bytes": 24162
+      },
+      "after": {
+        "status": "unknown",
+        "proof": {
+          "ownership": true,
+          "stopped": true,
+          "ordered": true,
+          "incarnation": "c2a514ab-465b-4f90-989d-96381eb3f74a"
+        },
+        "revision": null
+      },
+      "pass": true
+    },
+    "parallel": {
+      "results": [
+        {
+          "status": "fulfilled",
+          "value": {
+            "command": "parallel1",
+            "expected": null,
+            "incarnation": "c2a514ab-465b-4f90-989d-96381eb3f74a",
+            "bytes": 23859
+          }
+        },
+        {
+          "status": "rejected",
+          "error": "Error: Error: one-active-mutation"
+        }
+      ],
+      "pass": true
+    },
+    "failureCleanup": {
+      "failed": {
+        "status": "rejected",
+        "error": "Error: Error: ownership"
+      },
+      "next": {
+        "command": "after-failure",
+        "expected": null,
+        "incarnation": "c2a514ab-465b-4f90-989d-96381eb3f74a",
+        "bytes": 23859
+      },
+      "pass": true
+    },
+    "deferred": {
+      "cancelled": {
+        "status": "never-dispatched",
+        "stopped": true
+      },
+      "current": {
+        "command": "new-current",
+        "expected": null,
+        "incarnation": "c2a514ab-465b-4f90-989d-96381eb3f74a",
+        "bytes": 23859
+      },
+      "old": {
+        "status": "never-dispatched",
+        "command": "old-delayed"
+      },
+      "blocked": {
+        "status": "rejected",
+        "error": "Error: Error: one-active-mutation"
+      },
+      "deniedOld": {
+        "status": "never-dispatched"
+      },
+      "writes": [
+        {
+          "status": "fulfilled",
+          "value": {
+            "status": "retained",
+            "revision": "new-current",
+            "dispatchCompleteMs": 2.300000000745058
+          }
+        },
+        {
+          "status": "rejected",
+          "error": "Error: Error: attempt-state"
+        }
+      ],
+      "issued": 1,
+      "pass": true
+    },
+    "abort": {
+      "aborted": {
+        "status": "aborted",
+        "dispatchCompleteMs": 0.8000000007450581
+      },
+      "read": {
+        "project": "parallel",
+        "revision": "new-current",
+        "incarnation": "c2a514ab-465b-4f90-989d-96381eb3f74a",
+        "projection": {
+          "name": "Stage A synthetic",
+          "first": {
+            "id": "t0",
+            "projectId": "parallel",
+            "localName": "t0",
+            "parentGroupId": null,
+            "definition": {
+              "type": "number",
+              "assignments": [
+                {
+                  "condition": [],
+                  "value": {
+                    "value": "1",
+                    "kind": "literal",
+                    "valueType": "number"
+                  }
+                }
+              ]
+            },
+            "authoring": {
+              "regeneration": "allowed"
+            }
+          },
+          "count": 100
+        },
+        "latest": {
+          "commandId": "new-current",
+          "operation": "restoreProject",
+          "result": {
+            "entityKind": "project",
+            "id": "parallel"
+          }
+        },
+        "exactCoverage": false
+      },
+      "pass": true
+    }
+  }
+}

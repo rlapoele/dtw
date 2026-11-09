@@ -1,0 +1,811 @@
+{
+  "definition": "nearest-rank p95, median lower central for n20; warmup excluded",
+  "engines": {
+    "chrome": {
+      "build": "157.0.8103.50",
+      "profile": "normal persistent disposable profile",
+      "origin": "http://127.0.0.1:52409",
+      "cases": 181,
+      "failures": [],
+      "codec": {
+        "100": {
+          "hashes": [
+            "d0299dc1860e86b7254781c949ba096770c078e62cd8123d519ad9e430cee3ac"
+          ],
+          "counts": {
+            "values": 1606,
+            "strings": 14523,
+            "lexical": 6142,
+            "maxDepth": 8,
+            "snapshotBytes": 23152,
+            "fileBytes": 23273
+          },
+          "samples": 20,
+          "encodeMs": {
+            "n": 20,
+            "median": 5.2000000001862645,
+            "p95": 14.5,
+            "max": 16.5
+          },
+          "decodeMs": {
+            "n": 20,
+            "median": 2.900000000372529,
+            "p95": 5.7000000001862645,
+            "max": 6
+          },
+          "workerMs": {
+            "n": 20,
+            "median": 10,
+            "p95": 17.40000000037253,
+            "max": 19.09999999962747
+          },
+          "roundtripMs": {
+            "n": 20,
+            "median": 11.599999999627471,
+            "p95": 18.59999999962747,
+            "max": 20.899999999441206
+          },
+          "rendererDomMs": {
+            "n": 20,
+            "median": 0.39999999944120646,
+            "p95": 0.6000000005587935,
+            "max": 0.6999999992549419
+          },
+          "endToPaintMs": {
+            "n": 20,
+            "median": 26.600000000558794,
+            "p95": 30.700000000186265,
+            "max": 35.90000000037253
+          },
+          "longTasks": [],
+          "eventLoopLagMs": {
+            "n": 36,
+            "median": 0.2999999998137355,
+            "p95": 16.700000000186265,
+            "max": 16.800000000745058
+          },
+          "visibilityCounts": {
+            "visible": 20
+          }
+        },
+        "1000": {
+          "hashes": [
+            "05e1d36c828d1a3e3afb1a775ec2acab511bef95695ee95adb8ab71b8dcbbd9b"
+          ],
+          "counts": {
+            "values": 16006,
+            "strings": 146823,
+            "lexical": 61042,
+            "maxDepth": 8,
+            "snapshotBytes": 232852,
+            "fileBytes": 232973
+          },
+          "samples": 20,
+          "encodeMs": {
+            "n": 20,
+            "median": 50.80000000074506,
+            "p95": 76.29999999981374,
+            "max": 76.5
+          },
+          "decodeMs": {
+            "n": 20,
+            "median": 38,
+            "p95": 50.10000000055879,
+            "max": 52.60000000055879
+          },
+          "workerMs": {
+            "n": 20,
+            "median": 93.5,
+            "p95": 119.90000000037253,
+            "max": 129.40000000037253
+          },
+          "roundtripMs": {
+            "n": 20,
+            "median": 105.79999999981374,
+            "p95": 133.29999999981374,
+            "max": 140
+          },
+          "rendererDomMs": {
+            "n": 20,
+            "median": 2.1000000005587935,
+            "p95": 4.7999999998137355,
+            "max": 5.3999999994412065
+          },
+          "endToPaintMs": {
+            "n": 20,
+            "median": 119.90000000037253,
+            "p95": 147.8999999994412,
+            "max": 155.79999999981374
+          },
+          "longTasks": [],
+          "eventLoopLagMs": {
+            "n": 58,
+            "median": 23,
+            "p95": 98,
+            "max": 114.09999999962747
+          },
+          "visibilityCounts": {
+            "visible": 20
+          }
+        },
+        "max": {
+          "hashes": [
+            "c24bc82d3b03572ceebddefb18f31ed2bba1caeb0de5c1f9bbcea995677accd1"
+          ],
+          "counts": {
+            "values": 17007,
+            "strings": 1514293,
+            "lexical": 65046,
+            "maxDepth": 8,
+            "snapshotBytes": 8388608,
+            "fileBytes": 8388729
+          },
+          "samples": 20,
+          "encodeMs": {
+            "n": 20,
+            "median": 559.6000000005588,
+            "p95": 652.5,
+            "max": 653.8999999994412
+          },
+          "decodeMs": {
+            "n": 20,
+            "median": 433.29999999981374,
+            "p95": 502,
+            "max": 522.7000000001863
+          },
+          "workerMs": {
+            "n": 20,
+            "median": 1052.2999999998137,
+            "p95": 1173,
+            "max": 1176.7000000001863
+          },
+          "roundtripMs": {
+            "n": 20,
+            "median": 1162.5999999996275,
+            "p95": 1285.199999999255,
+            "max": 1302.5999999996275
+          },
+          "rendererDomMs": {
+            "n": 20,
+            "median": 2.800000000745058,
+            "p95": 4.900000000372529,
+            "max": 5.599999999627471
+          },
+          "endToPaintMs": {
+            "n": 20,
+            "median": 1179.7000000001863,
+            "p95": 1300,
+            "max": 1321.0999999996275
+          },
+          "longTasks": [],
+          "eventLoopLagMs": {
+            "n": 359,
+            "median": 60.40000000037253,
+            "p95": 97,
+            "max": 108.30000000074506
+          },
+          "visibilityCounts": {
+            "visible": 20
+          }
+        },
+        "detail": {
+          "hashes": [
+            "5264f9951472d6f1c7c8bd6e4a55b0401a5fa34757a10a4c895898a474aeec1f"
+          ],
+          "counts": {
+            "values": 697,
+            "strings": 76239,
+            "lexical": 2607,
+            "maxDepth": 12,
+            "snapshotBytes": 79896,
+            "fileBytes": 80017
+          },
+          "samples": 20,
+          "encodeMs": {
+            "n": 20,
+            "median": 6.400000000372529,
+            "p95": 14.900000000372529,
+            "max": 19.200000000186265
+          },
+          "decodeMs": {
+            "n": 20,
+            "median": 3.099999999627471,
+            "p95": 4.400000000372529,
+            "max": 6.2000000001862645
+          },
+          "workerMs": {
+            "n": 20,
+            "median": 9.5,
+            "p95": 21.300000000745058,
+            "max": 22.09999999962747
+          },
+          "roundtripMs": {
+            "n": 20,
+            "median": 11.100000000558794,
+            "p95": 22.399999999441206,
+            "max": 23.799999999813735
+          },
+          "rendererDomMs": {
+            "n": 20,
+            "median": 0.20000000018626451,
+            "p95": 0.39999999944120646,
+            "max": 0.40000000037252903
+          },
+          "endToPaintMs": {
+            "n": 20,
+            "median": 22.5,
+            "p95": 33,
+            "max": 41.799999999813735
+          },
+          "longTasks": [],
+          "eventLoopLagMs": {
+            "n": 44,
+            "median": 0.09999999962747097,
+            "p95": 9.300000000745058,
+            "max": 13.700000000186265
+          },
+          "visibilityCounts": {
+            "visible": 20
+          }
+        },
+        "entities": {
+          "hashes": [
+            "ea04762bfe363c09facef0c89ba05511b7a8155603d9a8576b58f2bd292cc8ec"
+          ],
+          "counts": {
+            "values": 80006,
+            "strings": 745823,
+            "lexical": 296041,
+            "maxDepth": 5,
+            "snapshotBytes": 1191851,
+            "fileBytes": 1191972
+          },
+          "samples": 20,
+          "encodeMs": {
+            "n": 20,
+            "median": 331.3999999994412,
+            "p95": 344.29999999981374,
+            "max": 353.20000000018626
+          },
+          "decodeMs": {
+            "n": 20,
+            "median": 203,
+            "p95": 241.90000000037253,
+            "max": 248.5
+          },
+          "workerMs": {
+            "n": 20,
+            "median": 536.5999999996275,
+            "p95": 575.2999999998137,
+            "max": 588.4000000003725
+          },
+          "roundtripMs": {
+            "n": 20,
+            "median": 604.0999999996275,
+            "p95": 660.5999999996275,
+            "max": 662.7000000001863
+          },
+          "rendererDomMs": {
+            "n": 20,
+            "median": 29.40000000037253,
+            "p95": 40.89999999944121,
+            "max": 46.10000000055879
+          },
+          "endToPaintMs": {
+            "n": 20,
+            "median": 769.4000000003725,
+            "p95": 872.4000000003725,
+            "max": 910.2000000001863
+          },
+          "longTasks": [
+            {
+              "start": 32092.200000000186,
+              "duration": 53
+            },
+            {
+              "start": 32145.200000000186,
+              "duration": 170
+            },
+            {
+              "start": 40692.800000000745,
+              "duration": 137
+            }
+          ],
+          "eventLoopLagMs": {
+            "n": 207,
+            "median": 62.700000000186265,
+            "p95": 207.69999999925494,
+            "max": 303.90000000037253
+          },
+          "visibilityCounts": {
+            "visible": 20
+          }
+        }
+      },
+      "command": {
+        "100": {
+          "samples": 20,
+          "workflowMs": {
+            "n": 20,
+            "median": 14,
+            "p95": 17,
+            "max": 22
+          },
+          "dispatchCompleteMs": {
+            "n": 20,
+            "median": 1.7000000001862645,
+            "p95": 2.7000000001862645,
+            "max": 3.8999999994412065
+          },
+          "catalogueMs": {
+            "n": 20,
+            "median": 2.3999999994412065,
+            "p95": 2.8999999994412065,
+            "max": 3.2999999998137355
+          },
+          "records": [
+            1
+          ]
+        },
+        "1000": {
+          "samples": 20,
+          "workflowMs": {
+            "n": 20,
+            "median": 103,
+            "p95": 124,
+            "max": 149
+          },
+          "dispatchCompleteMs": {
+            "n": 20,
+            "median": 4.5,
+            "p95": 5.599999999627471,
+            "max": 7.7999999998137355
+          },
+          "catalogueMs": {
+            "n": 20,
+            "median": 18.700000000186265,
+            "p95": 24.799999999813735,
+            "max": 27.700000000186265
+          },
+          "records": [
+            1
+          ]
+        }
+      },
+      "catalogueMaximum": {
+        "samples": 20,
+        "workerMs": {
+          "n": 20,
+          "median": 2867.2999999998137,
+          "p95": 2902.100000000559,
+          "max": 2911.100000000559
+        },
+        "roundtripMs": {
+          "n": 20,
+          "median": 2869,
+          "p95": 2905,
+          "max": 2914
+        },
+        "bytes": [
+          209715200
+        ],
+        "records": [
+          25
+        ]
+      }
+    },
+    "safari": {
+      "build": {
+        "safari:platformVersion": "27.2",
+        "safari:automaticInspection": false,
+        "webkit:WebRTC": {
+          "DisableICECandidateFiltering": false,
+          "DisableInsecureMediaCapture": false
+        },
+        "webkit:alwaysAllowAutoplay": false,
+        "browserVersion": "27.2",
+        "strictFileInteractability": false,
+        "browserName": "Safari",
+        "safari:useSimulator": false,
+        "safari:platformBuildVersion": "26B123",
+        "setWindowRect": true,
+        "acceptInsecureCerts": false,
+        "safari:automaticProfiling": false,
+        "pageLoadStrategy": "eager",
+        "safari:experimentalWebSocketUrl": false,
+        "platformName": "macOS",
+        "safari:diagnose": false
+      },
+      "profile": "isolated native Safari WebDriver automation session; normal retention/restart not inferred",
+      "origin": "http://127.0.0.1:52475",
+      "cases": 182,
+      "failures": [
+        {
+          "id": "W05b-death-after-send-preserved-input-ordered-check",
+          "status": "fail",
+          "wallMs": 31,
+          "error": "Error: {\"error\":\"invalid argument\",\"message\":\"An invalid command argument was specified\",\"stacktrace\":\"\"}"
+        },
+        {
+          "id": "W08-cold-worker-startup",
+          "status": "fail",
+          "wallMs": 103,
+          "error": "Error: {\"error\":\"no such window\",\"message\":\"\",\"stacktrace\":\"\"}"
+        }
+      ],
+      "codec": {
+        "100": {
+          "hashes": [
+            "d0299dc1860e86b7254781c949ba096770c078e62cd8123d519ad9e430cee3ac"
+          ],
+          "counts": {
+            "maxDepth": 8,
+            "fileBytes": 23273,
+            "snapshotBytes": 23152,
+            "values": 1606,
+            "strings": 14523,
+            "lexical": 6142
+          },
+          "samples": 20,
+          "encodeMs": {
+            "n": 20,
+            "median": 2,
+            "p95": 3,
+            "max": 3
+          },
+          "decodeMs": {
+            "n": 20,
+            "median": 1,
+            "p95": 2,
+            "max": 2
+          },
+          "workerMs": {
+            "n": 20,
+            "median": 3,
+            "p95": 4,
+            "max": 4
+          },
+          "roundtripMs": {
+            "n": 20,
+            "median": 4,
+            "p95": 5,
+            "max": 6
+          },
+          "rendererDomMs": {
+            "n": 20,
+            "median": 0,
+            "p95": 1,
+            "max": 1
+          },
+          "endToPaintMs": {
+            "n": 20,
+            "median": 26,
+            "p95": 28,
+            "max": 28
+          },
+          "longTasks": [],
+          "eventLoopLagMs": {
+            "n": 44,
+            "median": 2,
+            "p95": 3,
+            "max": 3
+          },
+          "visibilityCounts": {
+            "visible": 20
+          }
+        },
+        "1000": {
+          "hashes": [
+            "05e1d36c828d1a3e3afb1a775ec2acab511bef95695ee95adb8ab71b8dcbbd9b"
+          ],
+          "counts": {
+            "maxDepth": 8,
+            "fileBytes": 232973,
+            "snapshotBytes": 232852,
+            "values": 16006,
+            "strings": 146823,
+            "lexical": 61042
+          },
+          "samples": 20,
+          "encodeMs": {
+            "n": 20,
+            "median": 14,
+            "p95": 17,
+            "max": 17
+          },
+          "decodeMs": {
+            "n": 20,
+            "median": 8,
+            "p95": 10,
+            "max": 10
+          },
+          "workerMs": {
+            "n": 20,
+            "median": 23,
+            "p95": 27,
+            "max": 27
+          },
+          "roundtripMs": {
+            "n": 20,
+            "median": 28,
+            "p95": 33,
+            "max": 33
+          },
+          "rendererDomMs": {
+            "n": 20,
+            "median": 1,
+            "p95": 1,
+            "max": 1
+          },
+          "endToPaintMs": {
+            "n": 20,
+            "median": 44,
+            "p95": 53,
+            "max": 58
+          },
+          "longTasks": [],
+          "eventLoopLagMs": {
+            "n": 76,
+            "median": 2,
+            "p95": 3,
+            "max": 4
+          },
+          "visibilityCounts": {
+            "visible": 20
+          }
+        },
+        "max": {
+          "hashes": [
+            "c24bc82d3b03572ceebddefb18f31ed2bba1caeb0de5c1f9bbcea995677accd1"
+          ],
+          "counts": {
+            "maxDepth": 8,
+            "fileBytes": 8388729,
+            "snapshotBytes": 8388608,
+            "values": 17007,
+            "strings": 1514293,
+            "lexical": 65046
+          },
+          "samples": 20,
+          "encodeMs": {
+            "n": 20,
+            "median": 89,
+            "p95": 99,
+            "max": 100
+          },
+          "decodeMs": {
+            "n": 20,
+            "median": 74,
+            "p95": 83,
+            "max": 84
+          },
+          "workerMs": {
+            "n": 20,
+            "median": 165,
+            "p95": 181,
+            "max": 183
+          },
+          "roundtripMs": {
+            "n": 20,
+            "median": 181,
+            "p95": 196,
+            "max": 198
+          },
+          "rendererDomMs": {
+            "n": 20,
+            "median": 1,
+            "p95": 1,
+            "max": 1
+          },
+          "endToPaintMs": {
+            "n": 20,
+            "median": 191,
+            "p95": 207,
+            "max": 210
+          },
+          "longTasks": [],
+          "eventLoopLagMs": {
+            "n": 327,
+            "median": 2,
+            "p95": 3,
+            "max": 6
+          },
+          "visibilityCounts": {
+            "visible": 20
+          }
+        },
+        "detail": {
+          "hashes": [
+            "5264f9951472d6f1c7c8bd6e4a55b0401a5fa34757a10a4c895898a474aeec1f"
+          ],
+          "counts": {
+            "maxDepth": 12,
+            "fileBytes": 80017,
+            "snapshotBytes": 79896,
+            "values": 697,
+            "strings": 76239,
+            "lexical": 2607
+          },
+          "samples": 20,
+          "encodeMs": {
+            "n": 20,
+            "median": 2,
+            "p95": 2,
+            "max": 2
+          },
+          "decodeMs": {
+            "n": 20,
+            "median": 1,
+            "p95": 1,
+            "max": 1
+          },
+          "workerMs": {
+            "n": 20,
+            "median": 3,
+            "p95": 3,
+            "max": 3
+          },
+          "roundtripMs": {
+            "n": 20,
+            "median": 3,
+            "p95": 4,
+            "max": 4
+          },
+          "rendererDomMs": {
+            "n": 20,
+            "median": 0,
+            "p95": 0,
+            "max": 1
+          },
+          "endToPaintMs": {
+            "n": 20,
+            "median": 27,
+            "p95": 30,
+            "max": 34
+          },
+          "longTasks": [],
+          "eventLoopLagMs": {
+            "n": 38,
+            "median": 3,
+            "p95": 11,
+            "max": 12
+          },
+          "visibilityCounts": {
+            "visible": 20
+          }
+        },
+        "entities": {
+          "hashes": [
+            "ea04762bfe363c09facef0c89ba05511b7a8155603d9a8576b58f2bd292cc8ec"
+          ],
+          "counts": {
+            "maxDepth": 5,
+            "fileBytes": 1191972,
+            "snapshotBytes": 1191851,
+            "values": 80006,
+            "strings": 745823,
+            "lexical": 296041
+          },
+          "samples": 20,
+          "encodeMs": {
+            "n": 20,
+            "median": 65,
+            "p95": 69,
+            "max": 69
+          },
+          "decodeMs": {
+            "n": 20,
+            "median": 44,
+            "p95": 46,
+            "max": 46
+          },
+          "workerMs": {
+            "n": 20,
+            "median": 109,
+            "p95": 115,
+            "max": 115
+          },
+          "roundtripMs": {
+            "n": 20,
+            "median": 132,
+            "p95": 138,
+            "max": 140
+          },
+          "rendererDomMs": {
+            "n": 20,
+            "median": 9,
+            "p95": 10,
+            "max": 11
+          },
+          "endToPaintMs": {
+            "n": 20,
+            "median": 176,
+            "p95": 180,
+            "max": 189
+          },
+          "longTasks": [],
+          "eventLoopLagMs": {
+            "n": 248,
+            "median": 2,
+            "p95": 27,
+            "max": 32
+          },
+          "visibilityCounts": {
+            "visible": 20
+          }
+        }
+      },
+      "command": {
+        "100": {
+          "samples": 20,
+          "workflowMs": {
+            "n": 20,
+            "median": 18,
+            "p95": 26,
+            "max": 30
+          },
+          "dispatchCompleteMs": {
+            "n": 20,
+            "median": 2,
+            "p95": 5,
+            "max": 5
+          },
+          "catalogueMs": {
+            "n": 20,
+            "median": 2,
+            "p95": 2,
+            "max": 2
+          },
+          "records": [
+            1
+          ]
+        },
+        "1000": {
+          "samples": 20,
+          "workflowMs": {
+            "n": 20,
+            "median": 55,
+            "p95": 58,
+            "max": 59
+          },
+          "dispatchCompleteMs": {
+            "n": 20,
+            "median": 5,
+            "p95": 7,
+            "max": 8
+          },
+          "catalogueMs": {
+            "n": 20,
+            "median": 15,
+            "p95": 16,
+            "max": 16
+          },
+          "records": [
+            1
+          ]
+        }
+      },
+      "catalogueMaximum": {
+        "samples": 20,
+        "workerMs": {
+          "n": 20,
+          "median": 2370,
+          "p95": 2394,
+          "max": 2396
+        },
+        "roundtripMs": {
+          "n": 20,
+          "median": 2379,
+          "p95": 2403,
+          "max": 2404
+        },
+        "bytes": [
+          209715200
+        ],
+        "records": [
+          25
+        ]
+      }
+    }
+  }
+}

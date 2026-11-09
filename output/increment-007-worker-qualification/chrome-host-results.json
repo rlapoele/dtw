@@ -1,0 +1,358 @@
+{
+  "start": "2026-11-09T22:40:25.752Z",
+  "cases": [
+    {
+      "id": "W09-Chrome-normal-persistent-profile-restart",
+      "status": "pass",
+      "ms": 0,
+      "value": {
+        "write": {
+          "status": "retained",
+          "revision": "host-checkpoint",
+          "dispatchCompleteMs": 1
+        },
+        "before": {
+          "project": "host",
+          "revision": "host-checkpoint",
+          "incarnation": "incarnation-1",
+          "projection": {
+            "name": "",
+            "first": {
+              "id": "v0",
+              "projectId": "host",
+              "localName": "v0",
+              "parentGroupId": null,
+              "definition": {
+                "type": "color",
+                "assignments": [
+                  {
+                    "condition": [],
+                    "value": {
+                      "kind": "literal",
+                      "valueType": "color",
+                      "colorSpace": "srgb",
+                      "components": [
+                        "-0.0001",
+                        "none",
+                        "1.9"
+                      ],
+                      "alpha": "0"
+                    }
+                  }
+                ]
+              },
+              "authoring": {
+                "regeneration": "allowed"
+              }
+            },
+            "count": 32
+          },
+          "latest": {
+            "commandId": "host-checkpoint",
+            "operation": "restoreProject",
+            "result": {
+              "entityKind": "project",
+              "id": "host"
+            }
+          },
+          "exactCoverage": true
+        },
+        "after": {
+          "project": "host",
+          "revision": "host-checkpoint",
+          "incarnation": "incarnation-1",
+          "projection": {
+            "name": "",
+            "first": {
+              "id": "v0",
+              "projectId": "host",
+              "localName": "v0",
+              "parentGroupId": null,
+              "definition": {
+                "type": "color",
+                "assignments": [
+                  {
+                    "condition": [],
+                    "value": {
+                      "kind": "literal",
+                      "valueType": "color",
+                      "colorSpace": "srgb",
+                      "components": [
+                        "-0.0001",
+                        "none",
+                        "1.9"
+                      ],
+                      "alpha": "0"
+                    }
+                  }
+                ]
+              },
+              "authoring": {
+                "regeneration": "allowed"
+              }
+            },
+            "count": 32
+          },
+          "latest": {
+            "commandId": "host-checkpoint",
+            "operation": "restoreProject",
+            "result": {
+              "entityKind": "project",
+              "id": "host"
+            }
+          },
+          "exactCoverage": true
+        }
+      }
+    },
+    {
+      "id": "W09-Chrome-controlled-own-process-SIGKILL-after-commit",
+      "status": "pass",
+      "ms": 0,
+      "value": {
+        "before": {
+          "project": "host",
+          "revision": "host-checkpoint",
+          "incarnation": "incarnation-1",
+          "projection": {
+            "name": "",
+            "first": {
+              "id": "v0",
+              "projectId": "host",
+              "localName": "v0",
+              "parentGroupId": null,
+              "definition": {
+                "type": "color",
+                "assignments": [
+                  {
+                    "condition": [],
+                    "value": {
+                      "kind": "literal",
+                      "valueType": "color",
+                      "colorSpace": "srgb",
+                      "components": [
+                        "-0.0001",
+                        "none",
+                        "1.9"
+                      ],
+                      "alpha": "0"
+                    }
+                  }
+                ]
+              },
+              "authoring": {
+                "regeneration": "allowed"
+              }
+            },
+            "count": 32
+          },
+          "latest": {
+            "commandId": "host-checkpoint",
+            "operation": "restoreProject",
+            "result": {
+              "entityKind": "project",
+              "id": "host"
+            }
+          },
+          "exactCoverage": true
+        },
+        "after": {
+          "project": "host",
+          "revision": "host-checkpoint",
+          "incarnation": "incarnation-1",
+          "projection": {
+            "name": "",
+            "first": {
+              "id": "v0",
+              "projectId": "host",
+              "localName": "v0",
+              "parentGroupId": null,
+              "definition": {
+                "type": "color",
+                "assignments": [
+                  {
+                    "condition": [],
+                    "value": {
+                      "kind": "literal",
+                      "valueType": "color",
+                      "colorSpace": "srgb",
+                      "components": [
+                        "-0.0001",
+                        "none",
+                        "1.9"
+                      ],
+                      "alpha": "0"
+                    }
+                  }
+                ]
+              },
+              "authoring": {
+                "regeneration": "allowed"
+              }
+            },
+            "count": 32
+          },
+          "latest": {
+            "commandId": "host-checkpoint",
+            "operation": "restoreProject",
+            "result": {
+              "entityKind": "project",
+              "id": "host"
+            }
+          },
+          "exactCoverage": true
+        },
+        "scope": "Only this disposable committed-state process; not OS crash/power loss"
+      }
+    },
+    {
+      "id": "W09-Chrome-own-tab-crash-lock-release",
+      "status": "pass",
+      "ms": 0,
+      "value": {
+        "before": false,
+        "after": true,
+        "actualCrashEvent": true
+      }
+    },
+    {
+      "id": "W09-Chrome-native-Blob-download-bytes",
+      "status": "pass",
+      "ms": 0,
+      "value": {
+        "file": "/Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/output/increment-007-worker-qualification/downloads/0bf91a7e-8859-4add-a76e-b97ac85544f5",
+        "events": [
+          {
+            "type": "willBegin",
+            "frameId": "FBBDF908BACEC690AA996A3E4441C401",
+            "guid": "0bf91a7e-8859-4add-a76e-b97ac85544f5",
+            "url": "blob:http://127.0.0.1:52509/d94331c4-b716-49d8-a7e0-93e0c5e63ecb",
+            "suggestedFilename": "dtw-qualification.json"
+          },
+          {
+            "type": "progress",
+            "guid": "0bf91a7e-8859-4add-a76e-b97ac85544f5",
+            "totalBytes": 10407,
+            "receivedBytes": 0,
+            "state": "inProgress"
+          },
+          {
+            "type": "progress",
+            "guid": "0bf91a7e-8859-4add-a76e-b97ac85544f5",
+            "totalBytes": 10407,
+            "receivedBytes": 10407,
+            "state": "inProgress"
+          },
+          {
+            "type": "progress",
+            "guid": "0bf91a7e-8859-4add-a76e-b97ac85544f5",
+            "totalBytes": 10407,
+            "receivedBytes": 10407,
+            "state": "inProgress"
+          },
+          {
+            "type": "progress",
+            "guid": "0bf91a7e-8859-4add-a76e-b97ac85544f5",
+            "totalBytes": 10407,
+            "receivedBytes": 10407,
+            "state": "inProgress"
+          },
+          {
+            "type": "progress",
+            "guid": "0bf91a7e-8859-4add-a76e-b97ac85544f5",
+            "totalBytes": 10407,
+            "receivedBytes": 10407,
+            "state": "inProgress"
+          },
+          {
+            "type": "progress",
+            "guid": "0bf91a7e-8859-4add-a76e-b97ac85544f5",
+            "totalBytes": 10407,
+            "receivedBytes": 10407,
+            "state": "completed",
+            "filePath": "/Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/output/increment-007-worker-qualification/downloads/0bf91a7e-8859-4add-a76e-b97ac85544f5"
+          }
+        ],
+        "bytes": 10407,
+        "sha256": "590682c07ab35318225b5e06f59ab6fee43b77e92f6b864b627db017bd414059",
+        "exact": true,
+        "nativeOSPicker": "not exercised; browser Blob download only"
+      }
+    },
+    {
+      "id": "W09-Chrome-actual-navigation-bfcache-observation",
+      "status": "pass",
+      "ms": 0,
+      "value": {
+        "events": [
+          {
+            "type": "pageshow",
+            "persisted": false,
+            "visibility": "visible"
+          },
+          {
+            "type": "pagehide",
+            "persisted": true,
+            "visibility": "visible"
+          },
+          {
+            "type": "visibilitychange",
+            "persisted": null,
+            "visibility": "hidden"
+          },
+          {
+            "type": "visibilitychange",
+            "persisted": null,
+            "visibility": "visible"
+          },
+          {
+            "type": "pageshow",
+            "persisted": true,
+            "visibility": "visible"
+          }
+        ],
+        "previous": "[{\"type\":\"pageshow\",\"persisted\":false,\"visibility\":\"visible\"},{\"type\":\"pagehide\",\"persisted\":true,\"visibility\":\"visible\"},{\"type\":\"visibilitychange\",\"persisted\":null,\"visibility\":\"hidden\"}]",
+        "navigation": [
+          {
+            "type": "navigate"
+          }
+        ],
+        "draft": "session-only . draft"
+      }
+    }
+  ],
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-worker-host-kGIXNj",
+  "origin": "http://127.0.0.1:52509",
+  "launches": [
+    {
+      "pid": 15334,
+      "started": "2026-11-09T22:40:25.882Z",
+      "stderr": "\nDevTools listening on ws://127.0.0.1:52511/devtools/browser/dffc18ac-da57-4f33-977b-16b5af49476b\nTrying to load the allocator multiple times. This is *not* supported.\n[15355:158660:1109/234026.605519:ERROR:base/apple/mach_port_rendezvous_mac.cc:256] bootstrap_look_up com.google.Chrome.MachPortRendezvousServer.1: Permission denied (1100)\n[15355:158660:1109/234026.605685:ERROR:base/memory/shared_memory_switch.cc:261] No rendezvous client, terminating process (parent died?)\n",
+      "connectMs": 500,
+      "exit": {
+        "code": 0,
+        "signal": null,
+        "time": "2026-11-09T22:40:26.590Z"
+      }
+    },
+    {
+      "pid": 15356,
+      "started": "2026-11-09T22:40:26.591Z",
+      "stderr": "\nDevTools listening on ws://127.0.0.1:52536/devtools/browser/a1bd60a9-e87e-4065-9870-52a95a177f79\nTrying to load the allocator multiple times. This is *not* supported.\n",
+      "connectMs": 420,
+      "exit": {
+        "code": null,
+        "signal": "SIGKILL",
+        "time": "2026-11-09T22:40:27.138Z"
+      }
+    },
+    {
+      "pid": 15379,
+      "started": "2026-11-09T22:40:27.141Z",
+      "stderr": "\nDevTools listening on ws://127.0.0.1:52551/devtools/browser/dc4c3325-4a09-41c3-aec4-3f6f771c14b5\nTrying to load the allocator multiple times. This is *not* supported.\n",
+      "connectMs": 432
+    }
+  ],
+  "version": "157.0.8103.50",
+  "end": "2026-11-09T22:40:30.016Z"
+}

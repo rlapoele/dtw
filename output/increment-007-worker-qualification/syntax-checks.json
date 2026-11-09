@@ -1,0 +1,57 @@
+[
+  {
+    "file": "automated-page.mjs",
+    "exitCode": 0,
+    "output": ""
+  },
+  {
+    "file": "chrome-host.mjs",
+    "exitCode": 0,
+    "output": ""
+  },
+  {
+    "file": "chrome-manual-smoke.mjs",
+    "exitCode": 0,
+    "output": ""
+  },
+  {
+    "file": "manual.mjs",
+    "exitCode": 0,
+    "output": ""
+  },
+  {
+    "file": "page.mjs",
+    "exitCode": 0,
+    "output": ""
+  },
+  {
+    "file": "protocol.mjs",
+    "exitCode": 0,
+    "output": ""
+  },
+  {
+    "file": "protocol.test.mjs",
+    "exitCode": 0,
+    "output": ""
+  },
+  {
+    "file": "run.mjs",
+    "exitCode": 0,
+    "output": ""
+  },
+  {
+    "file": "server.mjs",
+    "exitCode": 0,
+    "output": ""
+  },
+  {
+    "file": "summarize.mjs",
+    "exitCode": 0,
+    "output": ""
+  },
+  {
+    "file": "worker.mjs",
+    "exitCode": 0,
+    "output": ""
+  }
+]

@@ -1,0 +1,1708 @@
+{
+  "engine": "chrome",
+  "start": "2026-11-09T22:57:29.726Z",
+  "scope": "Native R1/R2 and normal controls only; isolated synthetic own-origin data; no stress",
+  "source": {
+    "worker.mjs": "629f7ab86ff8578b134f0f999f1d33dcb19e0e451bde286c2dd32b7c3d205839",
+    "protocol.mjs": "3b30bbebc791edc1915b2260a047f33210c5a18786abd6c9de5f1b093581cabd",
+    "automated-page.mjs": "39c32ffbacaec0fa9e836c3661f2a95f1563978e4af02cd690b35d5ffa5aec1b",
+    "server.mjs": "f40b69ca9e0a16156b1fd36778f48b1b3e53dcd9b6db5b8e0675d2cf151776b8",
+    "revision-2-regressions.mjs": "20be9fe5cce7b8043f94e7bd330857d7a84887a3b1b21b54b53d054d62a8f59e"
+  },
+  "cases": [
+    {
+      "id": "R1-accepted-reset-recreated-database-remains-unknown",
+      "status": "pass",
+      "ms": 107,
+      "value": {
+        "runs": [
+          {
+            "attempt": {
+              "command": "accepted-before-reset-0",
+              "expected": null,
+              "incarnation": "f425a7a9-b4f7-4291-adea-d8beb3f82651"
+            },
+            "retained": {
+              "status": "retained",
+              "revision": "accepted-before-reset-0",
+              "dispatchCompleteMs": 0.900000000372529
+            },
+            "before": {
+              "project": "reset-proof-0",
+              "revision": "accepted-before-reset-0",
+              "incarnation": "f425a7a9-b4f7-4291-adea-d8beb3f82651",
+              "projection": {
+                "name": "Stage A synthetic",
+                "first": {
+                  "id": "t0",
+                  "projectId": "reset-proof-0",
+                  "localName": "t0",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "value": "1",
+                          "kind": "literal",
+                          "valueType": "number"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                "count": 100
+              },
+              "latest": {
+                "commandId": "accepted-before-reset-0",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "reset-proof-0"
+                }
+              },
+              "exactCoverage": false
+            },
+            "after": {
+              "status": "unknown",
+              "proof": {
+                "ownership": true,
+                "stopped": true,
+                "ordered": true,
+                "incarnation": "490c5514-9c32-4f72-81b5-974db5f0a971"
+              },
+              "revision": null
+            }
+          },
+          {
+            "attempt": {
+              "command": "accepted-before-reset-1",
+              "expected": null,
+              "incarnation": "7d109ed2-655b-4c42-8a13-85b6fd75bf3c"
+            },
+            "retained": {
+              "status": "retained",
+              "revision": "accepted-before-reset-1",
+              "dispatchCompleteMs": 0.8000000007450581
+            },
+            "before": {
+              "project": "reset-proof-1",
+              "revision": "accepted-before-reset-1",
+              "incarnation": "7d109ed2-655b-4c42-8a13-85b6fd75bf3c",
+              "projection": {
+                "name": "Stage A synthetic",
+                "first": {
+                  "id": "t0",
+                  "projectId": "reset-proof-1",
+                  "localName": "t0",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "value": "1",
+                          "kind": "literal",
+                          "valueType": "number"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                "count": 100
+              },
+              "latest": {
+                "commandId": "accepted-before-reset-1",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "reset-proof-1"
+                }
+              },
+              "exactCoverage": false
+            },
+            "after": {
+              "status": "unknown",
+              "proof": {
+                "ownership": true,
+                "stopped": true,
+                "ordered": true,
+                "incarnation": "4918b49d-645b-4e7e-9f51-3b9c85d70772"
+              },
+              "revision": null
+            }
+          },
+          {
+            "attempt": {
+              "command": "accepted-before-reset-2",
+              "expected": null,
+              "incarnation": "507873e1-0218-4a1f-8a66-a9001543100a"
+            },
+            "retained": {
+              "status": "retained",
+              "revision": "accepted-before-reset-2",
+              "dispatchCompleteMs": 1.200000001117587
+            },
+            "before": {
+              "project": "reset-proof-2",
+              "revision": "accepted-before-reset-2",
+              "incarnation": "507873e1-0218-4a1f-8a66-a9001543100a",
+              "projection": {
+                "name": "Stage A synthetic",
+                "first": {
+                  "id": "t0",
+                  "projectId": "reset-proof-2",
+                  "localName": "t0",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "value": "1",
+                          "kind": "literal",
+                          "valueType": "number"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                "count": 100
+              },
+              "latest": {
+                "commandId": "accepted-before-reset-2",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "reset-proof-2"
+                }
+              },
+              "exactCoverage": false
+            },
+            "after": {
+              "status": "unknown",
+              "proof": {
+                "ownership": true,
+                "stopped": true,
+                "ordered": true,
+                "incarnation": "86b332c1-3de1-454c-b4cf-346330a62d90"
+              },
+              "revision": null
+            }
+          }
+        ],
+        "events": [
+          {
+            "seq": 1,
+            "type": "pageshow",
+            "time": 61.899999998509884,
+            "persisted": false,
+            "visibility": "visible"
+          },
+          {
+            "seq": 1,
+            "type": "module-ready",
+            "time": 89.19999999925494,
+            "event": true
+          },
+          {
+            "seq": 2,
+            "type": "lock-acquired",
+            "time": 107.5,
+            "event": true,
+            "project": "reset-proof-0"
+          },
+          {
+            "seq": 3,
+            "type": "read-complete",
+            "time": 119,
+            "event": true,
+            "project": "reset-proof-0",
+            "revision": null
+          },
+          {
+            "seq": 4,
+            "type": "prepared",
+            "time": 119,
+            "event": true,
+            "command": "accepted-before-reset-0"
+          },
+          {
+            "seq": 5,
+            "type": "issued",
+            "time": 119.39999999850988,
+            "event": true,
+            "command": "accepted-before-reset-0",
+            "project": "reset-proof-0",
+            "durability": "strict"
+          },
+          {
+            "seq": 6,
+            "type": "request-success",
+            "time": 119.69999999925494,
+            "event": true,
+            "command": "accepted-before-reset-0"
+          },
+          {
+            "seq": 7,
+            "type": "complete",
+            "time": 120.29999999888241,
+            "event": true,
+            "command": "accepted-before-reset-0"
+          },
+          {
+            "seq": 8,
+            "type": "read-complete",
+            "time": 120.59999999962747,
+            "event": true,
+            "project": "reset-proof-0",
+            "revision": "accepted-before-reset-0"
+          },
+          {
+            "seq": 10,
+            "type": "worker-terminated",
+            "time": 126.5,
+            "generation": 1
+          },
+          {
+            "seq": 1,
+            "type": "module-ready",
+            "time": 138.5,
+            "event": true
+          },
+          {
+            "seq": 2,
+            "type": "lock-acquired",
+            "time": 139.19999999925494,
+            "event": true,
+            "project": "reset-proof-0"
+          },
+          {
+            "seq": 3,
+            "type": "recovery-ownership",
+            "time": 139.19999999925494,
+            "event": true,
+            "project": "reset-proof-0"
+          },
+          {
+            "seq": 4,
+            "type": "read-complete",
+            "time": 141.2999999988824,
+            "event": true,
+            "project": "reset-proof-0",
+            "revision": null
+          },
+          {
+            "seq": 5,
+            "type": "recovery-proof",
+            "time": 141.2999999988824,
+            "event": true,
+            "project": "reset-proof-0",
+            "ownership": true,
+            "stopped": true,
+            "ordered": true,
+            "incarnation": "490c5514-9c32-4f72-81b5-974db5f0a971"
+          },
+          {
+            "seq": 6,
+            "type": "lock-release",
+            "time": 141.39999999850988,
+            "event": true,
+            "project": "reset-proof-0"
+          },
+          {
+            "seq": 7,
+            "type": "lock-acquired",
+            "time": 142,
+            "event": true,
+            "project": "reset-proof-1"
+          },
+          {
+            "seq": 8,
+            "type": "read-complete",
+            "time": 149.69999999925494,
+            "event": true,
+            "project": "reset-proof-1",
+            "revision": null
+          },
+          {
+            "seq": 9,
+            "type": "prepared",
+            "time": 149.69999999925494,
+            "event": true,
+            "command": "accepted-before-reset-1"
+          },
+          {
+            "seq": 10,
+            "type": "issued",
+            "time": 149.89999999850988,
+            "event": true,
+            "command": "accepted-before-reset-1",
+            "project": "reset-proof-1",
+            "durability": "strict"
+          },
+          {
+            "seq": 11,
+            "type": "request-success",
+            "time": 150.2999999988824,
+            "event": true,
+            "command": "accepted-before-reset-1"
+          },
+          {
+            "seq": 12,
+            "type": "complete",
+            "time": 150.69999999925494,
+            "event": true,
+            "command": "accepted-before-reset-1"
+          },
+          {
+            "seq": 13,
+            "type": "read-complete",
+            "time": 151,
+            "event": true,
+            "project": "reset-proof-1",
+            "revision": "accepted-before-reset-1"
+          },
+          {
+            "seq": 24,
+            "type": "worker-terminated",
+            "time": 156.69999999925494,
+            "generation": 2
+          },
+          {
+            "seq": 1,
+            "type": "module-ready",
+            "time": 165.7999999988824,
+            "event": true
+          },
+          {
+            "seq": 2,
+            "type": "lock-acquired",
+            "time": 166.5,
+            "event": true,
+            "project": "reset-proof-1"
+          },
+          {
+            "seq": 3,
+            "type": "recovery-ownership",
+            "time": 166.5,
+            "event": true,
+            "project": "reset-proof-1"
+          },
+          {
+            "seq": 4,
+            "type": "read-complete",
+            "time": 168.19999999925494,
+            "event": true,
+            "project": "reset-proof-1",
+            "revision": null
+          },
+          {
+            "seq": 5,
+            "type": "recovery-proof",
+            "time": 168.19999999925494,
+            "event": true,
+            "project": "reset-proof-1",
+            "ownership": true,
+            "stopped": true,
+            "ordered": true,
+            "incarnation": "4918b49d-645b-4e7e-9f51-3b9c85d70772"
+          },
+          {
+            "seq": 6,
+            "type": "lock-release",
+            "time": 168.39999999850988,
+            "event": true,
+            "project": "reset-proof-1"
+          },
+          {
+            "seq": 7,
+            "type": "lock-acquired",
+            "time": 169.69999999925494,
+            "event": true,
+            "project": "reset-proof-2"
+          },
+          {
+            "seq": 8,
+            "type": "read-complete",
+            "time": 177.59999999962747,
+            "event": true,
+            "project": "reset-proof-2",
+            "revision": null
+          },
+          {
+            "seq": 9,
+            "type": "prepared",
+            "time": 177.59999999962747,
+            "event": true,
+            "command": "accepted-before-reset-2"
+          },
+          {
+            "seq": 10,
+            "type": "issued",
+            "time": 177.89999999850988,
+            "event": true,
+            "command": "accepted-before-reset-2",
+            "project": "reset-proof-2",
+            "durability": "strict"
+          },
+          {
+            "seq": 11,
+            "type": "request-success",
+            "time": 178.5,
+            "event": true,
+            "command": "accepted-before-reset-2"
+          },
+          {
+            "seq": 12,
+            "type": "complete",
+            "time": 179.09999999962747,
+            "event": true,
+            "command": "accepted-before-reset-2"
+          },
+          {
+            "seq": 13,
+            "type": "read-complete",
+            "time": 179.59999999962747,
+            "event": true,
+            "project": "reset-proof-2",
+            "revision": "accepted-before-reset-2"
+          },
+          {
+            "seq": 38,
+            "type": "worker-terminated",
+            "time": 184.89999999850988,
+            "generation": 3
+          },
+          {
+            "seq": 1,
+            "type": "module-ready",
+            "time": 196.59999999962747,
+            "event": true
+          },
+          {
+            "seq": 2,
+            "type": "lock-acquired",
+            "time": 197.2999999988824,
+            "event": true,
+            "project": "reset-proof-2"
+          },
+          {
+            "seq": 3,
+            "type": "recovery-ownership",
+            "time": 197.2999999988824,
+            "event": true,
+            "project": "reset-proof-2"
+          },
+          {
+            "seq": 4,
+            "type": "read-complete",
+            "time": 198.89999999850988,
+            "event": true,
+            "project": "reset-proof-2",
+            "revision": null
+          },
+          {
+            "seq": 5,
+            "type": "recovery-proof",
+            "time": 198.89999999850988,
+            "event": true,
+            "project": "reset-proof-2",
+            "ownership": true,
+            "stopped": true,
+            "ordered": true,
+            "incarnation": "86b332c1-3de1-454c-b4cf-346330a62d90"
+          },
+          {
+            "seq": 6,
+            "type": "lock-release",
+            "time": 199,
+            "event": true,
+            "project": "reset-proof-2"
+          }
+        ]
+      }
+    },
+    {
+      "id": "R1-normal-retained-absence-and-malformed-incarnation-controls",
+      "status": "pass",
+      "ms": 19,
+      "value": {
+        "same": {
+          "status": "retained",
+          "proof": {
+            "ownership": true,
+            "stopped": true,
+            "ordered": true,
+            "incarnation": "a891ce65-ffda-4e45-86bf-a534c1c499f5"
+          },
+          "revision": "control-retained"
+        },
+        "absence": {
+          "status": "rejected",
+          "proof": {
+            "ownership": true,
+            "stopped": true,
+            "ordered": true,
+            "incarnation": "a891ce65-ffda-4e45-86bf-a534c1c499f5"
+          },
+          "revision": null
+        },
+        "malformed": {
+          "status": "unknown",
+          "reason": "incarnation-unavailable"
+        }
+      }
+    },
+    {
+      "id": "R2-overlapping-prepare-and-double-dispatch-cannot-overwrite",
+      "status": "pass",
+      "ms": 32,
+      "value": {
+        "runs": [
+          {
+            "prepare": [
+              {
+                "status": "fulfilled",
+                "value": {
+                  "command": "parallel-first-0",
+                  "expected": null,
+                  "incarnation": "bbcd3106-ed23-4d61-9c7b-00d0c26a5a05",
+                  "bytes": 24162
+                }
+              },
+              {
+                "status": "rejected",
+                "error": "Error: Error: one-active-mutation"
+              }
+            ],
+            "denied": {
+              "status": "rejected",
+              "error": "Error: Error: attempt-missing"
+            },
+            "dispatch": [
+              {
+                "status": "fulfilled",
+                "value": {
+                  "status": "retained",
+                  "revision": "parallel-first-0",
+                  "dispatchCompleteMs": 0.8000000007450581
+                }
+              },
+              {
+                "status": "rejected",
+                "error": "Error: Error: attempt-state"
+              }
+            ],
+            "issued": 1,
+            "after": {
+              "project": "overlap-a-0",
+              "revision": "parallel-first-0",
+              "incarnation": "bbcd3106-ed23-4d61-9c7b-00d0c26a5a05",
+              "projection": {
+                "name": "Stage A synthetic",
+                "first": {
+                  "id": "t0",
+                  "projectId": "overlap-a-0",
+                  "localName": "t0",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "value": "1",
+                          "kind": "literal",
+                          "valueType": "number"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                "count": 100
+              },
+              "latest": {
+                "commandId": "parallel-first-0",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "overlap-a-0"
+                }
+              },
+              "exactCoverage": false
+            },
+            "otherAfter": {
+              "project": "overlap-b-0",
+              "absent": true,
+              "incarnation": "bbcd3106-ed23-4d61-9c7b-00d0c26a5a05"
+            },
+            "reuse": {
+              "status": "rejected",
+              "error": "Error: Error: attempt-reused"
+            }
+          },
+          {
+            "prepare": [
+              {
+                "status": "fulfilled",
+                "value": {
+                  "command": "parallel-first-1",
+                  "expected": null,
+                  "incarnation": "bbcd3106-ed23-4d61-9c7b-00d0c26a5a05",
+                  "bytes": 24162
+                }
+              },
+              {
+                "status": "rejected",
+                "error": "Error: Error: one-active-mutation"
+              }
+            ],
+            "denied": {
+              "status": "rejected",
+              "error": "Error: Error: attempt-missing"
+            },
+            "dispatch": [
+              {
+                "status": "fulfilled",
+                "value": {
+                  "status": "retained",
+                  "revision": "parallel-first-1",
+                  "dispatchCompleteMs": 0.8000000007450581
+                }
+              },
+              {
+                "status": "rejected",
+                "error": "Error: Error: attempt-state"
+              }
+            ],
+            "issued": 1,
+            "after": {
+              "project": "overlap-a-1",
+              "revision": "parallel-first-1",
+              "incarnation": "bbcd3106-ed23-4d61-9c7b-00d0c26a5a05",
+              "projection": {
+                "name": "Stage A synthetic",
+                "first": {
+                  "id": "t0",
+                  "projectId": "overlap-a-1",
+                  "localName": "t0",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "value": "1",
+                          "kind": "literal",
+                          "valueType": "number"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                "count": 100
+              },
+              "latest": {
+                "commandId": "parallel-first-1",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "overlap-a-1"
+                }
+              },
+              "exactCoverage": false
+            },
+            "otherAfter": {
+              "project": "overlap-b-1",
+              "absent": true,
+              "incarnation": "bbcd3106-ed23-4d61-9c7b-00d0c26a5a05"
+            },
+            "reuse": {
+              "status": "rejected",
+              "error": "Error: Error: attempt-reused"
+            }
+          },
+          {
+            "prepare": [
+              {
+                "status": "fulfilled",
+                "value": {
+                  "command": "parallel-first-2",
+                  "expected": null,
+                  "incarnation": "bbcd3106-ed23-4d61-9c7b-00d0c26a5a05",
+                  "bytes": 24162
+                }
+              },
+              {
+                "status": "rejected",
+                "error": "Error: Error: one-active-mutation"
+              }
+            ],
+            "denied": {
+              "status": "rejected",
+              "error": "Error: Error: attempt-missing"
+            },
+            "dispatch": [
+              {
+                "status": "fulfilled",
+                "value": {
+                  "status": "retained",
+                  "revision": "parallel-first-2",
+                  "dispatchCompleteMs": 1.400000000372529
+                }
+              },
+              {
+                "status": "rejected",
+                "error": "Error: Error: attempt-state"
+              }
+            ],
+            "issued": 1,
+            "after": {
+              "project": "overlap-a-2",
+              "revision": "parallel-first-2",
+              "incarnation": "bbcd3106-ed23-4d61-9c7b-00d0c26a5a05",
+              "projection": {
+                "name": "Stage A synthetic",
+                "first": {
+                  "id": "t0",
+                  "projectId": "overlap-a-2",
+                  "localName": "t0",
+                  "parentGroupId": null,
+                  "definition": {
+                    "type": "number",
+                    "assignments": [
+                      {
+                        "condition": [],
+                        "value": {
+                          "value": "1",
+                          "kind": "literal",
+                          "valueType": "number"
+                        }
+                      }
+                    ]
+                  },
+                  "authoring": {
+                    "regeneration": "allowed"
+                  }
+                },
+                "count": 100
+              },
+              "latest": {
+                "commandId": "parallel-first-2",
+                "operation": "restoreProject",
+                "result": {
+                  "entityKind": "project",
+                  "id": "overlap-a-2"
+                }
+              },
+              "exactCoverage": false
+            },
+            "otherAfter": {
+              "project": "overlap-b-2",
+              "absent": true,
+              "incarnation": "bbcd3106-ed23-4d61-9c7b-00d0c26a5a05"
+            },
+            "reuse": {
+              "status": "rejected",
+              "error": "Error: Error: attempt-reused"
+            }
+          }
+        ],
+        "events": [
+          {
+            "seq": 1,
+            "type": "pageshow",
+            "time": 61.899999998509884,
+            "persisted": false,
+            "visibility": "visible"
+          },
+          {
+            "seq": 1,
+            "type": "module-ready",
+            "time": 89.19999999925494,
+            "event": true
+          },
+          {
+            "seq": 2,
+            "type": "lock-acquired",
+            "time": 107.5,
+            "event": true,
+            "project": "reset-proof-0"
+          },
+          {
+            "seq": 3,
+            "type": "read-complete",
+            "time": 119,
+            "event": true,
+            "project": "reset-proof-0",
+            "revision": null
+          },
+          {
+            "seq": 4,
+            "type": "prepared",
+            "time": 119,
+            "event": true,
+            "command": "accepted-before-reset-0"
+          },
+          {
+            "seq": 5,
+            "type": "issued",
+            "time": 119.39999999850988,
+            "event": true,
+            "command": "accepted-before-reset-0",
+            "project": "reset-proof-0",
+            "durability": "strict"
+          },
+          {
+            "seq": 6,
+            "type": "request-success",
+            "time": 119.69999999925494,
+            "event": true,
+            "command": "accepted-before-reset-0"
+          },
+          {
+            "seq": 7,
+            "type": "complete",
+            "time": 120.29999999888241,
+            "event": true,
+            "command": "accepted-before-reset-0"
+          },
+          {
+            "seq": 8,
+            "type": "read-complete",
+            "time": 120.59999999962747,
+            "event": true,
+            "project": "reset-proof-0",
+            "revision": "accepted-before-reset-0"
+          },
+          {
+            "seq": 10,
+            "type": "worker-terminated",
+            "time": 126.5,
+            "generation": 1
+          },
+          {
+            "seq": 1,
+            "type": "module-ready",
+            "time": 138.5,
+            "event": true
+          },
+          {
+            "seq": 2,
+            "type": "lock-acquired",
+            "time": 139.19999999925494,
+            "event": true,
+            "project": "reset-proof-0"
+          },
+          {
+            "seq": 3,
+            "type": "recovery-ownership",
+            "time": 139.19999999925494,
+            "event": true,
+            "project": "reset-proof-0"
+          },
+          {
+            "seq": 4,
+            "type": "read-complete",
+            "time": 141.2999999988824,
+            "event": true,
+            "project": "reset-proof-0",
+            "revision": null
+          },
+          {
+            "seq": 5,
+            "type": "recovery-proof",
+            "time": 141.2999999988824,
+            "event": true,
+            "project": "reset-proof-0",
+            "ownership": true,
+            "stopped": true,
+            "ordered": true,
+            "incarnation": "490c5514-9c32-4f72-81b5-974db5f0a971"
+          },
+          {
+            "seq": 6,
+            "type": "lock-release",
+            "time": 141.39999999850988,
+            "event": true,
+            "project": "reset-proof-0"
+          },
+          {
+            "seq": 7,
+            "type": "lock-acquired",
+            "time": 142,
+            "event": true,
+            "project": "reset-proof-1"
+          },
+          {
+            "seq": 8,
+            "type": "read-complete",
+            "time": 149.69999999925494,
+            "event": true,
+            "project": "reset-proof-1",
+            "revision": null
+          },
+          {
+            "seq": 9,
+            "type": "prepared",
+            "time": 149.69999999925494,
+            "event": true,
+            "command": "accepted-before-reset-1"
+          },
+          {
+            "seq": 10,
+            "type": "issued",
+            "time": 149.89999999850988,
+            "event": true,
+            "command": "accepted-before-reset-1",
+            "project": "reset-proof-1",
+            "durability": "strict"
+          },
+          {
+            "seq": 11,
+            "type": "request-success",
+            "time": 150.2999999988824,
+            "event": true,
+            "command": "accepted-before-reset-1"
+          },
+          {
+            "seq": 12,
+            "type": "complete",
+            "time": 150.69999999925494,
+            "event": true,
+            "command": "accepted-before-reset-1"
+          },
+          {
+            "seq": 13,
+            "type": "read-complete",
+            "time": 151,
+            "event": true,
+            "project": "reset-proof-1",
+            "revision": "accepted-before-reset-1"
+          },
+          {
+            "seq": 24,
+            "type": "worker-terminated",
+            "time": 156.69999999925494,
+            "generation": 2
+          },
+          {
+            "seq": 1,
+            "type": "module-ready",
+            "time": 165.7999999988824,
+            "event": true
+          },
+          {
+            "seq": 2,
+            "type": "lock-acquired",
+            "time": 166.5,
+            "event": true,
+            "project": "reset-proof-1"
+          },
+          {
+            "seq": 3,
+            "type": "recovery-ownership",
+            "time": 166.5,
+            "event": true,
+            "project": "reset-proof-1"
+          },
+          {
+            "seq": 4,
+            "type": "read-complete",
+            "time": 168.19999999925494,
+            "event": true,
+            "project": "reset-proof-1",
+            "revision": null
+          },
+          {
+            "seq": 5,
+            "type": "recovery-proof",
+            "time": 168.19999999925494,
+            "event": true,
+            "project": "reset-proof-1",
+            "ownership": true,
+            "stopped": true,
+            "ordered": true,
+            "incarnation": "4918b49d-645b-4e7e-9f51-3b9c85d70772"
+          },
+          {
+            "seq": 6,
+            "type": "lock-release",
+            "time": 168.39999999850988,
+            "event": true,
+            "project": "reset-proof-1"
+          },
+          {
+            "seq": 7,
+            "type": "lock-acquired",
+            "time": 169.69999999925494,
+            "event": true,
+            "project": "reset-proof-2"
+          },
+          {
+            "seq": 8,
+            "type": "read-complete",
+            "time": 177.59999999962747,
+            "event": true,
+            "project": "reset-proof-2",
+            "revision": null
+          },
+          {
+            "seq": 9,
+            "type": "prepared",
+            "time": 177.59999999962747,
+            "event": true,
+            "command": "accepted-before-reset-2"
+          },
+          {
+            "seq": 10,
+            "type": "issued",
+            "time": 177.89999999850988,
+            "event": true,
+            "command": "accepted-before-reset-2",
+            "project": "reset-proof-2",
+            "durability": "strict"
+          },
+          {
+            "seq": 11,
+            "type": "request-success",
+            "time": 178.5,
+            "event": true,
+            "command": "accepted-before-reset-2"
+          },
+          {
+            "seq": 12,
+            "type": "complete",
+            "time": 179.09999999962747,
+            "event": true,
+            "command": "accepted-before-reset-2"
+          },
+          {
+            "seq": 13,
+            "type": "read-complete",
+            "time": 179.59999999962747,
+            "event": true,
+            "project": "reset-proof-2",
+            "revision": "accepted-before-reset-2"
+          },
+          {
+            "seq": 38,
+            "type": "worker-terminated",
+            "time": 184.89999999850988,
+            "generation": 3
+          },
+          {
+            "seq": 1,
+            "type": "module-ready",
+            "time": 196.59999999962747,
+            "event": true
+          },
+          {
+            "seq": 2,
+            "type": "lock-acquired",
+            "time": 197.2999999988824,
+            "event": true,
+            "project": "reset-proof-2"
+          },
+          {
+            "seq": 3,
+            "type": "recovery-ownership",
+            "time": 197.2999999988824,
+            "event": true,
+            "project": "reset-proof-2"
+          },
+          {
+            "seq": 4,
+            "type": "read-complete",
+            "time": 198.89999999850988,
+            "event": true,
+            "project": "reset-proof-2",
+            "revision": null
+          },
+          {
+            "seq": 5,
+            "type": "recovery-proof",
+            "time": 198.89999999850988,
+            "event": true,
+            "project": "reset-proof-2",
+            "ownership": true,
+            "stopped": true,
+            "ordered": true,
+            "incarnation": "86b332c1-3de1-454c-b4cf-346330a62d90"
+          },
+          {
+            "seq": 6,
+            "type": "lock-release",
+            "time": 199,
+            "event": true,
+            "project": "reset-proof-2"
+          },
+          {
+            "seq": 7,
+            "type": "lock-acquired",
+            "time": 205.19999999925494,
+            "event": true,
+            "project": "controls"
+          },
+          {
+            "seq": 8,
+            "type": "read-complete",
+            "time": 212.39999999850988,
+            "event": true,
+            "project": "controls",
+            "revision": null
+          },
+          {
+            "seq": 9,
+            "type": "prepared",
+            "time": 212.39999999850988,
+            "event": true,
+            "command": "control-retained"
+          },
+          {
+            "seq": 10,
+            "type": "issued",
+            "time": 212.7999999988824,
+            "event": true,
+            "command": "control-retained",
+            "project": "controls",
+            "durability": "strict"
+          },
+          {
+            "seq": 11,
+            "type": "request-success",
+            "time": 213,
+            "event": true,
+            "command": "control-retained"
+          },
+          {
+            "seq": 12,
+            "type": "complete",
+            "time": 213.59999999962747,
+            "event": true,
+            "command": "control-retained"
+          },
+          {
+            "seq": 13,
+            "type": "recovery-ownership",
+            "time": 213.69999999925494,
+            "event": true,
+            "project": "controls"
+          },
+          {
+            "seq": 14,
+            "type": "read-complete",
+            "time": 214,
+            "event": true,
+            "project": "controls",
+            "revision": "control-retained"
+          },
+          {
+            "seq": 15,
+            "type": "recovery-proof",
+            "time": 216.59999999962747,
+            "event": true,
+            "project": "controls",
+            "ownership": true,
+            "stopped": true,
+            "ordered": true,
+            "incarnation": "a891ce65-ffda-4e45-86bf-a534c1c499f5"
+          },
+          {
+            "seq": 16,
+            "type": "lock-acquired",
+            "time": 216.69999999925494,
+            "event": true,
+            "project": "absent-control"
+          },
+          {
+            "seq": 17,
+            "type": "read-complete",
+            "time": 220.7999999988824,
+            "event": true,
+            "project": "absent-control",
+            "revision": null
+          },
+          {
+            "seq": 18,
+            "type": "prepared",
+            "time": 220.89999999850988,
+            "event": true,
+            "command": "never-submitted"
+          },
+          {
+            "seq": 19,
+            "type": "dispatch-stopped",
+            "time": 220.89999999850988,
+            "event": true,
+            "command": "never-submitted"
+          },
+          {
+            "seq": 20,
+            "type": "recovery-ownership",
+            "time": 220.89999999850988,
+            "event": true,
+            "project": "absent-control"
+          },
+          {
+            "seq": 21,
+            "type": "read-complete",
+            "time": 221.09999999962747,
+            "event": true,
+            "project": "absent-control",
+            "revision": null
+          },
+          {
+            "seq": 22,
+            "type": "recovery-proof",
+            "time": 221.09999999962747,
+            "event": true,
+            "project": "absent-control",
+            "ownership": true,
+            "stopped": true,
+            "ordered": true,
+            "incarnation": "a891ce65-ffda-4e45-86bf-a534c1c499f5"
+          },
+          {
+            "seq": 23,
+            "type": "recovery-ownership",
+            "time": 222,
+            "event": true,
+            "project": "absent-control"
+          },
+          {
+            "seq": 24,
+            "type": "read-complete",
+            "time": 222.09999999962747,
+            "event": true,
+            "project": "absent-control",
+            "revision": null
+          },
+          {
+            "seq": 25,
+            "type": "lock-acquired",
+            "time": 224.69999999925494,
+            "event": true,
+            "project": "overlap-a-0"
+          },
+          {
+            "seq": 26,
+            "type": "lock-acquired",
+            "time": 224.7999999988824,
+            "event": true,
+            "project": "overlap-b-0"
+          },
+          {
+            "seq": 27,
+            "type": "read-complete",
+            "time": 229,
+            "event": true,
+            "project": "overlap-a-0",
+            "revision": null
+          },
+          {
+            "seq": 28,
+            "type": "prepared",
+            "time": 229,
+            "event": true,
+            "command": "parallel-first-0"
+          },
+          {
+            "seq": 29,
+            "type": "read-complete",
+            "time": 229.2999999988824,
+            "event": true,
+            "project": "overlap-b-0",
+            "revision": null
+          },
+          {
+            "seq": 30,
+            "type": "issued",
+            "time": 229.39999999850988,
+            "event": true,
+            "command": "parallel-first-0",
+            "project": "overlap-a-0",
+            "durability": "strict"
+          },
+          {
+            "seq": 31,
+            "type": "request-success",
+            "time": 229.59999999962747,
+            "event": true,
+            "command": "parallel-first-0"
+          },
+          {
+            "seq": 32,
+            "type": "complete",
+            "time": 230.19999999925494,
+            "event": true,
+            "command": "parallel-first-0"
+          },
+          {
+            "seq": 33,
+            "type": "read-complete",
+            "time": 230.39999999850988,
+            "event": true,
+            "project": "overlap-a-0",
+            "revision": "parallel-first-0"
+          },
+          {
+            "seq": 34,
+            "type": "read-complete",
+            "time": 233.5,
+            "event": true,
+            "project": "overlap-b-0",
+            "revision": null
+          },
+          {
+            "seq": 35,
+            "type": "lock-release",
+            "time": 233.59999999962747,
+            "event": true,
+            "project": "overlap-a-0"
+          },
+          {
+            "seq": 36,
+            "type": "lock-release",
+            "time": 233.59999999962747,
+            "event": true,
+            "project": "overlap-b-0"
+          },
+          {
+            "seq": 37,
+            "type": "lock-acquired",
+            "time": 233.7999999988824,
+            "event": true,
+            "project": "overlap-a-1"
+          },
+          {
+            "seq": 38,
+            "type": "lock-acquired",
+            "time": 233.7999999988824,
+            "event": true,
+            "project": "overlap-b-1"
+          },
+          {
+            "seq": 39,
+            "type": "read-complete",
+            "time": 236,
+            "event": true,
+            "project": "overlap-a-1",
+            "revision": null
+          },
+          {
+            "seq": 40,
+            "type": "prepared",
+            "time": 236,
+            "event": true,
+            "command": "parallel-first-1"
+          },
+          {
+            "seq": 41,
+            "type": "read-complete",
+            "time": 236.19999999925494,
+            "event": true,
+            "project": "overlap-b-1",
+            "revision": null
+          },
+          {
+            "seq": 42,
+            "type": "issued",
+            "time": 236.2999999988824,
+            "event": true,
+            "command": "parallel-first-1",
+            "project": "overlap-a-1",
+            "durability": "strict"
+          },
+          {
+            "seq": 43,
+            "type": "request-success",
+            "time": 236.59999999962747,
+            "event": true,
+            "command": "parallel-first-1"
+          },
+          {
+            "seq": 44,
+            "type": "complete",
+            "time": 237.09999999962747,
+            "event": true,
+            "command": "parallel-first-1"
+          },
+          {
+            "seq": 45,
+            "type": "read-complete",
+            "time": 237.5,
+            "event": true,
+            "project": "overlap-a-1",
+            "revision": "parallel-first-1"
+          },
+          {
+            "seq": 46,
+            "type": "read-complete",
+            "time": 240.09999999962747,
+            "event": true,
+            "project": "overlap-b-1",
+            "revision": null
+          },
+          {
+            "seq": 47,
+            "type": "lock-release",
+            "time": 240.19999999925494,
+            "event": true,
+            "project": "overlap-a-1"
+          },
+          {
+            "seq": 48,
+            "type": "lock-release",
+            "time": 240.2999999988824,
+            "event": true,
+            "project": "overlap-b-1"
+          },
+          {
+            "seq": 49,
+            "type": "lock-acquired",
+            "time": 240.39999999850988,
+            "event": true,
+            "project": "overlap-a-2"
+          },
+          {
+            "seq": 50,
+            "type": "lock-acquired",
+            "time": 240.5,
+            "event": true,
+            "project": "overlap-b-2"
+          },
+          {
+            "seq": 51,
+            "type": "read-complete",
+            "time": 242.89999999850988,
+            "event": true,
+            "project": "overlap-a-2",
+            "revision": null
+          },
+          {
+            "seq": 52,
+            "type": "prepared",
+            "time": 242.89999999850988,
+            "event": true,
+            "command": "parallel-first-2"
+          },
+          {
+            "seq": 53,
+            "type": "read-complete",
+            "time": 243.19999999925494,
+            "event": true,
+            "project": "overlap-b-2",
+            "revision": null
+          },
+          {
+            "seq": 54,
+            "type": "issued",
+            "time": 243.39999999850988,
+            "event": true,
+            "command": "parallel-first-2",
+            "project": "overlap-a-2",
+            "durability": "strict"
+          },
+          {
+            "seq": 55,
+            "type": "request-success",
+            "time": 243.7999999988824,
+            "event": true,
+            "command": "parallel-first-2"
+          },
+          {
+            "seq": 56,
+            "type": "complete",
+            "time": 244.69999999925494,
+            "event": true,
+            "command": "parallel-first-2"
+          },
+          {
+            "seq": 57,
+            "type": "read-complete",
+            "time": 245.2999999988824,
+            "event": true,
+            "project": "overlap-a-2",
+            "revision": "parallel-first-2"
+          },
+          {
+            "seq": 58,
+            "type": "read-complete",
+            "time": 249,
+            "event": true,
+            "project": "overlap-b-2",
+            "revision": null
+          },
+          {
+            "seq": 59,
+            "type": "lock-release",
+            "time": 249.09999999962747,
+            "event": true,
+            "project": "overlap-a-2"
+          },
+          {
+            "seq": 60,
+            "type": "lock-release",
+            "time": 249.09999999962747,
+            "event": true,
+            "project": "overlap-b-2"
+          }
+        ]
+      }
+    },
+    {
+      "id": "R2-failed-preparation-and-cancelled-attempt-do-not-clear-new-slot",
+      "status": "pass",
+      "ms": 17,
+      "value": {
+        "failed": {
+          "status": "rejected",
+          "error": "Error: Error: ownership"
+        },
+        "stale": {
+          "status": "never-dispatched"
+        },
+        "contender": {
+          "status": "rejected",
+          "error": "Error: Error: one-active-mutation"
+        },
+        "committed": {
+          "status": "retained",
+          "revision": "current",
+          "dispatchCompleteMs": 1
+        },
+        "after": {
+          "project": "owned",
+          "revision": "current",
+          "incarnation": "1bd2e7c7-fc77-4989-84ce-a6d0d2946a71",
+          "projection": {
+            "name": "Stage A synthetic",
+            "first": {
+              "id": "t0",
+              "projectId": "owned",
+              "localName": "t0",
+              "parentGroupId": null,
+              "definition": {
+                "type": "number",
+                "assignments": [
+                  {
+                    "condition": [],
+                    "value": {
+                      "value": "1",
+                      "kind": "literal",
+                      "valueType": "number"
+                    }
+                  }
+                ]
+              },
+              "authoring": {
+                "regeneration": "allowed"
+              }
+            },
+            "count": 100
+          },
+          "latest": {
+            "commandId": "current",
+            "operation": "restoreProject",
+            "result": {
+              "entityKind": "project",
+              "id": "owned"
+            }
+          },
+          "exactCoverage": false
+        }
+      }
+    },
+    {
+      "id": "R2-cancel-during-preparation-fences-continuation-and-keeps-next-slot",
+      "status": "pass",
+      "ms": 13,
+      "value": {
+        "prepared": {
+          "status": "never-dispatched",
+          "command": "cancel-preparing"
+        },
+        "cancelled": {
+          "status": "never-dispatched",
+          "stopped": true
+        },
+        "old": {
+          "status": "never-dispatched"
+        },
+        "current": {
+          "status": "retained",
+          "revision": "after-cancel",
+          "dispatchCompleteMs": 0.8999999985098839
+        },
+        "after": {
+          "project": "preparing",
+          "revision": "after-cancel",
+          "incarnation": "e7cd0a75-4fdf-4fb2-8326-325d89ece467",
+          "projection": {
+            "name": "Stage A synthetic",
+            "first": {
+              "id": "t0",
+              "projectId": "preparing",
+              "localName": "t0",
+              "parentGroupId": null,
+              "definition": {
+                "type": "number",
+                "assignments": [
+                  {
+                    "condition": [],
+                    "value": {
+                      "value": "1",
+                      "kind": "literal",
+                      "valueType": "number"
+                    }
+                  }
+                ]
+              },
+              "authoring": {
+                "regeneration": "allowed"
+              }
+            },
+            "count": 100
+          },
+          "latest": {
+            "commandId": "after-cancel",
+            "operation": "restoreProject",
+            "result": {
+              "entityKind": "project",
+              "id": "preparing"
+            }
+          },
+          "exactCoverage": false
+        }
+      }
+    }
+  ],
+  "origin": "http://127.0.0.1:52912",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-worker-r2-U5h0LE",
+  "pid": 16448,
+  "stderr": "\nDevTools listening on ws://127.0.0.1:52914/devtools/browser/6421f459-50ae-46c7-b6d0-63af713facba\nTrying to load the allocator multiple times. This is *not* supported.\n",
+  "browser": "157.0.8103.50",
+  "profileMode": "normal persistent disposable profile",
+  "end": "2026-11-09T22:57:30.690Z"
+}

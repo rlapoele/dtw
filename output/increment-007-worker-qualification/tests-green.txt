@@ -1,0 +1,11 @@
+✔ closed bounded messages reject unknown, missing and excessive inputs (0.485375ms)
+✔ absence cannot establish rejection without all fencing/ordering/baseline facts (0.083709ms)
+✔ publication fences request, project, revision and renderer generation (0.064458ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 42.513625
