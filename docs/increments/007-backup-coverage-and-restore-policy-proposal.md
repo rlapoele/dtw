@@ -1,23 +1,30 @@
-# Increment 007: backup coverage and restore policy proposal
+# Increment 007: backup coverage and restore policy
 
-**Proposed for user review — 9 November 2026.** Analyst recommendations for D-2
-and D-3, based on clean `616e1f299ae43e7c5d9fd73f09e719a048e1593e`.
-Neither question is decided. This document proposes data coverage and admissibility,
-not a file syntax, runtime library, migration implementation or storage technology.
-The [Draft contract](007-local-retention-and-backup.md) and separate
-[V1/V2 review](007-design-review.md) retain their status. No implementation is authorized.
+**Agreed policy — 9 November 2026.** The user approved P-1–P-4, explicitly
+including the first-version exclusion of conditional and complete component
+systems. This resolves D-2 coverage and D-3 admissibility at the policy level.
+The original analyst investigation used snapshot
+`616e1f299ae43e7c5d9fd73f09e719a048e1593e`; its proposal was committed as `c5c7ed8`
+before this agreement. The existing filename is retained for stable references.
+
+This agreement does not select file syntax, a runtime library, migration policy or
+storage technology. Representation/version/resource choices remain D-6; actual
+retention and concurrency qualification remain D-1/D-4/D-5. The
+[Draft contract](007-local-retention-and-backup.md) remains Draft; final contract/design
+agreement and implementation authorization are still pending.
 
 ## Four choices to review
 
-| Choice | Recommended first-version policy | Alternative and cost |
+| Choice | Agreed first-version policy | Alternatives considered and cost |
 | --- | --- | --- |
 | P-1: coverage | Preserve the complete declared project/groups/tokens envelope below, including all nine implemented literals, three composites, references, six portable AST operations, supported incomplete/non-color/protected/inspect-only tokens and component association fields. Restrict assignments to zero or one unconditional assignment. | Add axes/options/presets and conditional selection now: broader genuine domain coverage, but a larger application snapshot/inspection and backup contract. Color-editor-only backup is not an acceptable alternative to the agreed preservation promise. |
-| P-2: absent context | Preserve a correctly paired component layer/association ID as inspect-only with an explicit **proposed coverage notice** that component ownership context is unavailable/unverified; do not claim a complete component system. Reject conditional assignments and authored axes/presets/component-definition collections as outside this first envelope. | Reject component-associated tokens too: simpler completeness claim, but excludes valid current Token shapes and needs an explicit narrower agreement. Alternatively include actual component definitions and variation context: broader scope requiring schemas and operations beyond current storage. |
+| P-2: absent context | Preserve a correctly paired component layer/association ID as inspect-only with an explicit **coverage notice** that component ownership context is unavailable/unverified; do not claim a complete component system. Reject conditional assignments and authored axes/presets/component-definition collections as outside this first envelope. | Reject component-associated tokens too: simpler completeness claim, but excludes valid current Token shapes and needs an explicit narrower agreement. Alternatively include actual component definitions and variation context: broader scope requiring schemas and operations beyond current storage. |
 | P-3: repairable data | Strictly decode supported shapes/identity/membership; preserve the enumerated namespace/reference/evaluation failures below with diagnostics. Invalid or unknown representation is a whole-project rejection. | Permit only fully valid projects: simpler, but conflicts with agreed missing-reference preservation and prevents recovery of readable authored work. Preserve arbitrary malformed objects: larger safety/inspection contract and no trustworthy semantic interpretation. |
 | P-4: identity and unknown data | Scope entity lookup by project **and kind**; reject duplicate IDs within one kind/project, allow the same string across kinds/projects. Reject unknown fields/content whole, including unimplemented extensions/provenance, rather than drop or pass through opaque metadata. | Require globally unique strings: incompatible with current separate maps and caller-supplied identities. Opaque metadata preservation: better future interchange, but requires a new bounded metadata contract, mutation guarantees and resource policy now. |
 
-The component-context and conditional-coverage tradeoff in P-2 needs an explicit
-user choice. This proposal does not silently narrow “all supported authored data.”
+The user explicitly accepted the component-context and conditional-coverage
+tradeoff in P-2. The declared envelope defines “supported authored data” for the
+first version; excluded systems must be rejected whole, never partially backed up.
 D-1/4/5/6 remain open; dependencies are listed at the end.
 
 ## Evidence and present implementation limits
@@ -57,7 +64,7 @@ The [conceptual model](../design-tokens/conceptual-model.md),
 Preserving an invalid relationship is not declaring it valid. Backup is independent
 recovery of the declared authored envelope, not DTCG export or arbitrary import.
 
-## Proposed authored field and content matrix
+## Agreed authored field and content matrix
 
 All recognized fields are copied without conversion. Optional fields preserve
 absence versus present empty/whitespace text. `null` is accepted only where specified
@@ -74,7 +81,7 @@ A decoder must check actual runtime shapes before any domain traversal.
 | Token | `id`, `projectId`, `localName`, `parentGroupId`, optional `description`, `layer`, `semanticRole`, `componentDefinitionId`, `definition`; required `authoring.regeneration` (`allowed` or `protected`). Layer absent/primitive/semantic/component is explicit, not inferred. Preserve strings exactly and require project membership. No unknown authoring keys. |
 | Definition | Absent definition is name-only. Present definition has one of the current sixteen `TOKEN_TYPES` strings and `assignments: []` or one `{condition: [], value}`. Name-only and typed-unassigned are supported, not corrupt. Duplicate unconditional assignments are invalid; nonempty conditions are excluded first-version content. |
 | Declared but unimplemented types | `angle`, `string`, `gradient`, `border` may be typed-unassigned, or carry a structurally valid reference whose unresolved/type status is reported. They do **not** gain invented literal/composite schemas. An actual literal/composite with one of these unimplemented variants is rejected. |
-| Component token | `layer: component` iff `componentDefinitionId` is a string, including on name-only/typed-unassigned tokens. Preserve the pair exactly; token remains inspect-only with proposed unavailable/unverified context notice. A missing pair or association on another layer is rejected, not silently fixed. Actual component-definition payload is excluded. |
+| Component token | `layer: component` iff `componentDefinitionId` is a string, including on name-only/typed-unassigned tokens. Preserve the pair exactly; token remains inspect-only with unavailable/unverified context notice. A missing pair or association on another layer is rejected, not silently fixed. Actual component-definition payload is excluded. |
 | Reference | `kind: token-reference`, string `targetTokenId`, `valuePath` array. Empty path is whole-value reference. Preserve well-shaped nonempty paths as unsupported/repairable: field segment has string `key`; index segment has a non-negative safe-integer `index`. No arbitrary field navigation, foreign-project lookup, target remap or alias flattening. |
 | Expression | `kind: expression`, one of `portable.math.add.v1`, `subtract.v1`, `scale.v1`, `min.v1`, `max.v1`, `clamp.v1` with full `portable.math.` prefix; two operands, except three for clamp. Recursive operands are the nine supported literals, references, supported nested expressions, or `{kind: context-reference, key: font.rootSize}`. Preserve AST/operand order; no composites or context-reference as top-level assignment. Semantically wrong operands/root type remain diagnostics if structure is supported. |
 | External evaluation context | No stored root-font-size defaults or browser facts. A supported AST needing absent `font.rootSize` is retained with `context-required`. This is deliberately external evaluation context, unlike missing authored variation axes. |
@@ -120,7 +127,7 @@ An existing component association is a **stored opaque ownership link**. Neither
 current unconditional token value selection nor resolution consults its definition;
 the application has no component authoring operation, and component tokens are
 already excluded from manual color revision. Preserving the pair does not require
-fabricating a definition or calculating a component contract. The proposed coverage
+fabricating a definition or calculating a component contract. The agreed coverage
 notice must say ownership cannot be verified, not claim the component is valid or
 complete. This notice is **not an existing domain diagnostic code**.
 
@@ -133,12 +140,12 @@ as correct. In contrast, `font.rootSize` is intentionally supplied externally fo
 supported expression evaluation, so its absence is an honest `context-required`
 result and does not reject the AST.
 
-This is a bounded tradeoff, not a universal rule that absent component context is
-safe while absent variation context is unsafe. If the user wants a backup of a
-**complete component or conditional system**, the envelope must first include its
-owning/context data; preserving association IDs alone is not that promise.
+This agreed bounded tradeoff is not a universal rule that absent component context
+is safe while absent variation context is unsafe. The user agreed to defer backup of a **complete component or conditional system**.
+Supporting one later requires its owning/context data in a revised envelope;
+preserving association IDs alone is not that promise.
 
-## Proposed restore and durable-load admissibility
+## Agreed restore and durable-load admissibility
 
 **Accept exact** means supported authored representation, not necessarily editable
 in the current UI. **Accept with diagnostics** means preserve the supported shape
@@ -148,7 +155,7 @@ These same classifications govern backup generation, durable loading and restora
 A generated backup must pass its own restore policy; diagnostics do not prevent
 backing up an accepted diagnostic state.
 
-| Candidate | Recommended result | Actual source outcome or boundary reason |
+| Candidate | Agreed result | Actual source outcome or boundary reason |
 | --- | --- | --- |
 | Supported valid envelope; empty project/groups; exact names including empty/whitespace/duplicate names or ambiguous derived paths | Accept exact | Opaque names and deferred sibling uniqueness; no current ambiguous-path diagnostic. Display identity-safe labels, do not add a path uniqueness constraint. |
 | Name-only or typed-unassigned token, including declared-but-unimplemented type with no value | Accept with incompleteness diagnostics where inspected | Resolution `missing-assignment`; no invented black/default/type. It remains valid incomplete membership. |
@@ -157,7 +164,7 @@ backing up an accepted diagnostic state.
 | Well-shaped nonempty field/index reference path | Accept with diagnostics | `unsupported-value-path`; do not navigate it or claim part-value support. Invalid segment discriminant/key/index shape is rejected. |
 | Self-reference or multi-token cycle, including field/AST edges | Accept with diagnostics | `reference-cycle`; stable IDs remain unambiguous, traversal already reports cycles. |
 | Missing same-project parent or cyclic namespace | Accept with diagnostics | `missing-parent-group` / `group-cycle`; path is invalid, not partly fabricated. Keep every group/token accessible through identity-safe all-content inspection, including unreachable groups. No hierarchy repair operation is added. |
-| Paired component association with no definition collection | Accept with proposed coverage notice; token inspect-only | Exact link retained; unavailable/unverified ownership context is not current validator output and must not be called validated ownership. |
+| Paired component association with no definition collection | Accept with coverage notice; token inspect-only | Exact link retained; unavailable/unverified ownership context is not current validator output and must not be called validated ownership. |
 | Supported AST needs root-size context, or resolves to wrong type, invalid operands or reversed clamp bounds | Accept with diagnostics; AST inspect-only | `context-required`; `type-mismatch`; `invalid-expression` with `invalid-operands` / `invalid-clamp-range`. Known operation/arity/recursive payloads are structurally decoded first. Runtime-invalid external context is not authored backup data. |
 | Well-shaped composite reference resolves negative duration/fontSize/lineHeight/blur | Accept with diagnostics; composite inspect-only | `invalid-composite` with `negative-transition-duration`, `negative-typography-font-size`, `negative-typography-line-height`, `negative-shadow-blur`. Preserve reference, not negative resolved output as a literal. |
 | Foreign group/token `projectId`, foreign parent object, included foreign reference target | Reject whole | `project-mismatch`, `foreign-parent-group`, `token-project-mismatch`, `cross-project-reference` are not this restore allowlist: ownership must be unambiguous and no content may disappear through current read filtering. |
@@ -228,7 +235,7 @@ implemented values and their supported diagnostic forms. The browser fixtures'
 protected colors, non-color number, long exact/extended/`none` values, opaque names,
 duplicate paths, missing references and missing parent are all retained. The
 application revision fixture's correctly paired component association is retained
-as inspect-only with the proposed context notice.
+as inspect-only with the agreed context notice.
 
 It deliberately **does not promise every object current in-memory test preloading
 can hold**. Conditional tokens constructed with axes in domain tests are genuine
@@ -236,10 +243,9 @@ domain data but cannot carry their complete authored context through current
 ProjectSnapshot. Cast malformed fixtures (mismatched literal type, missing component
 association, empty shadow stack, duplicate assignments) test refusal/tolerance; they
 do not establish accepted external schemas. Domain-only conditional systems and
-unknown metadata/complete components require explicit broader support or an
-explicit user-approved first-version exclusion. If “all current legitimate data”
-is intended to include every conditional domain project, P-1 must be broadened
-before implementation; this proposal must not rename that exclusion as success.
+unknown metadata/complete components are explicitly excluded by the user-approved
+first-version policy. Broader support would require a separate scoped agreement;
+the first version must not present these exclusions as successful complete recovery.
 
 For any existing/injected snapshot outside the accepted envelope, loading or backup
 generation returns an explicit unsupported-data result with locations/reasons; it
@@ -249,10 +255,10 @@ remains untouched and no migration is inferred. Storage-level recovery of unread
 records and version upgrade tooling remain D-1/D-6 work; the UI cannot claim an
 independent backup was made when candidate validation blocked generation.
 
-## Proposed contract consequences and follow-on work
+## Contract consequences and follow-on work
 
-If approved, fill the Draft's D-2 matrix and D-3 allowlist from this proposal while
-keeping AC IDs stable. AC-9–14/17 verification should include every matrix boundary,
+The Draft adopts this document as the D-2 matrix and D-3 allowlist, keeping AC IDs
+stable. AC-9–14/17 verification should include every matrix boundary,
 all supported literal/composite families, component notices, invalid paths/groups,
 identity cross-kind reuse, foreign membership, all unknown-field locations,
 unsupported conditions and exact backup→restore equality. Test same policies for
@@ -270,6 +276,6 @@ snapshot must fail without filtered data loss. No code/schema is supplied here.
   Neither is resolved by choosing data policy.
 - Any required inspection/notice interaction beyond V2 returns to user/design review
   before implementation. Current prototype samples are not changed by this proposal.
-- D-2/D-3 remain **open with concrete recommendations** until the user chooses.
-  Other blockers, final contract/design agreement and implementation authorization
+- D-2/D-3 are **agreed policy**; implementation and verification are not complete.
+  D-1/D-4/D-5/D-6, final contract/design agreement and implementation authorization
   remain pending. No app tests, browsers or external service claims were used.

@@ -112,35 +112,36 @@ The user subsequently requested mandatory names for new project creation. The
 proposes nonblank validation with exact accepted-text preservation, duplicate-name
 support and continued readability/restoration of supported unnamed projects. It
 does not tighten token/group names or settle canonical name grammar. This narrows
-creation UX, not the six technical/data-policy blockers below.
+creation UX, not storage or recovery qualification.
 
-A [concrete analyst proposal](../increments/007-backup-coverage-and-restore-policy-proposal.md)
-now presents D-2/D-3 choices for user review: complete declared project/groups/tokens
-coverage; inspect-only component-association preservation with an unverified-context
-notice; exclusion of conditional systems without their authored context; explicit
-repairable diagnostics versus shape/ownership rejection; kind/project-scoped IDs
-and whole rejection of unknown data. It explicitly identifies the minimum-coverage
-tradeoff rather than treating all preloaded test objects as a backup schema.
-Recommendations are not agreement: D-2/D-3 remain open, as do the other blockers.
+**D-2/D-3 policy agreed — 9 November 2026:** the user approved P-1–P-4 of the
+[backup coverage and restore policy](../increments/007-backup-coverage-and-restore-policy-proposal.md),
+explicitly including the first-version limit on conditional and complete component
+systems. The detailed field/value matrix and diagnostic allowlist in that document
+own the agreement. Backup generation, retained loading and restoration use the same
+classifications; unsupported content must never be partially retained or stripped.
 
-The Draft contract's D-1–D-6 group the implementation blockers:
+- **D-2 coverage — agreed:** project/groups/tokens with all implemented unconditional
+  value forms and supported incomplete/protected/inspect-only data; paired component
+  associations preserved with an unverified-context notice. Conditional assignments,
+  axes/options/presets, complete component definitions/contracts and unknown
+  extensions/provenance remain outside the first envelope and reject whole.
+- **D-3 admissibility — agreed:** supported readable namespace/reference/evaluation
+  problems remain visible with diagnostics. Malformed representation, ambiguous
+  same-kind identities and foreign membership reject whole. IDs are scoped by
+  project and kind; normal authoring validation and deferred progressive repair
+  remain unchanged. Required-name creation rules are not retroactive restore rules.
 
-- **Technical qualification:** storage/acknowledgment and unknown-outcome recovery;
-  atomic catalogue/project acceptance; single-writer ownership, crash/suspension
-  recovery, stale revisions and supported browser/capability baseline (D-1/4/5).
+The remaining blockers are:
+
+- **D-1/D-4/D-5 technical qualification:** storage/acknowledgment and unknown-outcome
+  recovery; atomic catalogue/project acceptance; ownership, crash/suspension recovery,
+  stale revisions, changed-baseline draft/form review and browser/capability support.
   Browser acknowledgment cannot promise permanent hardware retention.
-- **Product/data agreement:** the versioned supported authored envelope and whole-
-  project backup matrix, including protected/inspect-only content and required
-  variation/component context; unsupported/unknown fields may not disappear
-  silently (D-2). The current operational snapshot has no axes/presets stores.
-- **Restore policy agreement:** distinguish strict representation, identity and
-  ownership decoding from explicitly supported repairable diagnostics (D-3).
-  Missing-reference inspection is agreed direction; exact admissibility, duplicate
-  identity/kind collision scope and foreign membership handling remain open.
-  Normal all-diagnostics-clear authoring and deferred progressive repair are unchanged.
-- **Format qualification/agreement:** version/migration policy, runtime decoder
-  approach/library and resource budgets (D-6). V1 JSON and 0–1 input validation
-  select neither a schema nor canonical numerical rules.
+- **D-6 format qualification/agreement:** representation/wrapper/version/migration,
+  runtime decoder approach/library and resource budgets. The agreed authored
+  envelope is not automatically the persistence schema; prototype JSON and 0–1
+  input validation select neither schemas nor canonical numerical rules.
 
 Replacement protection must cover the current revision actually being replaced;
 a stale preview/backup/acknowledgement must not authorize discarding later changes.

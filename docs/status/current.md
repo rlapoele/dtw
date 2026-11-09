@@ -2,11 +2,13 @@
 
 > Last updated: 9 November 2026
 >
-> Phase: Increment 007 D-2/D-3 concrete policy proposal ready for user review; contract Draft
+> Phase: Increment 007 D-2/D-3 policy agreed; D-1/D-4/D-5/D-6 open; contract Draft
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
+
+**Increment 007 D-2/D-3 policy agreed — 9 November 2026:** the user approved all four backup/restore policies, explicitly including the first-version exclusion of conditional and complete component systems. The [agreed coverage/admissibility policy](../increments/007-backup-coverage-and-restore-policy-proposal.md) owns the detailed matrices; the [Draft contract](../increments/007-local-retention-and-backup.md#agreed-supported-data-matrix-and-restore-admissibility) now adopts them. Paired component associations remain inspect-only with an unverified-context notice; supported readable diagnostics are preserved, while malformed/ambiguous/foreign/unknown content rejects whole. The same policy applies to backup generation, retained loading and restore. D-2/D-3 are resolved at policy level; D-1/D-4/D-5/D-6, technical verification, final contract/design agreement and implementation authorization remain pending. Only documentation changed; production and both prototypes remain unchanged. The preceding proposal is committed as `c5c7ed8`; no agent staging, commits or pushes occurred.
 
 **Increment 007 backup coverage/restore policy proposal — 9 November 2026:** after committing the V2 review as `616e1f2`, the user requested concrete analyst recommendations, starting with D-2/D-3. The [proposal](../increments/007-backup-coverage-and-restore-policy-proposal.md) presents four review choices and field/value/admissibility matrices: a complete declared project/groups/tokens envelope with implemented unconditional values; inspect-only preservation of paired component associations with an unverified-context notice; exclusion of conditional systems whose authored context cannot be retained; supported readable diagnostics versus whole-candidate shape/ownership/unknown-data rejection; and project/kind-scoped identity. It explicitly identifies the conditional/component coverage tradeoff and the identity-safe UI work needed for opaque IDs. The same proposed policy governs backup generation, retained loading and restoration. Recommendations are not adopted: D-2/D-3 and all remaining blockers, final contract/design agreement and implementation authorization remain open. Source/Markdown checks only; no prototype, production, dependency, tests or browser changes, staging, commits or pushes occurred.
 
@@ -70,7 +72,7 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-User review of [policy choices P-1–P-4](../increments/007-backup-coverage-and-restore-policy-proposal.md#four-choices-to-review) before adopting D-2/D-3, especially component-context notices and first-version exclusion of conditional systems. Then address the remaining [Draft contract decisions](../increments/007-local-retention-and-backup.md#decisions-and-open-questions) through bounded technical qualification and agreement. Bring resulting material interactions to the user; identify the final design/contract for agreement before separate implementation authorization. V2 review is complete. No production implementation, deployment or publication is authorized. Staging, commits and pushes remain with the user.
+Prepare concrete recommendations/qualification for remaining [D-1/D-4/D-5/D-6](../increments/007-local-retention-and-backup.md#decisions-and-open-questions): storage acknowledgement and atomicity, ownership/recovery and changed-baseline handling, browser support, and representation/version/decoder/resource policy. D-2/D-3 coverage/admissibility is agreed and should not be reopened implicitly. Bring material resulting interactions to the user; obtain final design/contract agreement before separate implementation authorization. No production implementation, deployment or publication is authorized. Staging, commits and pushes remain with the user.
 
 The Increment 007 contract is Draft and requires its recorded decisions and resulting design before final agreement. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, exact restore admissibility, concurrency enforcement, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not settle them through prototype convenience.
 

@@ -75,14 +75,15 @@ implementation is authorized. This amendment affects new projects only, not toke
 or group naming. V1 is unchanged; V2 represents the required-name validation
 proposal without changing production behavior.
 
-This narrows one creation UX choice but does not resolve D-1–D-6. The renewed V2
+This narrows one creation UX choice without settling storage or recovery qualification. The renewed V2
 review resolves R-4 as a design-state omission, not production acceptance: a named
 project can still have unavailable content.
 
 ## Acceptance criteria
 
-These IDs are stable draft criteria. D-1–D-6 must be resolved and incorporated before
-final agreement; dependent criteria do not establish a settled implementation policy.
+These IDs are stable draft criteria. D-2/D-3 policy is agreed below. D-1/D-4/D-5/D-6
+must be resolved and incorporated before final agreement; dependent criteria do not
+establish a settled implementation mechanism.
 
 - **AC-1 — Launch/catalogue:** launch shows Projects in this browser with New project,
   retained-project choices and Restore backup. Empty, loading and failed catalogue
@@ -191,45 +192,45 @@ final agreement; dependent criteria do not establish a settled implementation po
   Supported existing unnamed data remains reopenable/restorable without rewriting
   it. Verify application-boundary enforcement separately from interface validation.
 
-## Supported-data acceptance matrix to complete
+## Agreed supported-data matrix and restore admissibility
 
-**Analyst proposal for user review — 9 November 2026:** the
-[backup coverage and restore policy proposal](007-backup-coverage-and-restore-policy-proposal.md)
-provides four concrete choices, full field/value coverage and an admissibility
-allowlist for D-2/D-3. It recommends a project/groups/tokens envelope, all implemented
-unconditional values/incomplete forms, explicit inspect-only preservation of paired
-component associations, and whole rejection of unsupported conditional context and
-unknown content. The context tradeoff and exclusions require explicit user review.
-It proposes applying the same classifications to backup generation, durable loading
-and restore. No recommendation is adopted; D-2/D-3 and the matrix below remain open.
+**D-2/D-3 policy agreed — 9 November 2026:** the user approved P-1–P-4 of the
+[backup coverage and restore policy](007-backup-coverage-and-restore-policy-proposal.md),
+explicitly including the first-version limits on conditional and complete component
+systems. Its field/value matrix and admissibility allowlist own the detailed policy.
+The same rules govern backup generation, retained loading and restoration.
 
-D-2 is blocking: “supported” must be an explicit versioned matrix, not “anything the
-color editor displays” or every conceptual future feature. Minimum coverage must
-include everything the current operational project snapshot can legitimately retain,
-including supported inspect-only tokens and protected values. The current snapshot
-has project/groups/tokens, not axes/presets/component definitions/provenance stores.
+- Retain the declared project/groups/tokens envelope: all nine implemented literal
+  variants, three composites, references, six portable AST operations, and supported
+  incomplete/protected/inspect-only data. Zero or one unconditional assignment;
+  no invented schemas for unimplemented value variants.
+- Preserve paired component layer/association IDs as inspect-only with an explicit
+  unverified-context notice. Reject nonempty conditions, axes/options/presets and
+  component-definition/contract collections as unsupported first-version content.
+- Preserve the enumerated supported namespace/reference/evaluation failures with
+  diagnostics. Reject malformed representation, ambiguous same-kind identities,
+  foreign membership and unknown fields/content as a whole; never strip or normalize.
+- Keep exact authored values, metadata, names, IDs and order. Use project-and-kind
+  identity scope. Required new-project names do not invalidate supported unnamed
+  restored data. Identity-safe UI handling must not confuse opaque IDs with absence.
+- Preserve normal authoring validation and existing repair eligibility; acceptance
+  with diagnostics adds no progressive repair or new authoring capability.
 
-| Area | Required preservation/decision |
-| --- | --- |
-| Project and namespace | Empty projects/groups; exact names/descriptions; IDs, ownership, parent links; current deferred sibling-name policy is not silently tightened. |
-| Tokens and metadata | Primitive/semantic and supported inspect-only forms, name-only/typed-unassigned definitions, explicit types, descriptions/roles/layers/regeneration; association metadata only with explicit ownership policy. |
-| Implemented values | Nine literal variants in `ImplementedLiteralValue`; references, portable number/dimension expressions; transition/typography/shadow composites. Closed `TOKEN_TYPES` names do not prove every literal/composite is implemented. |
-| Exact color/numeric data | Five color spaces, extended RGB, `none`, explicit exact alpha/Decimals, signed values and units; no conversion or global binary Number normalization. |
-| Conditional/other project-owned data | Determine whether axes/options/presets and component-definition ownership enter the supported retention envelope or are explicitly rejected. Never preserve assignments while silently dropping their required context. |
-| Extensions/provenance/unknown fields | Agree supported fields and unknown-field handling; do not claim lossless whole-project backup while omitting unsupported imported content. No new external importer is included. |
-| Diagnostics | Enumerate supported structural/reference/resolution diagnostics independently of decoder-invalid representation and ambiguous identity. Open-with-diagnostics does not promise all such states are editable. |
+This settles coverage/admissibility, not codec/wrapper/schema version, decoder or
+resource limits (D-6), or storage/atomicity/concurrency/browser feasibility
+(D-1/D-4/D-5). Acceptance evidence and final agreement remain pending.
 
 ## Decisions and open questions
 
-All decisions below remain **open**. Recommendations are analyst proposals, not user
-agreement. Product policy needs user choice; feasibility/adapter details need evidence
-and a bounded technical proposal before final agreement, not arbitrary preferences.
+D-2 and D-3 are **agreed policy**. D-1/D-4/D-5/D-6 remain **open**; their
+recommendations require user agreement and technical evidence. No adapter, codec,
+format version, runtime library or concurrency mechanism has been selected.
 
 | ID | Resolve before agreement/implementation | Analyst recommendation and evidence needed |
 | --- | --- | --- |
 | D-1 | Browser persistence adapter, exact acknowledgment/atomicity boundary, catalogue consistency, and interrupted/unknown-outcome recovery. | Qualify one simple adapter over authoritative project state. Specify observable completion/failure and reconciliation; no hardware-permanence guarantee. Prove abort/no partial project/catalogue and crash/reopen outcomes. No technology selected. |
-| D-2 | Versioned persistence/backup envelope and complete supported-data matrix, including axes/presets/component context, metadata/extensions and unknown fields. | Start from current legitimate operational data plus explicitly supported inspect-only forms; enumerate gaps before agreeing breadth. Reject unsupported whole content rather than silently omit. Operational snapshots and V1 JSON are not automatically canonical schemas. |
-| D-3 | Exact restore admissibility: which namespace/reference/cycle/conditional diagnostics may load; duplicate identity, cross-project membership and identity-kind collision scope. | Separate strict representation/ownership/identity decoding from an enumerated repairable-diagnostic allowlist. Permit supported missing references for inspection as agreed; preserve their authored relationship. Current loader rejects duplicate IDs, while ordinary commands reject all candidate namespace/reference diagnostics. Do not relax authoring or introduce progressive repair. |
+| D-2 | **Agreed:** supported authored envelope and coverage matrix. | P-1/P-2/P-4 of the linked policy are adopted, including unconditional-only scope and explicit context/unknown-content exclusions. Representation/version/resource decisions remain D-6; implementation evidence remains pending. |
+| D-3 | **Agreed:** restore/durable-load admissibility and identity scope. | P-3/P-4 and the linked allowlist are adopted: supported readable diagnostics remain inspectable, malformed/ambiguous/foreign/unknown content rejects whole, normal authoring checks remain unchanged. Decoder mechanics/limits remain D-6. |
 | D-4 | Single-writer acquisition/release, owner crash/suspension recovery, stale revisions, same-ID restore race, replacement protection validity and changed-baseline draft/form recovery policy. | Require atomic revision checks in addition to ownership; bind protection/acknowledgement to current revision. Prototype inspect-only scenario is not evidence. Qualify supported browser behavior and fail closed where exclusivity is unavailable. Raw-input preservation is not automatic merge or takeover; define review/reapply and target-change handling before enabling a recovered write. No lease/locking technology selected. |
 | D-5 | Supported browser/version/capability baseline, behavior when storage/ownership APIs are unavailable, browser reload/close guards and recovery limits. | Declare the narrow tested baseline before promising support; distinguish retained from independently backed up. Native page-exit behavior needs explicit limits, while in-app departure must preserve drafts. Installation/offline remain excluded. |
 | D-6 | Version compatibility/migration policy, runtime decoding approach/library, byte/entity/depth/string/Decimal budgets and resource-failure feedback. | First version may block unsupported versions explicitly rather than implement speculative migrations; confirm policy. Set bounded budgets from fixtures/measurements without rewriting exact values or imposing the color-calculation input cap on persistence. No runtime-schema dependency selected. |
@@ -314,7 +315,10 @@ Clean working tree and HEAD `3b69671edbac6e86aa08ea6e56187522e012d3fb` confirmed
 analyst documentation edits; no production/prototype/dependency changes are included.
 Renewed analyst review began from clean HEAD
 `7014e7566f188c2f2d826e7310e7fb7d4bdd98f8`. Both frozen six-file manifests match.
-The required-name direction above is a user-requested amendment to this Draft,
-not final contract/design agreement. No developer work or completion claim exists.
+The required-name direction is a user-requested amendment to this Draft. On
+9 November 2026 the user additionally agreed coverage/admissibility P-1–P-4,
+including first-version conditional/complete-component exclusions; D-2/D-3 policy
+is now adopted. Neither amendment is final contract/design agreement or
+implementation authorization. No developer work or completion claim exists.
 Staging, commits and pushes remain with the user. Follow the [workflow](../workflow/agent-roles.md)
 and [increment conventions](README.md) for subsequent handoffs.
