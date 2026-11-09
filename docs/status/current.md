@@ -2,11 +2,13 @@
 
 > Last updated: 9 November 2026
 >
-> Phase: Increment 007 design V1 prepared for user review; production remains at completed maintenance
+> Phase: Increment 007 V1 analyst review completed; contract Draft; production remains at completed maintenance
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
+
+**Increment 007 analyst review and Draft contract — 9 November 2026:** after committing V1 as `3b69671`, the user approved the identified prototype for analyst review, not implementation. The separate analyst's [consistency review](../increments/007-design-review.md) finds the core direction coherent and distinguishes declared specimen limits from missing states and qualification work. The [Draft contract](../increments/007-local-retention-and-backup.md) contains 18 acceptance criteria, a supported-data matrix, verification approach and six explicit blockers covering storage/acknowledgement, content envelope, restore admissibility, concurrency/revision safety, browser baseline and format/resource policy. A material design addition is required for acknowledged creation/restore with failed first read and no prior snapshot: show unavailable content rather than an empty project. Replacement protection must cover the exact current revision being replaced. V1's six manifest hashes remain unchanged; no browser session or production tests were run for this documentation-only analyst review. Final contract/design agreement and implementation authorization remain pending; material design revisions return to the user before renewed analyst review.
 
 **Increment 007 prototype V1 — 9 November 2026:** the user agreed the designer's retention/reopening/backup direction, lightweight read/write separation and future undo/redo readiness, then authorized an isolated prototype. The [design-stage brief](../increments/007-local-retention-and-backup.md) records these agreements and unresolved boundaries; the [V1 proposal](../../prototypes/increment-007-v1/DESIGN-V1.md) is ready for user review. Isolated strict TypeScript/build checks passed. [Coordinator browser observations](../../output/increment-007-prototype-v1/observations.md) cover simulated failure preservation, draft-excluding sample backup, readback recovery, form departure, staged restoration, replacement protection/failure and selected unavailable/inspect-only states. These are prototype observations, not durable-storage or accessibility qualification. No analyst review has begun; approval for that review, final contract/design agreement and implementation authorization remain pending. Production source/dependencies and historical prototypes are unchanged. The user committed and pushed the preceding maintenance as `4171dbc`.
 
@@ -60,9 +62,9 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-User review and iteration of the [Increment 007 V1 prototype](../../prototypes/increment-007-v1/DESIGN-V1.md), before approval for analyst review. Maintenance is committed as `4171dbc`; presentation guidance as `cc49016`; Increment 006 as `d022ba2`. No production implementation, deployment or publication is authorized. Staging, commits and pushes remain with the user.
+User review of the [analyst findings](../increments/007-design-review.md) and [Draft contract decisions D-1–D-6](../increments/007-local-retention-and-backup.md#decisions-and-open-questions). Recommended follow-up is a scoped designer revision for missing recovery states plus bounded technical qualification and product/data-policy agreement. No prototype revision has yet been authorized from these findings. Maintenance is committed as `4171dbc`; V1 as `3b69671`. No production implementation, deployment or publication is authorized. Staging, commits and pushes remain with the user.
 
-The Increment 007 contract remains to be prepared/reviewed after the user-approved design handoff. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, exact restore admissibility, concurrency enforcement, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not settle them through prototype convenience.
+The Increment 007 contract is Draft and requires its recorded decisions and resulting design before final agreement. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, exact restore admissibility, concurrency enforcement, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not settle them through prototype convenience.
 
 ## Resume and verification
 

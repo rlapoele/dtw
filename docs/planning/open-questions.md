@@ -95,17 +95,42 @@ The [variation-resolution contract](../design-tokens/conceptual-model.md#variati
 
 The existence of an explicit project is decided: users create, open, or import a project before editing tokens. A project may contain no tokens; every token and namespace group belongs to exactly one project. The initial canonical ownership model does not require a package entity.
 
-**Narrowed for Increment 007 design — 9 November 2026:** the user agreed the
+**Narrowed for Increment 007 — 9 November 2026:** the user agreed the
 [retention/reopening/backup direction](../increments/007-local-retention-and-backup.md)
-and authorized an isolated prototype for user review before analyst review.
-Applied-state automatic retention, session-only drafts/forms, a browser-local
-Projects view, independent versioned backups and identity-preserving staged
-restore with explicit same-ID replacement are the design direction. Lightweight
-read/write application separation and future undo/redo readiness are agreed;
-history itself remains outside scope. Browser storage, canonical/backup schemas,
-version compatibility, restore admissibility, asynchronous acknowledgement and
-single-writer enforcement remain unresolved. Neither the prototype nor this
-direction authorizes production implementation.
+and subsequently approved identified prototype V1 **for analyst review only**.
+The [analyst consistency review](../increments/007-design-review.md) and substantive
+Draft contract are now prepared. Applied-state automatic retention, session-only
+drafts/forms, browser-local Projects, independent versioned backups and identity-
+preserving staged restore with explicit same-ID replacement remain the agreed
+direction. Lightweight read/write separation and future undo/redo readiness are
+agreed; history remains outside scope. Final contract/design agreement and
+implementation authorization remain pending. The frozen prototype is illustrative.
+
+The Draft contract's D-1–D-6 group the implementation blockers:
+
+- **Technical qualification:** storage/acknowledgment and unknown-outcome recovery;
+  atomic catalogue/project acceptance; single-writer ownership, crash/suspension
+  recovery, stale revisions and supported browser/capability baseline (D-1/4/5).
+  Browser acknowledgment cannot promise permanent hardware retention.
+- **Product/data agreement:** the versioned supported authored envelope and whole-
+  project backup matrix, including protected/inspect-only content and required
+  variation/component context; unsupported/unknown fields may not disappear
+  silently (D-2). The current operational snapshot has no axes/presets stores.
+- **Restore policy agreement:** distinguish strict representation, identity and
+  ownership decoding from explicitly supported repairable diagnostics (D-3).
+  Missing-reference inspection is agreed direction; exact admissibility, duplicate
+  identity/kind collision scope and foreign membership handling remain open.
+  Normal all-diagnostics-clear authoring and deferred progressive repair are unchanged.
+- **Format qualification/agreement:** version/migration policy, runtime decoder
+  approach/library and resource budgets (D-6). V1 JSON and 0–1 input validation
+  select neither a schema nor canonical numerical rules.
+
+Replacement protection must cover the current revision actually being replaced;
+a stale preview/backup/acknowledgement must not authorize discarding later changes.
+The Draft proposes atomic revision checks and renewed protection after change;
+mechanism qualification remains open. The review also identifies a required design
+state for retained-but-unreadable creation/restore without a previous snapshot.
+Material design revisions return to the user before renewed analyst review.
 
 1. What is the canonical source-of-truth file format?
 2. What constitutes stable project identity, and how is it preserved when a workspace moves?
