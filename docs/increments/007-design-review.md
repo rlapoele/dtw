@@ -110,3 +110,89 @@ mechanisms and browser feasibility remain unselected. A focused qualification
 spike is appropriate for D-1/4/5 before a production implementation handoff. No
 external API support claim, library choice, installation or implementation is made
 by this review.
+
+## V2 renewed analyst review — 9 November 2026
+
+The user explicitly approved V2 **for renewed analyst review**, asking for the Draft
+contract update and no implementation. This section updates dispositions only;
+the V1 review above retains its historical meaning. Final design/contract agreement
+and implementation authorization remain pending.
+
+### Snapshot and evidence
+
+- Reviewed clean HEAD `7014e7566f188c2f2d826e7310e7fb7d4bdd98f8`;
+  production baseline remains `4171dbc`.
+- [V2 notes](../../prototypes/increment-007-v2/DESIGN-V2.md),
+  [manifest](../../output/increment-007-prototype-v2/manifest.json) and source
+  `prototypes/increment-007-v2/main.tsx` inspected after deriving expectations from
+  R-1–R-6 and AC-1–19, including the user's required-new-project-name amendment.
+- Independently recomputed all six V2 hashes: match. All six V1 hashes also match
+  its original manifest. Neither prototype was edited.
+- [Coordinator observations](../../output/increment-007-prototype-v2/observations.md)
+  supply attributed runtime evidence. No analyst browser session, test or build was
+  run. The user's existing V2 session was not touched. Frozen artifact stage labels
+  predate the approval and this review; this section records the later stage.
+
+### Dispositions against V1 findings
+
+| Finding | V2 disposition | Evidence and remaining acceptance |
+| --- | --- | --- |
+| R-1 | **Open data-policy decision; no new prototype defect.** | V2 retains the declared token-only sample envelope (`main.tsx:9–11`). It claims no complete codec. D-2 and AC-10/11 still require the explicit supported-data matrix, whole-project completeness and untouched-content preservation through unrelated writes. |
+| R-2 | **Open admissibility/decoder decision.** | `fixtureBackup` and `selectFile` (`67–75`) retain illustrative missing-reference/unsupported/corrupt classifications. They establish no complete allowlist, identity/ownership decoder, resource limits or new authoring repair capability. D-3/D-6 remain. |
+| R-3 | **Replacement-race interaction addressed; enforcement unqualified.** | `protectCurrent/restore` (`76–84`) clear backup protection, acknowledgement and revision marker after a simulated local change; updated local content remains visible and renewed protection is required. Coordinator observed invalidation. `updated` text is sample machinery, not a production revision token or atomic compare-and-write. D-1/D-4 and AC-14–16 remain; complete renewed replacement was not browser-certified. |
+| R-4 | **Resolved as a design-state omission.** | `create` clears loaded content before failed first read (`64`); `restore` retains a previous snapshot only for the same project ID (`83–84`); the `!loaded` body (`95`) shows retained/content-unavailable or initial-open-unavailable with read-only retry. It cannot display the former “No tokens yet” fallback. Coordinator observed creation and absent-restore recovery without duplication or unrelated content. Production behavior still needs AC-6 evidence. |
+| R-5 | **Required lifecycle specimens supplied; recovery policy and mechanisms remain proposed.** | `publish/acknowledge/reconcile` (`41–60`) distinguish rejected, known retained/read-failed and unconfirmed outcomes. `busy` and dialog guards prevent duplicate acceptance/dismissal while unknown; recovery is available inside forms/restore. `recoverAccess/retry` (`61/86`) preserve raw dirty inputs; ownership-form recovery preserves name/description. Catalogue/open/backup/download-failure bodies are present. Coordinator observed selected routes, not all scenarios. Reconciliation and owner recovery are simulations; D-1/D-4/D-5 are not resolved. |
+| R-6 | **Focused interaction improvements represented; verification remains open.** | Name validation has stable label/error association and focus; form discard guard returns to intact input; replacement Escape returns to preview; guard defaults to Keep editing (`27–28/39` and dialog JSX). Coordinator observed limited name/form Escape/focus and measured477px dialog behavior. Full traversal, actual320px, actual200% zoom, screen reader, physical-device and cross-engine acceptance remain unverified under AC-18. |
+
+### Required project names — AC-19
+
+V2 `create()` (`64`) tests `name.trim()===''` for blankness without replacing the
+accepted `name` string. Empty/whitespace inputs remain intact with an associated
+error and focus; coordinator observed exact `"  Étude  "` retention. The list uses
+stable IDs to distinguish exact duplicate names (`94`); restoration accepts an
+existing empty name and uses a truthful fallback (`34/71/75`). Those latter routes
+have source evidence but were not all exercised in the recorded browser pass.
+
+This is consistent with the requested new-name direction and the Draft's proposed
+nonblank interpretation. It does not settle global Unicode name grammar, require
+unique names, or reject old unnamed supported data. The production application
+boundary is unchanged, so AC-19 is not implemented or independently runtime-proven.
+Approval for this review is not final agreement to the detailed interpretation.
+
+### Remaining recovery-policy boundary
+
+V2 supplies coherent interaction examples without a new material contradiction
+requiring another prototype solely for this review. In particular, preserving raw
+inputs does not grant permission to overwrite concurrent edits. `recoverAccess()`
+refreshes a sample snapshot and enables editing while displaying “Review them before
+applying”; it does not model a changed token's old/new comparison, actual exclusive
+ownership acquisition, stale-commit prevention or a reapply decision.
+
+Before final agreement, D-4 must define how the retained draft/form is associated
+with its original project/entity/revision and what happens when the latest applied
+state changes its target, eligibility or value. Preserve the raw input, refresh
+coherently, validate against current state, and require deliberate review/reapply
+or cancellation where needed; never infer automatic merge or safe takeover from
+the recovery button. Any material resulting interaction returns to the user before
+renewed analyst review. This is a bounded conflict-policy choice, not authorization
+for a merge framework or new token editing capability.
+
+Likewise, V2's unconfirmed-outcome route stores a candidate and simulated answer in
+a ref until reconciliation. Its later `publish()` illustrates the visible outcome;
+it is not evidence that a real read discovered an earlier committed transaction.
+D-1 must define authoritative reconciliation, unresolved/check-failure feedback,
+and retry/exit limits. No command-ID ledger, storage protocol or technology is
+selected by this specimen.
+
+### Draft update and next decisions
+
+Stable AC-1–19 are retained. AC-5/6/16/19 and their verification are clarified for
+outcome checking, snapshot ownership, draft conflict safety and name-error focus;
+no criterion is relaxed to fit sample mechanics. D-1–D-6 remain open.
+
+Priorities are (1) supported envelope and restore admissibility (D-2/3),
+(2) a bounded technical qualification proposal for acknowledgement/atomicity,
+ownership, reconciliation and browsers (D-1/4/5), including the conflict-review
+policy above, and (3) version/decoder/resource policy (D-6). Then identify the
+resulting final design/contract for user agreement and separate implementation
+authorization. This review starts no developer or reviewer phase.

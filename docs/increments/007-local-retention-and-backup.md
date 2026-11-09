@@ -3,9 +3,10 @@
 - Contract status: **Draft — analyst proposal, 9 November 2026.**
 - Delivery status: **Not started; implementation is not authorized.**
 - Agreement: direction and isolated prototype preparation agreed 9 November;
-  user subsequently approved identified V1 **for analyst review only** on that date.
+  user subsequently approved identified V1 **for analyst review only** and V2
+  **for renewed analyst review only** on that date.
   Final contract/design agreement and implementation authorization remain pending.
-- Production baseline: `4171dbc`; V1 review snapshot: `3b69671`.
+- Production baseline: `4171dbc`; V1 review snapshot: `3b69671`; V2: `7014e75`.
 
 ## Outcome
 
@@ -50,7 +51,7 @@ Excluded: token compatibility-profile import/export, lossy normalization, cloud,
 accounts, synchronization, privacy profiles/authentication, durable drafts,
 copy/remap/merge, project deletion, new token authoring capabilities, progressive
 repair, install/offline acceptance, Electron, encryption and undo/redo/history.
-No package/framework/database/schema-library selection follows from V1.
+No package/framework/database/schema-library selection follows from either prototype.
 
 ## Required name for new projects
 
@@ -71,11 +72,12 @@ presentation fallback. Do not rename them or reject an otherwise supported backu
 merely to apply a new-creation rule retrospectively. The current production model,
 API and tests intentionally permit opaque empty names and remain unchanged until
 implementation is authorized. This amendment affects new projects only, not token
-or group naming. V1 is unchanged; represent required-name validation in the next
-authorized design revision.
+or group naming. V1 is unchanged; V2 represents the required-name validation
+proposal without changing production behavior.
 
-This narrows one creation UX choice but does not resolve D-1–D-6 or the unavailable
-first-read state in R-4. A named project can still have unavailable content.
+This narrows one creation UX choice but does not resolve D-1–D-6. The renewed V2
+review resolves R-4 as a design-state omission, not production acceptance: a named
+project can still have unavailable content.
 
 ## Acceptance criteria
 
@@ -103,9 +105,12 @@ final agreement; dependent criteria do not establish a settled implementation po
   during acceptance. Late results cannot publish into another loaded project. The
   documented interruption/unknown-outcome policy reconciles authoritative state
   before repeating a potentially accepted command; it never invents rollback.
+  Outcome-check failure or a still-unknown result preserves input and blocks unsafe
+  resubmission, with explicit retry/exit limits to be agreed under D-1/D-5.
 - **AC-6 — Retained but unreadable:** acknowledged write followed by read failure is
   reported as retained with stale/unavailable display. Prior coherent snapshot, if
-  any, is labelled stale; with no prior snapshot, no empty-project claim is shown.
+  any, belongs to that same project and is labelled stale; with no prior snapshot,
+  neither an empty-project claim nor another project's content is shown.
   Further writes are blocked. Retry reads the accepted state without repeating the
   write, creating another entity or replacing again. Successful recovery publishes
   one coherent snapshot and completes the accepted edit/form exactly once.
@@ -163,7 +168,10 @@ final agreement; dependent criteria do not establish a settled implementation po
   the agreed D-4 protocol. Other tabs are visibly inspect-only. Ownership loss,
   stale expected revision, suspended/crashed owner and competing restores/creations
   cannot cause silent lost updates. Preserve local drafts on loss/conflict and require
-  coherent refresh/recovery before writing. Concurrent writes to distinct projects
+  coherent refresh/recovery before writing. Recovery cannot silently rebase or apply
+  a draft over a changed baseline: retain its original project/entity/revision
+  association, revalidate current eligibility and define deliberate review/reapply
+  or cancellation under D-4. Concurrent writes to distinct projects
   cannot corrupt the catalogue or each other's snapshots.
 - **AC-17 — Boundaries:** deterministic domain semantics stay host-independent;
   browser retention, file access and ownership mechanisms are adapters behind explicit
@@ -177,8 +185,9 @@ final agreement; dependent criteria do not establish a settled implementation po
   Prototype component reuse alone is not acceptance evidence.
 - **AC-19 — Required new-project name:** creation requires a user-supplied name.
   Under the proposed blankness policy above, empty/whitespace-only submission
-  reports an associated error, preserves form input and creates no retained project
-  or catalogue entry. Accepted name text remains exact; duplicate names are allowed.
+  reports an associated error, focuses the name field and preserves form input.
+  It creates no retained project or catalogue entry. Accepted name text remains
+  exact; duplicate names are allowed.
   Supported existing unnamed data remains reopenable/restorable without rewriting
   it. Verify application-boundary enforcement separately from interface validation.
 
@@ -211,7 +220,7 @@ and a bounded technical proposal before final agreement, not arbitrary preferenc
 | D-1 | Browser persistence adapter, exact acknowledgment/atomicity boundary, catalogue consistency, and interrupted/unknown-outcome recovery. | Qualify one simple adapter over authoritative project state. Specify observable completion/failure and reconciliation; no hardware-permanence guarantee. Prove abort/no partial project/catalogue and crash/reopen outcomes. No technology selected. |
 | D-2 | Versioned persistence/backup envelope and complete supported-data matrix, including axes/presets/component context, metadata/extensions and unknown fields. | Start from current legitimate operational data plus explicitly supported inspect-only forms; enumerate gaps before agreeing breadth. Reject unsupported whole content rather than silently omit. Operational snapshots and V1 JSON are not automatically canonical schemas. |
 | D-3 | Exact restore admissibility: which namespace/reference/cycle/conditional diagnostics may load; duplicate identity, cross-project membership and identity-kind collision scope. | Separate strict representation/ownership/identity decoding from an enumerated repairable-diagnostic allowlist. Permit supported missing references for inspection as agreed; preserve their authored relationship. Current loader rejects duplicate IDs, while ordinary commands reject all candidate namespace/reference diagnostics. Do not relax authoring or introduce progressive repair. |
-| D-4 | Single-writer acquisition/release, owner crash/suspension recovery, stale revisions, same-ID restore race and replacement protection validity. | Require atomic revision checks in addition to ownership; bind protection/acknowledgement to current revision. Prototype inspect-only scenario is not evidence. Qualify supported browser behavior and fail closed where exclusivity is unavailable. No lease/locking technology selected. |
+| D-4 | Single-writer acquisition/release, owner crash/suspension recovery, stale revisions, same-ID restore race, replacement protection validity and changed-baseline draft/form recovery policy. | Require atomic revision checks in addition to ownership; bind protection/acknowledgement to current revision. Prototype inspect-only scenario is not evidence. Qualify supported browser behavior and fail closed where exclusivity is unavailable. Raw-input preservation is not automatic merge or takeover; define review/reapply and target-change handling before enabling a recovered write. No lease/locking technology selected. |
 | D-5 | Supported browser/version/capability baseline, behavior when storage/ownership APIs are unavailable, browser reload/close guards and recovery limits. | Declare the narrow tested baseline before promising support; distinguish retained from independently backed up. Native page-exit behavior needs explicit limits, while in-app departure must preserve drafts. Installation/offline remain excluded. |
 | D-6 | Version compatibility/migration policy, runtime decoding approach/library, byte/entity/depth/string/Decimal budgets and resource-failure feedback. | First version may block unsupported versions explicitly rather than implement speculative migrations; confirm policy. Set bounded budgets from fixtures/measurements without rewriting exact values or imposing the color-calculation input cap on persistence. No runtime-schema dependency selected. |
 
@@ -226,7 +235,9 @@ policies remain outside this bounded agreement. See [open questions](../planning
   adapters: controlled ack delays, rejection, known success/read failure, ambiguous
   interruption, out-of-order completion, revision conflicts and ownership loss.
   Verify each affected authoring operation, create/restore catalogue atomicity,
-  one-time acceptance, preserved drafts/forms and no unintended project changes.
+  one-time acceptance, preserved drafts/forms, unresolved/check-failure feedback and
+  no unintended project changes. Include a changed/deleted/ineligible draft target
+  after ownership recovery, not only an unchanged sample baseline.
 - Decoder/codec tests map AC-9–15 to an agreed fixture matrix: exact extreme/extended
   values, `none`, zero alpha, metadata, aliases, all supported literals/AST/composites,
   protected/inspect-only/incomplete/empty content, repairable diagnostics, corrupt
@@ -244,7 +255,7 @@ policies remain outside this bounded agreement. See [open questions](../planning
   flows (AC-18). Record exact browsers/viewports and limits. Follow existing test,
   strict typecheck and build commands; a fresh reviewer checks an identified stable
   implementation snapshot after implementation is separately authorized.
-- Creation-name checks (AC-19) cover empty/whitespace-only rejection, exact accepted
+- Creation-name checks (AC-19) cover empty/whitespace-only rejection and focus, exact accepted
   Unicode/whitespace-bearing names, duplicate names, unchanged form/storage after
   rejection, and preserved reopening/restoration of supported unnamed projects.
 
@@ -266,8 +277,9 @@ observations are attributed in the review and cannot establish these criteria.
   and fixtures do not select production semantics. Preserve V1 unchanged.
 - Material revision V2: on 9 November 2026 the user authorized a separate designer
   prototype with required new-project names and the analyst's missing recovery
-  states. V2 must be shown to the user before renewed analyst review. V1 remains
-  frozen; neither V2 preparation nor its review authorizes production implementation.
+  states. The user subsequently approved identified V2 for renewed analyst review
+  on that date. V1 remains frozen; neither preparation nor review authorizes
+  production implementation.
 - V2 proposal: [design notes and walkthrough](../../prototypes/increment-007-v2/DESIGN-V2.md),
   [identified snapshot](../../output/increment-007-prototype-v2/manifest.json) and
   [coordinator observations](../../output/increment-007-prototype-v2/observations.md).
@@ -275,15 +287,24 @@ observations are attributed in the review and cannot establish these criteria.
   required-name validation, unavailable first reads, uncertain-outcome recovery,
   preserved drafts/forms after access loss and invalidated replacement protection.
   These simulations do not resolve storage/data-policy blockers D-1–D-6 or establish
-  production acceptance. V2 is ready for user review; R-3–R-6 responses have not yet
-  received renewed analyst review.
-- User approval of V2 for renewed analyst review: pending.
+  production acceptance.
+- User approval of V2 for renewed analyst review: **9 November 2026**, identified by
+  its six-file manifest and committed snapshot `7014e75`.
+- Renewed analyst review: [V2 dispositions](007-design-review.md#v2-renewed-analyst-review--9-november-2026).
+  R-4 is resolved at design level; R-3 replacement invalidation and R-5 lifecycle
+  specimens are represented, with mechanisms/recovery policy still open. R-1/R-2
+  data-policy choices and R-6 broader verification remain. AC-19 is represented in
+  V2, not delivered in production. No new material prototype revision is required
+  by this bounded review; resulting material policy/design changes return to the user.
 - Final contract/design agreement: pending. Implementation authorization: pending.
 
 ## Review baseline and amendments
 
 Clean working tree and HEAD `3b69671edbac6e86aa08ea6e56187522e012d3fb` confirmed before
 analyst documentation edits; no production/prototype/dependency changes are included.
-No agreed amendments, developer work or completion claim exist. Staging, commits
-and pushes remain with the user. Follow the [workflow](../workflow/agent-roles.md)
+Renewed analyst review began from clean HEAD
+`7014e7566f188c2f2d826e7310e7fb7d4bdd98f8`. Both frozen six-file manifests match.
+The required-name direction above is a user-requested amendment to this Draft,
+not final contract/design agreement. No developer work or completion claim exists.
+Staging, commits and pushes remain with the user. Follow the [workflow](../workflow/agent-roles.md)
 and [increment conventions](README.md) for subsequent handoffs.

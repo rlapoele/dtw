@@ -97,14 +97,15 @@ The existence of an explicit project is decided: users create, open, or import a
 
 **Narrowed for Increment 007 — 9 November 2026:** the user agreed the
 [retention/reopening/backup direction](../increments/007-local-retention-and-backup.md)
-and subsequently approved identified prototype V1 **for analyst review only**.
-The [analyst consistency review](../increments/007-design-review.md) and substantive
-Draft contract are now prepared. Applied-state automatic retention, session-only
+and subsequently approved identified prototype V1 **for analyst review only**, then
+V2 **for renewed analyst review only** on that date. The
+[analyst consistency review](../increments/007-design-review.md) includes separate
+V1/V2 dispositions; the substantive contract remains Draft. Applied-state automatic retention, session-only
 drafts/forms, browser-local Projects, independent versioned backups and identity-
 preserving staged restore with explicit same-ID replacement remain the agreed
 direction. Lightweight read/write separation and future undo/redo readiness are
 agreed; history remains outside scope. Final contract/design agreement and
-implementation authorization remain pending. The frozen prototype is illustrative.
+implementation authorization remain pending. Both frozen prototypes are illustrative.
 
 The user subsequently requested mandatory names for new project creation. The
 [creation-name amendment](../increments/007-local-retention-and-backup.md#required-name-for-new-projects)
@@ -135,9 +136,13 @@ The Draft contract's D-1–D-6 group the implementation blockers:
 Replacement protection must cover the current revision actually being replaced;
 a stale preview/backup/acknowledgement must not authorize discarding later changes.
 The Draft proposes atomic revision checks and renewed protection after change;
-mechanism qualification remains open. The review also identifies a required design
-state for retained-but-unreadable creation/restore without a previous snapshot.
-Material design revisions return to the user before renewed analyst review.
+mechanism qualification remains open. V2 resolves the missing first-read unavailable
+state at design level and illustrates replacement invalidation and preserved-input
+recovery. It does not qualify real storage, reconciliation or ownership. D-4 must
+still define review/reapply when a retained draft/form's original target or baseline
+changed; preserving raw input cannot imply automatic overwrite, merge or takeover.
+D-1/D-5 must cover still-unknown/check-failed outcomes and retry/exit limits.
+Material resulting design revisions return to the user before renewed analyst review.
 
 1. What is the canonical source-of-truth file format?
 2. What constitutes stable project identity, and how is it preserved when a workspace moves?
