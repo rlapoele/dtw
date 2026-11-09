@@ -8,7 +8,7 @@ export function Input({
   return (
     <input
       {...props}
-      className={`text-input w-full min-w-0 rounded-md border border-border bg-background text-foreground px-2.5 hover:border-control-hover placeholder:text-placeholder ${appearance === "search" ? "h-8.5 pl-8.5 bg-surface text-xs/normal" : "h-10 min-h-10 text-xs/normal"} ${className ?? ""}`}
+      className={`text-input w-full min-w-0 rounded-md border border-border text-foreground px-2.5 hover:border-control-hover placeholder:text-placeholder ${appearance === "search" ? "h-8.5 pl-8.5 bg-surface text-xs/normal" : "h-10 min-h-10 bg-background text-xs/normal"} ${className ?? ""}`}
     />
   );
 }

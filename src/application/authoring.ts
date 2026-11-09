@@ -1,3 +1,4 @@
+import { canReviseColorToken } from "@application/color-revision-policy";
 import { createProject } from "@domain/project";
 import type { Project, ProjectInput } from "@domain/project";
 import { createColorLiteral } from "@domain/color-literal";
@@ -166,12 +167,7 @@ export function createAuthoringOperations(storage: ProjectStorage) {
       if (token === undefined) return missingEntity("token", input.tokenId);
       let revised: Token;
       try {
-        const assignments = token.definition?.assignments;
-        const assignment = assignments?.[0];
-        if (token.definition?.type !== "color" || token.layer === "component" ||
-          assignments?.length !== 1 || assignment === undefined || assignment.condition.length !== 0 ||
-          !(assignment.value.kind === "token-reference" ||
-            (assignment.value.kind === "literal" && assignment.value.valueType === "color"))) {
+        if (!canReviseColorToken(token)) {
           throw new RangeError("Color revision requires one unconditional color literal or reference on a non-component token");
         }
         if (input.value.kind !== "literal" && input.value.kind !== "token-reference") {

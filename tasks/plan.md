@@ -1,12 +1,12 @@
 # Guidance adherence review and proposed maintenance plan
 
-**9 November 2026 — review completed; implementation proposed, not authorized.**
+**9 November 2026 — review completed; maintenance implementation authorized by the user, including optional Task 3. Implementation completed and independently approved with no actionable findings.**
 
 ## Baseline and scope
 
 Reviewed application baseline: `cc49016`, following Increment 006 at `d022ba2`.
 The request covers adherence to README and related repository guidance before
-Increment 007. This is a maintenance proposal, not Increment 007 or its contract.
+Increment 007. This maintenance plan was approved and delivered separately from Increment 007.
 
 Read README, AGENTS, presentation conventions, architecture, visual direction,
 vision, product concept, principles, open questions, workflow roles, status rules,
@@ -125,7 +125,11 @@ No application mutation experiment was performed during this review.
 ## Proposed implementation order
 
 The actionable checklist, acceptance criteria and per-task verification live in
-[todo.md](todo.md). Execute only after the user authorizes this maintenance work.
+[todo.md](todo.md). The user authorized all tasks on 9 November 2026, including
+the optional static class cleanup, with developer then independent reviewer
+execution. Staging, commits and pushes remain with the user. This approval does
+not authorize Increment 007. Preliminary developer evidence is recorded in
+[the maintenance report](../output/guidance-maintenance/developer-evidence.md).
 
 1. Align textarea focus with the existing ring (F1).
 2. Share color revision eligibility through a pure application policy (F2).
@@ -135,7 +139,7 @@ The actionable checklist, acceptance criteria and per-task verification live in
    resolve findings and update the completion handoff.
 
 Tasks 1 and 2 are independent; run them sequentially with one code-writing agent.
-Task 3 is optional. Documentation and final verification follow the selected code
+Task 3 was selected by the user. Documentation and final verification follow the selected code
 tasks. Do not grow this into a new design exploration: these changes preserve
 existing design intent. Material visual or behavioral changes must return to the
 user and follow the repository's designer/analyst agreement process.
@@ -150,7 +154,59 @@ user and follow the repository's designer/analyst agreement process.
 - Keep the Button additive contract and Base UI callback evaluation intact.
 - No dependencies, format/storage choices, new persistence APIs, design changes,
   prototype edits, staging, commits or pushes are included.
-- Independent review of implemented changes remains future work. This plan is
-  neither implementation approval nor evidence that its tasks have been delivered.
+- Independent review of the identified implementation and coordinator browser
+  evidence is complete; no actionable findings or required scoped verification
+  gaps remain. Coverage limits are recorded below.
 
 Suggested commit message for this review/plan: `docs: review guidance adherence and plan targeted maintenance`.
+
+
+## Completion report — 9 November 2026
+
+The user approved the maintenance plan including optional Task 3 and authorized a
+separate developer followed by an independent reviewer. Implementation started
+from committed plan baseline `4b541f8`. All selected tasks are complete.
+
+- Textarea focus now uses the existing neutral semantic ring and offset. Native
+  multiline input, labels, resizing and modal focus return are preserved.
+- `canReviseColorToken` is a pure application-owned policy used by operation
+  enforcement and re-exported for presentation. The operation retains its exact
+  failure message, candidate validation and atomic commit boundary. Missing/sparse
+  assignment slots remain rejected; this also removes the old UI predicate's
+  possible missing-slot throw without broadening valid editing eligibility.
+- Search appearances select one background; the resolved heading selects one
+  alignment. Wide/compact computed styles match the baseline.
+- README describes TSX tests; visual direction points to delivered scope while
+  retaining the distinction between accepted reference and future patterns.
+
+Developer and independent reviewer each ran **983 tests in 36 files** and passed
+all three strict typechecks and isolated production builds. The coordinator
+verified Name→Description→Group focus, semantic ring/offset, exact multiline
+Unicode/whitespace readback, actual native resizing, Cancel focus return,
+editable/protected color behavior, inspect-only Number behavior and wide/compact
+search/heading parity. The independent reviewer inspected source/tests first,
+then assessed the attributed browser record and screenshot, and found **no
+actionable findings or required verification gaps within this scope**.
+
+Evidence:
+
+- [Developer checks](../output/guidance-maintenance/developer-evidence.md) and
+  [identified snapshot](../output/guidance-maintenance/developer-manifest.json).
+- [Coordinator browser checks](../output/guidance-maintenance/coordinator-browser-evidence.md).
+- [Independent review](../output/guidance-maintenance/independent-review.md).
+- [Root asset preservation](../output/guidance-maintenance/dist-preservation.json).
+
+The developer manifest freezes its handoff, including then-pending completion
+wording. Subsequent changes to this plan, checklist and status are completion
+reconciliation, not implementation changes. The reviewer rechecks that final
+reconciliation separately; implementation/test hashes remain those reviewed.
+
+Limits: measured compact viewport was477×1075 despite a requested320×720 override;
+actual320px, new page-zoom, screen-reader, physical-device/virtual-keyboard and
+cross-engine checks are not claimed. Browser execution was the coordinator's;
+reviewer source/check execution and artifact assessment were independent.
+Existing root dist was preserved. No dependencies, durable storage, prototypes,
+staging, commits or pushes were changed. Increment 007 remains unstarted and
+requires separate product/contract decisions and authorization.
+
+Suggested implementation commit: `refactor: align focus styling and share color revision policy`.

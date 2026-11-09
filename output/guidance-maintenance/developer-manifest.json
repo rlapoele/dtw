@@ -1,0 +1,19 @@
+{
+  "baseline": "4b541f8491e33417fedf8d1e574a8c7bcd3f0113",
+  "files": {
+    "README.md": "64f7f0d6bee7c7e472815a74beba274ff2e99efb803f01b5745c06659b71d1d6",
+    "docs/project/visual-direction.md": "12be67de906864e738f54bf8f535f090bd03107f320049d01be38569fd433e47",
+    "output/guidance-maintenance/developer-evidence.md": "d4c2efa1893edb28e9a1268232bf190c7c627371c2ada5e69854817ea71d24ab",
+    "output/guidance-maintenance/dist-preservation.json": "5cb688837258e6ae8a7d4ab62d800bc2a03195ab04f991df6f42ecd9def806b0",
+    "src/application/authoring.ts": "4f4f02676cc934ff20b330ccbab97c7f893a07a887ae30e7aaa4fe60f42ceb85",
+    "src/application/color-revision-policy.ts": "06f11ec82d01a09e75866936be9f2a9efa7e9d4429c7883c6d7e6e2486f2dbdd",
+    "src/presentation/Editor.tsx": "a9ce48501957d7f05de1d9197e554336cced233f5b50ed33b3d4a4870bf44738",
+    "src/presentation/components/input.tsx": "35d1358420967e8d5535e4b18975d9d8fd1fcf90e8cfaad9450bccaad75db628",
+    "src/presentation/session.ts": "26b704b47f5072d6d77508ae1316a625ae2e96703f30dd9d4c6d9f69b58aa928",
+    "src/presentation/styles.css": "66f32390c05c46c46b2581daf1621aab119e4e463f0ebf1fe3ecc24dd11e7f1e",
+    "tasks/plan.md": "031423d8398efe45484a744a73254a8e75abda654359fd5952cefe729e5bad6e",
+    "tasks/todo.md": "dc584f8a0a83e25a8da92b85af1014e9fe5a449853058ecf06aa32208bd1a2f5",
+    "test/application/color-revision-policy.test.ts": "6e7d6d55842100d19bd08011edba72302b27b4e3bb220117c6d2952fb49988a5",
+    "test/application/color-revision.test.ts": "401cab689cd22db5ef5ca39d2007af52811f2300a5879635394339b0b1f13756"
+  }
+}

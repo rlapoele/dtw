@@ -211,6 +211,7 @@ describe("revision eligibility and atomic storage boundary", () => {
     { label: "name-only", token: storedToken("edited") },
     { label: "typed-unassigned", token: storedToken("edited", { type: "color", assignments: [] }) },
     { label: "non-color", token: storedToken("edited", { type: "number", assignments: [] }) },
+    { label: "missing assignment slot", token: { ...assigned, definition: { type: "color" as const, assignments: new Array<TokenValueAssignment>(1) } } },
     { label: "component", token: { ...assigned, layer: "component" as const, componentDefinitionId: "component" as Token["componentDefinitionId"] } },
     { label: "conditional-only", token: { ...assigned, definition: { type: "color" as const, assignments: [{ ...assigned.definition!.assignments[0], condition: [conditional] as unknown as TokenValueAssignment["condition"] }] } } },
     { label: "multiple-assignments", token: { ...assigned, definition: { type: "color" as const, assignments: [...assigned.definition!.assignments, { ...assigned.definition!.assignments[0], condition: [conditional] as unknown as TokenValueAssignment["condition"] }] } } },
@@ -220,7 +221,7 @@ describe("revision eligibility and atomic storage boundary", () => {
   ])("AC-7: refuses $label edited tokens without a write", ({ token }) => {
     const { app, storage } = fixture([token]);
     const before = storage.delegate.load("p");
-    expect(app.reviseColorToken({ projectId: "p", tokenId: "edited", value: literal })).toMatchObject({ status: "failure", error: { code: "invalid-domain-input", message: expect.any(String) } });
+    expect(app.reviseColorToken({ projectId: "p", tokenId: "edited", value: literal })).toMatchObject({ status: "failure", error: { code: "invalid-domain-input", message: "Color revision requires one unconditional color literal or reference on a non-component token" } });
     expect(storage.delegate.load("p")).toEqual(before);
     expect(storage.commits).toBe(0);
   });

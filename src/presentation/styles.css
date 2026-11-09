@@ -117,6 +117,7 @@
     font-weight: 650;
   }
   input:focus-visible,
+  textarea:focus-visible,
   select:focus-visible,
   button:focus-visible,
   a:focus-visible,

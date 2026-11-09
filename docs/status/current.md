@@ -2,13 +2,13 @@
 
 > Last updated: 9 November 2026
 >
-> Phase: Increment 006 committed; guidance adherence reviewed; maintenance plan proposed
+> Phase: Increment 006 committed; approved guidance maintenance completed and independently reviewed
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
 
-**Guidance adherence review — 9 November 2026:** the coordinator reviewed README and related constraints against maintained code. The [review and proposed maintenance plan](../../tasks/plan.md) records substantial adherence, the description textarea's unthemed native focus outline, duplicated color-revision eligibility, optional utility cleanup and documentation drift. Fresh 966-test/35-file execution, all strict typechecks and an isolated production build passed; a fresh browser check covered the specific focus/style findings. This was a coordinator review, not separate independent review or full accessibility certification. Only review/plan/handoff documents changed; implementation and Increment 007 remain unauthorized. The [task checklist](../../tasks/todo.md) owns proposed acceptance and verification steps.
+**Guidance maintenance completed — 9 November 2026:** after committing the review/plan as `4b541f8`, the user approved all maintenance tasks including optional utility cleanup and authorized developer then independent reviewer execution. The [completion report](../../tasks/plan.md#completion-report--9-november-2026) records semantic textarea focus, one application-owned color-revision eligibility policy, unchanged computed class-cleanup appearance and reconciled README/visual guidance. Developer and reviewer each passed **983 tests / 36 files**, all strict typechecks and isolated production builds. The [independent review](../../output/guidance-maintenance/independent-review.md) found no actionable findings or required scoped verification gaps after assessing [coordinator browser evidence](../../output/guidance-maintenance/coordinator-browser-evidence.md). Browser checks cover keyboard/native textarea behavior, exact description readback, editing/inspect-only eligibility and wide/measured477px compact parity; actual320px, new zoom, screen-reader, physical-device/virtual-keyboard and cross-engine coverage are not claimed. Implementation preserves exact data, identities, aliases, drafts and atomic validation/commit behavior. Root preview assets were preserved. No dependencies, persistence, prototypes, staging, commits or pushes were changed; Increment 007 remains unstarted.
 
 **Presentation conventions agreed — 9 November 2026:** the user confirmed the Tailwind, Heroicons Outline, shadcn/Base UI and optional `cn` reformulation and authorized documentation reconciliation. [AGENTS.md](../../AGENTS.md) carries concise constraints; [presentation conventions](../project/presentation-conventions.md) own details, exceptions and affected review checks, linked from architecture, visual direction, README and role handoffs. This is a documentation-only update: no application code, dependency installation/migration or next increment. Existing component precedence and the accepted Precision design remain intact.
 
@@ -58,7 +58,7 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-User review of the [proposed guidance maintenance plan](../../tasks/plan.md) and selection/authorization of any implementation tasks. The presentation-guidance update is already committed as `cc49016`; Increment 006 was reviewed, committed and pushed by the user (`d022ba2`, verified locally). No maintenance implementation, deployment, publication or next increment is authorized.
+Human review and optional staging/commit of the [completed guidance maintenance](../../tasks/plan.md#completion-report--9-november-2026). The presentation-guidance update is already committed as `cc49016`; Increment 006 was reviewed, committed and pushed by the user (`d022ba2`, verified locally). The approved maintenance is delivered; no deployment, publication or next increment is authorized.
 
 The recommended next product contract remains durable retention plus independent backup/restore. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, repair/restore semantics, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not start them without a scoped request.
 

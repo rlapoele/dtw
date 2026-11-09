@@ -2,7 +2,8 @@ import type { ColorLiteralInput, ColorSpace } from "@domain/color-literal";
 import { createColorLiteral } from "@domain/color-literal";
 import { convertColor } from "@domain/color-calculation";
 import { integerByteDisplay, integerByteIssue, integerByteToNormalized } from "@presentation/integer-rgb";
-import type { ImplementedAuthoredValue, Token } from "@domain/token";
+import type { ImplementedAuthoredValue } from "@domain/token";
+export { canReviseColorToken as eligible } from "@application/color-revision-policy";
 export type LiteralDraft = {
   colorSpace: ColorSpace;
   components: [string, string, string];
@@ -43,18 +44,6 @@ export function baseline(value?: ImplementedAuthoredValue): DraftSession {
     byteEdited: [false, false, false],
     edited: false,
   };
-}
-export function eligible(token: Token) {
-  const a = token.definition?.assignments;
-  const v = a?.[0]?.value;
-  return (
-    token.definition?.type === "color" &&
-    token.layer !== "component" &&
-    a?.length === 1 &&
-    a[0].condition.length === 0 &&
-    (v?.kind === "token-reference" ||
-      (v?.kind === "literal" && v.valueType === "color"))
-  );
 }
 export function literalIssue(literal: ColorLiteralInput): string | undefined {
   try {

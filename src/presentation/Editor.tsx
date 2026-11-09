@@ -328,7 +328,7 @@ export function Editor({
           value="resolved"
           className="editor-body source-compact:p-5 bg-surface p-6"
         >
-          <div className="section-title flex items-center justify-between mb-5 resolved-heading flex-wrap justify-start gap-2">
+          <div className="section-title flex items-center mb-5 resolved-heading flex-wrap justify-start gap-2">
             <h3>Resolved value</h3>
             <Badge>Applied value</Badge>
           </div>
