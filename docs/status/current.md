@@ -1,16 +1,18 @@
 # Current Project Status
 
-> Last updated: 8 November 2026
+> Last updated: 9 November 2026
 >
-> Phase: Increment 006 completed; ready for human review and commit
+> Phase: Increment 006 committed; presentation conventions agreed
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
 
+**Presentation conventions agreed — 9 November 2026:** the user confirmed the Tailwind, Heroicons Outline, shadcn/Base UI and optional `cn` reformulation and authorized documentation reconciliation. [AGENTS.md](../../AGENTS.md) carries concise constraints; [presentation conventions](../project/presentation-conventions.md) own details, exceptions and affected review checks, linked from architecture, visual direction, README and role handoffs. This is a documentation-only update: no application code, dependency installation/migration or next increment. Existing component precedence and the accepted Precision design remain intact.
+
 **Increment 006 completed — 8 November 2026:** the user authorized integer-oriented 0–255 controls and quieter IDs. The [agreed contract and completion report](../increments/006-integer-rgb-and-identity-presentation.md#completion-report) record exact-source rounded inspection with associated approximation, whole-number validation, per-channel edits preserving untouched exact data, and collision-safe human-readable choices with full technical identity retained. The [active numerical policy](../increments/003-color-policy-proposal.md#approved-integer-control-amendment--8-november-2026) and conceptual model are reconciled; canonical data and general decimal calculation APIs are unchanged.
 
-Final checks pass: **966 tests / 35 files**, strict typechecks, isolated production build and whitespace checks. The [independent review](../increments/006-implementation-review.md) corrected and rechecked a reference self-context label collision against the identified r3 snapshot. [Coordinator IAB evidence](../../output/increment-006/coordinator-browser-evidence.md) covers stateful authoring and ordinary/technical identity surfaces; [developer-executed isolated Chrome evidence](../../output/increment-006-zoom/evidence.md) covers actual 200% page zoom, production 320px layout, failure retry/focus, actual group choices, rename/alias preservation and missing references. Attribution and bounded coverage limits remain explicit; screen-reader, physical-device/virtual-keyboard and exhaustive cross-engine coverage remain unverified. The updated production example is open in a separate in-app tab at `http://127.0.0.1:4186/`; the prior draft tab at 4185 and its original assets were preserved. No dependency, persistence or deployment change; agents did not stage, commit or push. Ready for human review and commit.
+Final checks pass: **966 tests / 35 files**, strict typechecks, isolated production build and whitespace checks. The [independent review](../increments/006-implementation-review.md) corrected and rechecked a reference self-context label collision against the identified r3 snapshot. [Coordinator IAB evidence](../../output/increment-006/coordinator-browser-evidence.md) covers stateful authoring and ordinary/technical identity surfaces; [developer-executed isolated Chrome evidence](../../output/increment-006-zoom/evidence.md) covers actual 200% page zoom, production 320px layout, failure retry/focus, actual group choices, rename/alias preservation and missing references. Attribution and bounded coverage limits remain explicit; screen-reader, physical-device/virtual-keyboard and exhaustive cross-engine coverage remain unverified. The updated production example is open in a separate in-app tab at `http://127.0.0.1:4186/`; the prior draft tab at 4185 and its original assets were preserved. No dependency, persistence or deployment change; agents did not stage, commit or push. The user subsequently reviewed, committed and pushed this increment as `d022ba2`.
 
 **Increment 005 completed — 8 November 2026:** the user authorized description capture, stacked named values, responsive description presentation and a shared component definition. The [agreed contract and completion report](../increments/005-token-details-and-color-components.md#completion-report) record delivery: exact optional descriptions at creation; pane-width Description column/compact preview; readable literal/reference applied values; one host-independent semantic component order reused by constructor, calculation integration, editor and summaries. The canonical tuple/alpha and numerical policy remain unchanged. Existing metadata editing, persistence and new dependencies remain outside scope.
 
@@ -54,7 +56,7 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-Human review and commit of [completed Increment 006](../increments/006-integer-rgb-and-identity-presentation.md#completion-report). No deployment, publication or next increment is authorized.
+Human review and commit of the presentation-guidance update. Increment 006 was reviewed, committed and pushed by the user (`d022ba2`, verified locally). No deployment, publication or next increment is authorized.
 
 The recommended next product contract remains durable retention plus independent backup/restore. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, repair/restore semantics, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not start them without a scoped request.
 

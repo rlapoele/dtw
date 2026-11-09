@@ -4,6 +4,8 @@ A desktop-first, local-first design-token workbench. Product and domain discover
 
 The accepted [visual direction and reference image](docs/project/visual-direction.md) guide subsequent interface design and prototyping.
 
+The [presentation conventions](docs/project/presentation-conventions.md) define the agreed Tailwind, Heroicons Outline, owned shadcn/Base UI component and optional `cn` composition rules. Read them before interface changes; they preserve the accepted design and scoped CSS exceptions.
+
 ## Development workflow
 
 Substantial increments use separate analyst, developer, and reviewer agents with an agreed contract and acceptance evidence. A designer joins for substantial interaction or interface decisions: the user reviews and requests changes to design proposals before analyst review, then agrees the resulting contract and design before authorizing implementation. See the [workflow and role instructions](docs/workflow/agent-roles.md), [increment templates](docs/increments/README.md), and [Increment 001 contract](docs/increments/001-in-memory-authoring-workflow.md).

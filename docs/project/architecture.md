@@ -325,6 +325,10 @@ Start domain implementation in TypeScript with strict type checking, Vite for bu
 
 Type checking runs separately through `tsc --noEmit`; Vite's TypeScript transformation does not replace it. Domain tests run in Vitest's Node environment while domain behavior remains independent of Node APIs, Electron, the browser, storage, and the network. See the repository [README](../../README.md) for executable commands. Increment 003 now provides the session-only browser entry; host-independent checks remain separate from browser/TSX checks.
 
+## Standing presentation conventions
+
+**Agreed 9 November 2026:** [Presentation conventions](presentation-conventions.md) own Tailwind semantic-token mappings, utility-first styling and exceptions, Heroicons Outline, selective shadcn/Base UI reuse, optional `cn` composition and affected review checks. They preserve the existing presentation boundaries and accepted design. Allowing `cn` does not install it, change current component precedence or authorize a dependency migration.
+
 ## Increment 003 renderer selection
 
 **Agreed delivery direction — 7 November 2026; implemented within Increment 003 on 8 November**

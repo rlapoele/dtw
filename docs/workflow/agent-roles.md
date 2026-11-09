@@ -23,6 +23,8 @@ Give the designer the draft contract, relevant domain constraints, [visual direc
 
 Keep the developer's rationale and completion claims out of the reviewer's initial brief. After the reviewer forms expectations and inspects the work independently, they may consult implementation evidence to reconcile findings. All agents may inspect relevant repository files and should request missing context.
 
+For interface work, designer, developer and reviewer handoffs include the [presentation conventions](../project/presentation-conventions.md). Apply their theme, utility, icon and component rules within the agreed scope; reviewers check affected styling exceptions, class composition and accessible/responsive behavior. These conventions do not authorize a redesign, dependency migration or unrelated cleanup.
+
 The coordinator is the user's point of contact. Relay material questions and findings faithfully, distinguish proposals from agreements, and report unresolved disagreements. Do not silently dismiss findings or settle product questions. Subagents should not spawn additional agents unless the coordinator explicitly assigns that delegation.
 
 ## Analyst brief

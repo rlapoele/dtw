@@ -9,6 +9,7 @@ This repository contains product and domain documentation for the Design Token W
 - Start with `docs/project/vision.md`, `product-concept.md`, and `principles.md`.
 - Use `docs/project/architecture.md` for implementation boundaries.
 - For interface design and prototyping, use `docs/project/visual-direction.md` and its accepted reference image; preserve the distinction between visual guidance and unresolved interaction or feature decisions.
+- Before presentation changes, read [presentation conventions](docs/project/presentation-conventions.md) for agreed Tailwind, Heroicons and shadcn/Base UI rules, review checks and CSS exceptions.
 - Use `docs/design-tokens/` for domain language and modeling constraints.
 - Read `docs/design-tokens/interoperability.md` before changing import, export, compatibility, or external-tool behavior.
 - Check `docs/planning/open-questions.md` before making a product, schema, persistence, or technology choice.
@@ -51,6 +52,15 @@ Treat status labels as meaningful: **established** directions and principles are
 - Treat Electron as a host. Renderer code must not access Node.js or Electron directly; privileged capabilities belong behind a narrow, typed, runtime-validated, project-scoped preload API.
 - Add abstractions only for demonstrated variation or test boundaries. Do not pre-build plugin systems, registries, marketplaces, generic buses, or unneeded services.
 - Do not select an unresolved framework, persistence format, database, schema library, or build topology unless the task explicitly includes that decision and evidence for it.
+
+## Presentation conventions
+
+- Preserve the accepted neutral, content-first Precision design and shadcn-style semantic theming. Keep one token source; map referenced semantic CSS variables through Tailwind's `@theme inline` namespaces.
+- Prefer standard or existing project-defined Tailwind utilities in JSX. Avoid arbitrary values and direct CSS-variable expressions when named utilities suffice. Add tokens only for meaningful reusable decisions; document necessary CSS/runtime-style exceptions.
+- Use Heroicons Outline as the sole application UI icon family, including inside copied/generated components. Preserve accessible control names and hide decorative icons from assistive technology.
+- Reuse owned components before adding another implementation. Add shadcn/Base UI primitives only for real slice needs, style them for the product, and retain native controls when custom behavior adds no value. Preserve keyboard, focus, labels, errors and component APIs.
+- `cn` may compose conditional classes and resolve Tailwind conflicts through one shared project entry point when needed. Preserve Base UI callback `className` behavior and existing component precedence contracts. Permission to use `cn` does not itself migrate dependencies or change those contracts.
+- Review affected code for duplicated primitives, avoidable custom values, foreign icon families and unnecessary dependencies; verify affected responsive, keyboard/focus and class-composition behavior. Use the linked conventions for details rather than imposing blanket bans on brackets or runtime styles.
 
 ## Documentation and verification
 

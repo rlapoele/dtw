@@ -31,7 +31,9 @@ This variant keeps the accepted visual direction and replaces only the illustrat
 - A project-centered workbench with persistent token search, namespace navigation, a central working surface, and a contextual inspector.
 - Purposeful density with enough space to scan names, values, controls, and visual specimens. Use focused views rather than placing every capability on one screen.
 - Nearly achromatic workbench chrome that recedes around the design system being authored. Reserve chromatic emphasis for token content, previews, and semantic feedback whose meaning requires color.
-- Use [Heroicons Outline](https://heroicons.com/) for interface icons (user direction, 3 November 2026). Keep icon sizing and stroke treatment consistent, and preserve accessible control labels. This visual choice does not select a production integration package.
+- Use [Heroicons Outline](https://heroicons.com/) as the sole application UI icon family (user direction, 3 November 2026; standing constraint confirmed 9 November). Keep icon sizing and stroke treatment consistent, and preserve accessible control labels. The [renderer selection](architecture.md#increment-003-renderer-selection) records production adoption; the [presentation conventions](presentation-conventions.md) define implementation/review rules.
+
+**Content-first interpretation — agreed 9 November 2026:** retain this neutral Precision direction through shadcn-style semantic theming, with restrained chrome supporting token content, controls and feedback. This does not select a new stock preset or replace accepted density, hierarchy and supporting surfaces. Use the linked presentation conventions for styling mechanics and justified exceptions.
 
 The desired air is that of tools such as AppVision, Penpot, and Figma. This is general inspiration rather than an instruction to copy their branding, structure, or vendor-specific token concepts.
 
