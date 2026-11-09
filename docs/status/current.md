@@ -2,11 +2,13 @@
 
 > Last updated: 9 November 2026
 >
-> Phase: Increment 006 committed; approved guidance maintenance completed and independently reviewed
+> Phase: Increment 007 design V1 prepared for user review; production remains at completed maintenance
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
+
+**Increment 007 prototype V1 — 9 November 2026:** the user agreed the designer's retention/reopening/backup direction, lightweight read/write separation and future undo/redo readiness, then authorized an isolated prototype. The [design-stage brief](../increments/007-local-retention-and-backup.md) records these agreements and unresolved boundaries; the [V1 proposal](../../prototypes/increment-007-v1/DESIGN-V1.md) is ready for user review. Isolated strict TypeScript/build checks passed. [Coordinator browser observations](../../output/increment-007-prototype-v1/observations.md) cover simulated failure preservation, draft-excluding sample backup, readback recovery, form departure, staged restoration, replacement protection/failure and selected unavailable/inspect-only states. These are prototype observations, not durable-storage or accessibility qualification. No analyst review has begun; approval for that review, final contract/design agreement and implementation authorization remain pending. Production source/dependencies and historical prototypes are unchanged. The user committed and pushed the preceding maintenance as `4171dbc`.
 
 **Guidance maintenance completed — 9 November 2026:** after committing the review/plan as `4b541f8`, the user approved all maintenance tasks including optional utility cleanup and authorized developer then independent reviewer execution. The [completion report](../../tasks/plan.md#completion-report--9-november-2026) records semantic textarea focus, one application-owned color-revision eligibility policy, unchanged computed class-cleanup appearance and reconciled README/visual guidance. Developer and reviewer each passed **983 tests / 36 files**, all strict typechecks and isolated production builds. The [independent review](../../output/guidance-maintenance/independent-review.md) found no actionable findings or required scoped verification gaps after assessing [coordinator browser evidence](../../output/guidance-maintenance/coordinator-browser-evidence.md). Browser checks cover keyboard/native textarea behavior, exact description readback, editing/inspect-only eligibility and wide/measured477px compact parity; actual320px, new zoom, screen-reader, physical-device/virtual-keyboard and cross-engine coverage are not claimed. Implementation preserves exact data, identities, aliases, drafts and atomic validation/commit behavior. Root preview assets were preserved. No dependencies, persistence, prototypes, staging, commits or pushes were changed; Increment 007 remains unstarted.
 
@@ -58,9 +60,9 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-Human review and optional staging/commit of the [completed guidance maintenance](../../tasks/plan.md#completion-report--9-november-2026). The presentation-guidance update is already committed as `cc49016`; Increment 006 was reviewed, committed and pushed by the user (`d022ba2`, verified locally). The approved maintenance is delivered; no deployment, publication or next increment is authorized.
+User review and iteration of the [Increment 007 V1 prototype](../../prototypes/increment-007-v1/DESIGN-V1.md), before approval for analyst review. Maintenance is committed as `4171dbc`; presentation guidance as `cc49016`; Increment 006 as `d022ba2`. No production implementation, deployment or publication is authorized. Staging, commits and pushes remain with the user.
 
-The recommended next product contract remains durable retention plus independent backup/restore. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, repair/restore semantics, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not start them without a scoped request.
+The Increment 007 contract remains to be prepared/reviewed after the user-approved design handoff. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, exact restore admissibility, concurrency enforcement, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not settle them through prototype convenience.
 
 ## Resume and verification
 

@@ -95,6 +95,18 @@ The [variation-resolution contract](../design-tokens/conceptual-model.md#variati
 
 The existence of an explicit project is decided: users create, open, or import a project before editing tokens. A project may contain no tokens; every token and namespace group belongs to exactly one project. The initial canonical ownership model does not require a package entity.
 
+**Narrowed for Increment 007 design — 9 November 2026:** the user agreed the
+[retention/reopening/backup direction](../increments/007-local-retention-and-backup.md)
+and authorized an isolated prototype for user review before analyst review.
+Applied-state automatic retention, session-only drafts/forms, a browser-local
+Projects view, independent versioned backups and identity-preserving staged
+restore with explicit same-ID replacement are the design direction. Lightweight
+read/write application separation and future undo/redo readiness are agreed;
+history itself remains outside scope. Browser storage, canonical/backup schemas,
+version compatibility, restore admissibility, asynchronous acknowledgement and
+single-writer enforcement remain unresolved. Neither the prototype nor this
+direction authorizes production implementation.
+
 1. What is the canonical source-of-truth file format?
 2. What constitutes stable project identity, and how is it preserved when a workspace moves?
 3. Should canonical persistence itself use DTCG, extend it, or use a separate project model with DTCG import/export?

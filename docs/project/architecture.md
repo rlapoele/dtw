@@ -162,6 +162,31 @@ Operations should usually be coarse enough to avoid a chatty RPC boundary. Fast,
 
 For scale helpers, the UI collects parameters and presents candidates; the domain calculates them; an application operation coordinates creation of the selected tokens through normal domain validation. Later helper changes do not mutate existing tokens automatically.
 
+### Increment 007 read and write boundary direction
+
+**Agreed design/architecture direction — 9 November 2026; not implemented.**
+
+For [Increment 007 preparation](../increments/007-local-retention-and-backup.md),
+separate read and write application interfaces over one authoritative retained
+project state. Read operations expose listing, authored data, inspection and
+diagnostics without project mutation capability. Commands may read to validate;
+they own candidate validation, concurrency checks, atomic acceptance and required
+retention acknowledgement. Inspect coherent loaded snapshots rather than routing
+render-time inspection through repeated asynchronous storage reads. Keep drafts
+separate and publish the next applied snapshot after successful acceptance.
+
+A durable write followed by failed readback is not a failed write: retain that
+distinction in results and recovery feedback. Exact adapter/async contracts and
+cross-tab enforcement require investigation before implementation agreement.
+This direction does not select a storage technology, persistence schema, separate
+databases, event sourcing, generic command/query dispatchers or independently
+synchronized read models.
+
+Keep accepted before/after state available at the explicit atomic write boundary
+to support future undo/redo. No history representation, recording, lifetime,
+inverse-command mechanism or undo UI is part of Increment 007. This is bounded
+evolution of the existing application layer, not a history framework.
+
 ### First application-operation increment
 
 **Agreed enabling scope — 3 November 2026**
