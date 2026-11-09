@@ -1,6 +1,6 @@
 # Increment 007 — interactive design V3 supplement
 
-**9 November 2026 · User approved V3 for renewed analyst review; final corrective snapshot awaiting coordinator identification.**
+**9 November 2026 · V3-R1 correction and inspector-content restoration ready for coordinator verification, then user review.**
 The user approved the [assessment direction](../../docs/increments/007-post-qualification-design-assessment.md)
 and authorized this isolated prototype after assessment commit `50d9f67`. This is
 an interactive proposal, not final design/contract agreement or implementation.
@@ -154,3 +154,70 @@ The final corrective source passes isolated strict TypeScript and Vite build. No
 fresh browser pass of that corrective composition was performed by the designer;
 earlier coordinator evidence predates it and must not be described as its runtime
 verification. No production source, dependency, test, V1/V2 or Stage A change occurred.
+
+## V3-R1 correction — 9 November 2026
+
+The user authorized correction of [V3-R1](../../docs/increments/007-v3-analyst-review.md)
+after committing the prior prototype/review as `52e8009`. They separately required
+the updated prototype inspector to retain all original components/content. This
+revision must be shown to the user **before** renewed analyst review. Earlier V3
+review approval does not approve this revision by implication. Historical manifests
+and observations remain unchanged; coordinator evidence identifies the new snapshot.
+
+The local token/rename mutation dialog now exposes the **same root attempt's**
+Check retained result and Review before leaving actions inside its focus boundary.
+Failed checks show the unconfirmed feedback there and preserve exact name/description.
+The departure review replaces that dialog's content in place; Stay here/Escape
+returns to the exact local form/name field. Stay here receives initial focus. Unsafe
+Leave project stays disabled with its reason. Safe Leave uses the existing simulated
+safety condition and never claims rollback, cancellation or automatic replay.
+Pending/unknown states disable duplicate submission and unsafe dismissal, keeping
+fields intact; known rejection re-enables correction only after its verdict. Known
+acceptance completes the existing callback once, including failed-readback recovery.
+The shared local dialog also serves the group-rename specimen; root project/restore/
+replacement dialogs retain their existing reachable recovery controls.
+
+Targeted coordinator browser routes for this revision:
+
+1. Interrupted · result check fails → Studio → New token → enter `  New color  `
+   and a multiline description → Create token → Check retained result. Verify exact
+   read-only fields, local failed-check feedback and disabled Create/Cancel.
+2. In the same form choose Review before leaving → Stay here; repeat with Escape.
+   Verify intact fields and name-field focus, then explicit safe Leave project.
+3. Repeat under Interrupted · exit not yet safe: Leave project is disabled and the
+   reason remains visible; Stay/Escape/check remain reachable.
+4. Under Interrupted · later confirmed rejected, Check retained result preserves the
+   fields and permits correction/retry only after confirmation. Under later confirmed
+   retained it closes the form once with one created token. Under Write succeeds,
+   readback fails it closes once and enters retained/read-unavailable, never another Create.
+5. Normal → Studio → inspect literal and reference tokens: compare every inspector
+   row below with current production, including both tabs and footer. No further
+   download is needed to verify this bounded dialog/content correction.
+
+### Inspector fidelity matrix for the corrected prototype
+
+| Original inspector component/content | Corrected prototype implementation |
+| --- | --- |
+| App-owned Applied/Draft header context | Applied and draft specimens use owned Swatch and the same preview helpers; resolved tab retains Applied context. No preview is authored truth. |
+| Type, collision-safe token heading, exact description, layer and eligibility | Present; existing identity labels and owned Badge reused. Invisible names have a readable display fallback without data rewriting. |
+| Value heading and Draft badge | Restored beside Value when the session is edited. |
+| Literal color / Reference source switch | Owned Button mode controls; independent full literal/reference sessions remain preserved through pending/unknown states. |
+| All component fields/sliders, independent alpha, five views and RGB scales | Production ColorFields reused unchanged, including integer/normalized entry, approximation/range notes, native controls and exact untouched-channel behavior. |
+| Reference target and explanatory note | Existing color choices/identity labels, whole-value alias note, associated reference/error descriptions; no flattening. |
+| Validation/error feedback and draft-preview explanation | Existing helpers and preview messages; field errors associate with controls and receive focus. Recovery/resource validation is additional, with no accepted partial candidate. |
+| Apply/Cancel and dirty/completion feedback | Present with async pending/unknown gates. No synchronous Editor reuse that would clear input before confirmed acceptance. |
+| Inspect-only eligibility explanation | Restored original explanation, supplemented by component-context/removal reasons where applicable. |
+| Currently applied exact authored literal/reference | Production AuthoredValue reused, independently from draft/preview. |
+| Metadata: regeneration, semantic role, parent group | All present; parent group has a human-readable identity-safe label, with exact ID separately available. |
+| Raw authored data and technical identity | Canonical read-only fixture-token view and exact identity/context details; removed-target raw draft remains selectable. This UI-shaped fixture backup is not the agreed canonical backup codec. |
+| Authored value / Resolved & trace tabs | Owned InspectionTabs and Base UI Tabs retained. |
+| Resolved value, Applied value badge, unavailable explanation and specimen | Restored; ordinary domain outcomes show exact value or explicit unresolved reason. Costly-work resource refusal stays a separate simulated unavailable result. |
+| Resolution trace and diagnostics | Production trace structure, token labels, complete step IDs/targets and diagnostics retained for small ordinary fixtures. |
+| Regeneration footer | Restored as a separate footer, in addition to metadata. |
+
+Fidelity is source-level until the coordinator executes the new browser pass. Exact
+production layout/scroll/pane responsiveness is not certified by component reuse.
+The unrelated project/group shell remains simplified under the user's allowance;
+that allowance does not remove inspector content or any production capability.
+Production remains unchanged. This revision ran isolated strict TypeScript/build
+and source/link/whitespace review only; no designer browser or full app test run.

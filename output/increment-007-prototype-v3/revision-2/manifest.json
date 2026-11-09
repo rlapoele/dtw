@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-09",
+  "base": "52e8009",
+  "revision": 2,
+  "scope": "V3-R1 candidate correction and original inspector content restoration; awaiting user review before renewed analyst review",
+  "files": {
+    "prototypes/increment-007-v3/BaselineInspector.tsx": {
+      "sha256": "48e8534ef305f1ab5a817049c111694020652c635618a4fae8796f7b9a76f82c",
+      "bytes": 10138
+    },
+    "prototypes/increment-007-v3/DESIGN-V3.md": {
+      "sha256": "76b4d35561f56994b347e1b4d5590e61d4430c96c20c6b9b3977e150483a171c",
+      "bytes": 21775
+    },
+    "prototypes/increment-007-v3/Supplement.tsx": {
+      "sha256": "b952397816fc39d7bbbd89c82eac8c643d51a6bab7469365f00bea5dca408b77",
+      "bytes": 22467
+    },
+    "prototypes/increment-007-v3/baseline-adapter.ts": {
+      "sha256": "748fe6fc2532c060929fbed9f4f081a8895cb32ddb8492b620fc0e0c48660fb5",
+      "bytes": 2838
+    },
+    "prototypes/increment-007-v3/index.html": {
+      "sha256": "0de87704286a48cdd8ae2ef139be28407d0da22c34d31967b8a9bdb0ef01f309",
+      "bytes": 263
+    },
+    "prototypes/increment-007-v3/main.tsx": {
+      "sha256": "29cab3d6ae1438bcaf0484253af786ccd69056d5e624df98a19f47aea98e88d7",
+      "bytes": 36099
+    },
+    "prototypes/increment-007-v3/prototype.css": {
+      "sha256": "622563987b6807dd7b0289057b9e836f909231cb92534943779eafee110fb74e",
+      "bytes": 3239
+    },
+    "prototypes/increment-007-v3/specimens.ts": {
+      "sha256": "66c5bc45fdcc8646f95a9f11ac4476b1759b15a9be4133311ef6daedda37bd4e",
+      "bytes": 5126
+    },
+    "prototypes/increment-007-v3/tsconfig.json": {
+      "sha256": "5feca4ba3ae9cbd8ec09412c2b16571c7ede85fd040b1c9342148bff0ebcaf4d",
+      "bytes": 461
+    },
+    "prototypes/increment-007-v3/vite.config.ts": {
+      "sha256": "698c7e2713444209d7ff39c3ee8b167dfc5e937f679cd9bb4f0f3166862802fe",
+      "bytes": 762
+    }
+  }
+}

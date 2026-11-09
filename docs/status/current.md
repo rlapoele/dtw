@@ -2,11 +2,13 @@
 
 > Last updated: 9 November 2026
 >
-> Phase: Increment 007 V3 analyst review completed with one required finding; contract Draft
+> Phase: Increment 007 V3-R1 prototype correction ready for user review; contract Draft
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
+
+**Increment 007 V3 revision 2 ready for user review — 9 November 2026:** the user authorized a designer correction of V3-R1 and explicitly requested all original token-inspector components/content alongside production controls and token-list content. The separate designer corrected same-attempt recovery and guarded departure inside the local mutation dialog and restored the missing inspector content. The [design notes and fidelity matrix](../../prototypes/increment-007-v3/DESIGN-V3.md), [revision-2 snapshot](../../output/increment-007-prototype-v3/revision-2/manifest.json) and [coordinator observations/images](../../output/increment-007-prototype-v3/revision-2/observations.md) identify the candidate. Fresh isolated browser checks cover failed checks, preserved exact fields/focus, safe/unsafe departure, confirmed acceptance/rejection, list content and representative full inspector paths. Isolated typecheck/build and whitespace checks pass. V3-R1 is a candidate correction, not analyst-closed: show this revision to the user before renewed analyst review. No analyst handoff, final agreement or production implementation is authorized. Production, dependencies, V1/V2 and Stage A remain unchanged; staging, commits and pushes remain with the user.
 
 **Increment 007 V3 renewed analyst review — 9 November 2026:** the user approved V3 for renewed analyst review, accepting simplified exploratory content while requiring the next production version to preserve existing controls and token-list content. The [analyst review](../increments/007-v3-analyst-review.md) checks the frozen [ten-file V3 snapshot](../../output/increment-007-prototype-v3/manifest.json) against agreed policies and current production. The [Draft contract](../increments/007-local-retention-and-backup.md) preserves AC-1–19 and adds AC-20–24 for explicit production preservation, resource feedback, deliberate recovered-input review, reachable unknown-result recovery and identity-safe All content. One required finding remains: the token-creation modal can block access to recovery/departure actions after an unknown result (V3-R1). A bounded design correction is required before final agreement; material revisions return to the user before renewed analyst review. Production scheduling/placement and supported-build/remaining qualification scope are unresolved; agreed policies are not reopened. Final contract/design agreement and production implementation remain unauthorized.
 
@@ -92,7 +94,7 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-Review the [V3 analyst finding and updated Draft](../increments/007-v3-analyst-review.md). Recommended next work is a bounded designer correction for V3-R1, followed by user review of any material interaction revision before renewed analyst review. Settle production scheduling/placement and supported-build/qualification scope before final contract/design agreement. No further prototype correction or production implementation is started by this handoff. Preserve existing sessions, V1/V2 and Stage A; staging, commits and pushes remain with the user.
+Review the corrected V3 revision 2 prototype and its restored inspector in the user-facing artifact. Await user approval before renewed analyst review of this identified revision. V3-R1 remains pending that review; production scheduling/placement and supported-build/qualification scope remain separate readiness decisions. No Increment 007 production implementation is authorized. Preserve existing sessions, V1/V2 and Stage A; staging, commits and pushes remain with the user.
 
 The Increment 007 contract is Draft and requires its recorded decisions and resulting design before final agreement. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, concurrency qualification, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not settle them through prototype convenience.
 
