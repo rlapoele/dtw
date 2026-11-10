@@ -128,6 +128,38 @@ recorder receipts preserve the initial context used by review. No performance,
 maximum-capacity, normal-profile Safari, physical-permanence or Stage B claim
 follows. Older evidence and production remain unchanged.
 
+## Reviewed Safari readiness/supervision investigation — 10 November 2026
+
+After the finite Chrome batch, the user authorized readiness/supervision
+investigation only. The [driver diagnostic](../../output/increment-007-safari-readiness-supervision/phase-1-report.md)
+reproduced the frozen ownership helper's false-negative assumption: the launcher
+and Apple WebDriver HTTPService listener are different native processes. A new
+guarded route positively identifies the previously unused endpoint, live launcher,
+unique same-user Apple image and supporting executable metadata. One corrected
+attempt passed readiness and created an isolated Safari 27.2 automation session.
+The missing earlier receipts still limit attribution of that historical timeout.
+
+The [report](../../output/increment-007-safari-readiness-supervision/report.md) and
+[independent review](../../output/increment-007-safari-readiness-supervision/independent-review.md)
+record 37 passing offline checks and a passing natural 12-second control. The first
+controlled close was requested 2,034 ms after positive start, timed out after 3,006 ms
+with the same execute still pending, and did not produce observed early cessation.
+The worker subsequently finished naturally. Eventual target disappearance is only
+consistent with a queued close, not proof of its internal scheduling or close time.
+
+The batch stopped; the other two controlled repetitions and all 65 Safari storage
+cases are **not run**. Only the three remaining owned handles were closed during
+cleanup, ending with an empty handle list; launcher exit and endpoint disappearance
+were observed. No XPC/shared-Safari signal, native retry, source repair after the
+stop, setting change or old-evidence rewrite occurred.
+
+**G-02 remains unsatisfied for pending-execute Close Window supervision.** Readiness
+success does not qualify that watchdog route, Safari G-03/G-04 or defensive-size
+execution. Review a different safely isolated control/supervision route or obtain an
+explicit gate disposition before further Safari work; no unchanged retry, automatic
+fallback, Safari waiver or B-4 amendment follows. Production and other gates remain
+unchanged.
+
 ## Evidence carried forward
 
 The [original Stage A report](../../output/increment-007-stage-a/report.md),

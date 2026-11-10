@@ -1,0 +1,9 @@
+{
+  "target": "page-C7EE5CB9-B862-4B36-8298-0BF6F57FA921",
+  "requestAt": 1794348743630,
+  "method": "DELETE pinned exact owned current window",
+  "deadlineMs": 3000,
+  "error": "TimeoutError: The operation was aborted due to timeout",
+  "ok": false,
+  "responseAt": 1794348746636
+}

@@ -1,0 +1,45 @@
+✔ actor, unique case and lock correlation ignore unrelated receipts (1.065875ms)
+✔ natural control uses same-worker duration, not cross-context delivery order (0.112834ms)
+✔ controlled close passes only with pending, disappeared target and early witness (0.062875ms)
+✔ refuses already settled (0.11575ms)
+✔ refuses close queued (0.055584ms)
+✔ refuses close deadline (0.04475ms)
+✔ refuses wrong target remains (0.045833ms)
+✔ refuses early intervention (0.04075ms)
+✔ refuses transport failure (0.054375ms)
+✔ natural completion is never preemption (0.084458ms)
+✔ late witness is never preemption (0.062542ms)
+✔ missing positive handshake refuses (0.047333ms)
+✔ delayed start receipt cannot move the natural deadline later (0.054958ms)
+✔ refuses invalid command-start anchor undefined (0.049084ms)
+✔ refuses invalid command-start anchor null (0.043584ms)
+✔ refuses invalid command-start anchor NaN (0.048917ms)
+✔ refuses invalid command-start anchor Infinity (0.030167ms)
+✔ refuses invalid command-start anchor 100000 (0.034666ms)
+✔ refuses invalid command-start anchor -1 (0.026375ms)
+✔ listener field parser preserves distinct actual PIDs, ignores names and duplicates (0.633209ms)
+✔ nonzero command exit and raw streams remain observable (25.229708ms)
+✔ command timeout remains distinct from nonzero exit (103.438125ms)
+✔ distinct observed XPC PID validates with exact UID and executable evidence (0.619375ms)
+✔ saved native phase-1 raw receipts validate without rewriting fields (2.541875ms)
+✔ refuses wrong PID (0.141333ms)
+✔ refuses wrong UID (0.061916ms)
+✔ refuses wrong name (0.057333ms)
+✔ refuses wrong image path (0.045ms)
+✔ refuses suffix-only fake executable (0.055584ms)
+✔ refuses multiple listeners (0.039791ms)
+✔ refuses query timeout (0.055292ms)
+✔ refuses metadata error (0.078958ms)
+✔ refuses dead child (0.043417ms)
+✔ occupied endpoint refuses before spawning (0.288125ms)
+✔ early driver exit preserves failure and cleanup endpoint evidence (0.280458ms)
+✔ successful corrected identity checkpoints output and cleanup targets only launcher (0.234334ms)
+✔ checkpoint failure after launch still attempts scoped cleanup (0.099959ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 168.425458

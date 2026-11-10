@@ -1,0 +1,15 @@
+{
+  "readiness": "pass: one corrected driver launch, verified ownership, status and isolated session",
+  "g02": "fail: first controlled close exceeded three-second response deadline; no observed early cessation",
+  "controls": [
+    {"repetition": 0, "kind": "12-second nonintervention control", "status": "pass"},
+    {"repetition": 1, "kind": "pending-execute exact-window close", "status": "fail", "reason": "controller timeout after 3006 ms; execute still pending; worker later completed naturally"},
+    {"repetition": 2, "kind": "pending-execute exact-window close", "status": "not run", "reason": "stop after first controlled failure"},
+    {"repetition": 3, "kind": "pending-execute exact-window close", "status": "not run", "reason": "stop after first controlled failure"}
+  ],
+  "storageCasesExecuted": 0,
+  "safariStorageCasesNotRun": 65,
+  "defensiveStressExecuted": 0,
+  "executorObservedProcessExit": {"code": 1, "afterCleanup": true, "note": "bounded settle timer drained without further native actions"},
+  "cleanup": "three remaining owned session handles closed; last close returned []; launcher observed exit 0 and endpoint absent; recorder server closed"
+}

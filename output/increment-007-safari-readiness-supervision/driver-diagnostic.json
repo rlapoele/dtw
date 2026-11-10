@@ -1,0 +1,218 @@
+{
+  "started": "2026-11-10T22:01:06.956Z",
+  "kind": "driver-only; no HTTP or session",
+  "node": "v24.14.1",
+  "uid": 501,
+  "events": [
+    {
+      "type": "spawn",
+      "at": 1794348067008,
+      "pid": 41128
+    },
+    {
+      "type": "exit",
+      "at": 1794348067285,
+      "code": 0,
+      "signal": null
+    }
+  ],
+  "attempts": [
+    {
+      "at": 1794348067077,
+      "original": {
+        "command": "/usr/sbin/lsof",
+        "args": [
+          "-t",
+          "-a",
+          "-p",
+          "41128",
+          "-iTCP:59466",
+          "-sTCP:LISTEN"
+        ],
+        "timeoutMs": 1000,
+        "stdout": "",
+        "stderr": "",
+        "exitCode": 1,
+        "signal": null,
+        "timedOut": false,
+        "error": {
+          "name": "Error",
+          "message": "Command failed: /usr/sbin/lsof -t -a -p 41128 -iTCP:59466 -sTCP:LISTEN\n",
+          "code": 1
+        },
+        "elapsedMs": 29
+      },
+      "originalPredicate": false,
+      "numeric": {
+        "command": "/usr/sbin/lsof",
+        "args": [
+          "-nP",
+          "-iTCP:59466",
+          "-sTCP:LISTEN",
+          "-FpcuLn"
+        ],
+        "timeoutMs": 1000,
+        "stdout": "",
+        "stderr": "",
+        "exitCode": 1,
+        "signal": null,
+        "timedOut": false,
+        "error": {
+          "name": "Error",
+          "message": "Command failed: /usr/sbin/lsof -nP -iTCP:59466 -sTCP:LISTEN -FpcuLn\n",
+          "code": 1
+        },
+        "elapsedMs": 40
+      },
+      "listenerPids": [],
+      "metadata": []
+    },
+    {
+      "at": 1794348067256,
+      "original": {
+        "command": "/usr/sbin/lsof",
+        "args": [
+          "-t",
+          "-a",
+          "-p",
+          "41128",
+          "-iTCP:59466",
+          "-sTCP:LISTEN"
+        ],
+        "timeoutMs": 1000,
+        "stdout": "",
+        "stderr": "",
+        "exitCode": 1,
+        "signal": null,
+        "timedOut": false,
+        "error": {
+          "name": "Error",
+          "message": "Command failed: /usr/sbin/lsof -t -a -p 41128 -iTCP:59466 -sTCP:LISTEN\n",
+          "code": 1
+        },
+        "elapsedMs": 36
+      },
+      "originalPredicate": false,
+      "numeric": {
+        "command": "/usr/sbin/lsof",
+        "args": [
+          "-nP",
+          "-iTCP:59466",
+          "-sTCP:LISTEN",
+          "-FpcuLn"
+        ],
+        "timeoutMs": 1000,
+        "stdout": "p41131\nccom.apple.WebDriver.HTTPService\nu501\nLrlapoele-pro\nf11\nn127.0.0.1:59466\nf12\nn[::1]:59466\n",
+        "stderr": "",
+        "exitCode": 0,
+        "signal": null,
+        "timedOut": false,
+        "error": null,
+        "elapsedMs": 42
+      },
+      "listenerPids": [
+        41131
+      ],
+      "metadata": [
+        {
+          "command": "/bin/ps",
+          "args": [
+            "-p",
+            "41131",
+            "-o",
+            "pid=,ppid=,uid=,comm="
+          ],
+          "timeoutMs": 1000,
+          "stdout": "41131     1   501 /System/Library/PrivateFrameworks/WebDriver.framework/Versions/A/XPCServices/com.apple.WebDriver.HTTPService.xpc/Contents/MacOS/com.apple.WebDriver.HTTPService\n",
+          "stderr": "",
+          "exitCode": 0,
+          "signal": null,
+          "timedOut": false,
+          "error": null,
+          "elapsedMs": 2
+        },
+        {
+          "command": "/usr/sbin/lsof",
+          "args": [
+            "-nP",
+            "-a",
+            "-p",
+            "41131",
+            "-d",
+            "txt",
+            "-Fpn"
+          ],
+          "timeoutMs": 1000,
+          "stdout": "p41131\nftxt\nn/System/Volumes/Preboot/Cryptexes/Incoming/OS/System/Library/PrivateFrameworks/WebDriver.framework/Versions/A/XPCServices/com.apple.WebDriver.HTTPService.xpc/Contents/MacOS/com.apple.WebDriver.HTTPService\nftxt\nn/private/var/db/diagnostics/logd/.plist-cache.X4UmlLPt\nftxt\nn/Library/Apple/System/Library/PrivateFrameworks/DeviceInterface.framework/Versions/A/DeviceInterface\nftxt\nn/Library/Apple/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/Resources/en.lproj/InfoPlist.strings\nftxt\nn/System/Library/CoreServices/SystemVersion.bundle/English.lproj/SystemVersion.strings\nftxt\nn/Library/Apple/System/Library/PrivateFrameworks/Mercury.framework/Versions/A/Mercury\nftxt\nn/private/var/db/analyticsd/events.allowlist\nftxt\nn/usr/lib/dyld\nftxt\nn/System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/SystemAppearance.car\nftxt\nn/Library/Apple/System/Library/PrivateFrameworks/RemotePairing.framework/Versions/A/RemotePairing\nftxt\nn/private/var/db/timezone/tz/2026f.1.0/icutz/icutz44l.dat\nftxt\nn/System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/Aqua.car\nftxt\nn/System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/FauxVibrantLight.car\nftxt\nn/System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/VibrantLight.car\nftxt\nn/Library/Apple/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice\nftxt\nn/usr/share/icu/icudt78l.dat\n",
+          "stderr": "",
+          "exitCode": 0,
+          "signal": null,
+          "timedOut": false,
+          "error": null,
+          "elapsedMs": 26
+        }
+      ]
+    }
+  ],
+  "port": 59466,
+  "beforeLaunch": {
+    "command": "/usr/sbin/lsof",
+    "args": [
+      "-nP",
+      "-iTCP:59466",
+      "-sTCP:LISTEN",
+      "-FpcuLn"
+    ],
+    "timeoutMs": 1000,
+    "stdout": "",
+    "stderr": "",
+    "exitCode": 1,
+    "signal": null,
+    "timedOut": false,
+    "error": {
+      "name": "Error",
+      "message": "Command failed: /usr/sbin/lsof -nP -iTCP:59466 -sTCP:LISTEN -FpcuLn\n",
+      "code": 1
+    },
+    "elapsedMs": 46
+  },
+  "command": "/usr/bin/safaridriver",
+  "args": [
+    "-p",
+    "59466"
+  ],
+  "spawnPid": 41128,
+  "stderr": "",
+  "stderrTruncated": false,
+  "cleanup": {
+    "requestedAt": 1794348067284,
+    "targetPid": 41128,
+    "signal": "SIGTERM",
+    "sent": true,
+    "observedExit": true,
+    "endpoint": {
+      "command": "/usr/sbin/lsof",
+      "args": [
+        "-nP",
+        "-iTCP:59466",
+        "-sTCP:LISTEN",
+        "-FpcuLn"
+      ],
+      "timeoutMs": 1000,
+      "stdout": "",
+      "stderr": "",
+      "exitCode": 1,
+      "signal": null,
+      "timedOut": false,
+      "error": {
+        "name": "Error",
+        "message": "Command failed: /usr/sbin/lsof -nP -iTCP:59466 -sTCP:LISTEN -FpcuLn\n",
+        "code": 1
+      },
+      "elapsedMs": 39
+    },
+    "endpointGone": true,
+    "completedAt": 1794348067350
+  },
+  "finished": "2026-11-10T22:01:07.350Z"
+}

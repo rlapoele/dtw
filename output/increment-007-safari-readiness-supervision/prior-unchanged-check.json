@@ -1,0 +1,9 @@
+{
+  "trackedResearchOutputFilesVerifiedAgainstHEAD": 1240,
+  "method": "git diff --name-only HEAD returned empty; baseline was clean",
+  "trackedChanges": [],
+  "untrackedStatus": [
+    "?? output/increment-007-safari-readiness-supervision/",
+    "?? research/increment-007-safari-readiness-supervision/"
+  ]
+}

@@ -1,0 +1,38 @@
+✔ actor, unique case and lock correlation ignore unrelated receipts (0.674625ms)
+✔ natural control uses same-worker duration, not cross-context delivery order (0.470291ms)
+✔ controlled close passes only with pending, disappeared target and early witness (0.062542ms)
+✔ refuses already settled (0.105042ms)
+✔ refuses close queued (0.054625ms)
+✔ refuses close deadline (0.053833ms)
+✔ refuses wrong target remains (0.048667ms)
+✔ refuses early intervention (0.045041ms)
+✔ refuses transport failure (0.053292ms)
+✔ natural completion is never preemption (0.087041ms)
+✔ late witness is never preemption (0.066042ms)
+✔ missing positive handshake refuses (0.047875ms)
+✔ listener field parser preserves distinct actual PIDs, ignores names and duplicates (0.636ms)
+✔ nonzero command exit and raw streams remain observable (25.505334ms)
+✔ command timeout remains distinct from nonzero exit (102.591792ms)
+✔ distinct observed XPC PID validates with exact UID and executable evidence (0.616625ms)
+✔ saved native phase-1 raw receipts validate without rewriting fields (2.6295ms)
+✔ refuses wrong PID (0.161875ms)
+✔ refuses wrong UID (0.064ms)
+✔ refuses wrong name (0.059417ms)
+✔ refuses wrong image path (0.042333ms)
+✔ refuses suffix-only fake executable (0.064167ms)
+✔ refuses multiple listeners (0.040708ms)
+✔ refuses query timeout (0.049208ms)
+✔ refuses metadata error (0.081041ms)
+✔ refuses dead child (0.044541ms)
+✔ occupied endpoint refuses before spawning (0.311458ms)
+✔ early driver exit preserves failure and cleanup endpoint evidence (0.276333ms)
+✔ successful corrected identity checkpoints output and cleanup targets only launcher (0.240375ms)
+✔ checkpoint failure after launch still attempts scoped cleanup (0.106375ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 166.326667

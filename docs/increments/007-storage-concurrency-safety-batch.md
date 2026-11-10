@@ -203,3 +203,20 @@ of Safari driver ownership/readiness or explicit gate disposition, before anothe
 finite supervisor attempt. No automatic new execution, B-4 waiver or production
 implementation is authorized. Suggested commit:
 `test: qualify bounded Chrome storage concurrency safety`.
+
+## Subsequent readiness/supervision investigation — 10 November 2026
+
+After committing this batch, the user authorized a separate readiness/supervision
+investigation. Its [report](../../output/increment-007-safari-readiness-supervision/report.md)
+and [independent review](../../output/increment-007-safari-readiness-supervision/independent-review.md)
+identify a reproduced launcher/listener PID-assumption defect and one successful
+corrected readiness attempt. The natural control passed; the first pending-execute
+close exceeded the three-second deadline while the command remained pending, then
+the worker finished naturally. The remaining two probes and all 65 storage cases
+were not run. No retry or repair after the native stop occurred.
+
+The original batch's unavailable evidence remains unchanged. The later readiness
+success does not convert it into a pass, and the new supervision result does not
+qualify G-02. Further Safari work requires review of a different safe control route
+or explicit gate disposition; no waiver, B-4 change or production authorization is
+implied.

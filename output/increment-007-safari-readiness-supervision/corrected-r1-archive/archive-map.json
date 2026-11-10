@@ -1,0 +1,142 @@
+[
+  {
+    "original": "research/increment-007-safari-readiness-supervision/README.md",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-safari-readiness-supervision/README.md",
+    "sha256": "68b51f542fe19c5401dcd5822e1bf60aded1c0118fdb67bd9474c84148466320"
+  },
+  {
+    "original": "research/increment-007-safari-readiness-supervision/close-controller.mjs",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-safari-readiness-supervision/close-controller.mjs",
+    "sha256": "8b8cca5673ed7cbc11642e1eb114a640223e51a17fd17c18754b5ac1a6901bbd"
+  },
+  {
+    "original": "research/increment-007-safari-readiness-supervision/corrected-preflight.mjs",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-safari-readiness-supervision/corrected-preflight.mjs",
+    "sha256": "f986c4a279bdb64598cca8f424caa7b0353cbb21e24361bdab124eb85dcc21d5"
+  },
+  {
+    "original": "research/increment-007-safari-readiness-supervision/driver-diagnostic.mjs",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-safari-readiness-supervision/driver-diagnostic.mjs",
+    "sha256": "ec79439231d58a283e2e8362de0f0001fa4bb8802e183189b3e125db09d653e0"
+  },
+  {
+    "original": "research/increment-007-safari-readiness-supervision/gate-evidence.mjs",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-safari-readiness-supervision/gate-evidence.mjs",
+    "sha256": "c7479b875b7b7d5c870bd30d119e823b533290de4282fdfe314e77c76f31c059"
+  },
+  {
+    "original": "research/increment-007-safari-readiness-supervision/gate-evidence.test.mjs",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-safari-readiness-supervision/gate-evidence.test.mjs",
+    "sha256": "eb990e757660a92ac35e285a51835c48d8872b328db04c4c6d49330face829d2"
+  },
+  {
+    "original": "research/increment-007-safari-readiness-supervision/gate-only.mjs",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-safari-readiness-supervision/gate-only.mjs",
+    "sha256": "636e85c9e6831acec1711d456f9c8088f8790008fef4feaf5086a72fe1c5efef"
+  },
+  {
+    "original": "research/increment-007-safari-readiness-supervision/offline.test.mjs",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-safari-readiness-supervision/offline.test.mjs",
+    "sha256": "a2f7b5755200b9945c6685fcf135d3d5a8f17182fb3b484e9b23583e78da3fff"
+  },
+  {
+    "original": "research/increment-007-safari-readiness-supervision/owned-xpc-driver.mjs",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-safari-readiness-supervision/owned-xpc-driver.mjs",
+    "sha256": "d5b288470edae294d043aa1d391e2e4177c6a275f9ce6f4e615934784e4b7aff"
+  },
+  {
+    "original": "research/increment-007-safari-readiness-supervision/ownership.test.mjs",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-safari-readiness-supervision/ownership.test.mjs",
+    "sha256": "68323113be9ff4339e9a71664a036f1d4eadf2ede3367a56f8738d3148bcccbb"
+  },
+  {
+    "original": "research/increment-007-storage-concurrency-safety/index.html",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-storage-concurrency-safety/index.html",
+    "sha256": "7732951c722f7ac37d05d1989fb66fbd4dca1318470ceb77661ce35765f076ab"
+  },
+  {
+    "original": "research/increment-007-storage-concurrency-safety/page.mjs",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-storage-concurrency-safety/page.mjs",
+    "sha256": "9d57d810dbcf6cf602af70ce109e5c119c5db23f886489fdad0310d70da73413"
+  },
+  {
+    "original": "research/increment-007-storage-concurrency-safety/worker.mjs",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-storage-concurrency-safety/worker.mjs",
+    "sha256": "cf49d0a1b7003f72a5c415f1d2029f2f17069f0923b640122aac8621c1d77bea"
+  },
+  {
+    "original": "research/increment-007-storage-concurrency-safety/server.mjs",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-storage-concurrency-safety/server.mjs",
+    "sha256": "2c639287a6ec6f5260b61e8ebda9aedb0d1c711c90f25f41cbad9adf65b65485"
+  },
+  {
+    "original": "research/increment-007-storage-concurrency-safety/model.mjs",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-storage-concurrency-safety/model.mjs",
+    "sha256": "3c11edd9a3bc917f2dc631c05a3985f2dc23ea36dde17c28643a515464d53814"
+  },
+  {
+    "original": "research/increment-007-stage-a/codec.mjs",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-stage-a/codec.mjs",
+    "sha256": "3ac7cfb2f71967a76fb06dffbf65465ff924b92dcece36462bf048f48e1636d0"
+  },
+  {
+    "original": "research/increment-007-worker-qualification/protocol.mjs",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-worker-qualification/protocol.mjs",
+    "sha256": "3b30bbebc791edc1915b2260a047f33210c5a18786abd6c9de5f1b093581cabd"
+  },
+  {
+    "original": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/impl/edit.js",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/impl/edit.js",
+    "sha256": "7e7bf98e740f560026df079056d3b0f5f34628124a8d34e2765fb101dde12911"
+  },
+  {
+    "original": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/impl/format.js",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/impl/format.js",
+    "sha256": "e57dee56700a844b18dea11548f9ba42b17bc857bde5bcd39554af06ca95bb1f"
+  },
+  {
+    "original": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/impl/parser.js",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/impl/parser.js",
+    "sha256": "74fae1bbebf290a04e46c5457ac5d97988146a5503ea35d9f0c4c3768acd5a26"
+  },
+  {
+    "original": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/impl/scanner.js",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/impl/scanner.js",
+    "sha256": "e737e1774f87ca88d85d73e3bafff688b78cac06b81c53b96c54da8b3ca86cd9"
+  },
+  {
+    "original": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/impl/string-intern.js",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/impl/string-intern.js",
+    "sha256": "3a0aad3f56c3e0728812c7584568c0ff200bce1ca58cf40e946f01fdb54c5752"
+  },
+  {
+    "original": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/main.d.ts",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/main.d.ts",
+    "sha256": "f1d603af05e59e26aae3d9fa7bb0138e744bfbfc9f4793ddeaabe5c85da1d30f"
+  },
+  {
+    "original": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/main.js",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/source/research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/main.js",
+    "sha256": "72ff182105e158a1505ca3ecbf3f30359abb138a3980edaef1db7f4010ffb7dc"
+  },
+  {
+    "original": "output/increment-007-safari-readiness-supervision/corrected-preflight.json",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/corrected-preflight.json",
+    "sha256": "fbba8ba97bab03a54a273192e4a8fc226f3c391b22e9b5a34d21daf24aa418b0"
+  },
+  {
+    "original": "output/increment-007-safari-readiness-supervision/corrected-preflight-notes.md",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/corrected-preflight-notes.md",
+    "sha256": "f704c02bcb4407ed633e27e637371b81e859d71ddc64d3fbd00c35c9aa45aba0"
+  },
+  {
+    "original": "output/increment-007-safari-readiness-supervision/corrected-offline-tests.txt",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/corrected-offline-tests.txt",
+    "sha256": "590a81df99bdd0e7abd0198213e488c1020babb450268a51fd8459aad16ec423"
+  },
+  {
+    "original": "output/increment-007-safari-readiness-supervision/preflight-review.md",
+    "archived": "output/increment-007-safari-readiness-supervision/corrected-r1-archive/preflight-review.md",
+    "sha256": "44fbe101b565cc0f3ea2ce03c168c3eb30d43a6329394665e843dcc2c33f2dc0"
+  }
+]

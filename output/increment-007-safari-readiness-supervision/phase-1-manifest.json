@@ -1,0 +1,30 @@
+{
+  "baseline": "0f1c1a9",
+  "phase": "1 driver-only complete; no session",
+  "entries": [
+    {
+      "path": "research/increment-007-safari-readiness-supervision/driver-diagnostic.mjs",
+      "sha256": "ec79439231d58a283e2e8362de0f0001fa4bb8802e183189b3e125db09d653e0"
+    },
+    {
+      "path": "research/increment-007-safari-readiness-supervision/README.md",
+      "sha256": "68b51f542fe19c5401dcd5822e1bf60aded1c0118fdb67bd9474c84148466320"
+    },
+    {
+      "path": "research/increment-007-safari-readiness-supervision/offline.test.mjs",
+      "sha256": "a2f7b5755200b9945c6685fcf135d3d5a8f17182fb3b484e9b23583e78da3fff"
+    },
+    {
+      "path": "output/increment-007-safari-readiness-supervision/phase-1-report.md",
+      "sha256": "51330f8092976f38fd1c61c004da12578d78b6f461a5e76a68c1777538d27684"
+    },
+    {
+      "path": "output/increment-007-safari-readiness-supervision/driver-diagnostic.json",
+      "sha256": "5d75522adfb330de90b6a33964fd0fc2a0ca250e16254261ae7a3fd6fcd41a1c"
+    },
+    {
+      "path": "research/increment-007-storage-concurrency-safety/owned-driver.mjs",
+      "sha256": "80038571f74107bc6f5396d7686bb1e8789a97c696a4ae4fffcba3249f1cc24c"
+    }
+  ]
+}

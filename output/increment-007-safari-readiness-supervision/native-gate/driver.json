@@ -1,0 +1,174 @@
+{
+  "startedAt": 1794348727977,
+  "uid": 501,
+  "events": [
+    {
+      "type": "spawn",
+      "at": 1794348728021,
+      "pid": 42214
+    },
+    {
+      "type": "exit",
+      "at": 1794348754042,
+      "code": 0,
+      "signal": null
+    }
+  ],
+  "attempts": [
+    {
+      "at": 1794348728062,
+      "numeric": {
+        "command": "/usr/sbin/lsof",
+        "args": [
+          "-nP",
+          "-iTCP:60002",
+          "-sTCP:LISTEN",
+          "-FpcuLn"
+        ],
+        "timeoutMs": 1000,
+        "stdout": "",
+        "stderr": "",
+        "exitCode": 1,
+        "signal": null,
+        "timedOut": false,
+        "error": {
+          "name": "Error",
+          "message": "Command failed: /usr/sbin/lsof -nP -iTCP:60002 -sTCP:LISTEN -FpcuLn\n",
+          "code": 1
+        },
+        "elapsedMs": 39
+      }
+    },
+    {
+      "at": 1794348728152,
+      "numeric": {
+        "command": "/usr/sbin/lsof",
+        "args": [
+          "-nP",
+          "-iTCP:60002",
+          "-sTCP:LISTEN",
+          "-FpcuLn"
+        ],
+        "timeoutMs": 1000,
+        "stdout": "p42217\nccom.apple.WebDriver.HTTPService\nu501\nLrlapoele-pro\nf11\nn127.0.0.1:60002\nf12\nn[::1]:60002\n",
+        "stderr": "",
+        "exitCode": 0,
+        "signal": null,
+        "timedOut": false,
+        "error": null,
+        "elapsedMs": 38
+      },
+      "ps": {
+        "command": "/bin/ps",
+        "args": [
+          "-p",
+          "42217",
+          "-o",
+          "pid=,ppid=,uid=,comm="
+        ],
+        "timeoutMs": 1000,
+        "stdout": "42217     1   501 /System/Library/PrivateFrameworks/WebDriver.framework/Versions/A/XPCServices/com.apple.WebDriver.HTTPService.xpc/Contents/MacOS/com.apple.WebDriver.HTTPService\n",
+        "stderr": "",
+        "exitCode": 0,
+        "signal": null,
+        "timedOut": false,
+        "error": null,
+        "elapsedMs": 2
+      },
+      "executable": {
+        "command": "/usr/sbin/lsof",
+        "args": [
+          "-nP",
+          "-a",
+          "-p",
+          "42217",
+          "-d",
+          "txt",
+          "-Fpn"
+        ],
+        "timeoutMs": 1000,
+        "stdout": "p42217\nftxt\nn/System/Volumes/Preboot/Cryptexes/Incoming/OS/System/Library/PrivateFrameworks/WebDriver.framework/Versions/A/XPCServices/com.apple.WebDriver.HTTPService.xpc/Contents/MacOS/com.apple.WebDriver.HTTPService\nftxt\nn/private/var/db/diagnostics/logd/.plist-cache.X4UmlLPt\nftxt\nn/Library/Apple/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/Resources/en.lproj/InfoPlist.strings\nftxt\nn/System/Library/CoreServices/SystemVersion.bundle/English.lproj/SystemVersion.strings\nftxt\nn/Library/Apple/System/Library/PrivateFrameworks/Mercury.framework/Versions/A/Mercury\nftxt\nn/private/var/db/analyticsd/events.allowlist\nftxt\nn/usr/lib/dyld\nftxt\nn/Library/Apple/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice\nftxt\nn/private/var/db/timezone/tz/2026f.1.0/icutz/icutz44l.dat\nftxt\nn/System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/SystemAppearance.car\nftxt\nn/Library/Apple/System/Library/PrivateFrameworks/RemotePairing.framework/Versions/A/RemotePairing\nftxt\nn/Library/Apple/System/Library/PrivateFrameworks/DeviceInterface.framework/Versions/A/DeviceInterface\nftxt\nn/usr/share/icu/icudt78l.dat\nftxt\nn/System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/Aqua.car\nftxt\nn/System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/FauxVibrantLight.car\nftxt\nn/System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/VibrantLight.car\n",
+        "stderr": "",
+        "exitCode": 0,
+        "signal": null,
+        "timedOut": false,
+        "error": null,
+        "elapsedMs": 26
+      }
+    }
+  ],
+  "stdout": "",
+  "stderr": "",
+  "stdoutTruncated": false,
+  "stderrTruncated": false,
+  "port": 60002,
+  "before": {
+    "command": "/usr/sbin/lsof",
+    "args": [
+      "-nP",
+      "-iTCP:60002",
+      "-sTCP:LISTEN",
+      "-FpcuLn"
+    ],
+    "timeoutMs": 1000,
+    "stdout": "",
+    "stderr": "",
+    "exitCode": 1,
+    "signal": null,
+    "timedOut": false,
+    "error": {
+      "name": "Error",
+      "message": "Command failed: /usr/sbin/lsof -nP -iTCP:60002 -sTCP:LISTEN -FpcuLn\n",
+      "code": 1
+    },
+    "elapsedMs": 41
+  },
+  "command": "/usr/bin/safaridriver",
+  "args": [
+    "-p",
+    "60002"
+  ],
+  "pid": 42214,
+  "ownership": {
+    "pid": 42217,
+    "uid": 501,
+    "ppid": 1,
+    "image": "/System/Library/PrivateFrameworks/WebDriver.framework/Versions/A/XPCServices/com.apple.WebDriver.HTTPService.xpc/Contents/MacOS/com.apple.WebDriver.HTTPService",
+    "executablePaths": [
+      "/System/Volumes/Preboot/Cryptexes/Incoming/OS/System/Library/PrivateFrameworks/WebDriver.framework/Versions/A/XPCServices/com.apple.WebDriver.HTTPService.xpc/Contents/MacOS/com.apple.WebDriver.HTTPService"
+    ],
+    "verifiedAt": 1794348728180
+  },
+  "cleanup": {
+    "requestedAt": 1794348754037,
+    "pid": 42214,
+    "signal": "SIGTERM",
+    "sent": true,
+    "observedExit": true,
+    "exitCode": 0,
+    "signalCode": null,
+    "endpoint": {
+      "command": "/usr/sbin/lsof",
+      "args": [
+        "-nP",
+        "-iTCP:60002",
+        "-sTCP:LISTEN",
+        "-FpcuLn"
+      ],
+      "timeoutMs": 1000,
+      "stdout": "",
+      "stderr": "",
+      "exitCode": 1,
+      "signal": null,
+      "timedOut": false,
+      "error": {
+        "name": "Error",
+        "message": "Command failed: /usr/sbin/lsof -nP -iTCP:60002 -sTCP:LISTEN -FpcuLn\n",
+        "code": 1
+      },
+      "elapsedMs": 70
+    },
+    "endpointGone": true,
+    "completedAt": 1794348754133
+  }
+}
