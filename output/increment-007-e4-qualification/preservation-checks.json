@@ -1,0 +1,21 @@
+{
+  "output/increment-007-exceptional-detail-design/manifest.json": {
+    "manifestSha256": "00adc180f205819cc8549ce5223832886fe023139ac2a302071a4606bfe70ae0",
+    "expectedManifestSha256": "00adc180f205819cc8549ce5223832886fe023139ac2a302071a4606bfe70ae0",
+    "files": 25,
+    "mismatches": []
+  },
+  "output/increment-007-detail-projection-comparison/manifest-r1.json": {
+    "manifestSha256": "1934c993a4a33834a5553130c270665c232d8216eb4ef9eb7a2b08368ad11796",
+    "expectedManifestSha256": "1934c993a4a33834a5553130c270665c232d8216eb4ef9eb7a2b08368ad11796",
+    "files": 131,
+    "mismatches": []
+  },
+  "App.tsx": {
+    "sameAsV4": true
+  },
+  "Editor.tsx": {
+    "sameAsV4": true
+  },
+  "productionAndPriorArtifactDiff": []
+}

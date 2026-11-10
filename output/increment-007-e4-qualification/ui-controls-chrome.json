@@ -1,0 +1,660 @@
+{
+  "start": "2026-11-10T13:52:31.840Z",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B123\n",
+  "hardware": "not queried: sandbox sysctl denied",
+  "node": "v24.14.1",
+  "cases": [
+    {
+      "id": "S3-001-small-ordinary-load",
+      "label": "small-ordinary-load",
+      "status": "pass",
+      "actionWallMs": 34,
+      "value": {
+        "value": {
+          "kind": "small",
+          "tokens": 2
+        },
+        "worker": {
+          "op": "stats",
+          "encodings": 0,
+          "frames": 0,
+          "activeUnits": 0
+        }
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 7.553,
+          "ThreadControllerImpl::RunTask": 7.545,
+          "FunctionCall": 5.088,
+          "EventDispatch": 0.005,
+          "UpdateLayoutTree": 0.936,
+          "Layout": 5.1,
+          "Paint": 0.412
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24954,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24954,
+              "tid": 336561
+            }
+          ],
+          "wholeTasks": 58,
+          "mainCompleteEvents": 191,
+          "interval": {
+            "start": 19827732854,
+            "end": 19827769073
+          }
+        }
+      }
+    },
+    {
+      "id": "S3-002-small-ordinary-select",
+      "label": "small-ordinary-select",
+      "status": "pass",
+      "actionWallMs": 46,
+      "value": {
+        "inputs": 8,
+        "worker": {
+          "op": "stats",
+          "encodings": 0,
+          "frames": 0,
+          "activeUnits": 0
+        },
+        "sourceNodes": 0
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 11.308,
+          "ThreadControllerImpl::RunTask": 11.291,
+          "EventDispatch": 9.834,
+          "FunctionCall": 9.627,
+          "UpdateLayoutTree": 0.872,
+          "Layout": 2.779,
+          "Paint": 0.455
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24954,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24954,
+              "tid": 336561
+            }
+          ],
+          "wholeTasks": 96,
+          "mainCompleteEvents": 359,
+          "interval": {
+            "start": 19827862876,
+            "end": 19827909773
+          }
+        }
+      }
+    },
+    {
+      "id": "S3-003-small-first-open",
+      "label": "small-first-open",
+      "status": "pass",
+      "actionWallMs": 92,
+      "value": {
+        "activation": 413,
+        "maxWire": 801,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 413.5,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.30000000074505806,
+        "assembled": 413.69999999925494,
+        "mounted": 414,
+        "painted": 445.6000000014901,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.102,
+          "ThreadControllerImpl::RunTask": 1.093,
+          "EventDispatch": 0.398,
+          "FunctionCall": 0.178,
+          "UpdateLayoutTree": 0.11,
+          "Layout": 0.227,
+          "Paint": 0.186
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24954,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24954,
+              "tid": 336561
+            }
+          ],
+          "wholeTasks": 127,
+          "mainCompleteEvents": 400,
+          "interval": {
+            "start": 19827944614,
+            "end": 19828036985
+          }
+        }
+      }
+    },
+    {
+      "id": "S3-004-small-exact-complete-equality",
+      "label": "small-exact-complete-equality",
+      "status": "pass",
+      "actionWallMs": 1,
+      "value": {
+        "units": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "worker": {
+          "op": "stats",
+          "encodings": 1,
+          "frames": 1,
+          "activeUnits": 562
+        }
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.261,
+          "ThreadControllerImpl::RunTask": 0.258,
+          "EventDispatch": 0.004,
+          "FunctionCall": 0.014
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24954,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24954,
+              "tid": 336561
+            }
+          ],
+          "wholeTasks": 14,
+          "mainCompleteEvents": 23,
+          "interval": {
+            "start": 19828067820,
+            "end": 19828069772
+          }
+        }
+      }
+    },
+    {
+      "id": "S3-005-small-draft-failure-retry",
+      "label": "small-draft-failure-retry",
+      "status": "pass",
+      "actionWallMs": 356,
+      "value": {
+        "literal": "0.",
+        "reference": "target",
+        "appliedSourceSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "appliedUnits": 562,
+        "retryFocus": "Literal color",
+        "scope": "actual worker error, explicit Retry and real production fields; no Apply performed"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 4.458,
+          "ThreadControllerImpl::RunTask": 4.431,
+          "EventDispatch": 2.689,
+          "FunctionCall": 2.647,
+          "UpdateLayoutTree": 0.558,
+          "Layout": 0.665,
+          "Paint": 0.316
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24954,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24954,
+              "tid": 336561
+            }
+          ],
+          "wholeTasks": 554,
+          "mainCompleteEvents": 1997,
+          "interval": {
+            "start": 19828105129,
+            "end": 19828461520
+          }
+        }
+      }
+    },
+    {
+      "id": "S3-006-small-real-response-close-fence",
+      "label": "small-real-response-close-fence",
+      "status": "pass",
+      "actionWallMs": 132,
+      "value": {
+        "preparing": true,
+        "released": 1,
+        "nodes": 0,
+        "events": [
+          {
+            "op": "source",
+            "context": {
+              "worker": 1,
+              "epoch": 1,
+              "revision": 1,
+              "selection": 2,
+              "request": 5
+            },
+            "at": 413.5,
+            "bytes": 217
+          },
+          {
+            "op": "chunk",
+            "context": {
+              "worker": 1,
+              "epoch": 1,
+              "revision": 1,
+              "selection": 2,
+              "request": 5
+            },
+            "at": 413.69999999925494,
+            "bytes": 801
+          },
+          {
+            "op": "stats",
+            "at": 497.8999999985099,
+            "bytes": 57
+          },
+          {
+            "op": "error",
+            "context": {
+              "worker": 1,
+              "epoch": 1,
+              "revision": 1,
+              "selection": 3,
+              "request": 8
+            },
+            "at": 613.3000000007451,
+            "bytes": 144
+          },
+          {
+            "op": "source",
+            "context": {
+              "worker": 1,
+              "epoch": 1,
+              "revision": 1,
+              "selection": 3,
+              "request": 11
+            },
+            "at": 762.8000000007451,
+            "bytes": 218
+          },
+          {
+            "op": "chunk",
+            "context": {
+              "worker": 1,
+              "epoch": 1,
+              "revision": 1,
+              "selection": 3,
+              "request": 11
+            },
+            "at": 763,
+            "bytes": 802
+          },
+          {
+            "op": "source",
+            "context": {
+              "worker": 1,
+              "epoch": 1,
+              "revision": 1,
+              "selection": 4,
+              "request": 16
+            },
+            "at": 1135.6000000014901,
+            "bytes": 218
+          },
+          {
+            "ignored": true,
+            "op": "source"
+          }
+        ],
+        "worker": {
+          "op": "stats",
+          "encodings": 3,
+          "frames": 2,
+          "activeUnits": 0
+        },
+        "scope": "real worker source response held at renderer harness boundary, then close before delivery"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 2.015,
+          "ThreadControllerImpl::RunTask": 1.971,
+          "EventDispatch": 0.39,
+          "FunctionCall": 0.244,
+          "Paint": 0.414,
+          "UpdateLayoutTree": 0.17,
+          "Layout": 0.799
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24954,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24954,
+              "tid": 336561
+            }
+          ],
+          "wholeTasks": 195,
+          "mainCompleteEvents": 695,
+          "interval": {
+            "start": 19828606990,
+            "end": 19828739084
+          }
+        }
+      }
+    },
+    {
+      "id": "S3-007-small-real-response-selection-fence",
+      "label": "small-real-response-selection-fence",
+      "status": "pass",
+      "actionWallMs": 127,
+      "value": {
+        "released": 1,
+        "nodes": 0,
+        "events": [
+          {
+            "op": "error",
+            "context": {
+              "worker": 1,
+              "epoch": 1,
+              "revision": 1,
+              "selection": 3,
+              "request": 8
+            },
+            "at": 613.3000000007451,
+            "bytes": 144
+          },
+          {
+            "op": "source",
+            "context": {
+              "worker": 1,
+              "epoch": 1,
+              "revision": 1,
+              "selection": 3,
+              "request": 11
+            },
+            "at": 762.8000000007451,
+            "bytes": 218
+          },
+          {
+            "op": "chunk",
+            "context": {
+              "worker": 1,
+              "epoch": 1,
+              "revision": 1,
+              "selection": 3,
+              "request": 11
+            },
+            "at": 763,
+            "bytes": 802
+          },
+          {
+            "op": "source",
+            "context": {
+              "worker": 1,
+              "epoch": 1,
+              "revision": 1,
+              "selection": 4,
+              "request": 16
+            },
+            "at": 1135.6000000014901,
+            "bytes": 218
+          },
+          {
+            "ignored": true,
+            "op": "source"
+          },
+          {
+            "op": "stats",
+            "at": 1166.699999999255,
+            "bytes": 55
+          },
+          {
+            "op": "source",
+            "context": {
+              "worker": 1,
+              "epoch": 1,
+              "revision": 1,
+              "selection": 4,
+              "request": 20
+            },
+            "at": 1340.3999999985099,
+            "bytes": 218
+          },
+          {
+            "ignored": true,
+            "op": "source"
+          }
+        ]
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 6.609,
+          "ThreadControllerImpl::RunTask": 6.572,
+          "EventDispatch": 5.425,
+          "FunctionCall": 5.312,
+          "UpdateLayoutTree": 0.561,
+          "Paint": 0.518,
+          "Layout": 0.767
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24954,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24954,
+              "tid": 336561
+            }
+          ],
+          "wholeTasks": 188,
+          "mainCompleteEvents": 720,
+          "interval": {
+            "start": 19828809610,
+            "end": 19828937193
+          }
+        }
+      }
+    }
+  ],
+  "fixtures": {
+    "65535": {
+      "counts": {
+        "values": 50,
+        "strings": 65432,
+        "snapshotBytes": 65685,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "1b4b5241cf1af157ac990eb238c210366180d95076845d897ff2afe706beca8e",
+      "units": 65535,
+      "sha256": "739717a5620a061f514a96948c80ae45044d37789d822b85e56d500522d442e6"
+    },
+    "65536": {
+      "counts": {
+        "values": 50,
+        "strings": 65433,
+        "snapshotBytes": 65686,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "f541c827192eda796a5c664e358ff48461b1e74ba040cfd18b3458041cc7fd00",
+      "units": 65536,
+      "sha256": "580ba4bf0469832196e5eae3af3925a2435b684ede04aa2e3138169b4ee2f201"
+    },
+    "65537": {
+      "counts": {
+        "values": 50,
+        "strings": 65434,
+        "snapshotBytes": 65687,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "be913eee6cf5fb75ff3afd0fa790f12ca11faeadbb7090a639132e14530cfb00",
+      "units": 65537,
+      "sha256": "1778a2bf01855bb397d866ab725d2806263553003b036f68fd8388ab93ade7c8"
+    },
+    "small": {
+      "counts": {
+        "values": 50,
+        "strings": 459,
+        "snapshotBytes": 712,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "76de8975e9f832b0c443f8f6f14358e2c15c6834d89b3cba6ce0af9323b95bad",
+      "units": 562,
+      "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+    },
+    "escape": {
+      "counts": {
+        "values": 50,
+        "strings": 12428,
+        "snapshotBytes": 72681,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "dec6e7a70337e005638b45a1344ff8002e44264f8be2ed230b62a7c8ef8006ac",
+      "units": 72531,
+      "sha256": "a14830ac9505757363ad508cea5119b29868a472ab37fbb919ec9d16c80ad14c"
+    },
+    "raw": {
+      "counts": {
+        "values": 211,
+        "strings": 4129793,
+        "snapshotBytes": 4130789,
+        "lexical": 733,
+        "maxDepth": 10
+      },
+      "canonicalSha256": "839f50af7cf1b81692c6be2cea1c40ceebc6cbc4b4f88a17dd78cb7e43963eba",
+      "units": 4134504,
+      "sha256": "b7b6c3ea2c4bf426e52144643a6e556d1312015ed49efecee218d70f6660e56e"
+    },
+    "escaped-large": {
+      "counts": {
+        "values": 211,
+        "strings": 1324277,
+        "snapshotBytes": 7940273,
+        "lexical": 733,
+        "maxDepth": 10
+      },
+      "canonicalSha256": "26d88327513f983588293c891373869032dbe18fa86b10e0b24578b55065a0a2",
+      "units": 7943988,
+      "sha256": "ed67463872cb5c7c0fdaf749ad1969f2749832e120082319ca8cb61095610c31"
+    },
+    "long-color": {
+      "counts": {
+        "values": 50,
+        "strings": 4553,
+        "snapshotBytes": 4806,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "fdef5cc062e5f77365d1789dac776fbdd351fa42df13b77570daf681e9a321d0",
+      "units": 4656,
+      "sha256": "0f3f5a2f5777cc62f30de7e417a636bda2e6dbd173470222717a5d211e05265b"
+    }
+  },
+  "limits": {
+    "ordinaryTaskMs": 100,
+    "exceptionalTaskMs": 250,
+    "exceptionalAboveUnits": 65536,
+    "perActionMs": 5000,
+    "safetyWatchdogMs": 30000
+  },
+  "gaps": [
+    "Safari defensive/native cases pending supervisor gate",
+    "AT not run",
+    "Browser Find/actual200%zoom require observed native browser UI proof; no geometry substitute"
+  ],
+  "clipboardProcedure": "User approved overwrite with synthetic source/document and read only after correlated native copy. No original clipboard read, save or restore.",
+  "origin": "http://127.0.0.1:54978",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-e4-5gaO7G",
+  "pid": 24940,
+  "stderr": "\nDevTools listening on ws://127.0.0.1:54980/devtools/browser/9249d621-dcc1-404a-a5bb-61d64df4526e\nTrying to load the allocator multiple times. This is *not* supported.\n",
+  "browser": "157.0.8103.50",
+  "coldStartup": {
+    "wallMs": 124,
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+    "status": "observed only; no task pass attributed to navigation"
+  },
+  "active": "S3-007-small-real-response-selection-fence",
+  "actualZoom": {
+    "before": {
+      "innerWidth": 1600,
+      "devicePixelRatio": 1
+    },
+    "after": {
+      "innerWidth": 1600,
+      "devicePixelRatio": 1
+    },
+    "status": "unqualified: shortcut did not establish200percent",
+    "method": "actual keyboard Cmd+= five times; no device-metrics emulation used as zoom proof"
+  },
+  "compact": {
+    "width": 760,
+    "height": 900,
+    "sourceUnits": 562,
+    "scope": "safe modest source only; screenshot/geometry is not AT or browserzoom evidence"
+  },
+  "end": "2026-11-10T13:52:34.210Z",
+  "cleanup": {
+    "ownedBrowserClosed": true,
+    "ownedServerClosed": true,
+    "user4227Untouched": true
+  }
+}

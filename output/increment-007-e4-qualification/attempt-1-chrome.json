@@ -1,0 +1,1659 @@
+{
+  "start": "2026-11-10T13:49:02.097Z",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B123\n",
+  "hardware": "not queried: sandbox sysctl denied",
+  "node": "v24.14.1",
+  "cases": [
+    {
+      "id": "001-small-ordinary-load",
+      "label": "small-ordinary-load",
+      "status": "pass",
+      "actionWallMs": 42,
+      "value": {
+        "value": {
+          "kind": "small",
+          "tokens": 2
+        },
+        "worker": {
+          "op": "stats",
+          "encodings": 0,
+          "frames": 0,
+          "activeUnits": 0
+        }
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 12.395,
+          "ThreadControllerImpl::RunTask": 12.388,
+          "FunctionCall": 6.955,
+          "EventDispatch": 0.004,
+          "UpdateLayoutTree": 2.605,
+          "Layout": 5.98,
+          "Paint": 1.216
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 53,
+          "mainCompleteEvents": 180,
+          "interval": {
+            "start": 19618341981,
+            "end": 19618385195
+          }
+        }
+      }
+    },
+    {
+      "id": "002-small-ordinary-select",
+      "label": "small-ordinary-select",
+      "status": "pass",
+      "actionWallMs": 73,
+      "value": {
+        "inputs": 8,
+        "worker": {
+          "op": "stats",
+          "encodings": 0,
+          "frames": 0,
+          "activeUnits": 0
+        },
+        "sourceNodes": 0
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 17.037,
+          "ThreadControllerImpl::RunTask": 17.018,
+          "EventDispatch": 12.569,
+          "FunctionCall": 12.386,
+          "UpdateLayoutTree": 1.806,
+          "Layout": 3.029,
+          "Paint": 0.577
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 105,
+          "mainCompleteEvents": 362,
+          "interval": {
+            "start": 19618420710,
+            "end": 19618494224
+          }
+        }
+      }
+    },
+    {
+      "id": "003-small-first-open",
+      "label": "small-first-open",
+      "status": "pass",
+      "actionWallMs": 91,
+      "value": {
+        "activation": 341.3999999985099,
+        "maxWire": 801,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 345.5,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 3.5,
+        "assembled": 345.69999999925494,
+        "mounted": 345.8999999985099,
+        "painted": 374
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 3.914,
+          "ThreadControllerImpl::RunTask": 3.902,
+          "EventDispatch": 0.558,
+          "FunctionCall": 0.352,
+          "UpdateLayoutTree": 0.155,
+          "Layout": 0.332,
+          "Paint": 0.182
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 126,
+          "mainCompleteEvents": 383,
+          "interval": {
+            "start": 19618530586,
+            "end": 19618622590
+          }
+        }
+      }
+    },
+    {
+      "id": "004-small-exact-complete-equality",
+      "label": "small-exact-complete-equality",
+      "status": "pass",
+      "actionWallMs": 1,
+      "value": {
+        "units": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "worker": {
+          "op": "stats",
+          "encodings": 1,
+          "frames": 1,
+          "activeUnits": 562
+        }
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.389,
+          "ThreadControllerImpl::RunTask": 0.386,
+          "EventDispatch": 0.004,
+          "FunctionCall": 0.013
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 10,
+          "mainCompleteEvents": 21,
+          "interval": {
+            "start": 19618651821,
+            "end": 19618653968
+          }
+        }
+      }
+    },
+    {
+      "id": "005-small-warmup",
+      "label": "small-warmup",
+      "status": "pass",
+      "actionWallMs": 35,
+      "value": {
+        "activation": 341.3999999985099,
+        "maxWire": 801,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 345.5,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 3.5,
+        "assembled": 345.69999999925494,
+        "mounted": 345.8999999985099,
+        "painted": 374
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.297,
+          "ThreadControllerImpl::RunTask": 1.284,
+          "EventDispatch": 0.081,
+          "FunctionCall": 0.051,
+          "UpdateLayoutTree": 0.635,
+          "Layout": 0.174
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 60,
+          "mainCompleteEvents": 192,
+          "interval": {
+            "start": 19618790583,
+            "end": 19618826388
+          }
+        }
+      }
+    },
+    {
+      "id": "006-small-sample-1",
+      "label": "small-sample-1",
+      "status": "pass",
+      "actionWallMs": 35,
+      "value": {
+        "activation": 608,
+        "maxWire": 801,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 608.1999999992549,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.09999999776482582,
+        "assembled": 608.1999999992549,
+        "mounted": 608.5,
+        "painted": 640.5999999977648
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.835,
+          "ThreadControllerImpl::RunTask": 0.823,
+          "EventDispatch": 0.086,
+          "FunctionCall": 0.049,
+          "UpdateLayoutTree": 0.122,
+          "Layout": 0.19
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 60,
+          "mainCompleteEvents": 192,
+          "interval": {
+            "start": 19618907531,
+            "end": 19618943584
+          }
+        }
+      }
+    },
+    {
+      "id": "007-small-sample-2",
+      "label": "small-sample-2",
+      "status": "pass",
+      "actionWallMs": 35,
+      "value": {
+        "activation": 724.6999999992549,
+        "maxWire": 802,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 724.8999999985099,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.09999999776482582,
+        "assembled": 725.0999999977648,
+        "mounted": 725.0999999977648,
+        "painted": 757.3000000007451
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.087,
+          "ThreadControllerImpl::RunTask": 1.069,
+          "EventDispatch": 0.085,
+          "FunctionCall": 0.053,
+          "UpdateLayoutTree": 0.175,
+          "Layout": 0.266
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 64,
+          "mainCompleteEvents": 197,
+          "interval": {
+            "start": 19619024572,
+            "end": 19619060242
+          }
+        }
+      }
+    },
+    {
+      "id": "008-small-sample-3",
+      "label": "small-sample-3",
+      "status": "pass",
+      "actionWallMs": 35,
+      "value": {
+        "activation": 841.5999999977648,
+        "maxWire": 802,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 841.8000000007451,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 842,
+        "mounted": 842.1999999992549,
+        "painted": 874
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.074,
+          "ThreadControllerImpl::RunTask": 1.041,
+          "EventDispatch": 0.088,
+          "FunctionCall": 0.039,
+          "UpdateLayoutTree": 0.175,
+          "Layout": 0.265
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 76,
+          "mainCompleteEvents": 208,
+          "interval": {
+            "start": 19619141916,
+            "end": 19619177434
+          }
+        }
+      }
+    },
+    {
+      "id": "009-small-sample-4",
+      "label": "small-sample-4",
+      "status": "pass",
+      "actionWallMs": 37,
+      "value": {
+        "activation": 958.3000000007451,
+        "maxWire": 802,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 958.6999999992549,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.09999999776482582,
+        "assembled": 958.8000000007451,
+        "mounted": 958.8999999985099,
+        "painted": 990.6999999992549
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 2.513,
+          "ThreadControllerImpl::RunTask": 2.509,
+          "EventDispatch": 0.094,
+          "FunctionCall": 0.066,
+          "UpdateLayoutTree": 0.22,
+          "Layout": 1.141
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 79,
+          "mainCompleteEvents": 228,
+          "interval": {
+            "start": 19619275399,
+            "end": 19619312814
+          }
+        }
+      }
+    },
+    {
+      "id": "010-small-sample-5",
+      "label": "small-sample-5",
+      "status": "pass",
+      "actionWallMs": 32,
+      "value": {
+        "activation": 1091.699999999255,
+        "maxWire": 802,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 1092.0999999977648,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 1092.199999999255,
+        "mounted": 1092.300000000745,
+        "painted": 1124
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.017,
+          "ThreadControllerImpl::RunTask": 1,
+          "EventDispatch": 0.073,
+          "FunctionCall": 0.037,
+          "UpdateLayoutTree": 0.178,
+          "Layout": 0.272
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 60,
+          "mainCompleteEvents": 188,
+          "interval": {
+            "start": 19619409422,
+            "end": 19619442820
+          }
+        }
+      }
+    },
+    {
+      "id": "011-small-sample-6",
+      "label": "small-sample-6",
+      "status": "pass",
+      "actionWallMs": 35,
+      "value": {
+        "activation": 1225.0999999977648,
+        "maxWire": 802,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 1225.5,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.09999999776482582,
+        "assembled": 1225.5999999977648,
+        "mounted": 1225.699999999255,
+        "painted": 1257.3999999985099
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.753,
+          "ThreadControllerImpl::RunTask": 0.749,
+          "EventDispatch": 0.072,
+          "FunctionCall": 0.066,
+          "UpdateLayoutTree": 0.128,
+          "Layout": 0.18
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 60,
+          "mainCompleteEvents": 192,
+          "interval": {
+            "start": 19619526000,
+            "end": 19619561569
+          }
+        }
+      }
+    },
+    {
+      "id": "012-small-sample-7",
+      "label": "small-sample-7",
+      "status": "pass",
+      "actionWallMs": 34,
+      "value": {
+        "activation": 1341.8999999985099,
+        "maxWire": 802,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 1342.800000000745,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 1342.8999999985099,
+        "mounted": 1343.199999999255,
+        "painted": 1374.199999999255
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.747,
+          "ThreadControllerImpl::RunTask": 0.735,
+          "EventDispatch": 0.057,
+          "FunctionCall": 0.039,
+          "UpdateLayoutTree": 0.125,
+          "Layout": 0.184
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 60,
+          "mainCompleteEvents": 185,
+          "interval": {
+            "start": 19619641306,
+            "end": 19619675941
+          }
+        }
+      }
+    },
+    {
+      "id": "013-small-sample-8",
+      "label": "small-sample-8",
+      "status": "pass",
+      "actionWallMs": 35,
+      "value": {
+        "activation": 1458,
+        "maxWire": 802,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 1458.199999999255,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0,
+        "assembled": 1458.300000000745,
+        "mounted": 1458.3999999985099,
+        "painted": 1490.699999999255
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.007,
+          "ThreadControllerImpl::RunTask": 0.989,
+          "EventDispatch": 0.075,
+          "FunctionCall": 0.046,
+          "UpdateLayoutTree": 0.161,
+          "Layout": 0.251
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 58,
+          "mainCompleteEvents": 192,
+          "interval": {
+            "start": 19619775328,
+            "end": 19619810633
+          }
+        }
+      }
+    },
+    {
+      "id": "014-small-sample-9",
+      "label": "small-sample-9",
+      "status": "pass",
+      "actionWallMs": 35,
+      "value": {
+        "activation": 1591.5999999977648,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 1592,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.09999999776482582,
+        "assembled": 1592.0999999977648,
+        "mounted": 1592.300000000745,
+        "painted": 1624.0999999977648
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.238,
+          "ThreadControllerImpl::RunTask": 1.217,
+          "EventDispatch": 0.089,
+          "FunctionCall": 0.058,
+          "UpdateLayoutTree": 0.199,
+          "Layout": 0.327
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 60,
+          "mainCompleteEvents": 190,
+          "interval": {
+            "start": 19619892166,
+            "end": 19619927785
+          }
+        }
+      }
+    },
+    {
+      "id": "015-small-sample-10",
+      "label": "small-sample-10",
+      "status": "pass",
+      "actionWallMs": 39,
+      "value": {
+        "activation": 1708.300000000745,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 1708.5999999977648,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.19999999925494194,
+        "assembled": 1708.699999999255,
+        "mounted": 1708.800000000745,
+        "painted": 1740.699999999255
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.403,
+          "ThreadControllerImpl::RunTask": 1.373,
+          "EventDispatch": 0.109,
+          "FunctionCall": 0.057,
+          "UpdateLayoutTree": 0.248,
+          "Layout": 0.362
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 64,
+          "mainCompleteEvents": 224,
+          "interval": {
+            "start": 19620042293,
+            "end": 19620081941
+          }
+        }
+      }
+    },
+    {
+      "id": "016-small-sample-11",
+      "label": "small-sample-11",
+      "status": "pass",
+      "actionWallMs": 32,
+      "value": {
+        "activation": 1858.8999999985099,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 1859.300000000745,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 1859.300000000745,
+        "mounted": 1859.5999999977648,
+        "painted": 1890.800000000745
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.824,
+          "ThreadControllerImpl::RunTask": 0.809,
+          "EventDispatch": 0.058,
+          "FunctionCall": 0.078,
+          "UpdateLayoutTree": 0.125,
+          "Layout": 0.2
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 60,
+          "mainCompleteEvents": 192,
+          "interval": {
+            "start": 19620194496,
+            "end": 19620227375
+          }
+        }
+      }
+    },
+    {
+      "id": "017-small-sample-12",
+      "label": "small-sample-12",
+      "status": "pass",
+      "actionWallMs": 36,
+      "value": {
+        "activation": 2008.300000000745,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 2008.5999999977648,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 2008.699999999255,
+        "mounted": 2008.699999999255,
+        "painted": 2040.699999999255
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.674,
+          "ThreadControllerImpl::RunTask": 0.661,
+          "EventDispatch": 0.053,
+          "FunctionCall": 0.038,
+          "UpdateLayoutTree": 0.098,
+          "Layout": 0.153
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 58,
+          "mainCompleteEvents": 191,
+          "interval": {
+            "start": 19620324357,
+            "end": 19620360849
+          }
+        }
+      }
+    },
+    {
+      "id": "018-small-sample-13",
+      "label": "small-sample-13",
+      "status": "pass",
+      "actionWallMs": 34,
+      "value": {
+        "activation": 2141.300000000745,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 2141.5,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 2141.5,
+        "mounted": 2141.599999997765,
+        "painted": 2174.099999997765
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.611,
+          "ThreadControllerImpl::RunTask": 0.603,
+          "EventDispatch": 0.052,
+          "FunctionCall": 0.036,
+          "UpdateLayoutTree": 0.091,
+          "Layout": 0.145
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 58,
+          "mainCompleteEvents": 179,
+          "interval": {
+            "start": 19620457452,
+            "end": 19620491684
+          }
+        }
+      }
+    },
+    {
+      "id": "019-small-sample-14",
+      "label": "small-sample-14",
+      "status": "pass",
+      "actionWallMs": 30,
+      "value": {
+        "activation": 2274.599999997765,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 2274.800000000745,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0,
+        "assembled": 2275,
+        "mounted": 2275,
+        "painted": 2307.39999999851
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.686,
+          "ThreadControllerImpl::RunTask": 0.675,
+          "EventDispatch": 0.06,
+          "FunctionCall": 0.036,
+          "UpdateLayoutTree": 0.096,
+          "Layout": 0.155
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 64,
+          "mainCompleteEvents": 202,
+          "interval": {
+            "start": 19620595012,
+            "end": 19620625214
+          }
+        }
+      }
+    },
+    {
+      "id": "020-small-sample-15",
+      "label": "small-sample-15",
+      "status": "pass",
+      "actionWallMs": 33,
+      "value": {
+        "activation": 2408,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 2408.39999999851,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.19999999925494194,
+        "assembled": 2408.5,
+        "mounted": 2408.5,
+        "painted": 2440.699999999255
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.467,
+          "ThreadControllerImpl::RunTask": 0.464,
+          "EventDispatch": 0.064,
+          "FunctionCall": 0.038,
+          "UpdateLayoutTree": 0.093,
+          "Layout": 0.15
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 58,
+          "mainCompleteEvents": 181,
+          "interval": {
+            "start": 19620724812,
+            "end": 19620758786
+          }
+        }
+      }
+    },
+    {
+      "id": "021-small-sample-16",
+      "label": "small-sample-16",
+      "status": "pass",
+      "actionWallMs": 35,
+      "value": {
+        "activation": 2541.300000000745,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 2541.699999999255,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.19999999925494194,
+        "assembled": 2541.800000000745,
+        "mounted": 2541.89999999851,
+        "painted": 2574
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.773,
+          "ThreadControllerImpl::RunTask": 0.763,
+          "EventDispatch": 0.08,
+          "FunctionCall": 0.047,
+          "UpdateLayoutTree": 0.113,
+          "Layout": 0.172
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 60,
+          "mainCompleteEvents": 196,
+          "interval": {
+            "start": 19620840914,
+            "end": 19620876302
+          }
+        }
+      }
+    },
+    {
+      "id": "022-small-sample-17",
+      "label": "small-sample-17",
+      "status": "pass",
+      "actionWallMs": 34,
+      "value": {
+        "activation": 2658,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 2658.099999997765,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0,
+        "assembled": 2658.199999999255,
+        "mounted": 2658.300000000745,
+        "painted": 2690.699999999255
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.671,
+          "ThreadControllerImpl::RunTask": 0.667,
+          "EventDispatch": 0.069,
+          "FunctionCall": 0.044,
+          "UpdateLayoutTree": 0.14,
+          "Layout": 0.219
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 60,
+          "mainCompleteEvents": 195,
+          "interval": {
+            "start": 19620958646,
+            "end": 19620993546
+          }
+        }
+      }
+    },
+    {
+      "id": "023-small-sample-18",
+      "label": "small-sample-18",
+      "status": "pass",
+      "actionWallMs": 34,
+      "value": {
+        "activation": 2775,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 2775.300000000745,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 2775.5,
+        "mounted": 2775.699999999255,
+        "painted": 2807.5
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.896,
+          "ThreadControllerImpl::RunTask": 0.882,
+          "EventDispatch": 0.071,
+          "FunctionCall": 0.051,
+          "UpdateLayoutTree": 0.138,
+          "Layout": 0.212
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 60,
+          "mainCompleteEvents": 193,
+          "interval": {
+            "start": 19621075781,
+            "end": 19621110978
+          }
+        }
+      }
+    },
+    {
+      "id": "024-small-sample-19",
+      "label": "small-sample-19",
+      "status": "pass",
+      "actionWallMs": 35,
+      "value": {
+        "activation": 2891.89999999851,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 2892.5,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.19999999925494194,
+        "assembled": 2892.5,
+        "mounted": 2892.699999999255,
+        "painted": 2924.199999999255
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.101,
+          "ThreadControllerImpl::RunTask": 1.086,
+          "EventDispatch": 0.09,
+          "FunctionCall": 0.054,
+          "UpdateLayoutTree": 0.204,
+          "Layout": 0.317
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 62,
+          "mainCompleteEvents": 198,
+          "interval": {
+            "start": 19621192354,
+            "end": 19621227708
+          }
+        }
+      }
+    },
+    {
+      "id": "025-small-sample-20",
+      "label": "small-sample-20",
+      "status": "pass",
+      "actionWallMs": 35,
+      "value": {
+        "activation": 3008.699999999255,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 3009.099999997765,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.09999999776482582,
+        "assembled": 3009.300000000745,
+        "mounted": 3009.39999999851,
+        "painted": 3040.800000000745
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.152,
+          "ThreadControllerImpl::RunTask": 1.133,
+          "EventDispatch": 0.086,
+          "FunctionCall": 0.052,
+          "UpdateLayoutTree": 0.199,
+          "Layout": 0.289
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 60,
+          "mainCompleteEvents": 189,
+          "interval": {
+            "start": 19621308950,
+            "end": 19621344439
+          }
+        }
+      }
+    },
+    {
+      "id": "026-small-native-select",
+      "label": "small-native-select",
+      "status": "pass",
+      "actionWallMs": 11,
+      "value": {
+        "units": 2421,
+        "text": "E-4 isolated qualification\nRequested failure \nSkip to tokens\nToken Workbench\nE-4 synthetic qualification\nSession only\nWork exists only in this page. Reloading, closing or leaving will discard all changes.\n\nProject groups\nT\nE-4 synthetic qualification\nColor foundations\nLIBRARY\nAll tokens\n2\nNew group\nPROJECT\nOne vocabulary.\nClear relationships.\n\n0 groups\nTOKENS\nAll colors\nBuild a vocabulary, then connect its meaning.\n\nNew token\n\nToken\nDescription\nAuthored value\n\nt0\nprimitive · color\nSmall editable synthetic source\nsRGB\nR: 0.2 · G: 0.4 · B: 0.6 · Alpha: 1\n\ntarget\nUnspecified · color\n—\nsRGB\nR: 1 · G: 0 · B: 0 · Alpha: 1\nProject diagnostics · namespace and references\nToken inspector\nApplied\nIllustrative sRGB specimen.\nDraft\nIllustrative sRGB specimen.\n\nCOLOR TOKEN\nt0\nSmall editable synthetic source\n\nprimitive\nUnconditional\nAuthored value\nResolved & trace\nValue\nValue source\nLiteral color\nReference\nView color space\n\nDraft in sRGB. Switching view keeps exact values.\n\nRGB entry scale\n\nRed\n\n\n0\n1\nIllustrative range 0 to 1, step 0.001. Exact values are retained.\nGreen\n\n\n0\n1\nIllustrative range 0 to 1, step 0.001. Exact values are retained.\nBlue\n\n\n0\n1\nIllustrative range 0 to 1, step 0.001. Exact values are retained.\nAlpha\n\n\nExact canonical decimal text or none; alpha 0–1. Sliders are illustrative stepped edits. Derived views and byte displays may be approximate. Apply uses srgb.\n\nDraft preview: Illustrative sRGB specimen.\n\nCancel\nApply changes\nEditing preserves name and metadata.\n\nCurrently applied\nsRGB\nRed 0.2\nGreen 0.4\nBlue 0.6\nAlpha 1\nMetadata · read only\nRegeneration\nallowed\nSemantic role\nUnspecified\nParent group\nProject root\nAll authored data\nApplied token · Revision 1 · Read only\n\nComplete authored source\n\n{\n  \"id\": \"t0\",\n  \"projectId\": \"p\",\n  \"localName\": \"t0\",\n  \"parentGroupId\": null,\n  \"definition\": {\n    \"type\": \"color\",\n    \"assignments\": [\n      {\n        \"condition\": [],\n        \"value\": {\n          \"kind\": \"literal\",\n          \"valueType\": \"color\",\n          \"colorSpace\": \"srgb\",\n          \"components\": [\n            \"0.2\",\n            \"0.4\",\n            \"0.6\"\n          ],\n          \"alpha\": \"1\"\n        }\n      }\n    ]\n  },\n  \"authoring\": {\n    \"regeneration\": \"allowed\"\n  },\n  \"layer\": \"primitive\",\n  \"description\": \"Small editable synthetic source\"\n}\nOpening very large exact source may briefly pause this view.\n\nRegeneration\nallowed\n2 tokens\nMemory only · No recovery after reload",
+        "sourceOnly": false,
+        "scope": "actual keyboard Cmd+A after focus on document pre"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 2.004,
+          "ThreadControllerImpl::RunTask": 1.996,
+          "UpdateLayoutTree": 0.125,
+          "Layout": 0.424,
+          "FunctionCall": 0.027,
+          "Paint": 0.325,
+          "EventDispatch": 0.835
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 49,
+          "mainCompleteEvents": 124,
+          "interval": {
+            "start": 19621370197,
+            "end": 19621381721
+          }
+        }
+      }
+    },
+    {
+      "id": "027-small-native-copy",
+      "label": "small-native-copy",
+      "status": "pass",
+      "actionWallMs": 32,
+      "value": {
+        "copyEvent": true,
+        "selectedUnits": 2421,
+        "clipboardUnits": 2472,
+        "selectedSha256": "3a6bdf73cc3fbcb6a2500bceebe14e24dfecd24343198cdae441cc76fb3e5bdf",
+        "clipboardSha256": "113e63f49f832c13d697ef9eac0a28f5a1df649f65e7bb63c3ea7363c13e13f9",
+        "clipboardEqualsSelected": false,
+        "clipboardEqualsSource": false,
+        "scope": "native Cmd+C; authorized synthetic clipboard read only after copy witness"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 5.938,
+          "ThreadControllerImpl::RunTask": 5.933,
+          "EventDispatch": 5.846,
+          "FunctionCall": 0.081
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 127,
+          "mainCompleteEvents": 223,
+          "interval": {
+            "start": 19621402859,
+            "end": 19621435821
+          }
+        }
+      }
+    },
+    {
+      "id": "028-small-ordinary-geometry",
+      "label": "small-ordinary-geometry",
+      "status": "pass",
+      "actionWallMs": 3,
+      "value": {
+        "scrollWidth": 355,
+        "scrollHeight": 519,
+        "clientWidth": 349,
+        "clientHeight": 382,
+        "documentOverflow": false,
+        "whiteSpace": "pre",
+        "maxHeight": "384px"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.293,
+          "ThreadControllerImpl::RunTask": 0.29
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 26,
+          "mainCompleteEvents": 46,
+          "interval": {
+            "start": 19621466077,
+            "end": 19621469723
+          }
+        }
+      }
+    },
+    {
+      "id": "small-closed-state",
+      "status": "observation",
+      "value": {
+        "op": "stats",
+        "encodings": 22,
+        "frames": 22,
+        "activeUnits": 0
+      }
+    },
+    {
+      "id": "029-65535-ordinary-load",
+      "label": "65535-ordinary-load",
+      "status": "fail",
+      "actionWallMs": 1806,
+      "value": {
+        "value": {
+          "kind": "65535",
+          "tokens": 2
+        },
+        "worker": {
+          "op": "stats",
+          "encodings": 0,
+          "frames": 0,
+          "activeUnits": 0
+        }
+      },
+      "trace": {
+        "status": "fail",
+        "reason": "renderer-main blocking event exceeds scoped maximum-task gate",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1797.093,
+          "ThreadControllerImpl::RunTask": 1797.07,
+          "FunctionCall": 3.19,
+          "EventDispatch": 0.046,
+          "UpdateLayoutTree": 0.284,
+          "Layout": 1794.751,
+          "Paint": 0.214
+        },
+        "violations": [
+          {
+            "name": "RunTask",
+            "pid": 24415,
+            "tid": 330473,
+            "ts": 19621547270,
+            "dur": 1797093,
+            "ms": 1797.093
+          },
+          {
+            "name": "ThreadControllerImpl::RunTask",
+            "pid": 24415,
+            "tid": 330473,
+            "ts": 19621547270,
+            "dur": 1797070,
+            "ms": 1797.07
+          },
+          {
+            "name": "Layout",
+            "pid": 24415,
+            "tid": 330473,
+            "ts": 19621547749,
+            "dur": 1794751,
+            "ms": 1794.751
+          }
+        ],
+        "coverage": {
+          "ownership": {
+            "pid": 24415,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24415,
+              "tid": 330473
+            }
+          ],
+          "wholeTasks": 80,
+          "mainCompleteEvents": 2665,
+          "interval": {
+            "start": 19621543104,
+            "end": 19623349910
+          }
+        }
+      }
+    }
+  ],
+  "fixtures": {
+    "65535": {
+      "counts": {
+        "values": 50,
+        "strings": 65432,
+        "snapshotBytes": 65685,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "1b4b5241cf1af157ac990eb238c210366180d95076845d897ff2afe706beca8e",
+      "units": 65535,
+      "sha256": "739717a5620a061f514a96948c80ae45044d37789d822b85e56d500522d442e6"
+    },
+    "65536": {
+      "counts": {
+        "values": 50,
+        "strings": 65433,
+        "snapshotBytes": 65686,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "f541c827192eda796a5c664e358ff48461b1e74ba040cfd18b3458041cc7fd00",
+      "units": 65536,
+      "sha256": "580ba4bf0469832196e5eae3af3925a2435b684ede04aa2e3138169b4ee2f201"
+    },
+    "65537": {
+      "counts": {
+        "values": 50,
+        "strings": 65434,
+        "snapshotBytes": 65687,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "be913eee6cf5fb75ff3afd0fa790f12ca11faeadbb7090a639132e14530cfb00",
+      "units": 65537,
+      "sha256": "1778a2bf01855bb397d866ab725d2806263553003b036f68fd8388ab93ade7c8"
+    },
+    "small": {
+      "counts": {
+        "values": 50,
+        "strings": 459,
+        "snapshotBytes": 712,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "76de8975e9f832b0c443f8f6f14358e2c15c6834d89b3cba6ce0af9323b95bad",
+      "units": 562,
+      "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+    },
+    "escape": {
+      "counts": {
+        "values": 50,
+        "strings": 12428,
+        "snapshotBytes": 72681,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "dec6e7a70337e005638b45a1344ff8002e44264f8be2ed230b62a7c8ef8006ac",
+      "units": 72531,
+      "sha256": "a14830ac9505757363ad508cea5119b29868a472ab37fbb919ec9d16c80ad14c"
+    },
+    "raw": {
+      "counts": {
+        "values": 211,
+        "strings": 4129793,
+        "snapshotBytes": 4130789,
+        "lexical": 733,
+        "maxDepth": 10
+      },
+      "canonicalSha256": "839f50af7cf1b81692c6be2cea1c40ceebc6cbc4b4f88a17dd78cb7e43963eba",
+      "units": 4134504,
+      "sha256": "b7b6c3ea2c4bf426e52144643a6e556d1312015ed49efecee218d70f6660e56e"
+    },
+    "escaped-large": {
+      "counts": {
+        "values": 211,
+        "strings": 1324277,
+        "snapshotBytes": 7940273,
+        "lexical": 733,
+        "maxDepth": 10
+      },
+      "canonicalSha256": "26d88327513f983588293c891373869032dbe18fa86b10e0b24578b55065a0a2",
+      "units": 7943988,
+      "sha256": "ed67463872cb5c7c0fdaf749ad1969f2749832e120082319ca8cb61095610c31"
+    },
+    "long-color": {
+      "counts": {
+        "values": 50,
+        "strings": 4553,
+        "snapshotBytes": 4806,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "fdef5cc062e5f77365d1789dac776fbdd351fa42df13b77570daf681e9a321d0",
+      "units": 4656,
+      "sha256": "0f3f5a2f5777cc62f30de7e417a636bda2e6dbd173470222717a5d211e05265b"
+    }
+  },
+  "limits": {
+    "ordinaryTaskMs": 100,
+    "exceptionalTaskMs": 250,
+    "exceptionalAboveUnits": 65536,
+    "perActionMs": 5000,
+    "safetyWatchdogMs": 30000
+  },
+  "gaps": [
+    "Safari defensive/native cases pending supervisor gate",
+    "AT not run",
+    "Browser Find/actual200%zoom require observed native browser UI proof; no geometry substitute"
+  ],
+  "clipboardProcedure": "User approved overwrite with synthetic source/document and read only after correlated native copy. No original clipboard read, save or restore.",
+  "origin": "http://127.0.0.1:54868",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-e4-v3kdZO",
+  "pid": 24401,
+  "stderr": "\nDevTools listening on ws://127.0.0.1:54871/devtools/browser/804eaa67-0f99-40d8-a857-b4cbcfa6e595\nTrying to load the allocator multiple times. This is *not* supported.\n",
+  "browser": "157.0.8103.50",
+  "coldStartup": {
+    "wallMs": 80,
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+    "status": "observed only; no task pass attributed to navigation"
+  },
+  "active": "029-65535-ordinary-load",
+  "stop": {
+    "id": "029-65535-ordinary-load",
+    "status": "fail",
+    "reason": "renderer-main blocking event exceeds scoped maximum-task gate"
+  },
+  "end": "2026-11-10T13:49:08.345Z",
+  "cleanup": {
+    "ownedBrowserClosed": true,
+    "ownedServerClosed": true,
+    "user4227Untouched": true
+  }
+}

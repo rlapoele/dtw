@@ -7,7 +7,11 @@ After committing this proposal as `e2a3534`, the user agreed E-1–E-4 and autho
 the designer to prepare the layout and notice for user review. The narrow E-3
 exception below amends the 100 ms gate; ordinary list/editor/inspector work retains
 100 ms. The visible artifact still requires review. No performance experiment,
-final contract agreement or Increment 007 implementation is authorized.
+final contract agreement or Increment 007 implementation was authorized at that stage.
+Subsequently the user approved V4 for analyst review, then separately authorized
+bounded E-4 execution after `d4b02c7`. The [independently reviewed result](../../output/increment-007-e4-qualification/independent-review.md)
+is incomplete: an ordinary long-description list/load failed before source opening;
+exceptional/native/Safari gates remain unqualified. The agreed policy is unchanged.
 
 ## Four agreed choices
 

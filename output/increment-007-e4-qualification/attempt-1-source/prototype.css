@@ -1,0 +1,11 @@
+@import "../../src/presentation/styles.css";
+@source "../../src/presentation";
+@source "./*.tsx";
+/* Isolated review harness, outside the product. Production shell geometry is unchanged. */
+#root{display:flex;flex-direction:column}.review-harness{flex-shrink:0;flex-wrap:wrap}.review-product{flex:1;min-height:0}
+/* Sole proposed product CSS exception: native complete-document source viewport.
+   Local bound avoids a giant inspector; no minimum height keeps short source natural.
+   Explicit min-width/white-space/overflow defeat inherited wrapping, never truncate data. */
+.authored-source{display:block;min-width:0;max-width:100%;max-height:min(24rem,50dvh);overflow:auto;white-space:pre;overflow-wrap:normal;word-break:normal;user-select:text;tab-size:2;margin:0}
+
+.review-product>.app-shell{height:100%}

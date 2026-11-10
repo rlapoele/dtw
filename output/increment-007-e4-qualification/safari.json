@@ -1,0 +1,183 @@
+{
+  "started": "2026-11-10T13:54:17.098Z",
+  "events": [
+    {
+      "type": "block-start",
+      "run": "probe-0",
+      "at": 1794318863170
+    },
+    {
+      "type": "natural-finish",
+      "run": "probe-0",
+      "at": 1794318875173
+    },
+    {
+      "type": "witness-acquired",
+      "run": "probe-0",
+      "at": 1794318875175
+    },
+    {
+      "type": "block-start",
+      "run": "probe-1",
+      "at": 1794318875445
+    },
+    {
+      "type": "natural-finish",
+      "run": "probe-1",
+      "at": 1794318887448
+    },
+    {
+      "type": "witness-acquired",
+      "run": "probe-1",
+      "at": 1794318887451
+    }
+  ],
+  "attempts": [
+    {
+      "id": "probe-0",
+      "intervene": false,
+      "events": [
+        {
+          "type": "block-start",
+          "run": "probe-0",
+          "at": 1794318863170
+        },
+        {
+          "type": "natural-finish",
+          "run": "probe-0",
+          "at": 1794318875173
+        },
+        {
+          "type": "witness-acquired",
+          "run": "probe-0",
+          "at": 1794318875175
+        }
+      ],
+      "requestedAt": 1794318862980,
+      "ownedWindow": "page-90A0E819-B8D4-4732-A3E7-FECDDB5EE551",
+      "pendingCommandStart": 1794318863144,
+      "blockStarted": 1794318863170,
+      "pendingAtStart": true,
+      "pendingCommandEnd": 1794318875175,
+      "pendingResult": {
+        "natural": true
+      },
+      "naturalFinish": 1794318875173,
+      "witnessAcquired": 1794318875175,
+      "status": "control-completed"
+    },
+    {
+      "id": "probe-1",
+      "intervene": true,
+      "events": [
+        {
+          "type": "block-start",
+          "run": "probe-1",
+          "at": 1794318875445
+        },
+        {
+          "type": "natural-finish",
+          "run": "probe-1",
+          "at": 1794318887448
+        },
+        {
+          "type": "witness-acquired",
+          "run": "probe-1",
+          "at": 1794318887451
+        }
+      ],
+      "requestedAt": 1794318875347,
+      "ownedWindow": "page-90A0E819-B8D4-4732-A3E7-FECDDB5EE551",
+      "pendingCommandStart": 1794318875424,
+      "blockStarted": 1794318875445,
+      "pendingAtStart": true,
+      "pendingBeforeController": true,
+      "controllerPid": 25186,
+      "controller": {
+        "started": 1794318877478,
+        "ended": 1794318880484,
+        "error": "TimeoutError: The operation was aborted due to timeout"
+      },
+      "pendingCommandEnd": 1794318887451,
+      "pendingResult": {
+        "natural": true
+      },
+      "naturalFinish": 1794318887448,
+      "witnessAcquired": 1794318887451,
+      "status": "fail"
+    }
+  ],
+  "scope": "small E-4 source plus finite12s worker supervisor probe; no Safari boundary or defensive source fixture",
+  "limits": {
+    "finiteBlockMs": 12000,
+    "interveneAfterStartMs": 2000,
+    "closeResponseDeadlineMs": 3000,
+    "outerWatchdogMs": 30000
+  },
+  "gaps": [
+    "Native Safari renderer whole-task timing unavailable: small source equality is not performance qualification",
+    "Native selection/copy/Find/AT/zoom not run"
+  ],
+  "origin": "http://127.0.0.1:55028",
+  "driverPid": 25117,
+  "capabilities": {
+    "safari:platformVersion": "27.2",
+    "safari:automaticInspection": false,
+    "webkit:WebRTC": {
+      "DisableICECandidateFiltering": false,
+      "DisableInsecureMediaCapture": false
+    },
+    "webkit:alwaysAllowAutoplay": false,
+    "browserVersion": "27.2",
+    "strictFileInteractability": false,
+    "browserName": "Safari",
+    "safari:useSimulator": false,
+    "safari:automaticProfiling": false,
+    "setWindowRect": true,
+    "acceptInsecureCerts": false,
+    "safari:platformBuildVersion": "26B123",
+    "safari:experimentalWebSocketUrl": false,
+    "platformName": "macOS",
+    "safari:diagnose": false
+  },
+  "small": {
+    "kind": "small",
+    "tokens": 2,
+    "closed": {
+      "op": "stats",
+      "activeUnits": 0,
+      "encodings": 0,
+      "frames": 0
+    },
+    "error": "Error: Bounded wait exceeded",
+    "failureState": {
+      "text": "E-4 isolated qualification\nRequested failure None\nFirst read only\nSkip to tokens\nToken Workbench\nE-4 synthetic qualification\nSession only\nWork exists only in this page. Reloading, closing or leaving will discard all changes.\nTOKENS\nAll colors\n\nBuild a vocabulary, then connect its meaning.\n\nNew token\n\nToken\nAuthored value\nt0\nprimitive · color\nSmall editable synthetic source\nsRGB\nR: 0.2 · G: 0.4 · B: 0.6 ·Alpha: 1\ntarget\nUnspecified · color\nsRGB\nR: 1 · G: 0 · B: 0 · Alpha: 1\nProject diagnostics · namespace and references\n{\n  \"status\": \"ok\",\n  \"value\": {\n    \"namespaceDiagnostics\": [],\n    \"referenceDiagnostics\": []\n  }\n}\n\nToken inspector\nApplied\nIllustrative sRGB specimen.\nDraft\nIllustrative sRGB specimen.\nCOLOR TOKEN\nt0\n\nSmall editable synthetic source\n\nprimitive\nUnconditional\nAuthored value\nResolved & trace\nValue\nValue source\nLiteral color\nReference\nView color space\nsRGB\nDisplay P3\nHSL\nOKLAB\nOKLCH\nDraft in sRGB. Switching view keeps exact values.\n\nRGB entry scale\nNormalized · 0–1\n0–255 scale\nRed\n0\n1\n\nIllustrative range 0 to 1, step 0.001. Exact values are retained.\n\nGreen\n0\n1\n\nIllustrative range 0 to 1, step 0.001. Exact values are retained.\n\nBlue\n0\n1\n\nIllustrative range 0 to 1, step 0.001. Exact values are retained.\n\nAlpha\n\nExact canonical decimal text or none; alpha 0–1. Sliders are illustrative stepped edits. Derived views and byte displays may be approximate. Apply uses srgb.\n\nDraft preview: Illustrative sRGB specimen.\n\nCancel\nApply changes\n\nEditing preserves name and metadata.\n\nCurrently applied\nsRGB\nRed 0.2\nGreen 0.4\nBlue 0.6\nAlpha 1\nMetadata · read only\nRegeneration\nallowed\nSemantic role\nUnspecified\nParent group\nProject root\nAll authored data\n\nOpening very large exact source may briefly pause this view.\n\nRegeneration\nallowed\n2 tokens\nMemory only · No recovery after reload",
+      "metrics": null,
+      "detailsOpen": true,
+      "events": [
+        {
+          "at": 47,
+          "op": "loaded",
+          "bytes": 38,
+          "context": null
+        },
+        {
+          "at": 62,
+          "op": "stats",
+          "bytes": 55,
+          "context": null
+        }
+      ]
+    }
+  },
+  "stop": {
+    "id": "probe-1",
+    "reason": "Same-pending-state external supervisor not qualified; no Safari defensive data authorized to run"
+  },
+  "status": "partial-supervisor-failed",
+  "cleanup": {
+    "error": "Error: {\"error\":\"invalid session id\",\"message\":\"\",\"stacktrace\":\"\"}",
+    "sharedSafariNeverTerminated": true
+  },
+  "ended": "2026-11-10T13:54:47.677Z"
+}

@@ -603,3 +603,24 @@ and attributed designer screenshots/observations. V4 remains a supplement to V3
 revision2; its simulated preparation/error states, in-memory revision and modest
 fixtures supply no exceptional-source performance or complete native-access qualification.
 Final visible-design/contract agreement and implementation authorization remain pending.
+
+## Bounded E-4 qualification disposition — 10 November 2026
+
+After commit `d4b02c7`, the user authorized isolated developer qualification followed
+by independent review, and separately approved synthetic clipboard overwrite/readback
+without reading prior contents. The [reviewed result](../../output/increment-007-e4-qualification/independent-review.md)
+accepts honest negative/incomplete evidence, not E-4 completion. An admitted
+65,535-unit source fixture with a long description incurred a 1,797.093 ms ordinary
+list/load renderer task before source opening, failing 100 ms. Larger cases stopped;
+the exceptional 250 ms/5 s path remains unqualified. No source cap or list-content
+change follows from that failure.
+
+Corrected small-source openings and selected draft/Retry/publication controls pass
+only their measured subset. Original stale timing samples remain inconclusive; initial
+build provenance is limited as disclosed in the [report](../../output/increment-007-e4-qualification/report.md).
+Document-wide native selection/copy did not produce exact source equality. Safari
+small-source activation and same-pending-command supervision remain unqualified;
+no Safari defensive escalation occurred. Native Find/AT/actual zoom, full projections
+and remaining mechanism/support acceptance remain open. Production/list/inspector
+and frozen V4 remain unchanged. AC-1–24 and E-policy retain their requirements;
+final design/contract agreement and Increment 007 implementation are not authorized.

@@ -1,0 +1,55 @@
+{
+  "started": "2026-11-10T13:53:37.176Z",
+  "events": [],
+  "attempts": [],
+  "scope": "small E-4 source plus finite12s worker supervisor probe; no Safari boundary or defensive source fixture",
+  "limits": {
+    "finiteBlockMs": 12000,
+    "interveneAfterStartMs": 2000,
+    "closeResponseDeadlineMs": 3000,
+    "outerWatchdogMs": 30000
+  },
+  "gaps": [
+    "Native Safari renderer whole-task timing unavailable: small source equality is not performance qualification",
+    "Native selection/copy/Find/AT/zoom not run"
+  ],
+  "origin": "http://127.0.0.1:55011",
+  "driverPid": 25055,
+  "capabilities": {
+    "safari:platformVersion": "27.2",
+    "safari:automaticInspection": false,
+    "webkit:WebRTC": {
+      "DisableICECandidateFiltering": false,
+      "DisableInsecureMediaCapture": false
+    },
+    "webkit:alwaysAllowAutoplay": false,
+    "browserVersion": "27.2",
+    "strictFileInteractability": false,
+    "browserName": "Safari",
+    "safari:useSimulator": false,
+    "safari:automaticProfiling": false,
+    "setWindowRect": true,
+    "acceptInsecureCerts": false,
+    "safari:platformBuildVersion": "26B123",
+    "safari:experimentalWebSocketUrl": false,
+    "platformName": "macOS",
+    "safari:diagnose": false
+  },
+  "small": {
+    "kind": "small",
+    "tokens": 2,
+    "closed": {
+      "op": "stats",
+      "activeUnits": 0,
+      "encodings": 0,
+      "frames": 0
+    }
+  },
+  "error": "Error: Bounded wait exceeded",
+  "status": "inconclusive",
+  "cleanup": {
+    "ownAutomationSessionDeleted": true,
+    "sharedSafariNeverTerminated": true
+  },
+  "ended": "2026-11-10T13:53:43.301Z"
+}

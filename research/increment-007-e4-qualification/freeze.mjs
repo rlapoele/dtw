@@ -1,0 +1,8 @@
+import {readdir,readFile,writeFile} from 'node:fs/promises';import {createHash} from 'node:crypto';import {execFileSync} from 'node:child_process';
+const source='research/increment-007-e4-qualification',out='output/increment-007-e4-qualification';
+const digest=b=>createHash('sha256').update(b).digest('hex');
+async function walk(dir){let paths=[];for(const e of await readdir(dir,{withFileTypes:true})){const p=dir+'/'+e.name;if(e.isDirectory())paths.push(...await walk(p));else paths.push(p);}return paths;}
+async function entries(paths){const result={};for(const p of paths.sort()){const b=await readFile(p);result[p]={bytes:b.length,sha256:digest(b)};}return result;}
+const paths=[...await walk(source),...await walk(out)].filter(p=>!p.endsWith('/manifest.json')&&!/\/independent-review[^/]*$/.test(p));
+const data={artifact:'Increment007 bounded E4 qualification; incomplete/stopped',baseline:'d4b02c74de773d132847ca1b9e69f983b5fb44ed',actualHead:execFileSync('git',['rev-parse','HEAD']).toString().trim(),date:'2026-11-10',scope:'new isolated source/evidence only; no production007; freeze for independent review',sourceVersions:{attempt1:out+'/attempt-1-source',attempt2:out+'/attempt-2-source',current:source},initialBuildArchive:'not separately archived; do not attribute final build hash to initial attempt',files:await entries(paths),readOnlyProductionInputs:await entries([...(await walk('src')),'package.json','package-lock.json'])};
+await writeFile(out+'/manifest.json',JSON.stringify(data,null,2)+'\n');console.log(JSON.stringify({files:paths.length,manifestSha256:digest(await readFile(out+'/manifest.json'))}));

@@ -1,0 +1,1652 @@
+{
+  "start": "2026-11-10T13:51:32.124Z",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B123\n",
+  "hardware": "not queried: sandbox sysctl denied",
+  "node": "v24.14.1",
+  "cases": [
+    {
+      "id": "S2-001-small-ordinary-load",
+      "label": "small-ordinary-load",
+      "status": "pass",
+      "actionWallMs": 32,
+      "value": {
+        "value": {
+          "kind": "small",
+          "tokens": 2
+        },
+        "worker": {
+          "op": "stats",
+          "encodings": 0,
+          "frames": 0,
+          "activeUnits": 0
+        }
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 10.289,
+          "ThreadControllerImpl::RunTask": 10.28,
+          "FunctionCall": 4.808,
+          "EventDispatch": 0.003,
+          "UpdateLayoutTree": 0.952,
+          "Layout": 7.386,
+          "Paint": 0.591
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 50,
+          "mainCompleteEvents": 161,
+          "interval": {
+            "start": 19768070624,
+            "end": 19768104079
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-002-small-ordinary-select",
+      "label": "small-ordinary-select",
+      "status": "pass",
+      "actionWallMs": 66,
+      "value": {
+        "inputs": 8,
+        "worker": {
+          "op": "stats",
+          "encodings": 0,
+          "frames": 0,
+          "activeUnits": 0
+        },
+        "sourceNodes": 0
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 11.107,
+          "ThreadControllerImpl::RunTask": 11.087,
+          "EventDispatch": 9.557,
+          "FunctionCall": 9.408,
+          "UpdateLayoutTree": 0.89,
+          "Layout": 2.665,
+          "Paint": 0.483
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 108,
+          "mainCompleteEvents": 372,
+          "interval": {
+            "start": 19768129828,
+            "end": 19768195700
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-003-small-first-open",
+      "label": "small-first-open",
+      "status": "pass",
+      "actionWallMs": 86,
+      "value": {
+        "activation": 319.69999999925494,
+        "maxWire": 801,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 320.30000000074506,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.30000000074505806,
+        "assembled": 320.4000000022352,
+        "mounted": 320.69999999925494,
+        "painted": 352.30000000074506,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.041,
+          "ThreadControllerImpl::RunTask": 1.031,
+          "EventDispatch": 0.364,
+          "FunctionCall": 0.165,
+          "UpdateLayoutTree": 0.122,
+          "Layout": 0.246,
+          "Paint": 0.174
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 126,
+          "mainCompleteEvents": 385,
+          "interval": {
+            "start": 19768230219,
+            "end": 19768316712
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-004-small-exact-complete-equality",
+      "label": "small-exact-complete-equality",
+      "status": "pass",
+      "actionWallMs": 2,
+      "value": {
+        "units": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "worker": {
+          "op": "stats",
+          "encodings": 1,
+          "frames": 1,
+          "activeUnits": 562
+        }
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.267,
+          "ThreadControllerImpl::RunTask": 0.266,
+          "EventDispatch": 0.003,
+          "FunctionCall": 0.012
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 10,
+          "mainCompleteEvents": 18,
+          "interval": {
+            "start": 19768347659,
+            "end": 19768349618
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-005-small-warmup",
+      "label": "small-warmup",
+      "status": "pass",
+      "actionWallMs": 100,
+      "value": {
+        "activation": 603,
+        "maxWire": 801,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 603.1999999992549,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.09999999776482582,
+        "assembled": 603.3000000007451,
+        "mounted": 603.4000000022352,
+        "painted": 635.6000000014901,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.274,
+          "ThreadControllerImpl::RunTask": 1.269,
+          "EventDispatch": 0.254,
+          "FunctionCall": 0.154,
+          "UpdateLayoutTree": 0.102,
+          "Layout": 0.287,
+          "Paint": 0.209
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 105,
+          "mainCompleteEvents": 321,
+          "interval": {
+            "start": 19768499904,
+            "end": 19768600341
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-006-small-sample-1",
+      "label": "small-sample-1",
+      "status": "pass",
+      "actionWallMs": 98,
+      "value": {
+        "activation": 803.1999999992549,
+        "maxWire": 802,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 803.6000000014901,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.09999999776482582,
+        "assembled": 803.8000000007451,
+        "mounted": 803.9000000022352,
+        "painted": 835.6999999992549,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.696,
+          "ThreadControllerImpl::RunTask": 1.692,
+          "EventDispatch": 0.287,
+          "FunctionCall": 0.169,
+          "UpdateLayoutTree": 0.127,
+          "Layout": 0.371,
+          "Paint": 0.278
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 125,
+          "mainCompleteEvents": 350,
+          "interval": {
+            "start": 19768702162,
+            "end": 19768800847
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-007-small-sample-2",
+      "label": "small-sample-2",
+      "status": "pass",
+      "actionWallMs": 99,
+      "value": {
+        "activation": 1003.1999999992549,
+        "maxWire": 802,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 1003.6999999992549,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.19999999925494194,
+        "assembled": 1003.8000000007451,
+        "mounted": 1004,
+        "painted": 1035.699999999255,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.868,
+          "ThreadControllerImpl::RunTask": 1.862,
+          "EventDispatch": 0.432,
+          "FunctionCall": 0.272,
+          "UpdateLayoutTree": 0.127,
+          "Layout": 0.414,
+          "Paint": 0.311
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 145,
+          "mainCompleteEvents": 391,
+          "interval": {
+            "start": 19768901497,
+            "end": 19769001406
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-008-small-sample-3",
+      "label": "small-sample-3",
+      "status": "pass",
+      "actionWallMs": 98,
+      "value": {
+        "activation": 1203.300000000745,
+        "maxWire": 802,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 1203.699999999255,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 1203.800000000745,
+        "mounted": 1203.9000000022352,
+        "painted": 1235.699999999255,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.539,
+          "ThreadControllerImpl::RunTask": 1.531,
+          "EventDispatch": 0.403,
+          "FunctionCall": 0.22,
+          "UpdateLayoutTree": 0.111,
+          "Layout": 0.339,
+          "Paint": 0.271
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 107,
+          "mainCompleteEvents": 321,
+          "interval": {
+            "start": 19769101458,
+            "end": 19769200558
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-009-small-sample-4",
+      "label": "small-sample-4",
+      "status": "pass",
+      "actionWallMs": 98,
+      "value": {
+        "activation": 1403,
+        "maxWire": 802,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 1403.199999999255,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0,
+        "assembled": 1403.4000000022352,
+        "mounted": 1403.4000000022352,
+        "painted": 1435.699999999255,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.113,
+          "ThreadControllerImpl::RunTask": 1.106,
+          "EventDispatch": 0.264,
+          "FunctionCall": 0.129,
+          "UpdateLayoutTree": 0.12,
+          "Layout": 0.234,
+          "Paint": 0.203
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 106,
+          "mainCompleteEvents": 313,
+          "interval": {
+            "start": 19769301317,
+            "end": 19769400174
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-010-small-sample-5",
+      "label": "small-sample-5",
+      "status": "pass",
+      "actionWallMs": 100,
+      "value": {
+        "activation": 1569.6000000014901,
+        "maxWire": 802,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 1569.9000000022352,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 1570,
+        "mounted": 1570.1000000014901,
+        "painted": 1602.4000000022352,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.221,
+          "ThreadControllerImpl::RunTask": 1.217,
+          "EventDispatch": 0.243,
+          "FunctionCall": 0.125,
+          "UpdateLayoutTree": 0.102,
+          "Layout": 0.273,
+          "Paint": 0.202
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 106,
+          "mainCompleteEvents": 345,
+          "interval": {
+            "start": 19769466912,
+            "end": 19769566841
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-011-small-sample-6",
+      "label": "small-sample-6",
+      "status": "pass",
+      "actionWallMs": 100,
+      "value": {
+        "activation": 1753.4000000022352,
+        "maxWire": 802,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 1753.6000000014901,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 1753.800000000745,
+        "mounted": 1753.9000000022352,
+        "painted": 1785.699999999255,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.825,
+          "ThreadControllerImpl::RunTask": 1.818,
+          "EventDispatch": 0.346,
+          "FunctionCall": 0.19,
+          "UpdateLayoutTree": 0.136,
+          "Layout": 0.405,
+          "Paint": 0.351
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 107,
+          "mainCompleteEvents": 333,
+          "interval": {
+            "start": 19769650703,
+            "end": 19769750946
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-012-small-sample-7",
+      "label": "small-sample-7",
+      "status": "pass",
+      "actionWallMs": 93,
+      "value": {
+        "activation": 1953.300000000745,
+        "maxWire": 802,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 1953.800000000745,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.09999999776482582,
+        "assembled": 1953.800000000745,
+        "mounted": 1953.9000000022352,
+        "painted": 1985.800000000745,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.366,
+          "ThreadControllerImpl::RunTask": 1.356,
+          "EventDispatch": 0.336,
+          "FunctionCall": 0.164,
+          "UpdateLayoutTree": 0.2,
+          "Layout": 0.292,
+          "Paint": 0.228
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 106,
+          "mainCompleteEvents": 320,
+          "interval": {
+            "start": 19769860872,
+            "end": 19769956405
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-013-small-sample-8",
+      "label": "small-sample-8",
+      "status": "pass",
+      "actionWallMs": 90,
+      "value": {
+        "activation": 2186.400000002235,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 2186.60000000149,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0,
+        "assembled": 2186.60000000149,
+        "mounted": 2186.699999999255,
+        "painted": 2219.10000000149,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.096,
+          "ThreadControllerImpl::RunTask": 1.087,
+          "EventDispatch": 0.236,
+          "FunctionCall": 0.115,
+          "UpdateLayoutTree": 0.104,
+          "Layout": 0.218,
+          "Paint": 0.194
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 114,
+          "mainCompleteEvents": 336,
+          "interval": {
+            "start": 19770092099,
+            "end": 19770182633
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-014-small-sample-9",
+      "label": "small-sample-9",
+      "status": "pass",
+      "actionWallMs": 99,
+      "value": {
+        "activation": 2386.300000000745,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 2386.400000002235,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 2386.5,
+        "mounted": 2386.60000000149,
+        "painted": 2419.10000000149,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.884,
+          "ThreadControllerImpl::RunTask": 0.88,
+          "EventDispatch": 0.174,
+          "FunctionCall": 0.093,
+          "UpdateLayoutTree": 0.093,
+          "Layout": 0.185,
+          "Paint": 0.171
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 107,
+          "mainCompleteEvents": 347,
+          "interval": {
+            "start": 19770283352,
+            "end": 19770383219
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-015-small-sample-10",
+      "label": "small-sample-10",
+      "status": "pass",
+      "actionWallMs": 99,
+      "value": {
+        "activation": 2552.900000002235,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 2553,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.09999999776482582,
+        "assembled": 2553.10000000149,
+        "mounted": 2553.199999999255,
+        "painted": 2585.800000000745,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.908,
+          "ThreadControllerImpl::RunTask": 0.899,
+          "EventDispatch": 0.164,
+          "FunctionCall": 0.089,
+          "UpdateLayoutTree": 0.082,
+          "Layout": 0.194,
+          "Paint": 0.174
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 105,
+          "mainCompleteEvents": 311,
+          "interval": {
+            "start": 19770449783,
+            "end": 19770549653
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-016-small-sample-11",
+      "label": "small-sample-11",
+      "status": "pass",
+      "actionWallMs": 99,
+      "value": {
+        "activation": 2719.800000000745,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 2720.10000000149,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.09999999776482582,
+        "assembled": 2720.199999999255,
+        "mounted": 2720.199999999255,
+        "painted": 2750.60000000149,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.461,
+          "ThreadControllerImpl::RunTask": 1.456,
+          "EventDispatch": 0.236,
+          "FunctionCall": 0.14,
+          "UpdateLayoutTree": 0.147,
+          "Layout": 0.35,
+          "Paint": 0.255
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 108,
+          "mainCompleteEvents": 324,
+          "interval": {
+            "start": 19770617272,
+            "end": 19770717568
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-017-small-sample-12",
+      "label": "small-sample-12",
+      "status": "pass",
+      "actionWallMs": 99,
+      "value": {
+        "activation": 2920.10000000149,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 2920.400000002235,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 2920.5,
+        "mounted": 2920.699999999255,
+        "painted": 2952.5,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.947,
+          "ThreadControllerImpl::RunTask": 1.94,
+          "EventDispatch": 0.336,
+          "FunctionCall": 0.204,
+          "UpdateLayoutTree": 0.137,
+          "Layout": 0.457,
+          "Paint": 0.342
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 109,
+          "mainCompleteEvents": 334,
+          "interval": {
+            "start": 19770818568,
+            "end": 19770918339
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-018-small-sample-13",
+      "label": "small-sample-13",
+      "status": "pass",
+      "actionWallMs": 99,
+      "value": {
+        "activation": 3120,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 3120.300000000745,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.19999999925494194,
+        "assembled": 3120.400000002235,
+        "mounted": 3120.60000000149,
+        "painted": 3152.5,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.405,
+          "ThreadControllerImpl::RunTask": 1.401,
+          "EventDispatch": 0.359,
+          "FunctionCall": 0.211,
+          "UpdateLayoutTree": 0.124,
+          "Layout": 0.324,
+          "Paint": 0.3
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 109,
+          "mainCompleteEvents": 352,
+          "interval": {
+            "start": 19771018676,
+            "end": 19771117907
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-019-small-sample-14",
+      "label": "small-sample-14",
+      "status": "pass",
+      "actionWallMs": 96,
+      "value": {
+        "activation": 3320,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 3320.300000000745,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.09999999776482582,
+        "assembled": 3320.400000002235,
+        "mounted": 3320.5,
+        "painted": 3352.60000000149,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.482,
+          "ThreadControllerImpl::RunTask": 1.478,
+          "EventDispatch": 0.354,
+          "FunctionCall": 0.204,
+          "UpdateLayoutTree": 0.19,
+          "Layout": 0.334,
+          "Paint": 0.266
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 106,
+          "mainCompleteEvents": 329,
+          "interval": {
+            "start": 19771220701,
+            "end": 19771317239
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-020-small-sample-15",
+      "label": "small-sample-15",
+      "status": "pass",
+      "actionWallMs": 98,
+      "value": {
+        "activation": 3503.5,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 3503.900000002235,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 3504.10000000149,
+        "mounted": 3504.199999999255,
+        "painted": 3535.800000000745,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.27,
+          "ThreadControllerImpl::RunTask": 1.26,
+          "EventDispatch": 0.307,
+          "FunctionCall": 0.177,
+          "UpdateLayoutTree": 0.118,
+          "Layout": 0.246,
+          "Paint": 0.256
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 107,
+          "mainCompleteEvents": 318,
+          "interval": {
+            "start": 19771401529,
+            "end": 19771499740
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-021-small-sample-16",
+      "label": "small-sample-16",
+      "status": "pass",
+      "actionWallMs": 99,
+      "value": {
+        "activation": 3669.699999999255,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 3669.900000002235,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 3669.900000002235,
+        "mounted": 3670,
+        "painted": 3702.5,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.047,
+          "ThreadControllerImpl::RunTask": 1.042,
+          "EventDispatch": 0.191,
+          "FunctionCall": 0.113,
+          "UpdateLayoutTree": 0.09,
+          "Layout": 0.217,
+          "Paint": 0.193
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 104,
+          "mainCompleteEvents": 308,
+          "interval": {
+            "start": 19771566866,
+            "end": 19771666589
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-022-small-sample-17",
+      "label": "small-sample-17",
+      "status": "pass",
+      "actionWallMs": 100,
+      "value": {
+        "activation": 3870.199999999255,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 3870.5,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0,
+        "assembled": 3870.60000000149,
+        "mounted": 3870.699999999255,
+        "painted": 3902.60000000149,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.862,
+          "ThreadControllerImpl::RunTask": 1.855,
+          "EventDispatch": 0.343,
+          "FunctionCall": 0.198,
+          "UpdateLayoutTree": 0.232,
+          "Layout": 0.409,
+          "Paint": 0.362
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 112,
+          "mainCompleteEvents": 360,
+          "interval": {
+            "start": 19771767791,
+            "end": 19771867880
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-023-small-sample-18",
+      "label": "small-sample-18",
+      "status": "pass",
+      "actionWallMs": 99,
+      "value": {
+        "activation": 4070.199999999255,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 4070.60000000149,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.09999999776482582,
+        "assembled": 4070.699999999255,
+        "mounted": 4070.900000002235,
+        "painted": 4102.60000000149,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.824,
+          "ThreadControllerImpl::RunTask": 1.819,
+          "EventDispatch": 0.399,
+          "FunctionCall": 0.248,
+          "UpdateLayoutTree": 0.15,
+          "Layout": 0.398,
+          "Paint": 0.348
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 108,
+          "mainCompleteEvents": 331,
+          "interval": {
+            "start": 19771968349,
+            "end": 19772068059
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-024-small-sample-19",
+      "label": "small-sample-19",
+      "status": "pass",
+      "actionWallMs": 98,
+      "value": {
+        "activation": 4270.5,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 4270.800000000745,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 4271,
+        "mounted": 4271.10000000149,
+        "painted": 4302.60000000149,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.67,
+          "ThreadControllerImpl::RunTask": 1.658,
+          "EventDispatch": 0.479,
+          "FunctionCall": 0.242,
+          "UpdateLayoutTree": 0.162,
+          "Layout": 0.398,
+          "Paint": 0.298
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 106,
+          "mainCompleteEvents": 324,
+          "interval": {
+            "start": 19772168283,
+            "end": 19772267161
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-025-small-sample-20",
+      "label": "small-sample-20",
+      "status": "pass",
+      "actionWallMs": 100,
+      "value": {
+        "activation": 4454.199999999255,
+        "maxWire": 803,
+        "maxUnits": 562,
+        "frames": 1,
+        "metadata": 4454.5,
+        "total": 562,
+        "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9",
+        "encodeMs": 0.10000000149011612,
+        "assembled": 4454.60000000149,
+        "mounted": 4454.699999999255,
+        "painted": 4486.199999999255,
+        "mountedUnits": 562,
+        "mountedSha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 2.16,
+          "ThreadControllerImpl::RunTask": 2.143,
+          "EventDispatch": 0.458,
+          "FunctionCall": 0.226,
+          "UpdateLayoutTree": 0.22,
+          "Layout": 0.445,
+          "Paint": 0.389
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 109,
+          "mainCompleteEvents": 320,
+          "interval": {
+            "start": 19772351209,
+            "end": 19772452982
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-026-small-native-select",
+      "label": "small-native-select",
+      "status": "pass",
+      "actionWallMs": 20,
+      "value": {
+        "units": 2421,
+        "sourceOnly": false,
+        "scope": "actual keyboard Cmd+A after focus on document pre"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.424,
+          "ThreadControllerImpl::RunTask": 1.401,
+          "EventDispatch": 0.584,
+          "UpdateLayoutTree": 0.172,
+          "FunctionCall": 0.054,
+          "Paint": 0.46
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 62,
+          "mainCompleteEvents": 170,
+          "interval": {
+            "start": 19772496310,
+            "end": 19772517364
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-027-small-native-copy",
+      "label": "small-native-copy",
+      "status": "pass",
+      "actionWallMs": 56,
+      "value": {
+        "copyEvent": true,
+        "selectedUnits": 2421,
+        "clipboardUnits": 2472,
+        "selectedSha256": "3a6bdf73cc3fbcb6a2500bceebe14e24dfecd24343198cdae441cc76fb3e5bdf",
+        "clipboardSha256": "113e63f49f832c13d697ef9eac0a28f5a1df649f65e7bb63c3ea7363c13e13f9",
+        "clipboardEqualsSelected": false,
+        "clipboardEqualsSource": false,
+        "scope": "native Cmd+C; authorized synthetic clipboard read only after copy witness"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 3.139,
+          "ThreadControllerImpl::RunTask": 3.132,
+          "EventDispatch": 3.053,
+          "FunctionCall": 0.062
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 130,
+          "mainCompleteEvents": 219,
+          "interval": {
+            "start": 19772546853,
+            "end": 19772603814
+          }
+        }
+      }
+    },
+    {
+      "id": "S2-028-small-ordinary-geometry",
+      "label": "small-ordinary-geometry",
+      "status": "pass",
+      "actionWallMs": 8,
+      "value": {
+        "scrollWidth": 355,
+        "scrollHeight": 519,
+        "clientWidth": 349,
+        "clientHeight": 382,
+        "documentOverflow": false,
+        "whiteSpace": "pre",
+        "maxHeight": "384px"
+      },
+      "trace": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.309,
+          "ThreadControllerImpl::RunTask": 0.304
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 24722,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 24722,
+              "tid": 334382
+            }
+          ],
+          "wholeTasks": 34,
+          "mainCompleteEvents": 62,
+          "interval": {
+            "start": 19772656746,
+            "end": 19772664941
+          }
+        }
+      }
+    },
+    {
+      "id": "small-closed-state",
+      "status": "observation",
+      "value": {
+        "op": "stats",
+        "encodings": 22,
+        "frames": 22,
+        "activeUnits": 0
+      }
+    },
+    {
+      "id": "S2-029-small-draft-failure-retry",
+      "label": "small-draft-failure-retry",
+      "status": "invalid",
+      "error": "TimeoutError: locator.selectOption: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Target token', { exact: true })\u001b[22m\n",
+      "wallMs": 5057
+    }
+  ],
+  "fixtures": {
+    "65535": {
+      "counts": {
+        "values": 50,
+        "strings": 65432,
+        "snapshotBytes": 65685,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "1b4b5241cf1af157ac990eb238c210366180d95076845d897ff2afe706beca8e",
+      "units": 65535,
+      "sha256": "739717a5620a061f514a96948c80ae45044d37789d822b85e56d500522d442e6"
+    },
+    "65536": {
+      "counts": {
+        "values": 50,
+        "strings": 65433,
+        "snapshotBytes": 65686,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "f541c827192eda796a5c664e358ff48461b1e74ba040cfd18b3458041cc7fd00",
+      "units": 65536,
+      "sha256": "580ba4bf0469832196e5eae3af3925a2435b684ede04aa2e3138169b4ee2f201"
+    },
+    "65537": {
+      "counts": {
+        "values": 50,
+        "strings": 65434,
+        "snapshotBytes": 65687,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "be913eee6cf5fb75ff3afd0fa790f12ca11faeadbb7090a639132e14530cfb00",
+      "units": 65537,
+      "sha256": "1778a2bf01855bb397d866ab725d2806263553003b036f68fd8388ab93ade7c8"
+    },
+    "small": {
+      "counts": {
+        "values": 50,
+        "strings": 459,
+        "snapshotBytes": 712,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "76de8975e9f832b0c443f8f6f14358e2c15c6834d89b3cba6ce0af9323b95bad",
+      "units": 562,
+      "sha256": "7804a41c0055f3dda0b9d8e686cbaf066df07c8c478b3a3fe7d498f18249f8b9"
+    },
+    "escape": {
+      "counts": {
+        "values": 50,
+        "strings": 12428,
+        "snapshotBytes": 72681,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "dec6e7a70337e005638b45a1344ff8002e44264f8be2ed230b62a7c8ef8006ac",
+      "units": 72531,
+      "sha256": "a14830ac9505757363ad508cea5119b29868a472ab37fbb919ec9d16c80ad14c"
+    },
+    "raw": {
+      "counts": {
+        "values": 211,
+        "strings": 4129793,
+        "snapshotBytes": 4130789,
+        "lexical": 733,
+        "maxDepth": 10
+      },
+      "canonicalSha256": "839f50af7cf1b81692c6be2cea1c40ceebc6cbc4b4f88a17dd78cb7e43963eba",
+      "units": 4134504,
+      "sha256": "b7b6c3ea2c4bf426e52144643a6e556d1312015ed49efecee218d70f6660e56e"
+    },
+    "escaped-large": {
+      "counts": {
+        "values": 211,
+        "strings": 1324277,
+        "snapshotBytes": 7940273,
+        "lexical": 733,
+        "maxDepth": 10
+      },
+      "canonicalSha256": "26d88327513f983588293c891373869032dbe18fa86b10e0b24578b55065a0a2",
+      "units": 7943988,
+      "sha256": "ed67463872cb5c7c0fdaf749ad1969f2749832e120082319ca8cb61095610c31"
+    },
+    "long-color": {
+      "counts": {
+        "values": 50,
+        "strings": 4553,
+        "snapshotBytes": 4806,
+        "lexical": 200,
+        "maxDepth": 9
+      },
+      "canonicalSha256": "fdef5cc062e5f77365d1789dac776fbdd351fa42df13b77570daf681e9a321d0",
+      "units": 4656,
+      "sha256": "0f3f5a2f5777cc62f30de7e417a636bda2e6dbd173470222717a5d211e05265b"
+    }
+  },
+  "limits": {
+    "ordinaryTaskMs": 100,
+    "exceptionalTaskMs": 250,
+    "exceptionalAboveUnits": 65536,
+    "perActionMs": 5000,
+    "safetyWatchdogMs": 30000
+  },
+  "gaps": [
+    "Safari defensive/native cases pending supervisor gate",
+    "AT not run",
+    "Browser Find/actual200%zoom require observed native browser UI proof; no geometry substitute"
+  ],
+  "clipboardProcedure": "User approved overwrite with synthetic source/document and read only after correlated native copy. No original clipboard read, save or restore.",
+  "origin": "http://127.0.0.1:54933",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-e4-6sAMnM",
+  "pid": 24709,
+  "stderr": "\nDevTools listening on ws://127.0.0.1:54935/devtools/browser/379ed6f7-1264-4dae-a5c8-f0e2e630d2e9\nTrying to load the allocator multiple times. This is *not* supported.\n",
+  "browser": "157.0.8103.50",
+  "coldStartup": {
+    "wallMs": 96,
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+    "status": "observed only; no task pass attributed to navigation"
+  },
+  "active": "S2-029-small-draft-failure-retry",
+  "stop": {
+    "id": "S2-029-small-draft-failure-retry",
+    "reason": "TimeoutError: locator.selectOption: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Target token', { exact: true })\u001b[22m\n",
+    "status": "invalid"
+  },
+  "end": "2026-11-10T13:51:42.784Z",
+  "cleanup": {
+    "ownedBrowserClosed": true,
+    "ownedServerClosed": true,
+    "user4227Untouched": true
+  }
+}

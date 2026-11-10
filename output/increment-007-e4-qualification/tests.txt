@@ -1,0 +1,18 @@
+✔ frozen 191.793 ms renderer Layout is a failure despite absent RunTask (5.01425ms)
+✔ missing whole-task evidence and empty traces are inconclusive (0.127666ms)
+✔ only renderer-main whole tasks can support pass, other-thread Layout ignored (0.127542ms)
+✔ R1: foreign renderer tasks cannot supply target-page coverage (0.116ms)
+✔ R1: missing/ambiguous ownership and absent actual target remain inconclusive (0.104917ms)
+✔ E scope changes maximum task ceiling only when caller explicitly supplies250 (0.07625ms)
+✔ saved stale repeat is detected; corrected20 samples have distinct phasecomplete equality identities (1.481917ms)
+✔ whole-wire escapes headers and all source UTF16 round trip within both bounds (4.62875ms)
+✔ mixed total/offset/false complete/overflow and every context dimension rejected (0.206208ms)
+✔ admitted finite fixture intersections and true pretty boundaries retain known font source (43.081958ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 86.620916
