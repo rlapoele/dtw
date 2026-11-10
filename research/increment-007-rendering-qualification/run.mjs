@@ -1,0 +1,46 @@
+import {spawn,execFileSync} from 'node:child_process';
+import {readFile,writeFile,mkdtemp,readdir,stat} from 'node:fs/promises';
+import {createServer} from 'node:http';
+import {createHash} from 'node:crypto';
+import {tmpdir} from 'node:os';
+import path from 'node:path';
+const out='output/increment-007-rendering-qualification',r={start:new Date().toISOString(),cases:[],source:{},environment:{os:execFileSync('sw_vers').toString(),node:process.version}};
+const hash=b=>createHash('sha256').update(b).digest('hex');
+for(const name of await readdir('research/increment-007-rendering-qualification'))if((await stat('research/increment-007-rendering-qualification/'+name)).isFile())r.source[name]=hash(await readFile('research/increment-007-rendering-qualification/'+name));
+const save=()=>writeFile(out+(process.env.DTW_SMALL_ONLY?'/chrome-small-functional.json':'/chrome-results-attempt-3.json'),JSON.stringify(r,null,2)+'\n');
+const server=createServer(async(req,res)=>{try{const pathname=new URL(req.url,'http://localhost').pathname,p=path.resolve(out,'build','.'+(pathname==='/'?'/index.html':pathname));if(!p.startsWith(path.resolve(out,'build')+'/'))throw Error('path');res.setHeader('Content-Type',p.endsWith('.html')?'text/html':p.endsWith('.css')?'text/css':'text/javascript');res.end(await readFile(p));}catch{res.writeHead(404).end();}});await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));r.origin='http://127.0.0.1:'+server.address().port;
+const {chromium}=await import('/Users/rlapoele-pro/.npm/_npx/705bc6b22212b352/node_modules/playwright/index.mjs');
+r.profile=await mkdtemp(path.join(tmpdir(),'dtw-rendering-'));let browser,child,context,page,cdp,timer;
+async function operation(id,fn){const start=Date.now();r.active=id;await save();timer=setTimeout(()=>{r.watchdog={id,ms:Date.now()-start,pid:child.pid,action:'SIGKILL own disposable Chrome process'};child.kill('SIGKILL');void save();},30000);try{const value=await fn();if(r.pageErrors?.length)throw Error('React/browser errors: '+r.pageErrors.join('; '));if(typeof value?.mounted==='number'&&value.mounted!==value.count)throw Error('Mounted count mismatch '+value.mounted+'/'+value.count);r.cases.push({id,status:'observed',wallMs:Date.now()-start,value});await save();if(typeof value?.rowRenders==='number'&&value.rowRenders!==value.count)throw Error('Repeated row render '+value.rowRenders+'/'+value.count);return value;}catch(e){r.cases.push({id,status:'failed',error:String(e),wallMs:Date.now()-start});await save();throw e;}finally{clearTimeout(timer);}}
+try{
+ child=spawn('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',['--user-data-dir='+r.profile,'--remote-debugging-port=0','--no-first-run','--no-default-browser-check','about:blank'],{stdio:['ignore','ignore','pipe']});r.pid=child.pid;child.stderr.on('data',b=>r.stderr=((r.stderr??'')+b).slice(-12000));
+ for(let i=0;i<100;i++){try{const port=String(await readFile(path.join(r.profile,'DevToolsActivePort'))).split('\n')[0];browser=await chromium.connectOverCDP('http://127.0.0.1:'+port,{timeout:1000});break;}catch{await new Promise(resolve=>setTimeout(resolve,100));}}
+ r.browser=browser.version();context=browser.contexts()[0];page=await context.newPage();page.on('pageerror',e=>{r.pageErrors??=[];r.pageErrors.push(String(e));});page.setDefaultTimeout(5000);await page.setViewportSize({width:1440,height:1000});r.viewport={width:1440,height:1000};cdp=await context.newCDPSession(page);await cdp.send('Performance.enable');await operation('R00-cold-navigation',async()=>{await page.goto(r.origin);await page.waitForFunction(()=>window.qual?.ready);return page.evaluate(()=>({ua:navigator.userAgent,dpr:devicePixelRatio,viewport:{width:innerWidth,height:innerHeight},navigation:performance.getEntriesByType('navigation').map(n=>n.toJSON())}));});
+ for(let i=-1;i<(process.env.DTW_SMALL_ONLY?0:20);i++)await operation('R02-100-'+i,()=>page.evaluate(async()=>qual.load('100')));
+ await operation('R01-real-row-control',async()=>{await page.evaluate(()=>qual.select('t0'));const before=await page.locator('.token-row').first().evaluate(e=>e.outerHTML);await page.getByRole('button',{name:'Toggle unchanged TokenList control'}).click();const control=await page.locator('.token-row').first().evaluate(e=>e.outerHTML);await page.getByRole('button',{name:'Toggle unchanged TokenList control'}).click();const value={equal:before===control,before,control,inspector:await page.locator('[aria-label="Selected token"]').innerText(),inputs:await page.locator('[aria-label="Selected token"] input').count()};if(!value.equal)throw Error('row control mismatch '+JSON.stringify(value));return value;});
+ if(process.env.DTW_SMALL_ONLY)await operation('R01-small-inspector-draft-state',async()=>{
+ const editor=page.locator('[aria-label="Selected token"]');
+ const views=await editor.getByLabel('View color space').locator('option').allTextContents();
+ const scales=await editor.getByLabel('RGB entry scale').locator('option').allTextContents();
+ const rowsBefore=await page.evaluate(()=>qual.rowRenders);
+ const red=editor.getByRole('textbox',{name:'Red',exact:true});await red.fill('0.25');
+ const typed=await red.inputValue(),rowsAfter=await page.evaluate(()=>qual.rowRenders);
+ await editor.getByRole('button',{name:'Reference',exact:true}).click();
+ const choices=await editor.getByLabel('Target token').locator('option').count();
+ await editor.getByRole('button',{name:'Literal color',exact:true}).click();
+ const restored=await red.inputValue();await editor.getByRole('button',{name:'Apply changes',exact:true}).click();
+ const error=await editor.getByRole('alert').innerText(),focused=await editor.getByRole('alert').evaluate(e=>e===document.activeElement);
+ await editor.getByRole('tab',{name:'Resolved & trace'}).click();const trace=await editor.innerText();
+ await editor.getByRole('tab',{name:'Authored value',exact:true}).click();await editor.locator('summary').click();await editor.locator('[data-raw="complete"]').waitFor();
+ const raw=await editor.locator('[data-raw="complete"]').innerText();const parsed=JSON.parse(raw);
+ const value={views,scales,rowsBefore,rowsAfter,typed,restored,choices,error,focused,traceContainsDiagnostics:trace.includes('Resolution diagnostics'),rawToken:parsed.id,rawComponent:parsed.definition.assignments[0].value.components[0],draftAfterRaw:await red.inputValue(),footer:await editor.locator('.inspector-foot').innerText()};
+ if(views.length!==5||scales.length!==2||rowsBefore!==rowsAfter||typed!=='0.25'||restored!==typed||value.draftAfterRaw!==typed||!focused||choices!==101||value.rawComponent!=='0.2'||!value.traceContainsDiagnostics)throw Error('Functional regression '+JSON.stringify(value));return value;
+ });
+ for(const kind of (process.env.DTW_SMALL_ONLY?[]:['row','raw'])){
+ await cdp.send('Tracing.start',{categories:'devtools.timeline,v8,blink.user_timing',transferMode:'ReturnAsStream'});
+ const value=await operation('R03-'+kind+'-gate',async()=>{const before=(await cdp.send('Performance.getMetrics')).metrics;const mounted=await page.evaluate(x=>qual.load(x),kind);let detail;if(kind==='raw'){await page.evaluate(()=>qual.select('t0'));await page.locator('summary').click();await page.waitForSelector('[data-raw="complete"]');detail=await page.locator('[data-raw="complete"]').evaluate(async e=>{const text=e.textContent,range=document.createRange();range.selectNodeContents(e);getSelection().removeAllRanges();getSelection().addRange(range);const selected=getSelection().toString();const hash=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))),n=>n.toString(16).padStart(2,'0')).join('');return {units:text.length,selectedUnits:selected.length,exactSelection:text===selected,sha256:await hash(text),first:text.slice(0,80),last:text.slice(-80),rect:e.getBoundingClientRect().toJSON()};});}await page.waitForTimeout(150);return {mounted,detail,snapshot:await page.evaluate(()=>qual.snapshot()),before,after:(await cdp.send('Performance.getMetrics')).metrics};});
+ const ended=new Promise(resolve=>cdp.once('Tracing.tracingComplete',resolve));await cdp.send('Tracing.end');const event=await ended;let trace='';while(true){const a=await cdp.send('IO.read',{handle:event.stream});trace+=a.data;if(a.eof)break;}await cdp.send('IO.close',{handle:event.stream});await writeFile(out+'/chrome-attempt-3-'+kind+'-trace.json',trace);
+ const traceEvents=JSON.parse(trace).traceEvents;const long=traceEvents.filter(e=>e.ph==='X'&&e.name==='RunTask'&&e.dur>100000);r.cases.at(-1).traceTasksOver100ms=long;r.cases.at(-1).traceLongest={};for(const name of ['RunTask','Layout','UpdateLayoutTree','Paint'])r.cases.at(-1).traceLongest[name]=Math.max(0,...traceEvents.filter(e=>e.ph==='X'&&e.name===name).map(e=>e.dur/1000));await save();
+ if(value.snapshot.tasks.some(t=>t.duration>100)||long.length){r.stop={reason:'Candidate single admitted record exceeds unchanged 100 ms main-thread task gate',kind};break;}
+ }
+}catch(e){r.error=String(e);}finally{clearTimeout(timer);r.end=new Date().toISOString();await save();await browser?.close().catch(()=>{});child?.kill('SIGTERM');server.close();}

@@ -1,9 +1,22 @@
 # Increment 007 — bounded rendering design assessment
 
-**Designer recommendation · 10 November 2026 · awaiting user review.**
-Baseline: clean `dev` at `448b943`. Authorized work is assessment only. No prototype,
-application, research harness, dependency or evidence changes are proposed as already
-approved. The contract remains Draft; production implementation is unauthorized.
+**Direction approved for isolated qualification · 10 November 2026.**
+Original assessment baseline: clean `dev` at `448b943`, with assessment-only authority.
+Subsequent isolated qualification approval is recorded below; it does not authorize
+existing-prototype or application edits. The contract remains Draft; production
+implementation is unauthorized.
+
+## Scoped user approval
+
+After committing the HTTPS qualification as `227e17a`, the user approved this
+bounded-rendering direction and authorized isolated developer qualification followed
+by an independent reviewer, preserving the current list and inspector. Source and
+evidence live separately under `research/increment-007-rendering-qualification/`
+and `output/increment-007-rendering-qualification/`. Production, prototypes and prior
+qualification artifacts stay unchanged. This authorizes the preferred candidate's
+bounded evaluation, not paging/windowing, new admission limits, final contract/design
+agreement or production Increment 007 implementation. Existing safety gates remain
+binding; unavailable Safari defensive supervision is not waived by this approval.
 
 ## Preferred direction
 
@@ -23,10 +36,10 @@ Splitting a JavaScript loop while leaving one large final layout is insufficient
 If an independent constant-DOM requirement becomes necessary, this direction cannot
 meet it; return the measured reason and a material windowing/paging choice to the user.
 
-**Requested decision:** approve this direction for a separately scoped qualification/
-prototype proposal, or request a different tradeoff. Do not infer authority to edit
-the prototype or run experiments from this assessment. Any new visible interaction
-returns to the user before analyst review and final contract/design agreement.
+**Approval scope:** isolated developer qualification and independent review are now
+authorized. The original prototype and production remain untouched. Any material new
+interaction or fallback returns to the user before analyst review and final
+contract/design agreement.
 
 ## Evidence and constraints
 
@@ -226,3 +239,31 @@ Only this assessment was written. Checks: prose, local links, terminology and sc
 whitespace/diff review. No app tests, build, prototype edits, experiment or live browser
 inspection ran. Historical and external sources inform hypotheses, not fresh proof.
 Suggested human-owned commit: `docs: assess bounded rendering for increment 007`.
+
+## Reviewed isolated result — 10 November 2026
+
+The [developer report](../../output/increment-007-rendering-qualification/report.md),
+[80-file snapshot](../../output/increment-007-rendering-qualification/manifest.json)
+and [independent review](../../output/increment-007-rendering-qualification/independent-review.md)
+support a **negative monolithic raw-detail result, not complete G-01 qualification**.
+A valid near-aggregate-boundary single token produces 4,134,504 exact raw code units.
+Its combined open/complete DOM Range/Selection/geometry path incurred a 191.793 ms
+CrRendererMain Layout event (190.465 ms thread CPU), above the unchanged 100 ms gate.
+The exact forcing call was not isolated; this was not native keyboard Select All.
+
+Twenty small 100-row mounting observations, literal-row markup equality and selected
+inspector draft/error/raw/tab checks are bounded positive evidence only. The harness
+still returns whole authored rows/full-project inspection, supplies synthetic resolution
+and lacks group/All content/stale-state/native interaction coverage. Safari and larger
+list cases were not run after the risk failure. The approved full candidate is incomplete;
+this does not establish that staged ordinary rows are impossible or justify list paging.
+
+Before any reuse/positive qualification, automatic whole-task failure detection must
+be corrected: LongTask/RunTask observations were empty and the runner missed the
+known Layout event; trace inspection caught it before escalation. The independent
+review accepts the counterexample without requiring another large run.
+
+Next design work should address the exact-detail bottleneck and incomplete projection
+boundaries explicitly. No replacement raw control, paging/windowing, truncation, new
+source limit or lower resource budget is selected here. Production and the current
+list/inspector remain unchanged; further design/qualification needs bounded authority.

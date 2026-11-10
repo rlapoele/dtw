@@ -1,11 +1,35 @@
 # Increment 007 — remaining qualification gaps
 
-**Proposed plan for user review — 10 November 2026. No new experiments authorized.**
+**Remaining plan proposed for user review — 10 November 2026. Only the scoped authorizations below permit execution.**
 Baseline: clean `448b943ce6486a1fed06a651edf47e9cffa0ff6d`. Contract remains
 **Draft / Not started**; final agreement and production implementation are pending.
 B-1–B-5, P-1–P-4, S-1–S-6, F-1–F-5 and AC-1–24 stay binding. This plan prioritizes
 remaining evidence; it neither reopens policy nor approves the designer's separate
 bounded-rendering assessment or any prototype change.
+
+## Scoped rendering authorization — 10 November 2026
+
+The user approved the [bounded-rendering direction](007-bounded-rendering-design-assessment.md)
+and authorized isolated developer qualification followed by independent review,
+preserving the current list and inspector. G-01 source/evidence belong only in
+`research/increment-007-rendering-qualification/` and
+`output/increment-007-rendering-qualification/`; production, prototypes and earlier
+harnesses remain unchanged. No paging/windowing, lower budgets, TLS/trust changes,
+public tunnel or other gap-case execution follows from this approval. Current
+supervision/stop rules remain binding; a limited or failed result stays explicit.
+
+## Reviewed G-01 result — 10 November 2026
+
+The [rendering experiment](../../output/increment-007-rendering-qualification/report.md)
+and [independent review](../../output/increment-007-rendering-qualification/independent-review.md)
+confirm a 191.793 ms renderer-main Layout event for a complete admitted 4,134,504-unit
+raw-detail path. G-01 remains incomplete: this is a supported counterexample plus
+small row/inspector checks, not a fully implemented bounded projection/rendering
+candidate. Larger/Safari/native Find/zoom/AT and other unexecuted cases remain explicit.
+Automatic task-failure detection must be corrected before reuse or positive qualification.
+No new raw interaction, list navigation, budget change or further experiment is
+authorized by accepting this evidence. Production list/inspector and prior artifacts
+remain unchanged.
 
 ## Scoped HTTPS authorization — 10 November 2026
 

@@ -1,0 +1,62 @@
+{
+  "100": {
+    "tokens": 100,
+    "groups": 0,
+    "values": 2306,
+    "strings": 25788,
+    "snapshotBytes": 37617,
+    "lexical": 8342,
+    "maxDepth": 9,
+    "canonicalSha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5"
+  },
+  "1000": {
+    "tokens": 1000,
+    "groups": 0,
+    "values": 23006,
+    "strings": 260698,
+    "snapshotBytes": 378727,
+    "lexical": 83042,
+    "maxDepth": 9,
+    "canonicalSha256": "b79f0b32ec231982a39107e95d1cc2a001c764fbd476ce51d4e0044113eeaba7"
+  },
+  "entities": {
+    "tokens": 10000,
+    "groups": 2000,
+    "values": 80006,
+    "strings": 813603,
+    "snapshotBytes": 1259631,
+    "lexical": 296041,
+    "maxDepth": 5,
+    "canonicalSha256": "baf7d22521e716a54e2e9533a3794990b6b2acc61f01bf8753fffc4f86af8524"
+  },
+  "row": {
+    "tokens": 1,
+    "groups": 0,
+    "values": 29,
+    "strings": 135401,
+    "snapshotBytes": 135548,
+    "lexical": 125,
+    "maxDepth": 9,
+    "canonicalSha256": "5e4300c798cfea7a02fef614317b644e05526cec4e9cce83e27b083af5428d86"
+  },
+  "raw": {
+    "tokens": 1,
+    "groups": 0,
+    "values": 211,
+    "strings": 4129783,
+    "snapshotBytes": 4130779,
+    "lexical": 733,
+    "maxDepth": 10,
+    "canonicalSha256": "6954761d7b16185e96c5cb0abcbf9c3eb52f6cf6a5e0946aeba88b0b434d5d74"
+  },
+  "coverage": {
+    "tokens": 32,
+    "groups": 2,
+    "values": 697,
+    "strings": 6591,
+    "snapshotBytes": 10251,
+    "lexical": 2607,
+    "maxDepth": 12,
+    "canonicalSha256": "d96ec59938c6680c7698c97a61913621fb1df37bdea526d5090bd49f8a5e62d3"
+  }
+}

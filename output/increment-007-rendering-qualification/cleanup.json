@@ -1,0 +1,38 @@
+{
+  "checked": "2026-11-10T10:20:09.681Z",
+  "hardware": "Mac15,6\n38654705664\n",
+  "checks": [
+    {
+      "name": "chrome-results-attempt-1.json",
+      "origin": "http://127.0.0.1:52348",
+      "listening": false,
+      "error": "Error: connect ECONNREFUSED 127.0.0.1:52348",
+      "pid": 13221,
+      "pidExists": false
+    },
+    {
+      "name": "chrome-results-attempt-2.json",
+      "origin": "http://127.0.0.1:52403",
+      "listening": false,
+      "error": "Error: connect ECONNREFUSED 127.0.0.1:52403",
+      "pid": 13473,
+      "pidExists": false
+    },
+    {
+      "name": "chrome-results-attempt-3.json",
+      "origin": "http://127.0.0.1:52434",
+      "listening": false,
+      "error": "Error: connect ECONNREFUSED 127.0.0.1:52434",
+      "pid": 13612,
+      "pidExists": false
+    },
+    {
+      "name": "chrome-small-functional.json",
+      "origin": "http://127.0.0.1:52469",
+      "listening": false,
+      "error": "Error: connect ECONNREFUSED 127.0.0.1:52469",
+      "pid": 13794,
+      "pidExists": false
+    }
+  ]
+}

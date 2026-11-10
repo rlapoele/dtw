@@ -1,0 +1,1821 @@
+{
+  "start": "2026-11-10T10:16:33.615Z",
+  "cases": [
+    {
+      "id": "R00-cold-navigation",
+      "status": "observed",
+      "wallMs": 91,
+      "value": {
+        "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "dpr": 1,
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "navigation": [
+          {
+            "name": "http://127.0.0.1:52403/",
+            "entryType": "navigation",
+            "startTime": 0,
+            "duration": 68.20000000018626,
+            "navigationId": 5969,
+            "initiatorType": "navigation",
+            "deliveryType": "",
+            "nextHopProtocol": "http/1.1",
+            "renderBlockingStatus": "non-blocking",
+            "contentType": "text/html",
+            "contentEncoding": "",
+            "workerStart": 0,
+            "workerRouterEvaluationStart": 0,
+            "workerCacheLookupStart": 0,
+            "workerMatchedSourceType": "",
+            "workerFinalSourceType": "",
+            "redirectStart": 0,
+            "redirectEnd": 0,
+            "fetchStart": 0.40000000037252903,
+            "domainLookupStart": 0.40000000037252903,
+            "domainLookupEnd": 0.40000000037252903,
+            "connectStart": 0.40000000037252903,
+            "secureConnectionStart": 0,
+            "connectEnd": 0.40000000037252903,
+            "requestStart": 1.1000000005587935,
+            "responseStart": 3,
+            "firstInterimResponseStart": 0,
+            "finalResponseHeadersStart": 3,
+            "responseEnd": 3.300000000745058,
+            "transferSize": 616,
+            "encodedBodySize": 316,
+            "decodedBodySize": 316,
+            "responseStatus": 200,
+            "serverTiming": [],
+            "unloadEventStart": 0,
+            "unloadEventEnd": 0,
+            "domInteractive": 7.300000000745058,
+            "domContentLoadedEventStart": 31.800000000745058,
+            "domContentLoadedEventEnd": 31.800000000745058,
+            "domComplete": 68.20000000018626,
+            "loadEventStart": 68.20000000018626,
+            "loadEventEnd": 68.20000000018626,
+            "type": "navigate",
+            "redirectCount": 0,
+            "activationStart": 0,
+            "criticalCHRestart": 0,
+            "notRestoredReasons": null,
+            "confidence": {
+              "randomizedTriggerRate": 0.4994798,
+              "value": "low"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "R02-100--1",
+      "status": "observed",
+      "wallMs": 102,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 2.2999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 2.5
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 2.1000000005587935
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.5
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.5
+          }
+        ],
+        "totalMs": 99.3999999994412,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 104.3,
+            "gap": 16.200000000000003
+          },
+          {
+            "t": 121.9,
+            "gap": 17.60000000000001
+          },
+          {
+            "t": 138.6,
+            "gap": 16.69999999999999
+          },
+          {
+            "t": 155.2,
+            "gap": 16.599999999999994
+          },
+          {
+            "t": 171.1,
+            "gap": 15.900000000000006
+          },
+          {
+            "t": 188.6,
+            "gap": 17.5
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 5091820
+      }
+    },
+    {
+      "id": "R02-100-0",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.6999999992549419
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.1000000005587935
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.300000000745058
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.3999999994412065
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.300000000745058
+          }
+        ],
+        "totalMs": 97.5,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 204.2,
+            "gap": 15.599999999999994
+          },
+          {
+            "t": 221.2,
+            "gap": 17
+          },
+          {
+            "t": 238.6,
+            "gap": 17.400000000000006
+          },
+          {
+            "t": 255.2,
+            "gap": 16.599999999999994
+          },
+          {
+            "t": 271.9,
+            "gap": 16.69999999999999
+          },
+          {
+            "t": 288.6,
+            "gap": 16.700000000000045
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 7024294
+      }
+    },
+    {
+      "id": "R02-100-1",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.599999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.099999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.2000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.199999999254942
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.1000000005587935
+          }
+        ],
+        "totalMs": 97.8999999994412,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 305.2,
+            "gap": 16.599999999999966
+          },
+          {
+            "t": 322,
+            "gap": 16.80000000000001
+          },
+          {
+            "t": 338.5,
+            "gap": 16.5
+          },
+          {
+            "t": 355.3,
+            "gap": 16.80000000000001
+          },
+          {
+            "t": 371.9,
+            "gap": 16.599999999999966
+          },
+          {
+            "t": 388.6,
+            "gap": 16.700000000000045
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 7846354
+      }
+    },
+    {
+      "id": "R02-100-2",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.6999999992549419
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.2000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.3999999994412065
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1
+          }
+        ],
+        "totalMs": 97.70000000018626,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 405.3,
+            "gap": 16.69999999999999
+          },
+          {
+            "t": 421.9,
+            "gap": 16.599999999999966
+          },
+          {
+            "t": 438.6,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 455.3,
+            "gap": 16.69999999999999
+          },
+          {
+            "t": 471.9,
+            "gap": 16.599999999999966
+          },
+          {
+            "t": 488.6,
+            "gap": 16.700000000000045
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 8218430
+      }
+    },
+    {
+      "id": "R02-100-3",
+      "status": "observed",
+      "wallMs": 100,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.7000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.900000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.1000000005587935
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.900000000372529
+          }
+        ],
+        "totalMs": 97.90000000037253,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 505.2,
+            "gap": 16.599999999999966
+          },
+          {
+            "t": 522,
+            "gap": 16.80000000000001
+          },
+          {
+            "t": 538.6,
+            "gap": 16.600000000000023
+          },
+          {
+            "t": 555.3,
+            "gap": 16.699999999999932
+          },
+          {
+            "t": 572,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 588.7,
+            "gap": 16.700000000000045
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 8807906
+      }
+    },
+    {
+      "id": "R02-100-4",
+      "status": "observed",
+      "wallMs": 101,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.599999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.900000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.099999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.2999999998137355
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.199999999254942
+          }
+        ],
+        "totalMs": 98.1000000005588,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 605.3,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 622,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 638.6,
+            "gap": 16.600000000000023
+          },
+          {
+            "t": 655.3,
+            "gap": 16.699999999999932
+          },
+          {
+            "t": 672,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 688.6,
+            "gap": 16.600000000000023
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 9366022
+      }
+    },
+    {
+      "id": "R02-100-5",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 1
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.2999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.400000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.6000000005587935
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.3999999994412065
+          }
+        ],
+        "totalMs": 96.59999999962747,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 705.3,
+            "gap": 16.699999999999932
+          },
+          {
+            "t": 722,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 738.7,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 755.3,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 771.9,
+            "gap": 16.600000000000023
+          },
+          {
+            "t": 788.6,
+            "gap": 16.700000000000045
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 10906786
+      }
+    },
+    {
+      "id": "R02-100-6",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 1.099999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.2000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.7000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.599999999627471
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.6000000005587935
+          }
+        ],
+        "totalMs": 96.5,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 805.3,
+            "gap": 16.699999999999932
+          },
+          {
+            "t": 821.9,
+            "gap": 16.600000000000023
+          },
+          {
+            "t": 838.6,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 855.3,
+            "gap": 16.699999999999932
+          },
+          {
+            "t": 872,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 888.6,
+            "gap": 16.600000000000023
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 9390122
+      }
+    },
+    {
+      "id": "R02-100-7",
+      "status": "observed",
+      "wallMs": 98,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.900000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.2999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.5
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 2
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.599999999627471
+          }
+        ],
+        "totalMs": 95.59999999962747,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 905.3,
+            "gap": 16.699999999999932
+          },
+          {
+            "t": 922,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 938.6,
+            "gap": 16.600000000000023
+          },
+          {
+            "t": 955.3,
+            "gap": 16.699999999999932
+          },
+          {
+            "t": 972,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 987.8,
+            "gap": 15.799999999999955
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 12458562
+      }
+    },
+    {
+      "id": "R02-100-8",
+      "status": "observed",
+      "wallMs": 100,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 1.5
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.3999999994412065
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.599999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.800000000745058
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.599999999627471
+          }
+        ],
+        "totalMs": 97,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1005.3,
+            "gap": 17.5
+          },
+          {
+            "t": 1021.9,
+            "gap": 16.600000000000023
+          },
+          {
+            "t": 1038.7,
+            "gap": 16.800000000000068
+          },
+          {
+            "t": 1055.3,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 1071.9,
+            "gap": 16.600000000000136
+          },
+          {
+            "t": 1088.7,
+            "gap": 16.799999999999955
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 11147634
+      }
+    },
+    {
+      "id": "R02-100-9",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.7000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.300000000745058
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.3999999994412065
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.3999999994412065
+          }
+        ],
+        "totalMs": 96.70000000018626,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1105.3,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 1122,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1138.7,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1155.3,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 1171.9,
+            "gap": 16.600000000000136
+          },
+          {
+            "t": 1188.6,
+            "gap": 16.699999999999818
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 14233062
+      }
+    },
+    {
+      "id": "R02-100-10",
+      "status": "observed",
+      "wallMs": 101,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.1000000005587935
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.5
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.599999999627471
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.6000000005587935
+          }
+        ],
+        "totalMs": 97.09999999962747,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1205.3,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1221.9,
+            "gap": 16.600000000000136
+          },
+          {
+            "t": 1238.6,
+            "gap": 16.699999999999818
+          },
+          {
+            "t": 1255.4,
+            "gap": 16.800000000000182
+          },
+          {
+            "t": 1272,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 1288.7,
+            "gap": 16.700000000000045
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 12522586
+      }
+    },
+    {
+      "id": "R02-100-11",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 1.2000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.400000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.7000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 2
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 2
+          }
+        ],
+        "totalMs": 95,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1305.4,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1321.9,
+            "gap": 16.5
+          },
+          {
+            "t": 1338.7,
+            "gap": 16.799999999999955
+          },
+          {
+            "t": 1355.3,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 1372,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1388.7,
+            "gap": 16.700000000000045
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 15600182
+      }
+    },
+    {
+      "id": "R02-100-12",
+      "status": "observed",
+      "wallMs": 98,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 3.400000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 3.099999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.3999999994412065
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.3999999994412065
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.099999999627471
+          }
+        ],
+        "totalMs": 95.70000000018626,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1405.3,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 1422,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1438.7,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1455.4,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1471.2,
+            "gap": 15.799999999999955
+          },
+          {
+            "t": 1488.6,
+            "gap": 17.399999999999864
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 5861044
+      }
+    },
+    {
+      "id": "R02-100-13",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.6999999992549419
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.400000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.5
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.5
+          }
+        ],
+        "totalMs": 96.8999999994412,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1505.3,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1522,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1538.7,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1555.3,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 1572,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1588.7,
+            "gap": 16.700000000000045
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 8924060
+      }
+    },
+    {
+      "id": "R02-100-14",
+      "status": "observed",
+      "wallMs": 100,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.599999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.1000000005587935
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.2999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.400000000372529
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1
+          }
+        ],
+        "totalMs": 97,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1605.3,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 1622,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1637.7,
+            "gap": 15.700000000000045
+          },
+          {
+            "t": 1655.3,
+            "gap": 17.59999999999991
+          },
+          {
+            "t": 1672,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1688.6,
+            "gap": 16.59999999999991
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 11992996
+      }
+    },
+    {
+      "id": "R02-100-15",
+      "status": "observed",
+      "wallMs": 100,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.599999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.2999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 2.2999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.5
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.2000000001862645
+          }
+        ],
+        "totalMs": 96.90000000037253,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1705.3,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1722,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1738.6,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 1755.3,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1772,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1788.7,
+            "gap": 16.700000000000045
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 5447477
+      }
+    },
+    {
+      "id": "R02-100-16",
+      "status": "observed",
+      "wallMs": 100,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.7000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.099999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.5
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.7999999998137355
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.7000000001862645
+          }
+        ],
+        "totalMs": 96.8999999994412,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1805.3,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 1822,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1838.7,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1855.3,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 1872,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1888.4,
+            "gap": 16.40000000000009
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 8513940
+      }
+    },
+    {
+      "id": "R02-100-17",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.2000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 2
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.7000000001862645
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.400000000372529
+          }
+        ],
+        "totalMs": 96.1000000005588,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1905.3,
+            "gap": 16.899999999999864
+          },
+          {
+            "t": 1922,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1938.7,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1955.4,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1972,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 1988.7,
+            "gap": 16.700000000000045
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 11576076
+      }
+    },
+    {
+      "id": "R02-100-18",
+      "status": "observed",
+      "wallMs": 98,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.5
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.199999999254942
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.2999999998137355
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.2999999998137355
+          }
+        ],
+        "totalMs": 96.70000000018626,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 2005.3,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 2022.1,
+            "gap": 16.799999999999955
+          },
+          {
+            "t": 2038.7,
+            "gap": 16.600000000000136
+          },
+          {
+            "t": 2055.4,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 2072.1,
+            "gap": 16.699999999999818
+          },
+          {
+            "t": 2088.7,
+            "gap": 16.59999999999991
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 14639668
+      }
+    },
+    {
+      "id": "R02-100-19",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.6000000005587935
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.300000000745058
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 1.2000000001862645
+          }
+        ],
+        "totalMs": 97.59999999962747,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 2105.3,
+            "gap": 16.600000000000364
+          },
+          {
+            "t": 2122,
+            "gap": 16.699999999999818
+          },
+          {
+            "t": 2138.7,
+            "gap": 16.699999999999818
+          },
+          {
+            "t": 2155.4,
+            "gap": 16.700000000000273
+          },
+          {
+            "t": 2172,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 2188.7,
+            "gap": 16.699999999999818
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "mounted": 100,
+        "memory": 7373488
+      }
+    },
+    {
+      "id": "R01-real-row-control",
+      "status": "observed",
+      "wallMs": 327,
+      "value": {
+        "equal": true,
+        "before": "<button type=\"button\" class=\"token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent selected\" aria-pressed=\"true\"><span class=\"flex gap-3 min-w-0 items-start\"><span class=\"swatch size-8.5 border border-swatch-border rounded block shrink-0 overflow-hidden \" aria-hidden=\"true\"><span class=\"block size-full\" style=\"background: color(srgb 0.2 0.4 0.6);\"></span></span><span class=\"token-identity flex-1 min-w-0\"><strong class=\"block text-xs/normal small:text-caption token-name wrap-anywhere\">t0</strong><small class=\"block text-secondary mt-1 wrap-anywhere\">primitive · color</small><span class=\"@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-secondary\">Exact description 0 with variable length </span></span></span><span class=\"hidden @3xl:block min-w-0 text-caption text-secondary\"><span class=\"line-clamp-2 whitespace-pre-wrap wrap-anywhere\">Exact description 0 with variable length </span></span><span class=\"value-summary min-w-0 text-value text-caption wrap-anywhere\"><span class=\"block min-w-0 wrap-anywhere\"><span class=\"block\">sRGB</span><span class=\"block text-secondary mt-1 mono\"><span><span class=\"inline-block max-w-full align-top wrap-anywhere\">R: 0.2</span></span><span> · <span class=\"inline-block max-w-full align-top wrap-anywhere\">G: 0.4</span></span><span> · <span class=\"inline-block max-w-full align-top wrap-anywhere\">B: 0.6</span></span><span> · <span class=\"inline-block max-w-full align-top wrap-anywhere\">Alpha: 1</span></span></span></span></span></button>",
+        "control": "<button type=\"button\" class=\"token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent selected\" aria-pressed=\"true\"><span class=\"flex gap-3 min-w-0 items-start\"><span class=\"swatch size-8.5 border border-swatch-border rounded block shrink-0 overflow-hidden \" aria-hidden=\"true\"><span class=\"block size-full\" style=\"background: color(srgb 0.2 0.4 0.6);\"></span></span><span class=\"token-identity flex-1 min-w-0\"><strong class=\"block text-xs/normal small:text-caption token-name wrap-anywhere\">t0</strong><small class=\"block text-secondary mt-1 wrap-anywhere\">primitive · color</small><span class=\"@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-secondary\">Exact description 0 with variable length </span></span></span><span class=\"hidden @3xl:block min-w-0 text-caption text-secondary\"><span class=\"line-clamp-2 whitespace-pre-wrap wrap-anywhere\">Exact description 0 with variable length </span></span><span class=\"value-summary min-w-0 text-value text-caption wrap-anywhere\"><span class=\"block min-w-0 wrap-anywhere\"><span class=\"block\">sRGB</span><span class=\"block text-secondary mt-1 mono\"><span><span class=\"inline-block max-w-full align-top wrap-anywhere\">R: 0.2</span></span><span> · <span class=\"inline-block max-w-full align-top wrap-anywhere\">G: 0.4</span></span><span> · <span class=\"inline-block max-w-full align-top wrap-anywhere\">B: 0.6</span></span><span> · <span class=\"inline-block max-w-full align-top wrap-anywhere\">Alpha: 1</span></span></span></span></span></button>",
+        "inspector": "COLOR TOKEN\nt0\n\nExact description 0 with variable length \n\nprimitive\nUnconditional\nAuthored value\nResolved & trace\nValue\nValue source\nLiteral color\nReference\nView color space\nsRGB\nDisplay P3\nHSL\nOKLAB\nOKLCH\n\nDraft in sRGB. Switching view keeps exact values.\n\nRGB entry scale\nNormalized · 0–1\n0–255 scale\nRed\n0\n1\n\nIllustrative range 0 to 1, step 0.001. Exact values are retained.\n\nGreen\n0\n1\n\nIllustrative range 0 to 1, step 0.001. Exact values are retained.\n\nBlue\n0\n1\n\nIllustrative range 0 to 1, step 0.001. Exact values are retained.\n\nAlpha\n\nExact canonical decimal text or none; alpha 0–1. Sliders are illustrative stepped edits. Derived views and byte displays may be approximate. Apply uses srgb.\n\nDraft preview: Illustrative sRGB specimen.\n\nCancel\nApply changes\n\nEditing preserves name and metadata.\n\nCurrently applied\nsRGB\nRed 0.2\nGreen 0.4\nBlue 0.6\nAlpha 1\nMetadata · read only\nRegeneration\nallowed\nSemantic role\nUnspecified\nParent group\nProject root\nAll authored data\nRegeneration\nallowed",
+        "inputs": 8
+      }
+    },
+    {
+      "id": "R03-row-gate",
+      "status": "failed",
+      "error": "Error: Mounted count mismatch [object Object]/undefined",
+      "wallMs": 183
+    }
+  ],
+  "source": {
+    "Editor.tsx": "c0bb50a1296e298012f4295f85424e2a871eeb5725d0ee3e681c7b302c627d1e",
+    "Row.tsx": "deccaab5c15c406f0e450278e2ce985e16f4442dd2fe29300d0a826b0ca277d0",
+    "fixtures.mjs": "19503baf48a9a9add48c359c2e17b9a3948b972660d2f7c1cea1303ed171b4a8",
+    "index.html": "59bd3f90115029d80986ce031c8666ad2bbb4ec2d5ed5f01eb99ca0d0edfe96d",
+    "main.tsx": "ef3b590ef50113f0e0f2fbdab5433f7ca7f7b09820fdeaf9f4bc851c24d5adb8",
+    "prepare-copies.py": "1b33a789a2853fc296deb5b3ac9fb58e2c3a636f629ab2544d4a34e6c6cdeb88",
+    "provenance.json": "1963b6fec048b94ca482bb84ff4d1813ce66673258b40998c3b3c119f713bbd6",
+    "qualification.css": "2a4dbde68da5af9e0366b529d5417ad2a452013d9cdbf5c7f5ecd5a063494e4f",
+    "run.mjs": "66ae48c54be48507c089d13111b7bcc24bef708acc3512768fb74e3bbc3493a2",
+    "vite.config.ts": "877d445958ca68789cf7f77e58c16b205886e02ee974c73831dac1cf0509cda9",
+    "worker.ts": "4f9f1877b7c76ea61db262fe4294cd245740ea9e85dd7df8a806f30ef2631b26"
+  },
+  "environment": {
+    "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B123\n",
+    "node": "v24.14.1"
+  },
+  "origin": "http://127.0.0.1:52403",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-rendering-hZIy5n",
+  "pid": 13473,
+  "stderr": "\nDevTools listening on ws://127.0.0.1:52405/devtools/browser/21fbbaad-ffa4-4c0c-8301-84f0d3b4daa9\nTrying to load the allocator multiple times. This is *not* supported.\n",
+  "browser": "157.0.8103.50",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "active": "R03-row-gate",
+  "error": "Error: Mounted count mismatch [object Object]/undefined",
+  "end": "2026-11-10T10:16:37.008Z"
+}

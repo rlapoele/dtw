@@ -1,0 +1,157 @@
+{
+  "manifestSha256": "aa83dbdbc6597c10138f1d0b1839b9ba91507613c9e4416aacfa51798d850024",
+  "filesMatched": 80,
+  "archiveSourceMapMatched": true,
+  "productionProvenanceMatched": true,
+  "fixtures": {
+    "100": {
+      "values": 2306,
+      "strings": 25788,
+      "lexical": 8342,
+      "maxDepth": 9,
+      "snapshotBytes": 37617,
+      "fileBytes": 37738,
+      "canonicalSha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5"
+    },
+    "1000": {
+      "values": 23006,
+      "strings": 260698,
+      "lexical": 83042,
+      "maxDepth": 9,
+      "snapshotBytes": 378727,
+      "fileBytes": 378848,
+      "canonicalSha256": "b79f0b32ec231982a39107e95d1cc2a001c764fbd476ce51d4e0044113eeaba7"
+    },
+    "entities": {
+      "values": 80006,
+      "strings": 813603,
+      "lexical": 296041,
+      "maxDepth": 5,
+      "snapshotBytes": 1259631,
+      "fileBytes": 1259752,
+      "canonicalSha256": "baf7d22521e716a54e2e9533a3794990b6b2acc61f01bf8753fffc4f86af8524"
+    },
+    "row": {
+      "values": 29,
+      "strings": 135401,
+      "lexical": 125,
+      "maxDepth": 9,
+      "snapshotBytes": 135548,
+      "fileBytes": 135669,
+      "canonicalSha256": "5e4300c798cfea7a02fef614317b644e05526cec4e9cce83e27b083af5428d86"
+    },
+    "raw": {
+      "values": 211,
+      "strings": 4129783,
+      "lexical": 733,
+      "maxDepth": 10,
+      "snapshotBytes": 4130779,
+      "fileBytes": 4130900,
+      "canonicalSha256": "6954761d7b16185e96c5cb0abcbf9c3eb52f6cf6a5e0946aeba88b0b434d5d74"
+    },
+    "coverage": {
+      "values": 697,
+      "strings": 6591,
+      "lexical": 2607,
+      "maxDepth": 12,
+      "snapshotBytes": 10251,
+      "fileBytes": 10372,
+      "canonicalSha256": "d96ec59938c6680c7698c97a61913621fb1df37bdea526d5090bd49f8a5e62d3"
+    }
+  },
+  "raw": {
+    "units": 4134504,
+    "sha256": "b7b6c3ea2c4bf426e52144643a6e556d1312015ed49efecee218d70f6660e56e",
+    "selectionMatches": true,
+    "mainThread": {
+      "args": {
+        "name": "CrRendererMain"
+      },
+      "cat": "__metadata",
+      "name": "thread_name",
+      "ph": "M",
+      "pid": 13625,
+      "tid": 154499,
+      "ts": 0
+    },
+    "longestLayout": {
+      "args": {
+        "beginData": {
+          "dirtyObjects": 13,
+          "frame": "AECB1EDC9074530713554060463D95AD",
+          "partialLayout": false,
+          "totalObjects": 105
+        },
+        "endData": {
+          "layoutRoots": [
+            {
+              "depth": 1,
+              "nodeId": 2,
+              "nodeName": "#document",
+              "quads": [
+                [
+                  0,
+                  0,
+                  2880,
+                  0,
+                  2880,
+                  2000,
+                  0,
+                  2000
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "cat": "devtools.timeline",
+      "dur": 191793,
+      "name": "Layout",
+      "ph": "X",
+      "pid": 13625,
+      "tdur": 190465,
+      "tid": 154499,
+      "ts": 6910761723,
+      "tts": 552612
+    },
+    "layoutDeltaMs": 192.521,
+    "withinGateMetricInterval": true
+  },
+  "small": {
+    "n": 20,
+    "p95Ms": 98,
+    "maxMs": 98,
+    "mountedAndRenderCountsValid": true,
+    "functionalCase": {
+      "id": "R01-small-inspector-draft-state",
+      "status": "observed",
+      "wallMs": 251,
+      "value": {
+        "views": [
+          "sRGB",
+          "Display P3",
+          "HSL",
+          "OKLAB",
+          "OKLCH"
+        ],
+        "scales": [
+          "Normalized · 0–1",
+          "0–255 scale"
+        ],
+        "rowsBefore": 300,
+        "rowsAfter": 300,
+        "typed": "0.25",
+        "restored": "0.25",
+        "choices": 101,
+        "error": "Apply failed. Invalid authoring: Synthetic harness injected apply failure; drafts retained.",
+        "focused": true,
+        "traceContainsDiagnostics": true,
+        "rawToken": "t0",
+        "rawComponent": "0.2",
+        "draftAfterRaw": "0.25",
+        "footer": "Regeneration\nallowed"
+      }
+    }
+  },
+  "limits": "Offline source/raw-evidence checks only; no browser rerun, native keyboard, Find, AT or zoom claim."
+}

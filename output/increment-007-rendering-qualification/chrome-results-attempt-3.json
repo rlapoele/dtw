@@ -1,0 +1,3903 @@
+{
+  "start": "2026-11-10T10:17:12.314Z",
+  "cases": [
+    {
+      "id": "R00-cold-navigation",
+      "status": "observed",
+      "wallMs": 81,
+      "value": {
+        "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "dpr": 1,
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "navigation": [
+          {
+            "name": "http://127.0.0.1:52434/",
+            "entryType": "navigation",
+            "startTime": 0,
+            "duration": 58.200000000186265,
+            "navigationId": 829,
+            "initiatorType": "navigation",
+            "deliveryType": "",
+            "nextHopProtocol": "http/1.1",
+            "renderBlockingStatus": "non-blocking",
+            "contentType": "text/html",
+            "contentEncoding": "",
+            "workerStart": 0,
+            "workerRouterEvaluationStart": 0,
+            "workerCacheLookupStart": 0,
+            "workerMatchedSourceType": "",
+            "workerFinalSourceType": "",
+            "redirectStart": 0,
+            "redirectEnd": 0,
+            "fetchStart": 0.40000000037252903,
+            "domainLookupStart": 0.40000000037252903,
+            "domainLookupEnd": 0.40000000037252903,
+            "connectStart": 0.40000000037252903,
+            "secureConnectionStart": 0,
+            "connectEnd": 0.40000000037252903,
+            "requestStart": 0.7999999998137355,
+            "responseStart": 2.2000000001862645,
+            "firstInterimResponseStart": 0,
+            "finalResponseHeadersStart": 2.2000000001862645,
+            "responseEnd": 2.5,
+            "transferSize": 616,
+            "encodedBodySize": 316,
+            "decodedBodySize": 316,
+            "responseStatus": 200,
+            "serverTiming": [],
+            "unloadEventStart": 0,
+            "unloadEventEnd": 0,
+            "domInteractive": 6,
+            "domContentLoadedEventStart": 28.59999999962747,
+            "domContentLoadedEventEnd": 28.700000000186265,
+            "domComplete": 58.200000000186265,
+            "loadEventStart": 58.200000000186265,
+            "loadEventEnd": 58.200000000186265,
+            "type": "navigate",
+            "redirectCount": 0,
+            "activationStart": 0,
+            "criticalCHRestart": 0,
+            "notRestoredReasons": null,
+            "confidence": {
+              "randomizedTriggerRate": 0.4994798,
+              "value": "high"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "R02-100--1",
+      "status": "observed",
+      "wallMs": 104,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 2.1000000005587935
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.7000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.099999999627471
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.7000000001862645
+          }
+        ],
+        "totalMs": 101.09999999962747,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 80,
+            "gap": 17.1
+          },
+          {
+            "t": 96.6,
+            "gap": 16.599999999999994
+          },
+          {
+            "t": 112.7,
+            "gap": 16.10000000000001
+          },
+          {
+            "t": 130,
+            "gap": 17.299999999999997
+          },
+          {
+            "t": 146.2,
+            "gap": 16.19999999999999
+          },
+          {
+            "t": 162.5,
+            "gap": 16.30000000000001
+          },
+          {
+            "t": 179.9,
+            "gap": 17.400000000000006
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 4103947
+      }
+    },
+    {
+      "id": "R02-100-0",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.8999999994412065
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.900000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 0.900000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.099999999627471
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.5
+          }
+        ],
+        "totalMs": 97.09999999962747,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 196.6,
+            "gap": 16.69999999999999
+          },
+          {
+            "t": 213.4,
+            "gap": 16.80000000000001
+          },
+          {
+            "t": 230,
+            "gap": 16.599999999999994
+          },
+          {
+            "t": 246.7,
+            "gap": 16.69999999999999
+          },
+          {
+            "t": 263.3,
+            "gap": 16.600000000000023
+          },
+          {
+            "t": 280,
+            "gap": 16.69999999999999
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 4973193
+      }
+    },
+    {
+      "id": "R02-100-1",
+      "status": "observed",
+      "wallMs": 100,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.6000000005587935
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.900000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.39999999944120646
+          }
+        ],
+        "totalMs": 98,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 295.9,
+            "gap": 15.899999999999977
+          },
+          {
+            "t": 313.3,
+            "gap": 17.400000000000034
+          },
+          {
+            "t": 329.5,
+            "gap": 16.19999999999999
+          },
+          {
+            "t": 346.6,
+            "gap": 17.100000000000023
+          },
+          {
+            "t": 363.4,
+            "gap": 16.799999999999955
+          },
+          {
+            "t": 380,
+            "gap": 16.600000000000023
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 5646493
+      }
+    },
+    {
+      "id": "R02-100-2",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.900000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 0.8999999994412065
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.40000000037252903
+          }
+        ],
+        "totalMs": 97.70000000018626,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 396.7,
+            "gap": 16.69999999999999
+          },
+          {
+            "t": 413.3,
+            "gap": 16.600000000000023
+          },
+          {
+            "t": 430,
+            "gap": 16.69999999999999
+          },
+          {
+            "t": 446.7,
+            "gap": 16.69999999999999
+          },
+          {
+            "t": 463.3,
+            "gap": 16.600000000000023
+          },
+          {
+            "t": 480,
+            "gap": 16.69999999999999
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 6280021
+      }
+    },
+    {
+      "id": "R02-100-3",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.599999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.2999999998137355
+          }
+        ],
+        "totalMs": 97.59999999962747,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 496.7,
+            "gap": 16.69999999999999
+          },
+          {
+            "t": 512.8,
+            "gap": 16.099999999999966
+          },
+          {
+            "t": 529.3,
+            "gap": 16.5
+          },
+          {
+            "t": 546.6,
+            "gap": 17.300000000000068
+          },
+          {
+            "t": 562.9,
+            "gap": 16.299999999999955
+          },
+          {
+            "t": 580,
+            "gap": 17.100000000000023
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 7807853
+      }
+    },
+    {
+      "id": "R02-100-4",
+      "status": "observed",
+      "wallMs": 102,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.8999999994412065
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.8000000007450581
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.099999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.6999999992549419
+          }
+        ],
+        "totalMs": 98,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 596.7,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 613.3,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 630,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 645.8,
+            "gap": 15.799999999999955
+          },
+          {
+            "t": 663.3,
+            "gap": 17.5
+          },
+          {
+            "t": 680,
+            "gap": 16.700000000000045
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 7324197
+      }
+    },
+    {
+      "id": "R02-100-5",
+      "status": "observed",
+      "wallMs": 95,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.2999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.199999999254942
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.099999999627471
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.8999999994412065
+          }
+        ],
+        "totalMs": 91,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 696.7,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 713.3,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 730,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 746.6,
+            "gap": 16.600000000000023
+          },
+          {
+            "t": 763.3,
+            "gap": 16.699999999999932
+          },
+          {
+            "t": 779.5,
+            "gap": 16.200000000000045
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 7454105
+      }
+    },
+    {
+      "id": "R02-100-6",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.6999999992549419
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.1000000005587935
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.099999999627471
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.5
+          }
+        ],
+        "totalMs": 96.40000000037253,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 796.2,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 813.3,
+            "gap": 17.09999999999991
+          },
+          {
+            "t": 830,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 845.7,
+            "gap": 15.700000000000045
+          },
+          {
+            "t": 863.4,
+            "gap": 17.699999999999932
+          },
+          {
+            "t": 880.1,
+            "gap": 16.700000000000045
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 8961649
+      }
+    },
+    {
+      "id": "R02-100-7",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 0.7000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 0.7000000001862645
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.2999999998137355
+          }
+        ],
+        "totalMs": 97.3999999994412,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 896.6,
+            "gap": 16.5
+          },
+          {
+            "t": 913.4,
+            "gap": 16.799999999999955
+          },
+          {
+            "t": 930.1,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 946.7,
+            "gap": 16.600000000000023
+          },
+          {
+            "t": 963.3,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 980,
+            "gap": 16.700000000000045
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 8775597
+      }
+    },
+    {
+      "id": "R02-100-8",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.599999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.7000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.30000000074505806
+          }
+        ],
+        "totalMs": 97.3999999994412,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 996.7,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1012.5,
+            "gap": 15.799999999999955
+          },
+          {
+            "t": 1029.3,
+            "gap": 16.799999999999955
+          },
+          {
+            "t": 1046.7,
+            "gap": 17.40000000000009
+          },
+          {
+            "t": 1062.9,
+            "gap": 16.200000000000045
+          },
+          {
+            "t": 1080.1,
+            "gap": 17.199999999999818
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 10298169
+      }
+    },
+    {
+      "id": "R02-100-9",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.599999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.8000000007450581
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 0.900000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 0.8999999994412065
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.5
+          }
+        ],
+        "totalMs": 96.90000000037253,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1096.7,
+            "gap": 16.600000000000136
+          },
+          {
+            "t": 1113.4,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1130,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 1146.7,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1163.2,
+            "gap": 16.5
+          },
+          {
+            "t": 1179.1,
+            "gap": 15.899999999999864
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 11790409
+      }
+    },
+    {
+      "id": "R02-100-10",
+      "status": "observed",
+      "wallMs": 101,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.7000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.7000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 0.900000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.900000000372529
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.7000000001862645
+          }
+        ],
+        "totalMs": 97.90000000037253,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1196.7,
+            "gap": 17.600000000000136
+          },
+          {
+            "t": 1212.8,
+            "gap": 16.09999999999991
+          },
+          {
+            "t": 1229.2,
+            "gap": 16.40000000000009
+          },
+          {
+            "t": 1246.7,
+            "gap": 17.5
+          },
+          {
+            "t": 1262.5,
+            "gap": 15.799999999999955
+          },
+          {
+            "t": 1280,
+            "gap": 17.5
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 13268105
+      }
+    },
+    {
+      "id": "R02-100-11",
+      "status": "observed",
+      "wallMs": 98,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 1.5
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 0.7000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 0.8999999994412065
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.5
+          }
+        ],
+        "totalMs": 95.59999999962747,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1296.8,
+            "gap": 16.799999999999955
+          },
+          {
+            "t": 1313.3,
+            "gap": 16.5
+          },
+          {
+            "t": 1330.1,
+            "gap": 16.799999999999955
+          },
+          {
+            "t": 1346.2,
+            "gap": 16.100000000000136
+          },
+          {
+            "t": 1362.9,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1380.1,
+            "gap": 17.199999999999818
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 10823097
+      }
+    },
+    {
+      "id": "R02-100-12",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.1000000005587935
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.6000000005587935
+          }
+        ],
+        "totalMs": 97.40000000037253,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1396.8,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1413.4,
+            "gap": 16.600000000000136
+          },
+          {
+            "t": 1429.5,
+            "gap": 16.09999999999991
+          },
+          {
+            "t": 1446.7,
+            "gap": 17.200000000000045
+          },
+          {
+            "t": 1463.4,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1480,
+            "gap": 16.59999999999991
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 12213109
+      }
+    },
+    {
+      "id": "R02-100-13",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.6000000005587935
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 0.900000000372529
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.40000000037252903
+          }
+        ],
+        "totalMs": 97.29999999981374,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1496.8,
+            "gap": 16.799999999999955
+          },
+          {
+            "t": 1513.4,
+            "gap": 16.600000000000136
+          },
+          {
+            "t": 1530.1,
+            "gap": 16.699999999999818
+          },
+          {
+            "t": 1546.7,
+            "gap": 16.600000000000136
+          },
+          {
+            "t": 1563.4,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1580.1,
+            "gap": 16.699999999999818
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 13602645
+      }
+    },
+    {
+      "id": "R02-100-14",
+      "status": "observed",
+      "wallMs": 101,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.6000000005587935
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.6000000005587935
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 0.8000000007450581
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.2000000001862645
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.599999999627471
+          }
+        ],
+        "totalMs": 97.90000000037253,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1596.7,
+            "gap": 16.600000000000136
+          },
+          {
+            "t": 1613.4,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1630.1,
+            "gap": 16.699999999999818
+          },
+          {
+            "t": 1646.8,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1663.4,
+            "gap": 16.600000000000136
+          },
+          {
+            "t": 1680.1,
+            "gap": 16.699999999999818
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 3882536
+      }
+    },
+    {
+      "id": "R02-100-15",
+      "status": "observed",
+      "wallMs": 100,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.7000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.900000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 0.900000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 0.8999999994412065
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.40000000037252903
+          }
+        ],
+        "totalMs": 97.40000000037253,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1696.4,
+            "gap": 16.300000000000182
+          },
+          {
+            "t": 1713.5,
+            "gap": 17.09999999999991
+          },
+          {
+            "t": 1730.1,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 1746.7,
+            "gap": 16.600000000000136
+          },
+          {
+            "t": 1763.4,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1780.1,
+            "gap": 16.699999999999818
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 5256495
+      }
+    },
+    {
+      "id": "R02-100-16",
+      "status": "observed",
+      "wallMs": 101,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.8999999994412065
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.7000000001862645
+          }
+        ],
+        "totalMs": 96.70000000018626,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1796,
+            "gap": 15.900000000000091
+          },
+          {
+            "t": 1813.4,
+            "gap": 17.40000000000009
+          },
+          {
+            "t": 1830.1,
+            "gap": 16.699999999999818
+          },
+          {
+            "t": 1846.8,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1863.5,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1880.1,
+            "gap": 16.59999999999991
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 6626083
+      }
+    },
+    {
+      "id": "R02-100-17",
+      "status": "observed",
+      "wallMs": 98,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 1
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 1.099999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 1.300000000745058
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.7999999998137355
+          }
+        ],
+        "totalMs": 94.59999999962747,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1896.8,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 1913.4,
+            "gap": 16.600000000000136
+          },
+          {
+            "t": 1930,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 1946.8,
+            "gap": 16.799999999999955
+          },
+          {
+            "t": 1963.4,
+            "gap": 16.600000000000136
+          },
+          {
+            "t": 1980.1,
+            "gap": 16.699999999999818
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 7996815
+      }
+    },
+    {
+      "id": "R02-100-18",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.599999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 1.099999999627471
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 0.900000000372529
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 0.900000000372529
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.5
+          }
+        ],
+        "totalMs": 95.1000000005588,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 1996.8,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 2013.4,
+            "gap": 16.600000000000136
+          },
+          {
+            "t": 2030.1,
+            "gap": 16.699999999999818
+          },
+          {
+            "t": 2046.7,
+            "gap": 16.600000000000136
+          },
+          {
+            "t": 2063.4,
+            "gap": 16.700000000000045
+          },
+          {
+            "t": 2080.1,
+            "gap": 16.699999999999818
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 9366671
+      }
+    },
+    {
+      "id": "R02-100-19",
+      "status": "observed",
+      "wallMs": 99,
+      "value": {
+        "count": 100,
+        "groups": 0,
+        "counts": {
+          "values": 2306,
+          "strings": 25788,
+          "snapshotBytes": 37617,
+          "lexical": 8342,
+          "maxDepth": 9
+        },
+        "sha256": "6ddae0ab5a97819afdd06af0a4b93f948f8a388de1f498bca608dfd1843a82f5",
+        "project": {
+          "id": "p",
+          "name": "Stage A synthetic"
+        },
+        "batches": [
+          {
+            "rows": 24,
+            "bytes": 10744,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10839,
+            "roundtripCommitMs": 0.7000000001862645
+          },
+          {
+            "rows": 24,
+            "bytes": 10814,
+            "roundtripCommitMs": 0.7999999998137355
+          },
+          {
+            "rows": 24,
+            "bytes": 10824,
+            "roundtripCommitMs": 0.8999999994412065
+          },
+          {
+            "rows": 4,
+            "bytes": 1804,
+            "roundtripCommitMs": 0.6000000005587935
+          }
+        ],
+        "totalMs": 95.8999999994412,
+        "tasks": [],
+        "frames": [
+          {
+            "t": 2096.8,
+            "gap": 16.700000000000273
+          },
+          {
+            "t": 2113.4,
+            "gap": 16.59999999999991
+          },
+          {
+            "t": 2129.5,
+            "gap": 16.09999999999991
+          },
+          {
+            "t": 2146,
+            "gap": 16.5
+          },
+          {
+            "t": 2163.5,
+            "gap": 17.5
+          },
+          {
+            "t": 2180,
+            "gap": 16.5
+          }
+        ],
+        "commits": [],
+        "nodes": 2220,
+        "textCodeUnits": 17342,
+        "rowRenders": 100,
+        "mounted": 100,
+        "memory": 3868664
+      }
+    },
+    {
+      "id": "R01-real-row-control",
+      "status": "observed",
+      "wallMs": 177,
+      "value": {
+        "equal": true,
+        "before": "<button type=\"button\" class=\"token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent selected\" aria-pressed=\"true\"><span class=\"flex gap-3 min-w-0 items-start\"><span class=\"swatch size-8.5 border border-swatch-border rounded block shrink-0 overflow-hidden \" aria-hidden=\"true\"><span class=\"block size-full\" style=\"background: color(srgb 0.2 0.4 0.6);\"></span></span><span class=\"token-identity flex-1 min-w-0\"><strong class=\"block text-xs/normal small:text-caption token-name wrap-anywhere\">t0</strong><small class=\"block text-secondary mt-1 wrap-anywhere\">primitive · color</small><span class=\"@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-secondary\">Exact description 0 with variable length </span></span></span><span class=\"hidden @3xl:block min-w-0 text-caption text-secondary\"><span class=\"line-clamp-2 whitespace-pre-wrap wrap-anywhere\">Exact description 0 with variable length </span></span><span class=\"value-summary min-w-0 text-value text-caption wrap-anywhere\"><span class=\"block min-w-0 wrap-anywhere\"><span class=\"block\">sRGB</span><span class=\"block text-secondary mt-1 mono\"><span><span class=\"inline-block max-w-full align-top wrap-anywhere\">R: 0.2</span></span><span> · <span class=\"inline-block max-w-full align-top wrap-anywhere\">G: 0.4</span></span><span> · <span class=\"inline-block max-w-full align-top wrap-anywhere\">B: 0.6</span></span><span> · <span class=\"inline-block max-w-full align-top wrap-anywhere\">Alpha: 1</span></span></span></span></span></button>",
+        "control": "<button type=\"button\" class=\"token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent selected\" aria-pressed=\"true\"><span class=\"flex gap-3 min-w-0 items-start\"><span class=\"swatch size-8.5 border border-swatch-border rounded block shrink-0 overflow-hidden \" aria-hidden=\"true\"><span class=\"block size-full\" style=\"background: color(srgb 0.2 0.4 0.6);\"></span></span><span class=\"token-identity flex-1 min-w-0\"><strong class=\"block text-xs/normal small:text-caption token-name wrap-anywhere\">t0</strong><small class=\"block text-secondary mt-1 wrap-anywhere\">primitive · color</small><span class=\"@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-secondary\">Exact description 0 with variable length </span></span></span><span class=\"hidden @3xl:block min-w-0 text-caption text-secondary\"><span class=\"line-clamp-2 whitespace-pre-wrap wrap-anywhere\">Exact description 0 with variable length </span></span><span class=\"value-summary min-w-0 text-value text-caption wrap-anywhere\"><span class=\"block min-w-0 wrap-anywhere\"><span class=\"block\">sRGB</span><span class=\"block text-secondary mt-1 mono\"><span><span class=\"inline-block max-w-full align-top wrap-anywhere\">R: 0.2</span></span><span> · <span class=\"inline-block max-w-full align-top wrap-anywhere\">G: 0.4</span></span><span> · <span class=\"inline-block max-w-full align-top wrap-anywhere\">B: 0.6</span></span><span> · <span class=\"inline-block max-w-full align-top wrap-anywhere\">Alpha: 1</span></span></span></span></span></button>",
+        "inspector": "COLOR TOKEN\nt0\n\nExact description 0 with variable length \n\nprimitive\nUnconditional\nAuthored value\nResolved & trace\nValue\nValue source\nLiteral color\nReference\nView color space\nsRGB\nDisplay P3\nHSL\nOKLAB\nOKLCH\n\nDraft in sRGB. Switching view keeps exact values.\n\nRGB entry scale\nNormalized · 0–1\n0–255 scale\nRed\n0\n1\n\nIllustrative range 0 to 1, step 0.001. Exact values are retained.\n\nGreen\n0\n1\n\nIllustrative range 0 to 1, step 0.001. Exact values are retained.\n\nBlue\n0\n1\n\nIllustrative range 0 to 1, step 0.001. Exact values are retained.\n\nAlpha\n\nExact canonical decimal text or none; alpha 0–1. Sliders are illustrative stepped edits. Derived views and byte displays may be approximate. Apply uses srgb.\n\nDraft preview: Illustrative sRGB specimen.\n\nCancel\nApply changes\n\nEditing preserves name and metadata.\n\nCurrently applied\nsRGB\nRed 0.2\nGreen 0.4\nBlue 0.6\nAlpha 1\nMetadata · read only\nRegeneration\nallowed\nSemantic role\nUnspecified\nParent group\nProject root\nAll authored data\nRegeneration\nallowed",
+        "inputs": 8
+      }
+    },
+    {
+      "id": "R03-row-gate",
+      "status": "observed",
+      "wallMs": 183,
+      "value": {
+        "mounted": {
+          "count": 1,
+          "groups": 0,
+          "counts": {
+            "values": 29,
+            "strings": 135401,
+            "snapshotBytes": 135548,
+            "lexical": 125,
+            "maxDepth": 9
+          },
+          "sha256": "5e4300c798cfea7a02fef614317b644e05526cec4e9cce83e27b083af5428d86",
+          "project": {
+            "id": "p",
+            "name": "Stage A synthetic"
+          },
+          "batches": [
+            {
+              "rows": 1,
+              "bytes": 266617,
+              "roundtripCommitMs": 0.6999999992549419
+            }
+          ],
+          "totalMs": 25.600000000558794,
+          "tasks": [],
+          "frames": [
+            {
+              "t": 2396.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2413.5,
+              "gap": 16.699999999999818
+            }
+          ],
+          "commits": [],
+          "nodes": 42,
+          "textCodeUnits": 200875,
+          "rowRenders": 1,
+          "mounted": 1,
+          "memory": 16103763
+        },
+        "snapshot": {
+          "events": [],
+          "commits": [],
+          "tasks": [],
+          "frames": [
+            {
+              "t": 46.632,
+              "gap": 20.631999999999998
+            },
+            {
+              "t": 46.632,
+              "gap": 0
+            },
+            {
+              "t": 62.9,
+              "gap": 16.268
+            },
+            {
+              "t": 80,
+              "gap": 17.1
+            },
+            {
+              "t": 96.6,
+              "gap": 16.599999999999994
+            },
+            {
+              "t": 112.7,
+              "gap": 16.10000000000001
+            },
+            {
+              "t": 130,
+              "gap": 17.299999999999997
+            },
+            {
+              "t": 146.2,
+              "gap": 16.19999999999999
+            },
+            {
+              "t": 162.5,
+              "gap": 16.30000000000001
+            },
+            {
+              "t": 179.9,
+              "gap": 17.400000000000006
+            },
+            {
+              "t": 196.6,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 213.4,
+              "gap": 16.80000000000001
+            },
+            {
+              "t": 230,
+              "gap": 16.599999999999994
+            },
+            {
+              "t": 246.7,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 263.3,
+              "gap": 16.600000000000023
+            },
+            {
+              "t": 280,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 295.9,
+              "gap": 15.899999999999977
+            },
+            {
+              "t": 313.3,
+              "gap": 17.400000000000034
+            },
+            {
+              "t": 329.5,
+              "gap": 16.19999999999999
+            },
+            {
+              "t": 346.6,
+              "gap": 17.100000000000023
+            },
+            {
+              "t": 363.4,
+              "gap": 16.799999999999955
+            },
+            {
+              "t": 380,
+              "gap": 16.600000000000023
+            },
+            {
+              "t": 396.7,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 413.3,
+              "gap": 16.600000000000023
+            },
+            {
+              "t": 430,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 446.7,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 463.3,
+              "gap": 16.600000000000023
+            },
+            {
+              "t": 480,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 496.7,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 512.8,
+              "gap": 16.099999999999966
+            },
+            {
+              "t": 529.3,
+              "gap": 16.5
+            },
+            {
+              "t": 546.6,
+              "gap": 17.300000000000068
+            },
+            {
+              "t": 562.9,
+              "gap": 16.299999999999955
+            },
+            {
+              "t": 580,
+              "gap": 17.100000000000023
+            },
+            {
+              "t": 596.7,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 613.3,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 630,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 645.8,
+              "gap": 15.799999999999955
+            },
+            {
+              "t": 663.3,
+              "gap": 17.5
+            },
+            {
+              "t": 680,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 696.7,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 713.3,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 730,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 746.6,
+              "gap": 16.600000000000023
+            },
+            {
+              "t": 763.3,
+              "gap": 16.699999999999932
+            },
+            {
+              "t": 779.5,
+              "gap": 16.200000000000045
+            },
+            {
+              "t": 796.2,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 813.3,
+              "gap": 17.09999999999991
+            },
+            {
+              "t": 830,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 845.7,
+              "gap": 15.700000000000045
+            },
+            {
+              "t": 863.4,
+              "gap": 17.699999999999932
+            },
+            {
+              "t": 880.1,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 896.6,
+              "gap": 16.5
+            },
+            {
+              "t": 913.4,
+              "gap": 16.799999999999955
+            },
+            {
+              "t": 930.1,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 946.7,
+              "gap": 16.600000000000023
+            },
+            {
+              "t": 963.3,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 980,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 996.7,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1012.5,
+              "gap": 15.799999999999955
+            },
+            {
+              "t": 1029.3,
+              "gap": 16.799999999999955
+            },
+            {
+              "t": 1046.7,
+              "gap": 17.40000000000009
+            },
+            {
+              "t": 1062.9,
+              "gap": 16.200000000000045
+            },
+            {
+              "t": 1080.1,
+              "gap": 17.199999999999818
+            },
+            {
+              "t": 1096.7,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1113.4,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1130,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 1146.7,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1163.2,
+              "gap": 16.5
+            },
+            {
+              "t": 1179.1,
+              "gap": 15.899999999999864
+            },
+            {
+              "t": 1196.7,
+              "gap": 17.600000000000136
+            },
+            {
+              "t": 1212.8,
+              "gap": 16.09999999999991
+            },
+            {
+              "t": 1229.2,
+              "gap": 16.40000000000009
+            },
+            {
+              "t": 1246.7,
+              "gap": 17.5
+            },
+            {
+              "t": 1262.5,
+              "gap": 15.799999999999955
+            },
+            {
+              "t": 1280,
+              "gap": 17.5
+            },
+            {
+              "t": 1296.8,
+              "gap": 16.799999999999955
+            },
+            {
+              "t": 1313.3,
+              "gap": 16.5
+            },
+            {
+              "t": 1330.1,
+              "gap": 16.799999999999955
+            },
+            {
+              "t": 1346.2,
+              "gap": 16.100000000000136
+            },
+            {
+              "t": 1362.9,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1380.1,
+              "gap": 17.199999999999818
+            },
+            {
+              "t": 1396.8,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1413.4,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1429.5,
+              "gap": 16.09999999999991
+            },
+            {
+              "t": 1446.7,
+              "gap": 17.200000000000045
+            },
+            {
+              "t": 1463.4,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1480,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 1496.8,
+              "gap": 16.799999999999955
+            },
+            {
+              "t": 1513.4,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1530.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 1546.7,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1563.4,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1580.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 1596.7,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1613.4,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1630.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 1646.8,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1663.4,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1680.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 1696.4,
+              "gap": 16.300000000000182
+            },
+            {
+              "t": 1713.5,
+              "gap": 17.09999999999991
+            },
+            {
+              "t": 1730.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 1746.7,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1763.4,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1780.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 1796,
+              "gap": 15.900000000000091
+            },
+            {
+              "t": 1813.4,
+              "gap": 17.40000000000009
+            },
+            {
+              "t": 1830.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 1846.8,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1863.5,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1880.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 1896.8,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1913.4,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1930,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 1946.8,
+              "gap": 16.799999999999955
+            },
+            {
+              "t": 1963.4,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1980.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 1996.8,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 2013.4,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 2030.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2046.7,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 2063.4,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 2080.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2096.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2113.4,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2129.5,
+              "gap": 16.09999999999991
+            },
+            {
+              "t": 2146,
+              "gap": 16.5
+            },
+            {
+              "t": 2163.5,
+              "gap": 17.5
+            },
+            {
+              "t": 2180,
+              "gap": 16.5
+            },
+            {
+              "t": 2196.8,
+              "gap": 16.800000000000182
+            },
+            {
+              "t": 2213.5,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2230.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2246.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2263.5,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2280.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2296.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2313.4,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2330.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2346.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2363.5,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2380.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2396.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2413.5,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2430.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2446.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2463.4,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2480.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2496.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2513.5,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2530.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2546.7,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2563.4,
+              "gap": 16.700000000000273
+            }
+          ],
+          "rows": 1,
+          "rowRenders": 2301
+        },
+        "before": [
+          {
+            "name": "Timestamp",
+            "value": 6910.4374
+          },
+          {
+            "name": "AudioHandlers",
+            "value": 0
+          },
+          {
+            "name": "AudioWorkletProcessors",
+            "value": 0
+          },
+          {
+            "name": "Documents",
+            "value": 1
+          },
+          {
+            "name": "Frames",
+            "value": 1
+          },
+          {
+            "name": "JSEventListeners",
+            "value": 610
+          },
+          {
+            "name": "LayoutObjects",
+            "value": 8470
+          },
+          {
+            "name": "MediaKeySessions",
+            "value": 0
+          },
+          {
+            "name": "MediaKeys",
+            "value": 0
+          },
+          {
+            "name": "Nodes",
+            "value": 11432
+          },
+          {
+            "name": "Resources",
+            "value": 2
+          },
+          {
+            "name": "ContextLifecycleStateObservers",
+            "value": 11
+          },
+          {
+            "name": "V8PerContextDatas",
+            "value": 2
+          },
+          {
+            "name": "WorkerGlobalScopes",
+            "value": 1
+          },
+          {
+            "name": "UACSSResources",
+            "value": 0
+          },
+          {
+            "name": "RTCPeerConnections",
+            "value": 0
+          },
+          {
+            "name": "ResourceFetchers",
+            "value": 2
+          },
+          {
+            "name": "AdSubframes",
+            "value": 0
+          },
+          {
+            "name": "DetachedScriptStates",
+            "value": 0
+          },
+          {
+            "name": "ArrayBufferContents",
+            "value": 2142
+          },
+          {
+            "name": "LayoutCount",
+            "value": 450
+          },
+          {
+            "name": "RecalcStyleCount",
+            "value": 567
+          },
+          {
+            "name": "LayoutDuration",
+            "value": 0.0956
+          },
+          {
+            "name": "RecalcStyleDuration",
+            "value": 0.040577
+          },
+          {
+            "name": "DevToolsCommandDuration",
+            "value": 0.067756
+          },
+          {
+            "name": "ScriptDuration",
+            "value": 0.03548
+          },
+          {
+            "name": "V8CompileDuration",
+            "value": 0
+          },
+          {
+            "name": "TaskDuration",
+            "value": 0.491126
+          },
+          {
+            "name": "TaskOtherDuration",
+            "value": 0.251713
+          },
+          {
+            "name": "ThreadTime",
+            "value": 0.473927
+          },
+          {
+            "name": "ProcessTime",
+            "value": 0.915091
+          },
+          {
+            "name": "JSHeapUsedSize",
+            "value": 14877044
+          },
+          {
+            "name": "JSHeapTotalSize",
+            "value": 23166976
+          },
+          {
+            "name": "FirstMeaningfulPaint",
+            "value": 6908.187301
+          },
+          {
+            "name": "DomContentLoaded",
+            "value": 6908.078647
+          },
+          {
+            "name": "NavigationStart",
+            "value": 6908.049994
+          }
+        ],
+        "after": [
+          {
+            "name": "Timestamp",
+            "value": 6910.619752
+          },
+          {
+            "name": "AudioHandlers",
+            "value": 0
+          },
+          {
+            "name": "AudioWorkletProcessors",
+            "value": 0
+          },
+          {
+            "name": "Documents",
+            "value": 1
+          },
+          {
+            "name": "Frames",
+            "value": 1
+          },
+          {
+            "name": "JSEventListeners",
+            "value": 191
+          },
+          {
+            "name": "LayoutObjects",
+            "value": 58
+          },
+          {
+            "name": "MediaKeySessions",
+            "value": 0
+          },
+          {
+            "name": "MediaKeys",
+            "value": 0
+          },
+          {
+            "name": "Nodes",
+            "value": 341
+          },
+          {
+            "name": "Resources",
+            "value": 2
+          },
+          {
+            "name": "ContextLifecycleStateObservers",
+            "value": 8
+          },
+          {
+            "name": "V8PerContextDatas",
+            "value": 2
+          },
+          {
+            "name": "WorkerGlobalScopes",
+            "value": 1
+          },
+          {
+            "name": "UACSSResources",
+            "value": 0
+          },
+          {
+            "name": "RTCPeerConnections",
+            "value": 0
+          },
+          {
+            "name": "ResourceFetchers",
+            "value": 2
+          },
+          {
+            "name": "AdSubframes",
+            "value": 0
+          },
+          {
+            "name": "DetachedScriptStates",
+            "value": 0
+          },
+          {
+            "name": "ArrayBufferContents",
+            "value": 2145
+          },
+          {
+            "name": "LayoutCount",
+            "value": 453
+          },
+          {
+            "name": "RecalcStyleCount",
+            "value": 571
+          },
+          {
+            "name": "LayoutDuration",
+            "value": 0.101816
+          },
+          {
+            "name": "RecalcStyleDuration",
+            "value": 0.040741
+          },
+          {
+            "name": "DevToolsCommandDuration",
+            "value": 0.070481
+          },
+          {
+            "name": "ScriptDuration",
+            "value": 0.03568
+          },
+          {
+            "name": "V8CompileDuration",
+            "value": 0
+          },
+          {
+            "name": "TaskDuration",
+            "value": 0.507951
+          },
+          {
+            "name": "TaskOtherDuration",
+            "value": 0.259233
+          },
+          {
+            "name": "ThreadTime",
+            "value": 0.490687
+          },
+          {
+            "name": "ProcessTime",
+            "value": 0.946233
+          },
+          {
+            "name": "JSHeapUsedSize",
+            "value": 4589536
+          },
+          {
+            "name": "JSHeapTotalSize",
+            "value": 23691264
+          },
+          {
+            "name": "FirstMeaningfulPaint",
+            "value": 6908.187301
+          },
+          {
+            "name": "DomContentLoaded",
+            "value": 6908.078647
+          },
+          {
+            "name": "NavigationStart",
+            "value": 6908.049994
+          }
+        ]
+      },
+      "traceTasksOver100ms": [],
+      "traceLongest": {
+        "RunTask": 0,
+        "Layout": 6.172,
+        "UpdateLayoutTree": 0.036,
+        "Paint": 0.25
+      }
+    },
+    {
+      "id": "R03-raw-gate",
+      "status": "observed",
+      "wallMs": 556,
+      "value": {
+        "mounted": {
+          "count": 1,
+          "groups": 0,
+          "counts": {
+            "values": 211,
+            "strings": 4129783,
+            "snapshotBytes": 4130779,
+            "lexical": 733,
+            "maxDepth": 10
+          },
+          "sha256": "6954761d7b16185e96c5cb0abcbf9c3eb52f6cf6a5e0946aeba88b0b434d5d74",
+          "project": {
+            "id": "p",
+            "name": "Stage A synthetic"
+          },
+          "batches": [
+            {
+              "rows": 1,
+              "bytes": 4130780,
+              "roundtripCommitMs": 7.2999999998137355
+            }
+          ],
+          "totalMs": 57.299999999813735,
+          "tasks": [],
+          "frames": [
+            {
+              "t": 2596.7,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2613.4,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2630.2,
+              "gap": 16.799999999999727
+            },
+            {
+              "t": 2646.8,
+              "gap": 16.600000000000364
+            }
+          ],
+          "commits": [],
+          "nodes": 31,
+          "textCodeUnits": 156,
+          "rowRenders": 1,
+          "mounted": 1,
+          "memory": 10480915
+        },
+        "detail": {
+          "units": 4134504,
+          "selectedUnits": 4134504,
+          "exactSelection": true,
+          "sha256": "b7b6c3ea2c4bf426e52144643a6e556d1312015ed49efecee218d70f6660e56e",
+          "first": "{\n  \"id\": \"t0\",\n  \"projectId\": \"p\",\n  \"localName\": \"t0\",\n  \"parentGroupId\": null",
+          "last": "       }\n      }\n    ]\n  },\n  \"authoring\": {\n    \"regeneration\": \"allowed\"\n  }\n}",
+          "rect": {
+            "x": 1085,
+            "y": 691.5859375,
+            "width": 331,
+            "height": 1487885.875,
+            "top": 691.5859375,
+            "right": 1416,
+            "bottom": 1488577.4609375,
+            "left": 1085
+          }
+        },
+        "snapshot": {
+          "events": [
+            {
+              "op": "raw-return",
+              "ms": 2.900000000372529,
+              "codeUnits": 4134504
+            },
+            {
+              "op": "raw-commit",
+              "at": 2704.2999999998137
+            }
+          ],
+          "commits": [],
+          "tasks": [],
+          "frames": [
+            {
+              "t": 46.632,
+              "gap": 20.631999999999998
+            },
+            {
+              "t": 46.632,
+              "gap": 0
+            },
+            {
+              "t": 62.9,
+              "gap": 16.268
+            },
+            {
+              "t": 80,
+              "gap": 17.1
+            },
+            {
+              "t": 96.6,
+              "gap": 16.599999999999994
+            },
+            {
+              "t": 112.7,
+              "gap": 16.10000000000001
+            },
+            {
+              "t": 130,
+              "gap": 17.299999999999997
+            },
+            {
+              "t": 146.2,
+              "gap": 16.19999999999999
+            },
+            {
+              "t": 162.5,
+              "gap": 16.30000000000001
+            },
+            {
+              "t": 179.9,
+              "gap": 17.400000000000006
+            },
+            {
+              "t": 196.6,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 213.4,
+              "gap": 16.80000000000001
+            },
+            {
+              "t": 230,
+              "gap": 16.599999999999994
+            },
+            {
+              "t": 246.7,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 263.3,
+              "gap": 16.600000000000023
+            },
+            {
+              "t": 280,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 295.9,
+              "gap": 15.899999999999977
+            },
+            {
+              "t": 313.3,
+              "gap": 17.400000000000034
+            },
+            {
+              "t": 329.5,
+              "gap": 16.19999999999999
+            },
+            {
+              "t": 346.6,
+              "gap": 17.100000000000023
+            },
+            {
+              "t": 363.4,
+              "gap": 16.799999999999955
+            },
+            {
+              "t": 380,
+              "gap": 16.600000000000023
+            },
+            {
+              "t": 396.7,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 413.3,
+              "gap": 16.600000000000023
+            },
+            {
+              "t": 430,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 446.7,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 463.3,
+              "gap": 16.600000000000023
+            },
+            {
+              "t": 480,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 496.7,
+              "gap": 16.69999999999999
+            },
+            {
+              "t": 512.8,
+              "gap": 16.099999999999966
+            },
+            {
+              "t": 529.3,
+              "gap": 16.5
+            },
+            {
+              "t": 546.6,
+              "gap": 17.300000000000068
+            },
+            {
+              "t": 562.9,
+              "gap": 16.299999999999955
+            },
+            {
+              "t": 580,
+              "gap": 17.100000000000023
+            },
+            {
+              "t": 596.7,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 613.3,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 630,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 645.8,
+              "gap": 15.799999999999955
+            },
+            {
+              "t": 663.3,
+              "gap": 17.5
+            },
+            {
+              "t": 680,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 696.7,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 713.3,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 730,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 746.6,
+              "gap": 16.600000000000023
+            },
+            {
+              "t": 763.3,
+              "gap": 16.699999999999932
+            },
+            {
+              "t": 779.5,
+              "gap": 16.200000000000045
+            },
+            {
+              "t": 796.2,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 813.3,
+              "gap": 17.09999999999991
+            },
+            {
+              "t": 830,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 845.7,
+              "gap": 15.700000000000045
+            },
+            {
+              "t": 863.4,
+              "gap": 17.699999999999932
+            },
+            {
+              "t": 880.1,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 896.6,
+              "gap": 16.5
+            },
+            {
+              "t": 913.4,
+              "gap": 16.799999999999955
+            },
+            {
+              "t": 930.1,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 946.7,
+              "gap": 16.600000000000023
+            },
+            {
+              "t": 963.3,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 980,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 996.7,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1012.5,
+              "gap": 15.799999999999955
+            },
+            {
+              "t": 1029.3,
+              "gap": 16.799999999999955
+            },
+            {
+              "t": 1046.7,
+              "gap": 17.40000000000009
+            },
+            {
+              "t": 1062.9,
+              "gap": 16.200000000000045
+            },
+            {
+              "t": 1080.1,
+              "gap": 17.199999999999818
+            },
+            {
+              "t": 1096.7,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1113.4,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1130,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 1146.7,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1163.2,
+              "gap": 16.5
+            },
+            {
+              "t": 1179.1,
+              "gap": 15.899999999999864
+            },
+            {
+              "t": 1196.7,
+              "gap": 17.600000000000136
+            },
+            {
+              "t": 1212.8,
+              "gap": 16.09999999999991
+            },
+            {
+              "t": 1229.2,
+              "gap": 16.40000000000009
+            },
+            {
+              "t": 1246.7,
+              "gap": 17.5
+            },
+            {
+              "t": 1262.5,
+              "gap": 15.799999999999955
+            },
+            {
+              "t": 1280,
+              "gap": 17.5
+            },
+            {
+              "t": 1296.8,
+              "gap": 16.799999999999955
+            },
+            {
+              "t": 1313.3,
+              "gap": 16.5
+            },
+            {
+              "t": 1330.1,
+              "gap": 16.799999999999955
+            },
+            {
+              "t": 1346.2,
+              "gap": 16.100000000000136
+            },
+            {
+              "t": 1362.9,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1380.1,
+              "gap": 17.199999999999818
+            },
+            {
+              "t": 1396.8,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1413.4,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1429.5,
+              "gap": 16.09999999999991
+            },
+            {
+              "t": 1446.7,
+              "gap": 17.200000000000045
+            },
+            {
+              "t": 1463.4,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1480,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 1496.8,
+              "gap": 16.799999999999955
+            },
+            {
+              "t": 1513.4,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1530.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 1546.7,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1563.4,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1580.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 1596.7,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1613.4,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1630.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 1646.8,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1663.4,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1680.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 1696.4,
+              "gap": 16.300000000000182
+            },
+            {
+              "t": 1713.5,
+              "gap": 17.09999999999991
+            },
+            {
+              "t": 1730.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 1746.7,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1763.4,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1780.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 1796,
+              "gap": 15.900000000000091
+            },
+            {
+              "t": 1813.4,
+              "gap": 17.40000000000009
+            },
+            {
+              "t": 1830.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 1846.8,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1863.5,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1880.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 1896.8,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 1913.4,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1930,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 1946.8,
+              "gap": 16.799999999999955
+            },
+            {
+              "t": 1963.4,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 1980.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 1996.8,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 2013.4,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 2030.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2046.7,
+              "gap": 16.600000000000136
+            },
+            {
+              "t": 2063.4,
+              "gap": 16.700000000000045
+            },
+            {
+              "t": 2080.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2096.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2113.4,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2129.5,
+              "gap": 16.09999999999991
+            },
+            {
+              "t": 2146,
+              "gap": 16.5
+            },
+            {
+              "t": 2163.5,
+              "gap": 17.5
+            },
+            {
+              "t": 2180,
+              "gap": 16.5
+            },
+            {
+              "t": 2196.8,
+              "gap": 16.800000000000182
+            },
+            {
+              "t": 2213.5,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2230.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2246.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2263.5,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2280.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2296.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2313.4,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2330.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2346.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2363.5,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2380.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2396.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2413.5,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2430.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2446.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2463.4,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2480.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2496.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2513.5,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2530.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2546.7,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2563.4,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2580.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2596.7,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2613.4,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2630.2,
+              "gap": 16.799999999999727
+            },
+            {
+              "t": 2646.8,
+              "gap": 16.600000000000364
+            },
+            {
+              "t": 2663.5,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2680.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2696.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2712.9,
+              "gap": 16.09999999999991
+            },
+            {
+              "t": 2913.4,
+              "gap": 200.5
+            },
+            {
+              "t": 2930.1,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2946.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 2963.5,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 2980.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 2996.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 3013.5,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 3030.1,
+              "gap": 16.59999999999991
+            },
+            {
+              "t": 3046.8,
+              "gap": 16.700000000000273
+            },
+            {
+              "t": 3063.5,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 3079.5,
+              "gap": 16
+            },
+            {
+              "t": 3096.8,
+              "gap": 17.300000000000182
+            },
+            {
+              "t": 3113.5,
+              "gap": 16.699999999999818
+            },
+            {
+              "t": 3130.2,
+              "gap": 16.699999999999818
+            }
+          ],
+          "rows": 1,
+          "rowRenders": 2303
+        },
+        "before": [
+          {
+            "name": "Timestamp",
+            "value": 6910.639297
+          },
+          {
+            "name": "AudioHandlers",
+            "value": 0
+          },
+          {
+            "name": "AudioWorkletProcessors",
+            "value": 0
+          },
+          {
+            "name": "Documents",
+            "value": 1
+          },
+          {
+            "name": "Frames",
+            "value": 1
+          },
+          {
+            "name": "JSEventListeners",
+            "value": 191
+          },
+          {
+            "name": "LayoutObjects",
+            "value": 58
+          },
+          {
+            "name": "MediaKeySessions",
+            "value": 0
+          },
+          {
+            "name": "MediaKeys",
+            "value": 0
+          },
+          {
+            "name": "Nodes",
+            "value": 341
+          },
+          {
+            "name": "Resources",
+            "value": 2
+          },
+          {
+            "name": "ContextLifecycleStateObservers",
+            "value": 8
+          },
+          {
+            "name": "V8PerContextDatas",
+            "value": 2
+          },
+          {
+            "name": "WorkerGlobalScopes",
+            "value": 1
+          },
+          {
+            "name": "UACSSResources",
+            "value": 0
+          },
+          {
+            "name": "RTCPeerConnections",
+            "value": 0
+          },
+          {
+            "name": "ResourceFetchers",
+            "value": 2
+          },
+          {
+            "name": "AdSubframes",
+            "value": 0
+          },
+          {
+            "name": "DetachedScriptStates",
+            "value": 0
+          },
+          {
+            "name": "ArrayBufferContents",
+            "value": 2145
+          },
+          {
+            "name": "LayoutCount",
+            "value": 453
+          },
+          {
+            "name": "RecalcStyleCount",
+            "value": 571
+          },
+          {
+            "name": "LayoutDuration",
+            "value": 0.101816
+          },
+          {
+            "name": "RecalcStyleDuration",
+            "value": 0.040741
+          },
+          {
+            "name": "DevToolsCommandDuration",
+            "value": 0.070528
+          },
+          {
+            "name": "ScriptDuration",
+            "value": 0.035694
+          },
+          {
+            "name": "V8CompileDuration",
+            "value": 0
+          },
+          {
+            "name": "TaskDuration",
+            "value": 0.508116
+          },
+          {
+            "name": "TaskOtherDuration",
+            "value": 0.259337
+          },
+          {
+            "name": "ThreadTime",
+            "value": 0.490884
+          },
+          {
+            "name": "ProcessTime",
+            "value": 0.946803
+          },
+          {
+            "name": "JSHeapUsedSize",
+            "value": 4589612
+          },
+          {
+            "name": "JSHeapTotalSize",
+            "value": 23691264
+          },
+          {
+            "name": "FirstMeaningfulPaint",
+            "value": 6908.187301
+          },
+          {
+            "name": "DomContentLoaded",
+            "value": 6908.078647
+          },
+          {
+            "name": "NavigationStart",
+            "value": 6908.049994
+          }
+        ],
+        "after": [
+          {
+            "name": "Timestamp",
+            "value": 6911.193842
+          },
+          {
+            "name": "AudioHandlers",
+            "value": 0
+          },
+          {
+            "name": "AudioWorkletProcessors",
+            "value": 0
+          },
+          {
+            "name": "Documents",
+            "value": 1
+          },
+          {
+            "name": "Frames",
+            "value": 1
+          },
+          {
+            "name": "JSEventListeners",
+            "value": 194
+          },
+          {
+            "name": "LayoutObjects",
+            "value": 107
+          },
+          {
+            "name": "MediaKeySessions",
+            "value": 0
+          },
+          {
+            "name": "MediaKeys",
+            "value": 0
+          },
+          {
+            "name": "Nodes",
+            "value": 393
+          },
+          {
+            "name": "Resources",
+            "value": 2
+          },
+          {
+            "name": "ContextLifecycleStateObservers",
+            "value": 12
+          },
+          {
+            "name": "V8PerContextDatas",
+            "value": 2
+          },
+          {
+            "name": "WorkerGlobalScopes",
+            "value": 1
+          },
+          {
+            "name": "UACSSResources",
+            "value": 0
+          },
+          {
+            "name": "RTCPeerConnections",
+            "value": 0
+          },
+          {
+            "name": "ResourceFetchers",
+            "value": 1
+          },
+          {
+            "name": "AdSubframes",
+            "value": 0
+          },
+          {
+            "name": "DetachedScriptStates",
+            "value": 0
+          },
+          {
+            "name": "ArrayBufferContents",
+            "value": 3
+          },
+          {
+            "name": "LayoutCount",
+            "value": 460
+          },
+          {
+            "name": "RecalcStyleCount",
+            "value": 579
+          },
+          {
+            "name": "LayoutDuration",
+            "value": 0.294337
+          },
+          {
+            "name": "RecalcStyleDuration",
+            "value": 0.041515
+          },
+          {
+            "name": "DevToolsCommandDuration",
+            "value": 0.139916
+          },
+          {
+            "name": "ScriptDuration",
+            "value": 0.037
+          },
+          {
+            "name": "V8CompileDuration",
+            "value": 0
+          },
+          {
+            "name": "TaskDuration",
+            "value": 0.92008
+          },
+          {
+            "name": "TaskOtherDuration",
+            "value": 0.407312
+          },
+          {
+            "name": "ThreadTime",
+            "value": 0.895083
+          },
+          {
+            "name": "ProcessTime",
+            "value": 1.413261
+          },
+          {
+            "name": "JSHeapUsedSize",
+            "value": 58587868
+          },
+          {
+            "name": "JSHeapTotalSize",
+            "value": 73940992
+          },
+          {
+            "name": "FirstMeaningfulPaint",
+            "value": 6908.187301
+          },
+          {
+            "name": "DomContentLoaded",
+            "value": 6908.078647
+          },
+          {
+            "name": "NavigationStart",
+            "value": 6908.049994
+          }
+        ]
+      },
+      "traceTasksOver100ms": [],
+      "traceLongest": {
+        "RunTask": 0,
+        "Layout": 191.793,
+        "UpdateLayoutTree": 0.309,
+        "Paint": 1.825
+      }
+    }
+  ],
+  "source": {
+    "Editor.tsx": "c0bb50a1296e298012f4295f85424e2a871eeb5725d0ee3e681c7b302c627d1e",
+    "Row.tsx": "deccaab5c15c406f0e450278e2ce985e16f4442dd2fe29300d0a826b0ca277d0",
+    "fixtures.mjs": "19503baf48a9a9add48c359c2e17b9a3948b972660d2f7c1cea1303ed171b4a8",
+    "index.html": "59bd3f90115029d80986ce031c8666ad2bbb4ec2d5ed5f01eb99ca0d0edfe96d",
+    "main.tsx": "8ea3f6647d5254c56ba965f10975b8fda2264fb4a28546e9693eb346574aca50",
+    "prepare-copies.py": "1b33a789a2853fc296deb5b3ac9fb58e2c3a636f629ab2544d4a34e6c6cdeb88",
+    "provenance.json": "1963b6fec048b94ca482bb84ff4d1813ce66673258b40998c3b3c119f713bbd6",
+    "qualification.css": "2a4dbde68da5af9e0366b529d5417ad2a452013d9cdbf5c7f5ecd5a063494e4f",
+    "run.mjs": "b7a826cc95a55e2ab81be043b317176f0c8701285aa8262abc4ee2a9acafd6ad",
+    "vite.config.ts": "877d445958ca68789cf7f77e58c16b205886e02ee974c73831dac1cf0509cda9",
+    "worker.ts": "4f9f1877b7c76ea61db262fe4294cd245740ea9e85dd7df8a806f30ef2631b26"
+  },
+  "environment": {
+    "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B123\n",
+    "node": "v24.14.1"
+  },
+  "origin": "http://127.0.0.1:52434",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-rendering-rmGC7k",
+  "pid": 13612,
+  "stderr": "\nDevTools listening on ws://127.0.0.1:52436/devtools/browser/71a4fed1-5384-4d4a-b5b0-256ad3735cd2\nTrying to load the allocator multiple times. This is *not* supported.\n",
+  "browser": "157.0.8103.50",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "active": "R03-raw-gate",
+  "end": "2026-11-10T10:17:16.170Z"
+}

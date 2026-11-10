@@ -1,0 +1,6 @@
+/* Isolated shell only; existing row and inspector classes are preserved. */
+header{height:90px;padding:12px;background:white;border-bottom:1px solid #e3e6ec}
+.qualification{display:grid;grid-template-columns:minmax(0,1fr) 380px;height:calc(100% - 90px)}
+.list-pane,.editor-pane{overflow:auto;min-width:0;overflow-anchor:auto}
+.token-row{content-visibility:auto;contain-intrinsic-size:auto 100px}
+.editor-pane{border-left:1px solid #e3e6ec}

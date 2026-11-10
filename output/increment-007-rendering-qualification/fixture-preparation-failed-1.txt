@@ -1,0 +1,1 @@
+Reconstructed exact first fixture generator before entity-intersection correction; no browser used. semantic/preflight for entities rejected lexical count observed500010 (limit500000). The generator retained default numeric definitions on10000tokens. Later name-only max fixture is admitted; budget unchanged.

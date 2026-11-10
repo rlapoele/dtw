@@ -1,0 +1,407 @@
+{
+  "frozen": "2026-11-10T10:22:08.734Z",
+  "baseCommit": "227e17a1e327ea45783f36a91fb0b56622702d0d",
+  "scope": "G-01 isolated negative raw-detail result and partial harness; excludes manifest itself and future independent-review files",
+  "files": [
+    {
+      "path": "research/increment-007-rendering-qualification/Editor.tsx",
+      "bytes": 15761,
+      "sha256": "c0bb50a1296e298012f4295f85424e2a871eeb5725d0ee3e681c7b302c627d1e"
+    },
+    {
+      "path": "research/increment-007-rendering-qualification/README.md",
+      "bytes": 2223,
+      "sha256": "02e200299b0c3662c6ef9fb0138393923dfaf80be406c2bf2be5de6bce66307e"
+    },
+    {
+      "path": "research/increment-007-rendering-qualification/Row.tsx",
+      "bytes": 2125,
+      "sha256": "deccaab5c15c406f0e450278e2ce985e16f4442dd2fe29300d0a826b0ca277d0"
+    },
+    {
+      "path": "research/increment-007-rendering-qualification/check-source.mjs",
+      "bytes": 2859,
+      "sha256": "8474ff1104f96bd9fef589d393a7c58562379ce7d2ab15a5eff2a76e3997f88f"
+    },
+    {
+      "path": "research/increment-007-rendering-qualification/fixtures.mjs",
+      "bytes": 1391,
+      "sha256": "19503baf48a9a9add48c359c2e17b9a3948b972660d2f7c1cea1303ed171b4a8"
+    },
+    {
+      "path": "research/increment-007-rendering-qualification/freeze.mjs",
+      "bytes": 1124,
+      "sha256": "26b0723a4a83f249313997ed9dba87f3f4939899e8b20f1ff8bfdc9512560f27"
+    },
+    {
+      "path": "research/increment-007-rendering-qualification/index.html",
+      "bytes": 213,
+      "sha256": "59bd3f90115029d80986ce031c8666ad2bbb4ec2d5ed5f01eb99ca0d0edfe96d"
+    },
+    {
+      "path": "research/increment-007-rendering-qualification/main.tsx",
+      "bytes": 5923,
+      "sha256": "8ea3f6647d5254c56ba965f10975b8fda2264fb4a28546e9693eb346574aca50"
+    },
+    {
+      "path": "research/increment-007-rendering-qualification/prepare-copies.py",
+      "bytes": 2823,
+      "sha256": "1b33a789a2853fc296deb5b3ac9fb58e2c3a636f629ab2544d4a34e6c6cdeb88"
+    },
+    {
+      "path": "research/increment-007-rendering-qualification/provenance.json",
+      "bytes": 838,
+      "sha256": "1963b6fec048b94ca482bb84ff4d1813ce66673258b40998c3b3c119f713bbd6"
+    },
+    {
+      "path": "research/increment-007-rendering-qualification/qualification.css",
+      "bytes": 441,
+      "sha256": "2a4dbde68da5af9e0366b529d5417ad2a452013d9cdbf5c7f5ecd5a063494e4f"
+    },
+    {
+      "path": "research/increment-007-rendering-qualification/run.mjs",
+      "bytes": 9133,
+      "sha256": "18aa4c1f4a4030302ec6150691e692f385510813fd9a422512c6a82496b04cf6"
+    },
+    {
+      "path": "research/increment-007-rendering-qualification/tsconfig.json",
+      "bytes": 173,
+      "sha256": "0f7b3f4276b45a078d6f2d0a30e30b117f28b7db979f84362358716867e10ae7"
+    },
+    {
+      "path": "research/increment-007-rendering-qualification/vite.config.ts",
+      "bytes": 521,
+      "sha256": "877d445958ca68789cf7f77e58c16b205886e02ee974c73831dac1cf0509cda9"
+    },
+    {
+      "path": "research/increment-007-rendering-qualification/worker.ts",
+      "bytes": 1841,
+      "sha256": "4f9f1877b7c76ea61db262fe4294cd245740ea9e85dd7df8a806f30ef2631b26"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-1-source/Editor.tsx",
+      "bytes": 15761,
+      "sha256": "c0bb50a1296e298012f4295f85424e2a871eeb5725d0ee3e681c7b302c627d1e"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-1-source/Row.tsx",
+      "bytes": 2071,
+      "sha256": "300ea1864363873794b71e25399a6806a3c031e5445bfccbf95c5e2ef14bce93"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-1-source/fixtures.mjs",
+      "bytes": 1391,
+      "sha256": "19503baf48a9a9add48c359c2e17b9a3948b972660d2f7c1cea1303ed171b4a8"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-1-source/index.html",
+      "bytes": 213,
+      "sha256": "59bd3f90115029d80986ce031c8666ad2bbb4ec2d5ed5f01eb99ca0d0edfe96d"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-1-source/main.tsx",
+      "bytes": 5856,
+      "sha256": "ef3b590ef50113f0e0f2fbdab5433f7ca7f7b09820fdeaf9f4bc851c24d5adb8"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-1-source/prepare-copies.py",
+      "bytes": 2769,
+      "sha256": "ea8ce1d9e32959eaf8fbba38c32c0d6d8720ec9386556d6dbb44dbbb431c5456"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-1-source/provenance.json",
+      "bytes": 838,
+      "sha256": "1963b6fec048b94ca482bb84ff4d1813ce66673258b40998c3b3c119f713bbd6"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-1-source/qualification.css",
+      "bytes": 441,
+      "sha256": "2a4dbde68da5af9e0366b529d5417ad2a452013d9cdbf5c7f5ecd5a063494e4f"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-1-source/run.mjs",
+      "bytes": 6550,
+      "sha256": "4e6fbae31a06986d11062c7c309596460674b712ad633b1fbbe687186f8b623e"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-1-source/vite.config.ts",
+      "bytes": 521,
+      "sha256": "877d445958ca68789cf7f77e58c16b205886e02ee974c73831dac1cf0509cda9"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-1-source/worker.ts",
+      "bytes": 1841,
+      "sha256": "4f9f1877b7c76ea61db262fe4294cd245740ea9e85dd7df8a806f30ef2631b26"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-2-source/Editor.tsx",
+      "bytes": 15761,
+      "sha256": "c0bb50a1296e298012f4295f85424e2a871eeb5725d0ee3e681c7b302c627d1e"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-2-source/Row.tsx",
+      "bytes": 2125,
+      "sha256": "deccaab5c15c406f0e450278e2ce985e16f4442dd2fe29300d0a826b0ca277d0"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-2-source/fixtures.mjs",
+      "bytes": 1391,
+      "sha256": "19503baf48a9a9add48c359c2e17b9a3948b972660d2f7c1cea1303ed171b4a8"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-2-source/index.html",
+      "bytes": 213,
+      "sha256": "59bd3f90115029d80986ce031c8666ad2bbb4ec2d5ed5f01eb99ca0d0edfe96d"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-2-source/main.tsx",
+      "bytes": 5856,
+      "sha256": "ef3b590ef50113f0e0f2fbdab5433f7ca7f7b09820fdeaf9f4bc851c24d5adb8"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-2-source/prepare-copies.py",
+      "bytes": 2823,
+      "sha256": "1b33a789a2853fc296deb5b3ac9fb58e2c3a636f629ab2544d4a34e6c6cdeb88"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-2-source/provenance.json",
+      "bytes": 838,
+      "sha256": "1963b6fec048b94ca482bb84ff4d1813ce66673258b40998c3b3c119f713bbd6"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-2-source/qualification.css",
+      "bytes": 441,
+      "sha256": "2a4dbde68da5af9e0366b529d5417ad2a452013d9cdbf5c7f5ecd5a063494e4f"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-2-source/run.mjs",
+      "bytes": 6803,
+      "sha256": "66ae48c54be48507c089d13111b7bcc24bef708acc3512768fb74e3bbc3493a2"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-2-source/vite.config.ts",
+      "bytes": 521,
+      "sha256": "877d445958ca68789cf7f77e58c16b205886e02ee974c73831dac1cf0509cda9"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-2-source/worker.ts",
+      "bytes": 1841,
+      "sha256": "4f9f1877b7c76ea61db262fe4294cd245740ea9e85dd7df8a806f30ef2631b26"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-3-source/Editor.tsx",
+      "bytes": 15761,
+      "sha256": "c0bb50a1296e298012f4295f85424e2a871eeb5725d0ee3e681c7b302c627d1e"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-3-source/Row.tsx",
+      "bytes": 2125,
+      "sha256": "deccaab5c15c406f0e450278e2ce985e16f4442dd2fe29300d0a826b0ca277d0"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-3-source/fixtures.mjs",
+      "bytes": 1391,
+      "sha256": "19503baf48a9a9add48c359c2e17b9a3948b972660d2f7c1cea1303ed171b4a8"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-3-source/index.html",
+      "bytes": 213,
+      "sha256": "59bd3f90115029d80986ce031c8666ad2bbb4ec2d5ed5f01eb99ca0d0edfe96d"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-3-source/main.tsx",
+      "bytes": 5923,
+      "sha256": "8ea3f6647d5254c56ba965f10975b8fda2264fb4a28546e9693eb346574aca50"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-3-source/prepare-copies.py",
+      "bytes": 2823,
+      "sha256": "1b33a789a2853fc296deb5b3ac9fb58e2c3a636f629ab2544d4a34e6c6cdeb88"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-3-source/provenance.json",
+      "bytes": 838,
+      "sha256": "1963b6fec048b94ca482bb84ff4d1813ce66673258b40998c3b3c119f713bbd6"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-3-source/qualification.css",
+      "bytes": 441,
+      "sha256": "2a4dbde68da5af9e0366b529d5417ad2a452013d9cdbf5c7f5ecd5a063494e4f"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-3-source/run.mjs",
+      "bytes": 6949,
+      "sha256": "b7a826cc95a55e2ab81be043b317176f0c8701285aa8262abc4ee2a9acafd6ad"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-3-source/vite.config.ts",
+      "bytes": 521,
+      "sha256": "877d445958ca68789cf7f77e58c16b205886e02ee974c73831dac1cf0509cda9"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/attempt-3-source/worker.ts",
+      "bytes": 1841,
+      "sha256": "4f9f1877b7c76ea61db262fe4294cd245740ea9e85dd7df8a806f30ef2631b26"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/build/assets/index-BtPvunAO.js",
+      "bytes": 310452,
+      "sha256": "25ae226386ffbf3bbb27d658b3d1c7f3080cc66a1d8c828ea863b24cf9785748"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/build/assets/index-DTXyt6We.js",
+      "bytes": 310479,
+      "sha256": "911ee16507ad68e3e00fc5b92dfb5db19cd05932de8a0765e57258b4d35c716a"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/build/assets/index-D_91SL2i.js",
+      "bytes": 310430,
+      "sha256": "f896543bf62f7c750ecfb6282420ea6e413568c8813fa1cb35e0eae52e9380c2"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/build/assets/index-J-tuUXMH.css",
+      "bytes": 15485,
+      "sha256": "708c9acd9d4e8d5af5df23e6328bdeca67f5417dfc30218c951a1653c9a5e519"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/build/assets/index-n4synPFc.js",
+      "bytes": 310502,
+      "sha256": "047e6f433585d812866b1d550f7e6e5a35882c6bcb64754c81dfac68db164b0b"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/build/assets/worker-Cqy3_shA.js",
+      "bytes": 15655,
+      "sha256": "d51a90de76099c1ce4ab1bfc23b4bbdb49fd1dd75fa3d50e7c7e749d7154d881"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/build/index.html",
+      "bytes": 316,
+      "sha256": "4872959c9366add103ea5ea12ae49dc605a35085bcf55cdfae2e3950c74b6367"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/build-attempt-1.log",
+      "bytes": 954,
+      "sha256": "c2eb052516474e4ea90e4d1104263dcf0288f10ed3ad0ac3f3669d17638c22c8"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/build-attempt-2.log",
+      "bytes": 953,
+      "sha256": "b3978e068468401f950d5faa15e86ba9a1d85b7a0d358fbd1cc06c4102e58e8a"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/build-attempt-3.log",
+      "bytes": 954,
+      "sha256": "e048dc2c672dac330bc1d709f1352e9d604bdd5c07039c1334a82080c82ad7d6"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/build-attempt-4.log",
+      "bytes": 953,
+      "sha256": "f148508f88a207d4e64dd467c490f270cedf7a296064ca464aaba04808e68313"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/chrome-attempt-3-raw-trace.json",
+      "bytes": 398934,
+      "sha256": "8b1d88fdeff213bb1f2b54ea03cd44afb3cfdcabc0187c5ea683f3e9a14876b8"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/chrome-attempt-3-row-trace.json",
+      "bytes": 181283,
+      "sha256": "6939f3e63c6f36974263fee495f90a0842ab7cab58091cf58a0b5fecadedf790"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/chrome-results-attempt-1.json",
+      "bytes": 52573,
+      "sha256": "0f405be338c1a386263a20d4345df0b5c0800a3e4fef606e42e68b1717673648"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/chrome-results-attempt-2.json",
+      "bytes": 48735,
+      "sha256": "fe4462b084561c80f6e0f7da8e4e271be6edbaf8bb3f2f4c012d40ef00a9b3b8"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/chrome-results-attempt-3.json",
+      "bytes": 97522,
+      "sha256": "5e1b5fb54ae9664a03a2c3137327190b9c56bb390d56e6438df2e24128965ddf"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/chrome-small-functional.json",
+      "bytes": 11631,
+      "sha256": "bfd8470225b279a8cb44be8ebea49d7905d49f4f12f75a9d0212240f8fe538be"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/cleanup.json",
+      "bytes": 1041,
+      "sha256": "a72e2a69dbc0efc46b142e457afb2797e8afda98daec24c42256eff29f0a9db9"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/editor-scheduling-boundary.diff",
+      "bytes": 2721,
+      "sha256": "c6fae0e3be40ad6a38888ff052b05856406bcf7c69f7c620e46758432b6da856"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/fixture-preparation-failed-1.mjs",
+      "bytes": 1322,
+      "sha256": "8718602bfa88fd451e289ff2cf02c01b7c0f725bcc129fb4d15d0fd09f091a45"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/fixture-preparation-failed-1.txt",
+      "bytes": 310,
+      "sha256": "67bf47fadbc20d7061d0125ed59f09f0fe03b17e8ee1ea4f311648d112623cac"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/fixtures.json",
+      "bytes": 1538,
+      "sha256": "71fe28b3fccdcb30bafbddd1c6ac729db6562bc7703ff592e4e206892e15613d"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/report.md",
+      "bytes": 13913,
+      "sha256": "c22c53e4ad20b56268d3ff041f6c456754bcf9cd6cc3cb0b48f4272714ac4d7c"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/run-attempt-1.log",
+      "bytes": 597,
+      "sha256": "f9c5ece7eacc42ebd374f27ad48788b3c74c1de24e5e1e07e231c541aa5ab1d6"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/run-attempt-2.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/run-attempt-3.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/run-attempt-4.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/run-small-functional.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/source-checks-and-summary.json",
+      "bytes": 18185,
+      "sha256": "db4c652c624c35d7c4c3b81ab7f10d01b3812e034676659c0b2e9c77a3d37def"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/source-checks.log",
+      "bytes": 86,
+      "sha256": "ff1ef0e68ccd051de9cd91d34abb3a687f5bfaec88e24d5c07db1087b3b83cad"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/typecheck-attempt-1.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/increment-007-rendering-qualification/typecheck-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

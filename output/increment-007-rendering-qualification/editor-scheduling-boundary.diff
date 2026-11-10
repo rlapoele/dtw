@@ -1,0 +1,58 @@
+--- src/presentation/Editor.tsx	2026-11-09 12:10:46
++++ research/increment-007-rendering-qualification/Editor.tsx	2026-11-10 11:16:20
+@@ -3,7 +3,7 @@
+ import { InspectionTabs } from "@presentation/components/inspection-tabs";
+ import { Badge } from "@presentation/components/badge";
+ import { Field } from "@presentation/components/field";
+-import { useEffect, useLayoutEffect, useRef, useState } from "react";
++import { useEffect, useLayoutEffect, useRef, useState, useMemo } from "react";
+ import { Tabs } from "@base-ui/react/tabs";
+ import { createColorLiteral } from "@domain/color-literal";
+ import type {
+@@ -35,6 +35,7 @@
+   onDirty,
+   onFeedback,
+   readUnavailable,
++  rawText, requestRaw,
+ }: {
+   inspection: TokenInspection;
+   project: ProjectReadback;
+@@ -43,6 +44,8 @@
+   onDirty: (d: boolean) => void;
+   onFeedback: (f: Feedback) => void;
+   readUnavailable: boolean;
++  rawText?: string;
++  requestRaw: () => void;
+ }) {
+   const token = i.authored,
+     value = token.definition?.assignments[0]?.value;
+@@ -82,10 +85,10 @@
+     () => onFeedback(JSON.parse(feedbackText) as Feedback),
+     [feedbackText, onFeedback],
+   );
+-  const tokenLabels = identityLabels(project.tokens);
+-  const referenceChoices = project.tokens.filter(t => t.authored.definition?.type === "color");
+-  const referenceLabels = identityLabels(referenceChoices, undefined, token.id);
+-  const groupLabels = identityLabels(project.groups, ["Project root", "All tokens"]);
++  const tokenLabels = useMemo(() => identityLabels(project.tokens), [project]);
++  const referenceChoices = useMemo(() => project.tokens.filter(t => t.authored.definition?.type === "color"), [project]);
++  const referenceLabels = useMemo(() => identityLabels(referenceChoices, undefined, token.id), [referenceChoices, token.id]);
++  const groupLabels = useMemo(() => identityLabels(project.groups, ["Project root", "All tokens"]), [project]);
+   const editable = eligible(token);
+   function apply() {
+     if (readUnavailable) {
+@@ -316,11 +319,10 @@
+                 </dd>
+               </div>
+             </dl>
+-            <details>
++            <details onToggle={e => { if (e.currentTarget.open) requestRaw(); }}>
+               <summary>All authored data</summary>
+-              <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
+-                {JSON.stringify(token, null, 2)}
+-              </pre>
++              {rawText === undefined ? <p role="status">Preparing authored data…</p> :
++              <pre data-raw="complete" className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">{rawText}</pre>}
+             </details>
+           </section>
+         </Tabs.Panel>

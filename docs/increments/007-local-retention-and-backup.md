@@ -385,6 +385,13 @@ readiness items. Product integration/Stage B evidence comes after separately
 authorized implementation, not from speculative claims of passing all ACs now.
 Policies D-2/D-3/S-1–S-6/F-1–F-5 are not reopened. Contract remains Draft / Not started.
 
+The [reviewed G-01 experiment](../../output/increment-007-rendering-qualification/independent-review.md)
+now records a supported 191.793 ms renderer-main Layout counterexample for the exact
+raw-detail path. Small row/inspector checks do not qualify the full candidate;
+projection/lifetime and native interaction coverage remain incomplete. Automatic
+whole-task failure detection needs correction before reuse. No raw-viewer or list
+interaction change, smaller resource cap or production implementation is adopted.
+
 ## Verification approach
 
 - Application/port tests map AC-1–8/14–17 to detached snapshots and focused async fake
@@ -430,10 +437,11 @@ observations are attributed in the review and cannot establish these criteria.
 
 - Post-qualification recommendations, 10 November 2026:
   [bounded-rendering designer assessment](007-bounded-rendering-design-assessment.md)
-  awaits user review before any prototype edits or analyst design review. It selects
-  no new rendering interaction or technology by agreement; production AC-18/20/24
-  remain binding. The separately prepared qualification-gap plan is not approval of
-  this designer recommendation.
+  was subsequently approved for isolated developer qualification and independent
+  review after commit `227e17a`. Production AC-18/20/24 remain binding; no production
+  or existing-prototype edits, paging/windowing fallback or final implementation
+  agreement follows. The separately prepared qualification-gap plan is not itself
+  approval of additional experiments.
 
 - V1: [design notes](../../prototypes/increment-007-v1/DESIGN-V1.md),
   [SHA-256 manifest](../../output/increment-007-prototype-v1/manifest.json),
