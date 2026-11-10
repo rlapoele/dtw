@@ -2,11 +2,15 @@
 
 > Last updated: 10 November 2026
 >
-> Phase: Increment 007 bounded E-4 qualification independently reviewed; ordinary layout failure; contract Draft
+> Phase: Increment 007 rendering/native-access analyst recommendations ready for user review; contract Draft
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
+
+**Increment 007 rendering/native-access dispositions proposed — 10 November 2026:** following the reviewed E-4 result, the user authorized the next planned analyst assessment. The [recommendations](../increments/007-rendering-and-native-access-disposition.md) propose one designer assessment of a description-wrapping candidate and practical native source-scoped selection while retaining the agreed disclosure/pre. Changing break policy might reduce long-description layout cost, but neither its performance nor its typography tradeoff is established. The tested document-wide Cmd+A/C failure does not prove all source-scoped native methods impossible; exact selection and clipboard equality remain separate gates. Safari small activation diagnosis is distinct from its failed supervisor; defensive work stays blocked until safe supervision is demonstrated under separately authorized conditions.
+
+Next: user review of these proposals before designer assessment, prototype edits or further qualification. No choice is adopted, policies/budgets/support targets are unchanged, and final contract/design agreement and implementation authorization remain pending. This step created analyst documentation and updated this handoff only; no new tests/build, experiments, browser/clipboard actions or production/prototype/frozen-evidence changes occurred. Earlier clipboard approval covered only the completed run. Contract remains Draft / Not started; staging, commits and pushes remain with the user.
 
 **Increment 007 bounded E-4 qualification reviewed — 10 November 2026:** the [developer report](../../output/increment-007-e4-qualification/report.md), [frozen manifest](../../output/increment-007-e4-qualification/manifest.json) and [independent review](../../output/increment-007-e4-qualification/independent-review.md) support an honest negative/incomplete result with no actionable evidence/report finding. The first 65,535-unit source fixture pads an admitted token description; its ordinary list/load incurred a 1,797.093 ms target-renderer task (nested Layout 1,794.751 ms), failing 100 ms before source opening. Larger/boundary/exceptional cases stopped. This is not a failure measurement of the revised 250 ms exceptional-source gate, nor permission to alter list content, authored caps or the gate.
 
@@ -152,7 +156,7 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-Review the two supported negative exact-detail outcomes and the remaining projection/fidelity gates. The next step should be an explicit product/gate disposition for exceptional exact details and a bounded plan for unfinished read boundaries, not another automatic viewer variant or repeated failing case. No prototype edit, new experiment, performance/budget amendment or production implementation starts from this handoff. Preserve the current list/inspector, source exactness, Mac trust settings and existing user sessions. Final contract/design agreement and implementation authorization remain separate; staging, commits and pushes remain with the user.
+Review the [analyst rendering/native-access recommendations](../increments/007-rendering-and-native-access-disposition.md). The proposed next step is one designer assessment of description wrapping and practical native source selection, with Safari small activation diagnosis and safe defensive supervision treated separately. No recommendation is adopted and no designer assessment, prototype edit, new experiment, performance/budget amendment or production implementation starts from this handoff. Preserve the current list/inspector, source exactness, Mac trust settings and existing user sessions. Final contract/design agreement and implementation authorization remain separate; staging, commits and pushes remain with the user.
 
 The Increment 007 contract is Draft and requires its recorded decisions and resulting design before final agreement. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, concurrency qualification, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not settle them through prototype convenience.
 
