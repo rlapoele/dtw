@@ -1,0 +1,10 @@
+✔ worst escaped code units, long exact identities, split pairs and lone surrogates round trip (10.666083ms)
+✔ mixed offset is rejected; context dimensions all matter (0.1485ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52.097959

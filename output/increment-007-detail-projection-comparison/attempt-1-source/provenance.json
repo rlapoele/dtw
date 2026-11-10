@@ -1,0 +1,13 @@
+{
+  "src/presentation/TokenList.tsx": "dcd7feadeabfe7626b6905adc5628e69baf7086a485015fe3a0c34f6a587b638",
+  "src/presentation/Editor.tsx": "a9ce48501957d7f05de1d9197e554336cced233f5b50ed33b3d4a4870bf44738",
+  "src/presentation/AuthoredValue.tsx": "6697854f75f4ea27d21bdc5ceeb1d3d84bc5c819d9367ae5e844f078b776ec8a",
+  "src/presentation/ColorFields.tsx": "77db554f04f2bd2fd39b8996df8e0e19b609be86c5ddc4da8d2f66cce95d4160",
+  "src/presentation/ProjectNavigation.tsx": "b0729704554def93afa3dc9ac358047c3b0c7bc7d2b3bd906c74c316c0653f4f",
+  "src/presentation/session.ts": "26b704b47f5072d6d77508ae1316a625ae2e96703f30dd9d4c6d9f69b58aa928",
+  "src/presentation/readback.ts": "a75eaa01f8131ea76b1f25e88e96123707c79e98b21ed7759e618a47b8d10099",
+  "src/presentation/styles.css": "66f32390c05c46c46b2581daf1621aab119e4e463f0ebf1fe3ecc24dd11e7f1e",
+  "research/increment-007-rendering-qualification/fixtures.mjs": "19503baf48a9a9add48c359c2e17b9a3948b972660d2f7c1cea1303ed171b4a8",
+  "research/increment-007-stage-a/fixtures.mjs": "3ed2e8ac5b31472c2cd55164f8fac41f2eaa928e9755c62514ba2f5f6eedb29a",
+  "research/increment-007-stage-a/codec.mjs": "3ac7cfb2f71967a76fb06dffbf65465ff924b92dcece36462bf048f48e1636d0"
+}

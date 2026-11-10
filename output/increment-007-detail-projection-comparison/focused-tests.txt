@@ -1,0 +1,13 @@
+✔ frozen 191.793 ms renderer Layout is a failure despite absent RunTask (4.616625ms)
+✔ missing whole-task evidence and empty traces are inconclusive (0.200417ms)
+✔ only renderer-main whole tasks can support pass, other-thread Layout ignored (0.077791ms)
+✔ worst escaped code units, long exact identities, split pairs and lone surrogates round trip (12.089333ms)
+✔ mixed offset is rejected; context dimensions all matter (0.22375ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52.713041

@@ -1,0 +1,11 @@
+✔ frozen 191.793 ms renderer Layout is a failure despite absent RunTask (3.7225ms)
+✔ missing whole-task evidence and empty traces are inconclusive (0.13575ms)
+✔ only renderer-main whole tasks can support pass, other-thread Layout ignored (0.080875ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 40.139459

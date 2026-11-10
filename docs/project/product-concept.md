@@ -82,6 +82,12 @@ Color authoring should offer sRGB, Display P3, HSL, OKLAB, and OKLCH literals pl
 
 Support authored expressions as identity-less, structured, typed AST values with versioned portable or target-specific operations. Expression dependencies resolve under one completed variation selection; contextual inputs remain explicit; computed or previewed results do not overwrite authored expressions. Number, dimension, and color literals now have exact schemas, and number and dimension have an initial `px`/`rem` algebra; the remaining literal schemas, additional type-and-unit combinations, context keys, color operations, and preview specimens remain open. See [expressions](../design-tokens/conceptual-model.md#expressions) and [value previews](../design-tokens/conceptual-model.md#value-previews).
 
+### Guided color foundations and interface semantics
+
+**Confirmed future direction — 10 November 2026; work deferred**
+
+Support guided color-foundation creation, followed by an optional semantic-token step for light and dark interface themes. Recipes should propose predefined semantic names and intended roles, with contextual contrast guidance especially useful when reviewing those mappings. Keep foundation-only authoring useful and contrast inspection available independently of the guide. The [concept note](./guided-color-palette-generation.md) owns the brand-led example, agreed first exploration, working proposals, and unresolved choices. No prototype or implementation is authorized by this direction.
+
 ### Validate
 
 **Established direction**

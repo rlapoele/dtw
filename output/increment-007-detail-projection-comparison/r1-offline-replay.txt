@@ -1,0 +1,42 @@
+{
+  "traces": 32,
+  "nonNavigationSame": 30,
+  "navigationInconclusive": [
+    "C00-navigation",
+    "T00-navigation"
+  ],
+  "failed": [
+    {
+      "id": "C03-raw-open-transfer-mount-paint",
+      "maxima": {
+        "RunTask": 120.547,
+        "ThreadControllerImpl::RunTask": 120.518,
+        "EventDispatch": 0.186,
+        "FunctionCall": 0.146,
+        "UpdateLayoutTree": 0.093,
+        "Layout": 110.78,
+        "Paint": 3.599
+      },
+      "owner": {
+        "pid": 18320,
+        "source": "exact-target-url-start-metadata"
+      }
+    },
+    {
+      "id": "T03-raw-open-transfer-mount-paint",
+      "maxima": {
+        "RunTask": 128.683,
+        "ThreadControllerImpl::RunTask": 128.658,
+        "EventDispatch": 0.124,
+        "FunctionCall": 0.12,
+        "UpdateLayoutTree": 0.542,
+        "Layout": 119.338,
+        "Paint": 0.61
+      },
+      "owner": {
+        "pid": 18826,
+        "source": "exact-target-url-start-metadata"
+      }
+    }
+  ]
+}

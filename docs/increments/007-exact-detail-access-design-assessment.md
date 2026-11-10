@@ -1,9 +1,14 @@
 # Increment 007 — exact-detail access assessment
 
-**Designer recommendation · 10 November 2026 · awaiting user review.**
-Baseline: clean `dev` at `7474dc0`. Assessment only: no prototype/production edits,
-experiment or new control is authorized. The contract remains Draft / Not started.
-The user's delivery aim does not remove the remaining agreement/qualification gates.
+**Candidate order approved for isolated comparison · 10 November 2026.**
+Original assessment baseline: clean `dev` at `7474dc0`. After committing both
+assessments as `30abbf0`, the user approved their recommendations and authorized an
+isolated developer comparison with repaired instrumentation, then independent review.
+Source/evidence belong under `research/increment-007-detail-projection-comparison/`
+and `output/increment-007-detail-projection-comparison/`. Existing prototypes and
+production remain untouched. Candidate comparison is not adoption of a new control,
+final contract/design agreement or Increment 007 implementation authority. Contract
+remains Draft / Not started; existing safety gates and unchanged budgets still apply.
 
 ## Recommendation
 
@@ -27,10 +32,10 @@ it if the smaller layout candidate fails or if native local Select All is materi
 clearer. It is a user-reviewed control change, not a new authoring editor and not a
 claim that browser text controls can handle four million units below 100 ms.
 
-**Decision requested:** approve this narrow candidate order and uniform overflow
-proposal for a separately scoped comparison/prototype proposal, or prefer the textarea
-candidate first. Visible layout/control changes need identified user review before
-adoption. No paging, file-only access, list redesign or automatic control swap is agreed.
+**Approval scope:** the user approved this candidate order and uniform overflow
+proposal for isolated comparison, with the projection recommendations and repaired
+instrumentation. Visible layout/control adoption still requires identified review.
+No paging, file-only access, list redesign or automatic control swap is agreed.
 
 ## What the evidence establishes
 
@@ -151,3 +156,29 @@ This assessment used source/documents and frozen evidence, not a fresh browser,
 experiment, usability/AT proof or vendor performance promise. Only this file changed.
 Checks: prose, local links and scoped whitespace/diff review. Suggested human-owned
 commit: `docs: assess exact-detail access for increment 007`.
+
+## Reviewed isolated comparison — 10 November 2026
+
+The [comparison handoff](../../output/increment-007-detail-projection-comparison/comparison-summary.md)
+and [independent review/recheck](../../output/increment-007-detail-projection-comparison/independent-review.md)
+accept two negative first-risk observations on the same admitted 4,134,504-unit source:
+uniform no-wrap pre incurred 120.547 ms renderer task / 110.780 ms Layout; conditional
+read-only textarea incurred 128.683 ms task / 119.338 ms Layout. Both exceed the
+unchanged 100 ms gate during disclosure/transfer/assembly/mount/paint, before large
+equality, native selection, Find or geometry phases. One observation each supplies
+no distribution or causal ranking. Neither candidate is accepted for product adoption.
+
+Small controls and narrower projection subsets are positive evidence only. G-01 and
+full P-R1–5/list/inspector qualification remain incomplete; general whole-message byte
+enforcement, immediate event-time draft fences, eager worker source construction,
+selection styling and remaining native/scale/Safari coverage are explicit limitations.
+The review found a foreign-renderer task-coverage bug; its minimal offline correction
+is independently closed in the [131-file corrected snapshot](../../output/increment-007-detail-projection-comparison/manifest-r1.json).
+All 30 non-navigation saved verdicts remain unchanged; two navigation intervals are
+conservatively inconclusive. No browser, viewer or workload was rerun for that fix.
+
+Production/current list/inspector, old prototypes, budgets and previous evidence remain
+unchanged. The next step needs an explicit exact-detail product/gate disposition and
+remaining projection/fidelity obligations, not an automatic third viewer, threshold,
+source cap or other interaction adoption. No further experiment or implementation is
+authorized by this result.

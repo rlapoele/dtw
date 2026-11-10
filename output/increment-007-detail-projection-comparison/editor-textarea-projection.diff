@@ -1,0 +1,209 @@
+--- production/Editor.tsx
++++ isolated/Editor.tsx
+@@ -1,4 +1,5 @@
+-import { AuthoredValue } from "@presentation/AuthoredValue";
++import {Summary} from "./Summary";
++import type {SelectedEditor,Derived,Preview} from "./projections";
+ import { Swatch } from "@presentation/components/swatch";
+ import { InspectionTabs } from "@presentation/components/inspection-tabs";
+ import { Badge } from "@presentation/components/badge";
+@@ -28,24 +29,31 @@
+   draftMessage: string;
+ };
+ export function Editor({
+-  inspection: i,
+-  project,
+-  inspect,
++  data: token,
++  derived,
++  targetPreview,
++  requestPreview,
++  rawText,
++  requestRaw,
++  requestDerived,
+   onApply,
+   onDirty,
+   onFeedback,
+   readUnavailable,
+ }: {
+-  inspection: TokenInspection;
+-  project: ProjectReadback;
+-  inspect: (id: string) => TokenInspection | undefined;
++  data:SelectedEditor;
++  derived?:Derived;
++  targetPreview?:Preview;
++  requestPreview:(id:string,context:string)=>void;
++  rawText?:string;
++  requestRaw:()=>void;
++  requestDerived:()=>void;
+   onApply: (value: ReviseColorTokenInput["value"]) => ApplicationResult<Token>;
+   onDirty: (d: boolean) => void;
+   onFeedback: (f: Feedback) => void;
+   readUnavailable: boolean;
+ }) {
+-  const token = i.authored,
+-    value = token.definition?.assignments[0]?.value;
++  const value = token.baseline;
+   const [session, setSession] = useState(() => baseline(value));
+   const initial = useRef(session);
+   const [tab, setTab] = useState("authored"),
+@@ -59,16 +67,14 @@
+   useEffect(() => {
+     if (error) errorRef.current?.focus();
+   }, [error]);
+-  const applied = colorPreview(resolvedColor(i));
+-  const targetInspection = session.reference
+-    ? inspect(session.reference)
+-    : undefined;
++  const applied = token.preview;
++  useEffect(()=>{if(session.mode==="reference")requestPreview(session.reference,JSON.stringify([session.mode,session.reference,session.viewSpace,session.scale]));},[session.mode,session.reference,session.viewSpace,session.scale,requestPreview]);
+   const draft =
+     session.mode === "literal"
+       ? session.byteInvalid
+         ? { message: "Unavailable: finish the incomplete byte entries." }
+         : colorPreview(session.literal)
+-      : colorPreview(resolvedColor(targetInspection));
++      : (targetPreview ?? {message:"Preparing reference preview…"});
+   const feedback = {
+     tokenId: token.id,
+     tab,
+@@ -82,11 +88,9 @@
+     () => onFeedback(JSON.parse(feedbackText) as Feedback),
+     [feedbackText, onFeedback],
+   );
+-  const tokenLabels = identityLabels(project.tokens);
+-  const referenceChoices = project.tokens.filter(t => t.authored.definition?.type === "color");
+-  const referenceLabels = identityLabels(referenceChoices, undefined, token.id);
+-  const groupLabels = identityLabels(project.groups, ["Project root", "All tokens"]);
+-  const editable = eligible(token);
++  const referenceChoices = token.references;
++  const editable = token.editable;
++  useEffect(()=>{if(tab==="resolved")requestDerived();},[tab,requestDerived]);
+   function apply() {
+     if (readUnavailable) {
+       setError("Project read unavailable. Retry reading; drafts retained.");
+@@ -144,9 +148,9 @@
+     >
+       <div className="inspector-heading source-compact:p-5 bg-surface">
+         <span className="eyebrow uppercase text-muted-foreground font-semibold">
+-          {token.definition?.type ?? "Unassigned"} token
++          {token.type ?? "Unassigned"} token
+         </span>
+-        <h2 className="wrap-anywhere">{tokenLabels.get(token.id)}</h2>
++        <h2 className="wrap-anywhere">{token.label}</h2>
+         <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
+           {token.description ?? "No description"}
+         </p>
+@@ -223,16 +227,14 @@
+                     >
+                       <option value="">Choose a color token…</option>
+                       {session.reference &&
+-                        !project.tokens.some(
+-                          (t) => t.authored.id === session.reference,
+-                        ) && (
++                        !referenceChoices.some(t => t.id === session.reference) && (
+                           <option value={session.reference}>
+                             Missing target
+                           </option>
+                         )}
+                       {referenceChoices.map((t) => (
+-                          <option key={t.authored.id} value={t.authored.id}>
+-                            {referenceLabels.get(t.authored.id)}
++                          <option key={t.id} value={t.id}>
++                            {t.label}
+                           </option>
+                         ))}
+                     </Select>
+@@ -292,7 +294,7 @@
+           )}
+           <section className="applied-summary border-t border-border mt-7 pt-5">
+             <h3 className="mb-3.5">Currently applied</h3>
+-            <div className="text-caption"><AuthoredValue value={value} project={project} /></div>
++            <div className="text-caption"><Summary data={token.summary} /></div>
+           </section>
+           <section className="applied-summary border-t border-border mt-7 pt-5">
+             <h3 className="mb-3.5">Metadata · read only</h3>
+@@ -300,7 +302,7 @@
+               <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+                 <dt className="text-muted-foreground">Regeneration</dt>
+                 <dd className="text-right wrap-anywhere">
+-                  {token.authoring.regeneration}
++                  {token.regeneration}
+                 </dd>
+               </div>
+               <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+@@ -312,15 +314,13 @@
+               <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+                 <dt className="text-muted-foreground">Parent group</dt>
+                 <dd className="text-right wrap-anywhere">
+-                  {token.parentGroupId ? groupLabels.get(token.parentGroupId) ?? "Missing group" : "Project root"}
++                  {token.parentLabel}
+                 </dd>
+               </div>
+             </dl>
+-            <details>
++            <details onToggle={e=>{if(e.currentTarget.open)requestRaw();}}>
+               <summary>All authored data</summary>
+-              <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
+-                {JSON.stringify(token, null, 2)}
+-              </pre>
++              {rawText===undefined?<p role="status">Preparing authored data…</p>:<textarea data-raw="complete" readOnly wrap="off" rows={30} aria-label="All authored data exact text" className="exact-data raw-source raw-textarea text-caption my-3 max-w-full" value={rawText} />}
+             </details>
+           </section>
+         </Tabs.Panel>
+@@ -338,49 +338,17 @@
+               {applied.message}
+             </p>
+           </div>
+-          {i.resolution.status === "resolved" ? (
+-            <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
+-              {JSON.stringify(i.resolution.value, null, 2)}
+-            </pre>
+-          ) : (
+-            <p
+-              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+-              role="status"
+-            >
+-              Unresolved: {i.resolution.reason}. Authored data retained.
+-            </p>
+-          )}
++          {derived===undefined?<p role="status">Preparing resolved value and trace…</p>:derived.status==='unavailable'?<p role="status">{derived.reason}. Authored data retained.</p>:<>
++          {derived.resolved!==undefined?<pre className="exact-data raw-source text-caption my-3 max-w-full">{derived.resolved}</pre>:<p role="status">Unresolved: {derived.reason}. Authored data retained.</p>}
+           <h3 className="trace-heading mt-7">Resolution trace</h3>
+-          <ol className="trace list-none mt-4.5 mb-6 p-0">
+-            {i.resolution.trace.map((step, index) => {
+-              const t = project.tokens.find(
+-                (t) => t.authored.id === step.tokenId,
+-              );
+-              return (
+-                <li className="relative pb-6 pl-6" key={index}>
+-                  <span className="trace-dot size-2.75 left-0 top-1 border-2 border-trace bg-background absolute rounded-full" />
+-                  <strong className="block text-caption font-medium wrap-anywhere">
+-                    {t ? pathLabel(t.path) : step.tokenId}
+-                  </strong>
+-                  <small className="mono block mt-1 text-muted-foreground">
+-                    {step.tokenId}
+-                    {step.targetTokenId
+-                      ? ` → ${step.targetTokenId}`
+-                      : " · authored value"}
+-                  </small>
+-                </li>
+-              );
+-            })}
+-          </ol>
+-          <h3>Resolution diagnostics</h3>
+-          <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
+-            {JSON.stringify(i.resolution.diagnostics, null, 2)}
+-          </pre>
++          <ol className="trace list-none mt-4.5 mb-6 p-0">{derived.trace.map((step,index)=><li className="relative pb-6 pl-6" key={index}><span className="trace-dot size-2.75 left-0 top-1 border-2 border-trace bg-background absolute rounded-full"/><strong className="block text-caption font-medium wrap-anywhere">{step.label}</strong><small className="mono block mt-1 text-muted-foreground">{step.id}{step.target?` → ${step.target}`:' · authored value'}</small></li>)}</ol>
++          <h3>Resolution diagnostics</h3><pre className="exact-data raw-source text-caption my-3 max-w-full">{derived.diagnostics}</pre></>}
++
+         </Tabs.Panel>
+       </Tabs.Root>
+       <div className="inspector-foot density:mt-5 small:mt-0 border-t border-border bg-surface px-6 py-4 mt-auto flex justify-between text-muted-foreground">
+         <span>Regeneration</span>
+-        <span>{token.authoring.regeneration}</span>
++        <span>{token.regeneration}</span>
+       </div>
+     </aside>
+   );

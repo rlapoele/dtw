@@ -514,3 +514,15 @@ The separate [exact-detail designer assessment](007-exact-detail-access-design-a
 proposes candidate order and overflow behavior for user review only. It is not yet
 an analyst-reviewed design or an approved prototype change. The current list/full
 inspector preservation, unchanged budgets and qualification gates remain binding.
+
+On 10 November 2026, after committing the assessments as `30abbf0`, the user approved
+both recommendations for isolated detail/projection comparison with repaired task
+instrumentation and independent review. Production/current-prototype edits, final
+contract/design agreement and Increment 007 implementation remain unauthorized.
+
+The [reviewed isolated comparison](../../output/increment-007-detail-projection-comparison/independent-review.md)
+now confirms both first large-detail openings exceed the unchanged 100 ms task gate
+(pre 120.547 ms; textarea 128.683 ms). Neither raw candidate or the partial projection
+scaffold is production-qualified. One offline instrumentation finding is independently
+closed; remaining fidelity/framing/fence/native/scale gaps are explicit. No raw control,
+budget reduction, performance-gate amendment or implementation is adopted.

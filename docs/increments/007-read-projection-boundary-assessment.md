@@ -1,9 +1,13 @@
 # Increment 007 — missing read-projection boundaries
 
-**Assessment/recommendations only — 10 November 2026. Not agreed or implemented.**
+**Recommendations approved for isolated comparison — 10 November 2026. Not implemented in production.**
 Baseline: clean `7474dc0befc9a11622ac3202ae07ce6c62ee4c30`. Preserve current list,
 complete inspector, AC-1–24 and agreed P/S/F/B policies. Draft / Not started remains.
-No new exact-detail design has been inspected or approved by this assessment.
+The analyst did not review the new exact-detail design in this assessment. The user
+subsequently approved both recommendations after commit `30abbf0` and authorized
+an isolated developer comparison followed by independent review. The proposed
+transport targets are starting points to measure, not new admission limits or proven
+performance bounds. No existing-prototype or production implementation is authorized.
 
 ## Recommendation and evidence
 
@@ -145,3 +149,20 @@ F-4/5 limits; Safari stress still requires safe supervision. HTTPS/worker review
 remain scoped evidence; this adds no support, performance or production acceptance.
 Checks here are current-source/evidence/prose/local-link/manifest/whitespace review,
 not browser/tests/build execution or independent review of production implementation.
+
+## Reviewed comparison boundary evidence — 10 November 2026
+
+The [isolated handoff](../../output/increment-007-detail-projection-comparison/comparison-summary.md)
+and [independent recheck](../../output/increment-007-detail-projection-comparison/independent-review.md)
+record narrower display-only row payloads, framed long data and real application
+namespace/label/selected-literal/reference subsets. The raw font-family row is 144
+logical bytes rather than its multi-million-unit definition. Observed raw text frames
+remain bounded. These facts do **not** qualify general whole-message byte enforcement,
+all identities/derived-work/lifetime/fencing surfaces, complete list/inspector fidelity
+or all P-R1–5 behavior. Both large raw-control openings failed the unchanged task gate.
+
+A foreign-renderer coverage defect was repaired offline and independently closed;
+seven focused tests and strict typecheck pass. The [corrected manifest](../../output/increment-007-detail-projection-comparison/manifest-r1.json)
+identifies current research/evidence, preserving originals and known failures. Larger
+native/scale/Safari and other unexecuted cases remain explicit. No new transport cap,
+raw control, production read API or implementation agreement is adopted by this result.

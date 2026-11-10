@@ -48,6 +48,12 @@ The [color-literal decision](../design-tokens/conceptual-model.md#color-literals
 
 These questions remain open beyond that bounded subset. Culori 4.0.2 is installed for the bounded calculation direction, with @types/culori 4.0.1. No universal operation set, fallback-generation algorithm or global Decimal resource policy is selected; no owned conversion equations or arbitrary-precision backend are planned. On 7 November 2026 the user selected the renderer stack and requested reconciliation with V6’s view-only interaction and bounded sliders/responsive behavior. The [updated contract](../increments/003-visible-color-authoring.md) and numerical bundle own that reconciliation. The user subsequently approved the consolidated agreement and creation disclosure; implementation was subsequently authorized on 8 November after technical preparation; behavioral agreement does not validate prototype calculations.
 
+## Guided color foundations and interface semantics
+
+**Confirmed future direction — 10 November 2026; work deferred:** support a color foundation first, followed by optional semantic-token recipes for light and dark interface themes. Contrast guidance is especially valuable when defining semantic uses, with an independent contrast view available beyond the guide. The [concept note](../project/guided-color-palette-generation.md) owns the example flow and agreed first exploration; this is not a selected next increment or execution authorization.
+
+Open choices include ramp algorithms/steps/anchor behavior and numerical policies; accent harmony and status distinguishability; opinionated predefined semantic names and recipe customization; light/dark integration with existing variation configuration; WCAG/APCA profiles, contextual inputs, pair selection and diagnostics; and acceptance/collision/regeneration behavior. Resolve these explicitly in the bounded future proposal rather than through implementation convenience.
+
 ## Authoring helpers and value previews
 
 1. Which scale patterns and parameters should the first helpers support?

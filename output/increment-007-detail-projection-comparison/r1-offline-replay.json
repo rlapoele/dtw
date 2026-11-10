@@ -1,0 +1,1209 @@
+{
+  "method": "offline saved traces only; exact target URL at trace-start frame metadata; no browser run",
+  "results": [
+    {
+      "id": "C00-navigation",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "inconclusive",
+        "reason": "target frame/process ownership missing",
+        "unit": "microseconds",
+        "maxima": {},
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "reason": "target frame/process ownership missing"
+          },
+          "rendererThreads": [],
+          "wholeTasks": 0,
+          "mainCompleteEvents": 0,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": true
+    },
+    {
+      "id": "C01-100-prepare-transfer-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 10.55,
+          "ThreadControllerImpl::RunTask": 10.542,
+          "FunctionCall": 0.132,
+          "Layout": 3.924,
+          "Paint": 0.741,
+          "UpdateLayoutTree": 1.733,
+          "EventDispatch": 0.262
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18320,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18320,
+              "tid": 224750
+            }
+          ],
+          "wholeTasks": 598,
+          "mainCompleteEvents": 1409,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "C02-100-editor-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 13.342,
+          "ThreadControllerImpl::RunTask": 13.335,
+          "FunctionCall": 0.585,
+          "UpdateLayoutTree": 2.753,
+          "Layout": 3.497,
+          "EventDispatch": 0.051,
+          "Paint": 1.507
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18320,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18320,
+              "tid": 224750
+            }
+          ],
+          "wholeTasks": 74,
+          "mainCompleteEvents": 238,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "C03-100-open-transfer-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 5.568,
+          "ThreadControllerImpl::RunTask": 5.558,
+          "EventDispatch": 0.301,
+          "FunctionCall": 0.313,
+          "UpdateLayoutTree": 0.177,
+          "Layout": 3.094,
+          "Paint": 0.169
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18320,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18320,
+              "tid": 224750
+            }
+          ],
+          "wholeTasks": 141,
+          "mainCompleteEvents": 420,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "C04-100-source-equality-no-geometry",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.65,
+          "ThreadControllerImpl::RunTask": 0.645,
+          "EventDispatch": 0.005
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18320,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18320,
+              "tid": 224750
+            }
+          ],
+          "wholeTasks": 10,
+          "mainCompleteEvents": 16,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "C05-100-native-keyboard-selection",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 4.436,
+          "ThreadControllerImpl::RunTask": 4.419,
+          "EventDispatch": 3.477,
+          "UpdateLayoutTree": 0.204,
+          "FunctionCall": 0.045,
+          "Layout": 0.367,
+          "Paint": 1.466
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18320,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18320,
+              "tid": 224750
+            }
+          ],
+          "wholeTasks": 251,
+          "mainCompleteEvents": 557,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "C06-100-geometry-observation",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.455,
+          "ThreadControllerImpl::RunTask": 1.45,
+          "EventDispatch": 0.065,
+          "FunctionCall": 0.036
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18320,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18320,
+              "tid": 224750
+            }
+          ],
+          "wholeTasks": 51,
+          "mainCompleteEvents": 104,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "C01-row-prepare-transfer-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 12.544,
+          "ThreadControllerImpl::RunTask": 12.524,
+          "EventDispatch": 0.043,
+          "UpdateLayoutTree": 0.247,
+          "Layout": 9.943,
+          "FunctionCall": 0.037,
+          "Paint": 0.619
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18320,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18320,
+              "tid": 224750
+            }
+          ],
+          "wholeTasks": 114,
+          "mainCompleteEvents": 317,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "C02-row-editor-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 10.688,
+          "ThreadControllerImpl::RunTask": 10.681,
+          "FunctionCall": 0.051,
+          "UpdateLayoutTree": 0.482,
+          "Layout": 8.441,
+          "EventDispatch": 0.105,
+          "Paint": 0.362
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18320,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18320,
+              "tid": 224750
+            }
+          ],
+          "wholeTasks": 125,
+          "mainCompleteEvents": 353,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "C03-row-open-transfer-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 4.366,
+          "ThreadControllerImpl::RunTask": 4.361,
+          "EventDispatch": 0.119,
+          "FunctionCall": 0.073,
+          "UpdateLayoutTree": 0.322,
+          "Layout": 3.66,
+          "Paint": 2.001
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18320,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18320,
+              "tid": 224750
+            }
+          ],
+          "wholeTasks": 164,
+          "mainCompleteEvents": 479,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "C04-row-source-equality-no-geometry",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.287,
+          "ThreadControllerImpl::RunTask": 1.277,
+          "EventDispatch": 0.007
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18320,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18320,
+              "tid": 224750
+            }
+          ],
+          "wholeTasks": 10,
+          "mainCompleteEvents": 16,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "C05-row-native-keyboard-selection",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 3.758,
+          "ThreadControllerImpl::RunTask": 3.724,
+          "EventDispatch": 2.18,
+          "UpdateLayoutTree": 0.122,
+          "FunctionCall": 0.077,
+          "Paint": 1.658
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18320,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18320,
+              "tid": 224750
+            }
+          ],
+          "wholeTasks": 113,
+          "mainCompleteEvents": 321,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "C06-row-geometry-observation",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "EventDispatch": 0.118,
+          "FunctionCall": 0.063,
+          "RunTask": 1.546,
+          "ThreadControllerImpl::RunTask": 1.532
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18320,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18320,
+              "tid": 224750
+            }
+          ],
+          "wholeTasks": 56,
+          "mainCompleteEvents": 109,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "C01-raw-prepare-transfer-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.498,
+          "ThreadControllerImpl::RunTask": 1.49,
+          "EventDispatch": 0.032,
+          "UpdateLayoutTree": 0.158,
+          "Layout": 0.238,
+          "FunctionCall": 0.046,
+          "Paint": 0.137
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18320,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18320,
+              "tid": 224750
+            }
+          ],
+          "wholeTasks": 81,
+          "mainCompleteEvents": 226,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "C02-raw-editor-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 2.805,
+          "ThreadControllerImpl::RunTask": 2.794,
+          "FunctionCall": 0.052,
+          "UpdateLayoutTree": 0.385,
+          "Layout": 0.493,
+          "EventDispatch": 0.087,
+          "Paint": 0.202
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18320,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18320,
+              "tid": 224750
+            }
+          ],
+          "wholeTasks": 53,
+          "mainCompleteEvents": 170,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "C03-raw-open-transfer-mount-paint",
+      "originalStatus": "fail",
+      "corrected": {
+        "status": "fail",
+        "reason": "renderer-main blocking event exceeds unchanged 100 ms gate",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 120.547,
+          "ThreadControllerImpl::RunTask": 120.518,
+          "EventDispatch": 0.186,
+          "FunctionCall": 0.146,
+          "UpdateLayoutTree": 0.093,
+          "Layout": 110.78,
+          "Paint": 3.599
+        },
+        "violations": [
+          {
+            "name": "RunTask",
+            "pid": 18320,
+            "tid": 224750,
+            "ts": 11894763767,
+            "dur": 120547,
+            "ms": 120.547
+          },
+          {
+            "name": "ThreadControllerImpl::RunTask",
+            "pid": 18320,
+            "tid": 224750,
+            "ts": 11894763769,
+            "dur": 120518,
+            "ms": 120.518
+          },
+          {
+            "name": "Layout",
+            "pid": 18320,
+            "tid": 224750,
+            "ts": 11894763970,
+            "dur": 110780,
+            "ms": 110.78
+          }
+        ],
+        "coverage": {
+          "ownership": {
+            "pid": 18320,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18320,
+              "tid": 224750
+            }
+          ],
+          "wholeTasks": 1171,
+          "mainCompleteEvents": 3292,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "T00-navigation",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "inconclusive",
+        "reason": "target frame/process ownership missing",
+        "unit": "microseconds",
+        "maxima": {},
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "reason": "target frame/process ownership missing"
+          },
+          "rendererThreads": [],
+          "wholeTasks": 0,
+          "mainCompleteEvents": 0,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": true
+    },
+    {
+      "id": "T01-100-prepare-transfer-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 6.743,
+          "ThreadControllerImpl::RunTask": 6.736,
+          "FunctionCall": 0.127,
+          "Layout": 3.435,
+          "Paint": 0.358,
+          "UpdateLayoutTree": 0.188,
+          "EventDispatch": 0.213
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18826,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18826,
+              "tid": 229731
+            }
+          ],
+          "wholeTasks": 627,
+          "mainCompleteEvents": 1715,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "T02-100-editor-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 9.705,
+          "ThreadControllerImpl::RunTask": 9.698,
+          "FunctionCall": 0.067,
+          "UpdateLayoutTree": 1.302,
+          "Layout": 3.182,
+          "EventDispatch": 0.067,
+          "Paint": 0.423
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18826,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18826,
+              "tid": 229731
+            }
+          ],
+          "wholeTasks": 73,
+          "mainCompleteEvents": 254,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "T03-100-open-transfer-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 4.451,
+          "ThreadControllerImpl::RunTask": 4.438,
+          "EventDispatch": 0.227,
+          "FunctionCall": 0.343,
+          "UpdateLayoutTree": 0.155,
+          "Layout": 2.995,
+          "Paint": 0.192
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18826,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18826,
+              "tid": 229731
+            }
+          ],
+          "wholeTasks": 140,
+          "mainCompleteEvents": 421,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "T04-100-source-equality-no-geometry",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.97,
+          "ThreadControllerImpl::RunTask": 0.959,
+          "EventDispatch": 0.095,
+          "FunctionCall": 0.047
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18826,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18826,
+              "tid": 229731
+            }
+          ],
+          "wholeTasks": 46,
+          "mainCompleteEvents": 213,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "T05-100-native-keyboard-selection",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.716,
+          "ThreadControllerImpl::RunTask": 1.71,
+          "EventDispatch": 0.565,
+          "UpdateLayoutTree": 0.226,
+          "FunctionCall": 0.117,
+          "Paint": 0.508
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18826,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18826,
+              "tid": 229731
+            }
+          ],
+          "wholeTasks": 94,
+          "mainCompleteEvents": 223,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "T06-100-geometry-observation",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.551,
+          "ThreadControllerImpl::RunTask": 0.547
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18826,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18826,
+              "tid": 229731
+            }
+          ],
+          "wholeTasks": 30,
+          "mainCompleteEvents": 47,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "T01-row-prepare-transfer-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 8.256,
+          "ThreadControllerImpl::RunTask": 8.25,
+          "EventDispatch": 0.075,
+          "UpdateLayoutTree": 0.067,
+          "Layout": 6.97,
+          "FunctionCall": 0.041,
+          "Paint": 0.251
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18826,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18826,
+              "tid": 229731
+            }
+          ],
+          "wholeTasks": 113,
+          "mainCompleteEvents": 342,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "T02-row-editor-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 12.164,
+          "ThreadControllerImpl::RunTask": 12.154,
+          "FunctionCall": 0.037,
+          "UpdateLayoutTree": 0.63,
+          "Layout": 9.026,
+          "EventDispatch": 0.026,
+          "Paint": 0.194
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18826,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18826,
+              "tid": 229731
+            }
+          ],
+          "wholeTasks": 116,
+          "mainCompleteEvents": 311,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "T03-row-open-transfer-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 4.647,
+          "ThreadControllerImpl::RunTask": 4.64,
+          "EventDispatch": 0.098,
+          "FunctionCall": 0.054,
+          "UpdateLayoutTree": 0.071,
+          "Layout": 3.89,
+          "Paint": 0.445
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18826,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18826,
+              "tid": 229731
+            }
+          ],
+          "wholeTasks": 164,
+          "mainCompleteEvents": 471,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "T04-row-source-equality-no-geometry",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 1.118,
+          "ThreadControllerImpl::RunTask": 1.114,
+          "EventDispatch": 0.004
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18826,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18826,
+              "tid": 229731
+            }
+          ],
+          "wholeTasks": 10,
+          "mainCompleteEvents": 16,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "T05-row-native-keyboard-selection",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.829,
+          "ThreadControllerImpl::RunTask": 0.817,
+          "EventDispatch": 0.662,
+          "UpdateLayoutTree": 0.062,
+          "Paint": 0.276,
+          "FunctionCall": 0.04
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18826,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18826,
+              "tid": 229731
+            }
+          ],
+          "wholeTasks": 107,
+          "mainCompleteEvents": 293,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "T06-row-geometry-observation",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.615,
+          "ThreadControllerImpl::RunTask": 0.612
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18826,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18826,
+              "tid": 229731
+            }
+          ],
+          "wholeTasks": 30,
+          "mainCompleteEvents": 48,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "T01-raw-prepare-transfer-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 0.948,
+          "ThreadControllerImpl::RunTask": 0.943,
+          "EventDispatch": 0.028,
+          "UpdateLayoutTree": 0.082,
+          "Layout": 0.148,
+          "FunctionCall": 0.027,
+          "Paint": 0.073
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18826,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18826,
+              "tid": 229731
+            }
+          ],
+          "wholeTasks": 80,
+          "mainCompleteEvents": 220,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "T02-raw-editor-mount-paint",
+      "originalStatus": "pass",
+      "corrected": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 3.048,
+          "ThreadControllerImpl::RunTask": 3.037,
+          "FunctionCall": 0.055,
+          "UpdateLayoutTree": 0.403,
+          "Layout": 0.496,
+          "EventDispatch": 0.099,
+          "Paint": 0.237
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 18826,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18826,
+              "tid": 229731
+            }
+          ],
+          "wholeTasks": 52,
+          "mainCompleteEvents": 144,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    },
+    {
+      "id": "T03-raw-open-transfer-mount-paint",
+      "originalStatus": "fail",
+      "corrected": {
+        "status": "fail",
+        "reason": "renderer-main blocking event exceeds unchanged 100 ms gate",
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 128.683,
+          "ThreadControllerImpl::RunTask": 128.658,
+          "EventDispatch": 0.124,
+          "FunctionCall": 0.12,
+          "UpdateLayoutTree": 0.542,
+          "Layout": 119.338,
+          "Paint": 0.61
+        },
+        "violations": [
+          {
+            "name": "RunTask",
+            "pid": 18826,
+            "tid": 229731,
+            "ts": 12096508408,
+            "dur": 128683,
+            "ms": 128.683
+          },
+          {
+            "name": "ThreadControllerImpl::RunTask",
+            "pid": 18826,
+            "tid": 229731,
+            "ts": 12096508409,
+            "dur": 128658,
+            "ms": 128.658
+          },
+          {
+            "name": "Layout",
+            "pid": 18826,
+            "tid": 229731,
+            "ts": 12096508979,
+            "dur": 119338,
+            "ms": 119.338
+          }
+        ],
+        "coverage": {
+          "ownership": {
+            "pid": 18826,
+            "source": "exact-target-url-start-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 18826,
+              "tid": 229731
+            }
+          ],
+          "wholeTasks": 1307,
+          "mainCompleteEvents": 3540,
+          "interval": {
+            "start": null,
+            "end": null
+          }
+        }
+      },
+      "changed": false
+    }
+  ]
+}

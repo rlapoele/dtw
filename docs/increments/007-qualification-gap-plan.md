@@ -7,6 +7,31 @@ B-1–B-5, P-1–P-4, S-1–S-6, F-1–F-5 and AC-1–24 stay binding. This plan
 remaining evidence; it neither reopens policy nor approves the designer's separate
 bounded-rendering assessment or any prototype change.
 
+## Scoped detail/projection comparison authorization — 10 November 2026
+
+After committing the two assessments as `30abbf0`, the user approved the exact-detail
+candidate order and read-projection recommendations for an isolated developer comparison
+with repaired timing instrumentation, then an independent reviewer. Scope/source/evidence
+are limited to `research/increment-007-detail-projection-comparison/` and
+`output/increment-007-detail-projection-comparison/`. Preserve the complete current list
+and inspector, exact source and unchanged budgets. No existing prototype, production
+implementation, public tunnel or broader gap-case execution is authorized. Conditional
+raw candidates are comparisons, not accepted product-control changes. Native/stress
+safety gates and explicit failure/inconclusive stop rules remain binding.
+
+## Reviewed detail/projection comparison — 10 November 2026
+
+Both approved raw candidates failed their first exact-source opening gate: pre
+120.547 ms task / 110.780 ms Layout; read-only textarea 128.683 ms task / 119.338 ms
+Layout. The [handoff](../../output/increment-007-detail-projection-comparison/comparison-summary.md)
+and [independent review](../../output/increment-007-detail-projection-comparison/independent-review.md)
+keep G-01/P-R qualification incomplete and all larger/native/Safari gaps explicit.
+A timing detector's foreign-renderer coverage bug is corrected and independently
+closed in the [131-file snapshot](../../output/increment-007-detail-projection-comparison/manifest-r1.json);
+30 non-navigation verdicts are unchanged and two navigation periods are inconclusive.
+No new browser workload ran for the repair. Accepting this negative comparison does
+not authorize a third viewer, source limit, revised gate, prototype or production work.
+
 ## Scoped rendering authorization — 10 November 2026
 
 The user approved the [bounded-rendering direction](007-bounded-rendering-design-assessment.md)

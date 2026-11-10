@@ -1,0 +1,15 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - import "./vite.config" without a file extension (research/increment-007-detail-projection-comparison/vite.textarea.config.ts:1:51). Add the file extension
+  - import "../../vite.config" without a file extension (research/increment-007-detail-projection-comparison/vite.config.ts:1:148). Add the file extension
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 618 modules transformed.
+rendering chunks...
+computing gzip size...
+output/increment-007-detail-projection-comparison/build-textarea/index.html                   0.37 kB │ gzip:  0.27 kB
+output/increment-007-detail-projection-comparison/build-textarea/assets/worker-DrQQbQ07.js   73.80 kB
+output/increment-007-detail-projection-comparison/build-textarea/assets/index-DiB_5lsr.css   15.75 kB │ gzip:  4.74 kB
+output/increment-007-detail-projection-comparison/build-textarea/assets/index-D8wg5OkQ.js   308.89 kB │ gzip: 99.20 kB
+
+✓ built in 112ms

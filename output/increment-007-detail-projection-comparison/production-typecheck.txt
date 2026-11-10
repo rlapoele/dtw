@@ -1,0 +1,4 @@
+
+> design-token-workbench@0.0.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.presentation.json --noEmit && tsc -p tsconfig.tools.json --noEmit
+

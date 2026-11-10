@@ -1,0 +1,7 @@
+{
+  "status": "invalid-before-browser",
+  "command": "node research/increment-007-detail-projection-comparison/run.mjs",
+  "reason": "Sandbox denied loopback listen: EPERM 127.0.0.1",
+  "browserStarted": false,
+  "followup": "Same command executed with approved escalation; chrome-attempt-1.json records browser run."
+}

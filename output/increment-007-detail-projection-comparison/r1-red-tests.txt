@@ -1,0 +1,61 @@
+✔ frozen 191.793 ms renderer Layout is a failure despite absent RunTask (4.313375ms)
+✔ missing whole-task evidence and empty traces are inconclusive (0.165209ms)
+✔ only renderer-main whole tasks can support pass, other-thread Layout ignored (0.078042ms)
+✖ R1: foreign renderer tasks cannot supply target-page coverage (0.453709ms)
+✖ R1: missing/ambiguous ownership and absent actual target remain inconclusive (0.102834ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48.731791
+
+✖ failing tests:
+
+test at research/increment-007-detail-projection-comparison/trace.test.mjs:18:1
+✖ R1: foreign renderer tasks cannot supply target-page coverage (0.453709ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'pass'
+  - 'inconclusive'
+  
+      at TestContext.<anonymous> (file:///Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/research/increment-007-detail-projection-comparison/trace.test.mjs:20:9)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'pass',
+    expected: 'inconclusive',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at research/increment-007-detail-projection-comparison/trace.test.mjs:23:1
+✖ R1: missing/ambiguous ownership and absent actual target remain inconclusive (0.102834ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'pass'
+  - 'inconclusive'
+  
+      at TestContext.<anonymous> (file:///Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/research/increment-007-detail-projection-comparison/trace.test.mjs:25:9)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'pass',
+    expected: 'inconclusive',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

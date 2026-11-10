@@ -262,6 +262,10 @@ An authoring tool whose deterministic domain calculation generates candidate tok
 
 Optional explicit token metadata describing the design-system purpose served by a value, such as content color, surface color, spacing, or radius. It is distinct from value type, layer, composition, and path, and may guide validation or target adaptation.
 
+## Semantic-token recipe
+
+Authoring guidance that proposes predefined semantic token names, intended roles, and references to foundation colors, potentially with light/dark conditional assignments and contextual contrast checks. The [guided palette concept](../project/guided-color-palette-generation.md) records this future direction. A recipe is not a canonical entity or an implicit live generator dependency; its contents and customization rules remain open.
+
 ## Semantic token
 
 A token named for design intent rather than a raw value, normally referencing a primitive or another semantic token.

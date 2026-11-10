@@ -1,0 +1,16 @@
+
+> design-token-workbench@0.0.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw
+
+
+ Test Files  36 passed (36)
+      Tests  983 passed (983)
+   Start at  12:42:38
+   Duration  707ms (import 45%, tests 29%, transform 20%, worker 5%)
+
+    Isolate  36 workers spawned · ~102ms startup each (spawn + environment, per file)
+             at least ~266ms faster with isolate: false — reuses workers across files instead of one per file
+

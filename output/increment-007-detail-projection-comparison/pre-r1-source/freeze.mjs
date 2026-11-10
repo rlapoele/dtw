@@ -1,0 +1,5 @@
+import {readdir,readFile,writeFile} from 'node:fs/promises';import {createHash} from 'node:crypto';
+const roots=['research/increment-007-detail-projection-comparison','output/increment-007-detail-projection-comparison'];
+const files={};async function scan(dir){for(const e of await readdir(dir,{withFileTypes:true})){const p=dir+'/'+e.name;if(e.isDirectory())await scan(p);else if(e.name!=='manifest.json'&&!/review/i.test(e.name))files[p]=createHash('sha256').update(await readFile(p)).digest('hex');}}
+for(const root of roots)await scan(root);
+const result={baseline:'30abbf00afbe75f9de8d4eca932dd28ed860d9af',scope:'two failed isolated exact-detail candidates; partial read-projection scaffold; not production007',files};await writeFile(roots[1]+'/manifest.json',JSON.stringify(result,null,2)+'\n');console.log(Object.keys(files).length+' frozen files');
