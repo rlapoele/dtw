@@ -2,11 +2,15 @@
 
 > Last updated: 10 November 2026
 >
-> Phase: Increment 007 rendering/native-access analyst recommendations ready for user review; contract Draft
+> Phase: Increment 007 description/native-selection designer assessment ready for user review; contract Draft
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
+
+**Increment 007 description wrapping/native selection assessed — 10 November 2026:** after committing the analyst dispositions as `1105d57`, the user authorized the designer assessment only, requiring the proposal before prototype changes or further qualification. The [designer proposal](../increments/007-description-wrapping-and-source-selection-design-assessment.md) recommends one description-only `break-all` candidate for a later isolated prototype, preserving exact strings, whitespace, two-line list previews and the complete inspector description. It identifies a prose-readability cost and claims no performance benefit. The designer does not endorse endpoint click/scroll/Shift-click as a supported full-source workflow; it recommends a separately authorized small-source native-selection usability assessment while retaining E-1, or explicit E-1 reconsideration if that interaction burden is unacceptable. No alternate viewer/control, gate waiver or changed budget is adopted.
+
+Next: user review of the identified proposal and its two choices. No prototype edit, native-selection assessment, Safari diagnosis, qualification or analyst review of this new proposal has begun. Safari activation/supervision and remaining mechanism/support gates stay open; final contract/design agreement and production implementation remain unauthorized. Only proposal/handoff documentation changed; no browser, clipboard, tests/build or experiments ran. Contract remains Draft / Not started; staging, commits and pushes remain with the user.
 
 **Increment 007 rendering/native-access dispositions proposed — 10 November 2026:** following the reviewed E-4 result, the user authorized the next planned analyst assessment. The [recommendations](../increments/007-rendering-and-native-access-disposition.md) propose one designer assessment of a description-wrapping candidate and practical native source-scoped selection while retaining the agreed disclosure/pre. Changing break policy might reduce long-description layout cost, but neither its performance nor its typography tradeoff is established. The tested document-wide Cmd+A/C failure does not prove all source-scoped native methods impossible; exact selection and clipboard equality remain separate gates. Safari small activation diagnosis is distinct from its failed supervisor; defensive work stays blocked until safe supervision is demonstrated under separately authorized conditions.
 
@@ -156,7 +160,7 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-Review the [analyst rendering/native-access recommendations](../increments/007-rendering-and-native-access-disposition.md). The proposed next step is one designer assessment of description wrapping and practical native source selection, with Safari small activation diagnosis and safe defensive supervision treated separately. No recommendation is adopted and no designer assessment, prototype edit, new experiment, performance/budget amendment or production implementation starts from this handoff. Preserve the current list/inspector, source exactness, Mac trust settings and existing user sessions. Final contract/design agreement and implementation authorization remain separate; staging, commits and pushes remain with the user.
+Review the [designer description/native-selection proposal](../increments/007-description-wrapping-and-source-selection-design-assessment.md): choose whether to prototype the description-only wrapping candidate and whether to assess small-source native selection or explicitly reconsider E-1. These are proposals, not adopted behavior. No prototype edit, native-selection assessment, new experiment, performance/budget amendment or production implementation starts from this handoff. Safari small activation diagnosis and safe defensive supervision remain separate pending work. Preserve the current list/inspector, source exactness, Mac trust settings and existing user sessions. Final contract/design agreement and implementation authorization remain separate; staging, commits and pushes remain with the user.
 
 The Increment 007 contract is Draft and requires its recorded decisions and resulting design before final agreement. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, concurrency qualification, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not settle them through prototype convenience.
 
