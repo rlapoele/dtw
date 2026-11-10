@@ -2,11 +2,15 @@
 
 > Last updated: 10 November 2026
 >
-> Phase: Increment 007 E-1–E-4 agreed; V4 layout/notice ready for user review
+> Phase: Increment 007 V4 analyst review complete; no blocking design mismatch; contract Draft
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
+
+**Increment 007 V4 analyst review complete — 10 November 2026:** following commit `42feef7`, the user approved the identified [V4 layout/notice](../../prototypes/increment-007-v4/DESIGN-V4.md) for analyst review against [E-1–E-4](../increments/007-exceptional-detail-policy-and-performance-proposal.md). The [analyst review](../increments/007-v4-analyst-review.md) identifies no blocking layout/notice mismatch. All 25 frozen hashes/byte sizes match; direct source comparisons confirm the App only redirects its Editor imports and the Editor only substitutes the authored disclosure, preserving current list and complete inspector components/content. The [Draft contract](../increments/007-local-retention-and-backup.md) updates AC-18/20 and gives the agreed E performance scope explicitly, without changing AC-1–24 identities or authored budgets. V4 supplements the earlier V3 revision-2 retention/recovery design; small simulated states do not qualify exceptional-source performance, native access or worker boundaries. No prototype/source/evidence changes, new browser checks, tests/build or performance experiment occurred in this review.
+
+Next: separately authorized focused E-4 qualification and remaining critical mechanism/support gate dispositions, then identified final design/contract agreement and separate implementation authorization. No material designer correction or automatic next prototype is required by this review. Contract remains Draft / Not started; staging, commits and pushes remain with the user.
 
 **Increment 007 E-1–E-4 agreed; V4 layout/notice ready — 10 November 2026:** after committing the [policy proposal](../increments/007-exceptional-detail-policy-and-performance-proposal.md) as `e2a3534`, the user agreed its complete on-demand source access, >65,536 serialized-unit exceptional class, 250 ms task/five-second action allowance and staged review/qualification gates. Ordinary list/editor/inspector work retains 100 ms; authored budgets and recorded failed results remain unchanged. The separate designer prepared [V4](../../prototypes/increment-007-v4/DESIGN-V4.md), a focused supplement to the earlier V3 retention/recovery design. It uses isolated copies of the current production App/Editor, changing only the authored-data disclosure and reusing the production list/controls. The source layout has natural-height short text, bounded no-wrap two-axis scrolling, the preactivation pause notice, Preparing and local failure/Retry states, and applied revision/read-only context. Modest synthetic fixtures and simulated feedback do not qualify exceptional-source performance, native copy/Find, AT or Safari. Production files and prior artifacts remain unchanged. Further performance experiments, analyst review of V4, final contract/design agreement and Increment 007 implementation remain unauthorized. Contract remains Draft / Not started; staging, commits and pushes remain with the user.
 

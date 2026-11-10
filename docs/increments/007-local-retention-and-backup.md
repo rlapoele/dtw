@@ -1,17 +1,20 @@
 # Increment 007: local retention, reopening and project backup
 
-- Contract status: **Draft — analyst updated after V3 review, 9 November 2026.**
+- Contract status: **Draft — analyst updated after V4 review, 10 November 2026.**
 - Delivery status: **Not started; implementation is not authorized.**
 - Agreement: direction and isolated prototype preparation agreed 9 November;
   user subsequently approved identified V1 **for analyst review only** and V2
   **for renewed analyst review only** on that date. V3 was also approved for renewed
   analyst review, with explicit production-baseline preservation. Revision 2 was
   subsequently approved for renewed analyst review; V3-R1 is closed at design level,
-  with documented specimen fidelity caveats and production obligations.
+  with documented specimen fidelity caveats and production obligations. V4 was
+  approved for analyst review on 10 November 2026; its layout/notice review found no
+  blocking design mismatch. This does not grant final design approval.
   Final contract/design agreement and implementation authorization remain pending.
 - Production baseline: `4171dbc`; V1 review snapshot: `3b69671`; V2: `7014e75`;
   V3 original: base `50d9f67` plus frozen manifest; revision 2: committed `2805b0c`
-  with its separate ten-file manifest (artifact base `52e8009`).
+  with its separate ten-file manifest (artifact base `52e8009`). V4 review snapshot:
+  `42feef7`, source baseline `e2a3534`, separate 25-file frozen manifest.
 
 ## Outcome
 
@@ -194,7 +197,10 @@ no acceptance criterion is claimed implemented by prototype or Stage A evidence.
   textual status, keyboard operation, safe Escape, modal focus containment/return and
   usable compact/zoomed layout under existing presentation conventions. Pending,
   inspect-only, stale, diagnostic, empty and unavailable states are distinguishable.
-  Prototype component reuse alone is not acceptance evidence.
+  Exact-source disclosure/status/Retry, source focus/scrolling and native exact-access
+  obligations follow the agreed E-policy scope below. No synchronous Cancel promise
+  is made for running native/main-thread work. Prototype component reuse alone is not
+  acceptance evidence.
 - **AC-19 — Required new-project name:** creation requires a user-supplied name.
   Under the proposed blankness policy above, empty/whitespace-only submission
   reports an associated error, focuses the name field and preserves form input.
@@ -219,7 +225,13 @@ no acceptance criterion is claimed implemented by prototype or Stage A evidence.
   footer; removed-target recovery wording must not replace ordinary data fallbacks.
   Associate actual invalid-draft/candidate errors with their fields and preserve
   accessible error/status focus, including normalized/byte/reference failure paths.
-  Integrate pending/recovery/resource states into the existing owned controls.
+  Integrate pending/recovery/resource states into the existing owned controls. Keep
+  All authored data in Metadata as explicit on-demand complete applied/identity source,
+  using the V4 plain disclosure/pre, generic preactivation pause notice, uniform no-wrap
+  local two-axis scroll bound and natural short height. Preserve complete exact text,
+  applied revision/read-only context, Preparing, local failure and explicit Retry; no
+  partial-success source, automatic retry, alternate viewer or draft serialization.
+  These source changes do not exempt other inspector/list work from its normal gate.
 - **AC-21 — Local resource feedback:** distinguish incoming/candidate/retained-record/
   whole-backup admission refusal from unavailable derived evaluation and incomplete
   diagnostic display. Admission failure changes no retained state and preserves raw
@@ -392,6 +404,46 @@ projection/lifetime and native interaction coverage remain incomplete. Automatic
 whole-task failure detection needs correction before reuse. No raw-viewer or list
 interaction change, smaller resource cap or production implementation is adopted.
 
+## Agreed exact-source performance scope — E-1–E-4
+
+This normative scope maps AC-18/20/24 to the agreed
+[E-policy](007-exceptional-detail-policy-and-performance-proposal.md), not to prototype
+timing. Ordinary list/sidebar/options/search, selection, editable strings/components/
+alpha/sliders, draft/view/scale feedback, previews, recovery dialogs and automatic
+Resolved/trace/diagnostic preparation retain the **100 ms maximum renderer-task gate**.
+The source exception is not a new authored-data admission limit or permission to
+expand derived work beyond F-5.
+
+Only an **explicitly opened applied authored/identity source disclosure** whose complete
+pretty serialized presentation text is **greater than 65,536 UTF-16 code units** may
+use **maximum individual target-renderer task ≤250 ms** and **end-to-end action
+completion ≤5,000 ms**. Exactly 65,536 remains ordinary. Count actual serialized units,
+including formatting/escapes/quotes, during requested worker preparation; do not build
+closed full source merely to classify it. Preserve all source admitted by the existing
+envelope, including exact code units, absence, aliases, metadata and identities.
+
+The same exceptional ceilings cover only deliberately invoked **native full-source
+selection, copy and Find in that already-open exceptional source**, separately
+measured per action. They do not cover ordinary scrolling, typing, unrelated document
+interaction or background reflow. A pre does not promise local-only Cmd/Ctrl+A.
+Heavy derived-source disclosures are not automatically included by opening a tab.
+
+Opening is measured activation→worker preparation/transfer/assembly→complete mount/
+first paint/full availability. Native action timing is activation→complete selection,
+clipboard result or Find match/reveal, excluding user query-entry time. Each whole
+renderer task includes layout/paint; nested durations are not added. The 5 s ceiling
+is not p95 or one 5 s blocking task. Missing target-task evidence is inconclusive.
+The external 30 s harness watchdog remains a separate safety stop, never a product SLA.
+Keep preparing/incomplete/error truthful; never call a prefix complete. Native running
+layout/selection/Find/copy cannot be preempted by app Cancel; queued read cancellation
+and live-publication fences do not cancel a write or acknowledge a mutation.
+
+Require 65,535/65,536/65,537 boundary evidence, relevant admitted worst cases, complete
+source equality and native selection/copy/Find/AT/scroll/zoom in both target engines
+under safe supervision. Historical failed samples and V4 modest fixtures establish
+neither the ceilings nor distributions. Remaining E-4 mechanism qualification and
+Stage B integrated acceptance remain distinct; no production implementation is authorized.
+
 ## Verification approach
 
 - Application/port tests map AC-1–8/14–17 to detached snapshots and focused async fake
@@ -544,5 +596,10 @@ The designer's [V4 layout/notice supplement](../../prototypes/increment-007-v4/D
 is prepared for user review. Its production-based list and inspector preserve the
 existing controls/content while illustrating the agreed source disclosure changes.
 It supplements the V3 retention/recovery design; it does not replace those flows.
-V4 is not yet user-approved or analyst-reviewed, and its simulated preparation/error
-states and modest fixtures supply no exceptional-source performance qualification.
+The user approved identified V4 for analyst review on 10 November 2026 after commit
+`42feef7`. The [V4 analyst review](007-v4-analyst-review.md) verifies all 25 frozen files
+and finds no blocking layout/notice mismatch, with direct production source diffs
+and attributed designer screenshots/observations. V4 remains a supplement to V3
+revision2; its simulated preparation/error states, in-memory revision and modest
+fixtures supply no exceptional-source performance or complete native-access qualification.
+Final visible-design/contract agreement and implementation authorization remain pending.
