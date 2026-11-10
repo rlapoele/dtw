@@ -1,0 +1,25 @@
+import {snapshot} from './fixtures.mjs';
+import type {ProjectSnapshot} from '@application/project-storage';
+// Copy computed surface rules to reproduce inheritance after removing application ancestry.
+// No layout algorithm, containment, breaking, clamp, whitespace or text is changed.
+const properties=['font-family','font-size','font-weight','font-style','font-stretch','font-variant','font-kerning','font-feature-settings','font-variation-settings','font-synthesis','line-height','letter-spacing','word-spacing','white-space','overflow-wrap','word-break','hyphens','text-transform','text-indent','text-align','text-rendering','text-overflow','text-wrap-mode','text-wrap-style','direction','writing-mode','color','background-color','display','-webkit-box-orient','-webkit-line-clamp','overflow','overflow-x','overflow-y','box-sizing','width','height','min-width','max-width','min-height','max-height','padding-top','padding-right','padding-bottom','padding-left','margin-top','margin-right','margin-bottom','margin-left','border-top-width','border-right-width','border-bottom-width','border-left-width','border-top-style','border-right-style','border-bottom-style','border-left-style'];
+type NodeSpec={tag:string;classes:string;styles:Record<string,string>;text?:string;children:NodeSpec[]};
+type RecordValue={style:Record<string,string>;box:Record<string,number>;text:string|null};
+type Spec={kind:string;width:number;nodes:NodeSpec[];baseline:RecordValue[]};
+const root=document.getElementById('root')!;
+function record(e:Element):RecordValue {const c=getComputedStyle(e),r=e.getBoundingClientRect();return {style:Object.fromEntries(properties.map(p=>[p,c.getPropertyValue(p)])),box:{width:r.width,height:r.height,clientWidth:e.clientWidth,clientHeight:e.clientHeight,scrollWidth:e.scrollWidth,scrollHeight:e.scrollHeight},text:e.textContent};}
+function node(e:Element):NodeSpec {return {tag:e.tagName.toLowerCase(),classes:e.className,styles:record(e).style,children:Array.from(e.children).map(node),...(e.children.length?{}:{text:e.textContent??''})};}
+function targets(kind:string):Element[]{if(kind==='inspector')return [document.querySelector('.inspector-heading p')!];const row=document.querySelector('.token-row')!;return [row.querySelector('.token-identity > span')!,row.querySelector(':scope > span:nth-child(2)')!];}
+function flatten(els:Element[]):Element[]{return els.flatMap(e=>[e,...Array.from(e.querySelectorAll('*'))]);}
+let prepared='';
+async function digest(s:string){return [...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)))].map(b=>b.toString(16).padStart(2,'0')).join('');}
+function make(s:NodeSpec):HTMLElement {const e=document.createElement(s.tag);e.className=s.classes;for(const [k,v]of Object.entries(s.styles))e.style.setProperty(k,v);for(const c of s.children)e.append(make(c));if(s.text!==undefined)e.textContent=s.text;return e;}
+declare global {interface Window {isolation:{capture:(kind:string)=>Spec;install:(s:Spec)=>RecordValue[];prepare:()=>Promise<unknown>;mount:(id:string)=>Promise<unknown>;measure:()=>RecordValue[];environment:()=>unknown}}}
+window.isolation={
+ capture(kind){const es=targets(kind),all=flatten(es),active=kind==='inspector'?es[0]:kind==='wide'?es[1]:es[0];const width=active.getBoundingClientRect().width;if(!width)throw Error('Active surface has no used width');return {kind,width,nodes:es.map(node),baseline:all.map(record)};},
+ install(s){root.replaceChildren();const block=document.createElement('div');block.dataset.specimen=s.kind;block.style.width=s.width+'px';for(const n of s.nodes)block.append(make(n));root.append(block);return flatten(Array.from(block.children)).map(record);},
+ async prepare(){const begin=performance.now();const fixture=snapshot('65535') as unknown as ProjectSnapshot;prepared=fixture.tokens[0].description!;const constructed=performance.now();const sha256=await digest(prepared);return {rawUnits:prepared.length,sha256,constructionMs:constructed-begin,verificationMs:performance.now()-constructed,completePrettyUnits:JSON.stringify(fixture.tokens[0],null,2).length};},
+ async mount(id){performance.mark(id+'-activation');const block=document.querySelector('[data-specimen]')!;const textNodes=Array.from(block.querySelectorAll('*')).filter(e=>e.children.length===0);for(const e of textNodes)e.textContent=prepared;performance.mark(id+'-dom-complete');const equality=textNodes.map(e=>e.textContent===prepared);await new Promise<void>(ok=>requestAnimationFrame(()=>requestAnimationFrame(()=>{performance.mark(id+'-painted');ok();})));return {equality,domUnits:textNodes.map(e=>e.textContent!.length),domSha256:await Promise.all(textNodes.map(e=>digest(e.textContent!))),leaves:textNodes.length};},
+ measure(){return flatten(Array.from(document.querySelector('[data-specimen]')!.children)).map(record);},
+ environment(){return {ua:navigator.userAgent,dpr:devicePixelRatio,viewport:{width:innerWidth,height:innerHeight},visualViewportScale:visualViewport?.scale,fontsStatus:document.fonts.status,fontCheck:document.fonts.check('11px Inter'),bodyFont:getComputedStyle(document.body).fontFamily};}
+};

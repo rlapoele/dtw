@@ -1,0 +1,175 @@
+{
+  "baseline": "ea97bfc49addf2a0a34716801e8e3f76bce68049",
+  "entries": [
+    {
+      "path": "research/increment-007-ordinary-rendering-isolation/trace.test.mjs",
+      "bytes": 4168,
+      "sha256": "9e6fb187f0a7906fa2494fa19cfe54ba2859d0f0629c4614f29a67c2afa3359a"
+    },
+    {
+      "path": "research/increment-007-ordinary-rendering-isolation/main.tsx",
+      "bytes": 626,
+      "sha256": "9e0d9854b9f0d7b06dfd6612888c4c513b18643cd69873bb6fcbb7ba40fc95d9"
+    },
+    {
+      "path": "research/increment-007-ordinary-rendering-isolation/trace.mjs",
+      "bytes": 2791,
+      "sha256": "95e52b204db6ef276567ae50e399cb60a7de4519053cd40433bd500012263c75"
+    },
+    {
+      "path": "research/increment-007-ordinary-rendering-isolation/run.mjs",
+      "bytes": 9843,
+      "sha256": "7e4e1c564681be85f89ad0f4281e4ee78e8e76e3b3ae371b2ab23d96344aa053"
+    },
+    {
+      "path": "research/increment-007-ordinary-rendering-isolation/index.html",
+      "bytes": 270,
+      "sha256": "907de6edd4438730791e1bfa73a4a28966f05c62707526f117318da1d87a35f6"
+    },
+    {
+      "path": "research/increment-007-ordinary-rendering-isolation/watchdog.mjs",
+      "bytes": 1057,
+      "sha256": "a67f623d0ba4948f714bcd9b343689ea04a2a53a9b333cced4f9327449180a2a"
+    },
+    {
+      "path": "research/increment-007-ordinary-rendering-isolation/fixtures.mjs",
+      "bytes": 1664,
+      "sha256": "92832f300eb90136b9e601db313db4065653819b234c3a2d366c58359bbcf4ee"
+    },
+    {
+      "path": "research/increment-007-ordinary-rendering-isolation/style.css",
+      "bytes": 186,
+      "sha256": "7ccea39af4487850b411ebf428b52faba82aeb579c4ca5dd4c3c6ad6426dcb28"
+    },
+    {
+      "path": "research/increment-007-ordinary-rendering-isolation/tsconfig.json",
+      "bytes": 547,
+      "sha256": "abebda014b0cf796c8569e0b71c8b36e0f7a65fab6f2f6d1bb547120f9194c07"
+    },
+    {
+      "path": "research/increment-007-ordinary-rendering-isolation/specimen.ts",
+      "bytes": 5123,
+      "sha256": "e4b4750328bad644ee5b767f141804514de4b9e46ae9cf988f89a6e213b9c02c"
+    },
+    {
+      "path": "research/increment-007-ordinary-rendering-isolation/vite.config.ts",
+      "bytes": 713,
+      "sha256": "bc01dace33a5f99dabf64e0ea35913ee0c5b5f66f0fd2261161c920efa722540"
+    },
+    {
+      "path": "output/increment-007-ordinary-rendering-isolation/served-build/index.html",
+      "bytes": 373,
+      "sha256": "685fdc908c5ba186acea0e4388bc1e1be001b9e9601bae6eabb4007d66590f9f"
+    },
+    {
+      "path": "output/increment-007-ordinary-rendering-isolation/served-build/assets/index-w0rat8pm.js",
+      "bytes": 410122,
+      "sha256": "d5785c13816de8df774e9a569df1025decb2920220e036b0624be16169c1ce17"
+    },
+    {
+      "path": "output/increment-007-ordinary-rendering-isolation/served-build/assets/index-DghKnX1F.css",
+      "bytes": 28015,
+      "sha256": "de1b2c22250e18ae427ef403cc3dfee48468ec7ede1be2d711a91ec4074fccaa"
+    },
+    {
+      "path": "output/increment-007-ordinary-rendering-isolation/execution-source/trace.test.mjs",
+      "bytes": 4168,
+      "sha256": "9e6fb187f0a7906fa2494fa19cfe54ba2859d0f0629c4614f29a67c2afa3359a"
+    },
+    {
+      "path": "output/increment-007-ordinary-rendering-isolation/execution-source/main.tsx",
+      "bytes": 626,
+      "sha256": "9e0d9854b9f0d7b06dfd6612888c4c513b18643cd69873bb6fcbb7ba40fc95d9"
+    },
+    {
+      "path": "output/increment-007-ordinary-rendering-isolation/execution-source/trace.mjs",
+      "bytes": 2791,
+      "sha256": "95e52b204db6ef276567ae50e399cb60a7de4519053cd40433bd500012263c75"
+    },
+    {
+      "path": "output/increment-007-ordinary-rendering-isolation/execution-source/run.mjs",
+      "bytes": 9843,
+      "sha256": "7e4e1c564681be85f89ad0f4281e4ee78e8e76e3b3ae371b2ab23d96344aa053"
+    },
+    {
+      "path": "output/increment-007-ordinary-rendering-isolation/execution-source/index.html",
+      "bytes": 270,
+      "sha256": "907de6edd4438730791e1bfa73a4a28966f05c62707526f117318da1d87a35f6"
+    },
+    {
+      "path": "output/increment-007-ordinary-rendering-isolation/execution-source/watchdog.mjs",
+      "bytes": 1057,
+      "sha256": "a67f623d0ba4948f714bcd9b343689ea04a2a53a9b333cced4f9327449180a2a"
+    },
+    {
+      "path": "output/increment-007-ordinary-rendering-isolation/execution-source/fixtures.mjs",
+      "bytes": 1664,
+      "sha256": "92832f300eb90136b9e601db313db4065653819b234c3a2d366c58359bbcf4ee"
+    },
+    {
+      "path": "output/increment-007-ordinary-rendering-isolation/execution-source/style.css",
+      "bytes": 186,
+      "sha256": "7ccea39af4487850b411ebf428b52faba82aeb579c4ca5dd4c3c6ad6426dcb28"
+    },
+    {
+      "path": "output/increment-007-ordinary-rendering-isolation/execution-source/tsconfig.json",
+      "bytes": 547,
+      "sha256": "abebda014b0cf796c8569e0b71c8b36e0f7a65fab6f2f6d1bb547120f9194c07"
+    },
+    {
+      "path": "output/increment-007-ordinary-rendering-isolation/execution-source/specimen.ts",
+      "bytes": 5123,
+      "sha256": "e4b4750328bad644ee5b767f141804514de4b9e46ae9cf988f89a6e213b9c02c"
+    },
+    {
+      "path": "output/increment-007-ordinary-rendering-isolation/execution-source/vite.config.ts",
+      "bytes": 713,
+      "sha256": "bc01dace33a5f99dabf64e0ea35913ee0c5b5f66f0fd2261161c920efa722540"
+    },
+    {
+      "path": "src/presentation/app/App.tsx",
+      "bytes": 28715,
+      "sha256": "52fe29f1c161776190f512bde65b0a80f46a48cb29f81f8b26085f835cd42e51"
+    },
+    {
+      "path": "src/presentation/features/workbench/components/TokenList.tsx",
+      "bytes": 3742,
+      "sha256": "926a13786450196bc3041d1cab9b00ff1d7320a806afb9a8c33917b87e6fac5a"
+    },
+    {
+      "path": "src/presentation/features/workbench/components/Editor.tsx",
+      "bytes": 15635,
+      "sha256": "af35cfb53ead5725352a53f5561f1b161f54f889e7baee1ac471135ae8ddd999"
+    },
+    {
+      "path": "src/presentation/styles/global.css",
+      "bytes": 9872,
+      "sha256": "66f32390c05c46c46b2581daf1621aab119e4e463f0ebf1fe3ecc24dd11e7f1e"
+    },
+    {
+      "path": "output/increment-007-e4-qualification/attempt-1-source/fixtures.mjs",
+      "bytes": 1664,
+      "sha256": "92832f300eb90136b9e601db313db4065653819b234c3a2d366c58359bbcf4ee"
+    },
+    {
+      "path": "research/increment-007-stage-a/fixtures.mjs",
+      "bytes": 3411,
+      "sha256": "3ed2e8ac5b31472c2cd55164f8fac41f2eaa928e9755c62514ba2f5f6eedb29a"
+    },
+    {
+      "path": "research/increment-007-stage-a/codec.mjs",
+      "bytes": 16590,
+      "sha256": "3ac7cfb2f71967a76fb06dffbf65465ff924b92dcece36462bf048f48e1636d0"
+    },
+    {
+      "path": "research/increment-007-e4-qualification/trace.mjs",
+      "bytes": 2791,
+      "sha256": "95e52b204db6ef276567ae50e399cb60a7de4519053cd40433bd500012263c75"
+    },
+    {
+      "path": "research/increment-007-e4-qualification/trace.test.mjs",
+      "bytes": 4168,
+      "sha256": "9e6fb187f0a7906fa2494fa19cfe54ba2859d0f0629c4614f29a67c2afa3359a"
+    }
+  ]
+}

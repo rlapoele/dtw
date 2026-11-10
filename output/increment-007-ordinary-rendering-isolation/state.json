@@ -1,0 +1,10 @@
+{
+  "completed": [
+    "control-wide"
+  ],
+  "stop": {
+    "action": "control-wide",
+    "status": "inconclusive",
+    "reason": "Small-control computed style/text/box mismatch"
+  }
+}

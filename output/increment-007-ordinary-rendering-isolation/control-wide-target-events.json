@@ -1,0 +1,646 @@
+[
+  {
+    "args": {},
+    "cat": "disabled-by-default-devtools.timeline",
+    "dur": 6972,
+    "name": "RunTask",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 5742,
+    "tid": 587218,
+    "ts": 42552319933,
+    "tts": 75739
+  },
+  {
+    "args": {
+      "src_file": "ipc/ipc_mojo_bootstrap.cc",
+      "src_func": "Accept",
+      "src_line": 1138
+    },
+    "cat": "toplevel",
+    "dur": 6963,
+    "name": "ThreadControllerImpl::RunTask",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 5734,
+    "tid": 587218,
+    "ts": 42552319933,
+    "tts": 75739
+  },
+  {
+    "args": {
+      "chrome_mojo_event_info": {
+        "data_num_bytes": 14336,
+        "ipc_hash": 3544143186,
+        "mojo_interface_tag": "blink.mojom.DevToolsSession",
+        "payload_size": 14280
+      }
+    },
+    "cat": "toplevel,mojom",
+    "dur": 6949,
+    "name": "Receive mojo message",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 5722,
+    "tid": 587218,
+    "ts": 42552319938,
+    "tts": 75743
+  },
+  {
+    "args": {},
+    "cat": "v8",
+    "dur": 2,
+    "name": "v8.newInstance",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 2,
+    "tid": 587218,
+    "ts": 42552320675,
+    "tts": 76479
+  },
+  {
+    "args": {},
+    "cat": "v8",
+    "dur": 1,
+    "name": "v8.newInstance",
+    "ph": "X",
+    "pid": 34414,
+    "tid": 587218,
+    "ts": 42552320723
+  },
+  {
+    "args": {},
+    "cat": "v8",
+    "dur": 1,
+    "name": "v8.newInstance",
+    "ph": "X",
+    "pid": 34414,
+    "tid": 587218,
+    "ts": 42552320773
+  },
+  {
+    "args": {},
+    "cat": "v8",
+    "dur": 1,
+    "name": "v8.newInstance",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 1,
+    "tid": 587218,
+    "ts": 42552321636,
+    "tts": 77018
+  },
+  {
+    "args": {},
+    "cat": "v8",
+    "dur": 1,
+    "name": "v8.newInstance",
+    "ph": "X",
+    "pid": 34414,
+    "tid": 587218,
+    "ts": 42552321688
+  },
+  {
+    "args": {
+      "beginData": {
+        "frame": "0B8402111BDAD910EB4769B000EE5BC4"
+      },
+      "elementCount": 4
+    },
+    "cat": "blink,devtools.timeline",
+    "dur": 442,
+    "name": "UpdateLayoutTree",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 206,
+    "tid": 587218,
+    "ts": 42552321746,
+    "tts": 77127
+  },
+  {
+    "args": {
+      "beginData": {
+        "dirtyObjects": 7,
+        "frame": "0B8402111BDAD910EB4769B000EE5BC4",
+        "partialLayout": false,
+        "totalObjects": 8
+      },
+      "endData": {
+        "layoutRoots": [
+          {
+            "depth": 1,
+            "nodeId": 2,
+            "nodeName": "#document",
+            "quads": [
+              [
+                0,
+                0,
+                3200,
+                0,
+                3200,
+                2200,
+                0,
+                2200
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "cat": "devtools.timeline",
+    "dur": 3814,
+    "name": "Layout",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 3568,
+    "tid": 587218,
+    "ts": 42552322354,
+    "tts": 77367
+  },
+  {
+    "args": {},
+    "cat": "v8",
+    "dur": 2,
+    "name": "v8.newInstance",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 1,
+    "tid": 587218,
+    "ts": 42552326236,
+    "tts": 81001
+  },
+  {
+    "args": {},
+    "cat": "toplevel",
+    "dur": 1,
+    "name": "BlinkScheduler_PerformMicrotaskCheckpoint",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 1,
+    "tid": 587218,
+    "ts": 42552326898,
+    "tts": 81474
+  },
+  {
+    "args": {},
+    "cat": "disabled-by-default-devtools.timeline",
+    "dur": 1988,
+    "name": "RunTask",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 936,
+    "tid": 587218,
+    "ts": 42552326909,
+    "tts": 81484
+  },
+  {
+    "args": {
+      "src_file": "cc/trees/proxy_impl.cc",
+      "src_func": "ScheduledActionSendBeginMainFrame",
+      "src_line": 849
+    },
+    "cat": "toplevel",
+    "dur": 1982,
+    "name": "ThreadControllerImpl::RunTask",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 932,
+    "tid": 587218,
+    "ts": 42552326910,
+    "tts": 81484
+  },
+  {
+    "args": {
+      "data": {
+        "frame": "0B8402111BDAD910EB4769B000EE5BC4",
+        "isMainFrame": true,
+        "isOutermostMainFrame": true,
+        "page": "0B8402111BDAD910EB4769B000EE5BC4"
+      }
+    },
+    "cat": "devtools.timeline",
+    "dur": 180,
+    "name": "PrePaint",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 179,
+    "tid": 587218,
+    "ts": 42552327097,
+    "tts": 81567
+  },
+  {
+    "args": {
+      "endData": {
+        "move": true,
+        "nodeId": 3,
+        "nodeName": "DIV id='root'",
+        "rectilinear": true,
+        "x": 1412,
+        "y": 1215
+      }
+    },
+    "cat": "blink,devtools.timeline",
+    "dur": 147,
+    "name": "HitTest",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 42,
+    "tid": 587218,
+    "ts": 42552327278,
+    "tts": 81746
+  },
+  {
+    "args": {
+      "data": {
+        "frame": "0B8402111BDAD910EB4769B000EE5BC4",
+        "id": 1
+      }
+    },
+    "cat": "devtools.timeline",
+    "dur": 705,
+    "name": "FireAnimationFrame",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 221,
+    "tid": 587218,
+    "ts": 42552327466,
+    "tts": 81828
+  },
+  {
+    "args": {},
+    "cat": "v8",
+    "dur": 697,
+    "name": "v8.callFunction",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 214,
+    "tid": 587218,
+    "ts": 42552327472,
+    "tts": 81834
+  },
+  {
+    "args": {
+      "data": {
+        "columnNumber": 176,
+        "frame": "0B8402111BDAD910EB4769B000EE5BC4",
+        "functionName": "",
+        "isolate": "6427881577482047121",
+        "lineNumber": 1,
+        "sampleTraceId": 2872203039141919,
+        "scriptId": "26",
+        "url": ""
+      }
+    },
+    "cat": "devtools.timeline",
+    "dur": 36,
+    "name": "FunctionCall",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 36,
+    "tid": 587218,
+    "ts": 42552327485,
+    "tts": 81847
+  },
+  {
+    "args": {
+      "data": {
+        "frame": "0B8402111BDAD910EB4769B000EE5BC4",
+        "isMainFrame": true,
+        "isOutermostMainFrame": true,
+        "page": "0B8402111BDAD910EB4769B000EE5BC4"
+      }
+    },
+    "cat": "devtools.timeline",
+    "dur": 1,
+    "name": "PrePaint",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 1,
+    "tid": 587218,
+    "ts": 42552328178,
+    "tts": 82056
+  },
+  {
+    "args": {
+      "data": {
+        "clip": [
+          0,
+          0,
+          3200,
+          0,
+          3200,
+          2200,
+          0,
+          2200
+        ],
+        "frame": "0B8402111BDAD910EB4769B000EE5BC4",
+        "layerId": 0,
+        "nodeId": 2,
+        "nodeName": "#document"
+      }
+    },
+    "cat": "devtools.timeline",
+    "dur": 77,
+    "name": "Paint",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 75,
+    "tid": 587218,
+    "ts": 42552328494,
+    "tts": 82141
+  },
+  {
+    "args": {
+      "data": {
+        "clip": [
+          0,
+          0,
+          3200,
+          0,
+          3200,
+          2200,
+          0,
+          2200
+        ],
+        "frame": "0B8402111BDAD910EB4769B000EE5BC4",
+        "layerId": 0,
+        "nodeId": 6,
+        "nodeName": "BODY"
+      }
+    },
+    "cat": "devtools.timeline",
+    "dur": 60,
+    "name": "Paint",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 60,
+    "tid": 587218,
+    "ts": 42552328509,
+    "tts": 82155
+  },
+  {
+    "args": {
+      "data": {
+        "frame": "0B8402111BDAD910EB4769B000EE5BC4",
+        "isMainFrame": true,
+        "isOutermostMainFrame": true,
+        "page": "0B8402111BDAD910EB4769B000EE5BC4"
+      }
+    },
+    "cat": "devtools.timeline",
+    "dur": 33,
+    "name": "Layerize",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 32,
+    "tid": 587218,
+    "ts": 42552328774,
+    "tts": 82303
+  },
+  {
+    "args": {
+      "frameSeqId": 39,
+      "layerTreeId": 2
+    },
+    "cat": "disabled-by-default-devtools.timeline",
+    "dur": 68,
+    "name": "Commit",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 66,
+    "tid": 587218,
+    "ts": 42552328823,
+    "tts": 82350
+  },
+  {
+    "args": {
+      "layerId": 9,
+      "layerTreeId": 2
+    },
+    "cat": "disabled-by-default-devtools.timeline",
+    "dur": 8,
+    "name": "UpdateLayer",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 8,
+    "tid": 587218,
+    "ts": 42552328831,
+    "tts": 82357
+  },
+  {
+    "args": {},
+    "cat": "toplevel",
+    "dur": 1,
+    "name": "BlinkScheduler_PerformMicrotaskCheckpoint",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 1,
+    "tid": 587218,
+    "ts": 42552328892,
+    "tts": 82416
+  },
+  {
+    "args": {},
+    "cat": "disabled-by-default-devtools.timeline",
+    "dur": 9,
+    "name": "RunTask",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 7,
+    "tid": 587218,
+    "ts": 42552328899,
+    "tts": 82421
+  },
+  {
+    "args": {
+      "src_file": "cc/trees/proxy_impl.cc",
+      "src_func": "~ScopedCommitCompletionEvent",
+      "src_line": 101
+    },
+    "cat": "toplevel",
+    "dur": 8,
+    "name": "ThreadControllerImpl::RunTask",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 7,
+    "tid": 587218,
+    "ts": 42552328899,
+    "tts": 82421
+  },
+  {
+    "args": {},
+    "cat": "toplevel",
+    "dur": 1,
+    "name": "BlinkScheduler_PerformMicrotaskCheckpoint",
+    "ph": "X",
+    "pid": 34414,
+    "tid": 587218,
+    "ts": 42552328907
+  },
+  {
+    "args": {},
+    "cat": "disabled-by-default-devtools.timeline",
+    "dur": 4,
+    "name": "RunTask",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 2,
+    "tid": 587218,
+    "ts": 42552329673,
+    "tts": 82453
+  },
+  {
+    "args": {
+      "src_file": "third_party/blink/renderer/core/frame/web_frame_widget_impl.cc",
+      "src_func": "DidSwap",
+      "src_line": 3972
+    },
+    "cat": "toplevel",
+    "dur": 2,
+    "name": "ThreadControllerImpl::RunTask",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 1,
+    "tid": 587218,
+    "ts": 42552329673,
+    "tts": 82453
+  },
+  {
+    "args": {},
+    "cat": "toplevel",
+    "dur": 1,
+    "name": "BlinkScheduler_PerformMicrotaskCheckpoint",
+    "ph": "X",
+    "pid": 34414,
+    "tid": 587218,
+    "ts": 42552329675
+  },
+  {
+    "args": {},
+    "cat": "disabled-by-default-devtools.timeline",
+    "dur": 2,
+    "name": "RunTask",
+    "ph": "X",
+    "pid": 34414,
+    "tid": 587218,
+    "ts": 42552329677
+  },
+  {
+    "args": {
+      "src_file": "third_party/blink/renderer/core/frame/web_frame_widget_impl.cc",
+      "src_func": "DidSwap",
+      "src_line": 3972
+    },
+    "cat": "toplevel",
+    "dur": 1,
+    "name": "ThreadControllerImpl::RunTask",
+    "ph": "X",
+    "pid": 34414,
+    "tid": 587218,
+    "ts": 42552329677
+  },
+  {
+    "args": {},
+    "cat": "disabled-by-default-devtools.timeline",
+    "dur": 2,
+    "name": "RunTask",
+    "ph": "X",
+    "pid": 34414,
+    "tid": 587218,
+    "ts": 42552329679
+  },
+  {
+    "args": {
+      "src_file": "cc/trees/proxy_impl.cc",
+      "src_func": "DrawInternal",
+      "src_line": 1038
+    },
+    "cat": "toplevel",
+    "dur": 1,
+    "name": "ThreadControllerImpl::RunTask",
+    "ph": "X",
+    "pid": 34414,
+    "tid": 587218,
+    "ts": 42552329679
+  },
+  {
+    "args": {},
+    "cat": "disabled-by-default-devtools.timeline",
+    "dur": 499,
+    "name": "RunTask",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 488,
+    "tid": 587218,
+    "ts": 42552341005,
+    "tts": 82465
+  },
+  {
+    "args": {
+      "src_file": "cc/trees/proxy_impl.cc",
+      "src_func": "ScheduledActionSendBeginMainFrame",
+      "src_line": 849
+    },
+    "cat": "toplevel",
+    "dur": 494,
+    "name": "ThreadControllerImpl::RunTask",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 485,
+    "tid": 587218,
+    "ts": 42552341006,
+    "tts": 82465
+  },
+  {
+    "args": {
+      "data": {
+        "frame": "0B8402111BDAD910EB4769B000EE5BC4",
+        "id": 2
+      }
+    },
+    "cat": "devtools.timeline",
+    "dur": 418,
+    "name": "FireAnimationFrame",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 414,
+    "tid": 587218,
+    "ts": 42552341027,
+    "tts": 82485
+  },
+  {
+    "args": {},
+    "cat": "v8",
+    "dur": 409,
+    "name": "v8.callFunction",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 406,
+    "tid": 587218,
+    "ts": 42552341035,
+    "tts": 82492
+  },
+  {
+    "args": {
+      "data": {
+        "columnNumber": 202,
+        "frame": "0B8402111BDAD910EB4769B000EE5BC4",
+        "functionName": "",
+        "isolate": "6427881577482047121",
+        "lineNumber": 1,
+        "sampleTraceId": 2872203039141921,
+        "scriptId": "26",
+        "url": ""
+      }
+    },
+    "cat": "devtools.timeline",
+    "dur": 62,
+    "name": "FunctionCall",
+    "ph": "X",
+    "pid": 34414,
+    "tdur": 61,
+    "tid": 587218,
+    "ts": 42552341036,
+    "tts": 82493
+  }
+]

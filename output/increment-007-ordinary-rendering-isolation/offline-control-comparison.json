@@ -1,0 +1,14 @@
+{
+  "status": "inconclusive",
+  "differences": [
+    {
+      "nodeIndex": 1,
+      "area": "style",
+      "property": "min-height",
+      "original": "auto",
+      "isolated": "0px"
+    }
+  ],
+  "riskMounts": 0,
+  "noRepairOrRerun": true
+}

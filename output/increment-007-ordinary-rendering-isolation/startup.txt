@@ -1,0 +1,1 @@
+Before any Chrome spawn or live control: sandbox localhost listen denied EPERM. No case executed. Isolated initial typecheck caught description inference from frozen JS fixture; explicit ProjectSnapshot cast fixed before execution.

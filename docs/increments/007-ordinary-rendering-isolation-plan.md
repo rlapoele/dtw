@@ -1,9 +1,17 @@
 # Increment 007 — ordinary description rendering isolation
 
-**Analyst proposal for user review — 10 November 2026. Not agreed or executed.**
+**Executed and independently reviewed — 10 November 2026; stopped, inconclusive.**
 Baseline: `2287060b82de9d59c7e644774d6e936376f6a0e1`. Recommend one finite,
 isolated **layout-context diagnostic**, retaining current wrapping. This is neither
 a proposed product repair nor renewed E-4 qualification. Contract remains Draft.
+
+After committing this plan as `ea97bfc`, the user authorized execution with “Go
+ahead.” This permits only the finite Chrome diagnostic batch and its independent
+review below. It does not authorize production/prototype edits, Safari probes,
+clipboard access or automatic follow-up experiments. Execution source and evidence
+belong in new `research/increment-007-ordinary-rendering-isolation/` and
+`output/increment-007-ordinary-rendering-isolation/` directories; prior artifacts
+remain frozen. Staging, commits and pushes remain with the user.
 
 ## Evidence and remaining question
 
@@ -122,3 +130,36 @@ Applied debugging-and-error-recovery for localization. Checks here: current/froz
 source, bounded raw-trace inspection, prose, relative links and whitespace only.
 Only this document changed; no browser, tests/build, timing replay, setup or commit.
 Suggested human-owned commit: `docs: plan ordinary description layout isolation`.
+
+## Executed result and disposition — 10 November 2026
+
+The [developer report](../../output/increment-007-ordinary-rendering-isolation/report.md),
+[frozen manifest](../../output/increment-007-ordinary-rendering-isolation/manifest.json)
+and [independent evidence review](../../output/increment-007-ordinary-rendering-isolation/independent-review.md)
+record a stopped first wide small control. Its wide outer span reports `min-height:
+auto` in the application and `0px` in the reduced context; all other recorded
+computed fields, used box metrics and small text match. The strict equivalence
+prerequisite failed, so the entire batch stopped before any risky mount. The
+6.972 ms covered whole task is not a matched-control pass or a long-text result.
+
+Source inspection also found an unexecuted harness defect: copying the small
+computed height as an inline value would freeze the wide nodes at 16.5px during
+long-text mounting, instead of preserving natural preview/inspector expansion.
+That must be corrected before any future execution; waiving the `min-height`
+comparison alone would not produce a faithful diagnostic. Neither issue establishes
+the cause of the original application failure. No source repair or rerun occurred.
+
+The reviewer found no actionable evidence/report correction. It independently
+checked the 112 manifest entries, 34 pre-execution entries, archived source/build
+fidelity, exact fixture digests and raw target-renderer trace coverage, and passed
+seven offline trace tests plus isolated typecheck. No reviewer browser run occurred.
+The source/build bytes were archived before the live control. Production, current
+wrapping, prior artifacts, dependencies and the original failed result are unchanged.
+
+The diagnostic question remains unanswered. Next requires an explicit disposition
+for correcting the diagnostic control/sizing semantics and separately authorizing
+any fresh browser batch. No automatic retry, new CSS variant, source-viewer change,
+Safari probe, performance waiver or production implementation follows. Staging,
+commits and pushes remain with the user.
+
+Suggested focused commit: `research: record stopped ordinary description isolation control`.

@@ -1,0 +1,15 @@
+✔ frozen 191.793 ms renderer Layout is a failure despite absent RunTask (4.361ms)
+✔ missing whole-task evidence and empty traces are inconclusive (0.121208ms)
+✔ only renderer-main whole tasks can support pass, other-thread Layout ignored (0.131333ms)
+✔ R1: foreign renderer tasks cannot supply target-page coverage (0.109458ms)
+✔ R1: missing/ambiguous ownership and absent actual target remain inconclusive (0.094291ms)
+✔ E scope changes maximum task ceiling only when caller explicitly supplies250 (0.071ms)
+✔ saved stale repeat is detected; corrected20 samples have distinct phasecomplete equality identities (1.760417ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 42.48775
