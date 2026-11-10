@@ -1,20 +1,32 @@
 # Presentation organization review
 
-**Proposed maintenance refactor — 10 November 2026. No source moves yet.**
+**Completed and independently reviewed — 10 November 2026.**
 The user requested a review and clearer organization of `src/presentation/`.
 This is separate from Increment 007's behavior and qualification work. It changes
 no presentation design, component API, domain semantics, dependency or retention policy.
 
+The user approved proceeding with this refactor and confirmed that V4/V5 review
+data need not be preserved, allowing those owned review servers to be retired.
+Baseline: `c14bff7`. This authority is limited to the organizational maintenance
+below; Increment 007 production implementation remains unauthorized.
+
+Acceptance: the target layout below is in place; maintained imports/tests work;
+runtime behavior and component contracts are unchanged; one semantic style source
+and existing Tailwind/Heroicons/native-control conventions remain; historical
+prototypes/evidence are unmodified and replay at their recorded commit. Full tests,
+strict typechecks, an isolated build, generated-style comparison and bounded
+fresh-browser checks precede independent review of the stable source snapshot.
+
 ## Findings and recommended structure
 
-The root currently mixes application composition, workbench components, color
-formatting, raw draft state and readback presentation. The existing `components/`
-also mixes generic controls with token-specific UI. For example, `Select.tsx` is
-a generic native control outside that folder, while `inspection-tabs.tsx` has
+Before this refactor, the root mixed application composition, workbench components,
+color formatting, raw draft state and readback presentation. The `components/`
+folder also mixed generic controls with token-specific UI. For example, `Select.tsx`
+was a generic native control outside that folder, while `inspection-tabs.tsx` had
 fixed token-inspection labels despite wrapping Base UI. Library ancestry alone
 does not make a component generic.
 
-Use responsibility rather than file extension as the organizing rule:
+The agreed layout uses responsibility rather than file extension as its organizing rule:
 
 ```text
 src/presentation/
@@ -97,15 +109,42 @@ that a clean Git tree means those sessions are clean.
 
 ## Review scope and next action
 
-This review inspected the presentation inventory, exports/imports, entry point,
+The initial review inspected the presentation inventory, exports/imports, entry point,
 type configuration, Vite aliases, standing conventions and historical consumers.
-No source files, prototypes or dependencies changed; no new application tests or
-browser checks ran for this organizational review. The native-selection evidence
-review is separate.
+At that proposal stage no source files, prototypes or dependencies changed, and no
+new application tests or browser checks ran. The native-selection evidence review
+is separate.
 
-Recommended next action: resolve the live review-session/replay constraint, then
-execute this as an isolated behavior-preserving maintenance change with one
-developer and an independent reviewer. It does not authorize Increment 007 storage
-implementation or close any of its qualification gates.
+## Completion — 10 November 2026
 
-Suggested documentation commit: `docs: propose presentation source organization`.
+The user confirmed that the review sessions could be retired and authorized the
+refactor. The owned V5 server was stopped before moves; the V4 port had no listener.
+The [developer report](../../output/presentation-organization/report.md) and
+[22-file mapping](../../output/presentation-organization/mapping.json) identify the
+implemented layout above. All 33 affected maintained source/test files differ only
+by module-import paths. No application logic, component API, class-composition
+contract, dependency, alias or stylesheet rule changed. The stylesheet is
+byte-identical at its new location. Current description wrapping is retained.
+
+Developer and reviewer each passed **983 tests / 36 files**, all three strict
+typecheck scopes and isolated production builds. Generated HTML, CSS and JavaScript
+match the retained baseline bytes in independent review. Developer-operated fresh
+Chrome checks cover creation, exact description/decimal editing, alias Apply/Cancel,
+selected keyboard/focus behavior and 1440px/477px layouts. These are bounded checks,
+not new accessibility, browser-support or performance qualification.
+
+The [independent review](../../output/presentation-organization/independent-review.md)
+found no actionable findings against the stable source snapshot. It verified source
+preservation and historical artifact hashes; browser execution is attributed to the
+developer. Its recorded evidence limits remain: ignored browser/test logs are not
+in the snapshot manifest, and preservation of pre-existing root `dist/` is
+developer-attributed. All builds targeted isolated temporary directories. Historical
+prototypes/research/evidence remain unchanged and replay at their recorded source
+commit; active owning-document source links now point to the new layout.
+
+The coordinator completed this handoff and current status after review without
+changing the reviewed executable source. Verification servers are stopped. No agent
+staged, committed or pushed. Increment 007 remains Draft / Not started; this
+maintenance closes none of its outstanding rendering/native-access/storage gates.
+
+Suggested focused commit: `refactor: organize presentation by responsibility`.

@@ -1,7 +1,7 @@
 import type { ColorLiteralInput, ColorSpace } from "@domain/color-literal";
 import { createColorLiteral } from "@domain/color-literal";
 import { convertColor } from "@domain/color-calculation";
-import { integerByteDisplay, integerByteIssue, integerByteToNormalized } from "@presentation/integer-rgb";
+import { integerByteDisplay, integerByteIssue, integerByteToNormalized } from "@presentation/features/workbench/color/integer-rgb";
 import type { ImplementedAuthoredValue } from "@domain/token";
 export { canReviseColorToken as eligible } from "@application/color-revision-policy";
 export type LiteralDraft = {

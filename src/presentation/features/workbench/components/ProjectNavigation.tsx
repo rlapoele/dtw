@@ -4,8 +4,8 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/24/outline";
-import { Button } from "@presentation/components/button";
-import { identityLabels } from "@presentation/readback";
+import { Button } from "@presentation/components/ui/button";
+import { identityLabels } from "@presentation/features/workbench/readback";
 export function ProjectNavigation({
   drawer,
   project,

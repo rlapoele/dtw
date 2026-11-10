@@ -64,11 +64,11 @@ that expansion. Resource-unavailable is truthful; a prefix is not a valid path o
 unique label. Exact authored identity remains accessible; any new visible unavailable-
 label fallback needs bounded design review, not a new authoring cap or hidden record.
 
-Current sources motivating these boundaries: [TokenList](../../src/presentation/TokenList.tsx)
-calls `inspect` per row; [AuthoredValue](../../src/presentation/AuthoredValue.tsx)
-looks up reference labels in the whole project; [Editor](../../src/presentation/Editor.tsx)
+Current sources motivating these boundaries: [TokenList](../../src/presentation/features/workbench/components/TokenList.tsx)
+calls `inspect` per row; [AuthoredValue](../../src/presentation/features/workbench/components/AuthoredValue.tsx)
+looks up reference labels in the whole project; [Editor](../../src/presentation/features/workbench/components/Editor.tsx)
 derives all choices and reads full-token raw/resolved/trace data;
-[readback helpers](../../src/presentation/readback.ts) compute collision-safe labels;
+[readback helpers](../../src/presentation/features/workbench/readback.ts) compute collision-safe labels;
 [application operations](../../src/application/authoring.ts) own actual paths/resolution.
 Reuse owned controls, ColorFields and genuinely pure formatting where their contracts
 fit. Async readiness, pending Apply and narrower props require deliberate adapters,

@@ -12,7 +12,7 @@ Apply these rules to new interface work and changes to existing presentation, wi
 
 Use shadcn-style semantic theming adapted to the accepted neutral Precision design. Content-first means clear token content, controls and feedback supported by restrained chrome. It is a design principle, not a newly selected preset. Preserve accepted density, hierarchy, compact actions and inspector/navigation surfaces. Stock theme scaffolds must not silently replace those decisions. Color specimens and meaningful semantic feedback may use color.
 
-Keep semantic design values in one source, currently `src/presentation/styles.css`. Map referenced semantic CSS variables through Tailwind's `@theme inline` namespaces: for example, `--color-background: var(--background)` exposes `bg-background`. Use the namespace appropriate to the decision, such as `--color-*`, `--radius-*` or `--font-*`. Focused CSS can reference the same source. Values defined directly in `@theme` also have one source; avoid adding a duplicate alias layer without a need. Application theme tokens remain distinct from user-authored design-token data.
+Keep semantic design values in one source, currently `src/presentation/styles/global.css`. Map referenced semantic CSS variables through Tailwind's `@theme inline` namespaces: for example, `--color-background: var(--background)` exposes `bg-background`. Use the namespace appropriate to the decision, such as `--color-*`, `--radius-*` or `--font-*`. Focused CSS can reference the same source. Values defined directly in `@theme` also have one source; avoid adding a duplicate alias layer without a need. Application theme tokens remain distinct from user-authored design-token data.
 
 ## Utilities and exceptions
 
@@ -38,7 +38,7 @@ Icon-only controls need accessible names. Hide decorative icons from assistive t
 
 ## Owned components and native controls
 
-Inspect `src/presentation/components/` and existing presentation controls before adding another implementation. Reuse or extend an existing component where appropriate. Use locally owned shadcn-style components built on Base UI or native HTML, adapted to the product.
+Inspect `src/presentation/components/ui/` and `src/presentation/features/workbench/components/` before adding another implementation. Reuse or extend an existing component where appropriate. Use locally owned shadcn-style components built on Base UI or native HTML, adapted to the product.
 
 Consider `Sheet`, `Dialog`/`AlertDialog`, `Select`, `Combobox`, `Field`, `Input`, `Checkbox`, `Alert`, `Skeleton`, `Spinner`, `Empty` and `Pagination`, alongside foundational `Button`/`Badge` primitives, when a real slice requires them. This list is neither exhaustive nor an installation checklist. Avoid speculative loading, pagination or modal machinery.
 

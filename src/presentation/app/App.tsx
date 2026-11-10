@@ -1,9 +1,9 @@
-import { CreationDialog } from "@presentation/CreationDialog";
-import { TokenList } from "@presentation/TokenList";
-import { ProjectNavigation } from "@presentation/ProjectNavigation";
-import { DialogContent } from "@presentation/components/dialog-content";
-import { Field } from "@presentation/components/field";
-import { Input } from "@presentation/components/input";
+import { CreationDialog } from "@presentation/features/workbench/components/CreationDialog";
+import { TokenList } from "@presentation/features/workbench/components/TokenList";
+import { ProjectNavigation } from "@presentation/features/workbench/components/ProjectNavigation";
+import { DialogContent } from "@presentation/components/ui/dialog-content";
+import { Field } from "@presentation/components/ui/field";
+import { Input } from "@presentation/components/ui/input";
 import {
   useCallback,
   useEffect,
@@ -26,13 +26,13 @@ import { createAuthoringOperations } from "@application/authoring";
 import type { ProjectReadback, TokenInspection } from "@application/authoring";
 import type { ProjectStorage } from "@application/project-storage";
 import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
-import { Button } from "@presentation/components/button";
-import { Editor } from "@presentation/Editor";
-import { Swatch } from "@presentation/components/swatch";
-import type { Feedback } from "@presentation/Editor";
-import { identityLabels, failureText, pathLabel, resolvedColor } from "@presentation/readback";
-import { colorPreview } from "@presentation/preview";
-import { eligible } from "@presentation/session";
+import { Button } from "@presentation/components/ui/button";
+import { Editor } from "@presentation/features/workbench/components/Editor";
+import { Swatch } from "@presentation/features/workbench/components/swatch";
+import type { Feedback } from "@presentation/features/workbench/components/Editor";
+import { identityLabels, failureText, pathLabel, resolvedColor } from "@presentation/features/workbench/readback";
+import { colorPreview } from "@presentation/features/workbench/color/preview";
+import { eligible } from "@presentation/features/workbench/state/session";
 export function App({
   storage = new InMemoryProjectStorage(),
   initialProjectId,

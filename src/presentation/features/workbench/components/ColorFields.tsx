@@ -1,21 +1,21 @@
 import { COLOR_COMPONENTS, COMPONENT_NAMES, componentSuffix } from "@domain/color-components";
-import { Field } from "@presentation/components/field";
-import { Input } from "@presentation/components/input";
+import { Field } from "@presentation/components/ui/field";
+import { Input } from "@presentation/components/ui/input";
 import type { CSSProperties } from "react";
 import { COLOR_SPACES } from "@domain/color-literal";
 import type { ColorSpace } from "@domain/color-literal";
-import { integerByteDisplay, integerByteIssue } from "@presentation/integer-rgb";
-import { Select } from "@presentation/Select";
+import { integerByteDisplay, integerByteIssue } from "@presentation/features/workbench/color/integer-rgb";
+import { Select } from "@presentation/components/ui/select";
 import {
   changeView,
   displayed,
   editComponent,
   fields,
-} from "@presentation/session";
-import type { DraftSession } from "@presentation/session";
-import { visualRangeState } from "@presentation/visual-range";
-import { spaceName } from "@presentation/authored-color";
-export { spaceName } from "@presentation/authored-color";
+} from "@presentation/features/workbench/state/session";
+import type { DraftSession } from "@presentation/features/workbench/state/session";
+import { visualRangeState } from "@presentation/features/workbench/color/visual-range";
+import { spaceName } from "@presentation/features/workbench/color/authored-color";
+export { spaceName } from "@presentation/features/workbench/color/authored-color";
 function illustrativeGradient(space: ColorSpace, index: number): string {
   const identity = COLOR_COMPONENTS[space][index];
   if (identity === "hue")

@@ -27,7 +27,7 @@ record **1,797.093 ms RunTask**, including **1,794.751 ms Layout**, during ordin
 65,535-unit fixture/list load, before source opening. This fails **100 ms**; it is
 not an exceptional-source 250 ms failure. The cause is unproven. Full unbroken
 description text reaches both responsive previews despite visual two-line clamping.
-The [production inspector](../../src/presentation/Editor.tsx) also wraps its complete
+The [production inspector](../../src/presentation/features/workbench/components/Editor.tsx) also wraps its complete
 description. Fixing only a preview would leave that independent ordinary-layout risk.
 
 The tested Cmd+A/C path selected document content and produced unequal source,
@@ -38,7 +38,7 @@ fixture; they establish neither large-source access nor keyboard/AT usability.
 ## Description candidate: exact content, changed reading rhythm
 
 Replace `wrap-anywhere` only on the two description preview variants in
-[TokenList](../../src/presentation/TokenList.tsx) and the inspector description with
+[TokenList](../../src/presentation/features/workbench/components/TokenList.tsx) and the inspector description with
 `break-all`, retaining `whitespace-pre-wrap`. Retain two-line list previews, current
 wide/compact placement, and the complete unclipped inspector paragraph. Preserve
 missing-description fallbacks, font, size, color, spacing and pane geometry. Keep

@@ -1,12 +1,12 @@
 import type { Ref } from "react";
 import type { ProjectReadback } from "@application/authoring";
 import { Dialog } from "@base-ui/react/dialog";
-import { DialogContent } from "@presentation/components/dialog-content";
-import { Button } from "@presentation/components/button";
-import { Field } from "@presentation/components/field";
-import { Input } from "@presentation/components/input";
-import { Select } from "@presentation/Select";
-import { identityLabels } from "@presentation/readback";
+import { DialogContent } from "@presentation/components/ui/dialog-content";
+import { Button } from "@presentation/components/ui/button";
+import { Field } from "@presentation/components/ui/field";
+import { Input } from "@presentation/components/ui/input";
+import { Select } from "@presentation/components/ui/select";
+import { identityLabels } from "@presentation/features/workbench/readback";
 
 /** Creation and rename rendering; App owns drafts, operations, readback and focus policy. */
 export function CreationDialog({

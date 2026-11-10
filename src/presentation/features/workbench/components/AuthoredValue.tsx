@@ -1,7 +1,7 @@
-import { authoredColorCoordinates, spaceName } from "@presentation/authored-color";
+import { authoredColorCoordinates, spaceName } from "@presentation/features/workbench/color/authored-color";
 import type { Token } from "@domain/token";
 import type { ProjectReadback } from "@application/authoring";
-import { identityLabels } from "@presentation/readback";
+import { identityLabels } from "@presentation/features/workbench/readback";
 
 type Value = NonNullable<Token["definition"]>["assignments"][number]["value"];
 

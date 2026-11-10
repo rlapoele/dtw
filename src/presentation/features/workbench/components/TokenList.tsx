@@ -1,9 +1,9 @@
-import { AuthoredValue } from "@presentation/AuthoredValue";
+import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
 import type { ProjectReadback, TokenInspection } from "@application/authoring";
-import { Button } from "@presentation/components/button";
-import { Swatch } from "@presentation/components/swatch";
-import { identityLabels, resolvedColor } from "@presentation/readback";
-import { colorPreview } from "@presentation/preview";
+import { Button } from "@presentation/components/ui/button";
+import { Swatch } from "@presentation/features/workbench/components/swatch";
+import { identityLabels, resolvedColor } from "@presentation/features/workbench/readback";
+import { colorPreview } from "@presentation/features/workbench/color/preview";
 export function TokenList({
   project,
   visible,

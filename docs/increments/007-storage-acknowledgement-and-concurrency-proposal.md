@@ -109,7 +109,7 @@ independently synchronized read database or undo framework.
 
 The current [ProjectStorage](../../src/application/project-storage.ts) is synchronous
 and sequential. [Authoring](../../src/application/authoring.ts) reloads before
-commands/inspection; [App](../../src/presentation/App.tsx) invokes it synchronously
+commands/inspection; [App](../../src/presentation/app/App.tsx) invokes it synchronously
 and performs a separate readback. These must evolve together, preserving domain
 validation and drafts. They cannot simply wrap the old synchronous interface around
 a fire-and-forget browser write. [Architecture](../project/architecture.md#increment-007-read-and-write-boundary-direction)

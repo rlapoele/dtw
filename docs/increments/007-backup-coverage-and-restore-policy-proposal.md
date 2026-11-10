@@ -193,10 +193,10 @@ not group deletion/move/repair tooling or a new authoring feature.
 
 Accepting empty/whitespace opaque IDs under P-4 creates an explicit implementation
 burden; it is not evidence the current presentation handles them safely.
-[App](../../src/presentation/App.tsx) uses empty-string selection state and truthiness
+[App](../../src/presentation/app/App.tsx) uses empty-string selection state and truthiness
 for `projectId`/`selected`, and `parent || null`;
-[CreationDialog](../../src/presentation/CreationDialog.tsx) uses an empty option for
-Project root; [session](../../src/presentation/session.ts) uses an empty reference
+[CreationDialog](../../src/presentation/features/workbench/components/CreationDialog.tsx) uses an empty option for
+Project root; [session](../../src/presentation/features/workbench/state/session.ts) uses an empty reference
 fallback. If P-4 is adopted, distinguish actual opaque IDs from absent selection,
 root parent and unchosen reference throughout lookup/inspection/selection. Add
 fixtures for empty and whitespace project/group/token/target IDs, root versus

@@ -1,8 +1,8 @@
-import { AuthoredValue } from "@presentation/AuthoredValue";
-import { Swatch } from "@presentation/components/swatch";
-import { InspectionTabs } from "@presentation/components/inspection-tabs";
-import { Badge } from "@presentation/components/badge";
-import { Field } from "@presentation/components/field";
+import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
+import { Swatch } from "@presentation/features/workbench/components/swatch";
+import { InspectionTabs } from "@presentation/features/workbench/components/inspection-tabs";
+import { Badge } from "@presentation/components/ui/badge";
+import { Field } from "@presentation/components/ui/field";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Tabs } from "@base-ui/react/tabs";
 import { createColorLiteral } from "@domain/color-literal";
@@ -13,12 +13,12 @@ import type {
 } from "@application/authoring";
 import type { Token } from "@domain/token";
 import type { ReviseColorTokenInput } from "@application/authoring";
-import { Button } from "@presentation/components/button";
-import { Select } from "@presentation/Select";
-import { ColorFields } from "@presentation/ColorFields";
-import { baseline, eligible, literalIssue } from "@presentation/session";
-import { colorPreview } from "@presentation/preview";
-import { identityLabels, failureText, pathLabel, resolvedColor } from "@presentation/readback";
+import { Button } from "@presentation/components/ui/button";
+import { Select } from "@presentation/components/ui/select";
+import { ColorFields } from "@presentation/features/workbench/components/ColorFields";
+import { baseline, eligible, literalIssue } from "@presentation/features/workbench/state/session";
+import { colorPreview } from "@presentation/features/workbench/color/preview";
+import { identityLabels, failureText, pathLabel, resolvedColor } from "@presentation/features/workbench/readback";
 export type Feedback = {
   tokenId: string;
   tab: string;

@@ -1,20 +1,20 @@
 import { describe, it, expect } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { TokenList } from "@presentation/TokenList";
-import { ProjectNavigation } from "@presentation/ProjectNavigation";
-import { AuthoredValue } from "@presentation/AuthoredValue";
-import { Editor } from "@presentation/Editor";
-import { identityLabels } from "@presentation/readback";
+import { TokenList } from "@presentation/features/workbench/components/TokenList";
+import { ProjectNavigation } from "@presentation/features/workbench/components/ProjectNavigation";
+import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
+import { Editor } from "@presentation/features/workbench/components/Editor";
+import { identityLabels } from "@presentation/features/workbench/readback";
 import { createColorLiteral } from "@domain/color-literal";
 import { createToken } from "@domain/token";
 import { createTokenGroup } from "@domain/token-group";
 import { createProject } from "@domain/project";
 import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
 import { createAuthoringOperations } from "@application/authoring";
-import { ColorFields } from "@presentation/ColorFields";
-import { baseline, editComponent } from "@presentation/session";
-import type { DraftSession } from "@presentation/session";
+import { ColorFields } from "@presentation/features/workbench/components/ColorFields";
+import { baseline, editComponent } from "@presentation/features/workbench/state/session";
+import type { DraftSession } from "@presentation/features/workbench/state/session";
 import type { ApplicationResult, TokenInspection } from "@application/authoring";
 function ok<T>(r: ApplicationResult<T>): T { if (r.status !== "ok") throw new Error(JSON.stringify(r)); return r.value; }
 function setup() {

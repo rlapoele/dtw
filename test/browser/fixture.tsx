@@ -1,7 +1,7 @@
 // Explicit test-only entry, excluded from the production build. Never a project loader.
 import { createRoot } from "react-dom/client";
-import { App } from "@presentation/App";
-import "@presentation/styles.css";
+import { App } from "@presentation/app/App";
+import "@presentation/styles/global.css";
 import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
 import { createProject } from "@domain/project";
 import { createToken } from "@domain/token";
