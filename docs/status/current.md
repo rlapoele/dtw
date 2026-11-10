@@ -2,11 +2,15 @@
 
 > Last updated: 10 November 2026
 >
-> Phase: Presentation organization maintenance completed and reviewed; Increment 007 contract Draft
+> Phase: Increment 007 ordinary-rendering isolation proposal ready for user review; contract Draft
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
+
+**Increment 007 ordinary-rendering isolation proposed — 10 November 2026:** after committing the presentation refactor as `2287060`, the user requested the next Increment 007 item. The [analyst plan](../increments/007-ordinary-rendering-isolation-plan.md) addresses the unresolved description-rendering failure while retaining the user's preferred current wrapping. Bounded saved-trace inspection confirms whole-document Layout (120 dirty/129 total objects), not a measured description-node or CSS-property cause. The proposed next action is one Chrome-only layout-context diagnostic: preserve exact failed text, typography and wrapping in a definite-width description specimen while removing application layout ancestry, with matched small controls, at most three first-risk cases and batch stop on failure/inconclusive evidence. It is a diagnostic proposal, not a product repair, supported capacity or renewed E-4 qualification.
+
+Next: user decision on that finite developer/reviewer handoff. No new experiment, prototype, dependency or production change occurred in this assessment; checks were current/frozen source, saved trace, prose/links and whitespace only. Safari long probes remain blocked pending separately proven safe supervision. Native-selection usability, full exact access and other mechanism/support gates remain separate; final contract/design agreement and Increment 007 implementation remain unauthorized. Contract remains Draft / Not started; staging, commits and pushes remain with the user.
 
 **Presentation organization maintenance completed — 10 November 2026:** the user approved the [organization plan](../project/presentation-organization-proposal.md#completion--10-november-2026) and confirmed V4/V5 review data need not survive. After retiring the owned V5 server, the developer moved 22 files into `app/`, `styles/global.css`, generic `components/ui/` and feature-owned workbench components/state/color/readback. Maintained source/test changes are import paths only; component contracts, aliases, dependencies, current wrapping and semantic stylesheet rules are unchanged. Current source-navigation docs/links are reconciled; historical prototypes/research/evidence remain unchanged and replay at their recorded original commit.
 
@@ -174,7 +178,7 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-Review the completed [presentation maintenance](../project/presentation-organization-proposal.md#completion--10-november-2026), then return to the ordinary rendering and native-access dispositions. The [bounded native-selection outcome](../../output/increment-007-small-source-selection/report.md) provides two small technical positives, leaving the supported selection workflow and broader exact-access gates open. Current description wrapping is retained and its ordinary rendering failure still needs a bounded disposition. No further source-viewer experiment, E-policy/gate amendment or Increment 007 production implementation starts from this handoff. Safari small activation diagnosis and safe defensive supervision remain separate pending work. Preserve the current list/inspector, source exactness, Mac trust settings and any new user sessions. Final contract/design agreement and implementation authorization remain separate; staging, commits and pushes remain with the user.
+Review the [ordinary-description isolation plan](../increments/007-ordinary-rendering-isolation-plan.md) and decide whether to authorize its one finite diagnostic developer/reviewer batch. Current wrapping is retained, and the existing ordinary failure remains failed. No automatic experiment, alternate wrapping/viewer, E-policy/gate amendment or Increment 007 production implementation starts from this handoff. The bounded native-selection positives leave the supported source-selection workflow open; Safari activation and safe defensive supervision remain separate pending work. Preserve the current list/inspector, source exactness, Mac trust settings and any new user sessions. Final contract/design agreement and implementation authorization remain separate; staging, commits and pushes remain with the user.
 
 The Increment 007 contract is Draft and requires its recorded decisions and resulting design before final agreement. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, concurrency qualification, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not settle them through prototype convenience.
 
