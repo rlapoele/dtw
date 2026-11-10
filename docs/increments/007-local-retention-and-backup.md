@@ -527,12 +527,22 @@ scaffold is production-qualified. One offline instrumentation finding is indepen
 closed; remaining fidelity/framing/fence/native/scale gaps are explicit. No raw control,
 budget reduction, performance-gate amendment or implementation is adopted.
 
-## Proposed exceptional-detail policy — 10 November 2026
+## Agreed exceptional-detail policy — 10 November 2026
 
-The [E-1–E-4 proposal](007-exceptional-detail-policy-and-performance-proposal.md)
-recommends a narrowly classified explicit full-source allowance and concrete
+The user agreed [E-1–E-4](007-exceptional-detail-policy-and-performance-proposal.md)
+after committing the proposal as `e2a3534`: a narrowly classified explicit full-source allowance and concrete
 performance/qualification gates while preserving the list and complete inspector.
 Its 65,536-unit trigger, 250 ms task/5 s action budgets and no-wrap disclosure layout
-are **proposed changes requiring user agreement**, not qualified results or adopted
-policy. The existing 100 ms gate remains binding. No new experiment, third viewer,
-authored-data cap, prototype change or implementation is authorized by this link.
+are **agreed policy**, not qualified results. Ordinary list/editor/inspector work
+retains 100 ms; the narrow exceptional-source path uses the agreed 250 ms task/5 s
+action ceilings. The user authorized a designer layout/notice artifact for review,
+preserving the current list and complete inspector. No new performance experiment,
+third viewer, authored-data cap, final contract/design agreement or Increment 007
+implementation is authorized.
+
+The designer's [V4 layout/notice supplement](../../prototypes/increment-007-v4/DESIGN-V4.md)
+is prepared for user review. Its production-based list and inspector preserve the
+existing controls/content while illustrating the agreed source disclosure changes.
+It supplements the V3 retention/recovery design; it does not replace those flows.
+V4 is not yet user-approved or analyst-reviewed, and its simulated preparation/error
+states and modest fixtures supply no exceptional-source performance qualification.

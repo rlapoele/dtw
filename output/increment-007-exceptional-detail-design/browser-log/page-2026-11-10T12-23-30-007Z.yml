@@ -1,0 +1,120 @@
+- generic [ref=e2]:
+  - generic "External design review controls" [ref=e3]:
+    - strong [ref=e4]: Design review · V4
+    - generic [ref=e5]:
+      - text: Preparation state
+      - combobox "Preparation state" [ref=e6]:
+        - option "Complete after feedback" [selected]
+        - option "Preparing · held"
+        - option "Failure · Retry succeeds"
+    - link "Review notes" [ref=e7] [cursor=pointer]:
+      - /url: ./DESIGN-V4.md
+  - generic [ref=e9]:
+    - link "Skip to tokens" [ref=e10] [cursor=pointer]:
+      - /url: "#tokens"
+    - banner [ref=e11]:
+      - strong [ref=e15]: Token Workbench
+      - generic [ref=e16]: Precision tokens
+      - generic [ref=e17]: Session only
+    - generic [ref=e18]: Work exists only in this page. Reloading, closing or leaving will discard all changes.
+    - generic [ref=e22]:
+      - navigation "Project groups" [ref=e23]:
+        - button "Collapse project groups" [expanded] [ref=e24] [cursor=pointer]:
+          - generic [ref=e27]: Project groups
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - generic [aria-hidden] [ref=e30]: T
+            - generic [ref=e31]:
+              - strong [ref=e32]: Precision tokens
+              - generic [ref=e33]: Color foundations
+          - generic [ref=e34]: Library
+          - button "All tokens 5" [ref=e35] [cursor=pointer]:
+            - text: All tokens
+            - generic [ref=e38]: "5"
+          - button "color" [ref=e40] [cursor=pointer]
+          - button "New group" [ref=e44] [cursor=pointer]
+          - generic [ref=e47]:
+            - text: Project
+            - paragraph [ref=e48]: One vocabulary.Clear relationships.
+            - generic [ref=e49]: 1 groups
+      - main [ref=e50]:
+        - generic [ref=e51]:
+          - generic [ref=e52]:
+            - text: Tokens
+            - heading "All colors" [level=1] [ref=e53]
+            - paragraph [ref=e54]: Build a vocabulary, then connect its meaning.
+          - button "New token" [ref=e55] [cursor=pointer]
+        - searchbox "Search color tokens" [ref=e60]
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - generic [ref=e63]: Token
+            - generic [ref=e64]: Authored value
+          - 'button "color / brand primitive · color Primary brand color for interactive elements. sRGB R: 0.231372549019607843 · G: 0.509803921568627451 · B: 0.964705882352941176 · Alpha: 1" [ref=e65] [cursor=pointer]':
+            - generic [ref=e69]:
+              - strong [ref=e70]: color / brand
+              - generic [ref=e71]: primitive · color
+              - generic [ref=e72]: Primary brand color for interactive elements.
+            - generic [ref=e74]:
+              - generic [ref=e75]: sRGB
+              - generic [ref=e76]:
+                - generic [ref=e77]: "R: 0.231372549019607843"
+                - generic [ref=e79]:
+                  - text: ·
+                  - generic [ref=e80]: "G: 0.509803921568627451"
+                - generic [ref=e81]:
+                  - text: ·
+                  - generic [ref=e82]: "B: 0.964705882352941176"
+                - generic [ref=e83]:
+                  - text: ·
+                  - generic [ref=e84]: "Alpha: 1"
+          - button "color / content semantic · color Text and icon color; linked to the brand token. Reference color / brand" [ref=e85] [cursor=pointer]:
+            - generic [ref=e89]:
+              - strong [ref=e90]: color / content
+              - generic [ref=e91]: semantic · color
+              - generic [ref=e92]: Text and icon color; linked to the brand token.
+            - generic [ref=e94]:
+              - generic [ref=e95]: Reference
+              - generic [ref=e96]: color / brand
+          - 'button "color / surface primitive · color Quiet surface with independent alpha. sRGB R: 0.96 · G: 0.97 · B: 0.98 · Alpha: 0.8" [ref=e97] [cursor=pointer]':
+            - generic [ref=e101]:
+              - strong [ref=e102]: color / surface
+              - generic [ref=e103]: primitive · color
+              - generic [ref=e104]: Quiet surface with independent alpha.
+            - generic [ref=e106]:
+              - generic [ref=e107]: sRGB
+              - generic [ref=e108]:
+                - generic [ref=e109]: "R: 0.96"
+                - generic [ref=e111]:
+                  - text: ·
+                  - generic [ref=e112]: "G: 0.97"
+                - generic [ref=e113]:
+                  - text: ·
+                  - generic [ref=e114]: "B: 0.98"
+                - generic [ref=e115]:
+                  - text: ·
+                  - generic [ref=e116]: "Alpha: 0.8"
+          - button "unassigned Unspecified · Unassigned No assignment" [ref=e117] [cursor=pointer]:
+            - generic [ref=e121]:
+              - strong [ref=e122]: unassigned
+              - generic [ref=e123]: Unspecified · Unassigned
+            - generic [ref=e124]: No assignment
+          - button "font-family primitive · fontFamily Fallback family list with a long authored family name. literal" [ref=e125] [cursor=pointer]:
+            - generic [ref=e129]:
+              - strong [ref=e130]: font-family
+              - generic [ref=e131]: primitive · fontFamily
+              - generic [ref=e132]: Fallback family list with a long authored family name.
+            - generic [ref=e133]: literal
+        - group [ref=e135]:
+          - generic "Project diagnostics · namespace and references" [ref=e136]
+        - status
+      - region "Token inspector pane" [ref=e137]:
+        - generic [ref=e138]:
+          - generic [ref=e139]: Token inspector
+          - generic [ref=e140]: Select a token
+          - button "Collapse token inspector" [expanded] [ref=e141] [cursor=pointer]
+        - generic [ref=e145]:
+          - heading "No token selected" [level=2] [ref=e146]
+          - paragraph [ref=e147]: Select or create a color token.
+    - contentinfo [ref=e148]:
+      - generic [ref=e149]: 5 tokens
+      - generic [ref=e150]: Memory only · No recovery after reload

@@ -201,6 +201,15 @@ failure, Safari pending-command watchdog preemption, unavailable HTTPS and other
 host/product acceptance gaps explicit. A bounded rendering direction and remaining
 qualification evidence still need resolution; no budgets or support targets changed.
 
+**10 November exceptional-detail amendment:** the user agreed
+[E-1–E-4](../increments/007-exceptional-detail-policy-and-performance-proposal.md):
+complete on-demand authored/identity source above 65,536 serialized UTF-16 units may
+use 250 ms per renderer task and five seconds per explicit action. Ordinary list,
+editing and inspector work retains 100 ms; authored admission budgets do not change.
+The designer is authorized to prepare the no-wrap bounded disclosure and notice for
+user review. This is a policy agreement, not qualification, final contract/design
+agreement or implementation authorization; native/browser and projection gaps remain.
+
 1. What is the canonical source-of-truth file format?
 2. What constitutes stable project identity, and how is it preserved when a workspace moves?
 3. Should canonical persistence itself use DTCG, extend it, or use a separate project model with DTCG import/export?

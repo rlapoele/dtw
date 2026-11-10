@@ -2,6 +2,11 @@
 
 **B-1–B-5 agreed — 9 November 2026; bounded isolated qualification followup authorized.**
 Production Increment 007 implementation remains unauthorized.
+**10 November amendment:** user-agreed [E-1–E-4](007-exceptional-detail-policy-and-performance-proposal.md)
+narrows the responsiveness exception to explicitly requested exceptional authored/identity
+source. Its 250 ms task/5 s action ceilings supersede the blanket 100 ms wording below
+only for that path. Ordinary list/editor/inspector work retains 100 ms. No qualification
+verdict or other B-policy changes follow; layout/notice preparation is authorized for review.
 Baseline: clean `721d95e4470f42916c04a1bf62ca0bd5c90d95e3`. This closes the
 remaining *recommendation* work, not qualification or final contract agreement.
 Keep P-1–P-4, S-1–S-6, F-1–F-5, AC-1–24 and Draft / Not started unchanged.

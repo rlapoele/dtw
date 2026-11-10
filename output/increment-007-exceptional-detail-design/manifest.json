@@ -1,0 +1,143 @@
+{
+  "artifact": "Increment 007 exceptional detail design V4",
+  "date": "2026-11-10",
+  "baseline": "e2a3534",
+  "scope": "isolated layout/notice supplement to V3; user review pending; no performance qualification or implementation",
+  "runtime": {
+    "url": "http://127.0.0.1:4227/",
+    "vite_exec_session": 96023,
+    "designer_browser_closed": true
+  },
+  "baseline_fidelity": {
+    "App": "only Editor import redirects locally",
+    "Editor": "only authored details replaced by ExactSource; import added",
+    "other_production_components": "reused unchanged"
+  },
+  "files": [
+    {
+      "path": "output/increment-007-exceptional-detail-design/01-complete-color-inspector.png",
+      "bytes": 147841,
+      "sha256": "b998a7e29c9a2f6ebc405d7f02217ab60dbff0dd5a48d2573193e2b6ad3fae21"
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/01b-color-controls-and-alpha.png",
+      "bytes": 160524,
+      "sha256": "29c3cc0fcaa273e8dd2cd0bb6ea79534b5e775a9c853877ed5dfba8fb6ae4d7c"
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/02-preactivation-notice.png",
+      "bytes": 159110,
+      "sha256": "f7dbda8e5dec30b82b659837050a8f1142a96d01d634a56c81aeb9453dcec2b3"
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/03-color-source.png",
+      "bytes": 170787,
+      "sha256": "fa83e98de6b135eaae01eb2aa0e45576aa09fe3c14501bea007e11f02283b031"
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/04-applied-source-separate-from-draft.png",
+      "bytes": 171506,
+      "sha256": "babe3e70095b74cd7a013a65fc2a34320938649946f234c0c840df0a8008c799"
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/05-short-natural-height.png",
+      "bytes": 153238,
+      "sha256": "ea7be6c5580396861f899919c93f88befd3071af2a8b87ea014a0974270de855"
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/06-two-axis-source.png",
+      "bytes": 158437,
+      "sha256": "791c1b8ad2bef009b431d8170dfa5dfe8a6e099c0e9b8ebb31a4eb8ab4d9ddf1"
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/07-source-end-and-long-line.png",
+      "bytes": 133992,
+      "sha256": "cb63eb9ad50934fc090ee36290b34d7bdfc96a0e9040b7428e27fc22d9d4163a"
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/08-preparing.png",
+      "bytes": 145294,
+      "sha256": "b960e3714e52a94e38197022204416bdb11ba9eb6b1292e5b83edf0dbe25bbcc"
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/09-local-failure.png",
+      "bytes": 150154,
+      "sha256": "6351b316853c2fae2e2085712d009acd33da8f8982dcec1e655c7e4f735b4bfe"
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/10-compact-source.png",
+      "bytes": 81569,
+      "sha256": "79b372e853b36c2d42b6a8104d3ce43bae805fe9c9c1e03c38358dd094241e73"
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/browser-log/console-2026-11-10T12-23-29-821Z.log",
+      "bytes": 5039,
+      "sha256": "c5f11abb0e37e32aa815dc69a8b16b977648daacb4b9ef42fb7438f05765a477"
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/browser-log/page-2026-11-10T12-23-30-007Z.yml",
+      "bytes": 5989,
+      "sha256": "0a37664d34faf8451610be3f690a9f56ad17fffdb1e9928b58d4621daedaf3d1"
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/browser-log/page-2026-11-10T12-24-13-201Z.yml",
+      "bytes": 6197,
+      "sha256": "db011c86a2bf7c66397b35d1f4a9e354bf2b72cf9304b2e889d5c7fb23ec0cbd"
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/browser-log/page-2026-11-10T12-24-26-603Z.yml",
+      "bytes": 12066,
+      "sha256": "a9299a5a84ef4a58ba1fe4381aed3bba40a0558a5f5eab78eb698e362503e358"
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/observations.md",
+      "bytes": 4412,
+      "sha256": "bd776511703646dcebcada17d278bc9c876059df8bcb37ffff8e383fcdceaa2b"
+    },
+    {
+      "path": "prototypes/increment-007-v4/App.tsx",
+      "bytes": 28441,
+      "sha256": "ac42e805626609e27a89e7c51fb5442dde5dcaf0e6215d078435e7239245cbe8"
+    },
+    {
+      "path": "prototypes/increment-007-v4/DESIGN-V4.md",
+      "bytes": 7917,
+      "sha256": "9d290e9a5a18ba5c4e1a50823e7d6bd9db6cdbee0a4d922a513a5e941baa7cf7"
+    },
+    {
+      "path": "prototypes/increment-007-v4/Editor.tsx",
+      "bytes": 15260,
+      "sha256": "ccc346f0bc893885045bcccfd63abc5a9d28fc3a60c909c3e4378fb034e32967"
+    },
+    {
+      "path": "prototypes/increment-007-v4/ExactSource.tsx",
+      "bytes": 3265,
+      "sha256": "2e514f10e2b2cf6702388934cffde39cdd498e537597a32d813a819aaa1c914e"
+    },
+    {
+      "path": "prototypes/increment-007-v4/index.html",
+      "bytes": 319,
+      "sha256": "1a4e51c804556bba227827fcd5c022904f44c6cb9f4f0c4dd1c461553d2de8f7"
+    },
+    {
+      "path": "prototypes/increment-007-v4/main.tsx",
+      "bytes": 3958,
+      "sha256": "4585fcdc0f5ca38b2edd02f27e1d8d305105108be3a5792f1ec22c96875a46c3"
+    },
+    {
+      "path": "prototypes/increment-007-v4/prototype.css",
+      "bytes": 810,
+      "sha256": "faeabef0cb7af239c770f6c53d999a744041f776633f4b104f900fbb0f130867"
+    },
+    {
+      "path": "prototypes/increment-007-v4/tsconfig.json",
+      "bytes": 461,
+      "sha256": "5feca4ba3ae9cbd8ec09412c2b16571c7ede85fd040b1c9342148bff0ebcaf4d"
+    },
+    {
+      "path": "prototypes/increment-007-v4/vite.config.ts",
+      "bytes": 762,
+      "sha256": "d529a308bdb60a044e9d46ab390bd5af54f2c4232359f79a26f8d2f0db71c07b"
+    }
+  ]
+}

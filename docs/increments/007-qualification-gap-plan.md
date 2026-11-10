@@ -1,5 +1,11 @@
 # Increment 007 — remaining qualification gaps
 
+**10 November policy amendment:** the user agreed [E-1–E-4](007-exceptional-detail-policy-and-performance-proposal.md).
+Its narrowly scoped 250 ms task/5 s action allowance supersedes the blanket 100 ms
+wording below only for explicit exceptional authored/identity source access. Ordinary
+list/editor/inspector work remains at 100 ms. Designer layout/notice preparation is
+authorized for user review; no further performance qualification is authorized yet.
+
 **Remaining plan proposed for user review — 10 November 2026. Only the scoped authorizations below permit execution.**
 Baseline: clean `448b943ce6486a1fed06a651edf47e9cffa0ff6d`. Contract remains
 **Draft / Not started**; final agreement and production implementation are pending.
