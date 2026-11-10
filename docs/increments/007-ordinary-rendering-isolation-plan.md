@@ -1,9 +1,21 @@
 # Increment 007 — ordinary description rendering isolation
 
-**R2 executed and independently reviewed — 10 November 2026; stopped, inconclusive.**
+**Retired for the over-limit description fixture — 10 November 2026. R1/R2 remain inconclusive.**
 Baseline: `2287060b82de9d59c7e644774d6e936376f6a0e1`. Recommend one finite,
 isolated **layout-context diagnostic**, retaining current wrapping. This is neither
 a proposed product repair nor renewed E-4 qualification. Contract remains Draft.
+
+**Latest disposition:** the user subsequently limited token descriptions to roughly
+1,024 characters. The [F-4 amendment](007-format-decoder-and-resource-proposal.md#token-description-amendment--10-november-2026)
+now excludes this 65,004-unit description from the supported envelope. Do not spend
+further work repairing or rerunning this diagnostic for that retired fixture.
+The original failure and both inconclusive attempts remain unchanged historical
+evidence under the earlier policy. This is a product limit decision, not a passing
+performance result. Current wrapping is retained. The harness defects remain
+documented and must be corrected if any separately authorized future reuse needs
+this harness; that correction is no longer the next Increment 007 task merely to
+support the retired description case. Other admitted data and exact-source gates
+remain unaffected.
 
 After committing this plan as `ea97bfc`, the user authorized execution with “Go
 ahead.” This permits only the finite Chrome diagnostic batch and its independent

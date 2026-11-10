@@ -156,6 +156,7 @@ adopts all five policies and the qualification plan.
 | JSON/container depth | 128 simultaneously nested object/array containers for the incoming wrapper, root depth 1; snapshot-relative maximum 127, snapshot root depth 1. Retained records apply the same snapshot-relative 127 ceiling (record root plus snapshot gives 128); metadata is separately shallow. Check before parser recursion. |
 | Parsed nodes/tokens | 500,000 JSON lexical tokens per input, including punctuation but excluding whitespace; 200,000 semantic JSON values per snapshot (each object/array/scalar counts once, keys not values). Every raw JSON numeric token is at most 16 ASCII code units and must pass the canonical safe-integer rule before acceptance; no other numeric-token class is permitted. |
 | String size | Each decoded string/key at most 65,536 UTF-16 code units; sum of decoded snapshot keys and string values at most 4,194,304 code units, counting repeats. No narrower ID limit. Raw JSON string token at most 393,218 code units including quotes (six escaped characters per decoded unit plus quotes). |
+| Token description | **Amended by the user, 10 November 2026:** each decoded `Token.description`, when present, at most **1,024 UTF-16 code units**. This field-specific ceiling supersedes the generic single-string ceiling only for token descriptions. Project/group descriptions and other strings retain their existing limits. |
 | AST | At most 32 nested expression nodes on any operand path; 1,024 operand nodes per assignment (root expression, nested expressions and every literal/reference/context leaf count); 100,000 across a snapshot. Shared references are not expanded for admission counting. |
 | Ordered collections | At most 256 shadow layers per value, 256 font-family entries per literal and 128 segments per valuePath. This preserves order, not truncation. |
 | Decimal | At most 4,096 ASCII digits per canonical Decimal string (sign/dot excluded), all numeric string fields including color/hue/alpha/composite/AST leaves; no minimum magnitude, Number coercion or calculation input cap. |
@@ -206,6 +207,36 @@ or injected over-budget source stays untouched with explicit unsupported-size an
 backup-refused feedback; no partial recovery/backup claim. If preserving every
 previously unbounded valid input is required, revise the numbers/policy before
 agreement. Do not silently raise/lower limits during implementation to get green.
+
+### Token-description amendment — 10 November 2026
+
+The user limited token descriptions to roughly 1,024 characters after reviewing the
+disproportionate 65,004-character unbroken description stress case. Operationalize
+this as an inclusive **1,024 decoded UTF-16 code-unit** ceiling, consistent with
+this policy's existing string accounting. Count the exact stored string, including
+spaces/newlines, before JSON escaping; no trimming, normalization or truncation.
+This is not a word count, byte count or serialized-source length. Surrogate pairs
+consume two units. Optional absence and an explicitly empty description retain
+their existing meaning. The ceiling applies to every token state and value type,
+not only editable color tokens.
+
+Apply the same field rule to accepted authoring candidates, retained loading,
+backup generation and restore. Reject an over-limit candidate whole, preserving
+all input and prior state; do not shorten the description, strip it from a backup
+or label a partial project successfully recovered. Existing/injected over-limit
+data follows the existing unsupported-resource policy and stays untouched.
+Native input truncation is not validation. This is a bounded application/codec
+resource policy, not a changed universal domain constructor or implemented feature.
+Production enforcement remains pending the relevant implementation authorization.
+
+The earlier long-description fixture is outside the revised envelope, so further
+diagnostic repair/reruns for that fixture are retired. Preserve all original failed
+and inconclusive evidence under its then-current admission policy; do not reclassify
+it as passing. Qualification still needs 1,023/1,024/1,025-unit boundaries, exact
+Unicode/whitespace handling and consistent rejection/preservation across the four
+boundaries above. This amendment itself supplies no measured performance pass.
+Other string/aggregate/work ceilings and E-1–E-4 remain unchanged; large exact source
+may still arise from other supported fields and collections.
 
 ## Dated scale references and interpretation
 

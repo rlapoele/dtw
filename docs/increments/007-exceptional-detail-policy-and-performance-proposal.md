@@ -15,6 +15,14 @@ exceptional/native/Safari gates remain unqualified. The agreed policy is unchang
 
 ## Four agreed choices
 
+**Subsequent admission amendment — 10 November 2026:** the user limited token
+descriptions to [1,024 decoded units under F-4](007-format-decoder-and-resource-proposal.md#token-description-amendment--10-november-2026).
+This explicitly changes that field's supported envelope; prior no-budget-change
+statements describe their original handoff. E's serialized-source threshold and
+100/250 ms task gates are unchanged. Large source can arise from other admitted
+fields/collections. The earlier over-limit description case is retired for future
+qualification, with its original failure preserved, not retrospectively passed.
+
 | Decision | Agreed direction | Tradeoff / alternative |
 | --- | --- | --- |
 | E-1 — full-source access | Keep All authored data as on-demand, complete read-only document text in its existing disclosure/pre. Select the tested uniform **no-soft-wrap, bounded two-axis scrolling** layout for the next identified design handoff; short source stays naturally sized. | Current production pre wraps text: no-wrap is a material layout choice, not already adopted. Prefer this limited change over a textarea because it retains document-text semantics; the two observations do not prove it faster. A textarea has clearer local Select All in small controls but is not a qualified fallback. No third viewer, paging, source clipping or file-only replacement. |

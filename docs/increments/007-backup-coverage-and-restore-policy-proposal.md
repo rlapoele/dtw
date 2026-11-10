@@ -88,6 +88,12 @@ A decoder must check actual runtime shapes before any domain traversal.
 | Excluded authored collections | Axes/options/presets, component definitions/contracts, settings/provenance/adapter metadata/extensions and any other extra fields or collections: whole rejection before load/restore/backup generation. No speculative placeholders, opaque bags or partial backup. |
 | Excluded session/derived data | Drafts/forms, selected token, active display space, resolved caches/traces/paths, previews, catalogue summaries and concurrency metadata are not additional authored fields. Transport/backup wrapper metadata must have a separate explicit contract; do not stuff it into tokens. |
 
+Token descriptions additionally follow the user-agreed
+[1,024-unit field ceiling](007-format-decoder-and-resource-proposal.md#token-description-amendment--10-november-2026),
+amended 10 November 2026. Project/group descriptions retain the generic string
+limit. This narrows resource admission, not the supported field shape: preserve
+accepted exact text, reject over-limit candidates whole and never truncate or strip.
+
 ### Literal and composite coverage
 
 | Variant | Supported exact data and constraints |

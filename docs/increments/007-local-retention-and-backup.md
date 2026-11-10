@@ -93,6 +93,15 @@ project can still have unavailable content.
 
 ## Acceptance criteria
 
+**Token-description amendment — 10 November 2026:** the user set a roughly
+1,024-character token-description limit. The
+[owning F-4 amendment](007-format-decoder-and-resource-proposal.md#token-description-amendment--10-november-2026)
+defines an inclusive 1,024 decoded UTF-16-unit ceiling consistently for authoring,
+retained load, backup generation and restore. Preserve exact accepted strings and
+optional absence; over-limit candidates reject whole without truncation or input
+loss. Project/group descriptions and other string limits are unchanged. This is
+agreed scope for AC-9–13/20/21, not implemented enforcement or a performance pass.
+
 These IDs are stable draft criteria. D-2/D-3, S-1–S-6 and F-1–F-5 policies are
 agreed below. Remaining scheduling/placement, supported-build scope and
 qualification/Stage B evidence are distinguished from those agreements;
@@ -484,6 +493,12 @@ Stage B integrated acceptance remain distinct; no production implementation is a
 
 No application checks were run for this documentation draft. Prototype build/runtime
 observations are attributed in the review and cannot establish these criteria.
+
+The token-description amendment adds 1,023/1,024/1,025 decoded-unit boundary checks
+at authoring/load/backup/restore, including Unicode, whitespace and JSON-escape
+accounting, unchanged raw input/retained state on rejection and no silent truncation.
+The old 65,004-unit description fixture is now outside the supported envelope;
+its failed/inconclusive results remain historical evidence under the earlier policy.
 
 ## Design proposals and review
 
