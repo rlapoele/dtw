@@ -526,3 +526,13 @@ now confirms both first large-detail openings exceed the unchanged 100 ms task g
 scaffold is production-qualified. One offline instrumentation finding is independently
 closed; remaining fidelity/framing/fence/native/scale gaps are explicit. No raw control,
 budget reduction, performance-gate amendment or implementation is adopted.
+
+## Proposed exceptional-detail policy — 10 November 2026
+
+The [E-1–E-4 proposal](007-exceptional-detail-policy-and-performance-proposal.md)
+recommends a narrowly classified explicit full-source allowance and concrete
+performance/qualification gates while preserving the list and complete inspector.
+Its 65,536-unit trigger, 250 ms task/5 s action budgets and no-wrap disclosure layout
+are **proposed changes requiring user agreement**, not qualified results or adopted
+policy. The existing 100 ms gate remains binding. No new experiment, third viewer,
+authored-data cap, prototype change or implementation is authorized by this link.

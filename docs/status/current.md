@@ -2,11 +2,15 @@
 
 > Last updated: 10 November 2026
 >
-> Phase: Increment 007 detail/projection comparison reviewed; both raw candidates fail; contract Draft
+> Phase: Increment 007 exceptional-detail policy proposed for user decision; contract Draft
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
+
+**Increment 007 exceptional-detail recommendations ready — 10 November 2026:** the analyst's [E-1–E-4 proposal](../increments/007-exceptional-detail-policy-and-performance-proposal.md) recommends retaining complete on-demand source in the existing disclosure/pre, with a proposed no-wrap bounded layout, and limiting a responsiveness exception to explicitly requested authored/identity source above 65,536 serialized UTF-16 units. Proposed ceilings are 250 ms per target-renderer task and five seconds per source action; ordinary list, editing and inspector work retains 100 ms. These are user decisions, not adopted policies or passing performance evidence. The two recorded failures remain failures under their original gate. Current list and complete inspector content/controls, authored budgets, identities and draft separation remain binding.
+
+Next: user review of the concrete policy, then the identified design and separately authorized focused qualification/mechanism gates described in the proposal. Existing projection, native/Safari and Stage B gaps remain explicit; this proposal does not finalize the contract. Checks were documentation/evidence, links and whitespace only. No prototype, browser experiment, dependency or production changes occurred. Contract remains Draft / Not started; staging, commits and pushes remain with the user.
 
 **Guided palette direction documented — 10 November 2026; work deferred:** the user confirmed foundation-first color generation with an optional semantic-recipe step for light/dark interfaces, predefined names to refine with the product owner, and contrast guidance focused on semantic uses plus an independent contrast view. The [concept note](../project/guided-color-palette-generation.md) preserves the broader brand-led flow, agreed first exploration, and open choices. This documentation does not start another increment, prototype, or implementation; the existing Increment 007 focus continues.
 
