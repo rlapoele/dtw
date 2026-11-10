@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-10T21:49:07.714Z",
+  "baseline": "7611ec7acf17d3e776aca3a24339746e328a13b9",
+  "source": {
+    "research/increment-007-storage-concurrency-safety/README.md": "c72a1e48f65981ab0742021d5b0bedacb1809e99f550f23013c951a038b65287",
+    "research/increment-007-storage-concurrency-safety/index.html": "7732951c722f7ac37d05d1989fb66fbd4dca1318470ceb77661ce35765f076ab",
+    "research/increment-007-storage-concurrency-safety/inventory.mjs": "217e9a0cdce5aa7999e30976152ea4e88cfcc47ee074badfd4217138f6d8c9cc",
+    "research/increment-007-storage-concurrency-safety/journal.mjs": "f9153766c4e92aa604c469bb9552c386fb856423a8369c75505dffb980b613a0",
+    "research/increment-007-storage-concurrency-safety/model.mjs": "3c11edd9a3bc917f2dc631c05a3985f2dc23ea36dde17c28643a515464d53814",
+    "research/increment-007-storage-concurrency-safety/offline.test.mjs": "f51966c9412423a3beaba45a5de0bde48cf5587b046040229f3dac30a66df208",
+    "research/increment-007-storage-concurrency-safety/owned-driver.mjs": "80038571f74107bc6f5396d7686bb1e8789a97c696a4ae4fffcba3249f1cc24c",
+    "research/increment-007-storage-concurrency-safety/page.mjs": "9d57d810dbcf6cf602af70ce109e5c119c5db23f886489fdad0310d70da73413",
+    "research/increment-007-storage-concurrency-safety/preflight.mjs": "e53e4110e57f8d3577336ce2519b61ac39b6801d1317da30af2f4df144184e66",
+    "research/increment-007-storage-concurrency-safety/run.mjs": "a58c5692a9d85c0191c66169e7e700f0f669113efada50a4acd53546dcbbaa10",
+    "research/increment-007-storage-concurrency-safety/safari-close.mjs": "b47f3b4027a2ab858bf155b1ede4c8bcd4cb953dcf29d34076213ca8dcaa0294",
+    "research/increment-007-storage-concurrency-safety/server.mjs": "2c639287a6ec6f5260b61e8ebda9aedb0d1c711c90f25f41cbad9adf65b65485",
+    "research/increment-007-storage-concurrency-safety/worker.mjs": "cf49d0a1b7003f72a5c415f1d2029f2f17069f0923b640122aac8621c1d77bea",
+    "research/increment-007-stage-a/codec.mjs": "3ac7cfb2f71967a76fb06dffbf65465ff924b92dcece36462bf048f48e1636d0",
+    "research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/main.js": "72ff182105e158a1505ca3ecbf3f30359abb138a3980edaef1db7f4010ffb7dc",
+    "research/increment-007-worker-qualification/protocol.mjs": "3b30bbebc791edc1915b2260a047f33210c5a18786abd6c9de5f1b093581cabd"
+  },
+  "deltaFromR2": [
+    "research/increment-007-storage-concurrency-safety/run.mjs"
+  ],
+  "scope": "Safari natural control only; same finite batch; remove cross-window HTTP arrival comparison and require successful finite command/matching causal witness evidence. Chrome R2 not rerun.",
+  "chromeExecutedSource": "executed-r2/preflight-r2.json",
+  "chromeResultsSha256": "0558309333e90047fd17f652ad79bf8b6cbe438c8d032bdf9f274012e451add0",
+  "chromeReceiptsSha256": "a7f2265472babac326c43d4a63d5212019b5ea99bc46bbe8519b516b5d1eca15",
+  "authorization": "Coordinator narrow R3 pre-Safari delta; await independent check/release before Safari."
+}

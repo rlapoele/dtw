@@ -1,0 +1,22 @@
+{
+  "engine": "chrome",
+  "node": "v24.14.1",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B123\n",
+  "start": "2026-11-10T21:48:10.064Z",
+  "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; base-uri 'none'; object-src 'none'",
+  "scope": "small synthetic native correctness; no performance/capacity/product support claim",
+  "origin": "http://127.0.0.1:58728",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-safety-owned-HNDsCv",
+  "ownedPid": 39733,
+  "stderr": "\nDevTools listening on ws://127.0.0.1:58729/devtools/browser/d61730f8-439f-427c-9760-8d0ef9a8bc8c\nTrying to load the allocator multiple times. This is *not* supported.\n",
+  "browserVersion": "157.0.8103.50",
+  "cleanupStarted": "2026-11-10T21:48:32.495Z",
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "cleanup": {
+    "errors": [],
+    "at": "2026-11-10T21:48:32.550Z"
+  }
+}

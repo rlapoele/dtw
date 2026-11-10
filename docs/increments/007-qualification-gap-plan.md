@@ -98,6 +98,36 @@ but this does not adopt the earlier B-4 deferral proposal or close all support g
 Other gap cases and rendering/prototype work remain unauthorized. The original
 recommendations below predate this execution and must be read with this result.
 
+## Reviewed finite storage/concurrency result — 10 November 2026
+
+After committing the description-boundary slice, the user authorized storage/
+concurrency safety qualification. The [finite batch](007-storage-concurrency-safety-batch.md)
+bounded small-fixture G-03/G-04 cases and a separate G-02 prerequisite. Its
+[report](../../output/increment-007-storage-concurrency-safety/report.md) and
+[independent review](../../output/increment-007-storage-concurrency-safety/independent-review.md)
+record **65/65 Chrome cases passing**, including actual transaction overlap,
+issuer cancellation, worker-loss recovery, once-only reconciliation/publication,
+unknown outcomes under insufficient evidence, atomic capacity and stale replacement
+refusal. Exact winner/latest-command metadata and unrelated/unavailable records
+were checked. Fourteen offline harness checks pass; independent review verified
+the executed source, native receipts and lossless evidence packaging. This closes
+only those exercised small-fixture Chrome mechanism cases, not complete G-03/G-04
+or production B-2 integration.
+
+Safari's first attempt stopped at positive owned-driver listener readiness, before
+session creation. All four G-02 controls and 65 Safari cases are **not run**.
+Readiness root cause is unverified; no preemption failure or success was observed.
+Driver termination is source-attributed without a saved PID/exit receipt. No live
+retry or source repair followed. Scope a readiness/ownership diagnosis before
+another finite supervisor attempt; this result does not waive Safari or change B-4.
+
+G-02, Safari G-03/G-04, defensive-size catalogue contention, product recovery/
+protection integration and the other existing rendering/access/support gaps remain
+open. The C6 returned-context reference caveat is disclosed in the report; immutable
+recorder receipts preserve the initial context used by review. No performance,
+maximum-capacity, normal-profile Safari, physical-permanence or Stage B claim
+follows. Older evidence and production remain unchanged.
+
 ## Evidence carried forward
 
 The [original Stage A report](../../output/increment-007-stage-a/report.md),

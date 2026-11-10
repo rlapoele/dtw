@@ -1,0 +1,318 @@
+{
+  "at": "2026-11-10T21:53:26.226Z",
+  "baseline": "7611ec7acf17d3e776aca3a24339746e328a13b9",
+  "scope": "final frozen developer snapshot; independent final review is separate and may add its own file afterward",
+  "source": {
+    "research/increment-007-storage-concurrency-safety/README.md": {
+      "sha256": "c72a1e48f65981ab0742021d5b0bedacb1809e99f550f23013c951a038b65287",
+      "bytes": 3579
+    },
+    "research/increment-007-storage-concurrency-safety/index.html": {
+      "sha256": "7732951c722f7ac37d05d1989fb66fbd4dca1318470ceb77661ce35765f076ab",
+      "bytes": 209
+    },
+    "research/increment-007-storage-concurrency-safety/inventory.mjs": {
+      "sha256": "217e9a0cdce5aa7999e30976152ea4e88cfcc47ee074badfd4217138f6d8c9cc",
+      "bytes": 821
+    },
+    "research/increment-007-storage-concurrency-safety/journal.mjs": {
+      "sha256": "f9153766c4e92aa604c469bb9552c386fb856423a8369c75505dffb980b613a0",
+      "bytes": 2449
+    },
+    "research/increment-007-storage-concurrency-safety/model.mjs": {
+      "sha256": "3c11edd9a3bc917f2dc631c05a3985f2dc23ea36dde17c28643a515464d53814",
+      "bytes": 1776
+    },
+    "research/increment-007-storage-concurrency-safety/offline.test.mjs": {
+      "sha256": "f51966c9412423a3beaba45a5de0bde48cf5587b046040229f3dac30a66df208",
+      "bytes": 7651
+    },
+    "research/increment-007-storage-concurrency-safety/owned-driver.mjs": {
+      "sha256": "80038571f74107bc6f5396d7686bb1e8789a97c696a4ae4fffcba3249f1cc24c",
+      "bytes": 1602
+    },
+    "research/increment-007-storage-concurrency-safety/page.mjs": {
+      "sha256": "9d57d810dbcf6cf602af70ce109e5c119c5db23f886489fdad0310d70da73413",
+      "bytes": 15292
+    },
+    "research/increment-007-storage-concurrency-safety/preflight.mjs": {
+      "sha256": "e53e4110e57f8d3577336ce2519b61ac39b6801d1317da30af2f4df144184e66",
+      "bytes": 2826
+    },
+    "research/increment-007-storage-concurrency-safety/run.mjs": {
+      "sha256": "44d221bbd780b6203c125fd695016c7c126ea14db3cda804764208aaf37d34b8",
+      "bytes": 10940
+    },
+    "research/increment-007-storage-concurrency-safety/safari-close.mjs": {
+      "sha256": "b47f3b4027a2ab858bf155b1ede4c8bcd4cb953dcf29d34076213ca8dcaa0294",
+      "bytes": 609
+    },
+    "research/increment-007-storage-concurrency-safety/server.mjs": {
+      "sha256": "2c639287a6ec6f5260b61e8ebda9aedb0d1c711c90f25f41cbad9adf65b65485",
+      "bytes": 2416
+    },
+    "research/increment-007-storage-concurrency-safety/worker.mjs": {
+      "sha256": "cf49d0a1b7003f72a5c415f1d2029f2f17069f0923b640122aac8621c1d77bea",
+      "bytes": 10122
+    }
+  },
+  "evidence": {
+    "output/increment-007-storage-concurrency-safety/chrome/host.json": {
+      "sha256": "ee837e3585809e8ae6fd922887bd5e3582aca24e63ca32918e43fbb6fd3c421d",
+      "bytes": 938
+    },
+    "output/increment-007-storage-concurrency-safety/chrome/native-receipts.jsonl.gz": {
+      "sha256": "0c2981cf6aa3d9c26f5c159d87c2fb035747c719452d2923ba531fbb57a15f38",
+      "bytes": 139977
+    },
+    "output/increment-007-storage-concurrency-safety/chrome/results.json.gz": {
+      "sha256": "f139c21877c98c5b7e9917be31d4503540ca0c31c3b2f958cf45441fac925f76",
+      "bytes": 622107
+    },
+    "output/increment-007-storage-concurrency-safety/cleanup-check.json": {
+      "sha256": "4edd6aec7c12cd955a6f6bc114983e856e5b11144787bb4ffff6d6db8d0637f3",
+      "bytes": 483
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r2/offline-tests-r2.txt": {
+      "sha256": "f46a9fc82583c0de3a1092b732415eb06917054d49e0792d0d36d88cb02d8cab",
+      "bytes": 1328
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r2/preflight-r2.json": {
+      "sha256": "eb6b50f668977613bf911c756d68540b5f16fe18a729d6bea95ade887b57474c",
+      "bytes": 175082
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r2/source/README.md": {
+      "sha256": "c72a1e48f65981ab0742021d5b0bedacb1809e99f550f23013c951a038b65287",
+      "bytes": 3579
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r2/source/index.html": {
+      "sha256": "7732951c722f7ac37d05d1989fb66fbd4dca1318470ceb77661ce35765f076ab",
+      "bytes": 209
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r2/source/inventory.mjs": {
+      "sha256": "217e9a0cdce5aa7999e30976152ea4e88cfcc47ee074badfd4217138f6d8c9cc",
+      "bytes": 821
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r2/source/journal.mjs": {
+      "sha256": "f9153766c4e92aa604c469bb9552c386fb856423a8369c75505dffb980b613a0",
+      "bytes": 2449
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r2/source/model.mjs": {
+      "sha256": "3c11edd9a3bc917f2dc631c05a3985f2dc23ea36dde17c28643a515464d53814",
+      "bytes": 1776
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r2/source/offline.test.mjs": {
+      "sha256": "f51966c9412423a3beaba45a5de0bde48cf5587b046040229f3dac30a66df208",
+      "bytes": 7651
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r2/source/owned-driver.mjs": {
+      "sha256": "80038571f74107bc6f5396d7686bb1e8789a97c696a4ae4fffcba3249f1cc24c",
+      "bytes": 1602
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r2/source/page.mjs": {
+      "sha256": "9d57d810dbcf6cf602af70ce109e5c119c5db23f886489fdad0310d70da73413",
+      "bytes": 15292
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r2/source/preflight.mjs": {
+      "sha256": "e53e4110e57f8d3577336ce2519b61ac39b6801d1317da30af2f4df144184e66",
+      "bytes": 2826
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r2/source/run.mjs": {
+      "sha256": "fd57905111cf20facef5fd20564f037ff40c2850201fbe3bc1a7e467eebf1264",
+      "bytes": 10478
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r2/source/safari-close.mjs": {
+      "sha256": "b47f3b4027a2ab858bf155b1ede4c8bcd4cb953dcf29d34076213ca8dcaa0294",
+      "bytes": 609
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r2/source/server.mjs": {
+      "sha256": "2c639287a6ec6f5260b61e8ebda9aedb0d1c711c90f25f41cbad9adf65b65485",
+      "bytes": 2416
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r2/source/worker.mjs": {
+      "sha256": "cf49d0a1b7003f72a5c415f1d2029f2f17069f0923b640122aac8621c1d77bea",
+      "bytes": 10122
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r4/preflight-r4.json": {
+      "sha256": "872211f26e7dacab4231a6cd20050d6729e70debf6391373195608118df7576d",
+      "bytes": 3153
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r4/source/README.md": {
+      "sha256": "c72a1e48f65981ab0742021d5b0bedacb1809e99f550f23013c951a038b65287",
+      "bytes": 3579
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r4/source/index.html": {
+      "sha256": "7732951c722f7ac37d05d1989fb66fbd4dca1318470ceb77661ce35765f076ab",
+      "bytes": 209
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r4/source/inventory.mjs": {
+      "sha256": "217e9a0cdce5aa7999e30976152ea4e88cfcc47ee074badfd4217138f6d8c9cc",
+      "bytes": 821
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r4/source/journal.mjs": {
+      "sha256": "f9153766c4e92aa604c469bb9552c386fb856423a8369c75505dffb980b613a0",
+      "bytes": 2449
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r4/source/model.mjs": {
+      "sha256": "3c11edd9a3bc917f2dc631c05a3985f2dc23ea36dde17c28643a515464d53814",
+      "bytes": 1776
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r4/source/offline.test.mjs": {
+      "sha256": "f51966c9412423a3beaba45a5de0bde48cf5587b046040229f3dac30a66df208",
+      "bytes": 7651
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r4/source/owned-driver.mjs": {
+      "sha256": "80038571f74107bc6f5396d7686bb1e8789a97c696a4ae4fffcba3249f1cc24c",
+      "bytes": 1602
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r4/source/page.mjs": {
+      "sha256": "9d57d810dbcf6cf602af70ce109e5c119c5db23f886489fdad0310d70da73413",
+      "bytes": 15292
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r4/source/preflight.mjs": {
+      "sha256": "e53e4110e57f8d3577336ce2519b61ac39b6801d1317da30af2f4df144184e66",
+      "bytes": 2826
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r4/source/run.mjs": {
+      "sha256": "44d221bbd780b6203c125fd695016c7c126ea14db3cda804764208aaf37d34b8",
+      "bytes": 10940
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r4/source/safari-close.mjs": {
+      "sha256": "b47f3b4027a2ab858bf155b1ede4c8bcd4cb953dcf29d34076213ca8dcaa0294",
+      "bytes": 609
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r4/source/server.mjs": {
+      "sha256": "2c639287a6ec6f5260b61e8ebda9aedb0d1c711c90f25f41cbad9adf65b65485",
+      "bytes": 2416
+    },
+    "output/increment-007-storage-concurrency-safety/executed-r4/source/worker.mjs": {
+      "sha256": "cf49d0a1b7003f72a5c415f1d2029f2f17069f0923b640122aac8621c1d77bea",
+      "bytes": 10122
+    },
+    "output/increment-007-storage-concurrency-safety/offline-tests-r2.txt": {
+      "sha256": "f46a9fc82583c0de3a1092b732415eb06917054d49e0792d0d36d88cb02d8cab",
+      "bytes": 1328
+    },
+    "output/increment-007-storage-concurrency-safety/offline-tests.txt": {
+      "sha256": "da7d2628c8bdf6e923709702e557a7ced4b4634f123ee639c8994d5b6c28b15c",
+      "bytes": 536
+    },
+    "output/increment-007-storage-concurrency-safety/packaging.json": {
+      "sha256": "8ff512b1e6bd51ac5d6bc5ee533a1e691dcf739b6c81c56d19714733e31d0c32",
+      "bytes": 1380
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r1/offline-tests.txt": {
+      "sha256": "da7d2628c8bdf6e923709702e557a7ced4b4634f123ee639c8994d5b6c28b15c",
+      "bytes": 536
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r1/preflight-review.md": {
+      "sha256": "4b2bdf4a573266719bc4e98853a024af28bcb9de60f7fa30d02bb0b3840ceba9",
+      "bytes": 9237
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r1/preflight.json": {
+      "sha256": "b88fe3ff9b935fcdd13ee0702f03bfe8a50e9bf3017ef3dbf6f1a572f80e058d",
+      "bytes": 174804
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r1/source/README.md": {
+      "sha256": "b2577718a375cb058f69cba376d9cd0091e9365856968a9c822740f9f45f154b",
+      "bytes": 3224
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r1/source/index.html": {
+      "sha256": "7732951c722f7ac37d05d1989fb66fbd4dca1318470ceb77661ce35765f076ab",
+      "bytes": 209
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r1/source/inventory.mjs": {
+      "sha256": "217e9a0cdce5aa7999e30976152ea4e88cfcc47ee074badfd4217138f6d8c9cc",
+      "bytes": 821
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r1/source/journal.mjs": {
+      "sha256": "46bb88a74be2830ce7b835447646d1b22cab5c0bc71bc7465fbe19f1b510618b",
+      "bytes": 1851
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r1/source/offline.test.mjs": {
+      "sha256": "a4d0d8d2144bc083fdc2844dfec912cf92944a7b64f9137fc22ffb7fd4ac53dd",
+      "bytes": 1838
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r1/source/page.mjs": {
+      "sha256": "76b0c740130517ff7143884496e410319548edb57827a966558224093dd101b1",
+      "bytes": 13329
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r1/source/preflight.mjs": {
+      "sha256": "f092adea33f4576c6bb7e8599eb9bec995b8557668a0f3cd8d6657ecf92f23c2",
+      "bytes": 2627
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r1/source/run.mjs": {
+      "sha256": "1b6c4a63bff5ee982a31afe13da2b620615a2c8320e77298ad26a4a018731b83",
+      "bytes": 10161
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r1/source/safari-close.mjs": {
+      "sha256": "b47f3b4027a2ab858bf155b1ede4c8bcd4cb953dcf29d34076213ca8dcaa0294",
+      "bytes": 609
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r1/source/server.mjs": {
+      "sha256": "ec7861fab57753ae9b40d8014f4c1939f6309dfca6f7b49701c8fc51ac739fb8",
+      "bytes": 1743
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r1/source/worker.mjs": {
+      "sha256": "bd0fd7a71c8a3ccd329b98efd0f70eac3a977274e531f3b46019c59e36dd4801",
+      "bytes": 10013
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r2.json": {
+      "sha256": "eb6b50f668977613bf911c756d68540b5f16fe18a729d6bea95ade887b57474c",
+      "bytes": 175082
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r3.json": {
+      "sha256": "5863df0c72a244929f8ad0b69e85a4d99711978bbfe742d5af73cb6e41f6f0ef",
+      "bytes": 2939
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r3/preflight-r3.json": {
+      "sha256": "5863df0c72a244929f8ad0b69e85a4d99711978bbfe742d5af73cb6e41f6f0ef",
+      "bytes": 2939
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r3/source/run.mjs": {
+      "sha256": "a58c5692a9d85c0191c66169e7e700f0f669113efada50a4acd53546dcbbaa10",
+      "bytes": 10975
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-r4.json": {
+      "sha256": "872211f26e7dacab4231a6cd20050d6729e70debf6391373195608118df7576d",
+      "bytes": 3153
+    },
+    "output/increment-007-storage-concurrency-safety/preflight-review.md": {
+      "sha256": "a81d1c2f04f310233aaa985e1f9773f9b975f173821385fc310e7e95622035b2",
+      "bytes": 15218
+    },
+    "output/increment-007-storage-concurrency-safety/preflight.json": {
+      "sha256": "b88fe3ff9b935fcdd13ee0702f03bfe8a50e9bf3017ef3dbf6f1a572f80e058d",
+      "bytes": 174804
+    },
+    "output/increment-007-storage-concurrency-safety/report.md": {
+      "sha256": "d7f711cc299a2a91cf1f014f813dcea9421f0279ea9beb34deaffe8070a24658",
+      "bytes": 6205
+    },
+    "output/increment-007-storage-concurrency-safety/safari/coverage.json": {
+      "sha256": "ec1d629f26e404f084624f3e0494e6027c8e970c95cf9ac2ab5656cff2dc5a17",
+      "bytes": 10297
+    },
+    "output/increment-007-storage-concurrency-safety/safari/host.json": {
+      "sha256": "06366e3d5167440041f0295e837a9d87be3fd1a4543258bec60b0ef2b9cfc5d5",
+      "bytes": 612
+    },
+    "output/increment-007-storage-concurrency-safety/summary.json": {
+      "sha256": "fc2c631f4401082cb565012ec5bf5d70b87dfec07f43d4ea98cb3ba0f1ea0c8a",
+      "bytes": 11103
+    }
+  },
+  "priorPreservedFiles": 1227,
+  "priorManifest": "executed-r2/preflight-r2.json",
+  "executedChrome": "executed-r2/preflight-r2.json",
+  "attemptedSafari": "executed-r4/preflight-r4.json",
+  "packaging": "packaging.json",
+  "counts": {
+    "pass": 65
+  },
+  "safari": {
+    "status": "unavailable-before-gate",
+    "g02NotRun": 4,
+    "safetyCasesNotRun": 65
+  }
+}

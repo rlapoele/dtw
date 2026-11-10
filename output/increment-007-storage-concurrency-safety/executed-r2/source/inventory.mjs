@@ -1,0 +1,11 @@
+export const cases=[];
+const add=(family,variants,repetitions)=>{for(const variant of variants)for(let repetition=1;repetition<=repetitions;repetition++)cases.push({id:`${family}-${variant}-${repetition}`,family,variant,repetition});};
+add('C1',['complete','abort'],1);
+for(const family of ['C2','C3','C4'])add(family,['native'],3);
+add('C5',['no-stop','no-order','no-command','bad-incarnation','read-failure','reset','unchanged','matching'],1);
+add('C6',['project','selection','generation'],3);add('C6',['unchanged'],1);
+add('C7',['empty-read-first','empty-write-first','typical-read-first','typical-write-first'],3);
+add('C8',['A-first','B-first'],3);
+add('C9',['supported-A-first','supported-B-first','unavailable-A-first','unavailable-B-first'],3);
+add('C10',['B-first','replacement-first'],3);
+Object.freeze(cases);

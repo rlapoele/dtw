@@ -1,0 +1,13 @@
+✔ finite inventory has exact 65 unique identities and family counts (0.607625ms)
+✔ preserves original evidence and stops dispatch: assertion-failure (1.253625ms)
+✔ preserves original evidence and stops dispatch: browser-command-rejection (0.129917ms)
+✔ preserves original evidence and stops dispatch: watchdog (10.895375ms)
+✔ preserves original evidence and stops dispatch: cleanup-profile-deletion (0.198084ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48.685542

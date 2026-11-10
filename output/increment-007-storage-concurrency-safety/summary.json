@@ -1,0 +1,492 @@
+{
+  "at": "2026-11-10T21:53:25.906Z",
+  "chrome": {
+    "counts": {
+      "pass": 65
+    },
+    "cases": [
+      {
+        "id": "C1-complete-1",
+        "family": "C1",
+        "variant": "complete",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C1-abort-1",
+        "family": "C1",
+        "variant": "abort",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C2-native-1",
+        "family": "C2",
+        "variant": "native",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C2-native-2",
+        "family": "C2",
+        "variant": "native",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C2-native-3",
+        "family": "C2",
+        "variant": "native",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C3-native-1",
+        "family": "C3",
+        "variant": "native",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C3-native-2",
+        "family": "C3",
+        "variant": "native",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C3-native-3",
+        "family": "C3",
+        "variant": "native",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C4-native-1",
+        "family": "C4",
+        "variant": "native",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C4-native-2",
+        "family": "C4",
+        "variant": "native",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C4-native-3",
+        "family": "C4",
+        "variant": "native",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C5-no-stop-1",
+        "family": "C5",
+        "variant": "no-stop",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C5-no-order-1",
+        "family": "C5",
+        "variant": "no-order",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C5-no-command-1",
+        "family": "C5",
+        "variant": "no-command",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C5-bad-incarnation-1",
+        "family": "C5",
+        "variant": "bad-incarnation",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C5-read-failure-1",
+        "family": "C5",
+        "variant": "read-failure",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C5-reset-1",
+        "family": "C5",
+        "variant": "reset",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C5-unchanged-1",
+        "family": "C5",
+        "variant": "unchanged",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C5-matching-1",
+        "family": "C5",
+        "variant": "matching",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C6-project-1",
+        "family": "C6",
+        "variant": "project",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C6-project-2",
+        "family": "C6",
+        "variant": "project",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C6-project-3",
+        "family": "C6",
+        "variant": "project",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C6-selection-1",
+        "family": "C6",
+        "variant": "selection",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C6-selection-2",
+        "family": "C6",
+        "variant": "selection",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C6-selection-3",
+        "family": "C6",
+        "variant": "selection",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C6-generation-1",
+        "family": "C6",
+        "variant": "generation",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C6-generation-2",
+        "family": "C6",
+        "variant": "generation",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C6-generation-3",
+        "family": "C6",
+        "variant": "generation",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C6-unchanged-1",
+        "family": "C6",
+        "variant": "unchanged",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C7-empty-read-first-1",
+        "family": "C7",
+        "variant": "empty-read-first",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C7-empty-read-first-2",
+        "family": "C7",
+        "variant": "empty-read-first",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C7-empty-read-first-3",
+        "family": "C7",
+        "variant": "empty-read-first",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C7-empty-write-first-1",
+        "family": "C7",
+        "variant": "empty-write-first",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C7-empty-write-first-2",
+        "family": "C7",
+        "variant": "empty-write-first",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C7-empty-write-first-3",
+        "family": "C7",
+        "variant": "empty-write-first",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C7-typical-read-first-1",
+        "family": "C7",
+        "variant": "typical-read-first",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C7-typical-read-first-2",
+        "family": "C7",
+        "variant": "typical-read-first",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C7-typical-read-first-3",
+        "family": "C7",
+        "variant": "typical-read-first",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C7-typical-write-first-1",
+        "family": "C7",
+        "variant": "typical-write-first",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C7-typical-write-first-2",
+        "family": "C7",
+        "variant": "typical-write-first",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C7-typical-write-first-3",
+        "family": "C7",
+        "variant": "typical-write-first",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C8-A-first-1",
+        "family": "C8",
+        "variant": "A-first",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C8-A-first-2",
+        "family": "C8",
+        "variant": "A-first",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C8-A-first-3",
+        "family": "C8",
+        "variant": "A-first",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C8-B-first-1",
+        "family": "C8",
+        "variant": "B-first",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C8-B-first-2",
+        "family": "C8",
+        "variant": "B-first",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C8-B-first-3",
+        "family": "C8",
+        "variant": "B-first",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C9-supported-A-first-1",
+        "family": "C9",
+        "variant": "supported-A-first",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C9-supported-A-first-2",
+        "family": "C9",
+        "variant": "supported-A-first",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C9-supported-A-first-3",
+        "family": "C9",
+        "variant": "supported-A-first",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C9-supported-B-first-1",
+        "family": "C9",
+        "variant": "supported-B-first",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C9-supported-B-first-2",
+        "family": "C9",
+        "variant": "supported-B-first",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C9-supported-B-first-3",
+        "family": "C9",
+        "variant": "supported-B-first",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C9-unavailable-A-first-1",
+        "family": "C9",
+        "variant": "unavailable-A-first",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C9-unavailable-A-first-2",
+        "family": "C9",
+        "variant": "unavailable-A-first",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C9-unavailable-A-first-3",
+        "family": "C9",
+        "variant": "unavailable-A-first",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C9-unavailable-B-first-1",
+        "family": "C9",
+        "variant": "unavailable-B-first",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C9-unavailable-B-first-2",
+        "family": "C9",
+        "variant": "unavailable-B-first",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C9-unavailable-B-first-3",
+        "family": "C9",
+        "variant": "unavailable-B-first",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C10-B-first-1",
+        "family": "C10",
+        "variant": "B-first",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C10-B-first-2",
+        "family": "C10",
+        "variant": "B-first",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C10-B-first-3",
+        "family": "C10",
+        "variant": "B-first",
+        "repetition": 3,
+        "status": "pass"
+      },
+      {
+        "id": "C10-replacement-first-1",
+        "family": "C10",
+        "variant": "replacement-first",
+        "repetition": 1,
+        "status": "pass"
+      },
+      {
+        "id": "C10-replacement-first-2",
+        "family": "C10",
+        "variant": "replacement-first",
+        "repetition": 2,
+        "status": "pass"
+      },
+      {
+        "id": "C10-replacement-first-3",
+        "family": "C10",
+        "variant": "replacement-first",
+        "repetition": 3,
+        "status": "pass"
+      }
+    ],
+    "receiptCount": 6959,
+    "barriers": {
+      "released": 36,
+      "maximumRequestCount": 13,
+      "ceiling": 4096
+    },
+    "fixtures": {
+      "prepared": 422,
+      "tokens": 100,
+      "maxTokenDescriptionCodeUnits": 7,
+      "allSha256Present": true,
+      "allCodeUnitEqual": true
+    },
+    "cleanup": [
+      {
+        "status": "complete"
+      }
+    ]
+  },
+  "safari": {
+    "status": "unavailable-before-gate",
+    "g02NotRun": 4,
+    "safetyCasesNotRun": 65
+  },
+  "offline": {
+    "passed": 14,
+    "failed": 0
+  }
+}

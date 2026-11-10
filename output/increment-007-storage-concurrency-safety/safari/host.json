@@ -1,0 +1,15 @@
+{
+  "engine": "safari",
+  "node": "v24.14.1",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B123\n",
+  "start": "2026-11-10T21:51:24.075Z",
+  "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; base-uri 'none'; object-src 'none'",
+  "scope": "small synthetic native correctness; no performance/capacity/product support claim",
+  "origin": "http://127.0.0.1:58913",
+  "originalError": "Error: own driver readiness deadline",
+  "cleanupStarted": "2026-11-10T21:51:29.108Z",
+  "cleanup": {
+    "errors": [],
+    "at": "2026-11-10T21:51:29.108Z"
+  }
+}

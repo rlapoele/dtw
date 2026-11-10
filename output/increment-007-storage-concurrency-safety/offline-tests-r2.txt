@@ -1,0 +1,22 @@
+✔ finite inventory has exact 65 unique identities and family counts (0.652625ms)
+✔ preserves original evidence and stops dispatch: assertion-failure (1.29175ms)
+✔ preserves original evidence and stops dispatch: browser-command-rejection (0.193875ms)
+✔ preserves original evidence and stops dispatch: watchdog (10.305917ms)
+✔ preserves original evidence and stops dispatch: cleanup-profile-deletion (0.259167ms)
+✔ expired verdict is irrevocable when execute resolves during delayed checkpoint/action (161.441916ms)
+✔ disk evidence survives real receipt queue and assertion-failure (35.247375ms)
+✔ disk evidence survives real receipt queue and browser-command-rejection (8.636791ms)
+✔ disk evidence survives real receipt queue and watchdog (13.651625ms)
+✔ disk evidence survives real receipt queue and cleanup-profile-deletion (6.228833ms)
+✔ fixture remains small/exact and malformed matching recovery records are unavailable (17.104667ms)
+✔ occupied driver endpoint fails before spawning or requesting existing service (0.73175ms)
+✔ early owned driver child failure cannot satisfy readiness (26.967916ms)
+✔ witness cannot obtain start signal until positive recorder receipt (23.91725ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 354.684

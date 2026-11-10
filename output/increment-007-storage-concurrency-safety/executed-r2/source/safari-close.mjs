@@ -1,0 +1,3 @@
+// Separate process: no window switch, session deletion, or app termination.
+const [port,sid,expectedTarget]=process.argv.slice(2);const observation={expectedTarget,requestAt:Date.now(),method:'DELETE exact pinned current window'};
+try{const r=await fetch(`http://127.0.0.1:${port}/session/${sid}/window`,{method:'DELETE',signal:AbortSignal.timeout(3000)});observation.status=r.status;observation.response=await r.json();observation.ok=r.ok&&!observation.response.value?.error;}catch(error){observation.error=String(error);}observation.responseAt=Date.now();process.stdout.write(JSON.stringify(observation));

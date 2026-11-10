@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-10T21:52:57.946Z",
+  "chrome": {
+    "exactOwnedProfile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-safety-owned-HNDsCv",
+    "profileAbsent": true,
+    "recordedExit": {
+      "code": 0,
+      "signal": null
+    },
+    "recordedCleanup": {
+      "errors": [],
+      "at": "2026-11-10T21:48:32.550Z"
+    }
+  },
+  "safari": {
+    "status": "no session/window created; helper SIGTERM source-attributed only",
+    "observedDriverExitReceipt": false
+  }
+}

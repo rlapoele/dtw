@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-10T21:52:57.946Z",
+  "method": "node:zlib gzipSync level 9; byte equality checked after disk read and gunzipSync before removing originals",
+  "files": [
+    {
+      "historicalPath": "output/increment-007-storage-concurrency-safety/chrome/results.json",
+      "gzipPath": "output/increment-007-storage-concurrency-safety/chrome/results.json.gz",
+      "originalBytes": 35039825,
+      "originalSha256": "0558309333e90047fd17f652ad79bf8b6cbe438c8d032bdf9f274012e451add0",
+      "gzipBytes": 622107,
+      "gzipSha256": "f139c21877c98c5b7e9917be31d4503540ca0c31c3b2f958cf45441fac925f76",
+      "decompressedBytes": 35039825,
+      "decompressedSha256": "0558309333e90047fd17f652ad79bf8b6cbe438c8d032bdf9f274012e451add0",
+      "exact": true
+    },
+    {
+      "historicalPath": "output/increment-007-storage-concurrency-safety/chrome/native-receipts.jsonl",
+      "gzipPath": "output/increment-007-storage-concurrency-safety/chrome/native-receipts.jsonl.gz",
+      "originalBytes": 2386819,
+      "originalSha256": "a7f2265472babac326c43d4a63d5212019b5ea99bc46bbe8519b516b5d1eca15",
+      "gzipBytes": 139977,
+      "gzipSha256": "0c2981cf6aa3d9c26f5c159d87c2fb035747c719452d2923ba531fbb57a15f38",
+      "decompressedBytes": 2386819,
+      "decompressedSha256": "a7f2265472babac326c43d4a63d5212019b5ea99bc46bbe8519b516b5d1eca15",
+      "exact": true
+    }
+  ]
+}

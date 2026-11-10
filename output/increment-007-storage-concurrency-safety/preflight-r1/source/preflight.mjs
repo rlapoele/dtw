@@ -1,0 +1,13 @@
+import {readdir,readFile,writeFile,mkdir} from 'node:fs/promises';import {execFileSync} from 'node:child_process';import {createHash} from 'node:crypto';import path from 'node:path';
+const root=process.cwd(),scope='research/increment-007-storage-concurrency-safety',out='output/increment-007-storage-concurrency-safety';await mkdir(out,{recursive:true});
+const sha=x=>createHash('sha256').update(x).digest('hex');
+async function files(dir){const names=[];for(const entry of await readdir(dir,{withFileTypes:true})){if(entry.name==='node_modules'||entry.name==='.git')continue;const file=path.join(dir,entry.name);if(entry.isDirectory())names.push(...await files(file));else if(entry.isFile())names.push(file);}return names.sort();}
+const source={};for(const file of await files(scope))source[file]=sha(await readFile(file));
+const prior={};for(const dir of ['research','output'])for(const file of await files(dir))if(!file.startsWith(scope+'/')&&!file.startsWith(out+'/'))prior[file]=sha(await readFile(file));
+const baseline=execFileSync('git',['rev-parse','HEAD']).toString().trim(),trackedChanges=execFileSync('git',['diff','--name-only','HEAD']).toString().trim();if(trackedChanges)throw Error('tracked baseline changed: '+trackedChanges);
+const testLog=execFileSync(process.execPath,['--test',scope+'/offline.test.mjs'],{encoding:'utf8'});await writeFile(out+'/offline-tests.txt',testLog);
+for(const file of Object.keys(source).filter(x=>x.endsWith('.mjs')))execFileSync(process.execPath,['--check',file]);
+const oldManifestFile=out+'/preflight.json';let old;try{old=JSON.parse(await readFile(oldManifestFile));}catch{}
+if(old&&JSON.stringify(old.prior)!==JSON.stringify(prior))throw Error('old research/output bytes changed since first preflight');
+const snapshot={at:new Date().toISOString(),baseline,source,prior,trackedChanges,offlineTests:'5 pass; no browser launched',readOnlyReuse:['research/increment-007-stage-a/codec.mjs','research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/main.js','research/increment-007-worker-qualification/protocol.mjs'],liveAuthorization:'Coordinator must release identified snapshot before --released-live',requestBarrierCeiling:4096,perCaseExternalWatchdogMs:30000};for(const file of snapshot.readOnlyReuse)snapshot.source[file]=sha(await readFile(file));
+await writeFile(oldManifestFile,JSON.stringify(snapshot,null,2)+'\n');console.log(JSON.stringify({baseline,sourceFiles:Object.keys(source).length,priorFiles:Object.keys(prior).length,manifestSha256:sha(await readFile(oldManifestFile)),offline:testLog.split('\n').filter(x=>x.includes('pass')||x.includes('fail'))}));
