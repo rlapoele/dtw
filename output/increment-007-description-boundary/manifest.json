@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-10",
+  "baseCommit": "c148eb146f8ef4949bbb2ae2162c451b581a9dc1",
+  "scope": "Node-only token-description codec admission research; no production integration",
+  "hashAlgorithm": "sha256",
+  "newResearch": [
+    {
+      "path": "research/increment-007-description-boundary/README.md",
+      "bytes": 2364,
+      "sha256": "517d22925b96b6e86b4dc93d8b2f93ee2e9a9e8f1ed960156bd5ddac426104ee"
+    },
+    {
+      "path": "research/increment-007-description-boundary/codec.mjs",
+      "bytes": 1547,
+      "sha256": "4fefee6666d4f5df0e7d7624ce1f89df6f80a1a76d89f4a9b812a9d9f50fa592"
+    },
+    {
+      "path": "research/increment-007-description-boundary/description-boundary.test.mjs",
+      "bytes": 6963,
+      "sha256": "c3f8762242b8299d86f8e17f63dbf7bf7f1ef7a224f821b86848df51ede6e2be"
+    }
+  ],
+  "readOnlyInputs": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 10301,
+      "sha256": "dd4cc9c91beef20467abc66c0916b044c1b4e4e1fbf5743acced2a8555433253"
+    },
+    {
+      "path": "docs/workflow/agent-roles.md",
+      "bytes": 13520,
+      "sha256": "2560a9f82503d79f2319b5dfff67b7e7877aed4abc03f5ff93d5ca87bf3c2233"
+    },
+    {
+      "path": "docs/increments/007-format-decoder-and-resource-proposal.md",
+      "bytes": 24823,
+      "sha256": "3940aeb06f2aa887e59416862fef80690a4ab867992f627ed87ba74039395202"
+    },
+    {
+      "path": "docs/increments/007-local-retention-and-backup.md",
+      "bytes": 49098,
+      "sha256": "07ee715728f4d9b88a211e06688f676e29b670e4634ffb06fe90691e0eb1eeed"
+    },
+    {
+      "path": "research/increment-007-stage-a/codec.mjs",
+      "bytes": 16590,
+      "sha256": "3ac7cfb2f71967a76fb06dffbf65465ff924b92dcece36462bf048f48e1636d0"
+    },
+    {
+      "path": "research/increment-007-stage-a/fixtures.mjs",
+      "bytes": 3411,
+      "sha256": "3ed2e8ac5b31472c2cd55164f8fac41f2eaa928e9755c62514ba2f5f6eedb29a"
+    },
+    {
+      "path": "research/increment-007-stage-a/package.json",
+      "bytes": 173,
+      "sha256": "1857d16565c2a76ff41a0665ff50a4d0b4d51876b4a0e0bd5e27a4cf82f5e86f"
+    },
+    {
+      "path": "research/increment-007-stage-a/package-lock.json",
+      "bytes": 525,
+      "sha256": "1e63f72627ba2af46bc9b0879ec1986a62c0f9063cdaec6e5e53b6672dc58eb9"
+    },
+    {
+      "path": "research/increment-007-stage-a/node_modules/jsonc-parser/package.json",
+      "bytes": 1180,
+      "sha256": "a7a9192caaac00d9330592f4fd572908bee037518128a0fc3db96d2cd652e2b5"
+    },
+    {
+      "path": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/umd/impl/edit.js",
+      "bytes": 10061,
+      "sha256": "9ecd115039cf7a478f223e4a9649170c7f5e8fd8016df1b267723b57553f9483"
+    },
+    {
+      "path": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/umd/impl/format.js",
+      "bytes": 12888,
+      "sha256": "f9e468e436bf1014a4395b1ac70374edb918739ba90b19e6e6a22ca0214564a9"
+    },
+    {
+      "path": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/umd/impl/parser.js",
+      "bytes": 29455,
+      "sha256": "a35db1bfb9631dcba643fa42972e9ebe2a318b4de3cac239d29081577a43d688"
+    },
+    {
+      "path": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/umd/impl/scanner.js",
+      "bytes": 21446,
+      "sha256": "581d82c4f1aa84b0605369c01f414fb0164ee462e03daa298cb960076a2a9e82"
+    },
+    {
+      "path": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/umd/impl/string-intern.js",
+      "bytes": 1663,
+      "sha256": "e590d27909a7c132382fbf9b8c4668054ab425734c1e0789753063356826c30f"
+    },
+    {
+      "path": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/umd/main.js",
+      "bytes": 11059,
+      "sha256": "6dc132e2e792a9616688ff93d10dd671c1fbcfa3301d76bff3e81193d049337d"
+    }
+  ],
+  "excluded": [
+    "output/increment-007-description-boundary/report.md (narrative evidence)",
+    "output/increment-007-description-boundary/manifest.json (self-reference)",
+    "ignored runtime logs",
+    "unrelated repository files"
+  ],
+  "dependency": {
+    "name": "jsonc-parser",
+    "version": "3.3.1",
+    "source": "Existing ignored installation in research/increment-007-stage-a/node_modules; no install performed"
+  }
+}
