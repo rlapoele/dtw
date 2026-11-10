@@ -499,3 +499,18 @@ is now adopted. Neither amendment is final contract/design agreement or
 implementation authorization. No developer work or completion claim exists.
 Staging, commits and pushes remain with the user. Follow the [workflow](../workflow/agent-roles.md)
 and [increment conventions](README.md) for subsequent handoffs.
+
+## Proposed read-projection assessment — 10 November 2026
+
+The [read-projection boundary assessment](007-read-projection-boundary-assessment.md)
+recommends named worker reads, display-only rows/selected state, separately requested
+exact text, full-membership choices and live publication/lifetime fences. Its row/
+encoded-text scheduling targets are proposed transport choices, not new authored
+admission limits. Recommendations await user review alongside the separate exact-detail
+assessment; no new design approval, experiment or implementation is implied.
+AC-1–24, current list/inspector preservation and Draft / Not started remain unchanged.
+
+The separate [exact-detail designer assessment](007-exact-detail-access-design-assessment.md)
+proposes candidate order and overflow behavior for user review only. It is not yet
+an analyst-reviewed design or an approved prototype change. The current list/full
+inspector preservation, unchanged budgets and qualification gates remain binding.

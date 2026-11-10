@@ -2,11 +2,15 @@
 
 > Last updated: 10 November 2026
 >
-> Phase: Increment 007 bounded-rendering experiment independently reviewed; G-01 incomplete; contract Draft
+> Phase: Increment 007 exact-detail and projection recommendations ready for user review; contract Draft
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
+
+**Increment 007 exact-detail/projection assessments ready — 10 November 2026:** after committing the reviewed G-01 limits as `7474dc0`, the user authorized separate designer and analyst assessments, with recommendations before prototype edits. The [designer recommendation](../increments/007-exact-detail-access-design-assessment.md) first compares the existing on-demand disclosure/pre and unchanged complete pretty text with uniform no-soft-wrap/bounded scrolling; short text stays naturally sized, long lines scroll horizontally and tall source internally vertically. This is an unproven layout proposal with explicit native selection/Find/AT/reflow/zoom obligations, not a new source limit or proven fix. A native read-only textarea is a material fallback awaiting user choice. Current list/navigation and full inspector controls/content remain binding.
+
+The [analyst projection assessment](../increments/007-read-projection-boundary-assessment.md) proposes named display-row, navigation/choice, selected-editor, derived and exact-text worker reads; full-membership labels; live-context publication/lifetime checks; and bounded row/text framing. Proposed starting targets (24 rows/32 KiB encoded response and 8,192 UTF-16 units/frame) are measured transport hypotheses, not new authored-data caps or oversized-row exemptions. The new designer assessment has not been reviewed by the analyst as an approved design. Both recommendations await user review; no prototype, runtime experiment, browser session, code/dependency or production changes occurred. Checks were source/evidence/prose/local links/whitespace only. The delivery aim does not supply final agreement or implementation authority. Contract remains Draft / Not started; staging, commits and pushes remain with the user.
 
 **Increment 007 bounded-rendering experiment reviewed — 10 November 2026:** the [developer result](../../output/increment-007-rendering-qualification/report.md), [80-file manifest](../../output/increment-007-rendering-qualification/manifest.json) and [independent review](../../output/increment-007-rendering-qualification/independent-review.md) support a negative monolithic exact-detail result. An admitted 4,134,504-code-unit raw record incurred 191.793 ms Layout on CrRendererMain, above the unchanged 100 ms gate; exact source/DOM selection were preserved. The measured interval combines opening, complete DOM Range/Selection and geometry; it does not isolate a forcing call or qualify native keyboard Select All. Twenty small 100-row observations, exact row markup and selected draft/error/raw/tab checks are limited positive evidence.
 
@@ -120,7 +124,7 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-Review the supported exact-detail counterexample and incomplete candidate boundaries. Recommended next work is a bounded designer assessment of complete exact-detail access, with analyst review of the remaining projection and qualification obligations. Fix whole-task instrumentation before any further qualification run; do not repeat the same large case unchanged. Any material interaction change returns through user review before analyst/design agreement. No new experiment, prototype or production implementation starts with this handoff. Preserve the current list/inspector and unchanged limits, Mac trust settings and existing user sessions. Final agreement and implementation authorization remain separate; staging, commits and pushes remain with the user.
+Review the exact-detail candidate order/overflow behavior and proposed read-projection direction/transport targets. After the user's choice, identify a single bounded comparison/candidate handoff with corrected whole-task instrumentation and explicit projection/fidelity obligations; any material visual/control proposal returns for user review before analyst review and final agreement. No prototype edit, experiment or implementation begins with these recommendations. Preserve current list/inspector, exact authored data, existing budgets and Mac trust settings. Final contract/design agreement and implementation authorization remain separate; staging, commits and pushes remain with the user.
 
 The Increment 007 contract is Draft and requires its recorded decisions and resulting design before final agreement. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, concurrency qualification, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not settle them through prototype convenience.
 
