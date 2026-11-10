@@ -1,0 +1,239 @@
+{
+  "method": "Offline extraction of already saved raw traces; no browser replay",
+  "intervals": [
+    {
+      "id": "control-wide-original",
+      "frame": {
+        "frame": "75191D350AF0AFE661005CA838E62927",
+        "isInPrimaryMainFrame": true,
+        "isOutermostMainFrame": true,
+        "name": "",
+        "processId": 36014,
+        "url": "http://127.0.0.1:55207/"
+      },
+      "marks": [
+        {
+          "name": "control-wide-original-activation",
+          "ts": 44152471603,
+          "pid": 36014,
+          "tid": 612288
+        },
+        {
+          "name": "control-wide-original-baseline-measured",
+          "ts": 44152474613,
+          "pid": 36014,
+          "tid": 612288
+        },
+        {
+          "name": "control-wide-original-one-dom-complete",
+          "ts": 44152475056,
+          "pid": 36014,
+          "tid": 612288
+        },
+        {
+          "name": "control-wide-original-one-painted",
+          "ts": 44152481750,
+          "pid": 36014,
+          "tid": 612288
+        },
+        {
+          "name": "control-wide-original-one-measured",
+          "ts": 44152484598,
+          "pid": 36014,
+          "tid": 612288
+        },
+        {
+          "name": "control-wide-original-multi-dom-complete",
+          "ts": 44152484666,
+          "pid": 36014,
+          "tid": 612288
+        },
+        {
+          "name": "control-wide-original-multi-painted",
+          "ts": 44152514359,
+          "pid": 36014,
+          "tid": 612288
+        },
+        {
+          "name": "control-wide-original-multi-measured",
+          "ts": 44152517220,
+          "pid": 36014,
+          "tid": 612288
+        },
+        {
+          "name": "control-wide-original-dom-complete",
+          "ts": 44152517320,
+          "pid": 36014,
+          "tid": 612288
+        },
+        {
+          "name": "control-wide-original-painted",
+          "ts": 44152547963,
+          "pid": 36014,
+          "tid": 612288
+        }
+      ],
+      "marksSameOwned": true,
+      "marksOrdered": true,
+      "timing": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 4.008,
+          "ThreadControllerImpl::RunTask": 3.998,
+          "UpdateLayoutTree": 0.021,
+          "Layout": 0.23,
+          "FunctionCall": 0.385,
+          "Paint": 0.113
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 36014,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 36014,
+              "tid": 612288
+            }
+          ],
+          "wholeTasks": 48,
+          "mainCompleteEvents": 123,
+          "interval": {
+            "start": 44152471603,
+            "end": 44152547963
+          }
+        }
+      },
+      "targetEventsFileMatches": true,
+      "metadata": {
+        "command_line": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome --user-data-dir=/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-ordinary-isolation-r2-OFANYb --remote-debugging-port=0 --no-first-run --no-default-browser-check --flag-switches-begin --flag-switches-end about:blank",
+        "gpu-gl-renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M3 Pro, Version 27.2 (Build 26B123))",
+        "hardware-class": "Mac15,6",
+        "os-arch": "arm64",
+        "os-version": "27.2.0",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+      }
+    },
+    {
+      "id": "control-wide-leaf",
+      "frame": {
+        "frame": "1EA6B9E141424485093AEE4399CDB334",
+        "isInPrimaryMainFrame": true,
+        "isOutermostMainFrame": true,
+        "name": "",
+        "processId": 36019,
+        "url": "http://127.0.0.1:55207/?leaf"
+      },
+      "marks": [
+        {
+          "name": "control-wide-leaf-activation",
+          "ts": 44152802195,
+          "pid": 36019,
+          "tid": 612408
+        },
+        {
+          "name": "control-wide-leaf-baseline-measured",
+          "ts": 44152809649,
+          "pid": 36019,
+          "tid": 612408
+        },
+        {
+          "name": "control-wide-leaf-one-dom-complete",
+          "ts": 44152809718,
+          "pid": 36019,
+          "tid": 612408
+        },
+        {
+          "name": "control-wide-leaf-one-painted",
+          "ts": 44152831044,
+          "pid": 36019,
+          "tid": 612408
+        },
+        {
+          "name": "control-wide-leaf-one-measured",
+          "ts": 44152833522,
+          "pid": 36019,
+          "tid": 612408
+        },
+        {
+          "name": "control-wide-leaf-multi-dom-complete",
+          "ts": 44152833562,
+          "pid": 36019,
+          "tid": 612408
+        },
+        {
+          "name": "control-wide-leaf-multi-painted",
+          "ts": 44152864322,
+          "pid": 36019,
+          "tid": 612408
+        },
+        {
+          "name": "control-wide-leaf-multi-measured",
+          "ts": 44152866915,
+          "pid": 36019,
+          "tid": 612408
+        },
+        {
+          "name": "control-wide-leaf-dom-complete",
+          "ts": 44152866974,
+          "pid": 36019,
+          "tid": 612408
+        },
+        {
+          "name": "control-wide-leaf-painted",
+          "ts": 44152897637,
+          "pid": 36019,
+          "tid": 612408
+        }
+      ],
+      "marksSameOwned": true,
+      "marksOrdered": true,
+      "timing": {
+        "status": "pass",
+        "reason": "observed covered interval",
+        "ceilingMs": 100,
+        "unit": "microseconds",
+        "maxima": {
+          "RunTask": 8.643,
+          "ThreadControllerImpl::RunTask": 8.635,
+          "UpdateLayoutTree": 0.116,
+          "Layout": 3.271,
+          "FunctionCall": 0.451,
+          "Paint": 0.056
+        },
+        "violations": [],
+        "coverage": {
+          "ownership": {
+            "pid": 36019,
+            "source": "exact-target-frame-metadata"
+          },
+          "rendererThreads": [
+            {
+              "pid": 36019,
+              "tid": 612408
+            }
+          ],
+          "wholeTasks": 55,
+          "mainCompleteEvents": 187,
+          "interval": {
+            "start": 44152802195,
+            "end": 44152897637
+          }
+        }
+      },
+      "targetEventsFileMatches": true,
+      "metadata": {
+        "command_line": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome --user-data-dir=/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-ordinary-isolation-r2-OFANYb --remote-debugging-port=0 --no-first-run --no-default-browser-check --flag-switches-begin --flag-switches-end about:blank",
+        "gpu-gl-renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M3 Pro, Version 27.2 (Build 26B123))",
+        "hardware-class": "Mac15,6",
+        "os-arch": "arm64",
+        "os-version": "27.2.0",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+      }
+    }
+  ]
+}

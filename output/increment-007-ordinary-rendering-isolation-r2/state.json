@@ -1,0 +1,8 @@
+{
+  "completed": [],
+  "stop": {
+    "action": "control-wide",
+    "status": "in-progress",
+    "reason": "Case claimed; only successful completion permits next action"
+  }
+}

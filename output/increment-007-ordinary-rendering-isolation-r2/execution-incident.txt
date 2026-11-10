@@ -1,0 +1,33 @@
+Live command: node research/increment-007-ordinary-rendering-isolation-r2/run.mjs control-wide
+Executed after independent preflight review and coordinator release, using scoped sandbox escalation.
+Controller session: 82432; final process exit code: 1.
+
+Preserved terminal error:
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+[Error: ENOTEMPTY: directory not empty, rmdir '/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-ordinary-isolation-r2-OFANYb/Default/Cache'] {
+  errno: -66,
+  code: 'ENOTEMPTY',
+  syscall: 'rmdir',
+  path: '/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-ordinary-isolation-r2-OFANYb/Default/Cache'
+}
+Node.js v24.14.1
+
+No retry or subsequent browser action was attempted. The runner's final save() occurs
+after profile rm(); the cleanup exception prevented persistence of in-memory record r.
+The initial state.json in-progress stop is retained verbatim. No control-wide.json
+exists. Trace files, target-event extracts, original wide-spec and paired screenshots
+had been written before cleanup and remain available. Live growth measurements,
+leaf styles, raw comparator outcome, environment evaluation, watchdog arm receipts
+and controller wall times were not durably saved. They cannot be reconstructed by
+replaying this stopped control.
+
+Cleanup verification: scoped ps -axo pid,ppid,pgid,command search for exact profile
+and R2 run/watchdog path returned only its own ps/rg shell commands; no owned Chrome,
+runner or watchdog process was present. Only the exact owned disposable profile
+was then removed with recursive fs.rm(maxRetries:3,retryDelay:100); removal succeeded.
+Second scoped lsof for TCP55207 returned no listener and ps again found only its own
+search commands. The loopback server, owned browser/watchdog and profile are gone.
+No shared browser process was operated or killed. No watchdog-expiry file exists;
+this is not an independently exercised watchdog-expiry test or a saved arm receipt.

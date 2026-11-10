@@ -1,6 +1,6 @@
 # Increment 007 — ordinary description rendering isolation
 
-**Executed and independently reviewed — 10 November 2026; stopped, inconclusive.**
+**R2 executed and independently reviewed — 10 November 2026; stopped, inconclusive.**
 Baseline: `2287060b82de9d59c7e644774d6e936376f6a0e1`. Recommend one finite,
 isolated **layout-context diagnostic**, retaining current wrapping. This is neither
 a proposed product repair nor renewed E-4 qualification. Contract remains Draft.
@@ -163,3 +163,84 @@ Safari probe, performance waiver or production implementation follows. Staging,
 commits and pushes remain with the user.
 
 Suggested focused commit: `research: record stopped ordinary description isolation control`.
+
+## Corrected sizing and fresh batch authorization — 10 November 2026
+
+After committing the stopped batch as `9975731`, the user authorized correcting
+the diagnostic's sizing semantics and running a fresh bounded batch with the same
+stop rules and independent review. Work is isolated in new
+`research/increment-007-ordinary-rendering-isolation-r2/` and
+`output/increment-007-ordinary-rendering-isolation-r2/` directories. The first
+batch/source/evidence remain frozen. This is not authority to change production,
+current wrapping, authored limits, performance budgets or browser support.
+
+The correction must preserve the surface's actual CSS/markup and authored sizing
+behavior, including automatic height and existing clamp behavior. Pin only the
+measured width; do not apply small computed pixel heights as constraints to later
+text. Preserve inherited typography explicitly where needed without replacing
+authored structural rules with serialized resolved values. Add focused regression
+checks for the fixed-height defect before execution. Within each of the existing
+three small controls, modest text-growth assertions may verify natural height and
+clamp behavior; these are small fidelity checks, not extra long/risky cases.
+
+Do not simply disable the `min-height` comparator. Record authored sizing rules,
+layout context, resolved values and used boxes separately. The sole expected
+wide-wrapper `auto`/`0px` resolution difference may be treated as a consequence of
+removing grid ancestry only if preserved automatic sizing, matched used geometry
+and natural-growth/clamp checks establish the control's intended equivalence.
+Any unexplained difference remains an inconclusive stop. Keep all raw values.
+The [CSS Sizing Level 3 draft's automatic minimum-size definition](https://www.w3.org/TR/css-sizing-3/#valdef-width-auto),
+checked 10 November 2026, explains the context-sensitive zero resolved value; this
+is platform rationale, not proof that a particular harness or browser case passes.
+
+A fresh reviewer checks the corrected source/sizing safeguards before live work,
+then independently reviews the resulting frozen evidence. Archive actual served
+build/source before execution. The original Chrome-only ordering and ceilings
+remain: at most three small controls and three first-risk mounts; stop the entire
+batch at the first control mismatch, inconclusive instrumentation, task above
+100 ms or independent 30-second watchdog expiry. No replay of the unchanged long
+application failure, automatic variants, repetitions, Safari/clipboard work or
+further batch follows. Both the correction and this fresh batch are already
+authorized; routine work within this scope needs no repeated user approval.
+
+## R2 result and disposition — 10 November 2026
+
+The [R2 report](../../output/increment-007-ordinary-rendering-isolation-r2/report.md),
+[preflight review](../../output/increment-007-ordinary-rendering-isolation-r2/preflight-review.md),
+[final manifest](../../output/increment-007-ordinary-rendering-isolation-r2/manifest.json)
+and [independent evidence review](../../output/increment-007-ordinary-rendering-isolation-r2/independent-review.md)
+identify the corrected source and the incomplete fresh batch. The sizing correction
+passed independent preflight: 14 focused offline tests, isolated typecheck/build,
+archive fidelity and preservation checks. This established source-level safeguards,
+not a live-control pass.
+
+Only the first small control was attempted. A temporary-profile removal error
+(`ENOTEMPTY`) escaped cleanup before the runner saved accumulated control results.
+Original/leaf growth measurements, comparison result, runtime environment and
+watchdog arm receipts were lost from process memory. Raw traces, screenshots and
+the original specimen survive, but they cannot reconstruct those missing values.
+The raw in-progress stop state is preserved, with no fabricated final control record.
+No long-text mount or subsequent case ran; no repair or retry followed.
+
+Independent trace inspection recovered target-owned maximum whole tasks of 4.008 ms
+for the application control and 8.643 ms for the isolated control. These do not
+establish control equivalence or answer the long-text question. The reviewer
+verified all 126 final and 106 pre-execution entries and found no actionable
+evidence/report correction. It confirmed a required future runner fix: checkpoint
+measurements before fallible cleanup, protect final evidence saving and record
+cleanup errors separately. The preflight review missed this defect. Any future
+correction needs a failure-injection regression proving that a cleanup exception
+cannot discard control results or permit the next case to continue.
+
+The executor's scoped cleanup checks report the owned processes/listener absent
+and the exact disposable profile removed. This is attributed incident evidence,
+not an independent reviewer process-table check. Reviewed source/build bytes remain
+unchanged, and the first batch, production, current wrapping and prior evidence
+are preserved. The original ordinary failure and all other gates remain open.
+
+This fresh batch is finished with an inconclusive outcome. Further source correction
+or browser execution is not automatic; no additional batch, Safari/clipboard work,
+performance waiver or production implementation is authorized by this record.
+Staging, commits and pushes remain with the user.
+
+Suggested focused commit: `research: correct ordinary isolation sizing and record stopped r2 control`.
