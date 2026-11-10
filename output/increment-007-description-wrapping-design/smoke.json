@@ -1,0 +1,173 @@
+{
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+    "viewport": [
+      1600,
+      1100
+    ]
+  },
+  "specimens": [
+    {
+      "id": "prose",
+      "units": 275,
+      "newlines": 0,
+      "blankLine": false,
+      "combining": false,
+      "literalEscape": false
+    },
+    {
+      "id": "lines",
+      "units": 206,
+      "newlines": 4,
+      "blankLine": true,
+      "combining": false,
+      "literalEscape": false
+    },
+    {
+      "id": "unbroken",
+      "units": 201,
+      "newlines": 1,
+      "blankLine": false,
+      "combining": false,
+      "literalEscape": false
+    },
+    {
+      "id": "cjk",
+      "units": 100,
+      "newlines": 1,
+      "blankLine": false,
+      "combining": false,
+      "literalEscape": false
+    },
+    {
+      "id": "rtl",
+      "units": 229,
+      "newlines": 1,
+      "blankLine": false,
+      "combining": false,
+      "literalEscape": false
+    },
+    {
+      "id": "marks",
+      "units": 239,
+      "newlines": 0,
+      "blankLine": false,
+      "combining": true,
+      "literalEscape": false
+    }
+  ],
+  "desktop": [
+    {
+      "id": "prose",
+      "inspectorEqual": true,
+      "rowDescriptionEqual": true,
+      "whiteSpace": "pre-wrap",
+      "wordBreak": "break-all",
+      "clamp": [
+        "2",
+        "2"
+      ],
+      "overflow": false
+    },
+    {
+      "id": "lines",
+      "inspectorEqual": true,
+      "rowDescriptionEqual": true,
+      "whiteSpace": "pre-wrap",
+      "wordBreak": "break-all",
+      "clamp": [
+        "2",
+        "2"
+      ],
+      "overflow": false
+    },
+    {
+      "id": "unbroken",
+      "inspectorEqual": true,
+      "rowDescriptionEqual": true,
+      "whiteSpace": "pre-wrap",
+      "wordBreak": "break-all",
+      "clamp": [
+        "2",
+        "2"
+      ],
+      "overflow": false
+    },
+    {
+      "id": "cjk",
+      "inspectorEqual": true,
+      "rowDescriptionEqual": true,
+      "whiteSpace": "pre-wrap",
+      "wordBreak": "break-all",
+      "clamp": [
+        "2",
+        "2"
+      ],
+      "overflow": false
+    },
+    {
+      "id": "rtl",
+      "inspectorEqual": true,
+      "rowDescriptionEqual": true,
+      "whiteSpace": "pre-wrap",
+      "wordBreak": "break-all",
+      "clamp": [
+        "2",
+        "2"
+      ],
+      "overflow": false
+    },
+    {
+      "id": "marks",
+      "inspectorEqual": true,
+      "rowDescriptionEqual": true,
+      "whiteSpace": "pre-wrap",
+      "wordBreak": "break-all",
+      "clamp": [
+        "2",
+        "2"
+      ],
+      "overflow": false
+    }
+  ],
+  "draftAfterWrappingToggle": "0.",
+  "draftAfterModeReturn": "0.",
+  "compact": [
+    {
+      "id": "prose",
+      "description": "Primary background for interactive elements. Keep the surrounding interface quiet so designers can concentrate on meaningful relationships, accessibility guidance and reusable foundations. Review foreground contrast before choosing this color for navigation or documentation.",
+      "wordBreak": "break-all",
+      "overflow": false
+    },
+    {
+      "id": "lines",
+      "description": "First paragraph: use for quiet application surfaces.\nKeep this instruction on its own authored line.\n\nSecond paragraph: preserve this blank line and  two internal spaces.\nFinal note: no automatic rewriting.",
+      "wordBreak": "break-all",
+      "overflow": false
+    },
+    {
+      "id": "unbroken",
+      "description": "Reference: https://design.example.test/foundations/background/InteractiveSurfacePrimaryForDocumentationAndNavigationWithoutAdditionalSeparators0123456789\nIdentifier: SurfaceBackgroundInteractivePrimary",
+      "wordBreak": "break-all",
+      "overflow": false
+    },
+    {
+      "id": "cjk",
+      "description": "背景色はインターフェースの階層を示します。重要な操作と説明文の読みやすさを確認してください。「主背景」、補助背景、境界線を区別します。\n设计令牌应保留原始说明、标点符号和语义；不要自动改写作者的内容。",
+      "wordBreak": "break-all",
+      "overflow": false
+    },
+    {
+      "id": "rtl",
+      "description": "شرح اللون الأساسي: يُستخدم للخلفيات الهادئة وعناصر التنقل. راجع وضوح النص قبل اعتماد اللون. Token background.primary / الإصدار 2 — مثال مختلط باللغة العربية والإنجليزية.\nצבע רקע ראשי: בדקו קריאות וניגודיות לצד foreground.primary.",
+      "wordBreak": "break-all",
+      "overflow": false
+    },
+    {
+      "id": "marks",
+      "description": "Combining marks: Café, naïve, Ångström. Emoji sequences: 👩🏽‍💻 👨‍👩‍👧‍👦 🏳️‍🌈 🇫🇷. Review these characters beside ordinary description words such as accessibility, documentation and background. Preserve every authored character.",
+      "wordBreak": "break-all",
+      "overflow": false
+    }
+  ]
+}

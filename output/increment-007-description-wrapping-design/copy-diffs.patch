@@ -1,0 +1,47 @@
+--- src/presentation/App.tsx
++++ prototypes/increment-007-v5/App.tsx
+@@ -1,5 +1,5 @@
+ import { CreationDialog } from "@presentation/CreationDialog";
+-import { TokenList } from "@presentation/TokenList";
++import { TokenList } from "./TokenList";
+ import { ProjectNavigation } from "@presentation/ProjectNavigation";
+ import { DialogContent } from "@presentation/components/dialog-content";
+ import { Field } from "@presentation/components/field";
+@@ -27,9 +27,9 @@
+ import type { ProjectStorage } from "@application/project-storage";
+ import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
+ import { Button } from "@presentation/components/button";
+-import { Editor } from "@presentation/Editor";
++import { Editor } from "./Editor";
+ import { Swatch } from "@presentation/components/swatch";
+-import type { Feedback } from "@presentation/Editor";
++import type { Feedback } from "./Editor";
+ import { identityLabels, failureText, pathLabel, resolvedColor } from "@presentation/readback";
+ import { colorPreview } from "@presentation/preview";
+ import { eligible } from "@presentation/session";
+--- src/presentation/TokenList.tsx
++++ prototypes/increment-007-v5/TokenList.tsx
+@@ -49,10 +49,10 @@
+                 {t.authored.layer ?? "Unspecified"} ·{" "}
+                 {t.authored.definition?.type ?? "Unassigned"}
+               </small>
+-              {t.authored.description !== undefined && <span className="@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-secondary">{t.authored.description}</span>}
++              {t.authored.description !== undefined && <span className="@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap break-all text-caption text-secondary">{t.authored.description}</span>}
+             </span>
+             </span>
+-            <span className="hidden @3xl:block min-w-0 text-caption text-secondary"><span className="line-clamp-2 whitespace-pre-wrap wrap-anywhere">{t.authored.description ?? "—"}</span></span>
++            <span className="hidden @3xl:block min-w-0 text-caption text-secondary"><span className="line-clamp-2 whitespace-pre-wrap break-all">{t.authored.description ?? "—"}</span></span>
+             <span className="value-summary min-w-0 text-value text-caption wrap-anywhere"><AuthoredValue value={v} project={project} layout="compact" /></span>
+           </button>
+         );
+--- prototypes/increment-007-v4/Editor.tsx
++++ prototypes/increment-007-v5/Editor.tsx
+@@ -148,7 +148,7 @@
+           {token.definition?.type ?? "Unassigned"} token
+         </span>
+         <h2 className="wrap-anywhere">{tokenLabels.get(token.id)}</h2>
+-        <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
++        <p className="text-caption text-muted-foreground whitespace-pre-wrap break-all">
+           {token.description ?? "No description"}
+         </p>
+         <div className="flex gap-2 mt-3">

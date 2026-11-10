@@ -1,0 +1,105 @@
+{
+  "checks": [
+    {
+      "id": "prose",
+      "wrapping": "current",
+      "inspectorEqual": true,
+      "rowsEqual": true,
+      "wordBreak": "normal",
+      "overflowWrap": "anywhere"
+    },
+    {
+      "id": "lines",
+      "wrapping": "current",
+      "inspectorEqual": true,
+      "rowsEqual": true,
+      "wordBreak": "normal",
+      "overflowWrap": "anywhere"
+    },
+    {
+      "id": "unbroken",
+      "wrapping": "current",
+      "inspectorEqual": true,
+      "rowsEqual": true,
+      "wordBreak": "normal",
+      "overflowWrap": "anywhere"
+    },
+    {
+      "id": "cjk",
+      "wrapping": "current",
+      "inspectorEqual": true,
+      "rowsEqual": true,
+      "wordBreak": "normal",
+      "overflowWrap": "anywhere"
+    },
+    {
+      "id": "rtl",
+      "wrapping": "current",
+      "inspectorEqual": true,
+      "rowsEqual": true,
+      "wordBreak": "normal",
+      "overflowWrap": "anywhere"
+    },
+    {
+      "id": "marks",
+      "wrapping": "current",
+      "inspectorEqual": true,
+      "rowsEqual": true,
+      "wordBreak": "normal",
+      "overflowWrap": "anywhere"
+    },
+    {
+      "id": "prose",
+      "wrapping": "candidate",
+      "inspectorEqual": true,
+      "rowsEqual": true,
+      "wordBreak": "break-all",
+      "overflowWrap": "normal"
+    },
+    {
+      "id": "lines",
+      "wrapping": "candidate",
+      "inspectorEqual": true,
+      "rowsEqual": true,
+      "wordBreak": "break-all",
+      "overflowWrap": "normal"
+    },
+    {
+      "id": "unbroken",
+      "wrapping": "candidate",
+      "inspectorEqual": true,
+      "rowsEqual": true,
+      "wordBreak": "break-all",
+      "overflowWrap": "normal"
+    },
+    {
+      "id": "cjk",
+      "wrapping": "candidate",
+      "inspectorEqual": true,
+      "rowsEqual": true,
+      "wordBreak": "break-all",
+      "overflowWrap": "normal"
+    },
+    {
+      "id": "rtl",
+      "wrapping": "candidate",
+      "inspectorEqual": true,
+      "rowsEqual": true,
+      "wordBreak": "break-all",
+      "overflowWrap": "normal"
+    },
+    {
+      "id": "marks",
+      "wrapping": "candidate",
+      "inspectorEqual": true,
+      "rowsEqual": true,
+      "wordBreak": "break-all",
+      "overflowWrap": "normal"
+    }
+  ],
+  "keyboard": {
+    "tabTarget": "unassignedUnspecified · Unassigned—No assignment",
+    "enterSelected": 1,
+    "reverseSelected": 1
+  }
+}

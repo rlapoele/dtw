@@ -1,0 +1,277 @@
+- generic [ref=e2]:
+  - generic "External design review controls" [ref=e3]:
+    - strong [ref=e4]: Design review · V5
+    - generic [ref=e5]:
+      - text: Description wrapping
+      - combobox "Description wrapping" [ref=e6]:
+        - option "Candidate · break-all" [selected]
+        - option "Current · wrap-anywhere"
+    - generic [ref=e7]:
+      - text: Preparation state
+      - combobox "Preparation state" [ref=e8]:
+        - option "Complete after feedback" [selected]
+        - option "Preparing · held"
+        - option "Failure · Retry succeeds"
+    - link "Review notes" [ref=e9] [cursor=pointer]:
+      - /url: ./DESIGN-V5.md
+  - generic [ref=e11]:
+    - link "Skip to tokens" [ref=e12] [cursor=pointer]:
+      - /url: "#tokens"
+    - banner [ref=e13]:
+      - strong [ref=e17]: Token Workbench
+      - generic [ref=e18]: Precision tokens
+      - generic [ref=e19]: Session only
+    - generic [ref=e20]: Work exists only in this page. Reloading, closing or leaving will discard all changes.
+    - generic [ref=e24]:
+      - navigation "Project groups" [ref=e25]:
+        - button "Collapse project groups" [expanded] [ref=e26] [cursor=pointer]:
+          - generic [ref=e29]: Project groups
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - generic [aria-hidden] [ref=e32]: T
+            - generic [ref=e33]:
+              - strong [ref=e34]: Precision tokens
+              - generic [ref=e35]: Color foundations
+          - generic [ref=e36]: Library
+          - button "All tokens 7" [ref=e37] [cursor=pointer]:
+            - text: All tokens
+            - generic [ref=e40]: "7"
+          - button "color" [ref=e42] [cursor=pointer]
+          - button "New group" [ref=e46] [cursor=pointer]
+          - generic [ref=e49]:
+            - text: Project
+            - paragraph [ref=e50]: One vocabulary.Clear relationships.
+            - generic [ref=e51]: 1 groups
+      - main [ref=e52]:
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - text: Tokens
+            - heading "All colors" [level=1] [ref=e55]
+            - paragraph [ref=e56]: Build a vocabulary, then connect its meaning.
+          - button "New token" [ref=e57] [cursor=pointer]
+        - searchbox "Search color tokens" [ref=e62]
+        - generic [ref=e63]:
+          - generic [ref=e64]:
+            - generic [ref=e65]: Token
+            - generic [ref=e204]: Description
+            - generic [ref=e66]: Authored value
+          - 'button "color / prose primitive · color Primary background for interactive elements. Keep the surrounding interface quiet so designers can concentrate on meaningful relationships, accessibility guidance and reusable foundations. Review foreground contrast before choosing this color for navigation or documentation. sRGB R: 0.231372549019607843 · G: 0.509803921568627451 · B: 0.964705882352941176 · Alpha: 1" [active] [pressed] [ref=e67] [cursor=pointer]':
+            - generic [ref=e71]:
+              - strong [ref=e72]: color / prose
+              - generic [ref=e73]: primitive · color
+            - generic [ref=e205]: Primary background for interactive elements. Keep the surrounding interface quiet so designers can concentrate on meaningful relationships, accessibility guidance and reusable foundations. Review foreground contrast before choosing this color for navigation or documentation.
+            - generic [ref=e76]:
+              - generic [ref=e77]: sRGB
+              - generic [ref=e78]:
+                - generic [ref=e79]: "R: 0.231372549019607843"
+                - generic [ref=e81]:
+                  - text: ·
+                  - generic [ref=e82]: "G: 0.509803921568627451"
+                - generic [ref=e83]:
+                  - text: ·
+                  - generic [ref=e84]: "B: 0.964705882352941176"
+                - generic [ref=e85]:
+                  - text: ·
+                  - generic [ref=e86]: "Alpha: 1"
+          - 'button "color / lines semantic · color First paragraph: use for quiet application surfaces. Keep this instruction on its own authored line. Second paragraph: preserve this blank line and two internal spaces. Final note: no automatic rewriting. Reference color / prose" [ref=e87] [cursor=pointer]':
+            - generic [ref=e91]:
+              - strong [ref=e92]: color / lines
+              - generic [ref=e93]: semantic · color
+            - generic [ref=e207]: "First paragraph: use for quiet application surfaces. Keep this instruction on its own authored line. Second paragraph: preserve this blank line and two internal spaces. Final note: no automatic rewriting."
+            - generic [ref=e96]:
+              - generic [ref=e97]: Reference
+              - generic [ref=e98]: color / prose
+          - 'button "color / unbroken primitive · color Reference: https://design.example.test/foundations/background/InteractiveSurfacePrimaryForDocumentationAndNavigationWithoutAdditionalSeparators0123456789 Identifier: SurfaceBackgroundInteractivePrimary sRGB R: 0.231372549019607843 · G: 0.509803921568627451 · B: 0.964705882352941176 · Alpha: 1" [ref=e99] [cursor=pointer]':
+            - generic [ref=e103]:
+              - strong [ref=e104]: color / unbroken
+              - generic [ref=e105]: primitive · color
+            - generic [ref=e209]: "Reference: https://design.example.test/foundations/background/InteractiveSurfacePrimaryForDocumentationAndNavigationWithoutAdditionalSeparators0123456789 Identifier: SurfaceBackgroundInteractivePrimary"
+            - generic [ref=e108]:
+              - generic [ref=e109]: sRGB
+              - generic [ref=e110]:
+                - generic [ref=e111]: "R: 0.231372549019607843"
+                - generic [ref=e113]:
+                  - text: ·
+                  - generic [ref=e114]: "G: 0.509803921568627451"
+                - generic [ref=e115]:
+                  - text: ·
+                  - generic [ref=e116]: "B: 0.964705882352941176"
+                - generic [ref=e117]:
+                  - text: ·
+                  - generic [ref=e118]: "Alpha: 1"
+          - 'button "color / cjk primitive · color 背景色はインターフェースの階層を示します。重要な操作と説明文の読みやすさを確認してください。「主背景」、補助背景、境界線を区別します。 设计令牌应保留原始说明、标点符号和语义；不要自动改写作者的内容。 sRGB R: 0.231372549019607843 · G: 0.509803921568627451 · B: 0.964705882352941176 · Alpha: 1" [ref=e119] [cursor=pointer]':
+            - generic [ref=e123]:
+              - strong [ref=e124]: color / cjk
+              - generic [ref=e125]: primitive · color
+            - generic [ref=e211]: 背景色はインターフェースの階層を示します。重要な操作と説明文の読みやすさを確認してください。「主背景」、補助背景、境界線を区別します。 设计令牌应保留原始说明、标点符号和语义；不要自动改写作者的内容。
+            - generic [ref=e128]:
+              - generic [ref=e129]: sRGB
+              - generic [ref=e130]:
+                - generic [ref=e131]: "R: 0.231372549019607843"
+                - generic [ref=e133]:
+                  - text: ·
+                  - generic [ref=e134]: "G: 0.509803921568627451"
+                - generic [ref=e135]:
+                  - text: ·
+                  - generic [ref=e136]: "B: 0.964705882352941176"
+                - generic [ref=e137]:
+                  - text: ·
+                  - generic [ref=e138]: "Alpha: 1"
+          - 'button "color / rtl primitive · color شرح اللون الأساسي: يُستخدم للخلفيات الهادئة وعناصر التنقل. راجع وضوح النص قبل اعتماد اللون. Token background.primary / الإصدار 2 — مثال مختلط باللغة العربية والإنجليزية. צבע רקע ראשי: בדקו קריאות וניגודיות לצד foreground.primary. sRGB R: 0.231372549019607843 · G: 0.509803921568627451 · B: 0.964705882352941176 · Alpha: 1" [ref=e139] [cursor=pointer]':
+            - generic [ref=e143]:
+              - strong [ref=e144]: color / rtl
+              - generic [ref=e145]: primitive · color
+            - generic [ref=e213]: "شرح اللون الأساسي: يُستخدم للخلفيات الهادئة وعناصر التنقل. راجع وضوح النص قبل اعتماد اللون. Token background.primary / الإصدار 2 — مثال مختلط باللغة العربية والإنجليزية. צבע רקע ראשי: בדקו קריאות וניגודיות לצד foreground.primary."
+            - generic [ref=e148]:
+              - generic [ref=e149]: sRGB
+              - generic [ref=e150]:
+                - generic [ref=e151]: "R: 0.231372549019607843"
+                - generic [ref=e153]:
+                  - text: ·
+                  - generic [ref=e154]: "G: 0.509803921568627451"
+                - generic [ref=e155]:
+                  - text: ·
+                  - generic [ref=e156]: "B: 0.964705882352941176"
+                - generic [ref=e157]:
+                  - text: ·
+                  - generic [ref=e158]: "Alpha: 1"
+          - 'button "color / marks primitive · color Combining marks: Café, naïve, Ångström. Emoji sequences: 👩🏽‍💻 👨‍👩‍👧‍👦 🏳️‍🌈 🇫🇷. Review these characters beside ordinary description words such as accessibility, documentation and background. Preserve every authored character. sRGB R: 0.231372549019607843 · G: 0.509803921568627451 · B: 0.964705882352941176 · Alpha: 1" [ref=e159] [cursor=pointer]':
+            - generic [ref=e163]:
+              - strong [ref=e164]: color / marks
+              - generic [ref=e165]: primitive · color
+            - generic [ref=e215]: "Combining marks: Café, naïve, Ångström. Emoji sequences: 👩🏽‍💻 👨‍👩‍👧‍👦 🏳️‍🌈 🇫🇷. Review these characters beside ordinary description words such as accessibility, documentation and background. Preserve every authored character."
+            - generic [ref=e168]:
+              - generic [ref=e169]: sRGB
+              - generic [ref=e170]:
+                - generic [ref=e171]: "R: 0.231372549019607843"
+                - generic [ref=e173]:
+                  - text: ·
+                  - generic [ref=e174]: "G: 0.509803921568627451"
+                - generic [ref=e175]:
+                  - text: ·
+                  - generic [ref=e176]: "B: 0.964705882352941176"
+                - generic [ref=e177]:
+                  - text: ·
+                  - generic [ref=e178]: "Alpha: 1"
+          - button "unassigned Unspecified · Unassigned — No assignment" [ref=e217] [cursor=pointer]:
+            - generic [ref=e183]:
+              - strong [ref=e184]: unassigned
+              - generic [ref=e185]: Unspecified · Unassigned
+            - generic [ref=e218]: —
+            - generic [ref=e186]: No assignment
+        - group [ref=e188]:
+          - generic "Project diagnostics · namespace and references" [ref=e189]
+        - status
+      - region "Token inspector pane" [ref=e190]:
+        - generic [ref=e191]:
+          - generic [ref=e192]: Token inspector
+          - region "Applied and draft color context" [ref=e220]:
+            - generic [ref=e221]:
+              - generic [ref=e222]: Applied
+              - generic [ref=e225]: Illustrative sRGB specimen.
+            - generic [ref=e226]:
+              - generic [ref=e227]: Draft
+              - generic [ref=e230]: Illustrative sRGB specimen.
+          - button "Collapse token inspector" [expanded] [ref=e194] [cursor=pointer]
+        - complementary "Selected token" [ref=e231]:
+          - generic [ref=e232]:
+            - generic [ref=e233]: color token
+            - heading "color / prose" [level=2] [ref=e234]
+            - paragraph [ref=e235]: Primary background for interactive elements. Keep the surrounding interface quiet so designers can concentrate on meaningful relationships, accessibility guidance and reusable foundations. Review foreground contrast before choosing this color for navigation or documentation.
+            - generic [ref=e236]:
+              - generic [ref=e237]: primitive
+              - generic [ref=e238]: Unconditional
+          - generic [ref=e239]:
+            - tablist "Token inspection" [ref=e240]:
+              - tab "Authored value" [selected] [ref=e241] [cursor=pointer]
+              - tab "Resolved & trace" [ref=e242] [cursor=pointer]
+            - tabpanel "Authored value" [ref=e243]:
+              - heading "Value" [level=3] [ref=e245]
+              - group "Value source" [ref=e246]:
+                - generic [ref=e248]:
+                  - button "Literal color" [pressed] [ref=e249] [cursor=pointer]
+                  - button "Reference" [ref=e250] [cursor=pointer]
+              - generic [ref=e251]:
+                - text: View color space
+                - combobox "View color space" [ref=e253]:
+                  - option "sRGB" [selected]
+                  - option "Display P3"
+                  - option "HSL"
+                  - option "OKLAB"
+                  - option "OKLCH"
+              - paragraph [ref=e254]: Draft in sRGB. Switching view keeps exact values.
+              - generic [ref=e255]:
+                - text: RGB entry scale
+                - combobox "RGB entry scale" [ref=e257]:
+                  - option "Normalized · 0–1" [selected]
+                  - option "0–255 scale"
+              - generic [ref=e258]:
+                - generic [ref=e259]:
+                  - generic [ref=e260]:
+                    - generic [ref=e261]: Red
+                    - textbox "Red" [ref=e262]: "0.231372549019607843"
+                  - slider "Red slider" [ref=e263] [cursor=pointer]: "0.231"
+                  - generic [aria-hidden] [ref=e264]:
+                    - generic [ref=e265]: "0"
+                    - generic [ref=e266]: "1"
+                  - paragraph [ref=e267]: Illustrative range 0 to 1, step 0.001. Exact values are retained.
+                - generic [ref=e268]:
+                  - generic [ref=e269]:
+                    - generic [ref=e270]: Green
+                    - textbox "Green" [ref=e271]: "0.509803921568627451"
+                  - slider "Green slider" [ref=e272] [cursor=pointer]: "0.51"
+                  - generic [aria-hidden] [ref=e273]:
+                    - generic [ref=e274]: "0"
+                    - generic [ref=e275]: "1"
+                  - paragraph [ref=e276]: Illustrative range 0 to 1, step 0.001. Exact values are retained.
+                - generic [ref=e277]:
+                  - generic [ref=e278]:
+                    - generic [ref=e279]: Blue
+                    - textbox "Blue" [ref=e280]: "0.964705882352941176"
+                  - slider "Blue slider" [ref=e281] [cursor=pointer]: "0.965"
+                  - generic [aria-hidden] [ref=e282]:
+                    - generic [ref=e283]: "0"
+                    - generic [ref=e284]: "1"
+                  - paragraph [ref=e285]: Illustrative range 0 to 1, step 0.001. Exact values are retained.
+              - generic [ref=e286]:
+                - generic [ref=e287]:
+                  - generic [ref=e288]: Alpha
+                  - textbox "Alpha" [ref=e289]: "1"
+                - slider "Alpha slider" [ref=e290] [cursor=pointer]: "1"
+              - paragraph [ref=e291]: Exact canonical decimal text or none; alpha 0–1. Sliders are illustrative stepped edits. Derived views and byte displays may be approximate. Apply uses srgb.
+              - paragraph [ref=e292]: "Draft preview: Illustrative sRGB specimen."
+              - generic [ref=e293]:
+                - button "Cancel" [disabled] [ref=e294]
+                - button "Apply changes" [disabled] [ref=e295]
+              - status [ref=e296]: Editing preserves name and metadata.
+              - generic [ref=e297]:
+                - heading "Currently applied" [level=3] [ref=e298]
+                - generic [ref=e300]:
+                  - generic [ref=e301]: sRGB
+                  - generic [ref=e302]:
+                    - generic [ref=e303]: Red 0.231372549019607843
+                    - generic [ref=e305]: Green 0.509803921568627451
+                    - generic [ref=e307]: Blue 0.964705882352941176
+                    - generic [ref=e309]: Alpha 1
+              - generic [ref=e311]:
+                - heading "Metadata · read only" [level=3] [ref=e312]
+                - generic [ref=e313]:
+                  - generic [ref=e314]:
+                    - term [ref=e315]: Regeneration
+                    - definition [ref=e316]: allowed
+                  - generic [ref=e317]:
+                    - term [ref=e318]: Semantic role
+                    - definition [ref=e319]: Unspecified
+                  - generic [ref=e320]:
+                    - term [ref=e321]: Parent group
+                    - definition [ref=e322]: color
+                - generic [ref=e323]:
+                  - group [ref=e324]:
+                    - generic "All authored data" [ref=e325] [cursor=pointer]
+                  - paragraph [ref=e326]: Opening very large exact source may briefly pause this view.
+          - generic [ref=e327]:
+            - generic [ref=e328]: Regeneration
+            - generic [ref=e329]: allowed
+    - contentinfo [ref=e201]:
+      - generic [ref=e202]: 7 tokens
+      - generic [ref=e203]: Memory only · No recovery after reload

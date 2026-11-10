@@ -1,0 +1,106 @@
+{
+  "v4DisclosureByteIdentical": true,
+  "v4ManifestEntries": [
+    {
+      "path": "output/increment-007-exceptional-detail-design/01-complete-color-inspector.png",
+      "unchanged": true
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/01b-color-controls-and-alpha.png",
+      "unchanged": true
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/02-preactivation-notice.png",
+      "unchanged": true
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/03-color-source.png",
+      "unchanged": true
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/04-applied-source-separate-from-draft.png",
+      "unchanged": true
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/05-short-natural-height.png",
+      "unchanged": true
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/06-two-axis-source.png",
+      "unchanged": true
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/07-source-end-and-long-line.png",
+      "unchanged": true
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/08-preparing.png",
+      "unchanged": true
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/09-local-failure.png",
+      "unchanged": true
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/10-compact-source.png",
+      "unchanged": true
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/browser-log/console-2026-11-10T12-23-29-821Z.log",
+      "unchanged": true
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/browser-log/page-2026-11-10T12-23-30-007Z.yml",
+      "unchanged": true
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/browser-log/page-2026-11-10T12-24-13-201Z.yml",
+      "unchanged": true
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/browser-log/page-2026-11-10T12-24-26-603Z.yml",
+      "unchanged": true
+    },
+    {
+      "path": "output/increment-007-exceptional-detail-design/observations.md",
+      "unchanged": true
+    },
+    {
+      "path": "prototypes/increment-007-v4/App.tsx",
+      "unchanged": true
+    },
+    {
+      "path": "prototypes/increment-007-v4/DESIGN-V4.md",
+      "unchanged": true
+    },
+    {
+      "path": "prototypes/increment-007-v4/Editor.tsx",
+      "unchanged": true
+    },
+    {
+      "path": "prototypes/increment-007-v4/ExactSource.tsx",
+      "unchanged": true
+    },
+    {
+      "path": "prototypes/increment-007-v4/index.html",
+      "unchanged": true
+    },
+    {
+      "path": "prototypes/increment-007-v4/main.tsx",
+      "unchanged": true
+    },
+    {
+      "path": "prototypes/increment-007-v4/prototype.css",
+      "unchanged": true
+    },
+    {
+      "path": "prototypes/increment-007-v4/tsconfig.json",
+      "unchanged": true
+    },
+    {
+      "path": "prototypes/increment-007-v4/vite.config.ts",
+      "unchanged": true
+    }
+  ],
+  "productionGitDiff": ""
+}
