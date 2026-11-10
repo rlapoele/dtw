@@ -145,3 +145,27 @@ browser/session, clipboard, setup/dependency, staging, commit or push operations
 Stop for user review before any prototype work or analyst review of this proposal.
 
 Suggested focused human-owned commit: `docs: assess description wrapping and native selection`.
+
+## User disposition after V5 review — 10 November 2026
+
+The user prefers the current wrapping because splitting words makes descriptions
+harder to read. Retain `wrap-anywhere` for description previews and the complete
+inspector; do not adopt the `break-all` candidate. Frozen V5 remains unchanged as
+the reviewed comparison. This decision leaves the ordinary long-description
+rendering failure unresolved; it changes neither authored limits nor the 100 ms gate.
+
+The user authorized proceeding with the previously approved bounded small-source
+native-selection usability assessment after this review. It assesses native
+selection scope and practical operation, without changing the disclosure/pre or
+authorizing larger E-4 qualification, clipboard access, Safari defensive work or
+production implementation. Record results separately from this design proposal.
+
+The [bounded assessment](../../output/increment-007-small-source-selection/report.md)
+and [independent evidence review](../../output/increment-007-small-source-selection/independent-review.md)
+now support two small Chrome pointer-selection positives (160 and 882 UTF-16
+units), including one vertical-scroll anchor-retention observation. They do not
+endorse the gesture as the supported workflow: discovery and user verification
+remain unresolved, and Safari, keyboard-only selection, clipboard and broader
+qualification are unrun. The initial ignored mouse-modifier option is explicitly
+invalid automation evidence, not a human targeting failure. No further design or
+qualification is authorized by this result alone.

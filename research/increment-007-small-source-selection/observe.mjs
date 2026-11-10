@@ -1,0 +1,5 @@
+import {writeFile} from 'node:fs/promises';
+export async function observe(page,label){
+const o=await page.locator('pre.authored-source').evaluate(e=>{const s=getSelection(),text=e.textContent;const endpoint=(n,offset)=>({node:n?.nodeName,parent:n?.parentElement?.tagName,offset,inside:e.contains(n)});return {source:text,sourceUnits:text.length,selection:s.toString(),selectionUnits:s.toString().length,equal:s.toString()===text,anchor:endpoint(s.anchorNode,s.anchorOffset),focus:endpoint(s.focusNode,s.focusOffset),rangeCount:s.rangeCount,geometry:{rect:e.getBoundingClientRect().toJSON(),client:[e.clientWidth,e.clientHeight],scroll:[e.scrollWidth,e.scrollHeight,e.scrollLeft,e.scrollTop]}}});
+o.inputs=await page.locator('input').evaluateAll(es=>es.map(e=>({type:e.type,value:e.value})));
+await writeFile('output/increment-007-small-source-selection/'+label+'.json',JSON.stringify(o,null,2));await page.screenshot({path:'output/increment-007-small-source-selection/'+label+'.png'});return {equal:o.equal,units:o.selectionUnits,anchor:o.anchor,focus:o.focus,inputs:o.inputs};}

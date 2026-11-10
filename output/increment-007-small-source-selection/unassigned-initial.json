@@ -1,0 +1,42 @@
+{
+  "source": "{\n  \"id\": \"empty\",\n  \"projectId\": \"precision-review\",\n  \"localName\": \"unassigned\",\n  \"parentGroupId\": null,\n  \"authoring\": {\n    \"regeneration\": \"allowed\"\n  }\n}",
+  "sourceUnits": 160,
+  "selection": "",
+  "selectionUnits": 0,
+  "equal": false,
+  "anchor": {
+    "node": "#text",
+    "parent": "PRE",
+    "offset": 160,
+    "inside": true
+  },
+  "focus": {
+    "node": "#text",
+    "parent": "PRE",
+    "offset": 160,
+    "inside": true
+  },
+  "rangeCount": 1,
+  "geometry": {
+    "rect": {
+      "x": 1225,
+      "y": 881.0625,
+      "width": 351,
+      "height": 174.5,
+      "top": 881.0625,
+      "right": 1576,
+      "bottom": 1055.5625,
+      "left": 1225
+    },
+    "client": [
+      349,
+      173
+    ],
+    "scroll": [
+      349,
+      173,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+# Bounded scope recorded before execution
+
+10 November 2026. Baseline cf1fbc34578e364eca00a6a8e5f0304c038a10a0. User retained current wrapping and authorized this assessment. Apply playwright and design-ui-with-restraint skills. Existing V5 and V4 ExactSource unchanged; simulated preparation is not E4 dispatch proof.
+
+Own disposable Chrome context; unassigned and prose, optionally one existing modest scroll-bearing fixture, each <=4096 UTF16 units. One native first-character click, source-local wheel if needed, Shift-click after last character; one correction if missed. Coordinates chosen visually from screenshots, never scripted caret geometry. Read-only DOM selection inspection afterwards. No clipboard operation, scripted selection, performance, Find, AT, zoom, stress, production/prototype/dependency edit or Git mutation. No keyboard selection method assumed. Safari only if safely owned context accessible; no activation diagnosis or shared Safari termination. Record candid burden, raw text/endpoints/equality, screenshots and limitations, then stop for independent review. No support claim or implementation authorization follows.

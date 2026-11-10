@@ -1,0 +1,76 @@
+{
+  "source": "{\n  \"id\": \"prose\",\n  \"projectId\": \"precision-review\",\n  \"localName\": \"prose\",\n  \"parentGroupId\": \"colors\",\n  \"description\": \"Primary background for interactive elements. Keep the surrounding interface quiet so designers can concentrate on meaningful relationships, accessibility guidance and reusable foundations. Review foreground contrast before choosing this color for navigation or documentation.\",\n  \"layer\": \"primitive\",\n  \"definition\": {\n    \"type\": \"color\",\n    \"assignments\": [\n      {\n        \"condition\": [],\n        \"value\": {\n          \"kind\": \"literal\",\n          \"valueType\": \"color\",\n          \"colorSpace\": \"srgb\",\n          \"components\": [\n            \"0.231372549019607843\",\n            \"0.509803921568627451\",\n            \"0.964705882352941176\"\n          ],\n          \"alpha\": \"1\"\n        }\n      }\n    ]\n  },\n  \"authoring\": {\n    \"regeneration\": \"allowed\"\n  }\n}",
+  "sourceUnits": 882,
+  "selection": "{\n  \"id\": \"prose\",\n  \"projectId\": \"precision-review\",\n  \"localName\": \"prose\",\n  \"parentGroupId\": \"colors\",\n  \"description\": \"Primary background for interactive elements. Keep the surrounding interface quiet so designers can concentrate on meaningful relationships, accessibility guidance and reusable foundations. Review foreground contrast before choosing this color for navigation or documentation.\",\n  \"layer\": \"primitive\",\n  \"definition\": {\n    \"type\": \"color\",\n    \"assignments\": [\n      {\n        \"condition\": [],\n        \"value\": {\n          \"kind\": \"literal\",\n          \"valueType\": \"color\",\n          \"colorSpace\": \"srgb\",\n          \"components\": [\n            \"0.231372549019607843\",\n            \"0.509803921568627451\",\n            \"0.964705882352941176\"\n          ],\n          \"alpha\": \"1\"\n        }\n      }\n    ]\n  },\n  \"authoring\": {\n    \"regeneration\": \"allowed\"\n  }\n}",
+  "selectionUnits": 882,
+  "equal": true,
+  "anchor": {
+    "node": "#text",
+    "parent": "PRE",
+    "offset": 0,
+    "inside": true
+  },
+  "focus": {
+    "node": "#text",
+    "parent": "PRE",
+    "offset": 882,
+    "inside": true
+  },
+  "rangeCount": 1,
+  "geometry": {
+    "rect": {
+      "x": 1225,
+      "y": 584.8125,
+      "width": 351,
+      "height": 384,
+      "top": 584.8125,
+      "right": 1576,
+      "bottom": 968.8125,
+      "left": 1225
+    },
+    "client": [
+      349,
+      382
+    ],
+    "scroll": [
+      1971,
+      519,
+      0,
+      137
+    ]
+  },
+  "inputs": [
+    {
+      "type": "search",
+      "value": ""
+    },
+    {
+      "type": "text",
+      "value": "0."
+    },
+    {
+      "type": "text",
+      "value": "0.509803921568627451"
+    },
+    {
+      "type": "range",
+      "value": "0.51"
+    },
+    {
+      "type": "text",
+      "value": "0.964705882352941176"
+    },
+    {
+      "type": "range",
+      "value": "0.965"
+    },
+    {
+      "type": "text",
+      "value": "1"
+    },
+    {
+      "type": "range",
+      "value": "1"
+    }
+  ]
+}

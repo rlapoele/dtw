@@ -1,0 +1,20 @@
+{
+  "source": "{\n  \"id\": \"empty\",\n  \"projectId\": \"precision-review\",\n  \"localName\": \"unassigned\",\n  \"parentGroupId\": null,\n  \"authoring\": {\n    \"regeneration\": \"allowed\"\n  }\n}",
+  "sourceUnits": 160,
+  "selection": "{\n  \"id\": \"empty\",\n  \"projectId\": \"precision-review\",\n  \"localName\": \"unassigned\",\n  \"parentGroupId\": null,\n  \"authoring\": {\n    \"regeneration\": \"allowed\"\n  }\n}",
+  "selectionUnits": 160,
+  "equal": true,
+  "anchor": {
+    "node": "#text",
+    "parent": "PRE",
+    "offset": 0,
+    "inside": true
+  },
+  "focus": {
+    "node": "#text",
+    "parent": "PRE",
+    "offset": 160,
+    "inside": true
+  },
+  "rangeCount": 1
+}
