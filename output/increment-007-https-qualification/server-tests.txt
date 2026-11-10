@@ -1,0 +1,10 @@
+✔ exact allowlist only; every byte and MIME matches; denial is header-specific (36.046375ms)
+✔ startup refuses symlink assets and mismatched content before binding (14.081125ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104.987833

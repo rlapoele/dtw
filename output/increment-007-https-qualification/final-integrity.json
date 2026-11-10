@@ -1,0 +1,244 @@
+{
+  "frozenManifests": [
+    {
+      "manifest": "output/increment-007-https-qualification/pre-exposure-manifest.json",
+      "manifestSHA256": "9cd1daf5ce793781655cc4d6d8adf51d9508e4aa7592a12bccdcde213d37d8db",
+      "files": 25,
+      "mismatches": []
+    },
+    {
+      "manifest": "output/increment-007-stage-a/final-manifest.json",
+      "manifestSHA256": "b9d8457cc5f302e5342a18e9d8be4acfdf483b0f0f353bcb36677649d87705cf",
+      "files": 81,
+      "mismatches": []
+    },
+    {
+      "manifest": "output/increment-007-worker-qualification/manifest.json",
+      "manifestSHA256": "e0bb311243bbbaf919ad8559f3b3765747e1cf56f6709ac217277d42c221fde2",
+      "files": 115,
+      "mismatches": []
+    }
+  ],
+  "HTTPSHeadersAndBodies": [
+    {
+      "route": "/codec.mjs",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/fixtures.mjs",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/index.html",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/blocked",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/capability-failure",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/page.mjs",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/vendor/LICENSE.md",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/vendor/impl/edit.js",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/vendor/impl/edit",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/vendor/impl/format.js",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/vendor/impl/format",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/vendor/impl/parser.js",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/vendor/impl/parser",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/vendor/impl/scanner.js",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/vendor/impl/scanner",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/vendor/impl/string-intern.js",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/vendor/impl/string-intern",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/vendor/main.js",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    },
+    {
+      "route": "/worker.mjs",
+      "CSPMatches": true,
+      "MIMEMatches": true,
+      "hashMatches": true,
+      "bytesMatch": true,
+      "status200": true,
+      "noRedirect": true,
+      "nosniff": true,
+      "noStore": true
+    }
+  ]
+}

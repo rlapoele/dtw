@@ -1,0 +1,14 @@
+[
+  {
+    "manifest": "output/increment-007-stage-a/final-manifest.json",
+    "manifestSHA256": "b9d8457cc5f302e5342a18e9d8be4acfdf483b0f0f353bcb36677649d87705cf",
+    "files": 81,
+    "mismatches": []
+  },
+  {
+    "manifest": "output/increment-007-worker-qualification/manifest.json",
+    "manifestSHA256": "e0bb311243bbbaf919ad8559f3b3765747e1cf56f6709ac217277d42c221fde2",
+    "files": 115,
+    "mismatches": []
+  }
+]

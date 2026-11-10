@@ -1,0 +1,180 @@
+{
+  "baseCommit": "cc8eb9ef437e8d40f511525ca48642491db40991",
+  "phase": "Phase 2 completed; scoped pass with explicit Safari disk-download/OS-picker/normal-profile and production gaps",
+  "preExposureManifestSHA256": "9cd1daf5ce793781655cc4d6d8adf51d9508e4aa7592a12bccdcde213d37d8db",
+  "excludedReviewerOwned": [
+    "output/increment-007-https-qualification/independent-review.md",
+    "output/increment-007-https-qualification/reviewer-probes/**"
+  ],
+  "excludedSelf": "output/increment-007-https-qualification/manifest.json",
+  "files": {
+    "research/increment-007-https-qualification/README.md": {
+      "bytes": 8587,
+      "sha256": "0289150c5939bccf65eb8543fc66c0f1b56ebca68cdf9a3051a00609882f6f19"
+    },
+    "research/increment-007-https-qualification/chrome-run.mjs": {
+      "bytes": 5260,
+      "sha256": "9f442c48d81b578d7074e1af164f84e8e6fec4b9ef0407fb532a8b0ff56819e0"
+    },
+    "research/increment-007-https-qualification/edge-check.mjs": {
+      "bytes": 2729,
+      "sha256": "478c3b24ac0ed68bd4fca89ab68c667543ba403e7e6ce50d7c708a6cf9551e2a"
+    },
+    "research/increment-007-https-qualification/prepare.mjs": {
+      "bytes": 2504,
+      "sha256": "70b6ff04a398312e0e3243cba01fed8f88359ee256a17c927c95bf89ce41070d"
+    },
+    "research/increment-007-https-qualification/publication-manifest.json": {
+      "bytes": 7286,
+      "sha256": "f48b337b451cbb7756a68f4bc8e8b6d5f86790b86f3efad4e1bfd1463e81db1b"
+    },
+    "research/increment-007-https-qualification/publish/codec.mjs": {
+      "bytes": 16590,
+      "sha256": "3ac7cfb2f71967a76fb06dffbf65465ff924b92dcece36462bf048f48e1636d0"
+    },
+    "research/increment-007-https-qualification/publish/fixtures.mjs": {
+      "bytes": 3411,
+      "sha256": "3ed2e8ac5b31472c2cd55164f8fac41f2eaa928e9755c62514ba2f5f6eedb29a"
+    },
+    "research/increment-007-https-qualification/publish/index.html": {
+      "bytes": 805,
+      "sha256": "fea80b10d906cc466c5a0c499ca6c8a0e52b660444e8667b94c53a2ef81f5b72"
+    },
+    "research/increment-007-https-qualification/publish/page.mjs": {
+      "bytes": 6363,
+      "sha256": "30118276e48aac6e05b966163f3de79a741e0a57ebe21a768d83e0ba009305fc"
+    },
+    "research/increment-007-https-qualification/publish/vendor/LICENSE.md": {
+      "bytes": 1092,
+      "sha256": "c3a24c02d678e5f0711623dcf3ab3f243b273c2633f638a1fa8e35fb7c7f8e4d"
+    },
+    "research/increment-007-https-qualification/publish/vendor/impl/edit.js": {
+      "bytes": 8613,
+      "sha256": "7e7bf98e740f560026df079056d3b0f5f34628124a8d34e2765fb101dde12911"
+    },
+    "research/increment-007-https-qualification/publish/vendor/impl/format.js": {
+      "bytes": 11098,
+      "sha256": "e57dee56700a844b18dea11548f9ba42b17bc857bde5bcd39554af06ca95bb1f"
+    },
+    "research/increment-007-https-qualification/publish/vendor/impl/parser.js": {
+      "bytes": 25765,
+      "sha256": "74fae1bbebf290a04e46c5457ac5d97988146a5503ea35d9f0c4c3768acd5a26"
+    },
+    "research/increment-007-https-qualification/publish/vendor/impl/scanner.js": {
+      "bytes": 19188,
+      "sha256": "e737e1774f87ca88d85d73e3bafff688b78cac06b81c53b96c54da8b3ca86cd9"
+    },
+    "research/increment-007-https-qualification/publish/vendor/impl/string-intern.js": {
+      "bytes": 1034,
+      "sha256": "3a0aad3f56c3e0728812c7584568c0ff200bce1ca58cf40e946f01fdb54c5752"
+    },
+    "research/increment-007-https-qualification/publish/vendor/main.js": {
+      "bytes": 9363,
+      "sha256": "72ff182105e158a1505ca3ecbf3f30359abb138a3980edaef1db7f4010ffb7dc"
+    },
+    "research/increment-007-https-qualification/publish/worker.mjs": {
+      "bytes": 5642,
+      "sha256": "529c7d308fd8ec46eb0dc19068ce02222a9a1c0754145b523e547d45a0d7d4a6"
+    },
+    "research/increment-007-https-qualification/safari-run.mjs": {
+      "bytes": 5382,
+      "sha256": "661cbfd820dc4b1abfd24bf04e937fb23903a1a33dc62ae11b26d064423b0239"
+    },
+    "research/increment-007-https-qualification/server.mjs": {
+      "bytes": 3285,
+      "sha256": "48f4670a965318628fdfd64e27af793087ba0fc47ccdbf9f354d91a2b62b730f"
+    },
+    "research/increment-007-https-qualification/server.test.mjs": {
+      "bytes": 2953,
+      "sha256": "b02e8c8396a7a176b59bc517cfe2eb5de7a0657358c536d3ccbe0f2b5a658845"
+    },
+    "research/increment-007-https-qualification/teardown-check.mjs": {
+      "bytes": 1892,
+      "sha256": "3dcf973bed5153cc171617aea12868033c61d3a5a5cbf5e678a94c41da4e4096"
+    },
+    "output/increment-007-https-qualification/chrome-downloads/d2fee2c2-0a2f-4adf-ba0c-a4e386a78e70": {
+      "bytes": 10372,
+      "sha256": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118"
+    },
+    "output/increment-007-https-qualification/chrome-positive.png": {
+      "bytes": 894088,
+      "sha256": "8c369cd7741801d68c8e97715224f45359a4f1363f47a69fdc2e7122d679eb93"
+    },
+    "output/increment-007-https-qualification/chrome-results.json": {
+      "bytes": 48907,
+      "sha256": "105feab773fc10185fa3741c3105cc1bba1f88903b336c66a09e4d8f0cb11b0e"
+    },
+    "output/increment-007-https-qualification/cloudflare-prior-release-metadata.json": {
+      "bytes": 55797,
+      "sha256": "afae22560b4ee55f583aa1ada7475a0599c6b63e63cf6de5557d120791578488"
+    },
+    "output/increment-007-https-qualification/cloudflare-prior2-release-metadata.json": {
+      "bytes": 55786,
+      "sha256": "bd605ac7d6a0ac493b5a53b3eea618b487458b798a3658172ba244da0b680190"
+    },
+    "output/increment-007-https-qualification/cloudflare-release-metadata.json": {
+      "bytes": 55817,
+      "sha256": "49a6a1e1f5a71a656d265c543bacee3ce6536e4a41547b573a454671d8607640"
+    },
+    "output/increment-007-https-qualification/cloudflared-provenance.json": {
+      "bytes": 1988,
+      "sha256": "7b4b69bb9679c3c7561a10fe4d8beb3d2faadd2bc518ad7bd1b1ded41838552f"
+    },
+    "output/increment-007-https-qualification/cloudflared-runtime.jsonl": {
+      "bytes": 7705,
+      "sha256": "e5241fe712198f4a75ea34a04b3e51ae8ebf282b77e412535bfc2e342df0ccbb"
+    },
+    "output/increment-007-https-qualification/cloudflared-tunnel-help.txt": {
+      "bytes": 15128,
+      "sha256": "ab0a2d085851f247453f88410b018ecc2fccd0f314fcd5d3fd6907980d4e3304"
+    },
+    "output/increment-007-https-qualification/edge-check.json": {
+      "bytes": 21919,
+      "sha256": "3bf97e60936d4f9846cb1ded1318febe6d6b964e95a12815191cdff18e04ca6a"
+    },
+    "output/increment-007-https-qualification/final-integrity.json": {
+      "bytes": 5753,
+      "sha256": "19e9a675669fff5919ee420021f80966435c37e6882276f6d371e1feaafece24"
+    },
+    "output/increment-007-https-qualification/frozen-original-integrity.json": {
+      "bytes": 421,
+      "sha256": "85a221b004a7ecb3671a809d28a8ba15d691c37ab546c4343f90bc159dfe0903"
+    },
+    "output/increment-007-https-qualification/pre-exposure-manifest.json": {
+      "bytes": 4964,
+      "sha256": "9cd1daf5ce793781655cc4d6d8adf51d9508e4aa7592a12bccdcde213d37d8db"
+    },
+    "output/increment-007-https-qualification/preflight.md": {
+      "bytes": 6157,
+      "sha256": "19340fba997d2e9c3fec992df4922c416bdf4a9434d0a714af335c86cdfef797"
+    },
+    "output/increment-007-https-qualification/publication-static-check.json": {
+      "bytes": 231,
+      "sha256": "c6be81472b9662ad4a3a49fad87fab39086638b3ec2fa308dc07c5ec10594d7a"
+    },
+    "output/increment-007-https-qualification/report.md": {
+      "bytes": 10601,
+      "sha256": "6fefdbff8aed1a0a0dec9ebbf6af35adebcc4f160eed45a13893693173cbd877"
+    },
+    "output/increment-007-https-qualification/safari-results-attempt-1.json": {
+      "bytes": 9404,
+      "sha256": "ef854eec4980509f127fc6d03fe1e7017f7a52cd75152692b3c0cda21882e17f"
+    },
+    "output/increment-007-https-qualification/safari-results.json": {
+      "bytes": 15242,
+      "sha256": "a0d16b84b6091d1e52fc454504fab537eebf864d5fb94bdb268e7e2f13b980b6"
+    },
+    "output/increment-007-https-qualification/safari-run-attempt-1.mjs": {
+      "bytes": 5096,
+      "sha256": "ce98eb15e59991ead05882b382d7e3f419c03145fa7603fa0c355c48ec4c145f"
+    },
+    "output/increment-007-https-qualification/server-tests.txt": {
+      "bytes": 297,
+      "sha256": "60ae361b686fbd72e594c84edcc7af45754defd870455c69babe8b714060525a"
+    },
+    "output/increment-007-https-qualification/teardown.json": {
+      "bytes": 1411,
+      "sha256": "9e91ed4a54ff36315bb7be27ab842232be60b4cb26f8a76398294eab61b001bc"
+    }
+  }
+}

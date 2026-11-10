@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-11-10T09:58:38.153Z",
+  "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+  "normalTLSValidation": true,
+  "loopback": {
+    "closed": true,
+    "code": "ECONNREFUSED"
+  },
+  "public": {
+    "status": 530,
+    "headers": {
+      "date": "Tue, 10 Nov 2026 09:58:38 GMT",
+      "content-type": "text/plain; charset=UTF-8",
+      "content-length": "17",
+      "connection": "keep-alive",
+      "cf-ray": "a58433292bfcda68-CDG",
+      "cache-control": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+      "expires": "Thu, 01 Jan 1970 00:00:01 GMT",
+      "server": "cloudflare",
+      "referrer-policy": "same-origin",
+      "x-frame-options": "SAMEORIGIN",
+      "x-robots-tag": "none, none"
+    },
+    "bytes": 17,
+    "sha256": "764ac7d5e8b966adcdcf56e0fe583a848c828957209c0881aa733675c3edd4df",
+    "noLongerHarness": true,
+    "snippet": "error code: 1033\n"
+  },
+  "ownedProcesses": [
+    {
+      "role": "tunnel",
+      "pid": 11618,
+      "running": false,
+      "error": "ESRCH"
+    },
+    {
+      "role": "origin",
+      "pid": 11616,
+      "running": false,
+      "error": "ESRCH"
+    },
+    {
+      "role": "chrome",
+      "pid": 11757,
+      "running": false,
+      "error": "ESRCH"
+    },
+    {
+      "role": "safariDriver",
+      "pid": 11987,
+      "running": false,
+      "error": "ESRCH"
+    }
+  ],
+  "status": "pass"
+}

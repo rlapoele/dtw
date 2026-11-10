@@ -1,0 +1,16 @@
+{
+  "scope": "offline rehash/source/raw-evidence review only; no network/browser/tunnel rerun",
+  "files": 42,
+  "edgeRoutes": 20,
+  "certificateSignaturesAndHostAndDates": true,
+  "certificateSubjects": [
+    "CN=trycloudflare.com",
+    "C=US\nO=Google Trust Services\nCN=WE1",
+    "C=US\nO=Google Trust Services LLC\nCN=GTS Root R4"
+  ],
+  "fixtureBytes": 10372,
+  "fixtureSHA256": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+  "copiedSafariFileMatches": true,
+  "downloadMatches": true,
+  "allAssertionsPassed": true
+}

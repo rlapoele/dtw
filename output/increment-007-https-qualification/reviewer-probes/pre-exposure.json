@@ -1,0 +1,159 @@
+{
+  "scope": "own loopback only; no binary/browser/tunnel execution",
+  "serverClosed": true,
+  "results": [
+    {
+      "path": "/publication-manifest.json",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/preflight.md",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/server.mjs",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/prepare.mjs",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/research/increment-007-https-qualification/publish/worker.mjs",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/%252e%252e/AGENTS.md",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/%2fworker.mjs",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/vendor%2fmain.js",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/vendor/impl/../main.js",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/vendor/impl/%2e%2e/main.js",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/worker.mjs#x",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/?x=1",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/capability-failure?x=1",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/blocked/",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/../../../../etc/passwd",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "\\worker.mjs",
+      "method": "GET",
+      "status": 400,
+      "bytes": 0
+    },
+    {
+      "path": "http://127.0.0.1:5173/",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "//127.0.0.1:5173/",
+      "method": "GET",
+      "status": 404,
+      "bytes": 9,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/",
+      "method": "TRACE",
+      "status": 405,
+      "bytes": 18,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/",
+      "method": "PROPFIND",
+      "status": 405,
+      "bytes": 18,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/blocked",
+      "method": "GET",
+      "status": 200,
+      "bytes": 805,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'none'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    },
+    {
+      "path": "/",
+      "method": "HEAD",
+      "status": 400,
+      "bytes": 0,
+      "csp": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'"
+    }
+  ]
+}

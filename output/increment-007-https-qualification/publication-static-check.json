@@ -1,0 +1,9 @@
+{
+  "publicFiles": 12,
+  "publicRoutes": 20,
+  "errors": [],
+  "checks": [
+    "no absolute private/user/tmp paths or process environment in published assets",
+    "all static module imports resolve to exact manifest routes"
+  ]
+}

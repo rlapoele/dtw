@@ -1,0 +1,287 @@
+{
+  "started": "2026-11-10T09:56:40.377Z",
+  "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+  "profileMode": "native Safari isolated WebDriver automation session; no normal-profile retention claim",
+  "acceptInsecureCerts": false,
+  "cases": [
+    {
+      "route": "/blocked",
+      "evidence": {
+        "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+        "secure": true,
+        "topLevel": true,
+        "mode": "/blocked",
+        "events": [
+          {
+            "type": "csp-violation",
+            "time": 295,
+            "value": {
+              "blockedURI": "https://hip-exhaust-wash-routines.trycloudflare.com/worker.mjs",
+              "effectiveDirective": "worker-src",
+              "disposition": "enforce"
+            }
+          },
+          {
+            "type": "worker-error",
+            "time": 295,
+            "value": {
+              "message": "worker load error"
+            }
+          },
+          {
+            "type": "fail-closed",
+            "time": 295,
+            "value": {
+              "synchronousFallback": false,
+              "volatileFallback": false,
+              "error": "Error: worker unavailable",
+              "writesDispatched": 0
+            }
+          }
+        ],
+        "cases": [],
+        "capabilityFailure": "Error: worker unavailable",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+        "started": "2026-11-10T09:56:44.044Z",
+        "url": "https://hip-exhaust-wash-routines.trycloudflare.com/blocked"
+      }
+    },
+    {
+      "route": "/capability-failure",
+      "evidence": {
+        "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+        "secure": true,
+        "topLevel": true,
+        "mode": "/capability-failure",
+        "events": [
+          {
+            "type": "injected-required-capability-denial",
+            "time": 321,
+            "value": {
+              "capability": "Worker",
+              "injection": true
+            }
+          },
+          {
+            "type": "fail-closed",
+            "time": 321,
+            "value": {
+              "synchronousFallback": false,
+              "volatileFallback": false,
+              "error": "Error: required worker capability denied by labelled negative control",
+              "writesDispatched": 0
+            }
+          }
+        ],
+        "cases": [],
+        "capabilityFailure": "Error: required worker capability denied by labelled negative control",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+        "started": "2026-11-10T09:56:44.387Z",
+        "url": "https://hip-exhaust-wash-routines.trycloudflare.com/capability-failure"
+      }
+    }
+  ],
+  "driverPid": 11884,
+  "driverPort": 52054,
+  "capabilities": {
+    "safari:platformVersion": "27.2",
+    "safari:automaticInspection": false,
+    "webkit:WebRTC": {
+      "DisableICECandidateFiltering": false,
+      "DisableInsecureMediaCapture": false
+    },
+    "webkit:alwaysAllowAutoplay": false,
+    "browserVersion": "27.2",
+    "strictFileInteractability": false,
+    "browserName": "Safari",
+    "safari:useSimulator": false,
+    "safari:platformBuildVersion": "26B123",
+    "setWindowRect": true,
+    "acceptInsecureCerts": false,
+    "safari:automaticProfiling": false,
+    "pageLoadStrategy": "eager",
+    "safari:experimentalWebSocketUrl": false,
+    "platformName": "macOS",
+    "safari:diagnose": false
+  },
+  "sessionId": "E045685A-815F-4687-97BE-7FA74C2AFAA4",
+  "initial": {
+    "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+    "secure": true,
+    "topLevel": true,
+    "mode": "/",
+    "events": [
+      {
+        "type": "ready",
+        "time": 1259,
+        "value": {
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+          "indexedDB": true,
+          "worker": true,
+          "locks": true,
+          "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+          "secure": true
+        }
+      }
+    ],
+    "cases": [],
+    "started": "2026-11-10T09:56:42.153Z",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+    "capability": {
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+      "indexedDB": true,
+      "worker": true,
+      "locks": true,
+      "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+      "secure": true
+    },
+    "url": "https://hip-exhaust-wash-routines.trycloudflare.com/"
+  },
+  "afterMechanisms": {
+    "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+    "secure": true,
+    "topLevel": true,
+    "mode": "/",
+    "events": [
+      {
+        "type": "ready",
+        "time": 1259,
+        "value": {
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+          "indexedDB": true,
+          "worker": true,
+          "locks": true,
+          "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+          "secure": true
+        }
+      },
+      {
+        "type": "case-pass",
+        "time": 1415,
+        "value": "G05-worker-strict-complete-abort"
+      },
+      {
+        "type": "case-pass",
+        "time": 1425,
+        "value": "G05-worker-exact-transfer"
+      },
+      {
+        "type": "case-pass",
+        "time": 2015,
+        "value": "G05-worker-native-locks"
+      },
+      {
+        "type": "run-finished",
+        "time": 2017,
+        "value": null
+      }
+    ],
+    "cases": [
+      {
+        "id": "G05-worker-strict-complete-abort",
+        "status": "pass",
+        "value": {
+          "unchangedAfterAbort": true,
+          "sha256": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+          "exactReadback": true,
+          "aborted": {
+            "status": "known-aborted",
+            "trace": [
+              {
+                "sequence": 6,
+                "abort": true,
+                "durability": "strict",
+                "type": "write-issued",
+                "time": 952
+              },
+              {
+                "type": "write-request-success",
+                "time": 952,
+                "sequence": 7
+              },
+              {
+                "type": "explicit-abort-request",
+                "time": 952,
+                "sequence": 8
+              },
+              {
+                "type": "write-abort",
+                "time": 953,
+                "sequence": 9
+              }
+            ]
+          },
+          "syntheticDatabase": "dtw-isolated-https-g05-0dd723fe-b747-4a7d-a28c-84d6e886ff9f",
+          "committed": {
+            "status": "retained-after-complete",
+            "trace": [
+              {
+                "sequence": 1,
+                "abort": false,
+                "durability": "strict",
+                "type": "write-issued",
+                "time": 941
+              },
+              {
+                "type": "write-request-success",
+                "time": 944,
+                "sequence": 2
+              },
+              {
+                "type": "write-complete",
+                "time": 946,
+                "sequence": 3
+              }
+            ]
+          },
+          "byteLength": 10372
+        }
+      },
+      {
+        "id": "G05-worker-exact-transfer",
+        "status": "pass",
+        "value": {
+          "sha256": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+          "exact": true,
+          "returnedHash": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+          "detached": true,
+          "byteLength": 10372
+        }
+      },
+      {
+        "id": "G05-worker-native-locks",
+        "status": "pass",
+        "value": {
+          "owner": true,
+          "contender": false,
+          "after": true
+        }
+      }
+    ],
+    "started": "2026-11-10T09:56:42.153Z",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+    "capability": {
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+      "indexedDB": true,
+      "worker": true,
+      "locks": true,
+      "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+      "secure": true
+    },
+    "url": "https://hip-exhaust-wash-routines.trycloudflare.com/"
+  },
+  "fileInput": {
+    "status": "unavailable",
+    "error": "Error: {\"error\":\"invalid argument\",\"message\":\"An invalid command argument was specified: One or more files could not be selected.\",\"stacktrace\":\"\"}",
+    "scope": "No synthetic File/DataTransfer substitute; native Safari file path remains open"
+  },
+  "safariDownload": {
+    "status": "not-run",
+    "reason": "No owned per-session native download-directory control established; shared Downloads/preferences untouched. Chrome native download is separate evidence."
+  },
+  "status": "partial",
+  "ended": "2026-11-10T09:56:44.416Z",
+  "cleanup": {
+    "ownSessionDeleted": true
+  }
+}

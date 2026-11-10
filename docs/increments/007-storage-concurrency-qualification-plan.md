@@ -217,3 +217,14 @@ against the reviewed worker snapshot, credits completed native evidence, and sep
 pre-authorization mechanism gates from actual application/Stage B and support claims.
 Its suggested HTTPS deferral is an explicit proposed B-4 timing amendment, not adopted
 policy. No rendering direction, new experiment or production work is authorized.
+
+## Scoped temporary HTTPS execution — 10 November 2026
+
+The user separately authorized G-05 through an account-free temporary Cloudflare
+tunnel serving only an independently reviewed read-only synthetic allowlist, without
+Mac trust changes. The [report](../../output/increment-007-https-qualification/report.md)
+and [independent result review](../../output/increment-007-https-qualification/independent-review.md)
+qualify the stated native Chrome/Safari HTTPS mechanism subset. Tunnel teardown is
+verified. G-05 remains partial for the recorded profile/file/policy/delivery-origin
+gaps; the earlier HTTPS deferral proposal is not adopted. No other gap execution,
+prototype/rendering change or production implementation follows from this result.

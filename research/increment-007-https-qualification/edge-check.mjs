@@ -1,0 +1,13 @@
+// Phase 2 local-only verified HTTPS client. Never published.
+import https from 'node:https';import tls from 'node:tls';import {readFile,writeFile} from 'node:fs/promises';import {createHash} from 'node:crypto';
+const origin='https://hip-exhaust-wash-routines.trycloudflare.com',out='output/increment-007-https-qualification';
+const result={origin,started:new Date().toISOString(),rejectUnauthorized:true,redirectFollowing:false,routes:[]};
+const hash=b=>createHash('sha256').update(b).digest('hex');
+function request(route){return new Promise((resolve,reject)=>{const req=https.get(origin+route,{timeout:12000,rejectUnauthorized:true},res=>{const chunks=[];res.on('data',b=>chunks.push(b));res.on('end',()=>resolve({status:res.statusCode,headers:res.headers,body:Buffer.concat(chunks),authorized:res.socket?.authorized}));});req.on('timeout',()=>req.destroy(Error('bounded HTTPS request timeout')));req.on('error',reject);});}
+try{
+ const chain=await new Promise((resolve,reject)=>{const s=tls.connect({host:new URL(origin).hostname,port:443,servername:new URL(origin).hostname,rejectUnauthorized:true,timeout:12000},()=>{const certs=[],seen=new Set();let cert=s.getPeerCertificate(true);while(cert?.raw&&!seen.has(cert.fingerprint256)){seen.add(cert.fingerprint256);certs.push({subject:cert.subject,issuer:cert.issuer,subjectaltname:cert.subjectaltname,valid_from:cert.valid_from,valid_to:cert.valid_to,fingerprint256:cert.fingerprint256,rawDERBase64:cert.raw.toString('base64')});cert=cert.issuerCertificate;}const r={authorized:s.authorized,authorizationError:s.authorizationError??null,protocol:s.getProtocol(),cipher:s.getCipher(),certificates:certs};s.end();resolve(r);});s.on('timeout',()=>s.destroy(Error('TLS timeout')));s.on('error',reject);});result.tls=chain;
+ const manifest=JSON.parse(await readFile('research/increment-007-https-qualification/publication-manifest.json','utf8'));
+ for(const entry of manifest.files)for(const route of entry.routes){const r=await request(route),record={route,status:r.status,headers:r.headers,bytes:r.body.length,sha256:hash(r.body),matches:r.body.length===entry.bytes&&hash(r.body)===entry.sha256};result.routes.push(record);if(r.status!==200||!record.matches||r.headers.location)throw Error('stop: unexpected HTTPS response '+route+' '+r.status);}
+ result.status='pass';
+}catch(error){result.status='fail';result.error=String(error);}
+result.ended=new Date().toISOString();await writeFile(out+'/edge-check.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({status:result.status,error:result.error,routes:result.routes.length,tlsAuthorized:result.tls?.authorized,certificateCount:result.tls?.certificates.length}));if(result.status!=='pass')process.exitCode=1;

@@ -7,6 +7,42 @@ B-1–B-5, P-1–P-4, S-1–S-6, F-1–F-5 and AC-1–24 stay binding. This plan
 remaining evidence; it neither reopens policy nor approves the designer's separate
 bounded-rendering assessment or any prototype change.
 
+## Scoped HTTPS authorization — 10 November 2026
+
+The user approved executing G-05 through a temporary Cloudflare Quick Tunnel after
+asking for an alternative that does **not** modify Mac trust settings. Only a dedicated
+read-only synthetic harness may be exposed; the repository, real projects and existing
+local servers stay outside it. No Cloudflare account, certificate-trust change, TLS
+validation bypass or production implementation is authorized. A developer prepares
+an exact allowlisted bundle for independent pre-exposure review, then runs the scoped
+Chrome/Safari HTTPS checks and stops the temporary tunnel. Source/evidence live under
+`research/increment-007-https-qualification/` and
+`output/increment-007-https-qualification/`; previous qualification artifacts stay frozen.
+This does not approve the other gap cases, prototype edits, the rendering recommendation
+or the proposed B-4 HTTPS deferral. No passing HTTPS evidence is established yet.
+
+## Reviewed G-05 HTTPS result — 10 November 2026
+
+The [isolated HTTPS report](../../output/increment-007-https-qualification/report.md),
+[42-file result manifest](../../output/increment-007-https-qualification/manifest.json)
+and [independent pre-exposure/result review](../../output/increment-007-https-qualification/independent-review.md)
+record a passing scoped mechanism subset on the approved temporary Cloudflare origin.
+Both native engines used normal certificate validation and exercised module workers,
+strict-complete/abort, locks, exact transfer, actual filesystem input restoration and
+CSP denial. Chrome completed native Blob disk download; Safari restored the identical
+file after a preserved filename/path retry. No actionable review finding remains.
+
+Mac trust/Keychain/certificate/browser TLS settings were not changed. Only the reviewed
+read-only synthetic assets were exposed. The tunnel/server/test contexts are stopped;
+the former URL returns 530/1033 rather than the harness and the local port is closed.
+
+**G-05 remains partial:** Safari normal persistent-profile HTTPS and native disk
+download, OS picker select/cancel, storage-policy observations and the actual delivery
+origin/product integration remain unqualified. HTTPS is no longer wholly unavailable,
+but this does not adopt the earlier B-4 deferral proposal or close all support gates.
+Other gap cases and rendering/prototype work remain unauthorized. The original
+recommendations below predate this execution and must be read with this result.
+
 ## Evidence carried forward
 
 The [original Stage A report](../../output/increment-007-stage-a/report.md),

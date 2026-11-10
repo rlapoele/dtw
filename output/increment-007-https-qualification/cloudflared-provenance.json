@@ -1,0 +1,42 @@
+{
+  "release": "2026.10.7",
+  "officialDownload": "https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-darwin-arm64.tgz",
+  "metadataURL": "https://api.github.com/repos/cloudflare/cloudflared/releases/latest",
+  "archive": {
+    "bytes": 19847161,
+    "sha256": "3586ccf397e98e5f437e60e7c307ca6ac463e110580503af8bb8e6f9ebf831bd",
+    "publishedGitHubAssetDigest": "sha256:3586ccf397e98e5f437e60e7c307ca6ac463e110580503af8bb8e6f9ebf831bd",
+    "matches": true
+  },
+  "executable": {
+    "bytes": 39487168,
+    "sha256": "2136431d5eb467bf447d2ee514b713e192719b143aec1d9e09bf7dc290d5bb12",
+    "publishedReleaseBodySHA256": "2136431d5eb467bf447d2ee514b713e192719b143aec1d9e09bf7dc290d5bb12",
+    "matches": true
+  },
+  "checksumMapping": "Release body labels cloudflared-darwin-arm64.tgz but its checksum matches extracted executable; API digest matches archive. Both actual objects verified.",
+  "archiveMembers": [
+    "cloudflared"
+  ],
+  "signature": {
+    "sandboxAttempt": "codesign --verify --strict --verbose=2 returned invalid signature; Authority unavailable under sandbox",
+    "unsandboxedReadOnlyRecheck": "valid on disk; satisfies its Designated Requirement",
+    "authority": [
+      "Developer ID Application: Cloudflare Inc. (68WVV388M8)",
+      "Developer ID Certification Authority",
+      "Apple Root CA"
+    ],
+    "teamIdentifier": "68WVV388M8",
+    "timestamp": "2026-10-30 18:06:00 local display",
+    "CDHash": "5bf3450185fb8b2b6d7e54a39baba53c5afa60c9"
+  },
+  "executed": false,
+  "systemInstalled": false,
+  "tunnelStarted": false,
+  "trustChanges": false,
+  "attempts": [
+    "Initial sandbox curl DNS resolution unavailable; official HTTPS fetch succeeded with reviewed network escalation.",
+    "Initial loopback test listen EPERM; reviewed loopback-only escalation passed.",
+    "Two prior official release metadata snapshots inspected before checksum archive/executable mapping was discovered. No prior binary downloaded."
+  ]
+}

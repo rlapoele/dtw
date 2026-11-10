@@ -1,0 +1,192 @@
+{
+  "schema": 1,
+  "baseCommit": "cc8eb9ef437e8d40f511525ca48642491db40991",
+  "scope": "Exact public synthetic asset allowlist only. No repository source/output roots or evidence endpoints.",
+  "files": [
+    {
+      "file": "publish/codec.mjs",
+      "routes": [
+        "/codec.mjs"
+      ],
+      "mime": "text/javascript; charset=utf-8",
+      "bytes": 16590,
+      "sha256": "3ac7cfb2f71967a76fb06dffbf65465ff924b92dcece36462bf048f48e1636d0",
+      "provenance": {
+        "source": "research/increment-007-stage-a/codec.mjs",
+        "originalSHA256": "3ac7cfb2f71967a76fb06dffbf65465ff924b92dcece36462bf048f48e1636d0",
+        "change": "byte-identical copy"
+      },
+      "license": "DTW project-authored research; no separate outbound license asserted"
+    },
+    {
+      "file": "publish/fixtures.mjs",
+      "routes": [
+        "/fixtures.mjs"
+      ],
+      "mime": "text/javascript; charset=utf-8",
+      "bytes": 3411,
+      "sha256": "3ed2e8ac5b31472c2cd55164f8fac41f2eaa928e9755c62514ba2f5f6eedb29a",
+      "provenance": {
+        "source": "research/increment-007-stage-a/fixtures.mjs",
+        "originalSHA256": "3ed2e8ac5b31472c2cd55164f8fac41f2eaa928e9755c62514ba2f5f6eedb29a",
+        "change": "byte-identical copy"
+      },
+      "license": "DTW project-authored research; no separate outbound license asserted"
+    },
+    {
+      "file": "publish/index.html",
+      "routes": [
+        "/index.html",
+        "/",
+        "/blocked",
+        "/capability-failure"
+      ],
+      "mime": "text/html; charset=utf-8",
+      "bytes": 805,
+      "sha256": "fea80b10d906cc466c5a0c499ca6c8a0e52b660444e8667b94c53a2ef81f5b72",
+      "provenance": {
+        "source": "new isolated synthetic qualification source",
+        "change": "authored for this harness"
+      },
+      "license": "DTW project-authored research; no separate outbound license asserted"
+    },
+    {
+      "file": "publish/page.mjs",
+      "routes": [
+        "/page.mjs"
+      ],
+      "mime": "text/javascript; charset=utf-8",
+      "bytes": 6363,
+      "sha256": "30118276e48aac6e05b966163f3de79a741e0a57ebe21a768d83e0ba009305fc",
+      "provenance": {
+        "source": "new isolated synthetic qualification source",
+        "change": "authored for this harness"
+      },
+      "license": "DTW project-authored research; no separate outbound license asserted"
+    },
+    {
+      "file": "publish/vendor/LICENSE.md",
+      "routes": [
+        "/vendor/LICENSE.md"
+      ],
+      "mime": "text/plain; charset=utf-8",
+      "bytes": 1092,
+      "sha256": "c3a24c02d678e5f0711623dcf3ab3f243b273c2633f638a1fa8e35fb7c7f8e4d",
+      "provenance": {
+        "source": "research/increment-007-stage-a/node_modules/jsonc-parser/LICENSE.md",
+        "originalSHA256": "c3a24c02d678e5f0711623dcf3ab3f243b273c2633f638a1fa8e35fb7c7f8e4d",
+        "change": "byte-identical copy"
+      },
+      "license": "MIT; Microsoft Corporation; notice at /vendor/LICENSE.md"
+    },
+    {
+      "file": "publish/vendor/impl/edit.js",
+      "routes": [
+        "/vendor/impl/edit.js",
+        "/vendor/impl/edit"
+      ],
+      "mime": "text/javascript; charset=utf-8",
+      "bytes": 8613,
+      "sha256": "7e7bf98e740f560026df079056d3b0f5f34628124a8d34e2765fb101dde12911",
+      "provenance": {
+        "source": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/impl/edit.js",
+        "originalSHA256": "7e7bf98e740f560026df079056d3b0f5f34628124a8d34e2765fb101dde12911",
+        "change": "byte-identical copy"
+      },
+      "license": "MIT; Microsoft Corporation; notice at /vendor/LICENSE.md"
+    },
+    {
+      "file": "publish/vendor/impl/format.js",
+      "routes": [
+        "/vendor/impl/format.js",
+        "/vendor/impl/format"
+      ],
+      "mime": "text/javascript; charset=utf-8",
+      "bytes": 11098,
+      "sha256": "e57dee56700a844b18dea11548f9ba42b17bc857bde5bcd39554af06ca95bb1f",
+      "provenance": {
+        "source": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/impl/format.js",
+        "originalSHA256": "e57dee56700a844b18dea11548f9ba42b17bc857bde5bcd39554af06ca95bb1f",
+        "change": "byte-identical copy"
+      },
+      "license": "MIT; Microsoft Corporation; notice at /vendor/LICENSE.md"
+    },
+    {
+      "file": "publish/vendor/impl/parser.js",
+      "routes": [
+        "/vendor/impl/parser.js",
+        "/vendor/impl/parser"
+      ],
+      "mime": "text/javascript; charset=utf-8",
+      "bytes": 25765,
+      "sha256": "74fae1bbebf290a04e46c5457ac5d97988146a5503ea35d9f0c4c3768acd5a26",
+      "provenance": {
+        "source": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/impl/parser.js",
+        "originalSHA256": "74fae1bbebf290a04e46c5457ac5d97988146a5503ea35d9f0c4c3768acd5a26",
+        "change": "byte-identical copy"
+      },
+      "license": "MIT; Microsoft Corporation; notice at /vendor/LICENSE.md"
+    },
+    {
+      "file": "publish/vendor/impl/scanner.js",
+      "routes": [
+        "/vendor/impl/scanner.js",
+        "/vendor/impl/scanner"
+      ],
+      "mime": "text/javascript; charset=utf-8",
+      "bytes": 19188,
+      "sha256": "e737e1774f87ca88d85d73e3bafff688b78cac06b81c53b96c54da8b3ca86cd9",
+      "provenance": {
+        "source": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/impl/scanner.js",
+        "originalSHA256": "e737e1774f87ca88d85d73e3bafff688b78cac06b81c53b96c54da8b3ca86cd9",
+        "change": "byte-identical copy"
+      },
+      "license": "MIT; Microsoft Corporation; notice at /vendor/LICENSE.md"
+    },
+    {
+      "file": "publish/vendor/impl/string-intern.js",
+      "routes": [
+        "/vendor/impl/string-intern.js",
+        "/vendor/impl/string-intern"
+      ],
+      "mime": "text/javascript; charset=utf-8",
+      "bytes": 1034,
+      "sha256": "3a0aad3f56c3e0728812c7584568c0ff200bce1ca58cf40e946f01fdb54c5752",
+      "provenance": {
+        "source": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/impl/string-intern.js",
+        "originalSHA256": "3a0aad3f56c3e0728812c7584568c0ff200bce1ca58cf40e946f01fdb54c5752",
+        "change": "byte-identical copy"
+      },
+      "license": "MIT; Microsoft Corporation; notice at /vendor/LICENSE.md"
+    },
+    {
+      "file": "publish/vendor/main.js",
+      "routes": [
+        "/vendor/main.js"
+      ],
+      "mime": "text/javascript; charset=utf-8",
+      "bytes": 9363,
+      "sha256": "72ff182105e158a1505ca3ecbf3f30359abb138a3980edaef1db7f4010ffb7dc",
+      "provenance": {
+        "source": "research/increment-007-stage-a/node_modules/jsonc-parser/lib/esm/main.js",
+        "originalSHA256": "72ff182105e158a1505ca3ecbf3f30359abb138a3980edaef1db7f4010ffb7dc",
+        "change": "byte-identical copy"
+      },
+      "license": "MIT; Microsoft Corporation; notice at /vendor/LICENSE.md"
+    },
+    {
+      "file": "publish/worker.mjs",
+      "routes": [
+        "/worker.mjs"
+      ],
+      "mime": "text/javascript; charset=utf-8",
+      "bytes": 5642,
+      "sha256": "529c7d308fd8ec46eb0dc19068ce02222a9a1c0754145b523e547d45a0d7d4a6",
+      "provenance": {
+        "source": "new isolated synthetic qualification source",
+        "change": "authored for this harness"
+      },
+      "license": "DTW project-authored research; no separate outbound license asserted"
+    }
+  ]
+}

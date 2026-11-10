@@ -1,0 +1,1202 @@
+{
+  "started": "2026-11-10T09:55:37.294Z",
+  "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw-https-chrome-ItizQl",
+  "profileMode": "owned normal persistent disposable Chrome profile; no private/incognito mode",
+  "tlsBypass": false,
+  "cases": [
+    {
+      "route": "/blocked",
+      "evidence": {
+        "started": "2026-11-10T09:55:44.633Z",
+        "url": "https://hip-exhaust-wash-routines.trycloudflare.com/blocked",
+        "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "secure": true,
+        "topLevel": true,
+        "mode": "/blocked",
+        "events": [
+          {
+            "type": "csp-violation",
+            "time": 265.90000000037253,
+            "value": {
+              "effectiveDirective": "worker-src",
+              "blockedURI": "https://hip-exhaust-wash-routines.trycloudflare.com/worker.mjs",
+              "disposition": "enforce"
+            }
+          },
+          {
+            "type": "worker-error",
+            "time": 266,
+            "value": {
+              "message": "worker load error"
+            }
+          },
+          {
+            "type": "fail-closed",
+            "time": 266.20000000018626,
+            "value": {
+              "error": "Error: worker unavailable",
+              "writesDispatched": 0,
+              "synchronousFallback": false,
+              "volatileFallback": false
+            }
+          }
+        ],
+        "cases": [],
+        "capabilityFailure": "Error: worker unavailable"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842eea782bc72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'none'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:44 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      }
+    },
+    {
+      "route": "/capability-failure",
+      "evidence": {
+        "started": "2026-11-10T09:55:44.989Z",
+        "url": "https://hip-exhaust-wash-routines.trycloudflare.com/capability-failure",
+        "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "secure": true,
+        "topLevel": true,
+        "mode": "/capability-failure",
+        "events": [
+          {
+            "type": "injected-required-capability-denial",
+            "time": 325.70000000018626,
+            "value": {
+              "capability": "Worker",
+              "injection": true
+            }
+          },
+          {
+            "type": "fail-closed",
+            "time": 325.80000000074506,
+            "value": {
+              "error": "Error: required worker capability denied by labelled negative control",
+              "writesDispatched": 0,
+              "synchronousFallback": false,
+              "volatileFallback": false
+            }
+          }
+        ],
+        "cases": [],
+        "capabilityFailure": "Error: required worker capability denied by labelled negative control"
+      },
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842eeccbc2d171-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:44 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      }
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ede8fc18f0a-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:42 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/page.mjs",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842edfef46c72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:42 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/worker.mjs",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee0b9a6c72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:42 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/vendor/main.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee1bca8c72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/fixtures.mjs",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee1bcb2c72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/codec.mjs",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee1bcb1c72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/vendor/impl/scanner",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee27f2ac72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/vendor/impl/edit",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee27f28c72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/vendor/impl/parser",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee28f45c72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/vendor/impl/format",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee27f23c72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/vendor/impl/string-intern",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee39ab4c72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/worker.mjs",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee49dcdc72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/vendor/main.js",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee58911c72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/fixtures.mjs",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee59921c72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/codec.mjs",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee58913c72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/vendor/impl/edit",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee63b24c72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/vendor/impl/format",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee63b22c72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/vendor/impl/scanner",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee63b28c72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/vendor/impl/parser",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee63b2bc72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/vendor/impl/string-intern",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842ee72e0ec72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:43 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/blocked",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842eea782bc72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'none'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:44 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/page.mjs",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842eeb7b9bc72b-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:44 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/capability-failure",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842eeccbc2d171-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:44 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    },
+    {
+      "url": "https://hip-exhaust-wash-routines.trycloudflare.com/page.mjs",
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a5842eed9e7ed171-CDG",
+        "content-encoding": "gzip",
+        "content-security-policy": "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'",
+        "content-type": "text/javascript; charset=utf-8",
+        "date": "Tue, 10 Nov 2026 09:55:44 GMT",
+        "referrer-policy": "no-referrer",
+        "server": "cloudflare",
+        "x-content-type-options": "nosniff",
+        "x-robots-tag": "none, none"
+      },
+      "securityDetails": {
+        "issuer": "WE1",
+        "protocol": "TLS 1.3",
+        "subjectName": "trycloudflare.com",
+        "validFrom": 1791233913,
+        "validTo": 1799013500
+      }
+    }
+  ],
+  "console": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "type": "error",
+      "text": "Creating a worker from 'https://hip-exhaust-wash-routines.trycloudflare.com/worker.mjs' violates the following Content Security Policy directive: \"worker-src 'none'\". The action has been blocked."
+    }
+  ],
+  "security": [
+    {
+      "visibleSecurityState": {
+        "securityState": "secure",
+        "certificateSecurityState": {
+          "protocol": "TLS 1.3",
+          "keyExchange": "",
+          "keyExchangeGroup": "X25519MLKEM768",
+          "cipher": "AES_128_GCM",
+          "certificate": [
+            "MIIDjTCCAzSgAwIBAgIQPc/eqPSgxK0Tl85HkOKvjzAKBggqhkjOPQQDAjA7MQswCQYDVQQGEwJVUzEeMBwGA1UEChMVR29vZ2xlIFRydXN0IFNlcnZpY2VzMQwwCgYDVQQDEwNXRTEwHhcNMjYxMDA1MjA1ODMzWhcNMjcwMTAzMjE1ODIwWjAcMRowGAYDVQQDExF0cnljbG91ZGZsYXJlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABI0ARHzF6ugSEbuAzDn9mBBMvzib1LNrxBX0BZbw7RORfltDf6Qvnxv2fwk+gU9eQ27uTplLwU2D40cYUlc+T6ujggI3MIICMzAOBgNVHQ8BAf8EBAMCB4AwEwYDVR0lBAwwCgYIKwYBBQUHAwEwDAYDVR0TAQH/BAIwADAdBgNVHQ4EFgQUmeUKnN7cq9KtUF6UJfLeVUVrWfswHwYDVR0jBBgwFoAUkHeSNWfE/6jMqeZ72YB5e8yT+TgwNQYIKwYBBQUHAQEEKTAnMCUGCCsGAQUFBzAChhlodHRwOi8vaS5wa2kuZ29vZy93ZTEuY3J0MDEGA1UdEQQqMCiCEXRyeWNsb3VkZmxhcmUuY29tghMqLnRyeWNsb3VkZmxhcmUuY29tMBMGA1UdIAQMMAowCAYGZ4EMAQIBMDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jLnBraS5nb29nL3dlMS8xSENOVUtHMFBXQS5jcmwwggEFBgorBgEEAdZ5AgQCBIH2BIHzAPEAdgDW1Y2p0BdT82pKoMdXSQKv68fcLNOM2fdkyAyJGR6fAgAAAaEOE2I3AAAEAwBHMEUCIQDf3QOLBTDBUuxTbkgxuMY6niRZCMi7F4YOpMnCMKw9/AIgKfzcqG4u6h5oWirasGl285Ymms5j5BGfUqGx2qIAzy0AdwAlt+/eoRMBk+2TB5dwqjIqJmIN41rIqnx1GX3gsangZQAAAaEOE2KXAAAEAwBIMEYCIQDVY4VoF3AePG62IErWmelvyGdRpPPDFJNcyVBoSdBnaQIhAL1AZy4R9jvyJNrUOYCyfMFXLzOlTI7OEHS2rDi33jTjMAoGCCqGSM49BAMCA0cAMEQCIBOvF2SAh7HizC2FTvNn3sjoup/CrQx4UwU/8vr/Va1QAiB/KfXGOHdV5lQxVNri9K8vb7bJFgrFguRYD+74ydAkdQ==",
+            "MIICnzCCAiWgAwIBAgIQf/MZd5csIkp2FV0TttaF4zAKBggqhkjOPQQDAzBHMQswCQYDVQQGEwJVUzEiMCAGA1UEChMZR29vZ2xlIFRydXN0IFNlcnZpY2VzIExMQzEUMBIGA1UEAxMLR1RTIFJvb3QgUjQwHhcNMjMxMjEzMDkwMDAwWhcNMjkwMjIwMTQwMDAwWjA7MQswCQYDVQQGEwJVUzEeMBwGA1UEChMVR29vZ2xlIFRydXN0IFNlcnZpY2VzMQwwCgYDVQQDEwNXRTEwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARvzTr+Z1dHTCEDhUDCR127WEcPQMFcF4XGGTfn1XzthkubgdnXGhOlCgP4mMTG6J7/EFmPLCaY9eYmJbsPAvpWo4H+MIH7MA4GA1UdDwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQUkHeSNWfE/6jMqeZ72YB5e8yT+TgwHwYDVR0jBBgwFoAUgEzW63T/STaj1dj8tT7FavCUHYwwNAYIKwYBBQUHAQEEKDAmMCQGCCsGAQUFBzAChhhodHRwOi8vaS5wa2kuZ29vZy9yNC5jcnQwKwYDVR0fBCQwIjAgoB6gHIYaaHR0cDovL2MucGtpLmdvb2cvci9yNC5jcmwwEwYDVR0gBAwwCjAIBgZngQwBAgEwCgYIKoZIzj0EAwMDaAAwZQIxAOcCq1HW90OVznX+0RGU1cxAQXomvtgM8zItPZCuFQ8jSBJSjz5keROv9aYsAm5VsQIwJonMaAFi54mrfhfoFNZEfuNMSQ6/bIBiNLiyoX46FohQvKeIoJ99cx7sUkFN7uJW"
+          ],
+          "subjectName": "trycloudflare.com",
+          "issuer": "WE1",
+          "validFrom": 1791233913,
+          "validTo": 1799013500,
+          "certificateHasWeakSignature": false,
+          "certificateHasSha1Signature": false,
+          "modernSSL": true,
+          "obsoleteSslProtocol": false,
+          "obsoleteSslKeyExchange": false,
+          "obsoleteSslCipher": false,
+          "obsoleteSslSignature": false
+        },
+        "securityStateIssueIds": []
+      }
+    },
+    {
+      "visibleSecurityState": {
+        "securityState": "secure",
+        "certificateSecurityState": {
+          "protocol": "TLS 1.3",
+          "keyExchange": "",
+          "keyExchangeGroup": "X25519MLKEM768",
+          "cipher": "AES_128_GCM",
+          "certificate": [
+            "MIIDjTCCAzSgAwIBAgIQPc/eqPSgxK0Tl85HkOKvjzAKBggqhkjOPQQDAjA7MQswCQYDVQQGEwJVUzEeMBwGA1UEChMVR29vZ2xlIFRydXN0IFNlcnZpY2VzMQwwCgYDVQQDEwNXRTEwHhcNMjYxMDA1MjA1ODMzWhcNMjcwMTAzMjE1ODIwWjAcMRowGAYDVQQDExF0cnljbG91ZGZsYXJlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABI0ARHzF6ugSEbuAzDn9mBBMvzib1LNrxBX0BZbw7RORfltDf6Qvnxv2fwk+gU9eQ27uTplLwU2D40cYUlc+T6ujggI3MIICMzAOBgNVHQ8BAf8EBAMCB4AwEwYDVR0lBAwwCgYIKwYBBQUHAwEwDAYDVR0TAQH/BAIwADAdBgNVHQ4EFgQUmeUKnN7cq9KtUF6UJfLeVUVrWfswHwYDVR0jBBgwFoAUkHeSNWfE/6jMqeZ72YB5e8yT+TgwNQYIKwYBBQUHAQEEKTAnMCUGCCsGAQUFBzAChhlodHRwOi8vaS5wa2kuZ29vZy93ZTEuY3J0MDEGA1UdEQQqMCiCEXRyeWNsb3VkZmxhcmUuY29tghMqLnRyeWNsb3VkZmxhcmUuY29tMBMGA1UdIAQMMAowCAYGZ4EMAQIBMDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jLnBraS5nb29nL3dlMS8xSENOVUtHMFBXQS5jcmwwggEFBgorBgEEAdZ5AgQCBIH2BIHzAPEAdgDW1Y2p0BdT82pKoMdXSQKv68fcLNOM2fdkyAyJGR6fAgAAAaEOE2I3AAAEAwBHMEUCIQDf3QOLBTDBUuxTbkgxuMY6niRZCMi7F4YOpMnCMKw9/AIgKfzcqG4u6h5oWirasGl285Ymms5j5BGfUqGx2qIAzy0AdwAlt+/eoRMBk+2TB5dwqjIqJmIN41rIqnx1GX3gsangZQAAAaEOE2KXAAAEAwBIMEYCIQDVY4VoF3AePG62IErWmelvyGdRpPPDFJNcyVBoSdBnaQIhAL1AZy4R9jvyJNrUOYCyfMFXLzOlTI7OEHS2rDi33jTjMAoGCCqGSM49BAMCA0cAMEQCIBOvF2SAh7HizC2FTvNn3sjoup/CrQx4UwU/8vr/Va1QAiB/KfXGOHdV5lQxVNri9K8vb7bJFgrFguRYD+74ydAkdQ==",
+            "MIICnzCCAiWgAwIBAgIQf/MZd5csIkp2FV0TttaF4zAKBggqhkjOPQQDAzBHMQswCQYDVQQGEwJVUzEiMCAGA1UEChMZR29vZ2xlIFRydXN0IFNlcnZpY2VzIExMQzEUMBIGA1UEAxMLR1RTIFJvb3QgUjQwHhcNMjMxMjEzMDkwMDAwWhcNMjkwMjIwMTQwMDAwWjA7MQswCQYDVQQGEwJVUzEeMBwGA1UEChMVR29vZ2xlIFRydXN0IFNlcnZpY2VzMQwwCgYDVQQDEwNXRTEwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARvzTr+Z1dHTCEDhUDCR127WEcPQMFcF4XGGTfn1XzthkubgdnXGhOlCgP4mMTG6J7/EFmPLCaY9eYmJbsPAvpWo4H+MIH7MA4GA1UdDwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQUkHeSNWfE/6jMqeZ72YB5e8yT+TgwHwYDVR0jBBgwFoAUgEzW63T/STaj1dj8tT7FavCUHYwwNAYIKwYBBQUHAQEEKDAmMCQGCCsGAQUFBzAChhhodHRwOi8vaS5wa2kuZ29vZy9yNC5jcnQwKwYDVR0fBCQwIjAgoB6gHIYaaHR0cDovL2MucGtpLmdvb2cvci9yNC5jcmwwEwYDVR0gBAwwCjAIBgZngQwBAgEwCgYIKoZIzj0EAwMDaAAwZQIxAOcCq1HW90OVznX+0RGU1cxAQXomvtgM8zItPZCuFQ8jSBJSjz5keROv9aYsAm5VsQIwJonMaAFi54mrfhfoFNZEfuNMSQ6/bIBiNLiyoX46FohQvKeIoJ99cx7sUkFN7uJW"
+          ],
+          "subjectName": "trycloudflare.com",
+          "issuer": "WE1",
+          "validFrom": 1791233913,
+          "validTo": 1799013500,
+          "certificateHasWeakSignature": false,
+          "certificateHasSha1Signature": false,
+          "modernSSL": true,
+          "obsoleteSslProtocol": false,
+          "obsoleteSslKeyExchange": false,
+          "obsoleteSslCipher": false,
+          "obsoleteSslSignature": false
+        },
+        "securityStateIssueIds": []
+      }
+    },
+    {
+      "visibleSecurityState": {
+        "securityState": "secure",
+        "certificateSecurityState": {
+          "protocol": "TLS 1.3",
+          "keyExchange": "",
+          "keyExchangeGroup": "X25519MLKEM768",
+          "cipher": "AES_128_GCM",
+          "certificate": [
+            "MIIDjTCCAzSgAwIBAgIQPc/eqPSgxK0Tl85HkOKvjzAKBggqhkjOPQQDAjA7MQswCQYDVQQGEwJVUzEeMBwGA1UEChMVR29vZ2xlIFRydXN0IFNlcnZpY2VzMQwwCgYDVQQDEwNXRTEwHhcNMjYxMDA1MjA1ODMzWhcNMjcwMTAzMjE1ODIwWjAcMRowGAYDVQQDExF0cnljbG91ZGZsYXJlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABI0ARHzF6ugSEbuAzDn9mBBMvzib1LNrxBX0BZbw7RORfltDf6Qvnxv2fwk+gU9eQ27uTplLwU2D40cYUlc+T6ujggI3MIICMzAOBgNVHQ8BAf8EBAMCB4AwEwYDVR0lBAwwCgYIKwYBBQUHAwEwDAYDVR0TAQH/BAIwADAdBgNVHQ4EFgQUmeUKnN7cq9KtUF6UJfLeVUVrWfswHwYDVR0jBBgwFoAUkHeSNWfE/6jMqeZ72YB5e8yT+TgwNQYIKwYBBQUHAQEEKTAnMCUGCCsGAQUFBzAChhlodHRwOi8vaS5wa2kuZ29vZy93ZTEuY3J0MDEGA1UdEQQqMCiCEXRyeWNsb3VkZmxhcmUuY29tghMqLnRyeWNsb3VkZmxhcmUuY29tMBMGA1UdIAQMMAowCAYGZ4EMAQIBMDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jLnBraS5nb29nL3dlMS8xSENOVUtHMFBXQS5jcmwwggEFBgorBgEEAdZ5AgQCBIH2BIHzAPEAdgDW1Y2p0BdT82pKoMdXSQKv68fcLNOM2fdkyAyJGR6fAgAAAaEOE2I3AAAEAwBHMEUCIQDf3QOLBTDBUuxTbkgxuMY6niRZCMi7F4YOpMnCMKw9/AIgKfzcqG4u6h5oWirasGl285Ymms5j5BGfUqGx2qIAzy0AdwAlt+/eoRMBk+2TB5dwqjIqJmIN41rIqnx1GX3gsangZQAAAaEOE2KXAAAEAwBIMEYCIQDVY4VoF3AePG62IErWmelvyGdRpPPDFJNcyVBoSdBnaQIhAL1AZy4R9jvyJNrUOYCyfMFXLzOlTI7OEHS2rDi33jTjMAoGCCqGSM49BAMCA0cAMEQCIBOvF2SAh7HizC2FTvNn3sjoup/CrQx4UwU/8vr/Va1QAiB/KfXGOHdV5lQxVNri9K8vb7bJFgrFguRYD+74ydAkdQ==",
+            "MIICnzCCAiWgAwIBAgIQf/MZd5csIkp2FV0TttaF4zAKBggqhkjOPQQDAzBHMQswCQYDVQQGEwJVUzEiMCAGA1UEChMZR29vZ2xlIFRydXN0IFNlcnZpY2VzIExMQzEUMBIGA1UEAxMLR1RTIFJvb3QgUjQwHhcNMjMxMjEzMDkwMDAwWhcNMjkwMjIwMTQwMDAwWjA7MQswCQYDVQQGEwJVUzEeMBwGA1UEChMVR29vZ2xlIFRydXN0IFNlcnZpY2VzMQwwCgYDVQQDEwNXRTEwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARvzTr+Z1dHTCEDhUDCR127WEcPQMFcF4XGGTfn1XzthkubgdnXGhOlCgP4mMTG6J7/EFmPLCaY9eYmJbsPAvpWo4H+MIH7MA4GA1UdDwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQUkHeSNWfE/6jMqeZ72YB5e8yT+TgwHwYDVR0jBBgwFoAUgEzW63T/STaj1dj8tT7FavCUHYwwNAYIKwYBBQUHAQEEKDAmMCQGCCsGAQUFBzAChhhodHRwOi8vaS5wa2kuZ29vZy9yNC5jcnQwKwYDVR0fBCQwIjAgoB6gHIYaaHR0cDovL2MucGtpLmdvb2cvci9yNC5jcmwwEwYDVR0gBAwwCjAIBgZngQwBAgEwCgYIKoZIzj0EAwMDaAAwZQIxAOcCq1HW90OVznX+0RGU1cxAQXomvtgM8zItPZCuFQ8jSBJSjz5keROv9aYsAm5VsQIwJonMaAFi54mrfhfoFNZEfuNMSQ6/bIBiNLiyoX46FohQvKeIoJ99cx7sUkFN7uJW"
+          ],
+          "subjectName": "trycloudflare.com",
+          "issuer": "WE1",
+          "validFrom": 1791233913,
+          "validTo": 1799013500,
+          "certificateHasWeakSignature": false,
+          "certificateHasSha1Signature": false,
+          "modernSSL": true,
+          "obsoleteSslProtocol": false,
+          "obsoleteSslKeyExchange": false,
+          "obsoleteSslCipher": false,
+          "obsoleteSslSignature": false
+        },
+        "securityStateIssueIds": []
+      }
+    }
+  ],
+  "pid": 11757,
+  "stderr": "\nDevTools listening on ws://127.0.0.1:52020/devtools/browser/5b9c356e-3b14-4313-90a7-e97e6a49f218\nTrying to load the allocator multiple times. This is *not* supported.\n",
+  "version": "157.0.8103.50",
+  "initial": {
+    "started": "2026-11-10T09:55:42.813Z",
+    "url": "https://hip-exhaust-wash-routines.trycloudflare.com/",
+    "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+    "secure": true,
+    "topLevel": true,
+    "mode": "/",
+    "events": [
+      {
+        "type": "ready",
+        "time": 1059.5,
+        "value": {
+          "secure": true,
+          "worker": true,
+          "locks": true,
+          "indexedDB": true,
+          "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+        }
+      }
+    ],
+    "cases": [],
+    "capability": {
+      "secure": true,
+      "worker": true,
+      "locks": true,
+      "indexedDB": true,
+      "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+    }
+  },
+  "afterMechanisms": {
+    "started": "2026-11-10T09:55:42.813Z",
+    "url": "https://hip-exhaust-wash-routines.trycloudflare.com/",
+    "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+    "secure": true,
+    "topLevel": true,
+    "mode": "/",
+    "events": [
+      {
+        "type": "ready",
+        "time": 1059.5,
+        "value": {
+          "secure": true,
+          "worker": true,
+          "locks": true,
+          "indexedDB": true,
+          "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+        }
+      },
+      {
+        "type": "case-pass",
+        "time": 1094.1000000005588,
+        "value": "G05-worker-strict-complete-abort"
+      },
+      {
+        "type": "case-pass",
+        "time": 1097.5,
+        "value": "G05-worker-exact-transfer"
+      },
+      {
+        "type": "case-pass",
+        "time": 1639,
+        "value": "G05-worker-native-locks"
+      },
+      {
+        "type": "run-finished",
+        "time": 1639.300000000745,
+        "value": null
+      }
+    ],
+    "cases": [
+      {
+        "id": "G05-worker-strict-complete-abort",
+        "status": "pass",
+        "value": {
+          "committed": {
+            "status": "retained-after-complete",
+            "trace": [
+              {
+                "sequence": 1,
+                "type": "write-issued",
+                "time": 464.79999999981374,
+                "abort": false,
+                "durability": "strict"
+              },
+              {
+                "sequence": 2,
+                "type": "write-request-success",
+                "time": 465.20000000018626
+              },
+              {
+                "sequence": 3,
+                "type": "write-complete",
+                "time": 465.59999999962747
+              }
+            ]
+          },
+          "aborted": {
+            "status": "known-aborted",
+            "trace": [
+              {
+                "sequence": 6,
+                "type": "write-issued",
+                "time": 466.3999999994412,
+                "abort": true,
+                "durability": "strict"
+              },
+              {
+                "sequence": 7,
+                "type": "write-request-success",
+                "time": 466.5
+              },
+              {
+                "sequence": 8,
+                "type": "explicit-abort-request",
+                "time": 466.5
+              },
+              {
+                "sequence": 9,
+                "type": "write-abort",
+                "time": 466.59999999962747
+              }
+            ]
+          },
+          "exactReadback": true,
+          "unchangedAfterAbort": true,
+          "byteLength": 10372,
+          "sha256": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+          "syntheticDatabase": "dtw-isolated-https-g05-b20c1586-ccc9-4180-90ce-7daa14c7d6ec"
+        }
+      },
+      {
+        "id": "G05-worker-exact-transfer",
+        "status": "pass",
+        "value": {
+          "exact": true,
+          "sha256": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+          "byteLength": 10372,
+          "detached": true,
+          "returnedHash": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118"
+        }
+      },
+      {
+        "id": "G05-worker-native-locks",
+        "status": "pass",
+        "value": {
+          "owner": true,
+          "contender": false,
+          "after": true
+        }
+      }
+    ],
+    "capability": {
+      "secure": true,
+      "worker": true,
+      "locks": true,
+      "indexedDB": true,
+      "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+    }
+  },
+  "download": {
+    "events": [
+      {
+        "type": "willBegin",
+        "frameId": "309A06804F9122F9D0112E2F4A76BEA1",
+        "guid": "d2fee2c2-0a2f-4adf-ba0c-a4e386a78e70",
+        "url": "blob:https://hip-exhaust-wash-routines.trycloudflare.com/bec411fc-40e3-4531-a406-80e51d3d411b",
+        "suggestedFilename": "dtw-synthetic-https-backup.json"
+      },
+      {
+        "type": "progress",
+        "guid": "d2fee2c2-0a2f-4adf-ba0c-a4e386a78e70",
+        "totalBytes": 10372,
+        "receivedBytes": 0,
+        "state": "inProgress"
+      },
+      {
+        "type": "progress",
+        "guid": "d2fee2c2-0a2f-4adf-ba0c-a4e386a78e70",
+        "totalBytes": 10372,
+        "receivedBytes": 10372,
+        "state": "inProgress"
+      },
+      {
+        "type": "progress",
+        "guid": "d2fee2c2-0a2f-4adf-ba0c-a4e386a78e70",
+        "totalBytes": 10372,
+        "receivedBytes": 10372,
+        "state": "inProgress"
+      },
+      {
+        "type": "progress",
+        "guid": "d2fee2c2-0a2f-4adf-ba0c-a4e386a78e70",
+        "totalBytes": 10372,
+        "receivedBytes": 10372,
+        "state": "inProgress"
+      },
+      {
+        "type": "progress",
+        "guid": "d2fee2c2-0a2f-4adf-ba0c-a4e386a78e70",
+        "totalBytes": 10372,
+        "receivedBytes": 10372,
+        "state": "inProgress"
+      },
+      {
+        "type": "progress",
+        "guid": "d2fee2c2-0a2f-4adf-ba0c-a4e386a78e70",
+        "totalBytes": 10372,
+        "receivedBytes": 10372,
+        "state": "completed",
+        "filePath": "/Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/output/increment-007-https-qualification/chrome-downloads/d2fee2c2-0a2f-4adf-ba0c-a4e386a78e70"
+      }
+    ],
+    "file": "/Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/output/increment-007-https-qualification/chrome-downloads/d2fee2c2-0a2f-4adf-ba0c-a4e386a78e70",
+    "bytes": 10372,
+    "sha256": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+    "scope": "actual native Chrome Blob download; automation configured owned download directory"
+  },
+  "afterFile": {
+    "started": "2026-11-10T09:55:42.813Z",
+    "url": "https://hip-exhaust-wash-routines.trycloudflare.com/",
+    "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+    "secure": true,
+    "topLevel": true,
+    "mode": "/",
+    "events": [
+      {
+        "type": "ready",
+        "time": 1059.5,
+        "value": {
+          "secure": true,
+          "worker": true,
+          "locks": true,
+          "indexedDB": true,
+          "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+        }
+      },
+      {
+        "type": "case-pass",
+        "time": 1094.1000000005588,
+        "value": "G05-worker-strict-complete-abort"
+      },
+      {
+        "type": "case-pass",
+        "time": 1097.5,
+        "value": "G05-worker-exact-transfer"
+      },
+      {
+        "type": "case-pass",
+        "time": 1639,
+        "value": "G05-worker-native-locks"
+      },
+      {
+        "type": "run-finished",
+        "time": 1639.300000000745,
+        "value": null
+      },
+      {
+        "type": "download-gesture",
+        "time": 1677.1000000005588,
+        "value": {
+          "bytes": 10372,
+          "filename": "dtw-synthetic-https-backup.json",
+          "meaning": "initiation only; not proof of completed file"
+        }
+      },
+      {
+        "type": "case-pass",
+        "time": 1753.800000000745,
+        "value": "G05-native-selected-file-restore"
+      },
+      {
+        "type": "file-finished",
+        "time": 1753.800000000745,
+        "value": null
+      }
+    ],
+    "cases": [
+      {
+        "id": "G05-worker-strict-complete-abort",
+        "status": "pass",
+        "value": {
+          "committed": {
+            "status": "retained-after-complete",
+            "trace": [
+              {
+                "sequence": 1,
+                "type": "write-issued",
+                "time": 464.79999999981374,
+                "abort": false,
+                "durability": "strict"
+              },
+              {
+                "sequence": 2,
+                "type": "write-request-success",
+                "time": 465.20000000018626
+              },
+              {
+                "sequence": 3,
+                "type": "write-complete",
+                "time": 465.59999999962747
+              }
+            ]
+          },
+          "aborted": {
+            "status": "known-aborted",
+            "trace": [
+              {
+                "sequence": 6,
+                "type": "write-issued",
+                "time": 466.3999999994412,
+                "abort": true,
+                "durability": "strict"
+              },
+              {
+                "sequence": 7,
+                "type": "write-request-success",
+                "time": 466.5
+              },
+              {
+                "sequence": 8,
+                "type": "explicit-abort-request",
+                "time": 466.5
+              },
+              {
+                "sequence": 9,
+                "type": "write-abort",
+                "time": 466.59999999962747
+              }
+            ]
+          },
+          "exactReadback": true,
+          "unchangedAfterAbort": true,
+          "byteLength": 10372,
+          "sha256": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+          "syntheticDatabase": "dtw-isolated-https-g05-b20c1586-ccc9-4180-90ce-7daa14c7d6ec"
+        }
+      },
+      {
+        "id": "G05-worker-exact-transfer",
+        "status": "pass",
+        "value": {
+          "exact": true,
+          "sha256": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+          "byteLength": 10372,
+          "detached": true,
+          "returnedHash": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118"
+        }
+      },
+      {
+        "id": "G05-worker-native-locks",
+        "status": "pass",
+        "value": {
+          "owner": true,
+          "contender": false,
+          "after": true
+        }
+      },
+      {
+        "id": "G05-native-selected-file-restore",
+        "status": "pass",
+        "value": {
+          "status": "restored-synthetic-only",
+          "freshEmptyDatabase": true,
+          "committed": {
+            "status": "retained-after-complete",
+            "trace": [
+              {
+                "sequence": 16,
+                "type": "write-issued",
+                "time": 1124.2000000001863,
+                "abort": false,
+                "durability": "strict"
+              },
+              {
+                "sequence": 17,
+                "type": "write-request-success",
+                "time": 1124.3999999994412
+              },
+              {
+                "sequence": 18,
+                "type": "write-complete",
+                "time": 1124.8999999994412
+              }
+            ]
+          },
+          "exactAuthoredEquality": true,
+          "exactBytes": true,
+          "sha256": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+          "byteLength": 10372,
+          "syntheticDatabase": "dtw-isolated-https-g05-restore-e1f67376-42eb-446a-b8a9-928ca049bf4e",
+          "selectedFilename": "d2fee2c2-0a2f-4adf-ba0c-a4e386a78e70",
+          "selectedBytes": 10372,
+          "selectedSHA256": "06b15cbb8bad0815c90f88b665a53e10bcd2ef8624e3804f64dca31257757118",
+          "detached": true
+        }
+      }
+    ],
+    "capability": {
+      "secure": true,
+      "worker": true,
+      "locks": true,
+      "indexedDB": true,
+      "origin": "https://hip-exhaust-wash-routines.trycloudflare.com",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+    }
+  },
+  "fileSelectionScope": "Playwright sets actual downloaded filesystem file on native file input; no OS picker selection/cancel claim",
+  "status": "pass",
+  "ended": "2026-11-10T09:55:45.015Z"
+}

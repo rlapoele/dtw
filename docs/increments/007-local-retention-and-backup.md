@@ -367,8 +367,12 @@ now closes the recreated-database and overlapping-preparation harness findings.
 Its [report](../../output/increment-007-worker-qualification/report.md) and
 [revision-2 snapshot](../../output/increment-007-worker-qualification/manifest.json)
 record partial native-worker/host evidence. Eager maximum-list responsiveness fails
-the 100 ms target; Safari pending-command watchdog preemption and HTTPS remain
-unqualified. Other native and product integration limits remain explicit. No new
+the 100 ms target; Safari pending-command watchdog preemption remains unqualified.
+A subsequent [reviewed temporary-HTTPS probe](../../output/increment-007-https-qualification/independent-review.md)
+passes its scoped native worker/storage/transfer/file-input/CSP subset without Mac
+trust changes. G-05 remains partial for normal Safari HTTPS, Safari disk download,
+native picker/policy observations and actual delivery-origin/product integration.
+The temporary tunnel is stopped; no B-4 gate deferral is adopted. Other native and product integration limits remain explicit. No new
 render strategy or weaker budget is selected by these results.
 The [qualification-gap plan](007-qualification-gap-plan.md) proposes a prioritized
 mechanism/design batch, later Stage B acceptance, and an explicit HTTPS gate-timing
