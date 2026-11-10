@@ -2,11 +2,15 @@
 
 > Last updated: 10 November 2026
 >
-> Phase: Increment 007 isolated worker qualification reviewed, partial; contract Draft
+> Phase: Increment 007 bounded-rendering assessment and qualification-gap plan ready for user review; contract Draft
 >
 > Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
 
 ## Current focus
+
+**Increment 007 rendering/gap recommendations ready — 10 November 2026:** after committing the reviewed worker qualification as `448b943`, the user authorized a designer assessment and analyst qualification-gap plan only, to be presented before prototype edits. The [designer assessment](../increments/007-bounded-rendering-design-assessment.md) recommends first qualifying staged ordinary rows, bounded worker returns/renderer commits and fine-grained native containment while preserving the current list and complete inspector. It explicitly retains eventual DOM growth to the admitted maximum and requires native Find/AT/focus/scroll plus worst-row/detail evidence; paging/windowing are material fallbacks, not selected interactions. The [analyst gap plan](../increments/007-qualification-gap-plan.md) prioritizes rendering feasibility, Safari same-pending-command supervision, real worker fencing/publication and catalogue/capacity/replacement contention, then native/product Stage B acceptance. It credits completed normal Safari evidence. It proposes an explicit B-4 amendment to defer unavailable HTTPS to a mandatory release/support gate; until user agreement, HTTPS remains an open pre-authorization gate.
+
+Both artifacts are recommendations awaiting user review. The analyst did not review the unapproved designer assessment as an agreed design. No prototype, harness, experiment, browser session, dependency or production changes occurred. Checks were source/evidence/prose/local-link/whitespace review; historical qualification is not a new runtime result. Contract remains Draft / Not started. Final agreement and production implementation remain unauthorized; staging, commits and pushes remain with the user.
 
 **Increment 007 worker followup independently reviewed — 10 November 2026:** the authorized isolated [developer handoff](../../output/increment-007-worker-qualification/report.md), [115-file revision-2 manifest](../../output/increment-007-worker-qualification/manifest.json) and [independent review/recheck](../../output/increment-007-worker-qualification/independent-review.md) record partial qualification. The reviewer reproduced and then independently closed R1/R2: per-database incarnation prevents false rejection after data loss; synchronous reservation prevents overlapping mutation preparation/dispatch. Five focused protocol tests and targeted native Chrome/Safari correction cases pass; reviewer-owned native Chrome probes independently check reset, overlap, delayed cancellation, duplicate dispatch and abort. No actionable harness finding remains. Original failed attempts and executed versions are preserved.
 
@@ -104,7 +108,7 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-Review the independently checked partial result. Recommended next planning work is a bounded rendering assessment that preserves current list/inspector interactions and the agreed limits, plus a plan to close Safari pending-command supervision, HTTPS and remaining host qualification gaps. Material interaction changes return through designer → user → analyst review. No new experiment, rendering change or production implementation is authorized by this handoff. Resolve remaining readiness gates before final contract/design agreement and implementation authorization. Preserve existing sessions, V1/V2 and original Stage A; staging, commits and pushes remain with the user.
+Review the bounded-rendering recommendation and qualification-gap plan before choosing a direction or authorizing any prototype/experiment. Decide explicitly whether to amend B-4's HTTPS timing; existing gates remain binding until then. Any authorized bounded artifact must preserve current list/inspector content and return material interaction changes through user → analyst review. No new prototype, harness run or production implementation starts with this handoff. Final contract/design agreement and implementation authorization remain separate. Staging, commits and pushes remain with the user.
 
 The Increment 007 contract is Draft and requires its recorded decisions and resulting design before final agreement. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, concurrency qualification, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not settle them through prototype convenience.
 

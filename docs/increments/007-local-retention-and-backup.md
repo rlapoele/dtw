@@ -370,6 +370,12 @@ record partial native-worker/host evidence. Eager maximum-list responsiveness fa
 the 100 ms target; Safari pending-command watchdog preemption and HTTPS remain
 unqualified. Other native and product integration limits remain explicit. No new
 render strategy or weaker budget is selected by these results.
+The [qualification-gap plan](007-qualification-gap-plan.md) proposes a prioritized
+mechanism/design batch, later Stage B acceptance, and an explicit HTTPS gate-timing
+choice because that environment is unavailable. These recommendations await user
+review; B-4 timing is unchanged unless the user explicitly agrees an amendment.
+Completed normal Safari restart/file evidence is credited. No new experiments or
+bounded-rendering direction are authorized by this plan.
 Exact supported-build scope and residual mechanism qualification remain bounded
 readiness items. Product integration/Stage B evidence comes after separately
 authorized implementation, not from speculative claims of passing all ACs now.
@@ -417,6 +423,13 @@ No application checks were run for this documentation draft. Prototype build/run
 observations are attributed in the review and cannot establish these criteria.
 
 ## Design proposals and review
+
+- Post-qualification recommendations, 10 November 2026:
+  [bounded-rendering designer assessment](007-bounded-rendering-design-assessment.md)
+  awaits user review before any prototype edits or analyst design review. It selects
+  no new rendering interaction or technology by agreement; production AC-18/20/24
+  remain binding. The separately prepared qualification-gap plan is not approval of
+  this designer recommendation.
 
 - V1: [design notes](../../prototypes/increment-007-v1/DESIGN-V1.md),
   [SHA-256 manifest](../../output/increment-007-prototype-v1/manifest.json),

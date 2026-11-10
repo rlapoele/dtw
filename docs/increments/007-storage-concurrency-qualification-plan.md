@@ -209,3 +209,11 @@ maximum-list responsiveness fails, Safari pending-command preemption is unqualif
 and HTTPS is unavailable. Remaining lifecycle/native-file/catalogue-contention and
 Stage B gaps are not silently waived. No further experiment or rendering change is
 authorized by this result record.
+
+## Proposed gap disposition — 10 November 2026
+
+The [qualification-gap plan](007-qualification-gap-plan.md) prioritizes G-01–06
+against the reviewed worker snapshot, credits completed native evidence, and separates
+pre-authorization mechanism gates from actual application/Stage B and support claims.
+Its suggested HTTPS deferral is an explicit proposed B-4 timing amendment, not adopted
+policy. No rendering direction, new experiment or production work is authorized.
