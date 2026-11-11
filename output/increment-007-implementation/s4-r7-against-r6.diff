@@ -1,0 +1,33 @@
+--- r6/src/presentation/app/RetainedWorkbench.tsx
++++ r7/src/presentation/app/RetainedWorkbench.tsx
+@@ -948,7 +948,7 @@
+           {context &&
+             (allContent ? (
+               <AllContent
+-                key={header.revision}
++                key={JSON.stringify([header.project.id, header.revision])}
+                 context={context}
+                 groupLabels={groupLabels}
+                 onSelect={choose}
+--- r6/src/presentation/features/workbench/components/AllContent.tsx
++++ r7/src/presentation/features/workbench/components/AllContent.tsx
+@@ -1,4 +1,4 @@
+-import { memo, useEffect, useMemo, useState } from "react";
++import { memo, useEffect, useState } from "react";
+ import type { ProjectContext } from "@application/retention/projections";
+ import { Button } from "@presentation/components/ui/button";
+ import {
+@@ -36,10 +36,9 @@
+   groupLabels: ReadonlyMap<string, string>;
+   onSelect: (kind: "group" | "token", id: string) => void;
+ }) {
+-  const blocks = useMemo(
+-    () => membershipBlocks(context, groupLabels),
+-    [context, groupLabels],
+-  );
++  // The key is the coherent project/revision, not the identity of a refreshed
++  // DTO. Same-revision resume reads must retain native nodes and reveal progress.
++  const [blocks] = useState(() => membershipBlocks(context, groupLabels));
+   const [visible, setVisible] = useState(Math.min(1, blocks.length));
+   useEffect(
+     () => revealMembershipBlocks(blocks.length, setVisible),

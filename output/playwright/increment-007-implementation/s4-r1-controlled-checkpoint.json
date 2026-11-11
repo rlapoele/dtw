@@ -1,0 +1,100 @@
+{
+  "date": "2026-11-11",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-s4-owned-SffZxe",
+  "pid": 49467,
+  "origin": "http://127.0.0.1:4329/test/browser/increment007.html",
+  "manifest": "s4-r1-before-browser-manifest.json",
+  "checks": [
+    "actual retained application and native worker ready",
+    "injected lost terminal observation reconciles actual native accepted receipt once with exact form input",
+    "injected readback failure keeps acknowledged native write and form until explicit read-only recovery completes once",
+    "actual Worker.terminate stops post-native-complete issuer; replacement worker reacquires ownership and confirms exact original receipt without replay",
+    "actual pre-dispatch issuer termination plus ordered unchanged-baseline read proves nonacceptance and preserves correction input"
+  ],
+  "errors": [],
+  "nativeFacts": [
+    {
+      "scenario": "issued worker loss",
+      "originalCommandId": "da836cca-c437-4840-a1cf-b798ca7e2e55",
+      "retainedCommandId": "da836cca-c437-4840-a1cf-b798ca7e2e55",
+      "generation": 2
+    }
+  ],
+  "injectedFaults": [
+    "terminal observation loss",
+    "readback unavailability",
+    "pre-dispatch hold",
+    "post-native-completion hold"
+  ],
+  "browser": "157.0.8103.50",
+  "status": "failed",
+  "error": "TimeoutError: locator.inputValue: Timeout 6000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Name', { exact: true })\u001b[22m\n",
+  "events": [
+    {
+      "phase": "native-strict-complete",
+      "at": 1794353675142,
+      "commandId": "12db3267-8169-4bd7-8ff6-8d5660fc288d",
+      "revision": "2c0b7114-1bc8-45cc-b872-567209e8c5fc",
+      "projectId": "cfa9d28a-bf26-4d6b-8b8f-19b376123cea"
+    },
+    {
+      "phase": "native-strict-complete",
+      "at": 1794353675272,
+      "commandId": "b3160cd6-ccda-4bf2-a287-a6736d6d0e5d",
+      "revision": "850a1c0b-4a12-4a47-9056-686697158953",
+      "projectId": "cfa9d28a-bf26-4d6b-8b8f-19b376123cea"
+    },
+    {
+      "phase": "native-strict-complete",
+      "at": 1794353675486,
+      "commandId": "d3daee0f-ea1e-428e-9a0f-56f496e911f7",
+      "revision": "56445c39-8388-4070-ae98-33e51da77e96",
+      "projectId": "cfa9d28a-bf26-4d6b-8b8f-19b376123cea"
+    },
+    {
+      "phase": "injected-read-unavailable",
+      "at": 1794353675486
+    },
+    {
+      "phase": "native-strict-complete",
+      "at": 1794353675703,
+      "commandId": "da836cca-c437-4840-a1cf-b798ca7e2e55",
+      "revision": "c7aa6aaa-e66f-4a0d-8ab4-8c6ddd5bcb4e",
+      "projectId": "cfa9d28a-bf26-4d6b-8b8f-19b376123cea"
+    },
+    {
+      "phase": "hold-after-native-complete",
+      "at": 1794353675703,
+      "commandId": "da836cca-c437-4840-a1cf-b798ca7e2e55",
+      "revision": "c7aa6aaa-e66f-4a0d-8ab4-8c6ddd5bcb4e",
+      "projectId": "cfa9d28a-bf26-4d6b-8b8f-19b376123cea"
+    },
+    {
+      "phase": "host-native-terminate",
+      "generation": 1,
+      "at": 1794353675751
+    },
+    {
+      "phase": "host-native-terminate",
+      "generation": 1,
+      "at": 1794353675751
+    },
+    {
+      "phase": "hold-before-native-dispatch",
+      "at": 1794353675902,
+      "commandId": "87d64ee9-30f2-42ea-a094-0a9451dba4f7",
+      "revision": "57d5fe94-709e-4c28-809a-8f6ece6ea6be",
+      "projectId": "cfa9d28a-bf26-4d6b-8b8f-19b376123cea"
+    },
+    {
+      "phase": "host-native-terminate",
+      "generation": 2,
+      "at": 1794353675934
+    },
+    {
+      "phase": "host-native-terminate",
+      "generation": 2,
+      "at": 1794353675934
+    }
+  ]
+}

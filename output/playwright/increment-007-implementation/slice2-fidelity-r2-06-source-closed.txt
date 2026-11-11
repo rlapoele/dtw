@@ -1,0 +1,96 @@
+- link "Skip to tokens":
+  - /url: "#tokens"
+- banner:
+  - strong: Token Workbench
+  - text: Fidelity scope
+  - button "Projects"
+- text: Applied work is retained in this browser. Drafts stay in this page. Keep independent backups.
+- navigation "Project groups":
+  - button "Collapse project groups" [expanded]: Project groups
+  - strong: Fidelity scope
+  - text: Color foundations Library
+  - button "All tokens 1"
+  - button "All content"
+  - button "New group"
+  - text: Project
+  - paragraph: One vocabulary. Clear relationships.
+  - text: 0 groups
+- main:
+  - text: Tokens
+  - heading "All colors" [level=1]
+  - paragraph: Build a vocabulary, then connect its meaning.
+  - button "New token"
+  - searchbox "Search color tokens"
+  - text: Token Description Authored value
+  - 'button "brand Unspecified · color Readable ordinary words keep their boundaries. Exact newlines remain. sRGB R: 0 · G: 0 · B: 0 · Alpha: 1" [pressed]':
+    - strong: brand
+    - text: "Unspecified · color Readable ordinary words keep their boundaries. Exact newlines remain. sRGB R: 0 · G: 0 · B: 0 · Alpha: 1"
+  - group: Project diagnostics · namespace and references
+  - status: Color token created and retained.
+- region "Token inspector pane":
+  - text: Token inspector
+  - region "Applied and draft color context": Applied Draft
+  - button "Collapse token inspector" [expanded]
+  - complementary "Selected token":
+    - text: color token
+    - heading "brand" [level=2]
+    - paragraph: Readable ordinary words keep their boundaries. Exact newlines remain.
+    - text: Unspecified layer Unconditional
+    - tablist "Token inspection":
+      - tab "Authored value" [selected]
+      - tab "Resolved & trace"
+    - tabpanel "Authored value":
+      - heading "Value" [level=3]
+      - group "Value source":
+        - text: Value source
+        - button "Literal color" [pressed]
+        - button "Reference"
+      - text: View color space
+      - combobox "View color space":
+        - option "sRGB" [selected]
+        - option "Display P3"
+        - option "HSL"
+        - option "OKLAB"
+        - option "OKLCH"
+      - paragraph: Draft in sRGB. Switching view keeps exact values.
+      - text: RGB entry scale
+      - combobox "RGB entry scale":
+        - option "Normalized · 0–1"
+        - option "0–255 scale" [selected]
+      - text: Red
+      - textbox "Red": "0"
+      - slider "Red slider": "0"
+      - paragraph
+      - paragraph: Illustrative range 0 to 255, step 1. Exact values are retained.
+      - text: Green
+      - textbox "Green": "0"
+      - slider "Green slider": "0"
+      - paragraph
+      - paragraph: Illustrative range 0 to 255, step 1. Exact values are retained.
+      - text: Blue
+      - textbox "Blue": "0"
+      - slider "Blue slider": "0"
+      - paragraph
+      - paragraph: Illustrative range 0 to 255, step 1. Exact values are retained.
+      - text: Alpha
+      - textbox "Alpha": "1"
+      - slider "Alpha slider": "1"
+      - paragraph: Canonical whole numbers or none on the 0–255 scale; alpha 0–1. Sliders are illustrative stepped edits. Derived views and byte displays may be approximate. Apply uses srgb.
+      - paragraph: "Normalized draft: [0, 0, 0]"
+      - paragraph: "Draft preview: Illustrative sRGB specimen."
+      - button "Cancel" [disabled]
+      - button "Apply changes" [disabled]
+      - status: Editing preserves name and metadata.
+      - heading "Currently applied" [level=3]
+      - text: sRGB Red 0 Green 0 Blue 0 Alpha 1
+      - heading "Metadata · read only" [level=3]
+      - term: Regeneration
+      - definition: allowed
+      - term: Semantic role
+      - definition: Unspecified
+      - term: Parent group
+      - definition: Project root
+      - paragraph: Opening very large exact source may briefly pause this view.
+      - group: All authored data
+    - text: Regeneration allowed
+- contentinfo: 1 tokens Applied state retained locally

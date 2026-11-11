@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-11T00:17:01.757Z",
+  "scope": "Offline bounded generator guards only; actual app admission and performance unrun",
+  "results": [
+    {
+      "name": "ordinary100",
+      "snapshotBytes": 29856,
+      "tokens": 100,
+      "groups": 0,
+      "strings": 19227,
+      "values": 2106,
+      "longest": 13,
+      "maxTokenDescription": 0
+    },
+    {
+      "name": "ordinary1000",
+      "snapshotBytes": 300858,
+      "tokens": 1000,
+      "groups": 0,
+      "strings": 194829,
+      "values": 21006,
+      "longest": 13,
+      "maxTokenDescription": 0
+    },
+    {
+      "name": "maximum",
+      "snapshotBytes": 1369804,
+      "tokens": 10000,
+      "groups": 2000,
+      "strings": 923709,
+      "values": 80020,
+      "longest": 13,
+      "maxTokenDescription": 0
+    },
+    {
+      "name": "8MiB",
+      "snapshotBytes": 8388608,
+      "tokens": 1,
+      "groups": 64,
+      "strings": 2798396,
+      "values": 411,
+      "longest": 65536,
+      "maxTokenDescription": 0
+    },
+    {
+      "name": "source65535",
+      "snapshotBytes": 65893,
+      "tokens": 1,
+      "groups": 1,
+      "strings": 65721,
+      "values": 33,
+      "longest": 65417,
+      "maxTokenDescription": 0,
+      "serializedSourceUnits": 65535,
+      "surrogateHighAt8191": 55358,
+      "surrogateLowAt8192": 56809
+    },
+    {
+      "name": "source65536",
+      "snapshotBytes": 65894,
+      "tokens": 1,
+      "groups": 1,
+      "strings": 65722,
+      "values": 33,
+      "longest": 65418,
+      "maxTokenDescription": 0,
+      "serializedSourceUnits": 65536,
+      "surrogateHighAt8191": 55358,
+      "surrogateLowAt8192": 56809
+    },
+    {
+      "name": "source65537",
+      "snapshotBytes": 65895,
+      "tokens": 1,
+      "groups": 1,
+      "strings": 65723,
+      "values": 33,
+      "longest": 65419,
+      "maxTokenDescription": 0,
+      "serializedSourceUnits": 65537,
+      "surrogateHighAt8191": 55358,
+      "surrogateLowAt8192": 56809
+    }
+  ],
+  "rejectedMutations": [
+    "10001 tokens",
+    "2001 groups",
+    "1025-unit token description",
+    "65537-unit group description",
+    "8388609-byte snapshot",
+    "aggregate authored string overflow"
+  ],
+  "surrogateFrameBoundaryAssertions": "passed"
+}

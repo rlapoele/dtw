@@ -1,5 +1,20 @@
 # Increment 007 — remaining qualification gaps
 
+## Current execution disposition — 10 November 2026
+
+The user has authorized actual Increment 007 development, using Chrome automated
+tests and manual Chrome or Firefox tests. The
+[contract authorization](007-local-retention-and-backup.md#current-authorization-and-browsergate-amendment--10-november-2026)
+and [B-3/B-4 amendment](007-production-scheduling-and-browser-scope-proposal.md#current-b-3b-4-amendment--10-november-2026)
+supersede the earlier prerequisite ordering and two-engine completion scope below.
+Implement and check remaining applicable Chrome gaps on the actual app. Keep exact
+codec/resource/performance/safety and AC behavior unchanged; do not restart synthetic
+research automatically. Broader engines follow a fully featured working PWA. Safari
+G-02/G-03/G-04 are deferred future qualification, not current blockers or authorizations
+for setup, watchdog probes or tests. Existing failed/incomplete evidence stays frozen.
+The [closure plan](007-closure-plan.md) is adopted as amended. The sections below are
+a historical gap/evidence ledger, not the current implementation-authorization gate.
+
 **10 November policy amendment:** the user agreed [E-1–E-4](007-exceptional-detail-policy-and-performance-proposal.md).
 Its narrowly scoped 250 ms task/5 s action allowance supersedes the blanket 100 ms
 wording below only for explicit exceptional authored/identity source access. Ordinary

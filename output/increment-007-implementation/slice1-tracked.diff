@@ -1,0 +1,71 @@
+diff --git a/package-lock.json b/package-lock.json
+index 846c07d..4d1029f 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -11,6 +11,7 @@
+         "@base-ui/react": "1.9.0",
+         "@heroicons/react": "2.2.0",
+         "culori": "4.0.2",
++        "jsonc-parser": "3.3.1",
+         "react": "19.3.1",
+         "react-dom": "19.3.1"
+       },
+@@ -1437,6 +1438,12 @@
+         "jiti": "lib/jiti-cli.mjs"
+       }
+     },
++    "node_modules/jsonc-parser": {
++      "version": "3.3.1",
++      "resolved": "https://registry.npmjs.org/jsonc-parser/-/jsonc-parser-3.3.1.tgz",
++      "integrity": "sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==",
++      "license": "MIT"
++    },
+     "node_modules/lightningcss": {
+       "version": "1.33.0",
+       "resolved": "https://registry.npmjs.org/lightningcss/-/lightningcss-1.33.0.tgz",
+diff --git a/package.json b/package.json
+index d3ca885..f2579d1 100644
+--- a/package.json
++++ b/package.json
+@@ -27,6 +27,7 @@
+     "@base-ui/react": "1.9.0",
+     "@heroicons/react": "2.2.0",
+     "culori": "4.0.2",
++    "jsonc-parser": "3.3.1",
+     "react": "19.3.1",
+     "react-dom": "19.3.1"
+   }
+diff --git a/src/presentation/main.tsx b/src/presentation/main.tsx
+index 7c08880..b186f04 100644
+--- a/src/presentation/main.tsx
++++ b/src/presentation/main.tsx
+@@ -1,4 +1,4 @@
+ import { createRoot } from "react-dom/client";
+-import { App } from "@presentation/app/App";
++import { RetainedApp } from "@presentation/app/RetainedApp";
+ import "@presentation/styles/global.css";
+-createRoot(document.getElementById("root")!).render(<App />);
++createRoot(document.getElementById("root")!).render(<RetainedApp />);
+diff --git a/tsconfig.json b/tsconfig.json
+index e3a4cb2..9e7258d 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -19,5 +19,5 @@
+     }
+   },
+   "include": ["src/**/*.ts", "test/**/*.ts"],
+-  "exclude": ["src/presentation"]
++  "exclude": ["src/presentation", "src/adapters/browser"]
+ }
+diff --git a/tsconfig.presentation.json b/tsconfig.presentation.json
+index 85191a2..47af160 100644
+--- a/tsconfig.presentation.json
++++ b/tsconfig.presentation.json
+@@ -7,6 +7,7 @@
+   },
+   "include": [
+     "src/presentation/**/*.ts",
++    "src/adapters/browser/**/*.ts",
+     "src/presentation/**/*.tsx",
+     "test/browser/**/*.tsx",
+     "test/presentation/**/*.test.tsx"

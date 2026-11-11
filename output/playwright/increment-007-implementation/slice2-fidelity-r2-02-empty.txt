@@ -1,0 +1,35 @@
+- link "Skip to tokens":
+  - /url: "#tokens"
+- banner:
+  - strong: Token Workbench
+  - text: Fidelity scope
+  - button "Projects"
+- text: Applied work is retained in this browser. Drafts stay in this page. Keep independent backups.
+- navigation "Project groups":
+  - button "Collapse project groups" [expanded]: Project groups
+  - strong: Fidelity scope
+  - text: Color foundations Library
+  - button "All tokens 0"
+  - button "All content"
+  - button "New group"
+  - text: Project
+  - paragraph: One vocabulary. Clear relationships.
+  - text: 0 groups
+- main:
+  - text: Tokens
+  - heading "All colors" [level=1]
+  - paragraph: Build a vocabulary, then connect its meaning.
+  - button "New token"
+  - searchbox "Search color tokens"
+  - text: Token Description Authored value
+  - heading "Your project is empty" [level=2]
+  - paragraph: Create a color at the root, or add a group to organize it.
+  - button "New token"
+  - group: Project diagnostics · namespace and references
+  - status
+- region "Token inspector pane":
+  - text: Token inspector
+  - button "Collapse token inspector" [expanded]
+  - heading "No token selected" [level=2]
+  - paragraph: Select or create a color token.
+- contentinfo: 0 tokens Applied state retained locally

@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-11",
+  "manifest": "s4-r5-before-browser-manifest.json",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-owned-NToGQD",
+  "pid": 52385,
+  "checks": [
+    "fresh browser shows empty catalogue",
+    "retained workbench opened",
+    "created color token through native retained worker",
+    "exact color revision acknowledged",
+    "independent raw draft and Cancel preserve applied state",
+    "on-demand exact applied source disclosure",
+    "retained group create and rename",
+    "All content reaches group identity inspection",
+    "reopen retains exact color and metadata",
+    "actual independent backup downloaded without draft serialization",
+    "independent backup restores IDs and exact color into empty browser origin"
+  ],
+  "errors": [],
+  "browser": "157.0.8103.50",
+  "backup": {
+    "projectId": "5d0f8067-b354-4e87-bd12-d8887cc62e3c",
+    "tokens": 1,
+    "format": "dtw.project-backup"
+  },
+  "status": "failed",
+  "error": "TimeoutError: locator.click: Timeout 6000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Review replacement', exact: true })\u001b[22m\n",
+  "failureUI": "- banner:\n  - strong: Token Workbench\n  - text: Browser local\n- main:\n  - heading \"Projects in this browser\" [level=1]\n  - paragraph: \"Applied work is retained automatically. Keep independent backups: browser storage can be cleared or become unavailable.\"\n  - list:\n    - listitem:\n      - button \"Retained authoring\"\n      - paragraph: 2 tokens · 1 groups\n      - paragraph: \"Identity: \\\"5d0f8067-b354-4e87-bd12-d8887cc62e3c\\\"\"\n  - heading \"Restore backup\" [level=2]\n  - text: Project backup file\n  - button \"Project backup file\"\n  - heading \"New project\" [level=2]\n  - text: Project name\n  - textbox \"Project name\"\n  - button \"Create project\"\n  - alert\n  - status"
+}

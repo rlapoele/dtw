@@ -1,5 +1,39 @@
 # Increment 007 — production scheduling and browser qualification scope
 
+## Current B-3/B-4 amendment — 10 November 2026
+
+**Agreed; Increment 007 implementation authorized.** The latest user instruction
+selects Chrome for development and automated tests, with user manual testing in
+Chrome or Firefox. Broader browser/engine qualification follows once the PWA is
+fully featured and working. This explicitly supersedes the earlier Chrome/Safari
+pre-authorization and completion matrix below; historical evidence remains unchanged.
+
+- **B-3:** use actual native desktop Chrome and record exact build/OS/profile/origin
+  for automated acceptance. User Firefox manual observations are case-specific,
+  without a blanket support claim. Defer Safari G-02/G-03/G-04 and additional-engine
+  qualification; none blocks Increment 007 completion. No Safari environment setup,
+  supervisor proof or tests are part of current work.
+- **B-4:** implement now using the agreed contract, reviewed V3 revision 2 and V4
+  supplement, preserving current production list/inspector and description wrapping.
+  Remaining mechanism/rendering/native/HTTPS/lifecycle checks move to actual-app
+  Chrome completion/support gates rather than pre-implementation research gates.
+  Perform all applicable AC-1–24, strict-complete/abort/locks, exact transfer/codec,
+  ownership and revision/recovery races, resource limits, file/restart, delivery
+  HTTPS/CSP plus loopback, UI/accessibility and performance checks. Disclose genuinely
+  uninducible native events or unavailable delivery checks and resolve the specific
+  support/gate disposition before claiming support; do not infer passes.
+- **B-1/B-2/B-5 remain binding:** worker placement, one retained authority, no replay
+  or synchronous/session fallback, safety stops and unchanged resource/timing budgets.
+  All acceptance behavior remains mandatory; broader engines are postponed, not
+  declared passing. This amendment adds no install/offline or Electron scope.
+
+The [agreed contract](007-local-retention-and-backup.md#current-authorization-and-browsergate-amendment--10-november-2026)
+owns authorization/design identity. The material below records the original agreement
+and isolated research history; former pending/Draft/two-engine gate wording is
+superseded only as specified here.
+
+## Original agreement and qualification history
+
 **B-1–B-5 agreed — 9 November 2026; bounded isolated qualification followup authorized.**
 Production Increment 007 implementation remains unauthorized.
 **10 November amendment:** user-agreed [E-1–E-4](007-exceptional-detail-policy-and-performance-proposal.md)

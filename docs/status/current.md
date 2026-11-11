@@ -1,12 +1,68 @@
 # Current Project Status
 
-> Last updated: 10 November 2026
+> Last updated: 11 November 2026
 >
-> Phase: Increment 007 Safari readiness diagnosed; pending-command supervision gate unsatisfied; contract Draft
+> Phase: Increment 007 implemented and reviewed; further automated stress qualification stopped at user request
 >
-> Implementation state: session-only React browser authoring app backed by the host-independent domain, shared application operations and in-memory storage. No durable storage.
+> Implementation state: React browser app with retained applied projects in native IndexedDB, a module worker and Web Locks coordination. Unapplied drafts remain session-only. Increment 007 completion is not yet established.
 
 ## Current focus
+
+**Increment 007 functional implementation reviewed — 11 November 2026:** project
+catalogue, retained authoring, backup, staged restore, protected complete replacement
+and recovery are implemented. The [R5 functional evidence](../../output/increment-007-implementation/s4-r5-functional-evidence.md)
+and [independent review](../../output/increment-007-implementation/reviewer-final/review.md)
+identify the frozen source and corrected findings. The reviewer independently checked
+clean-editor replacement and derived-path counterexamples; **1,027 tests / 44 files**,
+four typechecks and the production build pass. No required functional-source finding
+remains within the reviewed scope. This is not an Increment 007 completion claim.
+
+The [finite production qualification inventory](../../output/increment-007-implementation/r5-production-qualification-plan.md)
+is in progress. The 100-token ordinary measurements and separate cold first Apply
+passed. After an independent harness audit, the corrected 1,000-token batch passed
+all 110 operations: command p95 approximately 299 ms, cold first Apply 286 ms and
+no observed renderer LongTask entries above 50 ms. The
+[current evidence disposition](../../output/increment-007-implementation/r5-qualification-partial-evidence.md)
+keeps earlier automation-contaminated failures separate. The maximum-entity fixture (10,000 tokens / 2,000 groups) was admitted and loaded,
+but opening All content produced a 223 ms renderer task. The boundary batch stopped;
+catalogue/source cases remain unrun. The narrow staged-rendering correction is
+implemented and independently reviewed at R7: **1,031 tests / 45 files**, four
+typechecks and build pass. The
+[R6 finding and R7 recheck](../../output/increment-007-implementation/reviewer-final/r6-source-review.md)
+record a corrected same-revision refresh regression. Mounted RED/GREEN evidence
+proves later-button identity/focus preservation and deliberate reset on a new
+revision; this is controlled focus-handler delivery, not native OS lifecycle
+qualification. R7 maximum entities passed, including exact backup equality;
+All content took approximately 1.09 s with a maximum observed task of 56 ms.
+The first 8 MiB capacity upload stopped on automation-injected file conversion,
+confirmed against Playwright source and CPU trace. Direct native Chrome protocol
+file input passed, followed by the full **25 × 8 MiB catalogue** (200 MiB;
+catalogue p95 approximately 907 ms, no observed LongTask entries above 50 ms).
+Source 65,535-unit exact equality and full native selection passed; the in-page
+Find API middle-marker visibility check failed. Later source cases are unrun.
+This API probe does not establish real browser Find UI behavior. Further testing
+is stopped at the user's request; no source-viewer repair follows that result. The
+automation-contaminated ordinary failures did not prompt app changes.
+The [manual acceptance guide](../increments/007-manual-acceptance.md) is pending user
+execution in Chrome or Firefox. Broader engine qualification is deferred under the
+user's explicit scope decision. Staging, commits and pushes remain with the user.
+
+**Increment 007 implementation authorized — 10 November 2026:** the user instructed
+us to develop using Chrome automated tests, with manual Chrome or Firefox tests and
+broader browser/engine qualification once the PWA is fully featured and working.
+The [agreed contract](../increments/007-local-retention-and-backup.md) records current
+agreement/authorization for reviewed V3 revision 2 plus V4 integrated with the current
+production list/full inspector and description wrapping. The
+[B-3/B-4 amendment](../increments/007-production-scheduling-and-browser-scope-proposal.md#current-b-3b-4-amendment--10-november-2026)
+and [adopted closure plan](../increments/007-closure-plan.md) allow implementation now;
+remaining applicable Chrome mechanism/native/HTTPS, exactness, resource, performance
+and UI checks are completion/support gates. AC-1–24 and existing caps/budgets remain
+binding. Safari G-02/G-03/G-04 are deferred future qualification, with no Safari setup,
+watchdog or tests now; manual Firefox reports do not imply blanket qualification.
+Next: finish bounded Chrome resource/performance qualification after the runner audit,
+review the resulting evidence and record completion or precise remaining gaps. No full PWA
+install/offline, Electron, commit, push or release is authorized by this increment.
+Historical evidence below stays unchanged and does not supersede this current scope.
 
 **Safari readiness diagnosed; supervision attempt stopped — 10 November 2026:** the user authorized investigation after committing the finite Chrome batch. A [driver-only diagnostic](../../output/increment-007-safari-readiness-supervision/phase-1-report.md) reproduced an ownership-check defect: Safari's launcher and its Apple WebDriver HTTPService listener have different PIDs, so the frozen helper's strict PID-equality test rejects this native topology. Original low-level receipts were missing, so this explains a reproduced failure mechanism without proving the exact historical run. The new guarded route validates the previously unused exact endpoint, live launcher, unique same-user Apple executable and supporting process metadata before HTTP access. One corrected attempt established readiness and created an isolated Safari 27.2 automation session.
 
@@ -196,7 +252,7 @@ Culori 4.0.2 with @types/culori 4.0.1 supplies approximate conversions behind th
 
 ## Run and inspect
 
-Use the root [README](../../README.md) for installation and commands. `npm run build` then `npm run preview -- --host 127.0.0.1 --port 4173 --strictPort` serves production. Work exists only in the page and is lost on reload, closing or navigation. The isolated historical prototype is not the application. Failure fixtures use the separate development test entry documented in the evidence; they are not import/persistence APIs.
+Use the root [README](../../README.md) for installation and commands. `npm run build` then `npm run preview -- --host 127.0.0.1 --port 4173 --strictPort` serves production. Applied projects are retained per normal browser profile and origin; unapplied drafts and forms are lost on reload, closing or navigation. Browser storage is best-effort, and downloaded backups remain separate files. The isolated historical prototype is not the application. Failure fixtures use the separate development test entry documented in the evidence; they are not import/persistence APIs.
 
 ## Established baseline
 
@@ -206,9 +262,22 @@ DTCG 2025.10 remains the strict interchange baseline, not canonical persistence.
 
 ## Next meaningful action
 
-Review a different safely isolated Safari supervisor/control route or obtain an explicit gate disposition, using the [readiness/supervision result](../../output/increment-007-safari-readiness-supervision/independent-review.md). Readiness now passes with the new ownership guard, but the first pending-command close exceeded its deadline and the worker finished naturally; do not rerun that route unchanged or infer a supervision pass from eventual target disappearance. No Safari waiver or B-4 timing change is implied. Chrome's 65 small-fixture cases pass, while Safari G-02–04, defensive-size contention and actual application recovery/protection integration remain open. The [description boundary slice](../../output/increment-007-description-boundary/independent-review.md) covers research codec admission; consistent application enforcement still needs implementation and verification. Do not restart the retired 65,004-unit description investigation. Current wrapping is retained. Ordinary rendering of other admitted data, native source selection/copy, normal-profile/HTTPS and other existing support gates remain open. No automatic new experiment, retry or Increment 007 production implementation starts from this handoff. Final contract/design agreement and implementation authorization remain separate; staging, commits and pushes remain with the user.
+**Stop requested — 11 November 2026:** the user stated that tests had run for hours
+and were disproportionate for this small color-token PWA prototype. No additional
+automated stress case, diagnostic, retry, browser setup or qualification run is
+scheduled. Preserve existing evidence; do not resume this testing chain without a
+new user request. Clean up only positively identified task-owned processes.
 
-The Increment 007 contract is Draft and requires its recorded decisions and resulting design before final agreement. Named-profile interchange and install/offline acceptance remain later work for the complete PWA, followed immediately by Electron host validation. Persistence representation, concurrency qualification, mixing/gradients and other future choices remain explicit in [open questions](../planning/open-questions.md); do not settle them through prototype convenience.
+Hand back the implemented app for ordinary use and the user's manual Chrome/Firefox
+review. The [manual guide](../increments/007-manual-acceptance.md) is available; it is
+not an instruction to run another automated batch. Record unexecuted source/native,
+normal-profile/HTTPS and other formal gates as unverified, without converting them
+into passes or requiring more tooling work before the user can try the app.
+The [in-progress completion report](../increments/007-local-retention-and-backup.md#completion-report--in-progress-11-november-2026)
+owns delivery evidence and remaining formal acceptance limits.
+
+Safari, install/offline PWA acceptance and Electron remain later work. No public
+deployment, tunnel, browser trust changes, staging, commit or push is authorized.
 
 ## Resume and verification
 

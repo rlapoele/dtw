@@ -11,21 +11,33 @@ export type ProjectNamespaceSnapshot = {
 
 export type NamespaceDiagnostic =
   | {
-      readonly code: "project-mismatch" | "missing-parent-group" | "foreign-parent-group";
+      readonly code:
+        | "project-mismatch"
+        | "missing-parent-group"
+        | "foreign-parent-group";
       readonly entityKind: "group" | "token";
       readonly entityId: TokenGroupId | TokenId;
       readonly parentGroupId?: TokenGroupId;
     }
   | { readonly code: "group-cycle"; readonly cycle: readonly TokenGroupId[] }
-  | { readonly code: "missing-group" | "missing-token"; readonly entityId: string };
+  | {
+      readonly code: "missing-group" | "missing-token";
+      readonly entityId: string;
+    };
 
 export type NamespacePathResult =
   | { readonly status: "derived"; readonly path: readonly string[] }
-  | { readonly status: "invalid"; readonly diagnostics: readonly NamespaceDiagnostic[] };
+  | {
+      readonly status: "invalid";
+      readonly diagnostics: readonly NamespaceDiagnostic[];
+    };
 
 export type NamespaceChangeResult =
   | { readonly status: "updated"; readonly namespace: ProjectNamespaceSnapshot }
-  | { readonly status: "invalid"; readonly diagnostics: readonly NamespaceDiagnostic[] };
+  | {
+      readonly status: "invalid";
+      readonly diagnostics: readonly NamespaceDiagnostic[];
+    };
 
 type NamespaceIndex = {
   groups: ReadonlyMap<string, TokenGroup>;
@@ -48,7 +60,8 @@ export function deriveTokenGroupPath(
 ): NamespacePathResult {
   const index = indexNamespace(namespace);
   const group = index.groups.get(groupId);
-  if (group === undefined) return invalidPath({ code: "missing-group", entityId: groupId });
+  if (group === undefined)
+    return invalidPath({ code: "missing-group", entityId: groupId });
   return deriveEntityPath(namespace.projectId, index.groups, group, "group");
 }
 
@@ -58,8 +71,29 @@ export function deriveTokenPath(
 ): NamespacePathResult {
   const index = indexNamespace(namespace);
   const token = index.tokens.get(tokenId);
-  if (token === undefined) return invalidPath({ code: "missing-token", entityId: tokenId });
+  if (token === undefined)
+    return invalidPath({ code: "missing-token", entityId: tokenId });
   return deriveEntityPath(namespace.projectId, index.groups, token, "token");
+}
+
+// A coherent immutable read view reuses one index for a projection batch.
+// Existing individual read functions retain their behavior and signatures.
+export function createNamespaceReadView(namespace: ProjectNamespaceSnapshot) {
+  const index = indexNamespace(namespace);
+  return {
+    groupPath(id: string): NamespacePathResult {
+      const group = index.groups.get(id);
+      return group === undefined
+        ? invalidPath({ code: "missing-group", entityId: id })
+        : deriveEntityPath(namespace.projectId, index.groups, group, "group");
+    },
+    tokenPath(id: string): NamespacePathResult {
+      const token = index.tokens.get(id);
+      return token === undefined
+        ? invalidPath({ code: "missing-token", entityId: id })
+        : deriveEntityPath(namespace.projectId, index.groups, token, "token");
+    },
+  };
 }
 
 export function moveTokenGroup(
@@ -69,10 +103,16 @@ export function moveTokenGroup(
 ): NamespaceChangeResult {
   const index = indexNamespace(namespace);
   const group = index.groups.get(groupId);
-  if (group === undefined) return { status: "invalid", diagnostics: [{ code: "missing-group", entityId: groupId }] };
-  const groups = namespace.groups.map(current => current.id === group.id
-    ? { ...current, parentGroupId: parentGroupId as TokenGroupId | null }
-    : current);
+  if (group === undefined)
+    return {
+      status: "invalid",
+      diagnostics: [{ code: "missing-group", entityId: groupId }],
+    };
+  const groups = namespace.groups.map((current) =>
+    current.id === group.id
+      ? { ...current, parentGroupId: parentGroupId as TokenGroupId | null }
+      : current,
+  );
   return validateChange({ ...namespace, groups });
 }
 
@@ -83,14 +123,22 @@ export function moveTokenInNamespace(
 ): NamespaceChangeResult {
   const index = indexNamespace(namespace);
   const token = index.tokens.get(tokenId);
-  if (token === undefined) return { status: "invalid", diagnostics: [{ code: "missing-token", entityId: tokenId }] };
-  const tokens = namespace.tokens.map(current => current.id === token.id
-    ? { ...current, parentGroupId: parentGroupId as TokenGroupId | null }
-    : current);
+  if (token === undefined)
+    return {
+      status: "invalid",
+      diagnostics: [{ code: "missing-token", entityId: tokenId }],
+    };
+  const tokens = namespace.tokens.map((current) =>
+    current.id === token.id
+      ? { ...current, parentGroupId: parentGroupId as TokenGroupId | null }
+      : current,
+  );
   return validateChange({ ...namespace, tokens });
 }
 
-function validateChange(namespace: ProjectNamespaceSnapshot): NamespaceChangeResult {
+function validateChange(
+  namespace: ProjectNamespaceSnapshot,
+): NamespaceChangeResult {
   const diagnostics = validateProjectNamespace(namespace);
   return diagnostics.length === 0
     ? { status: "updated", namespace }
@@ -101,11 +149,13 @@ function indexNamespace(namespace: ProjectNamespaceSnapshot): NamespaceIndex {
   const groups = new Map<string, TokenGroup>();
   const tokens = new Map<string, Token>();
   for (const group of namespace.groups) {
-    if (groups.has(group.id)) throw new RangeError("Duplicate group identity in namespace snapshot");
+    if (groups.has(group.id))
+      throw new RangeError("Duplicate group identity in namespace snapshot");
     groups.set(group.id, group);
   }
   for (const token of namespace.tokens) {
-    if (tokens.has(token.id)) throw new RangeError("Duplicate token identity in namespace snapshot");
+    if (tokens.has(token.id))
+      throw new RangeError("Duplicate token identity in namespace snapshot");
     tokens.set(token.id, token);
   }
   return { groups, tokens };
@@ -119,12 +169,23 @@ function validateIndexedNamespace(
   // Only valid project-owned edges participate in cycle detection.
   const parents = new Map<TokenGroupId, TokenGroupId>();
   for (const group of namespace.groups) {
-    const issue = validateEntity(namespace.projectId, index.groups, group, "group");
+    const issue = validateEntity(
+      namespace.projectId,
+      index.groups,
+      group,
+      "group",
+    );
     if (issue !== undefined) diagnostics.push(issue);
-    else if (group.parentGroupId !== null) parents.set(group.id, group.parentGroupId);
+    else if (group.parentGroupId !== null)
+      parents.set(group.id, group.parentGroupId);
   }
   for (const token of namespace.tokens) {
-    const issue = validateEntity(namespace.projectId, index.groups, token, "token");
+    const issue = validateEntity(
+      namespace.projectId,
+      index.groups,
+      token,
+      "token",
+    );
     if (issue !== undefined) diagnostics.push(issue);
   }
 
@@ -136,7 +197,10 @@ function validateIndexedNamespace(
     while (current !== undefined && !visited.has(current)) {
       const position = positions.get(current);
       if (position !== undefined) {
-        diagnostics.push({ code: "group-cycle", cycle: [...ancestry.slice(position), current] });
+        diagnostics.push({
+          code: "group-cycle",
+          cycle: [...ancestry.slice(position), current],
+        });
         break;
       }
       positions.set(current, ancestry.length);
@@ -154,11 +218,24 @@ function validateEntity(
   entity: NamespaceEntity,
   entityKind: "group" | "token",
 ): NamespaceDiagnostic | undefined {
-  if (entity.projectId !== projectId) return { code: "project-mismatch", entityKind, entityId: entity.id };
+  if (entity.projectId !== projectId)
+    return { code: "project-mismatch", entityKind, entityId: entity.id };
   if (entity.parentGroupId === null) return undefined;
   const parent = groups.get(entity.parentGroupId);
-  if (parent === undefined) return { code: "missing-parent-group", entityKind, entityId: entity.id, parentGroupId: entity.parentGroupId };
-  if (parent.projectId !== projectId) return { code: "foreign-parent-group", entityKind, entityId: entity.id, parentGroupId: entity.parentGroupId };
+  if (parent === undefined)
+    return {
+      code: "missing-parent-group",
+      entityKind,
+      entityId: entity.id,
+      parentGroupId: entity.parentGroupId,
+    };
+  if (parent.projectId !== projectId)
+    return {
+      code: "foreign-parent-group",
+      entityKind,
+      entityId: entity.id,
+      parentGroupId: entity.parentGroupId,
+    };
   return undefined;
 }
 
@@ -179,12 +256,17 @@ function deriveEntityPath(
     if (currentKind === "group") {
       const groupId = current.id as TokenGroupId;
       const position = positions.get(groupId);
-      if (position !== undefined) return invalidPath({ code: "group-cycle", cycle: [...ancestry.slice(position), groupId] });
+      if (position !== undefined)
+        return invalidPath({
+          code: "group-cycle",
+          cycle: [...ancestry.slice(position), groupId],
+        });
       positions.set(groupId, ancestry.length);
       ancestry.push(groupId);
     }
     names.push(current.localName);
-    if (current.parentGroupId === null) return { status: "derived", path: names.reverse() };
+    if (current.parentGroupId === null)
+      return { status: "derived", path: names.reverse() };
     // validateEntity established that the parent exists in this project.
     current = groups.get(current.parentGroupId)!;
     currentKind = "group";

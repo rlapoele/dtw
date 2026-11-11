@@ -1,0 +1,19 @@
+{
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-owned-SICuTx",
+  "pid": 47772,
+  "checks": [
+    "fresh browser shows empty catalogue",
+    "retained workbench opened",
+    "created color token through native retained worker",
+    "exact color revision acknowledged",
+    "independent raw draft and Cancel preserve applied state",
+    "on-demand exact applied source disclosure",
+    "retained group create and rename",
+    "All content reaches group identity inspection",
+    "reopen retains exact color and metadata"
+  ],
+  "errors": [],
+  "browser": "157.0.8103.50",
+  "status": "failed",
+  "error": "Error: download.saveAs: ENOENT: no such file or directory, copyfile '/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/playwright-artifacts-oYbSNy/88d41d4c-22d0-42b4-82e3-5d55b4265b17' -> '/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-owned-SICuTx/independent-backup.json'"
+}

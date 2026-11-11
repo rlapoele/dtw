@@ -1,5 +1,17 @@
 # Increment 007 — exceptional exact-detail policy and performance
 
+**Current authorization — 10 November 2026:** the [agreed Increment 007 contract](007-local-retention-and-backup.md#current-authorization-and-browsergate-amendment--10-november-2026)
+authorizes production implementation now. The [B-3/B-4 amendment](007-production-scheduling-and-browser-scope-proposal.md#current-b-3b-4-amendment--10-november-2026)
+selects Chrome automated tests and user manual Chrome/Firefox tests; broader engine
+qualification follows a fully featured working PWA. Safari qualification/setup/
+supervision is deferred and does not block this increment. Remaining applicable
+Chrome checks are actual-application completion/support gates; exactness, resource
+caps, performance budgets and acceptance semantics are unchanged.
+
+**Historical agreement and qualification record follows.** Its former Draft,
+pending-authorization and two-engine prerequisite statements describe earlier stages
+and are superseded only by the current contract/browser amendment linked above.
+
 **E-1–E-4 agreed by the user — 10 November 2026. Not implemented or qualified.**
 Baseline: clean `372f3e52355817c4cb06db96c6bf72a25d534c1b`. Preserve the current
 list and complete inspector, all authored budgets/identities and Draft / Not started.

@@ -1,4 +1,4 @@
-import type { ProjectReadback } from "@application/authoring";
+import type { ProjectContext } from "@application/retention/projections";
 import {
   FolderIcon,
   PlusIcon,
@@ -13,15 +13,20 @@ export function ProjectNavigation({
   unavailable,
   onSelect,
   onCreateGroup,
+  onAllContent,
 }: {
   drawer: boolean;
-  project: ProjectReadback | undefined;
-  group: string;
+  project: ProjectContext | undefined;
+  group: string | null;
   unavailable: boolean;
-  onSelect: (group: string) => void;
+  onSelect: (group: string | null) => void;
   onCreateGroup: () => void;
+  onAllContent?: () => void;
 }) {
-  const labels = identityLabels(project?.groups ?? [], ["Project root", "All tokens"]);
+  const labels = identityLabels(project?.groups ?? [], [
+    "Project root",
+    "All tokens",
+  ]);
   return (
     <>
       <div
@@ -48,10 +53,10 @@ export function ProjectNavigation({
       <Button
         variant="navigation"
         size="navigation"
-        className={`nav-item w-full ${group === "all" ? "active" : ""}`}
-        aria-current={group === "all" ? "true" : undefined}
+        className={`nav-item w-full ${group === null ? "active" : ""}`}
+        aria-current={group === null ? "true" : undefined}
         onClick={() => {
-          onSelect("all");
+          onSelect(null);
         }}
       >
         <Squares2X2Icon className="icon block w-4 h-4 shrink-0" />
@@ -60,6 +65,16 @@ export function ProjectNavigation({
           {project?.tokens.length ?? 0}
         </span>
       </Button>
+      {onAllContent && (
+        <Button
+          variant="navigation"
+          size="navigation"
+          className="text-muted-foreground w-full"
+          onClick={onAllContent}
+        >
+          All content
+        </Button>
+      )}
       <div className="group-tree">
         {project?.groups.map((g) => (
           <Button

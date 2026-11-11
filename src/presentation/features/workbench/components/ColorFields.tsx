@@ -1,10 +1,17 @@
-import { COLOR_COMPONENTS, COMPONENT_NAMES, componentSuffix } from "@domain/color-components";
+import {
+  COLOR_COMPONENTS,
+  COMPONENT_NAMES,
+  componentSuffix,
+} from "@domain/color-components";
 import { Field } from "@presentation/components/ui/field";
 import { Input } from "@presentation/components/ui/input";
 import type { CSSProperties } from "react";
 import { COLOR_SPACES } from "@domain/color-literal";
 import type { ColorSpace } from "@domain/color-literal";
-import { integerByteDisplay, integerByteIssue } from "@presentation/features/workbench/color/integer-rgb";
+import {
+  integerByteDisplay,
+  integerByteIssue,
+} from "@presentation/features/workbench/color/integer-rgb";
 import { Select } from "@presentation/components/ui/select";
 import {
   changeView,
@@ -38,10 +45,12 @@ export function ColorFields({
   session: s,
   onChange,
   onError,
+  readOnly = false,
 }: {
   session: DraftSession;
   onChange: (s: DraftSession) => void;
   onError: (s: string) => void;
+  readOnly?: boolean;
 }) {
   const d = displayed(s),
     bytes = d.colorSpace === "srgb" && s.scale === "bytes";
@@ -61,6 +70,7 @@ export function ColorFields({
       <Field>
         View color space
         <Select
+          disabled={readOnly}
           value={s.viewSpace}
           onChange={(e) => {
             try {
@@ -92,6 +102,7 @@ export function ColorFields({
         <Field>
           RGB entry scale
           <Select
+            disabled={readOnly}
             value={s.scale}
             onChange={(e) => {
               if (s.byteInvalid) {
@@ -122,9 +133,11 @@ export function ColorFields({
         {values.map((value, i) => {
           const identity = COLOR_COMPONENTS[d.colorSpace][i];
           const suffix = componentSuffix(d.colorSpace, identity);
-          const label = COMPONENT_NAMES[identity] + (suffix ? ` (${suffix})` : "");
+          const label =
+            COMPONENT_NAMES[identity] + (suffix ? ` (${suffix})` : "");
           const hue = identity === "hue";
-          const min = d.colorSpace === "oklab" && identity !== "lightness" ? -0.4 : 0,
+          const min =
+              d.colorSpace === "oklab" && identity !== "lightness" ? -0.4 : 0,
             max = hue
               ? 359.9
               : d.colorSpace === "hsl"
@@ -136,11 +149,18 @@ export function ColorFields({
                     ? 255
                     : 1;
           const step = hue || d.colorSpace === "hsl" ? 0.1 : bytes ? 1 : 0.001;
-          const issue = bytes && s.byteEdited[i] ? integerByteIssue(value) : undefined;
-          const approximate = bytes && !s.byteEdited[i] && integerByteDisplay(d.components[i]).approximate;
-          const rangeState = bytes && !s.byteEdited[i]
-            ? visualRangeState(d.components[i], "0", "1")
-            : issue ? "invalid" : visualRangeState(value, String(min), String(max));
+          const issue =
+            bytes && s.byteEdited[i] ? integerByteIssue(value) : undefined;
+          const approximate =
+            bytes &&
+            !s.byteEdited[i] &&
+            integerByteDisplay(d.components[i]).approximate;
+          const rangeState =
+            bytes && !s.byteEdited[i]
+              ? visualRangeState(d.components[i], "0", "1")
+              : issue
+                ? "invalid"
+                : visualRangeState(value, String(min), String(max));
           const available = rangeState === "available";
           return (
             <div
@@ -150,6 +170,7 @@ export function ColorFields({
               <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-1.5 m-0 text-caption font-medium">
                 <span>{label}</span>
                 <Input
+                  readOnly={readOnly}
                   className="small:h-11 small:min-h-11"
                   value={value}
                   spellCheck={false}
@@ -163,6 +184,7 @@ export function ColorFields({
                   <input
                     className="component-range small:h-11 col-start-1 row-start-2 self-center block h-10 w-full min-w-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground"
                     type="range"
+                    disabled={readOnly}
                     min={min}
                     max={max}
                     step={step}
@@ -196,9 +218,17 @@ export function ColorFields({
                       : "Complete exact entry to use slider."}
                 </p>
               )}
-              {bytes && <p id={`byte-note-${i}`} className={`col-span-2 text-caption mt-1 wrap-anywhere ${issue ? "text-destructive" : "text-muted-foreground"}`}>
-                {issue ?? (approximate ? `Approximate · exact normalized ${d.components[i]}` : "")}
-              </p>}
+              {bytes && (
+                <p
+                  id={`byte-note-${i}`}
+                  className={`col-span-2 text-caption mt-1 wrap-anywhere ${issue ? "text-destructive" : "text-muted-foreground"}`}
+                >
+                  {issue ??
+                    (approximate
+                      ? `Approximate · exact normalized ${d.components[i]}`
+                      : "")}
+                </p>
+              )}
               <p className="sr-only" id={`range-note-${i}`}>
                 Illustrative range {min} to {max}, step {step}. Exact values are
                 retained.
@@ -211,6 +241,7 @@ export function ColorFields({
         <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-1.5 m-0 text-caption font-medium">
           <span>Alpha</span>
           <Input
+            readOnly={readOnly}
             className="small:h-11 small:min-h-11"
             value={s.literal.alpha}
             aria-describedby="editor-error"
@@ -227,6 +258,7 @@ export function ColorFields({
           <input
             className="component-range small:h-11 col-start-1 row-start-2 self-center block h-10 w-full min-w-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range"
             type="range"
+            disabled={readOnly}
             min="0"
             max="1"
             step="0.01"
@@ -249,9 +281,11 @@ export function ColorFields({
         )}
       </div>
       <p className="helper text-muted-foreground font-normal">
-        {bytes ? "Canonical whole numbers or none on the 0–255 scale" : "Exact canonical decimal text or none"}; alpha 0–1. Sliders are
-        illustrative stepped edits. Derived views and byte displays may be
-        approximate. Apply uses {s.literal.colorSpace}.
+        {bytes
+          ? "Canonical whole numbers or none on the 0–255 scale"
+          : "Exact canonical decimal text or none"}
+        ; alpha 0–1. Sliders are illustrative stepped edits. Derived views and
+        byte displays may be approximate. Apply uses {s.literal.colorSpace}.
       </p>
       {bytes && (
         <p className="helper text-muted-foreground font-normal mono break-words">

@@ -1,0 +1,8 @@
+{
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-fidelity-4xoZG6",
+  "pid": 46760,
+  "checks": [],
+  "errors": [],
+  "status": "failed",
+  "error": "Error: Chrome not ready"
+}

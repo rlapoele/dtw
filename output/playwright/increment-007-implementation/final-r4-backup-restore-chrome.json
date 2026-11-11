@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-11",
+  "manifest": "s4-r4-before-browser-manifest.json",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-owned-niSCzT",
+  "pid": 50640,
+  "checks": [
+    "fresh browser shows empty catalogue",
+    "retained workbench opened",
+    "created color token through native retained worker",
+    "exact color revision acknowledged",
+    "independent raw draft and Cancel preserve applied state",
+    "on-demand exact applied source disclosure",
+    "retained group create and rename",
+    "All content reaches group identity inspection",
+    "reopen retains exact color and metadata",
+    "actual independent backup downloaded without draft serialization",
+    "independent backup restores IDs and exact color into empty browser origin"
+  ],
+  "errors": [],
+  "browser": "157.0.8103.50",
+  "backup": {
+    "projectId": "3cabee71-7308-4a38-9e5d-5f2456a88d2a",
+    "tokens": 1,
+    "format": "dtw.project-backup"
+  },
+  "status": "failed",
+  "error": "TimeoutError: locator.click: Timeout 6000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Review replacement', exact: true })\u001b[22m\n"
+}

@@ -1,0 +1,746 @@
+diff --git a/package-lock.json b/package-lock.json
+index 846c07d..4d1029f 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -11,6 +11,7 @@
+         "@base-ui/react": "1.9.0",
+         "@heroicons/react": "2.2.0",
+         "culori": "4.0.2",
++        "jsonc-parser": "3.3.1",
+         "react": "19.3.1",
+         "react-dom": "19.3.1"
+       },
+@@ -1437,6 +1438,12 @@
+         "jiti": "lib/jiti-cli.mjs"
+       }
+     },
++    "node_modules/jsonc-parser": {
++      "version": "3.3.1",
++      "resolved": "https://registry.npmjs.org/jsonc-parser/-/jsonc-parser-3.3.1.tgz",
++      "integrity": "sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==",
++      "license": "MIT"
++    },
+     "node_modules/lightningcss": {
+       "version": "1.33.0",
+       "resolved": "https://registry.npmjs.org/lightningcss/-/lightningcss-1.33.0.tgz",
+diff --git a/package.json b/package.json
+index d3ca885..f2579d1 100644
+--- a/package.json
++++ b/package.json
+@@ -27,6 +27,7 @@
+     "@base-ui/react": "1.9.0",
+     "@heroicons/react": "2.2.0",
+     "culori": "4.0.2",
++    "jsonc-parser": "3.3.1",
+     "react": "19.3.1",
+     "react-dom": "19.3.1"
+   }
+diff --git a/src/domain/expression.ts b/src/domain/expression.ts
+index ddfaebf..4879400 100644
+--- a/src/domain/expression.ts
++++ b/src/domain/expression.ts
+@@ -76,6 +76,7 @@ export function evaluatePortableOperation(
+   operation: string,
+   operands: readonly ImplementedLiteralValue[],
+   context: EvaluationContext = {},
++  arithmeticGuard?: (left: Decimal, right: Decimal, operation: "add" | "subtract" | "multiply") => void,
+ ): ExpressionEvaluationResult {
+   if (!isPortableOperationId(operation)) return { status: "unresolved", reason: "unsupported-expression", code: "unknown-operation" };
+   if (operands.length !== operationArity(operation)) return invalid("invalid-arity");
+@@ -98,11 +99,15 @@ export function evaluatePortableOperation(
+   const values: Decimal[] = [];
+   for (const operand of operands) {
+     if (operand.valueType !== "number" && operand.valueType !== "dimension") return invalid("invalid-operands");
++    if (rootSize !== undefined && operand.valueType === "dimension" && operand.unit === "rem") arithmeticGuard?.(operand.value, rootSize, "multiply");
+     values.push(rootSize !== undefined && operand.valueType === "dimension" && operand.unit === "rem"
+       ? multiplyDecimals(operand.value, rootSize) : operand.value);
+   }
+   const [a, b, c] = values;
+   let value: Decimal;
++  if (operation === "portable.math.add.v1") arithmeticGuard?.(a, b, "add");
++  if (operation === "portable.math.subtract.v1") arithmeticGuard?.(a, b, "subtract");
++  if (operation === "portable.math.scale.v1") arithmeticGuard?.(a, b, "multiply");
+   switch (operation) {
+     case "portable.math.add.v1": value = addDecimals(a, b); break;
+     case "portable.math.subtract.v1": value = subtractDecimals(a, b); break;
+diff --git a/src/domain/token-resolution.ts b/src/domain/token-resolution.ts
+index b7c33d1..7afcd61 100644
+--- a/src/domain/token-resolution.ts
++++ b/src/domain/token-resolution.ts
+@@ -94,6 +94,7 @@ export function resolveToken(
+   tokenId: string,
+   selection: CompleteVariationSelection,
+   context: EvaluationContext = {},
++  budget?: { schedule(amount: number): void; arithmetic(left: import("@domain/decimal").Decimal, right: import("@domain/decimal").Decimal, operation: "add" | "subtract" | "multiply"): void },
+ ): TokenResolutionResult {
+   const tokenById = new Map<TokenId, Token>();
+   for (const token of tokens) {
+@@ -107,7 +108,9 @@ export function resolveToken(
+   const activeIds: TokenId[] = [];
+   const positions = new Map<TokenId, number>();
+   const values: ResolvedValue[] = [];
++  budget?.schedule(1);
+   const tasks: Task[] = [{ kind: "token", id: rootId }];
++  function push(...items: Task[]) { budget?.schedule(items.length); tasks.push(...items); }
+ 
+   function fail(reason: TokenResolutionFailureReason, at: TokenId,
+     details: Omit<ResolutionDiagnostic, "code" | "tokenId"> = {},
+@@ -141,8 +144,8 @@ export function resolveToken(
+         ...(value.kind === "token-reference" ? { targetTokenId: value.targetTokenId } : {}) });
+       positions.set(task.id, activeIds.length);
+       activeIds.push(task.id);
+-      tasks.push({ kind: "finish-token", id: task.id, type: definition.type, ...location });
+-      tasks.push({ kind: "value", value, ownerId: task.id, expectedType: definition.type, path: [], ...location });
++      push({ kind: "finish-token", id: task.id, type: definition.type, ...location });
++      push({ kind: "value", value, ownerId: task.id, expectedType: definition.type, path: [], ...location });
+     } else if (task.kind === "finish-token") {
+       const value = values[values.length - 1];
+       if (value.valueType !== task.type) return fail("type-mismatch", task.id, { ...location, expectedType: task.type, actualType: value.valueType });
+@@ -152,7 +155,7 @@ export function resolveToken(
+       const operands = values.splice(values.length - task.count, task.count);
+       const literals = operands.filter((value): value is ImplementedLiteralValue => value.kind === "literal");
+       if (literals.length !== operands.length) return fail("invalid-expression", task.ownerId, { ...location, expressionCode: "invalid-operands", operandPath: task.path });
+-      const result = evaluatePortableOperation(task.operation, literals, context);
++      const result = evaluatePortableOperation(task.operation, literals, context, budget?.arithmetic);
+       if (result.status === "unresolved") return fail(result.reason, task.ownerId, {
+         ...location, expressionCode: result.code, operandPath: task.path, operation: task.operation,
+         ...(result.requiredContext === undefined ? {} : { requiredContext: result.requiredContext }),
+@@ -194,9 +197,9 @@ export function resolveToken(
+           for (const field of TRANSITION_FIELDS) {
+             if (!isTransitionFieldValue(value[field], field)) return fail("invalid-composite", ownerId, { compositeCode: "invalid-transition-field", field, fieldOwnerId: ownerId });
+           }
+-          tasks.push({ kind: "transition", ownerId });
++          push({ kind: "transition", ownerId });
+           for (const field of [...TRANSITION_FIELDS].reverse()) {
+-            tasks.push({ kind: "value", value: value[field], ownerId, expectedType: TRANSITION_FIELD_TYPES[field], path: [], field, fieldOwnerId: ownerId });
++            push({ kind: "value", value: value[field], ownerId, expectedType: TRANSITION_FIELD_TYPES[field], path: [], field, fieldOwnerId: ownerId });
+           }
+         } else if (value.valueType === "shadow") {
+           if (!Array.isArray(value.layers) || value.layers.length === 0) return fail("invalid-composite", ownerId, { compositeCode: "invalid-shadow-layers" });
+@@ -207,24 +210,24 @@ export function resolveToken(
+               if (!isShadowFieldValue(layer[field], field)) return fail("invalid-composite", ownerId, { compositeCode: "invalid-shadow-field", layerIndex, field, fieldOwnerId: ownerId });
+             }
+           }
+-          tasks.push({ kind: "shadow", ownerId, count: value.layers.length });
++          push({ kind: "shadow", ownerId, count: value.layers.length });
+           for (let layerIndex = value.layers.length - 1; layerIndex >= 0; layerIndex -= 1) {
+             for (const field of [...SHADOW_FIELDS].reverse()) {
+-              tasks.push({ kind: "value", value: value.layers[layerIndex][field], ownerId, expectedType: SHADOW_FIELD_TYPES[field], path: [], field, fieldOwnerId: ownerId, layerIndex });
++              push({ kind: "value", value: value.layers[layerIndex][field], ownerId, expectedType: SHADOW_FIELD_TYPES[field], path: [], field, fieldOwnerId: ownerId, layerIndex });
+             }
+           }
+         } else {
+           for (const field of TYPOGRAPHY_FIELDS) {
+             if (!isTypographyFieldValue(value[field], field)) return fail("invalid-composite", ownerId, { compositeCode: "invalid-typography-field", field, fieldOwnerId: ownerId });
+           }
+-          tasks.push({ kind: "typography", ownerId });
++          push({ kind: "typography", ownerId });
+           for (const field of [...TYPOGRAPHY_FIELDS].reverse()) {
+-            tasks.push({ kind: "value", value: value[field], ownerId, expectedType: TYPOGRAPHY_FIELD_TYPES[field], path: [], field, fieldOwnerId: ownerId });
++            push({ kind: "value", value: value[field], ownerId, expectedType: TYPOGRAPHY_FIELD_TYPES[field], path: [], field, fieldOwnerId: ownerId });
+           }
+         }
+       } else if (value.kind === "token-reference") {
+         if (value.valuePath.length > 0) return fail("unsupported-value-path", ownerId, { ...location, operandPath: path });
+-        tasks.push({ kind: "token", id: value.targetTokenId, expectedType, ...location });
++        push({ kind: "token", id: value.targetTokenId, expectedType, ...location });
+       } else if (value.kind === "context-reference") {
+         if (value.key !== "font.rootSize") return fail("invalid-expression", ownerId, { ...location, expressionCode: "invalid-context", operandPath: path });
+         const root = readRootFontSize(context);
+@@ -236,9 +239,9 @@ export function resolveToken(
+       } else {
+         if (!isPortableOperationId(value.operation)) return fail("unsupported-expression", ownerId, { ...location, expressionCode: "unknown-operation", operandPath: path, operation: value.operation });
+         if (value.operands.length !== operationArity(value.operation)) return fail("invalid-expression", ownerId, { ...location, expressionCode: "invalid-arity", operandPath: path, operation: value.operation });
+-        tasks.push({ kind: "apply", operation: value.operation, count: value.operands.length, ownerId, path, ...location });
++        push({ kind: "apply", operation: value.operation, count: value.operands.length, ownerId, path, ...location });
+         for (let index = value.operands.length - 1; index >= 0; index -= 1) {
+-          tasks.push({ kind: "value", value: value.operands[index], ownerId,
++          push({ kind: "value", value: value.operands[index], ownerId,
+             expectedType: value.operation === "portable.math.scale.v1" && index === 1 ? "number" : expectedType,
+             path: [...path, index], ...location });
+         }
+diff --git a/src/presentation/app/App.tsx b/src/presentation/app/App.tsx
+index bce4518..1898ae3 100644
+--- a/src/presentation/app/App.tsx
++++ b/src/presentation/app/App.tsx
+@@ -45,7 +45,7 @@ export function App({
+     [project, setProject] = useState<ProjectReadback>(),
+     [projectName, setProjectName] = useState("");
+   const [selected, setSelected] = useState(""),
+-    [group, setGroup] = useState("all"),
++    [group, setGroup] = useState<string | null>(null),
+     [query, setQuery] = useState("");
+   const [dirty, setDirty] = useState(false),
+     [pending, setPending] = useState<(() => void) | null>(null),
+@@ -58,7 +58,7 @@ export function App({
+     ),
+     [name, setName] = useState(""),
+     [description, setDescription] = useState(""),
+-    [parent, setParent] = useState(""),
++    [parent, setParent] = useState<string | null>(null),
+     [layer, setLayer] = useState("");
+   const [compact, setCompact] = useState(() => window.innerWidth < 1120),
+     [navigationOpen, setNavigationOpen] = useState(false),
+@@ -133,7 +133,7 @@ export function App({
+   const visible =
+     project?.tokens.filter(
+       (t) =>
+-        (group === "all" || t.authored.parentGroupId === group) &&
++        (group === null || t.authored.parentGroupId === group) &&
+         pathLabel(t.path).toLowerCase().includes(query.toLowerCase()),
+     ) ?? [];
+   useLayoutEffect(() => {
+@@ -170,7 +170,7 @@ export function App({
+           : "",
+       );
+       setDescription("");
+-      setParent(group === "all" ? "" : group);
++      setParent(group === null ? "" : group);
+       setError("");
+       setDialog(kind);
+     });
+@@ -206,7 +206,7 @@ export function App({
+               localName: name,
+               parentGroupId: parent || null,
+             })
+-          : operations.renameGroup(projectId, group, name);
++          : operations.renameGroup(projectId, group!, name);
+     if (result.status === "failure") {
+       setError(
+         `${dialog === "rename" ? "Rename" : dialog === "group" ? "Create group" : "Create token"} failed. ${failureText(result)}`,
+@@ -232,7 +232,7 @@ export function App({
+     setEditorVersion((v) => v + 1);
+     if (kind === "token") {
+       setSelected(result.value.id);
+-      setGroup("all");
++      setGroup(null);
+       setQuery("");
+       setInspectorExpanded(true);
+     } else if (kind === "group") setGroup(result.value.id);
+@@ -409,7 +409,7 @@ export function App({
+                 Tokens
+               </span>
+               <h1 className="my-1.5 small-title">
+-                {group === "all"
++                {group === null
+                   ? "All colors"
+                   : identityLabels(project?.groups ?? [], ["Project root", "All tokens"]).get(group) ?? "Missing group"}
+               </h1>
+@@ -438,7 +438,7 @@ export function App({
+                 onChange={(e) => setQuery(e.target.value)}
+               />
+             </label>
+-            {group !== "all" && (
++            {group !== null && (
+               <Button disabled={!!readFailure} onClick={() => open("rename")}>
+                 Rename group
+               </Button>
+@@ -478,7 +478,7 @@ export function App({
+                   <Button
+                     size="selection"
+                     onClick={() => {
+-                      setGroup("all");
++                      setGroup(null);
+                       setQuery("");
+                       requestAnimationFrame(() =>
+                         panelRef.current
+diff --git a/src/presentation/features/workbench/components/AuthoredValue.tsx b/src/presentation/features/workbench/components/AuthoredValue.tsx
+index 6f7bb6c..c3911e9 100644
+--- a/src/presentation/features/workbench/components/AuthoredValue.tsx
++++ b/src/presentation/features/workbench/components/AuthoredValue.tsx
+@@ -1,6 +1,6 @@
+ import { authoredColorCoordinates, spaceName } from "@presentation/features/workbench/color/authored-color";
+ import type { Token } from "@domain/token";
+-import type { ProjectReadback } from "@application/authoring";
++import type { ProjectContext } from "@application/retention/projections";
+ import { identityLabels } from "@presentation/features/workbench/readback";
+ 
+ type Value = NonNullable<Token["definition"]>["assignments"][number]["value"];
+@@ -12,7 +12,7 @@ export function AuthoredValue({
+   layout = "expanded",
+ }: {
+   value: Value | undefined;
+-  project?: ProjectReadback;
++  project?: ProjectContext;
+   layout?: "expanded" | "compact";
+ }) {
+   if (value?.kind === "token-reference") {
+diff --git a/src/presentation/features/workbench/components/CreationDialog.tsx b/src/presentation/features/workbench/components/CreationDialog.tsx
+index 902c87b..ddc2896 100644
+--- a/src/presentation/features/workbench/components/CreationDialog.tsx
++++ b/src/presentation/features/workbench/components/CreationDialog.tsx
+@@ -1,5 +1,5 @@
+ import type { Ref } from "react";
+-import type { ProjectReadback } from "@application/authoring";
++import type { ProjectContext } from "@application/retention/projections";
+ import { Dialog } from "@base-ui/react/dialog";
+ import { DialogContent } from "@presentation/components/ui/dialog-content";
+ import { Button } from "@presentation/components/ui/button";
+@@ -27,13 +27,15 @@ export function CreationDialog({
+   onNameChange,
+   onParentChange,
+   onLayerChange,
++  pending = false,
++  recovery,
+ }: {
+   dialog: "token" | "group" | "rename" | null;
+-  project: ProjectReadback | undefined;
++  project: ProjectContext | undefined;
+   name: string;
+   description: string;
+   onDescriptionChange: (value: string) => void;
+-  parent: string;
++  parent: string | null;
+   layer: string;
+   readFailure: string;
+   error: string;
+@@ -43,15 +45,17 @@ export function CreationDialog({
+   onCreate: () => void;
+   onRetry: () => void;
+   onNameChange: (value: string) => void;
+-  onParentChange: (value: string) => void;
++  onParentChange: (value: string | null) => void;
+   onLayerChange: (value: string) => void;
++  pending?: boolean;
++  recovery?: import("react").ReactNode;
+ }) {
+   const labels = identityLabels(project?.groups ?? [], ["Project root", "All tokens"]);
+   return (
+     <Dialog.Root
+       open={dialog !== null}
+       onOpenChange={(o) => {
+-        if (!o) onClose();
++        if (!o && !pending) onClose();
+       }}
+     >
+       <DialogContent className="dialog-popup" finalFocus={finalFocus}>
+@@ -67,12 +71,14 @@ export function CreationDialog({
+             ? "Start with an explicit Color literal."
+             : "Groups organize paths; names do not define types."}
+         </Dialog.Description>
++        {recovery}
+         <form
+           onSubmit={(e) => {
+             e.preventDefault();
+             onCreate();
+           }}
+         >
++          <fieldset disabled={pending}>
+           <Field>
+             Name
+             <Input
+@@ -89,12 +95,12 @@ export function CreationDialog({
+             <Field>
+               {dialog === "token" ? "Group" : "Parent group"}
+               <Select
+-                value={parent}
+-                onChange={(e) => onParentChange(e.target.value)}
++                value={parent === null ? "" : JSON.stringify(parent)}
++                onChange={(e) => onParentChange(e.target.value === "" ? null : JSON.parse(e.target.value) as string)}
+               >
+                 <option value="">Project root</option>
+                 {project?.groups.map((g) => (
+-                  <option key={g.authored.id} value={g.authored.id}>
++                  <option key={g.authored.id} value={JSON.stringify(g.authored.id)}>
+                     {labels.get(g.authored.id)}
+                   </option>
+                 ))}
+@@ -126,6 +132,7 @@ export function CreationDialog({
+               </section>
+             </>
+           )}
++          </fieldset>
+           {readFailure && (
+             <div
+               className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+@@ -154,8 +161,8 @@ export function CreationDialog({
+             <span id="creation-error" />
+           )}
+           <div className="dialog-actions justify-end flex gap-2.5 mt-6">
+-            <Dialog.Close render={<Button />}>Cancel</Dialog.Close>
+-            <Button type="submit" variant="default" disabled={!!readFailure}>
++            <Dialog.Close render={<Button disabled={pending} />}>Cancel</Dialog.Close>
++            <Button type="submit" variant="default" disabled={!!readFailure || pending}>
+               {dialog === "rename" ? "Rename group" : "Create"}
+             </Button>
+           </div>
+diff --git a/src/presentation/features/workbench/components/Editor.tsx b/src/presentation/features/workbench/components/Editor.tsx
+index 960deaa..94a1276 100644
+--- a/src/presentation/features/workbench/components/Editor.tsx
++++ b/src/presentation/features/workbench/components/Editor.tsx
+@@ -1,3 +1,6 @@
++import { ExactSource } from "./ExactSource";
++import type { SelectedToken } from "@application/retention/projections";
++import type { ProjectContext } from "@application/retention/projections";
+ import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
+ import { Swatch } from "@presentation/features/workbench/components/swatch";
+ import { InspectionTabs } from "@presentation/features/workbench/components/inspection-tabs";
+@@ -8,7 +11,6 @@ import { Tabs } from "@base-ui/react/tabs";
+ import { createColorLiteral } from "@domain/color-literal";
+ import type {
+   TokenInspection,
+-  ProjectReadback,
+   ApplicationResult,
+ } from "@application/authoring";
+ import type { Token } from "@domain/token";
+@@ -35,17 +37,25 @@ export function Editor({
+   onDirty,
+   onFeedback,
+   readUnavailable,
++  revision = "session",
++  requestSource,
++  readOnly = false,
+ }: {
+-  inspection: TokenInspection;
+-  project: ProjectReadback;
+-  inspect: (id: string) => TokenInspection | undefined;
+-  onApply: (value: ReviseColorTokenInput["value"]) => ApplicationResult<Token>;
++  inspection: TokenInspection | SelectedToken;
++  project: ProjectContext;
++  inspect: (id: string) => { resolution: { status: string; value?: import("@domain/token-resolution").ResolvedValue } } | undefined;
++  onApply: (value: ReviseColorTokenInput["value"]) => ApplicationResult<Pick<Token, "definition">> | Promise<ApplicationResult<Pick<Token, "definition">>>;
+   onDirty: (d: boolean) => void;
+   onFeedback: (f: Feedback) => void;
+   readUnavailable: boolean;
++  revision?: string;
++  requestSource?: () => Promise<string>;
++  readOnly?: boolean;
+ }) {
+-  const token = i.authored,
+-    value = token.definition?.assignments[0]?.value;
++  const projected = "token" in i;
++  const token = projected ? i.token : i.authored,
++    value = projected ? i.authoredValue : i.authored.definition?.assignments[0]?.value;
++  const [accepting, setAccepting] = useState(false);
+   const [session, setSession] = useState(() => baseline(value));
+   const initial = useRef(session);
+   const [tab, setTab] = useState("authored"),
+@@ -60,7 +70,7 @@ export function Editor({
+     if (error) errorRef.current?.focus();
+   }, [error]);
+   const applied = colorPreview(resolvedColor(i));
+-  const targetInspection = session.reference
++  const targetInspection = session.reference !== null
+     ? inspect(session.reference)
+     : undefined;
+   const draft =
+@@ -86,8 +96,9 @@ export function Editor({
+   const referenceChoices = project.tokens.filter(t => t.authored.definition?.type === "color");
+   const referenceLabels = identityLabels(referenceChoices, undefined, token.id);
+   const groupLabels = identityLabels(project.groups, ["Project root", "All tokens"]);
+-  const editable = eligible(token);
+-  function apply() {
++  const editable = projected ? i.editable : eligible(i.authored);
++  async function apply() {
++    if (accepting || readOnly) return;
+     if (readUnavailable) {
+       setError("Project read unavailable. Retry reading; drafts retained.");
+       return;
+@@ -104,7 +115,7 @@ export function Editor({
+       );
+       return;
+     }
+-    if (session.mode === "reference" && !session.reference) {
++    if (session.mode === "reference" && session.reference === null) {
+       setError("Choose a color target.");
+       return;
+     }
+@@ -113,10 +124,13 @@ export function Editor({
+         ? { ...session.literal, kind: "literal" }
+         : {
+             kind: "token-reference",
+-            targetTokenId: session.reference,
++            targetTokenId: session.reference!,
+             valuePath: [],
+           };
+-    const result = onApply(candidate);
++    setAccepting(true);
++    let result: ApplicationResult<Pick<Token, "definition">>;
++    try { result = await onApply(candidate); } catch (error) { setError(error instanceof Error ? error.message : "Apply outcome unavailable. Drafts retained."); setAccepting(false); return; }
++    setAccepting(false);
+     if (result.status === "failure") {
+       setError("Apply failed. " + failureText(result));
+       return;
+@@ -126,7 +140,7 @@ export function Editor({
+     setSession(next);
+     onDirty(false);
+     setError("");
+-    setNotice("Changes applied for this session.");
++    setNotice("Changes applied and retained.");
+     modeRef.current?.focus();
+   }
+   function cancel() {
+@@ -167,7 +181,7 @@ export function Editor({
+                 <h3>Value</h3>
+                 {dirty && <Badge>Draft</Badge>}
+               </div>
+-              <fieldset>
++              <fieldset disabled={accepting || readOnly}>
+                 <legend>Value source</legend>
+                 <div className="mode-switch border border-border bg-mode flex p-0.75 rounded-md gap-0.75">
+                   <Button
+@@ -210,28 +224,28 @@ export function Editor({
+                   <Field>
+                     Target token
+                     <Select
+-                      value={session.reference}
++                      value={session.reference === null ? "" : JSON.stringify(session.reference)}
+                       aria-describedby="reference-note editor-error"
+                       onChange={(e) => {
+                         setSession({
+                           ...session,
+-                          reference: e.target.value,
++                          reference: e.target.value === "" ? null : JSON.parse(e.target.value) as string,
+                           edited: true,
+                         });
+                         setError("");
+                       }}
+                     >
+                       <option value="">Choose a color token…</option>
+-                      {session.reference &&
++                      {session.reference !== null &&
+                         !project.tokens.some(
+                           (t) => t.authored.id === session.reference,
+                         ) && (
+-                          <option value={session.reference}>
++                          <option value={session.reference === null ? "" : JSON.stringify(session.reference)}>
+                             Missing target
+                           </option>
+                         )}
+                       {referenceChoices.map((t) => (
+-                          <option key={t.authored.id} value={t.authored.id}>
++                          <option key={t.authored.id} value={JSON.stringify(t.authored.id)}>
+                             {referenceLabels.get(t.authored.id)}
+                           </option>
+                         ))}
+@@ -263,15 +277,15 @@ export function Editor({
+                 <span id="editor-error" />
+               )}
+               <div className="editor-actions sticky z-1 flex justify-end gap-2 mt-5.5 mb-2.5 border-t border-border bg-surface py-3">
+-                <Button disabled={!dirty} onClick={cancel}>
++                <Button disabled={!dirty || accepting} onClick={cancel}>
+                   Cancel
+                 </Button>
+                 <Button
+                   variant="default"
+-                  disabled={!dirty || readUnavailable || session.byteInvalid}
++                  disabled={!dirty || readUnavailable || readOnly || accepting || session.byteInvalid}
+                   onClick={apply}
+                 >
+-                  Apply changes
++                  {accepting ? "Retaining changes…" : "Apply changes"}
+                 </Button>
+               </div>
+               <p
+@@ -292,7 +306,7 @@ export function Editor({
+           )}
+           <section className="applied-summary border-t border-border mt-7 pt-5">
+             <h3 className="mb-3.5">Currently applied</h3>
+-            <div className="text-caption"><AuthoredValue value={value} project={project} /></div>
++            <div className="text-caption">{projected && !value ? i.authoredKind : <AuthoredValue value={value} project={project} />}</div>
+           </section>
+           <section className="applied-summary border-t border-border mt-7 pt-5">
+             <h3 className="mb-3.5">Metadata · read only</h3>
+@@ -312,16 +326,11 @@ export function Editor({
+               <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+                 <dt className="text-muted-foreground">Parent group</dt>
+                 <dd className="text-right wrap-anywhere">
+-                  {token.parentGroupId ? groupLabels.get(token.parentGroupId) ?? "Missing group" : "Project root"}
++                  {token.parentGroupId !== null ? groupLabels.get(token.parentGroupId) ?? "Missing group" : "Project root"}
+                 </dd>
+               </div>
+             </dl>
+-            <details>
+-              <summary>All authored data</summary>
+-              <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
+-                {JSON.stringify(token, null, 2)}
+-              </pre>
+-            </details>
++            <ExactSource key={`${token.id}-${revision}`} revision={revision} request={requestSource ?? (() => Promise.resolve(JSON.stringify(token, null, 2)))} />
+           </section>
+         </Tabs.Panel>
+         <Tabs.Panel
+diff --git a/src/presentation/features/workbench/components/ProjectNavigation.tsx b/src/presentation/features/workbench/components/ProjectNavigation.tsx
+index 5aba3ad..9cf34a8 100644
+--- a/src/presentation/features/workbench/components/ProjectNavigation.tsx
++++ b/src/presentation/features/workbench/components/ProjectNavigation.tsx
+@@ -1,4 +1,4 @@
+-import type { ProjectReadback } from "@application/authoring";
++import type { ProjectContext } from "@application/retention/projections";
+ import {
+   FolderIcon,
+   PlusIcon,
+@@ -13,13 +13,15 @@ export function ProjectNavigation({
+   unavailable,
+   onSelect,
+   onCreateGroup,
++  onAllContent,
+ }: {
+   drawer: boolean;
+-  project: ProjectReadback | undefined;
+-  group: string;
++  project: ProjectContext | undefined;
++  group: string | null;
+   unavailable: boolean;
+-  onSelect: (group: string) => void;
++  onSelect: (group: string | null) => void;
+   onCreateGroup: () => void;
++  onAllContent?: () => void;
+ }) {
+   const labels = identityLabels(project?.groups ?? [], ["Project root", "All tokens"]);
+   return (
+@@ -48,10 +50,10 @@ export function ProjectNavigation({
+       <Button
+         variant="navigation"
+         size="navigation"
+-        className={`nav-item w-full ${group === "all" ? "active" : ""}`}
+-        aria-current={group === "all" ? "true" : undefined}
++        className={`nav-item w-full ${group === null ? "active" : ""}`}
++        aria-current={group === null ? "true" : undefined}
+         onClick={() => {
+-          onSelect("all");
++          onSelect(null);
+         }}
+       >
+         <Squares2X2Icon className="icon block w-4 h-4 shrink-0" />
+@@ -60,6 +62,7 @@ export function ProjectNavigation({
+           {project?.tokens.length ?? 0}
+         </span>
+       </Button>
++      {onAllContent && <Button variant="navigation" size="navigation" className="text-muted-foreground w-full" onClick={onAllContent}>All content</Button>}
+       <div className="group-tree">
+         {project?.groups.map((g) => (
+           <Button
+diff --git a/src/presentation/features/workbench/readback.ts b/src/presentation/features/workbench/readback.ts
+index 0559594..494dcb9 100644
+--- a/src/presentation/features/workbench/readback.ts
++++ b/src/presentation/features/workbench/readback.ts
+@@ -10,11 +10,11 @@ export function pathLabel(path: NamespacePathResult) {
+     : "(invalid namespace)";
+ }
+ export function resolvedColor(
+-  inspection?: TokenInspection,
++  inspection?: { resolution: { status: string; value?: import("@domain/token-resolution").ResolvedValue } },
+ ): ColorLiteralValue | undefined {
+   const r = inspection?.resolution;
+   return r?.status === "resolved" &&
+-    r.value.kind === "literal" &&
++    r.value?.kind === "literal" &&
+     r.value.valueType === "color"
+     ? r.value
+     : undefined;
+diff --git a/src/presentation/features/workbench/state/session.ts b/src/presentation/features/workbench/state/session.ts
+index 7618ba0..7dfc10a 100644
+--- a/src/presentation/features/workbench/state/session.ts
++++ b/src/presentation/features/workbench/state/session.ts
+@@ -12,7 +12,7 @@ export type LiteralDraft = {
+ export type DraftSession = {
+   mode: "literal" | "reference";
+   literal: LiteralDraft;
+-  reference: string;
++  reference: string | null;
+   viewSpace: ColorSpace;
+   scale: "normalized" | "bytes";
+   byteText: [string, string, string] | null;
+@@ -36,7 +36,7 @@ export function baseline(value?: ImplementedAuthoredValue): DraftSession {
+   return {
+     mode: value?.kind === "token-reference" ? "reference" : "literal",
+     literal,
+-    reference: value?.kind === "token-reference" ? value.targetTokenId : "",
++    reference: value?.kind === "token-reference" ? value.targetTokenId : null,
+     viewSpace: literal.colorSpace,
+     scale: "normalized",
+     byteText: null,
+diff --git a/src/presentation/main.tsx b/src/presentation/main.tsx
+index 7c08880..b186f04 100644
+--- a/src/presentation/main.tsx
++++ b/src/presentation/main.tsx
+@@ -1,4 +1,4 @@
+ import { createRoot } from "react-dom/client";
+-import { App } from "@presentation/app/App";
++import { RetainedApp } from "@presentation/app/RetainedApp";
+ import "@presentation/styles/global.css";
+-createRoot(document.getElementById("root")!).render(<App />);
++createRoot(document.getElementById("root")!).render(<RetainedApp />);
+diff --git a/src/presentation/styles/global.css b/src/presentation/styles/global.css
+index 722a677..173c5ba 100644
+--- a/src/presentation/styles/global.css
++++ b/src/presentation/styles/global.css
+@@ -462,3 +462,9 @@
+ [hidden] {
+   display: none;
+ }
++
++/* E-1/V4 exact-source geometry: native document text, no soft wrap, both axes
++   scroll locally; short source retains its natural height. */
++.exact-source { white-space: pre; overflow: auto; max-height: min(24rem, 50dvh); max-width: 100%; }
++/* Increment 007 staged ordinary rows keep native DOM/Find/accessibility order. */
++.token-row { content-visibility: auto; contain-intrinsic-size: auto 5rem; }
+diff --git a/test/presentation/identity-presentation.test.tsx b/test/presentation/identity-presentation.test.tsx
+index 8734e48..8fa0649 100644
+--- a/test/presentation/identity-presentation.test.tsx
++++ b/test/presentation/identity-presentation.test.tsx
+@@ -58,7 +58,7 @@ describe("human identity labels in real consumers", () => {
+     expect(nav).toContain("same · shared-prefix-group-a"); expect(nav).toContain("same · shared-prefix-group-b");
+     expect(nav).toContain('aria-current="true"');
+   });
+-  it("keeps readable references quiet, missing targets clear and full technical JSON truthful", () => {
++  it("keeps readable references quiet and defers exact technical JSON until disclosure", () => {
+     const app = setup(), project = ok(app.readProject("p"));
+     const ref = { kind: "token-reference", targetTokenId: project.tokens[6].authored.id, valuePath: [] } as const;
+     const html = renderToStaticMarkup(createElement(AuthoredValue, { project, value: ref }));
+@@ -67,13 +67,15 @@ describe("human identity labels in real consumers", () => {
+     expect(missing).toContain("Missing target"); expect(missing).not.toContain("missing-secret-id");
+     const editor = renderToStaticMarkup(createElement(Editor, { project, inspection: ok(app.inspectToken("p", "unique-token-id")), inspect: id => ok(app.inspectToken("p", id)), onApply: () => { throw new Error("No render mutation"); }, onDirty: () => {}, onFeedback: () => {}, readUnavailable: false }));
+     expect(editor).toContain('All authored data');
+-    expect(editor).toContain('&quot;id&quot;: &quot;unique-token-id&quot;');
++    expect(editor).not.toContain('&quot;id&quot;: &quot;unique-token-id&quot;');
++    expect(editor).toContain('Opening very large exact source may briefly pause this view.');
++    expect(editor).not.toContain('Complete applied authored data');
+     expect(editor).not.toContain("Token unique-token-id");
+     const targetInspection = ok(app.inspectToken("p", "unique-token-id"));
+     const aliasInspection: TokenInspection = { ...targetInspection, authored: { ...targetInspection.authored, definition: { type: "color", assignments: [{ condition: targetInspection.authored.definition!.assignments[0].condition, value: ref }] } } };
+     const referenceEditor = renderToStaticMarkup(createElement(Editor, { project, inspection: aliasInspection, inspect: id => ok(app.inspectToken("p", id)), onApply: () => { throw new Error("No render mutation"); }, onDirty: () => {}, onFeedback: () => {}, readUnavailable: false }));
+-    expect(referenceEditor).toContain('<option value="unique-token-id" selected="">same / unique (this token)</option>');
+-    expect(referenceEditor).toContain('<option value="shared-prefix-token-a">same · shared-prefix-token-a</option>');
++    expect(referenceEditor).toContain('<option value="&quot;unique-token-id&quot;" selected="">same / unique (this token)</option>');
++    expect(referenceEditor).toContain('<option value="&quot;shared-prefix-token-a&quot;">same · shared-prefix-token-a</option>');
+   });
+   it("refreshes names after rename while preserving alias targets and values", () => {
+     const app = createAuthoringOperations(new InMemoryProjectStorage());
+@@ -152,9 +154,9 @@ describe("final reference choice context", () => {
+       ok(app.createColorToken({ id, projectId: "p", localName, parentGroupId: null, type: "color", regeneration: "allowed", value }));
+     ok(app.reviseColorToken({ projectId: "p", tokenId: "self", value: { kind: "token-reference", targetTokenId: "other", valuePath: [] } }));
+     const html = renderToStaticMarkup(createElement(Editor, { project: ok(app.readProject("p")), inspection: ok(app.inspectToken("p", "self")), inspect: id => ok(app.inspectToken("p", id)), onApply: () => { throw new Error("No render mutation"); }, onDirty: () => {}, onFeedback: () => {}, readUnavailable: false }));
+-    expect(html).toContain('<option value="self">x (this token) · self</option>');
+-    expect(html).toContain('<option value="other" selected="">x (this token) · other</option>');
+-    const labels = [...html.matchAll(/<option value="(?:self|other)"[^>]*>([^<]*)<\/option>/g)].map(match => match[1]);
++    expect(html).toContain('<option value="&quot;self&quot;">x (this token) · self</option>');
++    expect(html).toContain('<option value="&quot;other&quot;" selected="">x (this token) · other</option>');
++    const labels = [...html.matchAll(/<option value="&quot;(?:self|other)&quot;"[^>]*>([^<]*)<\/option>/g)].map(match => match[1]);
+     expect(labels).toHaveLength(2); expect(new Set(labels).size).toBe(2);
+     expect(ok(app.inspectToken("p", "self")).authored.localName).toBe("x");
+     expect(ok(app.inspectToken("p", "self")).authored.definition!.assignments[0].value).toMatchObject({ targetTokenId: "other" });
+diff --git a/tsconfig.json b/tsconfig.json
+index e3a4cb2..9e7258d 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -19,5 +19,5 @@
+     }
+   },
+   "include": ["src/**/*.ts", "test/**/*.ts"],
+-  "exclude": ["src/presentation"]
++  "exclude": ["src/presentation", "src/adapters/browser"]
+ }
+diff --git a/tsconfig.presentation.json b/tsconfig.presentation.json
+index 85191a2..47af160 100644
+--- a/tsconfig.presentation.json
++++ b/tsconfig.presentation.json
+@@ -7,6 +7,7 @@
+   },
+   "include": [
+     "src/presentation/**/*.ts",
++    "src/adapters/browser/**/*.ts",
+     "src/presentation/**/*.tsx",
+     "test/browser/**/*.tsx",
+     "test/presentation/**/*.test.tsx"

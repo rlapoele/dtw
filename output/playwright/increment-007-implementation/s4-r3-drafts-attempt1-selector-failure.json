@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-11",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-s4-owned-OTQE9z",
+  "pid": 49883,
+  "origin": "http://127.0.0.1:4331/",
+  "manifest": "s4-r3-before-browser-manifest.json",
+  "checks": [
+    "actual retained application and native worker ready"
+  ],
+  "errors": [],
+  "nativeFacts": [],
+  "injectedFaults": [
+    "terminal observation loss",
+    "readback unavailability",
+    "pre-dispatch hold",
+    "post-native-completion hold"
+  ],
+  "browser": "157.0.8103.50",
+  "status": "failed",
+  "error": "TimeoutError: locator.selectOption: Timeout 6000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Target token', { exact: true })\u001b[22m\n"
+}

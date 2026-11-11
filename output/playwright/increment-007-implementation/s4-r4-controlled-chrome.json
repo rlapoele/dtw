@@ -1,0 +1,100 @@
+{
+  "date": "2026-11-11",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-s4-owned-v6EWcK",
+  "pid": 50293,
+  "origin": "http://127.0.0.1:4333/test/browser/increment007.html",
+  "manifest": "s4-r4-before-browser-manifest.json",
+  "checks": [
+    "actual retained application and native worker ready",
+    "injected lost terminal observation reconciles actual native accepted receipt once with exact form input",
+    "injected readback failure keeps acknowledged native write and form until explicit read-only recovery completes once",
+    "actual Worker.terminate stops post-native-complete issuer; replacement worker reacquires ownership and confirms exact original receipt without replay",
+    "actual pre-dispatch issuer termination plus ordered unchanged-baseline read proves nonacceptance and preserves correction input",
+    "Escape preserves recovered form; explicit discard closes without creating a phantom group"
+  ],
+  "errors": [],
+  "nativeFacts": [
+    {
+      "scenario": "issued worker loss",
+      "originalCommandId": "96bc9724-9791-4f36-9290-9cbf8bf4797a",
+      "retainedCommandId": "96bc9724-9791-4f36-9290-9cbf8bf4797a",
+      "generation": 2
+    }
+  ],
+  "injectedFaults": [
+    "terminal observation loss",
+    "readback unavailability",
+    "pre-dispatch hold",
+    "post-native-completion hold"
+  ],
+  "browser": "157.0.8103.50",
+  "events": [
+    {
+      "phase": "native-strict-complete",
+      "at": 1794354381545,
+      "commandId": "e999b715-0b4d-4322-8a3d-016157c02963",
+      "revision": "b4c7854a-5a33-429e-b5e0-0c00c52c5ff7",
+      "projectId": "0ab19a15-63bb-45af-8561-62de903ccdfc"
+    },
+    {
+      "phase": "native-strict-complete",
+      "at": 1794354381661,
+      "commandId": "36133edb-851c-47d7-a44d-f40e1dea8151",
+      "revision": "2d33ca6a-0d6d-44f5-8da4-6e842357673e",
+      "projectId": "0ab19a15-63bb-45af-8561-62de903ccdfc"
+    },
+    {
+      "phase": "native-strict-complete",
+      "at": 1794354381874,
+      "commandId": "1569d9d8-cf91-45f3-8e13-dfb226381615",
+      "revision": "3eb9be56-ce8c-466c-bb36-71df37104644",
+      "projectId": "0ab19a15-63bb-45af-8561-62de903ccdfc"
+    },
+    {
+      "phase": "injected-read-unavailable",
+      "at": 1794354381874
+    },
+    {
+      "phase": "native-strict-complete",
+      "at": 1794354382092,
+      "commandId": "96bc9724-9791-4f36-9290-9cbf8bf4797a",
+      "revision": "b3a056d1-a824-4d8f-a06b-ff51a382c175",
+      "projectId": "0ab19a15-63bb-45af-8561-62de903ccdfc"
+    },
+    {
+      "phase": "hold-after-native-complete",
+      "at": 1794354382092,
+      "commandId": "96bc9724-9791-4f36-9290-9cbf8bf4797a",
+      "revision": "b3a056d1-a824-4d8f-a06b-ff51a382c175",
+      "projectId": "0ab19a15-63bb-45af-8561-62de903ccdfc"
+    },
+    {
+      "phase": "host-native-terminate",
+      "generation": 1,
+      "at": 1794354382140
+    },
+    {
+      "phase": "host-native-terminate",
+      "generation": 1,
+      "at": 1794354382140
+    },
+    {
+      "phase": "hold-before-native-dispatch",
+      "at": 1794354382292,
+      "commandId": "1f887023-a456-41d0-b231-00c966cb2503",
+      "revision": "ea9209ea-7449-4a2f-9f98-1897c6dd415d",
+      "projectId": "0ab19a15-63bb-45af-8561-62de903ccdfc"
+    },
+    {
+      "phase": "host-native-terminate",
+      "generation": 2,
+      "at": 1794354382323
+    },
+    {
+      "phase": "host-native-terminate",
+      "generation": 2,
+      "at": 1794354382323
+    }
+  ],
+  "status": "passed"
+}

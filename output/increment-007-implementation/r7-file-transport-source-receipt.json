@@ -1,0 +1,32 @@
+{
+  "owningSource": "/Users/rlapoele-pro/.npm/_npx/705bc6b22212b352/node_modules/playwright-core/lib/coreBundle.js",
+  "function": "setInputFiles(node,payloads)",
+  "cpuProfileScriptLineZeroBased": 7227,
+  "matchingLines": [
+    {
+      "zeroBased": 7223,
+      "text": "      return \"Not an input[type=file] element\";"
+    },
+    {
+      "zeroBased": 7224,
+      "text": "    const files = payloads.map((file) => {"
+    },
+    {
+      "zeroBased": 7225,
+      "text": "      const bytes = Uint8Array.from(atob(file.buffer), (c) => c.charCodeAt(0));"
+    },
+    {
+      "zeroBased": 7226,
+      "text": "      return new File([bytes], file.name, { type: file.mimeType, lastModified: file.lastModifiedMs });"
+    },
+    {
+      "zeroBased": 7227,
+      "text": "    });"
+    },
+    {
+      "zeroBased": 7228,
+      "text": "    const dt = new DataTransfer();"
+    }
+  ],
+  "scope": "Installed injected source confirms atob/Uint8Array conversion in observed profile; previous path route did not bypass it"
+}

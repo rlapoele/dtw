@@ -1,0 +1,161 @@
+{
+  "scope": "Exactly one independent-harness-cleared corrected reopen diagnostic; trace/profiler overhead, not20sample qualification",
+  "timings": {
+    "RunTask": [
+      3134,
+      250.9450000000059,
+      40.7
+    ],
+    "FunctionCall": [
+      252,
+      128.24899999999997,
+      27.786
+    ],
+    "Layout": [
+      19,
+      42.172000000000004,
+      32.755
+    ],
+    "UpdateLayoutTree": [
+      27,
+      4.577999999999999,
+      1.217
+    ],
+    "MinorGC": [
+      4,
+      6.841000000000001,
+      2.81
+    ],
+    "MajorGC": [
+      1,
+      2.866,
+      2.866
+    ]
+  },
+  "cpuSampleCounts": {
+    "injected/internal/idle": 224,
+    "productionasset": 90
+  },
+  "topFunctions": [
+    [
+      112,
+      {
+        "functionName": "(idle)",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      }
+    ],
+    [
+      77,
+      {
+        "functionName": "(program)",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      }
+    ],
+    [
+      10,
+      {
+        "functionName": "(garbage collector)",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      }
+    ],
+    [
+      6,
+      {
+        "functionName": "Kd",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4334/assets/index-BdjUkdBh.js",
+        "lineNumber": 7,
+        "columnNumber": 127250
+      }
+    ],
+    [
+      5,
+      {
+        "functionName": "ze",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4334/assets/index-BdjUkdBh.js",
+        "lineNumber": 12,
+        "columnNumber": 7299
+      }
+    ],
+    [
+      4,
+      {
+        "functionName": "ze",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4334/assets/index-BdjUkdBh.js",
+        "lineNumber": 12,
+        "columnNumber": 7299
+      }
+    ],
+    [
+      4,
+      {
+        "functionName": "query",
+        "scriptId": "27",
+        "url": "",
+        "lineNumber": 5332,
+        "columnNumber": 20
+      }
+    ],
+    [
+      3,
+      {
+        "functionName": "pl",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4334/assets/index-BdjUkdBh.js",
+        "lineNumber": 7,
+        "columnNumber": 87455
+      }
+    ],
+    [
+      3,
+      {
+        "functionName": "dn",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4334/assets/index-BdjUkdBh.js",
+        "lineNumber": 7,
+        "columnNumber": 10408
+      }
+    ],
+    [
+      3,
+      {
+        "functionName": "Be",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4334/assets/index-BdjUkdBh.js",
+        "lineNumber": 12,
+        "columnNumber": 8491
+      }
+    ],
+    [
+      3,
+      {
+        "functionName": "",
+        "scriptId": "27",
+        "url": "",
+        "lineNumber": 5330,
+        "columnNumber": 112
+      }
+    ],
+    [
+      2,
+      {
+        "functionName": "qt",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4334/assets/index-BdjUkdBh.js",
+        "lineNumber": 7,
+        "columnNumber": 5877
+      }
+    ]
+  ]
+}

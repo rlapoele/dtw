@@ -1,0 +1,18 @@
+{
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-owned-yJmMQO",
+  "pid": 46093,
+  "checks": [
+    "fresh browser shows empty catalogue",
+    "retained workbench opened",
+    "created color token through native retained worker",
+    "exact color revision acknowledged",
+    "independent raw draft and Cancel preserve applied state",
+    "on-demand exact applied source disclosure",
+    "retained group create and rename",
+    "All content reaches group identity inspection",
+    "reopen retains exact color and metadata"
+  ],
+  "errors": [],
+  "browser": "157.0.8103.50",
+  "status": "passed"
+}

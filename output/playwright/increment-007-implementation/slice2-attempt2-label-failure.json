@@ -1,0 +1,13 @@
+{
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-owned-NCdSNw",
+  "pid": 45989,
+  "checks": [
+    "fresh browser shows empty catalogue",
+    "retained workbench opened",
+    "created color token through native retained worker"
+  ],
+  "errors": [],
+  "browser": "157.0.8103.50",
+  "status": "failed",
+  "error": "Error: locator.fill: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByLabel('Red (R)', { exact: true })\u001b[22m\n"
+}

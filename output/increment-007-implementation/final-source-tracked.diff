@@ -1,0 +1,4106 @@
+diff --git a/package-lock.json b/package-lock.json
+index 846c07d..4d1029f 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -11,6 +11,7 @@
+         "@base-ui/react": "1.9.0",
+         "@heroicons/react": "2.2.0",
+         "culori": "4.0.2",
++        "jsonc-parser": "3.3.1",
+         "react": "19.3.1",
+         "react-dom": "19.3.1"
+       },
+@@ -1437,6 +1438,12 @@
+         "jiti": "lib/jiti-cli.mjs"
+       }
+     },
++    "node_modules/jsonc-parser": {
++      "version": "3.3.1",
++      "resolved": "https://registry.npmjs.org/jsonc-parser/-/jsonc-parser-3.3.1.tgz",
++      "integrity": "sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==",
++      "license": "MIT"
++    },
+     "node_modules/lightningcss": {
+       "version": "1.33.0",
+       "resolved": "https://registry.npmjs.org/lightningcss/-/lightningcss-1.33.0.tgz",
+diff --git a/package.json b/package.json
+index d3ca885..3a42d25 100644
+--- a/package.json
++++ b/package.json
+@@ -7,7 +7,7 @@
+     "dev": "vite",
+     "build": "npm run typecheck && vite build",
+     "preview": "vite preview",
+-    "typecheck": "tsc --noEmit && tsc -p tsconfig.presentation.json --noEmit && tsc -p tsconfig.tools.json --noEmit",
++    "typecheck": "tsc --noEmit && tsc -p tsconfig.presentation.json --noEmit && tsc -p tsconfig.tools.json --noEmit && tsc -p tsconfig.worker.json --noEmit",
+     "test": "vitest run",
+     "test:watch": "vitest"
+   },
+@@ -27,6 +27,7 @@
+     "@base-ui/react": "1.9.0",
+     "@heroicons/react": "2.2.0",
+     "culori": "4.0.2",
++    "jsonc-parser": "3.3.1",
+     "react": "19.3.1",
+     "react-dom": "19.3.1"
+   }
+diff --git a/src/domain/expression.ts b/src/domain/expression.ts
+index ddfaebf..249367d 100644
+--- a/src/domain/expression.ts
++++ b/src/domain/expression.ts
+@@ -1,13 +1,26 @@
+-import { addDecimals, subtractDecimals, multiplyDecimals, compareDecimals, decimalFromCanonical } from "@domain/decimal";
++import {
++  addDecimals,
++  subtractDecimals,
++  multiplyDecimals,
++  compareDecimals,
++  decimalFromCanonical,
++} from "@domain/decimal";
+ import type { Decimal } from "@domain/decimal";
+-import { createNumberLiteral, createDimensionLiteral } from "@domain/numeric-literals";
++import {
++  createNumberLiteral,
++  createDimensionLiteral,
++} from "@domain/numeric-literals";
+ import type { DimensionLiteralValue } from "@domain/numeric-literals";
+ import type { ImplementedLiteralValue } from "@domain/token";
+ import type { TokenReference } from "@domain/token-reference";
+ 
+ export const PORTABLE_OPERATION_IDS = [
+-  "portable.math.add.v1", "portable.math.subtract.v1", "portable.math.scale.v1",
+-  "portable.math.min.v1", "portable.math.max.v1", "portable.math.clamp.v1",
++  "portable.math.add.v1",
++  "portable.math.subtract.v1",
++  "portable.math.scale.v1",
++  "portable.math.min.v1",
++  "portable.math.max.v1",
++  "portable.math.clamp.v1",
+ ] as const;
+ export type PortableOperationId = (typeof PORTABLE_OPERATION_IDS)[number];
+ export const EVALUATION_CONTEXT_KEYS = ["font.rootSize"] as const;
+@@ -16,7 +29,11 @@ export type ContextReference = {
+   readonly kind: "context-reference";
+   readonly key: EvaluationContextKey;
+ };
+-export type ExpressionOperand = ImplementedLiteralValue | TokenReference | ExpressionValue | ContextReference;
++export type ExpressionOperand =
++  | ImplementedLiteralValue
++  | TokenReference
++  | ExpressionValue
++  | ContextReference;
+ export type ExpressionValue = {
+   [Operation in PortableOperationId]: {
+     readonly kind: "expression";
+@@ -31,8 +48,17 @@ export type EvaluationContext = {
+ };
+ export type ExpressionFailure = {
+   readonly status: "unresolved";
+-  readonly reason: "invalid-expression" | "unsupported-expression" | "context-required";
+-  readonly code: "invalid-arity" | "invalid-operands" | "invalid-clamp-range" | "invalid-context" | "unknown-operation" | "context-required";
++  readonly reason:
++    | "invalid-expression"
++    | "unsupported-expression"
++    | "context-required";
++  readonly code:
++    | "invalid-arity"
++    | "invalid-operands"
++    | "invalid-clamp-range"
++    | "invalid-context"
++    | "unknown-operation"
++    | "context-required";
+   readonly requiredContext?: readonly EvaluationContextKey[];
+ };
+ export type ExpressionEvaluationResult =
+@@ -42,7 +68,9 @@ export type ExpressionEvaluationResult =
+ const operationIds: ReadonlySet<string> = new Set(PORTABLE_OPERATION_IDS);
+ const zero = decimalFromCanonical("0");
+ 
+-export function isPortableOperationId(operation: string): operation is PortableOperationId {
++export function isPortableOperationId(
++  operation: string,
++): operation is PortableOperationId {
+   return operationIds.has(operation);
+ }
+ 
+@@ -50,23 +78,45 @@ export function createExpression(input: {
+   readonly operation: string;
+   readonly operands: readonly ExpressionOperand[];
+ }): ExpressionValue {
+-  if (!isPortableOperationId(input.operation)) throw new RangeError("Unsupported expression operation");
+-  if (input.operands.length !== operationArity(input.operation)) throw new RangeError("Invalid expression arity");
++  if (!isPortableOperationId(input.operation))
++    throw new RangeError("Unsupported expression operation");
++  if (input.operands.length !== operationArity(input.operation))
++    throw new RangeError("Invalid expression arity");
+   if (input.operation === "portable.math.clamp.v1") {
+-    return { kind: "expression", operation: input.operation, operands: [input.operands[0], input.operands[1], input.operands[2]] };
++    return {
++      kind: "expression",
++      operation: input.operation,
++      operands: [input.operands[0], input.operands[1], input.operands[2]],
++    };
+   }
+-  return { kind: "expression", operation: input.operation, operands: [input.operands[0], input.operands[1]] };
++  return {
++    kind: "expression",
++    operation: input.operation,
++    operands: [input.operands[0], input.operands[1]],
++  };
+ }
+ 
+ export function operationArity(operation: PortableOperationId): number {
+   return operation === "portable.math.clamp.v1" ? 3 : 2;
+ }
+ 
+-export function readRootFontSize(context: EvaluationContext): DimensionLiteralValue | ExpressionFailure {
++export function readRootFontSize(
++  context: EvaluationContext,
++): DimensionLiteralValue | ExpressionFailure {
+   const root = context["font.rootSize"];
+-  if (root === undefined) return { status: "unresolved", reason: "context-required", code: "context-required", requiredContext: ["font.rootSize"] };
++  if (root === undefined)
++    return {
++      status: "unresolved",
++      reason: "context-required",
++      code: "context-required",
++      requiredContext: ["font.rootSize"],
++    };
+   if (root.unit !== "px" || compareDecimals(root.value, zero) < 0) {
+-    return { status: "unresolved", reason: "invalid-expression", code: "invalid-context" };
++    return {
++      status: "unresolved",
++      reason: "invalid-expression",
++      code: "invalid-context",
++    };
+   }
+   return root;
+ }
+@@ -76,18 +126,39 @@ export function evaluatePortableOperation(
+   operation: string,
+   operands: readonly ImplementedLiteralValue[],
+   context: EvaluationContext = {},
++  arithmeticGuard?: (
++    left: Decimal,
++    right: Decimal,
++    operation: "add" | "subtract" | "multiply",
++  ) => void,
+ ): ExpressionEvaluationResult {
+-  if (!isPortableOperationId(operation)) return { status: "unresolved", reason: "unsupported-expression", code: "unknown-operation" };
+-  if (operands.length !== operationArity(operation)) return invalid("invalid-arity");
++  if (!isPortableOperationId(operation))
++    return {
++      status: "unresolved",
++      reason: "unsupported-expression",
++      code: "unknown-operation",
++    };
++  if (operands.length !== operationArity(operation))
++    return invalid("invalid-arity");
+   const first = operands[0];
+-  if (first.valueType !== "number" && first.valueType !== "dimension") return invalid("invalid-operands");
++  if (first.valueType !== "number" && first.valueType !== "dimension")
++    return invalid("invalid-operands");
+   const scale = operation === "portable.math.scale.v1";
+-  if (scale ? operands[1].valueType !== "number" : operands.some(value => value.valueType !== first.valueType)) {
++  if (
++    scale
++      ? operands[1].valueType !== "number"
++      : operands.some((value) => value.valueType !== first.valueType)
++  ) {
+     return invalid("invalid-operands");
+   }
+ 
+   let unit = first.valueType === "dimension" ? first.unit : undefined;
+-  const mixed = !scale && first.valueType === "dimension" && operands.some(value => value.valueType === "dimension" && value.unit !== unit);
++  const mixed =
++    !scale &&
++    first.valueType === "dimension" &&
++    operands.some(
++      (value) => value.valueType === "dimension" && value.unit !== unit,
++    );
+   let rootSize: Decimal | undefined;
+   if (mixed) {
+     const root = readRootFontSize(context);
+@@ -97,27 +168,62 @@ export function evaluatePortableOperation(
+   }
+   const values: Decimal[] = [];
+   for (const operand of operands) {
+-    if (operand.valueType !== "number" && operand.valueType !== "dimension") return invalid("invalid-operands");
+-    values.push(rootSize !== undefined && operand.valueType === "dimension" && operand.unit === "rem"
+-      ? multiplyDecimals(operand.value, rootSize) : operand.value);
++    if (operand.valueType !== "number" && operand.valueType !== "dimension")
++      return invalid("invalid-operands");
++    if (
++      rootSize !== undefined &&
++      operand.valueType === "dimension" &&
++      operand.unit === "rem"
++    )
++      arithmeticGuard?.(operand.value, rootSize, "multiply");
++    values.push(
++      rootSize !== undefined &&
++        operand.valueType === "dimension" &&
++        operand.unit === "rem"
++        ? multiplyDecimals(operand.value, rootSize)
++        : operand.value,
++    );
+   }
+   const [a, b, c] = values;
+   let value: Decimal;
++  if (operation === "portable.math.add.v1") arithmeticGuard?.(a, b, "add");
++  if (operation === "portable.math.subtract.v1")
++    arithmeticGuard?.(a, b, "subtract");
++  if (operation === "portable.math.scale.v1")
++    arithmeticGuard?.(a, b, "multiply");
+   switch (operation) {
+-    case "portable.math.add.v1": value = addDecimals(a, b); break;
+-    case "portable.math.subtract.v1": value = subtractDecimals(a, b); break;
+-    case "portable.math.scale.v1": value = multiplyDecimals(a, b); break;
+-    case "portable.math.min.v1": value = compareDecimals(a, b) <= 0 ? a : b; break;
+-    case "portable.math.max.v1": value = compareDecimals(a, b) >= 0 ? a : b; break;
++    case "portable.math.add.v1":
++      value = addDecimals(a, b);
++      break;
++    case "portable.math.subtract.v1":
++      value = subtractDecimals(a, b);
++      break;
++    case "portable.math.scale.v1":
++      value = multiplyDecimals(a, b);
++      break;
++    case "portable.math.min.v1":
++      value = compareDecimals(a, b) <= 0 ? a : b;
++      break;
++    case "portable.math.max.v1":
++      value = compareDecimals(a, b) >= 0 ? a : b;
++      break;
+     case "portable.math.clamp.v1":
+       if (compareDecimals(a, c) > 0) return invalid("invalid-clamp-range");
+       value = compareDecimals(b, a) < 0 ? a : compareDecimals(b, c) > 0 ? c : b;
+       break;
+   }
+-  return { status: "evaluated", value: unit === undefined ? createNumberLiteral(value) : createDimensionLiteral(value, unit) };
++  return {
++    status: "evaluated",
++    value:
++      unit === undefined
++        ? createNumberLiteral(value)
++        : createDimensionLiteral(value, unit),
++  };
+ }
+ 
+-function invalid(code: "invalid-arity" | "invalid-operands" | "invalid-clamp-range"): ExpressionFailure {
++function invalid(
++  code: "invalid-arity" | "invalid-operands" | "invalid-clamp-range",
++): ExpressionFailure {
+   return { status: "unresolved", reason: "invalid-expression", code };
+ }
+ 
+@@ -134,7 +240,8 @@ export function analyzeExpression(expression: ExpressionValue): {
+     const operand = stack.pop()!;
+     if (operand.kind === "token-reference") references.push(operand);
+     else if (operand.kind === "context-reference") contextKeys.add(operand.key);
+-    else if (operand.kind === "expression") stack.push(...[...operand.operands].reverse());
++    else if (operand.kind === "expression")
++      stack.push(...[...operand.operands].reverse());
+   }
+   return { references, contextKeys: [...contextKeys] };
+ }
+diff --git a/src/domain/namespace.ts b/src/domain/namespace.ts
+index 9b20759..42febfd 100644
+--- a/src/domain/namespace.ts
++++ b/src/domain/namespace.ts
+@@ -11,21 +11,33 @@ export type ProjectNamespaceSnapshot = {
+ 
+ export type NamespaceDiagnostic =
+   | {
+-      readonly code: "project-mismatch" | "missing-parent-group" | "foreign-parent-group";
++      readonly code:
++        | "project-mismatch"
++        | "missing-parent-group"
++        | "foreign-parent-group";
+       readonly entityKind: "group" | "token";
+       readonly entityId: TokenGroupId | TokenId;
+       readonly parentGroupId?: TokenGroupId;
+     }
+   | { readonly code: "group-cycle"; readonly cycle: readonly TokenGroupId[] }
+-  | { readonly code: "missing-group" | "missing-token"; readonly entityId: string };
++  | {
++      readonly code: "missing-group" | "missing-token";
++      readonly entityId: string;
++    };
+ 
+ export type NamespacePathResult =
+   | { readonly status: "derived"; readonly path: readonly string[] }
+-  | { readonly status: "invalid"; readonly diagnostics: readonly NamespaceDiagnostic[] };
++  | {
++      readonly status: "invalid";
++      readonly diagnostics: readonly NamespaceDiagnostic[];
++    };
+ 
+ export type NamespaceChangeResult =
+   | { readonly status: "updated"; readonly namespace: ProjectNamespaceSnapshot }
+-  | { readonly status: "invalid"; readonly diagnostics: readonly NamespaceDiagnostic[] };
++  | {
++      readonly status: "invalid";
++      readonly diagnostics: readonly NamespaceDiagnostic[];
++    };
+ 
+ type NamespaceIndex = {
+   groups: ReadonlyMap<string, TokenGroup>;
+@@ -48,7 +60,8 @@ export function deriveTokenGroupPath(
+ ): NamespacePathResult {
+   const index = indexNamespace(namespace);
+   const group = index.groups.get(groupId);
+-  if (group === undefined) return invalidPath({ code: "missing-group", entityId: groupId });
++  if (group === undefined)
++    return invalidPath({ code: "missing-group", entityId: groupId });
+   return deriveEntityPath(namespace.projectId, index.groups, group, "group");
+ }
+ 
+@@ -58,10 +71,31 @@ export function deriveTokenPath(
+ ): NamespacePathResult {
+   const index = indexNamespace(namespace);
+   const token = index.tokens.get(tokenId);
+-  if (token === undefined) return invalidPath({ code: "missing-token", entityId: tokenId });
++  if (token === undefined)
++    return invalidPath({ code: "missing-token", entityId: tokenId });
+   return deriveEntityPath(namespace.projectId, index.groups, token, "token");
+ }
+ 
++// A coherent immutable read view reuses one index for a projection batch.
++// Existing individual read functions retain their behavior and signatures.
++export function createNamespaceReadView(namespace: ProjectNamespaceSnapshot) {
++  const index = indexNamespace(namespace);
++  return {
++    groupPath(id: string): NamespacePathResult {
++      const group = index.groups.get(id);
++      return group === undefined
++        ? invalidPath({ code: "missing-group", entityId: id })
++        : deriveEntityPath(namespace.projectId, index.groups, group, "group");
++    },
++    tokenPath(id: string): NamespacePathResult {
++      const token = index.tokens.get(id);
++      return token === undefined
++        ? invalidPath({ code: "missing-token", entityId: id })
++        : deriveEntityPath(namespace.projectId, index.groups, token, "token");
++    },
++  };
++}
++
+ export function moveTokenGroup(
+   namespace: ProjectNamespaceSnapshot,
+   groupId: string,
+@@ -69,10 +103,16 @@ export function moveTokenGroup(
+ ): NamespaceChangeResult {
+   const index = indexNamespace(namespace);
+   const group = index.groups.get(groupId);
+-  if (group === undefined) return { status: "invalid", diagnostics: [{ code: "missing-group", entityId: groupId }] };
+-  const groups = namespace.groups.map(current => current.id === group.id
+-    ? { ...current, parentGroupId: parentGroupId as TokenGroupId | null }
+-    : current);
++  if (group === undefined)
++    return {
++      status: "invalid",
++      diagnostics: [{ code: "missing-group", entityId: groupId }],
++    };
++  const groups = namespace.groups.map((current) =>
++    current.id === group.id
++      ? { ...current, parentGroupId: parentGroupId as TokenGroupId | null }
++      : current,
++  );
+   return validateChange({ ...namespace, groups });
+ }
+ 
+@@ -83,14 +123,22 @@ export function moveTokenInNamespace(
+ ): NamespaceChangeResult {
+   const index = indexNamespace(namespace);
+   const token = index.tokens.get(tokenId);
+-  if (token === undefined) return { status: "invalid", diagnostics: [{ code: "missing-token", entityId: tokenId }] };
+-  const tokens = namespace.tokens.map(current => current.id === token.id
+-    ? { ...current, parentGroupId: parentGroupId as TokenGroupId | null }
+-    : current);
++  if (token === undefined)
++    return {
++      status: "invalid",
++      diagnostics: [{ code: "missing-token", entityId: tokenId }],
++    };
++  const tokens = namespace.tokens.map((current) =>
++    current.id === token.id
++      ? { ...current, parentGroupId: parentGroupId as TokenGroupId | null }
++      : current,
++  );
+   return validateChange({ ...namespace, tokens });
+ }
+ 
+-function validateChange(namespace: ProjectNamespaceSnapshot): NamespaceChangeResult {
++function validateChange(
++  namespace: ProjectNamespaceSnapshot,
++): NamespaceChangeResult {
+   const diagnostics = validateProjectNamespace(namespace);
+   return diagnostics.length === 0
+     ? { status: "updated", namespace }
+@@ -101,11 +149,13 @@ function indexNamespace(namespace: ProjectNamespaceSnapshot): NamespaceIndex {
+   const groups = new Map<string, TokenGroup>();
+   const tokens = new Map<string, Token>();
+   for (const group of namespace.groups) {
+-    if (groups.has(group.id)) throw new RangeError("Duplicate group identity in namespace snapshot");
++    if (groups.has(group.id))
++      throw new RangeError("Duplicate group identity in namespace snapshot");
+     groups.set(group.id, group);
+   }
+   for (const token of namespace.tokens) {
+-    if (tokens.has(token.id)) throw new RangeError("Duplicate token identity in namespace snapshot");
++    if (tokens.has(token.id))
++      throw new RangeError("Duplicate token identity in namespace snapshot");
+     tokens.set(token.id, token);
+   }
+   return { groups, tokens };
+@@ -119,12 +169,23 @@ function validateIndexedNamespace(
+   // Only valid project-owned edges participate in cycle detection.
+   const parents = new Map<TokenGroupId, TokenGroupId>();
+   for (const group of namespace.groups) {
+-    const issue = validateEntity(namespace.projectId, index.groups, group, "group");
++    const issue = validateEntity(
++      namespace.projectId,
++      index.groups,
++      group,
++      "group",
++    );
+     if (issue !== undefined) diagnostics.push(issue);
+-    else if (group.parentGroupId !== null) parents.set(group.id, group.parentGroupId);
++    else if (group.parentGroupId !== null)
++      parents.set(group.id, group.parentGroupId);
+   }
+   for (const token of namespace.tokens) {
+-    const issue = validateEntity(namespace.projectId, index.groups, token, "token");
++    const issue = validateEntity(
++      namespace.projectId,
++      index.groups,
++      token,
++      "token",
++    );
+     if (issue !== undefined) diagnostics.push(issue);
+   }
+ 
+@@ -136,7 +197,10 @@ function validateIndexedNamespace(
+     while (current !== undefined && !visited.has(current)) {
+       const position = positions.get(current);
+       if (position !== undefined) {
+-        diagnostics.push({ code: "group-cycle", cycle: [...ancestry.slice(position), current] });
++        diagnostics.push({
++          code: "group-cycle",
++          cycle: [...ancestry.slice(position), current],
++        });
+         break;
+       }
+       positions.set(current, ancestry.length);
+@@ -154,11 +218,24 @@ function validateEntity(
+   entity: NamespaceEntity,
+   entityKind: "group" | "token",
+ ): NamespaceDiagnostic | undefined {
+-  if (entity.projectId !== projectId) return { code: "project-mismatch", entityKind, entityId: entity.id };
++  if (entity.projectId !== projectId)
++    return { code: "project-mismatch", entityKind, entityId: entity.id };
+   if (entity.parentGroupId === null) return undefined;
+   const parent = groups.get(entity.parentGroupId);
+-  if (parent === undefined) return { code: "missing-parent-group", entityKind, entityId: entity.id, parentGroupId: entity.parentGroupId };
+-  if (parent.projectId !== projectId) return { code: "foreign-parent-group", entityKind, entityId: entity.id, parentGroupId: entity.parentGroupId };
++  if (parent === undefined)
++    return {
++      code: "missing-parent-group",
++      entityKind,
++      entityId: entity.id,
++      parentGroupId: entity.parentGroupId,
++    };
++  if (parent.projectId !== projectId)
++    return {
++      code: "foreign-parent-group",
++      entityKind,
++      entityId: entity.id,
++      parentGroupId: entity.parentGroupId,
++    };
+   return undefined;
+ }
+ 
+@@ -179,12 +256,17 @@ function deriveEntityPath(
+     if (currentKind === "group") {
+       const groupId = current.id as TokenGroupId;
+       const position = positions.get(groupId);
+-      if (position !== undefined) return invalidPath({ code: "group-cycle", cycle: [...ancestry.slice(position), groupId] });
++      if (position !== undefined)
++        return invalidPath({
++          code: "group-cycle",
++          cycle: [...ancestry.slice(position), groupId],
++        });
+       positions.set(groupId, ancestry.length);
+       ancestry.push(groupId);
+     }
+     names.push(current.localName);
+-    if (current.parentGroupId === null) return { status: "derived", path: names.reverse() };
++    if (current.parentGroupId === null)
++      return { status: "derived", path: names.reverse() };
+     // validateEntity established that the parent exists in this project.
+     current = groups.get(current.parentGroupId)!;
+     currentKind = "group";
+diff --git a/src/domain/token-resolution.ts b/src/domain/token-resolution.ts
+index b7c33d1..40a28b3 100644
+--- a/src/domain/token-resolution.ts
++++ b/src/domain/token-resolution.ts
+@@ -1,14 +1,54 @@
+-import { SHADOW_FIELDS, SHADOW_FIELD_TYPES, isShadowFieldValue, isValidShadowBlur } from "@domain/shadow";
+-import type { ShadowField, ResolvedShadowLayer, ResolvedShadowValue } from "@domain/shadow";
+-import { TYPOGRAPHY_FIELDS, TYPOGRAPHY_FIELD_TYPES, isTypographyFieldValue, isNonNegativeTypographyValue } from "@domain/typography";
+-import type { TypographyField, ResolvedTypographyValue } from "@domain/typography";
+-import { TRANSITION_FIELDS, TRANSITION_FIELD_TYPES, isTransitionFieldValue, isValidTransitionDuration } from "@domain/transition";
+-import type { TransitionField, ResolvedTransitionValue } from "@domain/transition";
+-import { evaluatePortableOperation, isPortableOperationId, operationArity, readRootFontSize } from "@domain/expression";
+-import type { EvaluationContext, EvaluationContextKey, ExpressionOperand, ExpressionFailure } from "@domain/expression";
++import {
++  SHADOW_FIELDS,
++  SHADOW_FIELD_TYPES,
++  isShadowFieldValue,
++  isValidShadowBlur,
++} from "@domain/shadow";
++import type {
++  ShadowField,
++  ResolvedShadowLayer,
++  ResolvedShadowValue,
++} from "@domain/shadow";
++import {
++  TYPOGRAPHY_FIELDS,
++  TYPOGRAPHY_FIELD_TYPES,
++  isTypographyFieldValue,
++  isNonNegativeTypographyValue,
++} from "@domain/typography";
++import type {
++  TypographyField,
++  ResolvedTypographyValue,
++} from "@domain/typography";
++import {
++  TRANSITION_FIELDS,
++  TRANSITION_FIELD_TYPES,
++  isTransitionFieldValue,
++  isValidTransitionDuration,
++} from "@domain/transition";
++import type {
++  TransitionField,
++  ResolvedTransitionValue,
++} from "@domain/transition";
++import {
++  evaluatePortableOperation,
++  isPortableOperationId,
++  operationArity,
++  readRootFontSize,
++} from "@domain/expression";
++import type {
++  EvaluationContext,
++  EvaluationContextKey,
++  ExpressionOperand,
++  ExpressionFailure,
++} from "@domain/expression";
+ import { selectMostSpecificAssignment } from "@domain/assignment-selection";
+ import type { TokenId } from "@domain/identifiers";
+-import type { ImplementedLiteralValue, ImplementedCompositeValue, Token, TokenType } from "@domain/token";
++import type {
++  ImplementedLiteralValue,
++  ImplementedCompositeValue,
++  Token,
++  TokenType,
++} from "@domain/token";
+ import type { VariationCondition } from "@domain/variation-condition";
+ import type { CompleteVariationSelection } from "@domain/variation-selection";
+ 
+@@ -42,7 +82,15 @@ export type ResolutionDiagnostic = {
+   readonly field?: TransitionField | TypographyField | ShadowField;
+   readonly fieldOwnerId?: TokenId;
+   readonly layerIndex?: number;
+-  readonly compositeCode?: "negative-transition-duration" | "invalid-transition-field" | "negative-typography-font-size" | "negative-typography-line-height" | "invalid-typography-field" | "invalid-shadow-layers" | "invalid-shadow-field" | "negative-shadow-blur";
++  readonly compositeCode?:
++    | "negative-transition-duration"
++    | "invalid-transition-field"
++    | "negative-typography-font-size"
++    | "negative-typography-line-height"
++    | "invalid-typography-field"
++    | "invalid-shadow-layers"
++    | "invalid-shadow-field"
++    | "negative-shadow-blur";
+   readonly expressionCode?: ExpressionFailure["code"];
+   readonly operandPath?: readonly number[];
+   readonly operation?: string;
+@@ -53,7 +101,11 @@ export type ResolutionDiagnostic = {
+   readonly actualType?: TokenType;
+ };
+ 
+-export type ResolvedValue = ImplementedLiteralValue | ResolvedTransitionValue | ResolvedTypographyValue | ResolvedShadowValue;
++export type ResolvedValue =
++  | ImplementedLiteralValue
++  | ResolvedTransitionValue
++  | ResolvedTypographyValue
++  | ResolvedShadowValue;
+ 
+ export type TokenResolutionResult =
+   | {
+@@ -74,17 +126,34 @@ export type TokenResolutionResult =
+       readonly diagnostics: readonly ResolutionDiagnostic[];
+     };
+ 
+-type FieldLocation = { field?: TransitionField | TypographyField | ShadowField; fieldOwnerId?: TokenId; layerIndex?: number };
++type FieldLocation = {
++  field?: TransitionField | TypographyField | ShadowField;
++  fieldOwnerId?: TokenId;
++  layerIndex?: number;
++};
+ 
+ type Task = (
+   | { kind: "token"; id: TokenId; expectedType?: TokenType }
+   | { kind: "finish-token"; id: TokenId; type: TokenType }
+-  | { kind: "value"; value: ExpressionOperand | ImplementedCompositeValue; ownerId: TokenId; expectedType: TokenType; path: readonly number[] }
+-  | { kind: "apply"; operation: string; count: number; ownerId: TokenId; path: readonly number[] }
++  | {
++      kind: "value";
++      value: ExpressionOperand | ImplementedCompositeValue;
++      ownerId: TokenId;
++      expectedType: TokenType;
++      path: readonly number[];
++    }
++  | {
++      kind: "apply";
++      operation: string;
++      count: number;
++      ownerId: TokenId;
++      path: readonly number[];
++    }
+   | { kind: "transition"; ownerId: TokenId }
+   | { kind: "typography"; ownerId: TokenId }
+   | { kind: "shadow"; ownerId: TokenId; count: number }
+-) & FieldLocation;
++) &
++  FieldLocation;
+ 
+ // The caller supplies the project snapshot and a selection completed from its
+ // axes. Only selected assignments are evaluated; authored data is never changed.
+@@ -94,11 +163,21 @@ export function resolveToken(
+   tokenId: string,
+   selection: CompleteVariationSelection,
+   context: EvaluationContext = {},
++  budget?: {
++    schedule(amount: number): void;
++    arithmetic(
++      left: import("@domain/decimal").Decimal,
++      right: import("@domain/decimal").Decimal,
++      operation: "add" | "subtract" | "multiply",
++    ): void;
++  },
+ ): TokenResolutionResult {
+   const tokenById = new Map<TokenId, Token>();
+   for (const token of tokens) {
+     if (tokenById.has(token.id)) {
+-      throw new RangeError("Token identities must be unique within the resolution snapshot");
++      throw new RangeError(
++        "Token identities must be unique within the resolution snapshot",
++      );
+     }
+     tokenById.set(token.id, token);
+   }
+@@ -107,13 +186,26 @@ export function resolveToken(
+   const activeIds: TokenId[] = [];
+   const positions = new Map<TokenId, number>();
+   const values: ResolvedValue[] = [];
++  budget?.schedule(1);
+   const tasks: Task[] = [{ kind: "token", id: rootId }];
++  function push(...items: Task[]) {
++    budget?.schedule(items.length);
++    tasks.push(...items);
++  }
+ 
+-  function fail(reason: TokenResolutionFailureReason, at: TokenId,
++  function fail(
++    reason: TokenResolutionFailureReason,
++    at: TokenId,
+     details: Omit<ResolutionDiagnostic, "code" | "tokenId"> = {},
+   ): TokenResolutionResult {
+-    return { status: "unresolved", tokenId: rootId, selection, reason, trace,
+-      diagnostics: [{ code: reason, tokenId: at, ...details }] };
++    return {
++      status: "unresolved",
++      tokenId: rootId,
++      selection,
++      reason,
++      trace,
++      diagnostics: [{ code: reason, tokenId: at, ...details }],
++    };
+   }
+ 
+   // Explicit work and value stacks support both deep alias chains and nested
+@@ -121,70 +213,215 @@ export function resolveToken(
+   // from repeated references in separate operands.
+   while (tasks.length > 0) {
+     const task = tasks.pop()!;
+-    const location: FieldLocation = task.field === undefined ? {} : { field: task.field, fieldOwnerId: task.fieldOwnerId, ...(task.layerIndex === undefined ? {} : { layerIndex: task.layerIndex }) };
++    const location: FieldLocation =
++      task.field === undefined
++        ? {}
++        : {
++            field: task.field,
++            fieldOwnerId: task.fieldOwnerId,
++            ...(task.layerIndex === undefined
++              ? {}
++              : { layerIndex: task.layerIndex }),
++          };
+     if (task.kind === "token") {
+       const current = tokenById.get(task.id);
+-      if (current === undefined) return fail("missing-reference", task.id, location);
+-      if (current.projectId !== projectId) return fail("cross-project-reference", task.id, location);
++      if (current === undefined)
++        return fail("missing-reference", task.id, location);
++      if (current.projectId !== projectId)
++        return fail("cross-project-reference", task.id, location);
+       const cycleStart = positions.get(task.id);
+-      if (cycleStart !== undefined) return fail("reference-cycle", task.id, { ...location, cycle: [...activeIds.slice(cycleStart), task.id] });
++      if (cycleStart !== undefined)
++        return fail("reference-cycle", task.id, {
++          ...location,
++          cycle: [...activeIds.slice(cycleStart), task.id],
++        });
+       const definition = current.definition;
+-      if (definition === undefined) return fail("missing-assignment", task.id, location);
+-      if (task.expectedType !== undefined && definition.type !== task.expectedType) {
+-        return fail("type-mismatch", task.id, { ...location, expectedType: task.expectedType, actualType: definition.type });
++      if (definition === undefined)
++        return fail("missing-assignment", task.id, location);
++      if (
++        task.expectedType !== undefined &&
++        definition.type !== task.expectedType
++      ) {
++        return fail("type-mismatch", task.id, {
++          ...location,
++          expectedType: task.expectedType,
++          actualType: definition.type,
++        });
+       }
+-      const match = selectMostSpecificAssignment(definition.assignments, selection);
+-      if (match.status === "missing") return fail("missing-assignment", task.id, location);
+-      if (match.status === "ambiguous") return fail("ambiguous-assignment", task.id, { ...location, candidates: match.candidates.map(candidate => candidate.condition) });
++      const match = selectMostSpecificAssignment(
++        definition.assignments,
++        selection,
++      );
++      if (match.status === "missing")
++        return fail("missing-assignment", task.id, location);
++      if (match.status === "ambiguous")
++        return fail("ambiguous-assignment", task.id, {
++          ...location,
++          candidates: match.candidates.map((candidate) => candidate.condition),
++        });
+       const value = match.assignment.value;
+-      trace.push({ tokenId: task.id, matchedCondition: match.assignment.condition, specificity: match.specificity,
+-        ...(value.kind === "token-reference" ? { targetTokenId: value.targetTokenId } : {}) });
++      trace.push({
++        tokenId: task.id,
++        matchedCondition: match.assignment.condition,
++        specificity: match.specificity,
++        ...(value.kind === "token-reference"
++          ? { targetTokenId: value.targetTokenId }
++          : {}),
++      });
+       positions.set(task.id, activeIds.length);
+       activeIds.push(task.id);
+-      tasks.push({ kind: "finish-token", id: task.id, type: definition.type, ...location });
+-      tasks.push({ kind: "value", value, ownerId: task.id, expectedType: definition.type, path: [], ...location });
++      push({
++        kind: "finish-token",
++        id: task.id,
++        type: definition.type,
++        ...location,
++      });
++      push({
++        kind: "value",
++        value,
++        ownerId: task.id,
++        expectedType: definition.type,
++        path: [],
++        ...location,
++      });
+     } else if (task.kind === "finish-token") {
+       const value = values[values.length - 1];
+-      if (value.valueType !== task.type) return fail("type-mismatch", task.id, { ...location, expectedType: task.type, actualType: value.valueType });
++      if (value.valueType !== task.type)
++        return fail("type-mismatch", task.id, {
++          ...location,
++          expectedType: task.type,
++          actualType: value.valueType,
++        });
+       positions.delete(task.id);
+       activeIds.pop();
+     } else if (task.kind === "apply") {
+       const operands = values.splice(values.length - task.count, task.count);
+-      const literals = operands.filter((value): value is ImplementedLiteralValue => value.kind === "literal");
+-      if (literals.length !== operands.length) return fail("invalid-expression", task.ownerId, { ...location, expressionCode: "invalid-operands", operandPath: task.path });
+-      const result = evaluatePortableOperation(task.operation, literals, context);
+-      if (result.status === "unresolved") return fail(result.reason, task.ownerId, {
+-        ...location, expressionCode: result.code, operandPath: task.path, operation: task.operation,
+-        ...(result.requiredContext === undefined ? {} : { requiredContext: result.requiredContext }),
+-      });
++      const literals = operands.filter(
++        (value): value is ImplementedLiteralValue => value.kind === "literal",
++      );
++      if (literals.length !== operands.length)
++        return fail("invalid-expression", task.ownerId, {
++          ...location,
++          expressionCode: "invalid-operands",
++          operandPath: task.path,
++        });
++      const result = evaluatePortableOperation(
++        task.operation,
++        literals,
++        context,
++        budget?.arithmetic,
++      );
++      if (result.status === "unresolved")
++        return fail(result.reason, task.ownerId, {
++          ...location,
++          expressionCode: result.code,
++          operandPath: task.path,
++          operation: task.operation,
++          ...(result.requiredContext === undefined
++            ? {}
++            : { requiredContext: result.requiredContext }),
++        });
+       values.push(result.value);
+     } else if (task.kind === "transition") {
+-      const [duration, delay, timingFunction] = values.splice(values.length - 3, 3);
+-      if (duration.valueType !== "duration" || delay.valueType !== "duration" || timingFunction.valueType !== "cubicBezier") {
+-        return fail("invalid-composite", task.ownerId, { compositeCode: "invalid-transition-field" });
++      const [duration, delay, timingFunction] = values.splice(
++        values.length - 3,
++        3,
++      );
++      if (
++        duration.valueType !== "duration" ||
++        delay.valueType !== "duration" ||
++        timingFunction.valueType !== "cubicBezier"
++      ) {
++        return fail("invalid-composite", task.ownerId, {
++          compositeCode: "invalid-transition-field",
++        });
+       }
+-      if (!isValidTransitionDuration(duration)) return fail("invalid-composite", task.ownerId, { compositeCode: "negative-transition-duration", field: "duration", fieldOwnerId: task.ownerId });
+-      values.push({ kind: "composite", valueType: "transition", duration, delay, timingFunction });
++      if (!isValidTransitionDuration(duration))
++        return fail("invalid-composite", task.ownerId, {
++          compositeCode: "negative-transition-duration",
++          field: "duration",
++          fieldOwnerId: task.ownerId,
++        });
++      values.push({
++        kind: "composite",
++        valueType: "transition",
++        duration,
++        delay,
++        timingFunction,
++      });
+     } else if (task.kind === "shadow") {
+-      const fields = values.splice(values.length - task.count * SHADOW_FIELDS.length, task.count * SHADOW_FIELDS.length);
++      const fields = values.splice(
++        values.length - task.count * SHADOW_FIELDS.length,
++        task.count * SHADOW_FIELDS.length,
++      );
+       const layers: ResolvedShadowLayer[] = [];
+       for (let layerIndex = 0; layerIndex < task.count; layerIndex += 1) {
+-        const [color, offsetX, offsetY, blur, spread, inset] = fields.slice(layerIndex * SHADOW_FIELDS.length, (layerIndex + 1) * SHADOW_FIELDS.length);
+-        if (color.valueType !== "color" || offsetX.valueType !== "dimension" || offsetY.valueType !== "dimension" || blur.valueType !== "dimension" || spread.valueType !== "dimension" || inset.valueType !== "boolean") {
+-          return fail("invalid-composite", task.ownerId, { compositeCode: "invalid-shadow-field", layerIndex });
++        const [color, offsetX, offsetY, blur, spread, inset] = fields.slice(
++          layerIndex * SHADOW_FIELDS.length,
++          (layerIndex + 1) * SHADOW_FIELDS.length,
++        );
++        if (
++          color.valueType !== "color" ||
++          offsetX.valueType !== "dimension" ||
++          offsetY.valueType !== "dimension" ||
++          blur.valueType !== "dimension" ||
++          spread.valueType !== "dimension" ||
++          inset.valueType !== "boolean"
++        ) {
++          return fail("invalid-composite", task.ownerId, {
++            compositeCode: "invalid-shadow-field",
++            layerIndex,
++          });
+         }
+-        if (!isValidShadowBlur(blur)) return fail("invalid-composite", task.ownerId, { compositeCode: "negative-shadow-blur", layerIndex, field: "blur", fieldOwnerId: task.ownerId });
++        if (!isValidShadowBlur(blur))
++          return fail("invalid-composite", task.ownerId, {
++            compositeCode: "negative-shadow-blur",
++            layerIndex,
++            field: "blur",
++            fieldOwnerId: task.ownerId,
++          });
+         layers.push({ color, offsetX, offsetY, blur, spread, inset });
+       }
+-      values.push({ kind: "composite", valueType: "shadow", layers: layers as [ResolvedShadowLayer, ...ResolvedShadowLayer[]] });
++      values.push({
++        kind: "composite",
++        valueType: "shadow",
++        layers: layers as [ResolvedShadowLayer, ...ResolvedShadowLayer[]],
++      });
+     } else if (task.kind === "typography") {
+-      const [fontFamily, fontSize, fontWeight, letterSpacing, lineHeight] = values.splice(values.length - 5, 5);
+-      if (fontFamily.valueType !== "fontFamily" || fontSize.valueType !== "dimension" || fontWeight.valueType !== "fontWeight" || letterSpacing.valueType !== "dimension" || lineHeight.valueType !== "number") {
+-        return fail("invalid-composite", task.ownerId, { compositeCode: "invalid-typography-field" });
++      const [fontFamily, fontSize, fontWeight, letterSpacing, lineHeight] =
++        values.splice(values.length - 5, 5);
++      if (
++        fontFamily.valueType !== "fontFamily" ||
++        fontSize.valueType !== "dimension" ||
++        fontWeight.valueType !== "fontWeight" ||
++        letterSpacing.valueType !== "dimension" ||
++        lineHeight.valueType !== "number"
++      ) {
++        return fail("invalid-composite", task.ownerId, {
++          compositeCode: "invalid-typography-field",
++        });
+       }
+-      if (!isNonNegativeTypographyValue(fontSize)) return fail("invalid-composite", task.ownerId, { compositeCode: "negative-typography-font-size", field: "fontSize", fieldOwnerId: task.ownerId });
+-      if (!isNonNegativeTypographyValue(lineHeight)) return fail("invalid-composite", task.ownerId, { compositeCode: "negative-typography-line-height", field: "lineHeight", fieldOwnerId: task.ownerId });
+-      values.push({ kind: "composite", valueType: "typography", fontFamily, fontSize, fontWeight, letterSpacing, lineHeight });
++      if (!isNonNegativeTypographyValue(fontSize))
++        return fail("invalid-composite", task.ownerId, {
++          compositeCode: "negative-typography-font-size",
++          field: "fontSize",
++          fieldOwnerId: task.ownerId,
++        });
++      if (!isNonNegativeTypographyValue(lineHeight))
++        return fail("invalid-composite", task.ownerId, {
++          compositeCode: "negative-typography-line-height",
++          field: "lineHeight",
++          fieldOwnerId: task.ownerId,
++        });
++      values.push({
++        kind: "composite",
++        valueType: "typography",
++        fontFamily,
++        fontSize,
++        fontWeight,
++        letterSpacing,
++        lineHeight,
++      });
+     } else {
+       const { value, ownerId, expectedType, path } = task;
+       if (value.kind === "literal") {
+@@ -192,59 +429,168 @@ export function resolveToken(
+       } else if (value.kind === "composite") {
+         if (value.valueType === "transition") {
+           for (const field of TRANSITION_FIELDS) {
+-            if (!isTransitionFieldValue(value[field], field)) return fail("invalid-composite", ownerId, { compositeCode: "invalid-transition-field", field, fieldOwnerId: ownerId });
++            if (!isTransitionFieldValue(value[field], field))
++              return fail("invalid-composite", ownerId, {
++                compositeCode: "invalid-transition-field",
++                field,
++                fieldOwnerId: ownerId,
++              });
+           }
+-          tasks.push({ kind: "transition", ownerId });
++          push({ kind: "transition", ownerId });
+           for (const field of [...TRANSITION_FIELDS].reverse()) {
+-            tasks.push({ kind: "value", value: value[field], ownerId, expectedType: TRANSITION_FIELD_TYPES[field], path: [], field, fieldOwnerId: ownerId });
++            push({
++              kind: "value",
++              value: value[field],
++              ownerId,
++              expectedType: TRANSITION_FIELD_TYPES[field],
++              path: [],
++              field,
++              fieldOwnerId: ownerId,
++            });
+           }
+         } else if (value.valueType === "shadow") {
+-          if (!Array.isArray(value.layers) || value.layers.length === 0) return fail("invalid-composite", ownerId, { compositeCode: "invalid-shadow-layers" });
+-          for (let layerIndex = 0; layerIndex < value.layers.length; layerIndex += 1) {
++          if (!Array.isArray(value.layers) || value.layers.length === 0)
++            return fail("invalid-composite", ownerId, {
++              compositeCode: "invalid-shadow-layers",
++            });
++          for (
++            let layerIndex = 0;
++            layerIndex < value.layers.length;
++            layerIndex += 1
++          ) {
+             const layer = value.layers[layerIndex];
+-            if (typeof layer !== "object" || layer === null) return fail("invalid-composite", ownerId, { compositeCode: "invalid-shadow-layers", layerIndex });
++            if (typeof layer !== "object" || layer === null)
++              return fail("invalid-composite", ownerId, {
++                compositeCode: "invalid-shadow-layers",
++                layerIndex,
++              });
+             for (const field of SHADOW_FIELDS) {
+-              if (!isShadowFieldValue(layer[field], field)) return fail("invalid-composite", ownerId, { compositeCode: "invalid-shadow-field", layerIndex, field, fieldOwnerId: ownerId });
++              if (!isShadowFieldValue(layer[field], field))
++                return fail("invalid-composite", ownerId, {
++                  compositeCode: "invalid-shadow-field",
++                  layerIndex,
++                  field,
++                  fieldOwnerId: ownerId,
++                });
+             }
+           }
+-          tasks.push({ kind: "shadow", ownerId, count: value.layers.length });
+-          for (let layerIndex = value.layers.length - 1; layerIndex >= 0; layerIndex -= 1) {
++          push({ kind: "shadow", ownerId, count: value.layers.length });
++          for (
++            let layerIndex = value.layers.length - 1;
++            layerIndex >= 0;
++            layerIndex -= 1
++          ) {
+             for (const field of [...SHADOW_FIELDS].reverse()) {
+-              tasks.push({ kind: "value", value: value.layers[layerIndex][field], ownerId, expectedType: SHADOW_FIELD_TYPES[field], path: [], field, fieldOwnerId: ownerId, layerIndex });
++              push({
++                kind: "value",
++                value: value.layers[layerIndex][field],
++                ownerId,
++                expectedType: SHADOW_FIELD_TYPES[field],
++                path: [],
++                field,
++                fieldOwnerId: ownerId,
++                layerIndex,
++              });
+             }
+           }
+         } else {
+           for (const field of TYPOGRAPHY_FIELDS) {
+-            if (!isTypographyFieldValue(value[field], field)) return fail("invalid-composite", ownerId, { compositeCode: "invalid-typography-field", field, fieldOwnerId: ownerId });
++            if (!isTypographyFieldValue(value[field], field))
++              return fail("invalid-composite", ownerId, {
++                compositeCode: "invalid-typography-field",
++                field,
++                fieldOwnerId: ownerId,
++              });
+           }
+-          tasks.push({ kind: "typography", ownerId });
++          push({ kind: "typography", ownerId });
+           for (const field of [...TYPOGRAPHY_FIELDS].reverse()) {
+-            tasks.push({ kind: "value", value: value[field], ownerId, expectedType: TYPOGRAPHY_FIELD_TYPES[field], path: [], field, fieldOwnerId: ownerId });
++            push({
++              kind: "value",
++              value: value[field],
++              ownerId,
++              expectedType: TYPOGRAPHY_FIELD_TYPES[field],
++              path: [],
++              field,
++              fieldOwnerId: ownerId,
++            });
+           }
+         }
+       } else if (value.kind === "token-reference") {
+-        if (value.valuePath.length > 0) return fail("unsupported-value-path", ownerId, { ...location, operandPath: path });
+-        tasks.push({ kind: "token", id: value.targetTokenId, expectedType, ...location });
++        if (value.valuePath.length > 0)
++          return fail("unsupported-value-path", ownerId, {
++            ...location,
++            operandPath: path,
++          });
++        push({
++          kind: "token",
++          id: value.targetTokenId,
++          expectedType,
++          ...location,
++        });
+       } else if (value.kind === "context-reference") {
+-        if (value.key !== "font.rootSize") return fail("invalid-expression", ownerId, { ...location, expressionCode: "invalid-context", operandPath: path });
++        if (value.key !== "font.rootSize")
++          return fail("invalid-expression", ownerId, {
++            ...location,
++            expressionCode: "invalid-context",
++            operandPath: path,
++          });
+         const root = readRootFontSize(context);
+-        if ("status" in root) return fail(root.reason, ownerId, {
+-          ...location, expressionCode: root.code, operandPath: path,
+-          ...(root.requiredContext === undefined ? {} : { requiredContext: root.requiredContext }),
+-        });
++        if ("status" in root)
++          return fail(root.reason, ownerId, {
++            ...location,
++            expressionCode: root.code,
++            operandPath: path,
++            ...(root.requiredContext === undefined
++              ? {}
++              : { requiredContext: root.requiredContext }),
++          });
+         values.push(root);
+       } else {
+-        if (!isPortableOperationId(value.operation)) return fail("unsupported-expression", ownerId, { ...location, expressionCode: "unknown-operation", operandPath: path, operation: value.operation });
+-        if (value.operands.length !== operationArity(value.operation)) return fail("invalid-expression", ownerId, { ...location, expressionCode: "invalid-arity", operandPath: path, operation: value.operation });
+-        tasks.push({ kind: "apply", operation: value.operation, count: value.operands.length, ownerId, path, ...location });
++        if (!isPortableOperationId(value.operation))
++          return fail("unsupported-expression", ownerId, {
++            ...location,
++            expressionCode: "unknown-operation",
++            operandPath: path,
++            operation: value.operation,
++          });
++        if (value.operands.length !== operationArity(value.operation))
++          return fail("invalid-expression", ownerId, {
++            ...location,
++            expressionCode: "invalid-arity",
++            operandPath: path,
++            operation: value.operation,
++          });
++        push({
++          kind: "apply",
++          operation: value.operation,
++          count: value.operands.length,
++          ownerId,
++          path,
++          ...location,
++        });
+         for (let index = value.operands.length - 1; index >= 0; index -= 1) {
+-          tasks.push({ kind: "value", value: value.operands[index], ownerId,
+-            expectedType: value.operation === "portable.math.scale.v1" && index === 1 ? "number" : expectedType,
+-            path: [...path, index], ...location });
++          push({
++            kind: "value",
++            value: value.operands[index],
++            ownerId,
++            expectedType:
++              value.operation === "portable.math.scale.v1" && index === 1
++                ? "number"
++                : expectedType,
++            path: [...path, index],
++            ...location,
++          });
+         }
+       }
+     }
+   }
+-  return { status: "resolved", tokenId: rootId, selection,
+-    matchedCondition: trace[0].matchedCondition, value: values[0], trace, diagnostics: [] };
++  return {
++    status: "resolved",
++    tokenId: rootId,
++    selection,
++    matchedCondition: trace[0].matchedCondition,
++    value: values[0],
++    trace,
++    diagnostics: [],
++  };
+ }
+diff --git a/src/presentation/app/App.tsx b/src/presentation/app/App.tsx
+deleted file mode 100644
+index bce4518..0000000
+--- a/src/presentation/app/App.tsx
++++ /dev/null
+@@ -1,757 +0,0 @@
+-import { CreationDialog } from "@presentation/features/workbench/components/CreationDialog";
+-import { TokenList } from "@presentation/features/workbench/components/TokenList";
+-import { ProjectNavigation } from "@presentation/features/workbench/components/ProjectNavigation";
+-import { DialogContent } from "@presentation/components/ui/dialog-content";
+-import { Field } from "@presentation/components/ui/field";
+-import { Input } from "@presentation/components/ui/input";
+-import {
+-  useCallback,
+-  useEffect,
+-  useLayoutEffect,
+-  useRef,
+-  useState,
+-} from "react";
+-import { Dialog } from "@base-ui/react/dialog";
+-import {
+-  Bars3Icon,
+-  ChevronDownIcon,
+-  ChevronLeftIcon,
+-  ChevronRightIcon,
+-  InformationCircleIcon,
+-  PlusIcon,
+-  Square3Stack3DIcon,
+-  XMarkIcon,
+-} from "@heroicons/react/24/outline";
+-import { createAuthoringOperations } from "@application/authoring";
+-import type { ProjectReadback, TokenInspection } from "@application/authoring";
+-import type { ProjectStorage } from "@application/project-storage";
+-import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
+-import { Button } from "@presentation/components/ui/button";
+-import { Editor } from "@presentation/features/workbench/components/Editor";
+-import { Swatch } from "@presentation/features/workbench/components/swatch";
+-import type { Feedback } from "@presentation/features/workbench/components/Editor";
+-import { identityLabels, failureText, pathLabel, resolvedColor } from "@presentation/features/workbench/readback";
+-import { colorPreview } from "@presentation/features/workbench/color/preview";
+-import { eligible } from "@presentation/features/workbench/state/session";
+-export function App({
+-  storage = new InMemoryProjectStorage(),
+-  initialProjectId,
+-}: {
+-  storage?: ProjectStorage;
+-  initialProjectId?: string;
+-}) {
+-  const [operations] = useState(() => createAuthoringOperations(storage));
+-  const [projectId, setProjectId] = useState(initialProjectId),
+-    [project, setProject] = useState<ProjectReadback>(),
+-    [projectName, setProjectName] = useState("");
+-  const [selected, setSelected] = useState(""),
+-    [group, setGroup] = useState("all"),
+-    [query, setQuery] = useState("");
+-  const [dirty, setDirty] = useState(false),
+-    [pending, setPending] = useState<(() => void) | null>(null),
+-    [editorVersion, setEditorVersion] = useState(0);
+-  const [readFailure, setReadFailure] = useState(""),
+-    [message, setMessage] = useState(""),
+-    [error, setError] = useState("");
+-  const [dialog, setDialog] = useState<"token" | "group" | "rename" | null>(
+-      null,
+-    ),
+-    [name, setName] = useState(""),
+-    [description, setDescription] = useState(""),
+-    [parent, setParent] = useState(""),
+-    [layer, setLayer] = useState("");
+-  const [compact, setCompact] = useState(() => window.innerWidth < 1120),
+-    [navigationOpen, setNavigationOpen] = useState(false),
+-    [sidebarExpanded, setSidebarExpanded] = useState(
+-      () => window.innerWidth >= 1120,
+-    ),
+-    [inspectorExpanded, setInspectorExpanded] = useState(
+-      () => window.innerWidth >= 768,
+-    );
+-  const [feedback, setFeedback] = useState<Feedback>();
+-  const panelRef = useRef<HTMLElement>(null),
+-    formError = useRef<HTMLParagraphElement>(null),
+-    lastSelected = useRef("");
+-  const read = useCallback(
+-    (id: string) => {
+-      const result = operations.readProject(id);
+-      if (result.status === "failure") {
+-        setReadFailure(failureText(result));
+-        return false;
+-      }
+-      setProject(result.value);
+-      setReadFailure("");
+-      return true;
+-    },
+-    [operations],
+-  );
+-  useEffect(() => {
+-    if (projectId) read(projectId);
+-  }, [projectId, read]);
+-  useEffect(() => {
+-    const media = window.matchMedia("(max-width:1119px)");
+-    const change = () => {
+-      setCompact(media.matches);
+-      if (!media.matches) setNavigationOpen(false);
+-    };
+-    media.addEventListener("change", change);
+-    return () => media.removeEventListener("change", change);
+-  }, []);
+-  useEffect(() => {
+-    const refresh = () => {
+-      if (projectId) read(projectId);
+-    };
+-    window.addEventListener("dtw:read-project", refresh);
+-    return () => window.removeEventListener("dtw:read-project", refresh);
+-  }, [projectId, read]);
+-  useEffect(() => {
+-    if (error) formError.current?.focus();
+-  }, [error]);
+-  useEffect(() => {
+-    if (readFailure)
+-      document
+-        .getElementById(dialog ? "dialog-read-error" : "read-error")
+-        ?.focus();
+-  }, [readFailure, dialog]);
+-  const request = (action: () => void) => {
+-    if (dirty) setPending(() => action);
+-    else action();
+-  };
+-  const inspection = (id: string): TokenInspection | undefined => {
+-    if (!projectId || readFailure) return undefined;
+-    const r = operations.inspectToken(projectId, id);
+-    return r.status === "ok" ? r.value : undefined;
+-  };
+-  const current = selected ? inspection(selected) : undefined;
+-  const lastInspection = useRef<TokenInspection | undefined>(undefined);
+-  if (current) lastInspection.current = current;
+-  const shown =
+-    current ??
+-    (lastInspection.current?.authored.id === selected
+-      ? lastInspection.current
+-      : undefined);
+-  const visible =
+-    project?.tokens.filter(
+-      (t) =>
+-        (group === "all" || t.authored.parentGroupId === group) &&
+-        pathLabel(t.path).toLowerCase().includes(query.toLowerCase()),
+-    ) ?? [];
+-  useLayoutEffect(() => {
+-    if (lastSelected.current !== selected) {
+-      lastSelected.current = selected;
+-      document.getElementById("token-inspector-content")?.scrollTo(0, 0);
+-    }
+-    const frame = requestAnimationFrame(() => {
+-      const row = panelRef.current?.querySelector<HTMLElement>(
+-        '[aria-pressed="true"]',
+-      );
+-      row?.scrollIntoView({ block: "nearest" });
+-    });
+-    return () => cancelAnimationFrame(frame);
+-  }, [selected, inspectorExpanded, visible.length]);
+-  function choose(id: string) {
+-    if (id === selected) {
+-      setInspectorExpanded(true);
+-      return;
+-    }
+-    request(() => {
+-      setSelected(id);
+-      setInspectorExpanded(true);
+-      setDirty(false);
+-    });
+-  }
+-  function open(kind: "token" | "group" | "rename") {
+-    if (readFailure) return;
+-    request(() => {
+-      setName(
+-        kind === "rename"
+-          ? (project?.groups.find((g) => g.authored.id === group)?.authored
+-              .localName ?? "")
+-          : "",
+-      );
+-      setDescription("");
+-      setParent(group === "all" ? "" : group);
+-      setError("");
+-      setDialog(kind);
+-    });
+-  }
+-  function create() {
+-    if (readFailure) {
+-      setError("Project unavailable. Retry reading; form retained.");
+-      return;
+-    }
+-    if (!projectId) return;
+-    const result =
+-      dialog === "token"
+-        ? operations.createColorToken({
+-            projectId,
+-            id: crypto.randomUUID(),
+-            localName: name,
+-            ...(description === "" ? {} : { description }),
+-            parentGroupId: parent || null,
+-            type: "color",
+-            regeneration: "allowed",
+-            ...(layer ? { layer: layer as "primitive" | "semantic" } : {}),
+-            value: {
+-              kind: "literal",
+-              colorSpace: "srgb",
+-              components: ["0", "0", "0"],
+-              alpha: "1",
+-            },
+-          })
+-        : dialog === "group"
+-          ? operations.createGroup({
+-              projectId,
+-              id: crypto.randomUUID(),
+-              localName: name,
+-              parentGroupId: parent || null,
+-            })
+-          : operations.renameGroup(projectId, group, name);
+-    if (result.status === "failure") {
+-      setError(
+-        `${dialog === "rename" ? "Rename" : dialog === "group" ? "Create group" : "Create token"} failed. ${failureText(result)}`,
+-      );
+-      if (
+-        result.error.code === "storage-failure" &&
+-        result.error.operation === "load"
+-      )
+-        read(projectId);
+-      return;
+-    }
+-    const kind = dialog;
+-    if (!read(projectId)) {
+-      setError(
+-        "Operation succeeded, but readback failed. Retry reading to inspect current data.",
+-      );
+-      return;
+-    }
+-    setDialog(null);
+-    setDescription("");
+-    setError("");
+-    setDirty(false);
+-    setEditorVersion((v) => v + 1);
+-    if (kind === "token") {
+-      setSelected(result.value.id);
+-      setGroup("all");
+-      setQuery("");
+-      setInspectorExpanded(true);
+-    } else if (kind === "group") setGroup(result.value.id);
+-    setMessage(
+-      kind === "rename"
+-        ? "Group renamed. Identities and references retained."
+-        : `${kind === "token" ? "Color token" : "Group"} created for this session.`,
+-    );
+-    requestAnimationFrame(() => panelRef.current?.focus());
+-  }
+-  const navigation = (
+-    <ProjectNavigation
+-      drawer={compact}
+-      project={project}
+-      group={group}
+-      unavailable={!!readFailure}
+-      onSelect={(id) => {
+-        setGroup(id);
+-        setNavigationOpen(false);
+-      }}
+-      onCreateGroup={() => {
+-        setNavigationOpen(false);
+-        open("group");
+-      }}
+-    />
+-  );
+-  const header = (
+-    <header
+-      className={`topbar small:h-13 short:h-11 shrink-0 border-b border-border h-16 flex items-center ${projectId && compact ? "pl-2 pr-6 gap-2 density:pr-4" : "px-6 gap-5 density:px-4 density:gap-3"}`}
+-    >
+-      {projectId && compact && (
+-        <Button
+-          variant="ghost"
+-          aria-label="Open project navigation"
+-          size="icon"
+-          className="navigation-trigger"
+-          onClick={() => setNavigationOpen(true)}
+-        >
+-          <Bars3Icon className="icon block w-5.5 h-5.5 shrink-0" />
+-        </Button>
+-      )}
+-      <div className="brand flex items-center gap-2.5">
+-        <Square3Stack3DIcon className="icon block w-4 h-4 shrink-0" />
+-        <strong className="density:text-xs/normal">Token Workbench</strong>
+-      </div>
+-      <span className="project-title small:hidden min-w-0 wrap-anywhere text-muted-foreground">
+-        {projectId && (project?.project.name || "(unnamed project)")}
+-      </span>
+-      <span className="session-label text-caption border border-border px-2.25 py-0.75 rounded ml-auto font-semibold bg-muted">
+-        Session only
+-      </span>
+-    </header>
+-  );
+-  if (!projectId)
+-    return (
+-      <div className="app-shell flex h-dvh min-h-0 flex-col overflow-clip bg-background">
+-        {header}
+-        <main className="project-start small:px-6 small:py-8 short:pt-6 mx-auto px-7 py-15 overflow-auto">
+-          <span className="eyebrow uppercase text-muted-foreground font-semibold">
+-            A project is your starting point
+-          </span>
+-          <h1 className="my-3">Create a color vocabulary</h1>
+-          <p className="text-muted-foreground">
+-            Organize colors, connect references and understand each value.
+-          </p>
+-          <form
+-            className="mt-8"
+-            onSubmit={(e) => {
+-              e.preventDefault();
+-              const id = crypto.randomUUID();
+-              const result = operations.createProject({
+-                id,
+-                name: projectName,
+-              });
+-              if (result.status === "failure") {
+-                setError("Create project failed. " + failureText(result));
+-                return;
+-              }
+-              setProjectId(id);
+-              setMessage("Project created for this session.");
+-            }}
+-          >
+-            <Field>
+-              Project name
+-              <Input
+-                value={projectName}
+-                onChange={(e) => setProjectName(e.target.value)}
+-              />
+-            </Field>
+-            <Button variant="default" type="submit">
+-              Create project
+-            </Button>
+-          </form>
+-          {error && (
+-            <p
+-              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+-              role="alert"
+-            >
+-              {error}
+-            </p>
+-          )}
+-          <p className="session-start-notice text-caption mt-4.5">
+-            Work exists only in this page. Reloading, closing or leaving
+-            discards your project.
+-          </p>
+-        </main>
+-      </div>
+-    );
+-  return (
+-    <div className="app-shell flex h-dvh min-h-0 flex-col overflow-clip bg-background">
+-      <a
+-        className="skip-link fixed -top-20 left-5 z-20 bg-background focus:top-2.5 p-2"
+-        href="#tokens"
+-      >
+-        Skip to tokens
+-      </a>
+-      {header}
+-      <div className="session-notice density:justify-start small:annotation small:min-h-9 small:px-4 small:py-1.5 short:py-1 short:px-4 short:min-h-7 shrink-0 border-b border-border bg-notice text-notice-foreground text-caption px-5 py-2 min-h-9 flex items-center justify-center gap-2">
+-        <InformationCircleIcon
+-          className="icon block w-4 h-4 shrink-0"
+-          aria-hidden="true"
+-        />
+-        <span>
+-          Work exists only in this page. Reloading, closing or leaving will
+-          discard all changes.
+-        </span>
+-      </div>
+-      <div
+-        className={`workbench grid flex-1 h-0 min-h-0 overflow-hidden ${compact ? "compact-navigation" : ""} ${sidebarExpanded ? "groups-expanded" : "groups-collapsed"} ${inspectorExpanded ? "inspector-expanded" : "inspector-collapsed"}`}
+-      >
+-        {!compact && (
+-          <nav
+-            className="sidebar flex min-h-0 flex-col overflow-hidden border-r border-border bg-surface"
+-            aria-label="Project groups"
+-          >
+-            <Button
+-              variant="ghost"
+-              size="pane"
+-              className="pane-toggle sidebar-toggle"
+-              aria-label={
+-                sidebarExpanded
+-                  ? "Collapse project groups"
+-                  : "Expand project groups"
+-              }
+-              aria-expanded={sidebarExpanded}
+-              aria-controls="project-groups-content"
+-              onClick={() => setSidebarExpanded(!sidebarExpanded)}
+-            >
+-              {sidebarExpanded ? (
+-                <ChevronLeftIcon className="icon block w-4 h-4 shrink-0" />
+-              ) : (
+-                <ChevronRightIcon className="icon block w-4 h-4 shrink-0" />
+-              )}
+-              <span>Project groups</span>
+-            </Button>
+-            <div
+-              id="project-groups-content"
+-              hidden={!sidebarExpanded}
+-              className="sidebar-content flex-1 px-3 pt-5.5 pb-5 flex flex-col min-h-0 overflow-auto"
+-            >
+-              {navigation}
+-            </div>
+-          </nav>
+-        )}
+-        <main
+-          id="tokens"
+-          ref={panelRef}
+-          tabIndex={-1}
+-          className="token-panel relative min-w-0 min-h-0 overflow-auto"
+-        >
+-          <div className="panel-header source-compact:items-start compact:flex-wrap mb-6.5 flex justify-between items-center gap-3">
+-            <div>
+-              <span className="eyebrow uppercase text-muted-foreground font-semibold">
+-                Tokens
+-              </span>
+-              <h1 className="my-1.5 small-title">
+-                {group === "all"
+-                  ? "All colors"
+-                  : identityLabels(project?.groups ?? [], ["Project root", "All tokens"]).get(group) ?? "Missing group"}
+-              </h1>
+-              <p className="text-xs/normal text-muted-foreground">
+-                Build a vocabulary, then connect its meaning.
+-              </p>
+-            </div>
+-            <Button
+-              variant="default"
+-              size="panel"
+-              disabled={!!readFailure}
+-              onClick={() => open("token")}
+-            >
+-              <PlusIcon className="icon block w-4 h-4 shrink-0" />
+-              New token
+-            </Button>
+-          </div>
+-          <div className="list-tools compact:flex-wrap narrow:gap-2 flex gap-3 items-center mb-5">
+-            <label className="search tablet:min-w-25 flex-1 max-w-75 relative">
+-              <Input
+-                appearance="search"
+-                type="search"
+-                aria-label="Search color tokens"
+-                placeholder="Search colors…"
+-                value={query}
+-                onChange={(e) => setQuery(e.target.value)}
+-              />
+-            </label>
+-            {group !== "all" && (
+-              <Button disabled={!!readFailure} onClick={() => open("rename")}>
+-                Rename group
+-              </Button>
+-            )}
+-          </div>
+-          {readFailure ? (
+-            <section
+-              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+-              role="alert"
+-              tabIndex={-1}
+-              id="read-error"
+-            >
+-              <h2 className="text-sm/normal mb-2">
+-                Could not read the project
+-              </h2>
+-              <p>{readFailure}</p>
+-              <p>
+-                Mutation is unavailable. Last successful data and drafts are
+-                retained.
+-              </p>
+-              <Button
+-                onClick={() => {
+-                  if (read(projectId)) {
+-                    setMessage("Project read succeeded.");
+-                    requestAnimationFrame(() => panelRef.current?.focus());
+-                  }
+-                }}
+-              >
+-                Retry reading project
+-              </Button>
+-            </section>
+-          ) : (
+-            <>
+-              {selected && !visible.some((t) => t.authored.id === selected) && (
+-                <section className="selection-context flex-wrap border border-border rounded-md mb-4 text-caption flex items-center justify-between gap-3 p-3 bg-muted">
+-                  <p className="mt-2">Selected token is outside this list.</p>
+-                  <Button
+-                    size="selection"
+-                    onClick={() => {
+-                      setGroup("all");
+-                      setQuery("");
+-                      requestAnimationFrame(() =>
+-                        panelRef.current
+-                          ?.querySelector<HTMLElement>('[aria-pressed="true"]')
+-                          ?.focus(),
+-                      );
+-                    }}
+-                  >
+-                    Show selected token
+-                  </Button>
+-                </section>
+-              )}
+-              <TokenList
+-                project={project}
+-                visible={visible}
+-                selected={selected}
+-                query={query}
+-                inspect={inspection}
+-                onSelect={choose}
+-                onEmptyAction={() => (query ? setQuery("") : open("token"))}
+-              />
+-            </>
+-          )}
+-          <section className="project-diagnostics text-caption mt-6">
+-            <details>
+-              <summary>Project diagnostics · namespace and references</summary>
+-              <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
+-                {project && !readFailure
+-                  ? JSON.stringify(
+-                      operations.validateProject(projectId),
+-                      null,
+-                      2,
+-                    )
+-                  : "Unavailable until successful read"}
+-              </pre>
+-            </details>
+-          </section>
+-          <p role="status" className="helper text-muted-foreground font-normal">
+-            {message}
+-          </p>
+-        </main>
+-        <section
+-          className="inspector-shell small:border-l-0 small:border-t small:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l border-border bg-surface"
+-          aria-label="Token inspector pane"
+-        >
+-          <div className="inspector-header border-b border-border bg-surface h-11 min-h-11 shrink-0 flex items-center gap-2 pl-3 min-w-0">
+-            <span className="inspector-region-title flex-1 text-caption leading-3.5 min-w-0 font-medium">
+-              Token inspector
+-            </span>
+-            {!readFailure &&
+-            shown &&
+-            eligible(shown.authored) &&
+-            feedback?.tokenId === selected ? (
+-              <section
+-                className="inspector-feedback flex items-center gap-2 shrink-0"
+-                aria-label="Applied and draft color context"
+-              >
+-                {(
+-                  [
+-                    "applied",
+-                    ...(feedback.tab === "resolved" ? [] : ["draft"]),
+-                  ] as ("applied" | "draft")[]
+-                ).map((k) => (
+-                  <div
+-                    key={k}
+-                    className="inspector-preview-context text-caption leading-3.5 flex flex-col items-center justify-center gap-0.5 w-16 min-w-0"
+-                  >
+-                    <span className="preview-context-label text-secondary">
+-                      {k === "applied" ? "Applied" : "Draft"}
+-                    </span>
+-                    {feedback[k] ? (
+-                      <span
+-                        className="header-specimen rounded border border-specimen-border block w-9 h-4 overflow-hidden"
+-                        aria-hidden="true"
+-                      >
+-                        <span
+-                          className="block size-full"
+-                          style={{ background: feedback[k] }}
+-                        />
+-                      </span>
+-                    ) : (
+-                      <span className="preview-unavailable text-caption leading-4 text-secondary">
+-                        Unavailable
+-                      </span>
+-                    )}
+-                    <span className="sr-only">
+-                      {
+-                        feedback[
+-                          k === "applied" ? "appliedMessage" : "draftMessage"
+-                        ]
+-                      }
+-                    </span>
+-                  </div>
+-                ))}
+-              </section>
+-            ) : (
+-              <span className="inspector-header-status text-caption leading-4 text-secondary">
+-                {readFailure
+-                  ? "Unavailable"
+-                  : selected
+-                    ? "Inspection only"
+-                    : "Select a token"}
+-              </span>
+-            )}
+-            <Button
+-              variant="ghost"
+-              size="icon"
+-              className="pane-toggle inspector-toggle shrink-0 rounded-none"
+-              aria-label={
+-                inspectorExpanded
+-                  ? "Collapse token inspector"
+-                  : "Expand token inspector"
+-              }
+-              aria-expanded={inspectorExpanded}
+-              aria-controls="token-inspector-content"
+-              onClick={() => setInspectorExpanded(!inspectorExpanded)}
+-            >
+-              {inspectorExpanded ? (
+-                <ChevronRightIcon className="icon block w-4 h-4 shrink-0 side-direction small:hidden" />
+-              ) : (
+-                <ChevronLeftIcon className="icon block w-4 h-4 shrink-0 side-direction small:hidden" />
+-              )}
+-              <ChevronDownIcon className="icon block w-4 h-4 shrink-0 bottom-direction small:block hidden" />
+-            </Button>
+-          </div>
+-          <div
+-            id="token-inspector-content"
+-            className="inspector-content flex-1 bg-surface overflow-auto min-h-0"
+-            hidden={!inspectorExpanded}
+-          >
+-            {readFailure && (
+-              <div className="empty px-5 py-17.5 text-center text-muted-foreground">
+-                <h2 className="text-foreground text-base/normal">
+-                  Inspection unavailable
+-                </h2>
+-                <p className="text-xs/normal mt-2 mb-5">
+-                  Retry reading the project.
+-                </p>
+-              </div>
+-            )}
+-            {shown && project ? (
+-              <Editor
+-                key={`${shown.authored.id}-${editorVersion}`}
+-                inspection={shown}
+-                project={project}
+-                inspect={inspection}
+-                onDirty={setDirty}
+-                onFeedback={setFeedback}
+-                readUnavailable={!!readFailure}
+-                onApply={(value) => {
+-                  const result = operations.reviseColorToken({
+-                    projectId,
+-                    tokenId: selected,
+-                    value,
+-                  });
+-                  if (result.status === "ok") {
+-                    read(projectId);
+-                    setMessage("Changes applied for this session.");
+-                  } else if (
+-                    result.error.code === "storage-failure" &&
+-                    result.error.operation === "load"
+-                  )
+-                    read(projectId);
+-                  return result;
+-                }}
+-              />
+-            ) : (
+-              !readFailure && (
+-                <div className="empty px-5 py-17.5 text-center text-muted-foreground">
+-                  <h2 className="text-foreground text-base/normal">
+-                    No token selected
+-                  </h2>
+-                  <p className="text-xs/normal mt-2 mb-5">
+-                    Select or create a color token.
+-                  </p>
+-                </div>
+-              )
+-            )}
+-          </div>
+-        </section>
+-      </div>
+-      <footer className="statusbar narrow:flex-wrap small:px-4 small:py-1.5 short:hidden shrink-0 flex justify-between gap-4 border-t border-border bg-surface text-status px-5 py-2">
+-        <span>{project?.tokens.length ?? 0} tokens</span>
+-        <span className="small:hidden">
+-          Memory only · No recovery after reload
+-        </span>
+-      </footer>
+-      <Dialog.Root
+-        open={compact && navigationOpen}
+-        onOpenChange={setNavigationOpen}
+-      >
+-        <Dialog.Portal>
+-          <Dialog.Backdrop className="navigation-backdrop fixed inset-0 z-30 bg-scrim" />
+-          <Dialog.Popup
+-            className="navigation-drawer fixed top-0 bottom-0 left-0 z-35 border-r border-border bg-background flex flex-col overflow-hidden"
+-            finalFocus={() =>
+-              document.querySelector<HTMLElement>(
+-                '[aria-label="Open project navigation"]',
+-              )
+-            }
+-          >
+-            <div className="navigation-heading border-b border-border px-4 py-3 flex items-center justify-between gap-3 shrink-0">
+-              <Dialog.Title className="text-sm/normal">
+-                Project navigation
+-              </Dialog.Title>
+-              <Dialog.Close
+-                render={<Button variant="ghost" size="icon" />}
+-                aria-label="Close project navigation"
+-              >
+-                <XMarkIcon className="icon block w-4 h-4 shrink-0" />
+-              </Dialog.Close>
+-            </div>
+-            <Dialog.Description className="sr-only">
+-              Browse groups. Closing preserves drafts.
+-            </Dialog.Description>
+-            <nav className="navigation-content flex-1 flex flex-col min-h-0 overflow-hidden">
+-              <div className="sidebar-content flex-1 px-3 py-6 flex flex-col min-h-0 overflow-auto">
+-                {navigation}
+-              </div>
+-            </nav>
+-          </Dialog.Popup>
+-        </Dialog.Portal>
+-      </Dialog.Root>
+-      <Dialog.Root
+-        open={pending !== null}
+-        onOpenChange={(o) => {
+-          if (!o) setPending(null);
+-        }}
+-      >
+-        <DialogContent className="dialog-popup">
+-          <Dialog.Title className="dialog-title mb-2.5">
+-            Discard unapplied changes?
+-          </Dialog.Title>
+-          <Dialog.Description className="text-xs/normal text-muted-foreground mb-6">
+-            Both drafts will be discarded. Applied data is unchanged.
+-          </Dialog.Description>
+-          <div className="dialog-actions justify-end flex gap-2.5 mt-6">
+-            <Dialog.Close render={<Button />}>Keep editing</Dialog.Close>
+-            <Button
+-              variant="default"
+-              onClick={() => {
+-                pending?.();
+-                setPending(null);
+-                setDirty(false);
+-                setEditorVersion((v) => v + 1);
+-              }}
+-            >
+-              Discard draft
+-            </Button>
+-          </div>
+-        </DialogContent>
+-      </Dialog.Root>
+-      <CreationDialog
+-        dialog={dialog}
+-        project={project}
+-        name={name}
+-        description={description}
+-        onDescriptionChange={setDescription}
+-        parent={parent}
+-        layer={layer}
+-        readFailure={readFailure}
+-        error={error}
+-        formError={formError}
+-        finalFocus={() => panelRef.current}
+-        onClose={() => { setDialog(null); setDescription(""); }}
+-        onCreate={create}
+-        onNameChange={setName}
+-        onParentChange={setParent}
+-        onLayerChange={setLayer}
+-        onRetry={() => {
+-          if (read(projectId)) setMessage("Project read succeeded.");
+-        }}
+-      />
+-    </div>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/components/AuthoredValue.tsx b/src/presentation/features/workbench/components/AuthoredValue.tsx
+index 6f7bb6c..22040e4 100644
+--- a/src/presentation/features/workbench/components/AuthoredValue.tsx
++++ b/src/presentation/features/workbench/components/AuthoredValue.tsx
+@@ -1,6 +1,9 @@
+-import { authoredColorCoordinates, spaceName } from "@presentation/features/workbench/color/authored-color";
++import {
++  authoredColorCoordinates,
++  spaceName,
++} from "@presentation/features/workbench/color/authored-color";
+ import type { Token } from "@domain/token";
+-import type { ProjectReadback } from "@application/authoring";
++import type { ProjectContext } from "@application/retention/projections";
+ import { identityLabels } from "@presentation/features/workbench/readback";
+ 
+ type Value = NonNullable<Token["definition"]>["assignments"][number]["value"];
+@@ -12,16 +15,20 @@ export function AuthoredValue({
+   layout = "expanded",
+ }: {
+   value: Value | undefined;
+-  project?: ProjectReadback;
++  project?: ProjectContext;
+   layout?: "expanded" | "compact";
+ }) {
+   if (value?.kind === "token-reference") {
+-    const target = project?.tokens.find((t) => t.authored.id === value.targetTokenId);
++    const target = project?.tokens.find(
++      (t) => t.authored.id === value.targetTokenId,
++    );
+     return (
+       <span className="block min-w-0 wrap-anywhere">
+         <span className="block">Reference</span>
+         <span className="block text-secondary mt-1">
+-          {target ? identityLabels(project?.tokens ?? []).get(target.authored.id) : "Missing target"}
++          {target
++            ? identityLabels(project?.tokens ?? []).get(target.authored.id)
++            : "Missing target"}
+         </span>
+       </span>
+     );
+@@ -35,7 +42,15 @@ export function AuthoredValue({
+         {authoredColorCoordinates(value, layout).map((text, index) => (
+           <span key={index}>
+             {layout === "compact" && index > 0 ? " · " : ""}
+-            <span className={layout === "compact" ? "inline-block max-w-full align-top wrap-anywhere" : "block"}>{text}</span>
++            <span
++              className={
++                layout === "compact"
++                  ? "inline-block max-w-full align-top wrap-anywhere"
++                  : "block"
++              }
++            >
++              {text}
++            </span>
+           </span>
+         ))}
+       </span>
+diff --git a/src/presentation/features/workbench/components/ColorFields.tsx b/src/presentation/features/workbench/components/ColorFields.tsx
+index d126d46..270132c 100644
+--- a/src/presentation/features/workbench/components/ColorFields.tsx
++++ b/src/presentation/features/workbench/components/ColorFields.tsx
+@@ -1,10 +1,17 @@
+-import { COLOR_COMPONENTS, COMPONENT_NAMES, componentSuffix } from "@domain/color-components";
++import {
++  COLOR_COMPONENTS,
++  COMPONENT_NAMES,
++  componentSuffix,
++} from "@domain/color-components";
+ import { Field } from "@presentation/components/ui/field";
+ import { Input } from "@presentation/components/ui/input";
+ import type { CSSProperties } from "react";
+ import { COLOR_SPACES } from "@domain/color-literal";
+ import type { ColorSpace } from "@domain/color-literal";
+-import { integerByteDisplay, integerByteIssue } from "@presentation/features/workbench/color/integer-rgb";
++import {
++  integerByteDisplay,
++  integerByteIssue,
++} from "@presentation/features/workbench/color/integer-rgb";
+ import { Select } from "@presentation/components/ui/select";
+ import {
+   changeView,
+@@ -38,10 +45,12 @@ export function ColorFields({
+   session: s,
+   onChange,
+   onError,
++  readOnly = false,
+ }: {
+   session: DraftSession;
+   onChange: (s: DraftSession) => void;
+   onError: (s: string) => void;
++  readOnly?: boolean;
+ }) {
+   const d = displayed(s),
+     bytes = d.colorSpace === "srgb" && s.scale === "bytes";
+@@ -61,6 +70,7 @@ export function ColorFields({
+       <Field>
+         View color space
+         <Select
++          disabled={readOnly}
+           value={s.viewSpace}
+           onChange={(e) => {
+             try {
+@@ -92,6 +102,7 @@ export function ColorFields({
+         <Field>
+           RGB entry scale
+           <Select
++            disabled={readOnly}
+             value={s.scale}
+             onChange={(e) => {
+               if (s.byteInvalid) {
+@@ -122,9 +133,11 @@ export function ColorFields({
+         {values.map((value, i) => {
+           const identity = COLOR_COMPONENTS[d.colorSpace][i];
+           const suffix = componentSuffix(d.colorSpace, identity);
+-          const label = COMPONENT_NAMES[identity] + (suffix ? ` (${suffix})` : "");
++          const label =
++            COMPONENT_NAMES[identity] + (suffix ? ` (${suffix})` : "");
+           const hue = identity === "hue";
+-          const min = d.colorSpace === "oklab" && identity !== "lightness" ? -0.4 : 0,
++          const min =
++              d.colorSpace === "oklab" && identity !== "lightness" ? -0.4 : 0,
+             max = hue
+               ? 359.9
+               : d.colorSpace === "hsl"
+@@ -136,11 +149,18 @@ export function ColorFields({
+                     ? 255
+                     : 1;
+           const step = hue || d.colorSpace === "hsl" ? 0.1 : bytes ? 1 : 0.001;
+-          const issue = bytes && s.byteEdited[i] ? integerByteIssue(value) : undefined;
+-          const approximate = bytes && !s.byteEdited[i] && integerByteDisplay(d.components[i]).approximate;
+-          const rangeState = bytes && !s.byteEdited[i]
+-            ? visualRangeState(d.components[i], "0", "1")
+-            : issue ? "invalid" : visualRangeState(value, String(min), String(max));
++          const issue =
++            bytes && s.byteEdited[i] ? integerByteIssue(value) : undefined;
++          const approximate =
++            bytes &&
++            !s.byteEdited[i] &&
++            integerByteDisplay(d.components[i]).approximate;
++          const rangeState =
++            bytes && !s.byteEdited[i]
++              ? visualRangeState(d.components[i], "0", "1")
++              : issue
++                ? "invalid"
++                : visualRangeState(value, String(min), String(max));
+           const available = rangeState === "available";
+           return (
+             <div
+@@ -150,6 +170,7 @@ export function ColorFields({
+               <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-1.5 m-0 text-caption font-medium">
+                 <span>{label}</span>
+                 <Input
++                  readOnly={readOnly}
+                   className="small:h-11 small:min-h-11"
+                   value={value}
+                   spellCheck={false}
+@@ -163,6 +184,7 @@ export function ColorFields({
+                   <input
+                     className="component-range small:h-11 col-start-1 row-start-2 self-center block h-10 w-full min-w-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground"
+                     type="range"
++                    disabled={readOnly}
+                     min={min}
+                     max={max}
+                     step={step}
+@@ -196,9 +218,17 @@ export function ColorFields({
+                       : "Complete exact entry to use slider."}
+                 </p>
+               )}
+-              {bytes && <p id={`byte-note-${i}`} className={`col-span-2 text-caption mt-1 wrap-anywhere ${issue ? "text-destructive" : "text-muted-foreground"}`}>
+-                {issue ?? (approximate ? `Approximate · exact normalized ${d.components[i]}` : "")}
+-              </p>}
++              {bytes && (
++                <p
++                  id={`byte-note-${i}`}
++                  className={`col-span-2 text-caption mt-1 wrap-anywhere ${issue ? "text-destructive" : "text-muted-foreground"}`}
++                >
++                  {issue ??
++                    (approximate
++                      ? `Approximate · exact normalized ${d.components[i]}`
++                      : "")}
++                </p>
++              )}
+               <p className="sr-only" id={`range-note-${i}`}>
+                 Illustrative range {min} to {max}, step {step}. Exact values are
+                 retained.
+@@ -211,6 +241,7 @@ export function ColorFields({
+         <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-1.5 m-0 text-caption font-medium">
+           <span>Alpha</span>
+           <Input
++            readOnly={readOnly}
+             className="small:h-11 small:min-h-11"
+             value={s.literal.alpha}
+             aria-describedby="editor-error"
+@@ -227,6 +258,7 @@ export function ColorFields({
+           <input
+             className="component-range small:h-11 col-start-1 row-start-2 self-center block h-10 w-full min-w-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range"
+             type="range"
++            disabled={readOnly}
+             min="0"
+             max="1"
+             step="0.01"
+@@ -249,9 +281,11 @@ export function ColorFields({
+         )}
+       </div>
+       <p className="helper text-muted-foreground font-normal">
+-        {bytes ? "Canonical whole numbers or none on the 0–255 scale" : "Exact canonical decimal text or none"}; alpha 0–1. Sliders are
+-        illustrative stepped edits. Derived views and byte displays may be
+-        approximate. Apply uses {s.literal.colorSpace}.
++        {bytes
++          ? "Canonical whole numbers or none on the 0–255 scale"
++          : "Exact canonical decimal text or none"}
++        ; alpha 0–1. Sliders are illustrative stepped edits. Derived views and
++        byte displays may be approximate. Apply uses {s.literal.colorSpace}.
+       </p>
+       {bytes && (
+         <p className="helper text-muted-foreground font-normal mono break-words">
+diff --git a/src/presentation/features/workbench/components/CreationDialog.tsx b/src/presentation/features/workbench/components/CreationDialog.tsx
+index 902c87b..edb7d71 100644
+--- a/src/presentation/features/workbench/components/CreationDialog.tsx
++++ b/src/presentation/features/workbench/components/CreationDialog.tsx
+@@ -1,5 +1,5 @@
+ import type { Ref } from "react";
+-import type { ProjectReadback } from "@application/authoring";
++import type { ProjectContext } from "@application/retention/projections";
+ import { Dialog } from "@base-ui/react/dialog";
+ import { DialogContent } from "@presentation/components/ui/dialog-content";
+ import { Button } from "@presentation/components/ui/button";
+@@ -27,13 +27,17 @@ export function CreationDialog({
+   onNameChange,
+   onParentChange,
+   onLayerChange,
++  pending = false,
++  recovery,
++  guard,
++  submissionBlocked,
+ }: {
+   dialog: "token" | "group" | "rename" | null;
+-  project: ProjectReadback | undefined;
++  project: ProjectContext | undefined;
+   name: string;
+   description: string;
+   onDescriptionChange: (value: string) => void;
+-  parent: string;
++  parent: string | null;
+   layer: string;
+   readFailure: string;
+   error: string;
+@@ -43,15 +47,22 @@ export function CreationDialog({
+   onCreate: () => void;
+   onRetry: () => void;
+   onNameChange: (value: string) => void;
+-  onParentChange: (value: string) => void;
++  onParentChange: (value: string | null) => void;
+   onLayerChange: (value: string) => void;
++  pending?: boolean;
++  recovery?: import("react").ReactNode;
++  guard?: import("react").ReactNode;
++  submissionBlocked?: string;
+ }) {
+-  const labels = identityLabels(project?.groups ?? [], ["Project root", "All tokens"]);
++  const labels = identityLabels(project?.groups ?? [], [
++    "Project root",
++    "All tokens",
++  ]);
+   return (
+     <Dialog.Root
+       open={dialog !== null}
+       onOpenChange={(o) => {
+-        if (!o) onClose();
++        if (!o && !pending) onClose();
+       }}
+     >
+       <DialogContent className="dialog-popup" finalFocus={finalFocus}>
+@@ -67,65 +78,96 @@ export function CreationDialog({
+             ? "Start with an explicit Color literal."
+             : "Groups organize paths; names do not define types."}
+         </Dialog.Description>
++        {recovery}
+         <form
+           onSubmit={(e) => {
+             e.preventDefault();
+             onCreate();
+           }}
+         >
+-          <Field>
+-            Name
+-            <Input
+-              value={name}
+-              onChange={(e) => onNameChange(e.target.value)}
+-              aria-describedby="creation-error"
+-            />
+-          </Field>
+-          {dialog === "token" && <Field>
+-            Description (optional)
+-            <textarea rows={2} value={description} onChange={(e) => onDescriptionChange(e.target.value)} className="w-full min-w-0 rounded-md border border-border bg-background text-foreground px-2.5 py-2 text-xs/normal hover:border-control-hover resize-y" />
+-          </Field>}
+-          {dialog !== "rename" && (
++          <fieldset>
+             <Field>
+-              {dialog === "token" ? "Group" : "Parent group"}
+-              <Select
+-                value={parent}
+-                onChange={(e) => onParentChange(e.target.value)}
+-              >
+-                <option value="">Project root</option>
+-                {project?.groups.map((g) => (
+-                  <option key={g.authored.id} value={g.authored.id}>
+-                    {labels.get(g.authored.id)}
+-                  </option>
+-                ))}
+-              </Select>
++              Name
++              <Input
++                readOnly={pending}
++                value={name}
++                onChange={(e) => onNameChange(e.target.value)}
++                aria-describedby="creation-error"
++              />
+             </Field>
+-          )}
+-          {dialog === "token" && (
+-            <>
++            {dialog === "token" && (
++              <Field>
++                Description (optional)
++                <textarea
++                  readOnly={pending}
++                  aria-describedby="creation-error"
++                  aria-invalid={!!error && error.includes("token-description")}
++                  rows={2}
++                  value={description}
++                  onChange={(e) => onDescriptionChange(e.target.value)}
++                  className="w-full min-w-0 rounded-md border border-border bg-background text-foreground px-2.5 py-2 text-xs/normal hover:border-control-hover resize-y"
++                />
++              </Field>
++            )}
++            {dialog !== "rename" && (
+               <Field>
+-                Layer
++                {dialog === "token" ? "Group" : "Parent group"}
+                 <Select
+-                  value={layer}
+-                  onChange={(e) => onLayerChange(e.target.value)}
++                  disabled={pending}
++                  value={parent === null ? "" : JSON.stringify(parent)}
++                  onChange={(e) =>
++                    onParentChange(
++                      e.target.value === ""
++                        ? null
++                        : (JSON.parse(e.target.value) as string),
++                    )
++                  }
+                 >
+-                  <option value="">Unspecified</option>
+-                  <option value="primitive">Primitive</option>
+-                  <option value="semantic">Semantic</option>
++                  <option value="">Project root</option>
++                  {parent !== null &&
++                    !project?.groups.some((g) => g.authored.id === parent) && (
++                      <option value={JSON.stringify(parent)}>
++                        Unavailable original parent · {JSON.stringify(parent)}
++                      </option>
++                    )}
++                  {project?.groups.map((g) => (
++                    <option
++                      key={g.authored.id}
++                      value={JSON.stringify(g.authored.id)}
++                    >
++                      {labels.get(g.authored.id)}
++                    </option>
++                  ))}
+                 </Select>
+               </Field>
+-              <section className="creation-disclosure bg-muted border border-border text-xs/normal my-4 p-3 rounded-md">
+-                <h3>Initial value</h3>
+-                <p className="mt-2">
+-                  sRGB · Red 0 · Green 0 · Blue 0 · Alpha 1 (opaque black)
+-                </p>
+-                <p className="mt-2">
+-                  Create starts with this color. You can revise it or explicitly
+-                  replace it with a reference in the editor.
+-                </p>
+-              </section>
+-            </>
+-          )}
++            )}
++            {dialog === "token" && (
++              <>
++                <Field>
++                  Layer
++                  <Select
++                    disabled={pending}
++                    value={layer}
++                    onChange={(e) => onLayerChange(e.target.value)}
++                  >
++                    <option value="">Unspecified</option>
++                    <option value="primitive">Primitive</option>
++                    <option value="semantic">Semantic</option>
++                  </Select>
++                </Field>
++                <section className="creation-disclosure bg-muted border border-border text-xs/normal my-4 p-3 rounded-md">
++                  <h3>Initial value</h3>
++                  <p className="mt-2">
++                    sRGB · Red 0 · Green 0 · Blue 0 · Alpha 1 (opaque black)
++                  </p>
++                  <p className="mt-2">
++                    Create starts with this color. You can revise it or
++                    explicitly replace it with a reference in the editor.
++                  </p>
++                </section>
++              </>
++            )}
++          </fieldset>
+           {readFailure && (
+             <div
+               className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+@@ -153,13 +195,25 @@ export function CreationDialog({
+           ) : (
+             <span id="creation-error" />
+           )}
++          {submissionBlocked && (
++            <p role="status" className="text-caption mt-3">
++              {submissionBlocked}
++            </p>
++          )}
+           <div className="dialog-actions justify-end flex gap-2.5 mt-6">
+-            <Dialog.Close render={<Button />}>Cancel</Dialog.Close>
+-            <Button type="submit" variant="default" disabled={!!readFailure}>
++            <Dialog.Close render={<Button disabled={pending} />}>
++              Cancel
++            </Dialog.Close>
++            <Button
++              type="submit"
++              variant="default"
++              disabled={!!readFailure || pending || !!submissionBlocked}
++            >
+               {dialog === "rename" ? "Rename group" : "Create"}
+             </Button>
+           </div>
+         </form>
++        {guard}
+       </DialogContent>
+     </Dialog.Root>
+   );
+diff --git a/src/presentation/features/workbench/components/Editor.tsx b/src/presentation/features/workbench/components/Editor.tsx
+index 960deaa..67d37b0 100644
+--- a/src/presentation/features/workbench/components/Editor.tsx
++++ b/src/presentation/features/workbench/components/Editor.tsx
+@@ -1,14 +1,16 @@
++import { ExactSource } from "./ExactSource";
++import type { SelectedToken } from "@application/retention/projections";
++import type { ProjectContext } from "@application/retention/projections";
+ import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
+ import { Swatch } from "@presentation/features/workbench/components/swatch";
+ import { InspectionTabs } from "@presentation/features/workbench/components/inspection-tabs";
+ import { Badge } from "@presentation/components/ui/badge";
+ import { Field } from "@presentation/components/ui/field";
+-import { useEffect, useLayoutEffect, useRef, useState } from "react";
++import { useEffect, useLayoutEffect, useRef, useState, useMemo } from "react";
+ import { Tabs } from "@base-ui/react/tabs";
+ import { createColorLiteral } from "@domain/color-literal";
+ import type {
+   TokenInspection,
+-  ProjectReadback,
+   ApplicationResult,
+ } from "@application/authoring";
+ import type { Token } from "@domain/token";
+@@ -16,9 +18,18 @@ import type { ReviseColorTokenInput } from "@application/authoring";
+ import { Button } from "@presentation/components/ui/button";
+ import { Select } from "@presentation/components/ui/select";
+ import { ColorFields } from "@presentation/features/workbench/components/ColorFields";
+-import { baseline, eligible, literalIssue } from "@presentation/features/workbench/state/session";
++import {
++  baseline,
++  eligible,
++  literalIssue,
++} from "@presentation/features/workbench/state/session";
+ import { colorPreview } from "@presentation/features/workbench/color/preview";
+-import { identityLabels, failureText, pathLabel, resolvedColor } from "@presentation/features/workbench/readback";
++import {
++  identityLabels,
++  failureText,
++  pathLabel,
++  resolvedColor,
++} from "@presentation/features/workbench/readback";
+ export type Feedback = {
+   tokenId: string;
+   tab: string;
+@@ -35,19 +46,53 @@ export function Editor({
+   onDirty,
+   onFeedback,
+   readUnavailable,
++  revision = "session",
++  requestSource,
++  readOnly = false,
++  targetUnavailable,
+ }: {
+-  inspection: TokenInspection;
+-  project: ProjectReadback;
+-  inspect: (id: string) => TokenInspection | undefined;
+-  onApply: (value: ReviseColorTokenInput["value"]) => ApplicationResult<Token>;
++  inspection: TokenInspection | SelectedToken;
++  project: ProjectContext;
++  inspect: (id: string) =>
++    | {
++        resolution: {
++          status: string;
++          value?: import("@domain/token-resolution").ResolvedValue;
++        };
++      }
++    | undefined;
++  onApply: (
++    value: ReviseColorTokenInput["value"],
++  ) =>
++    | ApplicationResult<Pick<Token, "definition">>
++    | Promise<ApplicationResult<Pick<Token, "definition">>>;
+   onDirty: (d: boolean) => void;
+   onFeedback: (f: Feedback) => void;
+   readUnavailable: boolean;
++  revision?: string;
++  requestSource?: () => Promise<string>;
++  readOnly?: boolean;
++  targetUnavailable?: string;
+ }) {
+-  const token = i.authored,
+-    value = token.definition?.assignments[0]?.value;
++  const projected = "token" in i;
++  const token = projected ? i.token : i.authored,
++    value = projected
++      ? i.authoredValue
++      : i.authored.definition?.assignments[0]?.value;
++  const [accepting, setAccepting] = useState(false);
+   const [session, setSession] = useState(() => baseline(value));
+   const initial = useRef(session);
++  const baselineRevision = useRef({
++    revision,
++    value: JSON.stringify({ token, value }),
++    previous: value,
++  });
++  const [recovery, setRecovery] = useState<{
++    previous: typeof value;
++    reviewed: boolean;
++  }>();
++  const reviewHeading = useRef<HTMLHeadingElement>(null);
++
+   const [tab, setTab] = useState("authored"),
+     [error, setError] = useState(""),
+     [notice, setNotice] = useState("");
+@@ -56,13 +101,25 @@ export function Editor({
+   const dirty =
+     session.edited || session.reference !== initial.current.reference;
+   useEffect(() => onDirty(dirty), [dirty, onDirty]);
++  useEffect(() => {
++    const before = baselineRevision.current;
++    if (before.revision !== revision) {
++      if (dirty && before.value !== JSON.stringify({ token, value }))
++        setRecovery({ previous: before.previous, reviewed: false });
++      baselineRevision.current = {
++        revision,
++        value: JSON.stringify({ token, value }),
++        previous: value,
++      };
++    }
++  }, [revision, value, dirty]);
++
+   useEffect(() => {
+     if (error) errorRef.current?.focus();
+   }, [error]);
+   const applied = colorPreview(resolvedColor(i));
+-  const targetInspection = session.reference
+-    ? inspect(session.reference)
+-    : undefined;
++  const targetInspection =
++    session.reference !== null ? inspect(session.reference) : undefined;
+   const draft =
+     session.mode === "literal"
+       ? session.byteInvalid
+@@ -82,12 +139,31 @@ export function Editor({
+     () => onFeedback(JSON.parse(feedbackText) as Feedback),
+     [feedbackText, onFeedback],
+   );
+-  const tokenLabels = identityLabels(project.tokens);
+-  const referenceChoices = project.tokens.filter(t => t.authored.definition?.type === "color");
+-  const referenceLabels = identityLabels(referenceChoices, undefined, token.id);
+-  const groupLabels = identityLabels(project.groups, ["Project root", "All tokens"]);
+-  const editable = eligible(token);
+-  function apply() {
++  const tokenLabels = useMemo(
++    () => identityLabels(project.tokens),
++    [project.tokens],
++  );
++  const referenceChoices = useMemo(
++    () => project.tokens.filter((t) => t.authored.definition?.type === "color"),
++    [project.tokens],
++  );
++  const referenceLabels = useMemo(
++    () => identityLabels(referenceChoices, undefined, token.id),
++    [referenceChoices, token.id],
++  );
++  const groupLabels = useMemo(
++    () => identityLabels(project.groups, ["Project root", "All tokens"]),
++    [project.groups],
++  );
++  const editable = projected ? i.editable : eligible(i.authored);
++  async function apply() {
++    if (
++      accepting ||
++      readOnly ||
++      targetUnavailable ||
++      (recovery && !recovery.reviewed)
++    )
++      return;
+     if (readUnavailable) {
+       setError("Project read unavailable. Retry reading; drafts retained.");
+       return;
+@@ -104,7 +180,7 @@ export function Editor({
+       );
+       return;
+     }
+-    if (session.mode === "reference" && !session.reference) {
++    if (session.mode === "reference" && session.reference === null) {
+       setError("Choose a color target.");
+       return;
+     }
+@@ -113,24 +189,46 @@ export function Editor({
+         ? { ...session.literal, kind: "literal" }
+         : {
+             kind: "token-reference",
+-            targetTokenId: session.reference,
++            targetTokenId: session.reference!,
+             valuePath: [],
+           };
+-    const result = onApply(candidate);
++    setAccepting(true);
++    let result: ApplicationResult<Pick<Token, "definition">>;
++    try {
++      result = await onApply(candidate);
++    } catch (error) {
++      setError(
++        error instanceof Error
++          ? error.message
++          : "Apply outcome unavailable. Drafts retained.",
++      );
++      setAccepting(false);
++      return;
++    }
++    setAccepting(false);
+     if (result.status === "failure") {
+       setError("Apply failed. " + failureText(result));
+       return;
+     }
+     const next = baseline(result.value.definition?.assignments[0]?.value);
+     initial.current = next;
++    baselineRevision.current = {
++      revision,
++      value: JSON.stringify(result.value.definition?.assignments[0]?.value),
++      previous: result.value.definition?.assignments[0]?.value,
++    };
++    setRecovery(undefined);
+     setSession(next);
+     onDirty(false);
+     setError("");
+-    setNotice("Changes applied for this session.");
++    setNotice("Changes applied and retained.");
+     modeRef.current?.focus();
+   }
+   function cancel() {
+-    setSession(initial.current);
++    const currentBaseline = baseline(value);
++    initial.current = currentBaseline;
++    setSession(currentBaseline);
++    setRecovery(undefined);
+     onDirty(false);
+     setError("");
+     setNotice("Both drafts discarded. Applied value unchanged.");
+@@ -146,7 +244,10 @@ export function Editor({
+         <span className="eyebrow uppercase text-muted-foreground font-semibold">
+           {token.definition?.type ?? "Unassigned"} token
+         </span>
+-        <h2 className="wrap-anywhere">{tokenLabels.get(token.id)}</h2>
++        <h2 className="wrap-anywhere">
++          {tokenLabels.get(token.id) ??
++            (token.localName || "(unnamed original token)")}
++        </h2>
+         <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
+           {token.description ?? "No description"}
+         </p>
+@@ -161,13 +262,66 @@ export function Editor({
+           value="authored"
+           className="editor-body source-compact:p-5 bg-surface p-6"
+         >
+-          {editable ? (
++          {targetUnavailable && (
++            <p
++              role="status"
++              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive"
++            >
++              {targetUnavailable} Preserved input remains selectable. This
++              action cannot recreate or retarget it.
++            </p>
++          )}
++          {recovery && (
++            <section className="border border-border rounded p-3 text-caption mb-4">
++              <h3 ref={reviewHeading} tabIndex={-1}>
++                Applied state changed
++              </h3>
++              <p>
++                Raw literal/reference input and view/scale choices are
++                preserved. Review opens a comparison; only Reapply changes
++                submits a fresh command.
++              </p>
++              {!recovery.reviewed ? (
++                <Button
++                  onClick={() => {
++                    setRecovery({ ...recovery, reviewed: true });
++                    requestAnimationFrame(() => reviewHeading.current?.focus());
++                  }}
++                >
++                  Review edit
++                </Button>
++              ) : (
++                <>
++                  <h4 className="mt-3">Previous applied</h4>
++                  <pre className="whitespace-pre-wrap wrap-anywhere">
++                    {JSON.stringify(recovery.previous ?? null, null, 2)}
++                  </pre>
++                  <h4 className="mt-3">Current applied</h4>
++                  <pre className="whitespace-pre-wrap wrap-anywhere">
++                    {JSON.stringify(
++                      value ?? {
++                        type: token.definition?.type,
++                        kind: projected ? i.authoredKind : "No assignment",
++                      },
++                      null,
++                      2,
++                    )}
++                  </pre>
++                  <h4 className="mt-3">Preserved input</h4>
++                  <pre className="whitespace-pre-wrap wrap-anywhere">
++                    {JSON.stringify(session, null, 2)}
++                  </pre>
++                </>
++              )}
++            </section>
++          )}
++          {editable || dirty ? (
+             <>
+               <div className="section-title flex items-center justify-between mb-5">
+                 <h3>Value</h3>
+                 {dirty && <Badge>Draft</Badge>}
+               </div>
+-              <fieldset>
++              <fieldset disabled={accepting}>
+                 <legend>Value source</legend>
+                 <div className="mode-switch border border-border bg-mode flex p-0.75 rounded-md gap-0.75">
+                   <Button
+@@ -197,6 +351,7 @@ export function Editor({
+               </fieldset>
+               {session.mode === "literal" ? (
+                 <ColorFields
++                  readOnly={accepting || readOnly}
+                   session={session}
+                   onChange={(s) => {
+                     setSession(s);
+@@ -210,31 +365,47 @@ export function Editor({
+                   <Field>
+                     Target token
+                     <Select
+-                      value={session.reference}
++                      value={
++                        session.reference === null
++                          ? ""
++                          : JSON.stringify(session.reference)
++                      }
+                       aria-describedby="reference-note editor-error"
+                       onChange={(e) => {
+                         setSession({
+                           ...session,
+-                          reference: e.target.value,
++                          reference:
++                            e.target.value === ""
++                              ? null
++                              : (JSON.parse(e.target.value) as string),
+                           edited: true,
+                         });
+                         setError("");
+                       }}
+                     >
+                       <option value="">Choose a color token…</option>
+-                      {session.reference &&
++                      {session.reference !== null &&
+                         !project.tokens.some(
+                           (t) => t.authored.id === session.reference,
+                         ) && (
+-                          <option value={session.reference}>
++                          <option
++                            value={
++                              session.reference === null
++                                ? ""
++                                : JSON.stringify(session.reference)
++                            }
++                          >
+                             Missing target
+                           </option>
+                         )}
+                       {referenceChoices.map((t) => (
+-                          <option key={t.authored.id} value={t.authored.id}>
+-                            {referenceLabels.get(t.authored.id)}
+-                          </option>
+-                        ))}
++                        <option
++                          key={t.authored.id}
++                          value={JSON.stringify(t.authored.id)}
++                        >
++                          {referenceLabels.get(t.authored.id)}
++                        </option>
++                      ))}
+                     </Select>
+                   </Field>
+                   <p
+@@ -263,15 +434,28 @@ export function Editor({
+                 <span id="editor-error" />
+               )}
+               <div className="editor-actions sticky z-1 flex justify-end gap-2 mt-5.5 mb-2.5 border-t border-border bg-surface py-3">
+-                <Button disabled={!dirty} onClick={cancel}>
++                <Button disabled={!dirty || accepting} onClick={cancel}>
+                   Cancel
+                 </Button>
+                 <Button
+                   variant="default"
+-                  disabled={!dirty || readUnavailable || session.byteInvalid}
++                  disabled={
++                    !dirty ||
++                    !editable ||
++                    !!targetUnavailable ||
++                    (!!recovery && !recovery.reviewed) ||
++                    readUnavailable ||
++                    readOnly ||
++                    accepting ||
++                    session.byteInvalid
++                  }
+                   onClick={apply}
+                 >
+-                  Apply changes
++                  {accepting
++                    ? "Retaining changes…"
++                    : recovery?.reviewed
++                      ? "Reapply changes"
++                      : "Apply changes"}
+                 </Button>
+               </div>
+               <p
+@@ -290,9 +474,25 @@ export function Editor({
+               primitive/semantic color revision flow. Its data is retained.
+             </p>
+           )}
++          {token.layer === "component" && (
++            <p role="status" className="helper text-muted-foreground">
++              Component association is preserved. Component ownership context is
++              unavailable and unverified.
++            </p>
++          )}
+           <section className="applied-summary border-t border-border mt-7 pt-5">
+-            <h3 className="mb-3.5">Currently applied</h3>
+-            <div className="text-caption"><AuthoredValue value={value} project={project} /></div>
++            <h3 className="mb-3.5">
++              {targetUnavailable
++                ? "Previous applied · target unavailable"
++                : "Currently applied"}
++            </h3>
++            <div className="text-caption">
++              {projected && !value ? (
++                i.authoredKind
++              ) : (
++                <AuthoredValue value={value} project={project} />
++              )}
++            </div>
+           </section>
+           <section className="applied-summary border-t border-border mt-7 pt-5">
+             <h3 className="mb-3.5">Metadata · read only</h3>
+@@ -312,16 +512,20 @@ export function Editor({
+               <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+                 <dt className="text-muted-foreground">Parent group</dt>
+                 <dd className="text-right wrap-anywhere">
+-                  {token.parentGroupId ? groupLabels.get(token.parentGroupId) ?? "Missing group" : "Project root"}
++                  {token.parentGroupId !== null
++                    ? (groupLabels.get(token.parentGroupId) ?? "Missing group")
++                    : "Project root"}
+                 </dd>
+               </div>
+             </dl>
+-            <details>
+-              <summary>All authored data</summary>
+-              <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
+-                {JSON.stringify(token, null, 2)}
+-              </pre>
+-            </details>
++            <ExactSource
++              key={`${token.id}-${revision}`}
++              revision={revision}
++              request={
++                requestSource ??
++                (() => Promise.resolve(JSON.stringify(token, null, 2)))
++              }
++            />
+           </section>
+         </Tabs.Panel>
+         <Tabs.Panel
+diff --git a/src/presentation/features/workbench/components/ProjectNavigation.tsx b/src/presentation/features/workbench/components/ProjectNavigation.tsx
+index 5aba3ad..ef8607b 100644
+--- a/src/presentation/features/workbench/components/ProjectNavigation.tsx
++++ b/src/presentation/features/workbench/components/ProjectNavigation.tsx
+@@ -1,4 +1,4 @@
+-import type { ProjectReadback } from "@application/authoring";
++import type { ProjectContext } from "@application/retention/projections";
+ import {
+   FolderIcon,
+   PlusIcon,
+@@ -13,15 +13,20 @@ export function ProjectNavigation({
+   unavailable,
+   onSelect,
+   onCreateGroup,
++  onAllContent,
+ }: {
+   drawer: boolean;
+-  project: ProjectReadback | undefined;
+-  group: string;
++  project: ProjectContext | undefined;
++  group: string | null;
+   unavailable: boolean;
+-  onSelect: (group: string) => void;
++  onSelect: (group: string | null) => void;
+   onCreateGroup: () => void;
++  onAllContent?: () => void;
+ }) {
+-  const labels = identityLabels(project?.groups ?? [], ["Project root", "All tokens"]);
++  const labels = identityLabels(project?.groups ?? [], [
++    "Project root",
++    "All tokens",
++  ]);
+   return (
+     <>
+       <div
+@@ -48,10 +53,10 @@ export function ProjectNavigation({
+       <Button
+         variant="navigation"
+         size="navigation"
+-        className={`nav-item w-full ${group === "all" ? "active" : ""}`}
+-        aria-current={group === "all" ? "true" : undefined}
++        className={`nav-item w-full ${group === null ? "active" : ""}`}
++        aria-current={group === null ? "true" : undefined}
+         onClick={() => {
+-          onSelect("all");
++          onSelect(null);
+         }}
+       >
+         <Squares2X2Icon className="icon block w-4 h-4 shrink-0" />
+@@ -60,6 +65,16 @@ export function ProjectNavigation({
+           {project?.tokens.length ?? 0}
+         </span>
+       </Button>
++      {onAllContent && (
++        <Button
++          variant="navigation"
++          size="navigation"
++          className="text-muted-foreground w-full"
++          onClick={onAllContent}
++        >
++          All content
++        </Button>
++      )}
+       <div className="group-tree">
+         {project?.groups.map((g) => (
+           <Button
+diff --git a/src/presentation/features/workbench/readback.ts b/src/presentation/features/workbench/readback.ts
+index 0559594..2df9953 100644
+--- a/src/presentation/features/workbench/readback.ts
++++ b/src/presentation/features/workbench/readback.ts
+@@ -9,12 +9,15 @@ export function pathLabel(path: NamespacePathResult) {
+     ? path.path.map((x) => (x === "" ? "(unnamed)" : x)).join(" / ")
+     : "(invalid namespace)";
+ }
+-export function resolvedColor(
+-  inspection?: TokenInspection,
+-): ColorLiteralValue | undefined {
++export function resolvedColor(inspection?: {
++  resolution: {
++    status: string;
++    value?: import("@domain/token-resolution").ResolvedValue;
++  };
++}): ColorLiteralValue | undefined {
+   const r = inspection?.resolution;
+   return r?.status === "resolved" &&
+-    r.value.kind === "literal" &&
++    r.value?.kind === "literal" &&
+     r.value.valueType === "color"
+     ? r.value
+     : undefined;
+@@ -36,50 +39,79 @@ export function identityLabels(
+   reserved: readonly string[] = ["Choose a color token…", "Missing target"],
+   selfTokenId?: string,
+ ): Map<string, string> {
+-  if (new Set(entries.map(entry => entry.authored.id)).size !== entries.length)
++  if (
++    new Set(entries.map((entry) => entry.authored.id)).size !== entries.length
++  )
+     throw new RangeError("Identity labels require unique stable IDs.");
+   // Context is part of the rendered choice before collision detection.
+-  const bases = entries.map((entry) => pathLabel(entry.path) + (entry.authored.id === selfTokenId ? " (this token)" : ""));
++  const bases = entries.map(
++    (entry) =>
++      pathLabel(entry.path) +
++      (entry.authored.id === selfTokenId ? " (this token)" : ""),
++  );
+   const renderedKey = (text: string) => text.replace(/\s+/g, " ").trim();
+   const reservedKeys = reserved.map(renderedKey);
+   const keys = bases.map(renderedKey);
+   const counts = (values: readonly string[]) => {
+     const result = new Map<string, number>();
+-    values.forEach(value => result.set(value, (result.get(value) ?? 0) + 1));
++    values.forEach((value) => result.set(value, (result.get(value) ?? 0) + 1));
+     return result;
+   };
+   const baseCounts = counts(keys);
+-  const ambiguous = entries.map((entry, i) =>
+-    entry.path.status !== "derived" ||
+-    entry.path.path.length === 0 || entry.path.path.some((part) => part === "") ||
+-    reservedKeys.includes(keys[i]) || baseCounts.get(keys[i])! > 1,
++  const ambiguous = entries.map(
++    (entry, i) =>
++      entry.path.status !== "derived" ||
++      entry.path.path.length === 0 ||
++      entry.path.path.some((part) => part === "") ||
++      reservedKeys.includes(keys[i]) ||
++      baseCounts.get(keys[i])! > 1,
++  );
++  const maximum = entries.reduce(
++    (length, entry) => Math.max(length, entry.authored.id.length),
++    8,
+   );
+-  const maximum = entries.reduce((length, entry) => Math.max(length, entry.authored.id.length), 8);
+   const collisions = (labels: readonly string[]) => {
+-    const keys = labels.map(renderedKey), labelCounts = counts(keys);
+-    return keys.map(key => reservedKeys.includes(key) || labelCounts.get(key)! > 1);
++    const keys = labels.map(renderedKey),
++      labelCounts = counts(keys);
++    return keys.map(
++      (key) => reservedKeys.includes(key) || labelCounts.get(key)! > 1,
++    );
+   };
+-  const result = (labels: readonly string[]) => new Map(entries.map((entry, i) => [entry.authored.id, labels[i]]));
++  const result = (labels: readonly string[]) =>
++    new Map(entries.map((entry, i) => [entry.authored.id, labels[i]]));
+   // Common IDs need only the shortest distinguishing prefix. Compare the whole
+   // rendered set, including authored names that resemble an appended suffix.
+   for (let length = 8; length <= maximum + entries.length; length++) {
+-    const labels = entries.map((entry, i) => ambiguous[i]
+-      ? `${bases[i]} · ${entry.authored.id.slice(0, length)}` : bases[i]);
++    const labels = entries.map((entry, i) =>
++      ambiguous[i]
++        ? `${bases[i]} · ${entry.authored.id.slice(0, length)}`
++        : bases[i],
++    );
+     const clashes = collisions(labels);
+     if (!clashes.some(Boolean)) return result(labels);
+-    clashes.forEach((collision, i) => { if (collision) ambiguous[i] = true; });
++    clashes.forEach((collision, i) => {
++      if (collision) ambiguous[i] = true;
++    });
+   }
+   // Opaque IDs may contain whitespace or the suffix delimiter. Encode UTF-16
+   // units without whitespace/delimiters so distinct full IDs remain visible.
+   // Newly colliding authored names also gain a suffix; each pass marks another
+   // entry, making this fallback bounded even for repairable/malformed readback.
+-  const escaped = entries.map(entry => entry.authored.id.split("")
+-    .map(unit => unit.charCodeAt(0).toString(16).padStart(4, "0")).join(""));
++  const escaped = entries.map((entry) =>
++    entry.authored.id
++      .split("")
++      .map((unit) => unit.charCodeAt(0).toString(16).padStart(4, "0"))
++      .join(""),
++  );
+   for (let pass = 0; pass <= entries.length; pass++) {
+-    const labels = entries.map((_, i) => ambiguous[i] ? `${bases[i]} · id:${escaped[i]}` : bases[i]);
++    const labels = entries.map((_, i) =>
++      ambiguous[i] ? `${bases[i]} · id:${escaped[i]}` : bases[i],
++    );
+     const clashes = collisions(labels);
+     if (!clashes.some(Boolean)) return result(labels);
+-    clashes.forEach((collision, i) => { if (collision) ambiguous[i] = true; });
++    clashes.forEach((collision, i) => {
++      if (collision) ambiguous[i] = true;
++    });
+   }
+   throw new RangeError("Identity labels could not be disambiguated.");
+ }
+diff --git a/src/presentation/features/workbench/state/session.ts b/src/presentation/features/workbench/state/session.ts
+index 7618ba0..acdc359 100644
+--- a/src/presentation/features/workbench/state/session.ts
++++ b/src/presentation/features/workbench/state/session.ts
+@@ -1,7 +1,11 @@
+ import type { ColorLiteralInput, ColorSpace } from "@domain/color-literal";
+ import { createColorLiteral } from "@domain/color-literal";
+ import { convertColor } from "@domain/color-calculation";
+-import { integerByteDisplay, integerByteIssue, integerByteToNormalized } from "@presentation/features/workbench/color/integer-rgb";
++import {
++  integerByteDisplay,
++  integerByteIssue,
++  integerByteToNormalized,
++} from "@presentation/features/workbench/color/integer-rgb";
+ import type { ImplementedAuthoredValue } from "@domain/token";
+ export { canReviseColorToken as eligible } from "@application/color-revision-policy";
+ export type LiteralDraft = {
+@@ -12,7 +16,7 @@ export type LiteralDraft = {
+ export type DraftSession = {
+   mode: "literal" | "reference";
+   literal: LiteralDraft;
+-  reference: string;
++  reference: string | null;
+   viewSpace: ColorSpace;
+   scale: "normalized" | "bytes";
+   byteText: [string, string, string] | null;
+@@ -36,7 +40,7 @@ export function baseline(value?: ImplementedAuthoredValue): DraftSession {
+   return {
+     mode: value?.kind === "token-reference" ? "reference" : "literal",
+     literal,
+-    reference: value?.kind === "token-reference" ? value.targetTokenId : "",
++    reference: value?.kind === "token-reference" ? value.targetTokenId : null,
+     viewSpace: literal.colorSpace,
+     scale: "normalized",
+     byteText: null,
+@@ -104,9 +108,17 @@ export function editComponent(
+     try {
+       components[index] = integerByteToNormalized(text);
+     } catch {
+-      return { ...s, byteText: raw, byteEdited, byteInvalid: true, edited: true };
++      return {
++        ...s,
++        byteText: raw,
++        byteEdited,
++        byteInvalid: true,
++        edited: true,
++      };
+     }
+-    const invalid = raw.some((x, i) => byteEdited[i] && integerByteIssue(x) !== undefined);
++    const invalid = raw.some(
++      (x, i) => byteEdited[i] && integerByteIssue(x) !== undefined,
++    );
+     return {
+       ...s,
+       literal: { ...d, components },
+diff --git a/src/presentation/main.tsx b/src/presentation/main.tsx
+index 7c08880..b186f04 100644
+--- a/src/presentation/main.tsx
++++ b/src/presentation/main.tsx
+@@ -1,4 +1,4 @@
+ import { createRoot } from "react-dom/client";
+-import { App } from "@presentation/app/App";
++import { RetainedApp } from "@presentation/app/RetainedApp";
+ import "@presentation/styles/global.css";
+-createRoot(document.getElementById("root")!).render(<App />);
++createRoot(document.getElementById("root")!).render(<RetainedApp />);
+diff --git a/src/presentation/styles/global.css b/src/presentation/styles/global.css
+index 722a677..173c5ba 100644
+--- a/src/presentation/styles/global.css
++++ b/src/presentation/styles/global.css
+@@ -462,3 +462,9 @@
+ [hidden] {
+   display: none;
+ }
++
++/* E-1/V4 exact-source geometry: native document text, no soft wrap, both axes
++   scroll locally; short source retains its natural height. */
++.exact-source { white-space: pre; overflow: auto; max-height: min(24rem, 50dvh); max-width: 100%; }
++/* Increment 007 staged ordinary rows keep native DOM/Find/accessibility order. */
++.token-row { content-visibility: auto; contain-intrinsic-size: auto 5rem; }
+diff --git a/test/browser/fixture.tsx b/test/browser/fixture.tsx
+index 616c742..e43afe0 100644
+--- a/test/browser/fixture.tsx
++++ b/test/browser/fixture.tsx
+@@ -1,118 +1,3 @@
+-// Explicit test-only entry, excluded from the production build. Never a project loader.
+-import { createRoot } from "react-dom/client";
+-import { App } from "@presentation/app/App";
+-import "@presentation/styles/global.css";
+-import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
+-import { createProject } from "@domain/project";
+-import { createToken } from "@domain/token";
+-import { createColorLiteral } from "@domain/color-literal";
+-import { createTokenReference } from "@domain/token-reference";
+-import { createNumberLiteral } from "@domain/numeric-literals";
+-import type {
+-  ProjectSnapshot,
+-  ProjectStorage,
+-} from "@application/project-storage";
+-const literal = createColorLiteral({
+-  colorSpace: "srgb",
+-  components: ["0.2", "0.4", "0.6"],
+-  alpha: "1",
+-});
+-const make = (
+-  id: string,
+-  value: Parameters<typeof createToken>[0]["definition"],
+-  extra: Partial<Parameters<typeof createToken>[0]> = {},
+-) =>
+-  createToken(
+-    {
+-      id,
+-      projectId: "fixture-project",
+-      localName: id,
+-      parentGroupId: null,
+-      regeneration: "allowed",
+-      definition: value,
+-      ...extra,
+-    },
+-    [],
+-  );
+-const definition = {
+-  type: "color",
+-  assignments: [{ condition: [], value: literal }],
+-};
+-const tokens = [
+-  make("protected-color", definition, {
+-    regeneration: "protected",
+-    description: "Retained authored description",
+-    semanticRole: "content.primary",
+-    layer: "primitive",
+-  }),
+-  make(
+-    "alias",
+-    {
+-      type: "color",
+-      assignments: [
+-        {
+-          condition: [],
+-          value: createTokenReference({
+-            targetTokenId: "protected-color",
+-            valuePath: [],
+-          }),
+-        },
+-      ],
+-    },
+-    { layer: "semantic" },
+-  ),
+-  make("number", {
+-    type: "number",
+-    assignments: [{ condition: [], value: createNumberLiteral("8") }],
+-  }),
+-];
+-const params = new URLSearchParams(location.search);
+-if (params.get("broken") === "true")
+-  for (const id of ["broken-a", "broken-b"])
+-    tokens.push(
+-      make(id, {
+-        type: "color",
+-        assignments: [
+-          {
+-            condition: [],
+-            value: createTokenReference({
+-              targetTokenId: "missing-" + id,
+-              valuePath: [],
+-            }),
+-          },
+-        ],
+-      }),
+-    );
+-const initial: ProjectSnapshot = {
+-  project: createProject({ id: "fixture-project", name: "Acceptance fixture" }),
+-  groups: [],
+-  tokens,
+-};
+-const inner = new InMemoryProjectStorage([initial]);
+-let failRead = false,
+-  failCommit = false;
+-const storage: ProjectStorage = {
+-  load: (id) =>
+-    failRead
+-      ? { status: "failure", message: "Controlled read failure" }
+-      : inner.load(id),
+-  commit: (snapshot) =>
+-    failCommit
+-      ? { status: "failure", message: "Controlled commit failure" }
+-      : inner.commit(snapshot),
+-};
+-Object.assign(window, {
+-  dtwFixture: {
+-    failRead: (value: boolean) => {
+-      failRead = value;
+-      window.dispatchEvent(new Event("dtw:read-project"));
+-    },
+-    failCommit: (value: boolean) => {
+-      failCommit = value;
+-    },
+-    snapshot: () => inner.load("fixture-project"),
+-  },
+-});
+-createRoot(document.getElementById("root")!).render(
+-  <App storage={storage} initialProjectId="fixture-project" />,
+-);
++// Historical demo URL now exercises the actual retained application.
++// Baseline authored data is available via its explicit backup fixture download.
++import "./increment007";
+diff --git a/test/browser/increment005.tsx b/test/browser/increment005.tsx
+index 2ec3478..e43afe0 100644
+--- a/test/browser/increment005.tsx
++++ b/test/browser/increment005.tsx
+@@ -1,141 +1,3 @@
+-// Explicit test-only entry, excluded from the production build. Never a project loader.
+-import { createRoot } from "react-dom/client";
+-import { App } from "@presentation/app/App";
+-import "@presentation/styles/global.css";
+-import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
+-import { createProject } from "@domain/project";
+-import { createToken } from "@domain/token";
+-import { createColorLiteral } from "@domain/color-literal";
+-import { createTokenReference } from "@domain/token-reference";
+-import { createNumberLiteral } from "@domain/numeric-literals";
+-import type {
+-  ProjectSnapshot,
+-  ProjectStorage,
+-} from "@application/project-storage";
+-const literal = createColorLiteral({
+-  colorSpace: "srgb",
+-  components: ["0.2", "0.4", "0.6"],
+-  alpha: "1",
+-});
+-const make = (
+-  id: string,
+-  value: Parameters<typeof createToken>[0]["definition"],
+-  extra: Partial<Parameters<typeof createToken>[0]> = {},
+-) =>
+-  createToken(
+-    {
+-      id,
+-      projectId: "fixture-project",
+-      localName: id,
+-      parentGroupId: null,
+-      regeneration: "allowed",
+-      definition: value,
+-      ...extra,
+-    },
+-    [],
+-  );
+-const definition = {
+-  type: "color",
+-  assignments: [{ condition: [], value: literal }],
+-};
+-const tokens = [
+-  make("protected-color", definition, {
+-    regeneration: "protected",
+-    description: "Retained authored description",
+-    semanticRole: "content.primary",
+-    layer: "primitive",
+-  }),
+-  make(
+-    "alias",
+-    {
+-      type: "color",
+-      assignments: [
+-        {
+-          condition: [],
+-          value: createTokenReference({
+-            targetTokenId: "protected-color",
+-            valuePath: [],
+-          }),
+-        },
+-      ],
+-    },
+-    { layer: "semantic" },
+-  ),
+-  make("number", {
+-    type: "number",
+-    assignments: [{ condition: [], value: createNumberLiteral("8") }],
+-  }),
+-];
+-const params = new URLSearchParams(location.search);
+-if (params.get("broken") === "true")
+-  for (const id of ["broken-a", "broken-b"])
+-    tokens.push(
+-      make(id, {
+-        type: "color",
+-        assignments: [
+-          {
+-            condition: [],
+-            value: createTokenReference({
+-              targetTokenId: "missing-" + id,
+-              valuePath: [],
+-            }),
+-          },
+-        ],
+-      }),
+-    );
+-for (const [space, components] of [
+-  ["srgb", ["-0.2", "0.4", "1.234567890123456789012345678901234567890123456789"]],
+-  ["display-p3", ["0.1", "0.3", "0.7"]],
+-  ["hsl", ["none", "none", "63"]],
+-  ["oklab", ["0.6", "-0.2", "0.3"]],
+-  ["oklch", ["0.7", "0.2", "39"]],
+-] as const) tokens.push(make(space, {
+-  type: "color", assignments: [{ condition: [], value: createColorLiteral({ colorSpace: space, components, alpha: "0.1234567890123456789" }) }],
+-}, { layer: "primitive", description: " First descriptive line\nSecond descriptive line\nThird full inspector line. " }));
+-const initial: ProjectSnapshot = {
+-  project: createProject({ id: "fixture-project", name: "Acceptance fixture" }),
+-  groups: [],
+-  tokens,
+-};
+-const inner = new InMemoryProjectStorage([initial]);
+-let failRead = false,
+-  failCommit = false;
+-const storage: ProjectStorage = {
+-  load: (id) =>
+-    failRead
+-      ? { status: "failure", message: "Controlled read failure" }
+-      : inner.load(id),
+-  commit: (snapshot) =>
+-    failCommit
+-      ? { status: "failure", message: "Controlled commit failure" }
+-      : inner.commit(snapshot),
+-};
+-// Visible test controls keep browser automation on supported UI actions.
+-const controls = document.createElement("div");
+-controls.setAttribute("aria-label", "Acceptance controls");
+-for (const [label, change] of [
+-  ["Fail reads", (checked: boolean) => { failRead = checked; window.dispatchEvent(new Event("dtw:read-project")); }],
+-  ["Fail commits", (checked: boolean) => { failCommit = checked; }],
+-] as const) {
+-  const field = document.createElement("label");
+-  const input = document.createElement("input"); input.type = "checkbox";
+-  input.onchange = () => change(input.checked);
+-  field.append(input, label); controls.append(field);
+-}
+-document.body.prepend(controls);
+-// Test-only native keyboard controls work while the modal makes outside UI inert.
+-// Alt+Shift+R toggles read failure; Alt+Shift+C toggles commit failure.
+-window.addEventListener("keydown", (event) => {
+-  if (!event.altKey || !event.shiftKey) return;
+-  if (event.code === "KeyR") {
+-    failRead = !failRead;
+-    window.dispatchEvent(new Event("dtw:read-project"));
+-  } else if (event.code === "KeyC") failCommit = !failCommit;
+-  else return;
+-  event.preventDefault();
+-  controls.setAttribute("data-fail-read", String(failRead));
+-  controls.setAttribute("data-fail-commit", String(failCommit));
+-});
+-createRoot(document.getElementById("root")!).render(
+-  <App storage={storage} initialProjectId="fixture-project" />,
+-);
++// Historical demo URL now exercises the actual retained application.
++// Baseline authored data is available via its explicit backup fixture download.
++import "./increment007";
+diff --git a/test/browser/increment006.tsx b/test/browser/increment006.tsx
+index adcff62..e43afe0 100644
+--- a/test/browser/increment006.tsx
++++ b/test/browser/increment006.tsx
+@@ -1,161 +1,3 @@
+-// Explicit test-only entry, excluded from the production build. Never a project loader.
+-import { createRoot } from "react-dom/client";
+-import { App } from "@presentation/app/App";
+-import "@presentation/styles/global.css";
+-import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
+-import { createTokenGroup } from "@domain/token-group";
+-import { createProject } from "@domain/project";
+-import { createToken } from "@domain/token";
+-import { createColorLiteral } from "@domain/color-literal";
+-import { createTokenReference } from "@domain/token-reference";
+-import { createNumberLiteral } from "@domain/numeric-literals";
+-import type {
+-  ProjectSnapshot,
+-  ProjectStorage,
+-} from "@application/project-storage";
+-const literal = createColorLiteral({
+-  colorSpace: "srgb",
+-  components: ["0.2314", "0.41234567890123456789", "0.67890123456789"],
+-  alpha: "0.1234567890123456789",
+-});
+-const make = (
+-  id: string,
+-  value: Parameters<typeof createToken>[0]["definition"],
+-  extra: Partial<Parameters<typeof createToken>[0]> = {},
+-) =>
+-  createToken(
+-    {
+-      id,
+-      projectId: "fixture-project",
+-      localName: id,
+-      parentGroupId: null,
+-      regeneration: "allowed",
+-      definition: value,
+-      ...extra,
+-    },
+-    [],
+-  );
+-const definition = {
+-  type: "color",
+-  assignments: [{ condition: [], value: literal }],
+-};
+-const tokens = [
+-  make("protected-color", definition, {
+-    regeneration: "protected",
+-    description: "Retained authored description",
+-    semanticRole: "content.primary",
+-    layer: "primitive",
+-  }),
+-  make(
+-    "alias",
+-    {
+-      type: "color",
+-      assignments: [
+-        {
+-          condition: [],
+-          value: createTokenReference({
+-            targetTokenId: "protected-color",
+-            valuePath: [],
+-          }),
+-        },
+-      ],
+-    },
+-    { layer: "semantic" },
+-  ),
+-  make("number", {
+-    type: "number",
+-    assignments: [{ condition: [], value: createNumberLiteral("8") }],
+-  }),
+-];
+-const params = new URLSearchParams(location.search);
+-if (params.get("broken") === "true")
+-  for (const id of ["broken-a", "broken-b"])
+-    tokens.push(
+-      make(id, {
+-        type: "color",
+-        assignments: [
+-          {
+-            condition: [],
+-            value: createTokenReference({
+-              targetTokenId: "missing-" + id,
+-              valuePath: [],
+-            }),
+-          },
+-        ],
+-      }),
+-    );
+-for (const [space, components] of [
+-  ["srgb", ["-0.2", "0.4", "1.234567890123456789012345678901234567890123456789"]],
+-  ["display-p3", ["0.1", "0.3", "0.7"]],
+-  ["hsl", ["none", "none", "63"]],
+-  ["oklab", ["0.6", "-0.2", "0.3"]],
+-  ["oklch", ["0.7", "0.2", "39"]],
+-] as const) tokens.push(make(space, {
+-  type: "color", assignments: [{ condition: [], value: createColorLiteral({ colorSpace: space, components, alpha: "0.1234567890123456789" }) }],
+-}, { layer: "primitive", description: " First descriptive line\nSecond descriptive line\nThird full inspector line. " }));
+-const groups = ["common-long-prefix-group-a", "common-long-prefix-group-b"].map(id => createTokenGroup({ id, projectId: "fixture-project", localName: "same group", parentGroupId: null }));
+-groups.push(createTokenGroup({ id: "root-named-group", projectId: "fixture-project", localName: "Project root", parentGroupId: null }));
+-for (const [id, localName, parentGroupId] of [
+-  ["common-long-prefix-token-a", "duplicate", null], ["common-long-prefix-token-b", "duplicate", null],
+-  ["empty-token", "", null], ["fallback-token", "(unnamed)", null],
+-  ["space-token-a", "a  b", null], ["space-token-b", "a b", null],
+-  ["suffix-like-token", "duplicate · common-long-prefix-token-a", null],
+-  ["placeholder-token", "Choose a color token…", null], ["missing-label-token", "Missing target", null],
+-  ["nested-token", "nested", "common-long-prefix-group-a"],
+-] as const) tokens.push(make(id, definition, { localName, parentGroupId }));
+-for (const [id, components] of [
+-  ["half-ties", ["0.1", "0.3", "-0.3"]],
+-  ["half-sides", ["0.099999999999999999999999999", "0.300000000000000000000000001", "0.2"]],
+-  ["outside-endpoints", ["-0.000000000000000000001", "1.000000000000000000001", "none"]],
+-] as const) tokens.push(make(id, { type: "color", assignments: [{ condition: [], value: createColorLiteral({ colorSpace: "srgb", components, alpha: "0.37" }) }] }));
+-if (params.get("broken") === "true") {
+-  tokens.push(make("invalid-path-token", definition, { parentGroupId: "absent" }));
+-  tokens.push(make("invalid-fallback-token", definition, { localName: "(invalid namespace)" }));
+-}
+-const initial: ProjectSnapshot = {
+-  project: createProject({ id: "fixture-project", name: "Acceptance fixture" }),
+-  groups,
+-  tokens,
+-};
+-const inner = new InMemoryProjectStorage([initial]);
+-let failRead = false,
+-  failCommit = false;
+-const storage: ProjectStorage = {
+-  load: (id) =>
+-    failRead
+-      ? { status: "failure", message: "Controlled read failure" }
+-      : inner.load(id),
+-  commit: (snapshot) =>
+-    failCommit
+-      ? { status: "failure", message: "Controlled commit failure" }
+-      : inner.commit(snapshot),
+-};
+-// Visible test controls keep browser automation on supported UI actions.
+-const controls = document.createElement("div");
+-controls.setAttribute("aria-label", "Acceptance controls");
+-for (const [label, change] of [
+-  ["Fail reads", (checked: boolean) => { failRead = checked; window.dispatchEvent(new Event("dtw:read-project")); }],
+-  ["Fail commits", (checked: boolean) => { failCommit = checked; }],
+-] as const) {
+-  const field = document.createElement("label");
+-  const input = document.createElement("input"); input.type = "checkbox";
+-  input.onchange = () => change(input.checked);
+-  field.append(input, label); controls.append(field);
+-}
+-document.body.prepend(controls);
+-// Test-only native keyboard controls work while the modal makes outside UI inert.
+-// Alt+Shift+R toggles read failure; Alt+Shift+C toggles commit failure.
+-window.addEventListener("keydown", (event) => {
+-  if (!event.altKey || !event.shiftKey) return;
+-  if (event.code === "KeyR") {
+-    failRead = !failRead;
+-    window.dispatchEvent(new Event("dtw:read-project"));
+-  } else if (event.code === "KeyC") failCommit = !failCommit;
+-  else return;
+-  event.preventDefault();
+-  controls.setAttribute("data-fail-read", String(failRead));
+-  controls.setAttribute("data-fail-commit", String(failCommit));
+-});
+-createRoot(document.getElementById("root")!).render(
+-  <App storage={storage} initialProjectId="fixture-project" />,
+-);
++// Historical demo URL now exercises the actual retained application.
++// Baseline authored data is available via its explicit backup fixture download.
++import "./increment007";
+diff --git a/test/presentation/identity-presentation.test.tsx b/test/presentation/identity-presentation.test.tsx
+index 8734e48..3204bcc 100644
+--- a/test/presentation/identity-presentation.test.tsx
++++ b/test/presentation/identity-presentation.test.tsx
+@@ -13,150 +13,435 @@ import { createProject } from "@domain/project";
+ import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
+ import { createAuthoringOperations } from "@application/authoring";
+ import { ColorFields } from "@presentation/features/workbench/components/ColorFields";
+-import { baseline, editComponent } from "@presentation/features/workbench/state/session";
++import {
++  baseline,
++  editComponent,
++} from "@presentation/features/workbench/state/session";
+ import type { DraftSession } from "@presentation/features/workbench/state/session";
+-import type { ApplicationResult, TokenInspection } from "@application/authoring";
+-function ok<T>(r: ApplicationResult<T>): T { if (r.status !== "ok") throw new Error(JSON.stringify(r)); return r.value; }
++import type {
++  ApplicationResult,
++  TokenInspection,
++} from "@application/authoring";
++function ok<T>(r: ApplicationResult<T>): T {
++  if (r.status !== "ok") throw new Error(JSON.stringify(r));
++  return r.value;
++}
+ function setup() {
+-  const groups = ["shared-prefix-group-a", "shared-prefix-group-b"].map(id => createTokenGroup({ id, projectId: "p", localName: "same", parentGroupId: null }));
+-  const literal = createColorLiteral({ colorSpace: "srgb", components: ["0.2314", "0.4", "0.6"], alpha: "1" });
++  const groups = ["shared-prefix-group-a", "shared-prefix-group-b"].map((id) =>
++    createTokenGroup({
++      id,
++      projectId: "p",
++      localName: "same",
++      parentGroupId: null,
++    }),
++  );
++  const literal = createColorLiteral({
++    colorSpace: "srgb",
++    components: ["0.2314", "0.4", "0.6"],
++    alpha: "1",
++  });
+   const specs = [
+-    ["shared-prefix-token-a", "same", null], ["shared-prefix-token-b", "same", null],
+-    ["empty-a", "", null], ["fallback-b", "(unnamed)", null],
+-    ["invalid-a", "x", "absent"], ["invalid-b", "(invalid namespace)", null],
++    ["shared-prefix-token-a", "same", null],
++    ["shared-prefix-token-b", "same", null],
++    ["empty-a", "", null],
++    ["fallback-b", "(unnamed)", null],
++    ["invalid-a", "x", "absent"],
++    ["invalid-b", "(invalid namespace)", null],
+     ["unique-token-id", "unique", "shared-prefix-group-a"],
+-    ["space-a", "a  b", null], ["space-b", "a b", null],
++    ["space-a", "a  b", null],
++    ["space-b", "a b", null],
+     ["suffix-like", "same · shared-prefix-token-a", null],
+-    ["placeholder-token", "Choose a color token…", null], ["missing-label-token", "Missing target", null],
++    ["placeholder-token", "Choose a color token…", null],
++    ["missing-label-token", "Missing target", null],
+   ] as const;
+-  const tokens = specs.map(([id, localName, parentGroupId]) => createToken({ id, projectId: "p", localName, parentGroupId, regeneration: "allowed", layer: "primitive", definition: { type: "color", assignments: [{ condition: [], value: literal }] } }, []));
+-  const storage = new InMemoryProjectStorage([{ project: createProject({ id: "p", name: "Fixture" }), groups, tokens }]);
++  const tokens = specs.map(([id, localName, parentGroupId]) =>
++    createToken(
++      {
++        id,
++        projectId: "p",
++        localName,
++        parentGroupId,
++        regeneration: "allowed",
++        layer: "primitive",
++        definition: {
++          type: "color",
++          assignments: [{ condition: [], value: literal }],
++        },
++      },
++      [],
++    ),
++  );
++  const storage = new InMemoryProjectStorage([
++    { project: createProject({ id: "p", name: "Fixture" }), groups, tokens },
++  ]);
+   return createAuthoringOperations(storage);
+ }
+ describe("human identity labels in real consumers", () => {
+   it("renders collision-safe rows/navigation and retains selected identity", () => {
+-    const app = setup(), project = ok(app.readProject("p"));
++    const app = setup(),
++      project = ok(app.readProject("p"));
+     const labels = identityLabels(project.tokens);
+     expect(new Set(labels.values()).size).toBe(project.tokens.length);
+-    expect(labels.get("shared-prefix-token-a")).toBe("same · shared-prefix-token-a");
++    expect(labels.get("shared-prefix-token-a")).toBe(
++      "same · shared-prefix-token-a",
++    );
+     expect(labels.get("space-a")).toContain("space-a");
+     expect(labels.get("space-b")).toContain("space-b");
+     expect(labels.get("suffix-like")).toContain("suffix-like");
+-    expect(labels.get("shared-prefix-token-b")).toBe("same · shared-prefix-token-b");
++    expect(labels.get("shared-prefix-token-b")).toBe(
++      "same · shared-prefix-token-b",
++    );
+     expect(labels.get("empty-a")).toContain("empty-a");
+     expect(labels.get("fallback-b")).toContain("fallback");
+     expect(labels.get("unique-token-id")).toBe("same / unique");
+     expect(labels.get("placeholder-token")).toContain("placehol");
+     expect(labels.get("missing-label-token")).toContain("missing-");
+-    const html = renderToStaticMarkup(createElement(TokenList, { project, visible: project.tokens, selected: "unique-token-id", query: "", inspect: id => ok(app.inspectToken("p", id)), onSelect: () => {}, onEmptyAction: () => {} }));
++    const html = renderToStaticMarkup(
++      createElement(TokenList, {
++        project,
++        visible: project.tokens,
++        selected: "unique-token-id",
++        query: "",
++        inspect: (id) => ok(app.inspectToken("p", id)),
++        onSelect: () => {},
++        onEmptyAction: () => {},
++      }),
++    );
+     expect(html).toContain('aria-pressed="true"');
+     expect(html).toContain("same · shared-prefix-token-a");
+     expect(html).toContain("same · shared-prefix-token-b");
+     expect(html).not.toContain("unique-token-id");
+     expect(html).toContain("same / unique");
+-    const nav = renderToStaticMarkup(createElement(ProjectNavigation, { drawer: false, project, group: "shared-prefix-group-b", unavailable: false, onSelect: () => {}, onCreateGroup: () => {} }));
+-    expect(nav).toContain("same · shared-prefix-group-a"); expect(nav).toContain("same · shared-prefix-group-b");
++    const nav = renderToStaticMarkup(
++      createElement(ProjectNavigation, {
++        drawer: false,
++        project,
++        group: "shared-prefix-group-b",
++        unavailable: false,
++        onSelect: () => {},
++        onCreateGroup: () => {},
++      }),
++    );
++    expect(nav).toContain("same · shared-prefix-group-a");
++    expect(nav).toContain("same · shared-prefix-group-b");
+     expect(nav).toContain('aria-current="true"');
+   });
+-  it("keeps readable references quiet, missing targets clear and full technical JSON truthful", () => {
+-    const app = setup(), project = ok(app.readProject("p"));
+-    const ref = { kind: "token-reference", targetTokenId: project.tokens[6].authored.id, valuePath: [] } as const;
+-    const html = renderToStaticMarkup(createElement(AuthoredValue, { project, value: ref }));
+-    expect(html).toContain("same / unique"); expect(html).not.toContain("unique-token-id");
+-    const missing = renderToStaticMarkup(createElement(AuthoredValue, { project, value: { ...ref, targetTokenId: "missing-secret-id" as typeof ref.targetTokenId } }));
+-    expect(missing).toContain("Missing target"); expect(missing).not.toContain("missing-secret-id");
+-    const editor = renderToStaticMarkup(createElement(Editor, { project, inspection: ok(app.inspectToken("p", "unique-token-id")), inspect: id => ok(app.inspectToken("p", id)), onApply: () => { throw new Error("No render mutation"); }, onDirty: () => {}, onFeedback: () => {}, readUnavailable: false }));
+-    expect(editor).toContain('All authored data');
+-    expect(editor).toContain('&quot;id&quot;: &quot;unique-token-id&quot;');
++  it("keeps readable references quiet and defers exact technical JSON until disclosure", () => {
++    const app = setup(),
++      project = ok(app.readProject("p"));
++    const ref = {
++      kind: "token-reference",
++      targetTokenId: project.tokens[6].authored.id,
++      valuePath: [],
++    } as const;
++    const html = renderToStaticMarkup(
++      createElement(AuthoredValue, { project, value: ref }),
++    );
++    expect(html).toContain("same / unique");
++    expect(html).not.toContain("unique-token-id");
++    const missing = renderToStaticMarkup(
++      createElement(AuthoredValue, {
++        project,
++        value: {
++          ...ref,
++          targetTokenId: "missing-secret-id" as typeof ref.targetTokenId,
++        },
++      }),
++    );
++    expect(missing).toContain("Missing target");
++    expect(missing).not.toContain("missing-secret-id");
++    const editor = renderToStaticMarkup(
++      createElement(Editor, {
++        project,
++        inspection: ok(app.inspectToken("p", "unique-token-id")),
++        inspect: (id) => ok(app.inspectToken("p", id)),
++        onApply: () => {
++          throw new Error("No render mutation");
++        },
++        onDirty: () => {},
++        onFeedback: () => {},
++        readUnavailable: false,
++      }),
++    );
++    expect(editor).toContain("All authored data");
++    expect(editor).not.toContain("&quot;id&quot;: &quot;unique-token-id&quot;");
++    expect(editor).toContain(
++      "Opening very large exact source may briefly pause this view.",
++    );
++    expect(editor).not.toContain("Complete applied authored data");
+     expect(editor).not.toContain("Token unique-token-id");
+     const targetInspection = ok(app.inspectToken("p", "unique-token-id"));
+-    const aliasInspection: TokenInspection = { ...targetInspection, authored: { ...targetInspection.authored, definition: { type: "color", assignments: [{ condition: targetInspection.authored.definition!.assignments[0].condition, value: ref }] } } };
+-    const referenceEditor = renderToStaticMarkup(createElement(Editor, { project, inspection: aliasInspection, inspect: id => ok(app.inspectToken("p", id)), onApply: () => { throw new Error("No render mutation"); }, onDirty: () => {}, onFeedback: () => {}, readUnavailable: false }));
+-    expect(referenceEditor).toContain('<option value="unique-token-id" selected="">same / unique (this token)</option>');
+-    expect(referenceEditor).toContain('<option value="shared-prefix-token-a">same · shared-prefix-token-a</option>');
++    const aliasInspection: TokenInspection = {
++      ...targetInspection,
++      authored: {
++        ...targetInspection.authored,
++        definition: {
++          type: "color",
++          assignments: [
++            {
++              condition:
++                targetInspection.authored.definition!.assignments[0].condition,
++              value: ref,
++            },
++          ],
++        },
++      },
++    };
++    const referenceEditor = renderToStaticMarkup(
++      createElement(Editor, {
++        project,
++        inspection: aliasInspection,
++        inspect: (id) => ok(app.inspectToken("p", id)),
++        onApply: () => {
++          throw new Error("No render mutation");
++        },
++        onDirty: () => {},
++        onFeedback: () => {},
++        readUnavailable: false,
++      }),
++    );
++    expect(referenceEditor).toContain(
++      '<option value="&quot;unique-token-id&quot;" selected="">same / unique (this token)</option>',
++    );
++    expect(referenceEditor).toContain(
++      '<option value="&quot;shared-prefix-token-a&quot;">same · shared-prefix-token-a</option>',
++    );
+   });
+   it("refreshes names after rename while preserving alias targets and values", () => {
+     const app = createAuthoringOperations(new InMemoryProjectStorage());
+     ok(app.createProject({ id: "p", name: "P" }));
+-    ok(app.createGroup({ id: "group-stable", projectId: "p", localName: "before", parentGroupId: null }));
+-    ok(app.createColorToken({ id: "target-stable", projectId: "p", localName: "base", parentGroupId: "group-stable", type: "color", regeneration: "allowed", value: { kind: "literal", colorSpace: "srgb", components: ["0", "0", "0"], alpha: "1" } }));
+-    ok(app.createColorToken({ id: "alias-stable", projectId: "p", localName: "alias", parentGroupId: null, type: "color", regeneration: "allowed", value: { kind: "token-reference", targetTokenId: "target-stable", valuePath: [] } }));
++    ok(
++      app.createGroup({
++        id: "group-stable",
++        projectId: "p",
++        localName: "before",
++        parentGroupId: null,
++      }),
++    );
++    ok(
++      app.createColorToken({
++        id: "target-stable",
++        projectId: "p",
++        localName: "base",
++        parentGroupId: "group-stable",
++        type: "color",
++        regeneration: "allowed",
++        value: {
++          kind: "literal",
++          colorSpace: "srgb",
++          components: ["0", "0", "0"],
++          alpha: "1",
++        },
++      }),
++    );
++    ok(
++      app.createColorToken({
++        id: "alias-stable",
++        projectId: "p",
++        localName: "alias",
++        parentGroupId: null,
++        type: "color",
++        regeneration: "allowed",
++        value: {
++          kind: "token-reference",
++          targetTokenId: "target-stable",
++          valuePath: [],
++        },
++      }),
++    );
+     ok(app.renameGroup("p", "group-stable", "after"));
+-    const project = ok(app.readProject("p")), alias = project.tokens.find(t => t.authored.id === "alias-stable")!;
+-    expect(alias.authored.definition?.assignments[0].value).toMatchObject({ targetTokenId: "target-stable" });
+-    const html = renderToStaticMarkup(createElement(AuthoredValue, { project, value: alias.authored.definition!.assignments[0].value }));
+-    expect(html).toContain("after / base"); expect(html).not.toContain("before");
+-    expect(identityLabels(project.tokens).get("target-stable")).toBe("after / base");
++    const project = ok(app.readProject("p")),
++      alias = project.tokens.find((t) => t.authored.id === "alias-stable")!;
++    expect(alias.authored.definition?.assignments[0].value).toMatchObject({
++      targetTokenId: "target-stable",
++    });
++    const html = renderToStaticMarkup(
++      createElement(AuthoredValue, {
++        project,
++        value: alias.authored.definition!.assignments[0].value,
++      }),
++    );
++    expect(html).toContain("after / base");
++    expect(html).not.toContain("before");
++    expect(identityLabels(project.tokens).get("target-stable")).toBe(
++      "after / base",
++    );
+   });
+ });
+ 
+-
+ describe("integer RGB rendered fields", () => {
+   it("associates approximation and errors and guards sliders with exact source", () => {
+-    const source = createColorLiteral({ colorSpace: "srgb", components: ["-0.000000000000000000001", "1.000000000000000000001", "0.2314"], alpha: "1" });
++    const source = createColorLiteral({
++      colorSpace: "srgb",
++      components: [
++        "-0.000000000000000000001",
++        "1.000000000000000000001",
++        "0.2314",
++      ],
++      alpha: "1",
++    });
+     const s = { ...baseline(source), scale: "bytes" as const };
+-    const render = (session: DraftSession) => renderToStaticMarkup(createElement(ColorFields, { session, onChange: () => {}, onError: () => {} }));
++    const render = (session: DraftSession) =>
++      renderToStaticMarkup(
++        createElement(ColorFields, {
++          session,
++          onChange: () => {},
++          onError: () => {},
++        }),
++      );
+     const html = render(s);
+-    expect(html).toContain('value="0"'); expect(html).toContain('value="255"');
+-    expect(html).not.toContain('aria-label="Red slider"'); expect(html).not.toContain('aria-label="Green slider"');
++    expect(html).toContain('value="0"');
++    expect(html).toContain('value="255"');
++    expect(html).not.toContain('aria-label="Red slider"');
++    expect(html).not.toContain('aria-label="Green slider"');
+     expect(html).toContain('aria-label="Blue slider"');
+-    expect(html).toContain('Approximate · exact normalized 0.2314');
+-    expect(html).toContain('aria-describedby="range-note-2 byte-note-2 editor-error"');
++    expect(html).toContain("Approximate · exact normalized 0.2314");
++    expect(html).toContain(
++      'aria-describedby="range-note-2 byte-note-2 editor-error"',
++    );
+     const invalid = render(editComponent(s, 2, "59.5"));
+-    expect(invalid).toContain('value="59.5"'); expect(invalid).toContain('aria-invalid="true"');
+-    expect(invalid).toContain('Enter a canonical whole number or none.');
++    expect(invalid).toContain('value="59.5"');
++    expect(invalid).toContain('aria-invalid="true"');
++    expect(invalid).toContain("Enter a canonical whole number or none.");
+     expect(invalid).not.toContain('aria-label="Blue slider"');
+     const exact = render(editComponent(s, 2, "51"));
+-    expect(exact).not.toContain('Approximate · exact normalized 0.2');
++    expect(exact).not.toContain("Approximate · exact normalized 0.2");
+   });
+ });
+ 
+-
+ describe("opaque identity suffix exhaustion", () => {
+-  const entries = (values: readonly (readonly [string, string])[]) => values.map(([id, name]) => ({ authored: { id }, path: { status: "derived" as const, path: [name] } }));
++  const entries = (values: readonly (readonly [string, string])[]) =>
++    values.map(([id, name]) => ({
++      authored: { id },
++      path: { status: "derived" as const, path: [name] },
++    }));
+   it("distinguishes opaque IDs whose full text collapses in normal rendering", () => {
+-    const labels = identityLabels(entries([["a  b", "same"], ["a b", "same"]]));
++    const labels = identityLabels(
++      entries([
++        ["a  b", "same"],
++        ["a b", "same"],
++      ]),
++    );
+     expect(labels.get("a  b")).toBe("same · id:0061002000200062");
+     expect(labels.get("a b")).toBe("same · id:006100200062");
+   });
+   it("bounds deliberate base-plus-full-suffix collisions across the whole set", () => {
+-    const source = entries([["a · b", "x"], ["q", "x"], ["b", "x · a"], ["r", "x · a"]]);
++    const source = entries([
++      ["a · b", "x"],
++      ["q", "x"],
++      ["b", "x · a"],
++      ["r", "x · a"],
++    ]);
+     const labels = identityLabels(source);
+     expect(new Set(labels.values()).size).toBe(4);
+     expect(labels.get("a · b")).toBe("x · id:0061002000b700200062");
+     expect(labels.get("b")).toBe("x · a · id:0062");
+     // An otherwise unique authored name may match an escaped generated label.
+-    const withName = identityLabels([...source, ...entries([["extra", "x · id:0061002000b700200062"]])]);
++    const withName = identityLabels([
++      ...source,
++      ...entries([["extra", "x · id:0061002000b700200062"]]),
++    ]);
+     expect(new Set(withName.values()).size).toBe(5);
+     expect(withName.get("extra")).toContain(" · id:00650078007400720061");
+   });
+   it("diagnoses duplicate stable IDs instead of looping", () => {
+-    expect(() => identityLabels(entries([["same-id", "x"], ["same-id", "x"]]))).toThrow("unique stable IDs");
++    expect(() =>
++      identityLabels(
++        entries([
++          ["same-id", "x"],
++          ["same-id", "x"],
++        ]),
++      ),
++    ).toThrow("unique stable IDs");
+   });
+ });
+ 
+ describe("final reference choice context", () => {
+   it("includes current-token context in whole-set label checks", () => {
+     const entries = [
+-      { authored: { id: "self" }, path: { status: "derived" as const, path: ["x"] } },
+-      { authored: { id: "other" }, path: { status: "derived" as const, path: ["x (this token)"] } },
++      {
++        authored: { id: "self" },
++        path: { status: "derived" as const, path: ["x"] },
++      },
++      {
++        authored: { id: "other" },
++        path: { status: "derived" as const, path: ["x (this token)"] },
++      },
+     ];
+-    expect([...identityLabels(entries, undefined, "self").values()]).toEqual(["x (this token) · self", "x (this token) · other"]);
+-    expect([...identityLabels(entries).values()]).toEqual(["x", "x (this token)"]);
++    expect([...identityLabels(entries, undefined, "self").values()]).toEqual([
++      "x (this token) · self",
++      "x (this token) · other",
++    ]);
++    expect([...identityLabels(entries).values()]).toEqual([
++      "x",
++      "x (this token)",
++    ]);
+   });
+   it("disambiguates the actual Editor labels after adding the current-token hint", () => {
+     const app = createAuthoringOperations(new InMemoryProjectStorage());
+     ok(app.createProject({ id: "p", name: "P" }));
+-    const value = { kind: "literal" as const, colorSpace: "srgb" as const, components: ["0", "0", "0"] as const, alpha: "1" };
+-    for (const [id, localName] of [["self", "x"], ["other", "x (this token)"]])
+-      ok(app.createColorToken({ id, projectId: "p", localName, parentGroupId: null, type: "color", regeneration: "allowed", value }));
+-    ok(app.reviseColorToken({ projectId: "p", tokenId: "self", value: { kind: "token-reference", targetTokenId: "other", valuePath: [] } }));
+-    const html = renderToStaticMarkup(createElement(Editor, { project: ok(app.readProject("p")), inspection: ok(app.inspectToken("p", "self")), inspect: id => ok(app.inspectToken("p", id)), onApply: () => { throw new Error("No render mutation"); }, onDirty: () => {}, onFeedback: () => {}, readUnavailable: false }));
+-    expect(html).toContain('<option value="self">x (this token) · self</option>');
+-    expect(html).toContain('<option value="other" selected="">x (this token) · other</option>');
+-    const labels = [...html.matchAll(/<option value="(?:self|other)"[^>]*>([^<]*)<\/option>/g)].map(match => match[1]);
+-    expect(labels).toHaveLength(2); expect(new Set(labels).size).toBe(2);
++    const value = {
++      kind: "literal" as const,
++      colorSpace: "srgb" as const,
++      components: ["0", "0", "0"] as const,
++      alpha: "1",
++    };
++    for (const [id, localName] of [
++      ["self", "x"],
++      ["other", "x (this token)"],
++    ])
++      ok(
++        app.createColorToken({
++          id,
++          projectId: "p",
++          localName,
++          parentGroupId: null,
++          type: "color",
++          regeneration: "allowed",
++          value,
++        }),
++      );
++    ok(
++      app.reviseColorToken({
++        projectId: "p",
++        tokenId: "self",
++        value: {
++          kind: "token-reference",
++          targetTokenId: "other",
++          valuePath: [],
++        },
++      }),
++    );
++    const html = renderToStaticMarkup(
++      createElement(Editor, {
++        project: ok(app.readProject("p")),
++        inspection: ok(app.inspectToken("p", "self")),
++        inspect: (id) => ok(app.inspectToken("p", id)),
++        onApply: () => {
++          throw new Error("No render mutation");
++        },
++        onDirty: () => {},
++        onFeedback: () => {},
++        readUnavailable: false,
++      }),
++    );
++    expect(html).toContain(
++      '<option value="&quot;self&quot;">x (this token) · self</option>',
++    );
++    expect(html).toContain(
++      '<option value="&quot;other&quot;" selected="">x (this token) · other</option>',
++    );
++    const labels = [
++      ...html.matchAll(
++        /<option value="&quot;(?:self|other)&quot;"[^>]*>([^<]*)<\/option>/g,
++      ),
++    ].map((match) => match[1]);
++    expect(labels).toHaveLength(2);
++    expect(new Set(labels).size).toBe(2);
+     expect(ok(app.inspectToken("p", "self")).authored.localName).toBe("x");
+-    expect(ok(app.inspectToken("p", "self")).authored.definition!.assignments[0].value).toMatchObject({ targetTokenId: "other" });
++    expect(
++      ok(app.inspectToken("p", "self")).authored.definition!.assignments[0]
++        .value,
++    ).toMatchObject({ targetTokenId: "other" });
+   });
+ });
+diff --git a/tsconfig.json b/tsconfig.json
+index e3a4cb2..a95d11d 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -19,5 +19,5 @@
+     }
+   },
+   "include": ["src/**/*.ts", "test/**/*.ts"],
+-  "exclude": ["src/presentation"]
++  "exclude": ["src/presentation", "src/adapters/browser", "test/browser"]
+ }
+diff --git a/tsconfig.presentation.json b/tsconfig.presentation.json
+index 85191a2..bb3951b 100644
+--- a/tsconfig.presentation.json
++++ b/tsconfig.presentation.json
+@@ -7,9 +7,11 @@
+   },
+   "include": [
+     "src/presentation/**/*.ts",
++    "src/adapters/browser/**/*.ts",
+     "src/presentation/**/*.tsx",
+     "test/browser/**/*.tsx",
++    "test/browser/**/*.ts",
+     "test/presentation/**/*.test.tsx"
+   ],
+-  "exclude": []
++  "exclude": ["src/presentation/host/workbench.worker.ts", "src/presentation/host/worker-runtime.ts", "test/browser/*.worker.ts"]
+ }

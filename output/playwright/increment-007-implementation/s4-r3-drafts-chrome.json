@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-11",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-s4-owned-ghlT6x",
+  "pid": 49968,
+  "origin": "http://127.0.0.1:4331/",
+  "manifest": "s4-r3-before-browser-manifest.json",
+  "checks": [
+    "actual retained application and native worker ready",
+    "backup excludes unapplied raw byte input without clearing either draft session",
+    "file selection and cancelled no-write same-ID preview preserve literal/reference raw sessions, view and scale exactly",
+    "selected-outside-filter notice restores list without discarding draft"
+  ],
+  "errors": [],
+  "nativeFacts": [],
+  "injectedFaults": [],
+  "browser": "157.0.8103.50",
+  "status": "failed",
+  "error": "TimeoutError: locator.waitFor: Timeout 6000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('heading', { name: 'Applied state changed', exact: true }) to be visible\u001b[22m\n"
+}

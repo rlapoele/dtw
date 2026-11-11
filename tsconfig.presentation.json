@@ -7,9 +7,11 @@
   },
   "include": [
     "src/presentation/**/*.ts",
+    "src/adapters/browser/**/*.ts",
     "src/presentation/**/*.tsx",
     "test/browser/**/*.tsx",
+    "test/browser/**/*.ts",
     "test/presentation/**/*.test.tsx"
   ],
-  "exclude": []
+  "exclude": ["src/presentation/host/workbench.worker.ts", "src/presentation/host/worker-runtime.ts", "test/browser/*.worker.ts"]
 }

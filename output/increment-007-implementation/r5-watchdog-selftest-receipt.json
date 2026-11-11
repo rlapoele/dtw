@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-11T00:16:21.154Z",
+  "scope": "Idle owned Node child only; no Chrome/performance run",
+  "watchdog": [
+    {
+      "id": 1,
+      "name": "expiry-mechanism-selftest",
+      "event": "armed",
+      "at": "2026-11-11T00:16:21.155Z",
+      "pid": 52921,
+      "budget": 25
+    },
+    {
+      "id": 1,
+      "name": "expiry-mechanism-selftest",
+      "event": "expired-checkpoint-before-kill",
+      "elapsed": 27.358708,
+      "pid": 52921
+    },
+    {
+      "id": 1,
+      "name": "expiry-mechanism-selftest",
+      "event": "owned-process-kill-issued",
+      "pid": 52921,
+      "killed": true
+    },
+    {
+      "id": 1,
+      "name": "expiry-mechanism-selftest",
+      "event": "expired-return",
+      "elapsed": 27.686292
+    },
+    {
+      "id": 1,
+      "name": "normal-disarm-selftest",
+      "event": "armed",
+      "at": "2026-11-11T00:16:21.184Z",
+      "pid": 52922,
+      "budget": 30000
+    },
+    {
+      "id": 1,
+      "name": "normal-disarm-selftest",
+      "event": "disarmed",
+      "elapsed": 0.11983299999999986
+    }
+  ],
+  "checkpoints": [
+    {
+      "events": 1,
+      "status": "running"
+    },
+    {
+      "events": 2,
+      "status": "watchdog-stopped"
+    },
+    {
+      "events": 3,
+      "status": "watchdog-stopped"
+    },
+    {
+      "events": 4,
+      "status": "watchdog-stopped"
+    },
+    {
+      "events": 5,
+      "status": "watchdog-stopped"
+    },
+    {
+      "events": 6,
+      "status": "watchdog-stopped"
+    },
+    {
+      "events": 6,
+      "status": "passed"
+    }
+  ],
+  "status": "passed",
+  "result": {
+    "expirySignal": "SIGKILL",
+    "shortTestBudget": 25,
+    "productionDefault": 30000,
+    "refusedFurtherOperations": true,
+    "normalDisarm": true
+  }
+}

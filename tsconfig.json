@@ -19,5 +19,5 @@
     }
   },
   "include": ["src/**/*.ts", "test/**/*.ts"],
-  "exclude": ["src/presentation"]
+  "exclude": ["src/presentation", "src/adapters/browser", "test/browser"]
 }

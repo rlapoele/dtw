@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-11",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-s4-owned-C8TdUz",
+  "pid": 52351,
+  "origin": "http://127.0.0.1:4334/",
+  "manifest": "s4-r5-before-browser-manifest.json",
+  "checks": [
+    "actual retained application and native worker ready",
+    "backup excludes unapplied raw byte input without clearing either draft session",
+    "file selection and cancelled no-write same-ID preview preserve literal/reference raw sessions, view and scale exactly",
+    "selected-outside-filter notice restores list without discarding draft",
+    "same-project complete replacement preserves both sessions; Review is read-only and explicit Reapply performs a fresh revision-checked command"
+  ],
+  "errors": [],
+  "nativeFacts": [],
+  "injectedFaults": [],
+  "browser": "157.0.8103.50",
+  "events": [],
+  "status": "passed"
+}

@@ -1,0 +1,21 @@
+{
+  "scope": "ONE native CDP local-file diagnostic, not25record qualification",
+  "mainTimings": {
+    "RunTask": [
+      287,
+      50.32800000000001,
+      4.52
+    ],
+    "FunctionCall": [
+      221,
+      22.793000000000003,
+      4.097
+    ],
+    "Layout": [
+      8,
+      5.402,
+      2.818
+    ]
+  },
+  "atobHitCount": 0
+}

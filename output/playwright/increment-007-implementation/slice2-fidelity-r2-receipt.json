@@ -1,0 +1,158 @@
+{
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-fidelity-W5VFSW",
+  "pid": 47041,
+  "checks": [
+    {
+      "view": "sRGB",
+      "fields": [
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "Red",
+          "value": "0"
+        },
+        {
+          "label": "Green",
+          "value": "0"
+        },
+        {
+          "label": "Blue",
+          "value": "0"
+        },
+        {
+          "label": "Alpha",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "view": "Display P3",
+      "fields": [
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "Red",
+          "value": "0"
+        },
+        {
+          "label": "Green",
+          "value": "0"
+        },
+        {
+          "label": "Blue",
+          "value": "0"
+        },
+        {
+          "label": "Alpha",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "view": "HSL",
+      "fields": [
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "Hue (°)",
+          "value": "none"
+        },
+        {
+          "label": "Saturation (%)",
+          "value": "0"
+        },
+        {
+          "label": "Lightness (%)",
+          "value": "0"
+        },
+        {
+          "label": "Alpha",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "view": "OKLAB",
+      "fields": [
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "Lightness",
+          "value": "0"
+        },
+        {
+          "label": "a",
+          "value": "0"
+        },
+        {
+          "label": "b",
+          "value": "0"
+        },
+        {
+          "label": "Alpha",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "view": "OKLCH",
+      "fields": [
+        {
+          "label": "",
+          "value": ""
+        },
+        {
+          "label": "Lightness",
+          "value": "0"
+        },
+        {
+          "label": "Chroma",
+          "value": "0"
+        },
+        {
+          "label": "Hue (°)",
+          "value": "none"
+        },
+        {
+          "label": "Alpha",
+          "value": "1"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "browser": "157.0.8103.50",
+  "viewOptions": [
+    "sRGB",
+    "Display P3",
+    "HSL",
+    "OKLAB",
+    "OKLCH"
+  ],
+  "source": {
+    "text": "{\n  \"id\": \"e2b43d6f-4a8a-4ee8-9d5b-2a3e6e79a8f3\",\n  \"projectId\": \"e10543a8-8219-4151-b72a-f2559868be6f\",\n  \"localName\": \"brand\",\n  \"parentGroupId\": null,\n  \"description\": \"Readable ordinary words keep their boundaries.\\nExact newlines remain.\",\n  \"definition\": {\n    \"type\": \"color\",\n    \"assignments\": [\n      {\n        \"condition\": [],\n        \"value\": {\n          \"kind\": \"literal\",\n          \"valueType\": \"color\",\n          \"colorSpace\": \"srgb\",\n          \"components\": [\n            \"0\",\n            \"0\",\n            \"0\"\n          ],\n          \"alpha\": \"1\"\n        }\n      }\n    ]\n  },\n  \"authoring\": {\n    \"regeneration\": \"allowed\"\n  }\n}",
+    "whiteSpace": "pre",
+    "overflow": "auto",
+    "clientHeight": 384,
+    "scrollHeight": 479,
+    "maxHeight": "384px",
+    "tabIndex": 0
+  },
+  "compact": {
+    "width": 760,
+    "scrollWidth": 760
+  },
+  "narrow": {
+    "width": 320,
+    "scrollWidth": 320
+  },
+  "status": "passed"
+}

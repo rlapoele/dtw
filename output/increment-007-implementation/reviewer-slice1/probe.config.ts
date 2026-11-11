@@ -1,0 +1,2 @@
+import { defineConfig } from "vitest/config";
+export default defineConfig({resolve:{alias:{"@application": "/Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/src/application", "@domain": "/Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/src/domain", "@adapters": "/Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/src/adapters"}},test:{include:["output/increment-007-implementation/reviewer-slice1/probes.test.ts"]}});

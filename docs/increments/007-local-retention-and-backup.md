@@ -1,20 +1,49 @@
 # Increment 007: local retention, reopening and project backup
 
-- Contract status: **Draft — analyst updated after V4 review, 10 November 2026.**
-- Delivery status: **Not started; implementation is not authorized.**
-- Agreement: direction and isolated prototype preparation agreed 9 November;
-  user subsequently approved identified V1 **for analyst review only** and V2
-  **for renewed analyst review only** on that date. V3 was also approved for renewed
-  analyst review, with explicit production-baseline preservation. Revision 2 was
-  subsequently approved for renewed analyst review; V3-R1 is closed at design level,
-  with documented specimen fidelity caveats and production obligations. V4 was
-  approved for analyst review on 10 November 2026; its layout/notice review found no
-  blocking design mismatch. This does not grant final design approval.
-  Final contract/design agreement and implementation authorization remain pending.
+- Contract status: **Agreed — implementation instruction, 10 November 2026.**
+- Delivery status: **In progress — implementation reviewed; qualification and manual acceptance pending.**
+- Agreement: on 10 November 2026 the user instructed: “ok. Let's develop the app
+  using Chrome for your automated tests. For manual tests, I will use either Chrome
+  or Firefox. We'll test more browser or engine once the app (the PWA at least) is
+  fully featured and working.” In context this agrees the current Increment 007
+  contract and authorizes its implementation using reviewed V3 revision 2 plus the
+  V4 supplement and the current production list/full inspector and description
+  wrapping. Earlier approvals were for analyst review only; this latest instruction
+  supplies final agreement and implementation authorization, without asserting an
+  earlier approval or passing qualification.
 - Production baseline: `4171dbc`; V1 review snapshot: `3b69671`; V2: `7014e75`;
   V3 original: base `50d9f67` plus frozen manifest; revision 2: committed `2805b0c`
   with its separate ten-file manifest (artifact base `52e8009`). V4 review snapshot:
   `42feef7`, source baseline `e2a3534`, separate 25-file frozen manifest.
+
+## Current authorization and browser/gate amendment — 10 November 2026
+
+This section supersedes historical pending/Draft and two-engine prerequisite
+statements below and in linked preparation documents. AC-1–24, P-1–P-4, S-1–S-6,
+F-1–F-5 and E-1–E-4 remain binding except the explicit browser scope and verification
+ordering amendment to B-3/B-4 recorded in the
+[owning browser policy](007-production-scheduling-and-browser-scope-proposal.md).
+
+Develop and automate actual-application verification in Chrome now. The user may
+manually test in native Chrome or Firefox; record exact builds, cases and outcomes.
+Such manual reports are bounded evidence, not blanket Firefox qualification.
+Additional browser/engine qualification, including Safari G-02/G-03/G-04 supervision
+and storage/concurrency work, is deferred until the PWA is fully featured and working;
+it is not an Increment 007 completion blocker. No Safari setup/watchdog/test work is
+required now. Browser scope is explicitly amended, not silently waived.
+
+B-4 now permits production implementation before remaining isolated mechanism,
+rendering, native-access, lifecycle and HTTPS prerequisites. Verify the corresponding
+Chrome safety, exactness, codec, resource, performance, native-file/restart, HTTPS/CSP
+and UI requirements against the actual application before claiming completion/support;
+record any unavailable native event or delivery-origin check honestly and resolve its
+bounded gate disposition before a support claim. This changes ordering and browser
+scope, not admission caps, budgets, exactness or acceptance behavior. The
+[closure plan](007-closure-plan.md) is adopted with this amendment. It adds no PWA
+installation/offline scope, Electron or unrelated feature work.
+
+Historical preparation/review sections below preserve what was authorized and known
+at those earlier points; their pending-authorization statements are superseded here.
 
 ## Outcome
 
@@ -51,7 +80,7 @@ DTCG 2025.10 is interchange, not the chosen persistence or backup format.
 
 ## Scope
 
-Included in this draft: browser-local project catalogue/new/list/open/return;
+Included in this increment: browser-local project catalogue/new/list/open/return;
 retention of existing authoring operations; explicit asynchronous application and
 adapter results; coherent inspection; independent applied-state backup; runtime
 backup decoding, preview and complete restore/replacement; read/write/ownership
@@ -72,7 +101,7 @@ when creating a new project. This improves identification in Projects and remove
 the need for a new untitled-project creation path. It does not establish identity,
 name uniqueness or storage/recovery guarantees.
 
-**Proposed interpretation for final agreement:** reject empty and whitespace-only
+**Agreed creation policy — 10 November 2026:** reject empty and whitespace-only
 creation input with an associated field error, while preserving accepted text
 exactly. Test blankness without silently trimming, normalizing, changing case or
 generating a name. Duplicate names remain permitted and distinguishable by stable
@@ -82,8 +111,8 @@ as the interface; it is not a new universal canonical-data invariant.
 Existing supported unnamed projects remain readable and restorable with a truthful
 presentation fallback. Do not rename them or reject an otherwise supported backup
 merely to apply a new-creation rule retrospectively. The current production model,
-API and tests intentionally permit opaque empty names and remain unchanged until
-implementation is authorized. This amendment affects new projects only, not token
+API and tests intentionally permit opaque empty names at the canonical boundary;
+implement the new rule only at new-project command/UI boundaries. This amendment affects new projects only, not token
 or group naming. V1 is unchanged; V2 represents the required-name validation
 proposal without changing production behavior.
 
@@ -102,7 +131,7 @@ optional absence; over-limit candidates reject whole without truncation or input
 loss. Project/group descriptions and other string limits are unchanged. This is
 agreed scope for AC-9–13/20/21, not implemented enforcement or a performance pass.
 
-These IDs are stable draft criteria. D-2/D-3, S-1–S-6 and F-1–F-5 policies are
+These IDs are stable agreed criteria. D-2/D-3, S-1–S-6 and F-1–F-5 policies are
 agreed below. Remaining scheduling/placement, supported-build scope and
 qualification/Stage B evidence are distinguished from those agreements;
 no acceptance criterion is claimed implemented by prototype or Stage A evidence.
@@ -211,7 +240,7 @@ no acceptance criterion is claimed implemented by prototype or Stage A evidence.
   is made for running native/main-thread work. Prototype component reuse alone is not
   acceptance evidence.
 - **AC-19 — Required new-project name:** creation requires a user-supplied name.
-  Under the proposed blankness policy above, empty/whitespace-only submission
+  Under the agreed blankness policy above, empty/whitespace-only submission
   reports an associated error, focuses the name field and preserves form input.
   It creates no retained project or catalogue entry. Accepted name text remains
   exact; duplicate names are allowed.
@@ -300,7 +329,7 @@ The same rules govern backup generation, retained loading and restoration.
 
 Coverage/admissibility is agreed here; separate storage and format/resource
 agreements below own those choices. D-1/D-4/D-5/D-6 technical/integration evidence
-and final contract/design agreement remain pending.
+remain pending as implementation acceptance evidence.
 
 ## Decisions and open questions
 
@@ -310,7 +339,7 @@ on 9 November 2026: native browser IndexedDB; strict-hint transaction-complete
 acknowledgement; Web Locks plus atomic revision checks; ordinary background
 ownership; live-session reconciliation without a durable intent journal; and
 separate storage, authored-envelope and portable-backup version concepts.
-Browser capability policy and initial Chrome/Safari macOS qualification targets
+Browser capability policy and the amended Chrome development/automation scope
 are agreed; exact supported builds require evidence. A later Electron filesystem
 adapter shares model/codec/application semantics. User-file-first PWA storage,
 hidden-tab release and durable per-command reload recovery are unselected alternatives.
@@ -448,10 +477,10 @@ layout/selection/Find/copy cannot be preempted by app Cancel; queued read cancel
 and live-publication fences do not cancel a write or acknowledge a mutation.
 
 Require 65,535/65,536/65,537 boundary evidence, relevant admitted worst cases, complete
-source equality and native selection/copy/Find/AT/scroll/zoom in both target engines
-under safe supervision. Historical failed samples and V4 modest fixtures establish
+source equality and native selection/copy/Find/AT/scroll/zoom in the current Chrome automation scope
+under safe supervision; additional engines follow the current browser amendment. Historical failed samples and V4 modest fixtures establish
 neither the ceilings nor distributions. Remaining E-4 mechanism qualification and
-Stage B integrated acceptance remain distinct; no production implementation is authorized.
+Stage B integrated acceptance remain distinct; implementation is authorized under the current amendment.
 
 ## Verification approach
 
@@ -551,7 +580,9 @@ its failed/inconclusive results remain historical evidence under the earlier pol
   at design level using the separate manifest, source and attributed observations.
   Core inspector sections/controls are present, with documented fallback/error
   fidelity caveats; production preservation remains binding. This is not final agreement.
-- Final contract/design agreement: pending. Implementation authorization: pending.
+- Final contract/design agreement and implementation authorization: granted by the
+  10 November implementation instruction recorded above; previous review approvals
+  alone did not grant them.
 
 ## Review baseline and amendments
 
@@ -639,3 +670,73 @@ no Safari defensive escalation occurred. Native Find/AT/actual zoom, full projec
 and remaining mechanism/support acceptance remain open. Production/list/inspector
 and frozen V4 remain unchanged. AC-1–24 and E-policy retain their requirements;
 final design/contract agreement and Increment 007 implementation are not authorized.
+
+
+## Completion report — in progress, 11 November 2026
+
+**Delivery status: In progress.** This report does not mark Increment 007 complete.
+The current reviewed source is R7, identified by the
+[144-file manifest](../../output/increment-007-implementation/s4-r7-before-review-manifest.json),
+SHA-256 `42f0e3c7e7cc53de36219f6b7b49be8d86c3ba11d4d1aae3b6c61a6311763df5`.
+The base is `5c22404e34ea9a9b39e1bb6da1135c2719440536`; changes remain for human staging,
+commit and push.
+
+### Delivered behavior and evidence
+
+The default app now provides retained applied projects, catalogue/reopen, existing
+color/group/token authoring, exact independent backups, no-write restore previews,
+protected complete replacement and explicit uncertain-result recovery. One module
+worker per tab owns application/storage operations. Drafts remain session-only.
+Legacy session-only App is removed; maintained browser fixtures use the retained app.
+
+| Criteria | Observed coverage | Remaining acceptance limits |
+| --- | --- | --- |
+| AC-1–3, AC-19 | Catalogue/authoring/reload tests and native roundtrip; exact required-name validation | User normal-profile acceptance pending |
+| AC-4–7, AC-16 | Retention/worker/receipt tests, independently reviewed storage protocol and controlled native recovery | Controlled faults are labelled; normal-profile/restart and defensive concurrency coverage is not inferred |
+| AC-8, AC-22–23 | Mounted dirty draft/restore checks, explicit Review/Reapply, real worker termination/readback and safe departure checks | Native lifecycle and user departure checks remain separate |
+| AC-9–11, AC-20 | Production authoring preserved; exact backup/restore comparisons, clean/dirty literal/reference regression checks, earlier slice-2 design fidelity | Final native/manual accessibility and full product validation pending |
+| AC-12–15 | Real downloaded backup, staged restore/cancel and protected full replacement removing local-only content | Native OS picker and user-kept file checks pending |
+| AC-17 | Separate host-independent/browser/worker/tool typechecks and reviewed ports/adapters | No Electron or offline-install claim |
+| AC-18 | Reused owned controls, dialog/focus regressions and bounded browser interaction evidence | Actual 200% browser zoom, AT and manual keyboard review pending |
+| AC-21, AC-24 | Closed admission/DTO tests; maximum 10,000-token/2,000-group restore, complete 12,000-identity All content, last inspection and exact backup equality | Capacity/source qualification is still in progress; small-fixture access does not qualify all native-source limits |
+
+The [functional evidence](../../output/increment-007-implementation/s4-r5-functional-evidence.md)
+and [controlled recovery receipts](../../output/playwright/increment-007-implementation/s4-r4-controlled-chrome.json)
+identify actual checks and their limits. The
+[qualification disposition](../../output/increment-007-implementation/r5-qualification-partial-evidence.md)
+keeps failed, diagnostic and passing runs separate. R5 ordinary performance evidence
+remains attributed to that snapshot; R7 changes only All content staging/lifecycle.
+
+### Checks and independent review
+
+- **1,031 tests / 45 files**, four strict typechecks and production build pass.
+- [Independent functional review](../../output/increment-007-implementation/reviewer-final/review.md)
+  closed clean-editor replacement and derived-path amplification findings.
+- [R6/R7 review](../../output/increment-007-implementation/reviewer-final/r6-source-review.md)
+  closed the same-revision staged-list restart finding. Mounted RED/GREEN evidence
+  verifies later-button identity/focus retention and reset on a real revision change;
+  it uses controlled delivery of the production focus handler.
+- Earlier slice-2 designer fidelity is bounded evidence; no final designer review,
+  universal accessibility certification or broader engine qualification is claimed.
+- The [runner audit](../../output/increment-007-implementation/reviewer-final/harness-audit.md)
+  identifies corrected automation overhead and bounded execution releases. Tooling
+  failures do not become app failures or retroactive passes.
+
+### Remaining work
+
+**Further automated stress qualification stopped at user request — 11 November 2026.**
+The user stated that the hours-long testing was disproportionate for this small
+color-token PWA prototype. No further case, diagnostic or retry is scheduled; do not
+resume without a new user request. Existing failures and unexecuted cases remain
+labelled, without an implied pass or a requirement to repair the test apparatus now.
+
+The 25 × 8 MiB catalogue passed after removing automation file-conversion overhead.
+Source 65,535-unit exact equality and full native selection passed, but the in-page
+Find API middle-marker reveal check failed; the 65,536/65,537 distributions remain
+unrun. Real browser Find UI is a separate pending manual observation. Remaining
+normal-profile, actual native lifecycle, HTTPS/CSP/delivery-origin and defensive
+resource/concurrency coverage is not inferred from the passing cases.
+The [manual acceptance guide](007-manual-acceptance.md) remains **pending user execution**.
+Manual Chrome/Firefox results are bounded observations. Broader engines, install/offline
+PWA and Electron remain deferred under the current agreement. No deployment, tunnel,
+trust change, staging, commit or push is authorized by this report.

@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-11",
+  "scope": "Offline complete candidate and helper audit; no live release implied",
+  "files": [
+    {
+      "path": "output/increment-007-implementation/r5-audited-production-qualification.mjs",
+      "sha256": "87a865709870738daa9c49097d0df4104c4e347d160a818f4f068ad76705ee75"
+    },
+    {
+      "path": "output/increment-007-implementation/r5-qualification-fixtures.mjs",
+      "sha256": "ea3a1b1dd944368b066d461b427d1cae2c52c9b6d59e856b1c375c49d967a20c"
+    },
+    {
+      "path": "output/increment-007-implementation/r5-owned-process-watchdog.mjs",
+      "sha256": "0889838c29ea749b5552703f7e8093d3b782abde9eddd630782537440782f22e"
+    },
+    {
+      "path": "output/increment-007-implementation/r5-harness-occurrence-audit.md",
+      "sha256": "775c2e6f153c30565a606099a4c82a79de9f10f482c40a27a931ae48bfabd5cb"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "manifest": "s4-r5-before-browser-manifest.json",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-owned-vzcj9p",
+  "pid": 52242,
+  "checks": [
+    "clean literal replacement synchronizes all fields",
+    "following single-channel Apply retains newly applied untouched Green/Blue/Alpha",
+    "clean literal-to-reference replacement synchronizes active mode and target",
+    "unrelated revision leaves clean reference exact and no changed-baseline recovery",
+    "clean sessions do not request dirty-baseline reapply",
+    "clean reference-to-literal replacement follows new applied coordinates",
+    "clean replacement clears inactive stale reference session",
+    "clean replacement preserves passive byte scale while refreshing displayed components"
+  ],
+  "errors": [],
+  "browser": "157.0.8103.50",
+  "before": "0",
+  "status": "passed"
+}

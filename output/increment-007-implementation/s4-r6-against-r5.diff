@@ -1,0 +1,225 @@
+--- r5/src/presentation/app/RetainedWorkbench.tsx
++++ r6/src/presentation/app/RetainedWorkbench.tsx
+@@ -1,3 +1,4 @@
++import { AllContent } from "@presentation/features/workbench/components/AllContent";
+ import { RestoreDialog } from "@presentation/features/workbench/components/RestoreDialog";
+ import type { RestorePreview } from "@presentation/host/protocol";
+ import { UnknownWriteError } from "@presentation/host/worker-client";
+@@ -946,32 +947,12 @@
+             )}
+           {context &&
+             (allContent ? (
+-              <div>
+-                <p className="text-caption mb-4">
+-                  Every group and token, independent of ancestry. Identities are
+-                  project and kind scoped.
+-                </p>
+-                {context.groups.map((entry) => (
+-                  <Button
+-                    className="block mb-2 wrap-anywhere"
+-                    key={JSON.stringify(["group", entry.authored.id])}
+-                    onClick={() => choose("group", entry.authored.id)}
+-                  >
+-                    Group · {groupLabels.get(entry.authored.id)} ·{" "}
+-                    {JSON.stringify(entry.authored.id)}
+-                  </Button>
+-                ))}
+-                {context.tokens.map((entry) => (
+-                  <Button
+-                    className="block mb-2 wrap-anywhere"
+-                    key={JSON.stringify(["token", entry.authored.id])}
+-                    onClick={() => choose("token", entry.authored.id)}
+-                  >
+-                    Token · {entry.authored.localName || "(unnamed)"} ·{" "}
+-                    {JSON.stringify(entry.authored.id)}
+-                  </Button>
+-                ))}
+-              </div>
++              <AllContent
++                key={header.revision}
++                context={context}
++                groupLabels={groupLabels}
++                onSelect={choose}
++              />
+             ) : (
+               <>
+                 <ProjectedTokenList
+--- r5/src/presentation/features/workbench/components/AllContent.tsx
++++ r6/src/presentation/features/workbench/components/AllContent.tsx
+@@ -0,0 +1,78 @@
++import { memo, useEffect, useMemo, useState } from "react";
++import type { ProjectContext } from "@application/retention/projections";
++import { Button } from "@presentation/components/ui/button";
++import {
++  membershipBlocks,
++  revealMembershipBlocks,
++} from "@presentation/features/workbench/state/all-content";
++import type { MembershipEntry } from "@presentation/features/workbench/state/all-content";
++
++// Previous blocks retain their native DOM and do not rebuild while a later
++// block appears. Click delegation keeps callbacks current without stale closures.
++const MembershipBlock = memo(function MembershipBlock({
++  entries,
++}: {
++  entries: readonly MembershipEntry[];
++}) {
++  return entries.map((entry) => (
++    <Button
++      className="block mb-2 wrap-anywhere"
++      key={JSON.stringify([entry.kind, entry.id])}
++      data-entity-kind={entry.kind}
++      data-entity-id={entry.id}
++    >
++      {entry.label}
++    </Button>
++  ));
++});
++
++/** The owning workbench keys this view by the coherent applied revision. */
++export function AllContent({
++  context,
++  groupLabels,
++  onSelect,
++}: {
++  context: ProjectContext;
++  groupLabels: ReadonlyMap<string, string>;
++  onSelect: (kind: "group" | "token", id: string) => void;
++}) {
++  const blocks = useMemo(
++    () => membershipBlocks(context, groupLabels),
++    [context, groupLabels],
++  );
++  const [visible, setVisible] = useState(Math.min(1, blocks.length));
++  useEffect(
++    () => revealMembershipBlocks(blocks.length, setVisible),
++    [blocks],
++  );
++  const total = context.groups.length + context.tokens.length;
++  return (
++    <>
++      <p role="status" className="text-caption mb-4">
++        {visible < blocks.length
++          ? `Preparing all content… ${Math.min(visible * 100, total)} of ${total} identities`
++          : `All content ready · ${context.groups.length} groups · ${context.tokens.length} tokens`}
++      </p>
++      <div
++        onClick={(event) => {
++          if (!(event.target instanceof Element)) return;
++          const button = event.target.closest<HTMLButtonElement>(
++            "button[data-entity-kind]",
++          );
++          if (!button || !event.currentTarget.contains(button)) return;
++          const kind = button.dataset.entityKind, id = button.dataset.entityId;
++          if ((kind === "group" || kind === "token") && id !== undefined)
++            onSelect(kind, id);
++        }}
++      >
++        <p className="text-caption mb-4">
++          Every group and token, independent of ancestry. Identities are project
++          and kind scoped.
++        </p>
++        {blocks.slice(0, visible).map((entries, index) => (
++          <MembershipBlock key={index} entries={entries} />
++        ))}
++      </div>
++    </>
++  );
++}
+--- r5/src/presentation/features/workbench/state/all-content.ts
++++ r6/src/presentation/features/workbench/state/all-content.ts
+@@ -0,0 +1,50 @@
++import type { ProjectContext } from "@application/retention/projections";
++
++export type MembershipEntry = {
++  kind: "group" | "token";
++  id: string;
++  label: string;
++};
++
++/** Presentation blocks preserve every exact identity and the existing order. */
++export function membershipBlocks(
++  context: ProjectContext,
++  groupLabels: ReadonlyMap<string, string>,
++): readonly (readonly MembershipEntry[])[] {
++  const entries: MembershipEntry[] = [
++    ...context.groups.map(({ authored }) => ({
++      kind: "group" as const,
++      id: authored.id,
++      label: `Group · ${groupLabels.get(authored.id)} · ${JSON.stringify(authored.id)}`,
++    })),
++    ...context.tokens.map(({ authored }) => ({
++      kind: "token" as const,
++      id: authored.id,
++      label: `Token · ${authored.localName || "(unnamed)"} · ${JSON.stringify(authored.id)}`,
++    })),
++  ];
++  return Array.from({ length: Math.ceil(entries.length / 100) }, (_, index) =>
++    entries.slice(index * 100, (index + 1) * 100),
++  );
++}
++
++/** Each frame publishes one new block; disposal fences even an already queued
++ * callback when its owning project/revision view is replaced. */
++export function revealMembershipBlocks(
++  total: number,
++  publish: (count: number) => void,
++  schedule: (callback: () => void) => number = requestAnimationFrame,
++  cancel: (id: number) => void = cancelAnimationFrame,
++): () => void {
++  let visible = Math.min(1, total), stopped = false, frame: number | undefined;
++  const advance = () => {
++    if (stopped) return;
++    publish(++visible);
++    if (visible < total) frame = schedule(advance);
++  };
++  if (visible < total) frame = schedule(advance);
++  return () => {
++    stopped = true;
++    if (frame !== undefined) cancel(frame);
++  };
++}
+--- r5/test/presentation/all-content.test.tsx
++++ r6/test/presentation/all-content.test.tsx
+@@ -0,0 +1,42 @@
++import { createElement } from "react";
++import { renderToStaticMarkup } from "react-dom/server";
++import { describe, expect, it } from "vitest";
++import { admitSnapshot } from "@application/retention/codec";
++import { projectContext } from "@application/retention/projections";
++import { identityLabels } from "@presentation/features/workbench/readback";
++import { AllContent } from "@presentation/features/workbench/components/AllContent";
++import { membershipBlocks, revealMembershipBlocks } from "@presentation/features/workbench/state/all-content";
++function context(groups: number, tokens: number) {
++  return projectContext(admitSnapshot({ project: { id: "p", name: "P" }, groups: Array.from({length:groups}, (_, i)=>({id:`g${i}`,projectId:"p",localName:`group${i}`,parentGroupId:null})), tokens: Array.from({length:tokens},(_,i)=>({id:`t${i}`,projectId:"p",localName:`token${i}`,parentGroupId:null,authoring:{regeneration:"allowed"}})) }));
++}
++describe("complete native All content membership",()=>{
++  it("keeps all 12000 exact kind-scoped identities in original group/token order",()=>{
++    const project=context(2000,10000),blocks=membershipBlocks(project,identityLabels(project.groups));
++    expect(blocks).toHaveLength(120);
++    expect(blocks.every(block=>block.length<=100)).toBe(true);
++    const entries=blocks.flat();expect(entries).toHaveLength(12000);
++    expect(entries[0]).toMatchObject({kind:"group",id:"g0",label:'Group · group0 · "g0"'});
++    expect(entries[1999].id).toBe("g1999");expect(entries[2000].id).toBe("t0");expect(entries.at(-1)?.id).toBe("t9999");
++    expect(new Set(entries.map(entry=>JSON.stringify([entry.kind,entry.id]))).size).toBe(12000);
++    expect(project.tokens).toHaveLength(10000);
++  });
++  it("initially renders only a bounded native block with truthful loading feedback",()=>{
++    const project=context(2000,10000);
++    const html=renderToStaticMarkup(createElement(AllContent,{context:project,groupLabels:identityLabels(project.groups),onSelect(){}}));
++    expect((html.match(/data-entity-kind=/g)??[])).toHaveLength(100);
++    expect(html).toContain("Preparing all content");expect(html).toContain('data-entity-id="g0"');expect(html).not.toContain('data-entity-id="t9999"');
++  });
++  it("renders exact opaque group/token identities independently and uses native buttons",()=>{
++    const project=projectContext(admitSnapshot({project:{id:"p",name:"P"},groups:[{id:"",projectId:"p",localName:"",parentGroupId:null}],tokens:[{id:"",projectId:"p",localName:"",parentGroupId:null,authoring:{regeneration:"allowed"}}]}));
++    const html=renderToStaticMarkup(createElement(AllContent,{context:project,groupLabels:identityLabels(project.groups),onSelect(){}}));
++    expect((html.match(/<button/g)??[])).toHaveLength(2);expect(html).toContain('data-entity-kind="group" data-entity-id=""');expect(html).toContain('data-entity-kind="token" data-entity-id=""');expect(html).toContain("All content ready");
++  });
++  it("reveals one additional block per frame and cancels stale revision callbacks",()=>{
++    let serial=0;const queued=new Map<number,()=>void>(),cancelled:number[]=[],seen:string[]=[];
++    const schedule=(callback:()=>void)=>{queued.set(++serial,callback);return serial;};const cancel=(id:number)=>cancelled.push(id);
++    const old=revealMembershipBlocks(120,count=>seen.push(`old:${count}`),schedule,cancel);
++    queued.get(1)!();expect(seen).toEqual(["old:2"]);const stale=queued.get(2)!;old();expect(cancelled).toContain(2);
++    const next=revealMembershipBlocks(3,count=>seen.push(`current:${count}`),schedule,cancel);
++    stale();expect(seen).toEqual(["old:2"]);queued.get(3)!();queued.get(4)!();expect(seen).toEqual(["old:2","current:2","current:3"]);next();
++  });
++});

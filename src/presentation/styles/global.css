@@ -462,3 +462,9 @@
 [hidden] {
   display: none;
 }
+
+/* E-1/V4 exact-source geometry: native document text, no soft wrap, both axes
+   scroll locally; short source retains its natural height. */
+.exact-source { white-space: pre; overflow: auto; max-height: min(24rem, 50dvh); max-width: 100%; }
+/* Increment 007 staged ordinary rows keep native DOM/Find/accessibility order. */
+.token-row { content-visibility: auto; contain-intrinsic-size: auto 5rem; }

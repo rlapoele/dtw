@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "lib": ["ES2022", "WebWorker"], "types": [] },
+  "include": ["src/presentation/host/workbench.worker.ts", "test/browser/increment007-fault.worker.ts"],
+  "exclude": []
+}

@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import type { DraftSession } from "@presentation/features/workbench/state/session";
 import {
   baseline,
+  refreshCleanSession,
   changeView,
   editComponent,
   fields,
@@ -88,5 +89,25 @@ describe("integer RGB draft isolation", () => {
     expect(editComponent(s, 0, "none").literal.components[0]).toBe("none");
     for (const raw of ["-", "1.", "01", "+1", "-0", "1.5", "1e2", " 1"])
       expect(editComponent(s, 0, raw).byteInvalid).toBe(true);
+  });
+});
+
+describe("clean applied baseline refresh", () => {
+  it("replaces both authored sessions while retaining passive view/scale preferences", () => {
+    const old = { ...changeView(baseline(original), "hsl"), scale: "bytes" as const };
+    const replacement = createColorLiteral({colorSpace: "srgb", components: ["0.8", "0.6", "0.4"], alpha: "0.7"});
+    const fresh = refreshCleanSession(old, replacement);
+    expect(fresh.viewSpace).toBe("hsl");
+    expect(fresh.scale).toBe("bytes");
+    expect(fresh.reference).toBeNull();
+    expect(fresh.edited).toBe(false);
+    const edited = editComponent(changeView(fresh, "srgb"), 0, "128");
+    expect(edited.literal.components.slice(1)).toEqual(["0.6", "0.4"]);
+    expect(edited.literal.alpha).toBe("0.7");
+    const reference = refreshCleanSession(fresh, {kind:"token-reference", targetTokenId: "next" as never, valuePath: []});
+    expect(reference.mode).toBe("reference");
+    expect(reference.reference).toBe("next");
+    expect(reference.literal.components).toEqual(["", "", ""]);
+    expect(refreshCleanSession(reference, replacement).reference).toBeNull();
   });
 });

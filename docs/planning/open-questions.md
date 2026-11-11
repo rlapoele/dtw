@@ -101,6 +101,19 @@ The [variation-resolution contract](../design-tokens/conceptual-model.md#variati
 
 The existence of an explicit project is decided: users create, open, or import a project before editing tokens. A project may contain no tokens; every token and namespace group belongs to exactly one project. The initial canonical ownership model does not require a package entity.
 
+**Current Increment 007 disposition — 10 November 2026:** the user authorized
+implementation of the [agreed contract](../increments/007-local-retention-and-backup.md)
+and reviewed V3 revision 2/V4 design integrated with the current production baseline.
+The [B-3/B-4 amendment](../increments/007-production-scheduling-and-browser-scope-proposal.md#current-b-3b-4-amendment--10-november-2026)
+selects Chrome automation and user manual Chrome/Firefox testing; broader engines
+follow the fully featured working PWA, including deferred Safari G-02/G-03/G-04.
+Remaining Chrome mechanism, exactness, codec, resources, performance/native/HTTPS
+and UI acceptance are completion evidence, not prerequisites to begin implementation.
+The new-project nonblank-name policy is agreed, with exact accepted text, duplicate
+names and supported unnamed reopen/restore preserved. Existing technology/policy
+choices are not reopened. Historical Draft/pending/two-engine prerequisite wording
+below describes earlier preparation and is superseded for current scope only.
+
 **Narrowed for Increment 007 — 9 November 2026:** the user agreed the
 [retention/reopening/backup direction](../increments/007-local-retention-and-backup.md)
 and subsequently approved identified prototype V1 **for analyst review only**, then

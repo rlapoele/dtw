@@ -1,0 +1,24 @@
+import { chromium } from '/Users/rlapoele-pro/.npm/_npx/705bc6b22212b352/node_modules/playwright/index.mjs';
+import { mkdtemp, writeFile, readFile } from 'node:fs/promises';
+import { spawn } from 'node:child_process';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
+const output = '/Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw/output/increment-007-implementation/reviewer-final';
+const profile = await mkdtemp(path.join(tmpdir(),'dtw007-owned-')); const child = spawn('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',['--user-data-dir='+profile,'--remote-debugging-port=0','--no-first-run','--no-default-browser-check','about:blank'],{stdio:'ignore'}); let browser;
+const evidence = { profile, pid: child.pid, checks: [], errors: [] };
+const timeout = setTimeout(() => { child.kill('SIGTERM'); }, 30000);
+try {
+  for(let i=0;i<100;i++){ try { const port = (await readFile(path.join(profile,'DevToolsActivePort'),'utf8')).split('\n')[0]; browser = await chromium.connectOverCDP('http://127.0.0.1:'+port,{timeout:1000}); break; } catch { await new Promise(r=>setTimeout(r,100)); } }
+  if(!browser) throw Error('Owned Chrome not ready'); evidence.browser = browser.version(); const context = browser.contexts()[0]; context.setDefaultTimeout(5000); const page = await context.newPage(); page.on('pageerror',e=>evidence.errors.push(String(e)));
+  await page.goto('http://127.0.0.1:4332'); await page.getByText('No projects retained in this browser.').waitFor();
+  await page.getByLabel('Project name').fill('Clean replacement probe');await page.getByRole('button',{name:'Create project',exact:true}).click();await page.getByRole('heading',{name:'All colors',exact:true}).waitFor();
+  await page.getByRole('button',{name:'New token',exact:true}).first().click();await page.getByRole('dialog').getByLabel('Name',{exact:true}).fill('brand');await page.getByRole('dialog').getByRole('button',{name:'Create',exact:true}).click();await page.getByLabel('Red',{exact:true}).waitFor();
+  evidence.before=await page.getByLabel('Red',{exact:true}).inputValue();
+  const snapshot=await page.evaluate(()=>new Promise((resolve,reject)=>{const req=indexedDB.open('dtw-projects-v1',1);req.onsuccess=()=>{const db=req.result;const tx=db.transaction('projects');const read=tx.objectStore('projects').openCursor();read.onsuccess=()=>resolve(read.result.value.snapshot);tx.oncomplete=()=>db.close();tx.onabort=()=>reject(tx.error)}}));
+  snapshot.tokens[0].definition.assignments[0].value.components=['0.8','0.6','0.4'];
+  const wrapper={format:'dtw.project-backup',formatVersion:1,authoredVersion:1,createdAt:'2026-11-11T00:00:00.000Z',snapshot};
+  await page.getByLabel('Project backup file',{exact:true}).setInputFiles({name:'reviewer-change.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(wrapper))});
+  await page.getByRole('button',{name:'Review replacement',exact:true}).click();await page.getByRole('button',{name:'Download current local backup',exact:true}).click();await page.getByRole('checkbox').check();await page.getByRole('button',{name:'Replace complete project',exact:true}).click();await page.getByRole('dialog').waitFor({state:'hidden'});
+  await page.getByLabel('Red',{exact:true}).waitFor();await page.getByText('All authored data',{exact:true}).click();const source=page.getByLabel('Complete applied authored data');await source.waitFor();evidence.source=JSON.parse(await source.textContent()).definition.assignments[0].value.components;evidence.after=await page.getByLabel('Red',{exact:true}).inputValue();evidence.green=await page.getByLabel('Green',{exact:true}).inputValue();evidence.blue=await page.getByLabel('Blue',{exact:true}).inputValue();evidence.checks.push('same-ID complete replacement acknowledged; clean editor retained selection');await page.screenshot({path:output+'/clean-replacement.png',fullPage:true});evidence.status=evidence.after==='0.8'&&evidence.green==='0.6'&&evidence.blue==='0.4'?'passed':'counterexample';
+} catch(error) { evidence.status='failed';evidence.error=String(error); } finally { await writeFile(output+'/clean-replacement.json',JSON.stringify(evidence,null,2)); if(browser) await browser.close().catch(()=>{}); child.kill('SIGTERM');clearTimeout(timeout); }
+console.log(JSON.stringify(evidence));

@@ -1,0 +1,726 @@
+{
+  "mainTimings": {
+    "RunTask": [
+      242,
+      381.81599999999935,
+      335.991
+    ],
+    "V8.StackGuard": [
+      122,
+      1.600999999999998,
+      0.072
+    ],
+    "V8.HandleInterrupts": [
+      118,
+      1.5409999999999984,
+      0.072
+    ],
+    "V8.InvokeApiInterruptCallbacks": [
+      1,
+      0.014,
+      0.014
+    ],
+    "RunMicrotasks": [
+      44,
+      2.2879999999999994,
+      0.645
+    ],
+    "V8.BytecodeBudgetInterrupt": [
+      227,
+      0.33300000000000024,
+      0.01
+    ],
+    "EventDispatch": [
+      39,
+      4.46,
+      0.812
+    ],
+    "V8.GC_HEAP_EXTERNAL_PROLOGUE": [
+      9,
+      0.013000000000000005,
+      0.004
+    ],
+    "MinorGC": [
+      10,
+      7.065999999999999,
+      2.804
+    ],
+    "V8.GC_SCAVENGER": [
+      10,
+      6.953,
+      2.792
+    ],
+    "V8.GC_SCAVENGER_SCAVENGE": [
+      10,
+      6.920999999999999,
+      2.79
+    ],
+    "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_IDENTIFY": [
+      10,
+      0.034,
+      0.016
+    ],
+    "ComputeWeaknessProcessor start": [
+      2,
+      0.002,
+      0.001
+    ],
+    "V8.GC_SCAVENGER_TRACED_HANDLES_COMPUTE_WEAKNESS_PARALLEL": [
+      2,
+      0.006,
+      0.005
+    ],
+    "V8.GC_SCAVENGER_SCAVENGE_COLLECT_OLD_TO_NEW_PAGES": [
+      7,
+      0.008,
+      0.002
+    ],
+    "V8.GC_SCAVENGER_SCAVENGE_PARALLEL_PHASE": [
+      10,
+      6.664,
+      2.748
+    ],
+    "Parallel scavenge started": [
+      2,
+      0.002,
+      0.001
+    ],
+    "V8.GC_SCAVENGER_SCAVENGE_ROOTS": [
+      10,
+      0.10200000000000002,
+      0.04
+    ],
+    "V8.GC_SCAVENGER_SCAVENGE_WEAK_GLOBAL_HANDLES_PROCESS": [
+      9,
+      0.022000000000000006,
+      0.012
+    ],
+    "ClearWeaknessProcessor start": [
+      2,
+      0.002,
+      0.001
+    ],
+    "V8.GC_SCAVENGER_TRACED_HANDLES_RESET_PARALLEL": [
+      2,
+      0.008,
+      0.007
+    ],
+    "V8.GC_SCAVENGER_SCAVENGE_FINALIZE": [
+      10,
+      0.056,
+      0.026
+    ],
+    "V8.GC_SCAVENGER_SCAVENGE_RESTORE_AND_QUARANTINE_PINNED": [
+      8,
+      0.014000000000000002,
+      0.005
+    ],
+    "V8.GC_SCAVENGER_FREE_REMEMBERED_SET": [
+      4,
+      0.010000000000000002,
+      0.005
+    ],
+    "V8.GC_SCAVENGER_RESIZE_NEW_SPACE": [
+      2,
+      0.002,
+      0.001
+    ],
+    "V8.GC_HEAP_EPILOGUE_SAFEPOINT": [
+      7,
+      0.009000000000000001,
+      0.002
+    ],
+    "V8.GC_HEAP_EPILOGUE": [
+      11,
+      0.013000000000000003,
+      0.002
+    ],
+    "V8.GC_HEAP_EXTERNAL_EPILOGUE": [
+      12,
+      0.04200000000000001,
+      0.015
+    ],
+    "V8.GC_HEAP_PROLOGUE": [
+      5,
+      0.007,
+      0.003
+    ],
+    "V8.GC_SCAVENGER_SCAVENGE_PARALLEL": [
+      7,
+      6.436,
+      2.735
+    ],
+    "V8.GC_HEAP_ENSURE_SWEEPING_COMPLETED": [
+      3,
+      0.015,
+      0.007
+    ],
+    "V8.GC_TIME_TO_SAFEPOINT": [
+      5,
+      0.005,
+      0.001
+    ],
+    "V8.GC_MC_INCREMENTAL_START": [
+      2,
+      0.14700000000000002,
+      0.084
+    ],
+    "V8.GC_MC_INCREMENTAL_EXTERNAL_PROLOGUE": [
+      2,
+      0.005,
+      0.003
+    ],
+    "V8.GC_MC_MARK_EMBEDDER_PROLOGUE": [
+      4,
+      0.039,
+      0.023
+    ],
+    "V8.GC_MC_MARK_ROOTS": [
+      5,
+      0.061000000000000006,
+      0.019
+    ],
+    "V8.GC_MC_INCREMENTAL_EXTERNAL_EPILOGUE": [
+      2,
+      0.006,
+      0.004
+    ],
+    "V8.GC_MC_INCREMENTAL": [
+      177,
+      0.5130000000000001,
+      0.127
+    ],
+    "V8.GC_MC_INCREMENTAL_EMBEDDER_TRACING": [
+      76,
+      0.2450000000000001,
+      0.048
+    ],
+    "Major concurrent marking rescheduled": [
+      8,
+      0.008,
+      0.001
+    ],
+    "MajorGC": [
+      2,
+      6.56,
+      5.422
+    ],
+    "V8.GC_MARK_COMPACTOR": [
+      2,
+      6.48,
+      5.36
+    ],
+    "V8.GC_MC_PROLOGUE": [
+      1,
+      0.001,
+      0.001
+    ],
+    "V8.GC_MC_MARK": [
+      2,
+      0.8430000000000001,
+      0.808
+    ],
+    "V8.GC_MC_MARK_FINISH_INCREMENTAL": [
+      2,
+      0.004,
+      0.003
+    ],
+    "V8.GC_MC_MARK_RETAIN_MAPS": [
+      2,
+      0.002,
+      0.001
+    ],
+    "V8.GC_MC_MARK_FULL_CLOSURE_PARALLEL": [
+      2,
+      0.764,
+      0.75
+    ],
+    "V8.GC_MC_MARK_WEAK_CLOSURE_EPHEMERON_MARKING": [
+      5,
+      0.749,
+      0.741
+    ],
+    "V8.GC_MC_MARK_EMBEDDER_TRACING": [
+      4,
+      0.004,
+      0.001
+    ],
+    "V8.GC_CONSERVATIVE_STACK_SCANNING": [
+      1,
+      0.001,
+      0.001
+    ],
+    "V8.GC_MC_MARK_FULL_CLOSURE_SERIAL": [
+      2,
+      0.002,
+      0.001
+    ],
+    "V8.GC_MC_CLEAR": [
+      2,
+      0.307,
+      0.211
+    ],
+    "ClearStringTableJob started": [
+      3,
+      0.003,
+      0.001
+    ],
+    "V8.GC_MC_CLEAR_JOIN_JOB": [
+      2,
+      0.261,
+      0.183
+    ],
+    "V8.GC_MC_CLEAR_WEAK_COLLECTIONS": [
+      2,
+      0.008,
+      0.004
+    ],
+    "V8.GC_MC_CLEAR_SWEEP_WASM_CODE_POINTER_TABLE": [
+      1,
+      0.001,
+      0.001
+    ],
+    "V8.GC_MC_CLEAR_MAPS": [
+      2,
+      0.016,
+      0.011
+    ],
+    "V8.GC_MC_CLEAR_EXTERNAL_STRING_TABLE": [
+      1,
+      0.008,
+      0.008
+    ],
+    "V8.GC_MC_CLEAR_STRING_TABLE": [
+      4,
+      0.049,
+      0.014
+    ],
+    "V8.GC_MC_CLEAR_SWEEP_TRUSTED_POINTER_TABLE": [
+      1,
+      0.015,
+      0.015
+    ],
+    "V8.GC_MC_SWEEP": [
+      7,
+      0.082,
+      0.036
+    ],
+    "V8.GC_MC_EVACUATE": [
+      4,
+      4.224000000000001,
+      4.003
+    ],
+    "V8.GC_MC_EVACUATE_PROLOGUE": [
+      2,
+      0.031,
+      0.024
+    ],
+    "V8.GC_MC_EVACUATE_COPY": [
+      2,
+      3.949,
+      3.864
+    ],
+    "PageEvacuationJob started": [
+      1,
+      0.001,
+      0.001
+    ],
+    "V8.GC_MC_EVACUATE_COPY_PARALLEL": [
+      2,
+      3.919,
+      3.847
+    ],
+    "V8.GC_MC_EVACUATE_UPDATE_POINTERS": [
+      2,
+      0.236,
+      0.129
+    ],
+    "V8.GC_MC_EVACUATE_UPDATE_POINTERS_TO_NEW_ROOTS": [
+      2,
+      0.109,
+      0.061
+    ],
+    "V8.GC_MC_EVACUATE_UPDATE_POINTERS_SLOTS_MAIN": [
+      2,
+      0.049,
+      0.027
+    ],
+    "PointersUpdatingJob started": [
+      2,
+      0.002,
+      0.001
+    ],
+    "V8.GC_MC_EVACUATE_UPDATE_POINTERS_PARALLEL": [
+      2,
+      0.022,
+      0.012
+    ],
+    "V8.GC_MC_EVACUATE_UPDATE_POINTERS_WEAK": [
+      2,
+      0.003,
+      0.002
+    ],
+    "V8.GC_MC_EVACUATE_UPDATE_POINTERS_POINTER_TABLES": [
+      2,
+      0.068,
+      0.036
+    ],
+    "V8.GC_MC_EVACUATE_CLEAN_UP": [
+      2,
+      0.002,
+      0.001
+    ],
+    "V8.GC_MC_EVACUATE_EPILOGUE": [
+      1,
+      0.002,
+      0.002
+    ],
+    "V8.GC_MC_FINISH": [
+      2,
+      0.9229999999999999,
+      0.705
+    ],
+    "V8.GC_MC_SWEEP_START_JOBS": [
+      2,
+      0.004,
+      0.003
+    ],
+    "V8.GC_MC_EPILOGUE": [
+      2,
+      0.002,
+      0.001
+    ],
+    "V8.GC_HEAP_EXTERNAL_WEAK_GLOBAL_HANDLES": [
+      1,
+      0.002,
+      0.002
+    ],
+    "V8.GC_HEAP_EMBEDDER_TRACING_EPILOGUE": [
+      2,
+      0.063,
+      0.052
+    ],
+    "V8.GC_HEAP_EXTERNAL_SECOND_PASS_CALLBACKS": [
+      2,
+      0.075,
+      0.074
+    ],
+    "V8.GC_MC_COMPLETE_SWEEPING": [
+      1,
+      0.002,
+      0.002
+    ],
+    "V8.GC_HEAP_PROLOGUE_SAFEPOINT": [
+      2,
+      0.002,
+      0.001
+    ],
+    "V8.BytecodeBudgetInterruptWithStackCheck": [
+      26,
+      0.08300000000000002,
+      0.031
+    ],
+    "FunctionCall": [
+      217,
+      19.145,
+      3.557
+    ],
+    "UpdateLayoutTree": [
+      11,
+      1.945,
+      0.601
+    ],
+    "Layout": [
+      8,
+      5.453999999999999,
+      2.887
+    ],
+    "PrePaint": [
+      53,
+      1.7059999999999997,
+      0.505
+    ],
+    "HitTest": [
+      18,
+      0.15600000000000003,
+      0.04
+    ],
+    "Paint": [
+      14,
+      2.2089999999999996,
+      0.326
+    ],
+    "Layerize": [
+      23,
+      0.5910000000000001,
+      0.17
+    ],
+    "Commit": [
+      33,
+      0.8840000000000003,
+      0.086
+    ],
+    "UpdateLayer": [
+      11,
+      0.035,
+      0.008
+    ],
+    "V8.GC_MC_CLEAR_WEAK_LISTS": [
+      1,
+      0.003,
+      0.003
+    ],
+    "V8.GC_MC_CLEAR_SWEEP_JS_DISPATCH_TABLE": [
+      1,
+      0.014,
+      0.014
+    ],
+    "V8.GC_MC_CLEAR_SWEEP_EXTERNAL_POINTER_TABLE": [
+      1,
+      0.025,
+      0.025
+    ],
+    "V8.GC_MC_SWEEP_NEW_LO": [
+      1,
+      0.001,
+      0.001
+    ],
+    "V8.GC_MC_FINISH_SWEEP_ARRAY_BUFFERS": [
+      1,
+      0.002,
+      0.002
+    ],
+    "FireAnimationFrame": [
+      34,
+      1.2120000000000006,
+      0.147
+    ],
+    "HandlePostMessage": [
+      6,
+      2.339,
+      0.929
+    ],
+    "TimerFire": [
+      3,
+      0.49400000000000005,
+      0.464
+    ],
+    "Responsiveness.Renderer.UserInteraction": [
+      1,
+      0.002,
+      0.002
+    ],
+    "IntersectionObserverController::computeIntersections": [
+      8,
+      0.024000000000000004,
+      0.008
+    ],
+    "PaintImage": [
+      1,
+      0.021,
+      0.021
+    ]
+  },
+  "topFunctions": [
+    [
+      539,
+      {
+        "functionName": "(idle)",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      }
+    ],
+    [
+      289,
+      {
+        "functionName": "(program)",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      }
+    ],
+    [
+      194,
+      {
+        "functionName": "",
+        "scriptId": "27",
+        "url": "",
+        "lineNumber": 7227,
+        "columnNumber": 31
+      }
+    ],
+    [
+      11,
+      {
+        "functionName": "(garbage collector)",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      }
+    ],
+    [
+      10,
+      {
+        "functionName": "",
+        "scriptId": "27",
+        "url": "",
+        "lineNumber": 7228,
+        "columnNumber": 55
+      }
+    ],
+    [
+      3,
+      {
+        "functionName": "atob",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      }
+    ],
+    [
+      2,
+      {
+        "functionName": "",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      }
+    ],
+    [
+      1,
+      {
+        "functionName": "Sh",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4336/assets/index-D22wQ9Ka.js",
+        "lineNumber": 8,
+        "columnNumber": 43190
+      }
+    ],
+    [
+      1,
+      {
+        "functionName": "Oo",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4336/assets/index-D22wQ9Ka.js",
+        "lineNumber": 12,
+        "columnNumber": 85117
+      }
+    ],
+    [
+      1,
+      {
+        "functionName": "useSyncExternalStore",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4336/assets/index-D22wQ9Ka.js",
+        "lineNumber": 7,
+        "columnNumber": 62406
+      }
+    ],
+    [
+      1,
+      {
+        "functionName": "ip",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4336/assets/index-D22wQ9Ka.js",
+        "lineNumber": 8,
+        "columnNumber": 7960
+      }
+    ],
+    [
+      1,
+      {
+        "functionName": "hn",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4336/assets/index-D22wQ9Ka.js",
+        "lineNumber": 12,
+        "columnNumber": 34498
+      }
+    ],
+    [
+      1,
+      {
+        "functionName": "setAttribute",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      }
+    ],
+    [
+      1,
+      {
+        "functionName": "mt",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4336/assets/index-D22wQ9Ka.js",
+        "lineNumber": 12,
+        "columnNumber": 29631
+      }
+    ],
+    [
+      1,
+      {
+        "functionName": "gl",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4336/assets/index-D22wQ9Ka.js",
+        "lineNumber": 7,
+        "columnNumber": 95204
+      }
+    ],
+    [
+      1,
+      {
+        "functionName": "qo",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4336/assets/index-D22wQ9Ka.js",
+        "lineNumber": 7,
+        "columnNumber": 49074
+      }
+    ],
+    [
+      1,
+      {
+        "functionName": "setAttribute",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      }
+    ],
+    [
+      1,
+      {
+        "functionName": "ze",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4336/assets/index-D22wQ9Ka.js",
+        "lineNumber": 12,
+        "columnNumber": 7299
+      }
+    ],
+    [
+      1,
+      {
+        "functionName": "qo",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4336/assets/index-D22wQ9Ka.js",
+        "lineNumber": 7,
+        "columnNumber": 49074
+      }
+    ],
+    [
+      1,
+      {
+        "functionName": "",
+        "scriptId": "5",
+        "url": "http://127.0.0.1:4336/assets/index-D22wQ9Ka.js",
+        "lineNumber": 7,
+        "columnNumber": 44771
+      }
+    ]
+  ]
+}

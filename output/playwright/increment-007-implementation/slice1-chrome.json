@@ -1,0 +1,14 @@
+{
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-owned-X6928m",
+  "pid": 44712,
+  "checks": [
+    "fresh browser shows empty catalogue",
+    "named project acknowledged and opened",
+    "reload catalogue and reopen preserve identity",
+    "second tab inspect-only under actual Web Lock"
+  ],
+  "errors": [],
+  "browser": "157.0.8103.50",
+  "identity": "Project identity: \"da4222c3-4992-4465-b816-be35d9138cd3\"",
+  "status": "passed"
+}

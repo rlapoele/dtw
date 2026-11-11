@@ -1,0 +1,55 @@
+- link "Skip to tokens":
+  - /url: "#tokens"
+- banner:
+  - strong: Token Workbench
+  - text: Fidelity scope
+  - button "Projects"
+- text: Applied work is retained in this browser. Drafts stay in this page. Keep independent backups.
+- navigation "Project groups":
+  - button "Collapse project groups" [expanded]: Project groups
+  - strong: Fidelity scope
+  - text: Color foundations Library
+  - button "All tokens 1"
+  - button "All content"
+  - button "New group"
+  - text: Project
+  - paragraph: One vocabulary. Clear relationships.
+  - text: 0 groups
+- main:
+  - text: Tokens
+  - heading "All colors" [level=1]
+  - paragraph: Build a vocabulary, then connect its meaning.
+  - button "New token"
+  - searchbox "Search color tokens"
+  - text: Token Description Authored value
+  - 'button "brand Unspecified · color Readable ordinary words keep their boundaries. Exact newlines remain. sRGB R: 0 · G: 0 · B: 0 · Alpha: 1" [pressed]':
+    - strong: brand
+    - text: "Unspecified · color Readable ordinary words keep their boundaries. Exact newlines remain. sRGB R: 0 · G: 0 · B: 0 · Alpha: 1"
+  - group: Project diagnostics · namespace and references
+  - status: Color token created and retained.
+- region "Token inspector pane":
+  - text: Token inspector
+  - region "Applied and draft color context": Applied
+  - button "Collapse token inspector" [expanded]
+  - complementary "Selected token":
+    - text: color token
+    - heading "brand" [level=2]
+    - paragraph: Readable ordinary words keep their boundaries. Exact newlines remain.
+    - text: Unspecified layer Unconditional
+    - tablist "Token inspection":
+      - tab "Authored value"
+      - tab "Resolved & trace" [selected]
+    - tabpanel "Resolved & trace":
+      - heading "Resolved value" [level=3]
+      - text: Applied value
+      - paragraph: Illustrative sRGB specimen.
+      - text: "{ \"kind\": \"literal\", \"valueType\": \"color\", \"colorSpace\": \"srgb\", \"components\": [ \"0\", \"0\", \"0\" ], \"alpha\": \"1\" }"
+      - heading "Resolution trace" [level=3]
+      - list:
+        - listitem:
+          - strong: brand
+          - text: e2b43d6f-4a8a-4ee8-9d5b-2a3e6e79a8f3 · authored value
+      - heading "Resolution diagnostics" [level=3]
+      - text: "[]"
+    - text: Regeneration allowed
+- contentinfo: 1 tokens Applied state retained locally

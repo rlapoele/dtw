@@ -1,0 +1,13 @@
+- banner:
+  - strong: Token Workbench
+  - text: Browser local
+- main:
+  - heading "Projects in this browser" [level=1]
+  - paragraph: "Applied work is retained automatically. Keep independent backups: browser storage can be cleared or become unavailable."
+  - paragraph: No projects retained in this browser.
+  - heading "New project" [level=2]
+  - text: Project name
+  - textbox "Project name"
+  - button "Create project"
+  - alert
+  - status

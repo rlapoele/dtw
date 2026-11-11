@@ -1,5 +1,17 @@
 # Increment 007: format, decoder and resource proposal
 
+**Current authorization — 10 November 2026:** the [agreed Increment 007 contract](007-local-retention-and-backup.md#current-authorization-and-browsergate-amendment--10-november-2026)
+authorizes production implementation now. The [B-3/B-4 amendment](007-production-scheduling-and-browser-scope-proposal.md#current-b-3b-4-amendment--10-november-2026)
+selects Chrome automated tests and user manual Chrome/Firefox tests; broader engine
+qualification follows a fully featured working PWA. Safari qualification/setup/
+supervision is deferred and does not block this increment. Remaining applicable
+Chrome checks are actual-application completion/support gates; exactness, resource
+caps, performance budgets and acceptance semantics are unchanged.
+
+**Historical agreement and qualification record follows.** Its former Draft,
+pending-authorization and two-engine prerequisite statements describe earlier stages
+and are superseded only by the current contract/browser amendment linked above.
+
 **Agreed policy — 9 November 2026; Stage A qualification authorized.**
 The user agreed F-1–F-5 and the qualification plan after committing planning review
 as `21196be`, and authorized isolated Stage A work including the parser dependency

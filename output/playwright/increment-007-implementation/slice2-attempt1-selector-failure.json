@@ -1,0 +1,12 @@
+{
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-owned-psU3vb",
+  "pid": 45937,
+  "checks": [
+    "fresh browser shows empty catalogue",
+    "retained workbench opened"
+  ],
+  "errors": [],
+  "browser": "157.0.8103.50",
+  "status": "failed",
+  "error": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: 'New token', exact: true }) resolved to 2 elements:\n    1) <button tabindex=\"0\" type=\"button\" data-size=\"panel\" class=\"button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md source-compact:px-2.5 source-compact:text-caption bg-primary text-primary-foreground border-primary \">…</button> aka getByRole('button', { name: 'New token' }).first()\n    2) <button tabindex=\"0\" type=\"button\" data-size=\"default\" class=\"button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted \">New token</button> aka getByRole('button', { name: 'New token' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'New token', exact: true })\u001b[22m\n"
+}

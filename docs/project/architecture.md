@@ -80,6 +80,20 @@ The backend side may be written in JavaScript or TypeScript and can use Node.js 
 
 Use a pragmatic ports-and-adapters, or hexagonal, architecture. The aim is replaceable boundaries and independent testing, not architectural ceremony.
 
+**Current implementation ownership — 11 November 2026:** Increment 007 replaces
+`app/App.tsx` with `app/RetainedApp.tsx` (catalogue and host lifetime) and
+`app/RetainedWorkbench.tsx` (retained workbench coordination). The deleted session-only
+entry remains historical. `src/application/retention/` owns host-independent retention,
+codec, candidate and projection operations; `src/adapters/browser/` owns native storage
+adapters. `src/presentation/host/` owns the module-worker delivery entry, typed protocol
+and renderer client. `tsconfig.worker.json` checks the WebWorker scope separately.
+Draft and form state remains renderer-local; applied snapshots are retained per browser
+profile/origin. Functional implementation is under final qualification; see the
+[agreed contract](../increments/007-local-retention-and-backup.md) and
+[current status](../status/current.md) for evidence and remaining gates. Chrome is the
+current automated baseline; broader engine qualification follows the user-approved
+browser policy. Earlier dated descriptions below describe their original increments.
+
 **Source naming — 8 November 2026:** `src/presentation/` contains the React UI, styles, editor drafts and disposable browser previews; `src/application/` contains host-independent use-case coordination. The user approved renaming the former `delivery` folder to `presentation` for clarity, with the same dependency boundaries. Matching tests and UI type configuration use `test/presentation/` and `tsconfig.presentation.json`. The broader term “delivery surface” below also covers possible non-UI entry points such as CLI or MCP; those need not live under `presentation`. Source/test imports use `@domain`, `@application`, `@adapters`, `@presentation` and `@tests` mappings; these improve path clarity without permitting new dependencies between layers. TypeScript paths and shared Vite/Vitest aliases resolve the same folders. Build configuration is checked separately in `tsconfig.tools.json` with development-only Node types; domain/application checks and browser code retain their own host scopes.
 
 **Presentation ownership — Increment 004, 8 November 2026:** App retains application-operation coordination, draft/departure state, readback and focus policy. ProjectNavigation, TokenList and CreationDialog render their existing responsibilities; generic controls and dialog shells are locally owned under `src/presentation/components/ui/`, while workbench-specific components, tabs and swatches live under `src/presentation/features/workbench/components/`. Ordinary presentation uses Tailwind utilities and semantic palette roles. The stylesheet owns only the retained dense typography foundation, explicit responsive panel/precision geometry, modal/drawer effects, native slider pseudo-elements and illustrative checkerboards. These presentation components do not parse authored strings or reimplement token semantics.
@@ -163,6 +177,19 @@ watchProject
 Operations should usually be coarse enough to avoid a chatty RPC boundary. Fast, temporary interface state may remain in the renderer; operations that enforce domain invariants, mutate canonical project data, persist changes, or create target artifacts belong behind the application boundary.
 
 For scale helpers, the UI collects parameters and presents candidates; the domain calculates them; an application operation coordinates creation of the selected tokens through normal domain validation. Later helper changes do not mutate existing tokens automatically.
+
+### Current Increment 007 implementation scope — 10 November 2026
+
+**Implementation authorized.** The [agreed contract](../increments/007-local-retention-and-backup.md)
+and [B-3/B-4 amendment](../increments/007-production-scheduling-and-browser-scope-proposal.md#current-b-3b-4-amendment--10-november-2026)
+authorize production development with Chrome automated tests and user manual
+Chrome/Firefox testing. Additional engines, including Safari supervision/storage
+qualification, follow the fully featured working PWA and do not block this increment.
+Remaining applicable Chrome mechanism/native/HTTPS/performance evidence is required
+at completion/support, rather than before implementation. Existing worker, authority,
+exactness, resource and recovery boundaries below remain binding; historical pending
+implementation statements are superseded by this authorization, not by passing results.
+No install/offline or Electron implementation is added.
 
 ### Increment 007 storage direction
 

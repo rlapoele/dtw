@@ -1,7 +1,11 @@
 import type { ColorLiteralInput, ColorSpace } from "@domain/color-literal";
 import { createColorLiteral } from "@domain/color-literal";
 import { convertColor } from "@domain/color-calculation";
-import { integerByteDisplay, integerByteIssue, integerByteToNormalized } from "@presentation/features/workbench/color/integer-rgb";
+import {
+  integerByteDisplay,
+  integerByteIssue,
+  integerByteToNormalized,
+} from "@presentation/features/workbench/color/integer-rgb";
 import type { ImplementedAuthoredValue } from "@domain/token";
 export { canReviseColorToken as eligible } from "@application/color-revision-policy";
 export type LiteralDraft = {
@@ -12,7 +16,7 @@ export type LiteralDraft = {
 export type DraftSession = {
   mode: "literal" | "reference";
   literal: LiteralDraft;
-  reference: string;
+  reference: string | null;
   viewSpace: ColorSpace;
   scale: "normalized" | "bytes";
   byteText: [string, string, string] | null;
@@ -36,7 +40,7 @@ export function baseline(value?: ImplementedAuthoredValue): DraftSession {
   return {
     mode: value?.kind === "token-reference" ? "reference" : "literal",
     literal,
-    reference: value?.kind === "token-reference" ? value.targetTokenId : "",
+    reference: value?.kind === "token-reference" ? value.targetTokenId : null,
     viewSpace: literal.colorSpace,
     scale: "normalized",
     byteText: null,
@@ -44,6 +48,13 @@ export function baseline(value?: ImplementedAuthoredValue): DraftSession {
     byteEdited: [false, false, false],
     edited: false,
   };
+}
+/** A clean editor follows applied data; representation preferences stay passive. */
+export function refreshCleanSession(
+  session: DraftSession,
+  value?: ImplementedAuthoredValue,
+): DraftSession {
+  return { ...baseline(value), viewSpace: session.viewSpace, scale: session.scale };
 }
 export function literalIssue(literal: ColorLiteralInput): string | undefined {
   try {
@@ -104,9 +115,17 @@ export function editComponent(
     try {
       components[index] = integerByteToNormalized(text);
     } catch {
-      return { ...s, byteText: raw, byteEdited, byteInvalid: true, edited: true };
+      return {
+        ...s,
+        byteText: raw,
+        byteEdited,
+        byteInvalid: true,
+        edited: true,
+      };
     }
-    const invalid = raw.some((x, i) => byteEdited[i] && integerByteIssue(x) !== undefined);
+    const invalid = raw.some(
+      (x, i) => byteEdited[i] && integerByteIssue(x) !== undefined,
+    );
     return {
       ...s,
       literal: { ...d, components },

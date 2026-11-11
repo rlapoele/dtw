@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-11",
+  "manifest": "s4-r5-before-browser-manifest.json",
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-owned-a0ROma",
+  "pid": 52550,
+  "checks": [
+    "fresh browser shows empty catalogue",
+    "retained workbench opened",
+    "created color token through native retained worker",
+    "exact color revision acknowledged",
+    "independent raw draft and Cancel preserve applied state",
+    "on-demand exact applied source disclosure",
+    "retained group create and rename",
+    "All content reaches group identity inspection",
+    "reopen retains exact color and metadata",
+    "actual independent backup downloaded without draft serialization",
+    "independent backup restores IDs and exact color into empty browser origin",
+    "same-ID complete replacement protects current revision and removes local-only token",
+    "fresh-origin restore and complete replacement reproduce exact original authored snapshot and IDs"
+  ],
+  "errors": [],
+  "browser": "157.0.8103.50",
+  "backup": {
+    "projectId": "ed4d664f-5b18-493d-8fda-722a6a6db2f1",
+    "tokens": 1,
+    "format": "dtw.project-backup"
+  },
+  "status": "passed"
+}

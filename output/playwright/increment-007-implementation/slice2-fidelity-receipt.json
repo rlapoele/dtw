@@ -1,0 +1,10 @@
+{
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-fidelity-hbIFpt",
+  "pid": 46874,
+  "checks": [],
+  "errors": [],
+  "browser": "157.0.8103.50",
+  "viewOptions": [],
+  "status": "failed",
+  "error": "TimeoutError: locator.selectOption: Timeout 4000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('View color space', { exact: true })\u001b[22m\n"
+}

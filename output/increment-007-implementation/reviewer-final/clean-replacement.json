@@ -1,0 +1,19 @@
+{
+  "profile": "/var/folders/q8/9y_g_sbd0t38xgx8nq1rpw680000gn/T/dtw007-owned-CUnKja",
+  "pid": 50968,
+  "checks": [
+    "same-ID complete replacement acknowledged; clean editor retained selection"
+  ],
+  "errors": [],
+  "browser": "157.0.8103.50",
+  "before": "0",
+  "source": [
+    "0.8",
+    "0.6",
+    "0.4"
+  ],
+  "after": "0",
+  "green": "0",
+  "blue": "0",
+  "status": "counterexample"
+}

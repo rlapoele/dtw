@@ -1,0 +1,21 @@
+- dialog "Create a color token":
+  - heading "Create a color token" [level=2]
+  - paragraph: Start with an explicit Color literal.
+  - group:
+    - text: Name
+    - textbox "Name"
+    - text: Description (optional)
+    - textbox "Description (optional)"
+    - text: Group
+    - combobox "Group":
+      - option "Project root" [selected]
+    - text: Layer
+    - combobox "Layer":
+      - option "Unspecified" [selected]
+      - option "Primitive"
+      - option "Semantic"
+    - heading "Initial value" [level=3]
+    - paragraph: sRGB · Red 0 · Green 0 · Blue 0 · Alpha 1 (opaque black)
+    - paragraph: Create starts with this color. You can revise it or explicitly replace it with a reference in the editor.
+  - button "Cancel"
+  - button "Create"
