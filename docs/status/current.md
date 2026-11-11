@@ -8,6 +8,22 @@
 
 ## Current focus
 
+**Workflow aligned with the supplied v0.5.0 guidance — 11 November 2026:**
+the [local workflow](../workflow/agent-roles.md#proportionate-verification) now owns
+cumulative verification budgets, stopping rules, finding classification and targeted
+rechecks. Designer guidance preserves independent judgment, existing approvals and
+DTW's user-before-analyst order. Mandatory role separation for substantial increments,
+product/design decisions, acceptance gates and historical evidence are unchanged.
+The [Increment 007 accounting](../increments/007-local-retention-and-backup.md#remaining-work)
+carries forward hours reported by the user, unknown precise aggregate time and at
+least three recorded harness repair/recheck cycles. Its remaining authorized allowance
+is **zero** because of the existing stop; this documentation migration does not resume
+qualification. This alignment uses a documentation-only 10-minute verification ceiling,
+with approximately 5–10 aggregate minutes consumed (estimate, not precisely timed),
+zero harness repairs and no application tests or subagent evaluation. Documentation
+diff/preservation, new local links/anchors and whitespace checks passed. Checks are
+finished; any unused 0–5 minutes is not transferred to Increment 007.
+
 **Increment 007 functional implementation reviewed — 11 November 2026:** project
 catalogue, retained authoring, backup, staged restore, protected complete replacement
 and recovery are implemented. The [R5 functional evidence](../../output/increment-007-implementation/s4-r5-functional-evidence.md)
@@ -18,14 +34,14 @@ four typechecks and the production build pass. No required functional-source fin
 remains within the reviewed scope. This is not an Increment 007 completion claim.
 
 The [finite production qualification inventory](../../output/increment-007-implementation/r5-production-qualification-plan.md)
-is in progress. The 100-token ordinary measurements and separate cold first Apply
+was stopped at the user's request. The 100-token ordinary measurements and separate cold first Apply
 passed. After an independent harness audit, the corrected 1,000-token batch passed
 all 110 operations: command p95 approximately 299 ms, cold first Apply 286 ms and
 no observed renderer LongTask entries above 50 ms. The
 [current evidence disposition](../../output/increment-007-implementation/r5-qualification-partial-evidence.md)
 keeps earlier automation-contaminated failures separate. The maximum-entity fixture (10,000 tokens / 2,000 groups) was admitted and loaded,
 but opening All content produced a 223 ms renderer task. The boundary batch stopped;
-catalogue/source cases remain unrun. The narrow staged-rendering correction is
+at that R5 stop catalogue/source cases had not run. The narrow staged-rendering correction is
 implemented and independently reviewed at R7: **1,031 tests / 45 files**, four
 typechecks and build pass. The
 [R6 finding and R7 recheck](../../output/increment-007-implementation/reviewer-final/r6-source-review.md)

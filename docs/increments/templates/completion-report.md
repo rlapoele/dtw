@@ -21,6 +21,7 @@
 - Design verification: [agreed artifact revision, implementation fidelity/interaction/accessibility evidence, optional designer check and findings; or not applicable]
 - Findings: [finding, fix or evidence-based disposition, and recheck result; or no actionable findings]
 - Unresolved disagreements: [details or none]
+- Verification accounting: [approximate cumulative time and harness cycles used/remaining across agents, basis/unknowns, stopping reason and any bounded resume authority; no reset at handoff]
 
 ### Decisions made
 

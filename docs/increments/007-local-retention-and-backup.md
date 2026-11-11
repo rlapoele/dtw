@@ -724,6 +724,22 @@ remains attributed to that snapshot; R7 changes only All content staging/lifecyc
 
 ### Remaining work
 
+**Verification accounting carried forward — workflow alignment, 11 November 2026:**
+no cumulative time/cycle budget was recorded for the historical campaign. The user
+reported hours of testing; exact aggregate agent time is unknown and is not reconstructed
+as a precise total. Existing handoffs and the
+[runner audit](../../output/increment-007-implementation/reviewer-final/harness-audit.md)
+show at least three harness repair/recheck cycles (scoped selector correction,
+file-path upload correction and direct-CDP upload correction); this is a lower bound,
+not an exhaustive count. Historical work already exceeds the new small-increment
+default's two-cycle ceiling, but that default is not asserted as a retroactive agreement.
+**Remaining authorized allowance for this stopped campaign: zero**, based on the user's
+explicit stop. Migration to the shared verification rules grants no fresh budget.
+Existing passing evidence, failed/unrun cases, stronger acceptance gates and their
+snapshot limits remain unchanged. Any resumption needs a new explicitly authorized,
+bounded follow-up; reporting gaps does not authorize further testing or establish
+Increment 007 completion.
+
 **Further automated stress qualification stopped at user request — 11 November 2026.**
 The user stated that the hours-long testing was disproportionate for this small
 color-token PWA prototype. No further case, diagnostic or retry is scheduled; do not

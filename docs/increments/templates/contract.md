@@ -33,6 +33,15 @@
 
 [How each criterion will be demonstrated: behavior tests, browser observations, artifacts, or other appropriate evidence. Identify checks that cannot yet be performed.]
 
+Use the [shared verification rules](../../workflow/agent-roles.md#proportionate-verification).
+Record briefly in this section, not a separate budget document:
+
+- Essential functional / relevant integrity-security / representative performance checks: [criteria, realistic workload and actually agreed guarantees]
+- Optional qualification excluded from current delivery: [stress, compatibility, future hardening; preserve stronger existing agreements]
+- Shared time and harness-repair ceilings: [for a small increment, assess 30 aggregate minutes and two repair cycles; justify proportionate adjustments before starting]
+- Carried-forward consumption: [approximate used/remaining time and cycles, evidence basis, estimates/unknowns and prior stop decisions; missing history is not zero]
+- Stop/resume conditions: [stop at either ceiling or earlier for tooling dominance/low value; no automatic resets or extensions; bounded explicit authorization to resume]
+
 ## Design proposals and review
 
 - Applicability: [designer required for substantial interaction/interface decisions, explicitly requested, or not applicable with reason]
@@ -41,6 +50,7 @@
 - Analyst review: [after user approval only; criterion/constraint checks, findings, dispositions, and reviewed revision]
 - Material revisions: [return to user before renewed analyst review; record each affected revision and approval]
 - Final design agreement: [pending or date and identified artifacts agreed alongside the resulting contract; approval for analyst review alone does not authorize implementation]
+- Proportionality and existing authority: [intended outcome, independent recommendation, useful alternatives only, and settled choices/authority preserved without repeated approval]
 
 ## Review baseline
 

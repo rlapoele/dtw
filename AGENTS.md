@@ -27,6 +27,8 @@ Treat status labels as meaningful: **established** directions and principles are
 - Use one code-writing agent at a time. Resolve findings with evidence and recheck affected behavior. Surface material ambiguities or scope changes; continue routine work within agreed scope without repeated approval.
 - If subagents are unavailable, state that limitation rather than implying an independent review occurred. Role instructions do not create separate permission boundaries.
 - Setting up or editing the workflow does not authorize opening or implementing the next application increment.
+- Apply the [proportionate verification and stopping rules](docs/workflow/agent-roles.md#proportionate-verification) across all agents and handoffs. Carry consumed effort and stopping decisions forward; workflow upgrades grant no new verification allowance and do not remove agreed acceptance gates.
+- Leave staging, committing and pushing to the user. Preserve existing staged work and include a focused suggested commit message in the handoff.
 
 ## Product and model invariants
 

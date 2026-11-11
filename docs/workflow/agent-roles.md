@@ -27,11 +27,57 @@ For interface work, designer, developer and reviewer handoffs include the [prese
 
 The coordinator is the user's point of contact. Relay material questions and findings faithfully, distinguish proposals from agreements, and report unresolved disagreements. Do not silently dismiss findings or settle product questions. Subagents should not spawn additional agents unless the coordinator explicitly assigns that delegation.
 
+## Proportionate verification
+
+Choose checks for the current product stage, intended workload and concrete risks.
+In the existing increment record or a brief inline plan, separate essential functional
+acceptance, relevant integrity/security checks, representative performance and optional
+stress/compatibility/future hardening. Defensive input ceilings do not imply interactive
+performance guarantees at every maximum or combination of maxima. Preserve explicitly
+agreed stronger criteria; an unmet criterion stays failed or unverified, not optional
+merely because verification stops. This guidance does not change DTW's role separation,
+design review order or implementation authorization.
+
+Before substantial verification, the coordinator records one cumulative budget,
+essential checks, exclusions and stopping conditions. For a small increment with no
+specified budget, start with 30 aggregate verification minutes and at most two
+harness-repair cycles, stopping at either limit. These are ceilings, not targets;
+briefly assess suitability and use less for documentation. A justified larger allowance
+must be established before starting within existing authority, without a separate
+approval ceremony. Aggregate time includes each agent's review, diagnostics, harness
+repair, run waits and reruns; overlapping agent time counts per agent. One repair
+cycle is a bounded harness repair attempt plus its recheck.
+
+Keep approximate used/remaining time, cycles, evidence references and reasons for
+stopping in the owning record and carry them in handoffs. Missing history is unknown,
+not zero; use labelled estimates without starting an accounting investigation. Changing
+agent, snapshot, harness, diagnostic or chat does not reset consumption. Ordinary
+implementation and genuine product-defect correction remain authorized, but do not
+disguise harness work or reset the remaining verification allowance.
+
+After failures and before another handoff or rerun, reassess the decision it could
+change, expected user value, likely attribution, cheapest useful check and remaining
+budget. New evidence alone is insufficient. Stop affected verification at either
+limit, or earlier when tooling dominates or value is low. Preserve useful results,
+return completed work and identify failed/unverified requirements and delivery limits.
+Do not automatically restart or repeatedly extend the budget; resumption needs an
+explicitly authorized bounded follow-up. Continue unaffected authorized work.
+
+Seek reasonable attribution before changing application code for an automation or
+timing failure, using the smallest useful check within the same budget. Otherwise
+report the cause as unresolved. Prefer labelled manual evidence or deferred
+qualification over disproportionate harness repair; neither silently replaces an
+explicitly agreed automated criterion. Use targeted rechecks; full-suite repetition
+needs a concrete regression risk or agreed gate. Minor harness edits do not automatically
+require another independent approval; assess their effect on evidence validity while
+preserving stable review targets and DTW's required independent implementation review.
+
 ## Analyst brief
 
 Read the applicable repository instructions, current status, relevant owning documents, and current implementation. Propose the smallest useful increment for the user's stated outcome.
 
 - Draft outcome, scope, exclusions, numbered observable acceptance criteria, verification approach, and unresolved decisions.
+- Distinguish current delivery checks from optional hardening using the shared verification rules; do not turn defensive ceilings into unstated performance commitments.
 - Link existing domain and architecture constraints rather than duplicating them. Distinguish established decisions, proposals, and unknowns.
 - Identify contradictions and ask necessary questions through the coordinator. Do not infer product semantics from implementation convenience.
 - After the user's approval for analyst review, check the identified design proposal against acceptance criteria, domain invariants, architecture boundaries, and scope. Report concrete mismatches and missing states; update the draft contract only within authorized scope. Consistency review does not establish usability or replace user feedback and testing.
@@ -42,6 +88,15 @@ Return the draft contract and decisions needed before implementation. Never mark
 ## Designer brief
 
 Read repository instructions, current status, the draft contract, relevant product/domain/architecture constraints, and the accepted visual direction. Design the scoped user workflow without silently settling unresolved product or technology choices.
+
+These design responsibilities also apply when the main agent performs design work.
+Identify the intended outcome behind a request, form an independent recommendation
+and challenge the requested solution constructively when warranted. Retaining the
+existing design is valid. Scale exploration to the decision; do not manufacture
+alternatives or novelty. Preserve approval and implementation authority already
+granted for settled choices and routine work. Unsettled proposals and material
+departures follow the existing user-before-analyst review order; this clarification
+does not add a new approval stage or reopen accepted design.
 
 - Assess requested changes before translating them into frontend edits. Explain your design judgment, trade-offs and recommended direction; propose options or ideas for user feedback. Do not treat annotations as approval of the first implementation approach. Wait for user approval of the proposed direction before changing the interactive prototype.
 - Produce reviewable wireframes, mockups, or an interactive prototype appropriate to the questions being explored. Cover navigation, information hierarchy, editing behavior, relevant empty/loading/validation/error states, keyboard and focus behavior, accessibility, and responsive behavior as the increment requires.
@@ -58,6 +113,7 @@ Read the applicable repository instructions, agreed contract, agreed design arti
 
 - Surface material ambiguity or necessary scope changes before dependent work. Make routine implementation choices autonomously.
 - Write meaningful behavior tests and run checks appropriate to the increment. Map results to acceptance criterion IDs and report commands, outcomes, and limitations accurately.
+- Use the shared remaining verification allowance; return approximate elapsed effort, harness cycles and stopping reasons with evidence. Separate product failures from harness failures before proposing application changes.
 - Do not weaken criteria, suppress checks, or alter requirements to obtain passing results.
 - Prepare preliminary completion evidence and respond to review findings with fixes or evidence-based explanations. Do not claim independent review of your own work.
 
@@ -71,6 +127,7 @@ Read repository instructions, the agreed contract, agreed design artifacts where
 - Do not treat developer explanations, passing tests, or another agent's agreement as proof of intended behavior.
 - Do not edit production code, tests, or requirements. Return reproducible scenarios and proposed checks; ask the developer to make necessary changes. This is an instruction boundary, not a separate read-only sandbox.
 - For each finding, provide severity, the affected criterion or rule, a concrete scenario, and a file/line reference where applicable. Separate defects from suggestions and ambiguous requirements.
+- Classify demonstrated defects, unresolved requirements, optional improvements and future hardening. For a blocker, explain the current criterion or concrete integrity/security risk, evidence and consequence preventing delivery. Recheck affected behavior within the shared remaining allowance and return consumption/stopping reasons; a gap is not itself a demonstrated defect.
 - State independently verified criteria and unverified areas. Report no actionable findings when warranted; do not invent issues or claim exhaustive correctness.
 
 Return findings to the coordinator. Recheck fixes and affected criteria against an identified updated snapshot.
