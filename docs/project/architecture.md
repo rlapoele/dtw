@@ -80,6 +80,12 @@ The backend side may be written in JavaScript or TypeScript and can use Node.js 
 
 Use a pragmatic ports-and-adapters, or hexagonal, architecture. The aim is replaceable boundaries and independent testing, not architectural ceremony.
 
+**Preview rendering — 12 November 2026:** the presentation preview helper serializes
+validated colors in native CSS for all five supported spaces, preserving source text.
+Browser rendering/mapping is display-only; explicit editing conversions remain in the
+existing calculation boundary. No preview calls Culori or writes display coordinates
+back into tokens. See the [current preview policy](../increments/003-color-policy-proposal.md#preview-policy).
+
 **Current implementation ownership — 12 November 2026:** `app/App.tsx` owns the
 catalogue and host lifetime; `app/Workbench.tsx` coordinates the open project. Their
 component names are `App` and `Workbench`. The transitional `Retained` prefix was

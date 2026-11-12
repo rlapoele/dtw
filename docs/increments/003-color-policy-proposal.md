@@ -5,6 +5,16 @@
 - Agreement: the user approved the simpler numerical proposal and Culori direction on 8 November 2026 and authorized documentation reconciliation only. The current rules below supersede conflicting earlier intermediate-guard, cancellation and candidate-library provisions. Agreement is not evidence of implementation correctness or completed integration.
 - Authorization: the 7 November V6 agreement, renderer direction and disclosed initial black literal remain intact. After the 8 November numerical amendment and technical preparation, the user explicitly authorized Increment 003 implementation. Necessary application/dependency work and verification may proceed under the parent contract; earlier dated preparation-only prohibitions are historical. This does not authorize changing the numerical agreement or broader future scope.
 
+## Approved native CSS preview amendment — 12 November 2026
+
+During Increment 007 manual testing, the user approved native CSS previews for every
+supported color space, preserving exact authored values. This supersedes the earlier
+sRGB-only specimen, out-of-sRGB refusal and preview-only `1e-10` allowance; it does
+not change authored conversion, byte entry, domain validation or stored data.
+The preview helper now implements this amendment; focused verification is recorded
+in [current status](../status/current.md). Earlier dated implementation/research
+reports retain their original policy and evidence limits.
+
 ## Approved numerical amendment — 8 November 2026
 
 The user approved a UX-based distinction: preserve authored data exactly, while treating converted representations as approximate results from Culori. This amendment replaces the earlier requirement to guard internal magnitudes, detect internal underflow/cancellation or certify that no small distinction was lost. No minimum magnitude is imposed. The `1e6` absolute maximum remains an **input-only** calculation-service cap; finite inputs, nonzero-input-to-zero refusal, text/output budgets, finite results and final constructor validation remain required. Derived tiny distinctions and near-neutral hue can lose numerical significance without invalidating the exact source.
@@ -32,7 +42,7 @@ Keep sRGB 0–255 editing, pure conversion among the five supported spaces and b
 | Space conversion | Generate an approximate candidate with 12 significant digits per calculated component, ties to even; retain alpha exactly. | Passive viewing leaves the authoritative draft unchanged; a deliberate component edit in another representation promotes that representation. Only Apply commits the authoritative draft. |
 | Missing and powerless components | Convert a missing hue only at exactly zero saturation/chroma. Preserve other missing components and explain why conversion is unavailable. Keep exact-neutral semantics without adding a near-neutral threshold. | Missing components do not silently become zero. Exact source distinctions remain stored; derived near-neutral hue and tiny distinctions are approximate. |
 | Extended values and failures | Never gamut-map or clamp authored candidates. Reject conversion when the target canonical schema or the bounded calculation service cannot represent it. | The current space, values and drafts survive a failed conversion. Exact editing remains available. |
-| Specimens | Render numeric in-range sRGB, or an approximate conversion to it; withhold unsupported/out-of-gamut previews. | Specimen failure does not invalidate an otherwise valid authored color. |
+| Specimens | Serialize validated source directly in its native CSS notation, preserving component/alpha text. Let the browser render/map for its display. | Outside-sRGB colors can have a preview; no display result is written back to authored data. |
 
 **Reason for the precision choices:** 18 significant digits make decimal byte division independent of binary floating point. General color transforms are approximate; 12 significant digits give deterministic derived formatting without fixed-fraction truncation. This formatting does not certify preservation of every tiny distinction. Neither count claims that the algorithms have that many accurate digits. Their accuracy is a separate verification gate below. These agreed numerical defaults apply to this bounded operation, subject to the verification gate; they are not a global Decimal precision setting.
 
@@ -96,11 +106,40 @@ Failures return a distinguishable reason: invalid input, unsupported missing com
 
 ## Preview policy
 
-Preview is a disposable rendering calculation outside the domain; it may reuse the verified conversion kernel but cannot write its output into authored fields. Use explicit sRGB CSS serialization, never a general library serializer with hidden gamut mapping. Direct sRGB gamut checks compare exact Decimal values to 0 and 1, so `1.000000000001` is outside even if binary conversion or formatting would round it to 1.
+**Current agreement — 12 November 2026.** Preview is disposable browser rendering
+outside the domain. Validate the literal with the existing constructor, then serialize
+the original component and alpha text without Number conversion or a Culori round trip:
 
-For other eligible spaces, use raw converted sRGB coordinates. Use the agreed initial absolute boundary-noise allowance of `1e-10` per channel for preview only, subject to boundary validation: within `[-1e-10, 1 + 1e-10]`, snap display-only overshoots to the nearest boundary; beyond it, withhold the specimen. Label successful cross-space previews approximate. This remains an unverified engineering parameter requiring boundary fixtures, not a perceptual tolerance, target compatibility test or proof of exact gamut membership. If the allowance cannot be justified by observed conversion error, revise it rather than widen it until tests pass.
+| Authored space | Native CSS notation |
+| --- | --- |
+| sRGB | `color(srgb r g b / alpha)` |
+| Display P3 | `color(display-p3 r g b / alpha)` |
+| HSL | `hsl(h s% l% / alpha)` |
+| OKLAB | `oklab(l a b / alpha)` |
+| OKLCH | `oklch(l c h / alpha)` |
 
-Unavailable preview reasons distinguish invalid/incomplete text, unsupported missing components, calculation limits/failure, unresolved value and outside the bounded sRGB preview gamut. Authored extended RGB remains valid. Show exact text and the explanation; no browser-selected gamut-mapped fallback is substituted. Preview at alpha zero still retains underlying channels and alpha; a checkerboard is only a visual aid. Monitor, browser and color management can affect appearance; this slice promises an illustrative specimen, not display calibration or exact cross-device reproduction.
+HSL saturation/lightness use percentages; missing components remain the CSS keyword
+`none`, without a percent suffix. CSS missing-component display semantics apply only
+to painting; exact authored `none` remains distinct from zero. Extended RGB coordinates
+and valid colors outside sRGB are not refused merely for that reason. The browser
+handles display conversion, gamut mapping and numeric rendering precision. This is
+not an authored conversion or a guarantee of exact display/cross-device reproduction.
+The application does not calculate, clamp or write back a mapped preview value.
+
+Unresolved colors and invalid/incomplete entries retain unavailable feedback. In a
+browser, use `CSS.supports` to withhold unsupported color syntax with an explanation,
+without substituting another color. Native support checks are not a gamut-membership
+test. Alpha remains exact in CSS text and source, including zero. Preview feedback
+identifies browser rendering and display dependence; no new gamut-diagnostic UI or
+editing/conversion behavior is introduced.
+
+The old raw-sRGB conversion checks and `1e-10` display allowance are retired for previews
+only. Culori still supplies explicit approximate editing representations under the
+unchanged numerical policy. Historical preview qualification below describes its
+original implementation, not additional gates for this small amendment.
+
+CSS notation and display semantics were checked against
+[CSS Color 4](https://www.w3.org/TR/css-color-4/) on 12 November 2026.
 
 ## Domain/application boundary and library evaluation
 

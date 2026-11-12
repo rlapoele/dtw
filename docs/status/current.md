@@ -8,6 +8,18 @@
 
 ## Current focus
 
+**Native CSS previews — 12 November 2026:** during manual acceptance the user approved
+replacing sRGB-only preview conversion/refusal with native CSS for all five supported
+spaces. The [amended preview policy](../increments/003-color-policy-proposal.md#preview-policy)
+owns display-only browser mapping, exact source preservation and missing-component
+semantics. The shared helper covers Applied/Draft swatches and token rows; editing,
+Apply, storage and backup behavior are unchanged. All 22 focused preview/consumer
+tests and all four typechecks pass; whitespace and the focused diff were reviewed.
+Verification used approximately five minutes (estimate) of a 10-minute ceiling,
+with zero harness repairs; checks are finished. No browser rendering check, benchmark
+or full-suite rerun is claimed. This small authorized correction does not resume the
+stopped Increment 007 qualification campaign; native appearance remains for manual review.
+
 **Presentation component names simplified — 12 November 2026:** the user authorized
 renaming the transitional components to `app/App.tsx` / `App` and
 `app/Workbench.tsx` / `Workbench`. Entry-point and browser-fixture imports, README

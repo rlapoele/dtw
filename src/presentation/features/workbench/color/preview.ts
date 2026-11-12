@@ -1,46 +1,48 @@
 import { createColorLiteral } from "@domain/color-literal";
 import type { ColorLiteralInput } from "@domain/color-literal";
-import { compareDecimals, decimalFromCanonical } from "@domain/decimal";
-import { rawColorCoordinates } from "@domain/color-calculation";
+
+/** Native CSS is display-only: never convert or write back authored coordinates. */
 export function colorPreview(input?: ColorLiteralInput): {
   css?: string;
   message: string;
 } {
   if (!input) return { message: "Unavailable: no resolved color." };
-  let source;
+  let space;
   try {
-    source = createColorLiteral(input);
+    space = createColorLiteral(input).colorSpace;
   } catch {
     return {
       message: "Unavailable: finish valid exact component and alpha entries.",
     };
   }
-  let values: number[];
-  if (source.colorSpace === "srgb") {
-    if (
-      source.components.some(
-        (x) =>
-          x === "none" ||
-          compareDecimals(x, decimalFromCanonical("0")) < 0 ||
-          compareDecimals(x, decimalFromCanonical("1")) > 0,
-      )
-    )
-      return {
-        message: "Unavailable: missing or out-of-sRGB-gamut coordinates.",
-      };
-    values = source.components.map(Number);
-  } else {
-    const raw = rawColorCoordinates(source, "srgb");
-    if (!raw.ok) return { message: `Unavailable: ${raw.message}` };
-    if (raw.components.some((x) => x === "none" || x < -1e-10 || x > 1 + 1e-10))
-      return { message: "Unavailable: converted color is outside sRGB gamut." };
-    values = raw.components.map((x) => Math.max(0, Math.min(1, Number(x))));
+  // Validate with the domain constructor, but serialize the original text rather
+  // than its normalized copy or a binary-number conversion.
+  const [first, second, third] = input.components;
+  const alpha = input.alpha;
+  const percent = (value: string) => value === "none" ? value : `${value}%`;
+  let css: string;
+  switch (space) {
+    case "srgb":
+    case "display-p3":
+      css = `color(${space} ${first} ${second} ${third} / ${alpha})`;
+      break;
+    case "hsl":
+      css = `hsl(${first} ${percent(second)} ${percent(third)} / ${alpha})`;
+      break;
+    case "oklab":
+    case "oklch":
+      css = `${space}(${first} ${second} ${third} / ${alpha})`;
+      break;
   }
+  const browserCss = (globalThis as typeof globalThis & {
+    CSS?: { supports(property: string, value: string): boolean };
+  }).CSS;
+  if (browserCss && !browserCss.supports("color", css))
+    return { message: "Unavailable: this browser cannot render this color syntax." };
   return {
-    css: `color(srgb ${values.join(" ")} / ${source.alpha})`,
-    message:
-      source.colorSpace === "srgb"
-        ? "Illustrative sRGB specimen."
-        : "Approximate sRGB specimen; display-only boundary allowance 1e-10.",
+    css,
+    message: input.components.includes("none")
+      ? "Browser-rendered preview; missing components follow CSS display semantics. Authored values are unchanged."
+      : "Browser-rendered preview; appearance depends on your display. Authored values are unchanged.",
   };
 }
