@@ -1,12 +1,21 @@
 # Current Project Status
 
-> Last updated: 11 November 2026
+> Last updated: 12 November 2026
 >
 > Phase: Increment 007 implemented and reviewed; further automated stress qualification stopped at user request
 >
 > Implementation state: React browser app with retained applied projects in native IndexedDB, a module worker and Web Locks coordination. Unapplied drafts remain session-only. Increment 007 completion is not yet established.
 
 ## Current focus
+
+**Presentation component names simplified — 12 November 2026:** the user authorized
+renaming the transitional components to `app/App.tsx` / `App` and
+`app/Workbench.tsx` / `Workbench`. Entry-point and browser-fixture imports, README
+and architecture navigation are updated. Comparison against the prior files confirms
+identifier/import changes only; typechecks, stale-reference and whitespace checks
+pass. No browser tests, build, new regression tests or qualification campaign ran.
+Historical evidence retains its original filenames; the Increment 007 testing stop
+and pending user manual acceptance remain in effect.
 
 **Workflow aligned with the supplied v0.5.0 guidance — 11 November 2026:**
 the [local workflow](../workflow/agent-roles.md#proportionate-verification) now owns

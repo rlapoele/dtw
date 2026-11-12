@@ -2,7 +2,7 @@ import { acceptanceProject } from "@tests/fixtures/acceptance-project";
 import { encodeBackup } from "@application/retention/codec";
 // Controlled-state fixture of the actual retained application and native worker.
 import { createRoot } from "react-dom/client";
-import { RetainedApp } from "@presentation/app/RetainedApp";
+import { App } from "@presentation/app/App";
 import { WorkerWorkbenchHost } from "@presentation/host/worker-client";
 import "@presentation/styles/global.css";
 const workers: Worker[] = [];
@@ -61,7 +61,7 @@ window.addEventListener("keydown", (event) => {
   }
 });
 createRoot(document.getElementById("root")!).render(
-  <RetainedApp
+  <App
     createHost={() =>
       new WorkerWorkbenchHost(() => {
         const worker = new Worker(

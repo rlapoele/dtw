@@ -80,10 +80,11 @@ The backend side may be written in JavaScript or TypeScript and can use Node.js 
 
 Use a pragmatic ports-and-adapters, or hexagonal, architecture. The aim is replaceable boundaries and independent testing, not architectural ceremony.
 
-**Current implementation ownership — 11 November 2026:** Increment 007 replaces
-`app/App.tsx` with `app/RetainedApp.tsx` (catalogue and host lifetime) and
-`app/RetainedWorkbench.tsx` (retained workbench coordination). The deleted session-only
-entry remains historical. `src/application/retention/` owns host-independent retention,
+**Current implementation ownership — 12 November 2026:** `app/App.tsx` owns the
+catalogue and host lifetime; `app/Workbench.tsx` coordinates the open project. Their
+component names are `App` and `Workbench`. The transitional `Retained` prefix was
+removed after retiring the earlier session-only implementation; historical snapshots
+and evidence retain their original filenames. `src/application/retention/` owns host-independent retention,
 codec, candidate and projection operations; `src/adapters/browser/` owns native storage
 adapters. `src/presentation/host/` owns the module-worker delivery entry, typed protocol
 and renderer client. `tsconfig.worker.json` checks the WebWorker scope separately.

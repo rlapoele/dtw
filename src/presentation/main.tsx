@@ -1,4 +1,4 @@
 import { createRoot } from "react-dom/client";
-import { RetainedApp } from "@presentation/app/RetainedApp";
+import { App } from "@presentation/app/App";
 import "@presentation/styles/global.css";
-createRoot(document.getElementById("root")!).render(<RetainedApp />);
+createRoot(document.getElementById("root")!).render(<App />);

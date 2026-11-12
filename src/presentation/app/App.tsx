@@ -4,7 +4,7 @@ import { DialogContent } from "@presentation/components/ui/dialog-content";
 import type { PublicAcceptance } from "@presentation/host/protocol";
 import { RestoreDialog } from "@presentation/features/workbench/components/RestoreDialog";
 import type { RestorePreview } from "@presentation/host/protocol";
-import { RetainedWorkbench } from "./RetainedWorkbench";
+import { Workbench } from "./Workbench";
 import { useEffect, useRef, useState } from "react";
 import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
 import { WorkerWorkbenchHost } from "@presentation/host/worker-client";
@@ -13,7 +13,7 @@ import type { CatalogueEntry } from "@application/retention/ports";
 import { Button } from "@presentation/components/ui/button";
 import { Field } from "@presentation/components/ui/field";
 import { Input } from "@presentation/components/ui/input";
-export function RetainedApp({
+export function App({
   createHost = () => new WorkerWorkbenchHost(),
 }: { createHost?: () => WorkbenchHost } = {}) {
   const host = useRef<WorkbenchHost | undefined>(undefined);
@@ -157,7 +157,7 @@ export function RetainedApp({
   }
   if (project && host.current)
     return (
-      <RetainedWorkbench
+      <Workbench
         key={project.project.id}
         onProject={(id) => void open(id)}
         host={host.current}

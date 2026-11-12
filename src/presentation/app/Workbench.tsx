@@ -41,7 +41,7 @@ import { ProjectNavigation } from "@presentation/features/workbench/components/P
 import { ProjectedTokenList } from "@presentation/features/workbench/components/ProjectedTokenList";
 import { ExactSource } from "@presentation/features/workbench/components/ExactSource";
 import { identityLabels } from "@presentation/features/workbench/readback";
-export function RetainedWorkbench({
+export function Workbench({
   host,
   initial,
   onProjects,
