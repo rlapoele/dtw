@@ -48,4 +48,9 @@ describe("shared cn", () => {
     expect(cn("font-heading", "font-semibold")).toBe("font-semibold");
     expect(cn("font-sans", "font-heading")).toBe("font-sans font-heading");
   });
+  it("retains full class-group support beyond current icon classes", () => {
+    expect(cn("rotate-12", "rotate-45")).toBe("rotate-45");
+    expect(cn("md:size-4", "size-5", "md:size-6")).toBe("size-5 md:size-6");
+    expect(cn("font-black", "font-light")).toBe("font-light");
+  });
 });

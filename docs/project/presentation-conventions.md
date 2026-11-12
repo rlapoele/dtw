@@ -28,14 +28,29 @@ The [`cn` utility](https://github.com/shadcn-ui/cn) may join conditional classes
 
 Preserve each component's documented composition contract. The current Button contract is additive, with geometry/appearance selected through size/variant; conflict resolution must not silently change caller precedence. For Base UI components accepting a `className` callback, evaluate the callback with its actual state before composing its result. Retain owned classes and forwarded props/ref/render behavior. Check custom theme utilities are understood by the merger, so legitimate classes are not discarded as conflicts.
 
-**Adopted — 12 November 2026:** `cn` 0.5.2 (MIT, Node >=22) is installed at an exact
-pin. Import the configured shared utility from `@presentation/lib/cn`, which uses
-the package's `createCn` API. Its font-size and font-weight groups include our
-`text-caption` and `font-heading` roles, so they are not confused with text colors
-or font families. Register further custom utility semantics when needed; do not
-assume the merger discovers the project's CSS automatically. No Vite plugin or
-bulk class migration is introduced, and no package-wide parity/performance claim
-is made. Button retains its existing additive class string and state-callback handling.
+**Adopted and precompiled — 12 November 2026:** `cn` 0.5.2 (MIT, Node >=22)
+remains pinned. Import the shared utility from `@presentation/lib/cn`. It now uses
+`createCn` from `cn/engine` with generated merge tables, not browser-side `cn/config`.
+The compiler reads `src/presentation/styles/global.css`; the `@theme` namespaces
+register `text-caption` as a font size and `font-heading` as a font weight directly,
+so these names and values have one source of truth. No runtime configuration compiler
+or duplicate manual registration is shipped to the browser.
+
+The `cn/vite` plugin generates `src/presentation/lib/cn-tables.generated.ts` at
+Vite dev/build start and updates tables when the theme stylesheet changes. The
+`cn:build` npm script performs the same generation before typechecking, tests and
+test-watch startup. The generated file is Git-ignored; run `npm run cn:build` before
+raw compiler/IDE commands that bypass these entry points on a fresh checkout.
+All class groups are retained (`full: true` / `--full`) to preserve the shared merger's
+behavior for classes beyond the current icon corpus, rather than introducing
+source-scanning restrictions. Additional custom behavior not expressed by theme
+namespaces would require a build-time extension, not a new runtime merger.
+
+Caller-last precedence, conditional classes and the existing Icon API are unchanged.
+Button retains its additive class string and state-callback handling. No package-wide
+parity or runtime-performance claim is made. This uses the package's
+[documented precompilation interface](https://github.com/shadcn-ui/cn/blob/main/docs/build-setup.md),
+checked against the installed 0.5.2 APIs on 12 November 2026.
 
 ## Icons
 

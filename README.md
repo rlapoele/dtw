@@ -19,7 +19,7 @@ The scaffold was verified using Node.js `24.14.1` and npm `11.17.0`, satisfying 
 - `src/domain/` contains host-independent domain entities, value objects, and validation.
 - `src/application/` coordinates host-independent authoring; `retention/` owns asynchronous retained operations, exact admission/codec, projections and recovery contracts.
 - `src/adapters/` contains in-memory storage for pure operations/tests and native browser storage adapters under `browser/`.
-- `src/presentation/` contains the React renderer, disposable specimens and independent presentation drafts. `app/App.tsx` owns Projects and `app/Workbench.tsx` coordinates the workbench, drafts and departure protection; `host/` contains the browser worker/client boundary and file handling. Existing workbench components own screen rendering. Workbench components, state, color presentation and readback live under `features/workbench/`. Small owned controls under `components/ui/` compose Tailwind utilities over Base UI or native HTML. The typed `components/ui/icon.tsx` centralizes Heroicons Outline and default accessibility/sizing; `lib/cn.ts` exposes the configured `cn` 0.5.2 class merger. Icon caller classes override defaults; Button retains its additive class contract. `styles/global.css` centralizes the semantic palette and preserves scoped dense typography, panel geometry and native preview/range exceptions. Native text fields retain exact raw strings; selects and ranges remain native.
+- `src/presentation/` contains the React renderer, disposable specimens and independent presentation drafts. `app/App.tsx` owns Projects and `app/Workbench.tsx` coordinates the workbench, drafts and departure protection; `host/` contains the browser worker/client boundary and file handling. Existing workbench components own screen rendering. Workbench components, state, color presentation and readback live under `features/workbench/`. Small owned controls under `components/ui/` compose Tailwind utilities over Base UI or native HTML. The typed `components/ui/icon.tsx` centralizes Heroicons Outline and default accessibility/sizing; `lib/cn.ts` exposes the `cn` 0.5.2 merge engine with tables precompiled from the CSS theme. Icon caller classes override defaults; Button retains its additive class contract. `styles/global.css` centralizes the semantic palette and preserves scoped dense typography, panel geometry and native preview/range exceptions. Native text fields retain exact raw strings; selects and ranges remain native.
 - `test/domain/`, `test/application/`, `test/adapters/` and `test/presentation/` contain tests named `*.test.ts` and `*.test.tsx`.
 
 Project module imports use `@domain/…`, `@application/…`, `@adapters/…` and `@presentation/…`; test fixtures use `@tests/…`. TypeScript maps these in `tsconfig.json`; Vite and Vitest share the runtime mappings exported by `vite.config.ts`. The test config's relative import of that Vite configuration is a bootstrap dependency, not an application-module import. Aliases do not change the architectural dependency rules.
@@ -36,6 +36,13 @@ Historical review/research manifests retain the paths and import text of their i
 | `npm run dev -- --host 127.0.0.1` | Open the retained browser authoring app                                      |
 | `npm run build`                   | Check all four type scopes, then build the browser app                               |
 | `npm run preview`                 | Preview an existing Vite production build                                        |
+| `npm run cn:build`                | Generate Git-ignored cn tables from the CSS theme (all class groups retained) |
+
+The `cn/vite` plugin generates merge tables for dev/build; npm pre-hooks generate
+them before typechecking, tests and test-watch startup. `cn-tables.generated.ts` is
+not committed. For IDE/raw TypeScript commands that bypass npm hooks, run
+`npm run cn:build` once after checkout and again after theme changes. Browser code
+imports `cn/engine`; the configuration compiler stays in development/build tooling.
 
 Vite dependency scanning is limited to `index.html` and maintained `test/browser/*.html` fixtures. Saved HTML under `output/` and isolated prototypes are historical artifacts and are not development dependency entries.
 

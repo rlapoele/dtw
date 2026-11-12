@@ -1,11 +1,5 @@
-import { createCn } from "cn/config";
+import { createCn } from "cn/engine";
+import tables from "./cn-tables.generated";
 
-/** Keep custom typography roles distinct from text colors and font families. */
-export const cn = createCn({
-  extend: {
-    classGroups: {
-      "font-size": [{ text: ["caption"] }],
-      "font-weight": [{ font: ["heading"] }],
-    },
-  },
-});
+/** The build compiles our CSS theme; browser code only consumes merge tables. */
+export const cn = createCn(tables);

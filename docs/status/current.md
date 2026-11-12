@@ -10,6 +10,23 @@
 
 ## Current focus
 
+**cn precompilation — 12 November 2026:** the user authorized moving custom merge
+configuration out of the browser bundle. `lib/cn.ts` now consumes generated tables
+through `cn/engine`; the CSS theme is the source for caption/heading registration.
+Vite generates/watches tables and npm pre-hooks cover typechecks and test startup;
+all class groups are retained to preserve the API. See the
+[presentation conventions](../project/presentation-conventions.md#class-composition-with-cn).
+Fifteen focused icon/consumer tests and all four typechecks pass. An isolated paired
+production build measured 516,698 → 471,440 bytes minified and 152,741 → 147,415 bytes
+with identical local gzip settings. The precompiled build has no 500 kB chunk warning;
+its entry module list contains the merge engine and no cn configuration/compiler.
+Building with the generated file absent proved Vite regeneration. Icon behavior,
+Button's additive implementation and typography values remain unchanged. This is
+bounded build-size verification, not a runtime benchmark or resumed 007 qualification.
+Approximately 5–10 aggregate verification minutes (estimate) of a 10-minute ceiling
+were used, with zero harness repairs; focused diff/whitespace review is complete.
+No browser tests or full-suite rerun were performed, and no further run is scheduled.
+
 **Shared Icon and cn maintenance — 12 November 2026:** the user authorized a typed
 `components/ui/icon.tsx` and shared `lib/cn.ts` backed by pinned `cn` 0.5.2. All four
 production icon consumers now use the wrapper. Default sizing/decorative semantics,

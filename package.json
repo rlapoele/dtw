@@ -9,7 +9,11 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.presentation.json --noEmit && tsc -p tsconfig.tools.json --noEmit && tsc -p tsconfig.worker.json --noEmit",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "cn:build": "cn build --full --css src/presentation/styles/global.css -o src/presentation/lib/cn-tables.generated.ts",
+    "pretypecheck": "npm run cn:build",
+    "pretest": "npm run cn:build",
+    "pretest:watch": "npm run cn:build"
   },
   "devDependencies": {
     "@tailwindcss/vite": "4.3.4",

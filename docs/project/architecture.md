@@ -82,9 +82,10 @@ Use a pragmatic ports-and-adapters, or hexagonal, architecture. The aim is repla
 
 **Icon/class composition — 12 November 2026:** presentation callers use the owned
 `components/ui/icon.tsx` typed Heroicons Outline wrapper and `lib/cn.ts` shared class
-merger (`cn` 0.5.2). Custom typography groups are configured locally; the dependency
-and SVG handling remain presentation concerns. Existing Button class composition is
-unchanged. The [presentation conventions](presentation-conventions.md) own the API.
+merger (`cn` 0.5.2). Vite/npm tooling precompiles all merge groups and CSS theme
+extensions into a Git-ignored table module; browser code uses `cn/engine` without
+runtime configuration/compiler modules. SVG handling remains a presentation concern.
+Existing Button class composition is unchanged. The [presentation conventions](presentation-conventions.md) own the API.
 
 **Preview rendering — 12 November 2026:** the presentation preview helper serializes
 validated colors in native CSS for all five supported spaces, preserving source text.

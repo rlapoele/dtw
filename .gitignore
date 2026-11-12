@@ -50,3 +50,6 @@ temp/
 
 # Local Playwright CLI runtime/session captures (curated evidence lives in output/)
 .playwright-cli/
+
+# Precompiled cn merge tables (generated from the CSS theme)
+/src/presentation/lib/cn-tables.generated.ts

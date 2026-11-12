@@ -2,6 +2,7 @@ import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import { cn as cnTables } from "cn/vite";
 export const moduleAliases = {
   "@domain": fileURLToPath(new URL("./src/domain", import.meta.url)),
   "@application": fileURLToPath(new URL("./src/application", import.meta.url)),
@@ -11,7 +12,15 @@ export const moduleAliases = {
 };
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    cnTables({
+      full: true,
+      css: "src/presentation/styles/global.css",
+      out: "src/presentation/lib/cn-tables.generated.ts",
+    }),
+  ],
   resolve: { alias: moduleAliases },
   // Saved prototypes/review HTML are evidence, not dependency-scan entry points.
   optimizeDeps: { entries: ["index.html", "test/browser/*.html"] },
