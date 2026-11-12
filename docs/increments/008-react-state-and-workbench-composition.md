@@ -1,8 +1,9 @@
 # Increment 008: React state and workbench composition
 
 - Contract status: Agreed
-- Delivery status: Implemented; acceptance incomplete
+- Delivery status: Completed
 - Prepared: 12 November 2026
+- Completed: 12 November 2026, following user-reported Chrome manual acceptance
 - Agreement: the user agreed this contract and authorized implementation on 12 November 2026, using the developer and independent reviewer workflow within the shared verification budget. Staging, committing and pushing remain with the user.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md),
   [principles](../project/principles.md), [architecture](../project/architecture.md),
@@ -222,7 +223,9 @@ Agreed amendments: none.
 
 ## Completion report — 12 November 2026
 
-Implementation is delivered for user review, with acceptance explicitly incomplete.
+At the initial implementation handoff, acceptance was explicitly incomplete.
+The [closure record](#manual-acceptance-and-closure--12-november-2026) below supersedes
+that delivery status; the original evidence and limits remain recorded here.
 The source/test snapshot is base `9ce3622` plus the
 [20-file manifest](../../output/increment-008-implementation/snapshot.sha256).
 No staging, commit or push was performed.
@@ -249,10 +252,11 @@ domain/application/protocol/storage formats or visual redesign were introduced.
 
 ### Acceptance gaps and stopping
 
-AC-7 remains incomplete: successful Apply left focus on document body in the smoke.
-The immediate focus call also exists at baseline; attribution is unresolved and no
-fix or pass is claimed. Cancel focus passed. Visual comparison, comprehensive focus
-containment/return and real delayed refresh/restore browser paths remain unobserved;
+At the initial handoff, AC-7 remained incomplete: successful Apply left focus on
+document body in the smoke. The immediate focus call also existed at baseline;
+attribution was then unresolved and no fix or pass was claimed. Cancel focus passed.
+Visual comparison, comprehensive focus containment/return and real delayed
+refresh/restore browser paths were then unobserved;
 AC-2–6 have bounded source/controlled-test evidence, not exhaustive runtime proof.
 No new regression was confirmed by independent source review.
 
@@ -308,3 +312,43 @@ with **one tooling-repair cycle**. This separate authorized allowance does not r
 or reopen the original verification campaign. No further checks are scheduled.
 
 Suggested commit: `fix: restore editor focus after Apply commits`.
+
+## Manual acceptance and closure — 12 November 2026
+
+**Delivery status: Completed.** The user reported completing the remaining manual
+checks in Chrome with everything looking good and explicitly instructed closing
+Increment 008 without restarting automated qualification.
+
+The reported acceptance covers the remaining manual checklist presented for closure:
+
+- Presentation parity in desktop/compact layouts, inspector panes, tabs and navigation.
+- Creation/restore dialog keyboard containment, cancellation/focus return and creation
+  validation focus.
+- Nested departure guard: keeping unfinished creation input and returning to the form,
+  and explicit discard.
+- Same-project readback through Restore → Open local project while preserving an
+  unapplied token draft, without reloading the page.
+- Same-ID restore replacement acknowledgement and explicit changed-baseline review
+  before reapplying preserved dirty input.
+
+This is user-reported overall acceptance of that checklist, not an agent replay or
+an individually instrumented result for each step. Chrome version, operating-system
+metadata and exact tested-build identity were not supplied. Repository HEAD when
+recording closure was `f58b131` (Apply focus fix), following `7b13b69` (ownership and
+composition refactor); this identifies the recorded source state, not a verified
+mapping to the user's browser session.
+
+Together with the existing implementation/source review and independently rechecked
+Apply fix, this acceptance closes the remaining Increment 008 delivery gaps. Prior
+unobserved automated paths are not relabelled automatically verified. Broader engine,
+assistive-technology, exceptional lifecycle/storage, stress and other excluded
+qualification remain outside this maintenance increment; Increment 007's deferred
+qualification remains unchanged and unauthorized to restart.
+
+Closure is documentation-only. No application tests, builds or browser sessions were
+run for closure. Existing verification consumption and stopping decisions above are
+unchanged; no allowance is reset and no further qualification is scheduled. No next
+increment or implementation is authorized by closure. Staging, committing and pushing
+remain with the user.
+
+Suggested commit: `docs: record Chrome acceptance and close increment 008`.

@@ -2,7 +2,7 @@
 
 > Last updated: 12 November 2026
 >
-> Phase: Increment 007 Completed; Increment 008 implemented, acceptance incomplete
+> Phase: Increments 007 and 008 Completed
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
@@ -10,31 +10,27 @@
 
 ## Current focus
 
-**React state and workbench composition — 12 November 2026:** the user agreed
-and authorized [Increment 008](../increments/008-react-state-and-workbench-composition.md).
-Implementation extracts focused hooks and composed views; one editor session supplies
-both inspector header and fields. Status is **Agreed / Implemented; acceptance
-incomplete**. Independent source review found no required corrective findings.
-Thirty-two focused tests and the final build (all four typechecks plus bundling)
-passed. Representative Chrome smoke covered ordinary authoring/draft/collapse,
-departure cancellation, Cancel focus and compact drawer behavior.
+**Increment 008 completed — 12 November 2026:** the user reported completing the
+remaining manual checks in Chrome with everything looking good and explicitly
+instructed closing the increment without restarting automated qualification. The
+[manual acceptance and closure record](../increments/008-react-state-and-workbench-composition.md#manual-acceptance-and-closure--12-november-2026)
+owns the accepted checklist, evidence attribution and limits. This is user-reported
+overall acceptance, not an agent replay or exact-build/browser-version support claim.
 
-**Apply focus follow-up — 12 November 2026:** the user authorized a bounded fix
-and independent recheck. Focus was attempted before React committed the enabled
-fieldset. A one-shot effect now restores focus after successful Apply. The real
-Chrome regression failed before and passed after; the independent reviewer also
-verified successful Apply focus, invalid Apply error focus/raw preservation and
-Cancel reset/focus. Sixteen focused tests passed; no corrective findings.
-See the [follow-up result](../increments/008-react-state-and-workbench-composition.md#follow-up-result).
-The focused Apply observation is resolved; visual parity, comprehensive focus
-containment/return and remaining delayed-refresh/restore runtime paths retain their
-previous explicit limits. Increment 008 acceptance therefore remains incomplete.
+Implementation extracts focused hooks and composed views, with one editor session
+shared by header and fields. Independent source review found no required corrective
+findings. Thirty-two focused tests and the final build (four typechecks plus bundling)
+passed during implementation. The bounded Apply focus fix passed its real Chrome
+regression and independent recheck; invalid Apply and Cancel focus were also checked,
+and sixteen focused tests passed. See the
+[follow-up result](../increments/008-react-state-and-workbench-composition.md#follow-up-result).
 
-Original shared verification used approximately 28.5–29.5 aggregate minutes and
-one tooling-recovery cycle. The separately authorized Apply follow-up used
-approximately 8.5 aggregate minutes and one repair cycle. Both are stopped, without
-a reset or scheduled follow-up. No 007 qualification was restarted. Staging,
-committing and pushing remain with the user.
+Original verification used approximately 28.5–29.5 aggregate minutes and one recovery
+cycle; the separate Apply follow-up used approximately 8.5 minutes and one repair
+cycle. Both remain stopped. Closure ran no application tests, builds or browser
+sessions and resets no allowance. Broader qualification remains outside 008;
+Increment 007 qualification stays deferred. Staging, committing and pushing remain
+with the user.
 
 **cn precompilation — 12 November 2026:** the user authorized moving custom merge
 configuration out of the browser bundle. `lib/cn.ts` now consumes generated tables
@@ -103,17 +99,16 @@ Install/offline PWA acceptance, interchange and Electron remain later milestones
 
 ## Next meaningful action
 
-User review of the implemented Increment 008 and its explicit acceptance gaps.
-The Apply focus issue is fixed and independently rechecked. Any further investigation
-of remaining unobserved browser paths requires a separately authorized bounded
-verification follow-up; do not infer
-one from continuation. No agent, snapshot or workflow change resets consumption.
-The stopped Increment 007 campaign's remaining authorized allowance stays **zero**.
+Await the user's next direction. Increment 008 is closed following Chrome manual
+acceptance; closure does not authorize another increment or further qualification.
+Any future qualification requires an explicitly authorized bounded follow-up. No
+agent, snapshot or workflow change resets prior consumption. The stopped Increment
+007 campaign's remaining authorized allowance stays **zero**.
 
-The 007 closure and 008 contract preparation ran no application tests/builds or
-browser sessions. The 008 contract records planning consumption separately from
-implementation verification. The [previous status snapshot](history/2026-11-12-increment-007-before-closure.md)
-preserves the pre-closure handoff; owning documents and Git preserve detailed history.
+The 007 and 008 closures were documentation-only. The 008 contract records planning,
+implementation and Apply follow-up evidence separately. The
+[pre-008-closure snapshot](history/2026-11-12-increment-008-before-closure.md) preserves
+the previous handoff; owning documents and Git preserve detailed history.
 
 ## Resume
 
