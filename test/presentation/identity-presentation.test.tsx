@@ -159,7 +159,6 @@ describe("human identity labels in real consumers", () => {
           throw new Error("No render mutation");
         },
         onDirty: () => {},
-        onFeedback: () => {},
         readUnavailable: false,
       }),
     );
@@ -196,7 +195,6 @@ describe("human identity labels in real consumers", () => {
           throw new Error("No render mutation");
         },
         onDirty: () => {},
-        onFeedback: () => {},
         readUnavailable: false,
       }),
     );
@@ -421,7 +419,6 @@ describe("final reference choice context", () => {
           throw new Error("No render mutation");
         },
         onDirty: () => {},
-        onFeedback: () => {},
         readUnavailable: false,
       }),
     );

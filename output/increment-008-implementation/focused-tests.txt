@@ -1,0 +1,23 @@
+
+> design-token-workbench@0.0.0 pretest
+> npm run cn:build
+
+
+> design-token-workbench@0.0.0 cn:build
+> cn build --full --css src/presentation/styles/global.css -o src/presentation/lib/cn-tables.generated.ts
+
+cn build: all class groups kept (--full)
+  → src/presentation/lib/cn-tables.generated.ts (13.7 KB source, 5.3 KB gzip)
+
+> design-token-workbench@0.0.0 test
+> vitest run test/presentation/workbench-coordination.test.tsx test/presentation/session.test.ts test/presentation/worker-client.test.tsx test/presentation/retention-protocol.test.ts test/presentation/identity-presentation.test.tsx
+
+
+ RUN  v5.0.5 /Users/rlapoele-pro/Library/CloudStorage/Dropbox/Projects/aiAssistedProjects/dtw
+
+
+ Test Files  5 passed (5)
+      Tests  32 passed (32)
+   Start at  22:50:27
+   Duration  299ms (transform 42%, import 42%, tests 14%, worker 2%)
+

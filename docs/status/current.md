@@ -2,7 +2,7 @@
 
 > Last updated: 12 November 2026
 >
-> Phase: Increment 007 Completed; Increment 008 maintenance contract in draft
+> Phase: Increment 007 Completed; Increment 008 implemented, acceptance incomplete
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
@@ -10,17 +10,22 @@
 
 ## Current focus
 
-**React state and workbench composition planning — 12 November 2026:** the user
-authorized preparing a bounded maintenance increment, including assessment of
-splitting `Workbench.tsx`, and requested the contract/migration plan before
-implementation. [Increment 008](../increments/008-react-state-and-workbench-composition.md)
-is **Draft / Not started**. It proposes workflow-owned hooks, selective reducers and
-smaller composed views while preserving existing UI, exact drafts, revision fences,
-command recovery and restore behavior. No application edits or runtime verification
-are authorized by this planning step. The proposed implementation/review budget is
-30 aggregate verification minutes and at most two harness-repair cycles; it is not
-an allowance to resume any stopped 007 checks. Contract agreement and implementation
-authorization remain pending.
+**React state and workbench composition — 12 November 2026:** the user agreed
+and authorized [Increment 008](../increments/008-react-state-and-workbench-composition.md).
+Implementation extracts focused hooks and composed views; one editor session supplies
+both inspector header and fields. Status is **Agreed / Implemented; acceptance
+incomplete**. Independent source review found no required corrective findings.
+Thirty-two focused tests and the final build (all four typechecks plus bundling)
+passed. Representative Chrome smoke covered ordinary authoring/draft/collapse,
+departure cancellation, Cancel focus and compact drawer behavior.
+
+Successful Apply left focus on document body; baseline attribution is unresolved,
+so AC-7 is not passed. Visual parity and remaining runtime paths retain explicit
+limits in the [completion report](../increments/008-react-state-and-workbench-composition.md#completion-report--12-november-2026).
+Shared verification used approximately 28.5–29.5 aggregate minutes and one conservative
+tooling-recovery cycle, including a stalled reviewer Chrome call. Verification is
+stopped; no follow-up is scheduled. No 007 qualification was restarted. Staging,
+committing and pushing remain with the user.
 
 **cn precompilation — 12 November 2026:** the user authorized moving custom merge
 configuration out of the browser bundle. `lib/cn.ts` now consumes generated tables
@@ -89,21 +94,15 @@ Install/offline PWA acceptance, interchange and Electron remain later milestones
 
 ## Next meaningful action
 
-Present the Increment 008 draft contract and migration plan for user review; await
-contract agreement and implementation authorization before dispatching its developer.
-Planning 008 does not authorize deployment, tunnels, browser trust changes or a
-qualification campaign. The prior stopped
-campaign's remaining authorized allowance stays **zero**; new agents, snapshots or
-workflow updates do not reset it. Future qualification needs an explicitly authorized
-bounded follow-up under the [local verification rules](../workflow/agent-roles.md#proportionate-verification).
-Staging, commits and pushes remain with the user.
+User review of the implemented Increment 008 and its explicit acceptance gaps.
+A further investigation of Apply focus/baseline attribution or unobserved browser
+paths requires a separately authorized bounded verification follow-up; do not infer
+one from continuation. No agent, snapshot or workflow change resets consumption.
+The stopped Increment 007 campaign's remaining authorized allowance stays **zero**.
 
-The 007 closure was documentation-only, with no application tests/builds or browser
-sessions. The current 008 preparation is also documentation-only: scoped prose,
-local-link and whitespace review within a 10-minute aggregate review ceiling, with
-no harness repairs or runtime checks. Its owning contract records planning review
-consumption separately from any future implementation verification. The
-[previous status snapshot](history/2026-11-12-increment-007-before-closure.md)
+The 007 closure and 008 contract preparation ran no application tests/builds or
+browser sessions. The 008 contract records planning consumption separately from
+implementation verification. The [previous status snapshot](history/2026-11-12-increment-007-before-closure.md)
 preserves the pre-closure handoff; owning documents and Git preserve detailed history.
 
 ## Resume

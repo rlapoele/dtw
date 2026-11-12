@@ -1,0 +1,29 @@
+
+> design-token-workbench@0.0.0 build
+> npm run typecheck && vite build
+
+
+> design-token-workbench@0.0.0 pretypecheck
+> npm run cn:build
+
+
+> design-token-workbench@0.0.0 cn:build
+> cn build --full --css src/presentation/styles/global.css -o src/presentation/lib/cn-tables.generated.ts
+
+cn build: all class groups kept (--full)
+  → src/presentation/lib/cn-tables.generated.ts (13.7 KB source, 5.3 KB gzip)
+
+> design-token-workbench@0.0.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.presentation.json --noEmit && tsc -p tsconfig.tools.json --noEmit && tsc -p tsconfig.worker.json --noEmit
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 756 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                             0.44 kB │ gzip:   0.28 kB
+dist/assets/workbench.worker-DAcv1XIP.js   94.78 kB
+dist/assets/index--N-nKBHq.css             36.55 kB │ gzip:   8.30 kB
+dist/assets/index-2ThjUD-N.js             478.20 kB │ gzip: 152.12 kB
+
+✓ built in 278ms

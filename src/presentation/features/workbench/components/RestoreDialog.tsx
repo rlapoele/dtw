@@ -1,13 +1,12 @@
-import { UnknownWriteError } from "@presentation/host/worker-client";
-import { useRef, useState, useEffect } from "react";
+import { useBackupRestore } from "@presentation/features/workbench/hooks/useBackupRestore";
+
 import { Dialog } from "@base-ui/react/dialog";
 import { DialogContent } from "@presentation/components/ui/dialog-content";
 import { Button } from "@presentation/components/ui/button";
-import { downloadProjectBackup } from "@presentation/host/backup-file";
+
 import type {
   RestorePreview,
   WorkbenchHost,
-  PublicAcceptance,
 } from "@presentation/host/protocol";
 export function RestoreDialog({
   host,
@@ -22,86 +21,31 @@ export function RestoreDialog({
   onOpen(id: string): void;
   restage?: () => Promise<RestorePreview>;
 }) {
-  const [preview, setPreview] = useState(initial),
-    [replacement, setReplacement] = useState(false),
-    [protection, setProtection] = useState<string | null>(null),
-    [acknowledgement, setAcknowledgement] = useState(false),
-    [busy, setBusy] = useState(false),
-    [error, setError] = useState(""),
-    [notice, setNotice] = useState(""),
-    [unknown, setUnknown] = useState(false),
-    [leaving, setLeaving] = useState(false);
-  const knownAccepted = useRef(false),
-    activeMutation = useRef(false);
-  const [stageLost, setStageLost] = useState(false),
-    [retained, setRetained] = useState(false);
-  const stay = useRef<HTMLButtonElement>(null);
-  async function refresh() {
-    const next = await host.call("refreshStage", preview.stageId);
-    setPreview(next);
-    setProtection(null);
-    setAcknowledgement(false);
-  }
-  async function finish(result: PublicAcceptance) {
-    if (result.status === "unknown") {
-      if (!knownAccepted.current) setUnknown(true);
-      setError(result.reason);
-      return;
-    }
-    if (result.status === "rejected") {
-      setUnknown(false);
-      setError(result.reason);
-      try {
-        await refresh();
-      } catch {
-        setStageLost(true);
-        setError(
-          result.reason +
-            " The original worker stage is unavailable. Review the selected file again before an explicit retry.",
-        );
-      }
-      return;
-    }
-    setUnknown(false);
-    knownAccepted.current = true;
-    setRetained(true);
-    await host.call("consume", result.receipt.commandId);
-    if (result.readback === "unavailable")
-      setError(
-        "Project retained; readback unavailable. Use Open local project to retry reading without repeating restore.",
-      );
-    else onOpen(result.receipt.result.id);
-  }
-  useEffect(() => {
-    if (leaving) requestAnimationFrame(() => stay.current?.focus());
-  }, [leaving]);
-  async function restore() {
-    if (busy || unknown || retained || stageLost) return;
-    setBusy(true);
-    activeMutation.current = true;
-    setError("");
-    try {
-      await finish(
-        await host.call("restore", {
-          stageId: preview.stageId,
-          projectId: preview.project.id,
-          expectedRevision: preview.local?.revision ?? null,
-          protectedRevision: protection,
-          acknowledgement,
-        }),
-      );
-    } catch (e) {
-      if (!knownAccepted.current) setUnknown(true);
-      setError(
-        e instanceof Error
-          ? e.message
-          : "Restore outcome unknown; selected backup remains staged.",
-      );
-    } finally {
-      activeMutation.current = false;
-      setBusy(false);
-    }
-  }
+  const {
+    preview,
+    replacement,
+    setReplacement,
+    protection,
+    setProtection,
+    acknowledgement,
+    setAcknowledgement,
+    busy,
+    error,
+    notice,
+    unknown,
+    leaving,
+    setLeaving,
+    activeMutation,
+    stageLost,
+    retained,
+    stay,
+    finish,
+    restore,
+    protectLocal,
+    checkPending,
+    reviewFile,
+    checkUnknown,
+  } = useBackupRestore({ host, initial, onCancel, onOpen, restage });
   return (
     <Dialog.Root
       open
@@ -220,31 +164,7 @@ export function RestoreDialog({
                 <Button
                   className="mt-3"
                   disabled={busy || unknown}
-                  onClick={async () => {
-                    setBusy(true);
-                    setError("");
-                    try {
-                      const revision = await downloadProjectBackup(
-                        host,
-                        preview.project.id,
-                        preview.local!.revision,
-                      );
-                      setProtection(revision);
-                      setAcknowledgement(false);
-                      setNotice(
-                        "Backup download requested. Confirm you kept the independent file before replacing.",
-                      );
-                    } catch (e) {
-                      setError(
-                        e instanceof Error
-                          ? e.message
-                          : "Backup generation failed",
-                      );
-                      await refresh();
-                    } finally {
-                      setBusy(false);
-                    }
-                  }}
+                  onClick={protectLocal}
                 >
                   Download current local backup
                 </Button>
@@ -265,21 +185,7 @@ export function RestoreDialog({
             {busy && activeMutation.current && !unknown && (
               <section role="status" className="text-caption mt-4">
                 <p>Retention pending. Duplicate restore is blocked.</p>
-                <Button
-                  onClick={async () => {
-                    try {
-                      await finish(await host.call("check", null));
-                    } catch (e) {
-                      setError(
-                        e instanceof Error
-                          ? e.message
-                          : "Check failed; original outcome remains unknown.",
-                      );
-                    }
-                  }}
-                >
-                  Check retained result
-                </Button>
+                <Button onClick={checkPending}>Check retained result</Button>
               </section>
             )}
             {retained && (
@@ -301,28 +207,7 @@ export function RestoreDialog({
                   Selected file input is preserved; staging needs a fresh
                   explicit review.
                 </p>
-                <Button
-                  disabled={busy || !restage}
-                  onClick={async () => {
-                    setBusy(true);
-                    try {
-                      const next = await restage!();
-                      setPreview(next);
-                      setStageLost(false);
-                      setProtection(null);
-                      setAcknowledgement(false);
-                      setReplacement(false);
-                    } catch (error) {
-                      setError(
-                        error instanceof Error
-                          ? error.message
-                          : "Selected file could not be reviewed.",
-                      );
-                    } finally {
-                      setBusy(false);
-                    }
-                  }}
-                >
+                <Button disabled={busy || !restage} onClick={reviewFile}>
                   Review selected file again
                 </Button>
               </section>
@@ -330,23 +215,7 @@ export function RestoreDialog({
             {unknown && (
               <section role="status" className="text-caption mt-4">
                 <p>Retained result unknown. Do not repeat restore.</p>
-                <Button
-                  disabled={busy}
-                  onClick={async () => {
-                    setBusy(true);
-                    try {
-                      await finish(await host.call("check", null));
-                    } catch (e) {
-                      setError(
-                        e instanceof Error
-                          ? e.message
-                          : "Result check failed; outcome remains unknown",
-                      );
-                    } finally {
-                      setBusy(false);
-                    }
-                  }}
-                >
+                <Button disabled={busy} onClick={checkUnknown}>
                   Check retained result
                 </Button>
                 <Button disabled={busy} onClick={() => setLeaving(true)}>

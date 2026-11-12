@@ -1,160 +1,51 @@
-import { UnknownWriteError } from "@presentation/host/worker-client";
+import { useRef, useState } from "react";
+import type { RestorePreview } from "@presentation/host/protocol";
+import { useWorkbenchHost } from "@presentation/features/workbench/hooks/useWorkbenchHost";
+import { useProjects } from "@presentation/features/workbench/hooks/useProjects";
+
 import { Dialog } from "@base-ui/react/dialog";
 import { DialogContent } from "@presentation/components/ui/dialog-content";
-import type { PublicAcceptance } from "@presentation/host/protocol";
+
 import { RestoreDialog } from "@presentation/features/workbench/components/RestoreDialog";
-import type { RestorePreview } from "@presentation/host/protocol";
+
 import { Workbench } from "./Workbench";
-import { useEffect, useRef, useState } from "react";
+
 import { Icon } from "@presentation/components/ui/icon";
 import { WorkerWorkbenchHost } from "@presentation/host/worker-client";
-import type { WorkbenchHost, ProjectHeader } from "@presentation/host/protocol";
-import type { CatalogueEntry } from "@application/retention/ports";
+import type { WorkbenchHost } from "@presentation/host/protocol";
+
 import { Button } from "@presentation/components/ui/button";
 import { Field } from "@presentation/components/ui/field";
 import { Input } from "@presentation/components/ui/input";
 export function App({
   createHost = () => new WorkerWorkbenchHost(),
 }: { createHost?: () => WorkbenchHost } = {}) {
-  const host = useRef<WorkbenchHost | undefined>(undefined);
-  const [entries, setEntries] = useState<readonly CatalogueEntry[]>();
-  const [project, setProject] = useState<ProjectHeader>();
-  const selectedBackupFile = useRef<File | undefined>(undefined);
-  const [preview, setPreview] = useState<RestorePreview>();
-  const [unknown, setUnknown] =
-      useState<Extract<PublicAcceptance, { status: "unknown" }>>(),
+  const { host, ensure, reset } = useWorkbenchHost(createHost);
+  const selectedBackupFile = useRef<File | undefined>(undefined),
+    stay = useRef<HTMLButtonElement>(null);
+  const [preview, setPreview] = useState<RestorePreview>(),
     [leaving, setLeaving] = useState(false);
-  const [retainedId, setRetainedId] = useState<string | null>(null);
-  const activeMutation = useRef(false);
-  const stay = useRef<HTMLButtonElement>(null);
-  const [name, setName] = useState(""),
-    [error, setError] = useState(""),
-    [pending, setPending] = useState(false),
-    [notice, setNotice] = useState("");
-  const nameRef = useRef<HTMLInputElement>(null);
-  async function catalogue() {
-    setError("");
-    setEntries(undefined);
-    try {
-      if (!host.current) host.current = createHost();
-      await host.current.call("ready", null);
-      setEntries(await host.current.call("catalogue", null));
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Projects unavailable");
-    }
-  }
-  useEffect(() => {
-    void catalogue();
-    return () => host.current?.dispose();
-  }, []);
-  useEffect(() => {
-    const guard = (event: BeforeUnloadEvent) => {
-      if (name !== "" || pending || unknown || preview) {
-        event.preventDefault();
-        event.returnValue = "";
-      }
-    };
-    addEventListener("beforeunload", guard);
-    return () => removeEventListener("beforeunload", guard);
-  }, [name, pending, unknown, preview]);
-  async function recoverCreated(id: string) {
-    setRetainedId(id);
-    try {
-      const next = await host.current!.call("openProject", id);
-      setProject(next);
-      setName("");
-      setRetainedId(null);
-      setNotice("Project retained in this browser.");
-    } catch (e) {
-      setError(
-        "Project retained, but reading is unavailable. " +
-          (e instanceof Error ? e.message : ""),
-      );
-    }
-  }
-  async function check() {
-    setPending(true);
-    try {
-      const result = await host.current!.call("check", null);
-      if (result.status === "unknown") {
-        setUnknown(result);
-        setError(result.reason);
-      } else {
-        setUnknown(undefined);
-        if (result.status === "retained") {
-          setRetainedId(result.receipt.result.id);
-          await host.current!.call("consume", result.receipt.commandId);
-          await recoverCreated(result.receipt.result.id);
-        } else setError(result.reason);
-      }
-    } catch (e) {
-      setError(
-        e instanceof Error
-          ? e.message
-          : "Check failed; result remains unknown.",
-      );
-    } finally {
-      setPending(false);
-    }
-  }
-  async function open(id: string) {
-    if (pending || unknown) return;
-    setPending(true);
-    setError("");
-    try {
-      setProject(await host.current!.call("openProject", id));
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Project unavailable");
-    } finally {
-      setPending(false);
-    }
-  }
-  async function create() {
-    if (pending || unknown || retainedId !== null) return;
-    if (!name.trim()) {
-      setError("A project name is required.");
-      nameRef.current?.focus();
-      return;
-    }
-    setPending(true);
-    activeMutation.current = true;
-    setError("");
-    let acceptedId: string | undefined;
-    try {
-      const id = crypto.randomUUID();
-      const result = await host.current!.call("createProject", { id, name });
-      if (result.status !== "retained") {
-        if (result.status === "unknown") setUnknown(result);
-        setError(result.reason);
-        return;
-      }
-      acceptedId = id;
-      setRetainedId(id);
-      await host.current!.call("consume", result.receipt.commandId);
-      await recoverCreated(id);
-    } catch (e) {
-      const reason =
-        e instanceof Error ? e.message : "Project creation unavailable";
-      if (acceptedId === undefined)
-        setUnknown({
-          status: "unknown",
-          reason,
-          commandId:
-            e instanceof UnknownWriteError
-              ? e.attempt.commandId
-              : "worker-observation-lost",
-        });
-      setError(
-        acceptedId === undefined
-          ? reason
-          : "Project retained. Retry reading without repeating creation. " +
-              reason,
-      );
-    } finally {
-      activeMutation.current = false;
-      setPending(false);
-    }
-  }
+  const {
+    entries,
+    project,
+    unknown,
+    retainedId,
+    activeMutation,
+    name,
+    setName,
+    error,
+    pending,
+    notice,
+    nameRef,
+    catalogue,
+    check,
+    open,
+    create,
+    stageBackup,
+    returnToProjects,
+    leaveUnknown,
+    retryCreated,
+  } = useProjects(host, ensure, reset, !!preview);
   if (project && host.current)
     return (
       <Workbench
@@ -162,14 +53,7 @@ export function App({
         onProject={(id) => void open(id)}
         host={host.current}
         initial={project}
-        onProjects={(reset) => {
-          if (reset) {
-            host.current?.dispose();
-            host.current = undefined;
-          }
-          setProject(undefined);
-          void catalogue();
-        }}
+        onProjects={returnToProjects}
       />
     );
   return (
@@ -251,32 +135,9 @@ export function App({
                     const file = event.target.files?.[0];
                     if (!file) return;
                     selectedBackupFile.current = file;
-                    if (file.size > 16777216) {
-                      setError(
-                        "Backup admission refused: " +
-                          file.size +
-                          " bytes exceeds 16777216 bytes.",
-                      );
-                      return;
-                    }
-                    setPending(true);
-                    setError("");
-                    try {
-                      setPreview(
-                        await host.current!.call("stageBackup", {
-                          bytes: await file.arrayBuffer(),
-                        }),
-                      );
-                    } catch (e) {
-                      setError(
-                        e instanceof Error
-                          ? e.message
-                          : "Backup could not be read. Browser data is unchanged.",
-                      );
-                    } finally {
-                      setPending(false);
-                      event.target.value = "";
-                    }
+                    const next = await stageBackup(file);
+                    if (next) setPreview(next);
+                    event.target.value = "";
                   }}
                 />
               </label>
@@ -340,15 +201,7 @@ export function App({
               The project is retained. Entered input is preserved while reading
               is unavailable; creation will not be repeated.
             </p>
-            <Button
-              disabled={pending}
-              onClick={() => {
-                setPending(true);
-                void recoverCreated(retainedId).finally(() =>
-                  setPending(false),
-                );
-              }}
-            >
+            <Button disabled={pending} onClick={retryCreated}>
               Retry reading project
             </Button>
           </section>
@@ -390,13 +243,8 @@ export function App({
             </Button>
             <Button
               onClick={() => {
-                host.current?.fence();
-                host.current = undefined;
-                setUnknown(undefined);
-                setRetainedId(null);
-                setName("");
+                leaveUnknown();
                 setLeaving(false);
-                void catalogue();
               }}
             >
               Leave
@@ -415,13 +263,9 @@ export function App({
           }}
           host={host.current}
           initial={preview}
-          onCancel={(reset) => {
-            if (reset) {
-              host.current?.dispose();
-              host.current = undefined;
-            }
+          onCancel={(shouldReset) => {
             setPreview(undefined);
-            void catalogue();
+            returnToProjects(shouldReset);
           }}
           onOpen={(id) => {
             setPreview(undefined);

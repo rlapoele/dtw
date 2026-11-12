@@ -1,9 +1,9 @@
 # Increment 008: React state and workbench composition
 
-- Contract status: Draft
-- Delivery status: Not started
+- Contract status: Agreed
+- Delivery status: Implemented; acceptance incomplete
 - Prepared: 12 November 2026
-- Agreement: preparation only is authorized; contract agreement and implementation authorization are pending.
+- Agreement: the user agreed this contract and authorized implementation on 12 November 2026, using the developer and independent reviewer workflow within the shared verification budget. Staging, committing and pushing remain with the user.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md),
   [principles](../project/principles.md), [architecture](../project/architecture.md),
   [presentation conventions](../project/presentation-conventions.md),
@@ -163,8 +163,8 @@ on its captured intended target rather than whichever selection renders later.
 - Established: accepted Precision interface, presentation conventions, local draft
   versus retained applied boundary, and existing application/host ownership.
 - Proposed: focused owners and composition above; no new product/schema decision.
-- Resolve before implementation: user agreement to this bounded contract and explicit
-  implementation authorization. No additional product question identified in analysis.
+- Agreement and implementation authorization: granted by the user on 12 November 2026.
+  No additional product question identified in analysis.
 - Designer: not required for behavior-preserving structural maintenance. No new
   design artifact or interaction is proposed. Material interaction/visual departures
   must return to the user and follow the normal designer/analyst sequence.
@@ -212,4 +212,55 @@ working tree before preparation. Source review only; no production changes. Befo
 implementation, verify Git again and preserve any intervening user work. Before
 independent review, record the exact stable snapshot including new files.
 
-Agreed amendments: none. Completion report: not started; append after authorized work.
+Implementation baseline: `9ce3622`, clean working tree before recording user agreement.
+The approved verification ceiling remains 30 aggregate minutes and two harness-repair
+cycles. Developer allocation: at most 18 minutes; reserve at least 10 minutes for
+independent review and 2 minutes for coordinator verification/handoff. These are
+allocations within one ceiling, not separate allowances.
+
+Agreed amendments: none.
+
+## Completion report — 12 November 2026
+
+Implementation is delivered for user review, with acceptance explicitly incomplete.
+The source/test snapshot is base `9ce3622` plus the
+[20-file manifest](../../output/increment-008-implementation/snapshot.sha256).
+No staging, commit or push was performed.
+
+Focused owners and named views are implemented; Workbench is now 770 lines versus
+1,385 at baseline. This is a composition result, not a line-count acceptance target.
+The editable inspector owns one session shared by header and fields. Pure reducers
+cover coupled command, creation and restore transitions; independent state remains
+local. Readback now fences lazy diagnostics by generation/revision. No dependencies,
+domain/application/protocol/storage formats or visual redesign were introduced.
+
+- [Developer evidence](../../output/increment-008-implementation/developer.md):
+  32 focused tests / five files passed; final build passed all four typechecks and
+  production bundling. Initial extraction/type errors were corrected and affected
+  checks rerun. Controlled hook tests do not prove real React lifecycle behavior.
+- [Independent source review](../../output/increment-008-implementation/reviewer.md):
+  frozen manifest validated, relevant source inspected, no required corrective
+  findings. Source supports AC-1 and structural AC-2–7 preservation. Reviewer browser
+  access stalled; no independent runtime acceptance or blanket approval is claimed.
+- [Coordinator Chrome smoke](../../output/increment-008-implementation/coordinator-smoke.md):
+  project/token creation, raw draft mode/collapse preservation, validation,
+  departure cancellation, successful canonical Apply, Cancel reset/focus and compact
+  drawer open/Escape close observed.
+
+### Acceptance gaps and stopping
+
+AC-7 remains incomplete: successful Apply left focus on document body in the smoke.
+The immediate focus call also exists at baseline; attribution is unresolved and no
+fix or pass is claimed. Cancel focus passed. Visual comparison, comprehensive focus
+containment/return and real delayed refresh/restore browser paths remain unobserved;
+AC-2–6 have bounded source/controlled-test evidence, not exhaustive runtime proof.
+No new regression was confirmed by independent source review.
+
+Shared verification consumption is approximately **28.5–29.5 aggregate minutes**:
+developer 7, independent reviewer 14.5 (including an 8.5-minute stalled native Chrome
+call), coordinator 7–8, with **one conservative tooling-recovery cycle**. Verification
+stops here because tooling consumed disproportionate value and the ceiling is near.
+No automatic follow-up or budget reset is scheduled. Any further qualification needs
+an explicitly authorized bounded follow-up. Increment 007 remains closed and deferred.
+
+Suggested commit: `refactor: separate workbench state owners and composition`.

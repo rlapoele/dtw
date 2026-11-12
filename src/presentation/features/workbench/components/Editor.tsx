@@ -1,36 +1,19 @@
+import { useTokenEditor } from "@presentation/features/workbench/hooks/useTokenEditor";
 import { ExactSource } from "./ExactSource";
-import type { SelectedToken } from "@application/retention/projections";
-import type { ProjectContext } from "@application/retention/projections";
+
 import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
 import { Swatch } from "@presentation/features/workbench/components/swatch";
 import { InspectionTabs } from "@presentation/features/workbench/components/inspection-tabs";
 import { Badge } from "@presentation/components/ui/badge";
 import { Field } from "@presentation/components/ui/field";
-import { useEffect, useLayoutEffect, useRef, useState, useMemo } from "react";
+
 import { Tabs } from "@base-ui/react/tabs";
-import { createColorLiteral } from "@domain/color-literal";
-import type {
-  TokenInspection,
-  ApplicationResult,
-} from "@application/authoring";
-import type { Token } from "@domain/token";
-import type { ReviseColorTokenInput } from "@application/authoring";
+
 import { Button } from "@presentation/components/ui/button";
 import { Select } from "@presentation/components/ui/select";
 import { ColorFields } from "@presentation/features/workbench/components/ColorFields";
-import {
-  baseline,
-  refreshCleanSession,
-  eligible,
-  literalIssue,
-} from "@presentation/features/workbench/state/session";
-import { colorPreview } from "@presentation/features/workbench/color/preview";
-import {
-  identityLabels,
-  failureText,
-  pathLabel,
-  resolvedColor,
-} from "@presentation/features/workbench/readback";
+
+import { pathLabel } from "@presentation/features/workbench/readback";
 export type Feedback = {
   tokenId: string;
   tab: string;
@@ -39,208 +22,50 @@ export type Feedback = {
   appliedMessage: string;
   draftMessage: string;
 };
-export function Editor({
-  inspection: i,
-  project,
-  inspect,
-  onApply,
-  onDirty,
-  onFeedback,
-  readUnavailable,
-  revision = "session",
-  requestSource,
-  readOnly = false,
-  targetUnavailable,
+export function Editor(props: Parameters<typeof useTokenEditor>[0]) {
+  return <EditorFields editor={useTokenEditor(props)} />;
+}
+export function EditorFields({
+  editor,
 }: {
-  inspection: TokenInspection | SelectedToken;
-  project: ProjectContext;
-  inspect: (id: string) =>
-    | {
-        resolution: {
-          status: string;
-          value?: import("@domain/token-resolution").ResolvedValue;
-        };
-      }
-    | undefined;
-  onApply: (
-    value: ReviseColorTokenInput["value"],
-  ) =>
-    | ApplicationResult<Pick<Token, "definition">>
-    | Promise<ApplicationResult<Pick<Token, "definition">>>;
-  onDirty: (d: boolean) => void;
-  onFeedback: (f: Feedback) => void;
-  readUnavailable: boolean;
-  revision?: string;
-  requestSource?: () => Promise<string>;
-  readOnly?: boolean;
-  targetUnavailable?: string;
+  editor: ReturnType<typeof useTokenEditor>;
 }) {
-  const projected = "token" in i;
-  const token = projected ? i.token : i.authored,
-    value = projected
-      ? i.authoredValue
-      : i.authored.definition?.assignments[0]?.value;
-  const [accepting, setAccepting] = useState(false);
-  const [session, setSession] = useState(() => baseline(value));
-  const initial = useRef(session);
-  const baselineRevision = useRef({
-    revision,
-    value: JSON.stringify({ token, value }),
-    previous: value,
-  });
-  const [recovery, setRecovery] = useState<{
-    previous: typeof value;
-    reviewed: boolean;
-  }>();
-  const reviewHeading = useRef<HTMLHeadingElement>(null);
-
-  const [tab, setTab] = useState("authored"),
-    [error, setError] = useState(""),
-    [notice, setNotice] = useState("");
-  const modeRef = useRef<HTMLButtonElement>(null),
-    errorRef = useRef<HTMLParagraphElement>(null);
-  const dirty =
-    session.edited || session.reference !== initial.current.reference;
-  useEffect(() => onDirty(dirty), [dirty, onDirty]);
-  useEffect(() => {
-    const before = baselineRevision.current;
-    if (before.revision !== revision) {
-      if (dirty && before.value !== JSON.stringify({ token, value }))
-        setRecovery({ previous: before.previous, reviewed: false });
-      if (!dirty) {
-        const next = refreshCleanSession(session, value);
-        initial.current = next;
-        setSession(next);
-        setRecovery(undefined);
-      }
-      baselineRevision.current = {
-        revision,
-        value: JSON.stringify({ token, value }),
-        previous: value,
-      };
-    }
-  }, [revision, value, dirty]);
-
-  useEffect(() => {
-    if (error) errorRef.current?.focus();
-  }, [error]);
-  const applied = colorPreview(resolvedColor(i));
-  const targetInspection =
-    session.reference !== null ? inspect(session.reference) : undefined;
-  const draft =
-    session.mode === "literal"
-      ? session.byteInvalid
-        ? { message: "Unavailable: finish the incomplete byte entries." }
-        : colorPreview(session.literal)
-      : colorPreview(resolvedColor(targetInspection));
-  const feedback = {
-    tokenId: token.id,
+  const {
+    i,
+    project,
+    projected,
+    token,
+    value,
+    accepting,
+    session,
+    setSession,
+    recovery,
+    setRecovery,
+    reviewHeading,
     tab,
-    applied: applied.css,
-    draft: draft.css,
-    appliedMessage: applied.message,
-    draftMessage: draft.message,
-  };
-  const feedbackText = JSON.stringify(feedback);
-  useLayoutEffect(
-    () => onFeedback(JSON.parse(feedbackText) as Feedback),
-    [feedbackText, onFeedback],
-  );
-  const tokenLabels = useMemo(
-    () => identityLabels(project.tokens),
-    [project.tokens],
-  );
-  const referenceChoices = useMemo(
-    () => project.tokens.filter((t) => t.authored.definition?.type === "color"),
-    [project.tokens],
-  );
-  const referenceLabels = useMemo(
-    () => identityLabels(referenceChoices, undefined, token.id),
-    [referenceChoices, token.id],
-  );
-  const groupLabels = useMemo(
-    () => identityLabels(project.groups, ["Project root", "All tokens"]),
-    [project.groups],
-  );
-  const editable = projected ? i.editable : eligible(i.authored);
-  async function apply() {
-    if (
-      accepting ||
-      readOnly ||
-      targetUnavailable ||
-      (recovery && !recovery.reviewed)
-    )
-      return;
-    if (readUnavailable) {
-      setError("Project read unavailable. Retry reading; drafts retained.");
-      return;
-    }
-    if (!editable) return;
-    if (
-      session.mode === "literal" &&
-      (session.byteInvalid || literalIssue(session.literal))
-    ) {
-      setError(
-        session.byteInvalid
-          ? "Finish the incomplete byte entries."
-          : (literalIssue(session.literal) ?? "Invalid color"),
-      );
-      return;
-    }
-    if (session.mode === "reference" && session.reference === null) {
-      setError("Choose a color target.");
-      return;
-    }
-    const candidate: ReviseColorTokenInput["value"] =
-      session.mode === "literal"
-        ? { ...session.literal, kind: "literal" }
-        : {
-            kind: "token-reference",
-            targetTokenId: session.reference!,
-            valuePath: [],
-          };
-    setAccepting(true);
-    let result: ApplicationResult<Pick<Token, "definition">>;
-    try {
-      result = await onApply(candidate);
-    } catch (error) {
-      setError(
-        error instanceof Error
-          ? error.message
-          : "Apply outcome unavailable. Drafts retained.",
-      );
-      setAccepting(false);
-      return;
-    }
-    setAccepting(false);
-    if (result.status === "failure") {
-      setError("Apply failed. " + failureText(result));
-      return;
-    }
-    const next = baseline(result.value.definition?.assignments[0]?.value);
-    initial.current = next;
-    baselineRevision.current = {
-      revision,
-      value: JSON.stringify(result.value.definition?.assignments[0]?.value),
-      previous: result.value.definition?.assignments[0]?.value,
-    };
-    setRecovery(undefined);
-    setSession(next);
-    onDirty(false);
-    setError("");
-    setNotice("Changes applied and retained.");
-    modeRef.current?.focus();
-  }
-  function cancel() {
-    const currentBaseline = baseline(value);
-    initial.current = currentBaseline;
-    setSession(currentBaseline);
-    setRecovery(undefined);
-    onDirty(false);
-    setError("");
-    setNotice("Both drafts discarded. Applied value unchanged.");
-    modeRef.current?.focus();
-  }
+    setTab,
+    error,
+    setError,
+    notice,
+    setNotice,
+    modeRef,
+    errorRef,
+    dirty,
+    applied,
+    draft,
+    tokenLabels,
+    referenceChoices,
+    referenceLabels,
+    groupLabels,
+    editable,
+    apply,
+    cancel,
+    readUnavailable,
+    revision,
+    requestSource,
+    readOnly,
+    targetUnavailable,
+  } = editor;
   return (
     <aside
       className="inspector small:min-h-0 flex min-w-0 min-h-full flex-col bg-surface"
@@ -308,7 +133,7 @@ export function Editor({
                     {JSON.stringify(
                       value ?? {
                         type: token.definition?.type,
-                        kind: projected ? i.authoredKind : "No assignment",
+                        kind: "token" in i ? i.authoredKind : "No assignment",
                       },
                       null,
                       2,
@@ -495,7 +320,11 @@ export function Editor({
             </h3>
             <div className="text-caption">
               {projected && !value ? (
-                i.authoredKind
+                "token" in i ? (
+                  i.authoredKind
+                ) : (
+                  "No assignment"
+                )
               ) : (
                 <AuthoredValue value={value} project={project} />
               )}
