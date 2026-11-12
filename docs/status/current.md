@@ -19,12 +19,21 @@ Thirty-two focused tests and the final build (all four typechecks plus bundling)
 passed. Representative Chrome smoke covered ordinary authoring/draft/collapse,
 departure cancellation, Cancel focus and compact drawer behavior.
 
-Successful Apply left focus on document body; baseline attribution is unresolved,
-so AC-7 is not passed. Visual parity and remaining runtime paths retain explicit
-limits in the [completion report](../increments/008-react-state-and-workbench-composition.md#completion-report--12-november-2026).
-Shared verification used approximately 28.5–29.5 aggregate minutes and one conservative
-tooling-recovery cycle, including a stalled reviewer Chrome call. Verification is
-stopped; no follow-up is scheduled. No 007 qualification was restarted. Staging,
+**Apply focus follow-up — 12 November 2026:** the user authorized a bounded fix
+and independent recheck. Focus was attempted before React committed the enabled
+fieldset. A one-shot effect now restores focus after successful Apply. The real
+Chrome regression failed before and passed after; the independent reviewer also
+verified successful Apply focus, invalid Apply error focus/raw preservation and
+Cancel reset/focus. Sixteen focused tests passed; no corrective findings.
+See the [follow-up result](../increments/008-react-state-and-workbench-composition.md#follow-up-result).
+The focused Apply observation is resolved; visual parity, comprehensive focus
+containment/return and remaining delayed-refresh/restore runtime paths retain their
+previous explicit limits. Increment 008 acceptance therefore remains incomplete.
+
+Original shared verification used approximately 28.5–29.5 aggregate minutes and
+one tooling-recovery cycle. The separately authorized Apply follow-up used
+approximately 8.5 aggregate minutes and one repair cycle. Both are stopped, without
+a reset or scheduled follow-up. No 007 qualification was restarted. Staging,
 committing and pushing remain with the user.
 
 **cn precompilation — 12 November 2026:** the user authorized moving custom merge
@@ -95,8 +104,9 @@ Install/offline PWA acceptance, interchange and Electron remain later milestones
 ## Next meaningful action
 
 User review of the implemented Increment 008 and its explicit acceptance gaps.
-A further investigation of Apply focus/baseline attribution or unobserved browser
-paths requires a separately authorized bounded verification follow-up; do not infer
+The Apply focus issue is fixed and independently rechecked. Any further investigation
+of remaining unobserved browser paths requires a separately authorized bounded
+verification follow-up; do not infer
 one from continuation. No agent, snapshot or workflow change resets consumption.
 The stopped Increment 007 campaign's remaining authorized allowance stays **zero**.
 

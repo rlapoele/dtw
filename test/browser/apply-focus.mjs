@@ -1,0 +1,15 @@
+// Run through the existing Playwright CLI with a selected editable color token.
+// Uses real React commits and native browser focus; no mocked hook scheduling.
+export default async function applyFocus(page) {
+  const red = page.getByRole("textbox", { name: "Red", exact: true });
+  const next = (await red.inputValue()) === "0.35" ? "0.45" : "0.35";
+  await red.fill(next);
+  await page.getByRole("button", { name: "Apply changes", exact: true }).click();
+  await page.getByText("Changes applied and retained.", { exact: true }).waitFor();
+  await page.waitForFunction(() => {
+    const active = document.activeElement;
+    return active?.textContent === "Literal color" && !active.matches(":disabled");
+  }, undefined, { timeout: 1500 });
+  const applied = await page.getByRole("textbox", { name: "Red", exact: true }).inputValue();
+  if (applied !== next) throw Error("Apply did not retain the authored channel.");
+}

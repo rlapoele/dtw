@@ -264,3 +264,47 @@ No automatic follow-up or budget reset is scheduled. Any further qualification n
 an explicitly authorized bounded follow-up. Increment 007 remains closed and deferred.
 
 Suggested commit: `refactor: separate workbench state owners and composition`.
+
+## Apply focus follow-up — 12 November 2026
+
+The user explicitly authorized investigation, correction and independent recheck of
+successful Apply focus. Baseline: `7b13b69`, clean working tree. Scope is the AC-7
+Apply focus observation only; all other acceptance limits remain as recorded above.
+No Increment 007 qualification is authorized. Staging, committing and pushing remain
+with the user.
+
+Separate bounded follow-up ceiling: **10 aggregate verification minutes and one
+harness-repair cycle**, including source diagnosis, browser/tool waits and independent
+recheck. Allocate at most six minutes to developer verification, three to reviewer
+and one to coordinator. Reuse the installed Playwright CLI/local Chrome session where
+available; do not repeat native-app launch tooling that stalled. Focused regression
+and type/build checks only as justified; no full-suite or broader qualification.
+Status: fixed and independently rechecked. Carry consumption forward; no automatic
+extension/reset.
+
+### Follow-up result
+
+The immediate successful-Apply focus call ran while the Literal color control still
+inherited disabled from its fieldset; React had not yet committed the queued enabling
+update. A temporary native focus trace demonstrated this cause. Successful Apply
+now requests one-shot local focus; an effect consumes it after the enabled editor
+commits. Failure paths do not request this action; Cancel/error focus is unchanged.
+
+- [Developer evidence](../../output/increment-008-implementation/apply-focus-developer.md):
+  the real Chrome regression failed before and passed after; 16 focused tests passed.
+- [Independent recheck](../../output/increment-008-implementation/apply-focus-reviewer.md):
+  manifest validated, source inspected and actual Chrome success focus/retained value,
+  invalid Apply error focus/raw preservation and Cancel reset/focus all passed.
+  No corrective findings. Host-failure/teardown were source-inspected, not exercised.
+- Exact source/test target: base `7b13b69` plus
+  [apply-focus snapshot](../../output/increment-008-implementation/apply-focus-snapshot.sha256).
+  Production change is limited to `useTokenEditor.ts`; the regression is
+  `test/browser/apply-focus.mjs`. No broad build/full-suite or 007 checks ran.
+
+The successful Apply focus observation above is resolved; other acceptance gaps
+remain explicitly unverified. Follow-up verification is finished at approximately
+**8.5 aggregate minutes** (developer 5.5, independent reviewer 2, coordinator 1),
+with **one tooling-repair cycle**. This separate authorized allowance does not reset
+or reopen the original verification campaign. No further checks are scheduled.
+
+Suggested commit: `fix: restore editor focus after Apply commits`.

@@ -80,6 +80,15 @@ export function useTokenEditor({
     [notice, setNotice] = useState("");
   const modeRef = useRef<HTMLButtonElement>(null),
     errorRef = useRef<HTMLParagraphElement>(null);
+  const [restoreApplyFocus, setRestoreApplyFocus] = useState(false);
+  useEffect(() => {
+    if (restoreApplyFocus && !accepting) {
+      // The mode button inherits disabled from the retaining fieldset. Focus
+      // only after React commits the successful, re-enabled editor.
+      modeRef.current?.focus();
+      setRestoreApplyFocus(false);
+    }
+  }, [restoreApplyFocus, accepting]);
   const dirty =
     session.edited || session.reference !== initial.current.reference;
   useEffect(() => onDirty(dirty), [dirty, onDirty]);
@@ -205,7 +214,7 @@ export function useTokenEditor({
     onDirty(false);
     setError("");
     setNotice("Changes applied and retained.");
-    modeRef.current?.focus();
+    setRestoreApplyFocus(true);
   }
   function cancel() {
     const currentBaseline = baseline(value);
