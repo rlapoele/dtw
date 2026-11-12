@@ -10,6 +10,20 @@
 
 ## Current focus
 
+**Shared Icon and cn maintenance — 12 November 2026:** the user authorized a typed
+`components/ui/icon.tsx` and shared `lib/cn.ts` backed by pinned `cn` 0.5.2. All four
+production icon consumers now use the wrapper. Default sizing/decorative semantics,
+caller class overrides and optional accessible labels follow the
+[presentation conventions](../project/presentation-conventions.md#icons). The merger
+recognizes our caption size and heading weight; Button's additive implementation is
+byte-for-byte unchanged. Fourteen focused icon/consumer tests, all four typechecks
+and an isolated Vite production build passed. Vite warned about the 516.69 kB app
+chunk; this task makes no bundling optimization or performance claim. Verification
+used approximately 5–10 aggregate minutes (estimate) of a 10-minute ceiling, with
+zero harness-repair cycles; checks are finished, including reference/whitespace checks.
+No browser test or full-suite rerun occurred. Increment 007 remains closed and its stopped
+qualification campaign remains unauthorized.
+
 The user reported finishing the manual tests with everything looking good and
 instructed closing Increment 007, documenting deferred checks and not restarting
 automated qualification. The [closure amendment and completion report](../increments/007-local-retention-and-backup.md#closure-and-qualification-amendment--12-november-2026)

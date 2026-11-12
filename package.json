@@ -26,6 +26,7 @@
   "dependencies": {
     "@base-ui/react": "1.9.0",
     "@heroicons/react": "2.2.0",
+    "cn": "0.5.2",
     "culori": "4.0.2",
     "jsonc-parser": "3.3.1",
     "react": "19.3.1",

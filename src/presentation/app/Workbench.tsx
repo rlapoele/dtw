@@ -8,16 +8,7 @@ import type { DiagnosticDisplay } from "@application/retention/diagnostics";
 import { readExactSource } from "@presentation/host/source";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { Dialog } from "@base-ui/react/dialog";
-import {
-  Bars3Icon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronDownIcon,
-  InformationCircleIcon,
-  PlusIcon,
-  Square3Stack3DIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { Icon } from "@presentation/components/ui/icon";
 import type {
   ProjectContext,
   DisplayRow,
@@ -678,11 +669,11 @@ export function Workbench({
             aria-label="Open project navigation"
             onClick={() => setNavigationOpen(true)}
           >
-            <Bars3Icon aria-hidden="true" className="w-5 h-5" />
+            <Icon name="menu" className="size-5" />
           </Button>
         )}
         <div className="brand flex items-center gap-2.5">
-          <Square3Stack3DIcon aria-hidden="true" className="w-4 h-4" />
+          <Icon name="stack" />
           <strong>Token Workbench</strong>
         </div>
         <span className="project-title small:hidden min-w-0 wrap-anywhere text-muted-foreground">
@@ -778,10 +769,7 @@ export function Workbench({
         </Button>
       </header>
       <div className="session-notice shrink-0 border-b border-border bg-notice text-notice-foreground text-caption px-5 py-2 min-h-9 flex items-center justify-center gap-2">
-        <InformationCircleIcon
-          aria-hidden="true"
-          className="w-4 h-4 shrink-0"
-        />
+        <Icon name="info" />
         <span>
           {header.writable
             ? "Applied work is retained in this browser. Drafts stay in this page. Keep independent backups."
@@ -814,9 +802,9 @@ export function Workbench({
               onClick={() => setSidebarExpanded(!sidebarExpanded)}
             >
               {sidebarExpanded ? (
-                <ChevronLeftIcon aria-hidden="true" className="w-4 h-4" />
+                <Icon name="chevron-left" />
               ) : (
-                <ChevronRightIcon aria-hidden="true" className="w-4 h-4" />
+                <Icon name="chevron-right" />
               )}
               <span>Project groups</span>
             </Button>
@@ -856,7 +844,7 @@ export function Workbench({
               disabled={blocked}
               onClick={() => open("token")}
             >
-              <PlusIcon aria-hidden="true" className="w-4 h-4" />
+              <Icon name="plus" />
               New token
             </Button>
           </div>
@@ -1093,7 +1081,7 @@ export function Workbench({
               aria-controls="token-inspector-content"
               onClick={() => setInspectorExpanded(!inspectorExpanded)}
             >
-              <ChevronDownIcon aria-hidden="true" className="w-4 h-4" />
+              <Icon name="chevron-down" />
             </Button>
           </div>
           <div
@@ -1248,7 +1236,7 @@ export function Workbench({
                 render={<Button variant="ghost" size="icon" />}
                 aria-label="Close project navigation"
               >
-                <XMarkIcon aria-hidden="true" className="w-4 h-4" />
+                <Icon name="close" />
               </Dialog.Close>
             </div>
             <Dialog.Description className="sr-only">

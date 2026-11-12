@@ -80,6 +80,12 @@ The backend side may be written in JavaScript or TypeScript and can use Node.js 
 
 Use a pragmatic ports-and-adapters, or hexagonal, architecture. The aim is replaceable boundaries and independent testing, not architectural ceremony.
 
+**Icon/class composition — 12 November 2026:** presentation callers use the owned
+`components/ui/icon.tsx` typed Heroicons Outline wrapper and `lib/cn.ts` shared class
+merger (`cn` 0.5.2). Custom typography groups are configured locally; the dependency
+and SVG handling remain presentation concerns. Existing Button class composition is
+unchanged. The [presentation conventions](presentation-conventions.md) own the API.
+
 **Preview rendering — 12 November 2026:** the presentation preview helper serializes
 validated colors in native CSS for all five supported spaces, preserving source text.
 Browser rendering/mapping is display-only; explicit editing conversions remain in the

@@ -1,9 +1,5 @@
 import type { ProjectContext } from "@application/retention/projections";
-import {
-  FolderIcon,
-  PlusIcon,
-  Squares2X2Icon,
-} from "@heroicons/react/24/outline";
+import { Icon } from "@presentation/components/ui/icon";
 import { Button } from "@presentation/components/ui/button";
 import { identityLabels } from "@presentation/features/workbench/readback";
 export function ProjectNavigation({
@@ -59,7 +55,7 @@ export function ProjectNavigation({
           onSelect(null);
         }}
       >
-        <Squares2X2Icon className="icon block w-4 h-4 shrink-0" />
+        <Icon name="grid" className="icon block" />
         All tokens
         <span className="count ml-auto text-secondary font-normal">
           {project?.tokens.length ?? 0}
@@ -87,7 +83,7 @@ export function ProjectNavigation({
               onSelect(g.authored.id);
             }}
           >
-            <FolderIcon className="icon block w-4 h-4 shrink-0" />
+            <Icon name="folder" className="icon block" />
             <span className="group-label whitespace-normal block min-w-0 text-left wrap-anywhere">
               {labels.get(g.authored.id)}
             </span>
@@ -103,7 +99,7 @@ export function ProjectNavigation({
           onCreateGroup();
         }}
       >
-        <PlusIcon className="icon block w-4 h-4 shrink-0" />
+        <Icon name="plus" className="icon block" />
         New group
       </Button>
       <div

@@ -28,13 +28,40 @@ The [`cn` utility](https://github.com/shadcn-ui/cn) may join conditional classes
 
 Preserve each component's documented composition contract. The current Button contract is additive, with geometry/appearance selected through size/variant; conflict resolution must not silently change caller precedence. For Base UI components accepting a `className` callback, evaluate the callback with its actual state before composing its result. Retain owned classes and forwarded props/ref/render behavior. Check custom theme utilities are understood by the merger, so legitimate classes are not discarded as conflicts.
 
-At this agreement, `cn` is permitted but is not installed by this documentation change. Package selection, installation/migration and changes to existing composition behavior belong to scoped implementation with relevant checks. No measured package parity or performance benefit for DTW is claimed.
+**Adopted — 12 November 2026:** `cn` 0.5.2 (MIT, Node >=22) is installed at an exact
+pin. Import the configured shared utility from `@presentation/lib/cn`, which uses
+the package's `createCn` API. Its font-size and font-weight groups include our
+`text-caption` and `font-heading` roles, so they are not confused with text colors
+or font families. Register further custom utility semantics when needed; do not
+assume the merger discovers the project's CSS automatically. No Vite plugin or
+bulk class migration is introduced, and no package-wide parity/performance claim
+is made. Button retains its existing additive class string and state-callback handling.
 
 ## Icons
 
 Heroicons Outline is the sole application UI icon family. Reuse the existing `@heroicons/react/24/outline` integration, including when adapting copied/generated components that default to another family. Keep sizing and stroke treatment consistent; avoid ad hoc SVG or text glyph replacements for ordinary interface icons. Product artwork and token specimens are separate from UI icons.
 
 Icon-only controls need accessible names. Hide decorative icons from assistive technology and preserve the native semantics of their containing controls.
+
+**Shared Icon — 12 November 2026:** application callers use
+`@presentation/components/ui/icon`; only that component imports Heroicons directly.
+Its typed `name` is one of `menu`, `chevron-down`, `chevron-left`, `chevron-right`,
+`folder`, `info`, `plus`, `stack`, `grid` or `close`, backed by explicit imports of
+the ten Outline glyphs in use. Add a mapping when a real new icon is needed.
+
+`Icon` defaults to `size-4 shrink-0`, decorative `aria-hidden` and `focusable="false"`.
+Caller `className` is merged last through the shared `cn`, allowing explicit overrides
+such as `size-5`. Existing marker/positioning classes remain at their call sites.
+For an icon that independently conveys meaning, supply `label`; the SVG then has
+`role="img"` and an accessible label instead of being hidden. Icon-only buttons
+still carry their own accessible control names. Other supported SVG props/ref are
+forwarded to the underlying glyph; accessibility defaults are owned by the wrapper.
+
+```tsx
+<Icon name="plus" />
+<Icon name="folder" className="size-5 text-muted-foreground" />
+<Icon name="info" label="Information" />
+```
 
 ## Owned components and native controls
 

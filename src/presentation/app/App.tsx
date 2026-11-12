@@ -6,7 +6,7 @@ import { RestoreDialog } from "@presentation/features/workbench/components/Resto
 import type { RestorePreview } from "@presentation/host/protocol";
 import { Workbench } from "./Workbench";
 import { useEffect, useRef, useState } from "react";
-import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
+import { Icon } from "@presentation/components/ui/icon";
 import { WorkerWorkbenchHost } from "@presentation/host/worker-client";
 import type { WorkbenchHost, ProjectHeader } from "@presentation/host/protocol";
 import type { CatalogueEntry } from "@application/retention/ports";
@@ -176,7 +176,7 @@ export function App({
     <div className="app-shell flex h-dvh min-h-0 flex-col overflow-clip bg-background">
       <header className="shrink-0 border-b border-border h-16 flex items-center px-6 gap-5">
         <div className="brand flex items-center gap-2.5">
-          <Square3Stack3DIcon aria-hidden="true" className="w-4 h-4" />
+          <Icon name="stack" />
           <strong>Token Workbench</strong>
         </div>
         <span className="text-caption ml-auto text-muted-foreground">
