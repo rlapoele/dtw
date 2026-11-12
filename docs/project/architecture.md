@@ -95,9 +95,10 @@ codec, candidate and projection operations; `src/adapters/browser/` owns native 
 adapters. `src/presentation/host/` owns the module-worker delivery entry, typed protocol
 and renderer client. `tsconfig.worker.json` checks the WebWorker scope separately.
 Draft and form state remains renderer-local; applied snapshots are retained per browser
-profile/origin. Functional implementation is under final qualification; see the
-[agreed contract](../increments/007-local-retention-and-backup.md) and
-[current status](../status/current.md) for evidence and remaining gates. Chrome is the
+profile/origin. Increment 007 was closed on 12 November 2026 following user-reported
+manual acceptance; see the [agreed contract](../increments/007-local-retention-and-backup.md)
+and [deferred qualification](../increments/007-local-retention-and-backup.md#deferred-qualification)
+for evidence and explicit support limits. Chrome is the
 current automated baseline; broader engine qualification follows the user-approved
 browser policy. Earlier dated descriptions below describe their original increments.
 

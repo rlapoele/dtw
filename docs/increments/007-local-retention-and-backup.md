@@ -1,7 +1,7 @@
 # Increment 007: local retention, reopening and project backup
 
 - Contract status: **Agreed — implementation instruction, 10 November 2026.**
-- Delivery status: **In progress — implementation reviewed; qualification and manual acceptance pending.**
+- Delivery status: **Completed — 12 November 2026, with user-accepted qualification deferrals.**
 - Agreement: on 10 November 2026 the user instructed: “ok. Let's develop the app
   using Chrome for your automated tests. For manual tests, I will use either Chrome
   or Firefox. We'll test more browser or engine once the app (the PWA at least) is
@@ -15,6 +15,22 @@
   V3 original: base `50d9f67` plus frozen manifest; revision 2: committed `2805b0c`
   with its separate ten-file manifest (artifact base `52e8009`). V4 review snapshot:
   `42feef7`, source baseline `e2a3534`, separate 25-file frozen manifest.
+
+## Closure and qualification amendment — 12 November 2026
+
+The user reported finishing the manual tests with everything looking good, then
+explicitly instructed closing Increment 007 and documenting deferred checks without
+restarting automated qualification. **Increment 007 is Completed** for its delivered
+desktop browser retention/backup scope. This decision accepts the existing reviewed
+implementation, focused follow-up fixes and user-reported ordinary manual acceptance.
+
+The uncompleted portions of earlier B/E/F and AC qualification requirements are
+explicitly deferred in the [deferred qualification register](#deferred-qualification),
+not reported as passing. This amendment supersedes earlier wording that made those
+remaining checks prerequisites for Increment 007 closure. Existing product behavior,
+exact authored data, admission caps and numerical budgets are unchanged. No claim of
+exhaustive browser, accessibility, deployment or worst-case support follows from closure.
+No automated qualification, new feature increment, release or deployment is authorized.
 
 ## Current authorization and browser/gate amendment — 10 November 2026
 
@@ -672,14 +688,29 @@ and frozen V4 remain unchanged. AC-1–24 and E-policy retain their requirements
 final design/contract agreement and Increment 007 implementation are not authorized.
 
 
-## Completion report — in progress, 11 November 2026
+## Completion report — 12 November 2026
 
-**Delivery status: In progress.** This report does not mark Increment 007 complete.
-The current reviewed source is R7, identified by the
+**Delivery status: Completed, with the qualification deferrals agreed above.**
+Closure code baseline: `6904d45b9678dc95ecf802802d3e1a78781c259d`.
+Implementation was committed as `cb77be8`; subsequent commits align the workflow
+(`b1662a4`), simplify component names (`27bb970`) and introduce native CSS previews
+(`6904d45`). The user reports committing and pushing these changes.
+
+The original independent implementation review identifies R7 via the
 [144-file manifest](../../output/increment-007-implementation/s4-r7-before-review-manifest.json),
 SHA-256 `42f0e3c7e7cc53de36219f6b7b49be8d86c3ba11d4d1aae3b6c61a6311763df5`.
-The base is `5c22404e34ea9a9b39e1bb6da1135c2719440536`; changes remain for human staging,
-commit and push.
+That historical review does not cover later changes by implication. The rename had
+identifier/import parity and typechecks; native CSS previews had 22 focused tests,
+all four typechecks and the user's explicit successful reproduction of the original
+OKLCH case. No full-suite rerun or new independent review of these small follow-ups
+is claimed.
+
+**Manual acceptance — user-reported, 12 November 2026:** the user reported completing
+the manual tests with everything looking good and requested closure. The
+[manual record](007-manual-acceptance.md) preserves this overall result and its limits.
+Exact browser/build/profile/origin metadata and optional cross-browser/AT outcomes
+were not supplied; do not invent a per-step instrumented result or an exact-build
+support matrix. This reporting limit does not block the user's authorized closure.
 
 ### Delivered behavior and evidence
 
@@ -691,14 +722,14 @@ Legacy session-only App is removed; maintained browser fixtures use the retained
 
 | Criteria | Observed coverage | Remaining acceptance limits |
 | --- | --- | --- |
-| AC-1–3, AC-19 | Catalogue/authoring/reload tests and native roundtrip; exact required-name validation | User normal-profile acceptance pending |
+| AC-1–3, AC-19 | Catalogue/authoring/reload tests and native roundtrip; exact required-name validation | User-reported manual acceptance received; exact environment metadata not supplied |
 | AC-4–7, AC-16 | Retention/worker/receipt tests, independently reviewed storage protocol and controlled native recovery | Controlled faults are labelled; normal-profile/restart and defensive concurrency coverage is not inferred |
-| AC-8, AC-22–23 | Mounted dirty draft/restore checks, explicit Review/Reapply, real worker termination/readback and safe departure checks | Native lifecycle and user departure checks remain separate |
-| AC-9–11, AC-20 | Production authoring preserved; exact backup/restore comparisons, clean/dirty literal/reference regression checks, earlier slice-2 design fidelity | Final native/manual accessibility and full product validation pending |
-| AC-12–15 | Real downloaded backup, staged restore/cancel and protected full replacement removing local-only content | Native OS picker and user-kept file checks pending |
+| AC-8, AC-22–23 | Mounted dirty draft/restore checks, explicit Review/Reapply, real worker termination/readback and safe departure checks | Ordinary manual acceptance received; exceptional lifecycle qualification deferred (DQ-3) |
+| AC-9–11, AC-20 | Production authoring preserved; exact backup/restore comparisons, clean/dirty literal/reference regression checks, earlier slice-2 design fidelity | Ordinary manual acceptance received; broader accessibility qualification deferred (DQ-5) |
+| AC-12–15 | Real downloaded backup, staged restore/cancel and protected full replacement removing local-only content | Manual file-flow acceptance reported overall; no separately instrumented OS-picker result |
 | AC-17 | Separate host-independent/browser/worker/tool typechecks and reviewed ports/adapters | No Electron or offline-install claim |
-| AC-18 | Reused owned controls, dialog/focus regressions and bounded browser interaction evidence | Actual 200% browser zoom, AT and manual keyboard review pending |
-| AC-21, AC-24 | Closed admission/DTO tests; maximum 10,000-token/2,000-group restore, complete 12,000-identity All content, last inspection and exact backup equality | Capacity/source qualification is still in progress; small-fixture access does not qualify all native-source limits |
+| AC-18 | Reused owned controls, dialog/focus regressions and bounded browser interaction evidence | Manual checklist accepted overall; optional AT coverage not individually reported (DQ-5) |
+| AC-21, AC-24 | Closed admission/DTO tests; maximum 10,000-token/2,000-group restore, complete 12,000-identity All content, last inspection and exact backup equality | Maximum entity/catalogue cases passed within recorded scope; remaining exact-source qualification deferred (DQ-1) |
 
 The [functional evidence](../../output/increment-007-implementation/s4-r5-functional-evidence.md)
 and [controlled recovery receipts](../../output/playwright/increment-007-implementation/s4-r4-controlled-chrome.json)
@@ -709,7 +740,7 @@ remains attributed to that snapshot; R7 changes only All content staging/lifecyc
 
 ### Checks and independent review
 
-- **1,031 tests / 45 files**, four strict typechecks and production build pass.
+- Historical R7 checks: **1,031 tests / 45 files**, four strict typechecks and production build passed. No rerun at closure.
 - [Independent functional review](../../output/increment-007-implementation/reviewer-final/review.md)
   closed clean-editor replacement and derived-path amplification findings.
 - [R6/R7 review](../../output/increment-007-implementation/reviewer-final/r6-source-review.md)
@@ -722,37 +753,38 @@ remains attributed to that snapshot; R7 changes only All content staging/lifecyc
   identifies corrected automation overhead and bounded execution releases. Tooling
   failures do not become app failures or retroactive passes.
 
+### Deferred qualification
+
+These are retained failed/unverified checks, explicitly removed as blockers to this
+increment's closure by the user's instruction. They are not completed tests, a new
+implementation queue or authorization for an automatic future campaign.
+
+| ID | Deferred checks and known limits | Existing evidence / boundary |
+| --- | --- | --- |
+| DQ-1 | Complete large-source native access and 65,536/65,537-unit cold/warm distributions; large clipboard/real Find UI evidence | 65,535-unit equality and full native selection passed. The in-page Find API middle-marker reveal check failed; this is neither fixed nor proof of real browser Find UI failure. Ordinary manual source acceptance does not qualify all admitted sizes. |
+| DQ-2 | Remaining adversarial resource/codec intersections and defensive-size concurrency races | The recorded maximum 10,000-token/2,000-group and 25 × 8 MiB catalogue cases passed; these do not establish every combination of limits or transaction interleaving. Admission caps remain unchanged. |
+| DQ-3 | Exhaustive native lifecycle, freeze/resume/bfcache, crash/reset/upgrade/quota and failure-recovery qualification beyond exercised cases | Existing controlled faults, handler regressions, native storage mechanisms and ordinary manual acceptance retain their exact scope. No universal crash, power-loss or eviction guarantee. |
+| DQ-4 | Deployed HTTPS/CSP/delivery-origin qualification and an exact normal-profile build/OS support matrix for the final app | Loopback/isolated probe evidence and user manual acceptance do not establish final deployment-origin support. No deployment or trust changes are authorized. |
+| DQ-5 | Dedicated screen-reader/assistive-technology and physical-device qualification beyond the user's ordinary manual pass | Optional AT/device outcomes were not individually reported. No formal WCAG or universal accessibility certification. |
+| DQ-6 | Additional browser/engine qualification, including Safari supervision and storage/concurrency checks | Chrome remains the automated development baseline. The user's manual browser/build was not specified; no blanket Firefox/Safari support claim. Broader engines remain later work under the existing agreement. |
+
+Full install/offline PWA acceptance, named-profile interchange and Electron remain
+separate later milestones, not unfinished Increment 007 implementation. Future
+qualification must have a concrete purpose, bounded scope/budget and explicit
+resumption authority; no schedule or new workload is selected here.
+
 ### Remaining work
 
-**Verification accounting carried forward — workflow alignment, 11 November 2026:**
-no cumulative time/cycle budget was recorded for the historical campaign. The user
-reported hours of testing; exact aggregate agent time is unknown and is not reconstructed
-as a precise total. Existing handoffs and the
-[runner audit](../../output/increment-007-implementation/reviewer-final/harness-audit.md)
-show at least three harness repair/recheck cycles (scoped selector correction,
-file-path upload correction and direct-CDP upload correction); this is a lower bound,
-not an exhaustive count. Historical work already exceeds the new small-increment
-default's two-cycle ceiling, but that default is not asserted as a retroactive agreement.
-**Remaining authorized allowance for this stopped campaign: zero**, based on the user's
-explicit stop. Migration to the shared verification rules grants no fresh budget.
-Existing passing evidence, failed/unrun cases, stronger acceptance gates and their
-snapshot limits remain unchanged. Any resumption needs a new explicitly authorized,
-bounded follow-up; reporting gaps does not authorize further testing or establish
-Increment 007 completion.
+No implementation task remains open for Increment 007. Deferred qualification above
+is documented rather than silently passed. The earlier stopped campaign had no
+recorded cumulative budget: the user reported hours, precise aggregate time is
+unknown and the runner audit shows at least three harness repair/recheck cycles.
+Its **remaining authorized allowance stays zero**. Closure does not reset that
+consumption, repair the native Find API observation or restart automated checks.
 
-**Further automated stress qualification stopped at user request — 11 November 2026.**
-The user stated that the hours-long testing was disproportionate for this small
-color-token PWA prototype. No further case, diagnostic or retry is scheduled; do not
-resume without a new user request. Existing failures and unexecuted cases remain
-labelled, without an implied pass or a requirement to repair the test apparatus now.
-
-The 25 × 8 MiB catalogue passed after removing automation file-conversion overhead.
-Source 65,535-unit exact equality and full native selection passed, but the in-page
-Find API middle-marker reveal check failed; the 65,536/65,537 distributions remain
-unrun. Real browser Find UI is a separate pending manual observation. Remaining
-normal-profile, actual native lifecycle, HTTPS/CSP/delivery-origin and defensive
-resource/concurrency coverage is not inferred from the passing cases.
-The [manual acceptance guide](007-manual-acceptance.md) remains **pending user execution**.
-Manual Chrome/Firefox results are bounded observations. Broader engines, install/offline
-PWA and Electron remain deferred under the current agreement. No deployment, tunnel,
-trust change, staging, commit or push is authorized by this report.
+This closure is documentation-only. Prose/scope review, 24 added/changed local link
+targets/anchors and whitespace checks passed. Approximately 5–10 aggregate minutes
+(estimate) of the 10-minute documentation ceiling were used, with zero harness
+repairs; checks are finished. No application tests, builds, browser sessions or
+qualification runs were part of closure. Staging, committing and pushing remain with
+the user. Await the user's choice of next work; closing 007 does not open the next increment.

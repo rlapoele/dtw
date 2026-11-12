@@ -1,5 +1,16 @@
 # Increment 007 — production scheduling and browser qualification scope
 
+## Closure disposition — 12 November 2026
+
+**Increment 007 is Completed** following the user's successful manual acceptance and
+explicit instruction to close with remaining checks deferred, without restarting
+automated qualification. The [closure amendment](007-local-retention-and-backup.md#closure-and-qualification-amendment--12-november-2026)
+and [deferred qualification register](007-local-retention-and-backup.md#deferred-qualification)
+own the current disposition. Uncompleted portions of earlier completion prerequisites
+below are deferred, not passed. No new run, repair, deployment or next increment is
+authorized. The earlier plans and results below retain their historical meaning;
+they are not instructions to resume stopped work.
+
 ## Current B-3/B-4 amendment — 10 November 2026
 
 **Agreed; Increment 007 implementation authorized.** The latest user instruction

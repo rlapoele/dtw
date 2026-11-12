@@ -1,10 +1,17 @@
 # Increment 007 — manual acceptance
 
-**PENDING USER EXECUTION — 11 November 2026.** Expected behavior from the [agreed contract](007-local-retention-and-backup.md),
-not a claim that acceptance is complete. Control names follow the implemented retained
-app; final automated qualification and this manual result are reported separately.
-Chrome automation is the current development scope; manual Chrome or Firefox findings
-are case-specific evidence, without broader browser/engine qualification.
+**USER-REPORTED ACCEPTANCE — 12 November 2026.** The user reported finishing the
+manual tests with everything looking good and explicitly requested Increment 007
+closure with deferred checks recorded and no automated qualification restart.
+The earlier OKLCH preview issue was fixed in `6904d45`, and the user explicitly
+confirmed that the original preview case works before completing manual acceptance.
+
+This is overall user acceptance of the ordinary checklist, not an agent-observed or
+instrumented per-step replay. Browser/version, OS, profile, URL/origin and individual
+optional cross-browser/AT results were not supplied. They remain unrecorded rather
+than inferred as passes. The checklist below is retained for reference, not another
+test request. See the [closure amendment](007-local-retention-and-backup.md#closure-and-qualification-amendment--12-november-2026)
+and [deferred qualification](007-local-retention-and-backup.md#deferred-qualification).
 
 Record browser/build, OS, normal browser profile, exact application URL/origin and date.
 Use only clearly named **disposable test projects**. Keep existing real projects intact;
@@ -12,8 +19,8 @@ no storage clearing, private browsing or deletion is needed. Leave test projects
 
 | Record | Value |
 | --- | --- |
-| Browser/build, OS | |
-| Profile, URL/origin, date | |
+| Browser/build, OS | Not supplied in the acceptance report |
+| Profile, URL/origin, date | Profile/origin not supplied; report received 12 November 2026 |
 
 1. **Create:** in Projects, try an empty name and a whitespace-only name. Expect a
    name-field error, preserved input and no project entry. Create a disposable project
@@ -61,8 +68,8 @@ no storage clearing, private browsing or deletion is needed. Leave test projects
     source is complete, not a prefix. If available, try your screen reader; otherwise
     mark that portion Not checked. A small fixture does not qualify large-source limits.
 
-Use **Pass / Issue / Not checked**; report the step, what happened and expected behavior.
+For future issue reports, use **Pass / Issue / Not checked** with reproduction details. No additional report is required for the accepted closure.
 
 | Check(s) | Result | Notes / reproduction |
 | --- | --- | --- |
-| | | |
+| Overall ordinary manual checklist | User reports everything looks good | Accepted for closure; individual optional checks and environment metadata not supplied |

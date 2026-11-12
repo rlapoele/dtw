@@ -101,18 +101,18 @@ The [variation-resolution contract](../design-tokens/conceptual-model.md#variati
 
 The existence of an explicit project is decided: users create, open, or import a project before editing tokens. A project may contain no tokens; every token and namespace group belongs to exactly one project. The initial canonical ownership model does not require a package entity.
 
-**Current Increment 007 disposition — 10 November 2026:** the user authorized
-implementation of the [agreed contract](../increments/007-local-retention-and-backup.md)
-and reviewed V3 revision 2/V4 design integrated with the current production baseline.
-The [B-3/B-4 amendment](../increments/007-production-scheduling-and-browser-scope-proposal.md#current-b-3b-4-amendment--10-november-2026)
-selects Chrome automation and user manual Chrome/Firefox testing; broader engines
-follow the fully featured working PWA, including deferred Safari G-02/G-03/G-04.
-Remaining Chrome mechanism, exactness, codec, resources, performance/native/HTTPS
-and UI acceptance are completion evidence, not prerequisites to begin implementation.
-The new-project nonblank-name policy is agreed, with exact accepted text, duplicate
-names and supported unnamed reopen/restore preserved. Existing technology/policy
-choices are not reopened. Historical Draft/pending/two-engine prerequisite wording
-below describes earlier preparation and is superseded for current scope only.
+**Current Increment 007 disposition — 12 November 2026:** the user reported successful
+manual acceptance and explicitly closed the [agreed increment](../increments/007-local-retention-and-backup.md#closure-and-qualification-amendment--12-november-2026),
+with remaining qualification deferred and no automated restart. The
+[deferred-check register](../increments/007-local-retention-and-backup.md#deferred-qualification)
+owns unverified source/resource/native/deployment/accessibility/browser checks.
+These are no longer 007 delivery blockers and are not claimed passing. Chrome remains
+the automated development baseline; broader engines follow the fully featured working
+PWA. Worker/storage/format choices, exact authored preservation, admission caps and
+new-project naming behavior remain agreed. The browser app retains applied data;
+drafts stay session-only. Full PWA install/offline acceptance and Electron remain later
+milestones. Historical pending/Draft and prerequisite wording below is superseded by
+this closure for current scope; no next increment or future experiment is opened.
 
 **Narrowed for Increment 007 — 9 November 2026:** the user agreed the
 [retention/reopening/backup direction](../increments/007-local-retention-and-backup.md)
