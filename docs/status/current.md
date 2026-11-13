@@ -2,7 +2,7 @@
 
 > Last updated: 13 November 2026
 >
-> Phase: Increment 009 proposal; Increments 007 and 008 Completed
+> Phase: Increment 009 Design V1 awaiting user review; Increments 007 and 008 Completed
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
@@ -15,11 +15,16 @@ addressing the rendered UX/UI and React component architecture findings, explici
 without implementation. The [draft contract and design direction V1](../increments/009-workbench-usability-and-component-boundaries.md)
 cover coherent browser context, readable inspection, editor spacing/copy and
 focused component/workflow ownership. Separate analyst drafting and independent
-designer recommendations informed the proposal; designer-proposal analyst review
-has not occurred. Direction selection, rendered design artifacts, user approval
-for analyst review, final agreement and implementation authorization remain pending.
-Only documentation changed; no application tests, builds or browser checks ran for
-proposal preparation. Earlier verification campaigns remain stopped.
+designer recommendations informed the proposal. The user selected the direction
+and authorized mockups on 13 November. [Design V1](../../prototypes/increment-009-v1/DESIGN-V1.md)
+and its [screenshot gallery](../../output/increment-009-design-v1/index.html) are ready
+for user review. A bounded mockup render check observed desktop/compact fixture
+states; [evidence and limits](../../output/increment-009-design-v1/review.md) record
+approximately 12–15 aggregate minutes and one harness repair, now stopped.
+User approval for analyst review, analyst review itself, final agreement and
+implementation authorization remain pending. Only prototype/evidence/documentation
+files changed; no production implementation, tests or builds ran. Earlier
+qualification campaigns remain stopped.
 
 **Increment 008 completed — 12 November 2026:** the user reported completing the
 remaining manual checks in Chrome with everything looking good and explicitly
@@ -110,8 +115,8 @@ Install/offline PWA acceptance, interchange and Electron remain later milestones
 
 ## Next meaningful action
 
-Review Increment 009's proposed direction with the user before preparing identified
-design artifacts, then obtain user approval of those artifacts for analyst review.
+Review Increment 009 Design V1 with the user, then obtain approval of that identified
+artifact for analyst review. Material design changes return to the user first.
 Final contract/design agreement and implementation authorization remain separate
 and pending. Increment 008 stays closed following Chrome manual acceptance.
 Any future qualification requires an explicitly authorized bounded follow-up. No

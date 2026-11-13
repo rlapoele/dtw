@@ -3,7 +3,7 @@
 - Contract status: Draft
 - Delivery status: Not started
 - Prepared: 13 November 2026
-- Agreement: proposal preparation requested; contract/design agreement and implementation authorization pending. No application implementation is authorized.
+- Agreement: the user agreed the proposed direction and authorized review mockups on 13 November 2026. Final contract/design agreement and implementation authorization remain pending. No application implementation is authorized.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [visual direction](../project/visual-direction.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [Increment 008](008-react-state-and-workbench-composition.md), [agent workflow](../workflow/agent-roles.md).
 
 ## Outcome
@@ -62,11 +62,12 @@ router, domain/application/worker behavior changes, storage or backup formats,
 resource limits, new editing capabilities, history, import/export, privacy/auth,
 full PWA/offline delivery, Electron and renewed qualification of Increments 007/008.
 
-## Design direction V1 — proposed
+## Design direction V1 — selected for mockups
 
 The separate designer recommends retaining the neutral Precision three-pane
-workbench and improving context, hierarchy and density. This is a text direction
-for user consideration, not an approved design or a rendered mockup.
+workbench and improving context, hierarchy and density. The user selected this
+direction for mockups on 13 November 2026; it is not final design agreement or
+implementation authorization.
 
 1. **Explicit browser context.** Use “All tokens” consistently in navigation and
    heading. Exactly one navigation item is active. The inspected token/group is
@@ -100,9 +101,10 @@ Meaningful alternatives considered: moving All content under diagnostics reduces
 routine navigation but hides complete discovery; keeping JSON expanded beside
 summaries adds visual weight; widening the inspector changes the pane balance.
 V1 recommends keeping All content discoverable, disclosing technical detail and
-trying spacing changes before altering pane widths. These choices remain proposals.
+trying spacing changes before altering pane widths. The user selected this direction
+for mockups; concrete presentation remains subject to review.
 
-### Context transitions requiring agreement
+### Selected context transitions for mockups
 
 - Group view: creation defaults to that group; rename targets that group.
 - All tokens and All content: creation defaults visibly to Project root, never the
@@ -170,11 +172,17 @@ trying spacing changes before altering pane widths. These choices remain proposa
 - Analyst: separate agent prepared the draft scope/criteria from source and audit.
   This is requirements drafting, not review of the designer proposal.
 - Designer: separate agent supplied the independent V1 text direction above.
-- User direction selection: pending. No prototype or mockup has been created.
-- Next design artifact, after direction selection: identified V1 mockups/prototype
-  covering group → All content, literal editor at 1280 × 800, resolved/unresolved
-  inspection and group details, plus affected compact/focus states. Exact copy,
-  disclosure placement and viewport acceptance are to be settled there.
+- User direction selection: agreed on 13 November 2026; mockup preparation explicitly
+  authorized, without application implementation.
+- Design artifact: [Design V1 mockups and review notes](../../prototypes/increment-009-v1/DESIGN-V1.md),
+  prepared by the separate designer on 13 November 2026. Run instructions are in
+  that document. [Screenshot gallery](../../output/increment-009-design-v1/index.html)
+  and [rendered observations / artifact snapshot](../../output/increment-009-design-v1/review.md)
+  cover group → All content with a preserved draft, literal editor at measured
+  1280 × 800 CSS pixels, resolved/unresolved inspection, group details, validation,
+  empty-group creation context, reference editing and compact navigation.
+  Fixtures illustrate presentation only; they do not implement or qualify the
+  proposed production component boundaries, storage, source or command semantics.
 - Approval of the identified artifact for analyst review: pending. Analyst design
   review has not occurred and must follow user approval.
 - Final contract/design agreement and implementation authorization: pending.
@@ -222,6 +230,13 @@ Planning used document/source review only, approximately 10–15 aggregate minut
 (estimate across coordinator, analyst and designer), zero harness repairs; stopped
 after focused Markdown/link checks. No tests, builds or browser sessions were run
 for this proposal. Future implementation checks remain proposed and unstarted.
+
+Subsequent authorized mockup preparation used a separate 15-minute aggregate
+render-review ceiling and at most one harness repair. Approximately 12–15 minutes
+(estimate) and one stylesheet-scanning repair were used; checks are stopped.
+The linked rendered observations distinguish mockup checks/corrections from
+application qualification. No production tests, builds or implementation ran.
+This does not consume or activate the proposed implementation allowance above.
 
 ## Review baseline and amendments
 
