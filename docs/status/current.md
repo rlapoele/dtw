@@ -1,14 +1,25 @@
 # Current Project Status
 
-> Last updated: 12 November 2026
+> Last updated: 13 November 2026
 >
-> Phase: Increments 007 and 008 Completed
+> Phase: Increment 009 proposal; Increments 007 and 008 Completed
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
 > Applied data is browser-profile/origin local; drafts and forms remain session-only.
 
 ## Current focus
+
+**Increment 009 proposal — 13 November 2026:** the user requested a proposal
+addressing the rendered UX/UI and React component architecture findings, explicitly
+without implementation. The [draft contract and design direction V1](../increments/009-workbench-usability-and-component-boundaries.md)
+cover coherent browser context, readable inspection, editor spacing/copy and
+focused component/workflow ownership. Separate analyst drafting and independent
+designer recommendations informed the proposal; designer-proposal analyst review
+has not occurred. Direction selection, rendered design artifacts, user approval
+for analyst review, final agreement and implementation authorization remain pending.
+Only documentation changed; no application tests, builds or browser checks ran for
+proposal preparation. Earlier verification campaigns remain stopped.
 
 **Increment 008 completed — 12 November 2026:** the user reported completing the
 remaining manual checks in Chrome with everything looking good and explicitly
@@ -99,8 +110,10 @@ Install/offline PWA acceptance, interchange and Electron remain later milestones
 
 ## Next meaningful action
 
-Await the user's next direction. Increment 008 is closed following Chrome manual
-acceptance; closure does not authorize another increment or further qualification.
+Review Increment 009's proposed direction with the user before preparing identified
+design artifacts, then obtain user approval of those artifacts for analyst review.
+Final contract/design agreement and implementation authorization remain separate
+and pending. Increment 008 stays closed following Chrome manual acceptance.
 Any future qualification requires an explicitly authorized bounded follow-up. No
 agent, snapshot or workflow change resets prior consumption. The stopped Increment
 007 campaign's remaining authorized allowance stays **zero**.
