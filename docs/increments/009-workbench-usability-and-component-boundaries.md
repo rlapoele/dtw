@@ -272,8 +272,13 @@ for mockups; concrete presentation remains subject to review.
   [bounded render observations / source snapshot](../../output/increment-009-design-v2/review.md).
   It covers prepared names, blocked collisions, full-fold/NFC examples, affected
   descendants, individual legacy identities, unavailable paths and empty names.
-  V1 remains frozen. User approval of the identified V2 artifact for analyst review
-  is pending. No renewed analyst design review has occurred.
+  V1 remains frozen. The user approved the identified V2 artifact for analyst
+  review on 13 November 2026. The [fresh V2 analyst consistency review](009-design-v2-review.md)
+  is complete against baseline `b33aadb`, with **no required findings**.
+- Current D9-1 disposition: **addressed at design-review level** by V2's associated
+  full identities/context on ambiguous entries and truthful unavailable-path
+  treatment. Earlier open dispositions above record the prior stages. This closes
+  the design finding, not production AC-9/AC-10 acceptance or final user agreement.
 - The proposed component boundaries are viable at design level. Other fixture
   omissions remain explicit implementation requirements and verification limits;
   neither the review nor the prototype establishes production acceptance.
@@ -447,3 +452,21 @@ The linked V2 evidence records approximately **12–15 aggregate render-review
 minutes** (estimate), **zero harness repairs**; checks are stopped. No production
 tests, builds, validator, storage changes or application implementation occurred.
 The limited fixture helper does not establish Unicode 17.0.0/D145 conformance.
+
+### V2 approval for analyst review — 13 November 2026
+
+The user explicitly approved Design V2 for review against this amended proposal
+and the agreed naming policy, without implementation. A fresh analyst reviews
+baseline `b33aadb76b0128efba9cbd1e73ebf277ae3caf28` using source and saved screenshots
+only. This stage has a separate **10 aggregate minute review ceiling, zero harness
+repairs**: at most seven analyst minutes and three coordinator minutes. No browser
+rerender, application tests/builds, mockup correction or implementation is included.
+Prior stopped campaigns remain stopped; production verification is unstarted.
+The [completed V2 review](009-design-v2-review.md) maps AC-1 through AC-11 and reports
+no required findings. D9-1 is addressed at design-review level; version-pinned
+Unicode, all affected descendants, legacy admission and retained-state guarantees
+remain unimplemented/unverified production requirements. Approximately six analyst
+minutes plus two–three coordinator minutes, **8–9 aggregate minutes** (estimates),
+zero repairs; review is stopped. No browser, tests, builds or implementation ran.
+The next gate is final user agreement to this amended contract, the agreed naming
+policy and identified V1/V2 design, followed by explicit implementation authority.

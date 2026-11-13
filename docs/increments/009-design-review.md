@@ -274,3 +274,14 @@ approval. The user authorized V2 mockups, without implementation. This is not a
 renewed analyst design review or a disposition closing D9-1. Identified V2 artifacts
 must reach the user before approval for renewed analyst review; final contract/
 design agreement and application implementation authorization remain pending.
+
+## Subsequent V2 review disposition — 13 November 2026
+
+Coordinator record: the user approved V2 for analyst review. The
+[fresh V2 review](009-design-v2-review.md), against baseline `b33aadb`, reports no
+required consistency findings and finds **D9-1 addressed at design-review level**.
+Its per-action identities/context and truthful unavailable-path treatment resolve
+the residual presentation issue. Earlier open findings/reassessments in this file
+remain historical. Production naming enforcement, exact source/backup preservation
+and retained-state guarantees remain unimplemented/unverified; final user contract/
+design agreement and implementation authorization remain pending.

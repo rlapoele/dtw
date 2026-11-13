@@ -2,7 +2,7 @@
 
 > Last updated: 13 November 2026
 >
-> Phase: Increment 009 naming policy agreed; V2 awaiting user review
+> Phase: Increment 009 V2 reviewed; final agreement and implementation pending
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
@@ -70,8 +70,16 @@ conflicts with per-entry identities; V1 is frozen. The
 record approximately 12–15 aggregate mockup-review minutes (estimate), zero repairs,
 now stopped. Fixtures do not implement or qualify production Unicode/validation/
 storage behavior. No application tests, production builds or implementation ran.
-V2 user review, approval for renewed analyst review, final design/contract agreement
-and application implementation authorization remain pending.
+The user approved V2 for analyst review on 13 November. A fresh source/saved-image
+[consistency review](../increments/009-design-v2-review.md) against baseline `b33aadb`
+is complete with no required findings. **D9-1 is addressed at design-review level**
+by V2's per-entry identities/context and unavailable-path treatment; earlier open
+dispositions above are historical. The review maps AC-1 through AC-11 and preserves
+unverified production Unicode/enforcement/integrity requirements. Approximately
+8–9 aggregate minutes (estimate: six analyst plus two–three coordinator), zero
+repairs, now stopped. No browser rerender, application tests/builds or implementation
+occurred. Final design/contract agreement and application implementation
+authorization remain pending.
 
 **Increment 008 completed — 12 November 2026:** the user reported completing the
 remaining manual checks in Chrome with everything looking good and explicitly
@@ -162,10 +170,10 @@ Install/offline PWA acceptance, interchange and Electron remain later milestones
 
 ## Next meaningful action
 
-Review the identified V2 artifact with the user before approval for renewed analyst
-design review. V1 remains unchanged, providing the ordinary editor/resolution
-reference; V2 supplements it for naming and legacy access. Final contract/design
-agreement and application implementation remain unauthorized.
+Present the amended Increment 009 contract, agreed naming policy and identified
+V1/V2 design for final user agreement. No required design findings remain. V1
+provides ordinary editor/resolution design; V2 supplements naming and legacy access.
+Application implementation still requires explicit authorization.
 Final contract/design agreement and implementation authorization remain separate
 and pending. Increment 008 stays closed following Chrome manual acceptance.
 Any future qualification requires an explicitly authorized bounded follow-up. No

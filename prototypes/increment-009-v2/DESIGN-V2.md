@@ -1,8 +1,11 @@
 # Increment 009 — Design V2
 
-**13 November 2026 · Interactive design proposal · Awaiting user approval for
-analyst review.** Application implementation, final design agreement and renewed
-analyst review are not authorized by preparing these artifacts.
+**13 November 2026 · Interactive design proposal · User-approved for analyst
+review.** The user explicitly authorized that review on 13 November. The
+[fresh consistency review](../../docs/increments/009-design-v2-review.md) against
+baseline `b33aadb` is complete with no required findings; D9-1 is addressed at
+design-review level. Application implementation and final contract/design agreement
+remain unauthorized.
 
 V2 supplements [V1](../increment-009-v1/DESIGN-V1.md) for the agreed
 [namespace policy](../../docs/increments/009-naming-policy-proposal.md) and
@@ -88,8 +91,9 @@ from the input; the UI does not insert visible markers into the stored name.
 - **AC-10 / D9-1:** exact duplicate readable paths, case/spacing equivalents and
   unavailable paths have per-action identity/context. Each row opens the exact
   item; no detached identity inventory is needed. Exact authored data is accessible
-  without legacy rewriting. D9-1 is addressed by this design proposal, **not closed
-  as accepted or independently reviewed**.
+  without legacy rewriting. The subsequent independent analyst review finds D9-1
+  **addressed at design-review level**, without claiming production acceptance or
+  final user agreement.
 - **AC-11:** prepared name and path appear before submit; raw input is not rewritten;
   empty-after-removal is rejected; stored lowercase is distinct from comparison;
   accents and script joiners are preserved in the illustrated examples.
@@ -156,8 +160,10 @@ ceiling: approximately 12–15 aggregate minutes (estimate), zero repairs, now s
 Prior stopped campaigns remain stopped. Source checking does not qualify the
 production implementation or close any acceptance criterion.
 
-The next gate is user review of this identified V2 artifact, followed only after
-user approval by renewed analyst consistency review. Final contract/design agreement
-and implementation authorization remain distinct and pending.
+The user approved this identified V2 artifact for analyst consistency review on
+13 November 2026; that review is complete with no required findings. The next gate
+is final user agreement to the amended contract and combined V1/V2 design. Material
+design revisions return to the user before renewed review. Implementation
+authorization remains distinct and pending.
 
 Suggested commit message: `docs: propose increment 009 naming and legacy-access mockups`
