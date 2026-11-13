@@ -2,13 +2,27 @@
 
 > Last updated: 13 November 2026
 >
-> Phase: Increment 009 Phase 1 approved; slider extension ready for user review
+> Phase: Increment 009 Phase 2 implemented and independently reviewed; user review pending
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
 > Applied data is browser-profile/origin local; drafts and forms remain session-only.
 
 ## Current focus
+
+**Phase 2 implementation handoff — 13 November 2026:** functional workbench
+folders, focused reference/recovery/action contracts and cohesive navigation-layout
+composition are implemented. The [ownership map](../project/workbench-component-organisation.md)
+records current paths, editor/session ownership and deliberate cross-block leaves.
+Developer focused regressions pass 32/32 and final build passes all four typechecks
+and bundling; independent frozen-source review found no actionable defects.
+Native Chrome smoke confirmed approved color controls and invalid raw-draft
+preservation into All content plus reference-section rendering. See the
+[Phase 2 handoff](../increments/009-workbench-usability-and-component-boundaries.md#phase-2-implementation-handoff--13-november-2026)
+for evidence and limits. Approximately 8.5 of 10 aggregate verification minutes,
+zero repairs; stopped. Phase 1 changes and extension are user-approved; Phase 2
+awaits user review. Earlier explicit manual-acceptance gaps remain, so Increment 009
+is not marked Completed. No staging/commit/push or qualification restart occurred.
 
 **Phase 1 slider extension handoff — 13 November 2026:** after approving Phase 1,
 the user requested side-by-side color components, separate Alpha, sliders above
@@ -214,10 +228,10 @@ Install/offline PWA acceptance, interchange and Electron remain later milestones
 
 ## Next meaningful action
 
-User review of the Phase 1 running application, screenshots and observed/gap
-checklist. Address comments within explicit authority; do not begin Phase 2 until
-the user gives go-ahead. Phase 1 verification is stopped at its ceiling; no automatic
-extension, fixture repair or old 007/008 campaign restart is authorized.
+User review of Phase 2's ownership/folder map and working application. Both closure
+phases are implemented; Phase 1 and its slider extension are approved. Retain the
+recorded manual-acceptance gaps and do not automatically start another review or
+qualification campaign. Staging, committing and pushing stay with the user.
 Any future qualification requires an explicitly authorized bounded follow-up. No
 agent, snapshot or workflow change resets prior consumption. The stopped Increment
 007 campaign's remaining authorized allowance stays **zero**.

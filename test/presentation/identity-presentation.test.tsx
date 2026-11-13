@@ -1,23 +1,23 @@
 import { describe, it, expect } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { TokenList } from "@presentation/features/workbench/components/TokenList";
-import { ProjectNavigation } from "@presentation/features/workbench/components/ProjectNavigation";
+import { TokenList } from "@presentation/features/workbench/browser/TokenList";
+import { ProjectNavigation } from "@presentation/features/workbench/browser/ProjectNavigation";
 import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
-import { Editor } from "@presentation/features/workbench/components/Editor";
-import { identityLabels } from "@presentation/features/workbench/readback";
+import { EditableTokenInspector } from "@presentation/features/workbench/inspector/WorkbenchInspector";
+import { identityLabels } from "@presentation/features/workbench/coordination/readback";
 import { createColorLiteral } from "@domain/color-literal";
 import { createToken } from "@domain/token";
 import { createTokenGroup } from "@domain/token-group";
 import { createProject } from "@domain/project";
 import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
 import { createAuthoringOperations } from "@application/authoring";
-import { ColorFields } from "@presentation/features/workbench/components/ColorFields";
+import { ColorFields } from "@presentation/features/workbench/inspector/ColorFields";
 import {
   baseline,
   editComponent,
-} from "@presentation/features/workbench/state/session";
-import type { DraftSession } from "@presentation/features/workbench/state/session";
+} from "@presentation/features/workbench/inspector/session";
+import type { DraftSession } from "@presentation/features/workbench/inspector/session";
 import type {
   ApplicationResult,
   TokenInspection,
@@ -116,7 +116,7 @@ describe("human identity labels in real consumers", () => {
       createElement(ProjectNavigation, {
         drawer: false,
         project,
-        view: {kind:"group", id:"shared-prefix-group-b"},
+        view: { kind: "group", id: "shared-prefix-group-b" },
         unavailable: false,
         onSelect: () => {},
         onCreateGroup: () => {},
@@ -151,7 +151,10 @@ describe("human identity labels in real consumers", () => {
     expect(missing).toContain("Missing target");
     expect(missing).not.toContain("missing-secret-id");
     const editor = renderToStaticMarkup(
-      createElement(Editor, {
+      createElement(EditableTokenInspector, {
+        inspectorExpanded: true,
+        onToggle() {},
+        readFailure: "",
         project,
         inspection: ok(app.inspectToken("p", "unique-token-id")),
         inspect: (id) => ok(app.inspectToken("p", id)),
@@ -187,7 +190,10 @@ describe("human identity labels in real consumers", () => {
       },
     };
     const referenceEditor = renderToStaticMarkup(
-      createElement(Editor, {
+      createElement(EditableTokenInspector, {
+        inspectorExpanded: true,
+        onToggle() {},
+        readFailure: "",
         project,
         inspection: aliasInspection,
         inspect: (id) => ok(app.inspectToken("p", id)),
@@ -402,7 +408,14 @@ describe("final reference choice context", () => {
       );
     const loaded = storage.load("p");
     if (loaded.status !== "ok" || !loaded.value) throw Error("Fixture missing");
-    storage.commit({...loaded.value,tokens:loaded.value.tokens.map(token => token.id === "other" ? {...token,localName:"x (this token)"} : token)});
+    storage.commit({
+      ...loaded.value,
+      tokens: loaded.value.tokens.map((token) =>
+        token.id === "other"
+          ? { ...token, localName: "x (this token)" }
+          : token,
+      ),
+    });
     ok(
       app.reviseColorToken({
         projectId: "p",
@@ -415,7 +428,10 @@ describe("final reference choice context", () => {
       }),
     );
     const html = renderToStaticMarkup(
-      createElement(Editor, {
+      createElement(EditableTokenInspector, {
+        inspectorExpanded: true,
+        onToggle() {},
+        readFailure: "",
         project: ok(app.readProject("p")),
         inspection: ok(app.inspectToken("p", "self")),
         inspect: (id) => ok(app.inspectToken("p", id)),

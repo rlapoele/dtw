@@ -4,7 +4,7 @@ import {
 } from "@presentation/features/workbench/color/authored-color";
 import type { Token } from "@domain/token";
 import type { ProjectContext } from "@application/retention/projections";
-import { identityLabels } from "@presentation/features/workbench/readback";
+import { identityLabels } from "@presentation/features/workbench/coordination/readback";
 
 type Value = NonNullable<Token["definition"]>["assignments"][number]["value"];
 

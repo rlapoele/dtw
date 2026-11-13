@@ -7,7 +7,7 @@ import { useProjects } from "@presentation/features/workbench/hooks/useProjects"
 import { Dialog } from "@base-ui/react/dialog";
 import { DialogContent } from "@presentation/components/ui/dialog-content";
 
-import { RestoreDialog } from "@presentation/features/workbench/components/RestoreDialog";
+import { RestoreDialog } from "@presentation/features/workbench/backup/RestoreDialog";
 
 import { Workbench } from "./Workbench";
 

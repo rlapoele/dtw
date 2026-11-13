@@ -115,6 +115,15 @@ browser policy. Earlier dated descriptions below describe their original increme
 
 **Presentation organization — 10 November 2026:** `app/App.tsx` retains composition and coordination; `features/workbench/` groups workbench components, renderer-only draft state (`state/session.ts`), color presentation (`color/`) and `readback.ts`. `styles/global.css` remains the single semantic style source. The entry point and local TypeScript configuration remain at the presentation root. This path-only maintenance preserves existing behavior and component contracts. Historical prototypes and evidence retain their original source references and replay at their recorded commit rather than through compatibility wrappers.
 
+**Functional presentation organisation — Increment 009, 13 November 2026:** the
+workbench now colocates browser, inspector, creation, backup and recovery rendering
+with each block's local hooks/state; genuinely cross-block coordination and color
+presentation remain explicit. The [component ownership map](workbench-component-organisation.md)
+owns current paths and section contracts. Workbench composes existing workflow
+owners, while one editor owner preserves the draft session and identity/lifetime.
+This organisation preserves the agreed interface and domain/application/host
+boundaries; earlier dated path descriptions above are historical.
+
 **Component interpretation — Increment 005, 8 November 2026:** `src/domain/color-components.ts` defines the five spaces' closed semantic component identities/order and small readable name/unit metadata. Constructor validation and color calculations consume that order; Culori channel keys, modes and HSL scaling remain in the calculation integration boundary. `authored-color.ts` derives exact named text and `AuthoredValue` shares it between token rows and the applied inspector without changing canonical tuples or raw JSON. CreationDialog renders the token-only description textarea; App passes nonempty text unchanged through the existing operation and preserves it with failed form state. No model shape or numerical policy changed.
 
 ```text

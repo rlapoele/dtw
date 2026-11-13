@@ -1,0 +1,4309 @@
+diff --git a/src/presentation/app/App.tsx b/src/presentation/app/App.tsx
+index 661536d..8ed78a1 100644
+--- a/src/presentation/app/App.tsx
++++ b/src/presentation/app/App.tsx
+@@ -7,7 +7,7 @@ import { useProjects } from "@presentation/features/workbench/hooks/useProjects"
+ import { Dialog } from "@base-ui/react/dialog";
+ import { DialogContent } from "@presentation/components/ui/dialog-content";
+ 
+-import { RestoreDialog } from "@presentation/features/workbench/components/RestoreDialog";
++import { RestoreDialog } from "@presentation/features/workbench/backup/RestoreDialog";
+ 
+ import { Workbench } from "./Workbench";
+ 
+diff --git a/src/presentation/app/Workbench.tsx b/src/presentation/app/Workbench.tsx
+index 79100a3..1a0dd81 100644
+--- a/src/presentation/app/Workbench.tsx
++++ b/src/presentation/app/Workbench.tsx
+@@ -1,22 +1,22 @@
+-import { useWorkbenchLifecycle } from "@presentation/features/workbench/hooks/useWorkbenchLifecycle";
+-import { useWorkbenchBackup } from "@presentation/features/workbench/hooks/useWorkbenchBackup";
+-import { creationParent } from "@presentation/features/workbench/state/browser-view";
+-import type { BrowserView } from "@presentation/features/workbench/state/browser-view";
+-import { RetentionRecovery } from "@presentation/features/workbench/components/RetentionRecovery";
+-import { TokenBrowser } from "@presentation/features/workbench/components/TokenBrowser";
+-import { DepartureGuard } from "@presentation/features/workbench/components/DepartureGuard";
+-import { ProjectDiagnostics } from "@presentation/features/workbench/components/ProjectDiagnostics";
++import { NavigationPane, NavigationDrawer } from "./WorkbenchNavigation";
++import { useWorkbenchLifecycle } from "@presentation/features/workbench/coordination/useWorkbenchLifecycle";
++import { useWorkbenchBackup } from "@presentation/features/workbench/backup/useWorkbenchBackup";
++import { creationParent } from "@presentation/features/workbench/browser/browser-view";
++import type { BrowserView } from "@presentation/features/workbench/browser/browser-view";
++import { RetentionRecovery } from "@presentation/features/workbench/recovery/RetentionRecovery";
++import { TokenBrowser } from "@presentation/features/workbench/browser/TokenBrowser";
++import { DepartureGuard } from "@presentation/features/workbench/recovery/DepartureGuard";
++import { ProjectDiagnostics } from "@presentation/features/workbench/recovery/ProjectDiagnostics";
+ import { WorkbenchHeader } from "@presentation/features/workbench/components/WorkbenchHeader";
+-import { useProjectReadback } from "@presentation/features/workbench/hooks/useProjectReadback";
+-import { useProjectCommands } from "@presentation/features/workbench/hooks/useProjectCommands";
+-import { useCreationForm } from "@presentation/features/workbench/hooks/useCreationForm";
+-import { useWorkbenchLayout } from "@presentation/features/workbench/hooks/useWorkbenchLayout";
++import { useProjectReadback } from "@presentation/features/workbench/coordination/useProjectReadback";
++import { useProjectCommands } from "@presentation/features/workbench/coordination/useProjectCommands";
++import { useCreationForm } from "@presentation/features/workbench/creation/useCreationForm";
++import { useWorkbenchLayout } from "@presentation/features/workbench/coordination/useWorkbenchLayout";
+ 
+-import { RestoreDialog } from "@presentation/features/workbench/components/RestoreDialog";
++import { RestoreDialog } from "@presentation/features/workbench/backup/RestoreDialog";
+ import { requestPersistentStorage } from "@adapters/browser/storage-preference";
+ import { readExactSource } from "@presentation/host/source";
+ import { useEffect, useRef, useState, useMemo } from "react";
+-import { Dialog } from "@base-ui/react/dialog";
+ import { Icon } from "@presentation/components/ui/icon";
+ import type { ApplicationResult } from "@application/authoring";
+ import type { Token } from "@domain/token";
+@@ -26,12 +26,11 @@ import { Button } from "@presentation/components/ui/button";
+ import {
+   WorkbenchInspector,
+   EditableTokenInspector,
+-} from "@presentation/features/workbench/components/WorkbenchInspector";
+-import { CreationDialog } from "@presentation/features/workbench/components/CreationDialog";
+-import { ProjectNavigation } from "@presentation/features/workbench/components/ProjectNavigation";
++} from "@presentation/features/workbench/inspector/WorkbenchInspector";
++import { CreationDialog } from "@presentation/features/workbench/creation/CreationDialog";
++import { ProjectNavigation } from "@presentation/features/workbench/browser/ProjectNavigation";
+ 
+-import { ExactSource } from "@presentation/features/workbench/components/ExactSource";
+-import { identityLabels } from "@presentation/features/workbench/readback";
++import { identityLabels } from "@presentation/features/workbench/coordination/readback";
+ export function Workbench({
+   host,
+   initial,
+@@ -45,9 +44,9 @@ export function Workbench({
+ }) {
+   const [selection, setSelection] =
+     useState<
+-      import("@presentation/features/workbench/hooks/useProjectReadback").Selection
++      import("@presentation/features/workbench/coordination/useProjectReadback").Selection
+     >(null);
+-  const [view, setView] = useState<BrowserView>({kind:"all-tokens"});
++  const [view, setView] = useState<BrowserView>({ kind: "all-tokens" });
+   const group = creationParent(view);
+   const [query, setQuery] = useState("");
+   const [error, setError] = useState(""),
+@@ -133,17 +132,34 @@ export function Workbench({
+     setNotice,
+     (kind, id) => {
+       if (kind === "token") {
+-        setView({kind:"all-tokens"});
++        setView({ kind: "all-tokens" });
+         setQuery("");
+         setSelection({ kind: "token", id });
+         select({ kind: "token", id });
+         setInspectorExpanded(true);
+-      } else if (kind === "group") setView({kind:"group", id});
++      } else if (kind === "group") setView({ kind: "group", id });
+       requestAnimationFrame(() => panel.current?.focus());
+     },
+   );
+-  const {restorePreview, setRestorePreview, restoreInput, restage, onBackupFile, onDownload} = useWorkbenchBackup(host, header, setBusy, setError, setNotice);
+-  useWorkbenchLifecycle({host, projectId:initial.project.id, busy, unknown:!!unknown, dirty, formDirty, setBlocked:setLifecycleBlocked, refresh, setReadFailure});
++  const {
++    restorePreview,
++    setRestorePreview,
++    restoreInput,
++    restage,
++    onBackupFile,
++    onDownload,
++  } = useWorkbenchBackup(host, header, setBusy, setError, setNotice);
++  useWorkbenchLifecycle({
++    host,
++    projectId: initial.project.id,
++    busy,
++    unknown: !!unknown,
++    dirty,
++    formDirty,
++    setBlocked: setLifecycleBlocked,
++    refresh,
++    setReadFailure,
++  });
+   useEffect(() => {
+     if (error) formError.current?.focus();
+   }, [error]);
+@@ -211,14 +227,14 @@ export function Workbench({
+       unavailable={blocked}
+       onSelect={(id) => {
+         if (!busy) {
+-          setView(id === null ? {kind:"all-tokens"} : {kind:"group",id});
+-            setNavigationOpen(false);
++          setView(id === null ? { kind: "all-tokens" } : { kind: "group", id });
++          setNavigationOpen(false);
+         }
+       }}
+       onCreateGroup={() => open("group")}
+       onAllContent={() => {
+         if (!busy) {
+-          setView({kind:"all-content"});
++          setView({ kind: "all-content" });
+           setNavigationOpen(false);
+         }
+       }}
+@@ -299,36 +315,12 @@ export function Workbench({
+         className={`workbench grid flex-1 h-0 min-h-0 overflow-hidden ${compact ? "compact-navigation" : ""} ${sidebarExpanded ? "groups-expanded" : "groups-collapsed"} ${inspectorExpanded ? "inspector-expanded" : "inspector-collapsed"}`}
+       >
+         {!compact && (
+-          <nav
+-            className="sidebar flex min-h-0 flex-col overflow-hidden border-r border-border bg-surface"
+-            aria-label="Project groups"
++          <NavigationPane
++            expanded={sidebarExpanded}
++            onToggle={() => setSidebarExpanded(!sidebarExpanded)}
+           >
+-            <Button
+-              variant="ghost"
+-              size="pane"
+-              className="pane-toggle sidebar-toggle"
+-              aria-label={
+-                sidebarExpanded
+-                  ? "Collapse project groups"
+-                  : "Expand project groups"
+-              }
+-              aria-expanded={sidebarExpanded}
+-              onClick={() => setSidebarExpanded(!sidebarExpanded)}
+-            >
+-              {sidebarExpanded ? (
+-                <Icon name="chevron-left" />
+-              ) : (
+-                <Icon name="chevron-right" />
+-              )}
+-              <span>Project groups</span>
+-            </Button>
+-            <div
+-              hidden={!sidebarExpanded}
+-              className="sidebar-content flex-1 px-3 pt-5.5 pb-5 flex flex-col min-h-0 overflow-auto"
+-            >
+-              {navigation}
+-            </div>
+-          </nav>
++            {navigation}
++          </NavigationPane>
+         )}
+         <TokenBrowser
+           panel={panel}
+@@ -349,10 +341,10 @@ export function Workbench({
+           onQuery={setQuery}
+           onCreateToken={() => open("token")}
+           onRenameGroup={() => open("rename")}
+-          onAllContent={() => setView({kind:"all-content"})}
++          onAllContent={() => setView({ kind: "all-content" })}
+           choose={choose}
+           onReveal={() => {
+-            setView({kind:"all-tokens"});
++            setView({ kind: "all-tokens" });
+             setQuery("");
+             requestAnimationFrame(() =>
+               panel.current
+@@ -408,7 +400,7 @@ export function Workbench({
+             <ProjectDiagnostics
+               diagnostics={diagnostics}
+               onLoad={() => void loadDiagnostics(setError)}
+-              onAllContent={() => setView({kind:"all-content"})}
++              onAllContent={() => setView({ kind: "all-content" })}
+             />
+           }
+         />
+@@ -522,31 +514,12 @@ export function Workbench({
+           Request persistent storage
+         </Button>
+       </footer>
+-      <Dialog.Root
++      <NavigationDrawer
+         open={compact && navigationOpen}
+         onOpenChange={setNavigationOpen}
+       >
+-        <Dialog.Portal>
+-          <Dialog.Backdrop className="navigation-backdrop fixed inset-0 z-30 bg-scrim" />
+-          <Dialog.Popup className="navigation-drawer fixed top-0 bottom-0 left-0 z-35 border-r border-border bg-background flex flex-col overflow-hidden">
+-            <div className="navigation-heading border-b border-border px-4 py-3 flex items-center justify-between gap-3">
+-              <Dialog.Title>Project navigation</Dialog.Title>
+-              <Dialog.Close
+-                render={<Button variant="ghost" size="icon" />}
+-                aria-label="Close project navigation"
+-              >
+-                <Icon name="close" />
+-              </Dialog.Close>
+-            </div>
+-            <Dialog.Description className="sr-only">
+-              Browse groups. Closing preserves drafts.
+-            </Dialog.Description>
+-            <nav className="sidebar-content flex-1 px-3 py-6 overflow-auto">
+-              {navigation}
+-            </nav>
+-          </Dialog.Popup>
+-        </Dialog.Portal>
+-      </Dialog.Root>
++        {navigation}
++      </NavigationDrawer>
+       {dialog === null && departureGuard}
+       {restorePreview && (
+         <RestoreDialog
+diff --git a/src/presentation/features/workbench/components/AllContent.tsx b/src/presentation/features/workbench/components/AllContent.tsx
+deleted file mode 100644
+index cbea3d0..0000000
+--- a/src/presentation/features/workbench/components/AllContent.tsx
++++ /dev/null
+@@ -1,88 +0,0 @@
+-import { memo, useEffect, useState } from "react";
+-import type { ProjectContext } from "@application/retention/projections";
+-import { Button } from "@presentation/components/ui/button";
+-import {
+-  membershipBlocks,
+-  revealMembershipBlocks,
+-} from "@presentation/features/workbench/state/all-content";
+-import type { MembershipEntry } from "@presentation/features/workbench/state/all-content";
+-
+-// Previous blocks retain their native DOM and do not rebuild while a later
+-// block appears. Click delegation keeps callbacks current without stale closures.
+-const MembershipBlock = memo(function MembershipBlock({
+-  entries,
+-}: {
+-  entries: readonly MembershipEntry[];
+-}) {
+-  return entries.map((entry) => (
+-    <li className="min-w-0" key={JSON.stringify([entry.kind, entry.id])}>
+-      <Button
+-        size="inventory"
+-        data-entity-kind={entry.kind}
+-        data-entity-id={entry.id}
+-      >
+-        <span className="block min-w-0 w-full wrap-anywhere">
+-          <span className="block font-medium whitespace-pre-wrap">{entry.label}</span>
+-          <span className="block text-caption text-muted-foreground">
+-            {entry.kind === "group" ? "Namespace group" : `Token · ${entry.valueType}`}
+-          </span>
+-          {entry.detail && <span className="block text-caption text-muted-foreground whitespace-pre-wrap">{entry.detail}</span>}
+-        </span>
+-      </Button>
+-      {!entry.detail && (
+-        <details className="text-caption text-muted-foreground px-3 py-1">
+-          <summary className="cursor-pointer">{entry.kind === "group" ? "Group" : "Token"} identity</summary>
+-          <p className="wrap-anywhere whitespace-pre-wrap">{JSON.stringify(entry.id)}</p>
+-        </details>
+-      )}
+-    </li>
+-  ));
+-});
+-
+-/** The owning workbench keys this view by the coherent applied revision. */
+-export function AllContent({
+-  context,
+-  groupLabels,
+-  onSelect,
+-}: {
+-  context: ProjectContext;
+-  groupLabels: ReadonlyMap<string, string>;
+-  onSelect: (kind: "group" | "token", id: string) => void;
+-}) {
+-  // The key is the coherent project/revision, not the identity of a refreshed
+-  // DTO. Same-revision resume reads must retain native nodes and reveal progress.
+-  const [blocks] = useState(() => membershipBlocks(context, groupLabels));
+-  const [visible, setVisible] = useState(Math.min(1, blocks.length));
+-  useEffect(
+-    () => revealMembershipBlocks(blocks.length, setVisible),
+-    [blocks],
+-  );
+-  const total = context.groups.length + context.tokens.length;
+-  return (
+-    <>
+-      <p role="status" className="text-caption mb-4">
+-        {visible < blocks.length
+-          ? `Preparing all content… ${Math.min(visible * 100, total)} of ${total} identities`
+-          : `All content ready · ${context.groups.length} groups · ${context.tokens.length} tokens`}
+-      </p>
+-      <div
+-        onClick={(event) => {
+-          if (!(event.target instanceof Element)) return;
+-          const button = event.target.closest<HTMLButtonElement>(
+-            "button[data-entity-kind]",
+-          );
+-          if (!button || !event.currentTarget.contains(button)) return;
+-          const kind = button.dataset.entityKind, id = button.dataset.entityId;
+-          if ((kind === "group" || kind === "token") && id !== undefined)
+-            onSelect(kind, id);
+-        }}
+-      >
+-        <ul className="flex min-w-0 flex-col gap-2" aria-label="All project content">
+-          {blocks.slice(0, visible).map((entries, index) => (
+-            <MembershipBlock key={index} entries={entries} />
+-          ))}
+-        </ul>
+-      </div>
+-    </>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/components/AuthoredValue.tsx b/src/presentation/features/workbench/components/AuthoredValue.tsx
+index 22040e4..f185490 100644
+--- a/src/presentation/features/workbench/components/AuthoredValue.tsx
++++ b/src/presentation/features/workbench/components/AuthoredValue.tsx
+@@ -4,7 +4,7 @@ import {
+ } from "@presentation/features/workbench/color/authored-color";
+ import type { Token } from "@domain/token";
+ import type { ProjectContext } from "@application/retention/projections";
+-import { identityLabels } from "@presentation/features/workbench/readback";
++import { identityLabels } from "@presentation/features/workbench/coordination/readback";
+ 
+ type Value = NonNullable<Token["definition"]>["assignments"][number]["value"];
+ 
+diff --git a/src/presentation/features/workbench/components/ColorFields.tsx b/src/presentation/features/workbench/components/ColorFields.tsx
+deleted file mode 100644
+index 02a6ab5..0000000
+--- a/src/presentation/features/workbench/components/ColorFields.tsx
++++ /dev/null
+@@ -1,296 +0,0 @@
+-import {
+-  COLOR_COMPONENTS,
+-  COMPONENT_NAMES,
+-  componentSuffix,
+-} from "@domain/color-components";
+-import { Field } from "@presentation/components/ui/field";
+-import { Input } from "@presentation/components/ui/input";
+-import type { CSSProperties } from "react";
+-import { COLOR_SPACES } from "@domain/color-literal";
+-import type { ColorSpace } from "@domain/color-literal";
+-import {
+-  integerByteDisplay,
+-  integerByteIssue,
+-} from "@presentation/features/workbench/color/integer-rgb";
+-import { Select } from "@presentation/components/ui/select";
+-import {
+-  changeView,
+-  displayed,
+-  editComponent,
+-  fields,
+-} from "@presentation/features/workbench/state/session";
+-import type { DraftSession } from "@presentation/features/workbench/state/session";
+-import { visualRangeState } from "@presentation/features/workbench/color/visual-range";
+-import { spaceName } from "@presentation/features/workbench/color/authored-color";
+-export { spaceName } from "@presentation/features/workbench/color/authored-color";
+-function illustrativeGradient(space: ColorSpace, index: number): string {
+-  const identity = COLOR_COMPONENTS[space][index];
+-  if (identity === "hue")
+-    return "linear-gradient(to right,#e33333,#d3c825,#30b94c,#31c8cb,#3655e1,#b737cd,#e33333)";
+-  if (space === "srgb" || space === "display-p3")
+-    return `linear-gradient(to right,#222,${({ red: "#e45c5c", green: "#4f9e61", blue: "#557bd0" } as Record<string, string>)[identity]})`;
+-  if (space === "hsl")
+-    return identity === "lightness"
+-      ? "linear-gradient(to right,#111,#999,#fff)"
+-      : "linear-gradient(to right,#9b9b9b,#4b78bd)";
+-  if (space === "oklab" && identity !== "lightness")
+-    return identity === "a"
+-      ? "linear-gradient(to right,#389d70,#aaa,#c4598e)"
+-      : "linear-gradient(to right,#5670be,#aaa,#c1ae45)";
+-  if (space === "oklch" && identity === "chroma")
+-    return "linear-gradient(to right,#aaa,#456bc8)";
+-  return "linear-gradient(to right,#111,#fff)";
+-}
+-export function ColorFields({
+-  session: s,
+-  onChange,
+-  onError,
+-  readOnly = false,
+-}: {
+-  session: DraftSession;
+-  onChange: (s: DraftSession) => void;
+-  onError: (s: string) => void;
+-  readOnly?: boolean;
+-}) {
+-  const d = displayed(s),
+-    bytes = d.colorSpace === "srgb" && s.scale === "bytes";
+-  let values: [string, string, string];
+-  try {
+-    values = fields(s);
+-  } catch {
+-    values = d.components;
+-  }
+-  const change = (i: number, text: string) => {
+-    onChange(editComponent(s, i, text));
+-    onError("");
+-  };
+-  const alphaRangeState = visualRangeState(s.literal.alpha, "0", "1");
+-  return (
+-    <>
+-      <div className="grid grid-cols-2 gap-3 mt-3">
+-      <Field className="mb-1!">
+-        View color space
+-        <Select
+-          disabled={readOnly}
+-          value={s.viewSpace}
+-          onChange={(e) => {
+-            try {
+-              onChange(changeView(s, e.target.value as ColorSpace));
+-              onError("");
+-            } catch (e) {
+-              onError(
+-                e instanceof Error ? e.message : "Representation unavailable",
+-              );
+-            }
+-          }}
+-        >
+-          {COLOR_SPACES.map((space) => (
+-            <option key={space} value={space}>
+-              {spaceName(space)}
+-            </option>
+-          ))}
+-        </Select>
+-      </Field>
+-      {d.colorSpace === "srgb" && (
+-        <Field className="mb-1!">
+-          RGB entry scale
+-          <Select
+-            disabled={readOnly}
+-            value={s.scale}
+-            onChange={(e) => {
+-              if (s.byteInvalid) {
+-                onError("Finish the byte entries before changing scale.");
+-                return;
+-              }
+-              try {
+-                if (e.target.value === "bytes")
+-                  d.components.forEach(integerByteDisplay);
+-                onChange({
+-                  ...s,
+-                  scale: e.target.value as DraftSession["scale"],
+-                });
+-                onError("");
+-              } catch (e) {
+-                onError(
+-                  e instanceof Error ? e.message : "Byte display unavailable",
+-                );
+-              }
+-            }}
+-          >
+-            <option value="normalized">Normalized · 0–1</option>
+-            <option value="bytes">0–255 scale</option>
+-          </Select>
+-        </Field>
+-      )}
+-      </div>
+-      <p
+-        id="space-note"
+-        className="view-note text-caption pt-1 pb-2 -mt-1 text-muted-foreground wrap-anywhere"
+-      >
+-        {s.viewSpace === s.literal.colorSpace
+-          ? `Draft in ${spaceName(s.literal.colorSpace)}. Switching view keeps exact values.`
+-          : `Viewing approximate ${spaceName(s.viewSpace)}. Draft remains in ${spaceName(s.literal.colorSpace)} until a component edit.`}
+-      </p>
+-      <div className="component-controls grid grid-cols-3 gap-x-3 min-w-0">
+-        {values.map((value, i) => {
+-          const identity = COLOR_COMPONENTS[d.colorSpace][i];
+-          const suffix = componentSuffix(d.colorSpace, identity);
+-          const label =
+-            COMPONENT_NAMES[identity] + (suffix ? ` (${suffix})` : "");
+-          const hue = identity === "hue";
+-          const min =
+-              d.colorSpace === "oklab" && identity !== "lightness" ? -0.4 : 0,
+-            max = hue
+-              ? 359.9
+-              : d.colorSpace === "hsl"
+-                ? 100
+-                : (d.colorSpace === "oklab" && identity !== "lightness") ||
+-                    (d.colorSpace === "oklch" && identity === "chroma")
+-                  ? 0.4
+-                  : bytes
+-                    ? 255
+-                    : 1;
+-          const step = hue || d.colorSpace === "hsl" ? 0.1 : bytes ? 1 : 0.001;
+-          const issue =
+-            bytes && s.byteEdited[i] ? integerByteIssue(value) : undefined;
+-          const approximate =
+-            bytes &&
+-            !s.byteEdited[i] &&
+-            integerByteDisplay(d.components[i]).approximate;
+-          const rangeState =
+-            bytes && !s.byteEdited[i]
+-              ? visualRangeState(d.components[i], "0", "1")
+-              : issue
+-                ? "invalid"
+-                : visualRangeState(value, String(min), String(max));
+-          const available = rangeState === "available";
+-          return (
+-            <div
+-              className="component-control flex min-w-0 flex-col mb-1"
+-              key={d.colorSpace + "-" + i}
+-            >
+-              <label htmlFor={`color-component-${i}`} className="component-value min-w-0 m-0 text-caption font-medium wrap-anywhere">
+-                {label}
+-              </label>
+-              {available ? (
+-                <>
+-                  <input
+-                    className="component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground"
+-                    type="range"
+-                    disabled={readOnly}
+-                    min={min}
+-                    max={max}
+-                    step={step}
+-                    value={Number(value)}
+-                    style={
+-                      {
+-                        "--range-gradient": illustrativeGradient(
+-                          d.colorSpace,
+-                          i,
+-                        ),
+-                      } as CSSProperties
+-                    }
+-                    aria-label={label + " slider"}
+-                    aria-valuetext={value}
+-                    onChange={(e) => change(i, e.target.value)}
+-                  />
+-                </>
+-              ) : (
+-                <p className="helper text-muted-foreground font-normal range-unavailable flex min-h-10 items-center wrap-anywhere small:min-h-11">
+-                  {value === "none"
+-                    ? "Missing component · use exact entry."
+-                    : rangeState === "outside"
+-                      ? "Outside visual range · exact value retained."
+-                      : "Complete exact entry to use slider."}
+-                </p>
+-              )}
+-              <Input
+-                id={`color-component-${i}`}
+-                readOnly={readOnly}
+-                className="small:h-11 small:min-h-11"
+-                value={value}
+-                spellCheck={false}
+-                aria-describedby={`range-note-${i} byte-note-${i} editor-error`}
+-                aria-invalid={!!issue || undefined}
+-                onChange={(e) => change(i, e.target.value)}
+-              />
+-              {bytes && (
+-                <p
+-                  id={`byte-note-${i}`}
+-                  className={`text-caption mt-1 wrap-anywhere ${issue ? "text-destructive" : "text-muted-foreground"}`}
+-                >
+-                  {issue ??
+-                    (approximate
+-                      ? `Approximate · exact normalized ${d.components[i]}`
+-                      : "")}
+-                </p>
+-              )}
+-              <p className="sr-only" id={`range-note-${i}`}>
+-                Illustrative range {min} to {max}, step {step}. Exact values are
+-                retained.
+-              </p>
+-            </div>
+-          );
+-        })}
+-      </div>
+-      <div className="component-control flex min-w-0 flex-col mb-1 alpha-control border-t border-border pt-1">
+-        <label htmlFor="color-alpha" className="component-value min-w-0 m-0 text-caption font-medium">
+-          Alpha
+-        </label>
+-        {alphaRangeState === "available" ? (
+-          <input
+-            className="component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range"
+-            type="range"
+-            disabled={readOnly}
+-            min="0"
+-            max="1"
+-            step="0.01"
+-            aria-label="Alpha slider"
+-            value={Number(s.literal.alpha)}
+-            onChange={(e) =>
+-              onChange({
+-                ...s,
+-                literal: { ...s.literal, alpha: e.target.value },
+-                edited: true,
+-              })
+-            }
+-          />
+-        ) : (
+-          <p className="helper text-muted-foreground font-normal range-unavailable flex min-h-10 items-center wrap-anywhere small:min-h-11">
+-            {alphaRangeState === "outside"
+-              ? "Outside visual range · exact alpha retained."
+-              : "Complete alpha in exact entry."}
+-          </p>
+-        )}
+-        <Input
+-          id="color-alpha"
+-          readOnly={readOnly}
+-          className="small:h-11 small:min-h-11"
+-          value={s.literal.alpha}
+-          aria-describedby="editor-error"
+-          onChange={(e) =>
+-            onChange({
+-              ...s,
+-              literal: { ...s.literal, alpha: e.target.value },
+-              edited: true,
+-            })
+-          }
+-        />
+-      </div>
+-      <details className="text-caption text-muted-foreground"><summary>Color entry guidance</summary>
+-      <p className="helper text-muted-foreground font-normal">
+-        {bytes
+-          ? "Canonical whole numbers or none on the 0–255 scale"
+-          : "Exact canonical decimal text or none"}
+-        ; alpha 0–1. Sliders are illustrative stepped edits. Derived views and
+-        byte displays may be approximate. Apply uses {s.literal.colorSpace}.
+-      </p>
+-      </details>
+-      {bytes && (
+-        <p className="helper text-muted-foreground font-normal mono break-words">
+-          Normalized draft: [{s.literal.components.join(", ")}]
+-        </p>
+-      )}
+-    </>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/components/CreationDialog.tsx b/src/presentation/features/workbench/components/CreationDialog.tsx
+deleted file mode 100644
+index cd74b6f..0000000
+--- a/src/presentation/features/workbench/components/CreationDialog.tsx
++++ /dev/null
+@@ -1,242 +0,0 @@
+-import { namingPreview } from "../state/naming-preview";
+-import type { Ref } from "react";
+-import type { ProjectContext } from "@application/retention/projections";
+-import { Dialog } from "@base-ui/react/dialog";
+-import { DialogContent } from "@presentation/components/ui/dialog-content";
+-import { Button } from "@presentation/components/ui/button";
+-import { Field } from "@presentation/components/ui/field";
+-import { Input } from "@presentation/components/ui/input";
+-import { Select } from "@presentation/components/ui/select";
+-import { identityLabels } from "@presentation/features/workbench/readback";
+-
+-/** Creation and rename rendering; App owns drafts, operations, readback and focus policy. */
+-export function CreationDialog({
+-  dialog,
+-  project,
+-  name,
+-  renameTarget,
+-  description,
+-  onDescriptionChange,
+-  parent,
+-  layer,
+-  readFailure,
+-  error,
+-  formError,
+-  finalFocus,
+-  onClose,
+-  onCreate,
+-  onRetry,
+-  onNameChange,
+-  onParentChange,
+-  onLayerChange,
+-  pending = false,
+-  recovery,
+-  guard,
+-  submissionBlocked,
+-}: {
+-  dialog: "token" | "group" | "rename" | null;
+-  project: ProjectContext | undefined;
+-  name: string;
+-  renameTarget?: string | null;
+-  description: string;
+-  onDescriptionChange: (value: string) => void;
+-  parent: string | null;
+-  layer: string;
+-  readFailure: string;
+-  error: string;
+-  formError: Ref<HTMLParagraphElement>;
+-  finalFocus: () => HTMLElement | null;
+-  onClose: () => void;
+-  onCreate: () => void;
+-  onRetry: () => void;
+-  onNameChange: (value: string) => void;
+-  onParentChange: (value: string | null) => void;
+-  onLayerChange: (value: string) => void;
+-  pending?: boolean;
+-  recovery?: import("react").ReactNode;
+-  guard?: import("react").ReactNode;
+-  submissionBlocked?: string;
+-}) {
+-  const preview = namingPreview(project, dialog, name, parent, renameTarget);
+-  const labels = identityLabels(project?.groups ?? [], [
+-    "Project root",
+-    "All tokens",
+-  ]);
+-  return (
+-    <Dialog.Root
+-      open={dialog !== null}
+-      onOpenChange={(o) => {
+-        if (!o && !pending) onClose();
+-      }}
+-    >
+-      <DialogContent className="dialog-popup flex flex-col" finalFocus={finalFocus}>
+-        <Dialog.Title className="dialog-title mb-2.5">
+-          {dialog === "token"
+-            ? "Create a color token"
+-            : dialog === "rename"
+-              ? "Rename group"
+-              : "Create a group"}
+-        </Dialog.Title>
+-        <Dialog.Description className="text-xs/normal text-muted-foreground mb-6">
+-          {dialog === "token"
+-            ? "Create a color token with an opaque black sRGB value."
+-            : "Groups organize paths; names do not define types."}
+-        </Dialog.Description>
+-        {recovery}
+-        <form className="min-h-0 overflow-auto"
+-          onSubmit={(e) => {
+-            e.preventDefault();
+-            onCreate();
+-          }}
+-        >
+-          <fieldset>
+-            <Field>
+-              Name
+-              <Input
+-                readOnly={pending}
+-                value={name}
+-                onChange={(e) => onNameChange(e.target.value)}
+-                aria-describedby="name-preview creation-error"
+-                aria-invalid={!!error || undefined}
+-              />
+-            </Field>
+-            {dialog === "token" && (
+-              <Field>
+-                Description (optional)
+-                <textarea
+-                  readOnly={pending}
+-                  aria-describedby="creation-error"
+-                  aria-invalid={!!error && error.includes("token-description")}
+-                  rows={2}
+-                  value={description}
+-                  onChange={(e) => onDescriptionChange(e.target.value)}
+-                  className="w-full min-w-0 rounded-md border border-border bg-background text-foreground px-2.5 py-2 text-xs/normal hover:border-control-hover resize-y"
+-                />
+-              </Field>
+-            )}
+-            {dialog !== "rename" && (
+-              <Field>
+-                {dialog === "token" ? "Group" : "Parent group"}
+-                <Select
+-                  disabled={pending}
+-                  value={parent === null ? "" : JSON.stringify(parent)}
+-                  onChange={(e) =>
+-                    onParentChange(
+-                      e.target.value === ""
+-                        ? null
+-                        : (JSON.parse(e.target.value) as string),
+-                    )
+-                  }
+-                >
+-                  <option value="">Project root</option>
+-                  {parent !== null &&
+-                    !project?.groups.some((g) => g.authored.id === parent) && (
+-                      <option value={JSON.stringify(parent)}>
+-                        Unavailable original parent · {JSON.stringify(parent)}
+-                      </option>
+-                    )}
+-                  {project?.groups.map((g) => (
+-                    <option
+-                      key={g.authored.id}
+-                      value={JSON.stringify(g.authored.id)}
+-                    >
+-                      {labels.get(g.authored.id)}
+-                    </option>
+-                  ))}
+-                </Select>
+-              </Field>
+-            )}
+-            <section id="name-preview" className="border border-border bg-muted rounded-md p-3 text-caption mb-4 wrap-anywhere" aria-live="polite">
+-              <h3>Name to save</h3>
+-              <p className="font-medium whitespace-pre-wrap">{preview.name ?? 'No usable name'}</p>
+-              <p className="mt-2">{preview.path ? `Path: ${preview.path.join(' / ')}` : !preview.name ? 'No valid path yet.' : 'Path unavailable · original parent is preserved.'}</p>
+-              {preview.error && <p>{preview.error}</p>}
+-              {preview.collisions.length > 0 && <>
+-                <h3 className="mt-3">Path already in use</h3>
+-                <p>Choose a different name or parent. Rename also checks descendant paths.</p>
+-                <ul className="mt-2 space-y-2">
+-                  {preview.collisions.flatMap((collision, index) => collision.members.filter(member => member.id !== preview.previewId).map(member => <li key={JSON.stringify([index,member.kind,member.id])}>
+-                    <strong>{member.kind === 'group' ? 'Group' : `${project?.tokens.find(t => t.authored.id === member.id)?.authored.definition?.type ?? 'Unassigned'} token`} · {member.path.join(' / ')}</strong>
+-                    <span className="block">Identity: {JSON.stringify(member.id)}</span>
+-                    <span className="block">Parent: {(() => {const entry = member.kind === 'group' ? project?.groups.find(g => g.authored.id === member.id) : project?.tokens.find(t => t.authored.id === member.id); return entry?.authored.parentGroupId === null ? 'Project root' : JSON.stringify(entry?.authored.parentGroupId);})()}</span>
+-                  </li>))}
+-                </ul>
+-              </>}
+-            </section>
+-            {dialog === "token" && (
+-              <>
+-                <Field>
+-                  Layer
+-                  <Select
+-                    disabled={pending}
+-                    value={layer}
+-                    onChange={(e) => onLayerChange(e.target.value)}
+-                  >
+-                    <option value="">Unspecified</option>
+-                    <option value="primitive">Primitive</option>
+-                    <option value="semantic">Semantic</option>
+-                  </Select>
+-                </Field>
+-                <section className="creation-disclosure bg-muted border border-border text-xs/normal my-4 p-3 rounded-md">
+-                  <h3>Initial value</h3>
+-                  <p className="mt-2">
+-                    sRGB · Red 0 · Green 0 · Blue 0 · Alpha 1 (opaque black)
+-                  </p>
+-                  <p className="mt-2">
+-                    Create starts with this color. You can revise it or
+-                    explicitly replace it with a reference in the editor.
+-                  </p>
+-                </section>
+-              </>
+-            )}
+-          </fieldset>
+-          {readFailure && (
+-            <div
+-              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+-              id="dialog-read-error"
+-              tabIndex={-1}
+-              role="status"
+-            >
+-              <p>
+-                Project unavailable. Inputs retained; Retry reading the project
+-                to resume.
+-              </p>
+-              <Button onClick={onRetry}>Retry reading project</Button>
+-            </div>
+-          )}
+-          {error ? (
+-            <p
+-              ref={formError}
+-              tabIndex={-1}
+-              id="creation-error"
+-              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+-              role="alert"
+-            >
+-              {error}
+-            </p>
+-          ) : (
+-            <span id="creation-error" />
+-          )}
+-          {submissionBlocked && (
+-            <p role="status" className="text-caption mt-3">
+-              {submissionBlocked}
+-            </p>
+-          )}
+-          <div className="dialog-actions sticky bottom-0 bg-background justify-end flex gap-2.5 mt-4 py-3">
+-            <Dialog.Close render={<Button disabled={pending} />}>
+-              Cancel
+-            </Dialog.Close>
+-            <Button
+-              type="submit"
+-              variant="default"
+-              disabled={!!readFailure || pending || !!submissionBlocked}
+-            >
+-              {dialog === "rename" ? "Rename group" : "Create"}
+-            </Button>
+-          </div>
+-        </form>
+-        {guard}
+-      </DialogContent>
+-    </Dialog.Root>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/components/DepartureGuard.tsx b/src/presentation/features/workbench/components/DepartureGuard.tsx
+deleted file mode 100644
+index 3fc260e..0000000
+--- a/src/presentation/features/workbench/components/DepartureGuard.tsx
++++ /dev/null
+@@ -1,48 +0,0 @@
+-import { Button } from "@presentation/components/ui/button";
+-
+-import { Dialog } from "@base-ui/react/dialog";
+-import { DialogContent } from "@presentation/components/ui/dialog-content";
+-
+-export function DepartureGuard({
+-  open,
+-  unknown,
+-  busy,
+-  onStay,
+-  onDiscard,
+-  finalFocus,
+-}: {
+-  open: boolean;
+-  unknown: boolean;
+-  busy: boolean;
+-  onStay: () => void;
+-  onDiscard: () => void;
+-  finalFocus: () => HTMLElement | null;
+-}) {
+-  return (
+-    <Dialog.Root
+-      open={open}
+-      onOpenChange={(value) => {
+-        if (!value) onStay();
+-      }}
+-    >
+-      <DialogContent finalFocus={finalFocus}>
+-        <Dialog.Title>
+-          {unknown ? "Review before leaving" : "Discard unapplied changes?"}
+-        </Dialog.Title>
+-        <Dialog.Description>
+-          {unknown
+-            ? "An issued write may already be retained. Leaving discards session input; it does not roll back applied work."
+-            : "Session drafts and unfinished form input will be discarded. Applied data is unchanged."}
+-        </Dialog.Description>
+-        <div className="dialog-actions justify-end flex gap-2.5 mt-6">
+-          <Dialog.Close render={<Button />}>
+-            {unknown ? "Stay here" : "Keep editing"}
+-          </Dialog.Close>
+-          <Button variant="default" disabled={busy} onClick={onDiscard}>
+-            {unknown ? "Leave project" : "Discard draft"}
+-          </Button>
+-        </div>
+-      </DialogContent>
+-    </Dialog.Root>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/components/Editor.tsx b/src/presentation/features/workbench/components/Editor.tsx
+deleted file mode 100644
+index fbda147..0000000
+--- a/src/presentation/features/workbench/components/Editor.tsx
++++ /dev/null
+@@ -1,289 +0,0 @@
+-import { ReferenceFields } from './ReferenceFields';
+-import { TokenMetadata } from './TokenMetadata';
+-import { ResolvedTokenPanel } from './ResolvedTokenPanel';
+-import { useTokenEditor } from "@presentation/features/workbench/hooks/useTokenEditor";
+-
+-import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
+-import { InspectionTabs } from "@presentation/features/workbench/components/inspection-tabs";
+-import { Badge } from "@presentation/components/ui/badge";
+-
+-import { Tabs } from "@base-ui/react/tabs";
+-
+-import { Button } from "@presentation/components/ui/button";
+-import { ColorFields } from "@presentation/features/workbench/components/ColorFields";
+-
+-export type Feedback = {
+-  tokenId: string;
+-  tab: string;
+-  applied?: string;
+-  draft?: string;
+-  appliedMessage: string;
+-  draftMessage: string;
+-};
+-export function Editor(props: Parameters<typeof useTokenEditor>[0]) {
+-  return <EditorFields editor={useTokenEditor(props)} />;
+-}
+-export function EditorFields({
+-  editor,
+-}: {
+-  editor: ReturnType<typeof useTokenEditor>;
+-}) {
+-  const {
+-    i,
+-    project,
+-    projected,
+-    token,
+-    value,
+-    accepting,
+-    session,
+-    setSession,
+-    recovery,
+-    setRecovery,
+-    reviewHeading,
+-    tab,
+-    setTab,
+-    error,
+-    setError,
+-    notice,
+-    setNotice,
+-    modeRef,
+-    errorRef,
+-    dirty,
+-    applied,
+-    draft,
+-    tokenLabels,
+-    referenceChoices,
+-    referenceLabels,
+-    groupLabels,
+-    editable,
+-    apply,
+-    cancel,
+-    readUnavailable,
+-    revision,
+-    requestSource,
+-    readOnly,
+-    targetUnavailable,
+-  } = editor;
+-  return (
+-    <aside
+-      className="inspector small:min-h-0 flex min-w-0 min-h-full flex-col bg-surface"
+-      aria-label="Selected token"
+-      hidden={readUnavailable}
+-    >
+-      <div className="inspector-heading bg-surface p-3">
+-        <span className="eyebrow uppercase text-muted-foreground font-semibold">
+-          {token.definition?.type ?? "Unassigned"} token
+-        </span>
+-        <h2 className="wrap-anywhere">
+-          {tokenLabels.get(token.id) ??
+-            (token.localName || "(unnamed original token)")}
+-        </h2>
+-        {token.description && <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
+-          {token.description}
+-        </p>}
+-        {i.path.status !== "derived" && <p className="text-caption wrap-anywhere">Path unavailable · Parent identity: {JSON.stringify(token.parentGroupId)}. Exact namespace details remain available below.</p>}
+-        <div className="flex gap-2">
+-          {token.layer && <Badge>{token.layer}</Badge>}
+-          {!editable && <Badge>Inspection only</Badge>}
+-        </div>
+-      </div>
+-      <Tabs.Root value={tab} onValueChange={setTab}>
+-        <InspectionTabs />
+-        <Tabs.Panel
+-          value="authored"
+-          className="editor-body bg-surface p-3"
+-        >
+-          {targetUnavailable && (
+-            <p
+-              role="status"
+-              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive"
+-            >
+-              {targetUnavailable} Preserved input remains selectable. This
+-              action cannot recreate or retarget it.
+-            </p>
+-          )}
+-          {recovery && (
+-            <section className="border border-border rounded p-3 text-caption mb-4">
+-              <h3 ref={reviewHeading} tabIndex={-1}>
+-                Applied state changed
+-              </h3>
+-              <p>
+-                Raw literal/reference input and view/scale choices are
+-                preserved. Review opens a comparison; only Reapply changes
+-                submits a fresh command.
+-              </p>
+-              {!recovery.reviewed ? (
+-                <Button
+-                  onClick={() => {
+-                    setRecovery({ ...recovery, reviewed: true });
+-                    requestAnimationFrame(() => reviewHeading.current?.focus());
+-                  }}
+-                >
+-                  Review edit
+-                </Button>
+-              ) : (
+-                <>
+-                  <h4 className="mt-3">Previous applied</h4>
+-                  <pre className="whitespace-pre-wrap wrap-anywhere">
+-                    {JSON.stringify(recovery.previous ?? null, null, 2)}
+-                  </pre>
+-                  <h4 className="mt-3">Current applied</h4>
+-                  <pre className="whitespace-pre-wrap wrap-anywhere">
+-                    {JSON.stringify(
+-                      value ?? {
+-                        type: token.definition?.type,
+-                        kind: "token" in i ? i.authoredKind : "No assignment",
+-                      },
+-                      null,
+-                      2,
+-                    )}
+-                  </pre>
+-                  <h4 className="mt-3">Preserved input</h4>
+-                  <pre className="whitespace-pre-wrap wrap-anywhere">
+-                    {JSON.stringify(session, null, 2)}
+-                  </pre>
+-                </>
+-              )}
+-            </section>
+-          )}
+-          {editable || dirty ? (
+-            <>
+-              <fieldset disabled={accepting}>
+-                <legend className="sr-only">Value source</legend>
+-                <div className="mode-switch border border-border bg-mode flex p-0.75 rounded-md gap-0.75">
+-                  <Button
+-                    variant="mode"
+-                    size="mode"
+-                    ref={modeRef}
+-                    aria-pressed={session.mode === "literal"}
+-                    onClick={() => {
+-                      setSession({ ...session, mode: "literal" });
+-                      setError("");
+-                    }}
+-                  >
+-                    Literal color
+-                  </Button>
+-                  <Button
+-                    variant="mode"
+-                    size="mode"
+-                    aria-pressed={session.mode === "reference"}
+-                    onClick={() => {
+-                      setSession({ ...session, mode: "reference" });
+-                      setError("");
+-                    }}
+-                  >
+-                    Reference
+-                  </Button>
+-                </div>
+-              </fieldset>
+-              {session.mode === "literal" ? (
+-                <ColorFields
+-                  readOnly={accepting || readOnly}
+-                  session={session}
+-                  onChange={(s) => {
+-                    setSession(s);
+-                    setError("");
+-                    setNotice("");
+-                  }}
+-                  onError={setError}
+-                />
+-              ) : (
+-                <ReferenceFields session={session} tokens={project.tokens} choices={referenceChoices} labels={referenceLabels} onChange={next => {setSession(next);setError("");}} />
+-              )}
+-              <p className="helper text-muted-foreground font-normal preview-detail mt-2 wrap-anywhere">
+-                Draft preview: {draft.message}
+-              </p>
+-              {error ? (
+-                <p
+-                  ref={errorRef}
+-                  tabIndex={-1}
+-                  className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+-                  id="editor-error"
+-                  role="alert"
+-                >
+-                  {error}
+-                </p>
+-              ) : (
+-                <span id="editor-error" />
+-              )}
+-              <div className="editor-actions sticky z-1 flex justify-end gap-2 mt-3 mb-2 border-t border-border bg-surface py-3">
+-                <Button disabled={!dirty || accepting} onClick={cancel}>
+-                  Cancel
+-                </Button>
+-                <Button
+-                  variant="default"
+-                  disabled={
+-                    !dirty ||
+-                    !editable ||
+-                    !!targetUnavailable ||
+-                    (!!recovery && !recovery.reviewed) ||
+-                    readUnavailable ||
+-                    readOnly ||
+-                    accepting ||
+-                    session.byteInvalid
+-                  }
+-                  onClick={apply}
+-                >
+-                  {accepting
+-                    ? "Retaining changes…"
+-                    : recovery?.reviewed
+-                      ? "Reapply changes"
+-                      : "Apply changes"}
+-                </Button>
+-              </div>
+-              <p
+-                className="helper text-muted-foreground font-normal"
+-                role="status"
+-              >
+-                {notice ||
+-                  (dirty
+-                    ? "Changes are not applied yet."
+-                    : "Editing preserves name and metadata.")}
+-              </p>
+-            </>
+-          ) : (
+-            <p className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4">
+-              Inspection only: this token is outside the unconditional
+-              primitive/semantic color revision flow. Its data is retained.
+-            </p>
+-          )}
+-          {token.layer === "component" && (
+-            <p role="status" className="helper text-muted-foreground">
+-              Component association is preserved. Component ownership context is
+-              unavailable and unverified.
+-            </p>
+-          )}
+-          <section className="applied-summary border-t border-border mt-7 pt-5">
+-            <h3 className="mb-3.5">
+-              {targetUnavailable
+-                ? "Previous applied · target unavailable"
+-                : "Currently applied"}
+-            </h3>
+-            <div className="text-caption">
+-              {projected && !value ? (
+-                "token" in i ? (
+-                  i.authoredKind
+-                ) : (
+-                  "No assignment"
+-                )
+-              ) : (
+-                <AuthoredValue value={value} project={project} />
+-              )}
+-            </div>
+-          </section>
+-          <TokenMetadata token={token} groupLabels={groupLabels} revision={revision} requestSource={requestSource} path={i.path} />
+-        </Tabs.Panel>
+-        <Tabs.Panel
+-          value="resolved"
+-          className="editor-body bg-surface p-3"
+-        >
+-          <ResolvedTokenPanel resolution={i.resolution} project={project} css={applied.css} message={applied.message} />
+-        </Tabs.Panel>
+-      </Tabs.Root>
+-      <div className="inspector-foot density:mt-5 small:mt-0 border-t border-border bg-surface px-6 py-4 mt-auto flex justify-between text-muted-foreground">
+-        <span>Regeneration</span>
+-        <span>{token.authoring.regeneration}</span>
+-      </div>
+-    </aside>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/components/GroupInspector.tsx b/src/presentation/features/workbench/components/GroupInspector.tsx
+deleted file mode 100644
+index f44e3d5..0000000
+--- a/src/presentation/features/workbench/components/GroupInspector.tsx
++++ /dev/null
+@@ -1,20 +0,0 @@
+-import type { ProjectContext } from '@application/retention/projections';
+-import { pathLabel } from '../readback';
+-import { ExactSource } from './ExactSource';
+-export function GroupInspector({entry, projectId, revision, requestSource}: {
+- entry: ProjectContext['groups'][number] | undefined; projectId:string; revision:string; requestSource:() => Promise<string>;
+-}) {
+- return <div className="p-5">
+-   <p className="text-caption text-muted-foreground">Group · Read only</p>
+-   <h2 className="wrap-anywhere">{entry?.authored.localName || '(unnamed group)'}</h2>
+-   <p className="wrap-anywhere mt-2">{entry?.path.status === 'derived' ? pathLabel(entry.path) : 'Path unavailable'}</p>
+-   {entry && entry.path.status !== 'derived' && <p className="text-caption wrap-anywhere">Parent identity: {JSON.stringify(entry.authored.parentGroupId)}. Exact namespace diagnostics are available below.</p>}
+-   <details className="text-caption mt-4">
+-    <summary>Identity and path details</summary>
+-    <p className="wrap-anywhere">Project identity: {JSON.stringify(projectId)}</p>
+-    <p className="wrap-anywhere">Group identity: {JSON.stringify(entry?.authored.id)}</p>
+-    <pre className="whitespace-pre-wrap wrap-anywhere">{JSON.stringify(entry?.path,null,2)}</pre>
+-   </details>
+-   <ExactSource key={JSON.stringify([entry?.authored.id,revision])} revision={revision} request={requestSource}/>
+- </div>;
+-}
+diff --git a/src/presentation/features/workbench/components/ProjectDiagnostics.tsx b/src/presentation/features/workbench/components/ProjectDiagnostics.tsx
+deleted file mode 100644
+index 711d419..0000000
+--- a/src/presentation/features/workbench/components/ProjectDiagnostics.tsx
++++ /dev/null
+@@ -1,49 +0,0 @@
+-import { Button } from "@presentation/components/ui/button";
+-
+-import type { DiagnosticDisplay } from "@application/retention/diagnostics";
+-
+-export function ProjectDiagnostics({
+-  diagnostics,
+-  onLoad,
+-  onAllContent,
+-}: {
+-  diagnostics?: DiagnosticDisplay;
+-  onLoad: () => void;
+-  onAllContent: () => void;
+-}) {
+-  return (
+-    <section className="project-diagnostics text-caption mt-6">
+-      <details
+-        onToggle={(event) => {
+-          if (event.currentTarget.open && !diagnostics) onLoad();
+-        }}
+-      >
+-        <summary>Project diagnostics · namespace and references</summary>
+-        {diagnostics ? (
+-          <>
+-            {diagnostics.total === 0 && (
+-              <p>No namespace or reference diagnostics.</p>
+-            )}
+-            {diagnostics.items.map((item, index) => (
+-              <pre
+-                key={index}
+-                className="whitespace-pre-wrap wrap-anywhere my-3"
+-              >
+-                {item}
+-              </pre>
+-            ))}
+-            {!diagnostics.complete && (
+-              <p role="status">
+-                Diagnostic display is incomplete. Structural checks remain
+-                complete; this is not an all-clear result.
+-              </p>
+-            )}
+-          </>
+-        ) : (
+-          <p role="status">Preparing diagnostics…</p>
+-        )}
+-        <Button onClick={() => onAllContent()}>Inspect all content</Button>
+-      </details>
+-    </section>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/components/ProjectNavigation.tsx b/src/presentation/features/workbench/components/ProjectNavigation.tsx
+deleted file mode 100644
+index 0a9d577..0000000
+--- a/src/presentation/features/workbench/components/ProjectNavigation.tsx
++++ /dev/null
+@@ -1,121 +0,0 @@
+-import type { BrowserView } from "../state/browser-view";
+-import type { ProjectContext } from "@application/retention/projections";
+-import { Icon } from "@presentation/components/ui/icon";
+-import { Button } from "@presentation/components/ui/button";
+-import { identityLabels, namespaceEntryDetails } from "@presentation/features/workbench/readback";
+-export function ProjectNavigation({
+-  drawer,
+-  project,
+-  view,
+-  unavailable,
+-  onSelect,
+-  onCreateGroup,
+-  onAllContent,
+-}: {
+-  drawer: boolean;
+-  project: ProjectContext | undefined;
+-  view: BrowserView;
+-  unavailable: boolean;
+-  onSelect: (group: string | null) => void;
+-  onCreateGroup: () => void;
+-  onAllContent?: () => void;
+-}) {
+-  const details = project ? namespaceEntryDetails(project) : new Map<string,string>();
+-  const labels = identityLabels(project?.groups ?? [], [
+-    "Project root",
+-    "All tokens",
+-  ]);
+-  return (
+-    <>
+-      <div
+-        className={`sidebar-project source-compact:gap-2 flex items-center gap-2.5 ${drawer ? "px-2 pb-6" : "px-2 pb-7.5 source-compact:px-1 source-compact:pb-6.25"}`}
+-      >
+-        <span
+-          className="project-icon place-items-center border border-border bg-background text-xs/normal font-heading h-8 w-8 grid"
+-          aria-hidden="true"
+-        >
+-          T
+-        </span>
+-        <div>
+-          <strong className="block text-xs/normal source-compact:text-caption">
+-            {project?.project.name || "(unnamed project)"}
+-          </strong>
+-          <span className="block text-caption text-muted-foreground">
+-            Token workbench
+-          </span>
+-        </div>
+-      </div>
+-      <div className="nav-label uppercase text-muted-foreground font-semibold px-3 pb-2.5">
+-        Library
+-      </div>
+-      <Button
+-        variant="navigation"
+-        size="navigation"
+-        className={`nav-item w-full ${view.kind === "all-tokens" ? "active" : ""}`}
+-        aria-current={view.kind === "all-tokens" ? "true" : undefined}
+-        onClick={() => {
+-          onSelect(null);
+-        }}
+-      >
+-        <Icon name="grid" className="icon block" />
+-        All tokens
+-        <span className="count ml-auto text-secondary font-normal">
+-          {project?.tokens.length ?? 0}
+-        </span>
+-      </Button>
+-      {onAllContent && (
+-        <Button
+-          variant="navigation"
+-          size="navigation"
+-          className={`nav-item w-full ${view.kind === "all-content" ? "active" : "text-muted-foreground"}`}
+-          aria-current={view.kind === "all-content" ? "true" : undefined}
+-          onClick={onAllContent}
+-        >
+-          All content
+-        </Button>
+-      )}
+-      <div className="group-tree">
+-        {project?.groups.map((g) => (
+-          <Button
+-            key={g.authored.id}
+-            variant="navigation"
+-            size="group"
+-            className={`nav-item w-full group-item ${view.kind === "group" && view.id === g.authored.id ? "active" : ""}`}
+-            aria-current={view.kind === "group" && view.id === g.authored.id ? "true" : undefined}
+-            onClick={() => {
+-              onSelect(g.authored.id);
+-            }}
+-          >
+-            <Icon name="folder" className="icon block" />
+-            <span className="group-label whitespace-normal block min-w-0 text-left wrap-anywhere">
+-              {labels.get(g.authored.id)}
+-              {details.get(JSON.stringify(["group",g.authored.id])) && <span className="block text-caption">{details.get(JSON.stringify(["group",g.authored.id]))}</span>}
+-            </span>
+-          </Button>
+-        ))}
+-      </div>
+-      <Button
+-        className="nav-item w-full add-group text-muted-foreground mt-4"
+-        variant="navigation"
+-        size="navigation"
+-        disabled={unavailable}
+-        onClick={() => {
+-          onCreateGroup();
+-        }}
+-      >
+-        <Icon name="plus" className="icon block" />
+-        New group
+-      </Button>
+-      <div
+-        className={`sidebar-bottom mt-auto px-3 pt-8 pb-1 ${drawer ? "" : "density:hidden"}`}
+-      >
+-        <span className="eyebrow uppercase text-muted-foreground font-semibold">
+-          Project
+-        </span>
+-        <span className="helper text-muted-foreground font-normal">
+-          {project?.groups.length ?? 0} groups
+-        </span>
+-      </div>
+-    </>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/components/ProjectedTokenList.tsx b/src/presentation/features/workbench/components/ProjectedTokenList.tsx
+deleted file mode 100644
+index ca62fad..0000000
+--- a/src/presentation/features/workbench/components/ProjectedTokenList.tsx
++++ /dev/null
+@@ -1,105 +0,0 @@
+-import type {
+-  DisplayRow,
+-  ProjectContext,
+-} from "@application/retention/projections";
+-import { AuthoredValue } from "./AuthoredValue";
+-import { Swatch } from "./swatch";
+-import { Button } from "@presentation/components/ui/button";
+-import { identityLabels, namespaceEntryDetails } from "@presentation/features/workbench/readback";
+-import { colorPreview } from "@presentation/features/workbench/color/preview";
+-export function ProjectedTokenList({
+-  context,
+-  creationParentLabel = "Project root",
+-  rows,
+-  selected,
+-  query,
+-  onSelect,
+-  onEmptyAction,
+-}: {
+-  context: ProjectContext;
+-  creationParentLabel?: string;
+-  rows: readonly DisplayRow[];
+-  selected: string | null;
+-  query: string;
+-  onSelect(id: string): void;
+-  onEmptyAction(): void;
+-}) {
+-  const labels = identityLabels(context.tokens);
+-  const details = namespaceEntryDetails(context);
+-  return (
+-    <div className="token-table @container border-t border-border">
+-      <div className="table-heading border-b border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 gap-3 text-muted-foreground">
+-        <span>Token</span>
+-        <span className="hidden @3xl:block">Description</span>
+-        <span>Authored value</span>
+-      </div>
+-      {rows.map((row) => (
+-        <button
+-          key={row.id}
+-          type="button"
+-          className={`token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent ${selected === row.id ? "selected" : ""}`}
+-          aria-pressed={selected === row.id}
+-          onClick={() => onSelect(row.id)}
+-        >
+-          <span className="flex gap-3 min-w-0 items-start">
+-            <Swatch css={colorPreview(row.preview).css} />
+-            <span className="token-identity flex-1 min-w-0">
+-              <strong className="block text-xs/normal small:text-caption token-name wrap-anywhere">
+-                {labels.get(row.id)}
+-              </strong>
+-              <small className="block text-secondary mt-1 wrap-anywhere">
+-                {row.layer} · {row.type}
+-              </small>
+-              {details.get(JSON.stringify(["token",row.id])) && <span className="block text-caption wrap-anywhere">{details.get(JSON.stringify(["token",row.id]))}</span>}
+-              {row.description !== undefined && (
+-                <span className="@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-secondary">
+-                  {row.description}
+-                </span>
+-              )}
+-            </span>
+-          </span>
+-          <span className="hidden @3xl:block min-w-0 text-caption text-secondary">
+-            <span className="line-clamp-2 whitespace-pre-wrap wrap-anywhere">
+-              {row.description ?? "—"}
+-            </span>
+-          </span>
+-          <span className="value-summary min-w-0 text-value text-caption wrap-anywhere">
+-            {row.color ? (
+-              <AuthoredValue
+-                value={row.color}
+-                project={context}
+-                layout="compact"
+-              />
+-            ) : row.targetId !== undefined ? (
+-              <span className="block">
+-                Reference
+-                <span className="block text-secondary mt-1">
+-                  {labels.get(row.targetId) ?? "Missing target"}
+-                </span>
+-              </span>
+-            ) : (
+-              row.valueKind
+-            )}
+-          </span>
+-        </button>
+-      ))}
+-      {rows.length === 0 && (
+-        <div className="empty px-5 py-17.5 text-center text-muted-foreground">
+-          <h2 className="text-foreground text-base/normal">
+-            {query
+-              ? "No matching colors"
+-              : context.tokens.length
+-                ? "This group is empty"
+-                : "Your project is empty"}
+-          </h2>
+-          <p className="text-xs/normal mt-2 mb-5">
+-            {query ? "Try another search or clear it to see this view." : `Create a color token in ${creationParentLabel}.`}
+-          </p>
+-          <Button onClick={onEmptyAction}>
+-            {query ? "Clear search" : "New token"}
+-          </Button>
+-        </div>
+-      )}
+-    </div>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/components/ReferenceFields.tsx b/src/presentation/features/workbench/components/ReferenceFields.tsx
+deleted file mode 100644
+index 5180e89..0000000
+--- a/src/presentation/features/workbench/components/ReferenceFields.tsx
++++ /dev/null
+@@ -1,63 +0,0 @@
+-import type { DraftSession } from '../state/session';
+-import type { ProjectContext } from '@application/retention/projections';
+-import { Field } from '@presentation/components/ui/field';
+-import { Select } from '@presentation/components/ui/select';
+-export function ReferenceFields({session, tokens, choices, labels, onChange}: {
+- session:DraftSession; tokens:ProjectContext['tokens']; choices:ProjectContext['tokens']; labels:ReadonlyMap<string,string>; onChange:(session:DraftSession)=>void;
+-}) {
+- return (
+-                <>
+-                  <Field>
+-                    Target token
+-                    <Select
+-                      value={
+-                        session.reference === null
+-                          ? ""
+-                          : JSON.stringify(session.reference)
+-                      }
+-                      aria-describedby="reference-note editor-error"
+-                      onChange={(e) => {
+-                        onChange({
+-                          ...session,
+-                          reference:
+-                            e.target.value === ""
+-                              ? null
+-                              : (JSON.parse(e.target.value) as string),
+-                          edited: true,
+-                        });
+-                      }}
+-                    >
+-                      <option value="">Choose a color token…</option>
+-                      {session.reference !== null &&
+-                        !tokens.some(
+-                          (t) => t.authored.id === session.reference,
+-                        ) && (
+-                          <option
+-                            value={
+-                              session.reference === null
+-                                ? ""
+-                                : JSON.stringify(session.reference)
+-                            }
+-                          >
+-                            Missing target
+-                          </option>
+-                        )}
+-                      {choices.map((t) => (
+-                        <option
+-                          key={t.authored.id}
+-                          value={JSON.stringify(t.authored.id)}
+-                        >
+-                          {labels.get(t.authored.id)}
+-                        </option>
+-                      ))}
+-                    </Select>
+-                  </Field>
+-                  <p
+-                    id="reference-note"
+-                    className="helper text-muted-foreground font-normal"
+-                  >
+-                    Uses the selected token’s whole color value. References stay linked; cycles are rejected on Apply.
+-                  </p>
+-                </>
+- );
+-}
+diff --git a/src/presentation/features/workbench/components/ResolvedTokenPanel.tsx b/src/presentation/features/workbench/components/ResolvedTokenPanel.tsx
+deleted file mode 100644
+index 41824ff..0000000
+--- a/src/presentation/features/workbench/components/ResolvedTokenPanel.tsx
++++ /dev/null
+@@ -1,32 +0,0 @@
+-import type { SelectedToken, ProjectContext } from '@application/retention/projections';
+-import type { TokenInspection } from '@application/authoring';
+-import { resolvedColor, pathLabel } from '../readback';
+-import { COLOR_COMPONENTS, COMPONENT_NAMES } from '@domain/color-components';
+-import { spaceName } from '../color/authored-color';
+-import { Badge } from '@presentation/components/ui/badge';
+-import { Swatch } from './swatch';
+-export function ResolvedTokenPanel({resolution, project, css, message}: {
+- resolution: SelectedToken['resolution'] | TokenInspection['resolution']; project:ProjectContext; css?:string; message:string;
+-}) {
+- const color=resolvedColor({resolution});
+- const label=(id:string) => {const t=project.tokens.find(t=>t.authored.id===id);return t ? pathLabel(t.path) : 'Unavailable token path';};
+- return <>
+-  <div className="flex items-center gap-2 mb-3"><h3>Resolved value</h3><Badge>Applied value</Badge></div>
+-  <div className="resolved-preview flex flex-col gap-2 my-3"><Swatch css={css}/><p className="helper text-muted-foreground">{message}</p></div>
+-  {resolution.status === 'resolved' ? color ? <>
+-    <h4>{spaceName(color.colorSpace)}</h4>
+-    <dl className="text-caption my-3">
+-      {color.components.map((value,index)=><div className="flex justify-between gap-3 py-1" key={index}><dt>{COMPONENT_NAMES[COLOR_COMPONENTS[color.colorSpace][index]]}</dt><dd className="wrap-anywhere text-right min-w-0">{value}</dd></div>)}
+-      <div className="flex justify-between gap-3 py-1"><dt>Alpha</dt><dd className="wrap-anywhere min-w-0">{color.alpha}</dd></div>
+-    </dl>
+-  </> : <p>Resolved {resolution.value.valueType} value. Full derived value is available below.</p>
+-  : <p role="status" className="border border-error-border bg-error-surface rounded p-3 text-caption text-destructive">Unresolved: {resolution.reason}. Authored data retained.</p>}
+-  <h3 className="mt-5">Resolution trace</h3>
+-  <ol className="text-caption my-3 space-y-3">
+-   {resolution.trace.map((step,index)=><li key={index} className="wrap-anywhere"><strong>{label(step.tokenId)}</strong><p>{step.targetTokenId ? `References ${label(step.targetTokenId)}` : 'Authored value'}</p><details><summary>Identity details</summary><p>{JSON.stringify(step.tokenId)}{step.targetTokenId ? ` → ${JSON.stringify(step.targetTokenId)}` : ''}</p></details></li>)}
+-  </ol>
+-  <h3>Resolution diagnostics</h3>
+-  {resolution.diagnostics.length ? <ul className="text-caption space-y-2 my-3">{resolution.diagnostics.map((issue,index)=><li key={index}><strong>{issue.code}</strong><pre className="whitespace-pre-wrap wrap-anywhere">{JSON.stringify(issue,null,2)}</pre></li>)}</ul> : <p className="text-caption my-3">{resolution.status === 'unavailable' ? 'Resolution diagnostics unavailable.' : 'No resolution issues.'}</p>}
+-  <details className="text-caption mt-4"><summary>Raw derived resolution data</summary><pre className="whitespace-pre-wrap wrap-anywhere">{JSON.stringify(resolution,null,2)}</pre></details>
+- </>;
+-}
+diff --git a/src/presentation/features/workbench/components/RestoreDialog.tsx b/src/presentation/features/workbench/components/RestoreDialog.tsx
+deleted file mode 100644
+index eb78b31..0000000
+--- a/src/presentation/features/workbench/components/RestoreDialog.tsx
++++ /dev/null
+@@ -1,266 +0,0 @@
+-import { useBackupRestore } from "@presentation/features/workbench/hooks/useBackupRestore";
+-
+-import { Dialog } from "@base-ui/react/dialog";
+-import { DialogContent } from "@presentation/components/ui/dialog-content";
+-import { Button } from "@presentation/components/ui/button";
+-
+-import type {
+-  RestorePreview,
+-  WorkbenchHost,
+-} from "@presentation/host/protocol";
+-export function RestoreDialog({
+-  host,
+-  initial,
+-  onCancel,
+-  onOpen,
+-  restage,
+-}: {
+-  host: WorkbenchHost;
+-  initial: RestorePreview;
+-  onCancel(reset?: boolean): void;
+-  onOpen(id: string): void;
+-  restage?: () => Promise<RestorePreview>;
+-}) {
+-  const {
+-    preview,
+-    replacement,
+-    setReplacement,
+-    protection,
+-    setProtection,
+-    acknowledgement,
+-    setAcknowledgement,
+-    busy,
+-    error,
+-    notice,
+-    unknown,
+-    leaving,
+-    setLeaving,
+-    activeMutation,
+-    stageLost,
+-    retained,
+-    stay,
+-    finish,
+-    restore,
+-    protectLocal,
+-    checkPending,
+-    reviewFile,
+-    checkUnknown,
+-  } = useBackupRestore({ host, initial, onCancel, onOpen, restage });
+-  return (
+-    <Dialog.Root
+-      open
+-      onOpenChange={(open) => {
+-        if (!open && !busy) {
+-          if (leaving) setLeaving(false);
+-          else if (!unknown) onCancel();
+-        }
+-      }}
+-    >
+-      <DialogContent initialFocus={() => (leaving ? stay.current : undefined)}>
+-        {leaving ? (
+-          <>
+-            <Dialog.Title>Review before leaving</Dialog.Title>
+-            <Dialog.Description>
+-              An issued restore may already be retained. Leaving discards
+-              session input; it does not roll back retained data.
+-            </Dialog.Description>
+-            <div className="dialog-actions flex justify-end gap-3 mt-6">
+-              <Button ref={stay} onClick={() => setLeaving(false)}>
+-                Stay here
+-              </Button>
+-              <Button
+-                disabled={busy}
+-                onClick={() => {
+-                  host.fence();
+-                  onCancel(true);
+-                }}
+-              >
+-                Leave
+-              </Button>
+-            </div>
+-          </>
+-        ) : (
+-          <>
+-            <Dialog.Title>
+-              {replacement ? "Replace local project" : "Review project backup"}
+-            </Dialog.Title>
+-            <Dialog.Description>
+-              Restore preserves identities and exact supported authored data.
+-              This is a project backup, separate from token interchange.
+-            </Dialog.Description>
+-            <h2 className="mt-5 wrap-anywhere">
+-              {preview.project.name || "(unnamed project)"}
+-            </h2>
+-            <dl className="text-caption mt-3 space-y-2">
+-              <div>
+-                <dt>Project identity</dt>
+-                <dd className="wrap-anywhere">
+-                  {JSON.stringify(preview.project.id)}
+-                </dd>
+-              </div>
+-              <div>
+-                <dt>Snapshot date</dt>
+-                <dd>{preview.createdAt}</dd>
+-              </div>
+-              <div>
+-                <dt>Supported content</dt>
+-                <dd>
+-                  {preview.groups} groups · {preview.tokens} tokens
+-                </dd>
+-              </div>
+-            </dl>
+-            <details className="text-caption my-4">
+-              <summary>
+-                Backup diagnostics · {preview.diagnostics.total}
+-              </summary>
+-              {preview.diagnostics.items.map((item, i) => (
+-                <pre className="whitespace-pre-wrap wrap-anywhere my-3" key={i}>
+-                  {item}
+-                </pre>
+-              ))}
+-              {!preview.diagnostics.complete && (
+-                <p role="status">
+-                  Diagnostic display is incomplete. This is not an all-clear
+-                  result; structural admission checks are complete.
+-                </p>
+-              )}
+-            </details>
+-            {preview.local && !replacement && (
+-              <section className="border border-border rounded p-3 text-caption">
+-                <h3>Same project identity already exists in this browser</h3>
+-                <p className="mt-2">
+-                  Local name: {preview.local.name || "(unnamed project)"}
+-                </p>
+-                <div className="flex flex-wrap gap-2 mt-4">
+-                  <Button
+-                    disabled={busy || unknown}
+-                    onClick={() => onOpen(preview.project.id)}
+-                  >
+-                    Open local project
+-                  </Button>
+-                  <Button
+-                    disabled={busy || unknown}
+-                    onClick={() => {
+-                      setReplacement(true);
+-                      setProtection(null);
+-                      setAcknowledgement(false);
+-                    }}
+-                  >
+-                    Review replacement
+-                  </Button>
+-                </div>
+-              </section>
+-            )}
+-            {replacement && preview.local && (
+-              <section className="border border-error-border bg-error-surface rounded p-3 text-caption">
+-                <p>
+-                  The complete selected backup will replace this local project's
+-                  applied state. Local-only authored content will be removed.
+-                  This does not merge projects.
+-                </p>
+-                <p className="mt-2 wrap-anywhere">
+-                  Protect local revision: {preview.local.revision}
+-                </p>
+-                <Button
+-                  className="mt-3"
+-                  disabled={busy || unknown}
+-                  onClick={protectLocal}
+-                >
+-                  Download current local backup
+-                </Button>
+-                <label className="flex gap-3 items-start mt-4">
+-                  <input
+-                    type="checkbox"
+-                    checked={acknowledgement}
+-                    disabled={!protection || busy || unknown}
+-                    onChange={(e) => setAcknowledgement(e.target.checked)}
+-                  />
+-                  <span>
+-                    I kept an independent backup of this exact local revision
+-                    and accept complete replacement.
+-                  </span>
+-                </label>
+-              </section>
+-            )}
+-            {busy && activeMutation.current && !unknown && (
+-              <section role="status" className="text-caption mt-4">
+-                <p>Retention pending. Duplicate restore is blocked.</p>
+-                <Button onClick={checkPending}>Check retained result</Button>
+-              </section>
+-            )}
+-            {retained && (
+-              <section role="status" className="text-caption mt-4">
+-                <p>
+-                  The original restore is retained. It will not be repeated.
+-                </p>
+-                <Button
+-                  disabled={busy}
+-                  onClick={() => onOpen(preview.project.id)}
+-                >
+-                  Open retained project
+-                </Button>
+-              </section>
+-            )}
+-            {stageLost && (
+-              <section role="status" className="text-caption mt-4">
+-                <p>
+-                  Selected file input is preserved; staging needs a fresh
+-                  explicit review.
+-                </p>
+-                <Button disabled={busy || !restage} onClick={reviewFile}>
+-                  Review selected file again
+-                </Button>
+-              </section>
+-            )}
+-            {unknown && (
+-              <section role="status" className="text-caption mt-4">
+-                <p>Retained result unknown. Do not repeat restore.</p>
+-                <Button disabled={busy} onClick={checkUnknown}>
+-                  Check retained result
+-                </Button>
+-                <Button disabled={busy} onClick={() => setLeaving(true)}>
+-                  Review before leaving
+-                </Button>
+-              </section>
+-            )}
+-            {error && (
+-              <p role="alert" className="text-caption text-destructive mt-4">
+-                {error}
+-              </p>
+-            )}
+-            <p role="status" className="text-caption mt-3">
+-              {notice}
+-            </p>
+-            <div className="dialog-actions flex justify-end gap-3 mt-6">
+-              <Button disabled={busy || unknown} onClick={() => onCancel()}>
+-                Cancel
+-              </Button>
+-              {(!preview.local || replacement) && (
+-                <Button
+-                  variant="default"
+-                  disabled={
+-                    busy ||
+-                    unknown ||
+-                    retained ||
+-                    stageLost ||
+-                    (!!preview.local &&
+-                      (!protection ||
+-                        !acknowledgement ||
+-                        protection !== preview.local.revision))
+-                  }
+-                  onClick={() => void restore()}
+-                >
+-                  {busy
+-                    ? "Retaining project…"
+-                    : preview.local
+-                      ? "Replace complete project"
+-                      : "Restore project"}
+-                </Button>
+-              )}
+-            </div>
+-          </>
+-        )}
+-      </DialogContent>
+-    </Dialog.Root>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/components/RetentionRecovery.tsx b/src/presentation/features/workbench/components/RetentionRecovery.tsx
+deleted file mode 100644
+index 06908e9..0000000
+--- a/src/presentation/features/workbench/components/RetentionRecovery.tsx
++++ /dev/null
+@@ -1,57 +0,0 @@
+-import { Button } from "@presentation/components/ui/button";
+-export function RetentionRecovery({
+-  busy,
+-  activeMutation,
+-  unknown,
+-  retainedPending,
+-  onCheck,
+-  onRetry,
+-  onLeave,
+-}: {
+-  busy: boolean;
+-  activeMutation: boolean;
+-  unknown?: { reason: string };
+-  retainedPending: unknown;
+-  onCheck: () => void;
+-  onRetry: () => void;
+-  onLeave: () => void;
+-}) {
+-  return busy && activeMutation && !unknown && !retainedPending ? (
+-    <section
+-      role="status"
+-      className="border border-border text-caption p-3 rounded my-3"
+-    >
+-      <p>
+-        Retention pending. Inputs are preserved; duplicate submission is
+-        blocked.
+-      </p>
+-      <Button onClick={() => onCheck()}>Check retained result</Button>
+-    </section>
+-  ) : retainedPending ? (
+-    <section
+-      role="status"
+-      className="border border-border text-caption p-3 rounded my-3"
+-    >
+-      <p>
+-        The original change is retained. Display recovery is unavailable; inputs
+-        are preserved and the write will not be repeated.
+-      </p>
+-      <Button disabled={busy} onClick={() => onRetry()}>
+-        Retry reading project
+-      </Button>
+-    </section>
+-  ) : unknown ? (
+-    <section
+-      role="status"
+-      className="border border-error-border bg-error-surface text-caption p-3 rounded my-3"
+-    >
+-      <p>Retained result unknown. Inputs are preserved. {unknown.reason}</p>
+-      <Button disabled={busy} onClick={() => onCheck()}>
+-        Check retained result
+-      </Button>
+-      <Button disabled={busy} onClick={onLeave}>
+-        Review before leaving
+-      </Button>
+-    </section>
+-  ) : null;
+-}
+diff --git a/src/presentation/features/workbench/components/TokenBrowser.tsx b/src/presentation/features/workbench/components/TokenBrowser.tsx
+deleted file mode 100644
+index 3978d7b..0000000
+--- a/src/presentation/features/workbench/components/TokenBrowser.tsx
++++ /dev/null
+@@ -1,164 +0,0 @@
+-import type { BrowserView } from "../state/browser-view";
+-import { Button } from "@presentation/components/ui/button";
+-import { Icon } from "@presentation/components/ui/icon";
+-import { Input } from "@presentation/components/ui/input";
+-import { AllContent } from "./AllContent";
+-import { ProjectedTokenList } from "./ProjectedTokenList";
+-import type {
+-  ProjectContext,
+-  DisplayRow,
+-} from "@application/retention/projections";
+-import type { ProjectHeader } from "@presentation/host/protocol";
+-import type { Selection } from "../hooks/useProjectReadback";
+-import type { ReactNode, RefObject } from "react";
+-export function TokenBrowser({
+-  panel,
+-  view,
+-  groupLabels,
+-  blocked,
+-  query,
+-  complete,
+-  readFailure,
+-  rows,
+-  header,
+-  selection,
+-  visible,
+-  context,
+-  recovery,
+-  diagnostics,
+-  notice,
+-  error,
+-  dialog,
+-  onQuery,
+-  onCreateToken,
+-  onRenameGroup,
+-  onAllContent,
+-  onReveal,
+-  choose,
+-}: {
+-  panel: RefObject<HTMLElement | null>;
+-  view: BrowserView;
+-  groupLabels: Map<string, string>;
+-  blocked: boolean;
+-  query: string;
+-  complete: boolean;
+-  readFailure: string;
+-  rows: DisplayRow[];
+-  header: ProjectHeader;
+-  selection: Selection;
+-  visible: DisplayRow[];
+-  context?: ProjectContext;
+-  recovery: ReactNode;
+-  diagnostics: ReactNode;
+-  notice: string;
+-  error: string;
+-  dialog: string | null;
+-  onQuery: (query: string) => void;
+-  onCreateToken: () => void;
+-  onRenameGroup: () => void;
+-  onAllContent: () => void;
+-  onReveal: () => void;
+-  choose: (kind: "token" | "group", id: string) => void;
+-}) {
+-  const allContent = view.kind === "all-content", group = view.kind === "group" ? view.id : null;
+-  return (
+-    <main
+-      id="tokens"
+-      ref={panel}
+-      tabIndex={-1}
+-      className="token-panel relative min-w-0 min-h-0 overflow-auto"
+-    >
+-      <div className="panel-header source-compact:items-start compact:flex-wrap mb-6.5 flex justify-between items-center gap-3">
+-        <div>
+-          {!allContent && <span className="eyebrow uppercase text-muted-foreground font-semibold">
+-            Tokens
+-          </span>}
+-          <h1 className="my-1.5 small-title">
+-            {allContent
+-              ? "All content"
+-              : group === null
+-                ? "All tokens"
+-                : (groupLabels.get(group) ?? "Missing group")}
+-          </h1>
+-          <p className="text-xs/normal text-muted-foreground">
+-            {allContent ? "Every group and token, including items outside the group tree." : group === null ? "Browse and create color tokens." : "Browse and create color tokens in this group."}
+-          </p>
+-        </div>
+-        <Button
+-          variant="default"
+-          size="panel"
+-          disabled={blocked}
+-          onClick={() => onCreateToken()}
+-        >
+-          <Icon name="plus" />
+-          New token
+-        </Button>
+-      </div>
+-      {!allContent && <div className="list-tools compact:flex-wrap narrow:gap-2 flex gap-3 items-center mb-5">
+-        <label className="search tablet:min-w-25 flex-1 max-w-75 relative">
+-          <Input
+-            appearance="search"
+-            type="search"
+-            aria-label="Search color tokens"
+-            placeholder="Search colors…"
+-            value={query}
+-            onChange={(e) => onQuery(e.target.value)}
+-          />
+-        </label>
+-        {group !== null && (
+-          <Button disabled={blocked} onClick={() => onRenameGroup()}>
+-            Rename group
+-          </Button>
+-        )}
+-      </div>}
+-      {recovery}
+-      {!complete && !readFailure && (
+-        <p role="status">
+-          Preparing complete project list… {rows.length} of {header.tokens}{" "}
+-          tokens
+-        </p>
+-      )}
+-      {!allContent &&
+-        selection?.kind === "token" &&
+-        complete &&
+-        !visible.some((row) => row.id === selection.id) && (
+-          <section className="selection-context flex-wrap border border-border rounded-md mb-4 text-caption flex items-center justify-between gap-3 p-3 bg-muted">
+-            <p className="mt-2">Selected token is outside this list.</p>
+-            <Button size="selection" onClick={onReveal}>
+-              Show selected token
+-            </Button>
+-          </section>
+-        )}
+-      {context &&
+-        (allContent ? (
+-          <AllContent
+-            key={JSON.stringify([header.project.id, header.revision])}
+-            context={context}
+-            groupLabels={groupLabels}
+-            onSelect={choose}
+-          />
+-        ) : (
+-          <>
+-            <ProjectedTokenList
+-              context={context}
+-              creationParentLabel={group === null ? "Project root" : (groupLabels.get(group) ?? "Unavailable group")}
+-              rows={visible}
+-              selected={selection?.kind === "token" ? selection.id : null}
+-              query={query}
+-              onSelect={(id) => choose("token", id)}
+-              onEmptyAction={() => (query ? onQuery("") : onCreateToken())}
+-            />
+-          </>
+-        ))}
+-      {diagnostics}
+-      <p role="status" className="helper text-muted-foreground">
+-        {notice}
+-      </p>
+-      {error && !dialog && (
+-        <p role="alert" className="text-destructive text-caption mt-3">
+-          {error}
+-        </p>
+-      )}
+-    </main>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/components/TokenList.tsx b/src/presentation/features/workbench/components/TokenList.tsx
+deleted file mode 100644
+index a89daf1..0000000
+--- a/src/presentation/features/workbench/components/TokenList.tsx
++++ /dev/null
+@@ -1,79 +0,0 @@
+-import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
+-import type { ProjectReadback, TokenInspection } from "@application/authoring";
+-import { Button } from "@presentation/components/ui/button";
+-import { Swatch } from "@presentation/features/workbench/components/swatch";
+-import { identityLabels, resolvedColor } from "@presentation/features/workbench/readback";
+-import { colorPreview } from "@presentation/features/workbench/color/preview";
+-export function TokenList({
+-  project,
+-  visible,
+-  selected,
+-  query,
+-  inspect,
+-  onSelect,
+-  onEmptyAction,
+-}: {
+-  project: ProjectReadback | undefined;
+-  visible: ProjectReadback["tokens"];
+-  selected: string | undefined;
+-  query: string;
+-  inspect: (id: string) => TokenInspection | undefined;
+-  onSelect: (id: string) => void;
+-  onEmptyAction: () => void;
+-}) {
+-  const labels = identityLabels(project?.tokens ?? visible);
+-  return (
+-    <div className="token-table @container border-t border-border">
+-      <div className="table-heading border-b border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 gap-3 text-muted-foreground">
+-        <span>Token</span>
+-        <span className="hidden @3xl:block">Description</span>
+-        <span>Authored value</span>
+-      </div>
+-      {visible.map((t) => {
+-        const v = t.authored.definition?.assignments[0]?.value,
+-          preview = colorPreview(resolvedColor(inspect(t.authored.id)));
+-        return (
+-          <button
+-            key={t.authored.id}
+-            type="button"
+-            className={`token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent ${selected === t.authored.id ? "selected" : ""}`}
+-            aria-pressed={selected === t.authored.id}
+-            onClick={() => onSelect(t.authored.id)}
+-          >
+-            <span className="flex gap-3 min-w-0 items-start"><Swatch css={preview.css} />
+-            <span className="token-identity flex-1 min-w-0">
+-              <strong className="block text-xs/normal small:text-caption token-name wrap-anywhere">
+-                {labels.get(t.authored.id)}
+-              </strong>
+-              <small className="block text-secondary mt-1 wrap-anywhere">
+-                {t.authored.layer ?? "Unspecified"} ·{" "}
+-                {t.authored.definition?.type ?? "Unassigned"}
+-              </small>
+-              {t.authored.description !== undefined && <span className="@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-secondary">{t.authored.description}</span>}
+-            </span>
+-            </span>
+-            <span className="hidden @3xl:block min-w-0 text-caption text-secondary"><span className="line-clamp-2 whitespace-pre-wrap wrap-anywhere">{t.authored.description ?? "—"}</span></span>
+-            <span className="value-summary min-w-0 text-value text-caption wrap-anywhere"><AuthoredValue value={v} project={project} layout="compact" /></span>
+-          </button>
+-        );
+-      })}
+-      {visible.length === 0 && (
+-        <div className="empty px-5 py-17.5 text-center text-muted-foreground">
+-          <h2 className="text-foreground text-base/normal">
+-            {query
+-              ? "No matching colors"
+-              : project?.tokens.length
+-                ? "This group is empty"
+-                : "Your project is empty"}
+-          </h2>
+-          <p className="text-xs/normal mt-2 mb-5">
+-            Create a color at the root, or add a group to organize it.
+-          </p>
+-          <Button onClick={onEmptyAction}>
+-            {query ? "Clear search" : "New token"}
+-          </Button>
+-        </div>
+-      )}
+-    </div>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/components/TokenMetadata.tsx b/src/presentation/features/workbench/components/TokenMetadata.tsx
+deleted file mode 100644
+index 58ddc02..0000000
+--- a/src/presentation/features/workbench/components/TokenMetadata.tsx
++++ /dev/null
+@@ -1,47 +0,0 @@
+-import type { Token } from '@domain/token';
+-import type { DisplayPath } from '@application/retention/projections';
+-import { ExactSource } from './ExactSource';
+-export function TokenMetadata({token, groupLabels, revision, requestSource, path}: {
+- token:Omit<Token,'definition'>; groupLabels:ReadonlyMap<string,string>; revision:string; requestSource?:()=>Promise<string>; path:DisplayPath;
+-}) {
+- return (
+-          <section className="applied-summary border-t border-border mt-7 pt-5">
+-            <h3 className="mb-3.5">Metadata · read only</h3>
+-            <dl className="details">
+-              <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+-                <dt className="text-muted-foreground">Regeneration</dt>
+-                <dd className="text-right wrap-anywhere">
+-                  {token.authoring.regeneration}
+-                </dd>
+-              </div>
+-              <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+-                <dt className="text-muted-foreground">Semantic role</dt>
+-                <dd className="text-right wrap-anywhere">
+-                  {token.semanticRole ?? "Unspecified"}
+-                </dd>
+-              </div>
+-              <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+-                <dt className="text-muted-foreground">Parent group</dt>
+-                <dd className="text-right wrap-anywhere">
+-                  {token.parentGroupId !== null
+-                    ? (groupLabels.get(token.parentGroupId) ?? "Missing group")
+-                    : "Project root"}
+-                </dd>
+-              </div>
+-            </dl>
+-            <details className="text-caption mt-4"><summary>Identity and path details</summary>
+-              <p className="wrap-anywhere">Project identity: {JSON.stringify(token.projectId)}</p>
+-              <p className="wrap-anywhere">Token identity: {JSON.stringify(token.id)}</p>
+-              <pre className="whitespace-pre-wrap wrap-anywhere">{JSON.stringify(path,null,2)}</pre>
+-            </details>
+-            <ExactSource
+-              key={`${token.id}-${revision}`}
+-              revision={revision}
+-              request={
+-                requestSource ??
+-                (() => Promise.resolve(JSON.stringify(token, null, 2)))
+-              }
+-            />
+-          </section>
+- );
+-}
+diff --git a/src/presentation/features/workbench/components/WorkbenchInspector.tsx b/src/presentation/features/workbench/components/WorkbenchInspector.tsx
+deleted file mode 100644
+index 187d273..0000000
+--- a/src/presentation/features/workbench/components/WorkbenchInspector.tsx
++++ /dev/null
+@@ -1,188 +0,0 @@
+-import { GroupInspector } from "./GroupInspector";
+-import type { Selection } from "../hooks/useProjectReadback";
+-import type { ProjectContext } from "@application/retention/projections";
+-import type { ProjectHeader } from "@presentation/host/protocol";
+-import { Button } from "@presentation/components/ui/button";
+-import { Icon } from "@presentation/components/ui/icon";
+-import type { Feedback } from "./Editor";
+-import type { ReactNode } from "react";
+-import { useTokenEditor } from "../hooks/useTokenEditor";
+-import { EditorFields } from "./Editor";
+-export function InspectorHeader({
+-  readFailure,
+-  targetUnavailable,
+-  editable,
+-  feedback,
+-  selected,
+-  inspectorExpanded,
+-  onToggle,
+-}: {
+-  readFailure: string;
+-  targetUnavailable: string;
+-  editable: boolean;
+-  feedback?: Feedback;
+-  selected: boolean;
+-  inspectorExpanded: boolean;
+-  onToggle: () => void;
+-}) {
+-  return (
+-    <div className="inspector-header border-b border-border bg-surface h-11 min-h-11 shrink-0 flex items-center gap-2 pl-3 min-w-0">
+-      <span className="inspector-region-title flex-1 text-caption leading-3.5 min-w-0 font-medium">
+-        Inspector
+-      </span>
+-      {!readFailure && !targetUnavailable && editable && feedback && (
+-        <section
+-          className="inspector-feedback flex items-center gap-2 shrink-0"
+-          aria-label="Applied and draft color context"
+-        >
+-          {(
+-            ["applied", ...(feedback.tab === "resolved" ? [] : ["draft"])] as (
+-              | "applied"
+-              | "draft"
+-            )[]
+-          ).map((kind) => (
+-            <div
+-              key={kind}
+-              className="text-caption flex flex-col items-center w-16"
+-            >
+-              <span>{kind === "applied" ? "Applied" : "Draft"}</span>
+-              {feedback[kind] ? (
+-                <span
+-                  aria-hidden="true"
+-                  className="header-specimen rounded border border-specimen-border block w-9 h-4"
+-                  style={{ background: feedback[kind] }}
+-                />
+-              ) : (
+-                <span>Unavailable</span>
+-              )}
+-              <span className="sr-only">
+-                {
+-                  feedback[
+-                    kind === "applied" ? "appliedMessage" : "draftMessage"
+-                  ]
+-                }
+-              </span>
+-            </div>
+-          ))}
+-        </section>
+-      )}
+-      {(readFailure || targetUnavailable || !editable || !feedback) && (
+-        <span className="inspector-header-status text-caption leading-4 text-secondary">
+-          {readFailure || targetUnavailable
+-            ? "Unavailable"
+-            : selected
+-              ? "Inspection only"
+-              : "Select content"}
+-        </span>
+-      )}
+-      <Button
+-        variant="ghost"
+-        size="icon"
+-        className="pane-toggle inspector-toggle"
+-        aria-label={
+-          inspectorExpanded
+-            ? "Collapse inspector"
+-            : "Expand inspector"
+-        }
+-        aria-expanded={inspectorExpanded}
+-        aria-controls="token-inspector-content"
+-        onClick={() => onToggle()}
+-      >
+-        <Icon name="chevron-down" />
+-      </Button>
+-    </div>
+-  );
+-}
+-export function WorkbenchInspector({
+-  children,
+-  selection,
+-  context,
+-  groupLabels,
+-  header,
+-  inspectorExpanded,
+-  onToggle,
+-  readFailure,
+-  targetUnavailable,
+-  requestSource,
+-}: {
+-  children: ReactNode;
+-  selection: Selection;
+-  context?: ProjectContext;
+-  groupLabels: Map<string, string>;
+-  header: ProjectHeader;
+-  inspectorExpanded: boolean;
+-  onToggle: () => void;
+-  readFailure: string;
+-  targetUnavailable: string;
+-  requestSource: (id: string) => Promise<string>;
+-}) {
+-  return (
+-    <section
+-      className="inspector-shell small:border-l-0 small:border-t small:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l border-border bg-surface"
+-      aria-label="Inspector pane"
+-    >
+-      {children || (
+-        <>
+-          <InspectorHeader
+-            readFailure={readFailure}
+-            targetUnavailable={targetUnavailable}
+-            editable={false}
+-            selected={!!selection}
+-            inspectorExpanded={inspectorExpanded}
+-            onToggle={onToggle}
+-          />
+-          <div
+-            id="token-inspector-content"
+-            className="inspector-content flex-1 bg-surface overflow-auto min-h-0"
+-            hidden={!inspectorExpanded}
+-          >
+-            {selection?.kind === "group" && context ? (
+-              <GroupInspector entry={context.groups.find(g => g.authored.id === selection.id)} projectId={header.project.id} revision={header.revision} requestSource={() => requestSource(selection.id)} />
+-            ) : (
+-              <div className="empty px-5 py-17.5 text-center text-muted-foreground">
+-                <h2 className="text-foreground text-base/normal">
+-                  {selection ? "Preparing inspection…" : "Nothing selected"}
+-                </h2>
+-                <p className="text-xs/normal mt-2 mb-5">
+-                  Select a token or group to inspect it.
+-                </p>
+-              </div>
+-            )}
+-          </div>
+-        </>
+-      )}
+-    </section>
+-  );
+-}
+-export function EditableTokenInspector({
+-  inspectorExpanded,
+-  onToggle,
+-  readFailure,
+-  ...props
+-}: Parameters<typeof useTokenEditor>[0] & {
+-  inspectorExpanded: boolean;
+-  onToggle: () => void;
+-  readFailure: string;
+-}) {
+-  const editor = useTokenEditor(props);
+-  return (
+-    <>
+-      <InspectorHeader
+-        readFailure={readFailure}
+-        targetUnavailable={props.targetUnavailable ?? ""}
+-        editable={editor.editable}
+-        feedback={editor.feedback}
+-        selected
+-        inspectorExpanded={inspectorExpanded}
+-        onToggle={onToggle}
+-      />
+-      <div
+-        id="token-inspector-content"
+-        className="inspector-content flex-1 bg-surface overflow-auto min-h-0"
+-        hidden={!inspectorExpanded}
+-      >
+-        <EditorFields editor={editor} />
+-      </div>
+-    </>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/components/inspection-tabs.tsx b/src/presentation/features/workbench/components/inspection-tabs.tsx
+deleted file mode 100644
+index 476f2e9..0000000
+--- a/src/presentation/features/workbench/components/inspection-tabs.tsx
++++ /dev/null
+@@ -1,23 +0,0 @@
+-import { Tabs } from "@base-ui/react/tabs";
+-/** Shared inspection tab strip; Base UI retains roving focus and panel semantics. */
+-export function InspectionTabs() {
+-  return (
+-    <Tabs.List
+-      className="tabs flex border-b border-border px-6 gap-5.5 source-compact:px-5 source-compact:gap-4.5"
+-      aria-label="Token inspection"
+-    >
+-      <Tabs.Tab
+-        className="relative border-0 bg-transparent min-h-10.5 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-px data-active:after:inset-x-0 data-active:after:bg-primary"
+-        value="authored"
+-      >
+-        Authored value
+-      </Tabs.Tab>
+-      <Tabs.Tab
+-        className="relative border-0 bg-transparent min-h-10.5 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-px data-active:after:inset-x-0 data-active:after:bg-primary"
+-        value="resolved"
+-      >
+-        Resolved &amp; trace
+-      </Tabs.Tab>
+-    </Tabs.List>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/hooks/useBackupRestore.ts b/src/presentation/features/workbench/hooks/useBackupRestore.ts
+deleted file mode 100644
+index be85fbc..0000000
+--- a/src/presentation/features/workbench/hooks/useBackupRestore.ts
++++ /dev/null
+@@ -1,213 +0,0 @@
+-import { useRef, useState, useEffect, useReducer } from "react";
+-
+-import { downloadProjectBackup } from "@presentation/host/backup-file";
+-import type {
+-  RestorePreview,
+-  WorkbenchHost,
+-  PublicAcceptance,
+-} from "@presentation/host/protocol";
+-export type RestoreProtection = {
+-  protection: string | null;
+-  acknowledgement: boolean;
+-};
+-export function restoreProtectionReducer(
+-  state: RestoreProtection,
+-  action:
+-    | { type: "protect"; revision: string | null }
+-    | { type: "acknowledge"; value: boolean },
+-): RestoreProtection {
+-  return action.type === "protect"
+-    ? { protection: action.revision, acknowledgement: false }
+-    : { ...state, acknowledgement: !!state.protection && action.value };
+-}
+-export function useBackupRestore({
+-  host,
+-  initial,
+-  onCancel,
+-  onOpen,
+-  restage,
+-}: {
+-  host: WorkbenchHost;
+-  initial: RestorePreview;
+-  onCancel(reset?: boolean): void;
+-  onOpen(id: string): void;
+-  restage?: () => Promise<RestorePreview>;
+-}) {
+-  const [{ protection, acknowledgement }, dispatchProtection] = useReducer(
+-    restoreProtectionReducer,
+-    { protection: null, acknowledgement: false },
+-  );
+-  const setProtection = (revision: string | null) =>
+-    dispatchProtection({ type: "protect", revision });
+-  const setAcknowledgement = (value: boolean) =>
+-    dispatchProtection({ type: "acknowledge", value });
+-
+-  const [preview, setPreview] = useState(initial),
+-    [replacement, setReplacement] = useState(false),
+-    [busy, setBusy] = useState(false),
+-    [error, setError] = useState(""),
+-    [notice, setNotice] = useState(""),
+-    [unknown, setUnknown] = useState(false),
+-    [leaving, setLeaving] = useState(false);
+-  const knownAccepted = useRef(false),
+-    activeMutation = useRef(false);
+-  const [stageLost, setStageLost] = useState(false),
+-    [retained, setRetained] = useState(false);
+-  const stay = useRef<HTMLButtonElement>(null);
+-  async function refresh() {
+-    const next = await host.call("refreshStage", preview.stageId);
+-    setPreview(next);
+-    setProtection(null);
+-    setAcknowledgement(false);
+-  }
+-  async function finish(result: PublicAcceptance) {
+-    if (result.status === "unknown") {
+-      if (!knownAccepted.current) setUnknown(true);
+-      setError(result.reason);
+-      return;
+-    }
+-    if (result.status === "rejected") {
+-      setUnknown(false);
+-      setError(result.reason);
+-      try {
+-        await refresh();
+-      } catch {
+-        setStageLost(true);
+-        setError(
+-          result.reason +
+-            " The original worker stage is unavailable. Review the selected file again before an explicit retry.",
+-        );
+-      }
+-      return;
+-    }
+-    setUnknown(false);
+-    knownAccepted.current = true;
+-    setRetained(true);
+-    await host.call("consume", result.receipt.commandId);
+-    if (result.readback === "unavailable")
+-      setError(
+-        "Project retained; readback unavailable. Use Open local project to retry reading without repeating restore.",
+-      );
+-    else onOpen(result.receipt.result.id);
+-  }
+-  useEffect(() => {
+-    if (leaving) requestAnimationFrame(() => stay.current?.focus());
+-  }, [leaving]);
+-  async function restore() {
+-    if (busy || unknown || retained || stageLost) return;
+-    setBusy(true);
+-    activeMutation.current = true;
+-    setError("");
+-    try {
+-      await finish(
+-        await host.call("restore", {
+-          stageId: preview.stageId,
+-          projectId: preview.project.id,
+-          expectedRevision: preview.local?.revision ?? null,
+-          protectedRevision: protection,
+-          acknowledgement,
+-        }),
+-      );
+-    } catch (e) {
+-      if (!knownAccepted.current) setUnknown(true);
+-      setError(
+-        e instanceof Error
+-          ? e.message
+-          : "Restore outcome unknown; selected backup remains staged.",
+-      );
+-    } finally {
+-      activeMutation.current = false;
+-      setBusy(false);
+-    }
+-  }
+-  const protectLocal = async () => {
+-    setBusy(true);
+-    setError("");
+-    try {
+-      const revision = await downloadProjectBackup(
+-        host,
+-        preview.project.id,
+-        preview.local!.revision,
+-      );
+-      setProtection(revision);
+-      setAcknowledgement(false);
+-      setNotice(
+-        "Backup download requested. Confirm you kept the independent file before replacing.",
+-      );
+-    } catch (e) {
+-      setError(e instanceof Error ? e.message : "Backup generation failed");
+-      await refresh();
+-    } finally {
+-      setBusy(false);
+-    }
+-  };
+-  const checkPending = async () => {
+-    try {
+-      await finish(await host.call("check", null));
+-    } catch (e) {
+-      setError(
+-        e instanceof Error
+-          ? e.message
+-          : "Check failed; original outcome remains unknown.",
+-      );
+-    }
+-  };
+-  const reviewFile = async () => {
+-    setBusy(true);
+-    try {
+-      const next = await restage!();
+-      setPreview(next);
+-      setStageLost(false);
+-      setProtection(null);
+-      setAcknowledgement(false);
+-      setReplacement(false);
+-    } catch (error) {
+-      setError(
+-        error instanceof Error
+-          ? error.message
+-          : "Selected file could not be reviewed.",
+-      );
+-    } finally {
+-      setBusy(false);
+-    }
+-  };
+-  const checkUnknown = async () => {
+-    setBusy(true);
+-    try {
+-      await finish(await host.call("check", null));
+-    } catch (e) {
+-      setError(
+-        e instanceof Error
+-          ? e.message
+-          : "Result check failed; outcome remains unknown",
+-      );
+-    } finally {
+-      setBusy(false);
+-    }
+-  };
+-  return {
+-    preview,
+-    replacement,
+-    setReplacement,
+-    protection,
+-    setProtection,
+-    acknowledgement,
+-    setAcknowledgement,
+-    busy,
+-    error,
+-    notice,
+-    unknown,
+-    leaving,
+-    setLeaving,
+-    activeMutation,
+-    stageLost,
+-    retained,
+-    stay,
+-    finish,
+-    restore,
+-    protectLocal,
+-    checkPending,
+-    reviewFile,
+-    checkUnknown,
+-  };
+-}
+diff --git a/src/presentation/features/workbench/hooks/useCreationForm.ts b/src/presentation/features/workbench/hooks/useCreationForm.ts
+deleted file mode 100644
+index 85bbbbe..0000000
+--- a/src/presentation/features/workbench/hooks/useCreationForm.ts
++++ /dev/null
+@@ -1,211 +0,0 @@
+-import { namingPreview } from "../state/naming-preview";
+-import { useEffect, useReducer } from "react";
+-import type { MutableRefObject } from "react";
+-import type { ProjectContext } from "@application/retention/projections";
+-import type { AuthoringCommand } from "@application/retention/ports";
+-import type {
+-  ProjectHeader,
+-  PublicAcceptance,
+-} from "@presentation/host/protocol";
+-export type CreationState = {
+-  dialog: "token" | "group" | "rename" | null;
+-  name: string;
+-  description: string;
+-  parent: string | null;
+-  layer: string;
+-  formDirty: boolean;
+-  formBaseline?: { revision: string; target: string | null; name: string };
+-  formReviewed: boolean;
+-};
+-export type CreationAction =
+-  | {
+-      type: "open";
+-      kind: NonNullable<CreationState["dialog"]>;
+-      revision: string;
+-      group: string | null;
+-      name: string;
+-    }
+-  | { type: "change"; patch: Partial<CreationState> };
+-export const emptyCreation: CreationState = {
+-  dialog: null,
+-  name: "",
+-  description: "",
+-  parent: null,
+-  layer: "",
+-  formDirty: false,
+-  formReviewed: false,
+-};
+-export function creationReducer(
+-  state: CreationState,
+-  action: CreationAction,
+-): CreationState {
+-  if (action.type === "open")
+-    return {
+-      ...emptyCreation,
+-      dialog: action.kind,
+-      name: action.name,
+-      parent: action.group,
+-      formBaseline: {
+-        revision: action.revision,
+-        target: action.group,
+-        name: action.name,
+-      },
+-    };
+-  return { ...state, ...action.patch };
+-}
+-export function useCreationForm(
+-  header: ProjectHeader,
+-  context: ProjectContext | undefined,
+-  group: string | null,
+-  busy: boolean,
+-  unknown: unknown,
+-  readFailure: string,
+-  accept: (command: AuthoringCommand) => Promise<PublicAcceptance>,
+-  completion: MutableRefObject<(() => void) | undefined>,
+-  setError: (message: string) => void,
+-  setNotice: (message: string) => void,
+-  onCreated: (kind: NonNullable<CreationState["dialog"]>, id: string) => void,
+-) {
+-  const [state, dispatch] = useReducer(creationReducer, emptyCreation);
+-  const {
+-    dialog,
+-    name,
+-    description,
+-    parent,
+-    layer,
+-    formDirty,
+-    formBaseline,
+-    formReviewed,
+-  } = state;
+-  const setDialog = (value: CreationState["dialog"]) =>
+-    dispatch({ type: "change", patch: { dialog: value } });
+-  const setName = (value: string) =>
+-    dispatch({ type: "change", patch: { name: value } });
+-  const setDescription = (value: string) =>
+-    dispatch({ type: "change", patch: { description: value } });
+-  const setParent = (value: string | null) =>
+-    dispatch({ type: "change", patch: { parent: value } });
+-  const setLayer = (value: string) =>
+-    dispatch({ type: "change", patch: { layer: value } });
+-  const setFormDirty = (value: boolean) =>
+-    dispatch({ type: "change", patch: { formDirty: value } });
+-  const setFormReviewed = (value: boolean) =>
+-    dispatch({ type: "change", patch: { formReviewed: value } });
+-  useEffect(() => setFormReviewed(false), [header.revision]);
+-  function begin(kind: NonNullable<CreationState["dialog"]>) {
+-    dispatch({
+-      type: "open",
+-      kind,
+-      revision: header.revision,
+-      group,
+-      name:
+-        kind === "rename"
+-          ? (context?.groups.find((g) => g.authored.id === group)?.authored
+-              .localName ?? "")
+-          : "",
+-    });
+-    setError("");
+-  }
+-  async function create() {
+-    if (
+-      !dialog ||
+-      busy ||
+-      unknown ||
+-      !header.writable ||
+-      readFailure ||
+-      (formBaseline?.revision !== header.revision && !formReviewed)
+-    )
+-      return;
+-    if (
+-      (dialog === "rename" &&
+-        !context?.groups.some((g) => g.authored.id === formBaseline?.target)) ||
+-      (dialog !== "rename" &&
+-        parent !== null &&
+-        !context?.groups.some((g) => g.authored.id === parent))
+-    ) {
+-      setError(
+-        "Original target or parent no longer exists. Input is preserved; mutation is blocked without retargeting or recreation.",
+-      );
+-      return;
+-    }
+-    const preview = namingPreview(context, dialog, name, parent, formBaseline?.target);
+-    if (preview.error || preview.collisions.length > 0) {
+-      setError(preview.error ?? "Name is already in use. Choose a different name or parent; conflicting paths and exact identities are listed above.");
+-      return;
+-    }
+-    const id = crypto.randomUUID();
+-    const command: AuthoringCommand =
+-      dialog === "rename"
+-        ? {
+-            operation: "renameGroup",
+-            projectId: header.project.id,
+-            groupId: formBaseline!.target!,
+-            localName: name,
+-          }
+-        : dialog === "group"
+-          ? {
+-              operation: "createGroup",
+-              input: {
+-                id,
+-                projectId: header.project.id,
+-                localName: name,
+-                parentGroupId: parent,
+-              },
+-            }
+-          : {
+-              operation: "createColorToken",
+-              input: {
+-                id,
+-                projectId: header.project.id,
+-                localName: name,
+-                parentGroupId: parent,
+-                type: "color",
+-                regeneration: "allowed",
+-                ...(description === "" ? {} : { description }),
+-                ...(layer ? { layer: layer as "primitive" | "semantic" } : {}),
+-                value: {
+-                  kind: "literal",
+-                  colorSpace: "srgb",
+-                  components: ["0", "0", "0"],
+-                  alpha: "1",
+-                },
+-              },
+-            };
+-    const kind = dialog;
+-    completion.current = () => {
+-      setDialog(null);
+-      setFormDirty(false);
+-      setDescription("");
+-      setError("");
+-      setNotice(
+-        kind === "rename"
+-          ? "Group renamed. Identities and references retained."
+-          : `${kind === "token" ? "Color token" : "Group"} created and retained.`,
+-      );
+-      onCreated(kind, id);
+-    };
+-    const result = await accept(command);
+-    if (result.status === "retained" && result.readback === "available") {
+-      const finish = completion.current;
+-      completion.current = undefined;
+-      finish?.();
+-    }
+-  }
+-
+-  function change(
+-    field: "name" | "description" | "parent" | "layer",
+-    value: string | null,
+-  ) {
+-    dispatch({ type: "change", patch: { [field]: value, formDirty: true } });
+-  }
+-  function close() {
+-    dispatch({ type: "change", patch: { dialog: null, formDirty: false } });
+-  }
+-  function discard() {
+-    setFormDirty(false);
+-  }
+-  function review() {
+-    setFormReviewed(true);
+-  }
+-  return { ...state, begin, create, change, close, discard, review };
+-}
+diff --git a/src/presentation/features/workbench/hooks/useProjectCommands.ts b/src/presentation/features/workbench/hooks/useProjectCommands.ts
+deleted file mode 100644
+index 8e09eef..0000000
+--- a/src/presentation/features/workbench/hooks/useProjectCommands.ts
++++ /dev/null
+@@ -1,179 +0,0 @@
+-import { useReducer, useRef } from "react";
+-import type { MutableRefObject } from "react";
+-import type { AuthoringCommand } from "@application/retention/ports";
+-import type {
+-  ProjectHeader,
+-  PublicAcceptance,
+-  WorkbenchHost,
+-} from "@presentation/host/protocol";
+-import { UnknownWriteError } from "@presentation/host/worker-client";
+-export type CommandState = {
+-  busy: boolean;
+-  unknown?: Extract<PublicAcceptance, { status: "unknown" }>;
+-  retainedPending?: Extract<PublicAcceptance, { status: "retained" }>;
+-};
+-export type CommandAction =
+-  | { type: "busy"; value: boolean }
+-  | { type: "unknown"; value: CommandState["unknown"] }
+-  | { type: "retained"; value: CommandState["retainedPending"] };
+-export function commandReducer(
+-  state: CommandState,
+-  action: CommandAction,
+-): CommandState {
+-  switch (action.type) {
+-    case "busy":
+-      return { ...state, busy: action.value };
+-    case "unknown":
+-      return { ...state, unknown: action.value };
+-    case "retained":
+-      return { ...state, retainedPending: action.value };
+-  }
+-}
+-export function useProjectCommands(
+-  host: WorkbenchHost,
+-  current: MutableRefObject<ProjectHeader>,
+-  reading: MutableRefObject<boolean>,
+-  lifecycleBlocked: boolean,
+-  refresh: (known?: ProjectHeader) => Promise<boolean | undefined>,
+-  setReadFailure: (message: string) => void,
+-  setError: (message: string) => void,
+-  setNotice: (message: string) => void,
+-) {
+-  const [{ busy, unknown, retainedPending }, dispatch] = useReducer(
+-    commandReducer,
+-    { busy: false },
+-  );
+-  const setBusy = (value: boolean) => dispatch({ type: "busy", value });
+-  const setUnknown = (value: CommandState["unknown"]) =>
+-    dispatch({ type: "unknown", value });
+-  const setRetainedPending = (value: CommandState["retainedPending"]) =>
+-    dispatch({ type: "retained", value });
+-  const activeMutation = useRef(false),
+-    completion = useRef<(() => void) | undefined>(undefined);
+-  async function accept(command: AuthoringCommand): Promise<PublicAcceptance> {
+-    if (
+-      lifecycleBlocked ||
+-      activeMutation.current ||
+-      reading.current ||
+-      busy ||
+-      unknown ||
+-      retainedPending
+-    )
+-      return {
+-        status: "rejected",
+-        reason: "Editing paused until lifecycle recovery completes.",
+-      };
+-    setBusy(true);
+-    activeMutation.current = true;
+-    setError("");
+-    try {
+-      let result = await host.call("command", {
+-        command,
+-        revision: current.current.revision,
+-      });
+-      if (result.status === "unknown") setUnknown(result);
+-      else if (result.status === "retained") {
+-        await host.call("consume", result.receipt.commandId);
+-        if (result.readback === "available" && !(await refresh()))
+-          result = {
+-            ...result,
+-            readback: "unavailable",
+-            readError: "Retained, but coherent display is unavailable.",
+-          };
+-        if (result.readback === "unavailable") {
+-          setRetainedPending(result);
+-          setReadFailure(
+-            result.readError ??
+-              "Retained, but readback unavailable. Retry reading without repeating the write.",
+-          );
+-        }
+-      } else {
+-        completion.current = undefined;
+-        setError(result.reason);
+-      }
+-      return result;
+-    } catch (e) {
+-      const result = {
+-        status: "unknown" as const,
+-        reason: e instanceof Error ? e.message : "Retained outcome unknown",
+-        commandId:
+-          e instanceof UnknownWriteError
+-            ? e.attempt.commandId
+-            : "worker-observation-lost",
+-      };
+-      setUnknown(result);
+-      return result;
+-    } finally {
+-      activeMutation.current = false;
+-      setBusy(false);
+-    }
+-  }
+-  async function retryReading() {
+-    setBusy(true);
+-    try {
+-      if (await refresh()) {
+-        const finish = completion.current;
+-        completion.current = undefined;
+-        setRetainedPending(undefined);
+-        finish?.();
+-        setNotice(
+-          "Retained applied state recovered. The original write was not repeated.",
+-        );
+-      }
+-    } finally {
+-      setBusy(false);
+-    }
+-  }
+-
+-  async function check() {
+-    setBusy(true);
+-    try {
+-      let result = await host.call("check", null);
+-      if (result.status === "unknown") {
+-        setUnknown(result);
+-        setError(result.reason);
+-      } else {
+-        setUnknown(undefined);
+-        if (result.status === "retained") {
+-          await host.call("consume", result.receipt.commandId);
+-          if (result.readback === "available" && !(await refresh()))
+-            result = { ...result, readback: "unavailable" };
+-          if (result.readback === "unavailable") {
+-            setRetainedPending(result);
+-            setReadFailure(
+-              result.readError ??
+-                "Original write retained; retry coherent reading without repeating it.",
+-            );
+-          } else {
+-            const finish = completion.current;
+-            completion.current = undefined;
+-            finish?.();
+-            setNotice("Original command retained and completed once.");
+-          }
+-        } else {
+-          completion.current = undefined;
+-          setError(result.reason);
+-        }
+-      }
+-    } catch (e) {
+-      setError(
+-        e instanceof Error
+-          ? e.message
+-          : "Result check failed; original outcome remains unknown.",
+-      );
+-    } finally {
+-      setBusy(false);
+-    }
+-  }
+-  return {
+-    busy,
+-    unknown,
+-    retainedPending,
+-    activeMutation,
+-    completion,
+-    accept,
+-    check,
+-    retryReading,
+-    setBusy,
+-  };
+-}
+diff --git a/src/presentation/features/workbench/hooks/useProjectReadback.ts b/src/presentation/features/workbench/hooks/useProjectReadback.ts
+deleted file mode 100644
+index d5103cd..0000000
+--- a/src/presentation/features/workbench/hooks/useProjectReadback.ts
++++ /dev/null
+@@ -1,178 +0,0 @@
+-import { useEffect, useRef, useState } from "react";
+-import type {
+-  ProjectContext,
+-  DisplayRow,
+-  SelectedToken,
+-} from "@application/retention/projections";
+-import type { DiagnosticDisplay } from "@application/retention/diagnostics";
+-import type { ProjectHeader, WorkbenchHost } from "@presentation/host/protocol";
+-export type Selection = { kind: "token" | "group"; id: string } | null;
+-export function useProjectReadback(
+-  host: WorkbenchHost,
+-  initial: ProjectHeader,
+-  selection: Selection,
+-) {
+-  const [header, setHeader] = useState(initial);
+-  const [context, setContext] = useState<ProjectContext>();
+-  const [rows, setRows] = useState<DisplayRow[]>([]);
+-  const [complete, setComplete] = useState(false);
+-  const [inspection, setInspection] = useState<SelectedToken>();
+-  const [readFailure, setReadFailure] = useState("");
+-  const [targetUnavailable, setTargetUnavailable] = useState("");
+-  const [diagnostics, setDiagnostics] = useState<DiagnosticDisplay>();
+-  const generation = useRef(0),
+-    selectedGeneration = useRef(0),
+-    reading = useRef(false);
+-  const current = useRef(header),
+-    selected = useRef(selection);
+-  current.current = header;
+-  selected.current = selection;
+-  useEffect(() => {
+-    void refresh(initial);
+-    return () => {
+-      generation.current++;
+-      selectedGeneration.current++;
+-    };
+-  }, []);
+-  async function refresh(known?: ProjectHeader) {
+-    const version = ++generation.current;
+-    selectedGeneration.current++;
+-    reading.current = true;
+-    setComplete(false);
+-    setDiagnostics(undefined);
+-    setReadFailure("");
+-    try {
+-      const next =
+-        known ?? (await host.call("openProject", initial.project.id));
+-      const data = await host.call("context", {
+-        projectId: next.project.id,
+-        revision: next.revision,
+-      });
+-      const target = selected.current;
+-      let selectedRead: SelectedToken | undefined,
+-        missingTarget = "";
+-      if (target?.kind === "token") {
+-        if (!data.tokens.some((token) => token.authored.id === target.id))
+-          missingTarget =
+-            "The original token no longer exists in current applied state.";
+-        else
+-          selectedRead = await host.call("inspection", {
+-            projectId: next.project.id,
+-            revision: next.revision,
+-            tokenId: target.id,
+-          });
+-      }
+-      if (version !== generation.current) return;
+-      selectedGeneration.current++;
+-      if (
+-        target?.kind === "token" &&
+-        selected.current?.kind === "token" &&
+-        selected.current.id === target.id
+-      ) {
+-        if (selectedRead) setInspection(selectedRead);
+-        setTargetUnavailable(missingTarget);
+-      }
+-      // Publish revision, metadata and selected applied inspection together.
+-      // Advancing a revision ahead of its selected value would silently rebase
+-      // the editor's preserved input before it can request deliberate review.
+-      setHeader(next);
+-      setContext(data);
+-      setRows([]);
+-      for (let offset = 0; offset < next.tokens; offset += 100) {
+-        const batch = await host.call("rows", {
+-          projectId: next.project.id,
+-          revision: next.revision,
+-          offset,
+-          count: 100,
+-        });
+-        if (version !== generation.current) return;
+-        setRows((previous) => [...previous, ...batch]);
+-        await new Promise<void>((resolve) =>
+-          requestAnimationFrame(() => resolve()),
+-        );
+-      }
+-      if (version === generation.current) {
+-        setComplete(true);
+-        return true;
+-      }
+-    } catch (e) {
+-      if (version === generation.current)
+-        setReadFailure(e instanceof Error ? e.message : "Project unavailable.");
+-    } finally {
+-      if (version === generation.current) reading.current = false;
+-    }
+-    return false;
+-  }
+-  async function inspect(id: string, target = current.current) {
+-    const version = ++selectedGeneration.current;
+-    try {
+-      const result = await host.call("inspection", {
+-        projectId: target.project.id,
+-        revision: target.revision,
+-        tokenId: id,
+-      });
+-      if (
+-        version === selectedGeneration.current &&
+-        current.current.revision === target.revision &&
+-        selected.current?.kind === "token" &&
+-        selected.current.id === id
+-      ) {
+-        setInspection(result);
+-        setTargetUnavailable("");
+-      }
+-      return result;
+-    } catch (e) {
+-      if (version === selectedGeneration.current)
+-        setTargetUnavailable(
+-          e instanceof Error ? e.message : "Inspection unavailable",
+-        );
+-    }
+-  }
+-
+-  async function loadDiagnostics(onError: (message: string) => void) {
+-    const version = generation.current,
+-      target = current.current;
+-    try {
+-      const result = await host.call("diagnostics", {
+-        projectId: target.project.id,
+-        revision: target.revision,
+-      });
+-      if (
+-        version === generation.current &&
+-        current.current.revision === target.revision
+-      )
+-        setDiagnostics(result);
+-    } catch (error) {
+-      if (version === generation.current) onError(String(error));
+-    }
+-  }
+-  function select(target: NonNullable<Selection>) {
+-    selectedGeneration.current++;
+-    selected.current = target;
+-    setTargetUnavailable("");
+-    setInspection(undefined);
+-    if (target.kind === "token") void inspect(target.id);
+-  }
+-  function invalidate() {
+-    generation.current++;
+-    selectedGeneration.current++;
+-  }
+-  return {
+-    header,
+-    context,
+-    rows,
+-    complete,
+-    inspection,
+-    readFailure,
+-    targetUnavailable,
+-    diagnostics,
+-    refresh,
+-    inspect,
+-    select,
+-    invalidate,
+-    loadDiagnostics,
+-    setReadFailure,
+-    reading,
+-    current,
+-  };
+-}
+diff --git a/src/presentation/features/workbench/hooks/useTokenEditor.ts b/src/presentation/features/workbench/hooks/useTokenEditor.ts
+deleted file mode 100644
+index f5e10f4..0000000
+--- a/src/presentation/features/workbench/hooks/useTokenEditor.ts
++++ /dev/null
+@@ -1,266 +0,0 @@
+-import type { SelectedToken } from "@application/retention/projections";
+-import type { ProjectContext } from "@application/retention/projections";
+-
+-import { useEffect, useRef, useState, useMemo } from "react";
+-
+-import type {
+-  TokenInspection,
+-  ApplicationResult,
+-} from "@application/authoring";
+-import type { Token } from "@domain/token";
+-import type { ReviseColorTokenInput } from "@application/authoring";
+-
+-import {
+-  baseline,
+-  refreshCleanSession,
+-  eligible,
+-  literalIssue,
+-} from "@presentation/features/workbench/state/session";
+-import { colorPreview } from "@presentation/features/workbench/color/preview";
+-import {
+-  identityLabels,
+-  failureText,
+-  resolvedColor,
+-} from "@presentation/features/workbench/readback";
+-export function useTokenEditor({
+-  inspection: i,
+-  project,
+-  inspect,
+-  onApply,
+-  onDirty,
+-  readUnavailable,
+-  revision = "session",
+-  requestSource,
+-  readOnly = false,
+-  targetUnavailable,
+-}: {
+-  inspection: TokenInspection | SelectedToken;
+-  project: ProjectContext;
+-  inspect: (id: string) =>
+-    | {
+-        resolution: {
+-          status: string;
+-          value?: import("@domain/token-resolution").ResolvedValue;
+-        };
+-      }
+-    | undefined;
+-  onApply: (
+-    value: ReviseColorTokenInput["value"],
+-  ) =>
+-    | ApplicationResult<Pick<Token, "definition">>
+-    | Promise<ApplicationResult<Pick<Token, "definition">>>;
+-  onDirty: (d: boolean) => void;
+-  readUnavailable: boolean;
+-  revision?: string;
+-  requestSource?: () => Promise<string>;
+-  readOnly?: boolean;
+-  targetUnavailable?: string;
+-}) {
+-  const projected = "token" in i;
+-  const token = projected ? i.token : i.authored,
+-    value = projected
+-      ? i.authoredValue
+-      : i.authored.definition?.assignments[0]?.value;
+-  const [accepting, setAccepting] = useState(false);
+-  const [session, setSession] = useState(() => baseline(value));
+-  const initial = useRef(session);
+-  const baselineRevision = useRef({
+-    revision,
+-    value: JSON.stringify({ token, value }),
+-    previous: value,
+-  });
+-  const [recovery, setRecovery] = useState<{
+-    previous: typeof value;
+-    reviewed: boolean;
+-  }>();
+-  const reviewHeading = useRef<HTMLHeadingElement>(null);
+-
+-  const [tab, setTab] = useState("authored"),
+-    [error, setError] = useState(""),
+-    [notice, setNotice] = useState("");
+-  const modeRef = useRef<HTMLButtonElement>(null),
+-    errorRef = useRef<HTMLParagraphElement>(null);
+-  const [restoreApplyFocus, setRestoreApplyFocus] = useState(false);
+-  useEffect(() => {
+-    if (restoreApplyFocus && !accepting) {
+-      // The mode button inherits disabled from the retaining fieldset. Focus
+-      // only after React commits the successful, re-enabled editor.
+-      modeRef.current?.focus();
+-      setRestoreApplyFocus(false);
+-    }
+-  }, [restoreApplyFocus, accepting]);
+-  const dirty =
+-    session.edited || session.reference !== initial.current.reference;
+-  useEffect(() => onDirty(dirty), [dirty, onDirty]);
+-  useEffect(() => {
+-    const before = baselineRevision.current;
+-    if (before.revision !== revision) {
+-      if (dirty && before.value !== JSON.stringify({ token, value }))
+-        setRecovery({ previous: before.previous, reviewed: false });
+-      if (!dirty) {
+-        const next = refreshCleanSession(session, value);
+-        initial.current = next;
+-        setSession(next);
+-        setRecovery(undefined);
+-      }
+-      baselineRevision.current = {
+-        revision,
+-        value: JSON.stringify({ token, value }),
+-        previous: value,
+-      };
+-    }
+-  }, [revision, value, dirty]);
+-
+-  useEffect(() => {
+-    if (error) errorRef.current?.focus();
+-  }, [error]);
+-  const applied = colorPreview(resolvedColor(i));
+-  const targetInspection =
+-    session.reference !== null ? inspect(session.reference) : undefined;
+-  const draft =
+-    session.mode === "literal"
+-      ? session.byteInvalid
+-        ? { message: "Unavailable: finish the incomplete byte entries." }
+-        : colorPreview(session.literal)
+-      : colorPreview(resolvedColor(targetInspection));
+-  const feedback = {
+-    tokenId: token.id,
+-    tab,
+-    applied: applied.css,
+-    draft: draft.css,
+-    appliedMessage: applied.message,
+-    draftMessage: draft.message,
+-  };
+-  const tokenLabels = useMemo(
+-    () => identityLabels(project.tokens),
+-    [project.tokens],
+-  );
+-  const referenceChoices = useMemo(
+-    () => project.tokens.filter((t) => t.authored.definition?.type === "color"),
+-    [project.tokens],
+-  );
+-  const referenceLabels = useMemo(
+-    () => identityLabels(referenceChoices, undefined, token.id),
+-    [referenceChoices, token.id],
+-  );
+-  const groupLabels = useMemo(
+-    () => identityLabels(project.groups, ["Project root", "All tokens"]),
+-    [project.groups],
+-  );
+-  const editable = projected ? i.editable : eligible(i.authored);
+-  async function apply() {
+-    if (
+-      accepting ||
+-      readOnly ||
+-      targetUnavailable ||
+-      (recovery && !recovery.reviewed)
+-    )
+-      return;
+-    if (readUnavailable) {
+-      setError("Project read unavailable. Retry reading; drafts retained.");
+-      return;
+-    }
+-    if (!editable) return;
+-    if (
+-      session.mode === "literal" &&
+-      (session.byteInvalid || literalIssue(session.literal))
+-    ) {
+-      setError(
+-        session.byteInvalid
+-          ? "Finish the incomplete byte entries."
+-          : (literalIssue(session.literal) ?? "Invalid color"),
+-      );
+-      return;
+-    }
+-    if (session.mode === "reference" && session.reference === null) {
+-      setError("Choose a color target.");
+-      return;
+-    }
+-    const candidate: ReviseColorTokenInput["value"] =
+-      session.mode === "literal"
+-        ? { ...session.literal, kind: "literal" }
+-        : {
+-            kind: "token-reference",
+-            targetTokenId: session.reference!,
+-            valuePath: [],
+-          };
+-    setAccepting(true);
+-    let result: ApplicationResult<Pick<Token, "definition">>;
+-    try {
+-      result = await onApply(candidate);
+-    } catch (error) {
+-      setError(
+-        error instanceof Error
+-          ? error.message
+-          : "Apply outcome unavailable. Drafts retained.",
+-      );
+-      setAccepting(false);
+-      return;
+-    }
+-    setAccepting(false);
+-    if (result.status === "failure") {
+-      setError("Apply failed. " + failureText(result));
+-      return;
+-    }
+-    const next = baseline(result.value.definition?.assignments[0]?.value);
+-    initial.current = next;
+-    baselineRevision.current = {
+-      revision,
+-      value: JSON.stringify(result.value.definition?.assignments[0]?.value),
+-      previous: result.value.definition?.assignments[0]?.value,
+-    };
+-    setRecovery(undefined);
+-    setSession(next);
+-    onDirty(false);
+-    setError("");
+-    setNotice("Changes applied and retained.");
+-    setRestoreApplyFocus(true);
+-  }
+-  function cancel() {
+-    const currentBaseline = baseline(value);
+-    initial.current = currentBaseline;
+-    setSession(currentBaseline);
+-    setRecovery(undefined);
+-    onDirty(false);
+-    setError("");
+-    setNotice("Both drafts discarded. Applied value unchanged.");
+-    modeRef.current?.focus();
+-  }
+-  return {
+-    i,
+-    project,
+-    projected,
+-    token,
+-    value,
+-    accepting,
+-    session,
+-    setSession,
+-    recovery,
+-    setRecovery,
+-    reviewHeading,
+-    tab,
+-    setTab,
+-    error,
+-    setError,
+-    notice,
+-    setNotice,
+-    modeRef,
+-    errorRef,
+-    dirty,
+-    applied,
+-    draft,
+-    feedback,
+-    tokenLabels,
+-    referenceChoices,
+-    referenceLabels,
+-    groupLabels,
+-    editable,
+-    apply,
+-    cancel,
+-    readUnavailable,
+-    revision,
+-    requestSource,
+-    readOnly,
+-    targetUnavailable,
+-  };
+-}
+diff --git a/src/presentation/features/workbench/hooks/useWorkbenchBackup.ts b/src/presentation/features/workbench/hooks/useWorkbenchBackup.ts
+deleted file mode 100644
+index 68890ec..0000000
+--- a/src/presentation/features/workbench/hooks/useWorkbenchBackup.ts
++++ /dev/null
+@@ -1,32 +0,0 @@
+-import { useRef, useState } from 'react';
+-import type { ChangeEvent } from 'react';
+-import type { ProjectHeader, RestorePreview, WorkbenchHost } from '@presentation/host/protocol';
+-import { downloadProjectBackup, readBackupFile } from '@presentation/host/backup-file';
+-/** Selection/staging/download coordination, separate from restore authority. */
+-export function useWorkbenchBackup(host: WorkbenchHost, header: ProjectHeader, setBusy: (busy:boolean) => void, setError: (message:string) => void, setNotice: (message:string) => void) {
+-  const selectedBackupFile = useRef<File | undefined>(undefined);
+-  const [restorePreview, setRestorePreview] = useState<RestorePreview>();
+-  const restoreInput = useRef<HTMLInputElement>(null);
+-  async function restage() {
+-    if (!selectedBackupFile.current) throw Error('Select the original backup file again.');
+-    return host.call('stageBackup', { bytes: await readBackupFile(selectedBackupFile.current) });
+-  }
+-  async function onBackupFile(event: ChangeEvent<HTMLInputElement>) {
+-    const input = event.target, file = input.files?.[0];
+-    if (!file) return;
+-    selectedBackupFile.current = file;
+-    setBusy(true); setError('');
+-    try { setRestorePreview(await restage()); }
+-    catch (error) { setError(error instanceof Error ? error.message : 'Backup preview unavailable. Applied data and drafts are unchanged.'); }
+-    finally { setBusy(false); input.value = ''; }
+-  }
+-  async function onDownload() {
+-    setBusy(true); setError('');
+-    try {
+-      await downloadProjectBackup(host, header.project.id, header.revision);
+-      setNotice('Backup download requested. Keep the independent file; download initiation does not confirm it was saved. Unapplied drafts are excluded and unchanged.');
+-    } catch (error) { setError(error instanceof Error ? error.message : 'Backup generation failed. Applied data and drafts are unchanged.'); }
+-    finally { setBusy(false); }
+-  }
+-  return { restorePreview, setRestorePreview, restoreInput, restage, onBackupFile, onDownload };
+-}
+diff --git a/src/presentation/features/workbench/hooks/useWorkbenchLayout.ts b/src/presentation/features/workbench/hooks/useWorkbenchLayout.ts
+deleted file mode 100644
+index 4fd4869..0000000
+--- a/src/presentation/features/workbench/hooks/useWorkbenchLayout.ts
++++ /dev/null
+@@ -1,28 +0,0 @@
+-import { useEffect, useState } from "react";
+-export function useWorkbenchLayout() {
+-  const [compact, setCompact] = useState(window.innerWidth < 1120),
+-    [navigationOpen, setNavigationOpen] = useState(false),
+-    [sidebarExpanded, setSidebarExpanded] = useState(window.innerWidth >= 1120),
+-    [inspectorExpanded, setInspectorExpanded] = useState(
+-      window.innerWidth >= 768,
+-    );
+-  useEffect(() => {
+-    const media = matchMedia("(max-width:1119px)");
+-    const update = () => {
+-      setCompact(media.matches);
+-      if (!media.matches) setNavigationOpen(false);
+-    };
+-    media.addEventListener("change", update);
+-
+-    return () => media.removeEventListener("change", update);
+-  }, []);
+-  return {
+-    compact,
+-    navigationOpen,
+-    setNavigationOpen,
+-    sidebarExpanded,
+-    setSidebarExpanded,
+-    inspectorExpanded,
+-    setInspectorExpanded,
+-  };
+-}
+diff --git a/src/presentation/features/workbench/hooks/useWorkbenchLifecycle.ts b/src/presentation/features/workbench/hooks/useWorkbenchLifecycle.ts
+deleted file mode 100644
+index 215f17f..0000000
+--- a/src/presentation/features/workbench/hooks/useWorkbenchLifecycle.ts
++++ /dev/null
+@@ -1,29 +0,0 @@
+-import { useEffect, useRef } from 'react';
+-import type { WorkbenchHost, ProjectHeader } from '@presentation/host/protocol';
+-/** Lifecycle recovery only. Authoring acceptance/readback keep their existing owners. */
+-export function useWorkbenchLifecycle({ host, projectId, busy, unknown, dirty, formDirty, setBlocked, refresh, setReadFailure }: {
+-  host: WorkbenchHost; projectId: string; busy: boolean; unknown: boolean; dirty: boolean; formDirty: boolean;
+-  setBlocked(value: boolean): void; refresh(header?: ProjectHeader): Promise<unknown>; setReadFailure(message: string): void;
+-}) {
+-  const lifecycle = useRef({busy, unknown});
+-  lifecycle.current = {busy, unknown};
+-  useEffect(() => {
+-    const pause = () => { setBlocked(true); void host.call('suspend',null).catch(() => {}); };
+-    const resume = () => {
+-      setBlocked(true);
+-      if (lifecycle.current.busy || lifecycle.current.unknown) return;
+-      void host.call('resume', projectId).then(next => refresh(next)).then(() => setBlocked(false))
+-        .catch(e => setReadFailure(e instanceof Error ? e.message : 'Lifecycle recovery unavailable'));
+-    };
+-    addEventListener('pagehide',pause); addEventListener('freeze',pause);
+-    addEventListener('pageshow',resume); addEventListener('focus',resume);
+-    return () => { removeEventListener('pagehide',pause); removeEventListener('freeze',pause); removeEventListener('pageshow',resume); removeEventListener('focus',resume); };
+-  }, [host, projectId]);
+-  useEffect(() => {
+-    const protect = (event: BeforeUnloadEvent) => {
+-      if (dirty || formDirty || busy || unknown) { event.preventDefault(); event.returnValue = ''; }
+-    };
+-    addEventListener('beforeunload', protect);
+-    return () => removeEventListener('beforeunload',protect);
+-  }, [dirty, formDirty, busy, unknown]);
+-}
+diff --git a/src/presentation/features/workbench/readback.ts b/src/presentation/features/workbench/readback.ts
+deleted file mode 100644
+index 5f8a512..0000000
+--- a/src/presentation/features/workbench/readback.ts
++++ /dev/null
+@@ -1,138 +0,0 @@
+-import { namespacePathKey } from "@domain/namespace-naming";
+-import type { DisplayPath } from "@application/retention/projections";
+-import type {
+-  ApplicationFailure,
+-  TokenInspection,
+-} from "@application/authoring";
+-import type { ColorLiteralValue } from "@domain/color-literal";
+-export function pathLabel(path: DisplayPath) {
+-  return path.status === "derived"
+-    ? path.path.map((x) => (x === "" ? "(unnamed)" : x)).join(" / ")
+-    : path.status === "unavailable"
+-      ? "(derived path unavailable · resource limit)"
+-      : "(invalid namespace)";
+-}
+-export function resolvedColor(inspection?: {
+-  resolution: {
+-    status: string;
+-    value?: import("@domain/token-resolution").ResolvedValue;
+-  };
+-}): ColorLiteralValue | undefined {
+-  const r = inspection?.resolution;
+-  return r?.status === "resolved" &&
+-    r.value?.kind === "literal" &&
+-    r.value.valueType === "color"
+-    ? r.value
+-    : undefined;
+-}
+-export function failureText(failure: ApplicationFailure) {
+-  const e = failure.error;
+-  if (e.code === "storage-failure")
+-    return `Storage ${e.operation} failed: ${e.message}. Existing data and drafts retained.`;
+-  if (e.code === "invalid-domain-input")
+-    return `Invalid authoring: ${e.message}`;
+-  if (e.code === "invalid-candidate")
+-    return `Candidate rejected. Namespace diagnostics: ${JSON.stringify(e.namespaceDiagnostics)}. Reference diagnostics: ${JSON.stringify(e.referenceDiagnostics)}. Unrelated diagnostics can block a one-edit repair.`;
+-  return JSON.stringify(e);
+-}
+-
+-/** Labels are presentation only: all consumers keep full IDs as values and keys. */
+-export function identityLabels(
+-  entries: readonly { authored: { id: string }; path: DisplayPath }[],
+-  reserved: readonly string[] = ["Choose a color token…", "Missing target"],
+-  selfTokenId?: string,
+-): Map<string, string> {
+-  if (
+-    new Set(entries.map((entry) => entry.authored.id)).size !== entries.length
+-  )
+-    throw new RangeError("Identity labels require unique stable IDs.");
+-  // Context is part of the rendered choice before collision detection.
+-  const bases = entries.map(
+-    (entry) =>
+-      pathLabel(entry.path) +
+-      (entry.authored.id === selfTokenId ? " (this token)" : ""),
+-  );
+-  const renderedKey = (text: string) => text.replace(/\s+/g, " ").trim();
+-  const reservedKeys = reserved.map(renderedKey);
+-  const keys = bases.map(renderedKey);
+-  const counts = (values: readonly string[]) => {
+-    const result = new Map<string, number>();
+-    values.forEach((value) => result.set(value, (result.get(value) ?? 0) + 1));
+-    return result;
+-  };
+-  const baseCounts = counts(keys);
+-  const ambiguous = entries.map(
+-    (entry, i) =>
+-      entry.path.status !== "derived" ||
+-      entry.path.path.length === 0 ||
+-      entry.path.path.some((part) => part === "") ||
+-      reservedKeys.includes(keys[i]) ||
+-      baseCounts.get(keys[i])! > 1,
+-  );
+-  const maximum = entries.reduce(
+-    (length, entry) => Math.max(length, entry.authored.id.length),
+-    8,
+-  );
+-  const collisions = (labels: readonly string[]) => {
+-    const keys = labels.map(renderedKey),
+-      labelCounts = counts(keys);
+-    return keys.map(
+-      (key) => reservedKeys.includes(key) || labelCounts.get(key)! > 1,
+-    );
+-  };
+-  const result = (labels: readonly string[]) =>
+-    new Map(entries.map((entry, i) => [entry.authored.id, labels[i]]));
+-  // Common IDs need only the shortest distinguishing prefix. Compare the whole
+-  // rendered set, including authored names that resemble an appended suffix.
+-  for (let length = 8; length <= maximum + entries.length; length++) {
+-    const labels = entries.map((entry, i) =>
+-      ambiguous[i]
+-        ? `${bases[i]} · ${entry.authored.id.slice(0, length)}`
+-        : bases[i],
+-    );
+-    const clashes = collisions(labels);
+-    if (!clashes.some(Boolean)) return result(labels);
+-    clashes.forEach((collision, i) => {
+-      if (collision) ambiguous[i] = true;
+-    });
+-  }
+-  // Opaque IDs may contain whitespace or the suffix delimiter. Encode UTF-16
+-  // units without whitespace/delimiters so distinct full IDs remain visible.
+-  // Newly colliding authored names also gain a suffix; each pass marks another
+-  // entry, making this fallback bounded even for repairable/malformed readback.
+-  const escaped = entries.map((entry) =>
+-    entry.authored.id
+-      .split("")
+-      .map((unit) => unit.charCodeAt(0).toString(16).padStart(4, "0"))
+-      .join(""),
+-  );
+-  for (let pass = 0; pass <= entries.length; pass++) {
+-    const labels = entries.map((_, i) =>
+-      ambiguous[i] ? `${bases[i]} · id:${escaped[i]}` : bases[i],
+-    );
+-    const clashes = collisions(labels);
+-    if (!clashes.some(Boolean)) return result(labels);
+-    clashes.forEach((collision, i) => {
+-      if (collision) ambiguous[i] = true;
+-    });
+-  }
+-  throw new RangeError("Identity labels could not be disambiguated.");
+-}
+-
+-/** Exceptional row context belongs inside each exact-identity action. */
+-export function namespaceEntryDetails(context: import('@application/retention/projections').ProjectContext): Map<string,string> {
+-  const entries = [
+-    ...context.groups.map(entry => ({...entry,kind:'group' as const})),
+-    ...context.tokens.map(entry => ({...entry,kind:'token' as const})),
+-  ];
+-  const counts=new Map<string,number>();
+-  for (const entry of entries) if (entry.path.status === 'derived') {
+-    const key=namespacePathKey(entry.path.path); counts.set(key,(counts.get(key)??0)+1);
+-  }
+-  return new Map(entries.flatMap(entry => {
+-    const issue=entry.path.status !== 'derived' ? 'Path unavailable' : (counts.get(namespacePathKey(entry.path.path))??0)>1 ? 'Conflicting path' : undefined;
+-    if (!issue) return [];
+-    const parent=entry.authored.parentGroupId === null ? 'Project root' : `Parent identity ${JSON.stringify(entry.authored.parentGroupId)}`;
+-    return [[JSON.stringify([entry.kind,entry.authored.id]), `${issue} · ${parent} · Identity ${JSON.stringify(entry.authored.id)}`]];
+-  }));
+-}
+diff --git a/src/presentation/features/workbench/state/all-content.ts b/src/presentation/features/workbench/state/all-content.ts
+deleted file mode 100644
+index a647f56..0000000
+--- a/src/presentation/features/workbench/state/all-content.ts
++++ /dev/null
+@@ -1,59 +0,0 @@
+-import { namespaceEntryDetails, pathLabel } from "../readback";
+-import type { ProjectContext } from "@application/retention/projections";
+-
+-export type MembershipEntry = {
+-  kind: "group" | "token";
+-  id: string;
+-  label: string;
+-  detail?: string;
+-  valueType?: string;
+-};
+-
+-/** Presentation blocks preserve every exact identity and the existing order. */
+-export function membershipBlocks(
+-  context: ProjectContext,
+-  groupLabels: ReadonlyMap<string, string>,
+-): readonly (readonly MembershipEntry[])[] {
+-  const details = namespaceEntryDetails(context);
+-  const entries: MembershipEntry[] = [
+-    ...context.groups.map(({ authored, path }) => ({
+-      kind: "group" as const,
+-      id: authored.id,
+-      label: path.status === "derived"
+-        ? (groupLabels.get(authored.id) ?? pathLabel(path))
+-        : `${authored.localName || "(unnamed group)"} · ${pathLabel(path)}`,
+-      detail: details.get(JSON.stringify(["group",authored.id])),
+-    })),
+-    ...context.tokens.map(({ authored, path }) => ({
+-      kind: "token" as const,
+-      id: authored.id,
+-      label: path.status === "derived" ? pathLabel(path) : `${authored.localName || "(unnamed token)"} · ${pathLabel(path)}`,
+-      valueType: authored.definition?.type ?? "Unassigned",
+-      detail: details.get(JSON.stringify(["token",authored.id])),
+-    })),
+-  ];
+-  return Array.from({ length: Math.ceil(entries.length / 100) }, (_, index) =>
+-    entries.slice(index * 100, (index + 1) * 100),
+-  );
+-}
+-
+-/** Each frame publishes one new block; disposal fences even an already queued
+- * callback when its owning project/revision view is replaced. */
+-export function revealMembershipBlocks(
+-  total: number,
+-  publish: (count: number) => void,
+-  schedule: (callback: () => void) => number = requestAnimationFrame,
+-  cancel: (id: number) => void = cancelAnimationFrame,
+-): () => void {
+-  let visible = Math.min(1, total), stopped = false, frame: number | undefined;
+-  const advance = () => {
+-    if (stopped) return;
+-    publish(++visible);
+-    if (visible < total) frame = schedule(advance);
+-  };
+-  if (visible < total) frame = schedule(advance);
+-  return () => {
+-    stopped = true;
+-    if (frame !== undefined) cancel(frame);
+-  };
+-}
+diff --git a/src/presentation/features/workbench/state/browser-view.ts b/src/presentation/features/workbench/state/browser-view.ts
+deleted file mode 100644
+index 2bd0c49..0000000
+--- a/src/presentation/features/workbench/state/browser-view.ts
++++ /dev/null
+@@ -1,4 +0,0 @@
+-export type BrowserView = { kind: 'all-tokens' } | { kind: 'group'; id: string } | { kind: 'all-content' };
+-export function creationParent(view: BrowserView): string | null {
+-  return view.kind === 'group' ? view.id : null;
+-}
+diff --git a/src/presentation/features/workbench/state/naming-preview.ts b/src/presentation/features/workbench/state/naming-preview.ts
+deleted file mode 100644
+index 919a2d4..0000000
+--- a/src/presentation/features/workbench/state/naming-preview.ts
++++ /dev/null
+@@ -1,27 +0,0 @@
+-import type { ProjectContext } from '@application/retention/projections';
+-import { prepareNamespaceName } from '@domain/namespace-naming';
+-import { introducedNamespaceCollisions } from '@domain/namespace-collisions';
+-import type { NamingNamespace } from '@domain/namespace-collisions';
+-export function namingPreview(project: ProjectContext | undefined, kind: 'token' | 'group' | 'rename' | null, raw: string, parent: string | null, renameTarget?: string | null) {
+-  let name: string;
+-  try { name = prepareNamespaceName(raw); }
+-  catch (error) { return { error: error instanceof Error ? error.message : 'Name preparation unavailable.', collisions: [] }; }
+-  if (!project) return { name, error: 'Project context unavailable.', collisions: [] };
+-  const before: NamingNamespace = {
+-    projectId: project.project.id,
+-    groups: project.groups.map(g => g.authored),
+-    tokens: project.tokens.map(t => ({...t.authored, projectId: project.project.id})),
+-  };
+-  // A synthetic preview identity never becomes an authored identity.
+-  let id = 'preview';
+-  while ([...before.groups,...before.tokens].some(entry => entry.id === id)) id += '-';
+-  const target = before.groups.find(g => g.id === renameTarget);
+-  const member = {id, projectId:project.project.id, parentGroupId:parent, localName:name};
+-  const after = kind === 'rename'
+-    ? {...before, groups:before.groups.map(g => g.id === renameTarget ? {...g,localName:name} : g)}
+-    : kind === 'group' ? {...before,groups:[...before.groups,member]} : {...before,tokens:[...before.tokens,member]};
+-  const parentId = kind === 'rename' ? target?.parentGroupId : parent;
+-  const parentPath = parentId === null ? [] : project.groups.find(g => g.authored.id === parentId)?.path;
+-  const path = Array.isArray(parentPath) ? [...parentPath,name] : parentPath && 'status' in parentPath && parentPath.status === 'derived' ? [...parentPath.path,name] : undefined;
+-  return {name, path, collisions:introducedNamespaceCollisions(before,after), previewId:id};
+-}
+diff --git a/src/presentation/features/workbench/state/session.ts b/src/presentation/features/workbench/state/session.ts
+deleted file mode 100644
+index 1824e16..0000000
+--- a/src/presentation/features/workbench/state/session.ts
++++ /dev/null
+@@ -1,147 +0,0 @@
+-import type { ColorLiteralInput, ColorSpace } from "@domain/color-literal";
+-import { createColorLiteral } from "@domain/color-literal";
+-import { convertColor } from "@domain/color-calculation";
+-import {
+-  integerByteDisplay,
+-  integerByteIssue,
+-  integerByteToNormalized,
+-} from "@presentation/features/workbench/color/integer-rgb";
+-import type { ImplementedAuthoredValue } from "@domain/token";
+-export { canReviseColorToken as eligible } from "@application/color-revision-policy";
+-export type LiteralDraft = {
+-  colorSpace: ColorSpace;
+-  components: [string, string, string];
+-  alpha: string;
+-};
+-export type DraftSession = {
+-  mode: "literal" | "reference";
+-  literal: LiteralDraft;
+-  reference: string | null;
+-  viewSpace: ColorSpace;
+-  scale: "normalized" | "bytes";
+-  byteText: [string, string, string] | null;
+-  byteInvalid: boolean;
+-  byteEdited: [boolean, boolean, boolean];
+-  edited: boolean;
+-};
+-export function baseline(value?: ImplementedAuthoredValue): DraftSession {
+-  const literal =
+-    value?.kind === "literal" && value.valueType === "color"
+-      ? {
+-          colorSpace: value.colorSpace,
+-          components: [...value.components] as [string, string, string],
+-          alpha: value.alpha,
+-        }
+-      : {
+-          colorSpace: "srgb" as const,
+-          components: ["", "", ""] as [string, string, string],
+-          alpha: "1",
+-        };
+-  return {
+-    mode: value?.kind === "token-reference" ? "reference" : "literal",
+-    literal,
+-    reference: value?.kind === "token-reference" ? value.targetTokenId : null,
+-    viewSpace: literal.colorSpace,
+-    scale: "normalized",
+-    byteText: null,
+-    byteInvalid: false,
+-    byteEdited: [false, false, false],
+-    edited: false,
+-  };
+-}
+-/** A clean editor follows applied data; representation preferences stay passive. */
+-export function refreshCleanSession(
+-  session: DraftSession,
+-  value?: ImplementedAuthoredValue,
+-): DraftSession {
+-  return { ...baseline(value), viewSpace: session.viewSpace, scale: session.scale };
+-}
+-export function literalIssue(literal: ColorLiteralInput): string | undefined {
+-  try {
+-    createColorLiteral(literal);
+-    return undefined;
+-  } catch (e) {
+-    return e instanceof Error ? e.message : "Invalid literal";
+-  }
+-}
+-export function displayed(s: DraftSession): LiteralDraft {
+-  if (s.viewSpace === s.literal.colorSpace) return s.literal;
+-  // Alpha never participates in coordinate conversion. Keep the displayed
+-  // coordinates stable while its independent exact text is incomplete.
+-  const r = convertColor({ ...s.literal, alpha: "1" }, s.viewSpace);
+-  return r.ok
+-    ? {
+-        colorSpace: r.value.colorSpace,
+-        components: [...r.value.components],
+-        alpha: s.literal.alpha,
+-      }
+-    : s.literal;
+-}
+-export function fields(s: DraftSession): [string, string, string] {
+-  const d = displayed(s);
+-  return d.colorSpace === "srgb" && s.scale === "bytes"
+-    ? (s.byteText ??
+-        (d.components.map((x) => integerByteDisplay(x).text) as [
+-          string,
+-          string,
+-          string,
+-        ]))
+-    : d.components;
+-}
+-export function changeView(s: DraftSession, target: ColorSpace): DraftSession {
+-  if (s.byteInvalid)
+-    throw new RangeError(
+-      "Finish the incomplete byte entries before changing representation.",
+-    );
+-  const r = convertColor(s.literal, target);
+-  if (!r.ok) throw new RangeError(r.message);
+-  const next = { ...s, viewSpace: target };
+-  if (target === "srgb" && s.scale === "bytes") fields(next);
+-  return next;
+-}
+-export function editComponent(
+-  s: DraftSession,
+-  index: number,
+-  text: string,
+-): DraftSession {
+-  const d = displayed(s);
+-  const bytes = d.colorSpace === "srgb" && s.scale === "bytes";
+-  const components: [string, string, string] = [...d.components];
+-  if (bytes) {
+-    const raw: [string, string, string] = [...fields(s)];
+-    raw[index] = text;
+-    const byteEdited: [boolean, boolean, boolean] = [...s.byteEdited];
+-    byteEdited[index] = true;
+-    try {
+-      components[index] = integerByteToNormalized(text);
+-    } catch {
+-      return {
+-        ...s,
+-        byteText: raw,
+-        byteEdited,
+-        byteInvalid: true,
+-        edited: true,
+-      };
+-    }
+-    const invalid = raw.some(
+-      (x, i) => byteEdited[i] && integerByteIssue(x) !== undefined,
+-    );
+-    return {
+-      ...s,
+-      literal: { ...d, components },
+-      byteText: raw,
+-      byteEdited,
+-      byteInvalid: invalid,
+-      edited: true,
+-    };
+-  }
+-  components[index] = text;
+-  return {
+-    ...s,
+-    literal: { ...d, components },
+-    byteText: null,
+-    byteEdited: [false, false, false],
+-    byteInvalid: false,
+-    edited: true,
+-  };
+-}
+diff --git a/test/presentation/all-content.test.tsx b/test/presentation/all-content.test.tsx
+index 9e9f76b..2e75c52 100644
+--- a/test/presentation/all-content.test.tsx
++++ b/test/presentation/all-content.test.tsx
+@@ -3,9 +3,9 @@ import { renderToStaticMarkup } from "react-dom/server";
+ import { describe, expect, it } from "vitest";
+ import { admitSnapshot } from "@application/retention/codec";
+ import { projectContext } from "@application/retention/projections";
+-import { identityLabels } from "@presentation/features/workbench/readback";
+-import { AllContent } from "@presentation/features/workbench/components/AllContent";
+-import { membershipBlocks, revealMembershipBlocks } from "@presentation/features/workbench/state/all-content";
++import { identityLabels } from "@presentation/features/workbench/coordination/readback";
++import { AllContent } from "@presentation/features/workbench/browser/AllContent";
++import { membershipBlocks, revealMembershipBlocks } from "@presentation/features/workbench/browser/all-content";
+ function context(groups: number, tokens: number) {
+   return projectContext(admitSnapshot({ project: { id: "p", name: "P" }, groups: Array.from({length:groups}, (_, i)=>({id:`g${i}`,projectId:"p",localName:`group${i}`,parentGroupId:null})), tokens: Array.from({length:tokens},(_,i)=>({id:`t${i}`,projectId:"p",localName:`token${i}`,parentGroupId:null,authoring:{regeneration:"allowed"}})) }));
+ }
+diff --git a/test/presentation/identity-presentation.test.tsx b/test/presentation/identity-presentation.test.tsx
+index 0c08484..ff58bfd 100644
+--- a/test/presentation/identity-presentation.test.tsx
++++ b/test/presentation/identity-presentation.test.tsx
+@@ -1,23 +1,23 @@
+ import { describe, it, expect } from "vitest";
+ import { createElement } from "react";
+ import { renderToStaticMarkup } from "react-dom/server";
+-import { TokenList } from "@presentation/features/workbench/components/TokenList";
+-import { ProjectNavigation } from "@presentation/features/workbench/components/ProjectNavigation";
++import { TokenList } from "@presentation/features/workbench/browser/TokenList";
++import { ProjectNavigation } from "@presentation/features/workbench/browser/ProjectNavigation";
+ import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
+-import { Editor } from "@presentation/features/workbench/components/Editor";
+-import { identityLabels } from "@presentation/features/workbench/readback";
++import { EditableTokenInspector } from "@presentation/features/workbench/inspector/WorkbenchInspector";
++import { identityLabels } from "@presentation/features/workbench/coordination/readback";
+ import { createColorLiteral } from "@domain/color-literal";
+ import { createToken } from "@domain/token";
+ import { createTokenGroup } from "@domain/token-group";
+ import { createProject } from "@domain/project";
+ import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
+ import { createAuthoringOperations } from "@application/authoring";
+-import { ColorFields } from "@presentation/features/workbench/components/ColorFields";
++import { ColorFields } from "@presentation/features/workbench/inspector/ColorFields";
+ import {
+   baseline,
+   editComponent,
+-} from "@presentation/features/workbench/state/session";
+-import type { DraftSession } from "@presentation/features/workbench/state/session";
++} from "@presentation/features/workbench/inspector/session";
++import type { DraftSession } from "@presentation/features/workbench/inspector/session";
+ import type {
+   ApplicationResult,
+   TokenInspection,
+@@ -116,7 +116,7 @@ describe("human identity labels in real consumers", () => {
+       createElement(ProjectNavigation, {
+         drawer: false,
+         project,
+-        view: {kind:"group", id:"shared-prefix-group-b"},
++        view: { kind: "group", id: "shared-prefix-group-b" },
+         unavailable: false,
+         onSelect: () => {},
+         onCreateGroup: () => {},
+@@ -151,7 +151,10 @@ describe("human identity labels in real consumers", () => {
+     expect(missing).toContain("Missing target");
+     expect(missing).not.toContain("missing-secret-id");
+     const editor = renderToStaticMarkup(
+-      createElement(Editor, {
++      createElement(EditableTokenInspector, {
++        inspectorExpanded: true,
++        onToggle() {},
++        readFailure: "",
+         project,
+         inspection: ok(app.inspectToken("p", "unique-token-id")),
+         inspect: (id) => ok(app.inspectToken("p", id)),
+@@ -187,7 +190,10 @@ describe("human identity labels in real consumers", () => {
+       },
+     };
+     const referenceEditor = renderToStaticMarkup(
+-      createElement(Editor, {
++      createElement(EditableTokenInspector, {
++        inspectorExpanded: true,
++        onToggle() {},
++        readFailure: "",
+         project,
+         inspection: aliasInspection,
+         inspect: (id) => ok(app.inspectToken("p", id)),
+@@ -402,7 +408,14 @@ describe("final reference choice context", () => {
+       );
+     const loaded = storage.load("p");
+     if (loaded.status !== "ok" || !loaded.value) throw Error("Fixture missing");
+-    storage.commit({...loaded.value,tokens:loaded.value.tokens.map(token => token.id === "other" ? {...token,localName:"x (this token)"} : token)});
++    storage.commit({
++      ...loaded.value,
++      tokens: loaded.value.tokens.map((token) =>
++        token.id === "other"
++          ? { ...token, localName: "x (this token)" }
++          : token,
++      ),
++    });
+     ok(
+       app.reviseColorToken({
+         projectId: "p",
+@@ -415,7 +428,10 @@ describe("final reference choice context", () => {
+       }),
+     );
+     const html = renderToStaticMarkup(
+-      createElement(Editor, {
++      createElement(EditableTokenInspector, {
++        inspectorExpanded: true,
++        onToggle() {},
++        readFailure: "",
+         project: ok(app.readProject("p")),
+         inspection: ok(app.inspectToken("p", "self")),
+         inspect: (id) => ok(app.inspectToken("p", id)),
+diff --git a/test/presentation/increment-009.test.tsx b/test/presentation/increment-009.test.tsx
+index 47d35a3..4374a65 100644
+--- a/test/presentation/increment-009.test.tsx
++++ b/test/presentation/increment-009.test.tsx
+@@ -3,10 +3,10 @@ import { createElement } from 'react';
+ import { renderToStaticMarkup } from 'react-dom/server';
+ import { admitSnapshot, encodeBackup, decodeBackup } from '@application/retention/codec';
+ import { projectContext } from '@application/retention/projections';
+-import { namingPreview } from '@presentation/features/workbench/state/naming-preview';
+-import { creationParent } from '@presentation/features/workbench/state/browser-view';
+-import { ProjectNavigation } from '@presentation/features/workbench/components/ProjectNavigation';
+-import { membershipBlocks } from '@presentation/features/workbench/state/all-content';
++import { namingPreview } from '@presentation/features/workbench/creation/naming-preview';
++import { creationParent } from '@presentation/features/workbench/browser/browser-view';
++import { ProjectNavigation } from '@presentation/features/workbench/browser/ProjectNavigation';
++import { membershipBlocks } from '@presentation/features/workbench/browser/all-content';
+ import { readBackupFile } from '@presentation/host/backup-file';
+ const snapshot=admitSnapshot({project:{id:'p',name:'Legacy'},groups:[{id:'g',projectId:'p',localName:'foundation',parentGroupId:null},{id:'conflicting-group',projectId:'p',localName:'BRAND Blue',parentGroupId:'g'}],tokens:[{id:'token-a-full-identity',projectId:'p',localName:'Brand\u00A0Blue',parentGroupId:'g',authoring:{regeneration:'allowed'}},{id:'token-b-full-identity',projectId:'p',localName:'Brand\u00A0Blue',parentGroupId:'g',authoring:{regeneration:'allowed'}},{id:'orphan-full-identity',projectId:'p',localName:'Orphan\u200DBlue',parentGroupId:'missing-parent',authoring:{regeneration:'allowed'}}]});
+ const context=projectContext(snapshot);
+diff --git a/test/presentation/session.test.ts b/test/presentation/session.test.ts
+index 7647a3c..a93cd4e 100644
+--- a/test/presentation/session.test.ts
++++ b/test/presentation/session.test.ts
+@@ -1,12 +1,12 @@
+ import { describe, it, expect } from "vitest";
+-import type { DraftSession } from "@presentation/features/workbench/state/session";
++import type { DraftSession } from "@presentation/features/workbench/inspector/session";
+ import {
+   baseline,
+   refreshCleanSession,
+   changeView,
+   editComponent,
+   fields,
+-} from "@presentation/features/workbench/state/session";
++} from "@presentation/features/workbench/inspector/session";
+ import { createColorLiteral } from "@domain/color-literal";
+ const original = createColorLiteral({
+   colorSpace: "srgb",
+diff --git a/test/presentation/workbench-coordination.test.tsx b/test/presentation/workbench-coordination.test.tsx
+index a769d5c..d7396df 100644
+--- a/test/presentation/workbench-coordination.test.tsx
++++ b/test/presentation/workbench-coordination.test.tsx
+@@ -48,10 +48,10 @@ vi.mock("react", async (original) => {
+     },
+   };
+ });
+-import { useProjectReadback } from "@presentation/features/workbench/hooks/useProjectReadback";
+-import { useProjectCommands } from "@presentation/features/workbench/hooks/useProjectCommands";
+-import { useCreationForm } from "@presentation/features/workbench/hooks/useCreationForm";
+-import { restoreProtectionReducer } from "@presentation/features/workbench/hooks/useBackupRestore";
++import { useProjectReadback } from "@presentation/features/workbench/coordination/useProjectReadback";
++import { useProjectCommands } from "@presentation/features/workbench/coordination/useProjectCommands";
++import { useCreationForm } from "@presentation/features/workbench/creation/useCreationForm";
++import { restoreProtectionReducer } from "@presentation/features/workbench/backup/useBackupRestore";
+ import type {
+   ProjectHeader,
+   WorkbenchHost,
+@@ -304,10 +304,10 @@ it("invalidates replacement acknowledgement whenever protected revision changes"
+ 
+ it("preserves dirty raw editor channels across baseline refresh and resets only on Cancel", async () => {
+   const { useTokenEditor } = await import(
+-    "@presentation/features/workbench/hooks/useTokenEditor"
++    "@presentation/features/workbench/inspector/useTokenEditor"
+   );
+   const { editComponent } = await import(
+-    "@presentation/features/workbench/state/session"
++    "@presentation/features/workbench/inspector/session"
+   );
+   const { createColorLiteral } = await import("@domain/color-literal");
+   let revision = "r1";

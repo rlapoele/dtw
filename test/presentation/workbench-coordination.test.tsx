@@ -48,10 +48,10 @@ vi.mock("react", async (original) => {
     },
   };
 });
-import { useProjectReadback } from "@presentation/features/workbench/hooks/useProjectReadback";
-import { useProjectCommands } from "@presentation/features/workbench/hooks/useProjectCommands";
-import { useCreationForm } from "@presentation/features/workbench/hooks/useCreationForm";
-import { restoreProtectionReducer } from "@presentation/features/workbench/hooks/useBackupRestore";
+import { useProjectReadback } from "@presentation/features/workbench/coordination/useProjectReadback";
+import { useProjectCommands } from "@presentation/features/workbench/coordination/useProjectCommands";
+import { useCreationForm } from "@presentation/features/workbench/creation/useCreationForm";
+import { restoreProtectionReducer } from "@presentation/features/workbench/backup/useBackupRestore";
 import type {
   ProjectHeader,
   WorkbenchHost,
@@ -304,10 +304,10 @@ it("invalidates replacement acknowledgement whenever protected revision changes"
 
 it("preserves dirty raw editor channels across baseline refresh and resets only on Cancel", async () => {
   const { useTokenEditor } = await import(
-    "@presentation/features/workbench/hooks/useTokenEditor"
+    "@presentation/features/workbench/inspector/useTokenEditor"
   );
   const { editComponent } = await import(
-    "@presentation/features/workbench/state/session"
+    "@presentation/features/workbench/inspector/session"
   );
   const { createColorLiteral } = await import("@domain/color-literal");
   let revision = "r1";

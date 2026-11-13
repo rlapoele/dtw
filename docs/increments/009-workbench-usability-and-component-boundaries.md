@@ -775,3 +775,70 @@ Approximately **eight aggregate verification minutes of ten**, zero harness repa
 (developer1.5, reviewer2, coordinator4, reconciliation0.5). Checks are stopped.
 Phase 2's allocation is untouched. Return the visible extension for user review;
 Phase 2 has not begun. No staging, commit or push.
+
+
+### Phase 2 authorization — 13 November 2026
+
+The user approved the Phase 1 slider extension and explicitly authorized Phase 2
+React component architecture and folders/files organisation. Baseline:
+`340ce9e3c668b5c52542d93387272a49b0b122d3`, clean at dispatch. Preserve the
+approved Phase 1 UI and extension; no new interaction/design exploration or domain
+policy changes are included. The agreed Phase 2 verification ceiling is now active:
+**10 aggregate minutes, zero harness repairs** (developer focused checks plus final
+build up to three, independent reviewer up to four, coordinator rendered smoke up
+to two, reconciliation reserve one). Earlier consumed/stopped campaigns remain
+unchanged. One developer, one frozen-snapshot independent review, affected fixes
+within this bound; no repeated unchanged reviews. No staging, commit or push.
+
+
+### Phase 2 implementation handoff — 13 November 2026
+
+**Implemented and independently reviewed; user review pending.** All four Phase 2
+tasks are delivered against baseline `340ce9e3c668b5c52542d93387272a49b0b122d3`.
+The [exact patch](../../output/increment-009-phase2/review.patch),
+[new/deleted-file manifest](../../output/increment-009-phase2/review-manifest.json)
+and [mechanical move map](../../output/increment-009-phase2/moves.json) identify
+this frozen snapshot; the independent reviewer confirmed all 75 manifest entries
+and the patch digest. Later coordinator documentation edits are outside it.
+
+- **009-F3 / task 1:** browser, inspector, creation, backup, recovery and coordination
+  folders colocate their block's components/hooks/state. The durable
+  [functional ownership map](../project/workbench-component-organisation.md)
+  documents intentional cross-block leaves, project-entry hooks and screen shell.
+  Global primitives, domain/application/host boundaries stay in their existing layers.
+- **009-F3 / task 2:** ReferenceFields takes reference identity, labeled choices,
+  missing/disabled state and a reference-only callback. EditorFields merges the
+  draft change. It now explicitly forwards read-only/retaining disablement.
+  EditRecovery and EditorActions expose focused display/action contracts without
+  replacing the session owner. One EditableTokenInspector owns useTokenEditor;
+  existing key/lifetime remains. Unused standalone Editor forwarding entry removed
+  after migrating its test callers; alternate TokenList retained with its real tests.
+- **009-F3 / task 3:** WorkbenchNavigation owns cohesive pane/drawer markup;
+  Workbench composes existing workflow owners and retains command/readback and
+  completion authority. No omnibus hook/store/framework replaces it.
+- **009-F3 / task 4:** touched moved files use consistent formatting/imports;
+  current callers/tests follow their new paths and the ownership map records
+  responsibilities. Frozen prototypes/evidence replay at their recorded commits;
+  no compatibility wrappers or rewritten historical hashes.
+- **009-F4:** developer's five focused test files pass **32/32** and the single final
+  `npm run build` passes all four typechecks and bundling. Existing >500 kB Vite
+  chunk advisory remains. [Developer evidence](../../output/increment-009-phase2/developer.md).
+  [Independent source review](../../output/increment-009-phase2/reviewer.md) found
+  no actionable defects or unresolved disagreements; no reviewer test/build rerun.
+  [Native Chrome smoke](../../output/increment-009-phase2/chrome-review.md) confirms
+  approved color geometry, selection and invalid-draft preservation across All
+  content plus reference-section rendering. These are scoped preservation checks,
+  not exhaustive runtime parity or new acceptance of previous evidence gaps.
+
+Verification used approximately **8.5 aggregate minutes of ten**, zero harness
+repairs: developer1.5, independent reviewer4, coordinator Chrome2, reconciliation
+and documentation1. Checks are stopped with unused time, rather than broadening
+qualification. The Phase 1 closure's twenty minutes and separate extension's eight
+minutes remain consumed/stopped; no old campaign resumed. No staging, commit,
+push, release or deployment occurred.
+
+**Next:** user review of Phase 2's ownership/folder map and working application.
+The user has approved Phase 1 changes and slider extension. Increment 009 stays
+Partially completed pending this handoff's user review and the explicitly retained
+earlier manual-acceptance gaps. No extra design/analyst/development loop or automatic
+verification extension is opened by this report.

@@ -1,22 +1,22 @@
-import { useWorkbenchLifecycle } from "@presentation/features/workbench/hooks/useWorkbenchLifecycle";
-import { useWorkbenchBackup } from "@presentation/features/workbench/hooks/useWorkbenchBackup";
-import { creationParent } from "@presentation/features/workbench/state/browser-view";
-import type { BrowserView } from "@presentation/features/workbench/state/browser-view";
-import { RetentionRecovery } from "@presentation/features/workbench/components/RetentionRecovery";
-import { TokenBrowser } from "@presentation/features/workbench/components/TokenBrowser";
-import { DepartureGuard } from "@presentation/features/workbench/components/DepartureGuard";
-import { ProjectDiagnostics } from "@presentation/features/workbench/components/ProjectDiagnostics";
+import { NavigationPane, NavigationDrawer } from "./WorkbenchNavigation";
+import { useWorkbenchLifecycle } from "@presentation/features/workbench/coordination/useWorkbenchLifecycle";
+import { useWorkbenchBackup } from "@presentation/features/workbench/backup/useWorkbenchBackup";
+import { creationParent } from "@presentation/features/workbench/browser/browser-view";
+import type { BrowserView } from "@presentation/features/workbench/browser/browser-view";
+import { RetentionRecovery } from "@presentation/features/workbench/recovery/RetentionRecovery";
+import { TokenBrowser } from "@presentation/features/workbench/browser/TokenBrowser";
+import { DepartureGuard } from "@presentation/features/workbench/recovery/DepartureGuard";
+import { ProjectDiagnostics } from "@presentation/features/workbench/recovery/ProjectDiagnostics";
 import { WorkbenchHeader } from "@presentation/features/workbench/components/WorkbenchHeader";
-import { useProjectReadback } from "@presentation/features/workbench/hooks/useProjectReadback";
-import { useProjectCommands } from "@presentation/features/workbench/hooks/useProjectCommands";
-import { useCreationForm } from "@presentation/features/workbench/hooks/useCreationForm";
-import { useWorkbenchLayout } from "@presentation/features/workbench/hooks/useWorkbenchLayout";
+import { useProjectReadback } from "@presentation/features/workbench/coordination/useProjectReadback";
+import { useProjectCommands } from "@presentation/features/workbench/coordination/useProjectCommands";
+import { useCreationForm } from "@presentation/features/workbench/creation/useCreationForm";
+import { useWorkbenchLayout } from "@presentation/features/workbench/coordination/useWorkbenchLayout";
 
-import { RestoreDialog } from "@presentation/features/workbench/components/RestoreDialog";
+import { RestoreDialog } from "@presentation/features/workbench/backup/RestoreDialog";
 import { requestPersistentStorage } from "@adapters/browser/storage-preference";
 import { readExactSource } from "@presentation/host/source";
 import { useEffect, useRef, useState, useMemo } from "react";
-import { Dialog } from "@base-ui/react/dialog";
 import { Icon } from "@presentation/components/ui/icon";
 import type { ApplicationResult } from "@application/authoring";
 import type { Token } from "@domain/token";
@@ -26,12 +26,11 @@ import { Button } from "@presentation/components/ui/button";
 import {
   WorkbenchInspector,
   EditableTokenInspector,
-} from "@presentation/features/workbench/components/WorkbenchInspector";
-import { CreationDialog } from "@presentation/features/workbench/components/CreationDialog";
-import { ProjectNavigation } from "@presentation/features/workbench/components/ProjectNavigation";
+} from "@presentation/features/workbench/inspector/WorkbenchInspector";
+import { CreationDialog } from "@presentation/features/workbench/creation/CreationDialog";
+import { ProjectNavigation } from "@presentation/features/workbench/browser/ProjectNavigation";
 
-import { ExactSource } from "@presentation/features/workbench/components/ExactSource";
-import { identityLabels } from "@presentation/features/workbench/readback";
+import { identityLabels } from "@presentation/features/workbench/coordination/readback";
 export function Workbench({
   host,
   initial,
@@ -45,9 +44,9 @@ export function Workbench({
 }) {
   const [selection, setSelection] =
     useState<
-      import("@presentation/features/workbench/hooks/useProjectReadback").Selection
+      import("@presentation/features/workbench/coordination/useProjectReadback").Selection
     >(null);
-  const [view, setView] = useState<BrowserView>({kind:"all-tokens"});
+  const [view, setView] = useState<BrowserView>({ kind: "all-tokens" });
   const group = creationParent(view);
   const [query, setQuery] = useState("");
   const [error, setError] = useState(""),
@@ -133,17 +132,34 @@ export function Workbench({
     setNotice,
     (kind, id) => {
       if (kind === "token") {
-        setView({kind:"all-tokens"});
+        setView({ kind: "all-tokens" });
         setQuery("");
         setSelection({ kind: "token", id });
         select({ kind: "token", id });
         setInspectorExpanded(true);
-      } else if (kind === "group") setView({kind:"group", id});
+      } else if (kind === "group") setView({ kind: "group", id });
       requestAnimationFrame(() => panel.current?.focus());
     },
   );
-  const {restorePreview, setRestorePreview, restoreInput, restage, onBackupFile, onDownload} = useWorkbenchBackup(host, header, setBusy, setError, setNotice);
-  useWorkbenchLifecycle({host, projectId:initial.project.id, busy, unknown:!!unknown, dirty, formDirty, setBlocked:setLifecycleBlocked, refresh, setReadFailure});
+  const {
+    restorePreview,
+    setRestorePreview,
+    restoreInput,
+    restage,
+    onBackupFile,
+    onDownload,
+  } = useWorkbenchBackup(host, header, setBusy, setError, setNotice);
+  useWorkbenchLifecycle({
+    host,
+    projectId: initial.project.id,
+    busy,
+    unknown: !!unknown,
+    dirty,
+    formDirty,
+    setBlocked: setLifecycleBlocked,
+    refresh,
+    setReadFailure,
+  });
   useEffect(() => {
     if (error) formError.current?.focus();
   }, [error]);
@@ -211,14 +227,14 @@ export function Workbench({
       unavailable={blocked}
       onSelect={(id) => {
         if (!busy) {
-          setView(id === null ? {kind:"all-tokens"} : {kind:"group",id});
-            setNavigationOpen(false);
+          setView(id === null ? { kind: "all-tokens" } : { kind: "group", id });
+          setNavigationOpen(false);
         }
       }}
       onCreateGroup={() => open("group")}
       onAllContent={() => {
         if (!busy) {
-          setView({kind:"all-content"});
+          setView({ kind: "all-content" });
           setNavigationOpen(false);
         }
       }}
@@ -299,36 +315,12 @@ export function Workbench({
         className={`workbench grid flex-1 h-0 min-h-0 overflow-hidden ${compact ? "compact-navigation" : ""} ${sidebarExpanded ? "groups-expanded" : "groups-collapsed"} ${inspectorExpanded ? "inspector-expanded" : "inspector-collapsed"}`}
       >
         {!compact && (
-          <nav
-            className="sidebar flex min-h-0 flex-col overflow-hidden border-r border-border bg-surface"
-            aria-label="Project groups"
+          <NavigationPane
+            expanded={sidebarExpanded}
+            onToggle={() => setSidebarExpanded(!sidebarExpanded)}
           >
-            <Button
-              variant="ghost"
-              size="pane"
-              className="pane-toggle sidebar-toggle"
-              aria-label={
-                sidebarExpanded
-                  ? "Collapse project groups"
-                  : "Expand project groups"
-              }
-              aria-expanded={sidebarExpanded}
-              onClick={() => setSidebarExpanded(!sidebarExpanded)}
-            >
-              {sidebarExpanded ? (
-                <Icon name="chevron-left" />
-              ) : (
-                <Icon name="chevron-right" />
-              )}
-              <span>Project groups</span>
-            </Button>
-            <div
-              hidden={!sidebarExpanded}
-              className="sidebar-content flex-1 px-3 pt-5.5 pb-5 flex flex-col min-h-0 overflow-auto"
-            >
-              {navigation}
-            </div>
-          </nav>
+            {navigation}
+          </NavigationPane>
         )}
         <TokenBrowser
           panel={panel}
@@ -349,10 +341,10 @@ export function Workbench({
           onQuery={setQuery}
           onCreateToken={() => open("token")}
           onRenameGroup={() => open("rename")}
-          onAllContent={() => setView({kind:"all-content"})}
+          onAllContent={() => setView({ kind: "all-content" })}
           choose={choose}
           onReveal={() => {
-            setView({kind:"all-tokens"});
+            setView({ kind: "all-tokens" });
             setQuery("");
             requestAnimationFrame(() =>
               panel.current
@@ -408,7 +400,7 @@ export function Workbench({
             <ProjectDiagnostics
               diagnostics={diagnostics}
               onLoad={() => void loadDiagnostics(setError)}
-              onAllContent={() => setView({kind:"all-content"})}
+              onAllContent={() => setView({ kind: "all-content" })}
             />
           }
         />
@@ -522,31 +514,12 @@ export function Workbench({
           Request persistent storage
         </Button>
       </footer>
-      <Dialog.Root
+      <NavigationDrawer
         open={compact && navigationOpen}
         onOpenChange={setNavigationOpen}
       >
-        <Dialog.Portal>
-          <Dialog.Backdrop className="navigation-backdrop fixed inset-0 z-30 bg-scrim" />
-          <Dialog.Popup className="navigation-drawer fixed top-0 bottom-0 left-0 z-35 border-r border-border bg-background flex flex-col overflow-hidden">
-            <div className="navigation-heading border-b border-border px-4 py-3 flex items-center justify-between gap-3">
-              <Dialog.Title>Project navigation</Dialog.Title>
-              <Dialog.Close
-                render={<Button variant="ghost" size="icon" />}
-                aria-label="Close project navigation"
-              >
-                <Icon name="close" />
-              </Dialog.Close>
-            </div>
-            <Dialog.Description className="sr-only">
-              Browse groups. Closing preserves drafts.
-            </Dialog.Description>
-            <nav className="sidebar-content flex-1 px-3 py-6 overflow-auto">
-              {navigation}
-            </nav>
-          </Dialog.Popup>
-        </Dialog.Portal>
-      </Dialog.Root>
+        {navigation}
+      </NavigationDrawer>
       {dialog === null && departureGuard}
       {restorePreview && (
         <RestoreDialog
