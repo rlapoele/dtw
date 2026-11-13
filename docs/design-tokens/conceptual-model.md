@@ -51,6 +51,20 @@ Tokens have a local name and either one parent namespace group in the same proje
 
 Child groups and tokens share one sibling namespace so derived paths remain unambiguous. The agreed [application Increment 001](../increments/001-in-memory-authoring-workflow.md) explicitly defers sibling-name enforcement and exposes structural validation only; its derived paths may remain ambiguous. This implementation limitation does not establish a naming or equality policy. Deleting a non-empty group requires an explicit operation; descendants must not disappear or be reparented silently. A namespace group has one structural parent and determines paths. Sets, collections, tags, or other potentially multi-membership organization are separate non-structural concepts and do not determine canonical paths.
 
+**Authoring direction agreed — 13 November 2026; implementation not authorized:**
+the user selected unique project-scoped paths regardless of token type for the
+[Increment 009 proposal](../increments/009-workbench-usability-and-component-boundaries.md).
+Type is not a path discriminator; name-only/typed-unassigned members also occupy
+the shared namespace. The same local name in different, distinct group paths is
+allowed. Authoring must prevent new collisions, including those caused by a group
+rename changing descendant paths. Existing conflicting data must remain readable,
+inspectable and independently backed up/restorable, without silent renaming,
+merging, deletion or identity changes. This is authoring enforcement, not a new
+retained/backup admission rule; existing naming/path conflicts do not become whole
+restore rejection reasons. The proposal owns bounded enforcement, legacy handling
+and acceptance details. Name grammar, case/Unicode/whitespace equivalence and
+normalization are not settled by this direction; no enforcement has yet shipped.
+
 ### Explicit token types
 
 **Working decision — 5 October 2026**

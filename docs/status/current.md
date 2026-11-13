@@ -2,7 +2,7 @@
 
 > Last updated: 13 November 2026
 >
-> Phase: Increment 009 Design V1 reviewed; one design correction open
+> Phase: Increment 009 uniqueness amendment drafted; implementation not started
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
@@ -22,14 +22,29 @@ for user review. A bounded mockup render check observed desktop/compact fixture
 states; [evidence and limits](../../output/increment-009-design-v1/review.md) record
 approximately 12–15 aggregate minutes and one harness repair, now stopped.
 The user approved V1 for analyst review on 13 November. The [fresh analyst review](../increments/009-design-review.md)
-is complete, with one required P2 correction **D9-1**: tie exact identities to
-ambiguous inventory entries and illustrate duplicate labels. The proposed React
+initially identified one required P2 correction **D9-1** concerning ambiguous
+inventory entries. The proposed React
 boundaries are viable at design level; unmodeled integrity/focus/source behavior
 remains required and unverified. Review used approximately 7–9 aggregate minutes
 (estimate), zero repairs, and is stopped. No mockup correction, browser rerender,
 application tests/builds or implementation occurred during this review.
 Final agreement and implementation authorization remain pending. Earlier
 qualification campaigns remain stopped; Increments 007 and 008 remain completed.
+
+**Path uniqueness amendment — 13 November 2026:** the user agreed prevention of
+duplicate project paths regardless of token type, preserving access to existing
+conflicting data. The [amended draft](../increments/009-workbench-usability-and-component-boundaries.md#agreed-direction-amendment--13-november-2026)
+adds AC-9/AC-10: deterministic authoring checks for creation/group rename and
+affected descendants; unchanged supported legacy load, inspection, backup and
+restore; no silent repair or new rejection solely for unrelated old collisions.
+The [analyst reassessment](../increments/009-design-review.md#requirements-amendment-and-d9-1-reassessment--13-november-2026)
+reframes D9-1 as prevention first, with identity-safe access still required for
+legacy conflicts/unavailable paths. The finding remains open; no revised mockup
+or production acceptance is claimed. Exact authored name-segment comparison is a
+proposal awaiting agreement; broader normalization/grammar remains unresolved.
+Only documentation changed. Approximately 7–9 aggregate amendment/reassessment
+minutes were used (estimate: 5–6 analyst plus 2–3 coordinator), zero repairs;
+checks are stopped. No tests, builds, browser runs or implementation occurred.
 
 **Increment 008 completed — 12 November 2026:** the user reported completing the
 remaining manual checks in Chrome with everything looking good and explicitly
@@ -120,9 +135,11 @@ Install/offline PWA acceptance, interchange and Electron remain later milestones
 
 ## Next meaningful action
 
-The next proposed step is a focused designer revision for D9-1, then user review
-of the identified artifact before renewed analyst review. No correction is yet
-prepared or approved. Final agreement and implementation remain unauthorized.
+Resolve the amended draft's name-equivalence proposal and identify the design for
+collision feedback and exceptional legacy-conflict access. Revised material
+mockups return to the user before renewed analyst design review. V1 remains
+unchanged and incomplete against the amended scope. Final contract/design
+agreement and implementation remain unauthorized.
 Final contract/design agreement and implementation authorization remain separate
 and pending. Increment 008 stays closed following Chrome manual acceptance.
 Any future qualification requires an explicitly authorized bounded follow-up. No

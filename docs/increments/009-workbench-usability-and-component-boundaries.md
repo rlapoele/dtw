@@ -3,7 +3,7 @@
 - Contract status: Draft
 - Delivery status: Not started
 - Prepared: 13 November 2026
-- Agreement: the user agreed the proposed direction, authorized mockups and subsequently approved Design V1 for analyst review on 13 November 2026. Final contract/design agreement and implementation authorization remain pending. No application implementation is authorized.
+- Agreement: the user agreed the proposed direction, authorized mockups and subsequently approved Design V1 for analyst review on 13 November 2026. The user additionally agreed project-scoped unique derived paths regardless of token type, with continued access to existing conflicting data, on 13 November 2026. Final amended contract/design agreement and implementation authorization remain pending. No application implementation is authorized.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [visual direction](../project/visual-direction.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [Increment 008](008-react-state-and-workbench-composition.md), [agent workflow](../workflow/agent-roles.md).
 
 ## Outcome
@@ -11,10 +11,12 @@
 Make existing browsing and inspection easier to understand: controls match the
 active view, routine information is readable, and the color editor uses space
 more effectively. Align React ownership with these functional blocks while
-preserving authored data, draft sessions and retained-command guarantees.
+preserving authored data, draft sessions and retained-command guarantees. Prevent
+new ambiguous namespace paths through deterministic authoring validation while
+keeping existing conflicting or unavailable-path content accessible.
 
-This is a bounded usability and maintenance increment, not a new token capability
-or a replacement visual design.
+This is a bounded usability, namespace-validation and maintenance increment; the
+amendment adds no editing surface or replacement visual design.
 
 ## Review basis and functional blocks
 
@@ -56,10 +58,17 @@ Included:
 - Cohesive lifecycle and backup coordination extracted from Workbench; a shared
   renderer file-admission helper for both backup entry points.
 - Focused editor sections with narrow props and one shared editor session.
+- Project-scoped path uniqueness across namespace groups and all tokens, regardless
+  of type or definition completeness, enforced for existing creation and group
+  rename operations, including affected descendant paths.
+- Continued opening, inspection, exact backup and restore of supported legacy
+  conflicting data; identity-safe access for ambiguous or unavailable paths.
 
 Excluded: generalized inventory search, global redesign, new dependencies/stores/
-router, domain/application/worker behavior changes, storage or backup formats,
-resource limits, new editing capabilities, history, import/export, privacy/auth,
+router, domain/application/worker behavior changes beyond the bounded namespace
+validation amendment, storage or backup formats,
+resource limits, new editing capabilities (including token rename/move UI), general
+progressive repair, history, import/export, privacy/auth,
 full PWA/offline delivery, Electron and renewed qualification of Increments 007/008.
 
 ## Design direction V1 — selected for mockups
@@ -133,6 +142,26 @@ for mockups; concrete presentation remains subject to review.
 - Reuse existing controls, semantic theme utilities, shared Icon and source access.
   Extraction serves responsibility boundaries, not a file-length target.
 
+- Put deterministic namespace comparison and collision diagnostics in the domain;
+  application operations enforce them against the current project before commit.
+  Presentation may explain a rejection but must not be the enforcement boundary.
+- Compare derived arrays of local-name segments, never rendered/joined path text,
+  across groups and tokens. Creation checks all existing token types, including
+  name-only and typed-but-unassigned members; group rename includes descendants.
+  Same short names in different groups are permitted when full paths differ.
+- Separate legacy collision reporting/readability from command admissibility.
+  Evaluate newly introduced collisions and additions to existing collisions using
+  changed entities/paths and affected descendants. Do not reject an otherwise
+  allowed command solely because an unrelated collision already existed, nor
+  ignore a descendant collision introduced through renamed ancestry. Existing
+  structural/reference checks and other command safety remain intact; this is no
+  general relaxation or progressive-repair workflow.
+- Keep Increment 007's supported-data schema, decode/restore admissibility and exact
+  authored names, values, identities and order unchanged. Adding collision
+  diagnostics must not accidentally tighten supported load/backup/restore gates.
+  Future rename/move capabilities must preserve the same uniqueness invariant;
+  adding editing UI or those capabilities is not required by this increment.
+
 ## Acceptance criteria
 
 - **AC-1 — Coherent browsing:** exactly one browser view drives desktop/drawer
@@ -165,6 +194,22 @@ for mockups; concrete presentation remains subject to review.
   Cancel, departure-dialog and drawer focus retain their established behavior.
   Presentation conventions and owned component composition contracts are preserved.
 
+- **AC-9 — Prevent new path ambiguity:** existing group/token creation and group
+  rename reject a new duplicate derived segment path within a project across
+  groups/tokens, regardless of type or completeness, without mutating retained
+  state or losing form input. Renames check affected descendants. Distinct parent
+  paths may contain the same short name; independent projects do not conflict.
+  No new collision, or added member of an existing collision, is accepted. The
+  naming/equality policy must be identified explicitly before implementation.
+- **AC-10 — Preserve legacy access:** supported existing colliding/unavailable-path
+  data still opens, can be selected and inspected by exact identity, and can be
+  backed up/restored without silent rename, merge, stripping, loss or new hard
+  rejection. Each ambiguous/unavailable actionable entry is associated with its
+  exact identity and truthful context. An otherwise allowed creation/rename is
+  not newly blocked by an unrelated unchanged collision; changed paths and
+  descendants are checked for new ambiguity while existing command safety stays
+  binding. No general repair capability or broader restore admissibility is implied.
+
 ## Decisions and design review
 
 - Established: Precision direction, presentation conventions, token/retention
@@ -186,12 +231,17 @@ for mockups; concrete presentation remains subject to review.
 - Approval of the identified artifact for analyst review: granted by the user on
   13 November 2026 for Design V1. The [fresh analyst consistency review](009-design-review.md)
   is complete against baseline `044a71c`; this is not final design agreement.
-- Review result: one required P2 design correction, **D9-1**, remains open. All
-  content must associate exact identity with each ambiguous/unavailable readable
-  entry rather than relying solely on one detached identity list. The next design
-  revision must illustrate duplicate labels and return to the user before renewed
-  analyst review. The coordinator corroborated the finding against prototype and
-  existing membership-label source; no mockup correction has been made.
+- Initial review: **D9-1** identified ambiguous/unavailable inventory entries and
+  required identity-safe access. The original review remains historical evidence.
+- Requirements reassessment — 13 November 2026: the user's agreed prevention-first
+  amendment addresses the source of future ambiguity through path uniqueness.
+  **D9-1 remains open with amended scope**: AC-9 covers prevention; AC-3/AC-10 still
+  require per-entry identity/context for legacy collisions and unavailable paths.
+  Stable IDs alone and a detached identity list do not satisfy deliberate selection.
+  No mockup correction or renewed rendered design review occurred. The user
+  authorized this requirements reassessment without requesting new mockups.
+  Any later material interface revision returns to the user before renewed analyst
+  review; final amended contract/design agreement is still pending.
 - The proposed component boundaries are viable at design level. Other fixture
   omissions remain explicit implementation requirements and verification limits;
   neither the review nor the prototype establishes production acceptance.
@@ -206,7 +256,9 @@ identified proposal before analyst review. Preparation does not skip either step
 
 After final agreement and explicit implementation authorization only:
 
-1. Implement browser-view transitions and matching toolbar/navigation context.
+1. Resolve the explicitly open equality policy, then implement deterministic
+   collision checks for existing creation/group rename and legacy-safe admission.
+   Implement browser-view transitions and matching toolbar/navigation context.
 2. Extract lifecycle/backup owners and meaningful inspector sections, preserving
    state lifetimes and command authority; improve summaries, spacing and copy.
 3. Freeze an identified snapshot for a fresh independent reviewer. Resolve
@@ -217,6 +269,15 @@ two harness-repair cycles**, including developer/designer/reviewer checks and
 waiting. This is a ceiling, not a target; reserve independent-review time within it.
 It covers affected normal workflows rather than exceptional qualification.
 
+- Focused domain/application tests: group/group, token/token and group/token
+  collisions at root and nested paths; other-type and incomplete existing tokens;
+  same short names at distinct paths/projects; changed descendant collisions and
+  unchanged IDs/aliases on rename; atomic rejection. Include legacy collisions
+  with an unrelated otherwise allowed command, an added collision member and a
+  changed-path collision. Do not broaden existing repair eligibility.
+- Controlled representative legacy evidence: opening/identity-safe inspection and
+  exact backup/restore remain admitted without name rewriting or schema changes.
+  Target only the newly touched admission boundary; no Increment 007 campaign restart.
 - Focused behavior tests: view transitions/parent defaults and shared admission;
   controlled existing-host tests for materially touched lifecycle/backup paths.
 - One `npm run build` for existing typechecks and production bundling. No redundant
@@ -265,4 +326,43 @@ do not assume this baseline will remain current. Before independent implementati
 review, identify the exact commit or diff/new-file manifest. Developer and reviewer
 start with fresh contexts and authoritative contract/design references.
 
-No agreed amendments. Staging, committing and pushing remain with the user.
+### Agreed direction amendment — 13 November 2026
+
+At baseline `2b98316529dfedc825ef3da5983403b308217e17`, the user agreed that
+canonical paths must be unique within each project regardless of token type, and
+that existing conflicting data must remain accessible. This supersedes Increment
+001 D2's enforcement deferral for the proposed Increment 009 implementation only;
+it does not rewrite Increment 001's historical delivery claims. Groups and tokens
+share the namespace; type, layer and assignment state do not partition it. Paths
+are segment arrays, independent of their display/export separators.
+
+**Proposal, not an agreed equality policy:** compare exact current local-name
+strings segment by segment, preserving authored text. Case folding, Unicode
+normalization, trimming, empty-name rules, separator grammar and target-specific
+naming remain unresolved; no new grammar or normalization is authorized by the
+uniqueness agreement. Confirm this narrow exact-comparison proposal or choose an
+explicit alternative before implementation. Distinct arrays such as `["a.b"]`
+and `["a", "b"]` must not collide merely because a display joins them with dots.
+
+**Agreed preservation boundary:** prevent new collisions/additions using affected
+paths and descendants, while keeping supported legacy data readable, inspectable,
+backable and restorable. Do not rename/merge data or tighten Increment 007's schema
+or restore policy. This does not authorize a general progressive-repair workflow,
+new rename/move UI, or bypassing other existing command safety.
+
+**Remaining design requirement:** D9-1 is reframed, not closed. Legacy conflicting
+and unavailable paths still need reliable per-entry identity/context. The exact
+presentation remains to be identified for final design agreement; no rendered
+review or mockup revision is claimed by this amendment.
+
+This newly authorized documentation amendment/reassessment has a separate
+**10 aggregate minute ceiling, zero harness repairs**: at most seven analyst
+minutes and three coordinator minutes. Analyst document/source review and focused
+Markdown checks used approximately **5–6 minutes**; coordinator reconciliation and
+documentation used **2–3 minutes**, **7–9 aggregate minutes** total (estimates), zero
+repairs. No tests, build, browser sessions or application changes.
+All earlier stopped allowances remain stopped; the proposed implementation
+allowance is unstarted. Requirements reassessment stops after this handoff.
+
+Final amended contract/design agreement and implementation authorization remain
+pending. Staging, committing and pushing remain with the user.

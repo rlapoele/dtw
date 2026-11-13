@@ -96,3 +96,103 @@ authorizes implementation.
 
 Suggested commit: `docs: record increment 009 design consistency review`.
 Staging, committing and pushing remain with the user.
+
+## Requirements amendment and D9-1 reassessment — 13 November 2026
+
+This section supersedes the initial review's proposed disposition/next step where
+noted, while preserving that review and its evidence above. The user subsequently
+agreed unique paths regardless of token type, with continued access to existing
+conflicting data, and authorized updating the proposal and reassessing the finding.
+This is a source/document requirements reassessment, not renewed rendered design
+review, final amended contract/design agreement or implementation authorization.
+No new mockup is required for this documentation task.
+
+### Basis and resulting scope
+
+- Baseline: `2b98316529dfedc825ef3da5983403b308217e17`, clean at dispatch. The
+  coordinator concurrently owns model/open-question/status/design-note alignment;
+  this analyst owns only the Increment 009 contract and this review record.
+- The [shared namespace model](../design-tokens/conceptual-model.md#namespace-groups-and-derived-paths)
+  already puts groups and tokens in one sibling namespace; type does not partition
+  it. [Increment 001 D2](001-in-memory-authoring-workflow.md#agreed-decisions--3-november-2026)
+  deferred enforcement, not the underlying unambiguous-path direction. Its delivery
+  claims remain historical. The new amendment proposes ending that enforcement
+  deferral within Increment 009, without claiming implementation.
+- Actual [namespace validation](../../src/domain/namespace.ts) is structural only,
+  derives arrays of opaque local-name strings and does not detect sibling/path
+  collisions. [Authoring operations](../../src/application/authoring.ts) validate
+  whole candidates before commit. Merely adding collision failures to this shared
+  validation could reject every subsequent command on a legacy-colliding snapshot;
+  acceptance must distinguish pre-existing collisions from newly introduced ones.
+- [Increment 007 AC-24 and supported-data policy](007-local-retention-and-backup.md#agreed-supported-data-matrix-and-restore-admissibility)
+  preserve admitted membership, exact identities/authored data and readable
+  diagnostics. New uniqueness enforcement must not turn supported legacy load,
+  inspection, backup or restore into a hard rejection or silently repair data.
+
+### D9-1 — Prevention first; residual identity-safe access remains required
+
+**P2 · Open, amended scope · AC-3/AC-9/AC-10.**
+
+The agreed response now addresses the source of future ambiguity: deterministic
+application/domain checks must prevent new duplicate derived segment paths within
+a project across groups/tokens regardless of type or assignment completeness.
+Existing creation and group rename are in scope, including descendants affected
+by renamed ancestry. Same short names under distinct full paths remain permitted.
+Future rename/move capabilities must obey the same invariant; adding those editing
+capabilities or UI is not required by this amendment.
+
+The revised contract must reject new collisions and added members of existing
+collisions, without newly rejecting otherwise allowed commands solely because an
+unrelated unchanged collision already exists. This requires comparing affected
+paths/descendants, not a blanket assertion that the candidate has no collisions.
+Other structural/reference validation and command safety stay binding. Supporting
+legacy reads does not establish a general progressive-repair workflow.
+
+Prevention does not remove ambiguity from legacy data, and structural failures can
+still make paths unavailable. Those actionable inventory rows must remain reliably
+associated with exact identity and truthful context. IDs preserve identity but do
+not prevent duplicate paths; a detached ID list still does not identify which
+otherwise identical row selects which entity. The original finding therefore is
+**not closed** by either uniqueness requirements or stable IDs alone. AC-9 covers
+prevention; AC-3/AC-10 retain residual access/presentation obligations.
+
+No prototype code or screenshots changed. The exact residual presentation remains
+to be identified for final design agreement; any later material interface revision
+returns to the user before renewed analyst review. The initial demand to create a
+new duplicate-label mockup is not a prerequisite for this newly authorized
+requirements reassessment. Existing captures cannot establish the amended
+validation behavior or production acceptance.
+
+### Explicit unresolved policy and verification boundary
+
+The user agreed uniqueness, not a new local-name grammar or normalization policy.
+The contract proposes exact segment-by-segment comparison of current authored
+strings. Case folding, Unicode normalization, trimming, empty-name handling,
+separator rules and target naming are not thereby agreed. This equality choice
+must be confirmed explicitly before implementation; comparing joined display text
+would invent path equivalence (for example `["a.b"]` versus `["a", "b"]`).
+
+AC-9/AC-10 and the amended verification plan require focused future evidence for
+cross-kind/type/completeness collisions, project/parent scoping, affected descendants,
+atomic rejection and legacy admission without rewriting. Those checks are proposed,
+not executed. No change to Increment 007 schema or restore admissibility, raw
+source information, general repair capability or existing unrelated command safety
+is authorized.
+
+### Effort and handoff
+
+New amendment/reassessment ceiling: **10 aggregate minutes, zero harness repairs**;
+seven analyst minutes maximum, three reserved for coordinator reconciliation.
+Approximately **5–6 analyst minutes** used (estimate), including document/source
+review, amendment drafting and focused Markdown/link review. No tests, builds,
+browser sessions, prototype changes or application edits. This review stops here;
+all previous stopped mockup/007/008/review allowances remain stopped and the
+proposed implementation allowance is unstarted.
+
+Next gate: coordinator reconciles owning model/open-question/status/design notes,
+surfaces the still-unagreed equality choice and residual design obligation, and
+identifies the amended contract/design for final agreement. Implementation still
+requires separate explicit authorization.
+
+Suggested commit: `docs: amend increment 009 path uniqueness requirements`.
+Staging, committing and pushing remain with the user.

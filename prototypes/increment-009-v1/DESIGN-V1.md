@@ -3,9 +3,13 @@
 **Interactive mockup, 13 November 2026.** The user selected the V1 direction and
 authorized mockup preparation. On 13 November 2026 the user approved this identified
 V1 artifact for analyst review. The [consistency review](../../docs/increments/009-design-review.md)
-is complete with one required inventory-identity design correction, D9-1, still
-open. Final contract/design agreement and production implementation authorization
-remain pending. V1's code and rendered mockups remain unchanged by this review.
+is complete. After discussing D9-1, the user selected authoring-time path collision
+prevention regardless of token type, preserving access to existing conflicting
+data. The [amended proposal](../../docs/increments/009-workbench-usability-and-component-boundaries.md)
+and appended analyst reassessment own that change. V1's code and rendered mockups
+are unchanged; they do not illustrate the new prevention/error behavior or the
+residual legacy-conflict treatment. Final contract/design agreement and production
+implementation authorization remain pending.
 
 ## Run
 
@@ -131,11 +135,14 @@ that repair allowance; it is not a qualification restart. Increment 007 allowanc
 remains zero and Increment 008 campaigns remain stopped.
 
 The user approved the identified V1 artifact for analyst review on 13 November
-2026. Consistency review completed against baseline `044a71c`; D9-1 requires exact
-identity to be associated with ambiguous inventory entries and a duplicate-label
-design example. This correction has not been made in V1. The identified material
-revision must return to the user before renewed analyst review. No production
-implementation is authorized.
+2026. Consistency review completed against baseline `044a71c`. The subsequent
+user-selected amendment makes collision prevention the primary authoring solution;
+existing conflicting/unavailable-path data still requires deliberate, identity-safe
+access. V1 is now incomplete against this amended scope, not a prototype of the
+prevention rule. Future revised artifacts must show collision feedback and the
+exceptional legacy-conflict treatment, then return to the user before renewed
+analyst design review. No prototype correction or production implementation is
+authorized by the documentation amendment.
 
 Suggested commit message, after user review: `docs: add increment 009 usability mockups`
 

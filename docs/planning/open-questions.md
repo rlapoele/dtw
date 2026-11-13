@@ -67,6 +67,19 @@ Created tokens have no live link to scale helpers. Context-aware preview is a wo
 
 ## Taxonomy and naming
 
+**Increment 009 direction agreed — 13 November 2026:** enforce unique derived
+paths within each project regardless of token type, consistent with the shared
+group/token namespace. Preserve access to existing conflicting data, including
+supported retained loading, inspection, backup and restore; do not silently rename
+or discard it. This resolves the prevention-versus-normal-authoring-ID-display
+direction, not the implementation or every name-equivalence rule. The
+[amended proposal](../increments/009-workbench-usability-and-component-boundaries.md)
+owns the scoped authoring checks and legacy-data requirements. Exact segment
+comparison and handling of existing collisions must be specified explicitly;
+case folding, Unicode normalization, trimming, broader name grammar and target
+profiles remain open unless separately agreed. Increment 001's deferral describes
+current delivered behavior, not the intended long-term uniqueness policy.
+
 1. Is the default taxonomy configurable, extensible, or replaceable?
 2. Which names are reserved core vocabulary?
 3. Can users define custom semantic roles while retaining adapter compatibility?
