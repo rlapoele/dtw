@@ -196,3 +196,70 @@ requires separate explicit authorization.
 
 Suggested commit: `docs: amend increment 009 path uniqueness requirements`.
 Staging, committing and pushing remain with the user.
+
+## Naming amendment and D9-1 reassessment — 13 November 2026
+
+This append-only reassessment supersedes the preceding section's statement that
+case/Unicode/whitespace direction is wholly unagreed and its proposed exact-text
+comparison. Historical evidence and unmet presentation obligations remain intact.
+
+### Basis and confidence
+
+- Stable starting baseline: `739c1b6c9359b23db5d1b92107d80908ff55e19b`, clean at
+  dispatch. Coordinator owns the contract, model, open questions, status and design
+  notes; this analyst owns the separate naming recommendation and this appendix.
+- **User-agreed direction:** remove all whitespace including internal whitespace,
+  lowercase namespace names at creation/rename, use NFC, preserve accents, compare
+  paths case-insensitively and retain exact existing data/access. This narrows the
+  previous equality question without approving unstated Unicode details.
+- **Recommendations pending agreement:** [DTW namespace naming v1 / Unicode 17.0.0](009-naming-policy-proposal.md)
+  pins the Unicode baseline, a 25-code-point Unicode `White_Space` set plus three
+  separately identified invisible spacing controls, default full lowercase for
+  newly authored stored names and canonical caseless D145 comparison keys. Source
+  references and illustrative consequences are in that proposal; the three extras
+  are product policy, not a Unicode-property claim.
+- Existing namespace code remains structural and names remain opaque. A renderer
+  transformation alone would not establish domain/application enforcement. No
+  production source, tests, dependencies, vendored references or mockups changed.
+
+### Consequences for the contract and finding
+
+AC-1 through AC-10 retain their identifiers; the coordinator should add AC-11 for
+canonical namespace naming and identify the selected precise policy explicitly.
+Comparison operates segment by segment, across groups/tokens regardless of type;
+the proposed full-fold relation is broader than comparing stored lowercase names.
+Accents remain significant and no blanket compatibility fold/transliteration is
+selected. Namespace names do not include project display titles or descriptions.
+
+New authoring checks must compare against legacy names under the selected key
+without rewriting them or tightening supported load/backup/restore gates. A group
+rename changes only its edited local name and affected derived paths, preserving
+descendant local names and identities. Existing unrelated collisions must not
+newly reject otherwise allowed commands. Broader control/confusable policy stays
+deferred; this proposal does not guarantee visually unique labels.
+
+**D9-1 remains P2/open for residual legacy or unavailable-path access.** Prevention
+and canonical naming cannot identify two already ambiguous actionable entries.
+AC-3/AC-10 still require each such entry's association with exact identity and
+truthful context. No new rendered artifact establishes the residual treatment or
+the recommended pre-submission transformed-name preview. V1 is unchanged. An
+identified material interface revision must reach the user before renewed analyst
+review; this documentation amendment neither forces new mockups now nor grants
+final design agreement or implementation authority.
+
+### Effort and next gate
+
+New documentation/source-review ceiling: **10 aggregate minutes**, seven assigned
+to this analyst and three reserved for coordinator reconciliation; **zero harness
+repairs**. Approximately **6 analyst minutes** used (estimate), including targeted
+primary-source checks, drafting and manual Markdown/link review. No test/build or
+browser campaign. Stop this review here; previous stopped 007/008/mockup/review
+campaigns stay stopped and proposed implementation verification remains unstarted.
+
+Next gate: present the named Unicode/removal/comparison recommendations and
+reconciled draft to the user, keeping agreed direction distinct from recommendations.
+Final amended contract/design agreement and separate implementation authorization
+remain pending.
+
+Suggested commit: `docs: define increment 009 namespace naming proposal`.
+Staging, committing and pushing remain with the user.

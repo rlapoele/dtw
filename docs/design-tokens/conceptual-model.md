@@ -62,8 +62,18 @@ inspectable and independently backed up/restorable, without silent renaming,
 merging, deletion or identity changes. This is authoring enforcement, not a new
 retained/backup admission rule; existing naming/path conflicts do not become whole
 restore rejection reasons. The proposal owns bounded enforcement, legacy handling
-and acceptance details. Name grammar, case/Unicode/whitespace equivalence and
-normalization are not settled by this direction; no enforcement has yet shipped.
+and acceptance details; no enforcement has yet shipped.
+
+**Subsequent naming direction — 13 November 2026:** the user selected removal of
+all whitespace throughout newly authored namespace names, lowercasing, NFC,
+case-insensitive segment comparison and retained accented letters. Existing names
+remain exact in saved/read/restored data; only derived comparison keys use the new
+equivalence rules. The [precise naming-policy proposal](../increments/009-naming-policy-proposal.md)
+recommends versioned Unicode whitespace/casing definitions; those technical details
+await agreement. The previous exact-string comparison proposal is superseded.
+The authoring policy does not normalize descriptions, role strings, arbitrary
+labels or stored legacy ancestors/descendants incidentally. Broader naming grammar
+and compatibility-target rules remain open; implementation remains unauthorized.
 
 ### Explicit token types
 

@@ -74,10 +74,13 @@ supported retained loading, inspection, backup and restore; do not silently rena
 or discard it. This resolves the prevention-versus-normal-authoring-ID-display
 direction, not the implementation or every name-equivalence rule. The
 [amended proposal](../increments/009-workbench-usability-and-component-boundaries.md)
-owns the scoped authoring checks and legacy-data requirements. Exact segment
-comparison and handling of existing collisions must be specified explicitly;
-case folding, Unicode normalization, trimming, broader name grammar and target
-profiles remain open unless separately agreed. Increment 001's deferral describes
+owns the scoped authoring checks and legacy-data requirements. The user subsequently
+selected whitespace removal everywhere, lowercase newly authored namespace names,
+case-insensitive comparison, NFC and retained accents. The
+[precise naming-policy proposal](../increments/009-naming-policy-proposal.md) recommends
+the Unicode spacing set, casing algorithms and version baseline; those technical
+details await agreement. Broader naming grammar and target profiles remain open.
+Increment 001's deferral describes
 current delivered behavior, not the intended long-term uniqueness policy.
 
 1. Is the default taxonomy configurable, extensible, or replaceable?

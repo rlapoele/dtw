@@ -11,6 +11,11 @@ are unchanged; they do not illustrate the new prevention/error behavior or the
 residual legacy-conflict treatment. Final contract/design agreement and production
 implementation authorization remain pending.
 
+The subsequent user-selected lowercase/whitespace-free/NFC naming direction and
+[precise Unicode recommendations](../../docs/increments/009-naming-policy-proposal.md)
+are likewise not represented by V1. Its names, fields and illustrative creation
+form are not a specification of the amended authoring/preparation behavior.
+
 ## Run
 
 From the repository root:

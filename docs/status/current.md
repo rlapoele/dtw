@@ -2,7 +2,7 @@
 
 > Last updated: 13 November 2026
 >
-> Phase: Increment 009 uniqueness amendment drafted; implementation not started
+> Phase: Increment 009 naming policy proposed; implementation not started
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
@@ -40,11 +40,27 @@ restore; no silent repair or new rejection solely for unrelated old collisions.
 The [analyst reassessment](../increments/009-design-review.md#requirements-amendment-and-d9-1-reassessment--13-november-2026)
 reframes D9-1 as prevention first, with identity-safe access still required for
 legacy conflicts/unavailable paths. The finding remains open; no revised mockup
-or production acceptance is claimed. Exact authored name-segment comparison is a
-proposal awaiting agreement; broader normalization/grammar remains unresolved.
+or production acceptance is claimed. The earlier exact-text comparison proposal
+is superseded by the subsequent naming direction below.
 Only documentation changed. Approximately 7–9 aggregate amendment/reassessment
 minutes were used (estimate: 5–6 analyst plus 2–3 coordinator), zero repairs;
 checks are stopped. No tests, builds, browser runs or implementation occurred.
+
+**Naming direction and Unicode recommendations — 13 November 2026:** the user
+selected whitespace removal throughout namespace names, lowercasing newly authored
+names, case-insensitive paths, NFC and retained accents. The
+[named policy proposal](../increments/009-naming-policy-proposal.md) recommends a
+pinned Unicode 17.0.0 baseline, all 25 `White_Space` code points plus three explicit
+zero-width spacing controls, default full lowercase for stored new names and
+canonical caseless matching for derived segment keys. The precise set/algorithms
+are recommendations pending agreement, not implementation. Combining marks and
+language-significant joiners are not indiscriminately stripped; legacy stored
+names and supported backup/restore admission remain unchanged. AC-11 and the
+[appended analyst reassessment](../increments/009-design-review.md#naming-amendment-and-d9-1-reassessment--13-november-2026)
+record the amendment; D9-1 remains open for exceptional legacy/unavailable-path
+access. Primary sources were checked; documentation/source review used about
+8–9 aggregate minutes (estimate: six analyst plus two–three coordinator), zero
+repairs, and is stopped. No tests, builds, browser runs or implementation occurred.
 
 **Increment 008 completed — 12 November 2026:** the user reported completing the
 remaining manual checks in Chrome with everything looking good and explicitly
@@ -135,8 +151,9 @@ Install/offline PWA acceptance, interchange and Electron remain later milestones
 
 ## Next meaningful action
 
-Resolve the amended draft's name-equivalence proposal and identify the design for
-collision feedback and exceptional legacy-conflict access. Revised material
+Review the precise Unicode naming recommendations with the user and identify the
+design for transformed-name preview, collision feedback and exceptional legacy
+access. Revised material
 mockups return to the user before renewed analyst design review. V1 remains
 unchanged and incomplete against the amended scope. Final contract/design
 agreement and implementation remain unauthorized.

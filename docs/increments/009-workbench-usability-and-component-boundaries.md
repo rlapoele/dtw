@@ -3,7 +3,7 @@
 - Contract status: Draft
 - Delivery status: Not started
 - Prepared: 13 November 2026
-- Agreement: the user agreed the proposed direction, authorized mockups and subsequently approved Design V1 for analyst review on 13 November 2026. The user additionally agreed project-scoped unique derived paths regardless of token type, with continued access to existing conflicting data, on 13 November 2026. Final amended contract/design agreement and implementation authorization remain pending. No application implementation is authorized.
+- Agreement: the user agreed the proposed direction, authorized mockups and subsequently approved Design V1 for analyst review on 13 November 2026. The user additionally agreed project-scoped unique derived paths regardless of token type, preserving existing conflicting data, then selected whitespace-free lowercase namespace names, case-insensitive comparison, NFC and retained accents. Precise Unicode definitions below are recommendations awaiting agreement. Final amended contract/design agreement and implementation authorization remain pending. No application implementation is authorized.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [visual direction](../project/visual-direction.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [Increment 008](008-react-state-and-workbench-composition.md), [agent workflow](../workflow/agent-roles.md).
 
 ## Outcome
@@ -63,6 +63,9 @@ Included:
   rename operations, including affected descendant paths.
 - Continued opening, inspection, exact backup and restore of supported legacy
   conflicting data; identity-safe access for ambiguous or unavailable paths.
+- Whitespace removal throughout newly authored namespace names, lowercasing and
+  NFC preparation, previewed before submission; caseless collision comparison
+  also covers preserved legacy names without rewriting them.
 
 Excluded: generalized inventory search, global redesign, new dependencies/stores/
 router, domain/application/worker behavior changes beyond the bounded namespace
@@ -145,6 +148,11 @@ for mockups; concrete presentation remains subject to review.
 - Put deterministic namespace comparison and collision diagnostics in the domain;
   application operations enforce them against the current project before commit.
   Presentation may explain a rejection but must not be the enforcement boundary.
+- Apply the identified naming policy deterministically at the authoring boundary,
+  not only in form code. Keep prepared stored names separate from derived caseless
+  comparison keys. Never persist comparison keys as names or normalize legacy
+  snapshots during reads, backup or restore. Use the same comparison for every
+  ancestor segment, including unmodified legacy ancestors.
 - Compare derived arrays of local-name segments, never rendered/joined path text,
   across groups and tokens. Creation checks all existing token types, including
   name-only and typed-but-unassigned members; group rename includes descendants.
@@ -209,6 +217,14 @@ for mockups; concrete presentation remains subject to review.
   not newly blocked by an unrelated unchanged collision; changed paths and
   descendants are checked for new ambiguity while existing command safety stays
   binding. No general repair capability or broader restore admissibility is implied.
+- **AC-11 — Prepared namespace names:** new group/token names and explicitly edited
+  group names remove the agreed spacing set everywhere, use locale-independent
+  lowercase and NFC, and reject an empty prepared result while preserving raw form
+  input. Show the prepared name before submission. Case-insensitive segment keys
+  determine uniqueness across kinds/types and legacy names under the identified
+  policy. Keep accents; do not transliterate or remove diacritics. Group rename
+  changes only its explicitly edited name, retaining descendant local names and
+  identities. Technical Unicode definitions remain recommendations until agreed.
 
 ## Decisions and design review
 
@@ -242,6 +258,12 @@ for mockups; concrete presentation remains subject to review.
   authorized this requirements reassessment without requesting new mockups.
   Any later material interface revision returns to the user before renewed analyst
   review; final amended contract/design agreement is still pending.
+- Subsequent naming direction: the user selected removal of all whitespace,
+  lowercase new namespace names, case-insensitive paths, NFC and retained accents.
+  The [precise naming-policy proposal](009-naming-policy-proposal.md) separates
+  agreed intent from recommended Unicode sets/algorithms and version pinning.
+  It supersedes the earlier exact-string comparison proposal, not legacy source
+  preservation. V1 does not illustrate this preparation/collision feedback.
 - The proposed component boundaries are viable at design level. Other fixture
   omissions remain explicit implementation requirements and verification limits;
   neither the review nor the prototype establishes production acceptance.
@@ -256,7 +278,7 @@ identified proposal before analyst review. Preparation does not skip either step
 
 After final agreement and explicit implementation authorization only:
 
-1. Resolve the explicitly open equality policy, then implement deterministic
+1. Agree the precise naming-policy recommendations, then implement deterministic
    collision checks for existing creation/group rename and legacy-safe admission.
    Implement browser-view transitions and matching toolbar/navigation context.
 2. Extract lifecycle/backup owners and meaningful inspector sections, preserving
@@ -275,6 +297,13 @@ It covers affected normal workflows rather than exceptional qualification.
   unchanged IDs/aliases on rename; atomic rejection. Include legacy collisions
   with an unrelated otherwise allowed command, an added collision member and a
   changed-path collision. Do not broaden existing repair eligibility.
+- Naming-policy examples: every spacing-set member at leading/internal/trailing
+  positions, empty-after-removal, lowercase/NFC preparation, retained accents,
+  canonical-equivalent encodings, full-fold expansion and Greek sigma, default
+  dotted/dotless-I behavior, preserved script joiners, and unchanged legacy data.
+  Demonstrate that the domain/application path cannot bypass preparation and that
+  form preview and committed name agree. No exhaustive Unicode qualification is
+  implied; implementation must substantiate the chosen Unicode version/algorithm.
 - Controlled representative legacy evidence: opening/identity-safe inspection and
   exact backup/restore remain admitted without name rewriting or schema changes.
   Target only the newly touched admission boundary; no Increment 007 campaign restart.
@@ -336,13 +365,12 @@ it does not rewrite Increment 001's historical delivery claims. Groups and token
 share the namespace; type, layer and assignment state do not partition it. Paths
 are segment arrays, independent of their display/export separators.
 
-**Proposal, not an agreed equality policy:** compare exact current local-name
-strings segment by segment, preserving authored text. Case folding, Unicode
-normalization, trimming, empty-name rules, separator grammar and target-specific
-naming remain unresolved; no new grammar or normalization is authorized by the
-uniqueness agreement. Confirm this narrow exact-comparison proposal or choose an
-explicit alternative before implementation. Distinct arrays such as `["a.b"]`
-and `["a", "b"]` must not collide merely because a display joins them with dots.
+**Earlier comparison proposal, superseded by the subsequent naming direction:**
+exact current local-name comparison had been proposed but not agreed. The user
+then selected whitespace-free lowercase authoring, NFC and case-insensitive
+comparison. The precise recommendations are in the naming-policy proposal below.
+Paths still compare segment arrays: `["a.b"]` and `["a", "b"]` must not collide
+merely because a display joins them with dots.
 
 **Agreed preservation boundary:** prevent new collisions/additions using affected
 paths and descendants, while keeping supported legacy data readable, inspectable,
@@ -366,3 +394,21 @@ allowance is unstarted. Requirements reassessment stops after this handoff.
 
 Final amended contract/design agreement and implementation authorization remain
 pending. Staging, committing and pushing remain with the user.
+
+### Naming direction and precise recommendations — 13 November 2026
+
+The user selected removal of all whitespace, including internal whitespace,
+case-insensitive path segments, lowercase newly authored names, NFC and retained
+accented letters. The [naming-policy proposal](009-naming-policy-proposal.md) owns
+the recommended precise definitions: a pinned Unicode baseline, removal set,
+stored-name preparation versus canonical caseless comparison, examples and scope.
+Those technical choices are proposals, not inferred user approval. Normalization
+here is deliberate preparation of a newly submitted name, not permission to
+rewrite existing authored data or unrelated labels.
+
+The accompanying [analyst reassessment](009-design-review.md) preserves D9-1's
+exceptional legacy/unavailable-path access requirement. No prototype/code change,
+new rendered design review, tests, builds or implementation is authorized by this
+documentation request. Previous stopped campaigns remain stopped. This amendment
+uses a separate 10-minute aggregate source/document-review ceiling, zero repairs;
+actual effort and stopping record are in the naming-policy handoff.
