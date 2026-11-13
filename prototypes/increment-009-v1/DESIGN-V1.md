@@ -1,9 +1,11 @@
 # Increment 009 — Design V1
 
 **Interactive mockup, 13 November 2026.** The user selected the V1 direction and
-authorized mockup preparation. This artifact is awaiting user review. Approval
-for analyst review, analyst review itself, final contract/design agreement and
-production implementation authorization remain pending.
+authorized mockup preparation. On 13 November 2026 the user approved this identified
+V1 artifact for analyst review. The [consistency review](../../docs/increments/009-design-review.md)
+is complete with one required inventory-identity design correction, D9-1, still
+open. Final contract/design agreement and production implementation authorization
+remain pending. V1's code and rendered mockups remain unchanged by this review.
 
 ## Run
 
@@ -128,9 +130,12 @@ most one harness repair. The initial shared-style source-scanning correction use
 that repair allowance; it is not a qualification restart. Increment 007 allowance
 remains zero and Increment 008 campaigns remain stopped.
 
-Present the actual mockup/evidence to the user, resolve requested design changes,
-then ask for approval of the identified version for analyst review. No analyst
-design review has occurred. No production implementation is authorized.
+The user approved the identified V1 artifact for analyst review on 13 November
+2026. Consistency review completed against baseline `044a71c`; D9-1 requires exact
+identity to be associated with ambiguous inventory entries and a duplicate-label
+design example. This correction has not been made in V1. The identified material
+revision must return to the user before renewed analyst review. No production
+implementation is authorized.
 
 Suggested commit message, after user review: `docs: add increment 009 usability mockups`
 

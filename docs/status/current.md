@@ -2,7 +2,7 @@
 
 > Last updated: 13 November 2026
 >
-> Phase: Increment 009 Design V1 awaiting user review; Increments 007 and 008 Completed
+> Phase: Increment 009 Design V1 reviewed; one design correction open
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
@@ -21,10 +21,15 @@ and its [screenshot gallery](../../output/increment-009-design-v1/index.html) ar
 for user review. A bounded mockup render check observed desktop/compact fixture
 states; [evidence and limits](../../output/increment-009-design-v1/review.md) record
 approximately 12–15 aggregate minutes and one harness repair, now stopped.
-User approval for analyst review, analyst review itself, final agreement and
-implementation authorization remain pending. Only prototype/evidence/documentation
-files changed; no production implementation, tests or builds ran. Earlier
-qualification campaigns remain stopped.
+The user approved V1 for analyst review on 13 November. The [fresh analyst review](../increments/009-design-review.md)
+is complete, with one required P2 correction **D9-1**: tie exact identities to
+ambiguous inventory entries and illustrate duplicate labels. The proposed React
+boundaries are viable at design level; unmodeled integrity/focus/source behavior
+remains required and unverified. Review used approximately 7–9 aggregate minutes
+(estimate), zero repairs, and is stopped. No mockup correction, browser rerender,
+application tests/builds or implementation occurred during this review.
+Final agreement and implementation authorization remain pending. Earlier
+qualification campaigns remain stopped; Increments 007 and 008 remain completed.
 
 **Increment 008 completed — 12 November 2026:** the user reported completing the
 remaining manual checks in Chrome with everything looking good and explicitly
@@ -115,8 +120,9 @@ Install/offline PWA acceptance, interchange and Electron remain later milestones
 
 ## Next meaningful action
 
-Review Increment 009 Design V1 with the user, then obtain approval of that identified
-artifact for analyst review. Material design changes return to the user first.
+The next proposed step is a focused designer revision for D9-1, then user review
+of the identified artifact before renewed analyst review. No correction is yet
+prepared or approved. Final agreement and implementation remain unauthorized.
 Final contract/design agreement and implementation authorization remain separate
 and pending. Increment 008 stays closed following Chrome manual acceptance.
 Any future qualification requires an explicitly authorized bounded follow-up. No

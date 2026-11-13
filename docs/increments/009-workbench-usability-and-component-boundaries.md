@@ -3,7 +3,7 @@
 - Contract status: Draft
 - Delivery status: Not started
 - Prepared: 13 November 2026
-- Agreement: the user agreed the proposed direction and authorized review mockups on 13 November 2026. Final contract/design agreement and implementation authorization remain pending. No application implementation is authorized.
+- Agreement: the user agreed the proposed direction, authorized mockups and subsequently approved Design V1 for analyst review on 13 November 2026. Final contract/design agreement and implementation authorization remain pending. No application implementation is authorized.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [visual direction](../project/visual-direction.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [Increment 008](008-react-state-and-workbench-composition.md), [agent workflow](../workflow/agent-roles.md).
 
 ## Outcome
@@ -183,8 +183,18 @@ for mockups; concrete presentation remains subject to review.
   empty-group creation context, reference editing and compact navigation.
   Fixtures illustrate presentation only; they do not implement or qualify the
   proposed production component boundaries, storage, source or command semantics.
-- Approval of the identified artifact for analyst review: pending. Analyst design
-  review has not occurred and must follow user approval.
+- Approval of the identified artifact for analyst review: granted by the user on
+  13 November 2026 for Design V1. The [fresh analyst consistency review](009-design-review.md)
+  is complete against baseline `044a71c`; this is not final design agreement.
+- Review result: one required P2 design correction, **D9-1**, remains open. All
+  content must associate exact identity with each ambiguous/unavailable readable
+  entry rather than relying solely on one detached identity list. The next design
+  revision must illustrate duplicate labels and return to the user before renewed
+  analyst review. The coordinator corroborated the finding against prototype and
+  existing membership-label source; no mockup correction has been made.
+- The proposed component boundaries are viable at design level. Other fixture
+  omissions remain explicit implementation requirements and verification limits;
+  neither the review nor the prototype establishes production acceptance.
 - Final contract/design agreement and implementation authorization: pending.
 - Material revisions return to the user before renewed analyst review.
 
@@ -237,6 +247,16 @@ render-review ceiling and at most one harness repair. Approximately 12–15 minu
 The linked rendered observations distinguish mockup checks/corrections from
 application qualification. No production tests, builds or implementation ran.
 This does not consume or activate the proposed implementation allowance above.
+
+The user subsequently authorized source/document consistency review of Design V1.
+This review stage has a shared 10-minute aggregate ceiling, zero harness repairs;
+the analyst was allocated at most seven minutes, with three reserved for coordinator
+reconciliation and documentation. The completed review used approximately 5–6
+analyst minutes plus 2–3 coordinator minutes, **7–9 aggregate minutes** (estimate),
+zero harness repairs; review is stopped. Findings and evidence limits are in the
+[design-review record](009-design-review.md). No browser rerender, application
+tests/builds or implementation occurred; stopped mockup/007/008 campaigns remain
+stopped.
 
 ## Review baseline and amendments
 
