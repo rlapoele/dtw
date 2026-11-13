@@ -1,0 +1,55 @@
+diff --git a/src/presentation/features/workbench/components/ColorFields.tsx b/src/presentation/features/workbench/components/ColorFields.tsx
+index 13d51d5..5ec8f9a 100644
+--- a/src/presentation/features/workbench/components/ColorFields.tsx
++++ b/src/presentation/features/workbench/components/ColorFields.tsx
+@@ -166,10 +166,10 @@ export function ColorFields({
+           const available = rangeState === "available";
+           return (
+             <div
+-              className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-3"
++              className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-1"
+               key={d.colorSpace + "-" + i}
+             >
+-              <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-1.5 m-0 text-caption font-medium">
++              <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-0 m-0 text-caption font-medium">
+                 <span>{label}</span>
+                 <Input
+                   readOnly={readOnly}
+@@ -203,13 +203,6 @@ export function ColorFields({
+                     aria-valuetext={value}
+                     onChange={(e) => change(i, e.target.value)}
+                   />
+-                  <div
+-                    className="range-ends col-start-1 row-start-3 flex justify-between gap-2 text-muted-foreground mt-0.5"
+-                    aria-hidden="true"
+-                  >
+-                    <span>{min}</span>
+-                    <span>{max}</span>
+-                  </div>
+                 </>
+               ) : (
+                 <p className="helper text-muted-foreground font-normal range-unavailable col-start-1 row-start-2 row-span-2 self-center wrap-anywhere">
+@@ -239,8 +232,8 @@ export function ColorFields({
+           );
+         })}
+       </div>
+-      <div className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-3 alpha-control border-t border-border pt-3">
+-        <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-1.5 m-0 text-caption font-medium">
++      <div className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-1 alpha-control border-t border-border pt-1">
++        <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-0 m-0 text-caption font-medium">
+           <span>Alpha</span>
+           <Input
+             readOnly={readOnly}
+diff --git a/src/presentation/styles/global.css b/src/presentation/styles/global.css
+index 173c5ba..d3c8e13 100644
+--- a/src/presentation/styles/global.css
++++ b/src/presentation/styles/global.css
+@@ -225,7 +225,7 @@
+   }
+ }
+ .inspector-heading h2 {
+-  margin: 7px 0 8px;
++  margin: 4px 0;
+ }
+ .inspector-heading p {
+   max-width: 285px;

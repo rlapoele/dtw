@@ -560,3 +560,218 @@ An orphan still triggers existing structural write guards; use structurally vali
 colliding data for unrelated-creation checks. These checks are pending, and this
 increment is not marked Completed. Do not restart stopped automated qualification
 without an explicitly authorized bounded follow-up.
+
+## Focused closure proposal — 13 November 2026
+
+**Agreed; Phase 1 authorized on 13 November 2026.** Proposal baseline: `834a990` (current Increment 009
+implementation). The user requested a simple two-phase proposal to close
+the gaps identified after implementation. The user subsequently approved this
+two-phase proposal and authorized Phase 1 only; Phase 2 awaits the Phase 1 user
+handoff, comments and explicit go-ahead. This follows up Increment 009; it does not reopen naming policy,
+the product model, or completed Increments 007/008. AC-1 through AC-11 remain
+binding. The earlier completion report remains the historical implementation
+handoff, not acceptance of the work proposed below.
+
+### Phase 1 — Finish the UX/UI and its rendered acceptance
+
+| Task | Concrete result |
+|---|---|
+| 1. Compact the ordinary inspector | At 1280 × 800 CSS pixels, the representative sRGB literal editor shows all four channel inputs, including Alpha, above persistent Apply/Cancel actions. Reduce redundant headings, empty metadata placeholders and spacing before reducing readable control sizes. Keep full exact values, essential guidance, errors and recovery visible; longer/exceptional content may scroll normally. |
+| 2. Finish All content | Render a vertical list of individually selectable, wrapping rows with a clear name/path, kind and token-type hierarchy. Ordinary entries expose full identity through associated details; conflicting/unavailable entries retain their exact identity and truthful context inside each actionable row. Remove the duplicated explanation and redundant labels; preserve complete progressive membership and native Find access. |
+| 3. Complete the rendered functional-block review | Walk the existing project entry, navigation/catalogue, creation/rename, literal/reference editing, group/resolution/source inspection, diagnostics, backup/restore and available recovery screens using synthetic data. Check normal, empty and relevant error states. Correct affected copy, spacing and readability defects within the accepted Precision direction. Record recovery states that cannot safely be exercised as unverified; do not build new fault-injection machinery. |
+| 4. Close the interaction evidence gaps | In Chrome, check one compact layout plus desktop: keyboard/drawer focus, raw draft and query preservation across views, departure choices, Apply/Cancel, name-rejection focus, duplicate/orphan selection by exact identity, and supported backup/restore through the normal UI. Use a structurally valid conflicting project for unrelated creation; an orphan still obeys existing write guards. |
+
+**Done means:** supplemental closure criterion **009-F1** has screenshot evidence
+for the representative desktop editor and readable ordinary/exceptional inventory;
+**009-F2** has a short functional-block checklist recording observed interaction
+outcomes and any unresolved AC-2/3/4/7/8/10 gaps. No clipped controls or unintended
+horizontal page scrolling in the representative compact check. No new technical
+meaning, normalization or identity policy is introduced by presentation changes.
+
+**User handoff:** the running application, a small before/after screenshot set and
+the checklist, followed by a pause for user comments/acceptance and explicit go-ahead
+to Phase 2. Address ordinary Phase 1 corrections within this phase; a material new
+design request is surfaced rather than silently expanding the work.
+
+### Phase 2 — Align React responsibilities and files with the interface
+
+| Task | Concrete result |
+|---|---|
+| 1. Group files by functional block | Move block-owned files out of the flat workbench `components/`, `hooks/` and `state/` buckets into the shallow functional groups below. Colocate each block's components, hook and local state helpers. Update imports/tests in the same change; keep domain, application, host protocol and global UI primitives in their existing layers. Do not force genuinely cross-block files into a new catch-all folder. |
+| 2. Narrow component contracts | Give ReferenceFields its reference value, choices, feedback/disabled state and reference-change callback rather than a whole DraftSession and replacement setter. Narrow actual rendered sections to focused value/action contracts; keep broad editor coordination only at its owning composition boundary. Do not replace the whole-hook-result dependency with dozens of scalar props or merely rename it as another controller/model type. Keep exactly one useTokenEditor owner and existing session key/identity/lifetime. |
+| 3. Clarify workbench composition | Keep Workbench responsible for composing the screen and connecting existing owners. Extract only cohesive layout/dialog rendering or coordination that has a clear responsibility; retain one owner for commands, readback, lifecycle, creation and backup/restore. Do not replace the current component with an omnibus hook or split it to meet a line-count target. |
+| 4. Clean and document the result | Apply consistent formatting/import conventions to touched files, remove obsolete forwarding exports only when their callers are updated, and record a compact functional-block → component/hook ownership map. Check the diff for accidental behavior/style changes. |
+
+Proposed organisation under `src/presentation/features/workbench/`:
+
+```text
+browser/       TokenBrowser, ProjectedTokenList, AllContent, ProjectNavigation;
+               browser-view and membership helpers
+inspector/     WorkbenchInspector, Editor, ColorFields, ReferenceFields,
+               ResolvedTokenPanel, GroupInspector, TokenMetadata,
+               inspection-tabs, useTokenEditor and draft session state
+creation/      CreationDialog, useCreationForm and naming-preview
+backup/        RestoreDialog, useBackupRestore and useWorkbenchBackup
+recovery/      RetentionRecovery, DepartureGuard and ProjectDiagnostics
+coordination/  useProjectCommands, useProjectReadback, useWorkbenchLifecycle,
+               useWorkbenchLayout and workbench readback helpers
+color/         existing pure presentation color helpers
+```
+
+Workbench/App stay in `presentation/app/`; global `components/ui/`, project entry
+and host ownership stay outside this move. WorkbenchHeader remains a screen-shell
+component rather than being forced into backup ownership. Genuinely cross-block
+leaf renderers such as ExactSource, AuthoredValue and swatch may remain in their
+existing component location; do not create a new `shared/` dumping ground or
+abstract them merely to complete the folder tree. Existing unused or
+alternate files such as TokenList are inspected before any move or deletion; no
+unrelated cleanup or speculative shared abstraction is required.
+
+**Done means:** **009-F3** has a readable folder/ownership map and section-specific
+props, with one editor session and unchanged command authority. **009-F4** preserves
+the accepted Phase 1 UI and existing raw input, revision, async completion,
+restore, source-access and departure guarantees. Evidence is a focused source
+review, relevant behavior regression checks and final build, plus a brief rendered
+smoke check of the moved UI. Do not add tests that only enforce file locations or
+component size. File moves alone do not count as responsibility separation.
+
+**User handoff:** concise structure/change summary, ownership map, check results
+and any remaining gaps. Mark Increment 009 Completed only when its required
+criteria and both phase outcomes have evidence and user acceptance is recorded.
+
+### Execution and stopping rules
+
+After approval, execute each phase as one bounded delivery: one developer makes
+the changes, freezes the snapshot, and one independent reviewer checks it; fix
+concrete findings and recheck the affected behavior within the same allowance.
+There is no fresh mockup/analyst cycle for each task and no repeated full review
+of unchanged work. Existing V1/V2 and this accepted task list guide implementation.
+Only a material design/scope change returns to a design decision. A genuine defect
+is not waived merely to meet a one-pass promise: if it cannot be resolved within
+the bound, hand it back explicitly instead of silently starting another cycle.
+
+Proposed follow-up verification ceiling: **30 aggregate minutes total**, at most
+20 for Phase 1 and 10 for Phase 2, including developer checks, rendered review,
+independent review and affected rechecks; **zero harness repairs**. This allowance
+becomes active only when the user approves this bounded follow-up and authorizes
+the relevant phase. The earlier approximately 25/30 minutes and exhausted two
+repair cycles remain consumed and stopped; this is not a reset or authority to
+repair/restart that fixture campaign. Use existing working tools and ordinary UI
+flows; a tool failure produces a recorded evidence gap, not a new harness project.
+Focused tests only; no full-suite run per phase, with one final build in Phase 2
+and only the relevant compile checks needed earlier. No stress/max-resource,
+alternate-engine or old 007/008 qualification is included.
+
+Planning used approximately **five aggregate source/document-review minutes**
+(three analyst plus two coordinator), zero repairs, no tests/builds/browser sessions. No production code, mockups or
+tests changed. Staging, committing and pushing remain with the user.
+
+
+### Phase 1 authorization and active allowance — 13 November 2026
+
+The user approved the two-phase closure proposal and explicitly authorized Phase 1
+implementation, followed by a user review before Phase 2. Production baseline:
+`834a99003d6f449c89454a4a7492f355de65c33d`. Existing proposal/status edits are preserved.
+The follow-up ceiling is now approved: 30 aggregate verification minutes total,
+Phase 1 at most 20 and Phase 2 at most 10, zero harness repairs. Phase 1 allocations
+are developer focused checks/compile up to four, coordinator rendered checks up to
+ten, independent review up to four and targeted correction/reconciliation reserve
+two minutes. This is one shared allowance, not additional time per agent. Prior
+campaigns remain stopped. No Phase 2 implementation or folder/contract refactor is
+authorized now. Staging, committing and pushing remain with the user.
+
+
+### Phase 1 implementation handoff — 13 November 2026
+
+**Implemented; user review pending; rendered acceptance partially verified.**
+Phase 2 has not started. Reviewed production snapshot: baseline
+`834a99003d6f449c89454a4a7492f355de65c33d` plus the
+[exact Phase 1 patch](../../output/increment-009-phase1/review.patch) and
+[nine-file hash manifest](../../output/increment-009-phase1/review-manifest.json).
+Existing proposal/status changes were preserved. No staging, commits or pushes.
+
+- **009-F1:** ordinary editor now removes empty description/layer placeholders and
+  redundant Value heading, compacts header/channel spacing without shrinking the
+  exact inputs, and retains sticky actions. Chrome at 1280 × 800 initially showed
+  Alpha clipped; the developer corrected spacing and the final screenshot shows
+  all four complete inputs above the actions. All content now uses vertical
+  wrapping native list/button rows, name/path plus kind/type hierarchy, associated
+  ordinary identity disclosures and inline exceptional identity/context. Duplicate
+  explanatory copy is removed. Desktop, compact and restored legacy evidence is
+  linked in the [rendered checklist](../../output/increment-009-phase1/checklist.md).
+- **009-F2:** observed compact drawer keyboard entry/selection/focus return,
+  invalid raw draft preservation into All content, focused invalid Apply feedback,
+  supported normal-UI legacy restore and exact duplicate/orphan selection.
+  The checklist records unverified query/departure/successful Apply/rejection-focus,
+  reference/group/source/diagnostics and exact backup roundtrip scenarios; rare
+  recovery states were not induced. This is partial rendered coverage, not full
+  functional-block acceptance or a waiver of AC-2/3/7/8/10.
+- Developer: focused all-content/Increment 009 tests **9/9 pass**; presentation
+  TypeScript compile passes. No full build/suite: final build remains planned for
+  Phase 2. [Developer evidence](../../output/increment-009-phase1/developer.md).
+- Fresh independent reviewer: no demonstrated actionable source defects; snapshot
+  matched. [Review and scope](../../output/increment-009-phase1/reviewer.md).
+  Source review does not substitute for missing runtime scenarios.
+- Verification stopped at approximately **20 aggregate minutes**: developer three,
+  reviewer about four, coordinator Chrome/setup/evidence about twelve and final
+  reconciliation/document checks about one. The coordinator used the unused
+  developer minute and one reserve minute; Phase 1 ceiling remains twenty.
+  **Zero harness repairs.** Chrome device-toolbar setup and emulation hit-testing
+  consumed part of the rendered allowance; existing native UI/keyboard controls
+  were used, no automation harness was added/repaired. Optional screenshot cropping
+  was unavailable; full screenshots were retained without installation/repair.
+  Phase 2's ten minutes remain unused, and prior stopped campaigns stay stopped.
+
+**User handoff:** review the [running application](http://127.0.0.1:5179/),
+[screenshots/checklist](../../output/increment-009-phase1/checklist.md) and explicit
+acceptance gaps. Await user comments and go-ahead before any Phase 2 work. Neither
+Phase 1 full acceptance nor Increment 009 completion is claimed by this handoff.
+No automatic verification extension or additional workflow cycle is started.
+
+
+### Phase 1 approval and slider-layout extension — 13 November 2026
+
+The user approved the Phase 1 changes and explicitly requested this presentation
+extension before Phase 2: three color components side by side in one horizontal
+block, Alpha in a separate full-width block below; each slider above its exact
+input; circular slider thumbs. This is the agreed layout for all existing color
+spaces. Raw values, transformations, warnings, invalid/unavailable states and
+keyboard behavior stay unchanged. Existing Phase 1 changes remain uncommitted and
+must be preserved. Phase 2 remains unauthorized pending the extension handoff.
+
+A separate bounded allowance applies only to this newly authorized extension:
+**10 aggregate verification minutes, zero harness repairs** (developer up to two,
+coordinator rendered checks up to five, independent review up to two, reserve one).
+Earlier Phase 1's twenty minutes and other stopped campaigns remain consumed;
+Phase 2's ten-minute allocation is untouched. Use existing working tools, one
+focused compile/check and desktop/compact rendered observations. No full build,
+new harness, or restart of earlier acceptance scenarios. One developer and one
+independent reviewer; the user's precise layout is approved without another
+mockup/analyst cycle. Final implementation handoff returns to the user.
+
+
+### Slider-layout extension handoff — 13 November 2026
+
+Implemented the user-selected layout in ColorFields and its native range CSS:
+three equal component columns, Alpha full-width below, slider above exact input
+for all four controls, and equal-size circular WebKit/Mozilla thumbs. Existing
+raw-value, view/byte, unavailable/invalid and apply semantics are preserved; no
+Phase 2 files/folder refactor occurred. Earlier uncommitted Phase 1 work remains.
+
+[Developer evidence](../../output/increment-009-phase1-extension/developer.md):
+presentation compile and **36 focused existing tests pass**. No full build/suite.
+[Independent source review](../../output/increment-009-phase1-extension/reviewer.md):
+no actionable defects; two-file snapshot hashes match. Extension-only patch and
+pre-extension baseline patch are recorded in the same evidence directory.
+
+[Chrome screenshot and observations](../../output/increment-009-phase1-extension/chrome-review.md)
+confirm the selected desktop arrangement/circular thumbs, native slider/input
+synchronization, exact invalid text preservation and Cancel focus return. The
+user changed Chrome during device-preview setup; the current desktop state was
+respected. No new exact desktop/compact viewport or Firefox runtime qualification
+is claimed. This extension does not close earlier unverified acceptance scenarios.
+
+Approximately **eight aggregate verification minutes of ten**, zero harness repairs
+(developer1.5, reviewer2, coordinator4, reconciliation0.5). Checks are stopped.
+Phase 2's allocation is untouched. Return the visible extension for user review;
+Phase 2 has not begun. No staging, commit or push.

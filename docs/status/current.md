@@ -2,13 +2,38 @@
 
 > Last updated: 13 November 2026
 >
-> Phase: Increment 009 implemented and independently reviewed; manual acceptance pending
+> Phase: Increment 009 Phase 1 approved; slider extension ready for user review
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
 > Applied data is browser-profile/origin local; drafts and forms remain session-only.
 
 ## Current focus
+
+**Phase 1 slider extension handoff — 13 November 2026:** after approving Phase 1,
+the user requested side-by-side color components, separate Alpha, sliders above
+exact inputs and circular thumbs. Implemented in the existing color fields/range
+CSS; presentation compile and 36 focused tests pass, independent source review found
+no actionable defects. [Screenshot/evidence](../../output/increment-009-phase1-extension/chrome-review.md)
+records native Chrome layout, invalid raw text preservation and Cancel focus
+return, with exact viewport/compact rechecks explicitly unverified. Approximately
+eight of ten extension verification minutes, zero repairs; checks stopped.
+Phase 2 has not started and its ten-minute allocation is untouched. Await user
+review/go-ahead; previous gaps and stopped qualification remain unchanged.
+
+**Increment 009 closure Phase 1 handoff — 13 November 2026:** editor density and
+All content presentation changes are implemented. Chrome evidence shows all four
+sRGB inputs including Alpha above actions at 1280 × 800, a readable vertical
+inventory, compact drawer keyboard/focus behavior, invalid draft preservation and
+normal-UI legacy restore with exact duplicate/orphan selection. Focused tests 9/9
+and presentation compile pass; independent source review found no actionable
+defects. The [phase handoff](../increments/009-workbench-usability-and-component-boundaries.md#phase-1-implementation-handoff--13-november-2026)
+and [rendered checklist](../../output/increment-009-phase1/checklist.md) explicitly
+retain missing interaction/source/backup-roundtrip and rare-recovery evidence.
+Phase 1 is ready for user review, not claimed fully accepted. Verification stopped
+at approximately 20 aggregate minutes, zero harness repairs. Phase 2 has not begun;
+its ten-minute allocation is unused and awaits user review/comments/go-ahead.
+Naming and data-safety agreements stand; staging/commit/push remain with the user.
 
 **Increment 009 implementation handoff — 13 November 2026:** the agreed naming
 policy and V1/V2 design are implemented and independently source-reviewed, with no
@@ -189,11 +214,10 @@ Install/offline PWA acceptance, interchange and Electron remain later milestones
 
 ## Next meaningful action
 
-Complete the recorded user manual acceptance checklist for Increment 009 before
-claiming completion: desktop/compact layout and focus, draft/departure behavior,
-and native legacy restore/selection/backup. The [independent reviewer checklist](../../output/increment-009-implementation/reviewer.md#remaining-manual-acceptance)
-and contract completion report identify the gaps. Do not automatically rerun tests
-or restart the stopped fixture campaign. Increment 008 remains closed.
+User review of the Phase 1 running application, screenshots and observed/gap
+checklist. Address comments within explicit authority; do not begin Phase 2 until
+the user gives go-ahead. Phase 1 verification is stopped at its ceiling; no automatic
+extension, fixture repair or old 007/008 campaign restart is authorized.
 Any future qualification requires an explicitly authorized bounded follow-up. No
 agent, snapshot or workflow change resets prior consumption. The stopped Increment
 007 campaign's remaining authorized allowance stays **zero**.

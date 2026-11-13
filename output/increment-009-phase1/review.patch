@@ -1,0 +1,300 @@
+diff --git a/src/presentation/components/ui/button.tsx b/src/presentation/components/ui/button.tsx
+index 3f43741..b0ab8b0 100644
+--- a/src/presentation/components/ui/button.tsx
++++ b/src/presentation/components/ui/button.tsx
+@@ -18,6 +18,7 @@ const sizes = {
+   pane: "h-11 min-h-11 w-full px-4 justify-start gap-2 rounded-none text-caption border-b-border",
+   icon: "h-11 min-h-11 w-11 min-w-11 p-0 justify-center gap-2 rounded-md shrink-0",
+   mode: "h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none",
++  inventory: "h-auto min-h-11 w-full px-3 py-2 justify-start gap-2 rounded-md text-left whitespace-normal",
+   selection: "h-10 px-3 justify-center gap-2 rounded-md text-caption",
+   sm: "h-7 px-2 justify-center gap-2 rounded-md",
+ };
+diff --git a/src/presentation/features/workbench/components/AllContent.tsx b/src/presentation/features/workbench/components/AllContent.tsx
+index 84dfac1..cbea3d0 100644
+--- a/src/presentation/features/workbench/components/AllContent.tsx
++++ b/src/presentation/features/workbench/components/AllContent.tsx
+@@ -15,15 +15,27 @@ const MembershipBlock = memo(function MembershipBlock({
+   entries: readonly MembershipEntry[];
+ }) {
+   return entries.map((entry) => (
+-    <Button
+-      className="block mb-2 wrap-anywhere"
+-      key={JSON.stringify([entry.kind, entry.id])}
+-      data-entity-kind={entry.kind}
+-      data-entity-id={entry.id}
+-    >
+-      {entry.label}
+-      {entry.detail && <span className="block text-caption text-muted-foreground text-left">{entry.detail}</span>}
+-    </Button>
++    <li className="min-w-0" key={JSON.stringify([entry.kind, entry.id])}>
++      <Button
++        size="inventory"
++        data-entity-kind={entry.kind}
++        data-entity-id={entry.id}
++      >
++        <span className="block min-w-0 w-full wrap-anywhere">
++          <span className="block font-medium whitespace-pre-wrap">{entry.label}</span>
++          <span className="block text-caption text-muted-foreground">
++            {entry.kind === "group" ? "Namespace group" : `Token · ${entry.valueType}`}
++          </span>
++          {entry.detail && <span className="block text-caption text-muted-foreground whitespace-pre-wrap">{entry.detail}</span>}
++        </span>
++      </Button>
++      {!entry.detail && (
++        <details className="text-caption text-muted-foreground px-3 py-1">
++          <summary className="cursor-pointer">{entry.kind === "group" ? "Group" : "Token"} identity</summary>
++          <p className="wrap-anywhere whitespace-pre-wrap">{JSON.stringify(entry.id)}</p>
++        </details>
++      )}
++    </li>
+   ));
+ });
+ 
+@@ -65,12 +77,11 @@ export function AllContent({
+             onSelect(kind, id);
+         }}
+       >
+-        <p className="text-caption mb-4">
+-          Every group and token, including items outside the group tree.
+-        </p>
+-        {blocks.slice(0, visible).map((entries, index) => (
+-          <MembershipBlock key={index} entries={entries} />
+-        ))}
++        <ul className="flex min-w-0 flex-col gap-2" aria-label="All project content">
++          {blocks.slice(0, visible).map((entries, index) => (
++            <MembershipBlock key={index} entries={entries} />
++          ))}
++        </ul>
+       </div>
+     </>
+   );
+diff --git a/src/presentation/features/workbench/components/ColorFields.tsx b/src/presentation/features/workbench/components/ColorFields.tsx
+index 13d51d5..5ec8f9a 100644
+--- a/src/presentation/features/workbench/components/ColorFields.tsx
++++ b/src/presentation/features/workbench/components/ColorFields.tsx
+@@ -166,10 +166,10 @@ export function ColorFields({
+           const available = rangeState === "available";
+           return (
+             <div
+-              className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-3"
++              className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-1"
+               key={d.colorSpace + "-" + i}
+             >
+-              <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-1.5 m-0 text-caption font-medium">
++              <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-0 m-0 text-caption font-medium">
+                 <span>{label}</span>
+                 <Input
+                   readOnly={readOnly}
+@@ -203,13 +203,6 @@ export function ColorFields({
+                     aria-valuetext={value}
+                     onChange={(e) => change(i, e.target.value)}
+                   />
+-                  <div
+-                    className="range-ends col-start-1 row-start-3 flex justify-between gap-2 text-muted-foreground mt-0.5"
+-                    aria-hidden="true"
+-                  >
+-                    <span>{min}</span>
+-                    <span>{max}</span>
+-                  </div>
+                 </>
+               ) : (
+                 <p className="helper text-muted-foreground font-normal range-unavailable col-start-1 row-start-2 row-span-2 self-center wrap-anywhere">
+@@ -239,8 +232,8 @@ export function ColorFields({
+           );
+         })}
+       </div>
+-      <div className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-3 alpha-control border-t border-border pt-3">
+-        <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-1.5 m-0 text-caption font-medium">
++      <div className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-1 alpha-control border-t border-border pt-1">
++        <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-0 m-0 text-caption font-medium">
+           <span>Alpha</span>
+           <Input
+             readOnly={readOnly}
+diff --git a/src/presentation/features/workbench/components/Editor.tsx b/src/presentation/features/workbench/components/Editor.tsx
+index 47ca275..fbda147 100644
+--- a/src/presentation/features/workbench/components/Editor.tsx
++++ b/src/presentation/features/workbench/components/Editor.tsx
+@@ -70,7 +70,7 @@ export function EditorFields({
+       aria-label="Selected token"
+       hidden={readUnavailable}
+     >
+-      <div className="inspector-heading source-compact:p-4 bg-surface p-4">
++      <div className="inspector-heading bg-surface p-3">
+         <span className="eyebrow uppercase text-muted-foreground font-semibold">
+           {token.definition?.type ?? "Unassigned"} token
+         </span>
+@@ -78,20 +78,20 @@ export function EditorFields({
+           {tokenLabels.get(token.id) ??
+             (token.localName || "(unnamed original token)")}
+         </h2>
+-        <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
+-          {token.description ?? "No description"}
+-        </p>
++        {token.description && <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
++          {token.description}
++        </p>}
+         {i.path.status !== "derived" && <p className="text-caption wrap-anywhere">Path unavailable · Parent identity: {JSON.stringify(token.parentGroupId)}. Exact namespace details remain available below.</p>}
+-        <div className="flex gap-2 mt-2">
+-          <Badge>{token.layer ?? "Unspecified layer"}</Badge>
+-          <Badge>{editable ? "Unconditional" : "Inspection only"}</Badge>
++        <div className="flex gap-2">
++          {token.layer && <Badge>{token.layer}</Badge>}
++          {!editable && <Badge>Inspection only</Badge>}
+         </div>
+       </div>
+       <Tabs.Root value={tab} onValueChange={setTab}>
+         <InspectionTabs />
+         <Tabs.Panel
+           value="authored"
+-          className="editor-body source-compact:p-4 bg-surface p-4"
++          className="editor-body bg-surface p-3"
+         >
+           {targetUnavailable && (
+             <p
+@@ -148,12 +148,8 @@ export function EditorFields({
+           )}
+           {editable || dirty ? (
+             <>
+-              <div className="section-title flex items-center justify-between mb-2">
+-                <h3>Value</h3>
+-                {dirty && <Badge>Draft</Badge>}
+-              </div>
+               <fieldset disabled={accepting}>
+-                <legend>Value source</legend>
++                <legend className="sr-only">Value source</legend>
+                 <div className="mode-switch border border-border bg-mode flex p-0.75 rounded-md gap-0.75">
+                   <Button
+                     variant="mode"
+@@ -194,7 +190,7 @@ export function EditorFields({
+               ) : (
+                 <ReferenceFields session={session} tokens={project.tokens} choices={referenceChoices} labels={referenceLabels} onChange={next => {setSession(next);setError("");}} />
+               )}
+-              <p className="helper text-muted-foreground font-normal preview-detail mt-3 wrap-anywhere">
++              <p className="helper text-muted-foreground font-normal preview-detail mt-2 wrap-anywhere">
+                 Draft preview: {draft.message}
+               </p>
+               {error ? (
+@@ -279,7 +275,7 @@ export function EditorFields({
+         </Tabs.Panel>
+         <Tabs.Panel
+           value="resolved"
+-          className="editor-body source-compact:p-4 bg-surface p-4"
++          className="editor-body bg-surface p-3"
+         >
+           <ResolvedTokenPanel resolution={i.resolution} project={project} css={applied.css} message={applied.message} />
+         </Tabs.Panel>
+diff --git a/src/presentation/features/workbench/components/TokenBrowser.tsx b/src/presentation/features/workbench/components/TokenBrowser.tsx
+index 09b1b1f..3978d7b 100644
+--- a/src/presentation/features/workbench/components/TokenBrowser.tsx
++++ b/src/presentation/features/workbench/components/TokenBrowser.tsx
+@@ -70,9 +70,9 @@ export function TokenBrowser({
+     >
+       <div className="panel-header source-compact:items-start compact:flex-wrap mb-6.5 flex justify-between items-center gap-3">
+         <div>
+-          <span className="eyebrow uppercase text-muted-foreground font-semibold">
++          {!allContent && <span className="eyebrow uppercase text-muted-foreground font-semibold">
+             Tokens
+-          </span>
++          </span>}
+           <h1 className="my-1.5 small-title">
+             {allContent
+               ? "All content"
+diff --git a/src/presentation/features/workbench/state/all-content.ts b/src/presentation/features/workbench/state/all-content.ts
+index 2ff18e5..a647f56 100644
+--- a/src/presentation/features/workbench/state/all-content.ts
++++ b/src/presentation/features/workbench/state/all-content.ts
+@@ -6,6 +6,7 @@ export type MembershipEntry = {
+   id: string;
+   label: string;
+   detail?: string;
++  valueType?: string;
+ };
+ 
+ /** Presentation blocks preserve every exact identity and the existing order. */
+@@ -15,16 +16,19 @@ export function membershipBlocks(
+ ): readonly (readonly MembershipEntry[])[] {
+   const details = namespaceEntryDetails(context);
+   const entries: MembershipEntry[] = [
+-    ...context.groups.map(({ authored }) => ({
++    ...context.groups.map(({ authored, path }) => ({
+       kind: "group" as const,
+       id: authored.id,
+-      label: `Group · ${groupLabels.get(authored.id)} · ${JSON.stringify(authored.id)}`,
++      label: path.status === "derived"
++        ? (groupLabels.get(authored.id) ?? pathLabel(path))
++        : `${authored.localName || "(unnamed group)"} · ${pathLabel(path)}`,
+       detail: details.get(JSON.stringify(["group",authored.id])),
+     })),
+     ...context.tokens.map(({ authored, path }) => ({
+       kind: "token" as const,
+       id: authored.id,
+-      label: `Token · ${pathLabel(path)} · ${authored.definition?.type ?? "Unassigned"} · ${JSON.stringify(authored.id)}`,
++      label: path.status === "derived" ? pathLabel(path) : `${authored.localName || "(unnamed token)"} · ${pathLabel(path)}`,
++      valueType: authored.definition?.type ?? "Unassigned",
+       detail: details.get(JSON.stringify(["token",authored.id])),
+     })),
+   ];
+diff --git a/src/presentation/styles/global.css b/src/presentation/styles/global.css
+index 173c5ba..d3c8e13 100644
+--- a/src/presentation/styles/global.css
++++ b/src/presentation/styles/global.css
+@@ -225,7 +225,7 @@
+   }
+ }
+ .inspector-heading h2 {
+-  margin: 7px 0 8px;
++  margin: 4px 0;
+ }
+ .inspector-heading p {
+   max-width: 285px;
+diff --git a/test/presentation/all-content.test.tsx b/test/presentation/all-content.test.tsx
+index 8b397cc..9e9f76b 100644
+--- a/test/presentation/all-content.test.tsx
++++ b/test/presentation/all-content.test.tsx
+@@ -15,7 +15,7 @@ describe("complete native All content membership",()=>{
+     expect(blocks).toHaveLength(120);
+     expect(blocks.every(block=>block.length<=100)).toBe(true);
+     const entries=blocks.flat();expect(entries).toHaveLength(12000);
+-    expect(entries[0]).toMatchObject({kind:"group",id:"g0",label:'Group · group0 · "g0"'});
++    expect(entries[0]).toMatchObject({kind:"group",id:"g0",label:'group0'});
+     expect(entries[1999].id).toBe("g1999");expect(entries[2000].id).toBe("t0");expect(entries.at(-1)?.id).toBe("t9999");
+     expect(new Set(entries.map(entry=>JSON.stringify([entry.kind,entry.id]))).size).toBe(12000);
+     expect(project.tokens).toHaveLength(10000);
+@@ -31,6 +31,23 @@ describe("complete native All content membership",()=>{
+     const html=renderToStaticMarkup(createElement(AllContent,{context:project,groupLabels:identityLabels(project.groups),onSelect(){}}));
+     expect((html.match(/<button/g)??[])).toHaveLength(2);expect(html).toContain('data-entity-kind="group" data-entity-id=""');expect(html).toContain('data-entity-kind="token" data-entity-id=""');expect(html).toContain("All content ready");
+   });
++  it("keeps ordinary identity disclosure outside its action and exceptional identity inside its action",()=>{
++    const project=projectContext(admitSnapshot({project:{id:"p",name:"P"},groups:[],tokens:[
++      {id:"ordinary-full-identity",projectId:"p",localName:"ordinary",parentGroupId:null,authoring:{regeneration:"allowed"}},
++      {id:"orphan-full-identity",projectId:"p",localName:"orphan",parentGroupId:"missing-parent",authoring:{regeneration:"allowed"}},
++    ]}));
++    const html=renderToStaticMarkup(createElement(AllContent,{context:project,groupLabels:new Map(),onSelect(){}}));
++    const rows=html.match(/<li\b[\s\S]*?<\/li>/g)!;
++    expect(rows).toHaveLength(2);
++    expect(rows[0]).toMatch(/<\/button><details/);
++    expect(rows[0]).toContain("ordinary-full-identity");
++    expect(rows[0].match(/<button[^>]*>([\s\S]*?)<\/button>/)![1]).not.toContain("<details");
++    const exceptionalAction=rows[1].match(/<button[^>]*>([\s\S]*?)<\/button>/)![1];
++    expect(exceptionalAction).toContain("orphan-full-identity");
++    expect(exceptionalAction).toContain("missing-parent");
++    expect(exceptionalAction).toContain("orphan");
++    expect(rows[1]).not.toContain("<details");
++  });
+   it("reveals one additional block per frame and cancels stale revision callbacks",()=>{
+     let serial=0;const queued=new Map<number,()=>void>(),cancelled:number[]=[],seen:string[]=[];
+     const schedule=(callback:()=>void)=>{queued.set(++serial,callback);return serial;};const cancel=(id:number)=>cancelled.push(id);
+diff --git a/test/presentation/increment-009.test.tsx b/test/presentation/increment-009.test.tsx
+index 8dbfe98..47d35a3 100644
+--- a/test/presentation/increment-009.test.tsx
++++ b/test/presentation/increment-009.test.tsx
+@@ -28,7 +28,7 @@ it('previews preparation without altering raw input and identifies cross-kind co
+ it('associates each ambiguous/unavailable row with its exact identity and parent context and preserves backup data',()=>{
+  const entries=membershipBlocks(context,new Map([['g','foundation'],['conflicting-group','BRAND Blue']])).flat();
+  for(const id of ['token-a-full-identity','token-b-full-identity']) {
+-  const entry=entries.find(entry=>entry.id===id)!;expect(entry.label).toContain(id);expect(entry.detail).toContain('Conflicting path');expect(entry.detail).toContain('"g"');
++  const entry=entries.find(entry=>entry.id===id)!;expect(entry.detail).toContain(id);expect(entry.detail).toContain('Conflicting path');expect(entry.detail).toContain('"g"');
+  }
+  expect(entries.find(entry=>entry.id==='orphan-full-identity')?.detail).toContain('missing-parent');
+  expect(decodeBackup(encodeBackup(snapshot,'2026-11-13T00:00:00.000Z')).snapshot).toEqual(snapshot);

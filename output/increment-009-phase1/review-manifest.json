@@ -1,0 +1,16 @@
+{
+  "base": "834a99003d6f449c89454a4a7492f355de65c33d",
+  "patchSha256": "dca0e1f0b23c892d221be597c6f053280c5b003eb2b5580ac83346b0d1f87789",
+  "newFiles": [],
+  "files": {
+    "src/presentation/components/ui/button.tsx": "49598dd8616f1649d8233daea66b5b69d979d052d704c2c98e55b6d688ed791c",
+    "src/presentation/features/workbench/components/AllContent.tsx": "2ee3848e29cfe4c0cdb1cf72484201d691b9dbe0bfd89d56e84b1306ad37df51",
+    "src/presentation/features/workbench/components/ColorFields.tsx": "11f7af677d3b4786054497de53570be08ec5f4d0ee54e99c867f1830c88679d3",
+    "src/presentation/features/workbench/components/Editor.tsx": "395b1e65c3578a032236028cc12fa59772fc6219dd399afb40938e34d2ad6f51",
+    "src/presentation/features/workbench/components/TokenBrowser.tsx": "bd3e7e15db276965eafbfc33221da8939d8ad1d82c35e660940f23fdefece186",
+    "src/presentation/features/workbench/state/all-content.ts": "ab378a9796085e816bebe0eccaf7da86bbef44ce58a34df9027a84b5560ba426",
+    "src/presentation/styles/global.css": "2b38636687e7c6a99f9a88e4c791f6137fbefe7db9a49e97cf11641db3824061",
+    "test/presentation/all-content.test.tsx": "baf5e7e52ef182a193e7d139fa6c327deda5dd5d372777fc90d396af245956f7",
+    "test/presentation/increment-009.test.tsx": "88124562f686a7f6912509f18e52b1d38753cb38792ce5464bc0520237cb2ae9"
+  }
+}

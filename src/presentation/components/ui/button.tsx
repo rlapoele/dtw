@@ -18,6 +18,7 @@ const sizes = {
   pane: "h-11 min-h-11 w-full px-4 justify-start gap-2 rounded-none text-caption border-b-border",
   icon: "h-11 min-h-11 w-11 min-w-11 p-0 justify-center gap-2 rounded-md shrink-0",
   mode: "h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none",
+  inventory: "h-auto min-h-11 w-full px-3 py-2 justify-start gap-2 rounded-md text-left whitespace-normal",
   selection: "h-10 px-3 justify-center gap-2 rounded-md text-caption",
   sm: "h-7 px-2 justify-center gap-2 rounded-md",
 };

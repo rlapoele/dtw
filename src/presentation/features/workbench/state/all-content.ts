@@ -6,6 +6,7 @@ export type MembershipEntry = {
   id: string;
   label: string;
   detail?: string;
+  valueType?: string;
 };
 
 /** Presentation blocks preserve every exact identity and the existing order. */
@@ -15,16 +16,19 @@ export function membershipBlocks(
 ): readonly (readonly MembershipEntry[])[] {
   const details = namespaceEntryDetails(context);
   const entries: MembershipEntry[] = [
-    ...context.groups.map(({ authored }) => ({
+    ...context.groups.map(({ authored, path }) => ({
       kind: "group" as const,
       id: authored.id,
-      label: `Group · ${groupLabels.get(authored.id)} · ${JSON.stringify(authored.id)}`,
+      label: path.status === "derived"
+        ? (groupLabels.get(authored.id) ?? pathLabel(path))
+        : `${authored.localName || "(unnamed group)"} · ${pathLabel(path)}`,
       detail: details.get(JSON.stringify(["group",authored.id])),
     })),
     ...context.tokens.map(({ authored, path }) => ({
       kind: "token" as const,
       id: authored.id,
-      label: `Token · ${pathLabel(path)} · ${authored.definition?.type ?? "Unassigned"} · ${JSON.stringify(authored.id)}`,
+      label: path.status === "derived" ? pathLabel(path) : `${authored.localName || "(unnamed token)"} · ${pathLabel(path)}`,
+      valueType: authored.definition?.type ?? "Unassigned",
       detail: details.get(JSON.stringify(["token",authored.id])),
     })),
   ];

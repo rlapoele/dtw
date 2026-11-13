@@ -70,9 +70,9 @@ export function TokenBrowser({
     >
       <div className="panel-header source-compact:items-start compact:flex-wrap mb-6.5 flex justify-between items-center gap-3">
         <div>
-          <span className="eyebrow uppercase text-muted-foreground font-semibold">
+          {!allContent && <span className="eyebrow uppercase text-muted-foreground font-semibold">
             Tokens
-          </span>
+          </span>}
           <h1 className="my-1.5 small-title">
             {allContent
               ? "All content"

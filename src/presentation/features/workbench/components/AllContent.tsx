@@ -15,15 +15,27 @@ const MembershipBlock = memo(function MembershipBlock({
   entries: readonly MembershipEntry[];
 }) {
   return entries.map((entry) => (
-    <Button
-      className="block mb-2 wrap-anywhere"
-      key={JSON.stringify([entry.kind, entry.id])}
-      data-entity-kind={entry.kind}
-      data-entity-id={entry.id}
-    >
-      {entry.label}
-      {entry.detail && <span className="block text-caption text-muted-foreground text-left">{entry.detail}</span>}
-    </Button>
+    <li className="min-w-0" key={JSON.stringify([entry.kind, entry.id])}>
+      <Button
+        size="inventory"
+        data-entity-kind={entry.kind}
+        data-entity-id={entry.id}
+      >
+        <span className="block min-w-0 w-full wrap-anywhere">
+          <span className="block font-medium whitespace-pre-wrap">{entry.label}</span>
+          <span className="block text-caption text-muted-foreground">
+            {entry.kind === "group" ? "Namespace group" : `Token · ${entry.valueType}`}
+          </span>
+          {entry.detail && <span className="block text-caption text-muted-foreground whitespace-pre-wrap">{entry.detail}</span>}
+        </span>
+      </Button>
+      {!entry.detail && (
+        <details className="text-caption text-muted-foreground px-3 py-1">
+          <summary className="cursor-pointer">{entry.kind === "group" ? "Group" : "Token"} identity</summary>
+          <p className="wrap-anywhere whitespace-pre-wrap">{JSON.stringify(entry.id)}</p>
+        </details>
+      )}
+    </li>
   ));
 });
 
@@ -65,12 +77,11 @@ export function AllContent({
             onSelect(kind, id);
         }}
       >
-        <p className="text-caption mb-4">
-          Every group and token, including items outside the group tree.
-        </p>
-        {blocks.slice(0, visible).map((entries, index) => (
-          <MembershipBlock key={index} entries={entries} />
-        ))}
+        <ul className="flex min-w-0 flex-col gap-2" aria-label="All project content">
+          {blocks.slice(0, visible).map((entries, index) => (
+            <MembershipBlock key={index} entries={entries} />
+          ))}
+        </ul>
       </div>
     </>
   );

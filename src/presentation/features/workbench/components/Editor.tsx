@@ -70,7 +70,7 @@ export function EditorFields({
       aria-label="Selected token"
       hidden={readUnavailable}
     >
-      <div className="inspector-heading source-compact:p-4 bg-surface p-4">
+      <div className="inspector-heading bg-surface p-3">
         <span className="eyebrow uppercase text-muted-foreground font-semibold">
           {token.definition?.type ?? "Unassigned"} token
         </span>
@@ -78,20 +78,20 @@ export function EditorFields({
           {tokenLabels.get(token.id) ??
             (token.localName || "(unnamed original token)")}
         </h2>
-        <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
-          {token.description ?? "No description"}
-        </p>
+        {token.description && <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
+          {token.description}
+        </p>}
         {i.path.status !== "derived" && <p className="text-caption wrap-anywhere">Path unavailable · Parent identity: {JSON.stringify(token.parentGroupId)}. Exact namespace details remain available below.</p>}
-        <div className="flex gap-2 mt-2">
-          <Badge>{token.layer ?? "Unspecified layer"}</Badge>
-          <Badge>{editable ? "Unconditional" : "Inspection only"}</Badge>
+        <div className="flex gap-2">
+          {token.layer && <Badge>{token.layer}</Badge>}
+          {!editable && <Badge>Inspection only</Badge>}
         </div>
       </div>
       <Tabs.Root value={tab} onValueChange={setTab}>
         <InspectionTabs />
         <Tabs.Panel
           value="authored"
-          className="editor-body source-compact:p-4 bg-surface p-4"
+          className="editor-body bg-surface p-3"
         >
           {targetUnavailable && (
             <p
@@ -148,12 +148,8 @@ export function EditorFields({
           )}
           {editable || dirty ? (
             <>
-              <div className="section-title flex items-center justify-between mb-2">
-                <h3>Value</h3>
-                {dirty && <Badge>Draft</Badge>}
-              </div>
               <fieldset disabled={accepting}>
-                <legend>Value source</legend>
+                <legend className="sr-only">Value source</legend>
                 <div className="mode-switch border border-border bg-mode flex p-0.75 rounded-md gap-0.75">
                   <Button
                     variant="mode"
@@ -194,7 +190,7 @@ export function EditorFields({
               ) : (
                 <ReferenceFields session={session} tokens={project.tokens} choices={referenceChoices} labels={referenceLabels} onChange={next => {setSession(next);setError("");}} />
               )}
-              <p className="helper text-muted-foreground font-normal preview-detail mt-3 wrap-anywhere">
+              <p className="helper text-muted-foreground font-normal preview-detail mt-2 wrap-anywhere">
                 Draft preview: {draft.message}
               </p>
               {error ? (
@@ -279,7 +275,7 @@ export function EditorFields({
         </Tabs.Panel>
         <Tabs.Panel
           value="resolved"
-          className="editor-body source-compact:p-4 bg-surface p-4"
+          className="editor-body bg-surface p-3"
         >
           <ResolvedTokenPanel resolution={i.resolution} project={project} css={applied.css} message={applied.message} />
         </Tabs.Panel>

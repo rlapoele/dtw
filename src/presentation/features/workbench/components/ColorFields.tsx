@@ -131,7 +131,7 @@ export function ColorFields({
           ? `Draft in ${spaceName(s.literal.colorSpace)}. Switching view keeps exact values.`
           : `Viewing approximate ${spaceName(s.viewSpace)}. Draft remains in ${spaceName(s.literal.colorSpace)} until a component edit.`}
       </p>
-      <div className="component-controls">
+      <div className="component-controls grid grid-cols-3 gap-x-3 min-w-0">
         {values.map((value, i) => {
           const identity = COLOR_COMPONENTS[d.colorSpace][i];
           const suffix = componentSuffix(d.colorSpace, identity);
@@ -166,25 +166,16 @@ export function ColorFields({
           const available = rangeState === "available";
           return (
             <div
-              className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-3"
+              className="component-control flex min-w-0 flex-col mb-1"
               key={d.colorSpace + "-" + i}
             >
-              <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-1.5 m-0 text-caption font-medium">
-                <span>{label}</span>
-                <Input
-                  readOnly={readOnly}
-                  className="small:h-11 small:min-h-11"
-                  value={value}
-                  spellCheck={false}
-                  aria-describedby={`range-note-${i} byte-note-${i} editor-error`}
-                  aria-invalid={!!issue || undefined}
-                  onChange={(e) => change(i, e.target.value)}
-                />
+              <label htmlFor={`color-component-${i}`} className="component-value min-w-0 m-0 text-caption font-medium wrap-anywhere">
+                {label}
               </label>
               {available ? (
                 <>
                   <input
-                    className="component-range small:h-11 col-start-1 row-start-2 self-center block h-10 w-full min-w-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground"
+                    className="component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground"
                     type="range"
                     disabled={readOnly}
                     min={min}
@@ -203,16 +194,9 @@ export function ColorFields({
                     aria-valuetext={value}
                     onChange={(e) => change(i, e.target.value)}
                   />
-                  <div
-                    className="range-ends col-start-1 row-start-3 flex justify-between gap-2 text-muted-foreground mt-0.5"
-                    aria-hidden="true"
-                  >
-                    <span>{min}</span>
-                    <span>{max}</span>
-                  </div>
                 </>
               ) : (
-                <p className="helper text-muted-foreground font-normal range-unavailable col-start-1 row-start-2 row-span-2 self-center wrap-anywhere">
+                <p className="helper text-muted-foreground font-normal range-unavailable flex min-h-10 items-center wrap-anywhere small:min-h-11">
                   {value === "none"
                     ? "Missing component · use exact entry."
                     : rangeState === "outside"
@@ -220,10 +204,20 @@ export function ColorFields({
                       : "Complete exact entry to use slider."}
                 </p>
               )}
+              <Input
+                id={`color-component-${i}`}
+                readOnly={readOnly}
+                className="small:h-11 small:min-h-11"
+                value={value}
+                spellCheck={false}
+                aria-describedby={`range-note-${i} byte-note-${i} editor-error`}
+                aria-invalid={!!issue || undefined}
+                onChange={(e) => change(i, e.target.value)}
+              />
               {bytes && (
                 <p
                   id={`byte-note-${i}`}
-                  className={`col-span-2 text-caption mt-1 wrap-anywhere ${issue ? "text-destructive" : "text-muted-foreground"}`}
+                  className={`text-caption mt-1 wrap-anywhere ${issue ? "text-destructive" : "text-muted-foreground"}`}
                 >
                   {issue ??
                     (approximate
@@ -239,26 +233,13 @@ export function ColorFields({
           );
         })}
       </div>
-      <div className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-3 alpha-control border-t border-border pt-3">
-        <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-1.5 m-0 text-caption font-medium">
-          <span>Alpha</span>
-          <Input
-            readOnly={readOnly}
-            className="small:h-11 small:min-h-11"
-            value={s.literal.alpha}
-            aria-describedby="editor-error"
-            onChange={(e) =>
-              onChange({
-                ...s,
-                literal: { ...s.literal, alpha: e.target.value },
-                edited: true,
-              })
-            }
-          />
+      <div className="component-control flex min-w-0 flex-col mb-1 alpha-control border-t border-border pt-1">
+        <label htmlFor="color-alpha" className="component-value min-w-0 m-0 text-caption font-medium">
+          Alpha
         </label>
         {alphaRangeState === "available" ? (
           <input
-            className="component-range small:h-11 col-start-1 row-start-2 self-center block h-10 w-full min-w-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range"
+            className="component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range"
             type="range"
             disabled={readOnly}
             min="0"
@@ -275,12 +256,26 @@ export function ColorFields({
             }
           />
         ) : (
-          <p className="helper text-muted-foreground font-normal range-unavailable col-start-1 row-start-2 row-span-2 self-center wrap-anywhere">
+          <p className="helper text-muted-foreground font-normal range-unavailable flex min-h-10 items-center wrap-anywhere small:min-h-11">
             {alphaRangeState === "outside"
               ? "Outside visual range · exact alpha retained."
               : "Complete alpha in exact entry."}
           </p>
         )}
+        <Input
+          id="color-alpha"
+          readOnly={readOnly}
+          className="small:h-11 small:min-h-11"
+          value={s.literal.alpha}
+          aria-describedby="editor-error"
+          onChange={(e) =>
+            onChange({
+              ...s,
+              literal: { ...s.literal, alpha: e.target.value },
+              edited: true,
+            })
+          }
+        />
       </div>
       <details className="text-caption text-muted-foreground"><summary>Color entry guidance</summary>
       <p className="helper text-muted-foreground font-normal">

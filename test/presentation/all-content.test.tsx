@@ -15,7 +15,7 @@ describe("complete native All content membership",()=>{
     expect(blocks).toHaveLength(120);
     expect(blocks.every(block=>block.length<=100)).toBe(true);
     const entries=blocks.flat();expect(entries).toHaveLength(12000);
-    expect(entries[0]).toMatchObject({kind:"group",id:"g0",label:'Group · group0 · "g0"'});
+    expect(entries[0]).toMatchObject({kind:"group",id:"g0",label:'group0'});
     expect(entries[1999].id).toBe("g1999");expect(entries[2000].id).toBe("t0");expect(entries.at(-1)?.id).toBe("t9999");
     expect(new Set(entries.map(entry=>JSON.stringify([entry.kind,entry.id]))).size).toBe(12000);
     expect(project.tokens).toHaveLength(10000);
@@ -30,6 +30,23 @@ describe("complete native All content membership",()=>{
     const project=projectContext(admitSnapshot({project:{id:"p",name:"P"},groups:[{id:"",projectId:"p",localName:"",parentGroupId:null}],tokens:[{id:"",projectId:"p",localName:"",parentGroupId:null,authoring:{regeneration:"allowed"}}]}));
     const html=renderToStaticMarkup(createElement(AllContent,{context:project,groupLabels:identityLabels(project.groups),onSelect(){}}));
     expect((html.match(/<button/g)??[])).toHaveLength(2);expect(html).toContain('data-entity-kind="group" data-entity-id=""');expect(html).toContain('data-entity-kind="token" data-entity-id=""');expect(html).toContain("All content ready");
+  });
+  it("keeps ordinary identity disclosure outside its action and exceptional identity inside its action",()=>{
+    const project=projectContext(admitSnapshot({project:{id:"p",name:"P"},groups:[],tokens:[
+      {id:"ordinary-full-identity",projectId:"p",localName:"ordinary",parentGroupId:null,authoring:{regeneration:"allowed"}},
+      {id:"orphan-full-identity",projectId:"p",localName:"orphan",parentGroupId:"missing-parent",authoring:{regeneration:"allowed"}},
+    ]}));
+    const html=renderToStaticMarkup(createElement(AllContent,{context:project,groupLabels:new Map(),onSelect(){}}));
+    const rows=html.match(/<li\b[\s\S]*?<\/li>/g)!;
+    expect(rows).toHaveLength(2);
+    expect(rows[0]).toMatch(/<\/button><details/);
+    expect(rows[0]).toContain("ordinary-full-identity");
+    expect(rows[0].match(/<button[^>]*>([\s\S]*?)<\/button>/)![1]).not.toContain("<details");
+    const exceptionalAction=rows[1].match(/<button[^>]*>([\s\S]*?)<\/button>/)![1];
+    expect(exceptionalAction).toContain("orphan-full-identity");
+    expect(exceptionalAction).toContain("missing-parent");
+    expect(exceptionalAction).toContain("orphan");
+    expect(rows[1]).not.toContain("<details");
   });
   it("reveals one additional block per frame and cancels stale revision callbacks",()=>{
     let serial=0;const queued=new Map<number,()=>void>(),cancelled:number[]=[],seen:string[]=[];

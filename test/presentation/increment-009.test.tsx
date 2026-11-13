@@ -28,7 +28,7 @@ it('previews preparation without altering raw input and identifies cross-kind co
 it('associates each ambiguous/unavailable row with its exact identity and parent context and preserves backup data',()=>{
  const entries=membershipBlocks(context,new Map([['g','foundation'],['conflicting-group','BRAND Blue']])).flat();
  for(const id of ['token-a-full-identity','token-b-full-identity']) {
-  const entry=entries.find(entry=>entry.id===id)!;expect(entry.label).toContain(id);expect(entry.detail).toContain('Conflicting path');expect(entry.detail).toContain('"g"');
+  const entry=entries.find(entry=>entry.id===id)!;expect(entry.detail).toContain(id);expect(entry.detail).toContain('Conflicting path');expect(entry.detail).toContain('"g"');
  }
  expect(entries.find(entry=>entry.id==='orphan-full-identity')?.detail).toContain('missing-parent');
  expect(decodeBackup(encodeBackup(snapshot,'2026-11-13T00:00:00.000Z')).snapshot).toEqual(snapshot);
