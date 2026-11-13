@@ -68,9 +68,12 @@ and acceptance details; no enforcement has yet shipped.
 all whitespace throughout newly authored namespace names, lowercasing, NFC,
 case-insensitive segment comparison and retained accented letters. Existing names
 remain exact in saved/read/restored data; only derived comparison keys use the new
-equivalence rules. The [precise naming-policy proposal](../increments/009-naming-policy-proposal.md)
-recommends versioned Unicode whitespace/casing definitions; those technical details
-await agreement. The previous exact-string comparison proposal is superseded.
+equivalence rules. The user subsequently agreed the
+[precise naming policy](../increments/009-naming-policy-proposal.md), including the
+Unicode 17.0.0 baseline, all 25 `White_Space` characters plus U+200B/U+2060/U+FEFF,
+default full lowercase storage and canonical caseless segment matching. V2 mockups
+are authorized, not application implementation. The previous exact-string
+comparison proposal is superseded.
 The authoring policy does not normalize descriptions, role strings, arbitrary
 labels or stored legacy ancestors/descendants incidentally. Broader naming grammar
 and compatibility-target rules remain open; implementation remains unauthorized.

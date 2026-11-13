@@ -263,3 +263,14 @@ remain pending.
 
 Suggested commit: `docs: define increment 009 namespace naming proposal`.
 Staging, committing and pushing remain with the user.
+
+## Subsequent user agreement and V2 preparation — 13 November 2026
+
+Coordinator record: after the naming reassessment, the user explicitly agreed the
+[precise policy](009-naming-policy-proposal.md), including the Unicode baseline,
+removal set, stored-name pipeline and canonical caseless comparison. The prior
+pending-agreement wording records its historical stage and is superseded by that
+approval. The user authorized V2 mockups, without implementation. This is not a
+renewed analyst design review or a disposition closing D9-1. Identified V2 artifacts
+must reach the user before approval for renewed analyst review; final contract/
+design agreement and application implementation authorization remain pending.

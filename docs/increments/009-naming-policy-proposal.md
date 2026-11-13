@@ -1,8 +1,10 @@
-# Increment 009 — Namespace naming policy proposal
+# Increment 009 — Agreed namespace naming policy
 
-13 November 2026. Documentation-only analyst recommendation for the
-[draft contract](009-workbench-usability-and-component-boundaries.md).
-No application behavior, prototype or retained data changed.
+13 November 2026. The user explicitly agreed these definitions and authorized V2
+mockups, without application implementation. This policy supports the
+[draft contract](009-workbench-usability-and-component-boundaries.md); final
+contract/design agreement and implementation authorization remain pending.
+The historical filename is retained to preserve existing references.
 
 ## Agreement and scope
 
@@ -10,9 +12,9 @@ No application behavior, prototype or retained data changed.
 lowercase namespace names at creation/rename; normalize to NFC; preserve accents;
 prevent case-insensitive duplicate paths; preserve existing data and access.
 
-**Recommended details, pending agreement:** the exact removal set, default Unicode
-casing/comparison algorithms and pinned Unicode baseline below. These implement
-the direction precisely but must not be presented as already user-approved.
+**Definitions agreed — 13 November 2026:** the exact removal set, default Unicode
+casing/comparison algorithms and pinned Unicode baseline below. The agreement
+selects naming semantics, not an implementation library or production delivery.
 
 Names here mean token and namespace-group local names, across types and definition
 completeness. “All content” does not authorize transforming project display titles,
@@ -21,9 +23,9 @@ retains its separate required-name/exact accepted-text policy. Existing creation
 and group rename are in Increment 009; future token rename/move must obey the same
 invariant without adding those editing capabilities now.
 
-## Recommended versioned policy
+## Agreed versioned policy
 
-Identify the proposal as **DTW namespace naming v1 / Unicode 17.0.0**. This is a
+Identify the policy as **DTW namespace naming v1 / Unicode 17.0.0**. This is a
 pinned baseline, not a claim that 17.0.0 is the latest Unicode release. A future
 Unicode upgrade can change accepted names or collision sets and therefore needs
 explicit review and legacy handling. Do not let the host browser's Unicode data,
@@ -40,14 +42,14 @@ U+0009..U+000D  U+0020  U+0085  U+00A0  U+1680  U+2000..U+200A
 U+2028  U+2029  U+202F  U+205F  U+3000
 ```
 
-Recommend also removing these three explicitly named invisible spacing controls:
+Also remove these three explicitly named invisible spacing controls:
 `U+200B ZERO WIDTH SPACE`, `U+2060 WORD JOINER` and
 `U+FEFF ZERO WIDTH NO-BREAK SPACE / BYTE ORDER MARK`. They are **not** members of
-Unicode `White_Space`; their inclusion is a product-policy recommendation to
+Unicode `White_Space`; their inclusion is an agreed product-policy decision to
 address invisible spacing. The [Unicode layout-control descriptions](https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-23/)
 explain their breaking/joining functions and distinguish script joiners.
 
-Call the resulting 28-code-point set `R` for this proposal. Removal means deletion,
+Call the resulting 28-code-point set `R`. Removal means deletion,
 not trimming, collapsing, replacement with hyphens or insertion of separators.
 It applies to the beginning, middle and end of a local name.
 
@@ -60,7 +62,7 @@ target-specific escaping/identifier rules are not settled here.
 
 ### New stored local name
 
-For a submitted raw local name `s`, recommend:
+For a submitted raw local name `s`:
 
 ```text
 storedName(s) = NFC(defaultFullLowercase(NFC(removeR(s))))
@@ -74,14 +76,14 @@ transliteration. Final NFC makes the stored result canonical after casing.
 
 Reject an empty result, a failed/invalid transformation or a result exceeding
 existing applicable input/data limits. Do not truncate or silently substitute
-characters. Preserve the user's raw form text after rejection. Recommend showing
-the transformed value before submission so removal and casing are visible; this
-interaction recommendation still needs an identified design treatment and user
-agreement. Do not silently rewrite input while the user types.
+characters. Preserve the user's raw form text after rejection. Show the transformed
+value before submission so removal and casing are visible; the concrete V2
+interaction remains subject to user design review. Do not silently rewrite input
+while the user types.
 
 ### Path equality key
 
-For each actual local-name segment `s`, recommend a derived comparison key:
+For each actual local-name segment `s`, use a derived comparison key:
 
 ```text
 segmentKey(s) = NFD(defaultFullCaseFold(NFD(removeR(s))))
@@ -109,10 +111,10 @@ Different project identities do not conflict.
 
 Escapes denote actual code points, not literal backslash text.
 
-| Input or comparison | Proposed result |
+| Input or comparison | Agreed result |
 | --- | --- |
 | `Brand\u00A0Blue`, ` Brand\tBlue ` | Stored `brandblue` |
-| `Brand\u200BBlue`, `Brand\u2060Blue`, `Brand\uFEFFBlue` | Stored `brandblue` under the recommended three-extra rule |
+| `Brand\u200BBlue`, `Brand\u2060Blue`, `Brand\uFEFFBlue` | Stored `brandblue` under the agreed three-extra rule |
 | `E\u0301` and `É` | Both stored `é`; comparison equal |
 | `é` and `e` | Distinct; accent retained |
 | `Straße` and `STRASSE` | Stored `straße` / `strasse`; comparison equal |
@@ -152,12 +154,13 @@ Primary sources above checked **13 November 2026** against the named Unicode
 `src/application/authoring.ts` accepts candidates through project validation.
 These are implementation gaps, not evidence that the proposal already ships.
 
-Keep AC-1 through AC-10 stable and add AC-11 for the agreed naming direction plus
-the explicitly selected precise policy. Future focused checks should cover the
+AC-11 in the draft contract covers the agreed naming policy; AC-1 through AC-10
+retain their identifiers. Future focused checks should cover the
 table, cross-kind collisions, affected ancestry, raw-input preservation and exact
 legacy backup/restore. No tests or qualification were executed for this proposal.
-The naming details, resulting contract and design remain subject to user agreement;
-implementation requires separate explicit authorization. V1 mockups are unchanged.
+The naming details are agreed. The resulting final contract and concrete V2 design
+still require user agreement; implementation requires separate explicit
+authorization. V1 mockups are unchanged.
 
 Documentation/source review used approximately six analyst minutes plus two–three
 coordinator minutes, **8–9 aggregate minutes** (estimates) of the separate ten-minute

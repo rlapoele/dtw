@@ -3,7 +3,7 @@
 - Contract status: Draft
 - Delivery status: Not started
 - Prepared: 13 November 2026
-- Agreement: the user agreed the proposed direction, authorized mockups and subsequently approved Design V1 for analyst review on 13 November 2026. The user additionally agreed project-scoped unique derived paths regardless of token type, preserving existing conflicting data, then selected whitespace-free lowercase namespace names, case-insensitive comparison, NFC and retained accents. Precise Unicode definitions below are recommendations awaiting agreement. Final amended contract/design agreement and implementation authorization remain pending. No application implementation is authorized.
+- Agreement: on 13 November 2026 the user agreed the direction, approved V1 for analyst review, then agreed project-scoped unique paths and the precise namespace naming policy, preserving existing conflicting data. The user authorized V2 mockups covering name preparation, collision prevention and legacy conflicts. Final amended contract/design agreement and implementation authorization remain pending. No application implementation is authorized.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [visual direction](../project/visual-direction.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [Increment 008](008-react-state-and-workbench-composition.md), [agent workflow](../workflow/agent-roles.md).
 
 ## Outcome
@@ -224,7 +224,8 @@ for mockups; concrete presentation remains subject to review.
   determine uniqueness across kinds/types and legacy names under the identified
   policy. Keep accents; do not transliterate or remove diacritics. Group rename
   changes only its explicitly edited name, retaining descendant local names and
-  identities. Technical Unicode definitions remain recommendations until agreed.
+  identities. The [Unicode naming definitions](009-naming-policy-proposal.md) were
+  explicitly agreed by the user on 13 November 2026.
 
 ## Decisions and design review
 
@@ -260,10 +261,19 @@ for mockups; concrete presentation remains subject to review.
   review; final amended contract/design agreement is still pending.
 - Subsequent naming direction: the user selected removal of all whitespace,
   lowercase new namespace names, case-insensitive paths, NFC and retained accents.
-  The [precise naming-policy proposal](009-naming-policy-proposal.md) separates
-  agreed intent from recommended Unicode sets/algorithms and version pinning.
+  The user subsequently agreed the [precise naming policy](009-naming-policy-proposal.md),
+  including the Unicode sets/algorithms and version pinning.
   It supersedes the earlier exact-string comparison proposal, not legacy source
   preservation. V1 does not illustrate this preparation/collision feedback.
+- V2 preparation: explicitly authorized on 13 November 2026 after agreement of
+  the precise naming definitions. The separate designer prepared
+  [Design V2](../../prototypes/increment-009-v2/DESIGN-V2.md), with a
+  [screenshot gallery](../../output/increment-009-design-v2/index.html) and
+  [bounded render observations / source snapshot](../../output/increment-009-design-v2/review.md).
+  It covers prepared names, blocked collisions, full-fold/NFC examples, affected
+  descendants, individual legacy identities, unavailable paths and empty names.
+  V1 remains frozen. User approval of the identified V2 artifact for analyst review
+  is pending. No renewed analyst design review has occurred.
 - The proposed component boundaries are viable at design level. Other fixture
   omissions remain explicit implementation requirements and verification limits;
   neither the review nor the prototype establishes production acceptance.
@@ -278,7 +288,7 @@ identified proposal before analyst review. Preparation does not skip either step
 
 After final agreement and explicit implementation authorization only:
 
-1. Agree the precise naming-policy recommendations, then implement deterministic
+1. Use the agreed naming policy to implement deterministic
    collision checks for existing creation/group rename and legacy-safe admission.
    Implement browser-view transitions and matching toolbar/navigation context.
 2. Extract lifecycle/backup owners and meaningful inspector sections, preserving
@@ -397,12 +407,13 @@ pending. Staging, committing and pushing remain with the user.
 
 ### Naming direction and precise recommendations — 13 November 2026
 
-The user selected removal of all whitespace, including internal whitespace,
+The user initially selected removal of all whitespace, including internal whitespace,
 case-insensitive path segments, lowercase newly authored names, NFC and retained
 accented letters. The [naming-policy proposal](009-naming-policy-proposal.md) owns
 the recommended precise definitions: a pinned Unicode baseline, removal set,
 stored-name preparation versus canonical caseless comparison, examples and scope.
-Those technical choices are proposals, not inferred user approval. Normalization
+Those technical choices were initially recommendations; the user explicitly agreed
+them and authorized V2 mockups in the subsequent instruction recorded below. Normalization
 here is deliberate preparation of a newly submitted name, not permission to
 rewrite existing authored data or unrelated labels.
 
@@ -412,3 +423,27 @@ new rendered design review, tests, builds or implementation is authorized by thi
 documentation request. Previous stopped campaigns remain stopped. This amendment
 uses a separate 10-minute aggregate source/document-review ceiling, zero repairs;
 actual effort and stopping record are in the naming-policy handoff.
+
+### Precise naming agreement and V2 authorization — 13 November 2026
+
+At baseline `add6ac12f3ada78b821ce02c00aa5d77f876b343`, the user explicitly agreed
+the [named policy](009-naming-policy-proposal.md): Unicode 17.0.0, all 25
+`White_Space` code points plus U+200B/U+2060/U+FEFF, full default lowercase with NFC
+for newly submitted namespace names, and canonical caseless segment comparison
+using default full folding without Turkic overrides. Accents and script-significant
+joiners remain; existing names/source and supported legacy admission stay exact.
+The prepared-name preview must make deliberate authoring transformations visible.
+
+The user authorized V2 mockups for normalization, blocked collisions and existing
+conflicting data. This authorizes isolated prototype/evidence work only. V2 must
+return to the user before renewed analyst design review. D9-1 remains open until
+the exceptional legacy/unavailable-path access treatment is reviewed; preparing
+V2 does not claim production collision prevention or implementation acceptance.
+
+V2 uses a separate **15 aggregate minute render-review ceiling, at most one harness
+repair**, shared across designer/coordinator. Prior V1 and 007/008 checks remain
+stopped and are not resumed; production implementation verification is unstarted.
+The linked V2 evidence records approximately **12–15 aggregate render-review
+minutes** (estimate), **zero harness repairs**; checks are stopped. No production
+tests, builds, validator, storage changes or application implementation occurred.
+The limited fixture helper does not establish Unicode 17.0.0/D145 conformance.

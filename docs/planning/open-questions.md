@@ -77,9 +77,11 @@ direction, not the implementation or every name-equivalence rule. The
 owns the scoped authoring checks and legacy-data requirements. The user subsequently
 selected whitespace removal everywhere, lowercase newly authored namespace names,
 case-insensitive comparison, NFC and retained accents. The
-[precise naming-policy proposal](../increments/009-naming-policy-proposal.md) recommends
-the Unicode spacing set, casing algorithms and version baseline; those technical
-details await agreement. Broader naming grammar and target profiles remain open.
+[precise naming policy](../increments/009-naming-policy-proposal.md) now records the
+user's agreement to the Unicode 17.0.0 spacing set plus three explicit extras,
+default full lowercase storage and canonical caseless comparison. Concrete V2
+interaction/design review and implementation authorization remain pending; broader
+naming grammar and target profiles remain open.
 Increment 001's deferral describes
 current delivered behavior, not the intended long-term uniqueness policy.
 

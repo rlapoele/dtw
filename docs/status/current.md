@@ -2,7 +2,7 @@
 
 > Last updated: 13 November 2026
 >
-> Phase: Increment 009 naming policy proposed; implementation not started
+> Phase: Increment 009 naming policy agreed; V2 awaiting user review
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
@@ -49,18 +49,29 @@ checks are stopped. No tests, builds, browser runs or implementation occurred.
 **Naming direction and Unicode recommendations — 13 November 2026:** the user
 selected whitespace removal throughout namespace names, lowercasing newly authored
 names, case-insensitive paths, NFC and retained accents. The
-[named policy proposal](../increments/009-naming-policy-proposal.md) recommends a
+[named policy](../increments/009-naming-policy-proposal.md) records the agreed
 pinned Unicode 17.0.0 baseline, all 25 `White_Space` code points plus three explicit
 zero-width spacing controls, default full lowercase for stored new names and
-canonical caseless matching for derived segment keys. The precise set/algorithms
-are recommendations pending agreement, not implementation. Combining marks and
+canonical caseless matching for derived segment keys. The user explicitly agreed
+the precise definitions and authorized V2 mockups on 13 November. Combining marks and
 language-significant joiners are not indiscriminately stripped; legacy stored
 names and supported backup/restore admission remain unchanged. AC-11 and the
 [appended analyst reassessment](../increments/009-design-review.md#naming-amendment-and-d9-1-reassessment--13-november-2026)
 record the amendment; D9-1 remains open for exceptional legacy/unavailable-path
 access. Primary sources were checked; documentation/source review used about
 8–9 aggregate minutes (estimate: six analyst plus two–three coordinator), zero
-repairs, and is stopped. No tests, builds, browser runs or implementation occurred.
+repairs, and is stopped. No tests, builds, browser runs or implementation occurred
+in that documentation stage. The separate designer's
+[Design V2](../../prototypes/increment-009-v2/DESIGN-V2.md) and
+[screenshot gallery](../../output/increment-009-design-v2/index.html) are ready for
+user review. V2 covers name preparation, blocked collisions and unchanged legacy
+conflicts with per-entry identities; V1 is frozen. The
+[rendered observations and limits](../../output/increment-009-design-v2/review.md)
+record approximately 12–15 aggregate mockup-review minutes (estimate), zero repairs,
+now stopped. Fixtures do not implement or qualify production Unicode/validation/
+storage behavior. No application tests, production builds or implementation ran.
+V2 user review, approval for renewed analyst review, final design/contract agreement
+and application implementation authorization remain pending.
 
 **Increment 008 completed — 12 November 2026:** the user reported completing the
 remaining manual checks in Chrome with everything looking good and explicitly
@@ -151,12 +162,10 @@ Install/offline PWA acceptance, interchange and Electron remain later milestones
 
 ## Next meaningful action
 
-Review the precise Unicode naming recommendations with the user and identify the
-design for transformed-name preview, collision feedback and exceptional legacy
-access. Revised material
-mockups return to the user before renewed analyst design review. V1 remains
-unchanged and incomplete against the amended scope. Final contract/design
-agreement and implementation remain unauthorized.
+Review the identified V2 artifact with the user before approval for renewed analyst
+design review. V1 remains unchanged, providing the ordinary editor/resolution
+reference; V2 supplements it for naming and legacy access. Final contract/design
+agreement and application implementation remain unauthorized.
 Final contract/design agreement and implementation authorization remain separate
 and pending. Increment 008 stays closed following Chrome manual acceptance.
 Any future qualification requires an explicitly authorized bounded follow-up. No
