@@ -1,3 +1,4 @@
+import { readBackupFile } from "@presentation/host/backup-file";
 import { useRef, useState } from "react";
 import type { RestorePreview } from "@presentation/host/protocol";
 import { useWorkbenchHost } from "@presentation/features/workbench/hooks/useWorkbenchHost";
@@ -258,7 +259,7 @@ export function App({
             if (!selectedBackupFile.current)
               throw Error("Select a project backup file again.");
             return host.current!.call("stageBackup", {
-              bytes: await selectedBackupFile.current.arrayBuffer(),
+              bytes: await readBackupFile(selectedBackupFile.current),
             });
           }}
           host={host.current}

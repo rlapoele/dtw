@@ -1,3 +1,5 @@
+import { prepareNamespaceName } from "@domain/namespace-naming";
+import { introducedNamespaceCollisions } from "@domain/namespace-collisions";
 import { canReviseColorToken } from "@application/color-revision-policy";
 import { createProject } from "@domain/project";
 import type { Project, ProjectInput } from "@domain/project";
@@ -91,7 +93,11 @@ export function createAuthoringOperations(storage: ProjectStorage) {
       : { status: "ok", value };
   }
 
-  function accept<T>(candidate: ProjectSnapshot, value: T): ApplicationResult<T> {
+  function accept<T>(candidate: ProjectSnapshot, value: T, previous?: ProjectSnapshot): ApplicationResult<T> {
+    if (previous) {
+      const collisions = introducedNamespaceCollisions(namespaceOf(previous), namespaceOf(candidate));
+      if (collisions.length) return { status: "failure", error: { code: "invalid-domain-input", message: "Namespace path collision: " + JSON.stringify(collisions) } };
+    }
     const checks = validate(candidate);
     if (checks.namespaceDiagnostics.length > 0 || checks.referenceDiagnostics.length > 0) {
       return { status: "failure", error: { code: "invalid-candidate", ...checks } };
@@ -124,8 +130,10 @@ export function createAuthoringOperations(storage: ProjectStorage) {
       const result = load(input.projectId);
       if (result.status === "failure") return result;
       if (result.value.groups.some(group => group.id === input.id)) return duplicateFailure("group", input.id);
-      const group = createTokenGroup(input);
-      return accept({ ...result.value, groups: [...result.value.groups, group] }, group);
+      let group: TokenGroup;
+      try { group = createTokenGroup({ ...input, localName: prepareNamespaceName(input.localName) }); }
+      catch (error) { if (!(error instanceof RangeError)) throw error; return {status:"failure", error:{code:"invalid-domain-input", message:error.message}}; }
+      return accept({ ...result.value, groups: [...result.value.groups, group] }, group, result.value);
     },
 
     renameGroup(projectId: string, groupId: string, localName: string): ApplicationResult<TokenGroup> {
@@ -133,8 +141,10 @@ export function createAuthoringOperations(storage: ProjectStorage) {
       if (result.status === "failure") return result;
       const group = result.value.groups.find(group => group.id === groupId && group.projectId === projectId);
       if (group === undefined) return missingEntity("group", groupId);
-      const renamed = renameTokenGroup(group, localName);
-      return accept({ ...result.value, groups: result.value.groups.map(current => current.id === groupId ? renamed : current) }, renamed);
+      let renamed: TokenGroup;
+      try { renamed = renameTokenGroup(group, prepareNamespaceName(localName)); }
+      catch (error) { if (!(error instanceof RangeError)) throw error; return {status:"failure", error:{code:"invalid-domain-input", message:error.message}}; }
+      return accept({ ...result.value, groups: result.value.groups.map(current => current.id === groupId ? renamed : current) }, renamed, result.value);
     },
 
     createColorToken(input: CreateColorTokenInput): ApplicationResult<Token> {
@@ -149,7 +159,7 @@ export function createAuthoringOperations(storage: ProjectStorage) {
         if (input.layer !== undefined && input.layer !== "primitive" && input.layer !== "semantic") throw new RangeError("This workflow authors primitive or semantic tokens only");
         const value = input.value.kind === "literal" ? createColorLiteral(input.value) : createTokenReference(input.value);
         token = createToken({
-          id: input.id, projectId: input.projectId, localName: input.localName, parentGroupId: input.parentGroupId,
+          id: input.id, projectId: input.projectId, localName: prepareNamespaceName(input.localName), parentGroupId: input.parentGroupId,
           description: input.description, layer: input.layer, semanticRole: input.semanticRole, regeneration: input.regeneration,
           definition: { type: input.type, assignments: [{ condition: [], value }] },
         }, []);
@@ -157,7 +167,7 @@ export function createAuthoringOperations(storage: ProjectStorage) {
         if (!(error instanceof RangeError)) throw error;
         return { status: "failure", error: { code: "invalid-domain-input", message: error.message } };
       }
-      return accept({ ...result.value, tokens: [...result.value.tokens, token] }, token);
+      return accept({ ...result.value, tokens: [...result.value.tokens, token] }, token, result.value);
     },
 
     reviseColorToken(input: ReviseColorTokenInput): ApplicationResult<Token> {

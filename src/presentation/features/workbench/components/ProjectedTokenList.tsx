@@ -5,10 +5,11 @@ import type {
 import { AuthoredValue } from "./AuthoredValue";
 import { Swatch } from "./swatch";
 import { Button } from "@presentation/components/ui/button";
-import { identityLabels } from "@presentation/features/workbench/readback";
+import { identityLabels, namespaceEntryDetails } from "@presentation/features/workbench/readback";
 import { colorPreview } from "@presentation/features/workbench/color/preview";
 export function ProjectedTokenList({
   context,
+  creationParentLabel = "Project root",
   rows,
   selected,
   query,
@@ -16,6 +17,7 @@ export function ProjectedTokenList({
   onEmptyAction,
 }: {
   context: ProjectContext;
+  creationParentLabel?: string;
   rows: readonly DisplayRow[];
   selected: string | null;
   query: string;
@@ -23,6 +25,7 @@ export function ProjectedTokenList({
   onEmptyAction(): void;
 }) {
   const labels = identityLabels(context.tokens);
+  const details = namespaceEntryDetails(context);
   return (
     <div className="token-table @container border-t border-border">
       <div className="table-heading border-b border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 gap-3 text-muted-foreground">
@@ -47,6 +50,7 @@ export function ProjectedTokenList({
               <small className="block text-secondary mt-1 wrap-anywhere">
                 {row.layer} · {row.type}
               </small>
+              {details.get(JSON.stringify(["token",row.id])) && <span className="block text-caption wrap-anywhere">{details.get(JSON.stringify(["token",row.id]))}</span>}
               {row.description !== undefined && (
                 <span className="@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-secondary">
                   {row.description}
@@ -89,7 +93,7 @@ export function ProjectedTokenList({
                 : "Your project is empty"}
           </h2>
           <p className="text-xs/normal mt-2 mb-5">
-            Create a color at the root, or add a group to organize it.
+            {query ? "Try another search or clear it to see this view." : `Create a color token in ${creationParentLabel}.`}
           </p>
           <Button onClick={onEmptyAction}>
             {query ? "Clear search" : "New token"}

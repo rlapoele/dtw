@@ -2,13 +2,32 @@
 
 > Last updated: 13 November 2026
 >
-> Phase: Increment 009 V2 reviewed; final agreement and implementation pending
+> Phase: Increment 009 implemented and independently reviewed; manual acceptance pending
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
 > Applied data is browser-profile/origin local; drafts and forms remain session-only.
 
 ## Current focus
+
+**Increment 009 implementation handoff — 13 November 2026:** the agreed naming
+policy and V1/V2 design are implemented and independently source-reviewed, with no
+demonstrated required defects. The [completion report](../increments/009-workbench-usability-and-component-boundaries.md#completion-report)
+records delivery **Partially completed**, because representative compact/focus,
+draft/departure and native legacy restore/selection acceptance remain pending.
+The developer reports 72 focused tests and the final build passing; bounded Chrome
+checks confirmed normalization, collision rejection, All content context and
+readable resolution. Source ownership now separates browser view, lifecycle,
+backup coordination and focused inspector sections. New authoring uses the agreed
+pinned Unicode 17 preparation/comparison and collision guards; supported legacy
+admission remains exact. See the report for evidence and limits.
+
+Approximately 25 of 30 aggregate verification minutes were used; both harness
+repair cycles were consumed and the affected fixture campaign stopped. Independent
+source/evidence review and the existing Chrome walkthrough required no further
+repair. Prior 007/008/design campaigns remain stopped. Staging, committing and
+pushing stay with the user. Earlier pending-authority prose below is historical,
+superseded by final user agreement and implementation authorization.
 
 **Increment 009 proposal — 13 November 2026:** the user requested a proposal
 addressing the rendered UX/UI and React component architecture findings, explicitly
@@ -170,12 +189,11 @@ Install/offline PWA acceptance, interchange and Electron remain later milestones
 
 ## Next meaningful action
 
-Present the amended Increment 009 contract, agreed naming policy and identified
-V1/V2 design for final user agreement. No required design findings remain. V1
-provides ordinary editor/resolution design; V2 supplements naming and legacy access.
-Application implementation still requires explicit authorization.
-Final contract/design agreement and implementation authorization remain separate
-and pending. Increment 008 stays closed following Chrome manual acceptance.
+Complete the recorded user manual acceptance checklist for Increment 009 before
+claiming completion: desktop/compact layout and focus, draft/departure behavior,
+and native legacy restore/selection/backup. The [independent reviewer checklist](../../output/increment-009-implementation/reviewer.md#remaining-manual-acceptance)
+and contract completion report identify the gaps. Do not automatically rerun tests
+or restart the stopped fixture campaign. Increment 008 remains closed.
 Any future qualification requires an explicitly authorized bounded follow-up. No
 agent, snapshot or workflow change resets prior consumption. The stopped Increment
 007 campaign's remaining authorized allowance stays **zero**.

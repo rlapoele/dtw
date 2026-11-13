@@ -1,11 +1,12 @@
+import type { BrowserView } from "../state/browser-view";
 import type { ProjectContext } from "@application/retention/projections";
 import { Icon } from "@presentation/components/ui/icon";
 import { Button } from "@presentation/components/ui/button";
-import { identityLabels } from "@presentation/features/workbench/readback";
+import { identityLabels, namespaceEntryDetails } from "@presentation/features/workbench/readback";
 export function ProjectNavigation({
   drawer,
   project,
-  group,
+  view,
   unavailable,
   onSelect,
   onCreateGroup,
@@ -13,12 +14,13 @@ export function ProjectNavigation({
 }: {
   drawer: boolean;
   project: ProjectContext | undefined;
-  group: string | null;
+  view: BrowserView;
   unavailable: boolean;
   onSelect: (group: string | null) => void;
   onCreateGroup: () => void;
   onAllContent?: () => void;
 }) {
+  const details = project ? namespaceEntryDetails(project) : new Map<string,string>();
   const labels = identityLabels(project?.groups ?? [], [
     "Project root",
     "All tokens",
@@ -39,7 +41,7 @@ export function ProjectNavigation({
             {project?.project.name || "(unnamed project)"}
           </strong>
           <span className="block text-caption text-muted-foreground">
-            Color foundations
+            Token workbench
           </span>
         </div>
       </div>
@@ -49,8 +51,8 @@ export function ProjectNavigation({
       <Button
         variant="navigation"
         size="navigation"
-        className={`nav-item w-full ${group === null ? "active" : ""}`}
-        aria-current={group === null ? "true" : undefined}
+        className={`nav-item w-full ${view.kind === "all-tokens" ? "active" : ""}`}
+        aria-current={view.kind === "all-tokens" ? "true" : undefined}
         onClick={() => {
           onSelect(null);
         }}
@@ -65,7 +67,8 @@ export function ProjectNavigation({
         <Button
           variant="navigation"
           size="navigation"
-          className="text-muted-foreground w-full"
+          className={`nav-item w-full ${view.kind === "all-content" ? "active" : "text-muted-foreground"}`}
+          aria-current={view.kind === "all-content" ? "true" : undefined}
           onClick={onAllContent}
         >
           All content
@@ -77,8 +80,8 @@ export function ProjectNavigation({
             key={g.authored.id}
             variant="navigation"
             size="group"
-            className={`nav-item w-full group-item ${group === g.authored.id ? "active" : ""}`}
-            aria-current={group === g.authored.id ? "true" : undefined}
+            className={`nav-item w-full group-item ${view.kind === "group" && view.id === g.authored.id ? "active" : ""}`}
+            aria-current={view.kind === "group" && view.id === g.authored.id ? "true" : undefined}
             onClick={() => {
               onSelect(g.authored.id);
             }}
@@ -86,6 +89,7 @@ export function ProjectNavigation({
             <Icon name="folder" className="icon block" />
             <span className="group-label whitespace-normal block min-w-0 text-left wrap-anywhere">
               {labels.get(g.authored.id)}
+              {details.get(JSON.stringify(["group",g.authored.id])) && <span className="block text-caption">{details.get(JSON.stringify(["group",g.authored.id]))}</span>}
             </span>
           </Button>
         ))}
@@ -108,11 +112,6 @@ export function ProjectNavigation({
         <span className="eyebrow uppercase text-muted-foreground font-semibold">
           Project
         </span>
-        <p className="my-2 text-secondary">
-          One vocabulary.
-          <br />
-          Clear relationships.
-        </p>
         <span className="helper text-muted-foreground font-normal">
           {project?.groups.length ?? 0} groups
         </span>

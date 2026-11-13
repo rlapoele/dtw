@@ -1,19 +1,17 @@
+import { ReferenceFields } from './ReferenceFields';
+import { TokenMetadata } from './TokenMetadata';
+import { ResolvedTokenPanel } from './ResolvedTokenPanel';
 import { useTokenEditor } from "@presentation/features/workbench/hooks/useTokenEditor";
-import { ExactSource } from "./ExactSource";
 
 import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
-import { Swatch } from "@presentation/features/workbench/components/swatch";
 import { InspectionTabs } from "@presentation/features/workbench/components/inspection-tabs";
 import { Badge } from "@presentation/components/ui/badge";
-import { Field } from "@presentation/components/ui/field";
 
 import { Tabs } from "@base-ui/react/tabs";
 
 import { Button } from "@presentation/components/ui/button";
-import { Select } from "@presentation/components/ui/select";
 import { ColorFields } from "@presentation/features/workbench/components/ColorFields";
 
-import { pathLabel } from "@presentation/features/workbench/readback";
 export type Feedback = {
   tokenId: string;
   tab: string;
@@ -72,7 +70,7 @@ export function EditorFields({
       aria-label="Selected token"
       hidden={readUnavailable}
     >
-      <div className="inspector-heading source-compact:p-5 bg-surface">
+      <div className="inspector-heading source-compact:p-4 bg-surface p-4">
         <span className="eyebrow uppercase text-muted-foreground font-semibold">
           {token.definition?.type ?? "Unassigned"} token
         </span>
@@ -83,7 +81,8 @@ export function EditorFields({
         <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
           {token.description ?? "No description"}
         </p>
-        <div className="flex gap-2 mt-3">
+        {i.path.status !== "derived" && <p className="text-caption wrap-anywhere">Path unavailable · Parent identity: {JSON.stringify(token.parentGroupId)}. Exact namespace details remain available below.</p>}
+        <div className="flex gap-2 mt-2">
           <Badge>{token.layer ?? "Unspecified layer"}</Badge>
           <Badge>{editable ? "Unconditional" : "Inspection only"}</Badge>
         </div>
@@ -92,7 +91,7 @@ export function EditorFields({
         <InspectionTabs />
         <Tabs.Panel
           value="authored"
-          className="editor-body source-compact:p-5 bg-surface p-6"
+          className="editor-body source-compact:p-4 bg-surface p-4"
         >
           {targetUnavailable && (
             <p
@@ -149,7 +148,7 @@ export function EditorFields({
           )}
           {editable || dirty ? (
             <>
-              <div className="section-title flex items-center justify-between mb-5">
+              <div className="section-title flex items-center justify-between mb-2">
                 <h3>Value</h3>
                 {dirty && <Badge>Draft</Badge>}
               </div>
@@ -193,61 +192,7 @@ export function EditorFields({
                   onError={setError}
                 />
               ) : (
-                <>
-                  <Field>
-                    Target token
-                    <Select
-                      value={
-                        session.reference === null
-                          ? ""
-                          : JSON.stringify(session.reference)
-                      }
-                      aria-describedby="reference-note editor-error"
-                      onChange={(e) => {
-                        setSession({
-                          ...session,
-                          reference:
-                            e.target.value === ""
-                              ? null
-                              : (JSON.parse(e.target.value) as string),
-                          edited: true,
-                        });
-                        setError("");
-                      }}
-                    >
-                      <option value="">Choose a color token…</option>
-                      {session.reference !== null &&
-                        !project.tokens.some(
-                          (t) => t.authored.id === session.reference,
-                        ) && (
-                          <option
-                            value={
-                              session.reference === null
-                                ? ""
-                                : JSON.stringify(session.reference)
-                            }
-                          >
-                            Missing target
-                          </option>
-                        )}
-                      {referenceChoices.map((t) => (
-                        <option
-                          key={t.authored.id}
-                          value={JSON.stringify(t.authored.id)}
-                        >
-                          {referenceLabels.get(t.authored.id)}
-                        </option>
-                      ))}
-                    </Select>
-                  </Field>
-                  <p
-                    id="reference-note"
-                    className="helper text-muted-foreground font-normal"
-                  >
-                    Whole color value. Alias chains remain linked by identity;
-                    cycles are rejected on Apply.
-                  </p>
-                </>
+                <ReferenceFields session={session} tokens={project.tokens} choices={referenceChoices} labels={referenceLabels} onChange={next => {setSession(next);setError("");}} />
               )}
               <p className="helper text-muted-foreground font-normal preview-detail mt-3 wrap-anywhere">
                 Draft preview: {draft.message}
@@ -265,7 +210,7 @@ export function EditorFields({
               ) : (
                 <span id="editor-error" />
               )}
-              <div className="editor-actions sticky z-1 flex justify-end gap-2 mt-5.5 mb-2.5 border-t border-border bg-surface py-3">
+              <div className="editor-actions sticky z-1 flex justify-end gap-2 mt-3 mb-2 border-t border-border bg-surface py-3">
                 <Button disabled={!dirty || accepting} onClick={cancel}>
                   Cancel
                 </Button>
@@ -330,92 +275,13 @@ export function EditorFields({
               )}
             </div>
           </section>
-          <section className="applied-summary border-t border-border mt-7 pt-5">
-            <h3 className="mb-3.5">Metadata · read only</h3>
-            <dl className="details">
-              <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
-                <dt className="text-muted-foreground">Regeneration</dt>
-                <dd className="text-right wrap-anywhere">
-                  {token.authoring.regeneration}
-                </dd>
-              </div>
-              <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
-                <dt className="text-muted-foreground">Semantic role</dt>
-                <dd className="text-right wrap-anywhere">
-                  {token.semanticRole ?? "Unspecified"}
-                </dd>
-              </div>
-              <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
-                <dt className="text-muted-foreground">Parent group</dt>
-                <dd className="text-right wrap-anywhere">
-                  {token.parentGroupId !== null
-                    ? (groupLabels.get(token.parentGroupId) ?? "Missing group")
-                    : "Project root"}
-                </dd>
-              </div>
-            </dl>
-            <ExactSource
-              key={`${token.id}-${revision}`}
-              revision={revision}
-              request={
-                requestSource ??
-                (() => Promise.resolve(JSON.stringify(token, null, 2)))
-              }
-            />
-          </section>
+          <TokenMetadata token={token} groupLabels={groupLabels} revision={revision} requestSource={requestSource} path={i.path} />
         </Tabs.Panel>
         <Tabs.Panel
           value="resolved"
-          className="editor-body source-compact:p-5 bg-surface p-6"
+          className="editor-body source-compact:p-4 bg-surface p-4"
         >
-          <div className="section-title flex items-center mb-5 resolved-heading flex-wrap justify-start gap-2">
-            <h3>Resolved value</h3>
-            <Badge>Applied value</Badge>
-          </div>
-          <div className="resolved-preview flex flex-col items-stretch gap-2 my-5.5">
-            <Swatch css={applied.css} />
-            <p className="helper text-muted-foreground font-normal">
-              {applied.message}
-            </p>
-          </div>
-          {i.resolution.status === "resolved" ? (
-            <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
-              {JSON.stringify(i.resolution.value, null, 2)}
-            </pre>
-          ) : (
-            <p
-              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
-              role="status"
-            >
-              Unresolved: {i.resolution.reason}. Authored data retained.
-            </p>
-          )}
-          <h3 className="trace-heading mt-7">Resolution trace</h3>
-          <ol className="trace list-none mt-4.5 mb-6 p-0">
-            {i.resolution.trace.map((step, index) => {
-              const t = project.tokens.find(
-                (t) => t.authored.id === step.tokenId,
-              );
-              return (
-                <li className="relative pb-6 pl-6" key={index}>
-                  <span className="trace-dot size-2.75 left-0 top-1 border-2 border-trace bg-background absolute rounded-full" />
-                  <strong className="block text-caption font-medium wrap-anywhere">
-                    {t ? pathLabel(t.path) : step.tokenId}
-                  </strong>
-                  <small className="mono block mt-1 text-muted-foreground">
-                    {step.tokenId}
-                    {step.targetTokenId
-                      ? ` → ${step.targetTokenId}`
-                      : " · authored value"}
-                  </small>
-                </li>
-              );
-            })}
-          </ol>
-          <h3>Resolution diagnostics</h3>
-          <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
-            {JSON.stringify(i.resolution.diagnostics, null, 2)}
-          </pre>
+          <ResolvedTokenPanel resolution={i.resolution} project={project} css={applied.css} message={applied.message} />
         </Tabs.Panel>
       </Tabs.Root>
       <div className="inspector-foot density:mt-5 small:mt-0 border-t border-border bg-surface px-6 py-4 mt-auto flex justify-between text-muted-foreground">

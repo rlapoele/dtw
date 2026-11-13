@@ -369,3 +369,11 @@ it("preserves dirty raw editor channels across baseline refresh and resets only 
   expect(owner.dirty).toBe(false);
   expect(owner.recovery).toBeUndefined();
 });
+it('rejects a known naming collision before issuing a command and preserves raw creation input',async()=>{
+ const data:any={project:{id:'p',name:'P'},groups:[{authored:{id:'g',projectId:'p',localName:'Straße',parentGroupId:null},path:{status:'derived',path:['Straße']}}],tokens:[]};
+ const accept=vi.fn(),setError=vi.fn();
+ const hook=()=>useCreationForm(header,data,null,false,undefined,'',accept,{current:undefined},setError,vi.fn(),vi.fn());
+ let owner=render(hook);owner.begin('token');owner=render(hook);owner.change('name',' S T R A S S E ');owner=render(hook);
+ await owner.create();owner=render(hook);
+ expect(owner.name).toBe(' S T R A S S E ');expect(owner.dialog).toBe('token');expect(accept).not.toHaveBeenCalled();expect(setError).toHaveBeenLastCalledWith(expect.stringContaining('already in use'));
+});

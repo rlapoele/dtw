@@ -1,3 +1,4 @@
+import { namespacePathKey } from "@domain/namespace-naming";
 import type { DisplayPath } from "@application/retention/projections";
 import type {
   ApplicationFailure,
@@ -116,4 +117,22 @@ export function identityLabels(
     });
   }
   throw new RangeError("Identity labels could not be disambiguated.");
+}
+
+/** Exceptional row context belongs inside each exact-identity action. */
+export function namespaceEntryDetails(context: import('@application/retention/projections').ProjectContext): Map<string,string> {
+  const entries = [
+    ...context.groups.map(entry => ({...entry,kind:'group' as const})),
+    ...context.tokens.map(entry => ({...entry,kind:'token' as const})),
+  ];
+  const counts=new Map<string,number>();
+  for (const entry of entries) if (entry.path.status === 'derived') {
+    const key=namespacePathKey(entry.path.path); counts.set(key,(counts.get(key)??0)+1);
+  }
+  return new Map(entries.flatMap(entry => {
+    const issue=entry.path.status !== 'derived' ? 'Path unavailable' : (counts.get(namespacePathKey(entry.path.path))??0)>1 ? 'Conflicting path' : undefined;
+    if (!issue) return [];
+    const parent=entry.authored.parentGroupId === null ? 'Project root' : `Parent identity ${JSON.stringify(entry.authored.parentGroupId)}`;
+    return [[JSON.stringify([entry.kind,entry.authored.id]), `${issue} · ${parent} · Identity ${JSON.stringify(entry.authored.id)}`]];
+  }));
 }

@@ -1,3 +1,4 @@
+import { namingPreview } from "../state/naming-preview";
 import type { Ref } from "react";
 import type { ProjectContext } from "@application/retention/projections";
 import { Dialog } from "@base-ui/react/dialog";
@@ -13,6 +14,7 @@ export function CreationDialog({
   dialog,
   project,
   name,
+  renameTarget,
   description,
   onDescriptionChange,
   parent,
@@ -35,6 +37,7 @@ export function CreationDialog({
   dialog: "token" | "group" | "rename" | null;
   project: ProjectContext | undefined;
   name: string;
+  renameTarget?: string | null;
   description: string;
   onDescriptionChange: (value: string) => void;
   parent: string | null;
@@ -54,6 +57,7 @@ export function CreationDialog({
   guard?: import("react").ReactNode;
   submissionBlocked?: string;
 }) {
+  const preview = namingPreview(project, dialog, name, parent, renameTarget);
   const labels = identityLabels(project?.groups ?? [], [
     "Project root",
     "All tokens",
@@ -65,7 +69,7 @@ export function CreationDialog({
         if (!o && !pending) onClose();
       }}
     >
-      <DialogContent className="dialog-popup" finalFocus={finalFocus}>
+      <DialogContent className="dialog-popup flex flex-col" finalFocus={finalFocus}>
         <Dialog.Title className="dialog-title mb-2.5">
           {dialog === "token"
             ? "Create a color token"
@@ -75,11 +79,11 @@ export function CreationDialog({
         </Dialog.Title>
         <Dialog.Description className="text-xs/normal text-muted-foreground mb-6">
           {dialog === "token"
-            ? "Start with an explicit Color literal."
+            ? "Create a color token with an opaque black sRGB value."
             : "Groups organize paths; names do not define types."}
         </Dialog.Description>
         {recovery}
-        <form
+        <form className="min-h-0 overflow-auto"
           onSubmit={(e) => {
             e.preventDefault();
             onCreate();
@@ -92,7 +96,8 @@ export function CreationDialog({
                 readOnly={pending}
                 value={name}
                 onChange={(e) => onNameChange(e.target.value)}
-                aria-describedby="creation-error"
+                aria-describedby="name-preview creation-error"
+                aria-invalid={!!error || undefined}
               />
             </Field>
             {dialog === "token" && (
@@ -141,6 +146,23 @@ export function CreationDialog({
                 </Select>
               </Field>
             )}
+            <section id="name-preview" className="border border-border bg-muted rounded-md p-3 text-caption mb-4 wrap-anywhere" aria-live="polite">
+              <h3>Name to save</h3>
+              <p className="font-medium whitespace-pre-wrap">{preview.name ?? 'No usable name'}</p>
+              <p className="mt-2">{preview.path ? `Path: ${preview.path.join(' / ')}` : !preview.name ? 'No valid path yet.' : 'Path unavailable · original parent is preserved.'}</p>
+              {preview.error && <p>{preview.error}</p>}
+              {preview.collisions.length > 0 && <>
+                <h3 className="mt-3">Path already in use</h3>
+                <p>Choose a different name or parent. Rename also checks descendant paths.</p>
+                <ul className="mt-2 space-y-2">
+                  {preview.collisions.flatMap((collision, index) => collision.members.filter(member => member.id !== preview.previewId).map(member => <li key={JSON.stringify([index,member.kind,member.id])}>
+                    <strong>{member.kind === 'group' ? 'Group' : `${project?.tokens.find(t => t.authored.id === member.id)?.authored.definition?.type ?? 'Unassigned'} token`} · {member.path.join(' / ')}</strong>
+                    <span className="block">Identity: {JSON.stringify(member.id)}</span>
+                    <span className="block">Parent: {(() => {const entry = member.kind === 'group' ? project?.groups.find(g => g.authored.id === member.id) : project?.tokens.find(t => t.authored.id === member.id); return entry?.authored.parentGroupId === null ? 'Project root' : JSON.stringify(entry?.authored.parentGroupId);})()}</span>
+                  </li>))}
+                </ul>
+              </>}
+            </section>
             {dialog === "token" && (
               <>
                 <Field>
@@ -200,7 +222,7 @@ export function CreationDialog({
               {submissionBlocked}
             </p>
           )}
-          <div className="dialog-actions justify-end flex gap-2.5 mt-6">
+          <div className="dialog-actions sticky bottom-0 bg-background justify-end flex gap-2.5 mt-4 py-3">
             <Dialog.Close render={<Button disabled={pending} />}>
               Cancel
             </Dialog.Close>

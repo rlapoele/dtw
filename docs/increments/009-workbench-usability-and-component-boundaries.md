@@ -1,9 +1,9 @@
 # Increment 009: Workbench usability and component boundaries
 
-- Contract status: Draft
-- Delivery status: Not started
+- Contract status: Agreed
+- Delivery status: Partially completed
 - Prepared: 13 November 2026
-- Agreement: on 13 November 2026 the user agreed the direction, approved V1 for analyst review, then agreed project-scoped unique paths and the precise namespace naming policy, preserving existing conflicting data. The user authorized V2 mockups covering name preparation, collision prevention and legacy conflicts. Final amended contract/design agreement and implementation authorization remain pending. No application implementation is authorized.
+- Agreement: on 13 November 2026 the user agreed the amended Increment 009 contract, naming policy and combined V1/V2 design and explicitly authorized implementation through the developer and independent reviewer workflow, within the shared verification budget. Staging, committing and pushing remain with the user.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [visual direction](../project/visual-direction.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [Increment 008](008-react-state-and-workbench-composition.md), [agent workflow](../workflow/agent-roles.md).
 
 ## Outcome
@@ -282,7 +282,9 @@ for mockups; concrete presentation remains subject to review.
 - The proposed component boundaries are viable at design level. Other fixture
   omissions remain explicit implementation requirements and verification limits;
   neither the review nor the prototype establishes production acceptance.
-- Final contract/design agreement and implementation authorization: pending.
+- Final contract/design agreement and implementation authorization: granted by the
+  user on 13 November 2026 for this amended contract, the agreed naming policy and
+  identified V1/V2 artifacts, using a fresh developer and independent reviewer.
 - Material revisions return to the user before renewed analyst review.
 
 The [project workflow](../workflow/agent-roles.md#workflow) requires the designer's
@@ -470,3 +472,91 @@ minutes plus two–three coordinator minutes, **8–9 aggregate minutes** (estim
 zero repairs; review is stopped. No browser, tests, builds or implementation ran.
 The next gate is final user agreement to this amended contract, the agreed naming
 policy and identified V1/V2 design, followed by explicit implementation authority.
+
+### Implementation authorization — 13 November 2026
+
+The user explicitly agreed this amended contract, the naming policy and V1/V2
+design and authorized implementation with separate developer/reviewer agents.
+Implementation baseline: `5b23a3027079b807faf1943af80d88a6f5478004`, clean at dispatch.
+Earlier pending-authorization wording records historical stages and is superseded
+by this authorization. Material scope/design changes still return to the user.
+
+The agreed **30 aggregate verification minutes / two harness-repair cycles** are
+now active for this implementation only: up to 12 developer minutes, six
+coordinator browser/evidence minutes, nine independent-review minutes and three
+reserved for targeted rechecks/reconciliation. These allocations share one ceiling,
+not additional allowances. Record actual consumption at each handoff; stop at
+either limit or earlier for low value/tooling dominance. Prior stopped design and
+007/008 campaigns remain stopped. No optional qualification is reopened.
+
+
+## Completion report
+
+- Delivery status: **Partially completed — implementation and independent review finished; manual acceptance pending**
+- Date: 13 November 2026
+- Reviewed snapshot: base `5b23a3027079b807faf1943af80d88a6f5478004`, [exact tracked source patch](../../output/increment-009-implementation/review-source.patch) and [included new files / 38 file hashes](../../output/increment-009-implementation/review-source-manifest.json). Reviewer confirmed the patch and hashes matched. Documentation handoff edits are outside that frozen source snapshot.
+
+### Result
+
+Implemented distinct browser views, view-specific controls and creation defaults,
+readable group/resolution inspection, more compact color controls and persistent
+actions. Lifecycle and backup coordination are extracted; reference, metadata,
+group and resolution sections have focused ownership. No replacement global store
+or dependency was introduced.
+
+Application authoring now prepares new/explicitly renamed namespace names under
+the agreed pinned Unicode 17 policy and rejects newly introduced path collisions
+across groups and tokens, including affected descendants. Legacy constructors and
+supported load/restore admission preserve authored data; exceptional rows retain
+associated identities/context. These source/test results do not establish every
+required browser interaction or legacy recovery scenario.
+
+### Acceptance evidence
+
+See the [developer AC map and commands](../../output/increment-009-implementation/developer.md),
+[Chrome observations/screenshots](../../output/increment-009-implementation/chrome-review.md)
+and [independent review](../../output/increment-009-implementation/reviewer.md).
+
+| Criterion | Evidence and result | Status |
+|---|---|---|
+| AC-1 | Focused view tests, independent source review and Chrome All content heading/controls/navigation | Verified within recorded scope |
+| AC-2 | Source/tests and group creation destination; complete draft/query/departure interaction matrix not replayed | Partly verified; manual acceptance pending |
+| AC-3 | Chrome readable resolution/trace; source/tests for groups and exact details; exceptional legacy browser matrix not executed | Partly verified; manual acceptance pending |
+| AC-4 | Compact controls/sticky actions in source and saved desktop screenshot; representative 1280 × 800 and compact geometry not qualified | Partly verified; manual acceptance pending |
+| AC-5 | Source review and observed normalization/context/Inspector copy; misleading empty-path copy corrected and observed | Verified within recorded scope |
+| AC-6 | Independent ownership/base-diff review; shared pre-read admission tests | Verified |
+| AC-7 | Existing focused session/coordination tests and source comparison; complete affected native interactions not replayed | Partly verified; manual acceptance pending |
+| AC-8 | Labels/controls/focus paths inspected in source; full keyboard/focus/drawer matrix not executed | Partly verified; manual acceptance pending |
+| AC-9 | Focused cross-kind/type/descendant/project/legacy tests, independent source review, Chrome full-fold collision rejection | Verified within recorded scope |
+| AC-10 | Focused legacy codec/collision tests and per-entry source review; native legacy restore/selection/backup matrix not executed | Partly verified; manual acceptance pending |
+| AC-11 | Focused policy tests and pinned-table review; raw input, preparation preview and saved name observed in Chrome | Verified within recorded scope |
+
+### Checks and independent review
+
+- Developer: eight focused test files, **72 tests passed**. Final `npm run build` passed four TypeScript configurations and Vite bundling. Build advisory: main chunk about 592 kB (188 kB gzip); no performance acceptance is inferred.
+- Fresh independent reviewer `/root/increment9_independent_reviewer` derived expectations before source inspection: **no demonstrated required defects**. No independent test/build rerun; source review is not full UI acceptance.
+- Combined V1/V2 fidelity checked through source and bounded native Chrome evidence. No separate implemented-interface designer review or complete accessibility/responsive qualification occurred.
+- Coordinator feedback corrected empty prepared-path copy and expected collision submission feedback. Empty-copy correction was observed; final preflight submission branch was source-reviewed, not browser-replayed.
+- Unresolved disagreements: none. Missing runtime evidence remains a delivery gap, not a demonstrated defect or a waived criterion.
+- Verification accounting: approximately **25 aggregate minutes** (developer 10, coordinator Chrome/evidence 6, reviewer 8, final reconciliation/document checks about 1), within the single 30-minute ceiling. **Two of two harness repair cycles used**, both on the fixture harness; that campaign stopped. Unaffected frozen-source/evidence review and existing Chrome walkthrough continued without harness repair. No further automated campaign is running or authorized by this report; unused time does not reset repair limits or prior 007/008/design stops.
+
+### Decisions and limits
+
+The agreed [naming policy](009-naming-policy-proposal.md) is unchanged. Generated
+Unicode tables and provenance/license live in `tools/unicode-17/`; application
+semantics do not depend on host Unicode casing/normalization. Focused examples and
+source review do not claim exhaustive Unicode conformance-suite execution.
+No token rename/move UI, general legacy repair, interchange or broader browser
+qualification was added. No staging, commit, push, release or deployment occurred.
+
+### Next step
+
+User manual acceptance should cover: representative desktop/compact Alpha/action
+access and keyboard/drawer focus; invalid draft/query preservation and departure/
+Apply/Cancel/rejection focus; supported legacy duplicate/orphan selection by exact
+identity and exact backup/restore through the normal UI. The reviewer report gives
+a concise scenario checklist and the developer note links a synthetic backup.
+An orphan still triggers existing structural write guards; use structurally valid
+colliding data for unrelated-creation checks. These checks are pending, and this
+increment is not marked Completed. Do not restart stopped automated qualification
+without an explicitly authorized bounded follow-up.

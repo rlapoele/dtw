@@ -1,3 +1,5 @@
+import { createTokenGroup } from "@domain/token-group";
+import { createToken } from "@domain/token";
 import { describe, expect, it } from "vitest";
 import { createAuthoringOperations } from "@application/authoring";
 import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
@@ -68,9 +70,9 @@ describe("color authoring workflow", () => {
     expect(alias).toMatchObject({ layer: "semantic", semanticRole: "content", description: "", definition: { assignments: [{ condition: [], value: { kind: "token-reference", targetTokenId: "primitive", valuePath: [] } }] } });
     const before = ok(app.readProject("p"));
     expect(before.groups.map(entry => entry.path)).toEqual([
-      { status: "derived", path: ["  palette.one  "] }, { status: "derived", path: ["  palette.one  ", "neutral"] },
+      { status: "derived", path: ["palette.one"] }, { status: "derived", path: ["palette.one", "neutral"] },
     ]);
-    expect(ok(app.inspectToken("p", "primitive")).path).toEqual({ status: "derived", path: ["  palette.one  ", "neutral", "900"] });
+    expect(ok(app.inspectToken("p", "primitive")).path).toEqual({ status: "derived", path: ["palette.one", "neutral", "900"] });
     const inspected = ok(app.inspectToken("p", "content"));
     expect(inspected.path).toEqual({ status: "derived", path: ["content.primary"] });
     expect(inspected.resolution).toMatchObject({ status: "resolved", selection: [], matchedCondition: [], value: primitive.definition!.assignments[0].value, diagnostics: [], trace: [
@@ -97,10 +99,11 @@ describe("color authoring workflow", () => {
   });
 
   it("preserves opaque duplicate sibling names and reports structural checks only", () => {
-    const { app } = setup();
-    ok(app.createGroup({ projectId: "p", id: "g1", localName: "", parentGroupId: null }));
-    ok(app.createGroup({ projectId: "p", id: "g2", localName: "", parentGroupId: null }));
-    ok(app.createColorToken({ ...literalInput, localName: "", parentGroupId: null }));
+    const { app, storage } = setup();
+    // Supported legacy snapshots retain opaque names; new authoring rejects them.
+    const loaded = storage.load("p");
+    if (loaded.status !== "ok" || !loaded.value) throw Error("fixture missing");
+    storage.commit({...loaded.value, groups:["g1","g2"].map(id => createTokenGroup({projectId:"p",id,localName:"",parentGroupId:null})), tokens:[createToken({id:"legacy",projectId:"p",localName:"",parentGroupId:null,regeneration:"allowed"},[])]});
     expect(ok(app.readProject("p")).groups.map(entry => entry.path)).toEqual([
       { status: "derived", path: [""] }, { status: "derived", path: [""] },
     ]);
@@ -133,7 +136,7 @@ describe("rejected commands and storage boundary", () => {
     ok(app.createGroup({ projectId: "q", id: "foreign-group", localName: "Other", parentGroupId: null }));
     ok(app.createColorToken({ ...literalInput, projectId: "q", id: "foreign-token", parentGroupId: null }));
     const before = [storage.load("p"), storage.load("q")];
-    expect(app.createGroup({ projectId: "missing", id: "g", localName: "", parentGroupId: null })).toMatchObject({ status: "failure", error: { code: "project-not-found" } });
+    expect(app.createGroup({ projectId: "missing", id: "g", localName: "newgroup", parentGroupId: null })).toMatchObject({ status: "failure", error: { code: "project-not-found" } });
     expect(app.createColorToken({ ...literalInput, projectId: "missing" })).toMatchObject({ status: "failure", error: { code: "project-not-found" } });
     expect(app.renameGroup("missing", "palette", "new")).toMatchObject({ status: "failure", error: { code: "project-not-found" } });
     expect(app.inspectToken("missing", "primitive")).toMatchObject({ status: "failure", error: { code: "project-not-found" } });
@@ -144,17 +147,17 @@ describe("rejected commands and storage boundary", () => {
     expect(app.createColorToken(literalInput)).toMatchObject({ status: "failure", error: { code: "duplicate-identity", entityKind: "token" } });
     expect(app.createGroup({ projectId: "p", id: "palette", localName: "overwrite", parentGroupId: null })).toMatchObject({ status: "failure", error: { code: "duplicate-identity", entityKind: "group" } });
     for (const parentGroupId of ["missing", "foreign-group"]) {
-      expect(app.createGroup({ projectId: "p", id: "proposed", localName: "", parentGroupId })).toMatchObject({ status: "failure", error: { code: "invalid-candidate", namespaceDiagnostics: [{ code: "missing-parent-group", entityId: "proposed", parentGroupId }] } });
+      expect(app.createGroup({ projectId: "p", id: "proposed", localName: "proposed", parentGroupId })).toMatchObject({ status: "failure", error: { code: "invalid-candidate", namespaceDiagnostics: [{ code: "missing-parent-group", entityId: "proposed", parentGroupId }] } });
       expect(app.createColorToken({ ...literalInput, id: "proposed", parentGroupId })).toMatchObject({ status: "failure", error: { code: "invalid-candidate", namespaceDiagnostics: [{ code: "missing-parent-group", entityId: "proposed", parentGroupId }] } });
     }
     for (const targetTokenId of ["missing", "foreign-token"]) {
-      expect(app.createColorToken({ ...literalInput, id: "alias", value: { kind: "token-reference", targetTokenId, valuePath: [] } })).toMatchObject({ status: "failure", error: { code: "invalid-candidate", referenceDiagnostics: [{ code: "missing-reference", tokenId: "alias", targetTokenId, condition: [] }] } });
+      expect(app.createColorToken({ ...literalInput, id: "alias", localName: "alias", value: { kind: "token-reference", targetTokenId, valuePath: [] } })).toMatchObject({ status: "failure", error: { code: "invalid-candidate", referenceDiagnostics: [{ code: "missing-reference", tokenId: "alias", targetTokenId, condition: [] }] } });
     }
     expect([storage.load("p"), storage.load("q")]).toEqual(before);
     expect(ok(app.readProject("p")).tokens.map(entry => entry.authored.id)).toEqual(["primitive"]);
     // Identities are project/collection-scoped; no global identity registry.
-    ok(app.createGroup({ projectId: "q", id: "primitive", localName: "", parentGroupId: null }));
-    ok(app.createColorToken({ ...literalInput, projectId: "q", parentGroupId: null }));
+    ok(app.createGroup({ projectId: "q", id: "primitive", localName: "distinct", parentGroupId: null }));
+    ok(app.createColorToken({ ...literalInput, projectId: "q", localName:"distincttoken", parentGroupId: null }));
   });
 
   it("copies caller inputs, command results, project reads and resolution results", () => {
@@ -202,7 +205,7 @@ describe("rejected commands and storage boundary", () => {
     storage.failCommit = true;
     const commands = [
       () => app.createProject({ id: "q", name: "Other" }),
-      () => app.createGroup({ projectId: "p", id: "g", localName: "", parentGroupId: null }),
+      () => app.createGroup({ projectId: "p", id: "g", localName: "newgroup", parentGroupId: null }),
       () => app.renameGroup("p", "neutral", "changed"),
       () => app.createColorToken(literalInput),
     ];

@@ -1,4 +1,4 @@
-import { ExactSource } from "./ExactSource";
+import { GroupInspector } from "./GroupInspector";
 import type { Selection } from "../hooks/useProjectReadback";
 import type { ProjectContext } from "@application/retention/projections";
 import type { ProjectHeader } from "@presentation/host/protocol";
@@ -28,7 +28,7 @@ export function InspectorHeader({
   return (
     <div className="inspector-header border-b border-border bg-surface h-11 min-h-11 shrink-0 flex items-center gap-2 pl-3 min-w-0">
       <span className="inspector-region-title flex-1 text-caption leading-3.5 min-w-0 font-medium">
-        Token inspector
+        Inspector
       </span>
       {!readFailure && !targetUnavailable && editable && feedback && (
         <section
@@ -72,7 +72,7 @@ export function InspectorHeader({
             ? "Unavailable"
             : selected
               ? "Inspection only"
-              : "Select a token"}
+              : "Select content"}
         </span>
       )}
       <Button
@@ -81,8 +81,8 @@ export function InspectorHeader({
         className="pane-toggle inspector-toggle"
         aria-label={
           inspectorExpanded
-            ? "Collapse token inspector"
-            : "Expand token inspector"
+            ? "Collapse inspector"
+            : "Expand inspector"
         }
         aria-expanded={inspectorExpanded}
         aria-controls="token-inspector-content"
@@ -119,7 +119,7 @@ export function WorkbenchInspector({
   return (
     <section
       className="inspector-shell small:border-l-0 small:border-t small:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l border-border bg-surface"
-      aria-label="Token inspector pane"
+      aria-label="Inspector pane"
     >
       {children || (
         <>
@@ -137,38 +137,14 @@ export function WorkbenchInspector({
             hidden={!inspectorExpanded}
           >
             {selection?.kind === "group" && context ? (
-              <div className="p-6">
-                <h2 className="wrap-anywhere">
-                  {groupLabels.get(selection.id)}
-                </h2>
-                <p className="text-caption">Group · Read only</p>
-                <p className="wrap-anywhere">
-                  Project identity: {JSON.stringify(header.project.id)}
-                </p>
-                <p className="wrap-anywhere">
-                  Group identity: {JSON.stringify(selection.id)}
-                </p>
-                <pre className="exact-data whitespace-pre-wrap wrap-anywhere">
-                  {JSON.stringify(
-                    context.groups.find((g) => g.authored.id === selection.id)
-                      ?.path,
-                    null,
-                    2,
-                  )}
-                </pre>
-                <ExactSource
-                  key={JSON.stringify([selection.id, header.revision])}
-                  revision={header.revision}
-                  request={() => requestSource(selection.id)}
-                />
-              </div>
+              <GroupInspector entry={context.groups.find(g => g.authored.id === selection.id)} projectId={header.project.id} revision={header.revision} requestSource={() => requestSource(selection.id)} />
             ) : (
               <div className="empty px-5 py-17.5 text-center text-muted-foreground">
                 <h2 className="text-foreground text-base/normal">
-                  {selection ? "Preparing inspection…" : "No token selected"}
+                  {selection ? "Preparing inspection…" : "Nothing selected"}
                 </h2>
                 <p className="text-xs/normal mt-2 mb-5">
-                  Select or create a color token.
+                  Select a token or group to inspect it.
                 </p>
               </div>
             )}

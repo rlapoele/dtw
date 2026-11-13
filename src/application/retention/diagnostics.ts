@@ -1,3 +1,4 @@
+import { namespaceCollisions } from "@domain/namespace-collisions";
 import type { ProjectSnapshot } from "@application/project-storage";
 import { validateProjectNamespace } from "@domain/namespace";
 import { validateProjectTokenReferences } from "@domain/token-reference-validation";
@@ -14,6 +15,7 @@ export function diagnosticDisplay(
   snapshot: ProjectSnapshot,
 ): DiagnosticDisplay {
   const diagnostics: unknown[] = [
+    ...namespaceCollisions({ projectId: snapshot.project.id, groups: snapshot.groups, tokens: snapshot.tokens }),
     ...validateProjectNamespace({
       projectId: snapshot.project.id,
       groups: snapshot.groups,

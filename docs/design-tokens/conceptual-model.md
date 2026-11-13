@@ -51,7 +51,7 @@ Tokens have a local name and either one parent namespace group in the same proje
 
 Child groups and tokens share one sibling namespace so derived paths remain unambiguous. The agreed [application Increment 001](../increments/001-in-memory-authoring-workflow.md) explicitly defers sibling-name enforcement and exposes structural validation only; its derived paths may remain ambiguous. This implementation limitation does not establish a naming or equality policy. Deleting a non-empty group requires an explicit operation; descendants must not disappear or be reparented silently. A namespace group has one structural parent and determines paths. Sets, collections, tags, or other potentially multi-membership organization are separate non-structural concepts and do not determine canonical paths.
 
-**Authoring direction agreed — 13 November 2026; implementation not authorized:**
+**Authoring direction agreed — 13 November 2026:**
 the user selected unique project-scoped paths regardless of token type for the
 [Increment 009 proposal](../increments/009-workbench-usability-and-component-boundaries.md).
 Type is not a path discriminator; name-only/typed-unassigned members also occupy
@@ -62,7 +62,8 @@ inspectable and independently backed up/restorable, without silent renaming,
 merging, deletion or identity changes. This is authoring enforcement, not a new
 retained/backup admission rule; existing naming/path conflicts do not become whole
 restore rejection reasons. The proposal owns bounded enforcement, legacy handling
-and acceptance details; no enforcement has yet shipped.
+and acceptance details. Application enforcement is implemented in Increment 009;
+its completion report distinguishes checked behavior from pending manual acceptance.
 
 **Subsequent naming direction — 13 November 2026:** the user selected removal of
 all whitespace throughout newly authored namespace names, lowercasing, NFC,
@@ -71,12 +72,14 @@ remain exact in saved/read/restored data; only derived comparison keys use the n
 equivalence rules. The user subsequently agreed the
 [precise naming policy](../increments/009-naming-policy-proposal.md), including the
 Unicode 17.0.0 baseline, all 25 `White_Space` characters plus U+200B/U+2060/U+FEFF,
-default full lowercase storage and canonical caseless segment matching. V2 mockups
-are authorized, not application implementation. The previous exact-string
+default full lowercase storage and canonical caseless segment matching. Following
+V2 review, the user agreed the amended contract and V1/V2 design and authorized
+implementation under Increment 009. The previous exact-string
 comparison proposal is superseded.
 The authoring policy does not normalize descriptions, role strings, arbitrary
 labels or stored legacy ancestors/descendants incidentally. Broader naming grammar
-and compatibility-target rules remain open; implementation remains unauthorized.
+and compatibility-target rules remain open; delivery evidence belongs to the
+Increment 009 contract rather than this semantic agreement.
 
 ### Explicit token types
 

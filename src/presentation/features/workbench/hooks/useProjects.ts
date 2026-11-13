@@ -1,3 +1,4 @@
+import { readBackupFile } from "@presentation/host/backup-file";
 import { UnknownWriteError } from "@presentation/host/worker-client";
 
 import type { PublicAcceptance } from "@presentation/host/protocol";
@@ -148,19 +149,11 @@ export function useProjects(
     }
   }
   async function stageBackup(file: File): Promise<RestorePreview | undefined> {
-    if (file.size > 16777216) {
-      setError(
-        "Backup admission refused: " +
-          file.size +
-          " bytes exceeds 16777216 bytes.",
-      );
-      return;
-    }
     setPending(true);
     setError("");
     try {
       return await host.current!.call("stageBackup", {
-        bytes: await file.arrayBuffer(),
+        bytes: await readBackupFile(file),
       });
     } catch (error) {
       setError(

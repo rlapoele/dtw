@@ -1,3 +1,4 @@
+import type { BrowserView } from "../state/browser-view";
 import { Button } from "@presentation/components/ui/button";
 import { Icon } from "@presentation/components/ui/icon";
 import { Input } from "@presentation/components/ui/input";
@@ -12,8 +13,7 @@ import type { Selection } from "../hooks/useProjectReadback";
 import type { ReactNode, RefObject } from "react";
 export function TokenBrowser({
   panel,
-  allContent,
-  group,
+  view,
   groupLabels,
   blocked,
   query,
@@ -37,8 +37,7 @@ export function TokenBrowser({
   choose,
 }: {
   panel: RefObject<HTMLElement | null>;
-  allContent: boolean;
-  group: string | null;
+  view: BrowserView;
   groupLabels: Map<string, string>;
   blocked: boolean;
   query: string;
@@ -61,6 +60,7 @@ export function TokenBrowser({
   onReveal: () => void;
   choose: (kind: "token" | "group", id: string) => void;
 }) {
+  const allContent = view.kind === "all-content", group = view.kind === "group" ? view.id : null;
   return (
     <main
       id="tokens"
@@ -77,11 +77,11 @@ export function TokenBrowser({
             {allContent
               ? "All content"
               : group === null
-                ? "All colors"
+                ? "All tokens"
                 : (groupLabels.get(group) ?? "Missing group")}
           </h1>
           <p className="text-xs/normal text-muted-foreground">
-            Build a vocabulary, then connect its meaning.
+            {allContent ? "Every group and token, including items outside the group tree." : group === null ? "Browse and create color tokens." : "Browse and create color tokens in this group."}
           </p>
         </div>
         <Button
@@ -94,7 +94,7 @@ export function TokenBrowser({
           New token
         </Button>
       </div>
-      <div className="list-tools compact:flex-wrap narrow:gap-2 flex gap-3 items-center mb-5">
+      {!allContent && <div className="list-tools compact:flex-wrap narrow:gap-2 flex gap-3 items-center mb-5">
         <label className="search tablet:min-w-25 flex-1 max-w-75 relative">
           <Input
             appearance="search"
@@ -110,7 +110,7 @@ export function TokenBrowser({
             Rename group
           </Button>
         )}
-      </div>
+      </div>}
       {recovery}
       {!complete && !readFailure && (
         <p role="status">
@@ -141,6 +141,7 @@ export function TokenBrowser({
           <>
             <ProjectedTokenList
               context={context}
+              creationParentLabel={group === null ? "Project root" : (groupLabels.get(group) ?? "Unavailable group")}
               rows={visible}
               selected={selection?.kind === "token" ? selection.id : null}
               query={query}

@@ -1,3 +1,7 @@
+import { useWorkbenchLifecycle } from "@presentation/features/workbench/hooks/useWorkbenchLifecycle";
+import { useWorkbenchBackup } from "@presentation/features/workbench/hooks/useWorkbenchBackup";
+import { creationParent } from "@presentation/features/workbench/state/browser-view";
+import type { BrowserView } from "@presentation/features/workbench/state/browser-view";
 import { RetentionRecovery } from "@presentation/features/workbench/components/RetentionRecovery";
 import { TokenBrowser } from "@presentation/features/workbench/components/TokenBrowser";
 import { DepartureGuard } from "@presentation/features/workbench/components/DepartureGuard";
@@ -9,9 +13,7 @@ import { useCreationForm } from "@presentation/features/workbench/hooks/useCreat
 import { useWorkbenchLayout } from "@presentation/features/workbench/hooks/useWorkbenchLayout";
 
 import { RestoreDialog } from "@presentation/features/workbench/components/RestoreDialog";
-import type { RestorePreview } from "@presentation/host/protocol";
 import { requestPersistentStorage } from "@adapters/browser/storage-preference";
-import { downloadProjectBackup } from "@presentation/host/backup-file";
 import { readExactSource } from "@presentation/host/source";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { Dialog } from "@base-ui/react/dialog";
@@ -20,7 +22,6 @@ import type { ApplicationResult } from "@application/authoring";
 import type { Token } from "@domain/token";
 import type { ProjectHeader, WorkbenchHost } from "@presentation/host/protocol";
 import { Button } from "@presentation/components/ui/button";
-import { Input } from "@presentation/components/ui/input";
 
 import {
   WorkbenchInspector,
@@ -46,9 +47,9 @@ export function Workbench({
     useState<
       import("@presentation/features/workbench/hooks/useProjectReadback").Selection
     >(null);
-  const [group, setGroup] = useState<string | null>(null),
-    [allContent, setAllContent] = useState(false),
-    [query, setQuery] = useState("");
+  const [view, setView] = useState<BrowserView>({kind:"all-tokens"});
+  const group = creationParent(view);
+  const [query, setQuery] = useState("");
   const [error, setError] = useState(""),
     [notice, setNotice] = useState("");
   const [dirty, setDirty] = useState(false),
@@ -132,63 +133,17 @@ export function Workbench({
     setNotice,
     (kind, id) => {
       if (kind === "token") {
-        setGroup(null);
+        setView({kind:"all-tokens"});
         setQuery("");
-        setAllContent(false);
         setSelection({ kind: "token", id });
         select({ kind: "token", id });
         setInspectorExpanded(true);
-      } else if (kind === "group") setGroup(id);
+      } else if (kind === "group") setView({kind:"group", id});
       requestAnimationFrame(() => panel.current?.focus());
     },
   );
-  const selectedBackupFile = useRef<File | undefined>(undefined);
-  const [restorePreview, setRestorePreview] = useState<RestorePreview>();
-  const restoreInput = useRef<HTMLInputElement>(null);
-  const lifecycle = useRef({ busy, unknown: !!unknown });
-  lifecycle.current = { busy, unknown: !!unknown };
-  useEffect(() => {
-    const pause = () => {
-      setLifecycleBlocked(true);
-      void host.call("suspend", null).catch(() => {});
-    };
-    const resume = () => {
-      if (lifecycle.current.busy || lifecycle.current.unknown) {
-        setLifecycleBlocked(true);
-        return;
-      }
-      setLifecycleBlocked(true);
-      void host
-        .call("resume", initial.project.id)
-        .then((next) => refresh(next))
-        .then(() => setLifecycleBlocked(false))
-        .catch((e) =>
-          setReadFailure(
-            e instanceof Error ? e.message : "Lifecycle recovery unavailable",
-          ),
-        );
-    };
-    addEventListener("pagehide", pause);
-    addEventListener("freeze", pause);
-    addEventListener("pageshow", resume);
-    addEventListener("focus", resume);
-    return () => {
-      removeEventListener("pagehide", pause);
-      removeEventListener("freeze", pause);
-      removeEventListener("pageshow", resume);
-      removeEventListener("focus", resume);
-    };
-  }, []);
-  useEffect(() => {
-    const protect = (event: BeforeUnloadEvent) => {
-      if (dirty || formDirty || busy || unknown) {
-        event.preventDefault();
-        event.returnValue = "";
-      }
-    };
-    addEventListener("beforeunload", protect);
-    return () => removeEventListener("beforeunload", protect);
-  }, [dirty, formDirty, busy, unknown]);
+  const {restorePreview, setRestorePreview, restoreInput, restage, onBackupFile, onDownload} = useWorkbenchBackup(host, header, setBusy, setError, setNotice);
+  useWorkbenchLifecycle({host, projectId:initial.project.id, busy, unknown:!!unknown, dirty, formDirty, setBlocked:setLifecycleBlocked, refresh, setReadFailure});
   useEffect(() => {
     if (error) formError.current?.focus();
   }, [error]);
@@ -239,57 +194,6 @@ export function Workbench({
   );
   const source = (kind: "project" | "group" | "token", id: string) =>
     readExactSource(host, header.project.id, header.revision, kind, id);
-  const onBackupFile = async (
-    event: import("react").ChangeEvent<HTMLInputElement>,
-  ) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    selectedBackupFile.current = file;
-    if (file.size > 16777216) {
-      setError(
-        "Backup admission refused: " +
-          file.size +
-          " bytes exceeds 16777216 bytes.",
-      );
-      return;
-    }
-    setBusy(true);
-    setError("");
-    try {
-      setRestorePreview(
-        await host.call("stageBackup", {
-          bytes: await file.arrayBuffer(),
-        }),
-      );
-    } catch (error) {
-      setError(
-        error instanceof Error
-          ? error.message
-          : "Backup preview unavailable. Applied data and drafts are unchanged.",
-      );
-    } finally {
-      setBusy(false);
-      event.target.value = "";
-    }
-  };
-  const onDownload = async () => {
-    setBusy(true);
-    setError("");
-    try {
-      await downloadProjectBackup(host, header.project.id, header.revision);
-      setNotice(
-        "Backup download requested. Keep the independent file; download initiation does not confirm it was saved. Unapplied drafts are excluded and unchanged.",
-      );
-    } catch (e) {
-      setError(
-        e instanceof Error
-          ? e.message
-          : "Backup generation failed. Applied data and drafts are unchanged.",
-      );
-    } finally {
-      setBusy(false);
-    }
-  };
   const onProjectsClick = () =>
     request(() => {
       void host.call("leaveProject", header.project.id).then((safe) => {
@@ -303,19 +207,18 @@ export function Workbench({
     <ProjectNavigation
       drawer={compact}
       project={context}
-      group={group}
+      view={view}
       unavailable={blocked}
       onSelect={(id) => {
         if (!busy) {
-          setGroup(id);
-          setAllContent(false);
-          setNavigationOpen(false);
+          setView(id === null ? {kind:"all-tokens"} : {kind:"group",id});
+            setNavigationOpen(false);
         }
       }}
       onCreateGroup={() => open("group")}
       onAllContent={() => {
         if (!busy) {
-          setAllContent(true);
+          setView({kind:"all-content"});
           setNavigationOpen(false);
         }
       }}
@@ -429,8 +332,7 @@ export function Workbench({
         )}
         <TokenBrowser
           panel={panel}
-          allContent={allContent}
-          group={group}
+          view={view}
           groupLabels={groupLabels}
           blocked={blocked}
           query={query}
@@ -447,10 +349,10 @@ export function Workbench({
           onQuery={setQuery}
           onCreateToken={() => open("token")}
           onRenameGroup={() => open("rename")}
-          onAllContent={() => setAllContent(true)}
+          onAllContent={() => setView({kind:"all-content"})}
           choose={choose}
           onReveal={() => {
-            setGroup(null);
+            setView({kind:"all-tokens"});
             setQuery("");
             requestAnimationFrame(() =>
               panel.current
@@ -506,7 +408,7 @@ export function Workbench({
             <ProjectDiagnostics
               diagnostics={diagnostics}
               onLoad={() => void loadDiagnostics(setError)}
-              onAllContent={() => setAllContent(true)}
+              onAllContent={() => setView({kind:"all-content"})}
             />
           }
         />
@@ -648,13 +550,7 @@ export function Workbench({
       {dialog === null && departureGuard}
       {restorePreview && (
         <RestoreDialog
-          restage={async () => {
-            if (!selectedBackupFile.current)
-              throw Error("Select a project backup file again.");
-            return host.call("stageBackup", {
-              bytes: await selectedBackupFile.current.arrayBuffer(),
-            });
-          }}
+          restage={restage}
           host={host}
           initial={restorePreview}
           onCancel={(reset) => {
@@ -690,6 +586,7 @@ export function Workbench({
         dialog={dialog}
         project={context}
         name={name}
+        renameTarget={formBaseline?.target}
         description={description}
         onDescriptionChange={(value) => {
           change("description", value);

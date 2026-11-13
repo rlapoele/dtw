@@ -1,9 +1,10 @@
 # Increment 009 — Agreed namespace naming policy
 
 13 November 2026. The user explicitly agreed these definitions and authorized V2
-mockups, without application implementation. This policy supports the
-[draft contract](009-workbench-usability-and-component-boundaries.md); final
-contract/design agreement and implementation authorization remain pending.
+mockups, then agreed the amended contract and V1/V2 design and explicitly
+authorized implementation on 13 November 2026. This policy supports the
+[agreed contract](009-workbench-usability-and-component-boundaries.md); delivery
+and verification are recorded there separately from semantic agreement.
 The historical filename is retained to preserve existing references.
 
 ## Agreement and scope
@@ -149,20 +150,25 @@ actionable inventory entries still need exact identity/context per AC-3/AC-10 an
 ## Evidence and next gate
 
 Primary sources above checked **13 November 2026** against the named Unicode
-17.0.0 baseline. Current `src/domain/namespace.ts` validates structure only;
+17.0.0 baseline. At the proposal stage, `src/domain/namespace.ts` validated structure only;
 `src/domain/token-group.ts` preserves opaque local-name strings and
 `src/application/authoring.ts` accepts candidates through project validation.
-These are implementation gaps, not evidence that the proposal already ships.
+Those were implementation gaps at that stage. Increment 009 now implements pinned
+Unicode preparation/comparison and application collision checks; see its
+[completion report](009-workbench-usability-and-component-boundaries.md#completion-report)
+for evidence and pending manual acceptance. Structural constructors and legacy
+admission intentionally remain separate.
 
 AC-11 in the draft contract covers the agreed naming policy; AC-1 through AC-10
 retain their identifiers. Future focused checks should cover the
 table, cross-kind collisions, affected ancestry, raw-input preservation and exact
 legacy backup/restore. No tests or qualification were executed for this proposal.
-The naming details are agreed. The resulting final contract and concrete V2 design
-still require user agreement; implementation requires separate explicit
-authorization. V1 mockups are unchanged.
+The naming details, resulting amended contract and V1/V2 design are agreed.
+Implementation was explicitly authorized on 13 November 2026 under the contract's
+developer/reviewer workflow and shared budget. V1 mockups are unchanged.
 
 Documentation/source review used approximately six analyst minutes plus two–three
 coordinator minutes, **8–9 aggregate minutes** (estimates) of the separate ten-minute
 ceiling, zero harness repairs. This review is stopped. Prior stopped campaigns
-remain stopped; no implementation checks have begun.
+remain stopped. This accounting describes the earlier documentation stage;
+implementation checks have their separate shared accounting in the contract.

@@ -22,6 +22,7 @@ const MembershipBlock = memo(function MembershipBlock({
       data-entity-id={entry.id}
     >
       {entry.label}
+      {entry.detail && <span className="block text-caption text-muted-foreground text-left">{entry.detail}</span>}
     </Button>
   ));
 });
@@ -65,8 +66,7 @@ export function AllContent({
         }}
       >
         <p className="text-caption mb-4">
-          Every group and token, independent of ancestry. Identities are project
-          and kind scoped.
+          Every group and token, including items outside the group tree.
         </p>
         {blocks.slice(0, visible).map((entries, index) => (
           <MembershipBlock key={index} entries={entries} />

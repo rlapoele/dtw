@@ -21,3 +21,11 @@ export async function downloadProjectBackup(
   }
   return result.revision;
 }
+
+/** Renderer pre-read admission shared by catalogue, workbench and restaging.
+ * Worker decoding/limits remain authoritative. */
+export async function readBackupFile(file: Pick<File, 'size' | 'arrayBuffer'>): Promise<ArrayBuffer> {
+  if (file.size > 16777216)
+    throw Error(`Backup admission refused: ${file.size} bytes exceeds 16777216 bytes.`);
+  return file.arrayBuffer();
+}

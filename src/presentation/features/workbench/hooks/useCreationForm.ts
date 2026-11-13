@@ -1,3 +1,4 @@
+import { namingPreview } from "../state/naming-preview";
 import { useEffect, useReducer } from "react";
 import type { MutableRefObject } from "react";
 import type { ProjectContext } from "@application/retention/projections";
@@ -127,13 +128,18 @@ export function useCreationForm(
       );
       return;
     }
+    const preview = namingPreview(context, dialog, name, parent, formBaseline?.target);
+    if (preview.error || preview.collisions.length > 0) {
+      setError(preview.error ?? "Name is already in use. Choose a different name or parent; conflicting paths and exact identities are listed above.");
+      return;
+    }
     const id = crypto.randomUUID();
     const command: AuthoringCommand =
       dialog === "rename"
         ? {
             operation: "renameGroup",
             projectId: header.project.id,
-            groupId: group!,
+            groupId: formBaseline!.target!,
             localName: name,
           }
         : dialog === "group"

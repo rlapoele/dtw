@@ -116,7 +116,7 @@ describe("human identity labels in real consumers", () => {
       createElement(ProjectNavigation, {
         drawer: false,
         project,
-        group: "shared-prefix-group-b",
+        view: {kind:"group", id:"shared-prefix-group-b"},
         unavailable: false,
         onSelect: () => {},
         onCreateGroup: () => {},
@@ -376,7 +376,8 @@ describe("final reference choice context", () => {
     ]);
   });
   it("disambiguates the actual Editor labels after adding the current-token hint", () => {
-    const app = createAuthoringOperations(new InMemoryProjectStorage());
+    const storage = new InMemoryProjectStorage();
+    const app = createAuthoringOperations(storage);
     ok(app.createProject({ id: "p", name: "P" }));
     const value = {
       kind: "literal" as const,
@@ -399,6 +400,9 @@ describe("final reference choice context", () => {
           value,
         }),
       );
+    const loaded = storage.load("p");
+    if (loaded.status !== "ok" || !loaded.value) throw Error("Fixture missing");
+    storage.commit({...loaded.value,tokens:loaded.value.tokens.map(token => token.id === "other" ? {...token,localName:"x (this token)"} : token)});
     ok(
       app.reviseColorToken({
         projectId: "p",

@@ -79,9 +79,9 @@ selected whitespace removal everywhere, lowercase newly authored namespace names
 case-insensitive comparison, NFC and retained accents. The
 [precise naming policy](../increments/009-naming-policy-proposal.md) now records the
 user's agreement to the Unicode 17.0.0 spacing set plus three explicit extras,
-default full lowercase storage and canonical caseless comparison. Concrete V2
-interaction/design review and implementation authorization remain pending; broader
-naming grammar and target profiles remain open.
+default full lowercase storage and canonical caseless comparison. V2 review is
+complete; the user agreed the amended contract and V1/V2 design and authorized
+implementation on 13 November. Broader naming grammar and target profiles remain open.
 Increment 001's deferral describes
 current delivered behavior, not the intended long-term uniqueness policy.
 

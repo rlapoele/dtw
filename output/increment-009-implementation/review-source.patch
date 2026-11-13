@@ -1,0 +1,1368 @@
+diff --git a/src/application/authoring.ts b/src/application/authoring.ts
+index e054254..a1a2479 100644
+--- a/src/application/authoring.ts
++++ b/src/application/authoring.ts
+@@ -1,3 +1,5 @@
++import { prepareNamespaceName } from "@domain/namespace-naming";
++import { introducedNamespaceCollisions } from "@domain/namespace-collisions";
+ import { canReviseColorToken } from "@application/color-revision-policy";
+ import { createProject } from "@domain/project";
+ import type { Project, ProjectInput } from "@domain/project";
+@@ -91,7 +93,11 @@ export function createAuthoringOperations(storage: ProjectStorage) {
+       : { status: "ok", value };
+   }
+ 
+-  function accept<T>(candidate: ProjectSnapshot, value: T): ApplicationResult<T> {
++  function accept<T>(candidate: ProjectSnapshot, value: T, previous?: ProjectSnapshot): ApplicationResult<T> {
++    if (previous) {
++      const collisions = introducedNamespaceCollisions(namespaceOf(previous), namespaceOf(candidate));
++      if (collisions.length) return { status: "failure", error: { code: "invalid-domain-input", message: "Namespace path collision: " + JSON.stringify(collisions) } };
++    }
+     const checks = validate(candidate);
+     if (checks.namespaceDiagnostics.length > 0 || checks.referenceDiagnostics.length > 0) {
+       return { status: "failure", error: { code: "invalid-candidate", ...checks } };
+@@ -124,8 +130,10 @@ export function createAuthoringOperations(storage: ProjectStorage) {
+       const result = load(input.projectId);
+       if (result.status === "failure") return result;
+       if (result.value.groups.some(group => group.id === input.id)) return duplicateFailure("group", input.id);
+-      const group = createTokenGroup(input);
+-      return accept({ ...result.value, groups: [...result.value.groups, group] }, group);
++      let group: TokenGroup;
++      try { group = createTokenGroup({ ...input, localName: prepareNamespaceName(input.localName) }); }
++      catch (error) { if (!(error instanceof RangeError)) throw error; return {status:"failure", error:{code:"invalid-domain-input", message:error.message}}; }
++      return accept({ ...result.value, groups: [...result.value.groups, group] }, group, result.value);
+     },
+ 
+     renameGroup(projectId: string, groupId: string, localName: string): ApplicationResult<TokenGroup> {
+@@ -133,8 +141,10 @@ export function createAuthoringOperations(storage: ProjectStorage) {
+       if (result.status === "failure") return result;
+       const group = result.value.groups.find(group => group.id === groupId && group.projectId === projectId);
+       if (group === undefined) return missingEntity("group", groupId);
+-      const renamed = renameTokenGroup(group, localName);
+-      return accept({ ...result.value, groups: result.value.groups.map(current => current.id === groupId ? renamed : current) }, renamed);
++      let renamed: TokenGroup;
++      try { renamed = renameTokenGroup(group, prepareNamespaceName(localName)); }
++      catch (error) { if (!(error instanceof RangeError)) throw error; return {status:"failure", error:{code:"invalid-domain-input", message:error.message}}; }
++      return accept({ ...result.value, groups: result.value.groups.map(current => current.id === groupId ? renamed : current) }, renamed, result.value);
+     },
+ 
+     createColorToken(input: CreateColorTokenInput): ApplicationResult<Token> {
+@@ -149,7 +159,7 @@ export function createAuthoringOperations(storage: ProjectStorage) {
+         if (input.layer !== undefined && input.layer !== "primitive" && input.layer !== "semantic") throw new RangeError("This workflow authors primitive or semantic tokens only");
+         const value = input.value.kind === "literal" ? createColorLiteral(input.value) : createTokenReference(input.value);
+         token = createToken({
+-          id: input.id, projectId: input.projectId, localName: input.localName, parentGroupId: input.parentGroupId,
++          id: input.id, projectId: input.projectId, localName: prepareNamespaceName(input.localName), parentGroupId: input.parentGroupId,
+           description: input.description, layer: input.layer, semanticRole: input.semanticRole, regeneration: input.regeneration,
+           definition: { type: input.type, assignments: [{ condition: [], value }] },
+         }, []);
+@@ -157,7 +167,7 @@ export function createAuthoringOperations(storage: ProjectStorage) {
+         if (!(error instanceof RangeError)) throw error;
+         return { status: "failure", error: { code: "invalid-domain-input", message: error.message } };
+       }
+-      return accept({ ...result.value, tokens: [...result.value.tokens, token] }, token);
++      return accept({ ...result.value, tokens: [...result.value.tokens, token] }, token, result.value);
+     },
+ 
+     reviseColorToken(input: ReviseColorTokenInput): ApplicationResult<Token> {
+diff --git a/src/application/retention/diagnostics.ts b/src/application/retention/diagnostics.ts
+index c998e29..a7ff94c 100644
+--- a/src/application/retention/diagnostics.ts
++++ b/src/application/retention/diagnostics.ts
+@@ -1,3 +1,4 @@
++import { namespaceCollisions } from "@domain/namespace-collisions";
+ import type { ProjectSnapshot } from "@application/project-storage";
+ import { validateProjectNamespace } from "@domain/namespace";
+ import { validateProjectTokenReferences } from "@domain/token-reference-validation";
+@@ -14,6 +15,7 @@ export function diagnosticDisplay(
+   snapshot: ProjectSnapshot,
+ ): DiagnosticDisplay {
+   const diagnostics: unknown[] = [
++    ...namespaceCollisions({ projectId: snapshot.project.id, groups: snapshot.groups, tokens: snapshot.tokens }),
+     ...validateProjectNamespace({
+       projectId: snapshot.project.id,
+       groups: snapshot.groups,
+diff --git a/src/presentation/app/App.tsx b/src/presentation/app/App.tsx
+index 94aebab..661536d 100644
+--- a/src/presentation/app/App.tsx
++++ b/src/presentation/app/App.tsx
+@@ -1,3 +1,4 @@
++import { readBackupFile } from "@presentation/host/backup-file";
+ import { useRef, useState } from "react";
+ import type { RestorePreview } from "@presentation/host/protocol";
+ import { useWorkbenchHost } from "@presentation/features/workbench/hooks/useWorkbenchHost";
+@@ -258,7 +259,7 @@ export function App({
+             if (!selectedBackupFile.current)
+               throw Error("Select a project backup file again.");
+             return host.current!.call("stageBackup", {
+-              bytes: await selectedBackupFile.current.arrayBuffer(),
++              bytes: await readBackupFile(selectedBackupFile.current),
+             });
+           }}
+           host={host.current}
+diff --git a/src/presentation/app/Workbench.tsx b/src/presentation/app/Workbench.tsx
+index 6aae2a0..79100a3 100644
+--- a/src/presentation/app/Workbench.tsx
++++ b/src/presentation/app/Workbench.tsx
+@@ -1,3 +1,7 @@
++import { useWorkbenchLifecycle } from "@presentation/features/workbench/hooks/useWorkbenchLifecycle";
++import { useWorkbenchBackup } from "@presentation/features/workbench/hooks/useWorkbenchBackup";
++import { creationParent } from "@presentation/features/workbench/state/browser-view";
++import type { BrowserView } from "@presentation/features/workbench/state/browser-view";
+ import { RetentionRecovery } from "@presentation/features/workbench/components/RetentionRecovery";
+ import { TokenBrowser } from "@presentation/features/workbench/components/TokenBrowser";
+ import { DepartureGuard } from "@presentation/features/workbench/components/DepartureGuard";
+@@ -9,9 +13,7 @@ import { useCreationForm } from "@presentation/features/workbench/hooks/useCreat
+ import { useWorkbenchLayout } from "@presentation/features/workbench/hooks/useWorkbenchLayout";
+ 
+ import { RestoreDialog } from "@presentation/features/workbench/components/RestoreDialog";
+-import type { RestorePreview } from "@presentation/host/protocol";
+ import { requestPersistentStorage } from "@adapters/browser/storage-preference";
+-import { downloadProjectBackup } from "@presentation/host/backup-file";
+ import { readExactSource } from "@presentation/host/source";
+ import { useEffect, useRef, useState, useMemo } from "react";
+ import { Dialog } from "@base-ui/react/dialog";
+@@ -20,7 +22,6 @@ import type { ApplicationResult } from "@application/authoring";
+ import type { Token } from "@domain/token";
+ import type { ProjectHeader, WorkbenchHost } from "@presentation/host/protocol";
+ import { Button } from "@presentation/components/ui/button";
+-import { Input } from "@presentation/components/ui/input";
+ 
+ import {
+   WorkbenchInspector,
+@@ -46,9 +47,9 @@ export function Workbench({
+     useState<
+       import("@presentation/features/workbench/hooks/useProjectReadback").Selection
+     >(null);
+-  const [group, setGroup] = useState<string | null>(null),
+-    [allContent, setAllContent] = useState(false),
+-    [query, setQuery] = useState("");
++  const [view, setView] = useState<BrowserView>({kind:"all-tokens"});
++  const group = creationParent(view);
++  const [query, setQuery] = useState("");
+   const [error, setError] = useState(""),
+     [notice, setNotice] = useState("");
+   const [dirty, setDirty] = useState(false),
+@@ -132,63 +133,17 @@ export function Workbench({
+     setNotice,
+     (kind, id) => {
+       if (kind === "token") {
+-        setGroup(null);
++        setView({kind:"all-tokens"});
+         setQuery("");
+-        setAllContent(false);
+         setSelection({ kind: "token", id });
+         select({ kind: "token", id });
+         setInspectorExpanded(true);
+-      } else if (kind === "group") setGroup(id);
++      } else if (kind === "group") setView({kind:"group", id});
+       requestAnimationFrame(() => panel.current?.focus());
+     },
+   );
+-  const selectedBackupFile = useRef<File | undefined>(undefined);
+-  const [restorePreview, setRestorePreview] = useState<RestorePreview>();
+-  const restoreInput = useRef<HTMLInputElement>(null);
+-  const lifecycle = useRef({ busy, unknown: !!unknown });
+-  lifecycle.current = { busy, unknown: !!unknown };
+-  useEffect(() => {
+-    const pause = () => {
+-      setLifecycleBlocked(true);
+-      void host.call("suspend", null).catch(() => {});
+-    };
+-    const resume = () => {
+-      if (lifecycle.current.busy || lifecycle.current.unknown) {
+-        setLifecycleBlocked(true);
+-        return;
+-      }
+-      setLifecycleBlocked(true);
+-      void host
+-        .call("resume", initial.project.id)
+-        .then((next) => refresh(next))
+-        .then(() => setLifecycleBlocked(false))
+-        .catch((e) =>
+-          setReadFailure(
+-            e instanceof Error ? e.message : "Lifecycle recovery unavailable",
+-          ),
+-        );
+-    };
+-    addEventListener("pagehide", pause);
+-    addEventListener("freeze", pause);
+-    addEventListener("pageshow", resume);
+-    addEventListener("focus", resume);
+-    return () => {
+-      removeEventListener("pagehide", pause);
+-      removeEventListener("freeze", pause);
+-      removeEventListener("pageshow", resume);
+-      removeEventListener("focus", resume);
+-    };
+-  }, []);
+-  useEffect(() => {
+-    const protect = (event: BeforeUnloadEvent) => {
+-      if (dirty || formDirty || busy || unknown) {
+-        event.preventDefault();
+-        event.returnValue = "";
+-      }
+-    };
+-    addEventListener("beforeunload", protect);
+-    return () => removeEventListener("beforeunload", protect);
+-  }, [dirty, formDirty, busy, unknown]);
++  const {restorePreview, setRestorePreview, restoreInput, restage, onBackupFile, onDownload} = useWorkbenchBackup(host, header, setBusy, setError, setNotice);
++  useWorkbenchLifecycle({host, projectId:initial.project.id, busy, unknown:!!unknown, dirty, formDirty, setBlocked:setLifecycleBlocked, refresh, setReadFailure});
+   useEffect(() => {
+     if (error) formError.current?.focus();
+   }, [error]);
+@@ -239,57 +194,6 @@ export function Workbench({
+   );
+   const source = (kind: "project" | "group" | "token", id: string) =>
+     readExactSource(host, header.project.id, header.revision, kind, id);
+-  const onBackupFile = async (
+-    event: import("react").ChangeEvent<HTMLInputElement>,
+-  ) => {
+-    const file = event.target.files?.[0];
+-    if (!file) return;
+-    selectedBackupFile.current = file;
+-    if (file.size > 16777216) {
+-      setError(
+-        "Backup admission refused: " +
+-          file.size +
+-          " bytes exceeds 16777216 bytes.",
+-      );
+-      return;
+-    }
+-    setBusy(true);
+-    setError("");
+-    try {
+-      setRestorePreview(
+-        await host.call("stageBackup", {
+-          bytes: await file.arrayBuffer(),
+-        }),
+-      );
+-    } catch (error) {
+-      setError(
+-        error instanceof Error
+-          ? error.message
+-          : "Backup preview unavailable. Applied data and drafts are unchanged.",
+-      );
+-    } finally {
+-      setBusy(false);
+-      event.target.value = "";
+-    }
+-  };
+-  const onDownload = async () => {
+-    setBusy(true);
+-    setError("");
+-    try {
+-      await downloadProjectBackup(host, header.project.id, header.revision);
+-      setNotice(
+-        "Backup download requested. Keep the independent file; download initiation does not confirm it was saved. Unapplied drafts are excluded and unchanged.",
+-      );
+-    } catch (e) {
+-      setError(
+-        e instanceof Error
+-          ? e.message
+-          : "Backup generation failed. Applied data and drafts are unchanged.",
+-      );
+-    } finally {
+-      setBusy(false);
+-    }
+-  };
+   const onProjectsClick = () =>
+     request(() => {
+       void host.call("leaveProject", header.project.id).then((safe) => {
+@@ -303,19 +207,18 @@ export function Workbench({
+     <ProjectNavigation
+       drawer={compact}
+       project={context}
+-      group={group}
++      view={view}
+       unavailable={blocked}
+       onSelect={(id) => {
+         if (!busy) {
+-          setGroup(id);
+-          setAllContent(false);
+-          setNavigationOpen(false);
++          setView(id === null ? {kind:"all-tokens"} : {kind:"group",id});
++            setNavigationOpen(false);
+         }
+       }}
+       onCreateGroup={() => open("group")}
+       onAllContent={() => {
+         if (!busy) {
+-          setAllContent(true);
++          setView({kind:"all-content"});
+           setNavigationOpen(false);
+         }
+       }}
+@@ -429,8 +332,7 @@ export function Workbench({
+         )}
+         <TokenBrowser
+           panel={panel}
+-          allContent={allContent}
+-          group={group}
++          view={view}
+           groupLabels={groupLabels}
+           blocked={blocked}
+           query={query}
+@@ -447,10 +349,10 @@ export function Workbench({
+           onQuery={setQuery}
+           onCreateToken={() => open("token")}
+           onRenameGroup={() => open("rename")}
+-          onAllContent={() => setAllContent(true)}
++          onAllContent={() => setView({kind:"all-content"})}
+           choose={choose}
+           onReveal={() => {
+-            setGroup(null);
++            setView({kind:"all-tokens"});
+             setQuery("");
+             requestAnimationFrame(() =>
+               panel.current
+@@ -506,7 +408,7 @@ export function Workbench({
+             <ProjectDiagnostics
+               diagnostics={diagnostics}
+               onLoad={() => void loadDiagnostics(setError)}
+-              onAllContent={() => setAllContent(true)}
++              onAllContent={() => setView({kind:"all-content"})}
+             />
+           }
+         />
+@@ -648,13 +550,7 @@ export function Workbench({
+       {dialog === null && departureGuard}
+       {restorePreview && (
+         <RestoreDialog
+-          restage={async () => {
+-            if (!selectedBackupFile.current)
+-              throw Error("Select a project backup file again.");
+-            return host.call("stageBackup", {
+-              bytes: await selectedBackupFile.current.arrayBuffer(),
+-            });
+-          }}
++          restage={restage}
+           host={host}
+           initial={restorePreview}
+           onCancel={(reset) => {
+@@ -690,6 +586,7 @@ export function Workbench({
+         dialog={dialog}
+         project={context}
+         name={name}
++        renameTarget={formBaseline?.target}
+         description={description}
+         onDescriptionChange={(value) => {
+           change("description", value);
+diff --git a/src/presentation/features/workbench/components/AllContent.tsx b/src/presentation/features/workbench/components/AllContent.tsx
+index bc58f38..84dfac1 100644
+--- a/src/presentation/features/workbench/components/AllContent.tsx
++++ b/src/presentation/features/workbench/components/AllContent.tsx
+@@ -22,6 +22,7 @@ const MembershipBlock = memo(function MembershipBlock({
+       data-entity-id={entry.id}
+     >
+       {entry.label}
++      {entry.detail && <span className="block text-caption text-muted-foreground text-left">{entry.detail}</span>}
+     </Button>
+   ));
+ });
+@@ -65,8 +66,7 @@ export function AllContent({
+         }}
+       >
+         <p className="text-caption mb-4">
+-          Every group and token, independent of ancestry. Identities are project
+-          and kind scoped.
++          Every group and token, including items outside the group tree.
+         </p>
+         {blocks.slice(0, visible).map((entries, index) => (
+           <MembershipBlock key={index} entries={entries} />
+diff --git a/src/presentation/features/workbench/components/ColorFields.tsx b/src/presentation/features/workbench/components/ColorFields.tsx
+index 270132c..13d51d5 100644
+--- a/src/presentation/features/workbench/components/ColorFields.tsx
++++ b/src/presentation/features/workbench/components/ColorFields.tsx
+@@ -67,7 +67,8 @@ export function ColorFields({
+   const alphaRangeState = visualRangeState(s.literal.alpha, "0", "1");
+   return (
+     <>
+-      <Field>
++      <div className="grid grid-cols-2 gap-3 mt-3">
++      <Field className="mb-1!">
+         View color space
+         <Select
+           disabled={readOnly}
+@@ -90,16 +91,8 @@ export function ColorFields({
+           ))}
+         </Select>
+       </Field>
+-      <p
+-        id="space-note"
+-        className="view-note text-caption pt-2.5 pb-4 -mt-2.5 text-muted-foreground wrap-anywhere"
+-      >
+-        {s.viewSpace === s.literal.colorSpace
+-          ? `Draft in ${spaceName(s.literal.colorSpace)}. Switching view keeps exact values.`
+-          : `Viewing approximate ${spaceName(s.viewSpace)}. Draft remains in ${spaceName(s.literal.colorSpace)} until a component edit.`}
+-      </p>
+       {d.colorSpace === "srgb" && (
+-        <Field>
++        <Field className="mb-1!">
+           RGB entry scale
+           <Select
+             disabled={readOnly}
+@@ -129,6 +122,15 @@ export function ColorFields({
+           </Select>
+         </Field>
+       )}
++      </div>
++      <p
++        id="space-note"
++        className="view-note text-caption pt-1 pb-2 -mt-1 text-muted-foreground wrap-anywhere"
++      >
++        {s.viewSpace === s.literal.colorSpace
++          ? `Draft in ${spaceName(s.literal.colorSpace)}. Switching view keeps exact values.`
++          : `Viewing approximate ${spaceName(s.viewSpace)}. Draft remains in ${spaceName(s.literal.colorSpace)} until a component edit.`}
++      </p>
+       <div className="component-controls">
+         {values.map((value, i) => {
+           const identity = COLOR_COMPONENTS[d.colorSpace][i];
+@@ -164,7 +166,7 @@ export function ColorFields({
+           const available = rangeState === "available";
+           return (
+             <div
+-              className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-5"
++              className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-3"
+               key={d.colorSpace + "-" + i}
+             >
+               <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-1.5 m-0 text-caption font-medium">
+@@ -237,7 +239,7 @@ export function ColorFields({
+           );
+         })}
+       </div>
+-      <div className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-5 alpha-control border-t border-border pt-4.5">
++      <div className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-3 alpha-control border-t border-border pt-3">
+         <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-1.5 m-0 text-caption font-medium">
+           <span>Alpha</span>
+           <Input
+@@ -280,6 +282,7 @@ export function ColorFields({
+           </p>
+         )}
+       </div>
++      <details className="text-caption text-muted-foreground"><summary>Color entry guidance</summary>
+       <p className="helper text-muted-foreground font-normal">
+         {bytes
+           ? "Canonical whole numbers or none on the 0–255 scale"
+@@ -287,6 +290,7 @@ export function ColorFields({
+         ; alpha 0–1. Sliders are illustrative stepped edits. Derived views and
+         byte displays may be approximate. Apply uses {s.literal.colorSpace}.
+       </p>
++      </details>
+       {bytes && (
+         <p className="helper text-muted-foreground font-normal mono break-words">
+           Normalized draft: [{s.literal.components.join(", ")}]
+diff --git a/src/presentation/features/workbench/components/CreationDialog.tsx b/src/presentation/features/workbench/components/CreationDialog.tsx
+index edb7d71..cd74b6f 100644
+--- a/src/presentation/features/workbench/components/CreationDialog.tsx
++++ b/src/presentation/features/workbench/components/CreationDialog.tsx
+@@ -1,3 +1,4 @@
++import { namingPreview } from "../state/naming-preview";
+ import type { Ref } from "react";
+ import type { ProjectContext } from "@application/retention/projections";
+ import { Dialog } from "@base-ui/react/dialog";
+@@ -13,6 +14,7 @@ export function CreationDialog({
+   dialog,
+   project,
+   name,
++  renameTarget,
+   description,
+   onDescriptionChange,
+   parent,
+@@ -35,6 +37,7 @@ export function CreationDialog({
+   dialog: "token" | "group" | "rename" | null;
+   project: ProjectContext | undefined;
+   name: string;
++  renameTarget?: string | null;
+   description: string;
+   onDescriptionChange: (value: string) => void;
+   parent: string | null;
+@@ -54,6 +57,7 @@ export function CreationDialog({
+   guard?: import("react").ReactNode;
+   submissionBlocked?: string;
+ }) {
++  const preview = namingPreview(project, dialog, name, parent, renameTarget);
+   const labels = identityLabels(project?.groups ?? [], [
+     "Project root",
+     "All tokens",
+@@ -65,7 +69,7 @@ export function CreationDialog({
+         if (!o && !pending) onClose();
+       }}
+     >
+-      <DialogContent className="dialog-popup" finalFocus={finalFocus}>
++      <DialogContent className="dialog-popup flex flex-col" finalFocus={finalFocus}>
+         <Dialog.Title className="dialog-title mb-2.5">
+           {dialog === "token"
+             ? "Create a color token"
+@@ -75,11 +79,11 @@ export function CreationDialog({
+         </Dialog.Title>
+         <Dialog.Description className="text-xs/normal text-muted-foreground mb-6">
+           {dialog === "token"
+-            ? "Start with an explicit Color literal."
++            ? "Create a color token with an opaque black sRGB value."
+             : "Groups organize paths; names do not define types."}
+         </Dialog.Description>
+         {recovery}
+-        <form
++        <form className="min-h-0 overflow-auto"
+           onSubmit={(e) => {
+             e.preventDefault();
+             onCreate();
+@@ -92,7 +96,8 @@ export function CreationDialog({
+                 readOnly={pending}
+                 value={name}
+                 onChange={(e) => onNameChange(e.target.value)}
+-                aria-describedby="creation-error"
++                aria-describedby="name-preview creation-error"
++                aria-invalid={!!error || undefined}
+               />
+             </Field>
+             {dialog === "token" && (
+@@ -141,6 +146,23 @@ export function CreationDialog({
+                 </Select>
+               </Field>
+             )}
++            <section id="name-preview" className="border border-border bg-muted rounded-md p-3 text-caption mb-4 wrap-anywhere" aria-live="polite">
++              <h3>Name to save</h3>
++              <p className="font-medium whitespace-pre-wrap">{preview.name ?? 'No usable name'}</p>
++              <p className="mt-2">{preview.path ? `Path: ${preview.path.join(' / ')}` : !preview.name ? 'No valid path yet.' : 'Path unavailable · original parent is preserved.'}</p>
++              {preview.error && <p>{preview.error}</p>}
++              {preview.collisions.length > 0 && <>
++                <h3 className="mt-3">Path already in use</h3>
++                <p>Choose a different name or parent. Rename also checks descendant paths.</p>
++                <ul className="mt-2 space-y-2">
++                  {preview.collisions.flatMap((collision, index) => collision.members.filter(member => member.id !== preview.previewId).map(member => <li key={JSON.stringify([index,member.kind,member.id])}>
++                    <strong>{member.kind === 'group' ? 'Group' : `${project?.tokens.find(t => t.authored.id === member.id)?.authored.definition?.type ?? 'Unassigned'} token`} · {member.path.join(' / ')}</strong>
++                    <span className="block">Identity: {JSON.stringify(member.id)}</span>
++                    <span className="block">Parent: {(() => {const entry = member.kind === 'group' ? project?.groups.find(g => g.authored.id === member.id) : project?.tokens.find(t => t.authored.id === member.id); return entry?.authored.parentGroupId === null ? 'Project root' : JSON.stringify(entry?.authored.parentGroupId);})()}</span>
++                  </li>))}
++                </ul>
++              </>}
++            </section>
+             {dialog === "token" && (
+               <>
+                 <Field>
+@@ -200,7 +222,7 @@ export function CreationDialog({
+               {submissionBlocked}
+             </p>
+           )}
+-          <div className="dialog-actions justify-end flex gap-2.5 mt-6">
++          <div className="dialog-actions sticky bottom-0 bg-background justify-end flex gap-2.5 mt-4 py-3">
+             <Dialog.Close render={<Button disabled={pending} />}>
+               Cancel
+             </Dialog.Close>
+diff --git a/src/presentation/features/workbench/components/Editor.tsx b/src/presentation/features/workbench/components/Editor.tsx
+index d861708..47ca275 100644
+--- a/src/presentation/features/workbench/components/Editor.tsx
++++ b/src/presentation/features/workbench/components/Editor.tsx
+@@ -1,19 +1,17 @@
++import { ReferenceFields } from './ReferenceFields';
++import { TokenMetadata } from './TokenMetadata';
++import { ResolvedTokenPanel } from './ResolvedTokenPanel';
+ import { useTokenEditor } from "@presentation/features/workbench/hooks/useTokenEditor";
+-import { ExactSource } from "./ExactSource";
+ 
+ import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
+-import { Swatch } from "@presentation/features/workbench/components/swatch";
+ import { InspectionTabs } from "@presentation/features/workbench/components/inspection-tabs";
+ import { Badge } from "@presentation/components/ui/badge";
+-import { Field } from "@presentation/components/ui/field";
+ 
+ import { Tabs } from "@base-ui/react/tabs";
+ 
+ import { Button } from "@presentation/components/ui/button";
+-import { Select } from "@presentation/components/ui/select";
+ import { ColorFields } from "@presentation/features/workbench/components/ColorFields";
+ 
+-import { pathLabel } from "@presentation/features/workbench/readback";
+ export type Feedback = {
+   tokenId: string;
+   tab: string;
+@@ -72,7 +70,7 @@ export function EditorFields({
+       aria-label="Selected token"
+       hidden={readUnavailable}
+     >
+-      <div className="inspector-heading source-compact:p-5 bg-surface">
++      <div className="inspector-heading source-compact:p-4 bg-surface p-4">
+         <span className="eyebrow uppercase text-muted-foreground font-semibold">
+           {token.definition?.type ?? "Unassigned"} token
+         </span>
+@@ -83,7 +81,8 @@ export function EditorFields({
+         <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
+           {token.description ?? "No description"}
+         </p>
+-        <div className="flex gap-2 mt-3">
++        {i.path.status !== "derived" && <p className="text-caption wrap-anywhere">Path unavailable · Parent identity: {JSON.stringify(token.parentGroupId)}. Exact namespace details remain available below.</p>}
++        <div className="flex gap-2 mt-2">
+           <Badge>{token.layer ?? "Unspecified layer"}</Badge>
+           <Badge>{editable ? "Unconditional" : "Inspection only"}</Badge>
+         </div>
+@@ -92,7 +91,7 @@ export function EditorFields({
+         <InspectionTabs />
+         <Tabs.Panel
+           value="authored"
+-          className="editor-body source-compact:p-5 bg-surface p-6"
++          className="editor-body source-compact:p-4 bg-surface p-4"
+         >
+           {targetUnavailable && (
+             <p
+@@ -149,7 +148,7 @@ export function EditorFields({
+           )}
+           {editable || dirty ? (
+             <>
+-              <div className="section-title flex items-center justify-between mb-5">
++              <div className="section-title flex items-center justify-between mb-2">
+                 <h3>Value</h3>
+                 {dirty && <Badge>Draft</Badge>}
+               </div>
+@@ -193,61 +192,7 @@ export function EditorFields({
+                   onError={setError}
+                 />
+               ) : (
+-                <>
+-                  <Field>
+-                    Target token
+-                    <Select
+-                      value={
+-                        session.reference === null
+-                          ? ""
+-                          : JSON.stringify(session.reference)
+-                      }
+-                      aria-describedby="reference-note editor-error"
+-                      onChange={(e) => {
+-                        setSession({
+-                          ...session,
+-                          reference:
+-                            e.target.value === ""
+-                              ? null
+-                              : (JSON.parse(e.target.value) as string),
+-                          edited: true,
+-                        });
+-                        setError("");
+-                      }}
+-                    >
+-                      <option value="">Choose a color token…</option>
+-                      {session.reference !== null &&
+-                        !project.tokens.some(
+-                          (t) => t.authored.id === session.reference,
+-                        ) && (
+-                          <option
+-                            value={
+-                              session.reference === null
+-                                ? ""
+-                                : JSON.stringify(session.reference)
+-                            }
+-                          >
+-                            Missing target
+-                          </option>
+-                        )}
+-                      {referenceChoices.map((t) => (
+-                        <option
+-                          key={t.authored.id}
+-                          value={JSON.stringify(t.authored.id)}
+-                        >
+-                          {referenceLabels.get(t.authored.id)}
+-                        </option>
+-                      ))}
+-                    </Select>
+-                  </Field>
+-                  <p
+-                    id="reference-note"
+-                    className="helper text-muted-foreground font-normal"
+-                  >
+-                    Whole color value. Alias chains remain linked by identity;
+-                    cycles are rejected on Apply.
+-                  </p>
+-                </>
++                <ReferenceFields session={session} tokens={project.tokens} choices={referenceChoices} labels={referenceLabels} onChange={next => {setSession(next);setError("");}} />
+               )}
+               <p className="helper text-muted-foreground font-normal preview-detail mt-3 wrap-anywhere">
+                 Draft preview: {draft.message}
+@@ -265,7 +210,7 @@ export function EditorFields({
+               ) : (
+                 <span id="editor-error" />
+               )}
+-              <div className="editor-actions sticky z-1 flex justify-end gap-2 mt-5.5 mb-2.5 border-t border-border bg-surface py-3">
++              <div className="editor-actions sticky z-1 flex justify-end gap-2 mt-3 mb-2 border-t border-border bg-surface py-3">
+                 <Button disabled={!dirty || accepting} onClick={cancel}>
+                   Cancel
+                 </Button>
+@@ -330,92 +275,13 @@ export function EditorFields({
+               )}
+             </div>
+           </section>
+-          <section className="applied-summary border-t border-border mt-7 pt-5">
+-            <h3 className="mb-3.5">Metadata · read only</h3>
+-            <dl className="details">
+-              <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+-                <dt className="text-muted-foreground">Regeneration</dt>
+-                <dd className="text-right wrap-anywhere">
+-                  {token.authoring.regeneration}
+-                </dd>
+-              </div>
+-              <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+-                <dt className="text-muted-foreground">Semantic role</dt>
+-                <dd className="text-right wrap-anywhere">
+-                  {token.semanticRole ?? "Unspecified"}
+-                </dd>
+-              </div>
+-              <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+-                <dt className="text-muted-foreground">Parent group</dt>
+-                <dd className="text-right wrap-anywhere">
+-                  {token.parentGroupId !== null
+-                    ? (groupLabels.get(token.parentGroupId) ?? "Missing group")
+-                    : "Project root"}
+-                </dd>
+-              </div>
+-            </dl>
+-            <ExactSource
+-              key={`${token.id}-${revision}`}
+-              revision={revision}
+-              request={
+-                requestSource ??
+-                (() => Promise.resolve(JSON.stringify(token, null, 2)))
+-              }
+-            />
+-          </section>
++          <TokenMetadata token={token} groupLabels={groupLabels} revision={revision} requestSource={requestSource} path={i.path} />
+         </Tabs.Panel>
+         <Tabs.Panel
+           value="resolved"
+-          className="editor-body source-compact:p-5 bg-surface p-6"
++          className="editor-body source-compact:p-4 bg-surface p-4"
+         >
+-          <div className="section-title flex items-center mb-5 resolved-heading flex-wrap justify-start gap-2">
+-            <h3>Resolved value</h3>
+-            <Badge>Applied value</Badge>
+-          </div>
+-          <div className="resolved-preview flex flex-col items-stretch gap-2 my-5.5">
+-            <Swatch css={applied.css} />
+-            <p className="helper text-muted-foreground font-normal">
+-              {applied.message}
+-            </p>
+-          </div>
+-          {i.resolution.status === "resolved" ? (
+-            <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
+-              {JSON.stringify(i.resolution.value, null, 2)}
+-            </pre>
+-          ) : (
+-            <p
+-              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+-              role="status"
+-            >
+-              Unresolved: {i.resolution.reason}. Authored data retained.
+-            </p>
+-          )}
+-          <h3 className="trace-heading mt-7">Resolution trace</h3>
+-          <ol className="trace list-none mt-4.5 mb-6 p-0">
+-            {i.resolution.trace.map((step, index) => {
+-              const t = project.tokens.find(
+-                (t) => t.authored.id === step.tokenId,
+-              );
+-              return (
+-                <li className="relative pb-6 pl-6" key={index}>
+-                  <span className="trace-dot size-2.75 left-0 top-1 border-2 border-trace bg-background absolute rounded-full" />
+-                  <strong className="block text-caption font-medium wrap-anywhere">
+-                    {t ? pathLabel(t.path) : step.tokenId}
+-                  </strong>
+-                  <small className="mono block mt-1 text-muted-foreground">
+-                    {step.tokenId}
+-                    {step.targetTokenId
+-                      ? ` → ${step.targetTokenId}`
+-                      : " · authored value"}
+-                  </small>
+-                </li>
+-              );
+-            })}
+-          </ol>
+-          <h3>Resolution diagnostics</h3>
+-          <pre className="exact-data whitespace-pre-wrap text-caption my-3 max-w-full wrap-anywhere">
+-            {JSON.stringify(i.resolution.diagnostics, null, 2)}
+-          </pre>
++          <ResolvedTokenPanel resolution={i.resolution} project={project} css={applied.css} message={applied.message} />
+         </Tabs.Panel>
+       </Tabs.Root>
+       <div className="inspector-foot density:mt-5 small:mt-0 border-t border-border bg-surface px-6 py-4 mt-auto flex justify-between text-muted-foreground">
+diff --git a/src/presentation/features/workbench/components/ProjectNavigation.tsx b/src/presentation/features/workbench/components/ProjectNavigation.tsx
+index 4852240..0a9d577 100644
+--- a/src/presentation/features/workbench/components/ProjectNavigation.tsx
++++ b/src/presentation/features/workbench/components/ProjectNavigation.tsx
+@@ -1,11 +1,12 @@
++import type { BrowserView } from "../state/browser-view";
+ import type { ProjectContext } from "@application/retention/projections";
+ import { Icon } from "@presentation/components/ui/icon";
+ import { Button } from "@presentation/components/ui/button";
+-import { identityLabels } from "@presentation/features/workbench/readback";
++import { identityLabels, namespaceEntryDetails } from "@presentation/features/workbench/readback";
+ export function ProjectNavigation({
+   drawer,
+   project,
+-  group,
++  view,
+   unavailable,
+   onSelect,
+   onCreateGroup,
+@@ -13,12 +14,13 @@ export function ProjectNavigation({
+ }: {
+   drawer: boolean;
+   project: ProjectContext | undefined;
+-  group: string | null;
++  view: BrowserView;
+   unavailable: boolean;
+   onSelect: (group: string | null) => void;
+   onCreateGroup: () => void;
+   onAllContent?: () => void;
+ }) {
++  const details = project ? namespaceEntryDetails(project) : new Map<string,string>();
+   const labels = identityLabels(project?.groups ?? [], [
+     "Project root",
+     "All tokens",
+@@ -39,7 +41,7 @@ export function ProjectNavigation({
+             {project?.project.name || "(unnamed project)"}
+           </strong>
+           <span className="block text-caption text-muted-foreground">
+-            Color foundations
++            Token workbench
+           </span>
+         </div>
+       </div>
+@@ -49,8 +51,8 @@ export function ProjectNavigation({
+       <Button
+         variant="navigation"
+         size="navigation"
+-        className={`nav-item w-full ${group === null ? "active" : ""}`}
+-        aria-current={group === null ? "true" : undefined}
++        className={`nav-item w-full ${view.kind === "all-tokens" ? "active" : ""}`}
++        aria-current={view.kind === "all-tokens" ? "true" : undefined}
+         onClick={() => {
+           onSelect(null);
+         }}
+@@ -65,7 +67,8 @@ export function ProjectNavigation({
+         <Button
+           variant="navigation"
+           size="navigation"
+-          className="text-muted-foreground w-full"
++          className={`nav-item w-full ${view.kind === "all-content" ? "active" : "text-muted-foreground"}`}
++          aria-current={view.kind === "all-content" ? "true" : undefined}
+           onClick={onAllContent}
+         >
+           All content
+@@ -77,8 +80,8 @@ export function ProjectNavigation({
+             key={g.authored.id}
+             variant="navigation"
+             size="group"
+-            className={`nav-item w-full group-item ${group === g.authored.id ? "active" : ""}`}
+-            aria-current={group === g.authored.id ? "true" : undefined}
++            className={`nav-item w-full group-item ${view.kind === "group" && view.id === g.authored.id ? "active" : ""}`}
++            aria-current={view.kind === "group" && view.id === g.authored.id ? "true" : undefined}
+             onClick={() => {
+               onSelect(g.authored.id);
+             }}
+@@ -86,6 +89,7 @@ export function ProjectNavigation({
+             <Icon name="folder" className="icon block" />
+             <span className="group-label whitespace-normal block min-w-0 text-left wrap-anywhere">
+               {labels.get(g.authored.id)}
++              {details.get(JSON.stringify(["group",g.authored.id])) && <span className="block text-caption">{details.get(JSON.stringify(["group",g.authored.id]))}</span>}
+             </span>
+           </Button>
+         ))}
+@@ -108,11 +112,6 @@ export function ProjectNavigation({
+         <span className="eyebrow uppercase text-muted-foreground font-semibold">
+           Project
+         </span>
+-        <p className="my-2 text-secondary">
+-          One vocabulary.
+-          <br />
+-          Clear relationships.
+-        </p>
+         <span className="helper text-muted-foreground font-normal">
+           {project?.groups.length ?? 0} groups
+         </span>
+diff --git a/src/presentation/features/workbench/components/ProjectedTokenList.tsx b/src/presentation/features/workbench/components/ProjectedTokenList.tsx
+index 19f19d4..ca62fad 100644
+--- a/src/presentation/features/workbench/components/ProjectedTokenList.tsx
++++ b/src/presentation/features/workbench/components/ProjectedTokenList.tsx
+@@ -5,10 +5,11 @@ import type {
+ import { AuthoredValue } from "./AuthoredValue";
+ import { Swatch } from "./swatch";
+ import { Button } from "@presentation/components/ui/button";
+-import { identityLabels } from "@presentation/features/workbench/readback";
++import { identityLabels, namespaceEntryDetails } from "@presentation/features/workbench/readback";
+ import { colorPreview } from "@presentation/features/workbench/color/preview";
+ export function ProjectedTokenList({
+   context,
++  creationParentLabel = "Project root",
+   rows,
+   selected,
+   query,
+@@ -16,6 +17,7 @@ export function ProjectedTokenList({
+   onEmptyAction,
+ }: {
+   context: ProjectContext;
++  creationParentLabel?: string;
+   rows: readonly DisplayRow[];
+   selected: string | null;
+   query: string;
+@@ -23,6 +25,7 @@ export function ProjectedTokenList({
+   onEmptyAction(): void;
+ }) {
+   const labels = identityLabels(context.tokens);
++  const details = namespaceEntryDetails(context);
+   return (
+     <div className="token-table @container border-t border-border">
+       <div className="table-heading border-b border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 gap-3 text-muted-foreground">
+@@ -47,6 +50,7 @@ export function ProjectedTokenList({
+               <small className="block text-secondary mt-1 wrap-anywhere">
+                 {row.layer} · {row.type}
+               </small>
++              {details.get(JSON.stringify(["token",row.id])) && <span className="block text-caption wrap-anywhere">{details.get(JSON.stringify(["token",row.id]))}</span>}
+               {row.description !== undefined && (
+                 <span className="@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-secondary">
+                   {row.description}
+@@ -89,7 +93,7 @@ export function ProjectedTokenList({
+                 : "Your project is empty"}
+           </h2>
+           <p className="text-xs/normal mt-2 mb-5">
+-            Create a color at the root, or add a group to organize it.
++            {query ? "Try another search or clear it to see this view." : `Create a color token in ${creationParentLabel}.`}
+           </p>
+           <Button onClick={onEmptyAction}>
+             {query ? "Clear search" : "New token"}
+diff --git a/src/presentation/features/workbench/components/TokenBrowser.tsx b/src/presentation/features/workbench/components/TokenBrowser.tsx
+index d36296a..09b1b1f 100644
+--- a/src/presentation/features/workbench/components/TokenBrowser.tsx
++++ b/src/presentation/features/workbench/components/TokenBrowser.tsx
+@@ -1,3 +1,4 @@
++import type { BrowserView } from "../state/browser-view";
+ import { Button } from "@presentation/components/ui/button";
+ import { Icon } from "@presentation/components/ui/icon";
+ import { Input } from "@presentation/components/ui/input";
+@@ -12,8 +13,7 @@ import type { Selection } from "../hooks/useProjectReadback";
+ import type { ReactNode, RefObject } from "react";
+ export function TokenBrowser({
+   panel,
+-  allContent,
+-  group,
++  view,
+   groupLabels,
+   blocked,
+   query,
+@@ -37,8 +37,7 @@ export function TokenBrowser({
+   choose,
+ }: {
+   panel: RefObject<HTMLElement | null>;
+-  allContent: boolean;
+-  group: string | null;
++  view: BrowserView;
+   groupLabels: Map<string, string>;
+   blocked: boolean;
+   query: string;
+@@ -61,6 +60,7 @@ export function TokenBrowser({
+   onReveal: () => void;
+   choose: (kind: "token" | "group", id: string) => void;
+ }) {
++  const allContent = view.kind === "all-content", group = view.kind === "group" ? view.id : null;
+   return (
+     <main
+       id="tokens"
+@@ -77,11 +77,11 @@ export function TokenBrowser({
+             {allContent
+               ? "All content"
+               : group === null
+-                ? "All colors"
++                ? "All tokens"
+                 : (groupLabels.get(group) ?? "Missing group")}
+           </h1>
+           <p className="text-xs/normal text-muted-foreground">
+-            Build a vocabulary, then connect its meaning.
++            {allContent ? "Every group and token, including items outside the group tree." : group === null ? "Browse and create color tokens." : "Browse and create color tokens in this group."}
+           </p>
+         </div>
+         <Button
+@@ -94,7 +94,7 @@ export function TokenBrowser({
+           New token
+         </Button>
+       </div>
+-      <div className="list-tools compact:flex-wrap narrow:gap-2 flex gap-3 items-center mb-5">
++      {!allContent && <div className="list-tools compact:flex-wrap narrow:gap-2 flex gap-3 items-center mb-5">
+         <label className="search tablet:min-w-25 flex-1 max-w-75 relative">
+           <Input
+             appearance="search"
+@@ -110,7 +110,7 @@ export function TokenBrowser({
+             Rename group
+           </Button>
+         )}
+-      </div>
++      </div>}
+       {recovery}
+       {!complete && !readFailure && (
+         <p role="status">
+@@ -141,6 +141,7 @@ export function TokenBrowser({
+           <>
+             <ProjectedTokenList
+               context={context}
++              creationParentLabel={group === null ? "Project root" : (groupLabels.get(group) ?? "Unavailable group")}
+               rows={visible}
+               selected={selection?.kind === "token" ? selection.id : null}
+               query={query}
+diff --git a/src/presentation/features/workbench/components/WorkbenchInspector.tsx b/src/presentation/features/workbench/components/WorkbenchInspector.tsx
+index 0fcc3e9..187d273 100644
+--- a/src/presentation/features/workbench/components/WorkbenchInspector.tsx
++++ b/src/presentation/features/workbench/components/WorkbenchInspector.tsx
+@@ -1,4 +1,4 @@
+-import { ExactSource } from "./ExactSource";
++import { GroupInspector } from "./GroupInspector";
+ import type { Selection } from "../hooks/useProjectReadback";
+ import type { ProjectContext } from "@application/retention/projections";
+ import type { ProjectHeader } from "@presentation/host/protocol";
+@@ -28,7 +28,7 @@ export function InspectorHeader({
+   return (
+     <div className="inspector-header border-b border-border bg-surface h-11 min-h-11 shrink-0 flex items-center gap-2 pl-3 min-w-0">
+       <span className="inspector-region-title flex-1 text-caption leading-3.5 min-w-0 font-medium">
+-        Token inspector
++        Inspector
+       </span>
+       {!readFailure && !targetUnavailable && editable && feedback && (
+         <section
+@@ -72,7 +72,7 @@ export function InspectorHeader({
+             ? "Unavailable"
+             : selected
+               ? "Inspection only"
+-              : "Select a token"}
++              : "Select content"}
+         </span>
+       )}
+       <Button
+@@ -81,8 +81,8 @@ export function InspectorHeader({
+         className="pane-toggle inspector-toggle"
+         aria-label={
+           inspectorExpanded
+-            ? "Collapse token inspector"
+-            : "Expand token inspector"
++            ? "Collapse inspector"
++            : "Expand inspector"
+         }
+         aria-expanded={inspectorExpanded}
+         aria-controls="token-inspector-content"
+@@ -119,7 +119,7 @@ export function WorkbenchInspector({
+   return (
+     <section
+       className="inspector-shell small:border-l-0 small:border-t small:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l border-border bg-surface"
+-      aria-label="Token inspector pane"
++      aria-label="Inspector pane"
+     >
+       {children || (
+         <>
+@@ -137,38 +137,14 @@ export function WorkbenchInspector({
+             hidden={!inspectorExpanded}
+           >
+             {selection?.kind === "group" && context ? (
+-              <div className="p-6">
+-                <h2 className="wrap-anywhere">
+-                  {groupLabels.get(selection.id)}
+-                </h2>
+-                <p className="text-caption">Group · Read only</p>
+-                <p className="wrap-anywhere">
+-                  Project identity: {JSON.stringify(header.project.id)}
+-                </p>
+-                <p className="wrap-anywhere">
+-                  Group identity: {JSON.stringify(selection.id)}
+-                </p>
+-                <pre className="exact-data whitespace-pre-wrap wrap-anywhere">
+-                  {JSON.stringify(
+-                    context.groups.find((g) => g.authored.id === selection.id)
+-                      ?.path,
+-                    null,
+-                    2,
+-                  )}
+-                </pre>
+-                <ExactSource
+-                  key={JSON.stringify([selection.id, header.revision])}
+-                  revision={header.revision}
+-                  request={() => requestSource(selection.id)}
+-                />
+-              </div>
++              <GroupInspector entry={context.groups.find(g => g.authored.id === selection.id)} projectId={header.project.id} revision={header.revision} requestSource={() => requestSource(selection.id)} />
+             ) : (
+               <div className="empty px-5 py-17.5 text-center text-muted-foreground">
+                 <h2 className="text-foreground text-base/normal">
+-                  {selection ? "Preparing inspection…" : "No token selected"}
++                  {selection ? "Preparing inspection…" : "Nothing selected"}
+                 </h2>
+                 <p className="text-xs/normal mt-2 mb-5">
+-                  Select or create a color token.
++                  Select a token or group to inspect it.
+                 </p>
+               </div>
+             )}
+diff --git a/src/presentation/features/workbench/hooks/useCreationForm.ts b/src/presentation/features/workbench/hooks/useCreationForm.ts
+index 68f4367..85bbbbe 100644
+--- a/src/presentation/features/workbench/hooks/useCreationForm.ts
++++ b/src/presentation/features/workbench/hooks/useCreationForm.ts
+@@ -1,3 +1,4 @@
++import { namingPreview } from "../state/naming-preview";
+ import { useEffect, useReducer } from "react";
+ import type { MutableRefObject } from "react";
+ import type { ProjectContext } from "@application/retention/projections";
+@@ -127,13 +128,18 @@ export function useCreationForm(
+       );
+       return;
+     }
++    const preview = namingPreview(context, dialog, name, parent, formBaseline?.target);
++    if (preview.error || preview.collisions.length > 0) {
++      setError(preview.error ?? "Name is already in use. Choose a different name or parent; conflicting paths and exact identities are listed above.");
++      return;
++    }
+     const id = crypto.randomUUID();
+     const command: AuthoringCommand =
+       dialog === "rename"
+         ? {
+             operation: "renameGroup",
+             projectId: header.project.id,
+-            groupId: group!,
++            groupId: formBaseline!.target!,
+             localName: name,
+           }
+         : dialog === "group"
+diff --git a/src/presentation/features/workbench/hooks/useProjects.ts b/src/presentation/features/workbench/hooks/useProjects.ts
+index 8f4fe14..ddac203 100644
+--- a/src/presentation/features/workbench/hooks/useProjects.ts
++++ b/src/presentation/features/workbench/hooks/useProjects.ts
+@@ -1,3 +1,4 @@
++import { readBackupFile } from "@presentation/host/backup-file";
+ import { UnknownWriteError } from "@presentation/host/worker-client";
+ 
+ import type { PublicAcceptance } from "@presentation/host/protocol";
+@@ -148,19 +149,11 @@ export function useProjects(
+     }
+   }
+   async function stageBackup(file: File): Promise<RestorePreview | undefined> {
+-    if (file.size > 16777216) {
+-      setError(
+-        "Backup admission refused: " +
+-          file.size +
+-          " bytes exceeds 16777216 bytes.",
+-      );
+-      return;
+-    }
+     setPending(true);
+     setError("");
+     try {
+       return await host.current!.call("stageBackup", {
+-        bytes: await file.arrayBuffer(),
++        bytes: await readBackupFile(file),
+       });
+     } catch (error) {
+       setError(
+diff --git a/src/presentation/features/workbench/readback.ts b/src/presentation/features/workbench/readback.ts
+index 2712afa..5f8a512 100644
+--- a/src/presentation/features/workbench/readback.ts
++++ b/src/presentation/features/workbench/readback.ts
+@@ -1,3 +1,4 @@
++import { namespacePathKey } from "@domain/namespace-naming";
+ import type { DisplayPath } from "@application/retention/projections";
+ import type {
+   ApplicationFailure,
+@@ -117,3 +118,21 @@ export function identityLabels(
+   }
+   throw new RangeError("Identity labels could not be disambiguated.");
+ }
++
++/** Exceptional row context belongs inside each exact-identity action. */
++export function namespaceEntryDetails(context: import('@application/retention/projections').ProjectContext): Map<string,string> {
++  const entries = [
++    ...context.groups.map(entry => ({...entry,kind:'group' as const})),
++    ...context.tokens.map(entry => ({...entry,kind:'token' as const})),
++  ];
++  const counts=new Map<string,number>();
++  for (const entry of entries) if (entry.path.status === 'derived') {
++    const key=namespacePathKey(entry.path.path); counts.set(key,(counts.get(key)??0)+1);
++  }
++  return new Map(entries.flatMap(entry => {
++    const issue=entry.path.status !== 'derived' ? 'Path unavailable' : (counts.get(namespacePathKey(entry.path.path))??0)>1 ? 'Conflicting path' : undefined;
++    if (!issue) return [];
++    const parent=entry.authored.parentGroupId === null ? 'Project root' : `Parent identity ${JSON.stringify(entry.authored.parentGroupId)}`;
++    return [[JSON.stringify([entry.kind,entry.authored.id]), `${issue} · ${parent} · Identity ${JSON.stringify(entry.authored.id)}`]];
++  }));
++}
+diff --git a/src/presentation/features/workbench/state/all-content.ts b/src/presentation/features/workbench/state/all-content.ts
+index 8749d43..2ff18e5 100644
+--- a/src/presentation/features/workbench/state/all-content.ts
++++ b/src/presentation/features/workbench/state/all-content.ts
+@@ -1,9 +1,11 @@
++import { namespaceEntryDetails, pathLabel } from "../readback";
+ import type { ProjectContext } from "@application/retention/projections";
+ 
+ export type MembershipEntry = {
+   kind: "group" | "token";
+   id: string;
+   label: string;
++  detail?: string;
+ };
+ 
+ /** Presentation blocks preserve every exact identity and the existing order. */
+@@ -11,16 +13,19 @@ export function membershipBlocks(
+   context: ProjectContext,
+   groupLabels: ReadonlyMap<string, string>,
+ ): readonly (readonly MembershipEntry[])[] {
++  const details = namespaceEntryDetails(context);
+   const entries: MembershipEntry[] = [
+     ...context.groups.map(({ authored }) => ({
+       kind: "group" as const,
+       id: authored.id,
+       label: `Group · ${groupLabels.get(authored.id)} · ${JSON.stringify(authored.id)}`,
++      detail: details.get(JSON.stringify(["group",authored.id])),
+     })),
+-    ...context.tokens.map(({ authored }) => ({
++    ...context.tokens.map(({ authored, path }) => ({
+       kind: "token" as const,
+       id: authored.id,
+-      label: `Token · ${authored.localName || "(unnamed)"} · ${JSON.stringify(authored.id)}`,
++      label: `Token · ${pathLabel(path)} · ${authored.definition?.type ?? "Unassigned"} · ${JSON.stringify(authored.id)}`,
++      detail: details.get(JSON.stringify(["token",authored.id])),
+     })),
+   ];
+   return Array.from({ length: Math.ceil(entries.length / 100) }, (_, index) =>
+diff --git a/src/presentation/host/backup-file.ts b/src/presentation/host/backup-file.ts
+index 25feefd..af073f6 100644
+--- a/src/presentation/host/backup-file.ts
++++ b/src/presentation/host/backup-file.ts
+@@ -21,3 +21,11 @@ export async function downloadProjectBackup(
+   }
+   return result.revision;
+ }
++
++/** Renderer pre-read admission shared by catalogue, workbench and restaging.
++ * Worker decoding/limits remain authoritative. */
++export async function readBackupFile(file: Pick<File, 'size' | 'arrayBuffer'>): Promise<ArrayBuffer> {
++  if (file.size > 16777216)
++    throw Error(`Backup admission refused: ${file.size} bytes exceeds 16777216 bytes.`);
++  return file.arrayBuffer();
++}
+diff --git a/test/application/authoring.test.ts b/test/application/authoring.test.ts
+index d2ee3c9..056c8ad 100644
+--- a/test/application/authoring.test.ts
++++ b/test/application/authoring.test.ts
+@@ -1,3 +1,5 @@
++import { createTokenGroup } from "@domain/token-group";
++import { createToken } from "@domain/token";
+ import { describe, expect, it } from "vitest";
+ import { createAuthoringOperations } from "@application/authoring";
+ import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
+@@ -68,9 +70,9 @@ describe("color authoring workflow", () => {
+     expect(alias).toMatchObject({ layer: "semantic", semanticRole: "content", description: "", definition: { assignments: [{ condition: [], value: { kind: "token-reference", targetTokenId: "primitive", valuePath: [] } }] } });
+     const before = ok(app.readProject("p"));
+     expect(before.groups.map(entry => entry.path)).toEqual([
+-      { status: "derived", path: ["  palette.one  "] }, { status: "derived", path: ["  palette.one  ", "neutral"] },
++      { status: "derived", path: ["palette.one"] }, { status: "derived", path: ["palette.one", "neutral"] },
+     ]);
+-    expect(ok(app.inspectToken("p", "primitive")).path).toEqual({ status: "derived", path: ["  palette.one  ", "neutral", "900"] });
++    expect(ok(app.inspectToken("p", "primitive")).path).toEqual({ status: "derived", path: ["palette.one", "neutral", "900"] });
+     const inspected = ok(app.inspectToken("p", "content"));
+     expect(inspected.path).toEqual({ status: "derived", path: ["content.primary"] });
+     expect(inspected.resolution).toMatchObject({ status: "resolved", selection: [], matchedCondition: [], value: primitive.definition!.assignments[0].value, diagnostics: [], trace: [
+@@ -97,10 +99,11 @@ describe("color authoring workflow", () => {
+   });
+ 
+   it("preserves opaque duplicate sibling names and reports structural checks only", () => {
+-    const { app } = setup();
+-    ok(app.createGroup({ projectId: "p", id: "g1", localName: "", parentGroupId: null }));
+-    ok(app.createGroup({ projectId: "p", id: "g2", localName: "", parentGroupId: null }));
+-    ok(app.createColorToken({ ...literalInput, localName: "", parentGroupId: null }));
++    const { app, storage } = setup();
++    // Supported legacy snapshots retain opaque names; new authoring rejects them.
++    const loaded = storage.load("p");
++    if (loaded.status !== "ok" || !loaded.value) throw Error("fixture missing");
++    storage.commit({...loaded.value, groups:["g1","g2"].map(id => createTokenGroup({projectId:"p",id,localName:"",parentGroupId:null})), tokens:[createToken({id:"legacy",projectId:"p",localName:"",parentGroupId:null,regeneration:"allowed"},[])]});
+     expect(ok(app.readProject("p")).groups.map(entry => entry.path)).toEqual([
+       { status: "derived", path: [""] }, { status: "derived", path: [""] },
+     ]);
+@@ -133,7 +136,7 @@ describe("rejected commands and storage boundary", () => {
+     ok(app.createGroup({ projectId: "q", id: "foreign-group", localName: "Other", parentGroupId: null }));
+     ok(app.createColorToken({ ...literalInput, projectId: "q", id: "foreign-token", parentGroupId: null }));
+     const before = [storage.load("p"), storage.load("q")];
+-    expect(app.createGroup({ projectId: "missing", id: "g", localName: "", parentGroupId: null })).toMatchObject({ status: "failure", error: { code: "project-not-found" } });
++    expect(app.createGroup({ projectId: "missing", id: "g", localName: "newgroup", parentGroupId: null })).toMatchObject({ status: "failure", error: { code: "project-not-found" } });
+     expect(app.createColorToken({ ...literalInput, projectId: "missing" })).toMatchObject({ status: "failure", error: { code: "project-not-found" } });
+     expect(app.renameGroup("missing", "palette", "new")).toMatchObject({ status: "failure", error: { code: "project-not-found" } });
+     expect(app.inspectToken("missing", "primitive")).toMatchObject({ status: "failure", error: { code: "project-not-found" } });
+@@ -144,17 +147,17 @@ describe("rejected commands and storage boundary", () => {
+     expect(app.createColorToken(literalInput)).toMatchObject({ status: "failure", error: { code: "duplicate-identity", entityKind: "token" } });
+     expect(app.createGroup({ projectId: "p", id: "palette", localName: "overwrite", parentGroupId: null })).toMatchObject({ status: "failure", error: { code: "duplicate-identity", entityKind: "group" } });
+     for (const parentGroupId of ["missing", "foreign-group"]) {
+-      expect(app.createGroup({ projectId: "p", id: "proposed", localName: "", parentGroupId })).toMatchObject({ status: "failure", error: { code: "invalid-candidate", namespaceDiagnostics: [{ code: "missing-parent-group", entityId: "proposed", parentGroupId }] } });
++      expect(app.createGroup({ projectId: "p", id: "proposed", localName: "proposed", parentGroupId })).toMatchObject({ status: "failure", error: { code: "invalid-candidate", namespaceDiagnostics: [{ code: "missing-parent-group", entityId: "proposed", parentGroupId }] } });
+       expect(app.createColorToken({ ...literalInput, id: "proposed", parentGroupId })).toMatchObject({ status: "failure", error: { code: "invalid-candidate", namespaceDiagnostics: [{ code: "missing-parent-group", entityId: "proposed", parentGroupId }] } });
+     }
+     for (const targetTokenId of ["missing", "foreign-token"]) {
+-      expect(app.createColorToken({ ...literalInput, id: "alias", value: { kind: "token-reference", targetTokenId, valuePath: [] } })).toMatchObject({ status: "failure", error: { code: "invalid-candidate", referenceDiagnostics: [{ code: "missing-reference", tokenId: "alias", targetTokenId, condition: [] }] } });
++      expect(app.createColorToken({ ...literalInput, id: "alias", localName: "alias", value: { kind: "token-reference", targetTokenId, valuePath: [] } })).toMatchObject({ status: "failure", error: { code: "invalid-candidate", referenceDiagnostics: [{ code: "missing-reference", tokenId: "alias", targetTokenId, condition: [] }] } });
+     }
+     expect([storage.load("p"), storage.load("q")]).toEqual(before);
+     expect(ok(app.readProject("p")).tokens.map(entry => entry.authored.id)).toEqual(["primitive"]);
+     // Identities are project/collection-scoped; no global identity registry.
+-    ok(app.createGroup({ projectId: "q", id: "primitive", localName: "", parentGroupId: null }));
+-    ok(app.createColorToken({ ...literalInput, projectId: "q", parentGroupId: null }));
++    ok(app.createGroup({ projectId: "q", id: "primitive", localName: "distinct", parentGroupId: null }));
++    ok(app.createColorToken({ ...literalInput, projectId: "q", localName:"distincttoken", parentGroupId: null }));
+   });
+ 
+   it("copies caller inputs, command results, project reads and resolution results", () => {
+@@ -202,7 +205,7 @@ describe("rejected commands and storage boundary", () => {
+     storage.failCommit = true;
+     const commands = [
+       () => app.createProject({ id: "q", name: "Other" }),
+-      () => app.createGroup({ projectId: "p", id: "g", localName: "", parentGroupId: null }),
++      () => app.createGroup({ projectId: "p", id: "g", localName: "newgroup", parentGroupId: null }),
+       () => app.renameGroup("p", "neutral", "changed"),
+       () => app.createColorToken(literalInput),
+     ];
+diff --git a/test/presentation/identity-presentation.test.tsx b/test/presentation/identity-presentation.test.tsx
+index 7db1731..0c08484 100644
+--- a/test/presentation/identity-presentation.test.tsx
++++ b/test/presentation/identity-presentation.test.tsx
+@@ -116,7 +116,7 @@ describe("human identity labels in real consumers", () => {
+       createElement(ProjectNavigation, {
+         drawer: false,
+         project,
+-        group: "shared-prefix-group-b",
++        view: {kind:"group", id:"shared-prefix-group-b"},
+         unavailable: false,
+         onSelect: () => {},
+         onCreateGroup: () => {},
+@@ -376,7 +376,8 @@ describe("final reference choice context", () => {
+     ]);
+   });
+   it("disambiguates the actual Editor labels after adding the current-token hint", () => {
+-    const app = createAuthoringOperations(new InMemoryProjectStorage());
++    const storage = new InMemoryProjectStorage();
++    const app = createAuthoringOperations(storage);
+     ok(app.createProject({ id: "p", name: "P" }));
+     const value = {
+       kind: "literal" as const,
+@@ -399,6 +400,9 @@ describe("final reference choice context", () => {
+           value,
+         }),
+       );
++    const loaded = storage.load("p");
++    if (loaded.status !== "ok" || !loaded.value) throw Error("Fixture missing");
++    storage.commit({...loaded.value,tokens:loaded.value.tokens.map(token => token.id === "other" ? {...token,localName:"x (this token)"} : token)});
+     ok(
+       app.reviseColorToken({
+         projectId: "p",
+diff --git a/test/presentation/workbench-coordination.test.tsx b/test/presentation/workbench-coordination.test.tsx
+index 5dae418..a769d5c 100644
+--- a/test/presentation/workbench-coordination.test.tsx
++++ b/test/presentation/workbench-coordination.test.tsx
+@@ -369,3 +369,11 @@ it("preserves dirty raw editor channels across baseline refresh and resets only
+   expect(owner.dirty).toBe(false);
+   expect(owner.recovery).toBeUndefined();
+ });
++it('rejects a known naming collision before issuing a command and preserves raw creation input',async()=>{
++ const data:any={project:{id:'p',name:'P'},groups:[{authored:{id:'g',projectId:'p',localName:'Straße',parentGroupId:null},path:{status:'derived',path:['Straße']}}],tokens:[]};
++ const accept=vi.fn(),setError=vi.fn();
++ const hook=()=>useCreationForm(header,data,null,false,undefined,'',accept,{current:undefined},setError,vi.fn(),vi.fn());
++ let owner=render(hook);owner.begin('token');owner=render(hook);owner.change('name',' S T R A S S E ');owner=render(hook);
++ await owner.create();owner=render(hook);
++ expect(owner.name).toBe(' S T R A S S E ');expect(owner.dialog).toBe('token');expect(accept).not.toHaveBeenCalled();expect(setError).toHaveBeenLastCalledWith(expect.stringContaining('already in use'));
++});

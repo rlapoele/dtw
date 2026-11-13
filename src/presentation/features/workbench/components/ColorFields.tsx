@@ -67,7 +67,8 @@ export function ColorFields({
   const alphaRangeState = visualRangeState(s.literal.alpha, "0", "1");
   return (
     <>
-      <Field>
+      <div className="grid grid-cols-2 gap-3 mt-3">
+      <Field className="mb-1!">
         View color space
         <Select
           disabled={readOnly}
@@ -90,16 +91,8 @@ export function ColorFields({
           ))}
         </Select>
       </Field>
-      <p
-        id="space-note"
-        className="view-note text-caption pt-2.5 pb-4 -mt-2.5 text-muted-foreground wrap-anywhere"
-      >
-        {s.viewSpace === s.literal.colorSpace
-          ? `Draft in ${spaceName(s.literal.colorSpace)}. Switching view keeps exact values.`
-          : `Viewing approximate ${spaceName(s.viewSpace)}. Draft remains in ${spaceName(s.literal.colorSpace)} until a component edit.`}
-      </p>
       {d.colorSpace === "srgb" && (
-        <Field>
+        <Field className="mb-1!">
           RGB entry scale
           <Select
             disabled={readOnly}
@@ -129,6 +122,15 @@ export function ColorFields({
           </Select>
         </Field>
       )}
+      </div>
+      <p
+        id="space-note"
+        className="view-note text-caption pt-1 pb-2 -mt-1 text-muted-foreground wrap-anywhere"
+      >
+        {s.viewSpace === s.literal.colorSpace
+          ? `Draft in ${spaceName(s.literal.colorSpace)}. Switching view keeps exact values.`
+          : `Viewing approximate ${spaceName(s.viewSpace)}. Draft remains in ${spaceName(s.literal.colorSpace)} until a component edit.`}
+      </p>
       <div className="component-controls">
         {values.map((value, i) => {
           const identity = COLOR_COMPONENTS[d.colorSpace][i];
@@ -164,7 +166,7 @@ export function ColorFields({
           const available = rangeState === "available";
           return (
             <div
-              className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-5"
+              className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-3"
               key={d.colorSpace + "-" + i}
             >
               <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-1.5 m-0 text-caption font-medium">
@@ -237,7 +239,7 @@ export function ColorFields({
           );
         })}
       </div>
-      <div className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-5 alpha-control border-t border-border pt-4.5">
+      <div className="component-control small:gap-x-3 grid min-w-0 gap-x-4 gap-y-0 mb-3 alpha-control border-t border-border pt-3">
         <label className="component-value col-start-2 row-start-1 row-span-2 flex min-w-0 flex-col items-stretch gap-1.5 m-0 text-caption font-medium">
           <span>Alpha</span>
           <Input
@@ -280,6 +282,7 @@ export function ColorFields({
           </p>
         )}
       </div>
+      <details className="text-caption text-muted-foreground"><summary>Color entry guidance</summary>
       <p className="helper text-muted-foreground font-normal">
         {bytes
           ? "Canonical whole numbers or none on the 0–255 scale"
@@ -287,6 +290,7 @@ export function ColorFields({
         ; alpha 0–1. Sliders are illustrative stepped edits. Derived views and
         byte displays may be approximate. Apply uses {s.literal.colorSpace}.
       </p>
+      </details>
       {bytes && (
         <p className="helper text-muted-foreground font-normal mono break-words">
           Normalized draft: [{s.literal.components.join(", ")}]

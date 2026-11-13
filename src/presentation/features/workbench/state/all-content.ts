@@ -1,9 +1,11 @@
+import { namespaceEntryDetails, pathLabel } from "../readback";
 import type { ProjectContext } from "@application/retention/projections";
 
 export type MembershipEntry = {
   kind: "group" | "token";
   id: string;
   label: string;
+  detail?: string;
 };
 
 /** Presentation blocks preserve every exact identity and the existing order. */
@@ -11,16 +13,19 @@ export function membershipBlocks(
   context: ProjectContext,
   groupLabels: ReadonlyMap<string, string>,
 ): readonly (readonly MembershipEntry[])[] {
+  const details = namespaceEntryDetails(context);
   const entries: MembershipEntry[] = [
     ...context.groups.map(({ authored }) => ({
       kind: "group" as const,
       id: authored.id,
       label: `Group · ${groupLabels.get(authored.id)} · ${JSON.stringify(authored.id)}`,
+      detail: details.get(JSON.stringify(["group",authored.id])),
     })),
-    ...context.tokens.map(({ authored }) => ({
+    ...context.tokens.map(({ authored, path }) => ({
       kind: "token" as const,
       id: authored.id,
-      label: `Token · ${authored.localName || "(unnamed)"} · ${JSON.stringify(authored.id)}`,
+      label: `Token · ${pathLabel(path)} · ${authored.definition?.type ?? "Unassigned"} · ${JSON.stringify(authored.id)}`,
+      detail: details.get(JSON.stringify(["token",authored.id])),
     })),
   ];
   return Array.from({ length: Math.ceil(entries.length / 100) }, (_, index) =>
