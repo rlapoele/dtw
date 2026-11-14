@@ -64,6 +64,12 @@ all four mockups, saved on 15 November 2026. They identify shared and responsive
 composition, existing owners and candidate additions. The decomposition remains
 a proposal, not an implemented folder migration or finalized architecture.
 
+The user-endorsed [presentation organisation proposal V1](./presentation-organisation-proposal-v1.md)
+is the preferred future folder/file direction: named component subtrees, colocated
+hooks/helpers and a generic `ui/` folder, without the single-feature wrapper. It
+supersedes the earlier map's target paths, not current delivered ownership. No
+implementation is authorized by persisting that proposal.
+
 | Region | Direction |
 | --- | --- |
 | Project header | Compact project context and switching; proposed Undo/Redo, Import, Export and project menu. |

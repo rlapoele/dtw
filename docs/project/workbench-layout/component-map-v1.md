@@ -5,6 +5,13 @@ possible React responsibilities. It supplements the [layout direction](./README.
 and the [current organisation](../workbench-component-organisation.md); it does
 not replace current ownership or establish a finalized architecture.
 
+**Organisation follow-up — 15 November 2026:** the user endorsed the
+[component-oriented presentation organisation proposal V1](./presentation-organisation-proposal-v1.md).
+That proposal replaces this document's conservative target folder paths with a
+structure without `features/workbench`, while retaining the annotation IDs and
+responsibility guidance below. The paths here remain the original decomposition
+proposal, not the preferred future tree or a record of a completed migration.
+
 The annotated images describe visual regions and nested rendering sections.
 They do not prescribe one file per rectangle or prove delivered behavior.
 No implementation, analyst review, new feature contract or qualification restart

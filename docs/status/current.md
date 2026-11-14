@@ -10,6 +10,23 @@
 
 ## Current focus
 
+**Presentation organisation proposal persisted — 15 November 2026:** the user
+endorsed the [component-oriented target tree V1](../project/workbench-layout/presentation-organisation-proposal-v1.md)
+and requested that it be saved. The proposal removes the single-feature wrapper,
+uses named component subtrees with colocated hooks/helpers, and separates generic
+UI, token-aware display and cross-screen backup responsibilities. It records the
+full tree, rename candidates, rationale and conventions, distinguishing future
+capabilities from existing responsibilities. Its target paths supersede the
+earlier decomposition map's conservative paths, not the current source tree.
+Only documentation changed; no file migration, implementation, analyst review or
+qualification restart occurred. Increment 009's pending review and acceptance
+gaps remain unchanged. Verification for this save is limited to prose, local links
+and whitespace, with a five-minute documentation ceiling and zero planned harness
+repairs; prior stopped verification remains stopped.
+All 63 checked local links across the five affected Markdown files resolve;
+whitespace checks pass. Approximately two documentation-review minutes
+(estimate), zero repairs; checks stopped. No application tests or builds ran.
+
 **Annotated layout decomposition — 15 November 2026:** the user requested visual
 component breakdowns of all four saved mockups and a proposed React/file map.
 The [annotated gallery and map V1](../project/workbench-layout/component-map-v1.md)

@@ -48,3 +48,10 @@ V1](./workbench-layout/component-map-v1.md) propose how the endorsed future visu
 direction could reuse and extend these owners. That guide distinguishes existing
 files from candidate additions; it does not replace this current organisation or
 authorize implementation.
+
+The subsequent [presentation organisation proposal
+V1](./workbench-layout/presentation-organisation-proposal-v1.md) is the
+user-endorsed future folder direction, removing `features/workbench` in favor of
+named component subtrees and colocated hooks/helpers. It replaces the earlier
+decomposition's proposed paths; this document still owns the current organisation
+until an agreed migration is implemented.
