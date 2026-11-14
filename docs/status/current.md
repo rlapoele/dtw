@@ -1,6 +1,6 @@
 # Current Project Status
 
-> Last updated: 14 November 2026
+> Last updated: 15 November 2026
 >
 > Phase: Increment 009 Phase 2 implemented and independently reviewed; user review pending
 >
@@ -9,6 +9,23 @@
 > Applied data is browser-profile/origin local; drafts and forms remain session-only.
 
 ## Current focus
+
+**Annotated layout decomposition — 15 November 2026:** the user requested visual
+component breakdowns of all four saved mockups and a proposed React/file map.
+The [annotated gallery and map V1](../project/workbench-layout/component-map-v1.md)
+identify shared labels, nested sections, existing owners and candidate additions.
+All four annotated derivatives and their generation prompts are saved beside the
+unchanged original mockups. A separate designer drafted the map from current
+source; coordinator source/image inspection clarified responsive ownership and
+navigation. This is a design/organisation proposal, not analyst-reviewed final
+architecture or implementation authorization. No application code, dependencies,
+tests or builds changed; no browser work or qualification restart occurred.
+Increment 009 review and acceptance gaps remain unchanged.
+All 56 checked local documentation links resolve, saved annotated PNGs match the
+generated derivatives, and the four original mockups remain byte-identical to
+HEAD. Markdown whitespace checks pass. Approximately 9–10 aggregate design/source/
+documentation review minutes (estimate, including designer work), zero harness
+repairs; checks stopped. This adds no application acceptance evidence.
 
 **Visual direction saved — 14 November 2026:** the user endorsed the revised
 workbench layout and responsive concepts and requested durable project references.

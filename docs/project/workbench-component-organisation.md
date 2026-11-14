@@ -40,3 +40,11 @@ and new source paths for review. Frozen prototypes, research and old evidence ke
 their recorded source references and hashes; replay them at their recorded Git
 baseline rather than adding current-tree compatibility wrappers. This organisation
 change does not restart their qualification campaigns.
+
+## Future layout decomposition
+
+The [15 November 2026 annotated mockups and component map
+V1](./workbench-layout/component-map-v1.md) propose how the endorsed future visual
+direction could reuse and extend these owners. That guide distinguishes existing
+files from candidate additions; it does not replace this current organisation or
+authorize implementation.

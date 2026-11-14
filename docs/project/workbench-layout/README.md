@@ -58,6 +58,12 @@ Browsing and editing each receive the full content width.
 
 ## Shell and information hierarchy
 
+The [annotated decomposition and proposed React component/file map
+V1](./component-map-v1.md) provide a companion implementation-planning guide for
+all four mockups, saved on 15 November 2026. They identify shared and responsive
+composition, existing owners and candidate additions. The decomposition remains
+a proposal, not an implemented folder migration or finalized architecture.
+
 | Region | Direction |
 | --- | --- |
 | Project header | Compact project context and switching; proposed Undo/Redo, Import, Export and project menu. |
