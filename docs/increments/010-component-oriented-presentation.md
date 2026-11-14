@@ -1,8 +1,8 @@
 # Increment 010: Component-oriented presentation
 
-- Contract status: Draft
-- Delivery status: Not started
-- Agreement: planning requested on 15 November 2026; this first-slice contract is not yet agreed and implementation is not authorized.
+- Contract status: Agreed
+- Delivery status: Partially completed — first-slice implementation and independent review finished; native-browser acceptance remains unverified
+- Agreement: on 15 November 2026 the user instructed “Go ahead with increment 10”, agreeing this first-slice contract and authorizing implementation through the separate developer/reviewer workflow. Later roadmap slices remain outside this authorization.
 - References: [organisation proposal V1](../project/workbench-layout/presentation-organisation-proposal-v1.md), [decomposition V1](../project/workbench-layout/component-map-v1.md), [layout direction](../project/workbench-layout/README.md), [current ownership](../project/workbench-component-organisation.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md).
 
 ## Outcome
@@ -278,4 +278,110 @@ this documentation task and not a reset of prior qualification campaigns.
 
 ## Agreed amendments
 
-None. Draft only.
+### First-slice agreement and implementation authorization — 15 November 2026
+
+The user authorized Increment 010 after the draft roadmap and first-slice contract
+were saved, committed and pushed. The agreement covers only shared UI/backup roots
+and project-entry extraction, AC-1 through AC-6. Earlier pending/Draft statements
+record planning history and are superseded by this authorization, not permission
+to implement later roadmap slices or the replacement interface.
+
+Implementation baseline: `717c08e` with no pre-existing working-tree changes.
+Coordinator authorization/status edits are documentation outside the source
+snapshot. Preserve project/session lifetimes, command authority, current DOM,
+styles and component APIs as contracted. No new designer exploration is needed
+for this behavior-preserving slice.
+
+The single implementation verification allowance is now active: at most 30
+aggregate minutes and two harness-repair cycles, stopping at either limit or
+earlier for low value/tooling dominance. Initial allocation: developer up to ten
+minutes, fresh reviewer seven, coordinator/browser ten, three reserved for focused
+reconciliation or repairs; these share one ceiling and are not new allowances.
+Record actual consumption at handoffs. Run focused affected tests and one final
+build rather than duplicate typechecks/full-suite campaigns. Use existing Chrome
+tools for bounded ordinary parity, and report unreachable required states as
+unverified. Old 007/008/009 campaigns stay stopped; no expanded qualification is
+authorized. Staging, committing and pushing remain with the user.
+
+## First-slice implementation handoff — 15 November 2026
+
+**Implementation and independent source review finished; delivery Partially
+completed because required native-browser/focus/compact acceptance is not fully
+observed.** No demonstrated implementation defect remains. This handoff covers
+only the agreed shared-roots/project-entry slice, not the rest of the roadmap.
+
+### Delivered result
+
+- Seven generic controls now live in `src/presentation/ui/` with the same APIs,
+  markup and class-composition behavior.
+- Host lifetime and project-entry hooks live at `app/useWorkbenchHost.ts` and
+  `projects/useProjects.ts`, still called unconditionally by App.
+- Cross-screen restore and workbench backup coordination live under
+  `project-backup/`; their call sites, signatures and session lifetimes are preserved.
+- `ProjectsScreen`, `ProjectList`, `ProjectListItem`, `CreateProjectForm` and
+  `ProjectRecovery` render the extracted entry presentation through controlled
+  data/actions/refs. App retains host/project orchestration, file reset/restaging,
+  preview/departure state, refs, dialog configuration and the Workbench project key.
+- Live imports, focused tests and current-path documentation follow the moves.
+  Workbench, navigation, editor/session and remaining internals changed only their
+  moved-module imports. No replacement responsive UI or future scaffolding was added.
+
+See the [move map](../../output/increment-010-first-slice/moves.json) and
+[current ownership map](../project/workbench-component-organisation.md) for the
+deliberate partial migration.
+
+### Snapshot and evidence
+
+Implementation base: `717c08e3e982b3cf1a724a5a82d74c5469b44a6e`.
+The [exact source/test/current-doc patch](../../output/increment-010-first-slice/review-source.patch)
+and [58-entry hash manifest](../../output/increment-010-first-slice/review-source-manifest.json)
+identify the frozen independent-review snapshot, including new and deleted files.
+Coordinator contract/status/report edits are outside that source snapshot.
+
+| Criterion | Evidence and disposition |
+| --- | --- |
+| AC-1 ownership/imports | Verified by move comparison, live-import checks and fresh independent source review. All 12 moved modules preserve their implementations after import mapping; five entry components are extracted. |
+| AC-2 project entry | Source/render/controlled-host evidence covers catalogue branches, identities, counts, disablement, validation/open failure. In-app smoke observed required-name focus, creation, return and reopening. Native Chrome failure/legacy-state coverage is not claimed. |
+| AC-3 retained commands | Unchanged hook/host authority independently reviewed; controlled-host checks cover retained-read retry without replay and unknown-write fencing/reset. Native unknown-write Review/Stay/Leave focus remains unverified. |
+| AC-4 sessions/restore | Source and focused tests preserve editor/key/restore authority; in-app smoke retained invalid raw input across All content and Keep editing. Native file-selection/restaging/cancel/replacement behavior was not replayed. |
+| AC-5 markup/focus/style | Independent source review confirms no extra DOM wrapper and unchanged markup/classes/roles/refs/control APIs. In-app required-name focus and ordinary departure were observed. Exact compact geometry, screenshots and full native focus/restore acceptance remain unverified. |
+| AC-6 architecture/scope | Verified by independent diff/source review: no domain/application/host/protocol/codec/dependency/configuration/style changes; existing non-App source changes are imports only. |
+
+Developer [report](../../output/increment-010-first-slice/developer-report.md):
+39 focused tests across six files passed, including new entry-state and
+controlled-host characterizations. The single final `npm run build` passed all
+four TypeScript configurations and Vite bundling. The existing >500 kB chunk
+advisory remains; no performance claim follows. No full-suite rerun occurred.
+
+The fresh [independent reviewer](../../output/increment-010-first-slice/reviewer.md)
+derived expectations from the agreed contract before inspecting implementation,
+confirmed all 58 manifest entries and patch integrity, and found no actionable
+implementation findings. It ran no duplicate tests/builds or browser qualification.
+
+Coordinator [browser observations](../../output/increment-010-first-slice/browser-observations.md)
+separate in-app Chromium evidence from native Chrome. Native Chrome was unavailable
+as a dedicated connected surface; screenshot capture was unavailable and the
+requested compact viewport did not match the reported page size. No native Chrome,
+exact compact or screenshot parity is claimed. No connector/profile/harness was
+installed or repaired. The temporary tab/override and task-local Vite process were
+closed after checking; no existing user projects were changed.
+
+### Verification accounting and next action
+
+Approximately **21 of 30 aggregate verification minutes** used (estimate:
+developer six, independent reviewer five, coordinator browser/source/reconciliation
+ten), **zero harness repairs**. Checks stopped with useful source/test evidence and
+explicit browser-tool limits; the unused allowance does not authorize automatic
+alternate-stack setup or another campaign. All prior 007/008/009 stop decisions
+remain unchanged. No failed or unobserved old case is relabelled passed.
+
+Next: user review of the first-slice result and remaining native-browser acceptance.
+Any resumed automated acceptance needs an explicitly authorized bounded follow-up;
+manual checks should use disposable projects and retain the distinction between
+source, controlled-host and browser evidence. Do not mark 010 Completed until its
+required acceptance is evidenced or the user explicitly changes its closure scope.
+Later shell/workspace and inspector/display reorganisation still needs a bounded
+contract/amendment and implementation authorization. Staging, committing and
+pushing remain with the user.
+
+Suggested commit: `refactor: extract project entry and shared presentation roots`.

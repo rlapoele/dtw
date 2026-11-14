@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { Icon } from "@presentation/components/ui/icon";
+import { Icon } from "@presentation/ui/icon";
 // Keep native select semantics and keyboard behavior; the outline icon is decorative.
 export function Select({ className, ...props }: ComponentProps<"select">) {
   return (

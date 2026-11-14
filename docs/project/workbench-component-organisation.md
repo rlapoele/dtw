@@ -1,14 +1,24 @@
 # Workbench component organisation
 
-Established for Increment 009 Phase 2, 13 November 2026. Paths below are relative
-to `src/presentation/features/workbench/` unless stated otherwise.
+Current ownership after the Increment 010 first-slice extraction, 15 November 2026.
+This is a partial migration toward the endorsed component-oriented direction.
+Paths in the first table are relative to `src/presentation/`.
+
+| Functional block | Components and local owners |
+|---|---|
+| Shared controls | `ui/{badge,button,dialog-content,field,icon,input,select}` retain their existing APIs and markup. |
+| Project entry | `projects/ProjectsScreen` composes `ProjectList/ProjectList`, `ProjectListItem`, `CreateProjectForm/CreateProjectForm` and `ProjectRecovery/ProjectRecovery` with controlled values/actions. `projects/useProjects` still runs unconditionally in App and owns entry commands and readback. |
+| Host lifetime | `app/useWorkbenchHost` retains the one-host lifetime and explicit reset. App retains refs, preview/departure state, event orchestration and dialog configuration. |
+| Backup | `project-backup/RestoreDialog/RestoreDialog` is the cross-screen entry. Its colocated `useBackupRestore` owns staged protection; `project-backup/useWorkbenchBackup` retains file/download/preview coordination at its existing Workbench call site. |
+
+The remaining workbench paths below are relative to
+`src/presentation/features/workbench/`; their ownership has not yet migrated.
 
 | Functional block | Components and local owners |
 |---|---|
 | Browser | `browser/TokenBrowser`, `ProjectedTokenList`, `AllContent`, `ProjectNavigation`; `browser-view` owns active-view/creation-parent mapping and `all-content` owns membership presentation. |
 | Inspector | `inspector/WorkbenchInspector` composes group/token inspection; `EditableTokenInspector` is the single `useTokenEditor` owner. `EditorFields` composes authored/resolved sections; `EditRecovery`, `EditorActions`, `ColorFields`, `ReferenceFields`, `TokenMetadata`, `ResolvedTokenPanel` and `GroupInspector` receive section-specific values/actions. `session` owns pure draft operations; `inspection-tabs` owns tab rendering. |
 | Creation | `creation/CreationDialog`, `useCreationForm` and `naming-preview` own the current form, reviewed baseline and deterministic name feedback. |
-| Backup | `backup/RestoreDialog`, `useBackupRestore` and `useWorkbenchBackup` own staged restore protection, file/download orchestration and preview state. |
 | Recovery | `recovery/RetentionRecovery`, `DepartureGuard` and `ProjectDiagnostics` render retained-outcome/departure/diagnostic feedback. Command and lifecycle authority stays with existing owners. |
 | Coordination | `coordination/useProjectCommands`, `useProjectReadback`, `useWorkbenchLifecycle`, `useWorkbenchLayout` and pure `readback` helpers coordinate existing owners and coherent presentation. |
 | Color | `color/` keeps existing pure presentation helpers. |
@@ -16,9 +26,10 @@ to `src/presentation/features/workbench/` unless stated otherwise.
 `presentation/app/Workbench` connects owners and composes the screen. Its
 `WorkbenchNavigation` file owns the cohesive desktop pane and compact drawer
 markup; Workbench supplies navigation content and controls open/expanded state.
-Project entry/host hooks remain in `hooks/`; `App` and the host/application/domain
-layers retain their existing responsibilities. Generic UI remains under
-`presentation/components/ui/`.
+App and the host/application/domain layers retain their existing responsibilities.
+Generic UI now lives under `presentation/ui/`; the old shared-control, backup and
+hook paths have no forwarding wrappers. App keeps the workbench project-ID key
+and the single editor owner remains unchanged.
 
 Cross-block leaf renderers `ExactSource`, `AuthoredValue` and `swatch` remain in
 `components/`, alongside screen-shell `WorkbenchHeader`. There is no new shared
@@ -53,5 +64,10 @@ The subsequent [presentation organisation proposal
 V1](./workbench-layout/presentation-organisation-proposal-v1.md) is the
 user-endorsed future folder direction, removing `features/workbench` in favor of
 named component subtrees and colocated hooks/helpers. It replaces the earlier
-decomposition's proposed paths; this document still owns the current organisation
-until an agreed migration is implemented.
+decomposition's proposed paths; this document owns the current partial migration. Later shell/workspace and
+inspector/display slices remain outside the first-slice implementation.
+
+
+The Increment 010 [move map](../../output/increment-010-first-slice/moves.json)
+records the shared-root moves and App extractions. No later roadmap folders or
+components were created. Historical evidence/prototypes retain their recorded paths.

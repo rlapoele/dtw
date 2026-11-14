@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Dialog } from "@base-ui/react/dialog";
-import { Button } from "@presentation/components/ui/button";
-import { Icon } from "@presentation/components/ui/icon";
+import { Button } from "@presentation/ui/button";
+import { Icon } from "@presentation/ui/icon";
 
 export function NavigationPane({
   expanded,

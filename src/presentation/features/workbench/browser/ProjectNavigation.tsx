@@ -1,7 +1,7 @@
 import type { BrowserView } from "./browser-view";
 import type { ProjectContext } from "@application/retention/projections";
-import { Icon } from "@presentation/components/ui/icon";
-import { Button } from "@presentation/components/ui/button";
+import { Icon } from "@presentation/ui/icon";
+import { Button } from "@presentation/ui/button";
 import {
   identityLabels,
   namespaceEntryDetails,

@@ -1,5 +1,5 @@
 import type { RefObject } from "react";
-import { Button } from "@presentation/components/ui/button";
+import { Button } from "@presentation/ui/button";
 import type { DraftSession } from "./session";
 import type { ImplementedAuthoredValue } from "@domain/token";
 

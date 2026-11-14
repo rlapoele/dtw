@@ -1,6 +1,6 @@
 import { memo, useEffect, useState } from "react";
 import type { ProjectContext } from "@application/retention/projections";
-import { Button } from "@presentation/components/ui/button";
+import { Button } from "@presentation/ui/button";
 import {
   membershipBlocks,
   revealMembershipBlocks,

@@ -1,5 +1,5 @@
-import { Button } from "@presentation/components/ui/button";
-import { Icon } from "@presentation/components/ui/icon";
+import { Button } from "@presentation/ui/button";
+import { Icon } from "@presentation/ui/icon";
 
 import type { RefObject, ChangeEvent } from "react";
 export function WorkbenchHeader({

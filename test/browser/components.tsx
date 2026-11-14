@@ -1,9 +1,9 @@
-import { DialogContent } from "@presentation/components/ui/dialog-content";
+import { DialogContent } from "@presentation/ui/dialog-content";
 // Rendered API acceptance fixture; never imported by the production entry.
 import { useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Dialog } from "@base-ui/react/dialog";
-import { Button } from "@presentation/components/ui/button";
+import { Button } from "@presentation/ui/button";
 import "@presentation/styles/global.css";
 function Fixture() {
   const ref = useRef<HTMLButtonElement>(null);

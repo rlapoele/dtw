@@ -2,7 +2,8 @@
 
 > Last updated: 15 November 2026
 >
-> Phase: Increment 010 planning; first-slice contract Draft; implementation not started
+> Phase: Increment 010 first slice implemented and independently source-reviewed;
+> user review and remaining native-browser acceptance pending
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
@@ -10,109 +11,93 @@
 
 ## Current focus
 
-The user directed closure of Increment 009 and opening Increment 010, starting with
-presentation-code reorganisation using the endorsed component decomposition and
-folder proposal. The [010 roadmap and first-slice contract](../increments/010-component-oriented-presentation.md)
-are Draft. Starting planning is not agreement to the resulting contract or
-implementation authorization. No application code has been moved or changed.
+The user agreed Increment 010's first-slice contract and authorized implementation
+on 15 November 2026. The [implementation handoff](../increments/010-component-oriented-presentation.md#first-slice-implementation-handoff--15-november-2026)
+records delivery **Partially completed**: source migration and fresh independent
+review are finished with no actionable defects, while native-browser/focus/compact
+acceptance is not fully observed.
 
-The proposed first slice establishes shared UI/backup roots and extracts the
-existing project-entry presentation from App, retaining current host, project,
-restore and departure lifetimes. Workbench/editor reorganisation follows as
-roadmap-level slices; the replacement responsive shell, visual inventory,
-Details editing, relationships and contextual preview remain future scoped work.
-The roadmap does not commit all future component names, behaviors or increment
-numbers. See the contract for exact scope, acceptance and verification limits.
+Delivered: seven generic controls under `ui/`, host/project hooks under `app/` and
+`projects/`, cross-screen restore under `project-backup/`, and project-screen/list/
+item/form/recovery presentation extracted from App. App retains unconditional
+hooks, host/state/ref/dialog authority and the Workbench project-ID key. Remaining
+Workbench/navigation/editor changes are moved-module imports only. The
+[current ownership map](../project/workbench-component-organisation.md) documents
+this deliberate partial migration; the full target tree is not yet implemented.
 
-## Authoritative references
+## Evidence and limits
+
+The [010 contract/handoff](../increments/010-component-oriented-presentation.md)
+owns acceptance and accounting. The developer reports 39 focused tests passing and
+one final build passing four typechecks plus bundling; the existing >500 kB chunk
+advisory remains. The [source patch and 58-entry manifest](../../output/increment-010-first-slice/review-source-manifest.json)
+identify the stable review snapshot against `717c08e`. A fresh
+[independent source review](../../output/increment-010-first-slice/reviewer.md)
+confirmed snapshot integrity, preserved ownership/markup and import-only workbench
+changes, with no actionable implementation findings.
+
+[Bounded in-app Chromium observations](../../output/increment-010-first-slice/browser-observations.md)
+cover required-name focus, project/token creation, invalid draft preservation,
+All content, Keep editing, Cancel/return and reopening retained content. They are
+not native Chrome qualification. Dedicated Chrome control and screenshots were
+unavailable; the requested compact viewport was not established. Native restore
+file/cancel/replacement, unknown-write Review/Stay/Leave focus, exact geometry and
+full keyboard/focus acceptance remain explicitly unverified. No alternate harness,
+profile change, connector install or qualification restart was attempted.
+
+Checks stopped at approximately 21 of 30 aggregate verification minutes (estimate),
+zero harness repairs. Unused time does not authorize automatically continuing
+past the recorded stop; the owning handoff explains the tool limits. Source/tests
+remain frozen after independent review. Only coordinator handoff/report edits
+followed. No staging, committing or pushing occurred.
+
+## Direction and roadmap
 
 - [Presentation organisation proposal V1](../project/workbench-layout/presentation-organisation-proposal-v1.md):
-  user-endorsed target tree without the single-feature wrapper, named component
-  subtrees, colocated hooks/helpers and generic UI. It replaces the earlier
-  decomposition map's proposed paths, not the current source tree.
-- [Annotated component map V1](../project/workbench-layout/component-map-v1.md):
-  all four saved annotated derivatives, shared IDs and responsibility guidance.
-- [Layout direction and original mockups](../project/workbench-layout/README.md):
-  visual library, relationships, compact desktop and mobile browse/edit direction;
-  proposed interactions and known generated-image inconsistencies remain explicit.
-- [Current ownership map](../project/workbench-component-organisation.md): delivered
-  components and single editor-session ownership before any 010 migration.
-- [Presentation conventions](../project/presentation-conventions.md),
-  [architecture](../project/architecture.md),
-  [open questions](../planning/open-questions.md) and
-  [agent workflow](../workflow/agent-roles.md) retain their authority.
+  endorsed destination without the single-feature wrapper; named component
+  subtrees, colocated hooks/helpers and generic UI.
+- [Annotated map V1](../project/workbench-layout/component-map-v1.md) and
+  [layout/original mockups](../project/workbench-layout/README.md): responsibility
+  guidance and visual direction, with known generated-image limitations.
+- [010 roadmap](../increments/010-component-oriented-presentation.md#delivery-direction):
+  later shell/workspace and inspector/display reorganisation, responsive shell,
+  visual browsing, Details editing and relationships/previews remain scoped future
+  work. No future components, interactions, increment numbers or delivery order
+  beyond the agreed first slice are implicitly committed.
 
-## Increment 009 closure
+Architecture, presentation conventions and open questions keep their authority.
+Backup remains distinct from interchange; no new adapters, types, variation
+comparison, persistent drafts, state library or host capabilities were added.
 
-**Lifecycle Closed by user instruction on 15 November 2026; delivery remains
-Partially completed.** Implementation and independent review, including both
-closure phases and the slider extension, are finished. The
-[closure record and deferred acceptance](../increments/009-workbench-usability-and-component-boundaries.md#user-directed-closure--15-november-2026)
-end the active handoff cycle without claiming the user executed every outstanding
-manual check or that unverified criteria passed. Earlier pending-review prose in
-historical handoffs is superseded by this closure record.
+## Earlier increments and deferred qualification
 
-Remaining session/focus/departure, exceptional disclosure/Find, exact backup
-roundtrip, post-extension viewport and rare-recovery evidence stays deferred as
-recorded there. No demonstrated new defect is inferred from these evidence gaps.
-They do not become mandatory replay of an old campaign in 010, but any later
-change must still verify its own affected behavior within its agreed scope.
+Increment 009 is **Closed by user instruction**, with delivery Partially completed.
+Its [closure record](../increments/009-workbench-usability-and-component-boundaries.md#user-directed-closure--15-november-2026)
+retains outstanding checks as deferred/unverified rather than user-reported passes.
+010 does not reopen that work or transfer every old evidence gap into a new gate.
 
-Original 009, Phase 1, slider-extension and Phase 2 verification consumption and
-stopping decisions remain in the owning increment. None is reset or restarted.
-Historical tests, builds, reviews and Chrome evidence identify their original
-snapshots; closure/planning ran no new application checks.
-
-## Earlier completed increments and qualification
-
-Increments 007 and 008 remain completed on the recorded user-reported manual
-acceptance. Browser retention is local to one normal profile/origin; drafts and
-forms remain session-only. Chrome is the automated baseline; broader engines
-remain deferred until the fully featured PWA. No new support claim is made.
-
-The [007 deferred qualification register](../increments/007-local-retention-and-backup.md#deferred-qualification)
-continues to own large-source/adversarial-resource, exceptional lifecycle,
-deployed HTTPS/CSP, accessibility and broader-engine gaps. The recorded in-page
-Find API visibility observation remains unresolved, not proof that native browser
-Find fails. No old campaign restarts through a new agent, snapshot or folder move;
-the stopped 007 campaign's remaining authorized allowance remains zero.
-Install/offline PWA acceptance, interchange and Electron remain later milestones.
+Increments 007/008 remain completed on their recorded manual acceptance. The
+[007 deferred qualification register](../increments/007-local-retention-and-backup.md#deferred-qualification)
+retains large-source, adversarial-resource, exceptional lifecycle, deployed HTTPS/
+CSP, dedicated accessibility and additional-engine gaps. The in-page Find API
+visibility observation remains unresolved, not proof that native browser Find
+fails. Chrome remains the automated baseline; broader engines follow the fully
+featured PWA. No old campaign restarts through new agents, snapshots or folder
+moves; the stopped 007 campaign has zero remaining authorized allowance.
+Install/offline PWA acceptance, token interchange and Electron remain later work.
 
 ## Next meaningful action
 
-User review of the 010 roadmap and detailed first-slice contract. Resolve any
-material scope choices and record agreement/implementation authorization before
-starting source edits. Later implementation uses one developer followed by a
-fresh reviewer on an identified stable snapshot; this planning task does not
-start either role. No replacement-interface design review is implied by drafting
-a behavior-preserving reorganisation contract.
-
-Staging, committing and pushing remain with the user. Future verification uses the
-010 contract's scoped allowance only when implementation is authorized, preserving
-prior stop decisions and deferred qualification.
-
-## Evidence and continuity
-
-This closure/planning task changes documentation only. Its bounded checks are
-source/prose consistency, local links and whitespace; no application tests,
-builds, browser sessions or qualification runs are part of this task. The 010
-contract records planning-review effort separately from any future implementation
-allowance.
-
-The [010 planning handoff](../increments/010-component-oriented-presentation.md#planning-handoff--15-november-2026)
-records the separate analyst draft, coordinator review, 117 successful local-link
-checks and whitespace checks. Planning review stopped at approximately nine of ten
-aggregate minutes, zero repairs. The first-slice implementation allowance is
-proposed and inactive; no source migration or application verification has begun.
-
-The [outgoing handoff snapshot](history/2026-11-15-before-increment-010-planning.md)
-preserves the previous chronology; owning increments and Git retain detailed
-evidence. The [pre-008 closure snapshot](history/2026-11-12-increment-008-before-closure.md)
-remains available for earlier context.
+User review of the delivered 010 first slice and its explicit native-browser
+acceptance gaps. Do not mark Completed solely from source/tests or silently waive
+unobserved criteria. A bounded automated follow-up needs explicit authorization;
+manual checks use disposable data. Later roadmap slices require their own bounded
+agreement before code changes. Leave staging, committing and pushing to the user.
 
 ## Resume
 
-Read AGENTS.md, this handoff, actual Git state and the 010 draft/agreement. Use the
-[README](../../README.md) for commands and delivery limitations. Draft status,
-visual endorsement, historical evidence and a continuity request do not authorize
-implementation or qualification on their own.
+Read AGENTS.md, this handoff, actual Git state and the 010 contract/report. Use the
+[README](../../README.md) for commands and delivery limits. The
+[outgoing pre-010 snapshot](history/2026-11-15-before-increment-010-planning.md)
+preserves earlier chronology. Existing evidence and unused budget do not authorize
+implementation of later slices or restarting stopped qualification.

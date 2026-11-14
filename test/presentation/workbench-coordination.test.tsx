@@ -48,10 +48,11 @@ vi.mock("react", async (original) => {
     },
   };
 });
+import { useProjects } from "@presentation/projects/useProjects";
 import { useProjectReadback } from "@presentation/features/workbench/coordination/useProjectReadback";
 import { useProjectCommands } from "@presentation/features/workbench/coordination/useProjectCommands";
 import { useCreationForm } from "@presentation/features/workbench/creation/useCreationForm";
-import { restoreProtectionReducer } from "@presentation/features/workbench/backup/useBackupRestore";
+import { restoreProtectionReducer } from "@presentation/project-backup/RestoreDialog/useBackupRestore";
 import type {
   ProjectHeader,
   WorkbenchHost,
@@ -376,4 +377,80 @@ it('rejects a known naming collision before issuing a command and preserves raw 
  let owner=render(hook);owner.begin('token');owner=render(hook);owner.change('name',' S T R A S S E ');owner=render(hook);
  await owner.create();owner=render(hook);
  expect(owner.name).toBe(' S T R A S S E ');expect(owner.dialog).toBe('token');expect(accept).not.toHaveBeenCalled();expect(setError).toHaveBeenLastCalledWith(expect.stringContaining('already in use'));
+});
+
+
+it("keeps project entry input after validation and open failure", async () => {
+  const service = host(async (op) => {
+    if (op === "openProject") throw Error("Reading unavailable");
+    return [];
+  });
+  const hook = () => useProjects({ current: service }, () => service, vi.fn(), false);
+  let owner = render(hook);
+  const focus = vi.fn();
+  owner.nameRef.current = { focus } as unknown as HTMLInputElement;
+  await owner.create();
+  owner = render(hook);
+  expect(owner.error).toBe("A project name is required.");
+  expect(focus).toHaveBeenCalledOnce();
+  expect(service.call).not.toHaveBeenCalled();
+  owner.setName("  Unfinished name  ");
+  owner = render(hook);
+  await owner.open("existing");
+  owner = render(hook);
+  expect(owner.name).toBe("  Unfinished name  ");
+  expect(owner.error).toBe("Reading unavailable");
+  expect(owner.project).toBeUndefined();
+});
+
+it("retries retained project reading without replaying creation", async () => {
+  let reads = 0;
+  const service = host(async (op, input) => {
+    if (op === "createProject") return {
+      status: "retained", receipt: { commandId: "create", result: { id: input.id } },
+    };
+    if (op === "openProject") {
+      if (++reads === 1) throw Error("Reading unavailable");
+      return header;
+    }
+  });
+  const hook = () => useProjects({ current: service }, () => service, vi.fn(), false);
+  let owner = render(hook);
+  owner.setName("  Exact name  ");
+  owner = render(hook);
+  await owner.create();
+  owner = render(hook);
+  expect(owner.retainedId).not.toBeNull();
+  expect(owner.name).toBe("  Exact name  ");
+  await owner.create();
+  owner.retryCreated();
+  await Promise.resolve();
+  await Promise.resolve();
+  owner = render(hook);
+  expect(owner.project).toEqual(header);
+  expect(owner.name).toBe("");
+  expect(vi.mocked(service.call).mock.calls.filter(([op]) => op === "createProject")).toHaveLength(1);
+});
+
+it("blocks unknown project creation until explicit departure fences and resets", async () => {
+  const service = host(async (op) => op === "createProject"
+    ? { status: "unknown", commandId: "original", reason: "Write unknown" }
+    : op === "catalogue" ? [] : undefined);
+  const reset = vi.fn();
+  const hook = () => useProjects({ current: service }, () => service, reset, false);
+  let owner = render(hook);
+  owner.setName("  Keep input  ");
+  owner = render(hook);
+  await owner.create();
+  owner = render(hook);
+  await owner.create();
+  expect(owner.name).toBe("  Keep input  ");
+  expect(owner.unknown?.commandId).toBe("original");
+  expect(vi.mocked(service.call).mock.calls.filter(([op]) => op === "createProject")).toHaveLength(1);
+  owner.leaveUnknown();
+  owner = render(hook);
+  expect(service.fence).toHaveBeenCalledOnce();
+  expect(reset).toHaveBeenCalledOnce();
+  expect(owner.name).toBe("");
+  expect(owner.unknown).toBeUndefined();
 });

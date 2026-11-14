@@ -59,7 +59,7 @@ Heroicons Outline is the sole application UI icon family. Reuse the existing `@h
 Icon-only controls need accessible names. Hide decorative icons from assistive technology and preserve the native semantics of their containing controls.
 
 **Shared Icon — 12 November 2026:** application callers use
-`@presentation/components/ui/icon`; only that component imports Heroicons directly.
+`@presentation/ui/icon`; only that component imports Heroicons directly.
 Its typed `name` is one of `menu`, `chevron-down`, `chevron-left`, `chevron-right`,
 `folder`, `info`, `plus`, `stack`, `grid` or `close`, backed by explicit imports of
 the ten Outline glyphs in use. Add a mapping when a real new icon is needed.
@@ -80,7 +80,7 @@ forwarded to the underlying glyph; accessibility defaults are owned by the wrapp
 
 ## Owned components and native controls
 
-Inspect `src/presentation/components/ui/` and the functional blocks under `src/presentation/features/workbench/` before adding another implementation. The [workbench ownership map](workbench-component-organisation.md) identifies the current component and workflow owners. Reuse or extend an existing component where appropriate. Use locally owned shadcn-style components built on Base UI or native HTML, adapted to the product.
+Inspect `src/presentation/ui/` and the functional blocks under `src/presentation/features/workbench/` before adding another implementation. The [workbench ownership map](workbench-component-organisation.md) identifies the current component and workflow owners. Reuse or extend an existing component where appropriate. Use locally owned shadcn-style components built on Base UI or native HTML, adapted to the product.
 
 Consider `Sheet`, `Dialog`/`AlertDialog`, `Select`, `Combobox`, `Field`, `Input`, `Checkbox`, `Alert`, `Skeleton`, `Spinner`, `Empty` and `Pagination`, alongside foundational `Button`/`Badge` primitives, when a real slice requires them. This list is neither exhaustive nor an installation checklist. Avoid speculative loading, pagination or modal machinery.
 

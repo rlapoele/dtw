@@ -1,7 +1,7 @@
-import { Button } from "@presentation/components/ui/button";
+import { Button } from "@presentation/ui/button";
 
 import { Dialog } from "@base-ui/react/dialog";
-import { DialogContent } from "@presentation/components/ui/dialog-content";
+import { DialogContent } from "@presentation/ui/dialog-content";
 
 export function DepartureGuard({
   open,

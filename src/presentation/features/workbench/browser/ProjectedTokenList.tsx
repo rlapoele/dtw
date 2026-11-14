@@ -4,7 +4,7 @@ import type {
 } from "@application/retention/projections";
 import { AuthoredValue } from "../components/AuthoredValue";
 import { Swatch } from "../components/swatch";
-import { Button } from "@presentation/components/ui/button";
+import { Button } from "@presentation/ui/button";
 import {
   identityLabels,
   namespaceEntryDetails,

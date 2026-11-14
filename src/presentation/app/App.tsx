@@ -1,23 +1,22 @@
 import { readBackupFile } from "@presentation/host/backup-file";
 import { useRef, useState } from "react";
 import type { RestorePreview } from "@presentation/host/protocol";
-import { useWorkbenchHost } from "@presentation/features/workbench/hooks/useWorkbenchHost";
-import { useProjects } from "@presentation/features/workbench/hooks/useProjects";
+import { useWorkbenchHost } from "@presentation/app/useWorkbenchHost";
+import { useProjects } from "@presentation/projects/useProjects";
 
 import { Dialog } from "@base-ui/react/dialog";
-import { DialogContent } from "@presentation/components/ui/dialog-content";
+import { DialogContent } from "@presentation/ui/dialog-content";
 
-import { RestoreDialog } from "@presentation/features/workbench/backup/RestoreDialog";
+import { RestoreDialog } from "@presentation/project-backup/RestoreDialog/RestoreDialog";
 
 import { Workbench } from "./Workbench";
 
-import { Icon } from "@presentation/components/ui/icon";
 import { WorkerWorkbenchHost } from "@presentation/host/worker-client";
 import type { WorkbenchHost } from "@presentation/host/protocol";
 
-import { Button } from "@presentation/components/ui/button";
-import { Field } from "@presentation/components/ui/field";
-import { Input } from "@presentation/components/ui/input";
+import { Button } from "@presentation/ui/button";
+import { ProjectsScreen } from "@presentation/projects/ProjectsScreen";
+
 export function App({
   createHost = () => new WorkerWorkbenchHost(),
 }: { createHost?: () => WorkbenchHost } = {}) {
@@ -58,179 +57,32 @@ export function App({
       />
     );
   return (
-    <div className="app-shell flex h-dvh min-h-0 flex-col overflow-clip bg-background">
-      <header className="shrink-0 border-b border-border h-16 flex items-center px-6 gap-5">
-        <div className="brand flex items-center gap-2.5">
-          <Icon name="stack" />
-          <strong>Token Workbench</strong>
-        </div>
-        <span className="text-caption ml-auto text-muted-foreground">
-          Browser local
-        </span>
-      </header>
-      <main className="mx-auto w-full max-w-3xl px-7 py-10 overflow-auto">
-        {
-          <>
-            <h1>Projects in this browser</h1>
-            <p className="text-muted-foreground mt-3">
-              Applied work is retained automatically. Keep independent backups:
-              browser storage can be cleared or become unavailable.
-            </p>
-            {entries === undefined ? (
-              <p role="status" className="my-5">
-                {error
-                  ? "Projects unavailable. Existing browser data is unchanged."
-                  : "Loading projects…"}
-              </p>
-            ) : entries.length === 0 ? (
-              <p className="my-5">No projects retained in this browser.</p>
-            ) : (
-              <ul className="my-6 space-y-3">
-                {entries.map((entry) => (
-                  <li
-                    key={entry.rowKey}
-                    className="border border-border rounded-md p-4"
-                  >
-                    {entry.status === "supported" ? (
-                      <>
-                        <Button
-                          disabled={pending || retainedId !== null || !!unknown}
-                          onClick={() => void open(entry.id)}
-                        >
-                          {entry.name || "(unnamed project)"}
-                        </Button>
-                        <p className="text-caption text-muted-foreground mt-2">
-                          {entry.tokens} tokens · {entry.groups} groups
-                        </p>
-                      </>
-                    ) : (
-                      <p>Project unavailable: {entry.reason}</p>
-                    )}
-                    <p className="text-caption mt-2 wrap-anywhere">
-                      Identity: {JSON.stringify(entry.id)}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            )}
-            {error && entries === undefined && (
-              <Button onClick={() => void catalogue()}>
-                Retry reading projects
-              </Button>
-            )}
-            <section className="mt-8">
-              <h2 className="mb-3">Restore backup</h2>
-              <label className="text-caption block">
-                Project backup file
-                <input
-                  className="block mt-3 max-w-full"
-                  type="file"
-                  accept=".json,application/json"
-                  disabled={
-                    pending ||
-                    retainedId !== null ||
-                    !!unknown ||
-                    entries === undefined
-                  }
-                  onChange={async (event) => {
-                    const file = event.target.files?.[0];
-                    if (!file) return;
-                    selectedBackupFile.current = file;
-                    const next = await stageBackup(file);
-                    if (next) setPreview(next);
-                    event.target.value = "";
-                  }}
-                />
-              </label>
-            </section>
-            <form
-              className="mt-8"
-              onSubmit={(e) => {
-                e.preventDefault();
-                void create();
-              }}
-            >
-              <h2 className="mb-4">New project</h2>
-              <Field>
-                Project name
-                <Input
-                  ref={nameRef}
-                  value={name}
-                  disabled={
-                    pending ||
-                    retainedId !== null ||
-                    !!unknown ||
-                    entries === undefined
-                  }
-                  onChange={(e) => setName(e.target.value)}
-                  aria-describedby="project-error"
-                  aria-invalid={!!error}
-                />
-              </Field>
-              <Button
-                type="submit"
-                variant="default"
-                disabled={
-                  pending ||
-                  retainedId !== null ||
-                  !!unknown ||
-                  entries === undefined
-                }
-              >
-                {pending ? "Retaining project…" : "Create project"}
-              </Button>
-            </form>
-          </>
-        }
-        {pending &&
-          activeMutation.current &&
-          !unknown &&
-          retainedId === null && (
-            <section role="status" className="text-caption mt-4">
-              <p>Retention or preparation pending. Inputs are preserved.</p>
-              <Button onClick={() => void check()}>
-                Check retained result
-              </Button>
-            </section>
-          )}
-        {retainedId !== null && (
-          <section
-            role="status"
-            className="text-caption border border-border rounded p-3 mt-5"
-          >
-            <p>
-              The project is retained. Entered input is preserved while reading
-              is unavailable; creation will not be repeated.
-            </p>
-            <Button disabled={pending} onClick={retryCreated}>
-              Retry reading project
-            </Button>
-          </section>
-        )}
-        {unknown && (
-          <section
-            role="status"
-            className="text-caption border border-error-border rounded p-3 mt-5"
-          >
-            <p>
-              Retained result unknown. Entered name is preserved; do not repeat
-              creation.
-            </p>
-            <Button disabled={pending} onClick={() => void check()}>
-              Check retained result
-            </Button>
-            <Button disabled={pending} onClick={() => setLeaving(true)}>
-              Review before leaving
-            </Button>
-          </section>
-        )}
-        <p id="project-error" role="alert" className="text-destructive mt-4">
-          {error}
-        </p>
-        <p role="status" className="text-caption mt-4">
-          {notice}
-        </p>
-      </main>
+    <ProjectsScreen
+      entries={entries}
+      error={error}
+      notice={notice}
+      name={name}
+      pending={pending}
+      activeMutation={activeMutation.current}
+      retained={retainedId !== null}
+      unknown={!!unknown}
+      nameRef={nameRef}
+      onOpen={(id) => void open(id)}
+      onRetryCatalogue={() => void catalogue()}
+      onBackupChange={async (event) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        selectedBackupFile.current = file;
+        const next = await stageBackup(file);
+        if (next) setPreview(next);
+        event.target.value = "";
+      }}
+      onNameChange={setName}
+      onCreate={() => void create()}
+      onCheck={() => void check()}
+      onRetryReading={retryCreated}
+      onReviewLeaving={() => setLeaving(true)}
+      departureDialog={
       <Dialog.Root open={leaving} onOpenChange={setLeaving}>
         <DialogContent initialFocus={() => stay.current}>
           <Dialog.Title>Review before leaving</Dialog.Title>
@@ -253,7 +105,8 @@ export function App({
           </div>
         </DialogContent>
       </Dialog.Root>
-      {preview && host.current && (
+      }
+      restoreDialog={preview && host.current && (
         <RestoreDialog
           restage={async () => {
             if (!selectedBackupFile.current)
@@ -274,6 +127,6 @@ export function App({
           }}
         />
       )}
-    </div>
+    />
   );
 }

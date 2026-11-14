@@ -3,8 +3,8 @@ import {
   COMPONENT_NAMES,
   componentSuffix,
 } from "@domain/color-components";
-import { Field } from "@presentation/components/ui/field";
-import { Input } from "@presentation/components/ui/input";
+import { Field } from "@presentation/ui/field";
+import { Input } from "@presentation/ui/input";
 import type { CSSProperties } from "react";
 import { COLOR_SPACES } from "@domain/color-literal";
 import type { ColorSpace } from "@domain/color-literal";
@@ -12,7 +12,7 @@ import {
   integerByteDisplay,
   integerByteIssue,
 } from "@presentation/features/workbench/color/integer-rgb";
-import { Select } from "@presentation/components/ui/select";
+import { Select } from "@presentation/ui/select";
 import {
   changeView,
   displayed,

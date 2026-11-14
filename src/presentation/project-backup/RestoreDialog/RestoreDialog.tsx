@@ -1,8 +1,8 @@
-import { useBackupRestore } from "@presentation/features/workbench/backup/useBackupRestore";
+import { useBackupRestore } from "@presentation/project-backup/RestoreDialog/useBackupRestore";
 
 import { Dialog } from "@base-ui/react/dialog";
-import { DialogContent } from "@presentation/components/ui/dialog-content";
-import { Button } from "@presentation/components/ui/button";
+import { DialogContent } from "@presentation/ui/dialog-content";
+import { Button } from "@presentation/ui/button";
 
 import type {
   RestorePreview,

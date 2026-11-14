@@ -1,6 +1,6 @@
 import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
 import type { ProjectReadback, TokenInspection } from "@application/authoring";
-import { Button } from "@presentation/components/ui/button";
+import { Button } from "@presentation/ui/button";
 import { Swatch } from "@presentation/features/workbench/components/swatch";
 import {
   identityLabels,

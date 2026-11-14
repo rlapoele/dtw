@@ -2,11 +2,11 @@ import { namingPreview } from "./naming-preview";
 import type { Ref } from "react";
 import type { ProjectContext } from "@application/retention/projections";
 import { Dialog } from "@base-ui/react/dialog";
-import { DialogContent } from "@presentation/components/ui/dialog-content";
-import { Button } from "@presentation/components/ui/button";
-import { Field } from "@presentation/components/ui/field";
-import { Input } from "@presentation/components/ui/input";
-import { Select } from "@presentation/components/ui/select";
+import { DialogContent } from "@presentation/ui/dialog-content";
+import { Button } from "@presentation/ui/button";
+import { Field } from "@presentation/ui/field";
+import { Input } from "@presentation/ui/input";
+import { Select } from "@presentation/ui/select";
 import { identityLabels } from "@presentation/features/workbench/coordination/readback";
 
 /** Creation and rename rendering; App owns drafts, operations, readback and focus policy. */

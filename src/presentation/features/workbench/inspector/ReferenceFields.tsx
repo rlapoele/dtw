@@ -1,5 +1,5 @@
-import { Field } from "@presentation/components/ui/field";
-import { Select } from "@presentation/components/ui/select";
+import { Field } from "@presentation/ui/field";
+import { Select } from "@presentation/ui/select";
 
 export function ReferenceFields({
   reference,

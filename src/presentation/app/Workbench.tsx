@@ -1,6 +1,6 @@
 import { NavigationPane, NavigationDrawer } from "./WorkbenchNavigation";
 import { useWorkbenchLifecycle } from "@presentation/features/workbench/coordination/useWorkbenchLifecycle";
-import { useWorkbenchBackup } from "@presentation/features/workbench/backup/useWorkbenchBackup";
+import { useWorkbenchBackup } from "@presentation/project-backup/useWorkbenchBackup";
 import { creationParent } from "@presentation/features/workbench/browser/browser-view";
 import type { BrowserView } from "@presentation/features/workbench/browser/browser-view";
 import { RetentionRecovery } from "@presentation/features/workbench/recovery/RetentionRecovery";
@@ -13,15 +13,15 @@ import { useProjectCommands } from "@presentation/features/workbench/coordinatio
 import { useCreationForm } from "@presentation/features/workbench/creation/useCreationForm";
 import { useWorkbenchLayout } from "@presentation/features/workbench/coordination/useWorkbenchLayout";
 
-import { RestoreDialog } from "@presentation/features/workbench/backup/RestoreDialog";
+import { RestoreDialog } from "@presentation/project-backup/RestoreDialog/RestoreDialog";
 import { requestPersistentStorage } from "@adapters/browser/storage-preference";
 import { readExactSource } from "@presentation/host/source";
 import { useEffect, useRef, useState, useMemo } from "react";
-import { Icon } from "@presentation/components/ui/icon";
+import { Icon } from "@presentation/ui/icon";
 import type { ApplicationResult } from "@application/authoring";
 import type { Token } from "@domain/token";
 import type { ProjectHeader, WorkbenchHost } from "@presentation/host/protocol";
-import { Button } from "@presentation/components/ui/button";
+import { Button } from "@presentation/ui/button";
 
 import {
   WorkbenchInspector,

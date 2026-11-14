@@ -1,4 +1,4 @@
-import { Button } from "@presentation/components/ui/button";
+import { Button } from "@presentation/ui/button";
 
 import type { DiagnosticDisplay } from "@application/retention/diagnostics";
 

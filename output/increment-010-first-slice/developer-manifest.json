@@ -1,0 +1,234 @@
+[
+  {
+    "path": "README.md",
+    "sha256": "83c8d58b57c2a46f2f1d25becf4fd61ee9c525cc676373cb24780c8f4e15c61e"
+  },
+  {
+    "path": "docs/project/architecture.md",
+    "sha256": "1d95ad070b20cf6012821b1a99308d500f43600dc46a8abdd8207543ff4ca9f0"
+  },
+  {
+    "path": "docs/project/presentation-conventions.md",
+    "sha256": "f5812e051e5b92fffab4ab94327901ef0921d48c4a7e487a65747c074cfcb744"
+  },
+  {
+    "path": "docs/project/workbench-component-organisation.md",
+    "sha256": "1072c5efdcbf5246f10b9f8ff62cee752c3a2890fd22177d167c548a4c713295"
+  },
+  {
+    "path": "src/presentation/app/App.tsx",
+    "sha256": "04b6c8f1d858f662ff293caee8b1481b9648f1bd9a84d08ab9546840aa68b2e6"
+  },
+  {
+    "path": "src/presentation/app/Workbench.tsx",
+    "sha256": "f3e9bba611499c7dc399cc15635b1b24aa42be22b7b57a388c75da89c3e38e92"
+  },
+  {
+    "path": "src/presentation/app/WorkbenchNavigation.tsx",
+    "sha256": "54d873cb8c03af280f71eede7d6f5f86048aa1cf0642dc43539fab1e4226a533"
+  },
+  {
+    "path": "src/presentation/app/useWorkbenchHost.ts",
+    "sha256": "b8095e9679cd08c0dc68045d667ea79377d5c05385fe2e5820dcdc2a14679e96"
+  },
+  {
+    "path": "src/presentation/components/ui/badge.tsx",
+    "sha256": null
+  },
+  {
+    "path": "src/presentation/components/ui/button.tsx",
+    "sha256": null
+  },
+  {
+    "path": "src/presentation/components/ui/dialog-content.tsx",
+    "sha256": null
+  },
+  {
+    "path": "src/presentation/components/ui/field.tsx",
+    "sha256": null
+  },
+  {
+    "path": "src/presentation/components/ui/icon.tsx",
+    "sha256": null
+  },
+  {
+    "path": "src/presentation/components/ui/input.tsx",
+    "sha256": null
+  },
+  {
+    "path": "src/presentation/components/ui/select.tsx",
+    "sha256": null
+  },
+  {
+    "path": "src/presentation/features/workbench/backup/RestoreDialog.tsx",
+    "sha256": null
+  },
+  {
+    "path": "src/presentation/features/workbench/backup/useBackupRestore.ts",
+    "sha256": null
+  },
+  {
+    "path": "src/presentation/features/workbench/backup/useWorkbenchBackup.ts",
+    "sha256": null
+  },
+  {
+    "path": "src/presentation/features/workbench/browser/AllContent.tsx",
+    "sha256": "92f7c8add1df4ffbfd45037055984c994c40210eed478a24ef8f301028a93fb3"
+  },
+  {
+    "path": "src/presentation/features/workbench/browser/ProjectNavigation.tsx",
+    "sha256": "8af3aa61a175984fa9e61c4f358ee75d51fd9d9ced3148e6daedf1aaf91e0f9f"
+  },
+  {
+    "path": "src/presentation/features/workbench/browser/ProjectedTokenList.tsx",
+    "sha256": "3dd7187a46d9d8600f9e3b5da812db299194b45b230fd3edc43da0b706a84358"
+  },
+  {
+    "path": "src/presentation/features/workbench/browser/TokenBrowser.tsx",
+    "sha256": "d002903458c610cfa8184db4f0585304822aad5646a0cc08f9a37f109d3f57dc"
+  },
+  {
+    "path": "src/presentation/features/workbench/browser/TokenList.tsx",
+    "sha256": "1767b9fdace19eeac52919aa7a5ef3a0b8b1a556fec836575fc1d3051d495244"
+  },
+  {
+    "path": "src/presentation/features/workbench/components/ExactSource.tsx",
+    "sha256": "151ca0a30765dcfa0c5fb241c834fb95c6f55cf42af4c31009ea937f6c246b40"
+  },
+  {
+    "path": "src/presentation/features/workbench/components/WorkbenchHeader.tsx",
+    "sha256": "3e676157590e936c9f07132544eca2a2f509a65ab9a419878f3c94e2b445a2d1"
+  },
+  {
+    "path": "src/presentation/features/workbench/creation/CreationDialog.tsx",
+    "sha256": "0c32cef20a88ef7486e27996ebe5b0ec0eb357f1036411d175603c373b623be4"
+  },
+  {
+    "path": "src/presentation/features/workbench/hooks/useProjects.ts",
+    "sha256": null
+  },
+  {
+    "path": "src/presentation/features/workbench/hooks/useWorkbenchHost.ts",
+    "sha256": null
+  },
+  {
+    "path": "src/presentation/features/workbench/inspector/ColorFields.tsx",
+    "sha256": "9f2b6323034e38f9ab06217a42a91ebcedfcf7b1ad093ac03e1422274fa64dcb"
+  },
+  {
+    "path": "src/presentation/features/workbench/inspector/EditRecovery.tsx",
+    "sha256": "800f0d84bab48584e654fca0276e5e2fbbdd7976e7d1955c53952ef0516ba221"
+  },
+  {
+    "path": "src/presentation/features/workbench/inspector/Editor.tsx",
+    "sha256": "319c61443f7dfa6b7444f9580be0faaccd6064a16d4bf868db37f5babcd2c50b"
+  },
+  {
+    "path": "src/presentation/features/workbench/inspector/EditorActions.tsx",
+    "sha256": "85d521262b0dfc6ba6a881813f33fd750b31e0cf4bf16d1f1f20fdc988cdf3eb"
+  },
+  {
+    "path": "src/presentation/features/workbench/inspector/ReferenceFields.tsx",
+    "sha256": "a96d28933f84aba5fb41d4a6f08550da087d581ad2c15b08060834882e23c599"
+  },
+  {
+    "path": "src/presentation/features/workbench/inspector/ResolvedTokenPanel.tsx",
+    "sha256": "d3cdbf9022d0f01bb5efcd2fcbdba27f374913919434a6d2868e49648063f485"
+  },
+  {
+    "path": "src/presentation/features/workbench/inspector/WorkbenchInspector.tsx",
+    "sha256": "ac53b8ffac80c00f93df28a8e4a24d7dab4892469f831fa1f11d5e7c3541c20e"
+  },
+  {
+    "path": "src/presentation/features/workbench/recovery/DepartureGuard.tsx",
+    "sha256": "7add9a020377aba7570376814d0ee23de2b05dfcea46402de3e19a3701fd9d01"
+  },
+  {
+    "path": "src/presentation/features/workbench/recovery/ProjectDiagnostics.tsx",
+    "sha256": "d45b118ec342a11cb6b5b8f3bcba879965eced780334abf09a30a4b3dcb26a7d"
+  },
+  {
+    "path": "src/presentation/features/workbench/recovery/RetentionRecovery.tsx",
+    "sha256": "c38c345e9e5ccc2d20251677e0cb9d63e8de94480e12e0c4e9a8504b93e1f148"
+  },
+  {
+    "path": "src/presentation/project-backup/RestoreDialog/RestoreDialog.tsx",
+    "sha256": "980a8aaf9e19c5540e9741d34e75861b2a461047231d36a72646732a76f647ff"
+  },
+  {
+    "path": "src/presentation/project-backup/RestoreDialog/useBackupRestore.ts",
+    "sha256": "6d50792090d819144aa98e03efe57d8e17b4aec4212450e95081f2319ec38ce4"
+  },
+  {
+    "path": "src/presentation/project-backup/useWorkbenchBackup.ts",
+    "sha256": "96da76175ee6605b0ab202735f423cdb59a1c730f308313114518a8bb7d3af95"
+  },
+  {
+    "path": "src/presentation/projects/CreateProjectForm/CreateProjectForm.tsx",
+    "sha256": "0adaff7fbad745110cb10e3e5cadb83c7c937fef9c23842f123f2509845b847c"
+  },
+  {
+    "path": "src/presentation/projects/ProjectList/ProjectList.tsx",
+    "sha256": "8627694edc8e4a2ddc9bc076f001e58f752399920be043a2414830a4069ac4aa"
+  },
+  {
+    "path": "src/presentation/projects/ProjectList/ProjectListItem.tsx",
+    "sha256": "887c9f82ae056d45357bb69c9911ef67602d98f16a1c16d29165474a4efd95ee"
+  },
+  {
+    "path": "src/presentation/projects/ProjectRecovery/ProjectRecovery.tsx",
+    "sha256": "8e0502aa6b13039982e872a8127536e5d9a29390130ef3796b773e77828684c7"
+  },
+  {
+    "path": "src/presentation/projects/ProjectsScreen.tsx",
+    "sha256": "4a341b2099ecb82c13a1d92015365df50cf5764f461d66534f029fc33bbe4bad"
+  },
+  {
+    "path": "src/presentation/projects/useProjects.ts",
+    "sha256": "d63706cde4831e3fb09e548eeaf62db634f5ae02c7723ee8ca3433c368e32d24"
+  },
+  {
+    "path": "src/presentation/ui/badge.tsx",
+    "sha256": "fbb13ef2481acd0b39768692bb7879f70ab5e40995c85afa00967647a6815fc0"
+  },
+  {
+    "path": "src/presentation/ui/button.tsx",
+    "sha256": "49598dd8616f1649d8233daea66b5b69d979d052d704c2c98e55b6d688ed791c"
+  },
+  {
+    "path": "src/presentation/ui/dialog-content.tsx",
+    "sha256": "023136db6d62e7b2d6d5b444411b40f142b97e07b445a13dcd195aa68b9da75b"
+  },
+  {
+    "path": "src/presentation/ui/field.tsx",
+    "sha256": "02776d5bc4ccb216cc388970e108a9fca12981607ebd3148a87818a76d890729"
+  },
+  {
+    "path": "src/presentation/ui/icon.tsx",
+    "sha256": "89ea6a08f6077122a96ef4cac48ff7687f662ab2ccef49a117c4d3578b194e3b"
+  },
+  {
+    "path": "src/presentation/ui/input.tsx",
+    "sha256": "35d1358420967e8d5535e4b18975d9d8fd1fcf90e8cfaad9450bccaad75db628"
+  },
+  {
+    "path": "src/presentation/ui/select.tsx",
+    "sha256": "b36e5b82db0361f4986327d25a1b961e08402ffec824022cc5f92f3bdcce3f6e"
+  },
+  {
+    "path": "test/browser/components.tsx",
+    "sha256": "883a480ff13ad96ea15dbbb18ddf86c635c4690c4d882927a596920790919d25"
+  },
+  {
+    "path": "test/presentation/icon.test.tsx",
+    "sha256": "298bde591b879c318db61414dd7fff22bdcfc626154bff6683a2383d470715db"
+  },
+  {
+    "path": "test/presentation/projects-screen.test.tsx",
+    "sha256": "049d8be62dcde722b8c0b19020d722cdd3b330a0d897e608de292ead6ae4fcdc"
+  },
+  {
+    "path": "test/presentation/workbench-coordination.test.tsx",
+    "sha256": "31ee7e414760305eca4b04c8b8ec921c03548b260fe4047d92312e10e0935564"
+  }
+]

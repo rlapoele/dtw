@@ -6,7 +6,7 @@ import type { TokenInspection } from "@application/authoring";
 import { resolvedColor, pathLabel } from "../coordination/readback";
 import { COLOR_COMPONENTS, COMPONENT_NAMES } from "@domain/color-components";
 import { spaceName } from "../color/authored-color";
-import { Badge } from "@presentation/components/ui/badge";
+import { Badge } from "@presentation/ui/badge";
 import { Swatch } from "../components/swatch";
 export function ResolvedTokenPanel({
   resolution,

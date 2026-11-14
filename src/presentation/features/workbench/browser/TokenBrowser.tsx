@@ -1,7 +1,7 @@
 import type { BrowserView } from "./browser-view";
-import { Button } from "@presentation/components/ui/button";
-import { Icon } from "@presentation/components/ui/icon";
-import { Input } from "@presentation/components/ui/input";
+import { Button } from "@presentation/ui/button";
+import { Icon } from "@presentation/ui/icon";
+import { Input } from "@presentation/ui/input";
 import { AllContent } from "./AllContent";
 import { ProjectedTokenList } from "./ProjectedTokenList";
 import type {

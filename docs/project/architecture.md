@@ -81,7 +81,7 @@ The backend side may be written in JavaScript or TypeScript and can use Node.js 
 Use a pragmatic ports-and-adapters, or hexagonal, architecture. The aim is replaceable boundaries and independent testing, not architectural ceremony.
 
 **Icon/class composition — 12 November 2026:** presentation callers use the owned
-`components/ui/icon.tsx` typed Heroicons Outline wrapper and `lib/cn.ts` shared class
+`ui/icon.tsx` typed Heroicons Outline wrapper and `lib/cn.ts` shared class
 merger (`cn` 0.5.2). Vite/npm tooling precompiles all merge groups and CSS theme
 extensions into a Git-ignored table module; browser code uses `cn/engine` without
 runtime configuration/compiler modules. SVG handling remains a presentation concern.
@@ -111,7 +111,7 @@ browser policy. Earlier dated descriptions below describe their original increme
 
 **Source naming — 8 November 2026:** `src/presentation/` contains the React UI, styles, editor drafts and disposable browser previews; `src/application/` contains host-independent use-case coordination. The user approved renaming the former `delivery` folder to `presentation` for clarity, with the same dependency boundaries. Matching tests and UI type configuration use `test/presentation/` and `tsconfig.presentation.json`. The broader term “delivery surface” below also covers possible non-UI entry points such as CLI or MCP; those need not live under `presentation`. Source/test imports use `@domain`, `@application`, `@adapters`, `@presentation` and `@tests` mappings; these improve path clarity without permitting new dependencies between layers. TypeScript paths and shared Vite/Vitest aliases resolve the same folders. Build configuration is checked separately in `tsconfig.tools.json` with development-only Node types; domain/application checks and browser code retain their own host scopes.
 
-**Presentation ownership — Increment 004, 8 November 2026:** App retains application-operation coordination, draft/departure state, readback and focus policy. ProjectNavigation, TokenList and CreationDialog render their existing responsibilities; generic controls and dialog shells are locally owned under `src/presentation/components/ui/`, while workbench-specific components, tabs and swatches live under `src/presentation/features/workbench/components/`. Ordinary presentation uses Tailwind utilities and semantic palette roles. The stylesheet owns only the retained dense typography foundation, explicit responsive panel/precision geometry, modal/drawer effects, native slider pseudo-elements and illustrative checkerboards. These presentation components do not parse authored strings or reimplement token semantics.
+**Presentation ownership — Increment 004, 8 November 2026:** App retains application-operation coordination, draft/departure state, readback and focus policy. ProjectNavigation, TokenList and CreationDialog render their existing responsibilities; generic controls and dialog shells are locally owned under `src/presentation/ui/`, while workbench-specific components, tabs and swatches live under `src/presentation/features/workbench/components/`. Ordinary presentation uses Tailwind utilities and semantic palette roles. The stylesheet owns only the retained dense typography foundation, explicit responsive panel/precision geometry, modal/drawer effects, native slider pseudo-elements and illustrative checkerboards. These presentation components do not parse authored strings or reimplement token semantics.
 
 **Presentation organization — 10 November 2026:** `app/App.tsx` retains composition and coordination; `features/workbench/` groups workbench components, renderer-only draft state (`state/session.ts`), color presentation (`color/`) and `readback.ts`. `styles/global.css` remains the single semantic style source. The entry point and local TypeScript configuration remain at the presentation root. This path-only maintenance preserves existing behavior and component contracts. Historical prototypes and evidence retain their original source references and replay at their recorded commit rather than through compatibility wrappers.
 
@@ -486,3 +486,16 @@ This direction does not yet select:
 The first PWA vertical slice should validate project lifecycle operations, namespace grouping and token authoring, aliases, validation, resolved-value inspection, and explicit import and export. Its exact user, minimal canonical schema, initial variation axes and coverage, persistence representation, and first compatibility profile must be decided before implementation.
 
 The immediately following Electron prototype should reuse that renderer and application behavior while replacing browser infrastructure with a typed preload boundary and desktop adapters. It should open or create a workspace-backed project, watch project files, validate the same token graph, export the selected target, and produce an installable artifact for at least one intended platform.
+
+
+**Presentation ownership — Increment 010 first slice, 15 November 2026:** shared
+controls live under `src/presentation/ui/`; `projects/ProjectsScreen` and its
+catalogue/form/recovery children render project entry. App retains unconditional
+host/project hooks, event orchestration, dialog configuration, refs and state;
+`app/useWorkbenchHost` and `projects/useProjects` preserve their prior authority.
+Cross-screen restore lives under `project-backup/`, with staged protection beside
+RestoreDialog and workbench backup coordination still called by Workbench.
+Workbench, navigation, editor/session and other internals remain at their prior
+paths except moved-module imports. This is a partial migration, not the complete
+component-oriented roadmap; the [ownership map](workbench-component-organisation.md)
+records current paths.

@@ -2,7 +2,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { FolderIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { describe, expect, it } from "vitest";
-import { Icon } from "@presentation/components/ui/icon";
+import { Icon } from "@presentation/ui/icon";
 import { cn } from "@presentation/lib/cn";
 
 const render = (props: Parameters<typeof Icon>[0]) =>

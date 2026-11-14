@@ -1,0 +1,23 @@
+{
+  "moves": {
+    "components/ui/badge.tsx": "ui/badge.tsx",
+    "components/ui/button.tsx": "ui/button.tsx",
+    "components/ui/dialog-content.tsx": "ui/dialog-content.tsx",
+    "components/ui/field.tsx": "ui/field.tsx",
+    "components/ui/icon.tsx": "ui/icon.tsx",
+    "components/ui/input.tsx": "ui/input.tsx",
+    "components/ui/select.tsx": "ui/select.tsx",
+    "features/workbench/hooks/useWorkbenchHost.ts": "app/useWorkbenchHost.ts",
+    "features/workbench/hooks/useProjects.ts": "projects/useProjects.ts",
+    "features/workbench/backup/RestoreDialog.tsx": "project-backup/RestoreDialog/RestoreDialog.tsx",
+    "features/workbench/backup/useBackupRestore.ts": "project-backup/RestoreDialog/useBackupRestore.ts",
+    "features/workbench/backup/useWorkbenchBackup.ts": "project-backup/useWorkbenchBackup.ts"
+  },
+  "extractedFromApp": [
+    "projects/ProjectsScreen.tsx",
+    "projects/ProjectList/ProjectList.tsx",
+    "projects/ProjectList/ProjectListItem.tsx",
+    "projects/CreateProjectForm/CreateProjectForm.tsx",
+    "projects/ProjectRecovery/ProjectRecovery.tsx"
+  ]
+}

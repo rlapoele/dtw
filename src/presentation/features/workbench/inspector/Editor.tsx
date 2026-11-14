@@ -7,11 +7,11 @@ import type { useTokenEditor } from "@presentation/features/workbench/inspector/
 
 import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
 import { InspectionTabs } from "@presentation/features/workbench/inspector/inspection-tabs";
-import { Badge } from "@presentation/components/ui/badge";
+import { Badge } from "@presentation/ui/badge";
 
 import { Tabs } from "@base-ui/react/tabs";
 
-import { Button } from "@presentation/components/ui/button";
+import { Button } from "@presentation/ui/button";
 import { ColorFields } from "@presentation/features/workbench/inspector/ColorFields";
 
 export type Feedback = {
