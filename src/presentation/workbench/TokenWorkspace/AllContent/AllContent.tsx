@@ -4,8 +4,8 @@ import { Button } from "@presentation/ui/button";
 import {
   membershipBlocks,
   revealMembershipBlocks,
-} from "@presentation/features/workbench/browser/all-content";
-import type { MembershipEntry } from "@presentation/features/workbench/browser/all-content";
+} from "@presentation/workbench/TokenWorkspace/AllContent/all-content";
+import type { MembershipEntry } from "@presentation/workbench/TokenWorkspace/AllContent/all-content";
 
 // Previous blocks retain their native DOM and do not rebuild while a later
 // block appears. Click delegation keeps callbacks current without stale closures.

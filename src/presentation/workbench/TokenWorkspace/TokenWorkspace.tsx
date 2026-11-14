@@ -1,17 +1,16 @@
-import type { BrowserView } from "./browser-view";
+import { WorkspaceToolbar } from "./WorkspaceToolbar/WorkspaceToolbar";
+import type { BrowserView } from "../workspace-view";
 import { Button } from "@presentation/ui/button";
-import { Icon } from "@presentation/ui/icon";
-import { Input } from "@presentation/ui/input";
-import { AllContent } from "./AllContent";
-import { ProjectedTokenList } from "./ProjectedTokenList";
+import { AllContent } from "./AllContent/AllContent";
+import { TokenTable } from "./TokenTable/TokenTable";
 import type {
   ProjectContext,
   DisplayRow,
 } from "@application/retention/projections";
 import type { ProjectHeader } from "@presentation/host/protocol";
-import type { Selection } from "../coordination/useProjectReadback";
+import type { Selection } from "../useProjectReadback";
 import type { ReactNode, RefObject } from "react";
-export function TokenBrowser({
+export function TokenWorkspace({
   panel,
   view,
   groupLabels,
@@ -69,57 +68,15 @@ export function TokenBrowser({
       tabIndex={-1}
       className="token-panel relative min-w-0 min-h-0 overflow-auto"
     >
-      <div className="panel-header source-compact:items-start compact:flex-wrap mb-6.5 flex justify-between items-center gap-3">
-        <div>
-          {!allContent && (
-            <span className="eyebrow uppercase text-muted-foreground font-semibold">
-              Tokens
-            </span>
-          )}
-          <h1 className="my-1.5 small-title">
-            {allContent
-              ? "All content"
-              : group === null
-                ? "All tokens"
-                : (groupLabels.get(group) ?? "Missing group")}
-          </h1>
-          <p className="text-xs/normal text-muted-foreground">
-            {allContent
-              ? "Every group and token, including items outside the group tree."
-              : group === null
-                ? "Browse and create color tokens."
-                : "Browse and create color tokens in this group."}
-          </p>
-        </div>
-        <Button
-          variant="default"
-          size="panel"
-          disabled={blocked}
-          onClick={() => onCreateToken()}
-        >
-          <Icon name="plus" />
-          New token
-        </Button>
-      </div>
-      {!allContent && (
-        <div className="list-tools compact:flex-wrap narrow:gap-2 flex gap-3 items-center mb-5">
-          <label className="search tablet:min-w-25 flex-1 max-w-75 relative">
-            <Input
-              appearance="search"
-              type="search"
-              aria-label="Search color tokens"
-              placeholder="Search colors…"
-              value={query}
-              onChange={(e) => onQuery(e.target.value)}
-            />
-          </label>
-          {group !== null && (
-            <Button disabled={blocked} onClick={() => onRenameGroup()}>
-              Rename group
-            </Button>
-          )}
-        </div>
-      )}
+      <WorkspaceToolbar
+        view={view}
+        groupLabels={groupLabels}
+        blocked={blocked}
+        query={query}
+        onQuery={onQuery}
+        onCreateToken={onCreateToken}
+        onRenameGroup={onRenameGroup}
+      />
       {recovery}
       {!complete && !readFailure && (
         <p role="status">
@@ -148,7 +105,7 @@ export function TokenBrowser({
           />
         ) : (
           <>
-            <ProjectedTokenList
+            <TokenTable
               context={context}
               creationParentLabel={
                 group === null

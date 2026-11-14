@@ -9,7 +9,7 @@ import { DialogContent } from "@presentation/ui/dialog-content";
 
 import { RestoreDialog } from "@presentation/project-backup/RestoreDialog/RestoreDialog";
 
-import { Workbench } from "./Workbench";
+import { Workbench } from "../workbench/Workbench";
 
 import { WorkerWorkbenchHost } from "@presentation/host/worker-client";
 import type { WorkbenchHost } from "@presentation/host/protocol";

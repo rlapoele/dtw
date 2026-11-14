@@ -1,5 +1,5 @@
 import type { ProjectContext } from "@application/retention/projections";
-import { pathLabel } from "../coordination/readback";
+import { pathLabel } from "@presentation/token-display/identity-labels";
 import { ExactSource } from "../components/ExactSource";
 export function GroupInspector({
   entry,

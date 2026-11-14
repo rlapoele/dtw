@@ -2,10 +2,10 @@ import { describe, it, expect } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { TokenList } from "@presentation/features/workbench/browser/TokenList";
-import { ProjectNavigation } from "@presentation/features/workbench/browser/ProjectNavigation";
+import { NamespaceTree } from "@presentation/workbench/WorkbenchNavigation/NamespaceTree/NamespaceTree";
 import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
 import { EditableTokenInspector } from "@presentation/features/workbench/inspector/WorkbenchInspector";
-import { identityLabels } from "@presentation/features/workbench/coordination/readback";
+import { identityLabels } from "@presentation/token-display/identity-labels";
 import { createColorLiteral } from "@domain/color-literal";
 import { createToken } from "@domain/token";
 import { createTokenGroup } from "@domain/token-group";
@@ -113,7 +113,7 @@ describe("human identity labels in real consumers", () => {
     expect(html).not.toContain("unique-token-id");
     expect(html).toContain("same / unique");
     const nav = renderToStaticMarkup(
-      createElement(ProjectNavigation, {
+      createElement(NamespaceTree, {
         drawer: false,
         project,
         view: { kind: "group", id: "shared-prefix-group-b" },

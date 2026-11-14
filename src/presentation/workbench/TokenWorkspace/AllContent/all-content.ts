@@ -1,4 +1,4 @@
-import { namespaceEntryDetails, pathLabel } from "../coordination/readback";
+import { namespaceEntryDetails, pathLabel } from "@presentation/token-display/identity-labels";
 import type { ProjectContext } from "@application/retention/projections";
 
 export type MembershipEntry = {

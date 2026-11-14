@@ -94,7 +94,7 @@ existing calculation boundary. No preview calls Culori or writes display coordin
 back into tokens. See the [current preview policy](../increments/003-color-policy-proposal.md#preview-policy).
 
 **Current implementation ownership — 12 November 2026:** `app/App.tsx` owns the
-catalogue and host lifetime; `app/Workbench.tsx` coordinates the open project. Their
+catalogue and host lifetime; `workbench/Workbench.tsx` coordinates the open project. Their
 component names are `App` and `Workbench`. The transitional `Retained` prefix was
 removed after retiring the earlier session-only implementation; historical snapshots
 and evidence retain their original filenames. `src/application/retention/` owns host-independent retention,
@@ -123,6 +123,18 @@ owns current paths and section contracts. Workbench composes existing workflow
 owners, while one editor owner preserves the draft session and identity/lifetime.
 This organisation preserves the agreed interface and domain/application/host
 boundaries; earlier dated path descriptions above are historical.
+
+**Component-oriented shell/workspace — Increment 010, 15 November 2026:**
+`workbench/Workbench.tsx` retains all open-project orchestration and hook calls.
+Its colocated coordination hooks and `workspace-view` serve the header, cohesive
+navigation containers/NamespaceTree, TokenWorkspace, CreationDialog and recovery
+renderers. WorkspaceToolbar and WorkbenchStatus render existing sections through
+narrow props; they do not acquire command authority. Shared namespace/identity
+labels live in `token-display/identity-labels`; `workbench/readback` retains color
+readback and failure text. Inspector/session, color and shared value renderers
+remain in `features/workbench/` pending a separately agreed slice. The single
+editor owner, its key and mounted position, DOM semantics and architectural
+boundaries remain unchanged. See the [current ownership map](workbench-component-organisation.md).
 
 **Component interpretation — Increment 005, 8 November 2026:** `src/domain/color-components.ts` defines the five spaces' closed semantic component identities/order and small readable name/unit metadata. Constructor validation and color calculations consume that order; Culori channel keys, modes and HSL scaling remain in the calculation integration boundary. `authored-color.ts` derives exact named text and `AuthoredValue` shares it between token rows and the applied inspector without changing canonical tuples or raw JSON. CreationDialog renders the token-only description textarea; App passes nonempty text unchanged through the existing operation and preserves it with failed form state. No model shape or numerical policy changed.
 

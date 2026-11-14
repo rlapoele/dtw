@@ -2,10 +2,8 @@ import { AuthoredValue } from "@presentation/features/workbench/components/Autho
 import type { ProjectReadback, TokenInspection } from "@application/authoring";
 import { Button } from "@presentation/ui/button";
 import { Swatch } from "@presentation/features/workbench/components/swatch";
-import {
-  identityLabels,
-  resolvedColor,
-} from "@presentation/features/workbench/coordination/readback";
+import { identityLabels } from "@presentation/token-display/identity-labels";
+import { resolvedColor } from "@presentation/workbench/readback";
 import { colorPreview } from "@presentation/features/workbench/color/preview";
 export function TokenList({
   project,

@@ -1,17 +1,18 @@
-import { NavigationPane, NavigationDrawer } from "./WorkbenchNavigation";
-import { useWorkbenchLifecycle } from "@presentation/features/workbench/coordination/useWorkbenchLifecycle";
+import { WorkbenchStatus } from "./WorkbenchStatus/WorkbenchStatus";
+import { NavigationPane, NavigationDrawer } from "./WorkbenchNavigation/WorkbenchNavigation";
+import { useWorkbenchLifecycle } from "@presentation/workbench/useWorkbenchLifecycle";
 import { useWorkbenchBackup } from "@presentation/project-backup/useWorkbenchBackup";
-import { creationParent } from "@presentation/features/workbench/browser/browser-view";
-import type { BrowserView } from "@presentation/features/workbench/browser/browser-view";
-import { RetentionRecovery } from "@presentation/features/workbench/recovery/RetentionRecovery";
-import { TokenBrowser } from "@presentation/features/workbench/browser/TokenBrowser";
-import { DepartureGuard } from "@presentation/features/workbench/recovery/DepartureGuard";
-import { ProjectDiagnostics } from "@presentation/features/workbench/recovery/ProjectDiagnostics";
-import { WorkbenchHeader } from "@presentation/features/workbench/components/WorkbenchHeader";
-import { useProjectReadback } from "@presentation/features/workbench/coordination/useProjectReadback";
-import { useProjectCommands } from "@presentation/features/workbench/coordination/useProjectCommands";
-import { useCreationForm } from "@presentation/features/workbench/creation/useCreationForm";
-import { useWorkbenchLayout } from "@presentation/features/workbench/coordination/useWorkbenchLayout";
+import { creationParent } from "@presentation/workbench/workspace-view";
+import type { BrowserView } from "@presentation/workbench/workspace-view";
+import { RetentionRecovery } from "@presentation/workbench/WorkbenchRecovery/RetentionRecovery";
+import { TokenWorkspace } from "@presentation/workbench/TokenWorkspace/TokenWorkspace";
+import { DepartureGuard } from "@presentation/workbench/WorkbenchRecovery/DepartureGuard";
+import { ProjectDiagnostics } from "@presentation/workbench/WorkbenchRecovery/ProjectDiagnostics";
+import { WorkbenchHeader } from "@presentation/workbench/WorkbenchHeader/WorkbenchHeader";
+import { useProjectReadback } from "@presentation/workbench/useProjectReadback";
+import { useProjectCommands } from "@presentation/workbench/useProjectCommands";
+import { useCreationForm } from "@presentation/workbench/CreationDialog/useCreationForm";
+import { useWorkbenchLayout } from "@presentation/workbench/useWorkbenchLayout";
 
 import { RestoreDialog } from "@presentation/project-backup/RestoreDialog/RestoreDialog";
 import { requestPersistentStorage } from "@adapters/browser/storage-preference";
@@ -27,10 +28,10 @@ import {
   WorkbenchInspector,
   EditableTokenInspector,
 } from "@presentation/features/workbench/inspector/WorkbenchInspector";
-import { CreationDialog } from "@presentation/features/workbench/creation/CreationDialog";
-import { ProjectNavigation } from "@presentation/features/workbench/browser/ProjectNavigation";
+import { CreationDialog } from "@presentation/workbench/CreationDialog/CreationDialog";
+import { NamespaceTree } from "@presentation/workbench/WorkbenchNavigation/NamespaceTree/NamespaceTree";
 
-import { identityLabels } from "@presentation/features/workbench/coordination/readback";
+import { identityLabels } from "@presentation/token-display/identity-labels";
 export function Workbench({
   host,
   initial,
@@ -44,7 +45,7 @@ export function Workbench({
 }) {
   const [selection, setSelection] =
     useState<
-      import("@presentation/features/workbench/coordination/useProjectReadback").Selection
+      import("@presentation/workbench/useProjectReadback").Selection
     >(null);
   const [view, setView] = useState<BrowserView>({ kind: "all-tokens" });
   const group = creationParent(view);
@@ -220,7 +221,7 @@ export function Workbench({
       });
     });
   const navigation = (
-    <ProjectNavigation
+    <NamespaceTree
       drawer={compact}
       project={context}
       view={view}
@@ -322,7 +323,7 @@ export function Workbench({
             {navigation}
           </NavigationPane>
         )}
-        <TokenBrowser
+        <TokenWorkspace
           panel={panel}
           view={view}
           groupLabels={groupLabels}
@@ -493,27 +494,16 @@ export function Workbench({
           ) : null}
         </WorkbenchInspector>
       </div>
-      <footer className="statusbar narrow:flex-wrap small:px-4 small:py-1.5 short:hidden shrink-0 flex justify-between gap-4 border-t border-border bg-surface text-status px-5 py-2">
-        <span>{header.tokens} tokens</span>
-        <span className="small:hidden">
-          {busy
-            ? "Retention pending"
-            : unknown
-              ? "Outcome unknown"
-              : readFailure
-                ? "Stale / unavailable"
-                : header.writable
-                  ? "Applied state retained locally"
-                  : "Inspection only"}
-        </span>
-        <Button
-          size="selection"
-          disabled={busy}
-          onClick={() => void requestPersistentStorage().then(setNotice)}
-        >
-          Request persistent storage
-        </Button>
-      </footer>
+      <WorkbenchStatus
+        tokens={header.tokens}
+        busy={busy}
+        unknown={!!unknown}
+        readFailure={readFailure}
+        writable={header.writable}
+        onRequestPersistentStorage={() =>
+          void requestPersistentStorage().then(setNotice)
+        }
+      />
       <NavigationDrawer
         open={compact && navigationOpen}
         onOpenChange={setNavigationOpen}

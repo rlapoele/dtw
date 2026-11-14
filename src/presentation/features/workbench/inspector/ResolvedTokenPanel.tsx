@@ -3,7 +3,8 @@ import type {
   ProjectContext,
 } from "@application/retention/projections";
 import type { TokenInspection } from "@application/authoring";
-import { resolvedColor, pathLabel } from "../coordination/readback";
+import { pathLabel } from "@presentation/token-display/identity-labels";
+import { resolvedColor } from "../../../workbench/readback";
 import { COLOR_COMPONENTS, COMPONENT_NAMES } from "@domain/color-components";
 import { spaceName } from "../color/authored-color";
 import { Badge } from "@presentation/ui/badge";

@@ -1,12 +1,9 @@
-import type { BrowserView } from "./browser-view";
+import type { BrowserView } from "../../workspace-view";
 import type { ProjectContext } from "@application/retention/projections";
 import { Icon } from "@presentation/ui/icon";
 import { Button } from "@presentation/ui/button";
-import {
-  identityLabels,
-  namespaceEntryDetails,
-} from "@presentation/features/workbench/coordination/readback";
-export function ProjectNavigation({
+import { identityLabels, namespaceEntryDetails } from "@presentation/token-display/identity-labels";
+export function NamespaceTree({
   drawer,
   project,
   view,

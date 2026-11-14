@@ -49,9 +49,9 @@ vi.mock("react", async (original) => {
   };
 });
 import { useProjects } from "@presentation/projects/useProjects";
-import { useProjectReadback } from "@presentation/features/workbench/coordination/useProjectReadback";
-import { useProjectCommands } from "@presentation/features/workbench/coordination/useProjectCommands";
-import { useCreationForm } from "@presentation/features/workbench/creation/useCreationForm";
+import { useProjectReadback } from "@presentation/workbench/useProjectReadback";
+import { useProjectCommands } from "@presentation/workbench/useProjectCommands";
+import { useCreationForm } from "@presentation/workbench/CreationDialog/useCreationForm";
 import { restoreProtectionReducer } from "@presentation/project-backup/RestoreDialog/useBackupRestore";
 import type {
   ProjectHeader,

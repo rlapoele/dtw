@@ -1,7 +1,7 @@
 # Increment 010: Component-oriented presentation
 
 - Contract status: Agreed
-- Delivery status: Partially completed — first-slice implementation and independent review finished; native-browser acceptance remains unverified
+- Delivery status: Partially completed — first and shell/workspace slices implemented and independently reviewed; native-browser acceptance and later organisation work remain outstanding
 - Agreement: on 15 November 2026 the user instructed “Go ahead with increment 10”, agreeing this first-slice contract and authorizing implementation through the separate developer/reviewer workflow. Later roadmap slices remain outside this authorization.
 - References: [organisation proposal V1](../project/workbench-layout/presentation-organisation-proposal-v1.md), [decomposition V1](../project/workbench-layout/component-map-v1.md), [layout direction](../project/workbench-layout/README.md), [current ownership](../project/workbench-component-organisation.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md).
 
@@ -400,3 +400,24 @@ The first slice's native-browser acceptance remains unverified as recorded above
 committing, pushing and proceeding to planning do not constitute a manual test
 report, waive criteria or restart its stopped verification. No further first-slice
 qualification or migration ran while drafting the next slice.
+
+### Second-slice authorization — 15 November 2026
+
+After committing the proposal as `d3a7e9c`, the user explicitly agreed the
+[shell/workspace contract](010-shell-and-workspace-slice.md#agreement-and-implementation-authorization--15-november-2026)
+and authorized implementation. S2-AC-1 through S2-AC-5 and its exact boundaries are
+now agreed; its separate bounded verification allowance is active. This supersedes
+the preceding pending-authority text only for S2, not later roadmap work, and does
+not resolve the first slice's recorded native-browser evidence gaps.
+
+### Second-slice implementation handoff — 15 November 2026
+
+The [S2 handoff](010-shell-and-workspace-slice.md#implementation-handoff--15-november-2026)
+records completed shell/workspace source migration and fresh independent review,
+51 passing focused tests, one passing final build and useful in-app ordinary-flow
+observations. The sole low-priority documentation finding was corrected and
+rechecked; no actionable findings remain. Native Chrome/compact/full-focus evidence
+remains unverified, so delivery is Partially completed. The remaining inspector/
+display migration and replacement-interface roadmap are not delivered or authorized.
+S2's approximately 21/30 aggregate minutes and zero repairs are recorded separately
+from the first slice's unchanged stopped allowance; no old campaign restarts.

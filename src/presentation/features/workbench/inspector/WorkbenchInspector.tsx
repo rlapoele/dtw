@@ -1,5 +1,5 @@
 import { GroupInspector } from "./GroupInspector";
-import type { Selection } from "../coordination/useProjectReadback";
+import type { Selection } from "../../../workbench/useProjectReadback";
 import type { ProjectContext } from "@application/retention/projections";
 import type { ProjectHeader } from "@presentation/host/protocol";
 import { Button } from "@presentation/ui/button";

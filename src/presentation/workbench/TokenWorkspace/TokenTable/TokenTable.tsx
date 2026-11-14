@@ -2,15 +2,12 @@ import type {
   DisplayRow,
   ProjectContext,
 } from "@application/retention/projections";
-import { AuthoredValue } from "../components/AuthoredValue";
-import { Swatch } from "../components/swatch";
+import { AuthoredValue } from "../../../features/workbench/components/AuthoredValue";
+import { Swatch } from "../../../features/workbench/components/swatch";
 import { Button } from "@presentation/ui/button";
-import {
-  identityLabels,
-  namespaceEntryDetails,
-} from "@presentation/features/workbench/coordination/readback";
+import { identityLabels, namespaceEntryDetails } from "@presentation/token-display/identity-labels";
 import { colorPreview } from "@presentation/features/workbench/color/preview";
-export function ProjectedTokenList({
+export function TokenTable({
   context,
   creationParentLabel = "Project root",
   rows,

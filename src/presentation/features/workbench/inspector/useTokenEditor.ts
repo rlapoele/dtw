@@ -17,11 +17,8 @@ import {
   literalIssue,
 } from "@presentation/features/workbench/inspector/session";
 import { colorPreview } from "@presentation/features/workbench/color/preview";
-import {
-  identityLabels,
-  failureText,
-  resolvedColor,
-} from "@presentation/features/workbench/coordination/readback";
+import { identityLabels } from "@presentation/token-display/identity-labels";
+import { failureText, resolvedColor } from "@presentation/workbench/readback";
 export function useTokenEditor({
   inspection: i,
   project,

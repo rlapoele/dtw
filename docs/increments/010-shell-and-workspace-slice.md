@@ -1,8 +1,8 @@
 # Increment 010: Shell and workspace slice proposal
 
-- Contract status: Draft
-- Delivery status: Not started
-- Agreement: proposed second-slice amendment to [Increment 010](010-component-oriented-presentation.md), following the user's “Committed & pushed. Proceed” on 15 November 2026. Exact bounded scope below awaits agreement and implementation authorization; planning alone authorizes no source moves.
+- Contract status: Agreed
+- Delivery status: Partially completed — implementation and independent review finished; native-browser/compact acceptance remains unverified
+- Agreement: on 15 November 2026 the user explicitly agreed this contract and authorized implementation after committing and pushing the proposal. This is the second-slice amendment to [Increment 010](010-component-oriented-presentation.md); later slices remain outside scope.
 - Baseline: `32ec593`, inspected on 15 November 2026 after the committed first slice.
 - References: [target organisation V1](../project/workbench-layout/presentation-organisation-proposal-v1.md), [decomposition V1](../project/workbench-layout/component-map-v1.md), [current ownership](../project/workbench-component-organisation.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [role workflow](../workflow/agent-roles.md).
 
@@ -209,3 +209,113 @@ planning/source/documentation-review minutes used (estimate: analyst five,
 coordinator three), zero repairs; checks stopped. No implementation, tests, build
 or browser work occurred. Next: user agreement to this identified proposal and
 implementation authorization under the project workflow.
+
+## Agreement and implementation authorization — 15 November 2026
+
+The user instructed: “Committed & pushed. I agree to this contract and authorize
+implementation.” This authorizes the exact move/extraction table, shared identity
+helper boundary and S2-AC-1 through S2-AC-5. Earlier Draft/pending-authority wording
+records proposal history and is superseded here. Inspector/display migration and
+replacement-interface capabilities remain outside this agreement.
+
+Implementation baseline: `d3a7e9c`, clean working tree before coordinator
+authorization/status documentation. One fresh developer writes code, then freezes
+the source for a separate fresh reviewer. No new visual exploration is needed
+for the agreed behavior-preserving scope.
+
+The single S2 verification ceiling is active: at most 30 aggregate minutes and two
+harness-repair cycles, stopping earlier for low value/tooling dominance. Initial
+allocation: developer ten, fresh reviewer seven, coordinator ten, reserve three;
+these share one ceiling. Carry actual time and repair consumption at every handoff.
+Use focused affected tests and one final build. Known native Chrome/screenshot/
+viewport limitations do not authorize alternate-stack setup or repair; optional
+ordinary browser observations must be labeled accurately, with affected runtime
+criteria unverified where unavailable. First-slice and older qualification stops
+remain unchanged. Agents leave staging, committing and pushing to the user.
+
+## Implementation handoff — 15 November 2026
+
+**S2 implementation and independent review finished; delivery Partially completed
+with explicit native-browser evidence gaps.** No actionable source or documentation
+finding remains. This delivers the agreed reorganisation slice, not the later
+inspector/display migration or any replacement interface functionality.
+
+### Delivered organisation
+
+- Workbench and its coordination hooks now live under `src/presentation/workbench/`.
+  Header, navigation/NamespaceTree, TokenWorkspace/TokenTable/AllContent, creation
+  and recovery modules have the agreed named owners.
+- The existing workspace toolbar and footer are extracted to WorkspaceToolbar and
+  WorkbenchStatus. They receive controlled display/action props and add no DOM
+  wrappers, independent selection/session state or host/adapter authority.
+- Pure `pathLabel`, `identityLabels` and `namespaceEntryDetails` live under
+  `token-display/identity-labels.ts`, with unchanged bodies and signatures.
+- Workbench retains its refs/state/hooks, command/callback/completion authority,
+  inline recovery/baseline logic and inspector position/key. App changes its import
+  only; the old inspector still owns the single useTokenEditor session.
+- Current import/test/documentation references follow real paths. Inspector/color,
+  AuthoredValue/ExactSource/swatch and the alternate tested TokenList remain in the
+  intentional mixed tree, with moved-helper imports only.
+
+The [move map](../../output/increment-010-shell-workspace/moves.json) records 20
+moves and three extractions; the [ownership map](../project/workbench-component-organisation.md)
+describes current rather than future organisation.
+
+### Review snapshot and acceptance evidence
+
+Base: `d3a7e9c`. The final [source patch](../../output/increment-010-shell-workspace/review-source.patch)
+and [59-entry manifest](../../output/increment-010-shell-workspace/review-source-manifest.json)
+identify the reviewed source/test/current-path documentation. The initial
+[R1 patch](../../output/increment-010-shell-workspace/review-source-r1.patch) and
+[R1 manifest](../../output/increment-010-shell-workspace/review-source-manifest-r1.json)
+are preserved; the only delta to the final snapshot is two historical wording
+corrections in the ownership document. Source/tests did not change after the build.
+Coordinator contract/status/output reports are outside this source snapshot.
+
+| Criterion | Evidence and remaining limits |
+| --- | --- |
+| S2-AC-1 | Source/import/move checks and fresh independent review verify exact destinations, no forwarding/duplicate/future modules, retained test meaning and current mixed-tree documentation. |
+| S2-AC-2 | Source comparisons preserve Workbench orchestration, editor location/key and hook lifetime. In-app smoke preserves an invalid raw draft across filtering, reveal, All content and Keep editing, plus unfinished creation input. Native same-node identity instrumentation and full focus parity remain unverified. |
+| S2-AC-3 | Unchanged command/readback/lifecycle and callback bodies independently reviewed; affected controlled tests pass. Native rare recovery, changed-baseline/restore interleavings and their focus states were not induced or replayed. |
+| S2-AC-4 | Exact toolbar/helper and normalized shell/footer source comparison, static-render regressions and reviewer inspection preserve DOM/classes/labels/conditions; TokenTable and NamespaceTree retain existing list/button semantics. In-app ordinary flows pass; native Chrome, exact compact geometry, screenshots and full drawer/dialog focus remain unverified. |
+| S2-AC-5 | All three identity-label bodies/signatures compare exactly; direct imports use the shared pure owner. Reviewer verified narrow component contracts and unchanged application/domain/host/config/CSS/dependency boundaries. |
+
+Developer [report](../../output/increment-010-shell-workspace/developer-report.md):
+49 existing focused tests across six files and two new toolbar/footer variant
+regressions pass, **51 total**. One final `npm run build` passes all four typechecks
+and Vite bundling. The existing large-chunk warning remains; no performance claim
+is made. A new test's overly broad disabled matcher was corrected without changing
+production code; this was not a browser/harness infrastructure repair.
+
+Fresh [independent review](../../output/increment-010-shell-workspace/reviewer.md)
+derived expectations before inspecting implementation, verified all 59 entries and
+patch integrity, and found no application-source defect. Its low-priority ownership
+document attribution finding was corrected by the developer and independently
+rechecked with the entire final manifest. No actionable findings remain. It ran no
+duplicate build/test suite, browser setup or mutation experiment.
+
+Coordinator [in-app Chromium observations](../../output/increment-010-shell-workspace/browser-observations.md)
+cover a prior disposable project's reopen, select/search/reveal, invalid draft,
+All content, departure Keep editing/Cancel, nested unfinished creation protection,
+successful creation and Projects return. Captured warning/error sample was empty.
+No existing unrelated user data was changed. Known native Chrome, screenshot and
+compact-viewport limitations were not retried or repaired; these observations are
+not native Chrome/visual/compact qualification. The temporary tab and task-local
+Vite server were closed after the check.
+
+### Accounting and next action
+
+Approximately **21 of 30 aggregate S2 verification minutes** used (estimate:
+developer 6.5, reviewer 5.5, coordinator/browser/source/reconciliation nine),
+**zero harness repairs**. Checks stopped after adequate useful source/test/ordinary
+browser evidence and explicit tool limits. Remaining allowance is not an automatic
+invitation to another campaign. First-slice 21/30 and all 007/008/009 stop decisions
+remain unchanged; no old missing case becomes a pass.
+
+Next: user review of the S2 result and its native-browser evidence limits. Retain
+unverified criteria rather than mark the entire increment Completed. Any additional
+automated acceptance requires an explicitly authorized bounded follow-up; later
+inspector/display reorganisation requires its own bounded agreement/amendment.
+No staging, committing or pushing occurred.
+
+Suggested commit: `refactor: organise workbench shell and workspace components`.
