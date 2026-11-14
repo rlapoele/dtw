@@ -17,6 +17,13 @@ Suggested decision states for future use are: `open`, `investigating`, `proposed
 
 ## Canonical model
 
+The [14 November layout reference](../project/workbench-layout/README.md) records
+the endorsed visual/responsive direction and proposed authoring interactions.
+Its images do not settle open model or interchange questions. Exact breakpoints,
+preview bindings, variation-view coverage, Undo/Redo scope, and draft/back/departure
+behavior still require scoped decisions before implementation. Editable layer
+controls must respect existing component-ownership constraints.
+
 1. Beyond the decided boolean, number, dimension, percentage, duration, font family, numeric font weight, color, and cubic Bézier literal schemas, what literal schema, accepted units, and constraints apply to each remaining selected foundational type?
 2. Beyond the decided transition, typography, and shadow schemas, what exact fields, cardinalities, and nested-reference rules apply to gradient and border composites?
 3. What exact schemas, cardinalities, and rules should eventually define component parts, slots, properties, variant axes, interactive states, and component-token bindings inside `ComponentContract`?

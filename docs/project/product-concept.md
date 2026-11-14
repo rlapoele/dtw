@@ -21,6 +21,16 @@ It should help people work with a design system as a connected model, not just a
 
 Use the [accepted Precision-based visual reference](./visual-direction.md) as inspiration for a crisp, modern designer/developer workbench. The direction combines project-centered navigation and token search with contextual color editing, side-by-side variation comparison, scale specimens, and relationship/value-resolution inspection. The reference guides visual design; exact interactions and initial feature coverage remain open.
 
+**Layout extension — established visual direction, 14 November 2026:** the
+[saved layout proposal and mockups](./workbench-layout/README.md) develop this
+direction into a visual token library, focused relationship views and a contextual
+inspector. The responsive composition supports use beside a design tool or code
+editor: navigation collapses, and browsing/editing receive separate full-width
+views when a usable split no longer fits. Editable token names and layers are
+first-class authoring concerns, independent of namespace, type and role. Exact
+interaction contracts and feature delivery remain proposed; no implementation is
+authorized by saving these references.
+
 ## Primary users
 
 **Working hypothesis**

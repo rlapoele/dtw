@@ -1,6 +1,6 @@
 # Current Project Status
 
-> Last updated: 13 November 2026
+> Last updated: 14 November 2026
 >
 > Phase: Increment 009 Phase 2 implemented and independently reviewed; user review pending
 >
@@ -9,6 +9,22 @@
 > Applied data is browser-profile/origin local; drafts and forms remain session-only.
 
 ## Current focus
+
+**Visual direction saved — 14 November 2026:** the user endorsed the revised
+workbench layout and responsive concepts and requested durable project references.
+The [layout document and four original mockups](../project/workbench-layout/README.md)
+record the visual library, relationships/Details inspector, half-screen desktop
+and mobile browse/edit direction, with proposed interactions and image limitations
+kept explicit. The parent visual direction and product concept link to it.
+This is documentation and asset preservation only, not final feature-contract
+agreement, approval for analyst review or implementation authorization. No
+application tests, builds or browser/qualification campaign ran. Increment 009
+Phase 2 review and existing acceptance gaps remain unchanged. Documentation
+verification is bounded to prose, local links and exact image-copy checks.
+All 102 checked local links across the five affected Markdown files resolve;
+the four saved PNGs are byte-identical to their originals and tracked-file
+whitespace checks pass. Approximately three aggregate documentation-verification
+minutes (estimate), zero harness repairs; checks stopped.
 
 **Phase 2 implementation handoff — 13 November 2026:** functional workbench
 folders, focused reference/recovery/action contracts and cohesive navigation-layout
@@ -227,6 +243,10 @@ These checks are explicitly deferred from 007 closure, not completed or schedule
 Install/offline PWA acceptance, interchange and Electron remain later milestones.
 
 ## Next meaningful action
+
+The saved layout is a visual reference for future scoped proposals; it does not
+select or start the next increment. Use its recorded unresolved details when the
+user requests further design or planning.
 
 User review of Phase 2's ownership/folder map and working application. Both closure
 phases are implemented; Phase 1 and its slider extension are approved. Retain the

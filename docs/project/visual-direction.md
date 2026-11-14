@@ -2,11 +2,30 @@
 
 ## Status and purpose
 
-**Established visual direction — 7 October 2026**
+**Established visual direction — 7 October 2026; layout extension — 14 November 2026**
 
 The refined Precision-based mockup below is the accepted visual reference and source of inspiration for the Design Token Workbench. It guides subsequent interface design and prototyping for the desktop-oriented PWA designer/developer companion.
 
 The reference establishes the visual character and preferred ways to inspect tokens. Its example data, exact controls, labels, dimensions, and screen composition remain illustrative; it is not an implementation specification or a commitment to an initial feature set.
+
+## Workbench layout and responsive reference
+
+**Established visual direction — 14 November 2026.** The user endorsed a richer
+central workspace within the existing shell and requested that the mockups serve
+as project visual direction and reference. The [layout reference and mockup
+gallery](./workbench-layout/README.md) preserve the wide desktop visual library,
+relationship view, half-screen desktop adaptation and mobile browse/edit pair.
+
+The direction keeps a contextual inspector and project namespace navigation,
+adding visual and relational ways to examine the same canonical tokens. At narrow
+widths, navigation collapses and browsing/editing become separate full-width views
+when a comfortable split no longer fits. The reference records the proposed
+interactions, editable names/layers, model constraints and known image inconsistencies.
+
+This extends the Precision direction below. Exact feature scope, controls,
+breakpoints and behavior remain subject to a scoped contract and validation;
+the mockups are not delivered functionality, acceptance evidence or implementation
+authorization. Existing Increment 009 agreements remain unchanged.
 
 ## Accepted reference
 
@@ -59,4 +78,4 @@ These patterns supplement the accepted Precision layout and search field. Their 
 
 The [open questions](../planning/open-questions.md) continue to govern the first workflow, feature coverage, color editing policies, initial axes, preview contexts, persistence, technology choices, and export profiles. The Light/Dark, contrast, density, sRGB, HEX, token-name, and value examples in the image do not settle those questions.
 
-The [current delivered scope and verification limits](../status/current.md) describe the session-only browser interface and its subsequent maintenance. Future navigation, comparison interactions, responsive behavior, keyboard and focus behavior, accessibility, and styling changes still require design and verification in their concrete workflows. The accepted reference guides that work without making its illustrative inspection patterns delivered features.
+The [current delivered scope and verification limits](../status/current.md) describe the retained browser workbench, with session-only drafts and unfinished forms. Future navigation, comparison interactions, responsive behavior, keyboard and focus behavior, accessibility, and styling changes still require design and verification in their concrete workflows. The accepted references guide that work without making their illustrative inspection patterns delivered features.
