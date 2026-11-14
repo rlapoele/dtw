@@ -2,14 +2,28 @@
 
 > Last updated: 15 November 2026
 >
-> Phase: Increment 010 first slice implemented and independently source-reviewed;
-> user review and remaining native-browser acceptance pending
+> Phase: Increment 010 second-slice planning; first slice committed and pushed;
+> earlier native-browser acceptance remains unverified
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
 > Applied data is browser-profile/origin local; drafts and forms remain session-only.
 
 ## Current focus
+
+**Next-slice planning — 15 November 2026:** the user reported committing/pushing
+the first slice and instructed “Proceed”; repository HEAD is `32ec593` with a clean
+working tree before planning. A separate analyst is defining the
+[workbench shell/workspace slice](../increments/010-shell-and-workspace-slice.md)
+as a Draft amendment. It advances named component folders and colocated owners
+while preserving the existing UI and editor/session lifetimes. Exact scope needs
+agreement before source moves; the replacement interface remains future work.
+The first slice's recorded browser gaps and stopped checks remain unchanged.
+The second-slice draft is ready for user review: exact moves plus toolbar/footer
+extractions, five acceptance criteria and an explicit shared identity-label helper
+owner. Planning checks passed 41 local links and whitespace; approximately eight
+aggregate minutes, zero repairs, stopped. No further source moves or application
+checks occurred.
 
 The user agreed Increment 010's first-slice contract and authorized implementation
 on 15 November 2026. The [implementation handoff](../increments/010-component-oriented-presentation.md#first-slice-implementation-handoff--15-november-2026)
@@ -48,8 +62,9 @@ profile change, connector install or qualification restart was attempted.
 Checks stopped at approximately 21 of 30 aggregate verification minutes (estimate),
 zero harness repairs. Unused time does not authorize automatically continuing
 past the recorded stop; the owning handoff explains the tool limits. Source/tests
-remain frozen after independent review. Only coordinator handoff/report edits
-followed. No staging, committing or pushing occurred.
+remained frozen after independent review; coordinator handoff/report edits followed
+before the user committed and pushed the result as `32ec593`. Agents did not stage,
+commit or push.
 
 ## Direction and roadmap
 
@@ -87,6 +102,10 @@ moves; the stopped 007 campaign has zero remaining authorized allowance.
 Install/offline PWA acceptance, token interchange and Electron remain later work.
 
 ## Next meaningful action
+
+Review the second-slice Draft's exact moves, exclusions and acceptance criteria;
+record scope agreement and implementation authorization before further code moves.
+This does not start later inspector/display migration or new interface features.
 
 User review of the delivered 010 first slice and its explicit native-browser
 acceptance gaps. Do not mark Completed solely from source/tests or silently waive

@@ -385,3 +385,18 @@ contract/amendment and implementation authorization. Staging, committing and
 pushing remain with the user.
 
 Suggested commit: `refactor: extract project entry and shared presentation roots`.
+
+## Next-slice planning — 15 November 2026
+
+After committing and pushing the first slice, the user instructed “Proceed”.
+The next bounded reorganisation is the workbench shell and token workspace.
+The [second-slice proposal](010-shell-and-workspace-slice.md) defines its exact
+moves/extractions and acceptance criteria against committed baseline `32ec593`.
+It is a Draft amendment, not an agreed extension of AC-1 through AC-6 or authority
+to implement future mockup functionality. Source changes await agreement to that
+identified scope under the existing increment workflow.
+
+The first slice's native-browser acceptance remains unverified as recorded above;
+committing, pushing and proceeding to planning do not constitute a manual test
+report, waive criteria or restart its stopped verification. No further first-slice
+qualification or migration ran while drafting the next slice.
