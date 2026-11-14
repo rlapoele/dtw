@@ -18,6 +18,13 @@ No application implementation, new feature contract, analyst review or
 qualification restart is authorized by this documentation request. Increment 009's
 agreements, delivered behavior and outstanding acceptance remain unchanged.
 
+**Planning follow-up — 15 November 2026:** the user subsequently directed closure
+of Increment 009 and opened [Increment 010](../../increments/010-component-oriented-presentation.md)
+to plan the reorganisation. Its roadmap and first-slice contract are Draft;
+implementation still requires agreement and authorization. The
+[009 closure record](../../increments/009-workbench-usability-and-component-boundaries.md#user-directed-closure--15-november-2026)
+preserves deferred, unverified acceptance separately from lifecycle closure.
+
 ## Organising principle
 
 Use a component-oriented structure with colocated hooks and helpers, removing the

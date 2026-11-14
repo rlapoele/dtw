@@ -1,7 +1,9 @@
 # Increment 009: Workbench usability and component boundaries
 
 - Contract status: Agreed
+- Lifecycle: Closed by user instruction, 15 November 2026
 - Delivery status: Partially completed
+- Closure: implementation and independent review are finished; remaining acceptance/qualification is deferred and unverified, not relabelled passed. See the [closure record](#user-directed-closure--15-november-2026).
 - Prepared: 13 November 2026
 - Agreement: on 13 November 2026 the user agreed the amended Increment 009 contract, naming policy and combined V1/V2 design and explicitly authorized implementation through the developer and independent reviewer workflow, within the shared verification budget. Staging, committing and pushing remain with the user.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [visual direction](../project/visual-direction.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [Increment 008](008-react-state-and-workbench-composition.md), [agent workflow](../workflow/agent-roles.md).
@@ -842,3 +844,64 @@ The user has approved Phase 1 changes and slider extension. Increment 009 stays
 Partially completed pending this handoff's user review and the explicitly retained
 earlier manual-acceptance gaps. No extra design/analyst/development loop or automatic
 verification extension is opened by this report.
+
+## User-directed closure — 15 November 2026
+
+The user explicitly instructed: “Close increment 009. Start increment 010”,
+beginning with planning a behavior-preserving presentation reorganisation using
+the saved decomposition and component-oriented folder proposal.
+
+**Lifecycle: Closed. Delivery status: Partially completed.** Implementation and
+independent review, including both closure phases and the slider extension, are
+finished as recorded above. This instruction ends Increment 009's active work and
+pending handoff cycle. It is not a report that the user executed the outstanding
+manual scenarios, or evidence that every original acceptance criterion passed.
+Keeping the delivery label preserves that distinction while honoring closure.
+Earlier pending/next-step wording remains historical and is superseded by this
+closure record.
+
+### Deferred acceptance and qualification
+
+The original [acceptance evidence](#acceptance-evidence), later
+[Phase 1 rendered checklist](../../output/increment-009-phase1/checklist.md),
+[slider extension handoff](#slider-layout-extension-handoff--13-november-2026)
+and [Phase 2 handoff](#phase-2-implementation-handoff--13-november-2026) retain
+their exact evidence and limits. Later observed cases remain observed; the
+following gaps are deferred rather than scheduled as additional 009 work:
+
+- Remaining query/departure-choice, successful Apply/focus, creation/group-rename
+  rejection-focus and complete affected session-interaction scenarios.
+- Unreplayed reference editing, group/resolution/exact-source/diagnostic disclosure
+  states and native Find on collapsed identity details.
+- Exact downloaded-backup comparison and re-restore, and unrelated creation in
+  structurally valid legacy-conflict data. Recorded normal-UI restore and exact
+  duplicate/orphan selection evidence remains valid within its scope.
+- Exact viewport/compact geometry rechecks after the slider extension and the
+  remaining complete keyboard/focus/accessibility interaction matrix.
+- Rare storage/unknown-command recovery states and broader qualification already
+  excluded or stopped in preceding records.
+
+These are evidence gaps, not new demonstrated defects. They do not become passing
+results, complete browser support claims or mandatory replay of old campaigns in
+Increment 010. A later change must still verify the behavior it affects within its
+own agreed scope, while preserving this older uncertainty.
+
+### Closure baseline and authority
+
+Repository HEAD at closure recording is `d33cfbb` (the persisted presentation
+organisation proposal), with no pre-existing tracked or untracked changes when
+this closure/planning task began. This identifies the repository baseline, not a
+new tested browser build. Historical implementation/review snapshots and their
+manifests remain unchanged; do not rewrite their paths or hashes.
+
+Closure is documentation-only: no application tests, build, browser session,
+qualification restart or source migration occurred. All original, Phase 1,
+slider-extension and Phase 2 verification consumption and stopping decisions
+remain recorded above and are not reset. Increments 007/008 remain closed and
+their deferred qualification remains unchanged.
+
+The next authorized work is drafting the [Increment 010 roadmap and first-slice
+contract](010-component-oriented-presentation.md). Starting that planning does not
+authorize implementation of the proposed folder tree, replacement responsive
+shell, mockup capabilities or imports/exports. Staging, committing and pushing
+remain with the user.
