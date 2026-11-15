@@ -97,3 +97,8 @@ Following user-approved analyst review of V2, the
 refines file placement and physical/call/state-lifetime ownership for 011. Local/
 shared hooks, helpers and other supporting folders follow purpose, owner and
 actual consumers. This is a proposal; actual paths above have not changed.
+
+The user subsequently adopted the owner-first, file-grouped variant of that
+[target tree](workbench-layout/presentation-organisation-v2.md), with local/shared
+components, hooks, helpers and state grouped at the appropriate owner. This is an
+adopted planning convention, not a change to the delivered source paths above.

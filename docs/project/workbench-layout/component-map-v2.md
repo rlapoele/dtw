@@ -114,3 +114,13 @@ meaningful hooks/helpers or other shared folders are allowed.
 These are contract/ownership clarifications, not a material visual revision.
 Original V2 artwork is unchanged; final agreement and implementation remain pending.
 Read the refined tree with this earlier component map.
+
+## User-adopted file grouping — 15 November 2026
+
+After the analyst handoff, the user adopted the concrete owner-first, file-grouped
+variant in [presentation organisation V2](presentation-organisation-v2.md). Its
+resulting tree now owns the target paths: component entries stay at named-folder
+roots and private/shared supporting code is grouped by role at its actual owner.
+The older path table above remains design/review history; use the adopted tree
+for current planned placement. Hook callers, state lifetimes and workflows remain
+as refined by the analyst. No application files were moved or implemented.

@@ -2,7 +2,7 @@
 
 - Contract status: Draft
 - Delivery status: Not started
-- Agreement: V2 design and React decomposition at commit `ae75f29` approved **for analyst review** on 15 November 2026; review completed in [V2 analyst review](011-v2-analyst-review.md). Final contract/design agreement and application implementation authorization **pending**.
+- Agreement: V2 design and React decomposition at commit `ae75f29` approved **for analyst review** on 15 November 2026; review completed in [V2 analyst review](011-v2-analyst-review.md). The subsequent owner-first, file-grouped presentation tree is user-adopted for planning. Final agreement to the whole contract/design and application implementation authorization **pending**.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [layout reference V1](../project/workbench-layout/README.md), [component map V1](../project/workbench-layout/component-map-v1.md), [current ownership](../project/workbench-component-organisation.md), [010 delivery direction](010-component-oriented-presentation.md#delivery-direction), [workflow](../workflow/agent-roles.md).
 
 ## Outcome
@@ -231,7 +231,26 @@ map is not authority to scaffold future features or force matching page columns.
 App retains project switching/host lifetime, useProjects retains catalogue and
 creation coordination, and Workbench retains editor/departure/command ownership.
 Shared presentation must not merge these workflows or duplicate the editor session.
-The concrete [presentation organisation V2](../project/workbench-layout/presentation-organisation-v2.md) refines physical folders, call owners, state and lifetimes. It supersedes the V2 map’s local Projects-selection suggestion where cross-screen preservation requires App ownership. All file kinds follow purpose, ownership and actual consumers, following the user’s review clarification. Meaningful hook/helper folders are allowed, as are other local groupings when justified; neither global folders per file kind nor blanket flatness is required. Physical placement does not determine React lifetime.
+The concrete [presentation organisation V2](../project/workbench-layout/presentation-organisation-v2.md)
+records target paths, call owners, state and lifetimes. It supersedes the V2 map’s
+local Projects-selection suggestion where cross-screen preservation requires App
+ownership. The user has adopted its subsequent file-grouped variant: component
+entry files stay at named-folder roots; supporting children, hooks, functions and
+pure state logic use `components/`, `hooks/`, `helpers/` and `state/` within the
+appropriate owner. Other categories are added only for actual files, with no empty
+scaffolding. `components` is the chosen name rather than `views`. The named Workbench
+component owner uses **`Workbench/`** (capitalized); source evidence below keeps
+its actual current lowercase paths.
+
+Purpose, ownership and actual consumers determine the level before file kind.
+Private code stays private; shared code moves to its nearest meaningful common
+owner. Shared application structure lives under presentation-level `components/`;
+generic `ui/` and host/worker boundary modules retain their distinct purposes.
+Simple private children may remain individual files inside the parent’s
+`components/`; named child folders remain useful for supporting files or substantial
+subtrees. `.ts` does not automatically mean helper: session transforms, types and
+runtime modules retain their real role. Physical grouping changes imports, not
+React callers, state/ref lifetime, keys, command authority or component ancestry.
 
 ## Source-informed starting point
 
@@ -268,7 +287,7 @@ Any unresolved interaction below must be settled before implementation.
 - **AC-11 — Projects selection and inspection:** supported and unavailable catalogue entries can be selected without opening a project or acquiring editing ownership. Exact identity wraps; duplicate names remain distinguishable. Supported inspector fields are name, identity, token/group counts and supported status; unavailable inspection shows identity/reason without invented counts. Explicit Open project alone enters the existing project-opening flow. No selection, loading, empty, missing selection and read failure have truthful presentations.
 - **AC-12 — Selected-project backup:** capture a supported selected ID/revision from one catalogue entry and generate backup through the existing revision-checked boundary without mounting Workbench. Another tab's ownership does not by itself prevent this read-only backup. A stale revision/read error gives identity-specific feedback and explicit refresh/review/retry; no automatic download of unreviewed newer data. Prevent conflicting commands while pending and preserve unknown/retained/restore gates. Download initiation does not prove file custody; drafts remain excluded.
 - **AC-13 — Projects workflows and context:** create-and-open, required-name focus/exact text, retained/read-unavailable and unknown recovery retain their current meaning. Restore preserves stage, same-ID revision protection/backup/acknowledgement, diagnostics, unknown and Open behavior. Returning from Workbench restores selected project and catalogue scroll where available; missing entries are explained. Narrow Inspect/Back preserves selection/form values/scroll and is distinct from Open or departure. All Projects controls and relevant feedback remain usable at 320 CSS px.
-- **AC-14 — Ownership and shared structure:** implement the finally agreed named component organisation with generic UI distinct from shared app chrome and page-specific workflows. Document each changed hook's call owner/state/lifetime. App keeps unconditional useProjects, host and cross-screen Projects context/restore refs; Workbench keeps command/guard/completion authority and project-ID key; TokenEditor remains the sole editor-hook caller. Presentation/folder moves introduce no editor remount or extra reset reason.
+- **AC-14 — Ownership and shared structure:** implement the user-adopted owner-first, file-grouped target tree, subject to final contract agreement. Keep named component entry files at their roots; group supporting components/hooks/helpers/state at their actual owner or nearest shared level, creating other categories only when needed and no empty folders. Generic UI stays distinct from shared app chrome, page-specific workflows and host/runtime modules. Document each changed hook's call owner/state/lifetime. App keeps unconditional useProjects, host and cross-screen Projects context/restore refs; Workbench keeps command/guard/completion authority and project-ID key; TokenEditor remains the sole editor-hook caller. Presentation/folder moves introduce no editor remount or extra reset reason.
 
 ## Decisions and open questions
 
@@ -427,7 +446,32 @@ revisions if needed, then explicit approval of an identified set for analyst rev
 
 ## Agreed amendments
 
-None. This document is an initial proposal and must not be relabeled Agreed by an agent.
+The whole implementation contract remains Draft; no implementation is authorized.
+The following limited structural direction is user-adopted, rather than agreement
+to every remaining contract/design policy.
+
+### File-grouped presentation tree adopted — 15 November 2026
+
+After committing the analyst handoff as `529b2db`, the user reviewed a concrete
+in-chat variant with owner-level `components/`, `hooks/`, `helpers/` and `state/`
+folders and asked to adopt it in the proposed tree and this contract, explicitly
+without implementation. The [resulting tree and ownership matrix](../project/workbench-layout/presentation-organisation-v2.md)
+now use those exact boundaries, including `app/hooks/useWorkbenchHost.ts`,
+`projects/hooks/useProjects.ts`, grouped Workbench component subtrees and split
+`token-display/components/` / `helpers/`. The user additionally
+selected `Workbench/` capitalization for that named component owner; the
+proposed tree and target-path matrix use it consistently.
+
+This changes proposed file placement only. App still calls useProjects
+unconditionally; Workbench still calls useCreationForm; TokenEditor remains the
+sole useTokenEditor caller. Existing state/refs/keys/commands and the approved V2
+visuals are unchanged. Actual `src/presentation/` remains untouched. The earlier
+analyst review covers its original snapshot; this later user-selected grouping
+is not represented as a new independent review or whole-contract approval.
+
+Bounded documentation checks cover prose, complete existing-file-to-target mapping,
+new/removed labels, paths/links and diff whitespace. No application tests/build or
+prior qualification campaign is run or restarted.
 
 ## V2 analyst handoff — 15 November 2026
 

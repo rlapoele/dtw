@@ -3,7 +3,7 @@
 > Last updated: 15 November 2026
 >
 > Phase: Increment 011 analyst review completed; refined Draft contract and
-> concrete proposed presentation tree ready for final user agreement
+> user-adopted file-grouped presentation tree; whole-contract agreement and implementation pending
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
@@ -24,10 +24,15 @@ authorization is recorded; application delivery is Not started.
 
 The [concrete resulting presentation tree](../project/workbench-layout/presentation-organisation-v2.md)
 shows current/new/moved files and a component/hook/state/lifetime/consumer matrix.
-The user's organising principle applies to all file kinds: purpose, owner and
-actual consumers determine placement. Meaningful local/shared hooks, helpers and
-other supporting folders are allowed; physical location does not change React
-call ownership or state lifetime. No source moves occurred.
+The user has adopted the concrete file-grouped variant after reviewing it in
+chat: component entry files at named-folder roots, with owner-level `components/`,
+`hooks/`, `helpers/`, `state/` and other categories only as actual files require.
+No empty folders. The user also selected capitalized `Workbench/` for that
+named component owner in the target tree. Purpose, owner and actual consumers determine private/shared
+placement before file kind; simple private children may stay as files inside
+`components/`. Physical grouping leaves React call ownership/state lifetime intact.
+The tree and Draft contract now record that selected convention; no source moves
+occurred and no whole-contract agreement or implementation authority is implied.
 
 ## Agreed direction and review refinements
 
@@ -51,7 +56,8 @@ Create-and-open and existing restore/unknown-result protection remain authoritat
 Final agreement still needs to identify exact V2 policies: 1120/880 thresholds,
 two-step narrow entry, focus/resize/scroll rules, inline project forms, read-only
 fields, narrower row detail, routine status consolidation, persistent-storage
-control relocation, selected-project flow and refined folder/state ownership.
+control relocation and selected-project flow. File grouping is now adopted;
+existing hook callers/state/command ownership remain constraints.
 Approval for analyst review did not establish these as final implementation terms.
 
 ## Evidence and stopping
@@ -89,10 +95,10 @@ interchange and Electron remain later work.
 
 ## Next meaningful action
 
-Present the analyst findings, refined Draft 011 and resulting presentation tree
-for final user agreement. Material design revisions return to the user before
-renewed analyst review. Implementation requires final contract/design/organisation
-agreement and explicit authorization. Reassess proportionate implementation
+Present the remaining Draft 011/design policies for final user agreement,
+with the adopted file-grouped presentation tree as the structural direction. Material design revisions return to the user before
+renewed analyst review. Implementation requires final contract/design agreement and explicit
+authorization; the adopted folder convention is already recorded. Reassess proportionate implementation
 verification for the full UI/Projects scope before verification starts. Leave
 staging, committing and pushing to the user.
 
@@ -101,3 +107,7 @@ staging, committing and pushing to the user.
 Read AGENTS.md, this handoff, actual Git state, the analyst report, refined 011 and
 proposed presentation tree with V2 artifacts. [README](../../README.md) owns commands
 and delivery limits; prior increments own their historical acceptance gaps.
+
+Documentation-only grouping adoption: proposed paths, ownership matrix, contract
+and status reconciled; existing-source target coverage and local links/whitespace
+checked. No source move, test/build, new analyst review or qualification restart.

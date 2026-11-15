@@ -1,46 +1,76 @@
 # Presentation organisation V2 — proposed resulting tree
 
-**Draft refinement after analyst review — 15 November 2026.** Applies to the V2
-set at `ae75f29`, approved for analyst review; final agreement and implementation
-remain pending. Read with the [review](../../increments/011-v2-analyst-review.md),
+**User-adopted grouping refinement — 15 November 2026.** After the analyst-review
+handoff at `529b2db`, the user adopted the concrete file-grouped tree shown in
+chat and requested this documentation update only. The V2 design set at `ae75f29`
+was approved for analyst review; this structural decision does not establish final
+agreement to the whole Increment 011 contract or authorize implementation.
+Read with the [review](../../increments/011-v2-analyst-review.md),
 [draft 011 contract](../../increments/011-responsive-shell.md),
 [V2 component map](component-map-v2.md) and
 [current delivered ownership](../workbench-component-organisation.md).
 
 ## Organisation principle
 
-Continue the endorsed named component folders. Put every file at the level that
-expresses its purpose, owner and actual consumers. Hooks/helpers folders are
-allowed where useful, as the user clarified during review. This applies equally
-to types, constants, local styles, subcomponents and test support if such files
-are needed; it is not a rule to create a global folder for each file kind or move
-every existing file. Shared siblings use their nearest meaningful common owner;
-private children stay private. Generic UI remains token/project agnostic.
-Physical location is independent of the React component that calls a hook and
-therefore independent of its state lifetime.
+Keep a component’s entry file at its named folder’s root. Group its supporting
+files by role: `components/` for private child components, `hooks/` for hooks,
+`helpers/` for supporting functions and `state/` for pure state/session logic.
+Use `components`, rather than `views`, to cover controls and sections as well as
+larger views. Add other categories such as `types/`, `constants/` or local styles
+only when actual files need them; create no empty category folders.
 
-The proposed `workbench/hooks/` groups the four Workbench-called coordination
-hooks; `workbench/helpers/workspace-view.ts` is shared by Workbench, namespace navigation and workspace composition. Small established private helpers remain beside their
-components. Projects layout has its own hook rather than being folded into
-useProjects' command/recovery state. No generic controller or page-wide mega-hook.
-No new type/constant/style/test-support directory is needed in this bounded tree.
+Ownership comes before file kind. A private file stays within its component’s
+subtree; sibling consumers share a file at their nearest meaningful common owner.
+Cross-screen application structure lives in presentation-level `components/`;
+generic token/project-agnostic controls remain in `ui/`, which already expresses
+that category. Shared token-aware renderers and their functions are separated
+under `token-display/components/` and `token-display/helpers/`. Browser/worker
+boundary modules stay under `host/`; they are not helpers merely because they
+have a `.ts` extension.
+
+A child gets its own named folder when it owns supporting files or a substantial
+component subtree. Simple private children may stay as individual files within
+the parent’s `components/`; existing named component boundaries in the tree are
+retained. This makes file roles visible while accepting deeper nested paths,
+especially inside TokenEditor. Do not add folders solely to make every leaf
+look identical.
+
+File extension alone does not determine role: `.ts` may contain types, state
+transitions, worker/runtime code or validation. `editor-session.ts` belongs to
+TokenEditor’s `state/`; `integer-rgb.ts` belongs to its `helpers/` because the
+editor session and ColorEditor both use it. `visual-range.ts` stays within
+ColorEditor’s private `helpers/`.
+
+The user also selected **`Workbench/`** capitalization for the named owner of
+`Workbench.tsx`, consistent with other named component folders. The source still
+uses lowercase `workbench/`; that current-source evidence and historical review
+paths remain unchanged. Future source paths/imports must use the selected target
+casing when implementation is authorized.
+
+Physical location remains independent of the React caller and state lifetime.
+App still calls useProjects unconditionally; Workbench still calls useCreationForm;
+TokenEditor remains the sole useTokenEditor caller. Grouping files does not move
+those calls, change keys, reparent rendered components or introduce reset reasons.
 
 ## Concrete resulting tree
 
-`[N]` = new responsibility, `[M]` = existing file moved. Unmarked files retain
-location, not necessarily unchanged JSX. This includes all current presentation
-files, including host/token display/theme/config; it is not a scaffold for future
+`[N]` = new responsibility, `[M]` = existing file moved. Markers compare target
+paths with current application source, not the earlier proposal. Unmarked files
+retain location, not necessarily unchanged JSX. This includes all current
+presentation files, including host/token display/theme/config; it is not a scaffold for future
 capabilities. Removing the Workbench backup hook is explained below.
 
 ```text
 src/presentation/
-├── ApplicationHeader/
-│   └── ApplicationHeader.tsx [N]
-├── ApplicationShell/
-│   └── ApplicationShell.tsx [N]
 ├── app/
-│   ├── App.tsx
-│   └── useWorkbenchHost.ts
+│   ├── hooks/
+│   │   └── useWorkbenchHost.ts [M]
+│   └── App.tsx
+├── components/
+│   ├── ApplicationHeader/
+│   │   └── ApplicationHeader.tsx [N]
+│   └── ApplicationShell/
+│       └── ApplicationShell.tsx [N]
 ├── host/
 │   ├── backup-file.ts
 │   ├── derived-validation.ts
@@ -53,38 +83,42 @@ src/presentation/
 ├── lib/
 │   ├── cn-tables.generated.ts [generated, ignored]
 │   └── cn.ts
-├── main.tsx
 ├── project-backup/
-│   └── RestoreDialog/
-│       ├── RestoreDialog.tsx
-│       └── useBackupRestore.ts
+│   └── components/
+│       └── RestoreDialog/
+│           ├── hooks/
+│           │   └── useBackupRestore.ts [M]
+│           └── RestoreDialog.tsx [M]
 ├── projects/
-│   ├── CreateProjectForm/
-│   │   └── CreateProjectForm.tsx
-│   ├── ProjectInspector/
-│   │   └── ProjectInspector.tsx [N]
-│   ├── ProjectList/
-│   │   ├── ProjectList.tsx
-│   │   └── ProjectListItem.tsx
-│   ├── ProjectRecovery/
-│   │   └── ProjectRecovery.tsx
-│   ├── ProjectsScreen.tsx
+│   ├── components/
+│   │   ├── CreateProjectForm/
+│   │   │   └── CreateProjectForm.tsx [M]
+│   │   ├── ProjectInspector/
+│   │   │   └── ProjectInspector.tsx [N]
+│   │   ├── ProjectList/
+│   │   │   ├── components/
+│   │   │   │   └── ProjectListItem.tsx [M]
+│   │   │   └── ProjectList.tsx [M]
+│   │   └── ProjectRecovery/
+│   │       └── ProjectRecovery.tsx [M]
 │   ├── hooks/
+│   │   ├── useProjects.ts [M]
 │   │   └── useProjectsLayout.ts [N]
-│   └── useProjects.ts
+│   └── ProjectsScreen.tsx
 ├── styles/
 │   └── global.css
 ├── token-display/
-│   ├── AuthoredValue.tsx
-│   ├── ExactSource.tsx
-│   ├── ResolvedTokenPanel.tsx
-│   ├── TokenMetadata.tsx
-│   ├── TokenSwatch.tsx
-│   ├── authored-color.ts
-│   ├── color-preview.ts
-│   ├── identity-labels.ts
-│   └── resolved-color.ts
-├── tsconfig.json
+│   ├── components/
+│   │   ├── AuthoredValue.tsx [M]
+│   │   ├── ExactSource.tsx [M]
+│   │   ├── ResolvedTokenPanel.tsx [M]
+│   │   ├── TokenMetadata.tsx [M]
+│   │   └── TokenSwatch.tsx [M]
+│   └── helpers/
+│       ├── authored-color.ts [M]
+│       ├── color-preview.ts [M]
+│       ├── identity-labels.ts [M]
+│       └── resolved-color.ts [M]
 ├── ui/
 │   ├── badge.tsx
 │   ├── button.tsx
@@ -93,93 +127,108 @@ src/presentation/
 │   ├── icon.tsx
 │   ├── input.tsx
 │   └── select.tsx
-└── workbench/
-    ├── CreationDialog/
-    │   ├── CreationDialog.tsx
-    │   ├── naming-preview.ts
-    │   └── useCreationForm.ts
-    ├── TokenWorkspace/
-    │   ├── AllContent/
-    │   │   ├── AllContent.tsx
-    │   │   └── all-content.ts
-    │   ├── SelectionBar/
-    │   │   └── SelectionBar.tsx [N]
-    │   ├── TokenTable/
-    │   │   └── TokenTable.tsx
-    │   ├── TokenWorkspace.tsx
-    │   └── WorkspaceToolbar/
-    │       └── WorkspaceToolbar.tsx
-    ├── Workbench.tsx
-    ├── WorkbenchHeader/
-    │   └── WorkbenchHeader.tsx
-    ├── WorkbenchInspector/
-    │   ├── GroupInspector/
-    │   │   └── GroupInspector.tsx
-    │   ├── InspectorHeader.tsx
-    │   ├── TokenEditor/
-    │   │   ├── ColorEditor/
-    │   │   │   ├── ColorEditor.tsx
-    │   │   │   └── visual-range.ts
-    │   │   ├── EditRecovery.tsx
-    │   │   ├── EditorActions.tsx
-    │   │   ├── ReferenceFields.tsx
-    │   │   ├── TokenEditor.tsx
-    │   │   ├── TokenEditorContent.tsx
-    │   │   ├── TokenEditorTabs.tsx
-    │   │   ├── editor-failure.ts
-    │   │   ├── editor-session.ts
-    │   │   ├── integer-rgb.ts
-    │   │   └── useTokenEditor.ts
-    │   ├── TokenValueComparison.tsx
-    │   └── WorkbenchInspector.tsx
-    ├── WorkbenchNavigation/
-    │   ├── NamespaceTree/
-    │   │   └── NamespaceTree.tsx
-    │   └── WorkbenchNavigation.tsx
-    ├── WorkbenchRecovery/
-    │   ├── DepartureGuard.tsx
-    │   ├── ProjectDiagnostics.tsx
-    │   ├── RetentionRecovery.tsx
-    │   └── WorkbenchFeedback.tsx [N]
-    ├── WorkbenchStatus/
-    │   └── WorkbenchStatus.tsx
-    ├── helpers/
-    │   └── workspace-view.ts [M]
-    └── hooks/
-        ├── useProjectCommands.ts [M]
-        ├── useProjectReadback.ts [M]
-        ├── useWorkbenchLayout.ts [M]
-        └── useWorkbenchLifecycle.ts [M]
+├── Workbench/
+│   ├── components/
+│   │   ├── CreationDialog/
+│   │   │   ├── helpers/
+│   │   │   │   └── naming-preview.ts [M]
+│   │   │   ├── hooks/
+│   │   │   │   └── useCreationForm.ts [M]
+│   │   │   └── CreationDialog.tsx [M]
+│   │   ├── TokenWorkspace/
+│   │   │   ├── components/
+│   │   │   │   ├── AllContent/
+│   │   │   │   │   ├── helpers/
+│   │   │   │   │   │   └── all-content.ts [M]
+│   │   │   │   │   └── AllContent.tsx [M]
+│   │   │   │   ├── SelectionBar/
+│   │   │   │   │   └── SelectionBar.tsx [N]
+│   │   │   │   ├── TokenTable/
+│   │   │   │   │   └── TokenTable.tsx [M]
+│   │   │   │   └── WorkspaceToolbar/
+│   │   │   │       └── WorkspaceToolbar.tsx [M]
+│   │   │   └── TokenWorkspace.tsx [M]
+│   │   ├── WorkbenchHeader/
+│   │   │   └── WorkbenchHeader.tsx [M]
+│   │   ├── WorkbenchInspector/
+│   │   │   ├── components/
+│   │   │   │   ├── GroupInspector/
+│   │   │   │   │   └── GroupInspector.tsx [M]
+│   │   │   │   ├── TokenEditor/
+│   │   │   │   │   ├── components/
+│   │   │   │   │   │   ├── ColorEditor/
+│   │   │   │   │   │   │   ├── helpers/
+│   │   │   │   │   │   │   │   └── visual-range.ts [M]
+│   │   │   │   │   │   │   └── ColorEditor.tsx [M]
+│   │   │   │   │   │   ├── EditorActions.tsx [M]
+│   │   │   │   │   │   ├── EditRecovery.tsx [M]
+│   │   │   │   │   │   ├── ReferenceFields.tsx [M]
+│   │   │   │   │   │   ├── TokenEditorContent.tsx [M]
+│   │   │   │   │   │   └── TokenEditorTabs.tsx [M]
+│   │   │   │   │   ├── helpers/
+│   │   │   │   │   │   ├── editor-failure.ts [M]
+│   │   │   │   │   │   └── integer-rgb.ts [M]
+│   │   │   │   │   ├── hooks/
+│   │   │   │   │   │   └── useTokenEditor.ts [M]
+│   │   │   │   │   ├── state/
+│   │   │   │   │   │   └── editor-session.ts [M]
+│   │   │   │   │   └── TokenEditor.tsx [M]
+│   │   │   │   ├── InspectorHeader.tsx [M]
+│   │   │   │   └── TokenValueComparison.tsx [M]
+│   │   │   └── WorkbenchInspector.tsx [M]
+│   │   ├── WorkbenchNavigation/
+│   │   │   ├── components/
+│   │   │   │   └── NamespaceTree/
+│   │   │   │       └── NamespaceTree.tsx [M]
+│   │   │   └── WorkbenchNavigation.tsx [M]
+│   │   ├── WorkbenchRecovery/
+│   │   │   └── components/
+│   │   │       ├── DepartureGuard.tsx [M]
+│   │   │       ├── ProjectDiagnostics.tsx [M]
+│   │   │       ├── RetentionRecovery.tsx [M]
+│   │   │       └── WorkbenchFeedback.tsx [N]
+│   │   └── WorkbenchStatus/
+│   │       └── WorkbenchStatus.tsx [M]
+│   ├── helpers/
+│   │   └── workspace-view.ts [M]
+│   ├── hooks/
+│   │   ├── useProjectCommands.ts [M]
+│   │   ├── useProjectReadback.ts [M]
+│   │   ├── useWorkbenchLayout.ts [M]
+│   │   └── useWorkbenchLifecycle.ts [M]
+│   └── Workbench.tsx [M]
+├── main.tsx
+└── tsconfig.json
 ```
 
 ## State, call ownership and consumers
 
 | Physical owner | React caller / state owner and lifetime | Consumers and authority |
 | --- | --- | --- |
-| `app/App.tsx`, `useWorkbenchHost.ts` (retained) | App calls useWorkbenchHost and useProjects unconditionally, before its Projects/Workbench branch. App lifetime retains host ref, backup file ref, preview, departure dialog state and stay ref. | One host; App owns reset and keyed project branch. Restore file refs survive ProjectsScreen unmount, without a second Workbench. |
-| `projects/useProjects.ts` (retained, extended coordination) | **App**, not ProjectsScreen, calls useProjects. Existing entries/opened project, name/nameRef, pending, activeMutation, retainedId, unknown, notices/errors stay here for App lifetime. Selected-project backup adds captured ID/revision and pending/error sequencing here, using existing file helper. | ProjectsScreen receives controlled data/actions. Open/Create/Restore and unknown recovery share existing gates; no second catalogue or backup controller. Opened `project` is distinct from selected catalogue entry. |
+| `app/App.tsx`, `app/hooks/useWorkbenchHost.ts` (hook moved) | App calls useWorkbenchHost and useProjects unconditionally, before its Projects/Workbench branch. App lifetime retains host ref, backup file ref, preview, departure dialog state and stay ref. | One host; App owns reset and keyed project branch. Restore file refs survive ProjectsScreen unmount, without a second Workbench. |
+| `projects/hooks/useProjects.ts` (moved, extended coordination) | **App**, not ProjectsScreen, calls useProjects. Existing entries/opened project, name/nameRef, pending, activeMutation, retainedId, unknown, notices/errors stay here for App lifetime. Selected-project backup adds captured ID/revision and pending/error sequencing here, using existing file helper. | ProjectsScreen receives controlled data/actions. Open/Create/Restore and unknown recovery share existing gates; no second catalogue or backup controller. Opened `project` is distinct from selected catalogue entry. |
 | `app/App.tsx` Projects page context (new state, no required extra hook) | App owns `projectsView`: selection for any catalogue row keyed by `rowKey`, preserving its exact displayed `id` and last-known status, plus saved browse scroll and remembered narrow surface. Reconcile against refreshed catalogue without discarding unsupported identity/reason; only a currently supported row enables Open/Backup. It survives the Workbench branch; full App reset/reload may clear it. | ProjectsScreen receives context and callbacks. Explicit Open/Create/Restore completion updates selection. Keep missing selection truthful. No saved preferences/database writes; no second selected ID inside ProjectInspector. |
 | `projects/hooks/useProjectsLayout.ts` (new) | ProjectsScreen calls it once while mounted: current width mode, visible narrow surface, refs/focus handoff and mounted scroll restoration. Seed/save page context through App callbacks. Dispose listeners on unmount. | List/inspector presentation only. It never opens a project or creates a revision. DOM focus effects must run only for mounted Projects, even though saved context survives it. |
 | `projects/ProjectsScreen.tsx`, ProjectList, ProjectListItem, ProjectInspector | Controlled selection and callbacks; local DOM refs only. Inspector has no private project read, writable ownership state or draft. | Exact catalogue name/identity/counts/status, or unavailable reason; separate Open/Download. New ProjectInspector is a real page region, not a wrapper for one button. Create/Restore/retention section remain composed inline with existing form/recovery children. |
 | `ApplicationShell`, `ApplicationHeader` (new) | Stateless shared application chrome; page composition supplies slots/display props. | Both Projects and Workbench; frame/main/feedback/status geometry and app identity. No namespace, project list, domain value, host or editor state. This cross-screen structure is distinct from generic `ui/`. |
-| `project-backup/RestoreDialog/{RestoreDialog,useBackupRestore}` (retained) | RestoreDialog calls useBackupRestore while App mounts the active preview. Its review, replacement acknowledgement/protection, pending/unknown/reconciliation stay tied to that preview. App retains file ref for restaging. | Projects restore entry only in 011; dialog still uses existing typed host operations and exact revision protection. Never reuse catalogue download success as acknowledgement. |
+| `project-backup/components/RestoreDialog/RestoreDialog.tsx` and `hooks/useBackupRestore.ts` (moved) | RestoreDialog calls useBackupRestore while App mounts the active preview. Its review, replacement acknowledgement/protection, pending/unknown/reconciliation stay tied to that preview. App retains file ref for restaging. | Projects restore entry only in 011; dialog still uses existing typed host operations and exact revision protection. Never reuse catalogue download success as acknowledgement. |
 | `host/backup-file.ts` (retained) / removal of `project-backup/useWorkbenchBackup.ts` | Pure browser file/read/download effects stay in existing host helper. The Workbench-only hook's selected file/preview/restage flow duplicates App's already existing restore path and is removed once entry points move. Its download sequencing moves to useProjects; no new generic backup hook is needed. | useProjects invokes revision-checked download. App retains staging/file/preview ownership; RestoreDialog retains restore authority. No direct IndexedDB or storage policy in components. |
-| `workbench/Workbench.tsx` (retained coordinator) | Workbench remains keyed by `project.project.id` in App. It owns selected token/group, view/query, dirty/departure/pending request, editorVersion, completion refs, source callbacks and creation-hook call. All survive responsive modes during that open project session. | Page-specific header, navigation, workspace, inspector, feedback and dialogs receive controlled values. No transfer of mutation or departure authority to chrome/layout. |
-| `workbench/hooks/{useProjectReadback,useProjectCommands,useWorkbenchLifecycle}` (moved) | **Workbench** remains caller, with existing call order. Readback owns header/context/rows/inspection/diagnostics/failures; command hook owns busy/unknown/accept/reconciliation; lifecycle owns host pause/resume checks through current inputs. | Workbench composes their values; dependencies/refs remain explicit. Physical hooks folder changes neither worker lifetime nor completion authority. |
-| `workbench/hooks/useWorkbenchLayout.ts` (moved, extended) | Workbench calls once: threshold mode, navigation drawer/collapse, inspector collapse, last narrow surface and pane focus/scroll refs. No editor values or command state. | Header/navigation/workspace/inspector use display props and callbacks. Same mounted inspector subtree changes visibility; focus policy yields to active dialogs. No storage preference persistence. |
-| `workbench/helpers/workspace-view.ts` (moved) | Pure view/scope/creation-parent mapping; no hook/state. | Workbench creation-parent mapping, NamespaceTree and workspace consumers; nearest shared workbench owner. AllContent membership helper remains private to AllContent. |
-| WorkbenchHeader / WorkbenchNavigation / TokenWorkspace (retained) | Stateless/controlled composition apart from existing local rendering details. SelectionBar is new controlled selected-target/draft-indication/reopen rendering. | No backup/restore/Undo controls. Workbench navigation retains existing button semantics. SelectionBar receives selected identity even if query/scope hides its row; it cannot replace the editor target. |
-| WorkbenchInspector / TokenEditor / `useTokenEditor.ts` (retained) | **TokenEditor is the sole hook caller**, with key `[selection.id, editorVersion]`. Its raw literal/reference input, tab/mode, display/entry settings, validation/recovery and Apply/Cancel remain the one editor session. | TokenEditorContent, ReferenceFields, ColorEditor, actions/recovery receive bounded values/callbacks. Keep stable React ancestry/key across width, Back, drawer, collapse and filtering; CSS hiding/inertness alone adds no reset reason. Authorized deliberate selection/completion/discard still may reset as today. |
-| TokenEditor helpers (retained) | `editor-session` pure session transforms, `editor-failure` text, `integer-rgb` shared by editor/color controls, ColorEditor `visual-range` private range presentation. | Existing component subtree; no generic slider/state abstraction and no numerical policy changes. |
-| WorkbenchStatus / WorkbenchRecovery (retained + new WorkbenchFeedback) | WorkbenchFeedback renders existing lifecycle/read-failure/retention feedback from Workbench values/actions, without a new hook. WorkbenchStatus consolidates ordinary applied/draft guidance; Request persistent storage leaves this component. | Visible safety region outside hidden browse/inspect panes, with urgent actions always exposed. Diagnostics/DepartureGuard retain current semantics. Projects retention action calls existing storage-preference adapter from page command composition and reports the result. |
-| CreationDialog / useCreationForm / naming-preview (retained) | Workbench calls useCreationForm; form draft/review baseline and refs stay alive through existing modal/cancel rules, not responsive visibility. | Creation/rename dialogs receive existing actions; no parallel phone dialog. Pure naming helper remains private. |
-| `token-display/` (retained) | Read-only token-aware components/helpers; ExactSource retains on-demand request/revision invalidation and bounded viewport. No editor-hook dependency. | Used by inspector/workspace as today; pure identity/color/resolution helpers retain exact meanings. |
+| `Workbench/Workbench.tsx` (moved path, retained coordinator) | Workbench remains keyed by `project.project.id` in App. It owns selected token/group, view/query, dirty/departure/pending request, editorVersion, completion refs, source callbacks and creation-hook call. All survive responsive modes during that open project session. | Page-specific header, navigation, workspace, inspector, feedback and dialogs receive controlled values. No transfer of mutation or departure authority to chrome/layout. |
+| `Workbench/hooks/{useProjectReadback,useProjectCommands,useWorkbenchLifecycle}` (moved) | **Workbench** remains caller, with existing call order. Readback owns header/context/rows/inspection/diagnostics/failures; command hook owns busy/unknown/accept/reconciliation; lifecycle owns host pause/resume checks through current inputs. | Workbench composes their values; dependencies/refs remain explicit. Physical hooks folder changes neither worker lifetime nor completion authority. |
+| `Workbench/hooks/useWorkbenchLayout.ts` (moved, extended) | Workbench calls once: threshold mode, navigation drawer/collapse, inspector collapse, last narrow surface and pane focus/scroll refs. No editor values or command state. | Header/navigation/workspace/inspector use display props and callbacks. Same mounted inspector subtree changes visibility; focus policy yields to active dialogs. No storage preference persistence. |
+| `Workbench/helpers/workspace-view.ts` (moved) | Pure view/scope/creation-parent mapping; no hook/state. | Workbench creation-parent mapping, NamespaceTree and workspace consumers; nearest shared workbench owner. AllContent membership helper remains private to AllContent. |
+| `Workbench/components/` header/navigation/workspace owners (moved) | Stateless/controlled composition apart from existing local rendering details. SelectionBar is new controlled selected-target/draft-indication/reopen rendering. | No backup/restore/Undo controls. Workbench navigation retains existing button semantics. SelectionBar receives selected identity even if query/scope hides its row; it cannot replace the editor target. |
+| WorkbenchInspector / TokenEditor / `hooks/useTokenEditor.ts` (grouped under `Workbench/components/`) | **TokenEditor is the sole hook caller**, with key `[selection.id, editorVersion]`. Its raw literal/reference input, tab/mode, display/entry settings, validation/recovery and Apply/Cancel remain the one editor session. | TokenEditorContent, ReferenceFields, ColorEditor, actions/recovery receive bounded values/callbacks. Keep stable React ancestry/key across width, Back, drawer, collapse and filtering; CSS hiding/inertness alone adds no reset reason. Authorized deliberate selection/completion/discard still may reset as today. |
+| TokenEditor `state/`, `helpers/` and ColorEditor `helpers/` (moved) | `editor-session` pure session transforms, `editor-failure` text, `integer-rgb` shared by editor/color controls, ColorEditor `visual-range` private range presentation. | Existing component subtree; no generic slider/state abstraction and no numerical policy changes. |
+| WorkbenchStatus / WorkbenchRecovery under `Workbench/components/` (moved + new WorkbenchFeedback) | WorkbenchFeedback renders existing lifecycle/read-failure/retention feedback from Workbench values/actions, without a new hook. WorkbenchStatus consolidates ordinary applied/draft guidance; Request persistent storage leaves this component. | Visible safety region outside hidden browse/inspect panes, with urgent actions always exposed. Diagnostics/DepartureGuard retain current semantics. Projects retention action calls existing storage-preference adapter from page command composition and reports the result. |
+| CreationDialog entry / `hooks/useCreationForm.ts` / `helpers/naming-preview.ts` (moved) | Workbench calls useCreationForm; form draft/review baseline and refs stay alive through existing modal/cancel rules, not responsive visibility. | Creation/rename dialogs receive existing actions; no parallel phone dialog. Pure naming helper remains private. |
+| `token-display/components/` and `token-display/helpers/` (grouped) | Read-only token-aware components/helpers; ExactSource retains on-demand request/revision invalidation and bounded viewport. No editor-hook dependency. | Used by inspector/workspace as today; pure identity/color/resolution helpers retain exact meanings. |
 | `ui/`, `lib/cn.ts`, `styles/global.css`, `host/`, main/config (retained) | Existing control APIs/theme, class-composition and host runtime/validation/worker boundaries. | Generic UI and owned Icon; semantic theme shared by both pages. No new dependency/protocol, filesystem, domain semantics or direct storage access. Tests outside src remain at meaningful existing owners unless implementation demonstrates a necessary move. |
 
 ## Lifetime and cross-screen restrictions
 
-App's page branch must not conditionally call useProjects. Retaining the hook file
-under `projects/` expresses purpose; calling it inside ProjectsScreen would lose
+App's page branch must not conditionally call useProjects. Keeping the hook file
+under `projects/hooks/` expresses purpose; calling it inside ProjectsScreen would lose
 entry state during project opening. Conversely, retaining Projects view context in
 App does not keep the screen's hidden DOM/focus effects mounted.
 
@@ -191,6 +240,18 @@ proof later. The proposal does not select a portal or new context/provider.
 
 No current source moves have been made. These refinements replace the ambiguous
 screen-local selection lifetime in component map V2 and spell out a concrete
-resulting tree. The tree, hook grouping, App context and backup sequencing remain
-for final user review with the Draft contract; a material visual departure would
-return to the designer/user before renewed analyst review.
+resulting tree. The file-grouping convention and concrete variant were adopted by the user after
+that review. The overall Draft contract, UI policies, App context and backup
+sequencing still await final agreement; implementation is explicitly not authorized.
+A material visual departure would return to the designer/user before renewed review.
+
+## Adoption record — 15 November 2026
+
+The user reviewed a concrete in-chat tree, liked the grouping approach and asked
+to adopt it in this proposed tree and Increment 011 contract without implementation.
+This is a file-placement refinement of the analyst-reviewed ownership plan. The
+component purposes, actual consumers, hook callers, state/refs, one-editor session
+and command/lifecycle boundaries remain unchanged. The earlier analyst review is
+historical evidence for its identified snapshot, not a claim that this later
+path-grouping revision received a second independent review. No source files or
+folders were moved, added or deleted.
