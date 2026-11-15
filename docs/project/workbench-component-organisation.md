@@ -85,3 +85,9 @@ records the final wrapper removal and existing component/helper extractions.
 Historical evidence/prototypes retain recorded paths; no forwarding modules or
 future component folders were created. Source/tests establish extraction properties,
 not native focus, compact geometry or acceptance of future interface work.
+
+The [Increment 011 component map V2](workbench-layout/component-map-v2.md) is a
+source-informed proposal for the coordinated Projects/workbench designs. It
+identifies candidate shared shell/header, ProjectInspector and SelectionBar owners
+while preserving App/useProjects/Workbench command and editor-session authority.
+It does not replace the delivered paths in this document or authorize source moves.

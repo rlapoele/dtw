@@ -22,6 +22,18 @@ This documentation request authorizes no application implementation, new increme
 analyst review, or qualification restart. Increment 009's delivered work, existing
 agreements and outstanding acceptance remain governed by its own records.
 
+## Increment 011 coordinated V2 proposals
+
+**Proposed for user review — 15 November 2026.** The
+[Projects V2](projects-shell-v2.md), [workbench V2](workbench-shell-v2.md),
+[representative states](v2-state-sheet.svg) and [React component map V2](component-map-v2.md)
+incorporate subsequent user scope decisions: project selection/inspection with an
+explicit Open action, project operations on Projects, coherent current workbench
+UI refinement and responsive states down to 320 CSS px. Undo/Redo is deferred to
+012. These source-informed proposals are distinct from the accepted visual
+references below and require user feedback before analyst review or final agreement.
+The current delivered ownership map remains authoritative for actual code.
+
 ## Mockup gallery
 
 All four original generated PNGs are preserved locally, without alteration. Each

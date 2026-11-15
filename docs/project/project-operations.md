@@ -78,12 +78,17 @@ analysis; the placement decision alone does not authorize protocol changes or
 weaken revision/replacement protection. Current application controls remain
 unchanged until implementation is agreed and authorized.
 
-## Next design step
+## Current design handoff
 
-Prepare an identified Projects V2 proposal with list selection, contextual project
-inspector, explicit Open project action and project-operation entry points.
-Revise the workbench header to retain only Projects navigation for project
-management; show responsive states down to
-320 CSS px and shared React shell/component boundaries. Present it to the user
-before analyst review. No new design revision, analyst approval, final contract
-agreement or implementation authorization is established by this record.
+[Projects V2](workbench-layout/projects-shell-v2.md) now proposes list selection,
+contextual read-only project inspector, explicit Open project, selected-project
+backup and inline Create/Restore. The coordinated
+[workbench V2](workbench-layout/workbench-shell-v2.md) leaves only Projects
+navigation for project management. Both show responsive states down to 320 CSS px;
+the [React map V2](workbench-layout/component-map-v2.md) records proposed shared
+shell/component boundaries and existing command/session owners.
+
+These artifacts implement the agreed direction as design proposals, not application
+code. Their remaining choices, selected-project backup coordination and exact 011
+delivery scope require user feedback and later analyst review. No user approval
+for analyst review, final agreement or implementation authorization is recorded.

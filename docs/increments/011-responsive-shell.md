@@ -240,9 +240,10 @@ engine qualification remain deferred.
 
 ## Verification approach
 
-Current phase is planning only: source/document inspection and a manual prose/link
-check. No application tests, build, browser qualification or harness work is
-authorized by this draft. No new design is being assessed here.
+Current phase is design preparation: source/document inspection, static artifact
+review and prose/link checks. No application tests, build, browser qualification
+or application harness work is authorized by this draft. Coordinator artifact
+checks do not constitute the later analyst design review or runtime acceptance.
 
 For eventual authorized implementation, use the [shared verification rules](../workflow/agent-roles.md#proportionate-verification):
 
@@ -251,12 +252,13 @@ For eventual authorized implementation, use the [shared verification rules](../w
 - Representative performance: ordinary supported project navigation/reflow remains responsive; no new worst-case resource or maximum-project guarantee is proposed.
 - Excluded optional qualification: multi-engine/device matrices, physical mobile keyboard certification, exhaustive accessibility audit, maximum-size inventories, unusual lifecycle/resource cases and any restarted earlier qualification. Representative narrow/zoom/keyboard checks above remain current delivery requirements, not silently deferred hardening.
 - Planning budget: coordinator allocated **10 aggregate documentation-check minutes**, shared across agents; approximately **8/10 minutes** used in total (analyst 1, designer 3, coordinator 4; estimates). Zero application harness repairs. Static Quick Look rendering required a sandbox exception after sandbox initialization failed; `sips` could not decode SVG. A rendered preview exposed a narrow-toolbar overlap, corrected by the designer and visually rechecked. These static artifact checks are not application acceptance. Prior application-qualification history is not counted as zero or reopened; each increment retains its own stopped record.
+- V2 artifact follow-up: the user explicitly requested coordinated Projects/workbench V2 and React decomposition after committing the scope refinements as `1591757`. Prior V1 documentation review remains stopped at approximately 10/10 minutes. A bounded **8 additional aggregate minutes** covers only the newly requested V2 artifact review (designer up to 3, coordinator up to 5), for an approximately 18-minute cumulative planning ceiling. No application test/build/qualification or harness work is included; stop at the ceiling or earlier for low value. This does not reset any earlier campaign or authorize implementation.
 - Future implementation/review budget: proposed starting ceiling **30 aggregate verification minutes and two harness-repair cycles**, to be assessed and recorded by the coordinator before verification. Planning time is not a new implementation allowance. Carry actual consumption between agents and snapshots; stop at a ceiling or earlier for tooling dominance/low value and record unmet criteria accurately. Resumption requires explicit bounded authorization.
 
 ## Design proposals and review
 
 - Applicability: separate designer required for substantial responsive interaction decisions.
-- Proposal: [responsive shell V1](../project/workbench-layout/responsive-shell-v1.md) and its [static wireframes](../project/workbench-layout/responsive-shell-v1.svg), for initial user discussion. Workbench states only; The separate [Projects/shared-shell V1](../project/workbench-layout/projects-shell-v1.md) now covers that page and component sharing for user discussion. These artifacts are not an agreed implementation plan.
+- Proposal: coordinated [Projects V2](../project/workbench-layout/projects-shell-v2.md), [workbench V2](../project/workbench-layout/workbench-shell-v2.md), [representative states](../project/workbench-layout/v2-state-sheet.svg) and [React component map V2](../project/workbench-layout/component-map-v2.md) are ready for user review. V1 artifacts remain historical inputs. V2 incorporates agreed scope but its remaining interaction/layout choices are proposals, not final agreement.
 - Required states: wide expanded/collapsed shell; usable compact split and drawer; narrow browse with selection/draft indication; narrow edit with Back and Apply/Cancel; invalid input; no selection/group/read-only/unavailable; current error/recovery and dialog reflow. Show concrete sizes and the proposed transition/focus policies.
 - User review: pending. Designer first presents its independent assessment/recommended direction and meaningful options. Prototype edits follow user direction approval. The coordinator presents actual artifacts and obtains approval of the identified revision for analyst review.
 - Analyst review: **not started**; wait for explicit user approval of the identified design revision. Review against these criteria, boundaries and unresolved policies then; this initial contract drafting is not design review.
@@ -316,6 +318,50 @@ staging, commit or push was performed.
 Next: user design feedback on Projects/shared-shell V1 and workbench V1, then an
 identified revision approved for analyst review. Resolve any delivery-scope
 amendment before final contract/design agreement and implementation authorization.
+
+## Coordinated V2 design handoff — 15 November 2026
+
+The user committed prior scope refinements as `1591757`, requested coordinated
+Projects/workbench V2 and explicitly reiterated React component decomposition.
+A separate designer prepared these identified artifacts:
+
+- [Projects V2 notes](../project/workbench-layout/projects-shell-v2.md) and [sheet](../project/workbench-layout/projects-shell-v2.svg): selection and right-hand details, explicit Open project, selected-project backup, inline Create/Restore, 880px split and 320px browse/inspect.
+- [Workbench V2 notes](../project/workbench-layout/workbench-shell-v2.md) and [sheet](../project/workbench-layout/workbench-shell-v2.svg): coherent existing UI, Projects-only project navigation, retained editor hierarchy, narrow Back/reopen and one-session constraints; no Undo/Redo.
+- [Representative state sheet](../project/workbench-layout/v2-state-sheet.svg): current validation, reference/resolution, read-only/unavailable/recovery and creation/departure/restore treatments.
+- [React map V2](../project/workbench-layout/component-map-v2.md): source-informed current-to-proposed paths, shared outer shell/header, project inspector/selection and backup coordination, workbench blocks and unchanged command/session authority.
+
+The coordinator rendered all sheets, inspected them, and obtained focused fixes
+for Projects desktop overflow/operation-label accuracy, identity formatting,
+visible inspector collapse and a helper-owner path. Final previews are
+[Projects](../../output/increment-011-responsive-shell/projects-shell-v2.png),
+[workbench](../../output/increment-011-responsive-shell/workbench-shell-v2.png) and
+[states](../../output/increment-011-responsive-shell/v2-state-sheet.png).
+Some workbench sheet captions appear clipped in Quick Look despite correct SVG
+coordinates; no renderer investigation/rebuild was undertaken. Main screen states
+are reviewable. The SVGs remain editable sources, not runtime evidence.
+
+Remaining user/design choices include exact 1120/880 thresholds, two-step narrow
+entry versus direct inspection, focus/resize/scroll rules, inline project forms,
+read-only project metadata, narrower row detail and routine-status consolidation.
+Moving Request persistent storage to Projects is a designer proposal. Selected-
+project backup needs analyst scoping of coherent snapshot/revision reads and
+retained/ownership/error states; moving a button is insufficient. Current Create
+completion still creates-and-opens, rather than merely selecting a row. The
+capability inventory does not imply delivery of Delete, metadata editing or
+external Import/Export in 011.
+
+User review/approval for analyst review is **pending** for this identified V2 set.
+No analyst design review, final contract/design agreement, application code edits,
+test/build, runtime qualification, staging, commit or push occurred. The draft
+contract’s detailed Projects behavior and any scope amendment must be reconciled
+by the analyst only after user approval of the design proposal.
+
+V2 checks stopped after approximately **7/8 aggregate minutes** (designer 2.5,
+coordinator 4.5; estimates), zero application harness repairs. Prior V1 remains
+stopped at 10/10, cumulative planning estimate 17/18. Static rendering, focused
+artifact corrections and local link/whitespace checks do not reopen application
+qualification or authorize implementation. Next: user feedback, material V2
+revisions if needed, then explicit approval of an identified set for analyst review.
 
 ## Agreed amendments
 

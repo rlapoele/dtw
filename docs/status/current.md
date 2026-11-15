@@ -2,8 +2,8 @@
 
 > Last updated: 15 November 2026
 >
-> Phase: Increment 010 closed by user instruction with acceptance gaps preserved;
-> Increment 011 responsive-shell, Projects and existing-workbench UI design preparation authorized
+> Phase: Increment 011 coordinated Projects/workbench V2 and React decomposition
+> proposals prepared; user review pending
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
@@ -11,105 +11,94 @@
 
 ## Current focus
 
-The user explicitly closed Increment 010 and requested preparation of the next
-increment’s responsive-shell design and contract. The scope is wide desktop
-navigation/workspace/inspector, collapsed navigation with a usable half-screen
-split, and full-width narrow/mobile browse/edit views with clear Back behavior.
-The user supplied a minimum supported viewport width of **320 CSS px**.
-One editor session must preserve drafts, invalid input, selection and browsing
-context throughout. The user also requested discussing the preceding Projects
-page’s content/design and possible shared layout; no Projects redesign or shared
-shell choice is finalized. The user has since agreed project selection with a
-contextual inspector and a separate explicit action to enter the workbench; see
-[project operations](../project/project-operations.md). Visual token grids, editable Details, relationships and
-interchange remain later slices.
+The user requested coordinated V2 designs incorporating the agreed scope and
+explicitly reiterated React component reorganisation/decomposition. A separate
+designer prepared [Projects V2](../project/workbench-layout/projects-shell-v2.md),
+[workbench V2](../project/workbench-layout/workbench-shell-v2.md),
+[representative states](../project/workbench-layout/v2-state-sheet.svg) and
+[React map V2](../project/workbench-layout/component-map-v2.md). The
+[011 contract/handoff](../increments/011-responsive-shell.md#coordinated-v2-design-handoff--15-november-2026)
+is Draft; application delivery is Not started.
 
-The [Increment 011 contract](../increments/011-responsive-shell.md) is Draft;
-application delivery is Not started. Contract and design preparation is authorized;
-application implementation is not.
-The initial [responsive shell V1 proposal](../project/workbench-layout/responsive-shell-v1.md)
-and [static wireframes](../project/workbench-layout/responsive-shell-v1.svg) show
-wide, compact split, 320px browse and 320px edit states for user discussion.
-The separate [Projects/shared-shell V1](../project/workbench-layout/projects-shell-v1.md)
-and [static sheet](../project/workbench-layout/projects-shell-v1.svg) now propose
-a catalogue with Create/Restore alongside on wider screens, stacked at 320px,
-plus screen transition and shared React layout/header candidates. Existing
-Projects/workbench workflow owners remain distinct. V1’s direct-open behavior
-is superseded by the user’s selection/inspection direction and explicit opening
-control. The user also placed all project-management controls on Projects,
-leaving only Projects navigation in the token workbench. Workbench V1’s
-Restore/Download backup header controls are superseded for the next design.
-The user requested Undo/Redo in their place, following the visual reference.
-The user agreed applied token/group history within the open project session,
-retaining native typing undo and excluding persistent history from the first scope.
-The user subsequently deferred detailed design and delivery to **Increment 012**;
-Undo/Redo controls and history are outside 011. No placeholder buttons are part of
-011. Exact operation/guard semantics remain for later scoping; no 012 contract or
-implementation is authorized. See the
-[Undo/Redo planning entry](../increments/011-responsive-shell.md#requested-undoredo-controls--15-november-2026).
-Its original SVG/PNG remain historical proposals; Projects V2 is needed
-before analyst review. Shared component extraction and full delivery scope are
-not agreed.
-Concrete design states must be presented to the user before analyst design review.
-Approval for analyst review remains distinct from final contract/design agreement
-and implementation authorization. Exact breakpoints, Back/resize/focus behavior
-and guard integration remain proposals until agreed. The contract records roughly
-10/10 aggregate documentation-check minutes used, with static preview inspection
-and no application tests/build or reopened qualification.
+Agreed direction: wide navigation/workspace/inspector, compact split where usable,
+full-width narrow browse/inspect with clear Back, minimum 320 CSS px. One token
+editor session preserves drafts, invalid input, selection and browsing context.
+011 also refines the existing workbench’s full UI into a coherent reviewed baseline.
 
-The user additionally confirmed that 011 should resolve the existing workbench’s
-UI as a whole, not merely reflow panes. The
-[design-closure scope](../increments/011-responsive-shell.md#workbench-ui-design-closure)
-covers existing header/navigation/workspace/inspector/editor hierarchy, controls,
-typography/spacing/copy, actions, dialogs and feedback across responsive states.
-The revised design should become a reviewed baseline for future slices; excluded
-features and earlier qualification limits remain unchanged.
+Projects list selection shows contextual details; explicit opening enters the
+token workbench. All project-management controls belong on Projects; the workbench
+keeps only Projects navigation for project management plus project context/safety
+feedback. The [project-capability inventory](../project/project-operations.md) is
+broader than 011 delivery. Undo/Redo is deferred to 012, including controls;
+visual grids, editable token Details, relationships/comparison and external
+interchange remain later work.
 
-## Increment 010 closure
+## What V2 proposes and what remains open
 
-[Increment 010 is Closed, delivery Partially completed](../increments/010-component-oriented-presentation.md#user-directed-closure--15-november-2026).
-All three agreed source-organisation slices were delivered and independently
-reviewed. Implementations are identified by `32ec593` (S1), `d430edd` (S2), and
-`428b5eb` (S3). The [ownership map](../project/workbench-component-organisation.md)
-describes actual component and helper owners. No replacement responsive shell or
-new authoring capability was delivered by those folder/component moves.
+Projects V2 shows a catalogue and read-only inspector with Open project/Download
+backup, inline Create/Restore and narrow browse/inspect. Workbench V2 refines
+existing navigation/list/editor, actions, typography/spacing/copy, status and
+current dialogs/recovery. The React map proposes shared shell/header presentation,
+ProjectInspector and SelectionBar while retaining page-specific command owners
+and the single keyed TokenEditor session. No source reorganisation occurred.
 
-The closure register preserves native Chrome, compact geometry/screenshots,
-keyboard/focus, restore/recovery/interleaving and asynchronous-source evidence
-gaps by owning criterion. Closure is a user scope decision, not manual acceptance
-or a claim that those cases passed. Source/tests/in-app evidence and independent
-review findings remain in the three slice handoffs. Each slice stopped at roughly
-21/30 aggregate verification minutes and zero harness repairs. None restarts
-through closure, new agents, or responsive-shell planning.
+Candidate 1120/880 thresholds, two-step narrow entry, focus/resize/scroll rules,
+inline project forms, read-only metadata, narrower row detail and routine-status
+consolidation still require user feedback. Moving Request persistent storage to
+Projects is proposed. Selected-project backup requires analyst scoping of coherent
+snapshot/revision reads and failure/ownership handling; catalogue facts are not a
+current revision. Existing Create completion remains create-and-open.
+
+User approval of the identified V2 set **for analyst review is pending**. No analyst
+design review, final contract/design agreement or implementation authorization is
+recorded. V1 artifacts remain historical inputs and are not the current proposal.
+
+## Evidence and stopping
+
+Coordinator rendered the three static sheets and inspected focused corrections.
+[Projects preview](../../output/increment-011-responsive-shell/projects-shell-v2.png),
+[workbench preview](../../output/increment-011-responsive-shell/workbench-shell-v2.png)
+and [state preview](../../output/increment-011-responsive-shell/v2-state-sheet.png)
+are viewing copies; SVGs are editable design sources. Some workbench captions are
+clipped in Quick Look despite correct SVG coordinates; no renderer repair campaign
+was undertaken. Static art does not establish runtime reflow, keyboard/focus,
+exact native control geometry, session preservation or application acceptance.
+
+V2 artifact review stopped at approximately 7/8 additional aggregate minutes,
+zero application harness repairs; prior V1 remains stopped at 10/10 (cumulative
+planning estimate 17/18). No app tests/build or earlier qualification restarted.
+The owning 011 record carries exact scope, evidence and limits. Leave staging,
+committing and pushing to the user.
 
 ## Earlier delivery and qualification
 
-Increment 009 remains Closed by user instruction with delivery Partially completed.
-Increments 007/008 remain Completed on their recorded user-reported manual
-acceptance. The [007 deferred qualification register](../increments/007-local-retention-and-backup.md#deferred-qualification)
-retains large-source/adversarial-resource, exceptional lifecycle, deployed HTTPS/CSP,
-dedicated accessibility and additional-engine gaps. Its stopped campaign has zero
-remaining authorized allowance. New scope does not erase or transfer these gaps.
-Chrome remains the automated baseline; broader engines follow the fully featured
-PWA. Install/offline PWA acceptance, interchange and Electron remain later work.
+[Increment 010 is Closed, delivery Partially completed](../increments/010-component-oriented-presentation.md#user-directed-closure--15-november-2026).
+S1/S2/S3 source organisation and independent reviews finished; native geometry,
+keyboard/focus, recovery/restore and asynchronous-source gaps remain deferred and
+unverified. Each stopped at roughly 21/30 minutes and zero harness repairs; none
+restarts through V2 planning. [Current delivered ownership](../project/workbench-component-organisation.md)
+remains authoritative for actual paths.
+
+009 remains Closed with delivery Partially completed. 007/008 remain Completed on
+their recorded user-reported manual acceptance. The
+[007 deferred qualification register](../increments/007-local-retention-and-backup.md#deferred-qualification)
+retains earlier exceptional/resource/lifecycle/HTTPS/accessibility/engine limits;
+its stopped campaign has zero remaining authorized allowance. Chrome remains the
+automated baseline; broader engines follow the fully featured PWA. Install/offline
+PWA acceptance, interchange and Electron remain later work.
 
 ## Next meaningful action
 
-Prepare a coherent workbench V2 design for the full existing UI and responsive
-shell, resolving the scoped visual/interaction details with the user.
-Prepare Projects V2 around selected-project inspection, an explicit opening
-action and project-management controls. Revise workbench V1’s header to leave
-only Projects navigation for project management. Undo/Redo is deferred to 012.
-Review both concrete responsive
-designs with the user.
-Settle which project capabilities belong in 011 delivery before amending scope. Record design feedback/approval for analyst review,
-then obtain the separate analyst consistency review. Material revisions return to
-the user. Implementation needs final contract/design agreement and authorization.
-Leave staging, committing and pushing to the user.
+Present coordinated V2 and React map to the user and collect design feedback.
+Material revisions return to the user before analyst review. After explicit
+approval of an identified design set for analyst review, the analyst must reconcile
+Projects scope, backup coordination, acceptance and the broader UI verification
+plan. Final contract/design agreement and implementation authorization follow;
+preparing V2 grants neither.
 
 ## Resume
 
-Read AGENTS.md, this handoff, actual Git state, the 010 closure register and the
-responsive-shell contract and V1 design artifacts. The
-[pre-closure snapshot](history/2026-11-15-increment-010-before-closure.md) preserves
-the outgoing handoff. Use [README](../../README.md) for commands and delivery limits.
+Read AGENTS.md, this handoff, actual Git state, the 011 V2 handoff and design/map
+artifacts. Use [README](../../README.md) for commands and delivery limits. Earlier
+[pre-010-closure status](history/2026-11-15-increment-010-before-closure.md) preserves
+historical handoff detail; authoritative increment records own acceptance gaps.
