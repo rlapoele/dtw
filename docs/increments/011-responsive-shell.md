@@ -29,6 +29,8 @@ Included:
 
 Excluded:
 
+- Undo/Redo controls and history implementation: deferred by the user to Increment 012.
+
 - Visual token grids/palettes, new inventory views or filters, editable Details, relationships, previews/comparison and interchange.
 - Resizable pane drag handles or saved layout preferences unless separately agreed; collapse/reopen is sufficient for this bounded proposal.
 - Domain/application semantics, color precision or slider policy, canonical schema, storage/backup format, worker protocol, new host, router or state-management framework.
@@ -96,9 +98,15 @@ revised design and analyst scoping. No application changes are authorized here.
 
 The user requested **Undo / Redo** in the token-workbench header in place of
 Restore backup / Download backup, following the accepted visual references.
-Project-management actions remain on Projects. Include Undo/Redo placement and
-states in the next workbench design discussion; this is an explicit desired
+Project-management actions remain on Projects. This is an explicit desired
 capability, not merely an illustrative image control.
+
+**Subsequent user scope decision — 15 November 2026:** detailed Undo/Redo design
+and delivery belong to **Increment 012**, not 011. Increment 011 excludes history
+and Undo/Redo control delivery; it removes workbench backup/restore controls
+without adding placeholder Undo/Redo buttons. Preserve the initial direction below
+for later planning. This deferral does not open a 012 contract or authorize its
+implementation.
 
 The user agreed the initial scope: applied token/group changes within the current
 open-project session, with normal typing undo retained in native text inputs.
@@ -113,10 +121,8 @@ silently equated with Cancel, a blind replay or restoring an old browser snapsho
 changes within the currently open project session; native text inputs retain their
 normal typing undo. Durable history across project close/reopen/reload remains
 outside this first scope. Operation coverage and safe command/revision behavior need analyst
-scoping after user design feedback. Adding functioning Undo/Redo materially expands
-011 beyond responsive presentation; amend the contract/acceptance and verification
-scope explicitly, or deliver history as a separate agreed increment. Do not add
-inert controls to production or implement history under the current shell draft.
+scoping in Increment 012. Its contract, acceptance and verification scope remain
+to be prepared separately; Increment 011 does not implement history.
 
 ## Component-decomposition continuity
 

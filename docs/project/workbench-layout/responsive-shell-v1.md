@@ -31,7 +31,10 @@ project session, retaining native typing undo; persistent history is outside thi
 first scope. Exact operation coverage, draft interaction and delivery scope remain
 unresolved in
 [Increment 011](../../increments/011-responsive-shell.md#requested-undoredo-controls--15-november-2026).
-Do not treat button placement as agreement to a history implementation.
+**Later scope decision:** detailed design and delivery are deferred to Increment
+012. Increment 011 removes workbench backup/restore controls without adding
+Undo/Redo placeholders. This saved request is future direction, not current
+interface delivery.
 
 ## Independent recommendation
 
