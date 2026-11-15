@@ -2,6 +2,7 @@ import { readBackupFile } from "@presentation/host/backup-file";
 import { useEffect, useRef, useState } from "react";
 import type { RestorePreview } from "@presentation/host/protocol";
 import { useWorkbenchHost } from "@presentation/app/hooks/useWorkbenchHost";
+import { useStoragePersistence } from "@presentation/app/hooks/useStoragePersistence";
 import { useProjects } from "@presentation/projects/hooks/useProjects";
 
 import { Dialog } from "@base-ui/react/dialog";
@@ -21,6 +22,7 @@ import { ProjectsScreen } from "@presentation/projects/ProjectsScreen";
 export function App({
   createHost = () => new WorkerWorkbenchHost(),
 }: { createHost?: () => WorkbenchHost } = {}) {
+  const storage = useStoragePersistence();
   const { host, ensure, reset } = useWorkbenchHost(createHost);
   const selectedBackupFile = useRef<File | undefined>(undefined),
     stay = useRef<HTMLButtonElement>(null);
@@ -49,7 +51,7 @@ export function App({
     returnToProjects,
     leaveUnknown,
     retryCreated,
-  } = useProjects(host, ensure, reset, !!preview);
+  } = useProjects(host, ensure, reset, !!preview, storage.onRetained);
   // Restore completion is an explicit request, issued only by a render after
   // preview disposal. Normal Open keeps its conflicting-preview gate intact.
   useEffect(() => {
@@ -80,6 +82,7 @@ export function App({
     );
   return (
     <ProjectsScreen
+      storageStatus={storage.status} onRetryStorage={storage.retry}
       view={projectsView} onView={setProjectsView} onDownload={entry => void download(entry)} backupFeedback={backupFeedback} hasPreview={!!preview}
       entries={entries}
       error={error}
@@ -131,6 +134,7 @@ export function App({
       }
       restoreDialog={preview && host.current && (
         <RestoreDialog
+          onRetained={storage.onRetained}
           restage={async () => {
             if (!selectedBackupFile.current)
               throw Error("Select a project backup file again.");

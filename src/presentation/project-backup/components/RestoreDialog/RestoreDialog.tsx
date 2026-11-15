@@ -13,12 +13,14 @@ export function RestoreDialog({
   initial,
   onCancel,
   onOpen,
+  onRetained,
   restage,
 }: {
   host: WorkbenchHost;
   initial: RestorePreview;
   onCancel(reset?: boolean): void;
   onOpen(id: string): void;
+  onRetained?: () => void | Promise<void>;
   restage?: () => Promise<RestorePreview>;
 }) {
   const {
@@ -45,7 +47,7 @@ export function RestoreDialog({
     checkPending,
     reviewFile,
     checkUnknown,
-  } = useBackupRestore({ host, initial, onCancel, onOpen, restage });
+  } = useBackupRestore({ host, initial, onCancel, onOpen, onRetained, restage });
   return (
     <Dialog.Root
       open

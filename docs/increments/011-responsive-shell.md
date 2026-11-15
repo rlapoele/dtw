@@ -1,7 +1,7 @@
 # Increment 011: Responsive shell and workbench UI refinement
 
 - Contract status: Agreed
-- Delivery status: Partially completed — implementation and independent review finished; remaining native-browser acceptance is explicitly unverified
+- Delivery status: Partially completed — initial implementation and automatic storage-protection amendment independently reviewed; earlier browser acceptance gaps remain unverified
 - Agreement: on 15 November 2026 the user agreed the refined Increment 011 contract, V2 designs and adopted presentation structure at `e5a3e3f`, and explicitly authorized implementation by a separate developer followed by an independent reviewer. See [agreement and implementation authorization](#agreement-and-implementation-authorization--15-november-2026). Earlier pending/Draft statements below are historical and superseded by this agreement.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [layout reference V1](../project/workbench-layout/README.md), [component map V1](../project/workbench-layout/component-map-v1.md), [current ownership](../project/workbench-component-organisation.md), [010 delivery direction](010-component-oriented-presentation.md#delivery-direction), [workflow](../workflow/agent-roles.md).
 
@@ -60,6 +60,59 @@ reset budget through new snapshots/agents, or infer native Chrome acceptance fro
 in-app Chromium. Resumption after a stop needs explicit bounded authorization.
 Prior planning checks and all earlier stopped campaigns stay stopped; this newly
 authorized implementation allowance does not reset them.
+
+## Automatic storage-protection amendment — 15 November 2026
+
+After committing 011 implementation as `3ee9ed9`, the user agreed and explicitly
+requested implementation within 011: check persistence status, request it after
+the first successful project creation or restore, and replace the permanent
+request button with status and a retry action when needed. This supersedes only
+the earlier manual-only storage-preference control. Existing delivery/qualification
+limits are not erased and no earlier stopped campaign restarts.
+
+### Agreed scope and implementation constraints
+
+- Check actual browser status with `navigator.storage.persisted()` from an App-lifetime owner; query alone never requests permission. Status survives Projects/Workbench switching.
+- If not already persistent, request with `navigator.storage.persist()` after a **confirmed retained project creation or restore**. Trigger at retention acknowledgement, including a later confirmed unknown result or retained-but-unreadable result; successful read/open is not the success criterion.
+- One automatic attempt per App session, deduplicating pending reads/requests, rerenders, repeated acknowledgement/completion and Strict Mode effects. A manual request consumes that session’s automatic opportunity too. No durable “denied” sentinel or repeated automatic prompting. Reload starts by checking actual browser status again.
+- Previewing/cancelling a backup, selecting/opening an existing project, backing up, rejected writes and still-unknown results do not trigger the request. RestoreDialog’s ordinary Open local project callback is not evidence of a successful restore: add a narrow retained-success notification at the real outcome boundary instead.
+- Persistence work is advisory and non-blocking. It must not delay/throw into create/restore acceptance, consume/readback/open, change command gates, replay a write or mark uncertain data retained. Browser refusal/error never changes normal project-saving behavior.
+- Show truthful checking/requesting, protected, not-granted/non-persistent, unavailable and failed-check/request states on Projects. Only confirmed positive `persisted()`/`persist()` results mean protected. Hide retry when protected, while checking/requesting or API unsupported; expose an explicit retry for actionable unprotected/error states, gated with current conflicting-project/preview actions. Do not show an unconditional Request persistent storage button.
+- Retry rechecks actual status before requesting, deduplicates in-flight work and handles grant/refusal/failure without an unhandled rejection. Keep independent-backup and explicit browser-deletion caveats, and keep drafts session-only.
+- Follow the adopted owner-first categories. Prefer an App hook for status/attempt lifetime, the existing browser adapter for native capability calls and a controlled Projects presentation component if useful. No host/worker/domain/schema/dependency changes or new app modal are required.
+
+This is a small acknowledged policy/UI amendment; the developer implements it,
+then a fresh independent reviewer checks an identified stable snapshot. The prior
+011 visuals stay authoritative apart from this explicitly amended status/action
+region. No additional design ceremony or permission is required for routine work.
+
+### AC-15 — Automatic local-storage protection
+
+Status is checked without prompting on App startup. An already-persistent origin
+never requests again. A confirmed create/restore starts at most one non-blocking
+automatic request during that App session, including readback-unavailable and
+later confirmed outcomes; preview/Open local/failed/unknown operations do not.
+Pending duplicate events/request/retry do not duplicate API calls. Projects shows
+the actual resulting status and appropriate conditional retry, retained across
+screen changes. Unsupported/rejected/throwing browser APIs leave saving and all
+existing restore/open guards unchanged. Meaningful controlled tests cover these
+outcomes and the actual acknowledgement/notification wiring.
+
+### Amendment verification and stopping
+
+The user explicitly authorized this new bounded change. Allocate **20 aggregate
+verification/review minutes** (developer 10, independent reviewer 7, coordinator 3)
+for adapter/hook/outcome-wiring/render regressions, affected existing tests and one
+final typecheck/build. Use existing working test infrastructure; no new browser
+harness or repair, forced permission grant, multi-engine prompt matrix, earlier
+responsive qualification or storage stress. Browser-specific grant/prompt UX is
+not proven by controlled API tests and must be labelled accordingly. Stop at the
+ceiling or low expected value; record defects/unverified cases and carry effort
+between handoffs. The original 46/60-minute, 2/2-cycle campaign stays stopped.
+
+Official API references checked 15 November 2026:
+[StorageManager.persisted](https://developer.mozilla.org/en-US/docs/Web/API/StorageManager/persisted),
+[StorageManager.persist](https://developer.mozilla.org/en-US/docs/Web/API/StorageManager/persist).
 
 ## Outcome
 
@@ -659,3 +712,58 @@ case-only `workbench/` → `Workbench/` root entry rename when staging (for exam
 use case-sensitive Git inventory/staging via `git -c core.ignorecase=false`).
 
 Suggested commit: `feat: add responsive workbench and project inspection`.
+
+
+## Automatic storage-protection amendment completion — 15 November 2026
+
+AC-15 implementation and independent review are finished. Overall 011 delivery
+remains **Partially completed** because its earlier browser acceptance gaps are
+unchanged, not because of a known required defect in this amendment.
+
+Base: `3ee9ed9`; reviewed snapshot `storage-protection-r1`, identified by the
+[15-file manifest](../../output/increment-011-storage-protection/review-source-manifest.json)
+and [patch](../../output/increment-011-storage-protection/review-source.patch).
+Coordinator completion/status notes follow review; no amendment source/tests
+changed after the freeze.
+
+### Result and evidence
+
+App owns persistence status across Projects/Workbench switching. It checks actual
+status without requesting on startup; confirmed retained create/restore events
+request protection when needed, at most once automatically per App session.
+Manual attempts consume that automatic opportunity and recheck actual status.
+In-flight work, repeated notifications and lifecycle effects are deduplicated.
+Opening an existing/local project, preview/cancel, download, rejected writes and
+unconfirmed outcomes do not qualify as retention success. Confirmed retention
+with unavailable readback still qualifies. Browser requests remain advisory and
+non-blocking to command acceptance, consume/readback/open and restore guards.
+
+Projects now renders controlled status and conditional retry through its
+StorageProtection component; the unconditional technical request button and
+screen-local notice are removed. Positive native confirmation alone means
+protected. Unsupported, denied and failed calls retain ordinary saving and
+truthful fallback guidance. Drafts remain session-only; independent backups and
+explicit browser deletion caveats remain.
+
+- Developer: **5 affected files / 46 tests passed**; final `npm run build` passed all four type scopes and Vite. The existing large-chunk advisory remains.
+- Fresh independent reviewer: all 15 frozen hashes and patch paths matched; **3 files / 38 targeted tests passed**. No actionable findings. See [review](../../output/increment-011-storage-protection/reviewer.md) and [developer evidence](../../output/increment-011-storage-protection/developer-report.md).
+- AC-15 is verified by controlled adapter/hook, actual acknowledgement wiring and render regressions, plus source review. Native permission prompts, browser-specific grant decisions and multi-engine permission UX were not qualified or forced; no such claim follows from mocks.
+- Amendment effort stopped at approximately **13/20 aggregate verification minutes** (developer 5, reviewer 5, coordinator 3), **zero harness repairs**. Original 011's 46/60-minute, 2/2-cycle campaign and earlier stopped qualifications remain stopped. No new browser harness, dependency, host/domain/schema/protocol change or old qualification restart occurred.
+
+### Separate working-tree notes
+
+Concurrent slider-thumb CSS edits in `src/presentation/styles/global.css` were
+preserved as user work and excluded from amendment authorship/review. The committed
+baseline also retains lowercase `workbench/` in its Git index while the physical
+39-file folder is capitalized `Workbench/`; all those file contents matched the
+baseline and were excluded from this amendment. No index/configuration/staging
+change was made. [Working-tree notes](../../output/increment-011-storage-protection/working-tree-notes.md)
+provide explicit user-run two-step Git directory-rename instructions to record
+casing on a case-insensitive filesystem. This baseline issue is distinct from the
+reviewed persistence code.
+
+No staging, committing or pushing was performed. Next: user review/commit and
+existing 011 acceptance/closure scope; this amendment authorizes no 012 work or
+renewed browser qualification.
+
+Suggested commit: `feat: request storage protection after project retention`.

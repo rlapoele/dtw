@@ -25,12 +25,14 @@ export function useBackupRestore({
   initial,
   onCancel,
   onOpen,
+  onRetained,
   restage,
 }: {
   host: WorkbenchHost;
   initial: RestorePreview;
   onCancel(reset?: boolean): void;
   onOpen(id: string): void;
+  onRetained?: () => void | Promise<void>;
   restage?: () => Promise<RestorePreview>;
 }) {
   const [{ protection, acknowledgement }, dispatchProtection] = useReducer(
@@ -81,8 +83,13 @@ export function useBackupRestore({
       return;
     }
     setUnknown(false);
+    const notify = !knownAccepted.current;
     knownAccepted.current = true;
     setRetained(true);
+    if (notify) {
+      try { void Promise.resolve(onRetained?.()).catch(() => undefined); }
+      catch { /* Advisory preference cannot change a retained outcome. */ }
+    }
     await host.call("consume", result.receipt.commandId);
     if (result.readback === "unavailable")
       setError(

@@ -110,3 +110,14 @@ restore completion is sequenced after preview disposal. See
 [011 completion](../increments/011-responsive-shell.md#completion-report--15-november-2026)
 for verified paths and outstanding acceptance. The rest of the capability
 inventory remains outside this increment. No staging or commit was performed.
+
+### Automatic browser-storage protection — 15 November 2026
+
+The user authorized replacing the manual-only browser preference control. App
+checks actual persistence status and requests protection after confirmed retained
+creation/restoration when needed, at most once automatically per App session.
+Projects displays actual status and conditional retry; selection, ordinary Open
+and backup preview are not retention-success events. Saving is non-blocking and
+unchanged on browser refusal/error; backup and session-only draft rules remain.
+See the [amendment completion](../increments/011-responsive-shell.md#automatic-storage-protection-amendment-completion--15-november-2026)
+for independent review and native-permission qualification limits.

@@ -6,6 +6,7 @@ import { ProjectsScreen } from "@presentation/projects/ProjectsScreen";
 function screen(overrides: Partial<ComponentProps<typeof ProjectsScreen>> = {}) {
   const noop = () => undefined;
   return renderToStaticMarkup(createElement(ProjectsScreen, {
+    storageStatus: "checking", onRetryStorage: noop,
     view: { scroll: 0, surface: "browse" }, onView: noop, onDownload: noop, backupFeedback: "", hasPreview: false,
     entries: [], error: "", notice: "", name: "  Unfinished name  ",
     pending: false, activeMutation: false, retained: false, unknown: false,
@@ -94,4 +95,19 @@ it("keeps narrow inspection errors, catalogue retry and recovery outside both hi
     if (previousWindow === undefined) Reflect.deleteProperty(globalThis, "window");
     else Object.defineProperty(globalThis, "window", { configurable: true, value: previousWindow });
   }
+});
+
+it("renders actual persistence status with conditional retry and existing action gates", () => {
+  for (const status of ["checking", "requesting", "protected", "unsupported"] as const)
+    expect(screen({ storageStatus: status })).not.toContain("Retry storage protection");
+  expect(screen({ storageStatus: "protected" })).toContain("Storage protection is enabled");
+  for (const status of ["unprotected", "check-error", "request-error"] as const) {
+    const html = screen({ storageStatus: status });
+    expect(html).toContain("Retry storage protection");
+    expect(html).not.toContain("Request persistent storage");
+    for (const gate of ["pending", "retained", "unknown", "hasPreview"] as const)
+      expect(screen({ storageStatus: status, [gate]: true })).toMatch(/<button[^>]*disabled=""[^>]*>Retry storage protection/);
+  }
+  expect(screen({ storageStatus: "request-error" })).toContain("request failed");
+  expect(screen({ storageStatus: "check-error" })).toContain("status could not be checked");
 });

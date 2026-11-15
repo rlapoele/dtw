@@ -1,7 +1,7 @@
 import type { ChangeEventHandler, ReactNode, Ref } from "react";
 import type { CatalogueEntry } from "@application/retention/ports";
-import { useState } from "react";
-import { requestPersistentStorage } from "@adapters/browser/storage-preference";
+import type { StoragePersistenceStatus } from "@presentation/app/hooks/useStoragePersistence";
+import { StorageProtection } from "./components/StorageProtection/StorageProtection";
 import { ApplicationShell } from "@presentation/components/ApplicationShell/ApplicationShell";
 import { ApplicationHeader } from "@presentation/components/ApplicationHeader/ApplicationHeader";
 import { ProjectInspector } from "./components/ProjectInspector/ProjectInspector";
@@ -13,6 +13,7 @@ import { ProjectRecovery } from "@presentation/projects/components/ProjectRecove
 
 export function ProjectsScreen({
   entries,
+  storageStatus, onRetryStorage,
   view, onView, onDownload, backupFeedback, hasPreview,
   error,
   notice,
@@ -34,6 +35,8 @@ export function ProjectsScreen({
   restoreDialog,
 }: {
   entries: readonly CatalogueEntry[] | undefined;
+  storageStatus: StoragePersistenceStatus;
+  onRetryStorage: () => void;
   view: ProjectsView;
   onView: (next: ProjectsView) => void;
   onDownload: (entry: Extract<CatalogueEntry, { status: "supported" }>) => void;
@@ -58,7 +61,6 @@ export function ProjectsScreen({
   departureDialog: ReactNode;
   restoreDialog: ReactNode;
 }) {
-  const [storageNotice, setStorageNotice] = useState("");
   const layout = useProjectsLayout(view, onView);
   const selected = entries?.find(entry => entry.rowKey === view.selection?.rowKey) ?? view.selection;
   const missing = !!view.selection && entries !== undefined && !entries.some(entry => entry.rowKey === view.selection?.rowKey);
@@ -118,7 +120,7 @@ export function ProjectsScreen({
 
           </>
         }
-        <section className="mt-8 border-t border-border pt-5"><h2>Browser retention</h2><p className="mt-3 text-muted-foreground">Applied work is retained in this browser. Browser data can be cleared. Keep independent backups.</p><Button className="mt-4" disabled={openDisabled} onClick={() => void requestPersistentStorage().then(setStorageNotice)}>Request persistent storage</Button><p role="status" className="mt-3 text-caption">{storageNotice}</p></section>
+        <StorageProtection status={storageStatus} disabled={openDisabled} onRetry={onRetryStorage} />
       </main>
       <section ref={layout.inspector} tabIndex={-1} aria-label="Project inspector" hidden={layout.narrow && view.surface !== "inspect"} className="projects-inspector min-w-0 overflow-auto border-l border-border bg-surface">
         {layout.narrow && <div className="p-4 border-b border-border"><Button onClick={() => layout.show("browse")}>Back to projects</Button></div>}

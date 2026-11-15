@@ -14,12 +14,20 @@ export function useProjects(
   ensureHost: () => WorkbenchHost,
   resetHost: () => void,
   hasPreview: boolean,
+  onRetained?: () => void | Promise<void>,
 ) {
   const [entries, setEntries] = useState<readonly CatalogueEntry[]>();
   const [project, setProject] = useState<ProjectHeader>();
   const [unknown, setUnknown] =
     useState<Extract<PublicAcceptance, { status: "unknown" }>>();
   const [retainedId, setRetainedId] = useState<string | null>(null);
+  const notified = useRef(new Set<string>());
+  function notifyRetained(commandId: string) {
+    if (notified.current.has(commandId)) return;
+    notified.current.add(commandId);
+    try { void Promise.resolve(onRetained?.()).catch(() => undefined); }
+    catch { /* Advisory preference cannot change a retained outcome. */ }
+  }
   const activeMutation = useRef(false);
   const commandPending = useRef(false);
   const [backupFeedback, setBackupFeedback] = useState("");
@@ -80,6 +88,7 @@ export function useProjects(
         setUnknown(undefined);
         if (result.status === "retained") {
           setRetainedId(result.receipt.result.id);
+          notifyRetained(result.receipt.commandId);
           await host.current!.call("consume", result.receipt.commandId);
           await recoverCreated(result.receipt.result.id);
         } else setError(result.reason);
@@ -131,6 +140,7 @@ export function useProjects(
       }
       acceptedId = id;
       setRetainedId(id);
+      notifyRetained(result.receipt.commandId);
       await host.current!.call("consume", result.receipt.commandId);
       await recoverCreated(id);
     } catch (e) {

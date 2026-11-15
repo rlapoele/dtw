@@ -265,3 +265,15 @@ implementation. This tree is now delivered; see the
 for actual paths, exact reviewed snapshot, evidence and unverified acceptance.
 Earlier planning-only and no-source-move statements above describe their dated
 planning stage. They do not override the later explicit authorization.
+
+## Storage-protection amendment owners — 15 November 2026
+
+The authorized 011 amendment adds `app/hooks/useStoragePersistence.ts` for
+App-lifetime status/request coordination and
+`projects/components/StorageProtection/StorageProtection.tsx` for controlled
+Projects status/retry rendering. Native capability calls remain in
+`src/adapters/browser/storage-preference.ts`. Existing create/restore owners
+notify only confirmed retention; they do not own browser-protection state. The
+[current ownership map](../workbench-component-organisation.md) includes these
+actual files. This extends the implemented tree above without changing its
+owner-first categories or the existing command/session boundaries.

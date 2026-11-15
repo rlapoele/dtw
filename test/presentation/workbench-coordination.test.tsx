@@ -52,7 +52,7 @@ import { useProjects } from "@presentation/projects/hooks/useProjects";
 import { useProjectReadback } from "@presentation/Workbench/hooks/useProjectReadback";
 import { useProjectCommands } from "@presentation/Workbench/hooks/useProjectCommands";
 import { useCreationForm } from "@presentation/Workbench/components/CreationDialog/hooks/useCreationForm";
-import { restoreProtectionReducer } from "@presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore";
+import { useBackupRestore, restoreProtectionReducer } from "@presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore";
 import type {
   ProjectHeader,
   WorkbenchHost,
@@ -526,8 +526,10 @@ it("keeps one responsive surface state, follows pane focus, and yields to modal 
 });
 
 it("disposes App restore preview before the authorized completion opens through the guarded project owner", async () => {
+  const persist = vi.fn(async () => true);
   const { App } = await import("@presentation/app/App");
   const { Workbench } = await import("@presentation/Workbench/Workbench");
+  vi.stubGlobal("navigator", { storage: { persisted: async () => false, persist } });
   vi.stubGlobal("addEventListener", vi.fn());
   vi.stubGlobal("removeEventListener", vi.fn());
   const preview = { project: header.project };
@@ -546,11 +548,100 @@ it("disposes App restore preview before the authorized completion opens through 
   expect(page.props.hasPreview).toBe(true);
   page.props.onOpen("p");
   expect(vi.mocked(service.call).mock.calls.some(([operation]) => operation === "openProject")).toBe(false);
+  expect(persist).not.toHaveBeenCalled();
   page.props.restoreDialog.props.onOpen("p");
   page = render(app); effects();
   await Promise.resolve(); await Promise.resolve();
   page = render(app);
   expect(page.type).toBe(Workbench);
   expect(page.props.initial).toBe(header);
+  expect(persist).not.toHaveBeenCalled();
   expect(vi.mocked(service.call).mock.calls.filter(([operation]) => operation === "openProject")).toHaveLength(1);
+});
+
+it.each(["retained", "unknown", "rejected"])("notifies creation retention only at confirmed %s acknowledgement, before failed readback", async status => {
+  const onRetained = vi.fn(() => { throw Error("advisory failure"); });
+  const accepted = { status: "retained", receipt: { commandId: "create", result: { id: "p" } } };
+  const service = host(async op => {
+    if (op === "createProject") return status === "retained" ? accepted : { status, reason: "Wait", commandId: "create" };
+    if (op === "check") return accepted;
+    if (op === "openProject") throw Error("Read failed");
+  });
+  const hook = () => useProjects({ current: service }, () => service, vi.fn(), false, onRetained);
+  let owner = render(hook); owner.setName("P"); owner = render(hook); await owner.create();
+  expect(onRetained).toHaveBeenCalledTimes(status === "retained" ? 1 : 0);
+  if (status === "unknown") { owner = render(hook); await owner.check(); expect(onRetained).toHaveBeenCalledOnce(); }
+  if (status !== "rejected") {
+    owner = render(hook); expect(owner.unknown).toBeUndefined(); expect(owner.retainedId).not.toBeNull();
+    await owner.check(); expect(onRetained).toHaveBeenCalledOnce();
+  }
+});
+
+it("notifies restore retention once before consume even with unavailable readback and callback failure", async () => {
+  const onRetained = vi.fn(() => { throw Error("Advisory failure"); }), onOpen = vi.fn();
+  const service = host(async op => { if (op === "consume") throw Error("Consume unavailable"); });
+  const hook = () => useBackupRestore({ host: service, initial: { stageId: "stage", project: { id: "p" } } as any, onOpen, onCancel: vi.fn(), onRetained });
+  let owner = render(hook);
+  await owner.finish({ status: "unknown", reason: "Wait", commandId: "c" }); expect(onRetained).not.toHaveBeenCalled();
+  const accepted = { status: "retained", readback: "unavailable", receipt: { commandId: "c", result: { id: "p" } } } as any;
+  await expect(owner.finish(accepted)).rejects.toThrow("Consume unavailable");
+  expect(onRetained).toHaveBeenCalledOnce(); expect(onOpen).not.toHaveBeenCalled();
+  owner = render(hook); expect(owner.retained).toBe(true); expect(owner.unknown).toBe(false);
+  await expect(owner.finish(accepted)).rejects.toThrow(); expect(onRetained).toHaveBeenCalledOnce();
+});
+it("does not notify retention for opening existing projects or previewing a restore", async () => {
+  const onRetained = vi.fn(); const service = host(async () => header);
+  let hook = () => useProjects({ current: service }, () => service, vi.fn(), false, onRetained);
+  await render(hook).open("p"); expect(onRetained).not.toHaveBeenCalled();
+  vi.mocked(service.call).mockClear();
+  runtime.cells = []; runtime.effects = [];
+  render(() => useBackupRestore({ host: service, initial: { stageId: "s", project: { id: "p" } } as any, onOpen: vi.fn(), onCancel: vi.fn(), onRetained }));
+  effects(); expect(onRetained).not.toHaveBeenCalled(); expect(service.call).not.toHaveBeenCalled();
+});
+
+it("App retains storage status through create-and-open/Projects and separates restore acknowledgement from Open local", async () => {
+  const { App } = await import("@presentation/app/App");
+  const persist = vi.fn(async () => true), persisted = vi.fn(async () => false);
+  vi.stubGlobal("navigator", { storage: { persist, persisted } });
+  vi.stubGlobal("addEventListener", vi.fn()); vi.stubGlobal("removeEventListener", vi.fn());
+  const service = host(async (op, input) => {
+    if (op === "catalogue") return [];
+    if (op === "createProject") return { status: "retained", receipt: { commandId: "c", result: { id: input.id } } };
+    if (op === "openProject") return header;
+    if (op === "stageBackup") return { project: header.project };
+  });
+  const app = () => App({ createHost: () => service });
+  let page = render(app); effects(); for (let i=0;i<12;i++) await Promise.resolve();
+  page = render(app); expect(page.props.storageStatus).toBe("unprotected"); expect(persist).not.toHaveBeenCalled();
+  page.props.onNameChange("P"); page = render(app); page.props.onCreate();
+  for (let i=0;i<12;i++) await Promise.resolve();
+  page = render(app); effects(); expect(persist).toHaveBeenCalledOnce();
+  page.props.onProjects(); for (let i=0;i<12;i++) await Promise.resolve();
+  page = render(app); effects(); expect(page.props.storageStatus).toBe("protected");
+  expect(persisted).toHaveBeenCalledOnce();
+  // A fresh App session makes the restore callback's wiring independently observable.
+  runtime.cells = []; runtime.effects = []; persisted.mockClear(); persist.mockClear();
+  page = render(app); effects(); for (let i=0;i<12;i++) await Promise.resolve();
+  page = render(app);
+  await page.props.onBackupChange({ target: { files: [{ size: 0, arrayBuffer: async () => new ArrayBuffer(0) }], value: "file" } });
+  page = render(app); effects(); expect(persist).not.toHaveBeenCalled();
+  page.props.restoreDialog.props.onRetained();
+  for (let i=0;i<12;i++) await Promise.resolve(); expect(persist).toHaveBeenCalledOnce();
+});
+
+it.each(["available", "unavailable", "unknown", "rejected"])("restore %s notifies only confirmed retained acknowledgement", async outcome => {
+  const onRetained = vi.fn(async () => { throw Error("Advisory rejected"); }), onOpen = vi.fn();
+  const accepted = { status: "retained", readback: outcome === "unavailable" ? "unavailable" : "available", receipt: { commandId: "c", result: { id: "p" } } };
+  const service = host(async op => {
+    if (op === "restore") return outcome === "unknown" || outcome === "rejected" ? { status: outcome, reason: "Wait", commandId: "c" } : accepted;
+    if (op === "check") return accepted;
+    if (op === "refreshStage") return { stageId: "s", project: { id: "p" } };
+  });
+  const hook = () => useBackupRestore({ host: service, initial: { stageId: "s", project: { id: "p" } } as any, onOpen, onCancel: vi.fn(), onRetained });
+  let owner = render(hook); await owner.restore(); owner = render(hook);
+  expect(onRetained).toHaveBeenCalledTimes(outcome === "unknown" || outcome === "rejected" ? 0 : 1);
+  if (outcome === "unknown") { expect(owner.unknown).toBe(true); await owner.checkUnknown(); expect(onRetained).toHaveBeenCalledOnce(); }
+  owner = render(hook);
+  expect(owner.retained).toBe(outcome !== "rejected");
+  expect(onOpen).toHaveBeenCalledTimes(outcome === "available" || outcome === "unknown" ? 1 : 0);
 });

@@ -1,0 +1,730 @@
+diff --git a/README.md b/README.md
+--- a/README.md
++++ b/README.md
+@@ -53,7 +53,7 @@
+ 
+ Start in Projects, create a named project, organize root/nested groups, and create a disclosed opaque-black Color token. Revise exact literals or explicitly replace them with ID-linked references. Apply is explicit; mode switches and passive color-space exploration retain independent drafts. Acknowledged applied changes survive reload in the same normal browser profile and origin. Drafts and unfinished forms remain session-only; browser reload/close prompts are best effort. Chrome and Firefox use separate local stores, and a different origin also has separate data. There is no automatic synchronization.
+ 
+-Select a Projects row to inspect its exact identity and catalogue facts; use Open project to enter it. Download backup uses the selected supported catalogue revision without acquiring editing ownership. A changed revision refreshes the catalogue and requires a fresh explicit download after review. Create still creates and opens. Project management and Request persistent storage live on Projects.
++Select a Projects row to inspect its exact identity and catalogue facts; use Open project to enter it. Download backup uses the selected supported catalogue revision without acquiring editing ownership. A changed revision refreshes the catalogue and requires a fresh explicit download after review. Create still creates and opens. Projects shows browser storage-protection status and a retry when needed. App checks status on startup and requests protection once per session after a confirmed project creation or restore; refusal leaves normal saving unchanged. Clearing browser data still removes projects, and drafts stay session-only.
+ 
+ The Workbench uses three panes at 1120 CSS px and above, a navigation drawer with split browse/inspect at 880–1119, and successive full-width browse/inspect surfaces at 320–879. Narrow rows select; Edit/Inspect opens the existing selected session. Back preserves query, scope, selection, scroll and raw draft input. Layout does not apply or cancel; changing the selected token or returning to Projects retains departure protection. Drafts and collapse choices remain page-session state.
+ 
+diff --git a/docs/increments/011-responsive-shell.md b/docs/increments/011-responsive-shell.md
+--- a/docs/increments/011-responsive-shell.md
++++ b/docs/increments/011-responsive-shell.md
+@@ -1,7 +1,7 @@
+ # Increment 011: Responsive shell and workbench UI refinement
+ 
+ - Contract status: Agreed
+-- Delivery status: Partially completed — implementation and independent review finished; remaining native-browser acceptance is explicitly unverified
++- Delivery status: In progress — automatic storage-protection amendment authorized; earlier UI delivery and unverified acceptance remain recorded below
+ - Agreement: on 15 November 2026 the user agreed the refined Increment 011 contract, V2 designs and adopted presentation structure at `e5a3e3f`, and explicitly authorized implementation by a separate developer followed by an independent reviewer. See [agreement and implementation authorization](#agreement-and-implementation-authorization--15-november-2026). Earlier pending/Draft statements below are historical and superseded by this agreement.
+ - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [layout reference V1](../project/workbench-layout/README.md), [component map V1](../project/workbench-layout/component-map-v1.md), [current ownership](../project/workbench-component-organisation.md), [010 delivery direction](010-component-oriented-presentation.md#delivery-direction), [workflow](../workflow/agent-roles.md).
+ 
+@@ -60,6 +60,59 @@
+ in-app Chromium. Resumption after a stop needs explicit bounded authorization.
+ Prior planning checks and all earlier stopped campaigns stay stopped; this newly
+ authorized implementation allowance does not reset them.
++
++## Automatic storage-protection amendment — 15 November 2026
++
++After committing 011 implementation as `3ee9ed9`, the user agreed and explicitly
++requested implementation within 011: check persistence status, request it after
++the first successful project creation or restore, and replace the permanent
++request button with status and a retry action when needed. This supersedes only
++the earlier manual-only storage-preference control. Existing delivery/qualification
++limits are not erased and no earlier stopped campaign restarts.
++
++### Agreed scope and implementation constraints
++
++- Check actual browser status with `navigator.storage.persisted()` from an App-lifetime owner; query alone never requests permission. Status survives Projects/Workbench switching.
++- If not already persistent, request with `navigator.storage.persist()` after a **confirmed retained project creation or restore**. Trigger at retention acknowledgement, including a later confirmed unknown result or retained-but-unreadable result; successful read/open is not the success criterion.
++- One automatic attempt per App session, deduplicating pending reads/requests, rerenders, repeated acknowledgement/completion and Strict Mode effects. A manual request consumes that session’s automatic opportunity too. No durable “denied” sentinel or repeated automatic prompting. Reload starts by checking actual browser status again.
++- Previewing/cancelling a backup, selecting/opening an existing project, backing up, rejected writes and still-unknown results do not trigger the request. RestoreDialog’s ordinary Open local project callback is not evidence of a successful restore: add a narrow retained-success notification at the real outcome boundary instead.
++- Persistence work is advisory and non-blocking. It must not delay/throw into create/restore acceptance, consume/readback/open, change command gates, replay a write or mark uncertain data retained. Browser refusal/error never changes normal project-saving behavior.
++- Show truthful checking/requesting, protected, not-granted/non-persistent, unavailable and failed-check/request states on Projects. Only confirmed positive `persisted()`/`persist()` results mean protected. Hide retry when protected, while checking/requesting or API unsupported; expose an explicit retry for actionable unprotected/error states, gated with current conflicting-project/preview actions. Do not show an unconditional Request persistent storage button.
++- Retry rechecks actual status before requesting, deduplicates in-flight work and handles grant/refusal/failure without an unhandled rejection. Keep independent-backup and explicit browser-deletion caveats, and keep drafts session-only.
++- Follow the adopted owner-first categories. Prefer an App hook for status/attempt lifetime, the existing browser adapter for native capability calls and a controlled Projects presentation component if useful. No host/worker/domain/schema/dependency changes or new app modal are required.
++
++This is a small acknowledged policy/UI amendment; the developer implements it,
++then a fresh independent reviewer checks an identified stable snapshot. The prior
++011 visuals stay authoritative apart from this explicitly amended status/action
++region. No additional design ceremony or permission is required for routine work.
++
++### AC-15 — Automatic local-storage protection
++
++Status is checked without prompting on App startup. An already-persistent origin
++never requests again. A confirmed create/restore starts at most one non-blocking
++automatic request during that App session, including readback-unavailable and
++later confirmed outcomes; preview/Open local/failed/unknown operations do not.
++Pending duplicate events/request/retry do not duplicate API calls. Projects shows
++the actual resulting status and appropriate conditional retry, retained across
++screen changes. Unsupported/rejected/throwing browser APIs leave saving and all
++existing restore/open guards unchanged. Meaningful controlled tests cover these
++outcomes and the actual acknowledgement/notification wiring.
++
++### Amendment verification and stopping
++
++The user explicitly authorized this new bounded change. Allocate **20 aggregate
++verification/review minutes** (developer 10, independent reviewer 7, coordinator 3)
++for adapter/hook/outcome-wiring/render regressions, affected existing tests and one
++final typecheck/build. Use existing working test infrastructure; no new browser
++harness or repair, forced permission grant, multi-engine prompt matrix, earlier
++responsive qualification or storage stress. Browser-specific grant/prompt UX is
++not proven by controlled API tests and must be labelled accordingly. Stop at the
++ceiling or low expected value; record defects/unverified cases and carry effort
++between handoffs. The original 46/60-minute, 2/2-cycle campaign stays stopped.
++
++Official API references checked 15 November 2026:
++[StorageManager.persisted](https://developer.mozilla.org/en-US/docs/Web/API/StorageManager/persisted),
++[StorageManager.persist](https://developer.mozilla.org/en-US/docs/Web/API/StorageManager/persist).
+ 
+ ## Outcome
+ 
+diff --git a/docs/project/workbench-component-organisation.md b/docs/project/workbench-component-organisation.md
+--- a/docs/project/workbench-component-organisation.md
++++ b/docs/project/workbench-component-organisation.md
+@@ -9,10 +9,10 @@
+ | Owner | Components, state and lifetime |
+ | --- | --- |
+ | Shared application chrome | `components/ApplicationShell/ApplicationShell.tsx` and `components/ApplicationHeader/ApplicationHeader.tsx` render common frame/header slots. They own no project, host, command or editor state. Generic controls remain in `ui/`, with unchanged Base UI callback classes, Icon and Button APIs. |
+-| App and host | `app/App.tsx` unconditionally calls `app/hooks/useWorkbenchHost.ts` and `projects/hooks/useProjects.ts` before the page branch. App retains one host, restore file/preview refs, departure state and Projects selection/scroll/narrow-surface context across Workbench entry. Workbench remains keyed by project identity. |
+-| Projects | `projects/ProjectsScreen.tsx` composes `components/{ProjectList,ProjectInspector,CreateProjectForm,ProjectRecovery}/` and calls `hooks/useProjectsLayout.ts` only while mounted. ProjectList's private row is `components/ProjectList/components/ProjectListItem.tsx`. Selection is controlled by App, separate from the opened project. Layout owns mounted DOM refs/focus; it never opens or writes a project. |
+-| Projects commands | `projects/hooks/useProjects.ts`, called by App, retains catalogue/open/create/unknown/retained state and exact name input. Selected backup captures a supported catalogue identity/revision, uses the existing download helper without opening, and refreshes stale facts without automatically retrying. Restore preview, pending, unknown and retained-result gates remain authoritative. Persistent-storage preference is requested from Projects. |
+-| Restore | `project-backup/components/RestoreDialog/RestoreDialog.tsx` calls `hooks/useBackupRestore.ts` within that owner. App retains file/restaging references; the dialog retains revision protection, backup acknowledgement, staged/unknown recovery and completion. The former Workbench-only backup hook is removed. `host/backup-file.ts` still owns file/download effects. |
++| App and host | `app/App.tsx` unconditionally calls `app/hooks/useWorkbenchHost.ts` and `projects/hooks/useProjects.ts` before the page branch. `app/hooks/useStoragePersistence.ts` owns the advisory browser persistence query, once-per-session automatic request and explicit retry across page branches; the native calls remain in `adapters/browser/storage-preference.ts`. App retains one host, restore file/preview refs, departure state and Projects selection/scroll/narrow-surface context across Workbench entry. Workbench remains keyed by project identity. |
++| Projects | `projects/ProjectsScreen.tsx` composes `components/{ProjectList,ProjectInspector,CreateProjectForm,ProjectRecovery}/` and calls `hooks/useProjectsLayout.ts` only while mounted. `components/StorageProtection/StorageProtection.tsx` renders controlled status and gated conditional retry. ProjectList's private row is `components/ProjectList/components/ProjectListItem.tsx`. Selection is controlled by App, separate from the opened project. Layout owns mounted DOM refs/focus; it never opens or writes a project. |
++| Projects commands | `projects/hooks/useProjects.ts`, called by App, retains catalogue/open/create/unknown/retained state and exact name input. Selected backup captures a supported catalogue identity/revision, uses the existing download helper without opening, and refreshes stale facts without automatically retrying. Restore preview, pending, unknown and retained-result gates remain authoritative. Confirmed create acknowledgement notifies App independently of consume/readback/open; Projects only renders the owner’s storage status and retry. |
++| Restore | `project-backup/components/RestoreDialog/RestoreDialog.tsx` calls `hooks/useBackupRestore.ts` within that owner. App retains file/restaging references; the dialog retains revision protection, backup acknowledgement, staged/unknown recovery and completion. Confirmed retained restore notifies App at acceptance, separately from ordinary Open local. The former Workbench-only backup hook is removed. `host/backup-file.ts` still owns file/download effects. |
+ | Workbench coordination | `Workbench/Workbench.tsx` retains selection, view/query, dirty/departure, editor version and completion authority. It calls `hooks/{useProjectReadback,useProjectCommands,useWorkbenchLifecycle,useWorkbenchLayout}.ts` and CreationDialog's hook at the same lifetime. `helpers/workspace-view.ts` owns view/creation-parent mapping. |
+ | Workbench shell | `Workbench/components/{WorkbenchHeader,WorkbenchStatus,WorkbenchNavigation}/` render controlled project context, compact status/disclosure and navigation. Only Projects is a project-management control. Navigation's private tree is `WorkbenchNavigation/components/NamespaceTree/NamespaceTree.tsx`. |
+ | Workspace | `Workbench/components/TokenWorkspace/TokenWorkspace.tsx` composes `components/{WorkspaceToolbar,TokenTable,AllContent,SelectionBar}/`. AllContent's private helper is `AllContent/helpers/all-content.ts`. Token rows retain button semantics; narrow SelectionBar reopens the existing selected session even outside the query/scope. |
+diff --git a/docs/status/current.md b/docs/status/current.md
+--- a/docs/status/current.md
++++ b/docs/status/current.md
+@@ -2,11 +2,27 @@
+ 
+ > Last updated: 15 November 2026
+ >
+-> Phase: Increment 011 implementation and independent review finished;
+-> delivery Partially completed with remaining browser acceptance unverified
++> Phase: Increment 011 automatic storage-protection amendment authorized and in progress;
++> earlier UI implementation/review and remaining acceptance limits preserved
+ >
+ > Applied projects are browser-profile/origin local. Drafts and unfinished forms
+ > remain session-only. No staging, committing or pushing was performed.
++
++## Current authorized amendment
++
++After committing the initial 011 delivery as `3ee9ed9`, the user authorized
++[automatic storage protection](../increments/011-responsive-shell.md#automatic-storage-protection-amendment--15-november-2026)
++within 011. Check actual browser status at App lifetime, make one non-blocking
++request after confirmed create/restore retention when needed, and replace the
++permanent button with truthful status/conditional retry. Preview/Open local is
++not restore success; ordinary saving/restore guards stay unchanged.
++
++Developer implementation followed by a fresh independent reviewer is planned.
++New amendment check allowance: 20 aggregate minutes (developer 10, reviewer 7,
++coordinator 3), existing tests/build only, no new browser harness or repairs.
++Original 011 verification and earlier campaigns remain stopped. Delivery is In
++progress for this amendment; the earlier Partially completed report below remains
++historical and its outstanding UI acceptance is not relabelled passed.
+ 
+ ## Delivered focus
+ 
+diff --git a/src/adapters/browser/storage-preference.ts b/src/adapters/browser/storage-preference.ts
+--- a/src/adapters/browser/storage-preference.ts
++++ b/src/adapters/browser/storage-preference.ts
+@@ -1,12 +1,26 @@
+-export async function requestPersistentStorage(): Promise<string> {
+-  if (!navigator.storage?.persist)
+-    return "Persistent browser storage preference is unavailable. Keep independent backups.";
++export type StoragePersistenceResult = "protected" | "unprotected" | "unsupported" | "check-error" | "request-error";
++
++type PersistenceAPI = Partial<Pick<StorageManager, "persisted" | "persist">>;
++
++export async function checkPersistentStorage(): Promise<StoragePersistenceResult> {
+   try {
+-    const granted = await navigator.storage.persist();
+-    return granted
+-      ? "Persistent storage preference granted. Browser/user deletion can still remove projects; keep independent backups."
+-      : "Persistent storage preference was not granted. Applied retention continues; keep independent backups.";
++    const storage: PersistenceAPI | undefined = typeof navigator === "undefined" ? undefined : navigator.storage;
++    if (!storage?.persisted)
++      return "unsupported";
++    if (await storage.persisted() === true) return "protected";
++    return storage.persist ? "unprotected" : "unsupported";
+   } catch {
+-    return "Persistent storage preference could not be checked. Applied retention is unchanged; keep independent backups.";
++    return "check-error";
+   }
+ }
++
++export async function requestPersistentStorage(): Promise<StoragePersistenceResult> {
++  try {
++    const storage: PersistenceAPI | undefined = typeof navigator === "undefined" ? undefined : navigator.storage;
++    if (!storage?.persist)
++      return "unsupported";
++    return await storage.persist() === true ? "protected" : "unprotected";
++  } catch {
++    return "request-error";
++  }
++}
+diff --git a/src/presentation/app/App.tsx b/src/presentation/app/App.tsx
+--- a/src/presentation/app/App.tsx
++++ b/src/presentation/app/App.tsx
+@@ -2,6 +2,7 @@
+ import { useEffect, useRef, useState } from "react";
+ import type { RestorePreview } from "@presentation/host/protocol";
+ import { useWorkbenchHost } from "@presentation/app/hooks/useWorkbenchHost";
++import { useStoragePersistence } from "@presentation/app/hooks/useStoragePersistence";
+ import { useProjects } from "@presentation/projects/hooks/useProjects";
+ 
+ import { Dialog } from "@base-ui/react/dialog";
+@@ -21,6 +22,7 @@
+ export function App({
+   createHost = () => new WorkerWorkbenchHost(),
+ }: { createHost?: () => WorkbenchHost } = {}) {
++  const storage = useStoragePersistence();
+   const { host, ensure, reset } = useWorkbenchHost(createHost);
+   const selectedBackupFile = useRef<File | undefined>(undefined),
+     stay = useRef<HTMLButtonElement>(null);
+@@ -49,7 +51,7 @@
+     returnToProjects,
+     leaveUnknown,
+     retryCreated,
+-  } = useProjects(host, ensure, reset, !!preview);
++  } = useProjects(host, ensure, reset, !!preview, storage.onRetained);
+   // Restore completion is an explicit request, issued only by a render after
+   // preview disposal. Normal Open keeps its conflicting-preview gate intact.
+   useEffect(() => {
+@@ -80,6 +82,7 @@
+     );
+   return (
+     <ProjectsScreen
++      storageStatus={storage.status} onRetryStorage={storage.retry}
+       view={projectsView} onView={setProjectsView} onDownload={entry => void download(entry)} backupFeedback={backupFeedback} hasPreview={!!preview}
+       entries={entries}
+       error={error}
+@@ -131,6 +134,7 @@
+       }
+       restoreDialog={preview && host.current && (
+         <RestoreDialog
++          onRetained={storage.onRetained}
+           restage={async () => {
+             if (!selectedBackupFile.current)
+               throw Error("Select a project backup file again.");
+diff --git a/src/presentation/app/hooks/useStoragePersistence.ts b/src/presentation/app/hooks/useStoragePersistence.ts
+new file mode 100644
+--- /dev/null
++++ b/src/presentation/app/hooks/useStoragePersistence.ts
+@@ -0,0 +1,50 @@
++import { useEffect, useRef, useState } from "react";
++import { checkPersistentStorage, requestPersistentStorage, type StoragePersistenceResult } from "@adapters/browser/storage-preference";
++
++export type StoragePersistenceStatus = StoragePersistenceResult | "checking" | "requesting";
++
++/** Advisory browser preference only; never participates in command acceptance. */
++export function useStoragePersistence() {
++  const [status, setStatus] = useState<StoragePersistenceStatus>("checking");
++  const actual = useRef<StoragePersistenceStatus>("checking");
++  const startup = useRef<Promise<void> | undefined>(undefined);
++  const flight = useRef<Promise<void> | undefined>(undefined);
++  const attempted = useRef(false);
++  function publish(next: StoragePersistenceStatus) {
++    actual.current = next;
++    setStatus(next);
++  }
++  function initialize() {
++    startup.current ??= checkPersistentStorage().then(publish);
++    return startup.current;
++  }
++  useEffect(() => { void initialize(); }, []);
++
++  async function automatic() {
++    await initialize();
++    if (attempted.current || actual.current === "protected" || actual.current === "unsupported") return;
++    attempted.current = true;
++    publish("requesting");
++    flight.current = requestPersistentStorage().then(publish);
++    await flight.current;
++    flight.current = undefined;
++  }
++  function onRetained() {
++    // Native failures are represented as results by the adapter. Keep this
++    // notification synchronous and independent of consume/readback/open.
++    void automatic();
++  }
++  function retry() {
++    if (flight.current || actual.current === "checking" || actual.current === "requesting" || actual.current === "protected" || actual.current === "unsupported") return;
++    attempted.current = true;
++    publish("checking");
++    flight.current = (async () => {
++      const checked = await checkPersistentStorage();
++      publish(checked);
++      if (checked === "protected" || checked === "unsupported" || checked === "check-error") return;
++      publish("requesting");
++      publish(await requestPersistentStorage());
++    })().finally(() => { flight.current = undefined; });
++  }
++  return { status, onRetained, retry };
++}
+diff --git a/src/presentation/project-backup/components/RestoreDialog/RestoreDialog.tsx b/src/presentation/project-backup/components/RestoreDialog/RestoreDialog.tsx
+--- a/src/presentation/project-backup/components/RestoreDialog/RestoreDialog.tsx
++++ b/src/presentation/project-backup/components/RestoreDialog/RestoreDialog.tsx
+@@ -13,12 +13,14 @@
+   initial,
+   onCancel,
+   onOpen,
++  onRetained,
+   restage,
+ }: {
+   host: WorkbenchHost;
+   initial: RestorePreview;
+   onCancel(reset?: boolean): void;
+   onOpen(id: string): void;
++  onRetained?: () => void | Promise<void>;
+   restage?: () => Promise<RestorePreview>;
+ }) {
+   const {
+@@ -45,7 +47,7 @@
+     checkPending,
+     reviewFile,
+     checkUnknown,
+-  } = useBackupRestore({ host, initial, onCancel, onOpen, restage });
++  } = useBackupRestore({ host, initial, onCancel, onOpen, onRetained, restage });
+   return (
+     <Dialog.Root
+       open
+diff --git a/src/presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore.ts b/src/presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore.ts
+--- a/src/presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore.ts
++++ b/src/presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore.ts
+@@ -25,12 +25,14 @@
+   initial,
+   onCancel,
+   onOpen,
++  onRetained,
+   restage,
+ }: {
+   host: WorkbenchHost;
+   initial: RestorePreview;
+   onCancel(reset?: boolean): void;
+   onOpen(id: string): void;
++  onRetained?: () => void | Promise<void>;
+   restage?: () => Promise<RestorePreview>;
+ }) {
+   const [{ protection, acknowledgement }, dispatchProtection] = useReducer(
+@@ -81,8 +83,13 @@
+       return;
+     }
+     setUnknown(false);
++    const notify = !knownAccepted.current;
+     knownAccepted.current = true;
+     setRetained(true);
++    if (notify) {
++      try { void Promise.resolve(onRetained?.()).catch(() => undefined); }
++      catch { /* Advisory preference cannot change a retained outcome. */ }
++    }
+     await host.call("consume", result.receipt.commandId);
+     if (result.readback === "unavailable")
+       setError(
+diff --git a/src/presentation/projects/ProjectsScreen.tsx b/src/presentation/projects/ProjectsScreen.tsx
+--- a/src/presentation/projects/ProjectsScreen.tsx
++++ b/src/presentation/projects/ProjectsScreen.tsx
+@@ -1,7 +1,7 @@
+ import type { ChangeEventHandler, ReactNode, Ref } from "react";
+ import type { CatalogueEntry } from "@application/retention/ports";
+-import { useState } from "react";
+-import { requestPersistentStorage } from "@adapters/browser/storage-preference";
++import type { StoragePersistenceStatus } from "@presentation/app/hooks/useStoragePersistence";
++import { StorageProtection } from "./components/StorageProtection/StorageProtection";
+ import { ApplicationShell } from "@presentation/components/ApplicationShell/ApplicationShell";
+ import { ApplicationHeader } from "@presentation/components/ApplicationHeader/ApplicationHeader";
+ import { ProjectInspector } from "./components/ProjectInspector/ProjectInspector";
+@@ -13,6 +13,7 @@
+ 
+ export function ProjectsScreen({
+   entries,
++  storageStatus, onRetryStorage,
+   view, onView, onDownload, backupFeedback, hasPreview,
+   error,
+   notice,
+@@ -34,6 +35,8 @@
+   restoreDialog,
+ }: {
+   entries: readonly CatalogueEntry[] | undefined;
++  storageStatus: StoragePersistenceStatus;
++  onRetryStorage: () => void;
+   view: ProjectsView;
+   onView: (next: ProjectsView) => void;
+   onDownload: (entry: Extract<CatalogueEntry, { status: "supported" }>) => void;
+@@ -58,7 +61,6 @@
+   departureDialog: ReactNode;
+   restoreDialog: ReactNode;
+ }) {
+-  const [storageNotice, setStorageNotice] = useState("");
+   const layout = useProjectsLayout(view, onView);
+   const selected = entries?.find(entry => entry.rowKey === view.selection?.rowKey) ?? view.selection;
+   const missing = !!view.selection && entries !== undefined && !entries.some(entry => entry.rowKey === view.selection?.rowKey);
+@@ -118,7 +120,7 @@
+ 
+           </>
+         }
+-        <section className="mt-8 border-t border-border pt-5"><h2>Browser retention</h2><p className="mt-3 text-muted-foreground">Applied work is retained in this browser. Browser data can be cleared. Keep independent backups.</p><Button className="mt-4" disabled={openDisabled} onClick={() => void requestPersistentStorage().then(setStorageNotice)}>Request persistent storage</Button><p role="status" className="mt-3 text-caption">{storageNotice}</p></section>
++        <StorageProtection status={storageStatus} disabled={openDisabled} onRetry={onRetryStorage} />
+       </main>
+       <section ref={layout.inspector} tabIndex={-1} aria-label="Project inspector" hidden={layout.narrow && view.surface !== "inspect"} className="projects-inspector min-w-0 overflow-auto border-l border-border bg-surface">
+         {layout.narrow && <div className="p-4 border-b border-border"><Button onClick={() => layout.show("browse")}>Back to projects</Button></div>}
+diff --git a/src/presentation/projects/components/StorageProtection/StorageProtection.tsx b/src/presentation/projects/components/StorageProtection/StorageProtection.tsx
+new file mode 100644
+--- /dev/null
++++ b/src/presentation/projects/components/StorageProtection/StorageProtection.tsx
+@@ -0,0 +1,25 @@
++import type { StoragePersistenceStatus } from "@presentation/app/hooks/useStoragePersistence";
++import { Button } from "@presentation/ui/button";
++
++const messages: Record<StoragePersistenceStatus, string> = {
++  checking: "Checking browser storage protection…",
++  requesting: "Requesting browser storage protection…",
++  protected: "Storage protection is enabled for this browser.",
++  unprotected: "Storage protection has not been granted. Projects continue to save normally.",
++  unsupported: "Storage protection is unavailable in this browser. Projects continue to save normally.",
++  "check-error": "Storage protection status could not be checked. Projects continue to save normally.",
++  "request-error": "The storage protection request failed. Projects continue to save normally.",
++};
++export function StorageProtection({ status, disabled, onRetry }: {
++  status: StoragePersistenceStatus;
++  disabled: boolean;
++  onRetry: () => void;
++}) {
++  const actionable = status === "unprotected" || status === "check-error" || status === "request-error";
++  return <section className="mt-8 border-t border-border pt-5">
++    <h2>Browser retention</h2>
++    <p role="status" className="mt-3 text-caption">{messages[status]}</p>
++    <p className="mt-3 text-muted-foreground">Keep independent backups. Clearing browser data still removes projects. Drafts stay in this session.</p>
++    {actionable && <Button className="mt-4" disabled={disabled} onClick={onRetry}>Retry storage protection</Button>}
++  </section>;
++}
+diff --git a/src/presentation/projects/hooks/useProjects.ts b/src/presentation/projects/hooks/useProjects.ts
+--- a/src/presentation/projects/hooks/useProjects.ts
++++ b/src/presentation/projects/hooks/useProjects.ts
+@@ -14,12 +14,20 @@
+   ensureHost: () => WorkbenchHost,
+   resetHost: () => void,
+   hasPreview: boolean,
++  onRetained?: () => void | Promise<void>,
+ ) {
+   const [entries, setEntries] = useState<readonly CatalogueEntry[]>();
+   const [project, setProject] = useState<ProjectHeader>();
+   const [unknown, setUnknown] =
+     useState<Extract<PublicAcceptance, { status: "unknown" }>>();
+   const [retainedId, setRetainedId] = useState<string | null>(null);
++  const notified = useRef(new Set<string>());
++  function notifyRetained(commandId: string) {
++    if (notified.current.has(commandId)) return;
++    notified.current.add(commandId);
++    try { void Promise.resolve(onRetained?.()).catch(() => undefined); }
++    catch { /* Advisory preference cannot change a retained outcome. */ }
++  }
+   const activeMutation = useRef(false);
+   const commandPending = useRef(false);
+   const [backupFeedback, setBackupFeedback] = useState("");
+@@ -80,6 +88,7 @@
+         setUnknown(undefined);
+         if (result.status === "retained") {
+           setRetainedId(result.receipt.result.id);
++          notifyRetained(result.receipt.commandId);
+           await host.current!.call("consume", result.receipt.commandId);
+           await recoverCreated(result.receipt.result.id);
+         } else setError(result.reason);
+@@ -131,6 +140,7 @@
+       }
+       acceptedId = id;
+       setRetainedId(id);
++      notifyRetained(result.receipt.commandId);
+       await host.current!.call("consume", result.receipt.commandId);
+       await recoverCreated(id);
+     } catch (e) {
+diff --git a/test/presentation/projects-screen.test.tsx b/test/presentation/projects-screen.test.tsx
+--- a/test/presentation/projects-screen.test.tsx
++++ b/test/presentation/projects-screen.test.tsx
+@@ -6,6 +6,7 @@
+ function screen(overrides: Partial<ComponentProps<typeof ProjectsScreen>> = {}) {
+   const noop = () => undefined;
+   return renderToStaticMarkup(createElement(ProjectsScreen, {
++    storageStatus: "checking", onRetryStorage: noop,
+     view: { scroll: 0, surface: "browse" }, onView: noop, onDownload: noop, backupFeedback: "", hasPreview: false,
+     entries: [], error: "", notice: "", name: "  Unfinished name  ",
+     pending: false, activeMutation: false, retained: false, unknown: false,
+@@ -95,3 +96,18 @@
+     else Object.defineProperty(globalThis, "window", { configurable: true, value: previousWindow });
+   }
+ });
++
++it("renders actual persistence status with conditional retry and existing action gates", () => {
++  for (const status of ["checking", "requesting", "protected", "unsupported"] as const)
++    expect(screen({ storageStatus: status })).not.toContain("Retry storage protection");
++  expect(screen({ storageStatus: "protected" })).toContain("Storage protection is enabled");
++  for (const status of ["unprotected", "check-error", "request-error"] as const) {
++    const html = screen({ storageStatus: status });
++    expect(html).toContain("Retry storage protection");
++    expect(html).not.toContain("Request persistent storage");
++    for (const gate of ["pending", "retained", "unknown", "hasPreview"] as const)
++      expect(screen({ storageStatus: status, [gate]: true })).toMatch(/<button[^>]*disabled=""[^>]*>Retry storage protection/);
++  }
++  expect(screen({ storageStatus: "request-error" })).toContain("request failed");
++  expect(screen({ storageStatus: "check-error" })).toContain("status could not be checked");
++});
+diff --git a/test/presentation/storage-persistence.test.tsx b/test/presentation/storage-persistence.test.tsx
+new file mode 100644
+--- /dev/null
++++ b/test/presentation/storage-persistence.test.tsx
+@@ -0,0 +1,123 @@
++import { afterEach, expect, it, vi } from "vitest";
++
++// A small deterministic hook runner: exercises the real owners with controlled host
++// promises. Browser smoke separately checks React mounts, focus and layout.
++const runtime = vi.hoisted(() => ({
++  cells: [] as any[],
++  cursor: 0,
++  effects: [] as (() => void)[],
++}));
++vi.mock("react", async (original) => {
++  const react = await original<typeof import("react")>();
++  const state = (initial: any) => {
++    const index = runtime.cursor++;
++    if (!runtime.cells[index])
++      runtime.cells[index] = {
++        value: typeof initial === "function" ? initial() : initial,
++      };
++    const cell = runtime.cells[index];
++    cell.set ??= (value: any) => {
++      cell.value = typeof value === "function" ? value(cell.value) : value;
++    };
++    return [cell.value, cell.set];
++  };
++  return {
++    ...react,
++    useState: state,
++    useRef: (value: any) => state(() => ({ current: value }))[0],
++    useReducer: (reduce: any, initial: any) => {
++      const [value, set] = state(initial);
++      return [
++        value,
++        (action: any) => set((previous: any) => reduce(previous, action)),
++      ];
++    },
++    useMemo: (calculate: any) => calculate(),
++    useEffect: (effect: any, deps: any[]) => {
++      const index = runtime.cursor++;
++      const previous = runtime.cells[index];
++      if (
++        !previous ||
++        deps.some((dep, i) => !Object.is(dep, previous.deps[i]))
++      ) {
++        runtime.effects.push(() => {
++          previous?.cleanup?.();
++          runtime.cells[index] = { deps, cleanup: effect() };
++        });
++      }
++    },
++  };
++});
++import { useStoragePersistence } from "@presentation/app/hooks/useStoragePersistence";
++import { checkPersistentStorage, requestPersistentStorage } from "@adapters/browser/storage-preference";
++function render<T>(hook: () => T) {
++  runtime.cursor = 0;
++  return hook();
++}
++function effects() {
++  for (const effect of runtime.effects.splice(0)) effect();
++}
++function deferred<T>() {
++  let resolve!: (value: T) => void;
++  const promise = new Promise<T>((r) => {
++    resolve = r;
++  });
++  return { promise, resolve };
++}
++afterEach(() => {
++  runtime.cells = [];
++  runtime.cursor = 0;
++  runtime.effects = [];
++  vi.unstubAllGlobals();
++});
++
++
++async function flush() { for (let i = 0; i < 12; i++) await Promise.resolve(); }
++function api(persisted = vi.fn(async () => false), persist = vi.fn(async () => true)) {
++  vi.stubGlobal("navigator", { storage: { persisted, persist } });
++  return { persisted, persist };
++}
++it("checks without requesting, preserves protected status and deduplicates effect replay", async () => {
++  const calls = api(vi.fn(async () => true));
++  const hook = () => useStoragePersistence();
++  let owner = render(hook); const replay = [...runtime.effects]; effects();
++  for (const setup of replay) setup(); await flush();
++  owner = render(hook); owner.onRetained(); owner.onRetained(); await flush();
++  expect(render(hook).status).toBe("protected");
++  expect(calls.persisted).toHaveBeenCalledOnce(); expect(calls.persist).not.toHaveBeenCalled();
++});
++it("waits for pending startup check and requests once across repeated acknowledgements and rerenders", async () => {
++  const waiting = deferred<boolean>(); const grant = deferred<boolean>();
++  const calls = api(vi.fn(() => waiting.promise), vi.fn(() => grant.promise));
++  const hook = () => useStoragePersistence();
++  let owner = render(hook); effects(); owner.onRetained(); render(hook).onRetained();
++  expect(calls.persist).not.toHaveBeenCalled(); waiting.resolve(false); await flush();
++  expect(render(hook).status).toBe("requesting"); owner.onRetained(); owner.retry();
++  expect(calls.persist).toHaveBeenCalledOnce(); grant.resolve(false); await flush();
++  owner = render(hook); expect(owner.status).toBe("unprotected"); owner.onRetained(); await flush();
++  expect(calls.persist).toHaveBeenCalledOnce();
++});
++it("manual retry rechecks status and consumes automatic opportunity even when refused", async () => {
++  const calls = api(undefined, vi.fn(async () => false)); const hook = () => useStoragePersistence();
++  render(hook); effects(); await flush(); render(hook).retry(); await flush();
++  render(hook).onRetained(); await flush(); expect(calls.persist).toHaveBeenCalledOnce();
++  calls.persisted.mockResolvedValue(true); render(hook).retry(); await flush();
++  expect(render(hook).status).toBe("protected"); expect(calls.persist).toHaveBeenCalledOnce();
++});
++it("contains API failure and recovers through retry while unsupported APIs stay unavailable", async () => {
++  vi.stubGlobal("navigator", {}); expect(await checkPersistentStorage()).toBe("unsupported");
++  expect(await requestPersistentStorage()).toBe("unsupported");
++  const calls = api(vi.fn(async () => { throw Error("blocked"); }));
++  const hook = () => useStoragePersistence(); render(hook); effects(); await flush();
++  expect(render(hook).status).toBe("check-error");
++  calls.persisted.mockResolvedValue(false); calls.persist.mockRejectedValueOnce(Error("blocked"));
++  render(hook).retry(); await flush(); expect(render(hook).status).toBe("request-error");
++  render(hook).retry(); await flush(); expect(render(hook).status).toBe("protected");
++});
++
++it("reports partial APIs unavailable without inventing protection", async () => {
++  vi.stubGlobal("navigator", { storage: { persisted: async () => false } });
++  expect(await checkPersistentStorage()).toBe("unsupported");
++  vi.stubGlobal("navigator", { storage: { persisted: async () => true } });
++  expect(await checkPersistentStorage()).toBe("protected");
++});
+diff --git a/test/presentation/workbench-coordination.test.tsx b/test/presentation/workbench-coordination.test.tsx
+--- a/test/presentation/workbench-coordination.test.tsx
++++ b/test/presentation/workbench-coordination.test.tsx
+@@ -52,7 +52,7 @@
+ import { useProjectReadback } from "@presentation/Workbench/hooks/useProjectReadback";
+ import { useProjectCommands } from "@presentation/Workbench/hooks/useProjectCommands";
+ import { useCreationForm } from "@presentation/Workbench/components/CreationDialog/hooks/useCreationForm";
+-import { restoreProtectionReducer } from "@presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore";
++import { useBackupRestore, restoreProtectionReducer } from "@presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore";
+ import type {
+   ProjectHeader,
+   WorkbenchHost,
+@@ -526,8 +526,10 @@
+ });
+ 
+ it("disposes App restore preview before the authorized completion opens through the guarded project owner", async () => {
++  const persist = vi.fn(async () => true);
+   const { App } = await import("@presentation/app/App");
+   const { Workbench } = await import("@presentation/Workbench/Workbench");
++  vi.stubGlobal("navigator", { storage: { persisted: async () => false, persist } });
+   vi.stubGlobal("addEventListener", vi.fn());
+   vi.stubGlobal("removeEventListener", vi.fn());
+   const preview = { project: header.project };
+@@ -546,11 +548,100 @@
+   expect(page.props.hasPreview).toBe(true);
+   page.props.onOpen("p");
+   expect(vi.mocked(service.call).mock.calls.some(([operation]) => operation === "openProject")).toBe(false);
++  expect(persist).not.toHaveBeenCalled();
+   page.props.restoreDialog.props.onOpen("p");
+   page = render(app); effects();
+   await Promise.resolve(); await Promise.resolve();
+   page = render(app);
+   expect(page.type).toBe(Workbench);
+   expect(page.props.initial).toBe(header);
++  expect(persist).not.toHaveBeenCalled();
+   expect(vi.mocked(service.call).mock.calls.filter(([operation]) => operation === "openProject")).toHaveLength(1);
+ });
++
++it.each(["retained", "unknown", "rejected"])("notifies creation retention only at confirmed %s acknowledgement, before failed readback", async status => {
++  const onRetained = vi.fn(() => { throw Error("advisory failure"); });
++  const accepted = { status: "retained", receipt: { commandId: "create", result: { id: "p" } } };
++  const service = host(async op => {
++    if (op === "createProject") return status === "retained" ? accepted : { status, reason: "Wait", commandId: "create" };
++    if (op === "check") return accepted;
++    if (op === "openProject") throw Error("Read failed");
++  });
++  const hook = () => useProjects({ current: service }, () => service, vi.fn(), false, onRetained);
++  let owner = render(hook); owner.setName("P"); owner = render(hook); await owner.create();
++  expect(onRetained).toHaveBeenCalledTimes(status === "retained" ? 1 : 0);
++  if (status === "unknown") { owner = render(hook); await owner.check(); expect(onRetained).toHaveBeenCalledOnce(); }
++  if (status !== "rejected") {
++    owner = render(hook); expect(owner.unknown).toBeUndefined(); expect(owner.retainedId).not.toBeNull();
++    await owner.check(); expect(onRetained).toHaveBeenCalledOnce();
++  }
++});
++
++it("notifies restore retention once before consume even with unavailable readback and callback failure", async () => {
++  const onRetained = vi.fn(() => { throw Error("Advisory failure"); }), onOpen = vi.fn();
++  const service = host(async op => { if (op === "consume") throw Error("Consume unavailable"); });
++  const hook = () => useBackupRestore({ host: service, initial: { stageId: "stage", project: { id: "p" } } as any, onOpen, onCancel: vi.fn(), onRetained });
++  let owner = render(hook);
++  await owner.finish({ status: "unknown", reason: "Wait", commandId: "c" }); expect(onRetained).not.toHaveBeenCalled();
++  const accepted = { status: "retained", readback: "unavailable", receipt: { commandId: "c", result: { id: "p" } } } as any;
++  await expect(owner.finish(accepted)).rejects.toThrow("Consume unavailable");
++  expect(onRetained).toHaveBeenCalledOnce(); expect(onOpen).not.toHaveBeenCalled();
++  owner = render(hook); expect(owner.retained).toBe(true); expect(owner.unknown).toBe(false);
++  await expect(owner.finish(accepted)).rejects.toThrow(); expect(onRetained).toHaveBeenCalledOnce();
++});
++it("does not notify retention for opening existing projects or previewing a restore", async () => {
++  const onRetained = vi.fn(); const service = host(async () => header);
++  let hook = () => useProjects({ current: service }, () => service, vi.fn(), false, onRetained);
++  await render(hook).open("p"); expect(onRetained).not.toHaveBeenCalled();
++  vi.mocked(service.call).mockClear();
++  runtime.cells = []; runtime.effects = [];
++  render(() => useBackupRestore({ host: service, initial: { stageId: "s", project: { id: "p" } } as any, onOpen: vi.fn(), onCancel: vi.fn(), onRetained }));
++  effects(); expect(onRetained).not.toHaveBeenCalled(); expect(service.call).not.toHaveBeenCalled();
++});
++
++it("App retains storage status through create-and-open/Projects and separates restore acknowledgement from Open local", async () => {
++  const { App } = await import("@presentation/app/App");
++  const persist = vi.fn(async () => true), persisted = vi.fn(async () => false);
++  vi.stubGlobal("navigator", { storage: { persist, persisted } });
++  vi.stubGlobal("addEventListener", vi.fn()); vi.stubGlobal("removeEventListener", vi.fn());
++  const service = host(async (op, input) => {
++    if (op === "catalogue") return [];
++    if (op === "createProject") return { status: "retained", receipt: { commandId: "c", result: { id: input.id } } };
++    if (op === "openProject") return header;
++    if (op === "stageBackup") return { project: header.project };
++  });
++  const app = () => App({ createHost: () => service });
++  let page = render(app); effects(); for (let i=0;i<12;i++) await Promise.resolve();
++  page = render(app); expect(page.props.storageStatus).toBe("unprotected"); expect(persist).not.toHaveBeenCalled();
++  page.props.onNameChange("P"); page = render(app); page.props.onCreate();
++  for (let i=0;i<12;i++) await Promise.resolve();
++  page = render(app); effects(); expect(persist).toHaveBeenCalledOnce();
++  page.props.onProjects(); for (let i=0;i<12;i++) await Promise.resolve();
++  page = render(app); effects(); expect(page.props.storageStatus).toBe("protected");
++  expect(persisted).toHaveBeenCalledOnce();
++  // A fresh App session makes the restore callback's wiring independently observable.
++  runtime.cells = []; runtime.effects = []; persisted.mockClear(); persist.mockClear();
++  page = render(app); effects(); for (let i=0;i<12;i++) await Promise.resolve();
++  page = render(app);
++  await page.props.onBackupChange({ target: { files: [{ size: 0, arrayBuffer: async () => new ArrayBuffer(0) }], value: "file" } });
++  page = render(app); effects(); expect(persist).not.toHaveBeenCalled();
++  page.props.restoreDialog.props.onRetained();
++  for (let i=0;i<12;i++) await Promise.resolve(); expect(persist).toHaveBeenCalledOnce();
++});
++
++it.each(["available", "unavailable", "unknown", "rejected"])("restore %s notifies only confirmed retained acknowledgement", async outcome => {
++  const onRetained = vi.fn(async () => { throw Error("Advisory rejected"); }), onOpen = vi.fn();
++  const accepted = { status: "retained", readback: outcome === "unavailable" ? "unavailable" : "available", receipt: { commandId: "c", result: { id: "p" } } };
++  const service = host(async op => {
++    if (op === "restore") return outcome === "unknown" || outcome === "rejected" ? { status: outcome, reason: "Wait", commandId: "c" } : accepted;
++    if (op === "check") return accepted;
++    if (op === "refreshStage") return { stageId: "s", project: { id: "p" } };
++  });
++  const hook = () => useBackupRestore({ host: service, initial: { stageId: "s", project: { id: "p" } } as any, onOpen, onCancel: vi.fn(), onRetained });
++  let owner = render(hook); await owner.restore(); owner = render(hook);
++  expect(onRetained).toHaveBeenCalledTimes(outcome === "unknown" || outcome === "rejected" ? 0 : 1);
++  if (outcome === "unknown") { expect(owner.unknown).toBe(true); await owner.checkUnknown(); expect(onRetained).toHaveBeenCalledOnce(); }
++  owner = render(hook);
++  expect(owner.retained).toBe(outcome !== "rejected");
++  expect(onOpen).toHaveBeenCalledTimes(outcome === "available" || outcome === "unknown" ? 1 : 0);
++});

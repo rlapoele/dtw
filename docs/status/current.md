@@ -2,18 +2,43 @@
 
 > Last updated: 15 November 2026
 >
-> Phase: Increment 011 implementation and independent review finished;
-> delivery Partially completed with remaining browser acceptance unverified
+> Phase: Increment 011 automatic storage-protection amendment implemented and
+> independently reviewed; delivery remains Partially completed on earlier gaps
 >
 > Applied projects are browser-profile/origin local. Drafts and unfinished forms
 > remain session-only. No staging, committing or pushing was performed.
+
+## Latest completed amendment
+
+The user committed the initial UI implementation as `3ee9ed9`, then authorized
+[automatic storage protection](../increments/011-responsive-shell.md#automatic-storage-protection-amendment--15-november-2026).
+It is now implemented and independently reviewed against `storage-protection-r1`:
+
+- App-lifetime actual status check without prompting on startup.
+- One non-blocking automatic request per App session after confirmed retained create/restore when needed, including later-confirmed/readback-unavailable outcomes. Opening or previewing is not success. Manual attempts consume that automatic opportunity; in-flight work is deduplicated.
+- Controlled Projects status and conditional retry replace the permanent button. Denial, missing APIs and errors leave saving/restore/open unchanged; positive API confirmation alone means protected.
+
+[Amendment completion](../increments/011-responsive-shell.md#automatic-storage-protection-amendment-completion--15-november-2026)
+and [independent review](../../output/increment-011-storage-protection/reviewer.md)
+record 46 affected developer tests, 38 independently rerun targeted tests, all four
+type scopes/build passing, 15 verified hashes and no actionable findings. Native
+browser permission/grant UX was not qualified. New amendment review stopped at
+approximately 13/20 aggregate minutes, zero harness repairs; the earlier campaigns
+remain stopped and their acceptance is not relabelled passed.
+
+Concurrent global.css slider-thumb edits were preserved as user work. A separate
+baseline Git casing mismatch remains: the physical Workbench/ folder is capitalized,
+but its 39 files are still indexed under lowercase workbench/. Contents match the
+committed baseline. No agent staged or changed the index; see
+[working-tree notes and user rename commands](../../output/increment-011-storage-protection/working-tree-notes.md).
+
 
 ## Delivered focus
 
 The user agreed the refined contract, V2 designs and adopted file-grouped tree
 at `e5a3e3f`, then explicitly authorized developer implementation and independent
 review. The [011 completion report](../increments/011-responsive-shell.md#completion-report--15-november-2026)
-records AC-1–14 evidence, exact snapshots, resolved findings and acceptance limits.
+records original AC-1–14 evidence, exact snapshots, resolved findings and acceptance limits.
 Contract is Agreed; delivery is **Partially completed**, not Closed/Completed.
 
 - Implemented owner-first `components/`, `hooks/`, `helpers/`, `state/` organisation and capitalized Workbench/. The [current ownership map](../project/workbench-component-organisation.md) describes actual paths; App/useProjects/Workbench authority and the single keyed editor session are preserved.

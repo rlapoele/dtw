@@ -1,0 +1,86 @@
+{
+  "baseCommit": "3ee9ed95cab1958757b5bb20f42c3af99dc8ffac",
+  "snapshot": "storage-protection-r1",
+  "createdAt": "2026-11-15T19:59:43.848804+00:00",
+  "excluded": {
+    "src/presentation/styles/global.css": "Concurrent user slider-thumb size edits, not authored by this amendment.",
+    "src/presentation/{workbench,Workbench}/": "Pre-existing committed lowercase index prefix versus physical uppercase folder; all 39 file contents equal committed lowercase baseline. User case-only Git directory rename required; no amendment content change."
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "status": "modified",
+      "sha256": "fe83754bb8f93174c274d9ffe4f2a182774a2be32bf61b7518d95328c1f11116"
+    },
+    {
+      "path": "docs/increments/011-responsive-shell.md",
+      "status": "modified",
+      "sha256": "1de215db430bfdf19a53c75d2adda5b06f54bf381f102cae1b929f65aac02801"
+    },
+    {
+      "path": "docs/project/workbench-component-organisation.md",
+      "status": "modified",
+      "sha256": "3ac47c31d2436edb7845f0a6f2c2adcde468d64f2a85787e3379b57181d95c12"
+    },
+    {
+      "path": "docs/status/current.md",
+      "status": "modified",
+      "sha256": "c7c1d8d1260fafe573a4a184ea4d03184aa3d02a9714535163c04f69a3490aec"
+    },
+    {
+      "path": "src/adapters/browser/storage-preference.ts",
+      "status": "modified",
+      "sha256": "1118eada7b9cc103a0ae093b6cfff16c60ea892981e2c2dd73de0a07cb5a5c10"
+    },
+    {
+      "path": "src/presentation/app/App.tsx",
+      "status": "modified",
+      "sha256": "ec920cc545d66c4ad534b4fb0e6624adc9164b73655a9e8dcb11d89d8f83133b"
+    },
+    {
+      "path": "src/presentation/app/hooks/useStoragePersistence.ts",
+      "status": "added",
+      "sha256": "5907baecb879d33d7ed128bbe57db2866348c0d45f60fc95979f563c245aa185"
+    },
+    {
+      "path": "src/presentation/project-backup/components/RestoreDialog/RestoreDialog.tsx",
+      "status": "modified",
+      "sha256": "b0d58e9c3853f136d2d92dcdd4fcacb5edc2778d4c8abae252f00fcd7c38c4ce"
+    },
+    {
+      "path": "src/presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore.ts",
+      "status": "modified",
+      "sha256": "4fc2d25ff97b9a64c8333c0aef3c35242478013ecf263bc34ad9b9b71b10728b"
+    },
+    {
+      "path": "src/presentation/projects/ProjectsScreen.tsx",
+      "status": "modified",
+      "sha256": "f765fbaa1af0f52b77f057134307e299805cbf1050d95842f6917a10622c01df"
+    },
+    {
+      "path": "src/presentation/projects/components/StorageProtection/StorageProtection.tsx",
+      "status": "added",
+      "sha256": "a2f7dd6ff29bebaa73d870d136d9dab654ca46c31b770c0465e473c00c6d8c65"
+    },
+    {
+      "path": "src/presentation/projects/hooks/useProjects.ts",
+      "status": "modified",
+      "sha256": "ed81bc2659afd32d2b5660822469f8edecec64eb7adb24e1443e8ce7ec90178d"
+    },
+    {
+      "path": "test/presentation/projects-screen.test.tsx",
+      "status": "modified",
+      "sha256": "48b89f0d1ffddb3b18cbd5e813914907b8c892df9f8e40b8f3770ea2b2b38a04"
+    },
+    {
+      "path": "test/presentation/storage-persistence.test.tsx",
+      "status": "added",
+      "sha256": "be915ad90ec67feae55c83b14df67a6edb6b54f04eee478b445f96add9afb268"
+    },
+    {
+      "path": "test/presentation/workbench-coordination.test.tsx",
+      "status": "modified",
+      "sha256": "42bff2aadf934b4575c1f561fb93f41ae47a2cb81e501a82ea94260d4e019c9a"
+    }
+  ]
+}
