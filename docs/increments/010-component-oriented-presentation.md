@@ -421,3 +421,15 @@ remains unverified, so delivery is Partially completed. The remaining inspector/
 display migration and replacement-interface roadmap are not delivered or authorized.
 S2's approximately 21/30 aggregate minutes and zero repairs are recorded separately
 from the first slice's unchanged stopped allowance; no old campaign restarts.
+
+### Inspector/display planning — 15 November 2026
+
+The user reported committing and pushing S2 and instructed proceeding to the next
+step. Baseline `d430edd` is the committed shell/workspace implementation, clean
+before this planning task. The [inspector/display proposal](010-inspector-and-display-slice.md)
+defines a Draft S3 amendment for the remaining component organisation and removal
+of the single-feature wrapper. Exact source-informed scope requires agreement
+before implementation; no new interface capabilities are included.
+
+The first-slice and S2 native-browser evidence gaps remain unverified, and their
+stopped budgets are not reset by committing, pushing or planning S3.

@@ -2,14 +2,27 @@
 
 > Last updated: 15 November 2026
 >
-> Phase: Increment 010 shell/workspace slice implemented and independently reviewed;
-> user review and native-browser acceptance remain pending
+> Phase: Increment 010 inspector/display slice planning; S2 committed and pushed;
+> earlier native-browser acceptance remains unverified
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
 > Applied data is browser-profile/origin local; drafts and forms remain session-only.
 
 ## Current focus
+
+**Inspector/display planning — 15 November 2026:** the user reported committing/
+pushing S2 and requested the next step. HEAD is `d430edd`, clean before planning.
+A separate analyst is drafting the [S3 exact scope](../increments/010-inspector-and-display-slice.md)
+for the remaining inspector, color and shared rendering owners and the alternate
+test-only list. The intended result is removal of the remaining single-feature
+wrapper while preserving current behavior and one editor session. This is Draft
+planning; no source moves or new interface implementation are authorized yet.
+Earlier slice evidence gaps and stopped checks remain unchanged.
+The S3 draft is ready: exact mapping of all 20 remaining files, shared pure-helper
+owners, TokenEditorContent naming and unchanged legacy TokenList relocation to
+test support with its assertions retained. Planning checks passed 46 local links
+and whitespace; approximately eight aggregate minutes, zero repairs; stopped.
 
 The user agreed and authorized the [010 shell/workspace contract](../increments/010-shell-and-workspace-slice.md)
 after committing its proposal as `d3a7e9c`. Its
@@ -55,6 +68,9 @@ zero harness repairs. Coordinator handoff/report edits follow the frozen review;
 no further code changes or verification campaign is running. Staging, committing
 and pushing remain with the user.
 
+The user subsequently committed and pushed S2 as `d430edd`; agents did not stage,
+commit or push it. That source baseline now informs S3 planning.
+
 ## First slice and overall direction
 
 The first slice was committed/pushed by the user as `32ec593`. Shared UI/backup
@@ -91,6 +107,10 @@ automated baseline, with broader engine qualification after the fully featured
 PWA. Install/offline PWA acceptance, interchange and Electron remain later work.
 
 ## Next meaningful action
+
+Review and agree the S3 inspector/display contract before source changes. Keep
+shared helper and legacy-test-fixture ownership explicit rather than implementing
+future mockup features to fill out a directory tree.
 
 User review of S2 and its explicit native-browser acceptance limits. Do not mark
 010 Completed solely from source/tests or silently waive unobserved criteria.
