@@ -99,3 +99,14 @@ The user has since approved V2 for analyst review. The
 existing catalogue-revision backup flow and App-owned Projects context. Earlier
 conditional concerns about an extra header read are resolved for the proposed
 read-only fields. Final contract/design agreement and implementation remain pending.
+
+## Increment 011 delivery — 15 November 2026
+
+Following final user agreement/authorization, Projects selection/inspection,
+explicit Open, selected revision backup, inline Create/Restore and retention
+preference placement are implemented and independently reviewed. Existing
+create-and-open, restore protection and uncertain-result guarantees remain;
+restore completion is sequenced after preview disposal. See
+[011 completion](../increments/011-responsive-shell.md#completion-report--15-november-2026)
+for verified paths and outstanding acceptance. The rest of the capability
+inventory remains outside this increment. No staging or commit was performed.

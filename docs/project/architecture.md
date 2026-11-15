@@ -93,8 +93,8 @@ Browser rendering/mapping is display-only; explicit editing conversions remain i
 existing calculation boundary. No preview calls Culori or writes display coordinates
 back into tokens. See the [current preview policy](../increments/003-color-policy-proposal.md#preview-policy).
 
-**Current implementation ownership — 12 November 2026:** `app/App.tsx` owns the
-catalogue and host lifetime; `workbench/Workbench.tsx` coordinates the open project. Their
+**Current implementation ownership — 15 November 2026:** `app/App.tsx` owns the
+catalogue/Projects context and host lifetime; `Workbench/Workbench.tsx` coordinates the open project. Their
 component names are `App` and `Workbench`. The transitional `Retained` prefix was
 removed after retiring the earlier session-only implementation; historical snapshots
 and evidence retain their original filenames. `src/application/retention/` owns host-independent retention,
@@ -108,6 +108,20 @@ and [deferred qualification](../increments/007-local-retention-and-backup.md#def
 for evidence and explicit support limits. Chrome is the
 current automated baseline; broader engine qualification follows the user-approved
 browser policy. Earlier dated descriptions below describe their original increments.
+
+**Increment 011 delivery — 15 November 2026:** shared application chrome lives
+under `presentation/components/`; page-specific components use owner-level
+components/hooks/helpers/state categories. App still calls
+`projects/hooks/useProjects.ts` unconditionally; Workbench calls its coordination
+hooks and the creation hook; TokenEditor remains the sole editor-session caller.
+Projects owns selection/explicit opening, revision-checked backup and restore
+entry points. App preserves Projects context and sequences restore completion
+after preview disposal. These are presentation/coordination changes: host,
+application/domain, codec and browser storage boundaries remain unchanged. The
+[current ownership map](workbench-component-organisation.md) owns delivered paths;
+[011 completion](../increments/011-responsive-shell.md#completion-report--15-november-2026)
+records independent review and remaining acceptance gaps. Earlier dated path
+sections below describe their historical snapshots.
 
 **Source naming — 8 November 2026:** `src/presentation/` contains the React UI, styles, editor drafts and disposable browser previews; `src/application/` contains host-independent use-case coordination. The user approved renaming the former `delivery` folder to `presentation` for clarity, with the same dependency boundaries. Matching tests and UI type configuration use `test/presentation/` and `tsconfig.presentation.json`. The broader term “delivery surface” below also covers possible non-UI entry points such as CLI or MCP; those need not live under `presentation`. Source/test imports use `@domain`, `@application`, `@adapters`, `@presentation` and `@tests` mappings; these improve path clarity without permitting new dependencies between layers. TypeScript paths and shared Vite/Vitest aliases resolve the same folders. Build configuration is checked separately in `tsconfig.tools.json` with development-only Node types; domain/application checks and browser code retain their own host scopes.
 

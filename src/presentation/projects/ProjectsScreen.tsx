@@ -1,13 +1,19 @@
 import type { ChangeEventHandler, ReactNode, Ref } from "react";
 import type { CatalogueEntry } from "@application/retention/ports";
-import { Icon } from "@presentation/ui/icon";
+import { useState } from "react";
+import { requestPersistentStorage } from "@adapters/browser/storage-preference";
+import { ApplicationShell } from "@presentation/components/ApplicationShell/ApplicationShell";
+import { ApplicationHeader } from "@presentation/components/ApplicationHeader/ApplicationHeader";
+import { ProjectInspector } from "./components/ProjectInspector/ProjectInspector";
+import { useProjectsLayout, type ProjectsView } from "./hooks/useProjectsLayout";
 import { Button } from "@presentation/ui/button";
-import { ProjectList } from "./ProjectList/ProjectList";
-import { CreateProjectForm } from "./CreateProjectForm/CreateProjectForm";
-import { ProjectRecovery } from "./ProjectRecovery/ProjectRecovery";
+import { ProjectList } from "@presentation/projects/components/ProjectList/ProjectList";
+import { CreateProjectForm } from "@presentation/projects/components/CreateProjectForm/CreateProjectForm";
+import { ProjectRecovery } from "@presentation/projects/components/ProjectRecovery/ProjectRecovery";
 
 export function ProjectsScreen({
   entries,
+  view, onView, onDownload, backupFeedback, hasPreview,
   error,
   notice,
   name,
@@ -28,6 +34,11 @@ export function ProjectsScreen({
   restoreDialog,
 }: {
   entries: readonly CatalogueEntry[] | undefined;
+  view: ProjectsView;
+  onView: (next: ProjectsView) => void;
+  onDownload: (entry: Extract<CatalogueEntry, { status: "supported" }>) => void;
+  backupFeedback: string;
+  hasPreview: boolean;
   error: string;
   notice: string;
   name: string;
@@ -47,20 +58,17 @@ export function ProjectsScreen({
   departureDialog: ReactNode;
   restoreDialog: ReactNode;
 }) {
-  const openDisabled = pending || retained || unknown;
+  const [storageNotice, setStorageNotice] = useState("");
+  const layout = useProjectsLayout(view, onView);
+  const selected = entries?.find(entry => entry.rowKey === view.selection?.rowKey) ?? view.selection;
+  const missing = !!view.selection && entries !== undefined && !entries.some(entry => entry.rowKey === view.selection?.rowKey);
+  const openDisabled = pending || retained || unknown || hasPreview;
   const createDisabled = openDisabled || entries === undefined;
   return (
-    <div className="app-shell flex h-dvh min-h-0 flex-col overflow-clip bg-background">
-      <header className="shrink-0 border-b border-border h-16 flex items-center px-6 gap-5">
-        <div className="brand flex items-center gap-2.5">
-          <Icon name="stack" />
-          <strong>Token Workbench</strong>
-        </div>
-        <span className="text-caption ml-auto text-muted-foreground">
-          Browser local
-        </span>
-      </header>
-      <main className="mx-auto w-full max-w-3xl px-7 py-10 overflow-auto">
+    <ApplicationShell>
+      <ApplicationHeader actions={<span className="projects-header-context text-caption text-muted-foreground">Browser local</span>} />
+      <div className="projects-layout flex-1 min-h-0 grid overflow-hidden">
+      <main ref={layout.browse} tabIndex={-1} hidden={layout.narrow && view.surface === "inspect"} onScroll={event => onView({ ...view, scroll: event.currentTarget.scrollTop })} className="projects-browse min-w-0 overflow-auto p-6">
         {
           <>
             <h1>Projects in this browser</h1>
@@ -80,14 +88,20 @@ export function ProjectsScreen({
               <ProjectList
                 entries={entries}
                 disabled={openDisabled}
-                onOpen={onOpen}
+                selected={selected?.rowKey}
+                onSelect={entry => onView({ ...view, selection: entry })}
               />
             )}
-            {error && entries === undefined && (
-              <Button onClick={onRetryCatalogue}>
-                Retry reading projects
-              </Button>
-            )}
+            {layout.narrow && selected && <Button ref={layout.entry} className="w-full" disabled={openDisabled} onClick={() => layout.show("inspect")}>Inspect selected project</Button>}
+            <CreateProjectForm
+              name={name}
+              disabled={createDisabled}
+              pending={pending}
+              error={error}
+              nameRef={nameRef}
+              onNameChange={onNameChange}
+              onSubmit={onCreate}
+            />
             <section className="mt-8">
               <h2 className="mb-3">Restore backup</h2>
               <label className="text-caption block">
@@ -101,17 +115,17 @@ export function ProjectsScreen({
                 />
               </label>
             </section>
-            <CreateProjectForm
-              name={name}
-              disabled={createDisabled}
-              pending={pending}
-              error={error}
-              nameRef={nameRef}
-              onNameChange={onNameChange}
-              onSubmit={onCreate}
-            />
+
           </>
         }
+        <section className="mt-8 border-t border-border pt-5"><h2>Browser retention</h2><p className="mt-3 text-muted-foreground">Applied work is retained in this browser. Browser data can be cleared. Keep independent backups.</p><Button className="mt-4" disabled={openDisabled} onClick={() => void requestPersistentStorage().then(setStorageNotice)}>Request persistent storage</Button><p role="status" className="mt-3 text-caption">{storageNotice}</p></section>
+      </main>
+      <section ref={layout.inspector} tabIndex={-1} aria-label="Project inspector" hidden={layout.narrow && view.surface !== "inspect"} className="projects-inspector min-w-0 overflow-auto border-l border-border bg-surface">
+        {layout.narrow && <div className="p-4 border-b border-border"><Button onClick={() => layout.show("browse")}>Back to projects</Button></div>}
+        <ProjectInspector entry={selected} missing={missing} catalogueUnavailable={entries === undefined} disabled={openDisabled || entries === undefined} onOpen={onOpen} onDownload={onDownload} />
+      </section>
+      </div>
+      <section aria-label="Project feedback" className="shrink-0 max-h-48 overflow-auto px-4 text-caption wrap-anywhere">
         <ProjectRecovery
           pending={pending}
           activeMutation={activeMutation}
@@ -121,15 +135,21 @@ export function ProjectsScreen({
           onRetryReading={onRetryReading}
           onReviewLeaving={onReviewLeaving}
         />
-        <p id="project-error" role="alert" className="text-destructive mt-4">
+        <p id="project-error" role="alert" className={error ? "text-destructive py-2" : "sr-only"}>
           {error}
         </p>
-        <p role="status" className="text-caption mt-4">
+        <p role="status" className={notice ? "text-caption py-2" : "sr-only"}>
           {notice}
         </p>
-      </main>
+        {error && entries === undefined && (
+          <Button disabled={pending || hasPreview} onClick={onRetryCatalogue}>
+            Retry reading projects
+          </Button>
+        )}
+      </section>
+      {backupFeedback && <p role="status" className="shrink-0 border-t border-border p-3 text-caption wrap-anywhere">{backupFeedback}</p>}
       {departureDialog}
       {restoreDialog}
-    </div>
+    </ApplicationShell>
   );
 }

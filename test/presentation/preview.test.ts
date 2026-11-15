@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { colorPreview } from "@presentation/token-display/color-preview";
+import { colorPreview } from "@presentation/token-display/helpers/color-preview";
 const alpha = "0.123456789123456789";
 const c = (components: string[], colorSpace = "srgb") => ({
   colorSpace,

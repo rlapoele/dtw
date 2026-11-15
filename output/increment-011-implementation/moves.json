@@ -1,0 +1,222 @@
+[
+  {
+    "from": "src/presentation/app/useWorkbenchHost.ts",
+    "to": "src/presentation/app/hooks/useWorkbenchHost.ts"
+  },
+  {
+    "from": "src/presentation/project-backup/RestoreDialog/RestoreDialog.tsx",
+    "to": "src/presentation/project-backup/components/RestoreDialog/RestoreDialog.tsx"
+  },
+  {
+    "from": "src/presentation/project-backup/RestoreDialog/useBackupRestore.ts",
+    "to": "src/presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore.ts"
+  },
+  {
+    "from": "src/presentation/project-backup/useWorkbenchBackup.ts",
+    "to": null
+  },
+  {
+    "from": "src/presentation/projects/CreateProjectForm/CreateProjectForm.tsx",
+    "to": "src/presentation/projects/components/CreateProjectForm/CreateProjectForm.tsx"
+  },
+  {
+    "from": "src/presentation/projects/ProjectList/ProjectList.tsx",
+    "to": "src/presentation/projects/components/ProjectList/ProjectList.tsx"
+  },
+  {
+    "from": "src/presentation/projects/ProjectList/ProjectListItem.tsx",
+    "to": "src/presentation/projects/components/ProjectList/components/ProjectListItem.tsx"
+  },
+  {
+    "from": "src/presentation/projects/ProjectRecovery/ProjectRecovery.tsx",
+    "to": "src/presentation/projects/components/ProjectRecovery/ProjectRecovery.tsx"
+  },
+  {
+    "from": "src/presentation/projects/useProjects.ts",
+    "to": "src/presentation/projects/hooks/useProjects.ts"
+  },
+  {
+    "from": "src/presentation/token-display/AuthoredValue.tsx",
+    "to": "src/presentation/token-display/components/AuthoredValue.tsx"
+  },
+  {
+    "from": "src/presentation/token-display/ExactSource.tsx",
+    "to": "src/presentation/token-display/components/ExactSource.tsx"
+  },
+  {
+    "from": "src/presentation/token-display/ResolvedTokenPanel.tsx",
+    "to": "src/presentation/token-display/components/ResolvedTokenPanel.tsx"
+  },
+  {
+    "from": "src/presentation/token-display/TokenMetadata.tsx",
+    "to": "src/presentation/token-display/components/TokenMetadata.tsx"
+  },
+  {
+    "from": "src/presentation/token-display/TokenSwatch.tsx",
+    "to": "src/presentation/token-display/components/TokenSwatch.tsx"
+  },
+  {
+    "from": "src/presentation/token-display/authored-color.ts",
+    "to": "src/presentation/token-display/helpers/authored-color.ts"
+  },
+  {
+    "from": "src/presentation/token-display/color-preview.ts",
+    "to": "src/presentation/token-display/helpers/color-preview.ts"
+  },
+  {
+    "from": "src/presentation/token-display/identity-labels.ts",
+    "to": "src/presentation/token-display/helpers/identity-labels.ts"
+  },
+  {
+    "from": "src/presentation/token-display/resolved-color.ts",
+    "to": "src/presentation/token-display/helpers/resolved-color.ts"
+  },
+  {
+    "from": "src/presentation/workbench/CreationDialog/CreationDialog.tsx",
+    "to": "src/presentation/Workbench/components/CreationDialog/CreationDialog.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/CreationDialog/naming-preview.ts",
+    "to": "src/presentation/Workbench/components/CreationDialog/helpers/naming-preview.ts"
+  },
+  {
+    "from": "src/presentation/workbench/CreationDialog/useCreationForm.ts",
+    "to": "src/presentation/Workbench/components/CreationDialog/hooks/useCreationForm.ts"
+  },
+  {
+    "from": "src/presentation/workbench/TokenWorkspace/AllContent/AllContent.tsx",
+    "to": "src/presentation/Workbench/components/TokenWorkspace/components/AllContent/AllContent.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/TokenWorkspace/AllContent/all-content.ts",
+    "to": "src/presentation/Workbench/components/TokenWorkspace/components/AllContent/helpers/all-content.ts"
+  },
+  {
+    "from": "src/presentation/workbench/TokenWorkspace/TokenTable/TokenTable.tsx",
+    "to": "src/presentation/Workbench/components/TokenWorkspace/components/TokenTable/TokenTable.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/TokenWorkspace/TokenWorkspace.tsx",
+    "to": "src/presentation/Workbench/components/TokenWorkspace/TokenWorkspace.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/TokenWorkspace/WorkspaceToolbar/WorkspaceToolbar.tsx",
+    "to": "src/presentation/Workbench/components/TokenWorkspace/components/WorkspaceToolbar/WorkspaceToolbar.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/Workbench.tsx",
+    "to": "src/presentation/Workbench/Workbench.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchHeader/WorkbenchHeader.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchHeader/WorkbenchHeader.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/GroupInspector/GroupInspector.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/components/GroupInspector/GroupInspector.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/InspectorHeader.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/components/InspectorHeader.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/ColorEditor.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/ColorEditor.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/visual-range.ts",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/helpers/visual-range.ts"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/TokenEditor/EditRecovery.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/EditRecovery.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/TokenEditor/EditorActions.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/EditorActions.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/TokenEditor/ReferenceFields.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ReferenceFields.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditor.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/TokenEditor.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorContent.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/TokenEditorContent.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorTabs.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/TokenEditorTabs.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/TokenEditor/editor-failure.ts",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/helpers/editor-failure.ts"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/TokenEditor/editor-session.ts",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session.ts"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/TokenEditor/integer-rgb.ts",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/helpers/integer-rgb.ts"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/TokenEditor/useTokenEditor.ts",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/hooks/useTokenEditor.ts"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/TokenValueComparison.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenValueComparison.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchInspector/WorkbenchInspector.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchInspector/WorkbenchInspector.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchNavigation/NamespaceTree/NamespaceTree.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchNavigation/components/NamespaceTree/NamespaceTree.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchNavigation/WorkbenchNavigation.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchNavigation/WorkbenchNavigation.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchRecovery/DepartureGuard.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchRecovery/components/DepartureGuard.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchRecovery/ProjectDiagnostics.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchRecovery/components/ProjectDiagnostics.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchRecovery/RetentionRecovery.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchRecovery/components/RetentionRecovery.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/WorkbenchStatus/WorkbenchStatus.tsx",
+    "to": "src/presentation/Workbench/components/WorkbenchStatus/WorkbenchStatus.tsx"
+  },
+  {
+    "from": "src/presentation/workbench/useProjectCommands.ts",
+    "to": "src/presentation/Workbench/hooks/useProjectCommands.ts"
+  },
+  {
+    "from": "src/presentation/workbench/useProjectReadback.ts",
+    "to": "src/presentation/Workbench/hooks/useProjectReadback.ts"
+  },
+  {
+    "from": "src/presentation/workbench/useWorkbenchLayout.ts",
+    "to": "src/presentation/Workbench/hooks/useWorkbenchLayout.ts"
+  },
+  {
+    "from": "src/presentation/workbench/useWorkbenchLifecycle.ts",
+    "to": "src/presentation/Workbench/hooks/useWorkbenchLifecycle.ts"
+  },
+  {
+    "from": "src/presentation/workbench/workspace-view.ts",
+    "to": "src/presentation/Workbench/helpers/workspace-view.ts"
+  }
+]

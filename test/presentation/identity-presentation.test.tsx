@@ -2,22 +2,22 @@ import { describe, it, expect } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { TokenList } from "@tests/presentation/support/TokenList";
-import { NamespaceTree } from "@presentation/workbench/WorkbenchNavigation/NamespaceTree/NamespaceTree";
-import { AuthoredValue } from "@presentation/token-display/AuthoredValue";
-import { TokenEditor } from "@presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditor";
-import { identityLabels } from "@presentation/token-display/identity-labels";
+import { NamespaceTree } from "@presentation/Workbench/components/WorkbenchNavigation/components/NamespaceTree/NamespaceTree";
+import { AuthoredValue } from "@presentation/token-display/components/AuthoredValue";
+import { TokenEditor } from "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/TokenEditor";
+import { identityLabels } from "@presentation/token-display/helpers/identity-labels";
 import { createColorLiteral } from "@domain/color-literal";
 import { createToken } from "@domain/token";
 import { createTokenGroup } from "@domain/token-group";
 import { createProject } from "@domain/project";
 import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
 import { createAuthoringOperations } from "@application/authoring";
-import { ColorEditor } from "@presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/ColorEditor";
+import { ColorEditor } from "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/ColorEditor";
 import {
   baseline,
   editComponent,
-} from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
-import type { DraftSession } from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
+} from "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
+import type { DraftSession } from "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
 import type {
   ApplicationResult,
   TokenInspection,

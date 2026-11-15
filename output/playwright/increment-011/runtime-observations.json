@@ -1,0 +1,22 @@
+{
+  "browser": "Chrome 157.0.8103.51",
+  "isolated": true,
+  "origin": "http://127.0.0.1:5173",
+  "evidence": [
+    "Native Chrome 157.0.8103.51 isolated context, exact1440x900; empty Projects loaded after worker-URL correction.",
+    "Create-and-open passed; return to Projects, row selection did not open; supported selected project backup downloaded through UI.",
+    "Exact12x raw and same Red DOM node retained at880/720/320 and Back/Edit; hidden input not visible; no horizontal document overflow.",
+    "Projects departure guard intercepted invalid draft; Keep editing preserved12x and same input; explicit Cancel allowed return. Projects screenshot320.",
+    "320px project inspect remained on Projects; Back to projects restored browse. Native file selection staged same-ID backup preview; Cancel returned without replacing current data.",
+    "Final-source recheck after queued visual fixes: reload, Projects320/1440 screenshots; create/Open existing token12x at320 remained. Red bounds y522.56/h44; Apply actions y872.03/h44, normal-flow not overlay. Back worked. Drawer follow-up was not completed because accessible Browse name differs from visible text; do not claim final drawer focus or later focus-edge fixes verified by coordinator."
+  ],
+  "consoleSample": [],
+  "limits": [
+    "Synthetic project only, isolated context",
+    "Initial workerURL regression fixed before successful flows",
+    "Screenshots without final suffix precede last UI refinements",
+    "No full keyboard/zoom/short-height/threshold-edge/rare lifecycle matrix",
+    "Final drawer resize focus edges pending independent review",
+    "Two live selector names adapted during one bounded UI pass; no browser stack installed"
+  ]
+}

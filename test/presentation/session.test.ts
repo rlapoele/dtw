@@ -1,12 +1,12 @@
 import { describe, it, expect } from "vitest";
-import type { DraftSession } from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
+import type { DraftSession } from "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
 import {
   baseline,
   refreshCleanSession,
   changeView,
   editComponent,
   fields,
-} from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
+} from "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
 import { createColorLiteral } from "@domain/color-literal";
 const original = createColorLiteral({
   colorSpace: "srgb",

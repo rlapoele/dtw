@@ -1,9 +1,65 @@
 # Increment 011: Responsive shell and workbench UI refinement
 
-- Contract status: Draft
-- Delivery status: Not started
-- Agreement: V2 design and React decomposition at commit `ae75f29` approved **for analyst review** on 15 November 2026; review completed in [V2 analyst review](011-v2-analyst-review.md). The subsequent owner-first, file-grouped presentation tree is user-adopted for planning. Final agreement to the whole contract/design and application implementation authorization **pending**.
+- Contract status: Agreed
+- Delivery status: Partially completed — implementation and independent review finished; remaining native-browser acceptance is explicitly unverified
+- Agreement: on 15 November 2026 the user agreed the refined Increment 011 contract, V2 designs and adopted presentation structure at `e5a3e3f`, and explicitly authorized implementation by a separate developer followed by an independent reviewer. See [agreement and implementation authorization](#agreement-and-implementation-authorization--15-november-2026). Earlier pending/Draft statements below are historical and superseded by this agreement.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [layout reference V1](../project/workbench-layout/README.md), [component map V1](../project/workbench-layout/component-map-v1.md), [current ownership](../project/workbench-component-organisation.md), [010 delivery direction](010-component-oriented-presentation.md#delivery-direction), [workflow](../workflow/agent-roles.md).
+
+## Agreement and implementation authorization — 15 November 2026
+
+The user stated: “I agree with the refined Increment 011 contract, V2 designs and
+adopted presentation structure. Proceed with implementation using a developer
+subagent, followed by an independent reviewer.” Baseline: `e5a3e3f`; working tree
+was clean before this authorization record. AC-1–14 and the refined Projects flow
+are agreed. The identified V2 designs, subsequent analyst refinements and the
+user-adopted file-grouped/capitalized Workbench target tree form the agreement.
+
+The following recommended V2 policies are selected by that agreement, rather than
+left for silent implementation choice:
+
+- Workbench wide at 1120 CSS px and above; compact split at 880–1119; narrow browse/inspect at 320–879. Projects split at 880 and above. Minimum 320 CSS px.
+- Narrow row activation selects; explicit Edit/Inspect opens that same full-width session. Back preserves selection, scope/query, raw invalid draft, form input and scroll. Created-token completion continues to open inspection as intended by existing completion.
+- Focus-based resize chooses the visible narrow surface; preserve collapse choices within the page session and respect active modal focus. Use V2’s documented focus destinations/fallbacks, saved narrow surface and scroll behavior.
+- Apply/Cancel retain current meanings and stay in inspection; actual target changes/Projects departure retain existing guards. Browser Back has no new routing contract.
+- Projects has a read-only catalogue inspector with exact identity/status/counts, separate Open project and selected supported-revision Download backup. Inline Create/Restore retain create-and-open and current restore/unknown protections. App retains Projects context across screen branches.
+- Project management and Request persistent storage are on Projects. The workbench keeps Projects navigation, context and visible safety feedback. Ordinary guidance consolidates into the documented compact status/disclosure; warnings/recovery remain visible outside hidden panes.
+- Narrow list detail follows V2: paths/swatches/type/layer lead; complete authored values remain available in inspection. All content membership/access remains intact.
+- Use the adopted `components/`, `hooks/`, `helpers/`, `state/` ownership-based grouping and **`Workbench/`** casing. Preserve hook callers, refs, keys, session lifetimes and command authority; no second editor.
+- Undo/Redo and placeholders belong to 012. Delete, project metadata editing, external Import/Export, visual grids, editable token Details, relationships and new comparison remain outside 011.
+
+Routine implementation choices proceed within these boundaries. Material contract,
+domain, safety or design changes return to the user before dependent work. Staging,
+committing and pushing remain with the user.
+
+### Implementation verification budget and stopping
+
+This broader UI/Projects increment has 14 criteria, a full source regrouping,
+selected-project backup coordination and responsive/focus/session behavior. Before
+verification starts, replace the historical tentative 30-minute proposal with a
+**60 aggregate verification-minute ceiling and at most two harness-repair cycles**
+for this authorized implementation/review campaign: developer up to 30 minutes,
+independent reviewer up to 20, coordinator up to 10, with explicit shared accounting.
+These are ceilings, not targets. Genuine coding and product-defect correction are
+separate from verification; diagnostics, test/build waits, runtime observations,
+review and rechecks count across agents, including overlap.
+
+Essential checks: meaningful new Projects/backup/context and responsive-session
+behavior tests, affected existing consumer/session/restore checks, one final build
+covering four type scopes; targeted real Chrome visual/keyboard/focus observations
+at 1440×900, 880×800, 720×800 and 320×720, representative threshold/zoom/short-height
+checks where the available tooling supports them. Preserve every AC even if tool
+limits leave part unverified. Protect user data with synthetic projects/isolated
+browser data. No storage stress, maximum-resource, additional-engine or earlier
+007/009/010 qualification restart. No test/threshold weakening or product changes
+merely to satisfy unreliable automation.
+
+Stop at either ceiling or sooner when tooling dominates/expected value is low.
+Record failed/unverified cases and distinguish harness from product failures. Do
+not automatically install alternate stacks, repair unavailable browser surfaces,
+reset budget through new snapshots/agents, or infer native Chrome acceptance from
+in-app Chromium. Resumption after a stop needs explicit bounded authorization.
+Prior planning checks and all earlier stopped campaigns stay stopped; this newly
+authorized implementation allowance does not reset them.
 
 ## Outcome
 
@@ -506,3 +562,100 @@ coordinator review consumption: **4/5 minutes**; analyst **8.5/10**. This review
 stops at approximately **12.5/15 aggregate minutes**, zero harness repairs
 (cumulative planning estimate 29.5/33). Final agreement and implementation
 authorization remain pending. Source files and approved V2 artwork are unchanged.
+
+
+## Completion report — 15 November 2026
+
+- Delivery status: **Partially completed — implementation and independent review finished; remaining acceptance is unverified.**
+- Base: `e5a3e3fc4835ff29a806ccde292156c63eb260f1`.
+- Final reviewed snapshot: `increment-011-final-r2`, [136-entry case-sensitive manifest](../../output/increment-011-implementation/review-source-manifest-r2.json) and [exact patch](../../output/increment-011-implementation/review-source-r2.patch), including new/deleted files and the uppercase Workbench entry.
+- Coordinator completion/status/current-path documentation follows that frozen review; no application source/tests changed after R2 review.
+
+### Delivered result
+
+The adopted owner-first, file-grouped presentation structure is implemented,
+including capitalized `Workbench/`, shared ApplicationShell/ApplicationHeader,
+component entry roots and supporting components/hooks/helpers/state at their
+actual private/shared owners. App/useProjects/Workbench command authority, hook
+callers, key/reset reasons and the single TokenEditor session remain intact.
+
+Projects selects and inspects before explicit Open, shows supported catalogue
+facts or unavailable identity/reason, downloads a selected revision through the
+existing backup boundary, and retains context across the App screen branch.
+Create-and-open, inline restore and existing protection/recovery remain. Project
+management and storage preference live on Projects. Workbench has responsive
+wide/compact/narrow composition, a selected-target reopen surface, Back, compact
+ordinary status and visible safety feedback; current editor/controls/dialog UI is
+refined. Undo/Redo and other excluded capabilities were not added.
+
+### Acceptance evidence
+
+| Criterion | Evidence and practical result | Status |
+| --- | --- | --- |
+| AC-1 wide shell | Source/review and native 1440×900 ordinary layout; real project/token authoring. Full collapse/focus combinations not replayed. | Partly verified |
+| AC-2 compact split | Native 880×800 geometry and same-input preservation; drawer/source/hook tests. Complete modal/drawer keyboard matrix not observed. | Partly verified |
+| AC-3 narrow flow | Native 720/320 inspection, Back/Edit with same raw input/node, project Inspect/Back; source/context tests. Long-list scroll/scope combinations not qualified. | Partly verified |
+| AC-4 one session | Native invalid `12x` and same Red input DOM node across widths and Back/Edit; sole hook/key/ancestry reviewed, session tests retained. Full reference/display/exceptional native matrix not replayed. | Partly verified |
+| AC-5 departure | Native Projects dirty guard, Keep editing preserves input/node; Cancel allows departure. Existing command/unknown/restore owners reviewed and tested. | Verified for checked paths |
+| AC-6 keyboard/focus | Focus hook regressions and source reviewed; inactive panes hidden/inert. Complete native keyboard, drawer resize/fallback and focus-return coverage remains unverified. | Partly verified |
+| AC-7 reflow | Exact native 1440/880/720/320 samples; no document overflow in sampled editor states. Normal-flow actions replace sticky overlap; 44px sample input/actions measured. Zoom, short-height, threshold neighbors and long content remain unverified. | Partly verified |
+| AC-8 safety feedback | Workbench visible safety area reviewed; P2 fixed so Projects error/retry/recovery is outside hidden panes with one alert ID. Existing controlled state tests pass. Live exceptional-state matrix not qualified. | Partly verified |
+| AC-9 boundaries | Independent source/manifest review: no dependency/domain/storage/codec/protocol change or new ownership acquisition for selection/backup. Worker URL regression corrected to unchanged host source. | Verified |
+| AC-10 UI baseline | V2 source/style review and ordinary desktop/narrow screenshots, current literal/reference/metadata/source responsibilities retained. Complete dialog/exceptional visual acceptance remains unverified. | Partly verified |
+| AC-11 Projects inspection | Native selection/Inspect stays on Projects; explicit Open enters. Controlled loading/unavailable/identity tests and source reviewed; no invented metadata or header RPC. | Verified for checked paths |
+| AC-12 selected backup | Native browser download and independently run captured-revision/stale-refresh/no-auto-retry tests. Existing checked RPC reused without editing ownership. Live cross-tab revision/ownership combinations not qualified. | Verified for checked paths |
+| AC-13 Projects workflows | Native create-and-open/preview/cancel; P1 fixed and independently reproduced restore Open now enters Workbench. Actual App completion regression asserts exactly one Open; context/visibility tests pass. Full replacement/unknown/long-list matrix not replayed. | Partly verified |
+| AC-14 organisation | Exact canonical physical paths and 136 hashes/deletions verified in R1/R2. Adopted categories/casing and hook callers/lifetimes inspected; no second editor. | Verified |
+
+Detailed evidence: [developer report](../../output/increment-011-implementation/developer-report.md),
+[independent review and R2 recheck](../../output/increment-011-implementation/reviewer.md),
+[coordinator Chrome observations](../../output/increment-011-implementation/browser-observations.md).
+These distinguish source, controlled tests, native observations and unverified cases.
+
+### Checks and independent review
+
+- Developer: earlier broad relocation suite **53 files / 1,089 tests passed**. Subsequent focused checks covered later changes; final R2 affected suite **2 files / 22 tests passed**. All four type scopes and the final Vite build passed. Existing large-chunk advisory remains; no performance qualification follows.
+- Fresh independent reviewer derived expectations before source assessment, verified all 136 R1/R2 entries and ran the affected suite independently (**22 passed** at R2). It reproduced a restore regression in isolated native Chrome **157.0.8103.51**, then reran the unchanged reproduction after the fix: Workbench count changed from 0 to 1 with no page errors.
+- Coordinator used the same installed native Chrome in a separate disposable context with synthetic data only for representative UI/backup/draft checks. Isolated Chrome contexts and the task-local Vite server were closed. No user profile/projects were changed.
+- **P1 resolved:** a stale `hasPreview` closure blocked RestoreDialog Open/completion. App now defers that Open until preview disposal; the ordinary conflicting-action gate is retained. Regression was red on R1, then passed; independent native recheck passed.
+- **P2 resolved:** narrow Projects inspection hid Open/read feedback inside browse. The sole error/retry/recovery area is now outside the hidden panes; the render regression and independent source recheck pass, with no duplicate alert ID.
+- No remaining actionable reviewer findings or unresolved developer/reviewer disagreement. Static/source/tests do not establish all outstanding browser acceptance.
+
+### Verification accounting and stopping
+
+Approximate campaign consumption: **46/60 aggregate verification minutes**
+(developer 17, reviewer 19, coordinator 10), **2/2 harness-repair cycles**. The
+coordinator's bounded live-selector adaptation and the reviewer's one responsive
+fixture adaptation reached the repair ceiling; no further responsive harness work
+was attempted. Ordinary new-test fixture authoring was recorded separately, not
+as browser infrastructure repair. Necessary product fixes were checked with
+already-working focused tests and the same successful restore reproduction.
+
+Verification stopped with no known required defects and explicit remaining
+acceptance. Unused time does not authorize another harness, engine, stress or
+qualification campaign. Prior planning and 007/009/010 stop decisions remain
+unchanged. Missing evidence is neither a demonstrated failure nor a pass.
+
+### Decisions and delivery limits
+
+No material contract/design change was made. The worker URL and action-overlay
+issues found in coordinator observations were corrected within the agreement;
+R1 findings were routine contract-preservation fixes. App-owned deferred restore
+completion is a delivery coordination detail, not a new domain operation or bypass.
+
+Remaining qualification includes full keyboard/focus/drawer combinations,
+zoom/short-height/threshold edges, long-list scroll/context and live unavailable/
+unknown/restore-replacement interleavings. Earlier qualification remains in its
+own registers and was not silently transferred into 011. Delivery is not marked
+Completed solely from implementation, test counts or a clean independent review.
+
+### Next step and handoff
+
+User review of the delivered UI and explicit acceptance/closure scope for the
+recorded gaps. Any further automated acceptance needs a bounded explicit follow-up;
+no automatic restart or next increment is authorized. Leave staging, committing
+and pushing to the user. On this case-insensitive filesystem, preserve the
+case-only `workbench/` → `Workbench/` root entry rename when staging (for example,
+use case-sensitive Git inventory/staging via `git -c core.ignorecase=false`).
+
+Suggested commit: `feat: add responsive workbench and project inspection`.

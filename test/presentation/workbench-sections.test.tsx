@@ -1,8 +1,8 @@
 import { createElement, type ComponentProps } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { expect, it } from "vitest";
-import { WorkspaceToolbar } from "@presentation/workbench/TokenWorkspace/WorkspaceToolbar/WorkspaceToolbar";
-import { WorkbenchStatus } from "@presentation/workbench/WorkbenchStatus/WorkbenchStatus";
+import { WorkspaceToolbar } from "@presentation/Workbench/components/TokenWorkspace/components/WorkspaceToolbar/WorkspaceToolbar";
+import { WorkbenchStatus } from "@presentation/Workbench/components/WorkbenchStatus/WorkbenchStatus";
 
 function toolbar(view: ComponentProps<typeof WorkspaceToolbar>["view"], blocked = false) {
   return renderToStaticMarkup(createElement(WorkspaceToolbar, {
@@ -29,20 +29,21 @@ it("keeps scope headings, search and rename visibility distinct without a toolba
   expect(all).not.toContain("Rename group");
 });
 
-it("keeps retention status precedence, count and persistent-storage action state", () => {
+it("keeps compact retention status precedence, draft state and independent-backup disclosure", () => {
   const status = (overrides: Partial<ComponentProps<typeof WorkbenchStatus>> = {}) =>
     renderToStaticMarkup(createElement(WorkbenchStatus, {
       tokens: 7, busy: false, unknown: false, readFailure: "", writable: true,
-      onRequestPersistentStorage() {}, ...overrides,
+      dirty: false, ...overrides,
     }));
   expect(status()).toContain("7 tokens");
-  expect(status()).toContain("Applied state retained locally");
+  expect(status()).toContain("Retained locally");
   expect(status({ writable: false })).toContain("Inspection only");
   expect(status({ readFailure: "Failed", writable: false })).toContain("Stale / unavailable");
   expect(status({ unknown: true, readFailure: "Failed" })).toContain("Outcome unknown");
   const busy = status({ busy: true, unknown: true, readFailure: "Failed" });
   expect(busy).toContain("Retention pending");
-  expect(busy).toContain('disabled=""');
-  expect(busy).toContain("Request persistent storage");
+  expect(status({ dirty: true })).toContain("Unapplied changes");
+  expect(busy).toContain("About retention");
+  expect(busy).not.toContain("Request persistent storage");
   expect(status()).not.toContain('disabled=""');
 });

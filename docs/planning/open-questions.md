@@ -15,6 +15,16 @@ Suggested decision states for future use are: `open`, `investigating`, `proposed
 5. Must core use remain account-free permanently, or only at initial launch?
 6. Which capabilities remain available in the PWA, and which require the subsequent Electron host or a future ecosystem surface?
 
+**Increment 011 bounded decisions — 15 November 2026:** the user agreed the
+refined contract, V2 designs and file-grouped presentation structure. Responsive
+thresholds (1120/880, minimum 320), select-then-inspect narrow entry, Back/session
+preservation, Projects read-only selection/explicit Open and selected-revision
+backup are selected for this bounded delivery. See the
+[authorization and completion](../increments/011-responsive-shell.md#agreement-and-implementation-authorization--15-november-2026)
+for exact scope and unverified acceptance. Broader model/interchange questions
+remain open; Undo/Redo is deferred to 012. This does not authorize 012 or a new
+qualification campaign.
+
 ## Canonical model
 
 The [14 November layout reference](../project/workbench-layout/README.md) records

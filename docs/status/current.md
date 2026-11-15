@@ -2,112 +2,83 @@
 
 > Last updated: 15 November 2026
 >
-> Phase: Increment 011 analyst review completed; refined Draft contract and
-> user-adopted file-grouped presentation tree; whole-contract agreement and implementation pending
+> Phase: Increment 011 implementation and independent review finished;
+> delivery Partially completed with remaining browser acceptance unverified
 >
-> Implementation state: retained React browser workbench, one module worker per tab,
-> native IndexedDB/Web Locks, exact independent backups and staged protected restore.
-> Applied data is browser-profile/origin local; drafts and forms remain session-only.
+> Applied projects are browser-profile/origin local. Drafts and unfinished forms
+> remain session-only. No staging, committing or pushing was performed.
 
-## Current focus
+## Delivered focus
 
-The user explicitly approved [Projects V2](../project/workbench-layout/projects-shell-v2.md),
-[workbench V2](../project/workbench-layout/workbench-shell-v2.md),
-[representative states](../project/workbench-layout/v2-state-sheet.svg) and
-[React map V2](../project/workbench-layout/component-map-v2.md) at `ae75f29`
-**for analyst review**. A fresh separate analyst completed the
-[review](../increments/011-v2-analyst-review.md) and reconciled the
-[Draft 011 contract](../increments/011-responsive-shell.md), adding AC-11–14 for
-Projects flows/context and ownership. No demonstrated material visual contradiction
-requires a revised designer artifact. No final agreement or implementation
-authorization is recorded; application delivery is Not started.
+The user agreed the refined contract, V2 designs and adopted file-grouped tree
+at `e5a3e3f`, then explicitly authorized developer implementation and independent
+review. The [011 completion report](../increments/011-responsive-shell.md#completion-report--15-november-2026)
+records AC-1–14 evidence, exact snapshots, resolved findings and acceptance limits.
+Contract is Agreed; delivery is **Partially completed**, not Closed/Completed.
 
-The [concrete resulting presentation tree](../project/workbench-layout/presentation-organisation-v2.md)
-shows current/new/moved files and a component/hook/state/lifetime/consumer matrix.
-The user has adopted the concrete file-grouped variant after reviewing it in
-chat: component entry files at named-folder roots, with owner-level `components/`,
-`hooks/`, `helpers/`, `state/` and other categories only as actual files require.
-No empty folders. The user also selected capitalized `Workbench/` for that
-named component owner in the target tree. Purpose, owner and actual consumers determine private/shared
-placement before file kind; simple private children may stay as files inside
-`components/`. Physical grouping leaves React call ownership/state lifetime intact.
-The tree and Draft contract now record that selected convention; no source moves
-occurred and no whole-contract agreement or implementation authority is implied.
+- Implemented owner-first `components/`, `hooks/`, `helpers/`, `state/` organisation and capitalized Workbench/. The [current ownership map](../project/workbench-component-organisation.md) describes actual paths; App/useProjects/Workbench authority and the single keyed editor session are preserved.
+- Projects row selection/inspection is separate from explicit Open. Selected-revision backup reuses the checked RPC without editing ownership; stale data needs refreshed review and a fresh explicit action. Create-and-open, inline restore, storage preference and recovery remain on Projects. App retains Projects context across its Workbench branch.
+- Workbench wide/compact/narrow composition, Back/reopen, existing controls/dialogs, compact guidance and visible safety feedback are delivered. Normal-flow editor actions avoid the observed 320px sticky overlap. Project management is limited to Projects return.
+- Undo/Redo, including placeholders, is deferred to 012. Delete, metadata editing, external Import/Export, visual grids, editable token Details, relationships and new comparison remain outside 011.
 
-## Agreed direction and review refinements
+## Review and checks
 
-011 covers a coherent current-workbench UI and responsive shell down to 320 CSS px,
-with wide/compact/narrow browse/inspect and one retained editor session. Project
-selection shows contextual details; explicit Open enters the workbench. Project
-management lives on Projects, leaving only Projects navigation for project
-management within Workbench. The broader [capability inventory](../project/project-operations.md)
-is not all 011 delivery. Undo/Redo belongs to 012, including controls; visual grids,
-editable token Details, relationships/comparison and external interchange remain later.
+The fresh [independent reviewer](../../output/increment-011-implementation/reviewer.md)
+verified 136 canonical file hashes/deletions, including the case-only Workbench
+root rename, and assessed the agreed designs/contract/ownership. R1 found two
+required regressions, both fixed and independently rechecked at
+[final R2](../../output/increment-011-implementation/review-source-manifest-r2.json):
 
-Source corrected an earlier assumption: supported catalogue entries already carry
-a coherent revision at read time. Selected-project backup uses the existing
-revision-checked operation without opening Workbench or acquiring editing ownership.
-Stale results require refresh/review and another explicit Download. No extra detail/
-header RPC is needed for the proposed read-only fields. App retains Projects row
-selection/context/scroll across its Workbench branch; mounted layout/focus effects
-remain screen-local. Unsupported entries stay inspectable without Open/Backup.
-Create-and-open and existing restore/unknown-result protection remain authoritative.
+1. RestoreDialog Open/completion was blocked by a stale preview gate. App now queues opening until preview disposal; the ordinary conflicting-action gate remains. The unchanged native Chrome reproduction now enters Workbench, and the App integration test asserts exactly one Open.
+2. Narrow project inspection hid errors/retry/recovery in browse. The sole feedback region now sits outside both hidden panes; visibility/unique-ID regression coverage passes.
 
-Final agreement still needs to identify exact V2 policies: 1120/880 thresholds,
-two-step narrow entry, focus/resize/scroll rules, inline project forms, read-only
-fields, narrower row detail, routine status consolidation, persistent-storage
-control relocation and selected-project flow. File grouping is now adopted;
-existing hook callers/state/command ownership remain constraints.
-Approval for analyst review did not establish these as final implementation terms.
+No remaining actionable reviewer findings. Final affected tests **22 passed**;
+all four type scopes and production build passed. Earlier broad relocation suite
+passed **1,089 tests**; later changes were checked with focused suites rather than
+represented as a fresh full-suite pass. Existing bundle advisory remains.
 
-## Evidence and stopping
+[Coordinator native Chrome observations](../../output/increment-011-implementation/browser-observations.md)
+cover isolated synthetic project creation, selection/open/download, restore preview/
+Cancel, dirty departure Keep editing, exact `12x`/same DOM node across 1440/880/720/
+320 and Back/Edit. Independent Chrome reproduced/rechecked restore Open. Native
+Chrome was 157.0.8103.51, headless disposable contexts; no normal user profile or
+existing project data was changed. Chrome contexts and task-local Vite were closed.
 
-The analyst performed source/static/prose review; the coordinator checked the
-key catalogue/backup/ownership claims, read the resulting contract/tree and checked
-local links/diff whitespace. No tests, builds, runtime/browser/storage qualification,
-source edits, staging, commit or push occurred. Static V2
-[Projects](../../output/increment-011-responsive-shell/projects-shell-v2.png),
-[workbench](../../output/increment-011-responsive-shell/workbench-shell-v2.png) and
-[state previews](../../output/increment-011-responsive-shell/v2-state-sheet.png)
-remain design evidence only; they cannot prove CSS fit, focus or session preservation.
+## Remaining acceptance and stopping
 
-The explicit analyst-review follow-up stopped at approximately 12.5/15 aggregate
-minutes (analyst 8.5, coordinator 4), zero harness repairs. Prior V1 10/10 and V2
-artifact 7/8 remain stopped; cumulative planning estimate is 29.5/33 minutes. The
-owning 011 record carries scopes/evidence/limits. No earlier qualification restarts.
+Full native keyboard/focus/drawer combinations, zoom/short-height/threshold edges,
+long-list scroll/context and live unavailable/unknown/restore-replacement cases
+remain unverified. The completion report preserves criterion-specific evidence
+instead of treating source/tests or clean review as full browser acceptance.
+
+Implementation campaign stopped at approximately **46/60 aggregate verification
+minutes**, **2/2 harness-repair cycles** (developer 17, reviewer 19, coordinator 10).
+No more responsive harness repair was attempted. Product regressions used existing
+working tests and the same proven restore reproduction. Unused time is not
+permission to restart qualification through another harness/agent. Earlier
+planning and 007/009/010 stop decisions remain unchanged.
 
 ## Earlier delivery and qualification
 
-[010 is Closed, delivery Partially completed](../increments/010-component-oriented-presentation.md#user-directed-closure--15-november-2026).
-Its source organisation and independent reviews finished, with native geometry,
-keyboard/focus, recovery/restore and asynchronous-source gaps deferred/unverified.
-Each slice stopped at roughly 21/30 minutes and zero repairs. The
-[delivered ownership map](../project/workbench-component-organisation.md) remains
-authoritative for actual code; the new tree is a proposal.
-
-009 remains Closed, delivery Partially completed. 007/008 remain Completed on
-recorded user-reported manual acceptance. The
+[010 remains Closed, Partially completed](../increments/010-component-oriented-presentation.md#user-directed-closure--15-november-2026)
+with its deferred acceptance. 009 is Closed, Partially completed. 007/008 remain
+Completed on recorded manual acceptance. The
 [007 deferred qualification register](../increments/007-local-retention-and-backup.md#deferred-qualification)
-retains earlier exceptional/resource/lifecycle/HTTPS/accessibility/engine limits;
-its stopped campaign has zero remaining authorized allowance. Chrome remains the
-automated baseline; broader engines follow the fully featured PWA. Install/offline,
-interchange and Electron remain later work.
+retains earlier resource/lifecycle/HTTPS/accessibility/engine limits and zero
+remaining authorized qualification allowance. Chrome remains the automated baseline;
+broader engines follow the fully featured PWA. Install/offline, interchange and
+Electron remain later work.
 
 ## Next meaningful action
 
-Present the remaining Draft 011/design policies for final user agreement,
-with the adopted file-grouped presentation tree as the structural direction. Material design revisions return to the user before
-renewed analyst review. Implementation requires final contract/design agreement and explicit
-authorization; the adopted folder convention is already recorded. Reassess proportionate implementation
-verification for the full UI/Projects scope before verification starts. Leave
-staging, committing and pushing to the user.
+User review of the delivered UI and remaining acceptance/closure scope. Do not
+mark 011 Completed or start 012 solely because source/tests/review finished.
+Further automated acceptance requires explicit bounded authorization. Leave staging,
+committing and pushing to the user; case-sensitive staging should preserve the
+workbench/ → Workbench/ root rename on this filesystem.
 
 ## Resume
 
-Read AGENTS.md, this handoff, actual Git state, the analyst report, refined 011 and
-proposed presentation tree with V2 artifacts. [README](../../README.md) owns commands
-and delivery limits; prior increments own their historical acceptance gaps.
-
-Documentation-only grouping adoption: proposed paths, ownership matrix, contract
-and status reconciled; existing-source target coverage and local links/whitespace
-checked. No source move, test/build, new analyst review or qualification restart.
+Read AGENTS.md, this handoff, actual Git state, the 011 completion, independent R2
+review and current ownership map. Coordinator completion/status/current-path notes
+follow the frozen source snapshot; source/tests were not changed after R2 review.

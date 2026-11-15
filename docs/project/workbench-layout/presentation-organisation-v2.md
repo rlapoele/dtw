@@ -255,3 +255,13 @@ and command/lifecycle boundaries remain unchanged. The earlier analyst review is
 historical evidence for its identified snapshot, not a claim that this later
 path-grouping revision received a second independent review. No source files or
 folders were moved, added or deleted.
+
+## Implementation handoff — 15 November 2026
+
+The user subsequently agreed the whole 011 contract/design/structure and authorized
+implementation. This tree is now delivered; see the
+[current ownership map](../workbench-component-organisation.md) and
+[completion report](../../increments/011-responsive-shell.md#completion-report--15-november-2026)
+for actual paths, exact reviewed snapshot, evidence and unverified acceptance.
+Earlier planning-only and no-source-move statements above describe their dated
+planning stage. They do not override the later explicit authorization.

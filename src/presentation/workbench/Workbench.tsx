@@ -1,35 +1,34 @@
-import { WorkbenchStatus } from "./WorkbenchStatus/WorkbenchStatus";
-import { NavigationPane, NavigationDrawer } from "./WorkbenchNavigation/WorkbenchNavigation";
-import { useWorkbenchLifecycle } from "@presentation/workbench/useWorkbenchLifecycle";
-import { useWorkbenchBackup } from "@presentation/project-backup/useWorkbenchBackup";
-import { creationParent } from "@presentation/workbench/workspace-view";
-import type { BrowserView } from "@presentation/workbench/workspace-view";
-import { RetentionRecovery } from "@presentation/workbench/WorkbenchRecovery/RetentionRecovery";
-import { TokenWorkspace } from "@presentation/workbench/TokenWorkspace/TokenWorkspace";
-import { DepartureGuard } from "@presentation/workbench/WorkbenchRecovery/DepartureGuard";
-import { ProjectDiagnostics } from "@presentation/workbench/WorkbenchRecovery/ProjectDiagnostics";
-import { WorkbenchHeader } from "@presentation/workbench/WorkbenchHeader/WorkbenchHeader";
-import { useProjectReadback } from "@presentation/workbench/useProjectReadback";
-import { useProjectCommands } from "@presentation/workbench/useProjectCommands";
-import { useCreationForm } from "@presentation/workbench/CreationDialog/useCreationForm";
-import { useWorkbenchLayout } from "@presentation/workbench/useWorkbenchLayout";
+import { WorkbenchStatus } from "@presentation/Workbench/components/WorkbenchStatus/WorkbenchStatus";
+import { NavigationPane, NavigationDrawer } from "@presentation/Workbench/components/WorkbenchNavigation/WorkbenchNavigation";
+import { useWorkbenchLifecycle } from "@presentation/Workbench/hooks/useWorkbenchLifecycle";
+import { creationParent } from "@presentation/Workbench/helpers/workspace-view";
+import type { BrowserView } from "@presentation/Workbench/helpers/workspace-view";
+import { RetentionRecovery } from "@presentation/Workbench/components/WorkbenchRecovery/components/RetentionRecovery";
+import { TokenWorkspace } from "@presentation/Workbench/components/TokenWorkspace/TokenWorkspace";
+import { DepartureGuard } from "@presentation/Workbench/components/WorkbenchRecovery/components/DepartureGuard";
+import { ProjectDiagnostics } from "@presentation/Workbench/components/WorkbenchRecovery/components/ProjectDiagnostics";
+import { WorkbenchHeader } from "@presentation/Workbench/components/WorkbenchHeader/WorkbenchHeader";
+import { useProjectReadback } from "@presentation/Workbench/hooks/useProjectReadback";
+import { useProjectCommands } from "@presentation/Workbench/hooks/useProjectCommands";
+import { useCreationForm } from "@presentation/Workbench/components/CreationDialog/hooks/useCreationForm";
+import { useWorkbenchLayout } from "@presentation/Workbench/hooks/useWorkbenchLayout";
 
-import { RestoreDialog } from "@presentation/project-backup/RestoreDialog/RestoreDialog";
-import { requestPersistentStorage } from "@adapters/browser/storage-preference";
 import { readExactSource } from "@presentation/host/source";
 import { useEffect, useRef, useState, useMemo } from "react";
-import { Icon } from "@presentation/ui/icon";
+import { ApplicationShell } from "@presentation/components/ApplicationShell/ApplicationShell";
+import { WorkbenchFeedback } from "./components/WorkbenchRecovery/components/WorkbenchFeedback";
+import { SelectionBar } from "./components/TokenWorkspace/components/SelectionBar/SelectionBar";
 import type { ApplicationResult } from "@application/authoring";
 import type { Token } from "@domain/token";
 import type { ProjectHeader, WorkbenchHost } from "@presentation/host/protocol";
 import { Button } from "@presentation/ui/button";
 
-import { WorkbenchInspector } from "@presentation/workbench/WorkbenchInspector/WorkbenchInspector";
-import { TokenEditor } from "@presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditor";
-import { CreationDialog } from "@presentation/workbench/CreationDialog/CreationDialog";
-import { NamespaceTree } from "@presentation/workbench/WorkbenchNavigation/NamespaceTree/NamespaceTree";
+import { WorkbenchInspector } from "@presentation/Workbench/components/WorkbenchInspector/WorkbenchInspector";
+import { TokenEditor } from "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/TokenEditor";
+import { CreationDialog } from "@presentation/Workbench/components/CreationDialog/CreationDialog";
+import { NamespaceTree } from "@presentation/Workbench/components/WorkbenchNavigation/components/NamespaceTree/NamespaceTree";
 
-import { identityLabels } from "@presentation/token-display/identity-labels";
+import { identityLabels } from "@presentation/token-display/helpers/identity-labels";
 export function Workbench({
   host,
   initial,
@@ -43,7 +42,7 @@ export function Workbench({
 }) {
   const [selection, setSelection] =
     useState<
-      import("@presentation/workbench/useProjectReadback").Selection
+      import("@presentation/Workbench/hooks/useProjectReadback").Selection
     >(null);
   const [view, setView] = useState<BrowserView>({ kind: "all-tokens" });
   const group = creationParent(view);
@@ -54,7 +53,7 @@ export function Workbench({
     [pending, setPending] = useState<(() => void) | null>(null),
     [editorVersion, setEditorVersion] = useState(0);
   const {
-    compact,
+    navigationTrigger, navigationReturn, navigationFinalFocus, compact, narrow, surface, browse, inspector, reopen, showInspector, back,
     navigationOpen,
     setNavigationOpen,
     sidebarExpanded,
@@ -135,19 +134,11 @@ export function Workbench({
         setQuery("");
         setSelection({ kind: "token", id });
         select({ kind: "token", id });
-        setInspectorExpanded(true);
+        showInspector();
       } else if (kind === "group") setView({ kind: "group", id });
       requestAnimationFrame(() => panel.current?.focus());
     },
   );
-  const {
-    restorePreview,
-    setRestorePreview,
-    restoreInput,
-    restage,
-    onBackupFile,
-    onDownload,
-  } = useWorkbenchBackup(host, header, setBusy, setError, setNotice);
   useWorkbenchLifecycle({
     host,
     projectId: initial.project.id,
@@ -169,19 +160,20 @@ export function Workbench({
   }
   function choose(kind: "token" | "group", id: string) {
     if (selection?.kind === kind && selection.id === id) {
-      setInspectorExpanded(true);
+      if (!narrow) setInspectorExpanded(true);
       return;
     }
     request(() => {
       setSelection({ kind, id });
       select({ kind, id });
-      setInspectorExpanded(true);
+      if (!narrow) setInspectorExpanded(true);
       setDirty(false);
     });
   }
   function open(kind: "token" | "group" | "rename") {
     if (lifecycleBlocked || !header.writable || readFailure || busy || unknown)
       return;
+    setNavigationOpen(false);
     request(() => {
       begin(kind);
     });
@@ -227,6 +219,7 @@ export function Workbench({
       onSelect={(id) => {
         if (!busy) {
           setView(id === null ? { kind: "all-tokens" } : { kind: "group", id });
+          navigationReturn.current = "workspace";
           setNavigationOpen(false);
         }
       }}
@@ -234,6 +227,7 @@ export function Workbench({
       onAllContent={() => {
         if (!busy) {
           setView({ kind: "all-content" });
+          navigationReturn.current = "workspace";
           setNavigationOpen(false);
         }
       }}
@@ -278,7 +272,7 @@ export function Workbench({
     />
   );
   return (
-    <div className="app-shell flex h-dvh min-h-0 flex-col overflow-clip bg-background">
+    <ApplicationShell>
       <a
         className="skip-link fixed -top-20 left-5 z-20 bg-background focus:top-2.5 p-2"
         href="#tokens"
@@ -287,31 +281,23 @@ export function Workbench({
       </a>
       <WorkbenchHeader
         compact={compact}
+        onBack={narrow && surface === "inspect" ? back : undefined}
         projectName={header.project.name}
         busy={busy}
-        unknown={!!unknown}
-        readFailure={readFailure}
-        restoreInput={restoreInput}
-        onBackupFile={onBackupFile}
-        onDownload={onDownload}
         onProjectsClick={onProjectsClick}
-        onNavigation={() => setNavigationOpen(true)}
+        navigationRef={navigationTrigger}
+        onNavigation={() => { navigationReturn.current = "trigger"; setNavigationOpen(true); }}
       />
-      <div className="session-notice shrink-0 border-b border-border bg-notice text-notice-foreground text-caption px-5 py-2 min-h-9 flex items-center justify-center gap-2">
-        <Icon name="info" />
-        <span>
-          {header.writable
-            ? "Applied work is retained in this browser. Drafts stay in this page. Keep independent backups."
-            : "Inspection only. Another tab has editing access. Local drafts remain in this page."}
-        </span>
-        {!header.writable && (
-          <Button disabled={busy} onClick={() => void refresh()}>
-            Check access
-          </Button>
-        )}
-      </div>
+      <WorkbenchFeedback>
+        {!header.writable && <p className="py-2">Inspection only. Another tab has editing access. <Button disabled={busy} onClick={() => void refresh()}>Check access</Button></p>}
+        {lifecycleBlocked && !busy && !unknown && <section role="status" className="py-2"><p>Editing paused. Recheck current retained state before applying preserved input.</p><Button onClick={() => void host.call("resume", header.project.id).then(next => refresh(next)).then(() => setLifecycleBlocked(false)).catch(e => setReadFailure(String(e)))}>Check access and retained state</Button></section>}
+        {readFailure && <section role="alert" className="py-2 text-destructive"><h2>Project read unavailable</h2><p>{readFailure}</p><p>Last coherent data is stale. Inputs are preserved; writes are blocked.</p><Button disabled={busy} onClick={() => void retryReading()}>Retry reading project</Button></section>}
+        {recovery}
+        {error && !dialog && <p role="alert" className="py-2 text-destructive">{error}</p>}
+        {notice && <p role="status" className="py-2">{notice}</p>}
+      </WorkbenchFeedback>
       <div
-        className={`workbench grid flex-1 h-0 min-h-0 overflow-hidden ${compact ? "compact-navigation" : ""} ${sidebarExpanded ? "groups-expanded" : "groups-collapsed"} ${inspectorExpanded ? "inspector-expanded" : "inspector-collapsed"}`}
+        className={`workbench ${narrow ? `narrow-${surface}` : ""} grid flex-1 h-0 min-h-0 overflow-hidden ${compact ? "compact-navigation" : ""} ${sidebarExpanded ? "groups-expanded" : "groups-collapsed"} ${inspectorExpanded ? "inspector-expanded" : "inspector-collapsed"}`}
       >
         {!compact && (
           <NavigationPane
@@ -323,6 +309,9 @@ export function Workbench({
         )}
         <TokenWorkspace
           panel={panel}
+          surfaceRef={browse}
+          hidden={narrow && surface === "inspect"}
+          selectionBar={narrow && selection ? <SelectionBar actionRef={reopen} label={selection.kind === "token" ? rows.find(row => row.id === selection.id)?.label ?? selection.id : groupLabels.get(selection.id) ?? selection.id} dirty={dirty} editable={selection.kind === "token" && !!inspection?.editable && !blocked && !targetUnavailable} onInspect={showInspector} /> : null}
           view={view}
           groupLabels={groupLabels}
           blocked={blocked}
@@ -334,8 +323,8 @@ export function Workbench({
           selection={selection}
           visible={visible}
           context={context}
-          notice={notice}
-          error={error}
+          notice=""
+          error=""
           dialog={dialog}
           onQuery={setQuery}
           onCreateToken={() => open("token")}
@@ -351,50 +340,7 @@ export function Workbench({
                 ?.focus(),
             );
           }}
-          recovery={
-            <>
-              {lifecycleBlocked && !busy && !unknown && (
-                <section
-                  role="status"
-                  className="text-caption border border-border rounded p-3 mb-3"
-                >
-                  <p>
-                    Editing paused. Recheck current retained state before
-                    applying preserved input.
-                  </p>
-                  <Button
-                    onClick={() => {
-                      void host
-                        .call("resume", header.project.id)
-                        .then((next) => refresh(next))
-                        .then(() => setLifecycleBlocked(false))
-                        .catch((e) => setReadFailure(String(e)));
-                    }}
-                  >
-                    Check access and retained state
-                  </Button>
-                </section>
-              )}
-              {readFailure && (
-                <section
-                  role="alert"
-                  tabIndex={-1}
-                  className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
-                >
-                  <h2>Project read unavailable</h2>
-                  <p>{readFailure}</p>
-                  <p>
-                    Last coherent data is stale. Inputs are preserved; writes
-                    are blocked.
-                  </p>
-                  <Button disabled={busy} onClick={() => void retryReading()}>
-                    Retry reading project
-                  </Button>
-                </section>
-              )}
-              {recovery}
-            </>
-          }
+          recovery={null}
           diagnostics={
             <ProjectDiagnostics
               diagnostics={diagnostics}
@@ -405,12 +351,14 @@ export function Workbench({
         />
 
         <WorkbenchInspector
+          surfaceRef={inspector}
+          hidden={narrow && surface !== "inspect"}
           selection={selection}
           context={context}
           groupLabels={groupLabels}
           header={header}
           inspectorExpanded={inspectorExpanded}
-          onToggle={() => setInspectorExpanded(!inspectorExpanded)}
+          onToggle={() => narrow ? back() : setInspectorExpanded(!inspectorExpanded)}
           readFailure={readFailure}
           targetUnavailable={targetUnavailable}
           requestSource={(id) => source("group", id)}
@@ -418,7 +366,7 @@ export function Workbench({
           {selection?.kind === "token" && inspection && context ? (
             <TokenEditor
               inspectorExpanded={inspectorExpanded}
-              onToggle={() => setInspectorExpanded(!inspectorExpanded)}
+              onToggle={() => narrow ? back() : setInspectorExpanded(!inspectorExpanded)}
               readFailure={readFailure}
               key={JSON.stringify([selection.id, editorVersion])}
               inspection={inspection}
@@ -492,56 +440,15 @@ export function Workbench({
           ) : null}
         </WorkbenchInspector>
       </div>
-      <WorkbenchStatus
-        tokens={header.tokens}
-        busy={busy}
-        unknown={!!unknown}
-        readFailure={readFailure}
-        writable={header.writable}
-        onRequestPersistentStorage={() =>
-          void requestPersistentStorage().then(setNotice)
-        }
-      />
+      <WorkbenchStatus tokens={header.tokens} busy={busy} unknown={!!unknown} readFailure={readFailure} writable={header.writable} dirty={dirty} />
       <NavigationDrawer
+        finalFocus={navigationFinalFocus}
         open={compact && navigationOpen}
         onOpenChange={setNavigationOpen}
       >
         {navigation}
       </NavigationDrawer>
       {dialog === null && departureGuard}
-      {restorePreview && (
-        <RestoreDialog
-          restage={restage}
-          host={host}
-          initial={restorePreview}
-          onCancel={(reset) => {
-            setRestorePreview(undefined);
-            if (reset) {
-              invalidate();
-              onProjects(true);
-            }
-          }}
-          onOpen={(id) => {
-            setRestorePreview(undefined);
-            if (id === header.project.id) {
-              void refresh();
-              setNotice(
-                "Retained project refreshed. Preserved drafts have not been applied; review any changed baseline before reapplying.",
-              );
-            } else
-              request(() => {
-                void host
-                  .call("leaveProject", header.project.id)
-                  .then((safe) => {
-                    if (safe) {
-                      invalidate();
-                      onProject(id);
-                    }
-                  });
-              });
-          }}
-        />
-      )}
       <CreationDialog
         guard={dialog !== null ? departureGuard : undefined}
         dialog={dialog}
@@ -623,6 +530,6 @@ export function Workbench({
           </>
         }
       />
-    </div>
+    </ApplicationShell>
   );
 }

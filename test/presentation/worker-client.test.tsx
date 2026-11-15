@@ -10,7 +10,7 @@ class FakeWorker {
   onmessageerror: (() => void) | null = null;
   terminated = false;
   messages: Record<string, unknown>[] = [];
-  constructor() {
+  constructor(readonly url: URL) {
     FakeWorker.instances.push(this);
   }
   postMessage(message: Record<string, unknown>) {
@@ -100,4 +100,11 @@ describe("actual host dispatch fence and client attempt identity", () => {
     expect(worker.terminated).toBe(true);
     host.dispose();
   });
+});
+
+it("keeps the Vite worker entry a relative TypeScript URL rather than a runtime alias", async () => {
+  const { host, worker } = await fixture();
+  expect(worker.url.pathname).toMatch(/\/host\/workbench\.worker\.ts$/);
+  expect(worker.url.pathname).not.toContain("@presentation");
+  host.dispose();
 });

@@ -1,20 +1,21 @@
 import { readBackupFile } from "@presentation/host/backup-file";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { RestorePreview } from "@presentation/host/protocol";
-import { useWorkbenchHost } from "@presentation/app/useWorkbenchHost";
-import { useProjects } from "@presentation/projects/useProjects";
+import { useWorkbenchHost } from "@presentation/app/hooks/useWorkbenchHost";
+import { useProjects } from "@presentation/projects/hooks/useProjects";
 
 import { Dialog } from "@base-ui/react/dialog";
 import { DialogContent } from "@presentation/ui/dialog-content";
 
-import { RestoreDialog } from "@presentation/project-backup/RestoreDialog/RestoreDialog";
+import { RestoreDialog } from "@presentation/project-backup/components/RestoreDialog/RestoreDialog";
 
-import { Workbench } from "../workbench/Workbench";
+import { Workbench } from "@presentation/Workbench/Workbench";
 
 import { WorkerWorkbenchHost } from "@presentation/host/worker-client";
 import type { WorkbenchHost } from "@presentation/host/protocol";
 
 import { Button } from "@presentation/ui/button";
+import type { ProjectsView } from "@presentation/projects/hooks/useProjectsLayout";
 import { ProjectsScreen } from "@presentation/projects/ProjectsScreen";
 
 export function App({
@@ -25,7 +26,10 @@ export function App({
     stay = useRef<HTMLButtonElement>(null);
   const [preview, setPreview] = useState<RestorePreview>(),
     [leaving, setLeaving] = useState(false);
+  const [restoreOpen, setRestoreOpen] = useState<string>();
+  const [projectsView, setProjectsView] = useState<ProjectsView>({ scroll: 0, surface: "browse" });
   const {
+    download, backupFeedback,
     entries,
     project,
     unknown,
@@ -46,6 +50,24 @@ export function App({
     leaveUnknown,
     retryCreated,
   } = useProjects(host, ensure, reset, !!preview);
+  // Restore completion is an explicit request, issued only by a render after
+  // preview disposal. Normal Open keeps its conflicting-preview gate intact.
+  useEffect(() => {
+    if (preview || restoreOpen === undefined) return;
+    setRestoreOpen(undefined);
+    void open(restoreOpen);
+  }, [preview, restoreOpen]);
+  useEffect(() => {
+    if (!project) return;
+    setProjectsView(view => ({ ...view, selection: { rowKey: entries?.find(entry => entry.status === "supported" && entry.id === project.project.id)?.rowKey ?? project.project.id, status: "supported", id: project.project.id, name: project.project.name, revision: project.revision, tokens: project.tokens, groups: project.groups } }));
+  }, [project]);
+  useEffect(() => {
+    if (!entries) return;
+    setProjectsView(view => {
+      const current = entries.find(entry => entry.rowKey === view.selection?.rowKey);
+      return current ? { ...view, selection: current } : view;
+    });
+  }, [entries]);
   if (project && host.current)
     return (
       <Workbench
@@ -58,6 +80,7 @@ export function App({
     );
   return (
     <ProjectsScreen
+      view={projectsView} onView={setProjectsView} onDownload={entry => void download(entry)} backupFeedback={backupFeedback} hasPreview={!!preview}
       entries={entries}
       error={error}
       notice={notice}
@@ -122,8 +145,8 @@ export function App({
             returnToProjects(shouldReset);
           }}
           onOpen={(id) => {
+            setRestoreOpen(id);
             setPreview(undefined);
-            void open(id);
           }}
         />
       )}

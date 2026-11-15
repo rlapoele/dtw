@@ -1,0 +1,825 @@
+{
+  "baseCommit": "e5a3e3fc4835ff29a806ccde292156c63eb260f1",
+  "snapshot": "increment-011-final-r1",
+  "createdAt": "2026-11-15T19:21:57.694952+00:00",
+  "caseSensitivePaths": true,
+  "note": "Exact canonical physical paths; uppercase Workbench entry captured separately from lower-case base deletion. Source/test/current documentation only; reports/runtime outputs excluded.",
+  "files": [
+    {
+      "path": "README.md",
+      "status": "modified",
+      "sha256": "58cafd7cfd657b5ff31551134576f5271e5bb373a1f55cbd5cc405bf9a81283d",
+      "baseSha256": "c4a6242786eb69a19b4fc8aceef16d23eab46b45dcb0eb9070a3a535d85d9844"
+    },
+    {
+      "path": "docs/increments/011-responsive-shell.md",
+      "status": "modified",
+      "sha256": "b1e711a2e8bfbd424d22a24ef57ee4044a15617344fa627a4025bd264cb69d44",
+      "baseSha256": "181978d824fe1a67cc833ed256b9bcc113b628ac939473fe90c478601b9c48b1"
+    },
+    {
+      "path": "docs/project/workbench-component-organisation.md",
+      "status": "modified",
+      "sha256": "3da7bbdd0fb6b847025b011f4baa31b4be054de8d235900f3ec058b06f022702",
+      "baseSha256": "0d8a0894417f92592034e300fefb96ec1707bf329b2d9518c518c2a77bed161b"
+    },
+    {
+      "path": "docs/status/current.md",
+      "status": "modified",
+      "sha256": "a4959165e40b326493f5fef01a1b7a728457571eff695f98e1a8ecfb8ccd5471",
+      "baseSha256": "51d1069f6eb2e6025fadf1f67753cececfc3df529ee6b1c86375e3e432185fbd"
+    },
+    {
+      "path": "src/presentation/Workbench/Workbench.tsx",
+      "status": "added",
+      "sha256": "1de4ee6f05915680df25210940777723c3d32d7dc6e878e7dcf12e78290d4b45",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/CreationDialog/CreationDialog.tsx",
+      "status": "added",
+      "sha256": "131b07dbad24f6276e33ca8c9f2e43fbf159bd842f635e6f3cd755842e00c4ef",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/CreationDialog/helpers/naming-preview.ts",
+      "status": "added",
+      "sha256": "479ed79b129d08243a5683909d58aab8b51abc09fe58fbfbe45e870cad4a4fb1",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/CreationDialog/hooks/useCreationForm.ts",
+      "status": "added",
+      "sha256": "7241a830519fcec71132c61ad982d0fff9658ea73c288c7e3226a17aeb95dba9",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/TokenWorkspace/TokenWorkspace.tsx",
+      "status": "added",
+      "sha256": "7fe450b02f0bb30114897a8cec802e13ed7a46ac72f741667568510e1a226555",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/TokenWorkspace/components/AllContent/AllContent.tsx",
+      "status": "added",
+      "sha256": "46b0462e72a6141419609c3a8331bb9f75a42a718b9995f4f0ef89b7bc2c600e",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/TokenWorkspace/components/AllContent/helpers/all-content.ts",
+      "status": "added",
+      "sha256": "a16b89be5e6e3e5e53021696cda28b464df9539cdfd0050b7c3046bcafcda2af",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/TokenWorkspace/components/SelectionBar/SelectionBar.tsx",
+      "status": "added",
+      "sha256": "3489a73d3a1e219df6b7fcfa2629ea1829a1c5ffb03bee112a5af64e9b7dddcd",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/TokenWorkspace/components/TokenTable/TokenTable.tsx",
+      "status": "added",
+      "sha256": "74109386031785b3aad82378eb554041af47bac3a2bc5cd9b6a64153390062cf",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/TokenWorkspace/components/WorkspaceToolbar/WorkspaceToolbar.tsx",
+      "status": "added",
+      "sha256": "b88681e687e28b8ce98f6223b6ebae1bde6510cf7c108cce33f94a1d4035c07c",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchHeader/WorkbenchHeader.tsx",
+      "status": "added",
+      "sha256": "b83c7bbb9f18158e7a8a414d14224938aded5cc764e1c6ad142efd9e322b39bb",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/WorkbenchInspector.tsx",
+      "status": "added",
+      "sha256": "2172c6be1dba7bf0c7940c726e5b71135cc48468d9d6fcf7ff5621fe799ba4b5",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/components/GroupInspector/GroupInspector.tsx",
+      "status": "added",
+      "sha256": "a5e32538a1c05af8bc2542fb8e4a4c082a90110d0915d6593f1c109a15fce1ac",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/components/InspectorHeader.tsx",
+      "status": "added",
+      "sha256": "72700c557be2bb89265b3c759e5b35d69705babcf0afa9fcc4a65a99635452a2",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/TokenEditor.tsx",
+      "status": "added",
+      "sha256": "73751a4ef0346036bc23d0ead3fd1dba9bd1fb88a69bc1579121f5e3d95b20f7",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/ColorEditor.tsx",
+      "status": "added",
+      "sha256": "b17add7798cedd03f9467ba8b22cf900ecff8b68b2614c4ad700cabe9b1e9a75",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/helpers/visual-range.ts",
+      "status": "added",
+      "sha256": "5da3f238a8d75cdeaec77c6ebd09c0b6eb74f74744c4a0443caa5d8fbc21aec7",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/EditRecovery.tsx",
+      "status": "added",
+      "sha256": "51eee24ee6fd9c83635aeb356fbd798254dbd033cf0694ceb85110343c5e474c",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/EditorActions.tsx",
+      "status": "added",
+      "sha256": "2c6b6206462c3da03dca188c72de0c33e7828b6ab6936847742a7ae4a8844ec5",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ReferenceFields.tsx",
+      "status": "added",
+      "sha256": "a96d28933f84aba5fb41d4a6f08550da087d581ad2c15b08060834882e23c599",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/TokenEditorContent.tsx",
+      "status": "added",
+      "sha256": "c3fe53c7ef9cef62487399cc512058cf4d81e481265b9de0052ea4c88f5f208d",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/TokenEditorTabs.tsx",
+      "status": "added",
+      "sha256": "7ca28289bbcca3be3ccfdce44e2f6d8793a3bbd9e6f3d49a8624540e699b5b6a",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/helpers/editor-failure.ts",
+      "status": "added",
+      "sha256": "2747c996b5a70971440b66b547dce1645194f682c6038e8768df0b3a26947ca6",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/helpers/integer-rgb.ts",
+      "status": "added",
+      "sha256": "5318715edf140365341326d4ef6d78fbdaaca510df08a1037a91095a098c8655",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/hooks/useTokenEditor.ts",
+      "status": "added",
+      "sha256": "f634ebd80edeec3e1c135ad05c225eeea5403301f32782c59fb94f0175de3255",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session.ts",
+      "status": "added",
+      "sha256": "64a22b4a955287bd3e1866527fb68c6a6c6e3560247fe5ff3f8c3d7c3eddeed7",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchInspector/components/TokenValueComparison.tsx",
+      "status": "added",
+      "sha256": "84f06bc478162fbab36114796cd253bb602afc1d33ef86f9c57aa8144dc903fc",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchNavigation/WorkbenchNavigation.tsx",
+      "status": "added",
+      "sha256": "ef504bbac982da9fb0ec943a176d13400a0715f961b937c76b659f6343ce1007",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchNavigation/components/NamespaceTree/NamespaceTree.tsx",
+      "status": "added",
+      "sha256": "98ffdd118d38ecfc813c6db400b4d78abd4b2f427c5c1c730b6e2c79583b71f5",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchRecovery/components/DepartureGuard.tsx",
+      "status": "added",
+      "sha256": "7add9a020377aba7570376814d0ee23de2b05dfcea46402de3e19a3701fd9d01",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchRecovery/components/ProjectDiagnostics.tsx",
+      "status": "added",
+      "sha256": "d45b118ec342a11cb6b5b8f3bcba879965eced780334abf09a30a4b3dcb26a7d",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchRecovery/components/RetentionRecovery.tsx",
+      "status": "added",
+      "sha256": "c38c345e9e5ccc2d20251677e0cb9d63e8de94480e12e0c4e9a8504b93e1f148",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchRecovery/components/WorkbenchFeedback.tsx",
+      "status": "added",
+      "sha256": "dfa767b5d381139760002e2813d9a2ce5f79460d2d411b0f61c2a8c5a80c30d5",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchStatus/WorkbenchStatus.tsx",
+      "status": "added",
+      "sha256": "7c04b1c4b322d438b8cf9c3fafa7822d435604b9b14fef615c10f152f9efbe59",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/helpers/workspace-view.ts",
+      "status": "added",
+      "sha256": "3f835b98e2c4e1dbb51c48790014bda536e307066088a20d3b8a8053217a1476",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/hooks/useProjectCommands.ts",
+      "status": "added",
+      "sha256": "a332ec69508a39510d43e696122f5ddaed2a2bb3a45e070a740295463a943c58",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/hooks/useProjectReadback.ts",
+      "status": "added",
+      "sha256": "a78e5ba2089279c69094eec4758c1ed220de7593d5f1f266b76eca9601323b88",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/hooks/useWorkbenchLayout.ts",
+      "status": "added",
+      "sha256": "44ed5ebab7cf57994122cbe9ee8e7c19490af9e1b118aba28d8e5ee2161018b4",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/Workbench/hooks/useWorkbenchLifecycle.ts",
+      "status": "added",
+      "sha256": "1799a739c23f5fb7214faff8001b2d4a5a4394f4af3062f8f705511ab215c5d6",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/app/App.tsx",
+      "status": "modified",
+      "sha256": "e8245430488844e2de7bb8740d03ff3088ecdd4f2f97b75e9ccc591286cbc4e1",
+      "baseSha256": "c360ffab04ada453f01216f7e8c659c8e1d862404da350289f4e66ba53267b6c"
+    },
+    {
+      "path": "src/presentation/app/hooks/useWorkbenchHost.ts",
+      "status": "added",
+      "sha256": "b8095e9679cd08c0dc68045d667ea79377d5c05385fe2e5820dcdc2a14679e96",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/app/useWorkbenchHost.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "b8095e9679cd08c0dc68045d667ea79377d5c05385fe2e5820dcdc2a14679e96"
+    },
+    {
+      "path": "src/presentation/components/ApplicationHeader/ApplicationHeader.tsx",
+      "status": "added",
+      "sha256": "aa7f9a74a25aadbbfffaf8ac3dd79350bf9e5a97ce85640e14680fec02a121cd",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/components/ApplicationShell/ApplicationShell.tsx",
+      "status": "added",
+      "sha256": "0899a6ef8a7e5f2b5f86c4107525c64009af80600328fd37737586ddd51e7e44",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/project-backup/RestoreDialog/RestoreDialog.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "980a8aaf9e19c5540e9741d34e75861b2a461047231d36a72646732a76f647ff"
+    },
+    {
+      "path": "src/presentation/project-backup/RestoreDialog/useBackupRestore.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "6d50792090d819144aa98e03efe57d8e17b4aec4212450e95081f2319ec38ce4"
+    },
+    {
+      "path": "src/presentation/project-backup/components/RestoreDialog/RestoreDialog.tsx",
+      "status": "added",
+      "sha256": "1781c02cdc1c33d38f99490b9d3a13614267838ac6ed1aacc54803f8eb2bcd2f",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore.ts",
+      "status": "added",
+      "sha256": "6d50792090d819144aa98e03efe57d8e17b4aec4212450e95081f2319ec38ce4",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/project-backup/useWorkbenchBackup.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "96da76175ee6605b0ab202735f423cdb59a1c730f308313114518a8bb7d3af95"
+    },
+    {
+      "path": "src/presentation/projects/CreateProjectForm/CreateProjectForm.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "0adaff7fbad745110cb10e3e5cadb83c7c937fef9c23842f123f2509845b847c"
+    },
+    {
+      "path": "src/presentation/projects/ProjectList/ProjectList.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "8627694edc8e4a2ddc9bc076f001e58f752399920be043a2414830a4069ac4aa"
+    },
+    {
+      "path": "src/presentation/projects/ProjectList/ProjectListItem.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "887c9f82ae056d45357bb69c9911ef67602d98f16a1c16d29165474a4efd95ee"
+    },
+    {
+      "path": "src/presentation/projects/ProjectRecovery/ProjectRecovery.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "8e0502aa6b13039982e872a8127536e5d9a29390130ef3796b773e77828684c7"
+    },
+    {
+      "path": "src/presentation/projects/ProjectsScreen.tsx",
+      "status": "modified",
+      "sha256": "ff23bab99bff6e3849184af1c26c702e273f4f8ad9fb1ab36831f175b847c8a3",
+      "baseSha256": "4a341b2099ecb82c13a1d92015365df50cf5764f461d66534f029fc33bbe4bad"
+    },
+    {
+      "path": "src/presentation/projects/components/CreateProjectForm/CreateProjectForm.tsx",
+      "status": "added",
+      "sha256": "0adaff7fbad745110cb10e3e5cadb83c7c937fef9c23842f123f2509845b847c",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/projects/components/ProjectInspector/ProjectInspector.tsx",
+      "status": "added",
+      "sha256": "1c7c7c95f87e0d3ac5a97559137ad7455385f5a2e86d3825c7dd5d6842ea61d3",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/projects/components/ProjectList/ProjectList.tsx",
+      "status": "added",
+      "sha256": "480d3cd97b7d655fd1cd5867fd427d15d6587e54e1e9fadc468cd988a26116ed",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/projects/components/ProjectList/components/ProjectListItem.tsx",
+      "status": "added",
+      "sha256": "1c01f743746a877bdeee01224155caed274dbf00475c2934cda7c14f810d993f",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/projects/components/ProjectRecovery/ProjectRecovery.tsx",
+      "status": "added",
+      "sha256": "8e0502aa6b13039982e872a8127536e5d9a29390130ef3796b773e77828684c7",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/projects/hooks/useProjects.ts",
+      "status": "added",
+      "sha256": "7ed1976c331fba3d665d10343c1c448b5e6631f9b0bd882d28e35352c4d5d002",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/projects/hooks/useProjectsLayout.ts",
+      "status": "added",
+      "sha256": "b61c1b0e61a367fd17ee490f8b5aedc31a94593c3620eea3c865c92f08a95867",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/projects/useProjects.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "d63706cde4831e3fb09e548eeaf62db634f5ae02c7723ee8ca3433c368e32d24"
+    },
+    {
+      "path": "src/presentation/styles/global.css",
+      "status": "modified",
+      "sha256": "a66da73f37a8f1fc091cd5c35f673564eb7e1782279d0ac3ffa6700ecc64ef9b",
+      "baseSha256": "8f77fe0b371e1a2a7022bcb9951f774df1ce1c385fe62f529acce13f70932c6c"
+    },
+    {
+      "path": "src/presentation/token-display/AuthoredValue.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "c48bdfb285b37edf40f7e98149f016eec40723c405b8f2612dcec2024ca2027f"
+    },
+    {
+      "path": "src/presentation/token-display/ExactSource.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "151ca0a30765dcfa0c5fb241c834fb95c6f55cf42af4c31009ea937f6c246b40"
+    },
+    {
+      "path": "src/presentation/token-display/ResolvedTokenPanel.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "c5396cd1512b1da16018ab39fcb32690d85d401d425d6f98b91b219119a85017"
+    },
+    {
+      "path": "src/presentation/token-display/TokenMetadata.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "2922be7b5f302f49e49f65ea9ebdcb601bc4527ccaa3c76c07b25b18c63379f5"
+    },
+    {
+      "path": "src/presentation/token-display/TokenSwatch.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "e989d87f3b794fd83155adb9172da4e719fdc77a936c47dcb3a16a327212ef32"
+    },
+    {
+      "path": "src/presentation/token-display/authored-color.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "1660203de590fdd295ffc663885ab910011396c7d44e6f9dceb5eb6ac32cf48a"
+    },
+    {
+      "path": "src/presentation/token-display/color-preview.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "7652348f520869467c8af6d02407568e279aa1a7ad6af05f244b822e184ff0ed"
+    },
+    {
+      "path": "src/presentation/token-display/components/AuthoredValue.tsx",
+      "status": "added",
+      "sha256": "60e69ed1dffa5586f3a8430a4d6151e1642a3f77f96cb7add6c806dd3f450afa",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/token-display/components/ExactSource.tsx",
+      "status": "added",
+      "sha256": "151ca0a30765dcfa0c5fb241c834fb95c6f55cf42af4c31009ea937f6c246b40",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/token-display/components/ResolvedTokenPanel.tsx",
+      "status": "added",
+      "sha256": "3571197b8ffee5914ff650defb5bc7480ce94e5e7ce43633bfeac6e7bb2e6bce",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/token-display/components/TokenMetadata.tsx",
+      "status": "added",
+      "sha256": "18db69bdad227e4bced5105d55bbab56cb300da95a67fe270a771fc12b37518c",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/token-display/components/TokenSwatch.tsx",
+      "status": "added",
+      "sha256": "e989d87f3b794fd83155adb9172da4e719fdc77a936c47dcb3a16a327212ef32",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/token-display/helpers/authored-color.ts",
+      "status": "added",
+      "sha256": "1660203de590fdd295ffc663885ab910011396c7d44e6f9dceb5eb6ac32cf48a",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/token-display/helpers/color-preview.ts",
+      "status": "added",
+      "sha256": "7652348f520869467c8af6d02407568e279aa1a7ad6af05f244b822e184ff0ed",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/token-display/helpers/identity-labels.ts",
+      "status": "added",
+      "sha256": "76d87c9d20d502b9b467b72f3543c5e062ca8c90d2d82026945aa4478a24304d",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/token-display/helpers/resolved-color.ts",
+      "status": "added",
+      "sha256": "0419e1c31bf77b67aec6756e71c4d42b733b14686eae86318b241f8bc1f6524c",
+      "baseSha256": null
+    },
+    {
+      "path": "src/presentation/token-display/identity-labels.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "76d87c9d20d502b9b467b72f3543c5e062ca8c90d2d82026945aa4478a24304d"
+    },
+    {
+      "path": "src/presentation/token-display/resolved-color.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "0419e1c31bf77b67aec6756e71c4d42b733b14686eae86318b241f8bc1f6524c"
+    },
+    {
+      "path": "src/presentation/workbench/CreationDialog/CreationDialog.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "b7a941f9f5cc0865dc763754603131b432570080e4acde99ac00bcad828bbdd5"
+    },
+    {
+      "path": "src/presentation/workbench/CreationDialog/naming-preview.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "479ed79b129d08243a5683909d58aab8b51abc09fe58fbfbe45e870cad4a4fb1"
+    },
+    {
+      "path": "src/presentation/workbench/CreationDialog/useCreationForm.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "905f6301de18425c7148bacf0f30e3560971bfdf5220935f45c516b93b8aa07a"
+    },
+    {
+      "path": "src/presentation/workbench/TokenWorkspace/AllContent/AllContent.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "17a7361ab9024e0a48d0d1828c342a93a5b47a2d416cec68a7bc4ab8915fdf65"
+    },
+    {
+      "path": "src/presentation/workbench/TokenWorkspace/AllContent/all-content.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "a7b3e64708bfa6a1d003302218c566b01e87d691a2a79fb4a45b62c46d0dbb29"
+    },
+    {
+      "path": "src/presentation/workbench/TokenWorkspace/TokenTable/TokenTable.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "34723d229ee44347ba8460eb1d04baa39f17aba03177f2175bcef13b0ba248b4"
+    },
+    {
+      "path": "src/presentation/workbench/TokenWorkspace/TokenWorkspace.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "566861c82cb4e9855ccc3d439e5665daa40bbfad7325bce138c577b934e5b462"
+    },
+    {
+      "path": "src/presentation/workbench/TokenWorkspace/WorkspaceToolbar/WorkspaceToolbar.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "32d1670c6cd8c9fbe7e33b84dd4508c189ad5bc13e9aa0929a7f44ec1bdcdd25"
+    },
+    {
+      "path": "src/presentation/workbench/Workbench.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "88e32dceb476ba0f70347938138aed3b9d38dc7ce7a53221fbd2350b82bf69e8"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchHeader/WorkbenchHeader.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "3e676157590e936c9f07132544eca2a2f509a65ab9a419878f3c94e2b445a2d1"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/GroupInspector/GroupInspector.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "e8e3fc42e9e0598f90953b4374dee39f18eed65f229fa20cf6966f30fb110088"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/InspectorHeader.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "eb39e9c66cd527283ad918672b903f09d56242bcb0ce56ff2fd5040325ddf817"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/ColorEditor.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "e923553caea1e26ddf8431a49e6130b80b61cf740edd8cded9908e0a43b38a9b"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/visual-range.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "5da3f238a8d75cdeaec77c6ebd09c0b6eb74f74744c4a0443caa5d8fbc21aec7"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/EditRecovery.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "3685b7510789784dbd89623b1837364569cc9dbc747ec6b1731240ca5297e5d4"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/EditorActions.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "85d521262b0dfc6ba6a881813f33fd750b31e0cf4bf16d1f1f20fdc988cdf3eb"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/ReferenceFields.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "a96d28933f84aba5fb41d4a6f08550da087d581ad2c15b08060834882e23c599"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditor.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "8f26cfdbc0ba351b31d7aa4e6835d82ebb151e048f47bfb0c615e7fbd1a04bdc"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorContent.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "8fac963e3c0126ac4b21d3dcc9518163893541a55ea2d3f446fa8c99f900844a"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorTabs.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "7ca28289bbcca3be3ccfdce44e2f6d8793a3bbd9e6f3d49a8624540e699b5b6a"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/editor-failure.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "2747c996b5a70971440b66b547dce1645194f682c6038e8768df0b3a26947ca6"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/editor-session.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "2df7230b05bf073fcb33f5343c62deb3838df3e4e093cde910754ab966700d8d"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/integer-rgb.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "5318715edf140365341326d4ef6d78fbdaaca510df08a1037a91095a098c8655"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/useTokenEditor.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "f686301553cb84e9bde646657fcef5b4778f7e266bb1e4ea51a71ecfb0f44d68"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenValueComparison.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "84f06bc478162fbab36114796cd253bb602afc1d33ef86f9c57aa8144dc903fc"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/WorkbenchInspector.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "a11e56f31afcc79aac93dbec787b3198619b02acc925ef5e6aa6b2f3b68f54c3"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchNavigation/NamespaceTree/NamespaceTree.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "9d60c1f8f4ad99efdeff03b26824f99defebf8171c3b1b07721157d4060bbc71"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchNavigation/WorkbenchNavigation.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "54d873cb8c03af280f71eede7d6f5f86048aa1cf0642dc43539fab1e4226a533"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchRecovery/DepartureGuard.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "7add9a020377aba7570376814d0ee23de2b05dfcea46402de3e19a3701fd9d01"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchRecovery/ProjectDiagnostics.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "d45b118ec342a11cb6b5b8f3bcba879965eced780334abf09a30a4b3dcb26a7d"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchRecovery/RetentionRecovery.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "c38c345e9e5ccc2d20251677e0cb9d63e8de94480e12e0c4e9a8504b93e1f148"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchStatus/WorkbenchStatus.tsx",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "e16b51ec364f5bcfde4c1c1c5e0a5c3852670803c55ee345ad6d0be9bd7e6f40"
+    },
+    {
+      "path": "src/presentation/workbench/useProjectCommands.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "a332ec69508a39510d43e696122f5ddaed2a2bb3a45e070a740295463a943c58"
+    },
+    {
+      "path": "src/presentation/workbench/useProjectReadback.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "a78e5ba2089279c69094eec4758c1ed220de7593d5f1f266b76eca9601323b88"
+    },
+    {
+      "path": "src/presentation/workbench/useWorkbenchLayout.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "7921f0b7f8f8a309b27713672e1e59de08a8ccd9f7e6d178a3aefda0b387c098"
+    },
+    {
+      "path": "src/presentation/workbench/useWorkbenchLifecycle.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "1799a739c23f5fb7214faff8001b2d4a5a4394f4af3062f8f705511ab215c5d6"
+    },
+    {
+      "path": "src/presentation/workbench/workspace-view.ts",
+      "status": "deleted",
+      "sha256": null,
+      "baseSha256": "3f835b98e2c4e1dbb51c48790014bda536e307066088a20d3b8a8053217a1476"
+    },
+    {
+      "path": "test/presentation/all-content.test.tsx",
+      "status": "modified",
+      "sha256": "73763ceafa15218b4a08a67423c45ef7b14d24141cf6fce2abcc3851b60d8506",
+      "baseSha256": "8c67c2022b28f923eaae86f3c39bb11c696846da42357a4d52c4c0584cbbc588"
+    },
+    {
+      "path": "test/presentation/authored-value.test.ts",
+      "status": "modified",
+      "sha256": "6231e991c44d4881d53c8a413b6091ec178631cca2e454bcfc782ae281bfdfff",
+      "baseSha256": "1f2f30a88f70bfaa8bab3207fbb175a1d3669e1084e90cf0a4cf8983cba8ed28"
+    },
+    {
+      "path": "test/presentation/identity-presentation.test.tsx",
+      "status": "modified",
+      "sha256": "5b2911d7b98818790f5ba3f4e2e4d36a63cf9f28d439cc359e6fc35011599b9d",
+      "baseSha256": "7c93b1d9647c6ae9cbc0417b88cf3737c381050cd6b4c22278a16ab1d4a2e661"
+    },
+    {
+      "path": "test/presentation/increment-009.test.tsx",
+      "status": "modified",
+      "sha256": "d6dc729be5ec39c4001c8eb901bd92df8e13f83b423904126f54701cf4fb124c",
+      "baseSha256": "b7380f1931d319546602d18d85f75eaffe0a36c3654ed42c7cf20512b8ffad93"
+    },
+    {
+      "path": "test/presentation/integer-rgb.test.ts",
+      "status": "modified",
+      "sha256": "5e34d2cd4fe9ddc1100963054d286933f16e6a818e6868e8ad9dd13db3bc00a6",
+      "baseSha256": "a5fd14164d5b37cb2d8bb80a09ff5bdac7fad6cc21c6019960852c8058f6a975"
+    },
+    {
+      "path": "test/presentation/preview.test.ts",
+      "status": "modified",
+      "sha256": "f77a9ff2c7f71ea619bb615e34260ad5115ce8a8cdd32bd777c10ec8ff70b598",
+      "baseSha256": "dced536bdbffafb41cba06805074c02bd04629b0e69dbd55a47638092a61db23"
+    },
+    {
+      "path": "test/presentation/projects-screen.test.tsx",
+      "status": "modified",
+      "sha256": "fb3f7da3a3b970c729a4a53f0c1e75c1b6bcba0deb22456a6153305309c30281",
+      "baseSha256": "049d8be62dcde722b8c0b19020d722cdd3b330a0d897e608de292ead6ae4fcdc"
+    },
+    {
+      "path": "test/presentation/reference-fields.test.tsx",
+      "status": "modified",
+      "sha256": "8bbfdc67e5f88f7e8ce8083cc1bcb68041da0c6a6be6b34dac03b3d0850dd0f7",
+      "baseSha256": "44cc6423efb8f8d20fef6d82628d0ae2b18188c1815e97ddd3b03896169e2cac"
+    },
+    {
+      "path": "test/presentation/session.test.ts",
+      "status": "modified",
+      "sha256": "60d2de9bd2e61a7581f592f3271a92ff647e8251bf7358dd7c26f7bab622d951",
+      "baseSha256": "0e4a9a405346cb9c5ec39e19730ecece1dbf2b9ca828c8ff5a51244d9b390cfd"
+    },
+    {
+      "path": "test/presentation/support/TokenList.tsx",
+      "status": "modified",
+      "sha256": "2f6e7366cbc2f916c534e02d137b209d364c989d3ed637e0bf2dd10607075591",
+      "baseSha256": "4613c020d7792f251e4b7ffb3857fbc04799ae96ab700db122d367de1c94a35c"
+    },
+    {
+      "path": "test/presentation/visual-range.test.ts",
+      "status": "modified",
+      "sha256": "92cac7bd45cf116872524989e6eaf1dc4478efedbc15d908de076c295693802f",
+      "baseSha256": "c4014ff08a251bebf4fbafa7737c2530b8f2ab017eaa34bbeecd8b93abf143e9"
+    },
+    {
+      "path": "test/presentation/workbench-coordination.test.tsx",
+      "status": "modified",
+      "sha256": "8226d218fb7c1af432ad5eca28d190abaae237b0876bf09f99a818814a9601da",
+      "baseSha256": "a536698d8cccdaea908f16701c2665c454de96bac7c1fbc9a2d8f6848f14c728"
+    },
+    {
+      "path": "test/presentation/workbench-sections.test.tsx",
+      "status": "modified",
+      "sha256": "aadc78df6c1fafb6d511d6e0495a45046614551a493ee6ec555ae99b4a502bab",
+      "baseSha256": "b238f226a9aab4781c04b588d4e817a25e19f735596e0814bd7655499c32531b"
+    },
+    {
+      "path": "test/presentation/worker-client.test.tsx",
+      "status": "modified",
+      "sha256": "f7702e8192fd035aee1e1816c9db92b8264d06b07cc84927f1751a2e20144c95",
+      "baseSha256": "a3db7bec1b4ae2fc723f740247dd16f218ca9dfa592dc53b5790e929852d2154"
+    }
+  ]
+}

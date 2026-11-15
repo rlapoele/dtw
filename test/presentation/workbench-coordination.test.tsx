@@ -48,11 +48,11 @@ vi.mock("react", async (original) => {
     },
   };
 });
-import { useProjects } from "@presentation/projects/useProjects";
-import { useProjectReadback } from "@presentation/workbench/useProjectReadback";
-import { useProjectCommands } from "@presentation/workbench/useProjectCommands";
-import { useCreationForm } from "@presentation/workbench/CreationDialog/useCreationForm";
-import { restoreProtectionReducer } from "@presentation/project-backup/RestoreDialog/useBackupRestore";
+import { useProjects } from "@presentation/projects/hooks/useProjects";
+import { useProjectReadback } from "@presentation/Workbench/hooks/useProjectReadback";
+import { useProjectCommands } from "@presentation/Workbench/hooks/useProjectCommands";
+import { useCreationForm } from "@presentation/Workbench/components/CreationDialog/hooks/useCreationForm";
+import { restoreProtectionReducer } from "@presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore";
 import type {
   ProjectHeader,
   WorkbenchHost,
@@ -305,10 +305,10 @@ it("invalidates replacement acknowledgement whenever protected revision changes"
 
 it("preserves dirty raw editor channels across baseline refresh and resets only on Cancel", async () => {
   const { useTokenEditor } = await import(
-    "@presentation/workbench/WorkbenchInspector/TokenEditor/useTokenEditor"
+    "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/hooks/useTokenEditor"
   );
   const { editComponent } = await import(
-    "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session"
+    "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session"
   );
   const { createColorLiteral } = await import("@domain/color-literal");
   let revision = "r1";
@@ -453,4 +453,104 @@ it("blocks unknown project creation until explicit departure fences and resets",
   expect(reset).toHaveBeenCalledOnce();
   expect(owner.name).toBe("");
   expect(owner.unknown).toBeUndefined();
+});
+
+it("downloads a captured catalogue revision without opening and refreshes stale facts without retry", async () => {
+  const failure = deferred<any>();
+  const service = host(async (op) => {
+    if (op === "backup") return failure.promise;
+    if (op === "catalogue") return [{ rowKey: "p", status: "supported", id: "p", name: "P", revision: "r2", tokens: 1, groups: 0 }];
+  });
+  const hook = () => useProjects({ current: service }, () => service, vi.fn(), false);
+  let owner = render(hook);
+  const entry = { rowKey: "p", status: "supported", id: "p", name: "P", revision: "r1", tokens: 1, groups: 0 } as const;
+  const download = owner.download(entry);
+  await owner.download(entry);
+  owner = render(hook);
+  expect(owner.pending).toBe(true);
+  expect(service.call).toHaveBeenCalledExactlyOnceWith("backup", { projectId: "p", revision: "r1" });
+  failure.resolve(Promise.reject(Error("Revision changed")));
+  await download;
+  owner = render(hook);
+  expect(owner.entries?.[0]).toMatchObject({ revision: "r2" });
+  expect(owner.backupFeedback).toContain('"p"');
+  expect(owner.backupFeedback).toContain("Revision changed");
+  expect(owner.backupFeedback).toContain("fresh explicit Download");
+  expect(vi.mocked(service.call).mock.calls.filter(([op]) => op === "backup")).toHaveLength(1);
+  expect(vi.mocked(service.call).mock.calls.some(([op]) => op === "openProject")).toBe(false);
+});
+it("restore preview blocks open, create, stage and selected backup", async () => {
+  const service = host(async () => undefined);
+  const hook = () => useProjects({ current: service }, () => service, vi.fn(), true);
+  const owner = render(hook);
+  await owner.open("p"); await owner.create(); await owner.stageBackup({} as File);
+  await owner.download({ rowKey: "p", status: "supported", id: "p", name: "P", revision: "r", tokens: 0, groups: 0 });
+  expect(service.call).not.toHaveBeenCalled();
+});
+
+it("keeps one responsive surface state, follows pane focus, and yields to modal focus", async () => {
+  const { useWorkbenchLayout } = await import("@presentation/Workbench/hooks/useWorkbenchLayout");
+  const listeners = new Map<string, () => void>();
+  const media = new Map<string, { matches: boolean; addEventListener: any; removeEventListener: any }>();
+  vi.stubGlobal("window", { innerWidth: 1440 });
+  vi.stubGlobal("matchMedia", (query: string) => {
+    const value = { matches: false, addEventListener: (_: string, listener: () => void) => listeners.set(query, listener), removeEventListener: vi.fn() };
+    media.set(query, value); return value;
+  });
+  let active: any = "editor", modal: false | "other" | "drawer" = false;
+  vi.stubGlobal("document", { get activeElement() { return active; }, querySelector: () => modal ? { classList: { contains: () => modal === "drawer" } } : null });
+  vi.stubGlobal("requestAnimationFrame", (callback: () => void) => callback());
+  let owner = render(useWorkbenchLayout);
+  owner.browse.current = { querySelector: vi.fn(), contains: (node: any) => node === "browse", focus: vi.fn() } as any;
+  owner.inspector.current = { querySelector: vi.fn(), contains: (node: any) => node === "editor", focus: vi.fn() } as any;
+  effects();
+  media.get("(max-width:1119px)")!.matches = true;
+  media.get("(max-width:879px)")!.matches = true;
+  listeners.get("(max-width:879px)")!();
+  owner = render(useWorkbenchLayout);
+  expect(owner.narrow).toBe(true); expect(owner.surface).toBe("inspect");
+  owner.back(); owner = render(useWorkbenchLayout);
+  expect(owner.surface).toBe("browse");
+  owner.showInspector(); owner = render(useWorkbenchLayout);
+  expect(owner.surface).toBe("inspect");
+  modal = "other"; active = "browse";
+  listeners.get("(max-width:879px)")!(); owner = render(useWorkbenchLayout);
+  expect(owner.surface).toBe("inspect");
+  modal = false; owner.setInspectorExpanded(false); owner = render(useWorkbenchLayout);
+  listeners.get("(max-width:879px)")!(); owner = render(useWorkbenchLayout);
+  expect(owner.surface).toBe("browse"); expect(owner.inspectorExpanded).toBe(false);
+  modal = "drawer"; active = { closest: () => ({}) };
+  const triggerFocus = vi.fn(); owner.navigationTrigger.current = { focus: triggerFocus } as any;
+  listeners.get("(max-width:879px)")!();
+  expect(triggerFocus).not.toHaveBeenCalled();
+});
+
+it("disposes App restore preview before the authorized completion opens through the guarded project owner", async () => {
+  const { App } = await import("@presentation/app/App");
+  const { Workbench } = await import("@presentation/Workbench/Workbench");
+  vi.stubGlobal("addEventListener", vi.fn());
+  vi.stubGlobal("removeEventListener", vi.fn());
+  const preview = { project: header.project };
+  const service = host(async (operation) => {
+    if (operation === "catalogue") return [{ rowKey: "p", status: "supported", id: "p", name: "Project", revision: "r1", tokens: 0, groups: 0 }];
+    if (operation === "stageBackup") return preview;
+    if (operation === "openProject") return header;
+  });
+  const app = () => App({ createHost: () => service });
+  let page = render(app);
+  effects();
+  await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
+  page = render(app); effects();
+  await page.props.onBackupChange({ target: { files: [{ size: 0, arrayBuffer: async () => new ArrayBuffer(0) }], value: "selected" } });
+  page = render(app); effects();
+  expect(page.props.hasPreview).toBe(true);
+  page.props.onOpen("p");
+  expect(vi.mocked(service.call).mock.calls.some(([operation]) => operation === "openProject")).toBe(false);
+  page.props.restoreDialog.props.onOpen("p");
+  page = render(app); effects();
+  await Promise.resolve(); await Promise.resolve();
+  page = render(app);
+  expect(page.type).toBe(Workbench);
+  expect(page.props.initial).toBe(header);
+  expect(vi.mocked(service.call).mock.calls.filter(([operation]) => operation === "openProject")).toHaveLength(1);
 });

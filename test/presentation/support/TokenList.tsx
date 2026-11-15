@@ -1,10 +1,10 @@
-import { AuthoredValue } from "@presentation/token-display/AuthoredValue";
+import { AuthoredValue } from "@presentation/token-display/components/AuthoredValue";
 import type { ProjectReadback, TokenInspection } from "@application/authoring";
 import { Button } from "@presentation/ui/button";
-import { TokenSwatch } from "@presentation/token-display/TokenSwatch";
-import { identityLabels } from "@presentation/token-display/identity-labels";
-import { resolvedColor } from "@presentation/token-display/resolved-color";
-import { colorPreview } from "@presentation/token-display/color-preview";
+import { TokenSwatch } from "@presentation/token-display/components/TokenSwatch";
+import { identityLabels } from "@presentation/token-display/helpers/identity-labels";
+import { resolvedColor } from "@presentation/token-display/helpers/resolved-color";
+import { colorPreview } from "@presentation/token-display/helpers/color-preview";
 export function TokenList({
   project,
   visible,
