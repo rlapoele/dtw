@@ -125,3 +125,20 @@ session behavior. Exact candidate thresholds, two-step narrow entry, read-only
 metadata and inline forms remain for user feedback before analyst review.
 
 Suggested commit: `docs: propose coordinated Projects and workbench V2 design`
+
+## Subsequent analyst handoff — 15 November 2026
+
+The user approved this V2 set at `ae75f29` for analyst review. The completed
+[review](../../increments/011-v2-analyst-review.md),
+[refined Draft contract](../../increments/011-responsive-shell.md) and
+[concrete presentation tree/ownership matrix](presentation-organisation-v2.md)
+record the refinements. Supported catalogue entries already carry a revision for
+the existing selected-project backup path; no extra header read or editing
+ownership is needed for the proposed fields. App-lifetime Projects context
+replaces the earlier screen-local lifetime suggestion where cross-screen
+preservation is required. All file kinds follow purpose, owner and consumers;
+meaningful hooks/helpers or other shared folders are allowed.
+
+These are contract/ownership clarifications, not a material visual revision.
+Original V2 artwork is unchanged; final agreement and implementation remain pending.
+Read the refined tree with this earlier component map.

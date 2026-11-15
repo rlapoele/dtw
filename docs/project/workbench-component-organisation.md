@@ -91,3 +91,9 @@ source-informed proposal for the coordinated Projects/workbench designs. It
 identifies candidate shared shell/header, ProjectInspector and SelectionBar owners
 while preserving App/useProjects/Workbench command and editor-session authority.
 It does not replace the delivered paths in this document or authorize source moves.
+
+Following user-approved analyst review of V2, the
+[concrete proposed resulting tree](workbench-layout/presentation-organisation-v2.md)
+refines file placement and physical/call/state-lifetime ownership for 011. Local/
+shared hooks, helpers and other supporting folders follow purpose, owner and
+actual consumers. This is a proposal; actual paths above have not changed.

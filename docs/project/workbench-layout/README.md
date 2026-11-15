@@ -34,6 +34,12 @@ UI refinement and responsive states down to 320 CSS px. Undo/Redo is deferred to
 references below and require user feedback before analyst review or final agreement.
 The current delivered ownership map remains authoritative for actual code.
 
+The user subsequently approved V2 at `ae75f29` for analyst review. The
+[completed review](../../increments/011-v2-analyst-review.md) and
+[concrete resulting presentation tree](presentation-organisation-v2.md) refine
+the Draft contract and component/hook/state/lifetime ownership. The organising
+principle applies to all file kinds. Final agreement and implementation remain pending.
+
 ## Mockup gallery
 
 All four original generated PNGs are preserved locally, without alteration. Each

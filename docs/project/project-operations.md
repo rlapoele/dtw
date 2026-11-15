@@ -92,3 +92,10 @@ These artifacts implement the agreed direction as design proposals, not applicat
 code. Their remaining choices, selected-project backup coordination and exact 011
 delivery scope require user feedback and later analyst review. No user approval
 for analyst review, final agreement or implementation authorization is recorded.
+
+The user has since approved V2 for analyst review. The
+[review](../increments/011-v2-analyst-review.md) and
+[refined Draft contract](../increments/011-responsive-shell.md) specify the
+existing catalogue-revision backup flow and App-owned Projects context. Earlier
+conditional concerns about an extra header read are resolved for the proposed
+read-only fields. Final contract/design agreement and implementation remain pending.

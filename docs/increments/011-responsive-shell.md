@@ -2,7 +2,7 @@
 
 - Contract status: Draft
 - Delivery status: Not started
-- Agreement: Planning/design preparation authorized; contract/design agreement and application implementation authorization **pending**. No new design has been approved for analyst review.
+- Agreement: V2 design and React decomposition at commit `ae75f29` approved **for analyst review** on 15 November 2026; review completed in [V2 analyst review](011-v2-analyst-review.md). Final contract/design agreement and application implementation authorization **pending**.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [layout reference V1](../project/workbench-layout/README.md), [component map V1](../project/workbench-layout/component-map-v1.md), [current ownership](../project/workbench-component-organisation.md), [010 delivery direction](010-component-oriented-presentation.md#delivery-direction), [workflow](../workflow/agent-roles.md).
 
 ## Outcome
@@ -12,8 +12,7 @@ navigation, browsing and inspection share a wide desktop window; navigation
 collapses as space contracts; browsing and editing become successive full-width
 surfaces when a usable split no longer fits. The same selected-token editor
 session survives these presentations, including invalid raw input and browsing
-context. This is responsive composition of the existing workbench, not delivery
-of the other capabilities illustrated in the saved mockups.
+context. This includes responsive composition and coherent refinement of the current workbench, plus the bounded Projects capabilities below. Other capabilities illustrated in historical mockups remain excluded.
 
 **User-confirmed scope extension — 15 November 2026:** finish a coherent UI design
 for the existing token-workbench workflows, not only responsive pane geometry.
@@ -24,6 +23,7 @@ reviewed baseline instead of reopening avoidable layout and interaction question
 
 Included:
 
+- Projects catalogue selection and read-only inspection, explicit Open project, existing create-and-open, selected-project Download backup, existing staged Restore backup, and relocation of Request persistent storage; see the proposed operation flow below. No metadata editing or Delete.
 - Cohesive refinement of existing workbench header, navigation, workspace/list, inspector/editor, action hierarchy, typography, spacing, copy, dialogs and feedback across the supported responsive states.
 
 - Wide navigation/workspace/inspector composition and accessible collapse/reopen controls.
@@ -39,7 +39,7 @@ Excluded:
 - Undo/Redo controls and history implementation: deferred by the user to Increment 012.
 - Visual token grids/palettes, new inventory views or filters, editable Details, relationships, previews/comparison and interchange.
 - Resizable pane drag handles or saved layout preferences unless separately agreed; collapse/reopen is sufficient for this bounded proposal.
-- Domain/application semantics, color precision or slider policy, canonical schema, storage/backup format, worker protocol, new host, router or state-management framework.
+- Changes to canonical/domain semantics, color precision or slider policy, canonical schema, storage/backup format, new host, router or state-management framework. Reuse the existing catalogue revision and backup RPC; no new worker operation is proposed for the read-only inspector.
 - Draft persistence across reloads/restarts, native browser history routing and new browser/platform qualification.
 - Restarting deferred 007/009/010 qualification or treating new-shell evidence as retrospective acceptance of those increments.
 
@@ -74,6 +74,62 @@ baseline and source-informed component ownership for implementation, with agreed
 states/decisions and clearly retained gaps. Reassess the eventual implementation
 verification plan against this broader scope before verification starts; the old
 30-minute proposal is not evidence that all this acceptance fits that allowance.
+
+## Projects V2 proposed delivery and operation flow
+
+The user approved the identified V2 set at `ae75f29` for analyst review, not final
+agreement. This section supersedes the earlier planning-only Projects discussion
+for the **draft proposed contract**; the historical discussion is preserved below.
+The [operation inventory](../project/project-operations.md) remains broader than 011.
+
+1. Catalogue reading supplies supported name, exact identity, token/group counts
+   and revision together. The inspector displays those read-only catalogue facts,
+   or an unavailable entry's exact identity/reason. There is no project description,
+   date, location, writability claim or editable metadata in this bounded inspector.
+   Selection is not `openProject`, acquires no editing ownership and mounts no
+   Workbench. Unknown/unavailable entries remain inspectable without Open/Backup.
+2. Wide/compact selection reveals the right inspector. Below proposed 880 CSS px,
+   select then Inspect opens full-width detail; Back restores browse context.
+   App retains any selected catalogue row key/exact displayed identity/status and catalogue scroll across the Workbench
+   branch; ProjectsScreen owns only its mounted layout/focus effects. If the
+   selected entry vanishes, preserve an unavailable-selection explanation rather
+   than substitute another project. Reconcile unavailable rows by their row key;
+   do not assume arbitrary storage identities are valid supported project IDs.
+3. Open project invokes the existing guarded `useProjects.open` only by explicit
+   action. It reads current project state and may open inspection-only when another
+   tab owns editing. Create still validates nonblank name, preserves accepted text,
+   creates and opens; a retained/read-unavailable or unknown result follows existing
+   recovery, never a duplicate create. Successful creation/restore opening updates
+   the retained Projects selection context to that project.
+4. Download captures the selected **supported catalogue entry** and its revision,
+   then calls existing `downloadProjectBackup(host, id, revision)`. These fields
+   form a coherent catalogue snapshot, not a full `ProjectHeader` or permanent
+   current-state guarantee. No `openProject`, loaded workbench snapshot or ownership
+   acquisition is needed. The worker rereads the record and checks the revision
+   before encoding. On changed revision, show the actual reason, refresh catalogue
+   facts and require a fresh explicit Download; never silently retry against newer
+   data or claim an old review covered it. Missing/unsupported/read-failed entries
+   cannot download. Failure/notice remains tied to the captured project identity.
+   Disable selection/Open/Create/Restore and repeated Download while this command
+   is pending; unknown creation, retained-result recovery and active restore preview
+   also block conflicting actions. Reading/downloading does not authorize a write.
+5. Existing App-owned file/preview refs and RestoreDialog staged protection remain:
+   review exact identity/coverage/diagnostics, refresh local revision, download and
+   acknowledge the exact local revision before same-ID replacement, preserve stage-
+   lost/unknown-result recovery, and Open only through existing completion. A prior
+   selected-project backup must not bypass RestoreDialog's current protection flow.
+6. New project and Restore remain inline in the catalogue scroll surface. Request
+   persistent storage moves to a Projects retention section; report its real result
+   and independent-backup guidance without promising permanence. Workbench keeps
+   contextual applied/draft and urgent safety feedback, plus guarded Projects return.
+
+This flow refines V2's conditional “additional detail read” discussion: no such read
+is required by the exact fields above. Catalogue already carries revision; a new
+header-reading RPC would add no demonstrated need. Any later proposal to display
+additional fields or ownership state must return for scope review. This is source-
+informed coordination refinement, not a material visual redesign or authorization.
+
+### Historical Projects planning discussion
 
 ## Projects entry-page design discussion
 
@@ -175,6 +231,7 @@ map is not authority to scaffold future features or force matching page columns.
 App retains project switching/host lifetime, useProjects retains catalogue and
 creation coordination, and Workbench retains editor/departure/command ownership.
 Shared presentation must not merge these workflows or duplicate the editor session.
+The concrete [presentation organisation V2](../project/workbench-layout/presentation-organisation-v2.md) refines physical folders, call owners, state and lifetimes. It supersedes the V2 map’s local Projects-selection suggestion where cross-screen preservation requires App ownership. All file kinds follow purpose, ownership and actual consumers, following the user’s review clarification. Meaningful hook/helper folders are allowed, as are other local groupings when justified; neither global folders per file kind nor blanket flatness is required. Physical placement does not determine React lifetime.
 
 ## Source-informed starting point
 
@@ -208,6 +265,11 @@ Any unresolved interaction below must be settled before implementation.
 
 - **AC-10 — Coherent existing-workbench UI:** implement the final identified design baseline across the existing header/navigation/workspace/inspector/editor and affected dialogs/feedback, with consistent typography, spacing, surfaces, copy and action hierarchy at agreed responsive sizes. The designer artifacts and interaction notes must specify ordinary and relevant empty/error/recovery states before implementation; material design decisions must not remain implicitly delegated to implementation. Match those artifacts in affected browser observations and retain explicit unverified acceptance gaps.
 
+- **AC-11 — Projects selection and inspection:** supported and unavailable catalogue entries can be selected without opening a project or acquiring editing ownership. Exact identity wraps; duplicate names remain distinguishable. Supported inspector fields are name, identity, token/group counts and supported status; unavailable inspection shows identity/reason without invented counts. Explicit Open project alone enters the existing project-opening flow. No selection, loading, empty, missing selection and read failure have truthful presentations.
+- **AC-12 — Selected-project backup:** capture a supported selected ID/revision from one catalogue entry and generate backup through the existing revision-checked boundary without mounting Workbench. Another tab's ownership does not by itself prevent this read-only backup. A stale revision/read error gives identity-specific feedback and explicit refresh/review/retry; no automatic download of unreviewed newer data. Prevent conflicting commands while pending and preserve unknown/retained/restore gates. Download initiation does not prove file custody; drafts remain excluded.
+- **AC-13 — Projects workflows and context:** create-and-open, required-name focus/exact text, retained/read-unavailable and unknown recovery retain their current meaning. Restore preserves stage, same-ID revision protection/backup/acknowledgement, diagnostics, unknown and Open behavior. Returning from Workbench restores selected project and catalogue scroll where available; missing entries are explained. Narrow Inspect/Back preserves selection/form values/scroll and is distinct from Open or departure. All Projects controls and relevant feedback remain usable at 320 CSS px.
+- **AC-14 — Ownership and shared structure:** implement the finally agreed named component organisation with generic UI distinct from shared app chrome and page-specific workflows. Document each changed hook's call owner/state/lifetime. App keeps unconditional useProjects, host and cross-screen Projects context/restore refs; Workbench keeps command/guard/completion authority and project-ID key; TokenEditor remains the sole editor-hook caller. Presentation/folder moves introduce no editor remount or extra reset reason.
+
 ## Decisions and open questions
 
 ### Established direction
@@ -220,7 +282,7 @@ Any unresolved interaction below must be settled before implementation.
 
 ### Proposed interaction policies — for user/design agreement
 
-| Question | Initial candidate | Decision needed |
+| Question | V2 proposed policy | Final agreement needed |
 | --- | --- | --- |
 | Breakpoints and minimum widths | Retain 1120 CSS px as an initial wide/compact candidate; explore a browse/edit boundary around 880 CSS px, since the current 768 split is not usability evidence. | Designer recommends thresholds from actual existing controls, long labels, available height and zoom; settle exact boundaries and representative sizes before implementation. |
 | Narrow entry | Selecting a token updates selection; an explicit Edit/Inspect action opens its full-width inspector. | Confirm this two-step entry versus opening directly on selection; choose labels for read-only/group inspection. |
@@ -242,13 +304,13 @@ engine qualification remain deferred.
 
 Current phase is design preparation: source/document inspection, static artifact
 review and prose/link checks. No application tests, build, browser qualification
-or application harness work is authorized by this draft. Coordinator artifact
-checks do not constitute the later analyst design review or runtime acceptance.
+or application harness work is authorized by this draft. The source/static analyst review is now recorded separately; neither it nor artifact checks establishes runtime acceptance.
 
 For eventual authorized implementation, use the [shared verification rules](../workflow/agent-roles.md#proportionate-verification):
 
-- Essential functional checks: focused session/transition behavior tests for AC-3–5, plus bounded real Chrome observations/screenshots and keyboard checks for AC-1–8. Record exact viewport/zoom and state, not only a claimed device preset. A useful proposed sample is wide 1440×900, half-screen 960×800, narrow 800×800 and phone 390×844 and minimum-width 320×720, with one short-height/zoom reflow case and checks immediately either side of chosen thresholds; finalize with the design.
+- Essential functional checks: focused session/transition behavior tests for AC-3–5, plus bounded real Chrome observations/screenshots and keyboard checks for AC-1–8. Record exact viewport/zoom and state, not only a claimed device preset. A useful proposed sample is wide 1440×900, compact 880×800, half-screen 720×800 and phone 390×844 and minimum-width 320×720, with one short-height/zoom reflow case and checks immediately either side of chosen thresholds; finalize with the design.
 - Relevant integrity checks: prove resizing/Back/drawer actions do not issue mutation requests or create duplicate sessions; existing Apply/Cancel/departure and disabled states remain authoritative. Reuse existing targeted tests rather than opening a storage stress campaign.
+- Projects and ownership coverage (AC-11–14): focused controlled-entry/host-spy tests should show that selecting supported or unavailable rows never invokes openProject or acquires ownership; explicit Open remains separate. Exercise captured-ID/revision backup, stale-revision failure followed by refresh and fresh explicit Download, and pending/unknown/retained/restore gates without live storage stress. Check create-and-open and restore completion, returning Projects selection/scroll, and missing/unavailable selection across the App branch. Review the implemented paths/call owners against the agreed tree; pair that static ownership check with the AC-4 runtime single-editor/raw-input proof. Representative Chrome observations should cover Projects empty/loading/unavailable/inspection and narrow Back/return focus alongside the workbench samples. These are planned implementation checks, not current passing evidence.
 - Representative performance: ordinary supported project navigation/reflow remains responsive; no new worst-case resource or maximum-project guarantee is proposed.
 - Excluded optional qualification: multi-engine/device matrices, physical mobile keyboard certification, exhaustive accessibility audit, maximum-size inventories, unusual lifecycle/resource cases and any restarted earlier qualification. Representative narrow/zoom/keyboard checks above remain current delivery requirements, not silently deferred hardening.
 - Planning budget: coordinator allocated **10 aggregate documentation-check minutes**, shared across agents; approximately **8/10 minutes** used in total (analyst 1, designer 3, coordinator 4; estimates). Zero application harness repairs. Static Quick Look rendering required a sandbox exception after sandbox initialization failed; `sips` could not decode SVG. A rendered preview exposed a narrow-toolbar overlap, corrected by the designer and visually rechecked. These static artifact checks are not application acceptance. Prior application-qualification history is not counted as zero or reopened; each increment retains its own stopped record.
@@ -258,10 +320,10 @@ For eventual authorized implementation, use the [shared verification rules](../w
 ## Design proposals and review
 
 - Applicability: separate designer required for substantial responsive interaction decisions.
-- Proposal: coordinated [Projects V2](../project/workbench-layout/projects-shell-v2.md), [workbench V2](../project/workbench-layout/workbench-shell-v2.md), [representative states](../project/workbench-layout/v2-state-sheet.svg) and [React component map V2](../project/workbench-layout/component-map-v2.md) are ready for user review. V1 artifacts remain historical inputs. V2 incorporates agreed scope but its remaining interaction/layout choices are proposals, not final agreement.
+- Proposal: coordinated [Projects V2](../project/workbench-layout/projects-shell-v2.md), [workbench V2](../project/workbench-layout/workbench-shell-v2.md), [representative states](../project/workbench-layout/v2-state-sheet.svg) and [React component map V2](../project/workbench-layout/component-map-v2.md) at `ae75f29` were approved for analyst review. V1 artifacts remain historical inputs. V2 incorporates agreed scope but its remaining interaction/layout choices are proposals, not final agreement.
 - Required states: wide expanded/collapsed shell; usable compact split and drawer; narrow browse with selection/draft indication; narrow edit with Back and Apply/Cancel; invalid input; no selection/group/read-only/unavailable; current error/recovery and dialog reflow. Show concrete sizes and the proposed transition/focus policies.
-- User review: pending. Designer first presents its independent assessment/recommended direction and meaningful options. Prototype edits follow user direction approval. The coordinator presents actual artifacts and obtains approval of the identified revision for analyst review.
-- Analyst review: **not started**; wait for explicit user approval of the identified design revision. Review against these criteria, boundaries and unresolved policies then; this initial contract drafting is not design review.
+- User review: V2 and React decomposition approved for analyst review on 15 November 2026 at `ae75f29`; this does not mean final agreement.
+- Analyst review: completed as a bounded source/static consistency review; [findings and dispositions](011-v2-analyst-review.md). No demonstrated material visual contradiction requires an immediate designer revision. Final agreement must identify the proposed policies and organisation refinement explicitly.
 - Material revisions: return to user before renewed analyst review.
 - Final contract/design agreement and implementation authorization: pending and distinct from approval for analyst review.
 
@@ -366,3 +428,37 @@ revisions if needed, then explicit approval of an identified set for analyst rev
 ## Agreed amendments
 
 None. This document is an initial proposal and must not be relabeled Agreed by an agent.
+
+## V2 analyst handoff — 15 November 2026
+
+Reviewed design baseline: `ae75f29`, following the user's explicit approval for
+analyst review. The [review](011-v2-analyst-review.md) and
+[presentation organisation V2](../project/workbench-layout/presentation-organisation-v2.md)
+refine this Draft; they do not amend an agreed implementation contract.
+
+Source establishes that catalogue entries already carry a coherent revision and
+that backup does not need editing ownership or Workbench entry. The proposed
+flow above reuses those boundaries. Projects selection/scroll must survive the
+screen branch through App ownership, rather than purely screen-local state.
+Final agreement remains required for the identified V2 policies, read-only fields,
+Projects flow and component/state ownership refinement before implementation.
+
+New bounded analyst-review allowance: **15 additional aggregate minutes**
+(analyst at most 10, coordinator at most 5), cumulative planning ceiling about 33
+minutes including the earlier 18-minute ceiling. Prior checks remain stopped:
+V1 10/10 and V2 artifact 7/8, approximately 17 minutes consumed. Analyst source/
+static/prose review used approximately **8.5 minutes**, zero harness repairs; genuine
+contract/tree writing is not application verification. Coordinator consumption is
+recorded in its handoff. No application test/build/browser or earlier qualification
+restarted. Stop further analysis unless a concrete unresolved claim warrants a
+check within remaining allowance.
+
+Suggested commit: `docs: review 011 V2 contract and presentation ownership`
+
+Coordinator handoff: the three analyst-owned artifacts were read against the user’s
+clarifications; catalogue revision/backup/ownership claims were checked in owning
+source. New/refined local links and diff whitespace were checked. Approximate
+coordinator review consumption: **4/5 minutes**; analyst **8.5/10**. This review
+stops at approximately **12.5/15 aggregate minutes**, zero harness repairs
+(cumulative planning estimate 29.5/33). Final agreement and implementation
+authorization remain pending. Source files and approved V2 artwork are unchanged.
