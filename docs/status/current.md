@@ -2,108 +2,88 @@
 
 > Last updated: 15 November 2026
 >
-> Phase: Increment 011 automatic storage-protection amendment implemented and
-> independently reviewed; delivery remains Partially completed on earlier gaps
+> Phase: Increment 011 closed by user instruction with acceptance gaps preserved;
+> Increment 012 session Undo/Redo contract/design preparation authorized
 >
-> Applied projects are browser-profile/origin local. Drafts and unfinished forms
-> remain session-only. No staging, committing or pushing was performed.
+> Applied projects remain browser-profile/origin local. Drafts/forms remain
+> session-only. New Undo/Redo history is not implemented.
 
-## Latest completed amendment
+## Current focus
 
-The user committed the initial UI implementation as `3ee9ed9`, then authorized
-[automatic storage protection](../increments/011-responsive-shell.md#automatic-storage-protection-amendment--15-november-2026).
-It is now implemented and independently reviewed against `storage-protection-r1`:
+After committing delivered work as `6aa6943`, the user closed 011 with its remaining
+acceptance gaps documented and requested 012 contract/design preparation. The
+[initial 012 contract](../increments/012-session-undo-redo.md) is Draft; delivery
+Not started. A separate analyst inventoried current operations and drafted it;
+a separate designer produced [Undo/Redo V1](../project/workbench-layout/undo-redo-v1.md),
+its responsive/state sheets and component ownership delta. These are ready for
+user feedback, not yet analyst-reviewed or agreed. Planning is
+explicitly authorized; application implementation is not.
 
-- App-lifetime actual status check without prompting on startup.
-- One non-blocking automatic request per App session after confirmed retained create/restore when needed, including later-confirmed/readback-unavailable outcomes. Opening or previewing is not success. Manual attempts consume that automatic opportunity; in-flight work is deduplicated.
-- Controlled Projects status and conditional retry replace the permanent button. Denial, missing APIs and errors leave saving/restore/open unchanged; positive API confirmation alone means protected.
+User-agreed initial scope: applied token/group changes during the open-project
+session, native typing undo in inputs, no persistent history across project close/
+reopen/reload. Undo/Redo belongs in the workbench header; project management stays
+on Projects. Preserve the current owner-first component structure, one editor,
+current command/receipt/revision/ownership protections and minimum 320 CSS px.
 
-[Amendment completion](../increments/011-responsive-shell.md#automatic-storage-protection-amendment-completion--15-november-2026)
-and [independent review](../../output/increment-011-storage-protection/reviewer.md)
-record 46 affected developer tests, 38 independently rerun targeted tests, all four
-type scopes/build passing, 15 verified hashes and no actionable findings. Native
-browser permission/grant UX was not qualified. New amendment review stopped at
-approximately 13/20 aggregate minutes, zero harness repairs; the earlier campaigns
-remain stopped and their acceptance is not relabelled passed.
+Source confirms four exposed operations: createGroup, renameGroup, createColorToken
+and reviseColorToken. The draft proposes covering all four and uses that inventory
+to identify required reversal support; no current inverse/delete/history API exists.
+Bounded before/after snapshots are an analyst recommendation, not a selected
+mechanism. Granularity/no-op/redo rules, pending/unknown/failure behavior, dirty-input
+protection, selection/focus, shortcuts, external-change invalidation, diagnostic-
+baseline restoration and proposed 50-step/32 MiB limits require review/agreement.
 
-Concurrent global.css slider-thumb edits were preserved as user work. A separate
-baseline Git casing mismatch remains: the physical Workbench/ folder is capitalized,
-but its 39 files are still indexed under lowercase workbench/. Contents match the
-committed baseline. No agent staged or changed the index; see
-[working-tree notes and user rename commands](../../output/increment-011-storage-protection/working-tree-notes.md).
+## Review order and limits
 
+Present identified concrete design artifacts to the user first. Approval for
+analyst design review is separate from final contract/design agreement and
+implementation authorization. The initial analyst draft is not a review of the
+new design. Material design revisions return to the user before renewed review.
 
-## Delivered focus
+012 planning is bounded to 15 aggregate review minutes (analyst 6, designer 5,
+coordinator 4), source/static/prose/link checks only. Analyst consumed roughly
+5.5 minutes, designer 4.5 and coordinator 3: approximately **13/15 minutes**
+with zero repairs. Source/static checks stopped at the initial handoff. No app tests,
+builds, browser qualification or harness work are part of this preparation. No
+prior campaign restarts through new agents/increment numbers.
 
-The user agreed the refined contract, V2 designs and adopted file-grouped tree
-at `e5a3e3f`, then explicitly authorized developer implementation and independent
-review. The [011 completion report](../increments/011-responsive-shell.md#completion-report--15-november-2026)
-records original AC-1–14 evidence, exact snapshots, resolved findings and acceptance limits.
-Contract is Agreed; delivery is **Partially completed**, not Closed/Completed.
+## Increment 011 closure
 
-- Implemented owner-first `components/`, `hooks/`, `helpers/`, `state/` organisation and capitalized Workbench/. The [current ownership map](../project/workbench-component-organisation.md) describes actual paths; App/useProjects/Workbench authority and the single keyed editor session are preserved.
-- Projects row selection/inspection is separate from explicit Open. Selected-revision backup reuses the checked RPC without editing ownership; stale data needs refreshed review and a fresh explicit action. Create-and-open, inline restore, storage preference and recovery remain on Projects. App retains Projects context across its Workbench branch.
-- Workbench wide/compact/narrow composition, Back/reopen, existing controls/dialogs, compact guidance and visible safety feedback are delivered. Normal-flow editor actions avoid the observed 320px sticky overlap. Project management is limited to Projects return.
-- Undo/Redo, including placeholders, is deferred to 012. Delete, metadata editing, external Import/Export, visual grids, editable token Details, relationships and new comparison remain outside 011.
+[011 is Closed, delivery Partially completed](../increments/011-responsive-shell.md#user-directed-closure--15-november-2026).
+Its UI and automatic storage-protection implementations and independent reviews
+finished, with required findings resolved. User closure is a scope decision, not
+a new manual acceptance report. The closure register preserves keyboard/focus/
+drawer combinations, zoom/short-height/threshold/long-content cases, long-list
+scroll/context, live unavailable/unknown/ownership/replacement interleavings and
+native persistence permission UX gaps. Nothing is relabelled passed or silently
+transferred wholesale into 012.
 
-## Review and checks
+Original 011 checks stopped at about 46/60 minutes and 2/2 harness repairs; the
+storage amendment at 13/20 and zero repairs. Both stay stopped, including unused
+allowance. Earlier 007/009/010 dispositions are unchanged; the
+[007 deferred register](../increments/007-local-retention-and-backup.md#deferred-qualification)
+retains its zero remaining authorized campaign allowance. Chrome remains the
+automated baseline; broader engines follow the fully featured PWA.
 
-The fresh [independent reviewer](../../output/increment-011-implementation/reviewer.md)
-verified 136 canonical file hashes/deletions, including the case-only Workbench
-root rename, and assessed the agreed designs/contract/ownership. R1 found two
-required regressions, both fixed and independently rechecked at
-[final R2](../../output/increment-011-implementation/review-source-manifest-r2.json):
+## Separate repository-casing observation
 
-1. RestoreDialog Open/completion was blocked by a stale preview gate. App now queues opening until preview disposal; the ordinary conflicting-action gate remains. The unchanged native Chrome reproduction now enters Workbench, and the App integration test asserts exactly one Open.
-2. Narrow project inspection hid errors/retry/recovery in browse. The sole feedback region now sits outside both hidden panes; visibility/unique-ID regression coverage passes.
-
-No remaining actionable reviewer findings. Final affected tests **22 passed**;
-all four type scopes and production build passed. Earlier broad relocation suite
-passed **1,089 tests**; later changes were checked with focused suites rather than
-represented as a fresh full-suite pass. Existing bundle advisory remains.
-
-[Coordinator native Chrome observations](../../output/increment-011-implementation/browser-observations.md)
-cover isolated synthetic project creation, selection/open/download, restore preview/
-Cancel, dirty departure Keep editing, exact `12x`/same DOM node across 1440/880/720/
-320 and Back/Edit. Independent Chrome reproduced/rechecked restore Open. Native
-Chrome was 157.0.8103.51, headless disposable contexts; no normal user profile or
-existing project data was changed. Chrome contexts and task-local Vite were closed.
-
-## Remaining acceptance and stopping
-
-Full native keyboard/focus/drawer combinations, zoom/short-height/threshold edges,
-long-list scroll/context and live unavailable/unknown/restore-replacement cases
-remain unverified. The completion report preserves criterion-specific evidence
-instead of treating source/tests or clean review as full browser acceptance.
-
-Implementation campaign stopped at approximately **46/60 aggregate verification
-minutes**, **2/2 harness-repair cycles** (developer 17, reviewer 19, coordinator 10).
-No more responsive harness repair was attempted. Product regressions used existing
-working tests and the same proven restore reproduction. Unused time is not
-permission to restart qualification through another harness/agent. Earlier
-planning and 007/009/010 stop decisions remain unchanged.
-
-## Earlier delivery and qualification
-
-[010 remains Closed, Partially completed](../increments/010-component-oriented-presentation.md#user-directed-closure--15-november-2026)
-with its deferred acceptance. 009 is Closed, Partially completed. 007/008 remain
-Completed on recorded manual acceptance. The
-[007 deferred qualification register](../increments/007-local-retention-and-backup.md#deferred-qualification)
-retains earlier resource/lifecycle/HTTPS/accessibility/engine limits and zero
-remaining authorized qualification allowance. Chrome remains the automated baseline;
-broader engines follow the fully featured PWA. Install/offline, interchange and
-Electron remain later work.
+The user reports committing the casing correction. Current Git-tree inspection at
+`6aa6943` still lists `src/presentation/workbench/Workbench.tsx`, while the physical
+owner is `Workbench/`. This discrepancy is recorded without assuming the index
+correction succeeded. It does not block 012 planning; no source/index/staging
+changes are made to resolve it here.
 
 ## Next meaningful action
 
-User review of the delivered UI and remaining acceptance/closure scope. Do not
-mark 011 Completed or start 012 solely because source/tests/review finished.
-Further automated acceptance requires explicit bounded authorization. Leave staging,
-committing and pushing to the user; case-sensitive staging should preserve the
-workbench/ → Workbench/ root rename on this filesystem.
+Review the identified [V1 design](../project/workbench-layout/undo-redo-v1.md)
+and material policy choices with the user, then iterate. Obtain approval of an identified proposal
+before analyst design review. Keep the contract Draft and implementation Not
+started until final agreement and explicit implementation authorization. Leave
+staging, committing and pushing to the user.
 
 ## Resume
 
-Read AGENTS.md, this handoff, actual Git state, the 011 completion, independent R2
-review and current ownership map. Coordinator completion/status/current-path notes
-follow the frozen source snapshot; source/tests were not changed after R2 review.
+Read AGENTS.md, this handoff, actual Git state, the 012 draft and its new design
+artifacts. The [pre-closure snapshot](history/2026-11-15-increment-011-before-closure.md)
+preserves outgoing 011 detail. [README](../../README.md) owns current commands and
+limits; increment records own their agreements/evidence/acceptance gaps.

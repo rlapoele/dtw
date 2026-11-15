@@ -1,6 +1,7 @@
 # Increment 011: Responsive shell and workbench UI refinement
 
 - Contract status: Agreed
+- Lifecycle: Closed by user instruction, 15 November 2026
 - Delivery status: Partially completed — initial implementation and automatic storage-protection amendment independently reviewed; earlier browser acceptance gaps remain unverified
 - Agreement: on 15 November 2026 the user agreed the refined Increment 011 contract, V2 designs and adopted presentation structure at `e5a3e3f`, and explicitly authorized implementation by a separate developer followed by an independent reviewer. See [agreement and implementation authorization](#agreement-and-implementation-authorization--15-november-2026). Earlier pending/Draft statements below are historical and superseded by this agreement.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [layout reference V1](../project/workbench-layout/README.md), [component map V1](../project/workbench-layout/component-map-v1.md), [current ownership](../project/workbench-component-organisation.md), [010 delivery direction](010-component-oriented-presentation.md#delivery-direction), [workflow](../workflow/agent-roles.md).
@@ -767,3 +768,44 @@ existing 011 acceptance/closure scope; this amendment authorizes no 012 work or
 renewed browser qualification.
 
 Suggested commit: `feat: request storage protection after project retention`.
+
+
+## User-directed closure — 15 November 2026
+
+After committing the delivered work as `6aa6943`, the user explicitly instructed:
+“Let’s close Increment 011 with the remaining acceptance gaps documented and
+prepare the contract and design for Increment 012: undo/redo.” Increment 011 is
+**Closed**; delivery remains **Partially completed**. Closure is an explicit scope
+decision, not a new manual acceptance report or a claim that unobserved cases pass.
+Initial UI and storage-protection implementations and independent reviews are
+finished; required reviewer findings were resolved as recorded above.
+
+### Deferred acceptance register
+
+| Owning criteria / evidence | Remaining gap — deferred and unverified |
+| --- | --- |
+| AC-1/2/6 | Complete native keyboard/focus/collapse/drawer/overlay combinations, including resize/fallback and focus return after all relevant actions. |
+| AC-3/4/13 | Long-catalogue/token-list scroll and full scope/query/context restoration matrix; native reference/display/exceptional editor-session combinations beyond recorded ordinary/invalid-input samples. |
+| AC-7/10 | Zoom, short-height, threshold-neighbor and long-content cases; complete dialog/exceptional visual geometry, reflow and native-control acceptance. |
+| AC-8/11/12/13 | Live unavailable/read-failure/unknown-result, cross-tab revision/ownership and full same-ID replacement/recovery interleavings; controlled/source checks do not establish the full native matrix. |
+| AC-15 | Native browser permission/prompt/grant UX and additional-engine permission behavior; controlled API/wiring tests are not native permission qualification. |
+
+The [initial completion](#completion-report--15-november-2026),
+[storage amendment completion](#automatic-storage-protection-amendment-completion--15-november-2026),
+[independent UI review](../../output/increment-011-implementation/reviewer.md) and
+[storage review](../../output/increment-011-storage-protection/reviewer.md) own
+criterion-linked passing evidence and exact limits. Missing evidence is not itself
+a demonstrated product defect. Nothing is relabelled passed or silently transferred
+wholesale into 012.
+
+The original implementation campaign stopped at approximately **46/60 aggregate
+verification minutes and 2/2 harness-repair cycles**; the storage amendment stopped
+at approximately **13/20 minutes and zero repairs**. Both remain stopped, including
+unused allowance. Closure and new planning authorize no automated qualification
+restart. Earlier 007/009/010 registers and stopping decisions remain unchanged.
+
+Next: prepare 012’s contract and design for applied token/group undo/redo within
+the open project session, retaining native typing undo and excluding persistent
+history. Concrete design returns to the user before analyst design review; no
+012 application implementation is authorized by closing 011 or drafting artifacts.
+Staging, committing and pushing remain with the user.

@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1800" viewBox="0 0 1800 1800" role="img"><title>012 · Undo/Redo states — V1 proposal</title><style>text{font-family:Inter,Arial,sans-serif;fill:#20252e;font-size:16px}.title{font-size:28px;font-weight:650}.h{font-size:20px;font-weight:650}.small{font-size:14px;fill:#596579}.micro{font-size:12px;fill:#596579}.muted{fill:#7b8493}.strong{font-weight:650}.label{font-size:14px;font-weight:650}.error{fill:#a32828}</style>
+<rect x="0" y="0" width="1800" height="1800" rx="0" fill="#f1f3f6" stroke="none"/>
+<text x="40" y="48" class="title">012 · Undo/Redo states — V1 proposal</text>
+<text x="40" y="80" class="small">Shared feedback is always outside hidden browse/inspection panes · No new history browser · Product copy below is proposed</text>
+<rect x="40" y="110" width="840" height="220" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text x="60" y="142" class="h">Empty history</text>
+<rect x="60" y="162" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="102.0" y="189" class="muted">Undo</text>
+<rect x="152" y="162" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="194.0" y="189" class="muted">Redo</text>
+<text x="60" y="234" class="small">No changes to undo.</text>
+<text x="60" y="258" class="small">Applied changes in this open project appear here.</text>
+<rect x="920" y="110" width="840" height="220" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text x="940" y="142" class="h">Undo and Redo available</text>
+<rect x="940" y="162" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="982.0" y="189" class="">Undo</text>
+<rect x="1032" y="162" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="1074.0" y="189" class="">Redo</text>
+<text x="940" y="234" class="small">Undo: Rename color.brand to color</text>
+<text x="940" y="258" class="small">Redo: Change color.accent</text>
+<rect x="40" y="350" width="840" height="220" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text x="60" y="382" class="h">Pending reversal</text>
+<rect x="60" y="402" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="102.0" y="429" class="muted">Undo</text>
+<rect x="152" y="402" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="194.0" y="429" class="muted">Redo</text>
+<text x="60" y="474" class="small">Undoing Change color.accent…</text>
+<text x="60" y="498" class="small">Wait for the retained result.</text>
+<rect x="920" y="350" width="840" height="220" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text x="940" y="382" class="h">Outcome unknown</text>
+<rect x="940" y="402" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="982.0" y="429" class="muted">Undo</text>
+<rect x="1032" y="402" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="1074.0" y="429" class="muted">Redo</text>
+<text x="940" y="474" class="small">Undo result is unknown. Do not repeat the change.</text>
+<rect x="1410" y="512" width="328" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="1574.0" y="539" class="">Check retained result</text>
+<rect x="40" y="590" width="840" height="220" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text x="60" y="622" class="h">Retained; current display unavailable</text>
+<rect x="60" y="642" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="102.0" y="669" class="muted">Undo</text>
+<rect x="152" y="642" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="194.0" y="669" class="muted">Redo</text>
+<text x="60" y="714" class="small">Undo was retained. Current project could not be read.</text>
+<rect x="530" y="752" width="328" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="694.0" y="779" class="">Retry reading project</text>
+<rect x="920" y="590" width="840" height="220" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text x="940" y="622" class="h">Failed reversal · state preserved</text>
+<rect x="940" y="642" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="982.0" y="669" class="">Undo</text>
+<rect x="1032" y="642" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="1074.0" y="669" class="muted">Redo</text>
+<text x="940" y="714" class="small">Could not undo Change color.accent. No change was retained.</text>
+<text x="940" y="738" class="small">Undo remains available. Review the reported reason.</text>
+<rect x="1410" y="752" width="328" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="1574.0" y="779" class="">Retry Undo</text>
+<rect x="40" y="830" width="840" height="220" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text x="60" y="862" class="h">Read only / paused</text>
+<rect x="60" y="882" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="102.0" y="909" class="muted">Undo</text>
+<rect x="152" y="882" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="194.0" y="909" class="muted">Redo</text>
+<text x="60" y="954" class="small">Undo/Redo paused. Another tab has write access.</text>
+<text x="60" y="978" class="small">Session history is kept while the project is unchanged.</text>
+<rect x="530" y="992" width="328" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="694.0" y="1019" class="">Check access</text>
+<rect x="920" y="830" width="840" height="220" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text x="940" y="862" class="h">History no longer applies</text>
+<rect x="940" y="882" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="982.0" y="909" class="muted">Undo</text>
+<rect x="1032" y="882" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="1074.0" y="909" class="muted">Redo</text>
+<text x="940" y="954" class="small">Project changed outside this session. Undo/Redo history cleared.</text>
+<text x="940" y="978" class="small">Current retained project data remains available.</text>
+<rect x="40" y="1070" width="840" height="220" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text x="60" y="1102" class="h">Oldest history evicted</text>
+<rect x="60" y="1122" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="102.0" y="1149" class="">Undo</text>
+<rect x="152" y="1122" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="194.0" y="1149" class="muted">Redo</text>
+<text x="60" y="1194" class="small">Earlier changes are no longer available to undo.</text>
+<text x="60" y="1218" class="small">Undo: Create color.accent</text>
+<rect x="920" y="1070" width="840" height="220" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text x="940" y="1102" class="h">One change exceeds the agreed history limit</text>
+<rect x="940" y="1122" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="982.0" y="1149" class="muted">Undo</text>
+<rect x="1032" y="1122" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="1074.0" y="1149" class="muted">Redo</text>
+<text x="940" y="1194" class="small">Change applied. This change cannot be undone in this session.</text>
+<text x="940" y="1218" class="small">Earlier Undo/Redo history was cleared.</text>
+<rect x="40" y="1310" width="840" height="390" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text x="64" y="1350" class="h">Dirty or invalid draft · guarded history request</text>
+<rect x="100" y="1370" width="720" height="290" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text x="124" y="1410" class="h">Discard unapplied changes and undo?</text>
+<text x="124" y="1450" class="small">Your draft for color.accent will be discarded.</text>
+<text x="124" y="1478" class="small">Then Undo: Rename color.brand to color.</text>
+<text x="124" y="1506" class="small">No draft value will be applied.</text>
+<rect x="124" y="1550" width="180" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="214.0" y="1577" class="">Keep editing</text>
+<rect x="396" y="1550" width="390" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="591.0" y="1577" class="">Discard and undo</text>
+<text x="64" y="1674" class="small">Keep editing/Escape restores exact input and focus. Discard rechecks the intent.</text>
+<rect x="920" y="1310" width="840" height="390" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text x="944" y="1350" class="h">Removed selection and modal ownership</text>
+<text x="944" y="1394" class="small">Undid Create color.accent. Selected token was removed.</text>
+<text x="944" y="1424" class="small">Browse returns to the nearest surviving namespace.</text>
+<rect x="944" y="1450" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="986.0" y="1477" class="muted">Undo</text>
+<rect x="1036" y="1450" width="84" height="44" rx="6" fill="#fff" stroke="#dce0e7"/>
+<text text-anchor="middle" x="1078.0" y="1477" class="">Redo</text>
+<text x="944" y="1520" class="small">Redo: Create color.accent</text>
+<text x="944" y="1560" class="small">Redo restores its identity; selection and focus stay where they are.</text>
+<text x="944" y="1600" class="small">In Create/Rename dialogs, shortcuts stay local.</text>
+<text x="944" y="1630" class="small">Close through the existing guard before using header Undo/Redo.</text>
+<text x="40" y="1754" class="small">Read-only, suspension and readback failures keep recovery visible. Restore / worker replacement explains cleared session history; retained data is not deleted.</text></svg>

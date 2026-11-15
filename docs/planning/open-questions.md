@@ -25,6 +25,14 @@ for exact scope and unverified acceptance. Broader model/interchange questions
 remain open; Undo/Redo is deferred to 012. This does not authorize 012 or a new
 qualification campaign.
 
+**Increment 012 planning — 15 November 2026:** the user requested
+[session Undo/Redo](../increments/012-session-undo-redo.md) after closing 011.
+Applied token/group changes within the current open-project session and native
+input typing undo are agreed initial boundaries. Coverage, history granularity,
+unknown outcomes, revision invalidation, dirty-input behavior, diagnostic-baseline
+restoration, mechanism and resource bounds remain proposals for contract/design
+review. No persistent history or implementation is authorized by this planning.
+
 ## Canonical model
 
 The [14 November layout reference](../project/workbench-layout/README.md) records
