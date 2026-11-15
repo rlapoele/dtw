@@ -24,6 +24,15 @@ original controls and are not the updated agreed direction. See
 Project context, retention/recovery feedback and protected departure remain;
 exact revised layouts and implementation scope await designer/user/analyst review.
 
+**Further user request — Undo/Redo:** replace the removed backup/restore header
+controls with Undo and Redo, following the accepted visual references. This is the
+requested next design direction; V1 does not depict it. The user agreed initial history for applied token/group changes within the open
+project session, retaining native typing undo; persistent history is outside this
+first scope. Exact operation coverage, draft interaction and delivery scope remain
+unresolved in
+[Increment 011](../../increments/011-responsive-shell.md#requested-undoredo-controls--15-november-2026).
+Do not treat button placement as agreement to a history implementation.
+
 ## Independent recommendation
 
 Keep the current list/table and the current Authored value / Resolved & trace

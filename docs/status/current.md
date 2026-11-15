@@ -39,6 +39,12 @@ is superseded by the user’s selection/inspection direction and explicit openin
 control. The user also placed all project-management controls on Projects,
 leaving only Projects navigation in the token workbench. Workbench V1’s
 Restore/Download backup header controls are superseded for the next design.
+The user requested Undo/Redo in their place, following the visual reference.
+The user agreed applied token/group history within the open project session,
+retaining native typing undo and excluding persistent history from the first scope.
+Exact operation/guard semantics and whether implementation joins 011 or a separate
+increment remain unresolved. See the
+[Undo/Redo planning entry](../increments/011-responsive-shell.md#requested-undoredo-controls--15-november-2026).
 Its original SVG/PNG remain historical proposals; Projects V2 is needed
 before analyst review. Shared component extraction and full delivery scope are
 not agreed.
@@ -83,7 +89,8 @@ Discuss the identified responsive-shell contract and concrete static V1 design
 proposal with the user, including its proposed entry/Back/resize/focus policies.
 Prepare Projects V2 around selected-project inspection, an explicit opening
 action and project-management controls. Revise workbench V1’s header to leave
-only Projects navigation for project management. Review both concrete responsive
+only Projects navigation for project management, and propose Undo/Redo placement
+with explicit unresolved behavior/scope. Review both concrete responsive
 designs with the user.
 Settle which project capabilities belong in 011 delivery before amending scope. Record design feedback/approval for analyst review,
 then obtain the separate analyst consistency review. Material revisions return to

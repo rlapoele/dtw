@@ -162,7 +162,11 @@ ComponentDefinition; entering or leaving that classification must explicitly
 handle the association. See the [canonical model](../../design-tokens/conceptual-model.md#token-layers)
 and [taxonomy](../../design-tokens/taxonomy.md).
 
-Undo/Redo is proposed, not delivered by these images. Its scope and relationship
+**15 November 2026 user follow-up:** Undo/Redo is now explicitly requested for
+the token-workbench header, replacing its backup/restore controls; project actions
+belong on Projects. [Increment 011](../../increments/011-responsive-shell.md#requested-undoredo-controls--15-november-2026)
+owns the requested design update and unresolved history/delivery scope.
+Undo/Redo is not delivered by these images. Its scope and relationship
 to draft cancellation, applied operations and retained history remain unresolved.
 
 ## Responsive behavior
