@@ -1,6 +1,7 @@
 # Increment 010: Shell and workspace slice proposal
 
 - Contract status: Agreed
+- Lifecycle: Closed with Increment 010 by user instruction, 15 November 2026; [remaining acceptance is deferred/unverified](010-component-oriented-presentation.md#user-directed-closure--15-november-2026).
 - Delivery status: Partially completed — implementation and independent review finished; native-browser/compact acceptance remains unverified
 - Agreement: on 15 November 2026 the user explicitly agreed this contract and authorized implementation after committing and pushing the proposal. This is the second-slice amendment to [Increment 010](010-component-oriented-presentation.md); later slices remain outside scope.
 - Baseline: `32ec593`, inspected on 15 November 2026 after the committed first slice.

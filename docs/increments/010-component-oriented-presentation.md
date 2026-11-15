@@ -1,7 +1,9 @@
 # Increment 010: Component-oriented presentation
 
 - Contract status: Agreed
-- Delivery status: Partially completed — all three agreed source-organisation slices delivered and independently reviewed; native-browser acceptance remains unverified
+- Lifecycle: Closed by user instruction, 15 November 2026
+- Delivery status: Partially completed — source organisation delivered and independently reviewed; remaining acceptance deferred and unverified
+- Closure: see [user-directed closure](#user-directed-closure--15-november-2026); closure does not establish manual acceptance.
 - Agreement: on 15 November 2026 the user instructed “Go ahead with increment 10”, agreeing this first-slice contract and authorizing implementation through the separate developer/reviewer workflow. Later roadmap slices remain outside this authorization.
 - References: [organisation proposal V1](../project/workbench-layout/presentation-organisation-proposal-v1.md), [decomposition V1](../project/workbench-layout/component-map-v1.md), [layout direction](../project/workbench-layout/README.md), [current ownership](../project/workbench-component-organisation.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md).
 
@@ -457,3 +459,46 @@ deliver the replacement interface, erase earlier acceptance gaps or mark 010
 Completed. S3's approximately 21/30 aggregate minutes and zero repairs are separate
 from the stopped S1/S2 allowances. Further functional work needs its own scope and
 authorization; further automated qualification needs a bounded authorized follow-up.
+
+
+## User-directed closure — 15 November 2026
+
+The user explicitly instructed: “Let’s close increment 010 with the remaining
+acceptance gaps documented, and prepare the contract and design for the responsive
+shell.” Increment 010 is **Closed**; delivery remains **Partially completed**.
+All three agreed source-organisation slices and their independent reviews are
+finished. Closure is a scope decision, not a report of successful manual acceptance
+or evidence that the remaining criteria passed. Implementation commits are
+`32ec593` (S1), `d430edd` (S2), and `428b5eb` (S3).
+
+### Deferred acceptance register
+
+The criterion-linked evidence in each handoff remains authoritative. In particular:
+
+| Owning criteria | Remaining acceptance gaps — deferred/unverified |
+| --- | --- |
+| S1 AC-2/AC-3 | Native Chrome failure/legacy-entry states and unknown-write Review/Stay/Leave focus. |
+| S1 AC-4/AC-5 | Native file selection/restaging/cancel/replacement, full dialog/focus behavior, exact compact geometry and screenshot parity. |
+| S2-AC-2/AC-3 | Native same-node/session and full focus parity; rare recovery, changed-baseline/restore interleavings and their focus states. |
+| S2-AC-4 | Native Chrome, exact compact geometry/screenshots, full drawer/dialog keyboard and focus behavior. |
+| S3-AC-2/S3-AC-3 | Native focus/keyboard, compact geometry/screenshots, restore and exceptional-state interaction matrix. |
+| S3-AC-4 | Stale/conflicting asynchronous exact-source states were not induced. |
+
+See the [S1 evidence](#snapshot-and-evidence),
+[S2 evidence](010-shell-and-workspace-slice.md#review-snapshot-and-acceptance-evidence)
+and [S3 evidence](010-inspector-and-display-slice.md#snapshot-and-evidence)
+for source/test/in-app coverage and inspection limits. Missing evidence is not a
+demonstrated product failure. None of these gaps is relabelled passed or silently
+transferred wholesale into the next increment.
+
+Each slice stopped at approximately 21/30 aggregate verification minutes, with
+zero harness repairs. All three campaigns remain stopped; unused allowance does
+not authorize renewed qualification. Earlier 007/008/009 dispositions remain
+unchanged, including the [007 deferred qualification register](007-local-retention-and-backup.md#deferred-qualification).
+
+Next: prepare the responsive shell contract and design as a separate increment.
+Its future acceptance must cover the behavior it changes while preserving these
+historical limits. Visual token grids, editable Details, relationships and
+interchange remain later work. This closure/planning instruction authorizes no
+application implementation, new automated acceptance campaign, staging, commit
+or push.

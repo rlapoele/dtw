@@ -24,6 +24,16 @@ preview bindings, variation-view coverage, Undo/Redo scope, and draft/back/depar
 behavior still require scoped decisions before implementation. Editable layer
 controls must respect existing component-ownership constraints.
 
+**Responsive-shell planning — 15 November 2026:** the user scoped
+[Increment 011](../increments/011-responsive-shell.md) to wide/half-screen/narrow
+composition, clear in-app Back and one preserved editor session. Exact thresholds,
+entry/resize/focus policies and guard integration remain proposed for design and
+contract agreement. The user supplied a 320 CSS px minimum viewport and included
+the Projects entry page’s design/content and possible shared page layout in the
+discussion; a Projects redesign is not yet agreed implementation scope.
+Visual token grids, editable Details, relationships and
+interchange remain later slices. Planning does not authorize implementation.
+
 1. Beyond the decided boolean, number, dimension, percentage, duration, font family, numeric font weight, color, and cubic Bézier literal schemas, what literal schema, accepted units, and constraints apply to each remaining selected foundational type?
 2. Beyond the decided transition, typography, and shadow schemas, what exact fields, cardinalities, and nested-reference rules apply to gradient and border composites?
 3. What exact schemas, cardinalities, and rules should eventually define component parts, slots, properties, variant axes, interactive states, and component-token bindings inside `ComponentContract`?
