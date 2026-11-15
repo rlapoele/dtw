@@ -26,6 +26,13 @@ revised design. V1’s SVG/PNG below remain the original proposal, not the updat
 agreed direction or an approved implementation artifact. Projects V2 is needed
 before analyst review; this note does not authorize application implementation.
 
+The user also directed that all project-management controls belong on Projects;
+the token workbench should expose only Projects navigation for project management.
+V2 must include selected-project backup/restore placement and remove duplicate
+workbench backup/restore controls. See the
+[placement decision](../project-operations.md#placement-of-project-actions).
+The workbench destination in V1’s original SVG/PNG is superseded on that point.
+
 ## Recommendation
 
 Use a dedicated Projects composition inside the same structural application shell.

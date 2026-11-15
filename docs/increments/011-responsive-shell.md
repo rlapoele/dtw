@@ -82,6 +82,16 @@ versus editable project metadata and which undelivered operations join 011 remai
 unsettled. No current application behavior, acceptance status or implementation
 authority changes through this planning decision.
 
+### Project actions belong on Projects — 15 November 2026
+
+The user further agreed that the token workbench needs no project-management
+controls except returning to Projects. The [placement decision](../project/project-operations.md#placement-of-project-actions)
+supersedes V1’s workbench Restore backup/Download backup controls. Revise both
+page designs together: selected-project operations live on Projects; the workbench
+retains project context and existing retention/recovery/departure protection.
+Exact operation placement and backup coordination from the catalogue require the
+revised design and analyst scoping. No application changes are authorized here.
+
 ## Component-decomposition continuity
 
 **User-confirmed continuation — 15 November 2026.** Increment 011 builds on the
@@ -116,7 +126,7 @@ the mechanics before design agreement and source-level implementation planning.
 These proposed criteria become binding only with final contract/design agreement.
 Any unresolved interaction below must be settled before implementation.
 
-- **AC-1 — Wide shell:** at the agreed wide viewport, navigation, current workspace and inspector are usable side by side. Collapsing/reopening either side region preserves the selection and session. Project actions, All tokens/All content, group actions and diagnostics remain reachable.
+- **AC-1 — Wide shell:** at the agreed wide viewport, navigation, current workspace and inspector are usable side by side. Collapsing/reopening either side region preserves the selection and session. Projects navigation, All tokens/All content, group actions and diagnostics remain reachable. Project-management controls, including backup and restore entry points, belong on Projects rather than the workbench.
 - **AC-2 — Compact split:** at the agreed compact viewport, a labeled Browse/navigation control opens the namespace drawer. Dismissal or scope navigation preserves the token draft. Workspace/inspector remain side by side only above the agreed usable-split threshold; exact fields, labels and Apply/Cancel are operable without overlap or clipped feedback.
 - **AC-3 — Narrow flow:** below that threshold, browsing and inspection/editing each use the available content width, rather than a vertically squeezed simultaneous split. Selection has an explicit inspect/edit entry. In-app Back returns to the same namespace scope, query, selection and browsing position; it neither applies nor cancels a draft. Reopening the selected token restores its unfinished session. Group/read-only inspection and no-selection states have an equally clear route back.
 - **AC-4 — One session:** start a color draft with invalid raw channel input, change size across every layout boundary, use Back/reopen and open/close navigation. The exact raw input, dirty state, editor tab/mode and supported display settings survive; no Apply, Cancel or token mutation occurs. A valid literal/reference draft behaves likewise. There is one live selected-token session, with no duplicate dirty notifications or competing Apply controls.

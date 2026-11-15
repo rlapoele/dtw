@@ -13,6 +13,17 @@ The wide sketch deliberately shows a vertically clipped inspector: its content
 continues by scrolling. Compact and narrow sketches expose more of the same
 editor. These are synthetic source-informed wireframes, not browser screenshots.
 
+## Subsequent user direction — 15 November 2026
+
+**Workbench project-action placement is superseded for the next revision.** The
+user directed that project-management controls belong on Projects, leaving only
+Projects navigation in the token workbench. Remove Restore backup and Download
+backup from the next workbench header proposal. Current V1 SVG/PNG retain the
+original controls and are not the updated agreed direction. See
+[project operations](../project-operations.md#placement-of-project-actions).
+Project context, retention/recovery feedback and protected departure remain;
+exact revised layouts and implementation scope await designer/user/analyst review.
+
 ## Independent recommendation
 
 Keep the current list/table and the current Authored value / Resolved & trace

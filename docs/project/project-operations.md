@@ -50,15 +50,40 @@ than squeezing a right-hand pane beside the list. Exact narrow entry, action
 placement, focus, list-context preservation and no-selection/unavailable states
 need concrete revised designer artifacts and user review.
 
-Inspector fields, editable versus read-only metadata, and where project operations
-appear remain to be designed. The capability inventory does not add buttons for
+Inspector fields, editable versus read-only metadata, and the exact arrangement
+of project operations on Projects remain to be designed. The capability inventory does not add buttons for
 undelivered operations or settle their contracts. Existing project command,
 restore, error/recovery and identity guarantees constrain the revised design.
+
+## Placement of project actions
+
+**User-agreed direction — 15 November 2026.** Project-management capabilities
+belong on **Projects**. Within the token workbench, the only project-management
+control is navigation back to **Projects**. In particular, the next workbench
+design removes **Restore backup** and **Download backup** from its header and
+provides their project-management entry points on Projects instead. Future
+project-level metadata, delete, import/export and duplication actions follow this
+placement rule when their separate scope is agreed.
+
+The workbench may still identify the current project and show relevant retention,
+validation or recovery feedback; these are contextual information and existing
+safety behavior rather than a duplicate project-management toolbar. Returning to
+Projects retains the current dirty-form/draft, busy/unknown and safe-departure
+protections. It is distinct from Back within a narrow token inspector.
+
+The new design must account for backing up a selected project from Projects,
+without assuming that opening the token workbench is required. The required
+read/backup coordination and any affected retained/unknown states need scoped
+analysis; the placement decision alone does not authorize protocol changes or
+weaken revision/replacement protection. Current application controls remain
+unchanged until implementation is agreed and authorized.
 
 ## Next design step
 
 Prepare an identified Projects V2 proposal with list selection, contextual project
-inspector and an explicit Open project action; show responsive states down to
+inspector, explicit Open project action and project-operation entry points.
+Revise the workbench header to retain only Projects navigation for project
+management; show responsive states down to
 320 CSS px and shared React shell/component boundaries. Present it to the user
 before analyst review. No new design revision, analyst approval, final contract
 agreement or implementation authorization is established by this record.

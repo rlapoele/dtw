@@ -36,7 +36,10 @@ a catalogue with Create/Restore alongside on wider screens, stacked at 320px,
 plus screen transition and shared React layout/header candidates. Existing
 Projects/workbench workflow owners remain distinct. V1’s direct-open behavior
 is superseded by the user’s selection/inspection direction and explicit opening
-control. Its original SVG/PNG remain historical proposals; Projects V2 is needed
+control. The user also placed all project-management controls on Projects,
+leaving only Projects navigation in the token workbench. Workbench V1’s
+Restore/Download backup header controls are superseded for the next design.
+Its original SVG/PNG remain historical proposals; Projects V2 is needed
 before analyst review. Shared component extraction and full delivery scope are
 not agreed.
 Concrete design states must be presented to the user before analyst design review.
@@ -78,8 +81,10 @@ PWA. Install/offline PWA acceptance, interchange and Electron remain later work.
 
 Discuss the identified responsive-shell contract and concrete static V1 design
 proposal with the user, including its proposed entry/Back/resize/focus policies.
-Prepare Projects V2 around selected-project inspection plus a separate explicit
-opening action; review its concrete responsive states/content with the user.
+Prepare Projects V2 around selected-project inspection, an explicit opening
+action and project-management controls. Revise workbench V1’s header to leave
+only Projects navigation for project management. Review both concrete responsive
+designs with the user.
 Settle which project capabilities belong in 011 delivery before amending scope. Record design feedback/approval for analyst review,
 then obtain the separate analyst consistency review. Material revisions return to
 the user. Implementation needs final contract/design agreement and authorization.
