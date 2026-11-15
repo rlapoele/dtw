@@ -1,7 +1,7 @@
 import {
   authoredColorCoordinates,
   spaceName,
-} from "@presentation/features/workbench/color/authored-color";
+} from "@presentation/token-display/authored-color";
 import type { Token } from "@domain/token";
 import type { ProjectContext } from "@application/retention/projections";
 import { identityLabels } from "@presentation/token-display/identity-labels";

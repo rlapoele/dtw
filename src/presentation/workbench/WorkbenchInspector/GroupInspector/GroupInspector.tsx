@@ -1,6 +1,6 @@
 import type { ProjectContext } from "@application/retention/projections";
 import { pathLabel } from "@presentation/token-display/identity-labels";
-import { ExactSource } from "../components/ExactSource";
+import { ExactSource } from "@presentation/token-display/ExactSource";
 export function GroupInspector({
   entry,
   projectId,

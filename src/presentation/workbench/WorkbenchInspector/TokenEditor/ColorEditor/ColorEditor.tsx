@@ -11,18 +11,17 @@ import type { ColorSpace } from "@domain/color-literal";
 import {
   integerByteDisplay,
   integerByteIssue,
-} from "@presentation/features/workbench/color/integer-rgb";
+} from "@presentation/workbench/WorkbenchInspector/TokenEditor/integer-rgb";
 import { Select } from "@presentation/ui/select";
 import {
   changeView,
   displayed,
   editComponent,
   fields,
-} from "@presentation/features/workbench/inspector/session";
-import type { DraftSession } from "@presentation/features/workbench/inspector/session";
-import { visualRangeState } from "@presentation/features/workbench/color/visual-range";
-import { spaceName } from "@presentation/features/workbench/color/authored-color";
-export { spaceName } from "@presentation/features/workbench/color/authored-color";
+} from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
+import type { DraftSession } from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
+import { visualRangeState } from "@presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/visual-range";
+import { spaceName } from "@presentation/token-display/authored-color";
 function illustrativeGradient(space: ColorSpace, index: number): string {
   const identity = COLOR_COMPONENTS[space][index];
   if (identity === "hue")
@@ -41,7 +40,7 @@ function illustrativeGradient(space: ColorSpace, index: number): string {
     return "linear-gradient(to right,#aaa,#456bc8)";
   return "linear-gradient(to right,#111,#fff)";
 }
-export function ColorFields({
+export function ColorEditor({
   session: s,
   onChange,
   onError,

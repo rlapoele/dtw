@@ -24,10 +24,8 @@ import type { Token } from "@domain/token";
 import type { ProjectHeader, WorkbenchHost } from "@presentation/host/protocol";
 import { Button } from "@presentation/ui/button";
 
-import {
-  WorkbenchInspector,
-  EditableTokenInspector,
-} from "@presentation/features/workbench/inspector/WorkbenchInspector";
+import { WorkbenchInspector } from "@presentation/workbench/WorkbenchInspector/WorkbenchInspector";
+import { TokenEditor } from "@presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditor";
 import { CreationDialog } from "@presentation/workbench/CreationDialog/CreationDialog";
 import { NamespaceTree } from "@presentation/workbench/WorkbenchNavigation/NamespaceTree/NamespaceTree";
 
@@ -418,7 +416,7 @@ export function Workbench({
           requestSource={(id) => source("group", id)}
         >
           {selection?.kind === "token" && inspection && context ? (
-            <EditableTokenInspector
+            <TokenEditor
               inspectorExpanded={inspectorExpanded}
               onToggle={() => setInspectorExpanded(!inspectorExpanded)}
               readFailure={readFailure}

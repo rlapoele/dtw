@@ -2,11 +2,11 @@ import type {
   DisplayRow,
   ProjectContext,
 } from "@application/retention/projections";
-import { AuthoredValue } from "../../../features/workbench/components/AuthoredValue";
-import { Swatch } from "../../../features/workbench/components/swatch";
+import { AuthoredValue } from "@presentation/token-display/AuthoredValue";
+import { TokenSwatch } from "@presentation/token-display/TokenSwatch";
 import { Button } from "@presentation/ui/button";
 import { identityLabels, namespaceEntryDetails } from "@presentation/token-display/identity-labels";
-import { colorPreview } from "@presentation/features/workbench/color/preview";
+import { colorPreview } from "@presentation/token-display/color-preview";
 export function TokenTable({
   context,
   creationParentLabel = "Project root",
@@ -42,7 +42,7 @@ export function TokenTable({
           onClick={() => onSelect(row.id)}
         >
           <span className="flex gap-3 min-w-0 items-start">
-            <Swatch css={colorPreview(row.preview).css} />
+            <TokenSwatch css={colorPreview(row.preview).css} />
             <span className="token-identity flex-1 min-w-0">
               <strong className="block text-xs/normal small:text-caption token-name wrap-anywhere">
                 {labels.get(row.id)}

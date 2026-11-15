@@ -4,11 +4,11 @@ import type {
 } from "@application/retention/projections";
 import type { TokenInspection } from "@application/authoring";
 import { pathLabel } from "@presentation/token-display/identity-labels";
-import { resolvedColor } from "../../../workbench/readback";
+import { resolvedColor } from "@presentation/token-display/resolved-color";
 import { COLOR_COMPONENTS, COMPONENT_NAMES } from "@domain/color-components";
-import { spaceName } from "../color/authored-color";
+import { spaceName } from "@presentation/token-display/authored-color";
 import { Badge } from "@presentation/ui/badge";
-import { Swatch } from "../components/swatch";
+import { TokenSwatch } from "@presentation/token-display/TokenSwatch";
 export function ResolvedTokenPanel({
   resolution,
   project,
@@ -32,7 +32,7 @@ export function ResolvedTokenPanel({
         <Badge>Applied value</Badge>
       </div>
       <div className="resolved-preview flex flex-col gap-2 my-3">
-        <Swatch css={css} />
+        <TokenSwatch css={css} />
         <p className="helper text-muted-foreground">{message}</p>
       </div>
       {resolution.status === "resolved" ? (

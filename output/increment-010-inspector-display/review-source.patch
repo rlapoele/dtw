@@ -1,0 +1,4578 @@
+diff --git a/README.md b/README.md
+index 4a5265b..ed6dbed 100644
+--- a/README.md
++++ b/README.md
+@@ -19,7 +19,7 @@ The scaffold was verified using Node.js `24.14.1` and npm `11.17.0`, satisfying
+ - `src/domain/` contains host-independent domain entities, value objects, and validation.
+ - `src/application/` coordinates host-independent authoring; `retention/` owns asynchronous retained operations, exact admission/codec, projections and recovery contracts.
+ - `src/adapters/` contains in-memory storage for pure operations/tests and native browser storage adapters under `browser/`.
+-- `src/presentation/` contains the React renderer, disposable specimens and independent presentation drafts. `app/App.tsx` owns project-entry orchestration and unconditionally calls `projects/useProjects.ts`; `projects/ProjectsScreen.tsx` composes the catalogue, creation form and recovery presentation. `app/useWorkbenchHost.ts` owns host lifetime, `project-backup/` serves both entry and workbench restore, and `workbench/Workbench.tsx` coordinates the workbench, drafts and departure protection; `host/` contains the browser worker/client boundary and file handling. Existing workbench components own screen rendering. Increment 010 has migrated shared roots, project entry and the shell/workspace owners under `workbench/`; inspector/session, color and shared value renderers deliberately remain under `features/workbench/`. Shared identity/namespace labels live under `token-display/`. Small owned controls under `ui/` compose Tailwind utilities over Base UI or native HTML. The typed `ui/icon.tsx` centralizes Heroicons Outline and default accessibility/sizing; `lib/cn.ts` exposes the `cn` 0.5.2 merge engine with tables precompiled from the CSS theme. Icon caller classes override defaults; Button retains its additive class contract. `styles/global.css` centralizes the semantic palette and preserves scoped dense typography, panel geometry and native preview/range exceptions. Native text fields retain exact raw strings; selects and ranges remain native.
++- `src/presentation/` contains the React renderer, disposable specimens and independent presentation drafts. `app/App.tsx` owns project-entry orchestration and unconditionally calls `projects/useProjects.ts`; `projects/ProjectsScreen.tsx` composes the catalogue, creation form and recovery presentation. `app/useWorkbenchHost.ts` owns host lifetime, `project-backup/` serves both entry and workbench restore, and `workbench/Workbench.tsx` coordinates the workbench, drafts and departure protection; `host/` contains the browser worker/client boundary and file handling. Existing workbench components own screen rendering. Increment 010 has migrated shared roots, project entry and the shell/workspace owners under `workbench/`. `workbench/WorkbenchInspector/` owns inspector rendering and its single `TokenEditor/` session; `TokenEditor/ColorEditor/` owns existing color controls. Shared token-aware renderers and pure identity/color helpers live under `token-display/`; the alternate legacy TokenList is test support only. No `features/` wrapper remains. Small owned controls under `ui/` compose Tailwind utilities over Base UI or native HTML. The typed `ui/icon.tsx` centralizes Heroicons Outline and default accessibility/sizing; `lib/cn.ts` exposes the `cn` 0.5.2 merge engine with tables precompiled from the CSS theme. Icon caller classes override defaults; Button retains its additive class contract. `styles/global.css` centralizes the semantic palette and preserves scoped dense typography, panel geometry and native preview/range exceptions. Native text fields retain exact raw strings; selects and ranges remain native.
+ - `test/domain/`, `test/application/`, `test/adapters/` and `test/presentation/` contain tests named `*.test.ts` and `*.test.tsx`.
+ 
+ The [workbench component ownership map](docs/project/workbench-component-organisation.md)
+diff --git a/docs/project/architecture.md b/docs/project/architecture.md
+index 8924b2a..302272b 100644
+--- a/docs/project/architecture.md
++++ b/docs/project/architecture.md
+@@ -511,3 +511,18 @@ Workbench, navigation, editor/session and other internals remain at their prior
+ paths except moved-module imports. This is a partial migration, not the complete
+ component-oriented roadmap; the [ownership map](workbench-component-organisation.md)
+ records current paths.
++
++
++**Inspector/display ownership — Increment 010 S3, 15 November 2026:**
++`workbench/WorkbenchInspector/` owns the existing inspector shell, header and small
++applied/draft `TokenValueComparison`. Its `TokenEditor/` owns the sole editor hook,
++raw session operations, content/tabs/recovery/actions and color controls; shared
++integer-RGB operations stay at that common editor owner. `token-display/` owns
++read-only authored/resolved/metadata/source renderers, TokenSwatch and pure color
++preview/authored-coordinate/resolved-color helpers. Shared display does not import
++private editor or shell coordination. The unused production alternate TokenList
++now lives in test support with its consumer assertions preserved. These moves
++remove the remaining `features/workbench/` wrapper and `workbench/readback` without
++changing Workbench's command authority, editor key/position, session lifetime or
++host/domain/application boundaries. This completes the agreed source organisation,
++not the functional roadmap or unverified native-browser acceptance.
+diff --git a/docs/project/presentation-conventions.md b/docs/project/presentation-conventions.md
+index eb9c25c..275ede1 100644
+--- a/docs/project/presentation-conventions.md
++++ b/docs/project/presentation-conventions.md
+@@ -80,7 +80,7 @@ forwarded to the underlying glyph; accessibility defaults are owned by the wrapp
+ 
+ ## Owned components and native controls
+ 
+-Inspect `src/presentation/ui/` and the functional blocks under `src/presentation/workbench/`, `projects/`, `project-backup/`, `token-display/` and the remaining `features/workbench/` before adding another implementation. The [workbench ownership map](workbench-component-organisation.md) identifies the current component and workflow owners. Reuse or extend an existing component where appropriate. Use locally owned shadcn-style components built on Base UI or native HTML, adapted to the product.
++Inspect `src/presentation/ui/` and the functional blocks under `src/presentation/workbench/`, `projects/`, `project-backup/`, `token-display/` before adding another implementation. The [workbench ownership map](workbench-component-organisation.md) identifies the current component and workflow owners. Reuse or extend an existing component where appropriate. Use locally owned shadcn-style components built on Base UI or native HTML, adapted to the product.
+ 
+ Consider `Sheet`, `Dialog`/`AlertDialog`, `Select`, `Combobox`, `Field`, `Input`, `Checkbox`, `Alert`, `Skeleton`, `Spinner`, `Empty` and `Pagination`, alongside foundational `Button`/`Badge` primitives, when a real slice requires them. This list is neither exhaustive nor an installation checklist. Avoid speculative loading, pagination or modal machinery.
+ 
+diff --git a/docs/project/workbench-component-organisation.md b/docs/project/workbench-component-organisation.md
+index dc3920f..64d46ff 100644
+--- a/docs/project/workbench-component-organisation.md
++++ b/docs/project/workbench-component-organisation.md
+@@ -1,7 +1,7 @@
+ # Workbench component organisation
+ 
+-Current ownership after the Increment 010 shared-root/project-entry and shell/workspace extractions, 15 November 2026.
+-This is a partial migration toward the endorsed component-oriented direction.
++Current ownership after the Increment 010 shared-root/project-entry, shell/workspace and inspector/display extractions, 15 November 2026.
++The agreed source organisation is delivered; future interface capabilities and native-browser acceptance remain separate.
+ Paths in the first table are relative to `src/presentation/`.
+ 
+ | Functional block | Components and local owners |
+@@ -15,7 +15,7 @@ The shell/workspace paths below are relative to `src/presentation/`.
+ 
+ | Functional block | Components and local owners |
+ |---|---|
+-| Shell and coordination | `workbench/Workbench` composes the screen and retains selection, view/query, dirty/departure state, refs, hook call order and command completion authority. Colocated `useProjectCommands`, `useProjectReadback`, `useWorkbenchLifecycle` and `useWorkbenchLayout` retain their implementations/call ownership. `readback` retains `resolvedColor` and `failureText`. |
++| Shell and coordination | `workbench/Workbench` composes the screen and retains selection, view/query, dirty/departure state, refs, hook call order and command completion authority. Colocated `useProjectCommands`, `useProjectReadback`, `useWorkbenchLifecycle` and `useWorkbenchLayout` retain their implementations/call ownership. |
+ | Header and status | `workbench/WorkbenchHeader/WorkbenchHeader` retains project actions; `WorkbenchStatus/WorkbenchStatus` renders only the existing footer through display props and a persistent-storage request callback. The session notice remains inline in Workbench. |
+ | Navigation | `workbench/WorkbenchNavigation/WorkbenchNavigation` keeps cohesive NavigationPane/NavigationDrawer exports; `NamespaceTree/NamespaceTree` renders the existing namespace buttons without new tree semantics. Workbench supplies content and controls open/expanded state. |
+ | Workspace | `workbench/TokenWorkspace/TokenWorkspace` composes `WorkspaceToolbar/WorkspaceToolbar`, `TokenTable/TokenTable` and `AllContent/AllContent`. TokenTable retains button/list semantics; the memoised MembershipBlock remains local to AllContent. `AllContent/all-content` owns membership presentation. `workbench/workspace-view` owns shared active-view/creation-parent mapping. |
+@@ -23,20 +23,22 @@ The shell/workspace paths below are relative to `src/presentation/`.
+ | Recovery | `workbench/WorkbenchRecovery/{RetentionRecovery,DepartureGuard,ProjectDiagnostics}` render existing feedback. Workbench retains command/lifecycle authority and inline lifecycle/read-failure sections. |
+ | Shared identity labels | `token-display/identity-labels` owns pure `pathLabel`, `identityLabels` and `namespaceEntryDetails`; consumers import directly without a forwarding module. |
+ 
+-The following owners deliberately remain under `src/presentation/features/workbench/`.
++The inspector/display paths below are relative to `src/presentation/`, except the
++explicit repository-root test fixture.
+ 
+ | Functional block | Components and local owners |
+ |---|---|
+-| Inspector | `inspector/WorkbenchInspector` composes group/token inspection; `EditableTokenInspector` is the single `useTokenEditor` owner. `EditorFields` composes authored/resolved sections; `EditRecovery`, `EditorActions`, `ColorFields`, `ReferenceFields`, `TokenMetadata`, `ResolvedTokenPanel` and `GroupInspector` receive section-specific values/actions. `session` owns pure draft operations; `inspection-tabs` owns tab rendering. |
+-| Color | `color/` keeps existing pure presentation helpers, including the integer-rgb dependency shared by session and ColorFields. |
+-| Value rendering | Cross-block leaves `components/{ExactSource,AuthoredValue,swatch}` remain here. |
+-| Alternate list | `browser/TokenList` remains exercised by identity-presentation regression tests; it is not the retained screen renderer. |
++| Inspector | `workbench/WorkbenchInspector/WorkbenchInspector` retains the shell/fallback. `InspectorHeader` renders the shared header/toggle and existing `TokenValueComparison`; the latter owns the Feedback type. `GroupInspector/GroupInspector` retains read-only group rendering. |
++| Token editor | `workbench/WorkbenchInspector/TokenEditor/TokenEditor` is the sole `useTokenEditor` caller. `TokenEditorContent` retains the full heading/tabs/authored/resolved/metadata composition, with `TokenEditorTabs`, `EditorActions`, `EditRecovery` and `ReferenceFields`. `editor-session` owns pure draft operations; `editor-failure` owns failure text. |
++| Color controls | `TokenEditor/ColorEditor/ColorEditor` keeps mapped channel controls, separate Alpha and illustrativeGradient local. Its private `visual-range` helper stays beside it; `TokenEditor/integer-rgb` is shared by color controls and session operations. |
++| Shared token display | `token-display/{AuthoredValue,ExactSource,TokenSwatch,TokenMetadata,ResolvedTokenPanel}` retain read-only rendering. `authored-color`, `color-preview` and `resolved-color` own existing pure color presentation helpers; they have no private editor/shell dependency. |
++| Legacy list fixture | Repository-root `test/presentation/support/TokenList.tsx` preserves the alternate renderer solely for consumer regression coverage. It is not the retained TokenTable renderer or evidence of that renderer's contract. |
+ 
+ App keeps the Workbench project-ID key. Workbench keeps the existing editor key,
+ placement and one session owner. Generic UI remains under `presentation/ui/`;
+ there are no compatibility forwarding modules, empty future folders or new
+ state/controller abstractions. The unused standalone Editor forwarding entry was
+-removed in Increment 009 Phase 2 after migrating callers to EditableTokenInspector.
++removed in Increment 009 Phase 2 after migrating callers to the then-named EditableTokenInspector (now TokenEditor).
+ 
+ `ReferenceFields` receives a reference identity, labeled choices, missing-target
+ and disabled state, and a reference-only callback. The editor owner merges that
+@@ -64,7 +66,7 @@ The subsequent [presentation organisation proposal
+ V1](./workbench-layout/presentation-organisation-proposal-v1.md) is the
+ user-endorsed future folder direction, removing `features/workbench` in favor of
+ named component subtrees and colocated hooks/helpers. It replaces the earlier
+-decomposition's proposed paths; this document owns the current partial migration. The shell/workspace slice has now migrated the named existing owners; inspector/display migration and replacement-interface capabilities remain outside the delivered scope.
++decomposition's proposed paths; this document owns the current organisation. The three agreed source slices have migrated the existing owners; replacement-interface capabilities remain outside the delivered scope.
+ 
+ 
+ The Increment 010 [move map](../../output/increment-010-first-slice/moves.json)
+@@ -76,3 +78,10 @@ The Increment 010 [shell/workspace move map](../../output/increment-010-shell-wo
+ records the second-slice moves and extractions. Historical evidence/prototypes
+ retain their recorded paths. Source and focused tests establish extraction
+ properties; native focus/geometry acceptance remains subject to the slice report.
++
++
++The Increment 010 [inspector/display move map](../../output/increment-010-inspector-display/moves.json)
++records the final wrapper removal and existing component/helper extractions.
++Historical evidence/prototypes retain recorded paths; no forwarding modules or
++future component folders were created. Source/tests establish extraction properties,
++not native focus, compact geometry or acceptance of future interface work.
+diff --git a/src/presentation/features/workbench/browser/TokenList.tsx b/src/presentation/features/workbench/browser/TokenList.tsx
+deleted file mode 100644
+index 6b1f6f4..0000000
+--- a/src/presentation/features/workbench/browser/TokenList.tsx
++++ /dev/null
+@@ -1,91 +0,0 @@
+-import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
+-import type { ProjectReadback, TokenInspection } from "@application/authoring";
+-import { Button } from "@presentation/ui/button";
+-import { Swatch } from "@presentation/features/workbench/components/swatch";
+-import { identityLabels } from "@presentation/token-display/identity-labels";
+-import { resolvedColor } from "@presentation/workbench/readback";
+-import { colorPreview } from "@presentation/features/workbench/color/preview";
+-export function TokenList({
+-  project,
+-  visible,
+-  selected,
+-  query,
+-  inspect,
+-  onSelect,
+-  onEmptyAction,
+-}: {
+-  project: ProjectReadback | undefined;
+-  visible: ProjectReadback["tokens"];
+-  selected: string | undefined;
+-  query: string;
+-  inspect: (id: string) => TokenInspection | undefined;
+-  onSelect: (id: string) => void;
+-  onEmptyAction: () => void;
+-}) {
+-  const labels = identityLabels(project?.tokens ?? visible);
+-  return (
+-    <div className="token-table @container border-t border-border">
+-      <div className="table-heading border-b border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 gap-3 text-muted-foreground">
+-        <span>Token</span>
+-        <span className="hidden @3xl:block">Description</span>
+-        <span>Authored value</span>
+-      </div>
+-      {visible.map((t) => {
+-        const v = t.authored.definition?.assignments[0]?.value,
+-          preview = colorPreview(resolvedColor(inspect(t.authored.id)));
+-        return (
+-          <button
+-            key={t.authored.id}
+-            type="button"
+-            className={`token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent ${selected === t.authored.id ? "selected" : ""}`}
+-            aria-pressed={selected === t.authored.id}
+-            onClick={() => onSelect(t.authored.id)}
+-          >
+-            <span className="flex gap-3 min-w-0 items-start">
+-              <Swatch css={preview.css} />
+-              <span className="token-identity flex-1 min-w-0">
+-                <strong className="block text-xs/normal small:text-caption token-name wrap-anywhere">
+-                  {labels.get(t.authored.id)}
+-                </strong>
+-                <small className="block text-secondary mt-1 wrap-anywhere">
+-                  {t.authored.layer ?? "Unspecified"} ·{" "}
+-                  {t.authored.definition?.type ?? "Unassigned"}
+-                </small>
+-                {t.authored.description !== undefined && (
+-                  <span className="@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-secondary">
+-                    {t.authored.description}
+-                  </span>
+-                )}
+-              </span>
+-            </span>
+-            <span className="hidden @3xl:block min-w-0 text-caption text-secondary">
+-              <span className="line-clamp-2 whitespace-pre-wrap wrap-anywhere">
+-                {t.authored.description ?? "—"}
+-              </span>
+-            </span>
+-            <span className="value-summary min-w-0 text-value text-caption wrap-anywhere">
+-              <AuthoredValue value={v} project={project} layout="compact" />
+-            </span>
+-          </button>
+-        );
+-      })}
+-      {visible.length === 0 && (
+-        <div className="empty px-5 py-17.5 text-center text-muted-foreground">
+-          <h2 className="text-foreground text-base/normal">
+-            {query
+-              ? "No matching colors"
+-              : project?.tokens.length
+-                ? "This group is empty"
+-                : "Your project is empty"}
+-          </h2>
+-          <p className="text-xs/normal mt-2 mb-5">
+-            Create a color at the root, or add a group to organize it.
+-          </p>
+-          <Button onClick={onEmptyAction}>
+-            {query ? "Clear search" : "New token"}
+-          </Button>
+-        </div>
+-      )}
+-    </div>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/color/authored-color.ts b/src/presentation/features/workbench/color/authored-color.ts
+deleted file mode 100644
+index e439549..0000000
+--- a/src/presentation/features/workbench/color/authored-color.ts
++++ /dev/null
+@@ -1,29 +0,0 @@
+-import {
+-  COLOR_COMPONENTS,
+-  COMPONENT_NAMES,
+-  componentSuffix,
+-  type ColorComponentIdentity,
+-} from "@domain/color-components";
+-import type { ColorLiteralValue, ColorSpace } from "@domain/color-literal";
+-export const spaceName = (space: ColorSpace) =>
+-  space === "srgb" ? "sRGB" : space === "display-p3" ? "Display P3" : space.toUpperCase();
+-const compactNames: Record<ColorComponentIdentity, string> = {
+-  red: "R", green: "G", blue: "B", hue: "H", saturation: "S",
+-  lightness: "L", chroma: "C", a: "a", b: "b",
+-};
+-/** Exact text for the list and applied inspector; no Number conversion or rounding. */
+-export function authoredColorCoordinates(
+-  value: ColorLiteralValue,
+-  layout: "expanded" | "compact" = "expanded",
+-): string[] {
+-  const separator = layout === "compact" ? ": " : " ";
+-  return [
+-    ...COLOR_COMPONENTS[value.colorSpace].map((identity, index) => {
+-      const exact = value.components[index];
+-      const name = layout === "compact" ? compactNames[identity] : COMPONENT_NAMES[identity];
+-      return name + separator + exact +
+-        (exact === "none" ? "" : componentSuffix(value.colorSpace, identity));
+-    }),
+-    "Alpha" + separator + value.alpha,
+-  ];
+-}
+diff --git a/src/presentation/features/workbench/color/integer-rgb.ts b/src/presentation/features/workbench/color/integer-rgb.ts
+deleted file mode 100644
+index ce5a736..0000000
+--- a/src/presentation/features/workbench/color/integer-rgb.ts
++++ /dev/null
+@@ -1,32 +0,0 @@
+-import { normalizedToByte, byteToNormalized } from "@domain/color-calculation";
+-import { decimalFromCanonical, multiplyDecimals } from "@domain/decimal";
+-
+-/** UI-only whole-number entry. General calculation APIs remain decimal-capable. */
+-export function integerByteToNormalized(text: string): string {
+-  if (text !== "none") {
+-    decimalFromCanonical(text);
+-    if (text.includes(".")) throw new RangeError("Enter a whole number or none.");
+-  }
+-  return byteToNormalized(text);
+-}
+-export function integerByteIssue(text: string): string | undefined {
+-  try { integerByteToNormalized(text); }
+-  catch (error) {
+-    return error instanceof RangeError && error.message.includes("budget")
+-      ? error.message : "Enter a canonical whole number or none.";
+-  }
+-}
+-/** Preserve existing calculation guards, then decide the integer from exact text. */
+-export function integerByteDisplay(text: string): { text: string; approximate: boolean } {
+-  normalizedToByte(text); // Resource/representation guard only; never used for rounding.
+-  if (text === "none") return { text, approximate: false };
+-  const exact = multiplyDecimals(decimalFromCanonical(text), decimalFromCanonical("255"));
+-  const negative = exact.startsWith("-");
+-  const [integer, fraction = ""] = (negative ? exact.slice(1) : exact).split(".");
+-  let rounded = BigInt(integer);
+-  if (fraction) {
+-    const half = "5".padEnd(fraction.length, "0");
+-    if (fraction > half || (fraction === half && rounded % 2n === 1n)) rounded++;
+-  }
+-  return { text: `${negative && rounded !== 0n ? "-" : ""}${rounded}`, approximate: fraction !== "" };
+-}
+diff --git a/src/presentation/features/workbench/color/preview.ts b/src/presentation/features/workbench/color/preview.ts
+deleted file mode 100644
+index 531bafb..0000000
+--- a/src/presentation/features/workbench/color/preview.ts
++++ /dev/null
+@@ -1,48 +0,0 @@
+-import { createColorLiteral } from "@domain/color-literal";
+-import type { ColorLiteralInput } from "@domain/color-literal";
+-
+-/** Native CSS is display-only: never convert or write back authored coordinates. */
+-export function colorPreview(input?: ColorLiteralInput): {
+-  css?: string;
+-  message: string;
+-} {
+-  if (!input) return { message: "Unavailable: no resolved color." };
+-  let space;
+-  try {
+-    space = createColorLiteral(input).colorSpace;
+-  } catch {
+-    return {
+-      message: "Unavailable: finish valid exact component and alpha entries.",
+-    };
+-  }
+-  // Validate with the domain constructor, but serialize the original text rather
+-  // than its normalized copy or a binary-number conversion.
+-  const [first, second, third] = input.components;
+-  const alpha = input.alpha;
+-  const percent = (value: string) => value === "none" ? value : `${value}%`;
+-  let css: string;
+-  switch (space) {
+-    case "srgb":
+-    case "display-p3":
+-      css = `color(${space} ${first} ${second} ${third} / ${alpha})`;
+-      break;
+-    case "hsl":
+-      css = `hsl(${first} ${percent(second)} ${percent(third)} / ${alpha})`;
+-      break;
+-    case "oklab":
+-    case "oklch":
+-      css = `${space}(${first} ${second} ${third} / ${alpha})`;
+-      break;
+-  }
+-  const browserCss = (globalThis as typeof globalThis & {
+-    CSS?: { supports(property: string, value: string): boolean };
+-  }).CSS;
+-  if (browserCss && !browserCss.supports("color", css))
+-    return { message: "Unavailable: this browser cannot render this color syntax." };
+-  return {
+-    css,
+-    message: input.components.includes("none")
+-      ? "Browser-rendered preview; missing components follow CSS display semantics. Authored values are unchanged."
+-      : "Browser-rendered preview; appearance depends on your display. Authored values are unchanged.",
+-  };
+-}
+diff --git a/src/presentation/features/workbench/color/visual-range.ts b/src/presentation/features/workbench/color/visual-range.ts
+deleted file mode 100644
+index 1a20d6b..0000000
+--- a/src/presentation/features/workbench/color/visual-range.ts
++++ /dev/null
+@@ -1,22 +0,0 @@
+-import { compareDecimals, decimalFromCanonical } from "@domain/decimal";
+-
+-export type VisualRangeState = "available" | "outside" | "missing" | "invalid";
+-
+-/** Visual travel is an exact interval; binary rounding cannot establish eligibility. */
+-export function visualRangeState(
+-  text: string,
+-  minimum: string,
+-  maximum: string,
+-): VisualRangeState {
+-  if (text === "none") return "missing";
+-  let value;
+-  try {
+-    value = decimalFromCanonical(text);
+-  } catch {
+-    return "invalid";
+-  }
+-  return compareDecimals(value, decimalFromCanonical(minimum)) >= 0 &&
+-    compareDecimals(value, decimalFromCanonical(maximum)) <= 0
+-    ? "available"
+-    : "outside";
+-}
+diff --git a/src/presentation/features/workbench/components/AuthoredValue.tsx b/src/presentation/features/workbench/components/AuthoredValue.tsx
+deleted file mode 100644
+index c3de6e2..0000000
+--- a/src/presentation/features/workbench/components/AuthoredValue.tsx
++++ /dev/null
+@@ -1,59 +0,0 @@
+-import {
+-  authoredColorCoordinates,
+-  spaceName,
+-} from "@presentation/features/workbench/color/authored-color";
+-import type { Token } from "@domain/token";
+-import type { ProjectContext } from "@application/retention/projections";
+-import { identityLabels } from "@presentation/token-display/identity-labels";
+-
+-type Value = NonNullable<Token["definition"]>["assignments"][number]["value"];
+-
+-/** Exact authored data with semantic labels; never resolved or coerced to Number. */
+-export function AuthoredValue({
+-  value,
+-  project,
+-  layout = "expanded",
+-}: {
+-  value: Value | undefined;
+-  project?: ProjectContext;
+-  layout?: "expanded" | "compact";
+-}) {
+-  if (value?.kind === "token-reference") {
+-    const target = project?.tokens.find(
+-      (t) => t.authored.id === value.targetTokenId,
+-    );
+-    return (
+-      <span className="block min-w-0 wrap-anywhere">
+-        <span className="block">Reference</span>
+-        <span className="block text-secondary mt-1">
+-          {target
+-            ? identityLabels(project?.tokens ?? []).get(target.authored.id)
+-            : "Missing target"}
+-        </span>
+-      </span>
+-    );
+-  }
+-  if (value?.kind !== "literal" || value.valueType !== "color")
+-    return <span>{value?.kind ?? "No assignment"}</span>;
+-  return (
+-    <span className="block min-w-0 wrap-anywhere">
+-      <span className="block">{spaceName(value.colorSpace)}</span>
+-      <span className="block text-secondary mt-1 mono">
+-        {authoredColorCoordinates(value, layout).map((text, index) => (
+-          <span key={index}>
+-            {layout === "compact" && index > 0 ? " · " : ""}
+-            <span
+-              className={
+-                layout === "compact"
+-                  ? "inline-block max-w-full align-top wrap-anywhere"
+-                  : "block"
+-              }
+-            >
+-              {text}
+-            </span>
+-          </span>
+-        ))}
+-      </span>
+-    </span>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/components/ExactSource.tsx b/src/presentation/features/workbench/components/ExactSource.tsx
+deleted file mode 100644
+index 976afe7..0000000
+--- a/src/presentation/features/workbench/components/ExactSource.tsx
++++ /dev/null
+@@ -1,71 +0,0 @@
+-import { useRef, useState } from "react";
+-import { Button } from "@presentation/ui/button";
+-export function ExactSource({
+-  revision,
+-  request,
+-}: {
+-  revision: string;
+-  request: () => Promise<string>;
+-}) {
+-  const [text, setText] = useState<string>(),
+-    [error, setError] = useState(""),
+-    [preparing, setPreparing] = useState(false);
+-  const generation = useRef(0),
+-    open = useRef(false);
+-  async function prepare() {
+-    const current = ++generation.current;
+-    setPreparing(true);
+-    setError("");
+-    setText(undefined);
+-    try {
+-      const source = await request();
+-      if (open.current && current === generation.current) setText(source);
+-    } catch {
+-      if (open.current && current === generation.current)
+-        setError(
+-          "Authored data unavailable. Applied data and drafts are unchanged.",
+-        );
+-    } finally {
+-      if (current === generation.current) setPreparing(false);
+-    }
+-  }
+-  return (
+-    <div className="mt-4">
+-      <p className="helper text-muted-foreground">
+-        Opening very large exact source may briefly pause this view.
+-      </p>
+-      <details
+-        onToggle={(event) => {
+-          open.current = event.currentTarget.open;
+-          if (open.current) void prepare();
+-          else {
+-            generation.current++;
+-            setPreparing(false);
+-            setText(undefined);
+-          }
+-        }}
+-      >
+-        <summary>All authored data</summary>
+-        <p className="text-caption my-3 wrap-anywhere">
+-          Applied data · Revision {revision} · Read only
+-        </p>
+-        {preparing && <p role="status">Preparing authored data…</p>}
+-        {error && (
+-          <div role="status">
+-            <p>{error}</p>
+-            <Button onClick={() => void prepare()}>Retry authored data</Button>
+-          </div>
+-        )}
+-        {text !== undefined && (
+-          <pre
+-            tabIndex={0}
+-            aria-label="Complete applied authored data"
+-            className="exact-source text-caption my-3"
+-          >
+-            {text}
+-          </pre>
+-        )}
+-      </details>
+-    </div>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/components/swatch.tsx b/src/presentation/features/workbench/components/swatch.tsx
+deleted file mode 100644
+index d354645..0000000
+--- a/src/presentation/features/workbench/components/swatch.tsx
++++ /dev/null
+@@ -1,10 +0,0 @@
+-export function Swatch({ css }: { css?: string }) {
+-  return (
+-    <span
+-      className={`swatch size-8.5 border border-swatch-border rounded block shrink-0 overflow-hidden ${css ? "" : "swatch-unavailable"}`}
+-      aria-hidden="true"
+-    >
+-      <span className="block size-full" style={{ background: css }} />
+-    </span>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/inspector/ColorFields.tsx b/src/presentation/features/workbench/inspector/ColorFields.tsx
+deleted file mode 100644
+index c3f6faa..0000000
+--- a/src/presentation/features/workbench/inspector/ColorFields.tsx
++++ /dev/null
+@@ -1,303 +0,0 @@
+-import {
+-  COLOR_COMPONENTS,
+-  COMPONENT_NAMES,
+-  componentSuffix,
+-} from "@domain/color-components";
+-import { Field } from "@presentation/ui/field";
+-import { Input } from "@presentation/ui/input";
+-import type { CSSProperties } from "react";
+-import { COLOR_SPACES } from "@domain/color-literal";
+-import type { ColorSpace } from "@domain/color-literal";
+-import {
+-  integerByteDisplay,
+-  integerByteIssue,
+-} from "@presentation/features/workbench/color/integer-rgb";
+-import { Select } from "@presentation/ui/select";
+-import {
+-  changeView,
+-  displayed,
+-  editComponent,
+-  fields,
+-} from "@presentation/features/workbench/inspector/session";
+-import type { DraftSession } from "@presentation/features/workbench/inspector/session";
+-import { visualRangeState } from "@presentation/features/workbench/color/visual-range";
+-import { spaceName } from "@presentation/features/workbench/color/authored-color";
+-export { spaceName } from "@presentation/features/workbench/color/authored-color";
+-function illustrativeGradient(space: ColorSpace, index: number): string {
+-  const identity = COLOR_COMPONENTS[space][index];
+-  if (identity === "hue")
+-    return "linear-gradient(to right,#e33333,#d3c825,#30b94c,#31c8cb,#3655e1,#b737cd,#e33333)";
+-  if (space === "srgb" || space === "display-p3")
+-    return `linear-gradient(to right,#222,${({ red: "#e45c5c", green: "#4f9e61", blue: "#557bd0" } as Record<string, string>)[identity]})`;
+-  if (space === "hsl")
+-    return identity === "lightness"
+-      ? "linear-gradient(to right,#111,#999,#fff)"
+-      : "linear-gradient(to right,#9b9b9b,#4b78bd)";
+-  if (space === "oklab" && identity !== "lightness")
+-    return identity === "a"
+-      ? "linear-gradient(to right,#389d70,#aaa,#c4598e)"
+-      : "linear-gradient(to right,#5670be,#aaa,#c1ae45)";
+-  if (space === "oklch" && identity === "chroma")
+-    return "linear-gradient(to right,#aaa,#456bc8)";
+-  return "linear-gradient(to right,#111,#fff)";
+-}
+-export function ColorFields({
+-  session: s,
+-  onChange,
+-  onError,
+-  readOnly = false,
+-}: {
+-  session: DraftSession;
+-  onChange: (s: DraftSession) => void;
+-  onError: (s: string) => void;
+-  readOnly?: boolean;
+-}) {
+-  const d = displayed(s),
+-    bytes = d.colorSpace === "srgb" && s.scale === "bytes";
+-  let values: [string, string, string];
+-  try {
+-    values = fields(s);
+-  } catch {
+-    values = d.components;
+-  }
+-  const change = (i: number, text: string) => {
+-    onChange(editComponent(s, i, text));
+-    onError("");
+-  };
+-  const alphaRangeState = visualRangeState(s.literal.alpha, "0", "1");
+-  return (
+-    <>
+-      <div className="grid grid-cols-2 gap-3 mt-3">
+-        <Field className="mb-1!">
+-          View color space
+-          <Select
+-            disabled={readOnly}
+-            value={s.viewSpace}
+-            onChange={(e) => {
+-              try {
+-                onChange(changeView(s, e.target.value as ColorSpace));
+-                onError("");
+-              } catch (e) {
+-                onError(
+-                  e instanceof Error ? e.message : "Representation unavailable",
+-                );
+-              }
+-            }}
+-          >
+-            {COLOR_SPACES.map((space) => (
+-              <option key={space} value={space}>
+-                {spaceName(space)}
+-              </option>
+-            ))}
+-          </Select>
+-        </Field>
+-        {d.colorSpace === "srgb" && (
+-          <Field className="mb-1!">
+-            RGB entry scale
+-            <Select
+-              disabled={readOnly}
+-              value={s.scale}
+-              onChange={(e) => {
+-                if (s.byteInvalid) {
+-                  onError("Finish the byte entries before changing scale.");
+-                  return;
+-                }
+-                try {
+-                  if (e.target.value === "bytes")
+-                    d.components.forEach(integerByteDisplay);
+-                  onChange({
+-                    ...s,
+-                    scale: e.target.value as DraftSession["scale"],
+-                  });
+-                  onError("");
+-                } catch (e) {
+-                  onError(
+-                    e instanceof Error ? e.message : "Byte display unavailable",
+-                  );
+-                }
+-              }}
+-            >
+-              <option value="normalized">Normalized · 0–1</option>
+-              <option value="bytes">0–255 scale</option>
+-            </Select>
+-          </Field>
+-        )}
+-      </div>
+-      <p
+-        id="space-note"
+-        className="view-note text-caption pt-1 pb-2 -mt-1 text-muted-foreground wrap-anywhere"
+-      >
+-        {s.viewSpace === s.literal.colorSpace
+-          ? `Draft in ${spaceName(s.literal.colorSpace)}. Switching view keeps exact values.`
+-          : `Viewing approximate ${spaceName(s.viewSpace)}. Draft remains in ${spaceName(s.literal.colorSpace)} until a component edit.`}
+-      </p>
+-      <div className="component-controls grid grid-cols-3 gap-x-3 min-w-0">
+-        {values.map((value, i) => {
+-          const identity = COLOR_COMPONENTS[d.colorSpace][i];
+-          const suffix = componentSuffix(d.colorSpace, identity);
+-          const label =
+-            COMPONENT_NAMES[identity] + (suffix ? ` (${suffix})` : "");
+-          const hue = identity === "hue";
+-          const min =
+-              d.colorSpace === "oklab" && identity !== "lightness" ? -0.4 : 0,
+-            max = hue
+-              ? 359.9
+-              : d.colorSpace === "hsl"
+-                ? 100
+-                : (d.colorSpace === "oklab" && identity !== "lightness") ||
+-                    (d.colorSpace === "oklch" && identity === "chroma")
+-                  ? 0.4
+-                  : bytes
+-                    ? 255
+-                    : 1;
+-          const step = hue || d.colorSpace === "hsl" ? 0.1 : bytes ? 1 : 0.001;
+-          const issue =
+-            bytes && s.byteEdited[i] ? integerByteIssue(value) : undefined;
+-          const approximate =
+-            bytes &&
+-            !s.byteEdited[i] &&
+-            integerByteDisplay(d.components[i]).approximate;
+-          const rangeState =
+-            bytes && !s.byteEdited[i]
+-              ? visualRangeState(d.components[i], "0", "1")
+-              : issue
+-                ? "invalid"
+-                : visualRangeState(value, String(min), String(max));
+-          const available = rangeState === "available";
+-          return (
+-            <div
+-              className="component-control flex min-w-0 flex-col mb-1"
+-              key={d.colorSpace + "-" + i}
+-            >
+-              <label
+-                htmlFor={`color-component-${i}`}
+-                className="component-value min-w-0 m-0 text-caption font-medium wrap-anywhere"
+-              >
+-                {label}
+-              </label>
+-              {available ? (
+-                <>
+-                  <input
+-                    className="component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground"
+-                    type="range"
+-                    disabled={readOnly}
+-                    min={min}
+-                    max={max}
+-                    step={step}
+-                    value={Number(value)}
+-                    style={
+-                      {
+-                        "--range-gradient": illustrativeGradient(
+-                          d.colorSpace,
+-                          i,
+-                        ),
+-                      } as CSSProperties
+-                    }
+-                    aria-label={label + " slider"}
+-                    aria-valuetext={value}
+-                    onChange={(e) => change(i, e.target.value)}
+-                  />
+-                </>
+-              ) : (
+-                <p className="helper text-muted-foreground font-normal range-unavailable flex min-h-10 items-center wrap-anywhere small:min-h-11">
+-                  {value === "none"
+-                    ? "Missing component · use exact entry."
+-                    : rangeState === "outside"
+-                      ? "Outside visual range · exact value retained."
+-                      : "Complete exact entry to use slider."}
+-                </p>
+-              )}
+-              <Input
+-                id={`color-component-${i}`}
+-                readOnly={readOnly}
+-                className="small:h-11 small:min-h-11"
+-                value={value}
+-                spellCheck={false}
+-                aria-describedby={`range-note-${i} byte-note-${i} editor-error`}
+-                aria-invalid={!!issue || undefined}
+-                onChange={(e) => change(i, e.target.value)}
+-              />
+-              {bytes && (
+-                <p
+-                  id={`byte-note-${i}`}
+-                  className={`text-caption mt-1 wrap-anywhere ${issue ? "text-destructive" : "text-muted-foreground"}`}
+-                >
+-                  {issue ??
+-                    (approximate
+-                      ? `Approximate · exact normalized ${d.components[i]}`
+-                      : "")}
+-                </p>
+-              )}
+-              <p className="sr-only" id={`range-note-${i}`}>
+-                Illustrative range {min} to {max}, step {step}. Exact values are
+-                retained.
+-              </p>
+-            </div>
+-          );
+-        })}
+-      </div>
+-      <div className="component-control flex min-w-0 flex-col mb-1 alpha-control border-t border-border pt-1">
+-        <label
+-          htmlFor="color-alpha"
+-          className="component-value min-w-0 m-0 text-caption font-medium"
+-        >
+-          Alpha
+-        </label>
+-        {alphaRangeState === "available" ? (
+-          <input
+-            className="component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range"
+-            type="range"
+-            disabled={readOnly}
+-            min="0"
+-            max="1"
+-            step="0.01"
+-            aria-label="Alpha slider"
+-            value={Number(s.literal.alpha)}
+-            onChange={(e) =>
+-              onChange({
+-                ...s,
+-                literal: { ...s.literal, alpha: e.target.value },
+-                edited: true,
+-              })
+-            }
+-          />
+-        ) : (
+-          <p className="helper text-muted-foreground font-normal range-unavailable flex min-h-10 items-center wrap-anywhere small:min-h-11">
+-            {alphaRangeState === "outside"
+-              ? "Outside visual range · exact alpha retained."
+-              : "Complete alpha in exact entry."}
+-          </p>
+-        )}
+-        <Input
+-          id="color-alpha"
+-          readOnly={readOnly}
+-          className="small:h-11 small:min-h-11"
+-          value={s.literal.alpha}
+-          aria-describedby="editor-error"
+-          onChange={(e) =>
+-            onChange({
+-              ...s,
+-              literal: { ...s.literal, alpha: e.target.value },
+-              edited: true,
+-            })
+-          }
+-        />
+-      </div>
+-      <details className="text-caption text-muted-foreground">
+-        <summary>Color entry guidance</summary>
+-        <p className="helper text-muted-foreground font-normal">
+-          {bytes
+-            ? "Canonical whole numbers or none on the 0–255 scale"
+-            : "Exact canonical decimal text or none"}
+-          ; alpha 0–1. Sliders are illustrative stepped edits. Derived views and
+-          byte displays may be approximate. Apply uses {s.literal.colorSpace}.
+-        </p>
+-      </details>
+-      {bytes && (
+-        <p className="helper text-muted-foreground font-normal mono break-words">
+-          Normalized draft: [{s.literal.components.join(", ")}]
+-        </p>
+-      )}
+-    </>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/inspector/EditRecovery.tsx b/src/presentation/features/workbench/inspector/EditRecovery.tsx
+deleted file mode 100644
+index f550285..0000000
+--- a/src/presentation/features/workbench/inspector/EditRecovery.tsx
++++ /dev/null
+@@ -1,50 +0,0 @@
+-import type { RefObject } from "react";
+-import { Button } from "@presentation/ui/button";
+-import type { DraftSession } from "./session";
+-import type { ImplementedAuthoredValue } from "@domain/token";
+-
+-export function EditRecovery({
+-  previous,
+-  current,
+-  preserved,
+-  reviewed,
+-  headingRef,
+-  onReview,
+-}: {
+-  previous: ImplementedAuthoredValue | undefined;
+-  current: unknown;
+-  preserved: DraftSession;
+-  reviewed: boolean;
+-  headingRef: RefObject<HTMLHeadingElement | null>;
+-  onReview: () => void;
+-}) {
+-  return (
+-    <section className="border border-border rounded p-3 text-caption mb-4">
+-      <h3 ref={headingRef} tabIndex={-1}>
+-        Applied state changed
+-      </h3>
+-      <p>
+-        Raw literal/reference input and view/scale choices are preserved. Review
+-        opens a comparison; only Reapply changes submits a fresh command.
+-      </p>
+-      {!reviewed ? (
+-        <Button onClick={onReview}>Review edit</Button>
+-      ) : (
+-        <>
+-          <h4 className="mt-3">Previous applied</h4>
+-          <pre className="whitespace-pre-wrap wrap-anywhere">
+-            {JSON.stringify(previous ?? null, null, 2)}
+-          </pre>
+-          <h4 className="mt-3">Current applied</h4>
+-          <pre className="whitespace-pre-wrap wrap-anywhere">
+-            {JSON.stringify(current, null, 2)}
+-          </pre>
+-          <h4 className="mt-3">Preserved input</h4>
+-          <pre className="whitespace-pre-wrap wrap-anywhere">
+-            {JSON.stringify(preserved, null, 2)}
+-          </pre>
+-        </>
+-      )}
+-    </section>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/inspector/Editor.tsx b/src/presentation/features/workbench/inspector/Editor.tsx
+deleted file mode 100644
+index 3767a7b..0000000
+--- a/src/presentation/features/workbench/inspector/Editor.tsx
++++ /dev/null
+@@ -1,288 +0,0 @@
+-import { EditorActions } from "./EditorActions";
+-import { EditRecovery } from "./EditRecovery";
+-import { ReferenceFields } from "./ReferenceFields";
+-import { TokenMetadata } from "./TokenMetadata";
+-import { ResolvedTokenPanel } from "./ResolvedTokenPanel";
+-import type { useTokenEditor } from "@presentation/features/workbench/inspector/useTokenEditor";
+-
+-import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
+-import { InspectionTabs } from "@presentation/features/workbench/inspector/inspection-tabs";
+-import { Badge } from "@presentation/ui/badge";
+-
+-import { Tabs } from "@base-ui/react/tabs";
+-
+-import { Button } from "@presentation/ui/button";
+-import { ColorFields } from "@presentation/features/workbench/inspector/ColorFields";
+-
+-export type Feedback = {
+-  tokenId: string;
+-  tab: string;
+-  applied?: string;
+-  draft?: string;
+-  appliedMessage: string;
+-  draftMessage: string;
+-};
+-export function EditorFields({
+-  editor,
+-}: {
+-  editor: ReturnType<typeof useTokenEditor>;
+-}) {
+-  const {
+-    i,
+-    project,
+-    projected,
+-    token,
+-    value,
+-    accepting,
+-    session,
+-    setSession,
+-    recovery,
+-    setRecovery,
+-    reviewHeading,
+-    tab,
+-    setTab,
+-    error,
+-    setError,
+-    notice,
+-    setNotice,
+-    modeRef,
+-    errorRef,
+-    dirty,
+-    applied,
+-    draft,
+-    tokenLabels,
+-    referenceChoices,
+-    referenceLabels,
+-    groupLabels,
+-    editable,
+-    apply,
+-    cancel,
+-    readUnavailable,
+-    revision,
+-    requestSource,
+-    readOnly,
+-    targetUnavailable,
+-  } = editor;
+-  return (
+-    <aside
+-      className="inspector small:min-h-0 flex min-w-0 min-h-full flex-col bg-surface"
+-      aria-label="Selected token"
+-      hidden={readUnavailable}
+-    >
+-      <div className="inspector-heading bg-surface p-3">
+-        <span className="eyebrow uppercase text-muted-foreground font-semibold">
+-          {token.definition?.type ?? "Unassigned"} token
+-        </span>
+-        <h2 className="wrap-anywhere">
+-          {tokenLabels.get(token.id) ??
+-            (token.localName || "(unnamed original token)")}
+-        </h2>
+-        {token.description && (
+-          <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
+-            {token.description}
+-          </p>
+-        )}
+-        {i.path.status !== "derived" && (
+-          <p className="text-caption wrap-anywhere">
+-            Path unavailable · Parent identity:{" "}
+-            {JSON.stringify(token.parentGroupId)}. Exact namespace details
+-            remain available below.
+-          </p>
+-        )}
+-        <div className="flex gap-2">
+-          {token.layer && <Badge>{token.layer}</Badge>}
+-          {!editable && <Badge>Inspection only</Badge>}
+-        </div>
+-      </div>
+-      <Tabs.Root value={tab} onValueChange={setTab}>
+-        <InspectionTabs />
+-        <Tabs.Panel value="authored" className="editor-body bg-surface p-3">
+-          {targetUnavailable && (
+-            <p
+-              role="status"
+-              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive"
+-            >
+-              {targetUnavailable} Preserved input remains selectable. This
+-              action cannot recreate or retarget it.
+-            </p>
+-          )}
+-          {recovery && (
+-            <EditRecovery
+-              previous={recovery.previous}
+-              current={
+-                value ?? {
+-                  type: token.definition?.type,
+-                  kind: "token" in i ? i.authoredKind : "No assignment",
+-                }
+-              }
+-              preserved={session}
+-              reviewed={recovery.reviewed}
+-              headingRef={reviewHeading}
+-              onReview={() => {
+-                setRecovery({ ...recovery, reviewed: true });
+-                requestAnimationFrame(() => reviewHeading.current?.focus());
+-              }}
+-            />
+-          )}
+-          {editable || dirty ? (
+-            <>
+-              <fieldset disabled={accepting}>
+-                <legend className="sr-only">Value source</legend>
+-                <div className="mode-switch border border-border bg-mode flex p-0.75 rounded-md gap-0.75">
+-                  <Button
+-                    variant="mode"
+-                    size="mode"
+-                    ref={modeRef}
+-                    aria-pressed={session.mode === "literal"}
+-                    onClick={() => {
+-                      setSession({ ...session, mode: "literal" });
+-                      setError("");
+-                    }}
+-                  >
+-                    Literal color
+-                  </Button>
+-                  <Button
+-                    variant="mode"
+-                    size="mode"
+-                    aria-pressed={session.mode === "reference"}
+-                    onClick={() => {
+-                      setSession({ ...session, mode: "reference" });
+-                      setError("");
+-                    }}
+-                  >
+-                    Reference
+-                  </Button>
+-                </div>
+-              </fieldset>
+-              {session.mode === "literal" ? (
+-                <ColorFields
+-                  readOnly={accepting || readOnly}
+-                  session={session}
+-                  onChange={(s) => {
+-                    setSession(s);
+-                    setError("");
+-                    setNotice("");
+-                  }}
+-                  onError={setError}
+-                />
+-              ) : (
+-                <ReferenceFields
+-                  reference={session.reference}
+-                  choices={referenceChoices.map(({ authored }) => ({
+-                    id: authored.id,
+-                    label: referenceLabels.get(authored.id) ?? authored.id,
+-                  }))}
+-                  missingTarget={
+-                    !project.tokens.some(
+-                      ({ authored }) => authored.id === session.reference,
+-                    )
+-                  }
+-                  disabled={accepting || readOnly}
+-                  onReferenceChange={(reference) => {
+-                    setSession({ ...session, reference, edited: true });
+-                    setError("");
+-                  }}
+-                />
+-              )}
+-              <p className="helper text-muted-foreground font-normal preview-detail mt-2 wrap-anywhere">
+-                Draft preview: {draft.message}
+-              </p>
+-              {error ? (
+-                <p
+-                  ref={errorRef}
+-                  tabIndex={-1}
+-                  className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+-                  id="editor-error"
+-                  role="alert"
+-                >
+-                  {error}
+-                </p>
+-              ) : (
+-                <span id="editor-error" />
+-              )}
+-              <EditorActions
+-                cancelDisabled={!dirty || accepting}
+-                applyDisabled={
+-                  !dirty ||
+-                  !editable ||
+-                  !!targetUnavailable ||
+-                  (!!recovery && !recovery.reviewed) ||
+-                  readUnavailable ||
+-                  readOnly ||
+-                  accepting ||
+-                  session.byteInvalid
+-                }
+-                applyLabel={
+-                  accepting
+-                    ? "Retaining changes…"
+-                    : recovery?.reviewed
+-                      ? "Reapply changes"
+-                      : "Apply changes"
+-                }
+-                onCancel={cancel}
+-                onApply={apply}
+-              />
+-              <p
+-                className="helper text-muted-foreground font-normal"
+-                role="status"
+-              >
+-                {notice ||
+-                  (dirty
+-                    ? "Changes are not applied yet."
+-                    : "Editing preserves name and metadata.")}
+-              </p>
+-            </>
+-          ) : (
+-            <p className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4">
+-              Inspection only: this token is outside the unconditional
+-              primitive/semantic color revision flow. Its data is retained.
+-            </p>
+-          )}
+-          {token.layer === "component" && (
+-            <p role="status" className="helper text-muted-foreground">
+-              Component association is preserved. Component ownership context is
+-              unavailable and unverified.
+-            </p>
+-          )}
+-          <section className="applied-summary border-t border-border mt-7 pt-5">
+-            <h3 className="mb-3.5">
+-              {targetUnavailable
+-                ? "Previous applied · target unavailable"
+-                : "Currently applied"}
+-            </h3>
+-            <div className="text-caption">
+-              {projected && !value ? (
+-                "token" in i ? (
+-                  i.authoredKind
+-                ) : (
+-                  "No assignment"
+-                )
+-              ) : (
+-                <AuthoredValue value={value} project={project} />
+-              )}
+-            </div>
+-          </section>
+-          <TokenMetadata
+-            token={token}
+-            groupLabels={groupLabels}
+-            revision={revision}
+-            requestSource={requestSource}
+-            path={i.path}
+-          />
+-        </Tabs.Panel>
+-        <Tabs.Panel value="resolved" className="editor-body bg-surface p-3">
+-          <ResolvedTokenPanel
+-            resolution={i.resolution}
+-            project={project}
+-            css={applied.css}
+-            message={applied.message}
+-          />
+-        </Tabs.Panel>
+-      </Tabs.Root>
+-      <div className="inspector-foot density:mt-5 small:mt-0 border-t border-border bg-surface px-6 py-4 mt-auto flex justify-between text-muted-foreground">
+-        <span>Regeneration</span>
+-        <span>{token.authoring.regeneration}</span>
+-      </div>
+-    </aside>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/inspector/EditorActions.tsx b/src/presentation/features/workbench/inspector/EditorActions.tsx
+deleted file mode 100644
+index c8a7c04..0000000
+--- a/src/presentation/features/workbench/inspector/EditorActions.tsx
++++ /dev/null
+@@ -1,26 +0,0 @@
+-import { Button } from "@presentation/ui/button";
+-
+-export function EditorActions({
+-  cancelDisabled,
+-  applyDisabled,
+-  applyLabel,
+-  onCancel,
+-  onApply,
+-}: {
+-  cancelDisabled: boolean;
+-  applyDisabled: boolean;
+-  applyLabel: string;
+-  onCancel: () => void;
+-  onApply: () => void;
+-}) {
+-  return (
+-    <div className="editor-actions sticky z-1 flex justify-end gap-2 mt-3 mb-2 border-t border-border bg-surface py-3">
+-      <Button disabled={cancelDisabled} onClick={onCancel}>
+-        Cancel
+-      </Button>
+-      <Button variant="default" disabled={applyDisabled} onClick={onApply}>
+-        {applyLabel}
+-      </Button>
+-    </div>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/inspector/GroupInspector.tsx b/src/presentation/features/workbench/inspector/GroupInspector.tsx
+deleted file mode 100644
+index 79b93b2..0000000
+--- a/src/presentation/features/workbench/inspector/GroupInspector.tsx
++++ /dev/null
+@@ -1,51 +0,0 @@
+-import type { ProjectContext } from "@application/retention/projections";
+-import { pathLabel } from "@presentation/token-display/identity-labels";
+-import { ExactSource } from "../components/ExactSource";
+-export function GroupInspector({
+-  entry,
+-  projectId,
+-  revision,
+-  requestSource,
+-}: {
+-  entry: ProjectContext["groups"][number] | undefined;
+-  projectId: string;
+-  revision: string;
+-  requestSource: () => Promise<string>;
+-}) {
+-  return (
+-    <div className="p-5">
+-      <p className="text-caption text-muted-foreground">Group · Read only</p>
+-      <h2 className="wrap-anywhere">
+-        {entry?.authored.localName || "(unnamed group)"}
+-      </h2>
+-      <p className="wrap-anywhere mt-2">
+-        {entry?.path.status === "derived"
+-          ? pathLabel(entry.path)
+-          : "Path unavailable"}
+-      </p>
+-      {entry && entry.path.status !== "derived" && (
+-        <p className="text-caption wrap-anywhere">
+-          Parent identity: {JSON.stringify(entry.authored.parentGroupId)}. Exact
+-          namespace diagnostics are available below.
+-        </p>
+-      )}
+-      <details className="text-caption mt-4">
+-        <summary>Identity and path details</summary>
+-        <p className="wrap-anywhere">
+-          Project identity: {JSON.stringify(projectId)}
+-        </p>
+-        <p className="wrap-anywhere">
+-          Group identity: {JSON.stringify(entry?.authored.id)}
+-        </p>
+-        <pre className="whitespace-pre-wrap wrap-anywhere">
+-          {JSON.stringify(entry?.path, null, 2)}
+-        </pre>
+-      </details>
+-      <ExactSource
+-        key={JSON.stringify([entry?.authored.id, revision])}
+-        revision={revision}
+-        request={requestSource}
+-      />
+-    </div>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/inspector/ReferenceFields.tsx b/src/presentation/features/workbench/inspector/ReferenceFields.tsx
+deleted file mode 100644
+index 7071eba..0000000
+--- a/src/presentation/features/workbench/inspector/ReferenceFields.tsx
++++ /dev/null
+@@ -1,53 +0,0 @@
+-import { Field } from "@presentation/ui/field";
+-import { Select } from "@presentation/ui/select";
+-
+-export function ReferenceFields({
+-  reference,
+-  choices,
+-  missingTarget,
+-  disabled,
+-  onReferenceChange,
+-}: {
+-  reference: string | null;
+-  choices: readonly { id: string; label: string }[];
+-  missingTarget: boolean;
+-  disabled: boolean;
+-  onReferenceChange: (reference: string | null) => void;
+-}) {
+-  return (
+-    <>
+-      <Field>
+-        Target token
+-        <Select
+-          value={reference === null ? "" : JSON.stringify(reference)}
+-          disabled={disabled}
+-          aria-describedby="reference-note editor-error"
+-          onChange={(event) =>
+-            onReferenceChange(
+-              event.target.value === ""
+-                ? null
+-                : (JSON.parse(event.target.value) as string),
+-            )
+-          }
+-        >
+-          <option value="">Choose a color token…</option>
+-          {reference !== null && missingTarget && (
+-            <option value={JSON.stringify(reference)}>Missing target</option>
+-          )}
+-          {choices.map(({ id, label }) => (
+-            <option key={id} value={JSON.stringify(id)}>
+-              {label}
+-            </option>
+-          ))}
+-        </Select>
+-      </Field>
+-      <p
+-        id="reference-note"
+-        className="helper text-muted-foreground font-normal"
+-      >
+-        Uses the selected token’s whole color value. References stay linked;
+-        cycles are rejected on Apply.
+-      </p>
+-    </>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/inspector/ResolvedTokenPanel.tsx b/src/presentation/features/workbench/inspector/ResolvedTokenPanel.tsx
+deleted file mode 100644
+index 302a01e..0000000
+--- a/src/presentation/features/workbench/inspector/ResolvedTokenPanel.tsx
++++ /dev/null
+@@ -1,120 +0,0 @@
+-import type {
+-  SelectedToken,
+-  ProjectContext,
+-} from "@application/retention/projections";
+-import type { TokenInspection } from "@application/authoring";
+-import { pathLabel } from "@presentation/token-display/identity-labels";
+-import { resolvedColor } from "../../../workbench/readback";
+-import { COLOR_COMPONENTS, COMPONENT_NAMES } from "@domain/color-components";
+-import { spaceName } from "../color/authored-color";
+-import { Badge } from "@presentation/ui/badge";
+-import { Swatch } from "../components/swatch";
+-export function ResolvedTokenPanel({
+-  resolution,
+-  project,
+-  css,
+-  message,
+-}: {
+-  resolution: SelectedToken["resolution"] | TokenInspection["resolution"];
+-  project: ProjectContext;
+-  css?: string;
+-  message: string;
+-}) {
+-  const color = resolvedColor({ resolution });
+-  const label = (id: string) => {
+-    const t = project.tokens.find((t) => t.authored.id === id);
+-    return t ? pathLabel(t.path) : "Unavailable token path";
+-  };
+-  return (
+-    <>
+-      <div className="flex items-center gap-2 mb-3">
+-        <h3>Resolved value</h3>
+-        <Badge>Applied value</Badge>
+-      </div>
+-      <div className="resolved-preview flex flex-col gap-2 my-3">
+-        <Swatch css={css} />
+-        <p className="helper text-muted-foreground">{message}</p>
+-      </div>
+-      {resolution.status === "resolved" ? (
+-        color ? (
+-          <>
+-            <h4>{spaceName(color.colorSpace)}</h4>
+-            <dl className="text-caption my-3">
+-              {color.components.map((value, index) => (
+-                <div className="flex justify-between gap-3 py-1" key={index}>
+-                  <dt>
+-                    {COMPONENT_NAMES[COLOR_COMPONENTS[color.colorSpace][index]]}
+-                  </dt>
+-                  <dd className="wrap-anywhere text-right min-w-0">{value}</dd>
+-                </div>
+-              ))}
+-              <div className="flex justify-between gap-3 py-1">
+-                <dt>Alpha</dt>
+-                <dd className="wrap-anywhere min-w-0">{color.alpha}</dd>
+-              </div>
+-            </dl>
+-          </>
+-        ) : (
+-          <p>
+-            Resolved {resolution.value.valueType} value. Full derived value is
+-            available below.
+-          </p>
+-        )
+-      ) : (
+-        <p
+-          role="status"
+-          className="border border-error-border bg-error-surface rounded p-3 text-caption text-destructive"
+-        >
+-          Unresolved: {resolution.reason}. Authored data retained.
+-        </p>
+-      )}
+-      <h3 className="mt-5">Resolution trace</h3>
+-      <ol className="text-caption my-3 space-y-3">
+-        {resolution.trace.map((step, index) => (
+-          <li key={index} className="wrap-anywhere">
+-            <strong>{label(step.tokenId)}</strong>
+-            <p>
+-              {step.targetTokenId
+-                ? `References ${label(step.targetTokenId)}`
+-                : "Authored value"}
+-            </p>
+-            <details>
+-              <summary>Identity details</summary>
+-              <p>
+-                {JSON.stringify(step.tokenId)}
+-                {step.targetTokenId
+-                  ? ` → ${JSON.stringify(step.targetTokenId)}`
+-                  : ""}
+-              </p>
+-            </details>
+-          </li>
+-        ))}
+-      </ol>
+-      <h3>Resolution diagnostics</h3>
+-      {resolution.diagnostics.length ? (
+-        <ul className="text-caption space-y-2 my-3">
+-          {resolution.diagnostics.map((issue, index) => (
+-            <li key={index}>
+-              <strong>{issue.code}</strong>
+-              <pre className="whitespace-pre-wrap wrap-anywhere">
+-                {JSON.stringify(issue, null, 2)}
+-              </pre>
+-            </li>
+-          ))}
+-        </ul>
+-      ) : (
+-        <p className="text-caption my-3">
+-          {resolution.status === "unavailable"
+-            ? "Resolution diagnostics unavailable."
+-            : "No resolution issues."}
+-        </p>
+-      )}
+-      <details className="text-caption mt-4">
+-        <summary>Raw derived resolution data</summary>
+-        <pre className="whitespace-pre-wrap wrap-anywhere">
+-          {JSON.stringify(resolution, null, 2)}
+-        </pre>
+-      </details>
+-    </>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/inspector/TokenMetadata.tsx b/src/presentation/features/workbench/inspector/TokenMetadata.tsx
+deleted file mode 100644
+index f5bbd89..0000000
+--- a/src/presentation/features/workbench/inspector/TokenMetadata.tsx
++++ /dev/null
+@@ -1,64 +0,0 @@
+-import type { Token } from "@domain/token";
+-import type { DisplayPath } from "@application/retention/projections";
+-import { ExactSource } from "../components/ExactSource";
+-export function TokenMetadata({
+-  token,
+-  groupLabels,
+-  revision,
+-  requestSource,
+-  path,
+-}: {
+-  token: Omit<Token, "definition">;
+-  groupLabels: ReadonlyMap<string, string>;
+-  revision: string;
+-  requestSource?: () => Promise<string>;
+-  path: DisplayPath;
+-}) {
+-  return (
+-    <section className="applied-summary border-t border-border mt-7 pt-5">
+-      <h3 className="mb-3.5">Metadata · read only</h3>
+-      <dl className="details">
+-        <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+-          <dt className="text-muted-foreground">Regeneration</dt>
+-          <dd className="text-right wrap-anywhere">
+-            {token.authoring.regeneration}
+-          </dd>
+-        </div>
+-        <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+-          <dt className="text-muted-foreground">Semantic role</dt>
+-          <dd className="text-right wrap-anywhere">
+-            {token.semanticRole ?? "Unspecified"}
+-          </dd>
+-        </div>
+-        <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+-          <dt className="text-muted-foreground">Parent group</dt>
+-          <dd className="text-right wrap-anywhere">
+-            {token.parentGroupId !== null
+-              ? (groupLabels.get(token.parentGroupId) ?? "Missing group")
+-              : "Project root"}
+-          </dd>
+-        </div>
+-      </dl>
+-      <details className="text-caption mt-4">
+-        <summary>Identity and path details</summary>
+-        <p className="wrap-anywhere">
+-          Project identity: {JSON.stringify(token.projectId)}
+-        </p>
+-        <p className="wrap-anywhere">
+-          Token identity: {JSON.stringify(token.id)}
+-        </p>
+-        <pre className="whitespace-pre-wrap wrap-anywhere">
+-          {JSON.stringify(path, null, 2)}
+-        </pre>
+-      </details>
+-      <ExactSource
+-        key={`${token.id}-${revision}`}
+-        revision={revision}
+-        request={
+-          requestSource ??
+-          (() => Promise.resolve(JSON.stringify(token, null, 2)))
+-        }
+-      />
+-    </section>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/inspector/WorkbenchInspector.tsx b/src/presentation/features/workbench/inspector/WorkbenchInspector.tsx
+deleted file mode 100644
+index f7a0204..0000000
+--- a/src/presentation/features/workbench/inspector/WorkbenchInspector.tsx
++++ /dev/null
+@@ -1,193 +0,0 @@
+-import { GroupInspector } from "./GroupInspector";
+-import type { Selection } from "../../../workbench/useProjectReadback";
+-import type { ProjectContext } from "@application/retention/projections";
+-import type { ProjectHeader } from "@presentation/host/protocol";
+-import { Button } from "@presentation/ui/button";
+-import { Icon } from "@presentation/ui/icon";
+-import type { Feedback } from "./Editor";
+-import type { ReactNode } from "react";
+-import { useTokenEditor } from "./useTokenEditor";
+-import { EditorFields } from "./Editor";
+-export function InspectorHeader({
+-  readFailure,
+-  targetUnavailable,
+-  editable,
+-  feedback,
+-  selected,
+-  inspectorExpanded,
+-  onToggle,
+-}: {
+-  readFailure: string;
+-  targetUnavailable: string;
+-  editable: boolean;
+-  feedback?: Feedback;
+-  selected: boolean;
+-  inspectorExpanded: boolean;
+-  onToggle: () => void;
+-}) {
+-  return (
+-    <div className="inspector-header border-b border-border bg-surface h-11 min-h-11 shrink-0 flex items-center gap-2 pl-3 min-w-0">
+-      <span className="inspector-region-title flex-1 text-caption leading-3.5 min-w-0 font-medium">
+-        Inspector
+-      </span>
+-      {!readFailure && !targetUnavailable && editable && feedback && (
+-        <section
+-          className="inspector-feedback flex items-center gap-2 shrink-0"
+-          aria-label="Applied and draft color context"
+-        >
+-          {(
+-            ["applied", ...(feedback.tab === "resolved" ? [] : ["draft"])] as (
+-              | "applied"
+-              | "draft"
+-            )[]
+-          ).map((kind) => (
+-            <div
+-              key={kind}
+-              className="text-caption flex flex-col items-center w-16"
+-            >
+-              <span>{kind === "applied" ? "Applied" : "Draft"}</span>
+-              {feedback[kind] ? (
+-                <span
+-                  aria-hidden="true"
+-                  className="header-specimen rounded border border-specimen-border block w-9 h-4"
+-                  style={{ background: feedback[kind] }}
+-                />
+-              ) : (
+-                <span>Unavailable</span>
+-              )}
+-              <span className="sr-only">
+-                {
+-                  feedback[
+-                    kind === "applied" ? "appliedMessage" : "draftMessage"
+-                  ]
+-                }
+-              </span>
+-            </div>
+-          ))}
+-        </section>
+-      )}
+-      {(readFailure || targetUnavailable || !editable || !feedback) && (
+-        <span className="inspector-header-status text-caption leading-4 text-secondary">
+-          {readFailure || targetUnavailable
+-            ? "Unavailable"
+-            : selected
+-              ? "Inspection only"
+-              : "Select content"}
+-        </span>
+-      )}
+-      <Button
+-        variant="ghost"
+-        size="icon"
+-        className="pane-toggle inspector-toggle"
+-        aria-label={
+-          inspectorExpanded ? "Collapse inspector" : "Expand inspector"
+-        }
+-        aria-expanded={inspectorExpanded}
+-        aria-controls="token-inspector-content"
+-        onClick={() => onToggle()}
+-      >
+-        <Icon name="chevron-down" />
+-      </Button>
+-    </div>
+-  );
+-}
+-export function WorkbenchInspector({
+-  children,
+-  selection,
+-  context,
+-  groupLabels,
+-  header,
+-  inspectorExpanded,
+-  onToggle,
+-  readFailure,
+-  targetUnavailable,
+-  requestSource,
+-}: {
+-  children: ReactNode;
+-  selection: Selection;
+-  context?: ProjectContext;
+-  groupLabels: Map<string, string>;
+-  header: ProjectHeader;
+-  inspectorExpanded: boolean;
+-  onToggle: () => void;
+-  readFailure: string;
+-  targetUnavailable: string;
+-  requestSource: (id: string) => Promise<string>;
+-}) {
+-  return (
+-    <section
+-      className="inspector-shell small:border-l-0 small:border-t small:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l border-border bg-surface"
+-      aria-label="Inspector pane"
+-    >
+-      {children || (
+-        <>
+-          <InspectorHeader
+-            readFailure={readFailure}
+-            targetUnavailable={targetUnavailable}
+-            editable={false}
+-            selected={!!selection}
+-            inspectorExpanded={inspectorExpanded}
+-            onToggle={onToggle}
+-          />
+-          <div
+-            id="token-inspector-content"
+-            className="inspector-content flex-1 bg-surface overflow-auto min-h-0"
+-            hidden={!inspectorExpanded}
+-          >
+-            {selection?.kind === "group" && context ? (
+-              <GroupInspector
+-                entry={context.groups.find(
+-                  (g) => g.authored.id === selection.id,
+-                )}
+-                projectId={header.project.id}
+-                revision={header.revision}
+-                requestSource={() => requestSource(selection.id)}
+-              />
+-            ) : (
+-              <div className="empty px-5 py-17.5 text-center text-muted-foreground">
+-                <h2 className="text-foreground text-base/normal">
+-                  {selection ? "Preparing inspection…" : "Nothing selected"}
+-                </h2>
+-                <p className="text-xs/normal mt-2 mb-5">
+-                  Select a token or group to inspect it.
+-                </p>
+-              </div>
+-            )}
+-          </div>
+-        </>
+-      )}
+-    </section>
+-  );
+-}
+-export function EditableTokenInspector({
+-  inspectorExpanded,
+-  onToggle,
+-  readFailure,
+-  ...props
+-}: Parameters<typeof useTokenEditor>[0] & {
+-  inspectorExpanded: boolean;
+-  onToggle: () => void;
+-  readFailure: string;
+-}) {
+-  const editor = useTokenEditor(props);
+-  return (
+-    <>
+-      <InspectorHeader
+-        readFailure={readFailure}
+-        targetUnavailable={props.targetUnavailable ?? ""}
+-        editable={editor.editable}
+-        feedback={editor.feedback}
+-        selected
+-        inspectorExpanded={inspectorExpanded}
+-        onToggle={onToggle}
+-      />
+-      <div
+-        id="token-inspector-content"
+-        className="inspector-content flex-1 bg-surface overflow-auto min-h-0"
+-        hidden={!inspectorExpanded}
+-      >
+-        <EditorFields editor={editor} />
+-      </div>
+-    </>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/inspector/inspection-tabs.tsx b/src/presentation/features/workbench/inspector/inspection-tabs.tsx
+deleted file mode 100644
+index 476f2e9..0000000
+--- a/src/presentation/features/workbench/inspector/inspection-tabs.tsx
++++ /dev/null
+@@ -1,23 +0,0 @@
+-import { Tabs } from "@base-ui/react/tabs";
+-/** Shared inspection tab strip; Base UI retains roving focus and panel semantics. */
+-export function InspectionTabs() {
+-  return (
+-    <Tabs.List
+-      className="tabs flex border-b border-border px-6 gap-5.5 source-compact:px-5 source-compact:gap-4.5"
+-      aria-label="Token inspection"
+-    >
+-      <Tabs.Tab
+-        className="relative border-0 bg-transparent min-h-10.5 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-px data-active:after:inset-x-0 data-active:after:bg-primary"
+-        value="authored"
+-      >
+-        Authored value
+-      </Tabs.Tab>
+-      <Tabs.Tab
+-        className="relative border-0 bg-transparent min-h-10.5 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-px data-active:after:inset-x-0 data-active:after:bg-primary"
+-        value="resolved"
+-      >
+-        Resolved &amp; trace
+-      </Tabs.Tab>
+-    </Tabs.List>
+-  );
+-}
+diff --git a/src/presentation/features/workbench/inspector/session.ts b/src/presentation/features/workbench/inspector/session.ts
+deleted file mode 100644
+index b0dac22..0000000
+--- a/src/presentation/features/workbench/inspector/session.ts
++++ /dev/null
+@@ -1,151 +0,0 @@
+-import type { ColorLiteralInput, ColorSpace } from "@domain/color-literal";
+-import { createColorLiteral } from "@domain/color-literal";
+-import { convertColor } from "@domain/color-calculation";
+-import {
+-  integerByteDisplay,
+-  integerByteIssue,
+-  integerByteToNormalized,
+-} from "@presentation/features/workbench/color/integer-rgb";
+-import type { ImplementedAuthoredValue } from "@domain/token";
+-export { canReviseColorToken as eligible } from "@application/color-revision-policy";
+-export type LiteralDraft = {
+-  colorSpace: ColorSpace;
+-  components: [string, string, string];
+-  alpha: string;
+-};
+-export type DraftSession = {
+-  mode: "literal" | "reference";
+-  literal: LiteralDraft;
+-  reference: string | null;
+-  viewSpace: ColorSpace;
+-  scale: "normalized" | "bytes";
+-  byteText: [string, string, string] | null;
+-  byteInvalid: boolean;
+-  byteEdited: [boolean, boolean, boolean];
+-  edited: boolean;
+-};
+-export function baseline(value?: ImplementedAuthoredValue): DraftSession {
+-  const literal =
+-    value?.kind === "literal" && value.valueType === "color"
+-      ? {
+-          colorSpace: value.colorSpace,
+-          components: [...value.components] as [string, string, string],
+-          alpha: value.alpha,
+-        }
+-      : {
+-          colorSpace: "srgb" as const,
+-          components: ["", "", ""] as [string, string, string],
+-          alpha: "1",
+-        };
+-  return {
+-    mode: value?.kind === "token-reference" ? "reference" : "literal",
+-    literal,
+-    reference: value?.kind === "token-reference" ? value.targetTokenId : null,
+-    viewSpace: literal.colorSpace,
+-    scale: "normalized",
+-    byteText: null,
+-    byteInvalid: false,
+-    byteEdited: [false, false, false],
+-    edited: false,
+-  };
+-}
+-/** A clean editor follows applied data; representation preferences stay passive. */
+-export function refreshCleanSession(
+-  session: DraftSession,
+-  value?: ImplementedAuthoredValue,
+-): DraftSession {
+-  return {
+-    ...baseline(value),
+-    viewSpace: session.viewSpace,
+-    scale: session.scale,
+-  };
+-}
+-export function literalIssue(literal: ColorLiteralInput): string | undefined {
+-  try {
+-    createColorLiteral(literal);
+-    return undefined;
+-  } catch (e) {
+-    return e instanceof Error ? e.message : "Invalid literal";
+-  }
+-}
+-export function displayed(s: DraftSession): LiteralDraft {
+-  if (s.viewSpace === s.literal.colorSpace) return s.literal;
+-  // Alpha never participates in coordinate conversion. Keep the displayed
+-  // coordinates stable while its independent exact text is incomplete.
+-  const r = convertColor({ ...s.literal, alpha: "1" }, s.viewSpace);
+-  return r.ok
+-    ? {
+-        colorSpace: r.value.colorSpace,
+-        components: [...r.value.components],
+-        alpha: s.literal.alpha,
+-      }
+-    : s.literal;
+-}
+-export function fields(s: DraftSession): [string, string, string] {
+-  const d = displayed(s);
+-  return d.colorSpace === "srgb" && s.scale === "bytes"
+-    ? (s.byteText ??
+-        (d.components.map((x) => integerByteDisplay(x).text) as [
+-          string,
+-          string,
+-          string,
+-        ]))
+-    : d.components;
+-}
+-export function changeView(s: DraftSession, target: ColorSpace): DraftSession {
+-  if (s.byteInvalid)
+-    throw new RangeError(
+-      "Finish the incomplete byte entries before changing representation.",
+-    );
+-  const r = convertColor(s.literal, target);
+-  if (!r.ok) throw new RangeError(r.message);
+-  const next = { ...s, viewSpace: target };
+-  if (target === "srgb" && s.scale === "bytes") fields(next);
+-  return next;
+-}
+-export function editComponent(
+-  s: DraftSession,
+-  index: number,
+-  text: string,
+-): DraftSession {
+-  const d = displayed(s);
+-  const bytes = d.colorSpace === "srgb" && s.scale === "bytes";
+-  const components: [string, string, string] = [...d.components];
+-  if (bytes) {
+-    const raw: [string, string, string] = [...fields(s)];
+-    raw[index] = text;
+-    const byteEdited: [boolean, boolean, boolean] = [...s.byteEdited];
+-    byteEdited[index] = true;
+-    try {
+-      components[index] = integerByteToNormalized(text);
+-    } catch {
+-      return {
+-        ...s,
+-        byteText: raw,
+-        byteEdited,
+-        byteInvalid: true,
+-        edited: true,
+-      };
+-    }
+-    const invalid = raw.some(
+-      (x, i) => byteEdited[i] && integerByteIssue(x) !== undefined,
+-    );
+-    return {
+-      ...s,
+-      literal: { ...d, components },
+-      byteText: raw,
+-      byteEdited,
+-      byteInvalid: invalid,
+-      edited: true,
+-    };
+-  }
+-  components[index] = text;
+-  return {
+-    ...s,
+-    literal: { ...d, components },
+-    byteText: null,
+-    byteEdited: [false, false, false],
+-    byteInvalid: false,
+-    edited: true,
+-  };
+-}
+diff --git a/src/presentation/features/workbench/inspector/useTokenEditor.ts b/src/presentation/features/workbench/inspector/useTokenEditor.ts
+deleted file mode 100644
+index ca6c970..0000000
+--- a/src/presentation/features/workbench/inspector/useTokenEditor.ts
++++ /dev/null
+@@ -1,263 +0,0 @@
+-import type { SelectedToken } from "@application/retention/projections";
+-import type { ProjectContext } from "@application/retention/projections";
+-
+-import { useEffect, useRef, useState, useMemo } from "react";
+-
+-import type {
+-  TokenInspection,
+-  ApplicationResult,
+-} from "@application/authoring";
+-import type { Token } from "@domain/token";
+-import type { ReviseColorTokenInput } from "@application/authoring";
+-
+-import {
+-  baseline,
+-  refreshCleanSession,
+-  eligible,
+-  literalIssue,
+-} from "@presentation/features/workbench/inspector/session";
+-import { colorPreview } from "@presentation/features/workbench/color/preview";
+-import { identityLabels } from "@presentation/token-display/identity-labels";
+-import { failureText, resolvedColor } from "@presentation/workbench/readback";
+-export function useTokenEditor({
+-  inspection: i,
+-  project,
+-  inspect,
+-  onApply,
+-  onDirty,
+-  readUnavailable,
+-  revision = "session",
+-  requestSource,
+-  readOnly = false,
+-  targetUnavailable,
+-}: {
+-  inspection: TokenInspection | SelectedToken;
+-  project: ProjectContext;
+-  inspect: (id: string) =>
+-    | {
+-        resolution: {
+-          status: string;
+-          value?: import("@domain/token-resolution").ResolvedValue;
+-        };
+-      }
+-    | undefined;
+-  onApply: (
+-    value: ReviseColorTokenInput["value"],
+-  ) =>
+-    | ApplicationResult<Pick<Token, "definition">>
+-    | Promise<ApplicationResult<Pick<Token, "definition">>>;
+-  onDirty: (d: boolean) => void;
+-  readUnavailable: boolean;
+-  revision?: string;
+-  requestSource?: () => Promise<string>;
+-  readOnly?: boolean;
+-  targetUnavailable?: string;
+-}) {
+-  const projected = "token" in i;
+-  const token = projected ? i.token : i.authored,
+-    value = projected
+-      ? i.authoredValue
+-      : i.authored.definition?.assignments[0]?.value;
+-  const [accepting, setAccepting] = useState(false);
+-  const [session, setSession] = useState(() => baseline(value));
+-  const initial = useRef(session);
+-  const baselineRevision = useRef({
+-    revision,
+-    value: JSON.stringify({ token, value }),
+-    previous: value,
+-  });
+-  const [recovery, setRecovery] = useState<{
+-    previous: typeof value;
+-    reviewed: boolean;
+-  }>();
+-  const reviewHeading = useRef<HTMLHeadingElement>(null);
+-
+-  const [tab, setTab] = useState("authored"),
+-    [error, setError] = useState(""),
+-    [notice, setNotice] = useState("");
+-  const modeRef = useRef<HTMLButtonElement>(null),
+-    errorRef = useRef<HTMLParagraphElement>(null);
+-  const [restoreApplyFocus, setRestoreApplyFocus] = useState(false);
+-  useEffect(() => {
+-    if (restoreApplyFocus && !accepting) {
+-      // The mode button inherits disabled from the retaining fieldset. Focus
+-      // only after React commits the successful, re-enabled editor.
+-      modeRef.current?.focus();
+-      setRestoreApplyFocus(false);
+-    }
+-  }, [restoreApplyFocus, accepting]);
+-  const dirty =
+-    session.edited || session.reference !== initial.current.reference;
+-  useEffect(() => onDirty(dirty), [dirty, onDirty]);
+-  useEffect(() => {
+-    const before = baselineRevision.current;
+-    if (before.revision !== revision) {
+-      if (dirty && before.value !== JSON.stringify({ token, value }))
+-        setRecovery({ previous: before.previous, reviewed: false });
+-      if (!dirty) {
+-        const next = refreshCleanSession(session, value);
+-        initial.current = next;
+-        setSession(next);
+-        setRecovery(undefined);
+-      }
+-      baselineRevision.current = {
+-        revision,
+-        value: JSON.stringify({ token, value }),
+-        previous: value,
+-      };
+-    }
+-  }, [revision, value, dirty]);
+-
+-  useEffect(() => {
+-    if (error) errorRef.current?.focus();
+-  }, [error]);
+-  const applied = colorPreview(resolvedColor(i));
+-  const targetInspection =
+-    session.reference !== null ? inspect(session.reference) : undefined;
+-  const draft =
+-    session.mode === "literal"
+-      ? session.byteInvalid
+-        ? { message: "Unavailable: finish the incomplete byte entries." }
+-        : colorPreview(session.literal)
+-      : colorPreview(resolvedColor(targetInspection));
+-  const feedback = {
+-    tokenId: token.id,
+-    tab,
+-    applied: applied.css,
+-    draft: draft.css,
+-    appliedMessage: applied.message,
+-    draftMessage: draft.message,
+-  };
+-  const tokenLabels = useMemo(
+-    () => identityLabels(project.tokens),
+-    [project.tokens],
+-  );
+-  const referenceChoices = useMemo(
+-    () => project.tokens.filter((t) => t.authored.definition?.type === "color"),
+-    [project.tokens],
+-  );
+-  const referenceLabels = useMemo(
+-    () => identityLabels(referenceChoices, undefined, token.id),
+-    [referenceChoices, token.id],
+-  );
+-  const groupLabels = useMemo(
+-    () => identityLabels(project.groups, ["Project root", "All tokens"]),
+-    [project.groups],
+-  );
+-  const editable = projected ? i.editable : eligible(i.authored);
+-  async function apply() {
+-    if (
+-      accepting ||
+-      readOnly ||
+-      targetUnavailable ||
+-      (recovery && !recovery.reviewed)
+-    )
+-      return;
+-    if (readUnavailable) {
+-      setError("Project read unavailable. Retry reading; drafts retained.");
+-      return;
+-    }
+-    if (!editable) return;
+-    if (
+-      session.mode === "literal" &&
+-      (session.byteInvalid || literalIssue(session.literal))
+-    ) {
+-      setError(
+-        session.byteInvalid
+-          ? "Finish the incomplete byte entries."
+-          : (literalIssue(session.literal) ?? "Invalid color"),
+-      );
+-      return;
+-    }
+-    if (session.mode === "reference" && session.reference === null) {
+-      setError("Choose a color target.");
+-      return;
+-    }
+-    const candidate: ReviseColorTokenInput["value"] =
+-      session.mode === "literal"
+-        ? { ...session.literal, kind: "literal" }
+-        : {
+-            kind: "token-reference",
+-            targetTokenId: session.reference!,
+-            valuePath: [],
+-          };
+-    setAccepting(true);
+-    let result: ApplicationResult<Pick<Token, "definition">>;
+-    try {
+-      result = await onApply(candidate);
+-    } catch (error) {
+-      setError(
+-        error instanceof Error
+-          ? error.message
+-          : "Apply outcome unavailable. Drafts retained.",
+-      );
+-      setAccepting(false);
+-      return;
+-    }
+-    setAccepting(false);
+-    if (result.status === "failure") {
+-      setError("Apply failed. " + failureText(result));
+-      return;
+-    }
+-    const next = baseline(result.value.definition?.assignments[0]?.value);
+-    initial.current = next;
+-    baselineRevision.current = {
+-      revision,
+-      value: JSON.stringify(result.value.definition?.assignments[0]?.value),
+-      previous: result.value.definition?.assignments[0]?.value,
+-    };
+-    setRecovery(undefined);
+-    setSession(next);
+-    onDirty(false);
+-    setError("");
+-    setNotice("Changes applied and retained.");
+-    setRestoreApplyFocus(true);
+-  }
+-  function cancel() {
+-    const currentBaseline = baseline(value);
+-    initial.current = currentBaseline;
+-    setSession(currentBaseline);
+-    setRecovery(undefined);
+-    onDirty(false);
+-    setError("");
+-    setNotice("Both drafts discarded. Applied value unchanged.");
+-    modeRef.current?.focus();
+-  }
+-  return {
+-    i,
+-    project,
+-    projected,
+-    token,
+-    value,
+-    accepting,
+-    session,
+-    setSession,
+-    recovery,
+-    setRecovery,
+-    reviewHeading,
+-    tab,
+-    setTab,
+-    error,
+-    setError,
+-    notice,
+-    setNotice,
+-    modeRef,
+-    errorRef,
+-    dirty,
+-    applied,
+-    draft,
+-    feedback,
+-    tokenLabels,
+-    referenceChoices,
+-    referenceLabels,
+-    groupLabels,
+-    editable,
+-    apply,
+-    cancel,
+-    readUnavailable,
+-    revision,
+-    requestSource,
+-    readOnly,
+-    targetUnavailable,
+-  };
+-}
+diff --git a/src/presentation/token-display/AuthoredValue.tsx b/src/presentation/token-display/AuthoredValue.tsx
+new file mode 100644
+index 0000000..a21bc0b
+--- /dev/null
++++ b/src/presentation/token-display/AuthoredValue.tsx
+@@ -0,0 +1,59 @@
++import {
++  authoredColorCoordinates,
++  spaceName,
++} from "@presentation/token-display/authored-color";
++import type { Token } from "@domain/token";
++import type { ProjectContext } from "@application/retention/projections";
++import { identityLabels } from "@presentation/token-display/identity-labels";
++
++type Value = NonNullable<Token["definition"]>["assignments"][number]["value"];
++
++/** Exact authored data with semantic labels; never resolved or coerced to Number. */
++export function AuthoredValue({
++  value,
++  project,
++  layout = "expanded",
++}: {
++  value: Value | undefined;
++  project?: ProjectContext;
++  layout?: "expanded" | "compact";
++}) {
++  if (value?.kind === "token-reference") {
++    const target = project?.tokens.find(
++      (t) => t.authored.id === value.targetTokenId,
++    );
++    return (
++      <span className="block min-w-0 wrap-anywhere">
++        <span className="block">Reference</span>
++        <span className="block text-secondary mt-1">
++          {target
++            ? identityLabels(project?.tokens ?? []).get(target.authored.id)
++            : "Missing target"}
++        </span>
++      </span>
++    );
++  }
++  if (value?.kind !== "literal" || value.valueType !== "color")
++    return <span>{value?.kind ?? "No assignment"}</span>;
++  return (
++    <span className="block min-w-0 wrap-anywhere">
++      <span className="block">{spaceName(value.colorSpace)}</span>
++      <span className="block text-secondary mt-1 mono">
++        {authoredColorCoordinates(value, layout).map((text, index) => (
++          <span key={index}>
++            {layout === "compact" && index > 0 ? " · " : ""}
++            <span
++              className={
++                layout === "compact"
++                  ? "inline-block max-w-full align-top wrap-anywhere"
++                  : "block"
++              }
++            >
++              {text}
++            </span>
++          </span>
++        ))}
++      </span>
++    </span>
++  );
++}
+diff --git a/src/presentation/token-display/ExactSource.tsx b/src/presentation/token-display/ExactSource.tsx
+new file mode 100644
+index 0000000..976afe7
+--- /dev/null
++++ b/src/presentation/token-display/ExactSource.tsx
+@@ -0,0 +1,71 @@
++import { useRef, useState } from "react";
++import { Button } from "@presentation/ui/button";
++export function ExactSource({
++  revision,
++  request,
++}: {
++  revision: string;
++  request: () => Promise<string>;
++}) {
++  const [text, setText] = useState<string>(),
++    [error, setError] = useState(""),
++    [preparing, setPreparing] = useState(false);
++  const generation = useRef(0),
++    open = useRef(false);
++  async function prepare() {
++    const current = ++generation.current;
++    setPreparing(true);
++    setError("");
++    setText(undefined);
++    try {
++      const source = await request();
++      if (open.current && current === generation.current) setText(source);
++    } catch {
++      if (open.current && current === generation.current)
++        setError(
++          "Authored data unavailable. Applied data and drafts are unchanged.",
++        );
++    } finally {
++      if (current === generation.current) setPreparing(false);
++    }
++  }
++  return (
++    <div className="mt-4">
++      <p className="helper text-muted-foreground">
++        Opening very large exact source may briefly pause this view.
++      </p>
++      <details
++        onToggle={(event) => {
++          open.current = event.currentTarget.open;
++          if (open.current) void prepare();
++          else {
++            generation.current++;
++            setPreparing(false);
++            setText(undefined);
++          }
++        }}
++      >
++        <summary>All authored data</summary>
++        <p className="text-caption my-3 wrap-anywhere">
++          Applied data · Revision {revision} · Read only
++        </p>
++        {preparing && <p role="status">Preparing authored data…</p>}
++        {error && (
++          <div role="status">
++            <p>{error}</p>
++            <Button onClick={() => void prepare()}>Retry authored data</Button>
++          </div>
++        )}
++        {text !== undefined && (
++          <pre
++            tabIndex={0}
++            aria-label="Complete applied authored data"
++            className="exact-source text-caption my-3"
++          >
++            {text}
++          </pre>
++        )}
++      </details>
++    </div>
++  );
++}
+diff --git a/src/presentation/token-display/ResolvedTokenPanel.tsx b/src/presentation/token-display/ResolvedTokenPanel.tsx
+new file mode 100644
+index 0000000..9561fe4
+--- /dev/null
++++ b/src/presentation/token-display/ResolvedTokenPanel.tsx
+@@ -0,0 +1,120 @@
++import type {
++  SelectedToken,
++  ProjectContext,
++} from "@application/retention/projections";
++import type { TokenInspection } from "@application/authoring";
++import { pathLabel } from "@presentation/token-display/identity-labels";
++import { resolvedColor } from "@presentation/token-display/resolved-color";
++import { COLOR_COMPONENTS, COMPONENT_NAMES } from "@domain/color-components";
++import { spaceName } from "@presentation/token-display/authored-color";
++import { Badge } from "@presentation/ui/badge";
++import { TokenSwatch } from "@presentation/token-display/TokenSwatch";
++export function ResolvedTokenPanel({
++  resolution,
++  project,
++  css,
++  message,
++}: {
++  resolution: SelectedToken["resolution"] | TokenInspection["resolution"];
++  project: ProjectContext;
++  css?: string;
++  message: string;
++}) {
++  const color = resolvedColor({ resolution });
++  const label = (id: string) => {
++    const t = project.tokens.find((t) => t.authored.id === id);
++    return t ? pathLabel(t.path) : "Unavailable token path";
++  };
++  return (
++    <>
++      <div className="flex items-center gap-2 mb-3">
++        <h3>Resolved value</h3>
++        <Badge>Applied value</Badge>
++      </div>
++      <div className="resolved-preview flex flex-col gap-2 my-3">
++        <TokenSwatch css={css} />
++        <p className="helper text-muted-foreground">{message}</p>
++      </div>
++      {resolution.status === "resolved" ? (
++        color ? (
++          <>
++            <h4>{spaceName(color.colorSpace)}</h4>
++            <dl className="text-caption my-3">
++              {color.components.map((value, index) => (
++                <div className="flex justify-between gap-3 py-1" key={index}>
++                  <dt>
++                    {COMPONENT_NAMES[COLOR_COMPONENTS[color.colorSpace][index]]}
++                  </dt>
++                  <dd className="wrap-anywhere text-right min-w-0">{value}</dd>
++                </div>
++              ))}
++              <div className="flex justify-between gap-3 py-1">
++                <dt>Alpha</dt>
++                <dd className="wrap-anywhere min-w-0">{color.alpha}</dd>
++              </div>
++            </dl>
++          </>
++        ) : (
++          <p>
++            Resolved {resolution.value.valueType} value. Full derived value is
++            available below.
++          </p>
++        )
++      ) : (
++        <p
++          role="status"
++          className="border border-error-border bg-error-surface rounded p-3 text-caption text-destructive"
++        >
++          Unresolved: {resolution.reason}. Authored data retained.
++        </p>
++      )}
++      <h3 className="mt-5">Resolution trace</h3>
++      <ol className="text-caption my-3 space-y-3">
++        {resolution.trace.map((step, index) => (
++          <li key={index} className="wrap-anywhere">
++            <strong>{label(step.tokenId)}</strong>
++            <p>
++              {step.targetTokenId
++                ? `References ${label(step.targetTokenId)}`
++                : "Authored value"}
++            </p>
++            <details>
++              <summary>Identity details</summary>
++              <p>
++                {JSON.stringify(step.tokenId)}
++                {step.targetTokenId
++                  ? ` → ${JSON.stringify(step.targetTokenId)}`
++                  : ""}
++              </p>
++            </details>
++          </li>
++        ))}
++      </ol>
++      <h3>Resolution diagnostics</h3>
++      {resolution.diagnostics.length ? (
++        <ul className="text-caption space-y-2 my-3">
++          {resolution.diagnostics.map((issue, index) => (
++            <li key={index}>
++              <strong>{issue.code}</strong>
++              <pre className="whitespace-pre-wrap wrap-anywhere">
++                {JSON.stringify(issue, null, 2)}
++              </pre>
++            </li>
++          ))}
++        </ul>
++      ) : (
++        <p className="text-caption my-3">
++          {resolution.status === "unavailable"
++            ? "Resolution diagnostics unavailable."
++            : "No resolution issues."}
++        </p>
++      )}
++      <details className="text-caption mt-4">
++        <summary>Raw derived resolution data</summary>
++        <pre className="whitespace-pre-wrap wrap-anywhere">
++          {JSON.stringify(resolution, null, 2)}
++        </pre>
++      </details>
++    </>
++  );
++}
+diff --git a/src/presentation/token-display/TokenMetadata.tsx b/src/presentation/token-display/TokenMetadata.tsx
+new file mode 100644
+index 0000000..0694234
+--- /dev/null
++++ b/src/presentation/token-display/TokenMetadata.tsx
+@@ -0,0 +1,64 @@
++import type { Token } from "@domain/token";
++import type { DisplayPath } from "@application/retention/projections";
++import { ExactSource } from "@presentation/token-display/ExactSource";
++export function TokenMetadata({
++  token,
++  groupLabels,
++  revision,
++  requestSource,
++  path,
++}: {
++  token: Omit<Token, "definition">;
++  groupLabels: ReadonlyMap<string, string>;
++  revision: string;
++  requestSource?: () => Promise<string>;
++  path: DisplayPath;
++}) {
++  return (
++    <section className="applied-summary border-t border-border mt-7 pt-5">
++      <h3 className="mb-3.5">Metadata · read only</h3>
++      <dl className="details">
++        <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
++          <dt className="text-muted-foreground">Regeneration</dt>
++          <dd className="text-right wrap-anywhere">
++            {token.authoring.regeneration}
++          </dd>
++        </div>
++        <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
++          <dt className="text-muted-foreground">Semantic role</dt>
++          <dd className="text-right wrap-anywhere">
++            {token.semanticRole ?? "Unspecified"}
++          </dd>
++        </div>
++        <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
++          <dt className="text-muted-foreground">Parent group</dt>
++          <dd className="text-right wrap-anywhere">
++            {token.parentGroupId !== null
++              ? (groupLabels.get(token.parentGroupId) ?? "Missing group")
++              : "Project root"}
++          </dd>
++        </div>
++      </dl>
++      <details className="text-caption mt-4">
++        <summary>Identity and path details</summary>
++        <p className="wrap-anywhere">
++          Project identity: {JSON.stringify(token.projectId)}
++        </p>
++        <p className="wrap-anywhere">
++          Token identity: {JSON.stringify(token.id)}
++        </p>
++        <pre className="whitespace-pre-wrap wrap-anywhere">
++          {JSON.stringify(path, null, 2)}
++        </pre>
++      </details>
++      <ExactSource
++        key={`${token.id}-${revision}`}
++        revision={revision}
++        request={
++          requestSource ??
++          (() => Promise.resolve(JSON.stringify(token, null, 2)))
++        }
++      />
++    </section>
++  );
++}
+diff --git a/src/presentation/token-display/TokenSwatch.tsx b/src/presentation/token-display/TokenSwatch.tsx
+new file mode 100644
+index 0000000..5ed74d8
+--- /dev/null
++++ b/src/presentation/token-display/TokenSwatch.tsx
+@@ -0,0 +1,10 @@
++export function TokenSwatch({ css }: { css?: string }) {
++  return (
++    <span
++      className={`swatch size-8.5 border border-swatch-border rounded block shrink-0 overflow-hidden ${css ? "" : "swatch-unavailable"}`}
++      aria-hidden="true"
++    >
++      <span className="block size-full" style={{ background: css }} />
++    </span>
++  );
++}
+diff --git a/src/presentation/token-display/authored-color.ts b/src/presentation/token-display/authored-color.ts
+new file mode 100644
+index 0000000..e439549
+--- /dev/null
++++ b/src/presentation/token-display/authored-color.ts
+@@ -0,0 +1,29 @@
++import {
++  COLOR_COMPONENTS,
++  COMPONENT_NAMES,
++  componentSuffix,
++  type ColorComponentIdentity,
++} from "@domain/color-components";
++import type { ColorLiteralValue, ColorSpace } from "@domain/color-literal";
++export const spaceName = (space: ColorSpace) =>
++  space === "srgb" ? "sRGB" : space === "display-p3" ? "Display P3" : space.toUpperCase();
++const compactNames: Record<ColorComponentIdentity, string> = {
++  red: "R", green: "G", blue: "B", hue: "H", saturation: "S",
++  lightness: "L", chroma: "C", a: "a", b: "b",
++};
++/** Exact text for the list and applied inspector; no Number conversion or rounding. */
++export function authoredColorCoordinates(
++  value: ColorLiteralValue,
++  layout: "expanded" | "compact" = "expanded",
++): string[] {
++  const separator = layout === "compact" ? ": " : " ";
++  return [
++    ...COLOR_COMPONENTS[value.colorSpace].map((identity, index) => {
++      const exact = value.components[index];
++      const name = layout === "compact" ? compactNames[identity] : COMPONENT_NAMES[identity];
++      return name + separator + exact +
++        (exact === "none" ? "" : componentSuffix(value.colorSpace, identity));
++    }),
++    "Alpha" + separator + value.alpha,
++  ];
++}
+diff --git a/src/presentation/token-display/color-preview.ts b/src/presentation/token-display/color-preview.ts
+new file mode 100644
+index 0000000..531bafb
+--- /dev/null
++++ b/src/presentation/token-display/color-preview.ts
+@@ -0,0 +1,48 @@
++import { createColorLiteral } from "@domain/color-literal";
++import type { ColorLiteralInput } from "@domain/color-literal";
++
++/** Native CSS is display-only: never convert or write back authored coordinates. */
++export function colorPreview(input?: ColorLiteralInput): {
++  css?: string;
++  message: string;
++} {
++  if (!input) return { message: "Unavailable: no resolved color." };
++  let space;
++  try {
++    space = createColorLiteral(input).colorSpace;
++  } catch {
++    return {
++      message: "Unavailable: finish valid exact component and alpha entries.",
++    };
++  }
++  // Validate with the domain constructor, but serialize the original text rather
++  // than its normalized copy or a binary-number conversion.
++  const [first, second, third] = input.components;
++  const alpha = input.alpha;
++  const percent = (value: string) => value === "none" ? value : `${value}%`;
++  let css: string;
++  switch (space) {
++    case "srgb":
++    case "display-p3":
++      css = `color(${space} ${first} ${second} ${third} / ${alpha})`;
++      break;
++    case "hsl":
++      css = `hsl(${first} ${percent(second)} ${percent(third)} / ${alpha})`;
++      break;
++    case "oklab":
++    case "oklch":
++      css = `${space}(${first} ${second} ${third} / ${alpha})`;
++      break;
++  }
++  const browserCss = (globalThis as typeof globalThis & {
++    CSS?: { supports(property: string, value: string): boolean };
++  }).CSS;
++  if (browserCss && !browserCss.supports("color", css))
++    return { message: "Unavailable: this browser cannot render this color syntax." };
++  return {
++    css,
++    message: input.components.includes("none")
++      ? "Browser-rendered preview; missing components follow CSS display semantics. Authored values are unchanged."
++      : "Browser-rendered preview; appearance depends on your display. Authored values are unchanged.",
++  };
++}
+diff --git a/src/presentation/token-display/resolved-color.ts b/src/presentation/token-display/resolved-color.ts
+new file mode 100644
+index 0000000..a7ba562
+--- /dev/null
++++ b/src/presentation/token-display/resolved-color.ts
+@@ -0,0 +1,14 @@
++import type { ColorLiteralValue } from "@domain/color-literal";
++export function resolvedColor(inspection?: {
++  resolution: {
++    status: string;
++    value?: import("@domain/token-resolution").ResolvedValue;
++  };
++}): ColorLiteralValue | undefined {
++  const r = inspection?.resolution;
++  return r?.status === "resolved" &&
++    r.value?.kind === "literal" &&
++    r.value.valueType === "color"
++    ? r.value
++    : undefined;
++}
+diff --git a/src/presentation/workbench/TokenWorkspace/TokenTable/TokenTable.tsx b/src/presentation/workbench/TokenWorkspace/TokenTable/TokenTable.tsx
+index f79c984..e643837 100644
+--- a/src/presentation/workbench/TokenWorkspace/TokenTable/TokenTable.tsx
++++ b/src/presentation/workbench/TokenWorkspace/TokenTable/TokenTable.tsx
+@@ -2,11 +2,11 @@ import type {
+   DisplayRow,
+   ProjectContext,
+ } from "@application/retention/projections";
+-import { AuthoredValue } from "../../../features/workbench/components/AuthoredValue";
+-import { Swatch } from "../../../features/workbench/components/swatch";
++import { AuthoredValue } from "@presentation/token-display/AuthoredValue";
++import { TokenSwatch } from "@presentation/token-display/TokenSwatch";
+ import { Button } from "@presentation/ui/button";
+ import { identityLabels, namespaceEntryDetails } from "@presentation/token-display/identity-labels";
+-import { colorPreview } from "@presentation/features/workbench/color/preview";
++import { colorPreview } from "@presentation/token-display/color-preview";
+ export function TokenTable({
+   context,
+   creationParentLabel = "Project root",
+@@ -42,7 +42,7 @@ export function TokenTable({
+           onClick={() => onSelect(row.id)}
+         >
+           <span className="flex gap-3 min-w-0 items-start">
+-            <Swatch css={colorPreview(row.preview).css} />
++            <TokenSwatch css={colorPreview(row.preview).css} />
+             <span className="token-identity flex-1 min-w-0">
+               <strong className="block text-xs/normal small:text-caption token-name wrap-anywhere">
+                 {labels.get(row.id)}
+diff --git a/src/presentation/workbench/Workbench.tsx b/src/presentation/workbench/Workbench.tsx
+index ccad08b..3248df1 100644
+--- a/src/presentation/workbench/Workbench.tsx
++++ b/src/presentation/workbench/Workbench.tsx
+@@ -24,10 +24,8 @@ import type { Token } from "@domain/token";
+ import type { ProjectHeader, WorkbenchHost } from "@presentation/host/protocol";
+ import { Button } from "@presentation/ui/button";
+ 
+-import {
+-  WorkbenchInspector,
+-  EditableTokenInspector,
+-} from "@presentation/features/workbench/inspector/WorkbenchInspector";
++import { WorkbenchInspector } from "@presentation/workbench/WorkbenchInspector/WorkbenchInspector";
++import { TokenEditor } from "@presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditor";
+ import { CreationDialog } from "@presentation/workbench/CreationDialog/CreationDialog";
+ import { NamespaceTree } from "@presentation/workbench/WorkbenchNavigation/NamespaceTree/NamespaceTree";
+ 
+@@ -418,7 +416,7 @@ export function Workbench({
+           requestSource={(id) => source("group", id)}
+         >
+           {selection?.kind === "token" && inspection && context ? (
+-            <EditableTokenInspector
++            <TokenEditor
+               inspectorExpanded={inspectorExpanded}
+               onToggle={() => setInspectorExpanded(!inspectorExpanded)}
+               readFailure={readFailure}
+diff --git a/src/presentation/workbench/WorkbenchInspector/GroupInspector/GroupInspector.tsx b/src/presentation/workbench/WorkbenchInspector/GroupInspector/GroupInspector.tsx
+new file mode 100644
+index 0000000..0c41df8
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/GroupInspector/GroupInspector.tsx
+@@ -0,0 +1,51 @@
++import type { ProjectContext } from "@application/retention/projections";
++import { pathLabel } from "@presentation/token-display/identity-labels";
++import { ExactSource } from "@presentation/token-display/ExactSource";
++export function GroupInspector({
++  entry,
++  projectId,
++  revision,
++  requestSource,
++}: {
++  entry: ProjectContext["groups"][number] | undefined;
++  projectId: string;
++  revision: string;
++  requestSource: () => Promise<string>;
++}) {
++  return (
++    <div className="p-5">
++      <p className="text-caption text-muted-foreground">Group · Read only</p>
++      <h2 className="wrap-anywhere">
++        {entry?.authored.localName || "(unnamed group)"}
++      </h2>
++      <p className="wrap-anywhere mt-2">
++        {entry?.path.status === "derived"
++          ? pathLabel(entry.path)
++          : "Path unavailable"}
++      </p>
++      {entry && entry.path.status !== "derived" && (
++        <p className="text-caption wrap-anywhere">
++          Parent identity: {JSON.stringify(entry.authored.parentGroupId)}. Exact
++          namespace diagnostics are available below.
++        </p>
++      )}
++      <details className="text-caption mt-4">
++        <summary>Identity and path details</summary>
++        <p className="wrap-anywhere">
++          Project identity: {JSON.stringify(projectId)}
++        </p>
++        <p className="wrap-anywhere">
++          Group identity: {JSON.stringify(entry?.authored.id)}
++        </p>
++        <pre className="whitespace-pre-wrap wrap-anywhere">
++          {JSON.stringify(entry?.path, null, 2)}
++        </pre>
++      </details>
++      <ExactSource
++        key={JSON.stringify([entry?.authored.id, revision])}
++        revision={revision}
++        request={requestSource}
++      />
++    </div>
++  );
++}
+diff --git a/src/presentation/workbench/WorkbenchInspector/InspectorHeader.tsx b/src/presentation/workbench/WorkbenchInspector/InspectorHeader.tsx
+new file mode 100644
+index 0000000..1fe1f6e
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/InspectorHeader.tsx
+@@ -0,0 +1,53 @@
++import { Button } from "@presentation/ui/button";
++import { Icon } from "@presentation/ui/icon";
++import { TokenValueComparison, type Feedback } from "./TokenValueComparison";
++export function InspectorHeader({
++  readFailure,
++  targetUnavailable,
++  editable,
++  feedback,
++  selected,
++  inspectorExpanded,
++  onToggle,
++}: {
++  readFailure: string;
++  targetUnavailable: string;
++  editable: boolean;
++  feedback?: Feedback;
++  selected: boolean;
++  inspectorExpanded: boolean;
++  onToggle: () => void;
++}) {
++  return (
++    <div className="inspector-header border-b border-border bg-surface h-11 min-h-11 shrink-0 flex items-center gap-2 pl-3 min-w-0">
++      <span className="inspector-region-title flex-1 text-caption leading-3.5 min-w-0 font-medium">
++        Inspector
++      </span>
++      {!readFailure && !targetUnavailable && editable && feedback && (
++        <TokenValueComparison feedback={feedback} />
++      )}
++      {(readFailure || targetUnavailable || !editable || !feedback) && (
++        <span className="inspector-header-status text-caption leading-4 text-secondary">
++          {readFailure || targetUnavailable
++            ? "Unavailable"
++            : selected
++              ? "Inspection only"
++              : "Select content"}
++        </span>
++      )}
++      <Button
++        variant="ghost"
++        size="icon"
++        className="pane-toggle inspector-toggle"
++        aria-label={
++          inspectorExpanded ? "Collapse inspector" : "Expand inspector"
++        }
++        aria-expanded={inspectorExpanded}
++        aria-controls="token-inspector-content"
++        onClick={() => onToggle()}
++      >
++        <Icon name="chevron-down" />
++      </Button>
++    </div>
++  );
++}
+diff --git a/src/presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/ColorEditor.tsx b/src/presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/ColorEditor.tsx
+new file mode 100644
+index 0000000..e8c6f2c
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/ColorEditor.tsx
+@@ -0,0 +1,302 @@
++import {
++  COLOR_COMPONENTS,
++  COMPONENT_NAMES,
++  componentSuffix,
++} from "@domain/color-components";
++import { Field } from "@presentation/ui/field";
++import { Input } from "@presentation/ui/input";
++import type { CSSProperties } from "react";
++import { COLOR_SPACES } from "@domain/color-literal";
++import type { ColorSpace } from "@domain/color-literal";
++import {
++  integerByteDisplay,
++  integerByteIssue,
++} from "@presentation/workbench/WorkbenchInspector/TokenEditor/integer-rgb";
++import { Select } from "@presentation/ui/select";
++import {
++  changeView,
++  displayed,
++  editComponent,
++  fields,
++} from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
++import type { DraftSession } from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
++import { visualRangeState } from "@presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/visual-range";
++import { spaceName } from "@presentation/token-display/authored-color";
++function illustrativeGradient(space: ColorSpace, index: number): string {
++  const identity = COLOR_COMPONENTS[space][index];
++  if (identity === "hue")
++    return "linear-gradient(to right,#e33333,#d3c825,#30b94c,#31c8cb,#3655e1,#b737cd,#e33333)";
++  if (space === "srgb" || space === "display-p3")
++    return `linear-gradient(to right,#222,${({ red: "#e45c5c", green: "#4f9e61", blue: "#557bd0" } as Record<string, string>)[identity]})`;
++  if (space === "hsl")
++    return identity === "lightness"
++      ? "linear-gradient(to right,#111,#999,#fff)"
++      : "linear-gradient(to right,#9b9b9b,#4b78bd)";
++  if (space === "oklab" && identity !== "lightness")
++    return identity === "a"
++      ? "linear-gradient(to right,#389d70,#aaa,#c4598e)"
++      : "linear-gradient(to right,#5670be,#aaa,#c1ae45)";
++  if (space === "oklch" && identity === "chroma")
++    return "linear-gradient(to right,#aaa,#456bc8)";
++  return "linear-gradient(to right,#111,#fff)";
++}
++export function ColorEditor({
++  session: s,
++  onChange,
++  onError,
++  readOnly = false,
++}: {
++  session: DraftSession;
++  onChange: (s: DraftSession) => void;
++  onError: (s: string) => void;
++  readOnly?: boolean;
++}) {
++  const d = displayed(s),
++    bytes = d.colorSpace === "srgb" && s.scale === "bytes";
++  let values: [string, string, string];
++  try {
++    values = fields(s);
++  } catch {
++    values = d.components;
++  }
++  const change = (i: number, text: string) => {
++    onChange(editComponent(s, i, text));
++    onError("");
++  };
++  const alphaRangeState = visualRangeState(s.literal.alpha, "0", "1");
++  return (
++    <>
++      <div className="grid grid-cols-2 gap-3 mt-3">
++        <Field className="mb-1!">
++          View color space
++          <Select
++            disabled={readOnly}
++            value={s.viewSpace}
++            onChange={(e) => {
++              try {
++                onChange(changeView(s, e.target.value as ColorSpace));
++                onError("");
++              } catch (e) {
++                onError(
++                  e instanceof Error ? e.message : "Representation unavailable",
++                );
++              }
++            }}
++          >
++            {COLOR_SPACES.map((space) => (
++              <option key={space} value={space}>
++                {spaceName(space)}
++              </option>
++            ))}
++          </Select>
++        </Field>
++        {d.colorSpace === "srgb" && (
++          <Field className="mb-1!">
++            RGB entry scale
++            <Select
++              disabled={readOnly}
++              value={s.scale}
++              onChange={(e) => {
++                if (s.byteInvalid) {
++                  onError("Finish the byte entries before changing scale.");
++                  return;
++                }
++                try {
++                  if (e.target.value === "bytes")
++                    d.components.forEach(integerByteDisplay);
++                  onChange({
++                    ...s,
++                    scale: e.target.value as DraftSession["scale"],
++                  });
++                  onError("");
++                } catch (e) {
++                  onError(
++                    e instanceof Error ? e.message : "Byte display unavailable",
++                  );
++                }
++              }}
++            >
++              <option value="normalized">Normalized · 0–1</option>
++              <option value="bytes">0–255 scale</option>
++            </Select>
++          </Field>
++        )}
++      </div>
++      <p
++        id="space-note"
++        className="view-note text-caption pt-1 pb-2 -mt-1 text-muted-foreground wrap-anywhere"
++      >
++        {s.viewSpace === s.literal.colorSpace
++          ? `Draft in ${spaceName(s.literal.colorSpace)}. Switching view keeps exact values.`
++          : `Viewing approximate ${spaceName(s.viewSpace)}. Draft remains in ${spaceName(s.literal.colorSpace)} until a component edit.`}
++      </p>
++      <div className="component-controls grid grid-cols-3 gap-x-3 min-w-0">
++        {values.map((value, i) => {
++          const identity = COLOR_COMPONENTS[d.colorSpace][i];
++          const suffix = componentSuffix(d.colorSpace, identity);
++          const label =
++            COMPONENT_NAMES[identity] + (suffix ? ` (${suffix})` : "");
++          const hue = identity === "hue";
++          const min =
++              d.colorSpace === "oklab" && identity !== "lightness" ? -0.4 : 0,
++            max = hue
++              ? 359.9
++              : d.colorSpace === "hsl"
++                ? 100
++                : (d.colorSpace === "oklab" && identity !== "lightness") ||
++                    (d.colorSpace === "oklch" && identity === "chroma")
++                  ? 0.4
++                  : bytes
++                    ? 255
++                    : 1;
++          const step = hue || d.colorSpace === "hsl" ? 0.1 : bytes ? 1 : 0.001;
++          const issue =
++            bytes && s.byteEdited[i] ? integerByteIssue(value) : undefined;
++          const approximate =
++            bytes &&
++            !s.byteEdited[i] &&
++            integerByteDisplay(d.components[i]).approximate;
++          const rangeState =
++            bytes && !s.byteEdited[i]
++              ? visualRangeState(d.components[i], "0", "1")
++              : issue
++                ? "invalid"
++                : visualRangeState(value, String(min), String(max));
++          const available = rangeState === "available";
++          return (
++            <div
++              className="component-control flex min-w-0 flex-col mb-1"
++              key={d.colorSpace + "-" + i}
++            >
++              <label
++                htmlFor={`color-component-${i}`}
++                className="component-value min-w-0 m-0 text-caption font-medium wrap-anywhere"
++              >
++                {label}
++              </label>
++              {available ? (
++                <>
++                  <input
++                    className="component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground"
++                    type="range"
++                    disabled={readOnly}
++                    min={min}
++                    max={max}
++                    step={step}
++                    value={Number(value)}
++                    style={
++                      {
++                        "--range-gradient": illustrativeGradient(
++                          d.colorSpace,
++                          i,
++                        ),
++                      } as CSSProperties
++                    }
++                    aria-label={label + " slider"}
++                    aria-valuetext={value}
++                    onChange={(e) => change(i, e.target.value)}
++                  />
++                </>
++              ) : (
++                <p className="helper text-muted-foreground font-normal range-unavailable flex min-h-10 items-center wrap-anywhere small:min-h-11">
++                  {value === "none"
++                    ? "Missing component · use exact entry."
++                    : rangeState === "outside"
++                      ? "Outside visual range · exact value retained."
++                      : "Complete exact entry to use slider."}
++                </p>
++              )}
++              <Input
++                id={`color-component-${i}`}
++                readOnly={readOnly}
++                className="small:h-11 small:min-h-11"
++                value={value}
++                spellCheck={false}
++                aria-describedby={`range-note-${i} byte-note-${i} editor-error`}
++                aria-invalid={!!issue || undefined}
++                onChange={(e) => change(i, e.target.value)}
++              />
++              {bytes && (
++                <p
++                  id={`byte-note-${i}`}
++                  className={`text-caption mt-1 wrap-anywhere ${issue ? "text-destructive" : "text-muted-foreground"}`}
++                >
++                  {issue ??
++                    (approximate
++                      ? `Approximate · exact normalized ${d.components[i]}`
++                      : "")}
++                </p>
++              )}
++              <p className="sr-only" id={`range-note-${i}`}>
++                Illustrative range {min} to {max}, step {step}. Exact values are
++                retained.
++              </p>
++            </div>
++          );
++        })}
++      </div>
++      <div className="component-control flex min-w-0 flex-col mb-1 alpha-control border-t border-border pt-1">
++        <label
++          htmlFor="color-alpha"
++          className="component-value min-w-0 m-0 text-caption font-medium"
++        >
++          Alpha
++        </label>
++        {alphaRangeState === "available" ? (
++          <input
++            className="component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range"
++            type="range"
++            disabled={readOnly}
++            min="0"
++            max="1"
++            step="0.01"
++            aria-label="Alpha slider"
++            value={Number(s.literal.alpha)}
++            onChange={(e) =>
++              onChange({
++                ...s,
++                literal: { ...s.literal, alpha: e.target.value },
++                edited: true,
++              })
++            }
++          />
++        ) : (
++          <p className="helper text-muted-foreground font-normal range-unavailable flex min-h-10 items-center wrap-anywhere small:min-h-11">
++            {alphaRangeState === "outside"
++              ? "Outside visual range · exact alpha retained."
++              : "Complete alpha in exact entry."}
++          </p>
++        )}
++        <Input
++          id="color-alpha"
++          readOnly={readOnly}
++          className="small:h-11 small:min-h-11"
++          value={s.literal.alpha}
++          aria-describedby="editor-error"
++          onChange={(e) =>
++            onChange({
++              ...s,
++              literal: { ...s.literal, alpha: e.target.value },
++              edited: true,
++            })
++          }
++        />
++      </div>
++      <details className="text-caption text-muted-foreground">
++        <summary>Color entry guidance</summary>
++        <p className="helper text-muted-foreground font-normal">
++          {bytes
++            ? "Canonical whole numbers or none on the 0–255 scale"
++            : "Exact canonical decimal text or none"}
++          ; alpha 0–1. Sliders are illustrative stepped edits. Derived views and
++          byte displays may be approximate. Apply uses {s.literal.colorSpace}.
++        </p>
++      </details>
++      {bytes && (
++        <p className="helper text-muted-foreground font-normal mono break-words">
++          Normalized draft: [{s.literal.components.join(", ")}]
++        </p>
++      )}
++    </>
++  );
++}
+diff --git a/src/presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/visual-range.ts b/src/presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/visual-range.ts
+new file mode 100644
+index 0000000..1a20d6b
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/visual-range.ts
+@@ -0,0 +1,22 @@
++import { compareDecimals, decimalFromCanonical } from "@domain/decimal";
++
++export type VisualRangeState = "available" | "outside" | "missing" | "invalid";
++
++/** Visual travel is an exact interval; binary rounding cannot establish eligibility. */
++export function visualRangeState(
++  text: string,
++  minimum: string,
++  maximum: string,
++): VisualRangeState {
++  if (text === "none") return "missing";
++  let value;
++  try {
++    value = decimalFromCanonical(text);
++  } catch {
++    return "invalid";
++  }
++  return compareDecimals(value, decimalFromCanonical(minimum)) >= 0 &&
++    compareDecimals(value, decimalFromCanonical(maximum)) <= 0
++    ? "available"
++    : "outside";
++}
+diff --git a/src/presentation/workbench/WorkbenchInspector/TokenEditor/EditRecovery.tsx b/src/presentation/workbench/WorkbenchInspector/TokenEditor/EditRecovery.tsx
+new file mode 100644
+index 0000000..54f9f53
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/TokenEditor/EditRecovery.tsx
+@@ -0,0 +1,50 @@
++import type { RefObject } from "react";
++import { Button } from "@presentation/ui/button";
++import type { DraftSession } from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
++import type { ImplementedAuthoredValue } from "@domain/token";
++
++export function EditRecovery({
++  previous,
++  current,
++  preserved,
++  reviewed,
++  headingRef,
++  onReview,
++}: {
++  previous: ImplementedAuthoredValue | undefined;
++  current: unknown;
++  preserved: DraftSession;
++  reviewed: boolean;
++  headingRef: RefObject<HTMLHeadingElement | null>;
++  onReview: () => void;
++}) {
++  return (
++    <section className="border border-border rounded p-3 text-caption mb-4">
++      <h3 ref={headingRef} tabIndex={-1}>
++        Applied state changed
++      </h3>
++      <p>
++        Raw literal/reference input and view/scale choices are preserved. Review
++        opens a comparison; only Reapply changes submits a fresh command.
++      </p>
++      {!reviewed ? (
++        <Button onClick={onReview}>Review edit</Button>
++      ) : (
++        <>
++          <h4 className="mt-3">Previous applied</h4>
++          <pre className="whitespace-pre-wrap wrap-anywhere">
++            {JSON.stringify(previous ?? null, null, 2)}
++          </pre>
++          <h4 className="mt-3">Current applied</h4>
++          <pre className="whitespace-pre-wrap wrap-anywhere">
++            {JSON.stringify(current, null, 2)}
++          </pre>
++          <h4 className="mt-3">Preserved input</h4>
++          <pre className="whitespace-pre-wrap wrap-anywhere">
++            {JSON.stringify(preserved, null, 2)}
++          </pre>
++        </>
++      )}
++    </section>
++  );
++}
+diff --git a/src/presentation/workbench/WorkbenchInspector/TokenEditor/EditorActions.tsx b/src/presentation/workbench/WorkbenchInspector/TokenEditor/EditorActions.tsx
+new file mode 100644
+index 0000000..c8a7c04
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/TokenEditor/EditorActions.tsx
+@@ -0,0 +1,26 @@
++import { Button } from "@presentation/ui/button";
++
++export function EditorActions({
++  cancelDisabled,
++  applyDisabled,
++  applyLabel,
++  onCancel,
++  onApply,
++}: {
++  cancelDisabled: boolean;
++  applyDisabled: boolean;
++  applyLabel: string;
++  onCancel: () => void;
++  onApply: () => void;
++}) {
++  return (
++    <div className="editor-actions sticky z-1 flex justify-end gap-2 mt-3 mb-2 border-t border-border bg-surface py-3">
++      <Button disabled={cancelDisabled} onClick={onCancel}>
++        Cancel
++      </Button>
++      <Button variant="default" disabled={applyDisabled} onClick={onApply}>
++        {applyLabel}
++      </Button>
++    </div>
++  );
++}
+diff --git a/src/presentation/workbench/WorkbenchInspector/TokenEditor/ReferenceFields.tsx b/src/presentation/workbench/WorkbenchInspector/TokenEditor/ReferenceFields.tsx
+new file mode 100644
+index 0000000..7071eba
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/TokenEditor/ReferenceFields.tsx
+@@ -0,0 +1,53 @@
++import { Field } from "@presentation/ui/field";
++import { Select } from "@presentation/ui/select";
++
++export function ReferenceFields({
++  reference,
++  choices,
++  missingTarget,
++  disabled,
++  onReferenceChange,
++}: {
++  reference: string | null;
++  choices: readonly { id: string; label: string }[];
++  missingTarget: boolean;
++  disabled: boolean;
++  onReferenceChange: (reference: string | null) => void;
++}) {
++  return (
++    <>
++      <Field>
++        Target token
++        <Select
++          value={reference === null ? "" : JSON.stringify(reference)}
++          disabled={disabled}
++          aria-describedby="reference-note editor-error"
++          onChange={(event) =>
++            onReferenceChange(
++              event.target.value === ""
++                ? null
++                : (JSON.parse(event.target.value) as string),
++            )
++          }
++        >
++          <option value="">Choose a color token…</option>
++          {reference !== null && missingTarget && (
++            <option value={JSON.stringify(reference)}>Missing target</option>
++          )}
++          {choices.map(({ id, label }) => (
++            <option key={id} value={JSON.stringify(id)}>
++              {label}
++            </option>
++          ))}
++        </Select>
++      </Field>
++      <p
++        id="reference-note"
++        className="helper text-muted-foreground font-normal"
++      >
++        Uses the selected token’s whole color value. References stay linked;
++        cycles are rejected on Apply.
++      </p>
++    </>
++  );
++}
+diff --git a/src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditor.tsx b/src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditor.tsx
+new file mode 100644
+index 0000000..43ae820
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditor.tsx
+@@ -0,0 +1,35 @@
++import { InspectorHeader } from "../InspectorHeader";
++import { useTokenEditor } from "./useTokenEditor";
++import { TokenEditorContent } from "./TokenEditorContent";
++export function TokenEditor({
++  inspectorExpanded,
++  onToggle,
++  readFailure,
++  ...props
++}: Parameters<typeof useTokenEditor>[0] & {
++  inspectorExpanded: boolean;
++  onToggle: () => void;
++  readFailure: string;
++}) {
++  const editor = useTokenEditor(props);
++  return (
++    <>
++      <InspectorHeader
++        readFailure={readFailure}
++        targetUnavailable={props.targetUnavailable ?? ""}
++        editable={editor.editable}
++        feedback={editor.feedback}
++        selected
++        inspectorExpanded={inspectorExpanded}
++        onToggle={onToggle}
++      />
++      <div
++        id="token-inspector-content"
++        className="inspector-content flex-1 bg-surface overflow-auto min-h-0"
++        hidden={!inspectorExpanded}
++      >
++        <TokenEditorContent editor={editor} />
++      </div>
++    </>
++  );
++}
+diff --git a/src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorContent.tsx b/src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorContent.tsx
+new file mode 100644
+index 0000000..6ab217f
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorContent.tsx
+@@ -0,0 +1,280 @@
++import { EditorActions } from "@presentation/workbench/WorkbenchInspector/TokenEditor/EditorActions";
++import { EditRecovery } from "@presentation/workbench/WorkbenchInspector/TokenEditor/EditRecovery";
++import { ReferenceFields } from "@presentation/workbench/WorkbenchInspector/TokenEditor/ReferenceFields";
++import { TokenMetadata } from "@presentation/token-display/TokenMetadata";
++import { ResolvedTokenPanel } from "@presentation/token-display/ResolvedTokenPanel";
++import type { useTokenEditor } from "@presentation/workbench/WorkbenchInspector/TokenEditor/useTokenEditor";
++
++import { AuthoredValue } from "@presentation/token-display/AuthoredValue";
++import { TokenEditorTabs } from "@presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorTabs";
++import { Badge } from "@presentation/ui/badge";
++
++import { Tabs } from "@base-ui/react/tabs";
++
++import { Button } from "@presentation/ui/button";
++import { ColorEditor } from "@presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/ColorEditor";
++
++export function TokenEditorContent({
++  editor,
++}: {
++  editor: ReturnType<typeof useTokenEditor>;
++}) {
++  const {
++    i,
++    project,
++    projected,
++    token,
++    value,
++    accepting,
++    session,
++    setSession,
++    recovery,
++    setRecovery,
++    reviewHeading,
++    tab,
++    setTab,
++    error,
++    setError,
++    notice,
++    setNotice,
++    modeRef,
++    errorRef,
++    dirty,
++    applied,
++    draft,
++    tokenLabels,
++    referenceChoices,
++    referenceLabels,
++    groupLabels,
++    editable,
++    apply,
++    cancel,
++    readUnavailable,
++    revision,
++    requestSource,
++    readOnly,
++    targetUnavailable,
++  } = editor;
++  return (
++    <aside
++      className="inspector small:min-h-0 flex min-w-0 min-h-full flex-col bg-surface"
++      aria-label="Selected token"
++      hidden={readUnavailable}
++    >
++      <div className="inspector-heading bg-surface p-3">
++        <span className="eyebrow uppercase text-muted-foreground font-semibold">
++          {token.definition?.type ?? "Unassigned"} token
++        </span>
++        <h2 className="wrap-anywhere">
++          {tokenLabels.get(token.id) ??
++            (token.localName || "(unnamed original token)")}
++        </h2>
++        {token.description && (
++          <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
++            {token.description}
++          </p>
++        )}
++        {i.path.status !== "derived" && (
++          <p className="text-caption wrap-anywhere">
++            Path unavailable · Parent identity:{" "}
++            {JSON.stringify(token.parentGroupId)}. Exact namespace details
++            remain available below.
++          </p>
++        )}
++        <div className="flex gap-2">
++          {token.layer && <Badge>{token.layer}</Badge>}
++          {!editable && <Badge>Inspection only</Badge>}
++        </div>
++      </div>
++      <Tabs.Root value={tab} onValueChange={setTab}>
++        <TokenEditorTabs />
++        <Tabs.Panel value="authored" className="editor-body bg-surface p-3">
++          {targetUnavailable && (
++            <p
++              role="status"
++              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive"
++            >
++              {targetUnavailable} Preserved input remains selectable. This
++              action cannot recreate or retarget it.
++            </p>
++          )}
++          {recovery && (
++            <EditRecovery
++              previous={recovery.previous}
++              current={
++                value ?? {
++                  type: token.definition?.type,
++                  kind: "token" in i ? i.authoredKind : "No assignment",
++                }
++              }
++              preserved={session}
++              reviewed={recovery.reviewed}
++              headingRef={reviewHeading}
++              onReview={() => {
++                setRecovery({ ...recovery, reviewed: true });
++                requestAnimationFrame(() => reviewHeading.current?.focus());
++              }}
++            />
++          )}
++          {editable || dirty ? (
++            <>
++              <fieldset disabled={accepting}>
++                <legend className="sr-only">Value source</legend>
++                <div className="mode-switch border border-border bg-mode flex p-0.75 rounded-md gap-0.75">
++                  <Button
++                    variant="mode"
++                    size="mode"
++                    ref={modeRef}
++                    aria-pressed={session.mode === "literal"}
++                    onClick={() => {
++                      setSession({ ...session, mode: "literal" });
++                      setError("");
++                    }}
++                  >
++                    Literal color
++                  </Button>
++                  <Button
++                    variant="mode"
++                    size="mode"
++                    aria-pressed={session.mode === "reference"}
++                    onClick={() => {
++                      setSession({ ...session, mode: "reference" });
++                      setError("");
++                    }}
++                  >
++                    Reference
++                  </Button>
++                </div>
++              </fieldset>
++              {session.mode === "literal" ? (
++                <ColorEditor
++                  readOnly={accepting || readOnly}
++                  session={session}
++                  onChange={(s) => {
++                    setSession(s);
++                    setError("");
++                    setNotice("");
++                  }}
++                  onError={setError}
++                />
++              ) : (
++                <ReferenceFields
++                  reference={session.reference}
++                  choices={referenceChoices.map(({ authored }) => ({
++                    id: authored.id,
++                    label: referenceLabels.get(authored.id) ?? authored.id,
++                  }))}
++                  missingTarget={
++                    !project.tokens.some(
++                      ({ authored }) => authored.id === session.reference,
++                    )
++                  }
++                  disabled={accepting || readOnly}
++                  onReferenceChange={(reference) => {
++                    setSession({ ...session, reference, edited: true });
++                    setError("");
++                  }}
++                />
++              )}
++              <p className="helper text-muted-foreground font-normal preview-detail mt-2 wrap-anywhere">
++                Draft preview: {draft.message}
++              </p>
++              {error ? (
++                <p
++                  ref={errorRef}
++                  tabIndex={-1}
++                  className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
++                  id="editor-error"
++                  role="alert"
++                >
++                  {error}
++                </p>
++              ) : (
++                <span id="editor-error" />
++              )}
++              <EditorActions
++                cancelDisabled={!dirty || accepting}
++                applyDisabled={
++                  !dirty ||
++                  !editable ||
++                  !!targetUnavailable ||
++                  (!!recovery && !recovery.reviewed) ||
++                  readUnavailable ||
++                  readOnly ||
++                  accepting ||
++                  session.byteInvalid
++                }
++                applyLabel={
++                  accepting
++                    ? "Retaining changes…"
++                    : recovery?.reviewed
++                      ? "Reapply changes"
++                      : "Apply changes"
++                }
++                onCancel={cancel}
++                onApply={apply}
++              />
++              <p
++                className="helper text-muted-foreground font-normal"
++                role="status"
++              >
++                {notice ||
++                  (dirty
++                    ? "Changes are not applied yet."
++                    : "Editing preserves name and metadata.")}
++              </p>
++            </>
++          ) : (
++            <p className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4">
++              Inspection only: this token is outside the unconditional
++              primitive/semantic color revision flow. Its data is retained.
++            </p>
++          )}
++          {token.layer === "component" && (
++            <p role="status" className="helper text-muted-foreground">
++              Component association is preserved. Component ownership context is
++              unavailable and unverified.
++            </p>
++          )}
++          <section className="applied-summary border-t border-border mt-7 pt-5">
++            <h3 className="mb-3.5">
++              {targetUnavailable
++                ? "Previous applied · target unavailable"
++                : "Currently applied"}
++            </h3>
++            <div className="text-caption">
++              {projected && !value ? (
++                "token" in i ? (
++                  i.authoredKind
++                ) : (
++                  "No assignment"
++                )
++              ) : (
++                <AuthoredValue value={value} project={project} />
++              )}
++            </div>
++          </section>
++          <TokenMetadata
++            token={token}
++            groupLabels={groupLabels}
++            revision={revision}
++            requestSource={requestSource}
++            path={i.path}
++          />
++        </Tabs.Panel>
++        <Tabs.Panel value="resolved" className="editor-body bg-surface p-3">
++          <ResolvedTokenPanel
++            resolution={i.resolution}
++            project={project}
++            css={applied.css}
++            message={applied.message}
++          />
++        </Tabs.Panel>
++      </Tabs.Root>
++      <div className="inspector-foot density:mt-5 small:mt-0 border-t border-border bg-surface px-6 py-4 mt-auto flex justify-between text-muted-foreground">
++        <span>Regeneration</span>
++        <span>{token.authoring.regeneration}</span>
++      </div>
++    </aside>
++  );
++}
+diff --git a/src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorTabs.tsx b/src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorTabs.tsx
+new file mode 100644
+index 0000000..95f3d33
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorTabs.tsx
+@@ -0,0 +1,23 @@
++import { Tabs } from "@base-ui/react/tabs";
++/** Shared inspection tab strip; Base UI retains roving focus and panel semantics. */
++export function TokenEditorTabs() {
++  return (
++    <Tabs.List
++      className="tabs flex border-b border-border px-6 gap-5.5 source-compact:px-5 source-compact:gap-4.5"
++      aria-label="Token inspection"
++    >
++      <Tabs.Tab
++        className="relative border-0 bg-transparent min-h-10.5 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-px data-active:after:inset-x-0 data-active:after:bg-primary"
++        value="authored"
++      >
++        Authored value
++      </Tabs.Tab>
++      <Tabs.Tab
++        className="relative border-0 bg-transparent min-h-10.5 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-px data-active:after:inset-x-0 data-active:after:bg-primary"
++        value="resolved"
++      >
++        Resolved &amp; trace
++      </Tabs.Tab>
++    </Tabs.List>
++  );
++}
+diff --git a/src/presentation/workbench/WorkbenchInspector/TokenEditor/editor-failure.ts b/src/presentation/workbench/WorkbenchInspector/TokenEditor/editor-failure.ts
+new file mode 100644
+index 0000000..cc381f5
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/TokenEditor/editor-failure.ts
+@@ -0,0 +1,12 @@
++import type { ApplicationFailure } from "@application/authoring";
++export function failureText(failure: ApplicationFailure) {
++  const e = failure.error;
++  if (e.code === "storage-failure")
++    return `Storage ${e.operation} failed: ${e.message}. Existing data and drafts retained.`;
++  if (e.code === "invalid-domain-input")
++    return `Invalid authoring: ${e.message}`;
++  if (e.code === "invalid-candidate")
++    return `Candidate rejected. Namespace diagnostics: ${JSON.stringify(e.namespaceDiagnostics)}. Reference diagnostics: ${JSON.stringify(e.referenceDiagnostics)}. Unrelated diagnostics can block a one-edit repair.`;
++  return JSON.stringify(e);
++}
++
+diff --git a/src/presentation/workbench/WorkbenchInspector/TokenEditor/editor-session.ts b/src/presentation/workbench/WorkbenchInspector/TokenEditor/editor-session.ts
+new file mode 100644
+index 0000000..9efc6ba
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/TokenEditor/editor-session.ts
+@@ -0,0 +1,151 @@
++import type { ColorLiteralInput, ColorSpace } from "@domain/color-literal";
++import { createColorLiteral } from "@domain/color-literal";
++import { convertColor } from "@domain/color-calculation";
++import {
++  integerByteDisplay,
++  integerByteIssue,
++  integerByteToNormalized,
++} from "@presentation/workbench/WorkbenchInspector/TokenEditor/integer-rgb";
++import type { ImplementedAuthoredValue } from "@domain/token";
++export { canReviseColorToken as eligible } from "@application/color-revision-policy";
++export type LiteralDraft = {
++  colorSpace: ColorSpace;
++  components: [string, string, string];
++  alpha: string;
++};
++export type DraftSession = {
++  mode: "literal" | "reference";
++  literal: LiteralDraft;
++  reference: string | null;
++  viewSpace: ColorSpace;
++  scale: "normalized" | "bytes";
++  byteText: [string, string, string] | null;
++  byteInvalid: boolean;
++  byteEdited: [boolean, boolean, boolean];
++  edited: boolean;
++};
++export function baseline(value?: ImplementedAuthoredValue): DraftSession {
++  const literal =
++    value?.kind === "literal" && value.valueType === "color"
++      ? {
++          colorSpace: value.colorSpace,
++          components: [...value.components] as [string, string, string],
++          alpha: value.alpha,
++        }
++      : {
++          colorSpace: "srgb" as const,
++          components: ["", "", ""] as [string, string, string],
++          alpha: "1",
++        };
++  return {
++    mode: value?.kind === "token-reference" ? "reference" : "literal",
++    literal,
++    reference: value?.kind === "token-reference" ? value.targetTokenId : null,
++    viewSpace: literal.colorSpace,
++    scale: "normalized",
++    byteText: null,
++    byteInvalid: false,
++    byteEdited: [false, false, false],
++    edited: false,
++  };
++}
++/** A clean editor follows applied data; representation preferences stay passive. */
++export function refreshCleanSession(
++  session: DraftSession,
++  value?: ImplementedAuthoredValue,
++): DraftSession {
++  return {
++    ...baseline(value),
++    viewSpace: session.viewSpace,
++    scale: session.scale,
++  };
++}
++export function literalIssue(literal: ColorLiteralInput): string | undefined {
++  try {
++    createColorLiteral(literal);
++    return undefined;
++  } catch (e) {
++    return e instanceof Error ? e.message : "Invalid literal";
++  }
++}
++export function displayed(s: DraftSession): LiteralDraft {
++  if (s.viewSpace === s.literal.colorSpace) return s.literal;
++  // Alpha never participates in coordinate conversion. Keep the displayed
++  // coordinates stable while its independent exact text is incomplete.
++  const r = convertColor({ ...s.literal, alpha: "1" }, s.viewSpace);
++  return r.ok
++    ? {
++        colorSpace: r.value.colorSpace,
++        components: [...r.value.components],
++        alpha: s.literal.alpha,
++      }
++    : s.literal;
++}
++export function fields(s: DraftSession): [string, string, string] {
++  const d = displayed(s);
++  return d.colorSpace === "srgb" && s.scale === "bytes"
++    ? (s.byteText ??
++        (d.components.map((x) => integerByteDisplay(x).text) as [
++          string,
++          string,
++          string,
++        ]))
++    : d.components;
++}
++export function changeView(s: DraftSession, target: ColorSpace): DraftSession {
++  if (s.byteInvalid)
++    throw new RangeError(
++      "Finish the incomplete byte entries before changing representation.",
++    );
++  const r = convertColor(s.literal, target);
++  if (!r.ok) throw new RangeError(r.message);
++  const next = { ...s, viewSpace: target };
++  if (target === "srgb" && s.scale === "bytes") fields(next);
++  return next;
++}
++export function editComponent(
++  s: DraftSession,
++  index: number,
++  text: string,
++): DraftSession {
++  const d = displayed(s);
++  const bytes = d.colorSpace === "srgb" && s.scale === "bytes";
++  const components: [string, string, string] = [...d.components];
++  if (bytes) {
++    const raw: [string, string, string] = [...fields(s)];
++    raw[index] = text;
++    const byteEdited: [boolean, boolean, boolean] = [...s.byteEdited];
++    byteEdited[index] = true;
++    try {
++      components[index] = integerByteToNormalized(text);
++    } catch {
++      return {
++        ...s,
++        byteText: raw,
++        byteEdited,
++        byteInvalid: true,
++        edited: true,
++      };
++    }
++    const invalid = raw.some(
++      (x, i) => byteEdited[i] && integerByteIssue(x) !== undefined,
++    );
++    return {
++      ...s,
++      literal: { ...d, components },
++      byteText: raw,
++      byteEdited,
++      byteInvalid: invalid,
++      edited: true,
++    };
++  }
++  components[index] = text;
++  return {
++    ...s,
++    literal: { ...d, components },
++    byteText: null,
++    byteEdited: [false, false, false],
++    byteInvalid: false,
++    edited: true,
++  };
++}
+diff --git a/src/presentation/workbench/WorkbenchInspector/TokenEditor/integer-rgb.ts b/src/presentation/workbench/WorkbenchInspector/TokenEditor/integer-rgb.ts
+new file mode 100644
+index 0000000..ce5a736
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/TokenEditor/integer-rgb.ts
+@@ -0,0 +1,32 @@
++import { normalizedToByte, byteToNormalized } from "@domain/color-calculation";
++import { decimalFromCanonical, multiplyDecimals } from "@domain/decimal";
++
++/** UI-only whole-number entry. General calculation APIs remain decimal-capable. */
++export function integerByteToNormalized(text: string): string {
++  if (text !== "none") {
++    decimalFromCanonical(text);
++    if (text.includes(".")) throw new RangeError("Enter a whole number or none.");
++  }
++  return byteToNormalized(text);
++}
++export function integerByteIssue(text: string): string | undefined {
++  try { integerByteToNormalized(text); }
++  catch (error) {
++    return error instanceof RangeError && error.message.includes("budget")
++      ? error.message : "Enter a canonical whole number or none.";
++  }
++}
++/** Preserve existing calculation guards, then decide the integer from exact text. */
++export function integerByteDisplay(text: string): { text: string; approximate: boolean } {
++  normalizedToByte(text); // Resource/representation guard only; never used for rounding.
++  if (text === "none") return { text, approximate: false };
++  const exact = multiplyDecimals(decimalFromCanonical(text), decimalFromCanonical("255"));
++  const negative = exact.startsWith("-");
++  const [integer, fraction = ""] = (negative ? exact.slice(1) : exact).split(".");
++  let rounded = BigInt(integer);
++  if (fraction) {
++    const half = "5".padEnd(fraction.length, "0");
++    if (fraction > half || (fraction === half && rounded % 2n === 1n)) rounded++;
++  }
++  return { text: `${negative && rounded !== 0n ? "-" : ""}${rounded}`, approximate: fraction !== "" };
++}
+diff --git a/src/presentation/workbench/WorkbenchInspector/TokenEditor/useTokenEditor.ts b/src/presentation/workbench/WorkbenchInspector/TokenEditor/useTokenEditor.ts
+new file mode 100644
+index 0000000..25a2358
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/TokenEditor/useTokenEditor.ts
+@@ -0,0 +1,264 @@
++import type { SelectedToken } from "@application/retention/projections";
++import type { ProjectContext } from "@application/retention/projections";
++
++import { useEffect, useRef, useState, useMemo } from "react";
++
++import type {
++  TokenInspection,
++  ApplicationResult,
++} from "@application/authoring";
++import type { Token } from "@domain/token";
++import type { ReviseColorTokenInput } from "@application/authoring";
++
++import {
++  baseline,
++  refreshCleanSession,
++  eligible,
++  literalIssue,
++} from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
++import { colorPreview } from "@presentation/token-display/color-preview";
++import { identityLabels } from "@presentation/token-display/identity-labels";
++import { failureText } from "./editor-failure";
++import { resolvedColor } from "@presentation/token-display/resolved-color";
++export function useTokenEditor({
++  inspection: i,
++  project,
++  inspect,
++  onApply,
++  onDirty,
++  readUnavailable,
++  revision = "session",
++  requestSource,
++  readOnly = false,
++  targetUnavailable,
++}: {
++  inspection: TokenInspection | SelectedToken;
++  project: ProjectContext;
++  inspect: (id: string) =>
++    | {
++        resolution: {
++          status: string;
++          value?: import("@domain/token-resolution").ResolvedValue;
++        };
++      }
++    | undefined;
++  onApply: (
++    value: ReviseColorTokenInput["value"],
++  ) =>
++    | ApplicationResult<Pick<Token, "definition">>
++    | Promise<ApplicationResult<Pick<Token, "definition">>>;
++  onDirty: (d: boolean) => void;
++  readUnavailable: boolean;
++  revision?: string;
++  requestSource?: () => Promise<string>;
++  readOnly?: boolean;
++  targetUnavailable?: string;
++}) {
++  const projected = "token" in i;
++  const token = projected ? i.token : i.authored,
++    value = projected
++      ? i.authoredValue
++      : i.authored.definition?.assignments[0]?.value;
++  const [accepting, setAccepting] = useState(false);
++  const [session, setSession] = useState(() => baseline(value));
++  const initial = useRef(session);
++  const baselineRevision = useRef({
++    revision,
++    value: JSON.stringify({ token, value }),
++    previous: value,
++  });
++  const [recovery, setRecovery] = useState<{
++    previous: typeof value;
++    reviewed: boolean;
++  }>();
++  const reviewHeading = useRef<HTMLHeadingElement>(null);
++
++  const [tab, setTab] = useState("authored"),
++    [error, setError] = useState(""),
++    [notice, setNotice] = useState("");
++  const modeRef = useRef<HTMLButtonElement>(null),
++    errorRef = useRef<HTMLParagraphElement>(null);
++  const [restoreApplyFocus, setRestoreApplyFocus] = useState(false);
++  useEffect(() => {
++    if (restoreApplyFocus && !accepting) {
++      // The mode button inherits disabled from the retaining fieldset. Focus
++      // only after React commits the successful, re-enabled editor.
++      modeRef.current?.focus();
++      setRestoreApplyFocus(false);
++    }
++  }, [restoreApplyFocus, accepting]);
++  const dirty =
++    session.edited || session.reference !== initial.current.reference;
++  useEffect(() => onDirty(dirty), [dirty, onDirty]);
++  useEffect(() => {
++    const before = baselineRevision.current;
++    if (before.revision !== revision) {
++      if (dirty && before.value !== JSON.stringify({ token, value }))
++        setRecovery({ previous: before.previous, reviewed: false });
++      if (!dirty) {
++        const next = refreshCleanSession(session, value);
++        initial.current = next;
++        setSession(next);
++        setRecovery(undefined);
++      }
++      baselineRevision.current = {
++        revision,
++        value: JSON.stringify({ token, value }),
++        previous: value,
++      };
++    }
++  }, [revision, value, dirty]);
++
++  useEffect(() => {
++    if (error) errorRef.current?.focus();
++  }, [error]);
++  const applied = colorPreview(resolvedColor(i));
++  const targetInspection =
++    session.reference !== null ? inspect(session.reference) : undefined;
++  const draft =
++    session.mode === "literal"
++      ? session.byteInvalid
++        ? { message: "Unavailable: finish the incomplete byte entries." }
++        : colorPreview(session.literal)
++      : colorPreview(resolvedColor(targetInspection));
++  const feedback = {
++    tokenId: token.id,
++    tab,
++    applied: applied.css,
++    draft: draft.css,
++    appliedMessage: applied.message,
++    draftMessage: draft.message,
++  };
++  const tokenLabels = useMemo(
++    () => identityLabels(project.tokens),
++    [project.tokens],
++  );
++  const referenceChoices = useMemo(
++    () => project.tokens.filter((t) => t.authored.definition?.type === "color"),
++    [project.tokens],
++  );
++  const referenceLabels = useMemo(
++    () => identityLabels(referenceChoices, undefined, token.id),
++    [referenceChoices, token.id],
++  );
++  const groupLabels = useMemo(
++    () => identityLabels(project.groups, ["Project root", "All tokens"]),
++    [project.groups],
++  );
++  const editable = projected ? i.editable : eligible(i.authored);
++  async function apply() {
++    if (
++      accepting ||
++      readOnly ||
++      targetUnavailable ||
++      (recovery && !recovery.reviewed)
++    )
++      return;
++    if (readUnavailable) {
++      setError("Project read unavailable. Retry reading; drafts retained.");
++      return;
++    }
++    if (!editable) return;
++    if (
++      session.mode === "literal" &&
++      (session.byteInvalid || literalIssue(session.literal))
++    ) {
++      setError(
++        session.byteInvalid
++          ? "Finish the incomplete byte entries."
++          : (literalIssue(session.literal) ?? "Invalid color"),
++      );
++      return;
++    }
++    if (session.mode === "reference" && session.reference === null) {
++      setError("Choose a color target.");
++      return;
++    }
++    const candidate: ReviseColorTokenInput["value"] =
++      session.mode === "literal"
++        ? { ...session.literal, kind: "literal" }
++        : {
++            kind: "token-reference",
++            targetTokenId: session.reference!,
++            valuePath: [],
++          };
++    setAccepting(true);
++    let result: ApplicationResult<Pick<Token, "definition">>;
++    try {
++      result = await onApply(candidate);
++    } catch (error) {
++      setError(
++        error instanceof Error
++          ? error.message
++          : "Apply outcome unavailable. Drafts retained.",
++      );
++      setAccepting(false);
++      return;
++    }
++    setAccepting(false);
++    if (result.status === "failure") {
++      setError("Apply failed. " + failureText(result));
++      return;
++    }
++    const next = baseline(result.value.definition?.assignments[0]?.value);
++    initial.current = next;
++    baselineRevision.current = {
++      revision,
++      value: JSON.stringify(result.value.definition?.assignments[0]?.value),
++      previous: result.value.definition?.assignments[0]?.value,
++    };
++    setRecovery(undefined);
++    setSession(next);
++    onDirty(false);
++    setError("");
++    setNotice("Changes applied and retained.");
++    setRestoreApplyFocus(true);
++  }
++  function cancel() {
++    const currentBaseline = baseline(value);
++    initial.current = currentBaseline;
++    setSession(currentBaseline);
++    setRecovery(undefined);
++    onDirty(false);
++    setError("");
++    setNotice("Both drafts discarded. Applied value unchanged.");
++    modeRef.current?.focus();
++  }
++  return {
++    i,
++    project,
++    projected,
++    token,
++    value,
++    accepting,
++    session,
++    setSession,
++    recovery,
++    setRecovery,
++    reviewHeading,
++    tab,
++    setTab,
++    error,
++    setError,
++    notice,
++    setNotice,
++    modeRef,
++    errorRef,
++    dirty,
++    applied,
++    draft,
++    feedback,
++    tokenLabels,
++    referenceChoices,
++    referenceLabels,
++    groupLabels,
++    editable,
++    apply,
++    cancel,
++    readUnavailable,
++    revision,
++    requestSource,
++    readOnly,
++    targetUnavailable,
++  };
++}
+diff --git a/src/presentation/workbench/WorkbenchInspector/TokenValueComparison.tsx b/src/presentation/workbench/WorkbenchInspector/TokenValueComparison.tsx
+new file mode 100644
+index 0000000..255aa0c
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/TokenValueComparison.tsx
+@@ -0,0 +1,46 @@
++export type Feedback = {
++  tokenId: string;
++  tab: string;
++  applied?: string;
++  draft?: string;
++  appliedMessage: string;
++  draftMessage: string;
++};
++export function TokenValueComparison({ feedback }: { feedback: Feedback }) {
++  return (
++    <section
++      className="inspector-feedback flex items-center gap-2 shrink-0"
++      aria-label="Applied and draft color context"
++    >
++      {(
++        ["applied", ...(feedback.tab === "resolved" ? [] : ["draft"])] as (
++          | "applied"
++          | "draft"
++        )[]
++      ).map((kind) => (
++        <div
++          key={kind}
++          className="text-caption flex flex-col items-center w-16"
++        >
++          <span>{kind === "applied" ? "Applied" : "Draft"}</span>
++          {feedback[kind] ? (
++            <span
++              aria-hidden="true"
++              className="header-specimen rounded border border-specimen-border block w-9 h-4"
++              style={{ background: feedback[kind] }}
++            />
++          ) : (
++            <span>Unavailable</span>
++          )}
++          <span className="sr-only">
++            {
++              feedback[
++                kind === "applied" ? "appliedMessage" : "draftMessage"
++              ]
++            }
++          </span>
++        </div>
++      ))}
++    </section>
++  );
++}
+diff --git a/src/presentation/workbench/WorkbenchInspector/WorkbenchInspector.tsx b/src/presentation/workbench/WorkbenchInspector/WorkbenchInspector.tsx
+new file mode 100644
+index 0000000..2cb07a1
+--- /dev/null
++++ b/src/presentation/workbench/WorkbenchInspector/WorkbenchInspector.tsx
+@@ -0,0 +1,74 @@
++import { GroupInspector } from "./GroupInspector/GroupInspector";
++import { InspectorHeader } from "./InspectorHeader";
++import type { Selection } from "@presentation/workbench/useProjectReadback";
++import type { ProjectContext } from "@application/retention/projections";
++import type { ProjectHeader } from "@presentation/host/protocol";
++import type { ReactNode } from "react";
++export function WorkbenchInspector({
++  children,
++  selection,
++  context,
++  groupLabels,
++  header,
++  inspectorExpanded,
++  onToggle,
++  readFailure,
++  targetUnavailable,
++  requestSource,
++}: {
++  children: ReactNode;
++  selection: Selection;
++  context?: ProjectContext;
++  groupLabels: Map<string, string>;
++  header: ProjectHeader;
++  inspectorExpanded: boolean;
++  onToggle: () => void;
++  readFailure: string;
++  targetUnavailable: string;
++  requestSource: (id: string) => Promise<string>;
++}) {
++  return (
++    <section
++      className="inspector-shell small:border-l-0 small:border-t small:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l border-border bg-surface"
++      aria-label="Inspector pane"
++    >
++      {children || (
++        <>
++          <InspectorHeader
++            readFailure={readFailure}
++            targetUnavailable={targetUnavailable}
++            editable={false}
++            selected={!!selection}
++            inspectorExpanded={inspectorExpanded}
++            onToggle={onToggle}
++          />
++          <div
++            id="token-inspector-content"
++            className="inspector-content flex-1 bg-surface overflow-auto min-h-0"
++            hidden={!inspectorExpanded}
++          >
++            {selection?.kind === "group" && context ? (
++              <GroupInspector
++                entry={context.groups.find(
++                  (g) => g.authored.id === selection.id,
++                )}
++                projectId={header.project.id}
++                revision={header.revision}
++                requestSource={() => requestSource(selection.id)}
++              />
++            ) : (
++              <div className="empty px-5 py-17.5 text-center text-muted-foreground">
++                <h2 className="text-foreground text-base/normal">
++                  {selection ? "Preparing inspection…" : "Nothing selected"}
++                </h2>
++                <p className="text-xs/normal mt-2 mb-5">
++                  Select a token or group to inspect it.
++                </p>
++              </div>
++            )}
++          </div>
++        </>
++      )}
++    </section>
++  );
++}
+diff --git a/src/presentation/workbench/readback.ts b/src/presentation/workbench/readback.ts
+deleted file mode 100644
+index 4189685..0000000
+--- a/src/presentation/workbench/readback.ts
++++ /dev/null
+@@ -1,26 +0,0 @@
+-import type { ApplicationFailure } from "@application/authoring";
+-import type { ColorLiteralValue } from "@domain/color-literal";
+-export function resolvedColor(inspection?: {
+-  resolution: {
+-    status: string;
+-    value?: import("@domain/token-resolution").ResolvedValue;
+-  };
+-}): ColorLiteralValue | undefined {
+-  const r = inspection?.resolution;
+-  return r?.status === "resolved" &&
+-    r.value?.kind === "literal" &&
+-    r.value.valueType === "color"
+-    ? r.value
+-    : undefined;
+-}
+-export function failureText(failure: ApplicationFailure) {
+-  const e = failure.error;
+-  if (e.code === "storage-failure")
+-    return `Storage ${e.operation} failed: ${e.message}. Existing data and drafts retained.`;
+-  if (e.code === "invalid-domain-input")
+-    return `Invalid authoring: ${e.message}`;
+-  if (e.code === "invalid-candidate")
+-    return `Candidate rejected. Namespace diagnostics: ${JSON.stringify(e.namespaceDiagnostics)}. Reference diagnostics: ${JSON.stringify(e.referenceDiagnostics)}. Unrelated diagnostics can block a one-edit repair.`;
+-  return JSON.stringify(e);
+-}
+-
+diff --git a/test/presentation/authored-value.test.ts b/test/presentation/authored-value.test.ts
+index d4ea93a..73e4fcb 100644
+--- a/test/presentation/authored-value.test.ts
++++ b/test/presentation/authored-value.test.ts
+@@ -1,5 +1,5 @@
+ import { describe, expect, it } from "vitest";
+-import { authoredColorCoordinates } from "@presentation/features/workbench/color/authored-color";
++import { authoredColorCoordinates } from "@presentation/token-display/authored-color";
+ import { createColorLiteral } from "@domain/color-literal";
+ 
+ describe("readable authored coordinates", () => {
+diff --git a/test/presentation/identity-presentation.test.tsx b/test/presentation/identity-presentation.test.tsx
+index df67bde..c5e83ed 100644
+--- a/test/presentation/identity-presentation.test.tsx
++++ b/test/presentation/identity-presentation.test.tsx
+@@ -1,10 +1,10 @@
+ import { describe, it, expect } from "vitest";
+ import { createElement } from "react";
+ import { renderToStaticMarkup } from "react-dom/server";
+-import { TokenList } from "@presentation/features/workbench/browser/TokenList";
++import { TokenList } from "@tests/presentation/support/TokenList";
+ import { NamespaceTree } from "@presentation/workbench/WorkbenchNavigation/NamespaceTree/NamespaceTree";
+-import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
+-import { EditableTokenInspector } from "@presentation/features/workbench/inspector/WorkbenchInspector";
++import { AuthoredValue } from "@presentation/token-display/AuthoredValue";
++import { TokenEditor } from "@presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditor";
+ import { identityLabels } from "@presentation/token-display/identity-labels";
+ import { createColorLiteral } from "@domain/color-literal";
+ import { createToken } from "@domain/token";
+@@ -12,12 +12,12 @@ import { createTokenGroup } from "@domain/token-group";
+ import { createProject } from "@domain/project";
+ import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
+ import { createAuthoringOperations } from "@application/authoring";
+-import { ColorFields } from "@presentation/features/workbench/inspector/ColorFields";
++import { ColorEditor } from "@presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/ColorEditor";
+ import {
+   baseline,
+   editComponent,
+-} from "@presentation/features/workbench/inspector/session";
+-import type { DraftSession } from "@presentation/features/workbench/inspector/session";
++} from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
++import type { DraftSession } from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
+ import type {
+   ApplicationResult,
+   TokenInspection,
+@@ -76,7 +76,7 @@ function setup() {
+   ]);
+   return createAuthoringOperations(storage);
+ }
+-describe("human identity labels in real consumers", () => {
++describe("human identity labels in current consumers and the legacy TokenList fixture", () => {
+   it("renders collision-safe rows/navigation and retains selected identity", () => {
+     const app = setup(),
+       project = ok(app.readProject("p"));
+@@ -151,7 +151,7 @@ describe("human identity labels in real consumers", () => {
+     expect(missing).toContain("Missing target");
+     expect(missing).not.toContain("missing-secret-id");
+     const editor = renderToStaticMarkup(
+-      createElement(EditableTokenInspector, {
++      createElement(TokenEditor, {
+         inspectorExpanded: true,
+         onToggle() {},
+         readFailure: "",
+@@ -190,7 +190,7 @@ describe("human identity labels in real consumers", () => {
+       },
+     };
+     const referenceEditor = renderToStaticMarkup(
+-      createElement(EditableTokenInspector, {
++      createElement(TokenEditor, {
+         inspectorExpanded: true,
+         onToggle() {},
+         readFailure: "",
+@@ -287,7 +287,7 @@ describe("integer RGB rendered fields", () => {
+     const s = { ...baseline(source), scale: "bytes" as const };
+     const render = (session: DraftSession) =>
+       renderToStaticMarkup(
+-        createElement(ColorFields, {
++        createElement(ColorEditor, {
+           session,
+           onChange: () => {},
+           onError: () => {},
+@@ -428,7 +428,7 @@ describe("final reference choice context", () => {
+       }),
+     );
+     const html = renderToStaticMarkup(
+-      createElement(EditableTokenInspector, {
++      createElement(TokenEditor, {
+         inspectorExpanded: true,
+         onToggle() {},
+         readFailure: "",
+diff --git a/test/presentation/integer-rgb.test.ts b/test/presentation/integer-rgb.test.ts
+index 71df741..3b723e7 100644
+--- a/test/presentation/integer-rgb.test.ts
++++ b/test/presentation/integer-rgb.test.ts
+@@ -1,6 +1,6 @@
+ import { describe, expect, it } from "vitest";
+-import { integerByteDisplay, integerByteToNormalized } from "@presentation/features/workbench/color/integer-rgb";
+-import { visualRangeState } from "@presentation/features/workbench/color/visual-range";
++import { integerByteDisplay, integerByteToNormalized } from "@presentation/workbench/WorkbenchInspector/TokenEditor/integer-rgb";
++import { visualRangeState } from "@presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/visual-range";
+ 
+ describe("exact integer RGB presentation", () => {
+   it.each([
+diff --git a/test/presentation/preview.test.ts b/test/presentation/preview.test.ts
+index 40b1448..91106c7 100644
+--- a/test/presentation/preview.test.ts
++++ b/test/presentation/preview.test.ts
+@@ -1,5 +1,5 @@
+ import { describe, it, expect, vi } from "vitest";
+-import { colorPreview } from "@presentation/features/workbench/color/preview";
++import { colorPreview } from "@presentation/token-display/color-preview";
+ const alpha = "0.123456789123456789";
+ const c = (components: string[], colorSpace = "srgb") => ({
+   colorSpace,
+diff --git a/test/presentation/reference-fields.test.tsx b/test/presentation/reference-fields.test.tsx
+index 54f9611..71d4f10 100644
+--- a/test/presentation/reference-fields.test.tsx
++++ b/test/presentation/reference-fields.test.tsx
+@@ -1,7 +1,7 @@
+ import { expect, it, vi } from "vitest";
+ import { createElement } from "react";
+ import { renderToStaticMarkup } from "react-dom/server";
+-import { ReferenceFields } from "@presentation/features/workbench/inspector/ReferenceFields";
++import { ReferenceFields } from "@presentation/workbench/WorkbenchInspector/TokenEditor/ReferenceFields";
+ 
+ it("preserves an unavailable exact reference and disables selection during read-only or retaining states", () => {
+   const reference = 'missing "target"';
+diff --git a/test/presentation/session.test.ts b/test/presentation/session.test.ts
+index a93cd4e..1da2e6f 100644
+--- a/test/presentation/session.test.ts
++++ b/test/presentation/session.test.ts
+@@ -1,12 +1,12 @@
+ import { describe, it, expect } from "vitest";
+-import type { DraftSession } from "@presentation/features/workbench/inspector/session";
++import type { DraftSession } from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
+ import {
+   baseline,
+   refreshCleanSession,
+   changeView,
+   editComponent,
+   fields,
+-} from "@presentation/features/workbench/inspector/session";
++} from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
+ import { createColorLiteral } from "@domain/color-literal";
+ const original = createColorLiteral({
+   colorSpace: "srgb",
+diff --git a/test/presentation/support/TokenList.tsx b/test/presentation/support/TokenList.tsx
+new file mode 100644
+index 0000000..f2e0b53
+--- /dev/null
++++ b/test/presentation/support/TokenList.tsx
+@@ -0,0 +1,91 @@
++import { AuthoredValue } from "@presentation/token-display/AuthoredValue";
++import type { ProjectReadback, TokenInspection } from "@application/authoring";
++import { Button } from "@presentation/ui/button";
++import { TokenSwatch } from "@presentation/token-display/TokenSwatch";
++import { identityLabels } from "@presentation/token-display/identity-labels";
++import { resolvedColor } from "@presentation/token-display/resolved-color";
++import { colorPreview } from "@presentation/token-display/color-preview";
++export function TokenList({
++  project,
++  visible,
++  selected,
++  query,
++  inspect,
++  onSelect,
++  onEmptyAction,
++}: {
++  project: ProjectReadback | undefined;
++  visible: ProjectReadback["tokens"];
++  selected: string | undefined;
++  query: string;
++  inspect: (id: string) => TokenInspection | undefined;
++  onSelect: (id: string) => void;
++  onEmptyAction: () => void;
++}) {
++  const labels = identityLabels(project?.tokens ?? visible);
++  return (
++    <div className="token-table @container border-t border-border">
++      <div className="table-heading border-b border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 gap-3 text-muted-foreground">
++        <span>Token</span>
++        <span className="hidden @3xl:block">Description</span>
++        <span>Authored value</span>
++      </div>
++      {visible.map((t) => {
++        const v = t.authored.definition?.assignments[0]?.value,
++          preview = colorPreview(resolvedColor(inspect(t.authored.id)));
++        return (
++          <button
++            key={t.authored.id}
++            type="button"
++            className={`token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent ${selected === t.authored.id ? "selected" : ""}`}
++            aria-pressed={selected === t.authored.id}
++            onClick={() => onSelect(t.authored.id)}
++          >
++            <span className="flex gap-3 min-w-0 items-start">
++              <TokenSwatch css={preview.css} />
++              <span className="token-identity flex-1 min-w-0">
++                <strong className="block text-xs/normal small:text-caption token-name wrap-anywhere">
++                  {labels.get(t.authored.id)}
++                </strong>
++                <small className="block text-secondary mt-1 wrap-anywhere">
++                  {t.authored.layer ?? "Unspecified"} ·{" "}
++                  {t.authored.definition?.type ?? "Unassigned"}
++                </small>
++                {t.authored.description !== undefined && (
++                  <span className="@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-secondary">
++                    {t.authored.description}
++                  </span>
++                )}
++              </span>
++            </span>
++            <span className="hidden @3xl:block min-w-0 text-caption text-secondary">
++              <span className="line-clamp-2 whitespace-pre-wrap wrap-anywhere">
++                {t.authored.description ?? "—"}
++              </span>
++            </span>
++            <span className="value-summary min-w-0 text-value text-caption wrap-anywhere">
++              <AuthoredValue value={v} project={project} layout="compact" />
++            </span>
++          </button>
++        );
++      })}
++      {visible.length === 0 && (
++        <div className="empty px-5 py-17.5 text-center text-muted-foreground">
++          <h2 className="text-foreground text-base/normal">
++            {query
++              ? "No matching colors"
++              : project?.tokens.length
++                ? "This group is empty"
++                : "Your project is empty"}
++          </h2>
++          <p className="text-xs/normal mt-2 mb-5">
++            Create a color at the root, or add a group to organize it.
++          </p>
++          <Button onClick={onEmptyAction}>
++            {query ? "Clear search" : "New token"}
++          </Button>
++        </div>
++      )}
++    </div>
++  );
++}
+diff --git a/test/presentation/visual-range.test.ts b/test/presentation/visual-range.test.ts
+index e4a7673..66ca471 100644
+--- a/test/presentation/visual-range.test.ts
++++ b/test/presentation/visual-range.test.ts
+@@ -1,5 +1,5 @@
+ import { describe, expect, it } from "vitest";
+-import { visualRangeState } from "@presentation/features/workbench/color/visual-range";
++import { visualRangeState } from "@presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/visual-range";
+ 
+ // These exact coordinates collapse onto a binary Number endpoint. The range
+ // must be withheld rather than displaying a thumb for that different value.
+diff --git a/test/presentation/workbench-coordination.test.tsx b/test/presentation/workbench-coordination.test.tsx
+index 0eed329..dc3f1ff 100644
+--- a/test/presentation/workbench-coordination.test.tsx
++++ b/test/presentation/workbench-coordination.test.tsx
+@@ -305,10 +305,10 @@ it("invalidates replacement acknowledgement whenever protected revision changes"
+ 
+ it("preserves dirty raw editor channels across baseline refresh and resets only on Cancel", async () => {
+   const { useTokenEditor } = await import(
+-    "@presentation/features/workbench/inspector/useTokenEditor"
++    "@presentation/workbench/WorkbenchInspector/TokenEditor/useTokenEditor"
+   );
+   const { editComponent } = await import(
+-    "@presentation/features/workbench/inspector/session"
++    "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session"
+   );
+   const { createColorLiteral } = await import("@domain/color-literal");
+   let revision = "r1";

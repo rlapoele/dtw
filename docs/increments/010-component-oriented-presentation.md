@@ -1,7 +1,7 @@
 # Increment 010: Component-oriented presentation
 
 - Contract status: Agreed
-- Delivery status: Partially completed — first and shell/workspace slices implemented and independently reviewed; native-browser acceptance and later organisation work remain outstanding
+- Delivery status: Partially completed — all three agreed source-organisation slices delivered and independently reviewed; native-browser acceptance remains unverified
 - Agreement: on 15 November 2026 the user instructed “Go ahead with increment 10”, agreeing this first-slice contract and authorizing implementation through the separate developer/reviewer workflow. Later roadmap slices remain outside this authorization.
 - References: [organisation proposal V1](../project/workbench-layout/presentation-organisation-proposal-v1.md), [decomposition V1](../project/workbench-layout/component-map-v1.md), [layout direction](../project/workbench-layout/README.md), [current ownership](../project/workbench-component-organisation.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md).
 
@@ -433,3 +433,27 @@ before implementation; no new interface capabilities are included.
 
 The first-slice and S2 native-browser evidence gaps remain unverified, and their
 stopped budgets are not reset by committing, pushing or planning S3.
+
+### Inspector/display authorization — 15 November 2026
+
+The user committed the S3 proposal as `5b626e2`, explicitly agreed the
+[identified contract](010-inspector-and-display-slice.md#agreement-and-implementation-authorization--15-november-2026)
+and authorized implementation. Its exact map and S3-AC-1 through S3-AC-5 are agreed;
+the bounded S3 verification allowance is active. This supersedes pending S3 scope
+wording only, not the earlier evidence gaps or later functional roadmap boundaries.
+
+### Inspector/display implementation handoff — 15 November 2026
+
+The [S3 handoff](010-inspector-and-display-slice.md#implementation-handoff--15-november-2026)
+records final wrapper removal and the remaining component/helper migration, with
+the single editor/session, unchanged controls and legacy fixture assertions
+preserved. Ninety-two focused tests and one final build pass; a fresh reviewer
+verified the 60-entry source snapshot and found no actionable findings. Useful
+in-app literal/reference/session/source flows were observed, with native Chrome,
+compact/full-focus and exceptional-state coverage still unverified.
+
+All three agreed organisation slices are delivered at source level; this does not
+deliver the replacement interface, erase earlier acceptance gaps or mark 010
+Completed. S3's approximately 21/30 aggregate minutes and zero repairs are separate
+from the stopped S1/S2 allowances. Further functional work needs its own scope and
+authorization; further automated qualification needs a bounded authorized follow-up.

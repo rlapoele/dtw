@@ -1,10 +1,10 @@
-import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
+import { AuthoredValue } from "@presentation/token-display/AuthoredValue";
 import type { ProjectReadback, TokenInspection } from "@application/authoring";
 import { Button } from "@presentation/ui/button";
-import { Swatch } from "@presentation/features/workbench/components/swatch";
+import { TokenSwatch } from "@presentation/token-display/TokenSwatch";
 import { identityLabels } from "@presentation/token-display/identity-labels";
-import { resolvedColor } from "@presentation/workbench/readback";
-import { colorPreview } from "@presentation/features/workbench/color/preview";
+import { resolvedColor } from "@presentation/token-display/resolved-color";
+import { colorPreview } from "@presentation/token-display/color-preview";
 export function TokenList({
   project,
   visible,
@@ -42,7 +42,7 @@ export function TokenList({
             onClick={() => onSelect(t.authored.id)}
           >
             <span className="flex gap-3 min-w-0 items-start">
-              <Swatch css={preview.css} />
+              <TokenSwatch css={preview.css} />
               <span className="token-identity flex-1 min-w-0">
                 <strong className="block text-xs/normal small:text-caption token-name wrap-anywhere">
                   {labels.get(t.authored.id)}

@@ -1,0 +1,36 @@
+{
+  "baseline": "5b626e2",
+  "moves": {
+    "src/presentation/features/workbench/inspector/EditorActions.tsx": "src/presentation/workbench/WorkbenchInspector/TokenEditor/EditorActions.tsx",
+    "src/presentation/features/workbench/inspector/EditRecovery.tsx": "src/presentation/workbench/WorkbenchInspector/TokenEditor/EditRecovery.tsx",
+    "src/presentation/features/workbench/inspector/ReferenceFields.tsx": "src/presentation/workbench/WorkbenchInspector/TokenEditor/ReferenceFields.tsx",
+    "src/presentation/features/workbench/inspector/useTokenEditor.ts": "src/presentation/workbench/WorkbenchInspector/TokenEditor/useTokenEditor.ts",
+    "src/presentation/features/workbench/inspector/session.ts": "src/presentation/workbench/WorkbenchInspector/TokenEditor/editor-session.ts",
+    "src/presentation/features/workbench/inspector/inspection-tabs.tsx": "src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorTabs.tsx",
+    "src/presentation/features/workbench/inspector/Editor.tsx": "src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorContent.tsx",
+    "src/presentation/features/workbench/inspector/ColorFields.tsx": "src/presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/ColorEditor.tsx",
+    "src/presentation/features/workbench/inspector/WorkbenchInspector.tsx": "src/presentation/workbench/WorkbenchInspector/WorkbenchInspector.tsx",
+    "src/presentation/features/workbench/inspector/GroupInspector.tsx": "src/presentation/workbench/WorkbenchInspector/GroupInspector/GroupInspector.tsx",
+    "src/presentation/features/workbench/inspector/TokenMetadata.tsx": "src/presentation/token-display/TokenMetadata.tsx",
+    "src/presentation/features/workbench/inspector/ResolvedTokenPanel.tsx": "src/presentation/token-display/ResolvedTokenPanel.tsx",
+    "src/presentation/features/workbench/components/AuthoredValue.tsx": "src/presentation/token-display/AuthoredValue.tsx",
+    "src/presentation/features/workbench/components/ExactSource.tsx": "src/presentation/token-display/ExactSource.tsx",
+    "src/presentation/features/workbench/components/swatch.tsx": "src/presentation/token-display/TokenSwatch.tsx",
+    "src/presentation/features/workbench/color/authored-color.ts": "src/presentation/token-display/authored-color.ts",
+    "src/presentation/features/workbench/color/preview.ts": "src/presentation/token-display/color-preview.ts",
+    "src/presentation/features/workbench/color/integer-rgb.ts": "src/presentation/workbench/WorkbenchInspector/TokenEditor/integer-rgb.ts",
+    "src/presentation/features/workbench/color/visual-range.ts": "src/presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/visual-range.ts",
+    "src/presentation/features/workbench/browser/TokenList.tsx": "test/presentation/support/TokenList.tsx"
+  },
+  "extractions": {
+    "WorkbenchInspector.tsx": [
+      "InspectorHeader.tsx",
+      "TokenEditor/TokenEditor.tsx",
+      "TokenValueComparison.tsx"
+    ],
+    "workbench/readback.ts": [
+      "token-display/resolved-color.ts",
+      "workbench/WorkbenchInspector/TokenEditor/editor-failure.ts"
+    ]
+  }
+}

@@ -5,7 +5,7 @@ import {
   integerByteDisplay,
   integerByteIssue,
   integerByteToNormalized,
-} from "@presentation/features/workbench/color/integer-rgb";
+} from "@presentation/workbench/WorkbenchInspector/TokenEditor/integer-rgb";
 import type { ImplementedAuthoredValue } from "@domain/token";
 export { canReviseColorToken as eligible } from "@application/color-revision-policy";
 export type LiteralDraft = {

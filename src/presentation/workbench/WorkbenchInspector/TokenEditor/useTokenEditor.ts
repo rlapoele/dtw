@@ -15,10 +15,11 @@ import {
   refreshCleanSession,
   eligible,
   literalIssue,
-} from "@presentation/features/workbench/inspector/session";
-import { colorPreview } from "@presentation/features/workbench/color/preview";
+} from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
+import { colorPreview } from "@presentation/token-display/color-preview";
 import { identityLabels } from "@presentation/token-display/identity-labels";
-import { failureText, resolvedColor } from "@presentation/workbench/readback";
+import { failureText } from "./editor-failure";
+import { resolvedColor } from "@presentation/token-display/resolved-color";
 export function useTokenEditor({
   inspection: i,
   project,

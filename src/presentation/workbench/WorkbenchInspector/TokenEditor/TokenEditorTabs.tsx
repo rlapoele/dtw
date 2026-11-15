@@ -1,6 +1,6 @@
 import { Tabs } from "@base-ui/react/tabs";
 /** Shared inspection tab strip; Base UI retains roving focus and panel semantics. */
-export function InspectionTabs() {
+export function TokenEditorTabs() {
   return (
     <Tabs.List
       className="tabs flex border-b border-border px-6 gap-5.5 source-compact:px-5 source-compact:gap-4.5"

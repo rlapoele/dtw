@@ -1,7 +1,7 @@
 # Workbench component organisation
 
-Current ownership after the Increment 010 shared-root/project-entry and shell/workspace extractions, 15 November 2026.
-This is a partial migration toward the endorsed component-oriented direction.
+Current ownership after the Increment 010 shared-root/project-entry, shell/workspace and inspector/display extractions, 15 November 2026.
+The agreed source organisation is delivered; future interface capabilities and native-browser acceptance remain separate.
 Paths in the first table are relative to `src/presentation/`.
 
 | Functional block | Components and local owners |
@@ -15,7 +15,7 @@ The shell/workspace paths below are relative to `src/presentation/`.
 
 | Functional block | Components and local owners |
 |---|---|
-| Shell and coordination | `workbench/Workbench` composes the screen and retains selection, view/query, dirty/departure state, refs, hook call order and command completion authority. Colocated `useProjectCommands`, `useProjectReadback`, `useWorkbenchLifecycle` and `useWorkbenchLayout` retain their implementations/call ownership. `readback` retains `resolvedColor` and `failureText`. |
+| Shell and coordination | `workbench/Workbench` composes the screen and retains selection, view/query, dirty/departure state, refs, hook call order and command completion authority. Colocated `useProjectCommands`, `useProjectReadback`, `useWorkbenchLifecycle` and `useWorkbenchLayout` retain their implementations/call ownership. |
 | Header and status | `workbench/WorkbenchHeader/WorkbenchHeader` retains project actions; `WorkbenchStatus/WorkbenchStatus` renders only the existing footer through display props and a persistent-storage request callback. The session notice remains inline in Workbench. |
 | Navigation | `workbench/WorkbenchNavigation/WorkbenchNavigation` keeps cohesive NavigationPane/NavigationDrawer exports; `NamespaceTree/NamespaceTree` renders the existing namespace buttons without new tree semantics. Workbench supplies content and controls open/expanded state. |
 | Workspace | `workbench/TokenWorkspace/TokenWorkspace` composes `WorkspaceToolbar/WorkspaceToolbar`, `TokenTable/TokenTable` and `AllContent/AllContent`. TokenTable retains button/list semantics; the memoised MembershipBlock remains local to AllContent. `AllContent/all-content` owns membership presentation. `workbench/workspace-view` owns shared active-view/creation-parent mapping. |
@@ -23,20 +23,22 @@ The shell/workspace paths below are relative to `src/presentation/`.
 | Recovery | `workbench/WorkbenchRecovery/{RetentionRecovery,DepartureGuard,ProjectDiagnostics}` render existing feedback. Workbench retains command/lifecycle authority and inline lifecycle/read-failure sections. |
 | Shared identity labels | `token-display/identity-labels` owns pure `pathLabel`, `identityLabels` and `namespaceEntryDetails`; consumers import directly without a forwarding module. |
 
-The following owners deliberately remain under `src/presentation/features/workbench/`.
+The inspector/display paths below are relative to `src/presentation/`, except the
+explicit repository-root test fixture.
 
 | Functional block | Components and local owners |
 |---|---|
-| Inspector | `inspector/WorkbenchInspector` composes group/token inspection; `EditableTokenInspector` is the single `useTokenEditor` owner. `EditorFields` composes authored/resolved sections; `EditRecovery`, `EditorActions`, `ColorFields`, `ReferenceFields`, `TokenMetadata`, `ResolvedTokenPanel` and `GroupInspector` receive section-specific values/actions. `session` owns pure draft operations; `inspection-tabs` owns tab rendering. |
-| Color | `color/` keeps existing pure presentation helpers, including the integer-rgb dependency shared by session and ColorFields. |
-| Value rendering | Cross-block leaves `components/{ExactSource,AuthoredValue,swatch}` remain here. |
-| Alternate list | `browser/TokenList` remains exercised by identity-presentation regression tests; it is not the retained screen renderer. |
+| Inspector | `workbench/WorkbenchInspector/WorkbenchInspector` retains the shell/fallback. `InspectorHeader` renders the shared header/toggle and existing `TokenValueComparison`; the latter owns the Feedback type. `GroupInspector/GroupInspector` retains read-only group rendering. |
+| Token editor | `workbench/WorkbenchInspector/TokenEditor/TokenEditor` is the sole `useTokenEditor` caller. `TokenEditorContent` retains the full heading/tabs/authored/resolved/metadata composition, with `TokenEditorTabs`, `EditorActions`, `EditRecovery` and `ReferenceFields`. `editor-session` owns pure draft operations; `editor-failure` owns failure text. |
+| Color controls | `TokenEditor/ColorEditor/ColorEditor` keeps mapped channel controls, separate Alpha and illustrativeGradient local. Its private `visual-range` helper stays beside it; `TokenEditor/integer-rgb` is shared by color controls and session operations. |
+| Shared token display | `token-display/{AuthoredValue,ExactSource,TokenSwatch,TokenMetadata,ResolvedTokenPanel}` retain read-only rendering. `authored-color`, `color-preview` and `resolved-color` own existing pure color presentation helpers; they have no private editor/shell dependency. |
+| Legacy list fixture | Repository-root `test/presentation/support/TokenList.tsx` preserves the alternate renderer solely for consumer regression coverage. It is not the retained TokenTable renderer or evidence of that renderer's contract. |
 
 App keeps the Workbench project-ID key. Workbench keeps the existing editor key,
 placement and one session owner. Generic UI remains under `presentation/ui/`;
 there are no compatibility forwarding modules, empty future folders or new
 state/controller abstractions. The unused standalone Editor forwarding entry was
-removed in Increment 009 Phase 2 after migrating callers to EditableTokenInspector.
+removed in Increment 009 Phase 2 after migrating callers to the then-named EditableTokenInspector (now TokenEditor).
 
 `ReferenceFields` receives a reference identity, labeled choices, missing-target
 and disabled state, and a reference-only callback. The editor owner merges that
@@ -64,7 +66,7 @@ The subsequent [presentation organisation proposal
 V1](./workbench-layout/presentation-organisation-proposal-v1.md) is the
 user-endorsed future folder direction, removing `features/workbench` in favor of
 named component subtrees and colocated hooks/helpers. It replaces the earlier
-decomposition's proposed paths; this document owns the current partial migration. The shell/workspace slice has now migrated the named existing owners; inspector/display migration and replacement-interface capabilities remain outside the delivered scope.
+decomposition's proposed paths; this document owns the current organisation. The three agreed source slices have migrated the existing owners; replacement-interface capabilities remain outside the delivered scope.
 
 
 The Increment 010 [move map](../../output/increment-010-first-slice/moves.json)
@@ -76,3 +78,10 @@ The Increment 010 [shell/workspace move map](../../output/increment-010-shell-wo
 records the second-slice moves and extractions. Historical evidence/prototypes
 retain their recorded paths. Source and focused tests establish extraction
 properties; native focus/geometry acceptance remains subject to the slice report.
+
+
+The Increment 010 [inspector/display move map](../../output/increment-010-inspector-display/moves.json)
+records the final wrapper removal and existing component/helper extractions.
+Historical evidence/prototypes retain recorded paths; no forwarding modules or
+future component folders were created. Source/tests establish extraction properties,
+not native focus, compact geometry or acceptance of future interface work.

@@ -511,3 +511,18 @@ Workbench, navigation, editor/session and other internals remain at their prior
 paths except moved-module imports. This is a partial migration, not the complete
 component-oriented roadmap; the [ownership map](workbench-component-organisation.md)
 records current paths.
+
+
+**Inspector/display ownership — Increment 010 S3, 15 November 2026:**
+`workbench/WorkbenchInspector/` owns the existing inspector shell, header and small
+applied/draft `TokenValueComparison`. Its `TokenEditor/` owns the sole editor hook,
+raw session operations, content/tabs/recovery/actions and color controls; shared
+integer-RGB operations stay at that common editor owner. `token-display/` owns
+read-only authored/resolved/metadata/source renderers, TokenSwatch and pure color
+preview/authored-coordinate/resolved-color helpers. Shared display does not import
+private editor or shell coordination. The unused production alternate TokenList
+now lives in test support with its consumer assertions preserved. These moves
+remove the remaining `features/workbench/` wrapper and `workbench/readback` without
+changing Workbench's command authority, editor key/position, session lifetime or
+host/domain/application boundaries. This completes the agreed source organisation,
+not the functional roadmap or unverified native-browser acceptance.

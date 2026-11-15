@@ -1,0 +1,305 @@
+{
+  "baseline": "5b626e2",
+  "entries": [
+    {
+      "path": "README.md",
+      "state": "present",
+      "sha256": "c4a6242786eb69a19b4fc8aceef16d23eab46b45dcb0eb9070a3a535d85d9844"
+    },
+    {
+      "path": "docs/project/architecture.md",
+      "state": "present",
+      "sha256": "a22ad05b55571cb93e5d87e79199ce38c7d6655765a8698f9c0d169d00c6842c"
+    },
+    {
+      "path": "docs/project/presentation-conventions.md",
+      "state": "present",
+      "sha256": "fed0d823527131cd29696c0ae0b86feabea35e1c78754a3ab424716a36b68349"
+    },
+    {
+      "path": "docs/project/workbench-component-organisation.md",
+      "state": "present",
+      "sha256": "9a4b200bd0c1331ef433aa32ac437b3c17357cf9807711ad38b12eb774f3822a"
+    },
+    {
+      "path": "src/presentation/features/workbench/browser/TokenList.tsx",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/color/authored-color.ts",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/color/integer-rgb.ts",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/color/preview.ts",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/color/visual-range.ts",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/components/AuthoredValue.tsx",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/components/ExactSource.tsx",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/components/swatch.tsx",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/inspector/ColorFields.tsx",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/inspector/EditRecovery.tsx",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/inspector/Editor.tsx",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/inspector/EditorActions.tsx",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/inspector/GroupInspector.tsx",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/inspector/ReferenceFields.tsx",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/inspector/ResolvedTokenPanel.tsx",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/inspector/TokenMetadata.tsx",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/inspector/WorkbenchInspector.tsx",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/inspector/inspection-tabs.tsx",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/inspector/session.ts",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/features/workbench/inspector/useTokenEditor.ts",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/token-display/AuthoredValue.tsx",
+      "state": "present",
+      "sha256": "c48bdfb285b37edf40f7e98149f016eec40723c405b8f2612dcec2024ca2027f"
+    },
+    {
+      "path": "src/presentation/token-display/ExactSource.tsx",
+      "state": "present",
+      "sha256": "151ca0a30765dcfa0c5fb241c834fb95c6f55cf42af4c31009ea937f6c246b40"
+    },
+    {
+      "path": "src/presentation/token-display/ResolvedTokenPanel.tsx",
+      "state": "present",
+      "sha256": "c5396cd1512b1da16018ab39fcb32690d85d401d425d6f98b91b219119a85017"
+    },
+    {
+      "path": "src/presentation/token-display/TokenMetadata.tsx",
+      "state": "present",
+      "sha256": "2922be7b5f302f49e49f65ea9ebdcb601bc4527ccaa3c76c07b25b18c63379f5"
+    },
+    {
+      "path": "src/presentation/token-display/TokenSwatch.tsx",
+      "state": "present",
+      "sha256": "e989d87f3b794fd83155adb9172da4e719fdc77a936c47dcb3a16a327212ef32"
+    },
+    {
+      "path": "src/presentation/token-display/authored-color.ts",
+      "state": "present",
+      "sha256": "1660203de590fdd295ffc663885ab910011396c7d44e6f9dceb5eb6ac32cf48a"
+    },
+    {
+      "path": "src/presentation/token-display/color-preview.ts",
+      "state": "present",
+      "sha256": "7652348f520869467c8af6d02407568e279aa1a7ad6af05f244b822e184ff0ed"
+    },
+    {
+      "path": "src/presentation/token-display/resolved-color.ts",
+      "state": "present",
+      "sha256": "0419e1c31bf77b67aec6756e71c4d42b733b14686eae86318b241f8bc1f6524c"
+    },
+    {
+      "path": "src/presentation/workbench/TokenWorkspace/TokenTable/TokenTable.tsx",
+      "state": "present",
+      "sha256": "34723d229ee44347ba8460eb1d04baa39f17aba03177f2175bcef13b0ba248b4"
+    },
+    {
+      "path": "src/presentation/workbench/Workbench.tsx",
+      "state": "present",
+      "sha256": "88e32dceb476ba0f70347938138aed3b9d38dc7ce7a53221fbd2350b82bf69e8"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/GroupInspector/GroupInspector.tsx",
+      "state": "present",
+      "sha256": "e8e3fc42e9e0598f90953b4374dee39f18eed65f229fa20cf6966f30fb110088"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/InspectorHeader.tsx",
+      "state": "present",
+      "sha256": "eb39e9c66cd527283ad918672b903f09d56242bcb0ce56ff2fd5040325ddf817"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/ColorEditor.tsx",
+      "state": "present",
+      "sha256": "e923553caea1e26ddf8431a49e6130b80b61cf740edd8cded9908e0a43b38a9b"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/visual-range.ts",
+      "state": "present",
+      "sha256": "5da3f238a8d75cdeaec77c6ebd09c0b6eb74f74744c4a0443caa5d8fbc21aec7"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/EditRecovery.tsx",
+      "state": "present",
+      "sha256": "3685b7510789784dbd89623b1837364569cc9dbc747ec6b1731240ca5297e5d4"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/EditorActions.tsx",
+      "state": "present",
+      "sha256": "85d521262b0dfc6ba6a881813f33fd750b31e0cf4bf16d1f1f20fdc988cdf3eb"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/ReferenceFields.tsx",
+      "state": "present",
+      "sha256": "a96d28933f84aba5fb41d4a6f08550da087d581ad2c15b08060834882e23c599"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditor.tsx",
+      "state": "present",
+      "sha256": "8f26cfdbc0ba351b31d7aa4e6835d82ebb151e048f47bfb0c615e7fbd1a04bdc"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorContent.tsx",
+      "state": "present",
+      "sha256": "8fac963e3c0126ac4b21d3dcc9518163893541a55ea2d3f446fa8c99f900844a"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorTabs.tsx",
+      "state": "present",
+      "sha256": "7ca28289bbcca3be3ccfdce44e2f6d8793a3bbd9e6f3d49a8624540e699b5b6a"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/editor-failure.ts",
+      "state": "present",
+      "sha256": "2747c996b5a70971440b66b547dce1645194f682c6038e8768df0b3a26947ca6"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/editor-session.ts",
+      "state": "present",
+      "sha256": "2df7230b05bf073fcb33f5343c62deb3838df3e4e093cde910754ab966700d8d"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/integer-rgb.ts",
+      "state": "present",
+      "sha256": "5318715edf140365341326d4ef6d78fbdaaca510df08a1037a91095a098c8655"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenEditor/useTokenEditor.ts",
+      "state": "present",
+      "sha256": "f686301553cb84e9bde646657fcef5b4778f7e266bb1e4ea51a71ecfb0f44d68"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/TokenValueComparison.tsx",
+      "state": "present",
+      "sha256": "84f06bc478162fbab36114796cd253bb602afc1d33ef86f9c57aa8144dc903fc"
+    },
+    {
+      "path": "src/presentation/workbench/WorkbenchInspector/WorkbenchInspector.tsx",
+      "state": "present",
+      "sha256": "a11e56f31afcc79aac93dbec787b3198619b02acc925ef5e6aa6b2f3b68f54c3"
+    },
+    {
+      "path": "src/presentation/workbench/readback.ts",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "test/presentation/authored-value.test.ts",
+      "state": "present",
+      "sha256": "1f2f30a88f70bfaa8bab3207fbb175a1d3669e1084e90cf0a4cf8983cba8ed28"
+    },
+    {
+      "path": "test/presentation/identity-presentation.test.tsx",
+      "state": "present",
+      "sha256": "7c93b1d9647c6ae9cbc0417b88cf3737c381050cd6b4c22278a16ab1d4a2e661"
+    },
+    {
+      "path": "test/presentation/integer-rgb.test.ts",
+      "state": "present",
+      "sha256": "a5fd14164d5b37cb2d8bb80a09ff5bdac7fad6cc21c6019960852c8058f6a975"
+    },
+    {
+      "path": "test/presentation/preview.test.ts",
+      "state": "present",
+      "sha256": "dced536bdbffafb41cba06805074c02bd04629b0e69dbd55a47638092a61db23"
+    },
+    {
+      "path": "test/presentation/reference-fields.test.tsx",
+      "state": "present",
+      "sha256": "44cc6423efb8f8d20fef6d82628d0ae2b18188c1815e97ddd3b03896169e2cac"
+    },
+    {
+      "path": "test/presentation/session.test.ts",
+      "state": "present",
+      "sha256": "0e4a9a405346cb9c5ec39e19730ecece1dbf2b9ca828c8ff5a51244d9b390cfd"
+    },
+    {
+      "path": "test/presentation/support/TokenList.tsx",
+      "state": "present",
+      "sha256": "4613c020d7792f251e4b7ffb3857fbc04799ae96ab700db122d367de1c94a35c"
+    },
+    {
+      "path": "test/presentation/visual-range.test.ts",
+      "state": "present",
+      "sha256": "c4014ff08a251bebf4fbafa7737c2530b8f2ab017eaa34bbeecd8b93abf143e9"
+    },
+    {
+      "path": "test/presentation/workbench-coordination.test.tsx",
+      "state": "present",
+      "sha256": "a536698d8cccdaea908f16701c2665c454de96bac7c1fbc9a2d8f6848f14c728"
+    }
+  ]
+}

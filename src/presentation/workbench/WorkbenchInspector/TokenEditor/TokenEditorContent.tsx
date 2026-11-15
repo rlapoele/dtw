@@ -1,28 +1,20 @@
-import { EditorActions } from "./EditorActions";
-import { EditRecovery } from "./EditRecovery";
-import { ReferenceFields } from "./ReferenceFields";
-import { TokenMetadata } from "./TokenMetadata";
-import { ResolvedTokenPanel } from "./ResolvedTokenPanel";
-import type { useTokenEditor } from "@presentation/features/workbench/inspector/useTokenEditor";
+import { EditorActions } from "@presentation/workbench/WorkbenchInspector/TokenEditor/EditorActions";
+import { EditRecovery } from "@presentation/workbench/WorkbenchInspector/TokenEditor/EditRecovery";
+import { ReferenceFields } from "@presentation/workbench/WorkbenchInspector/TokenEditor/ReferenceFields";
+import { TokenMetadata } from "@presentation/token-display/TokenMetadata";
+import { ResolvedTokenPanel } from "@presentation/token-display/ResolvedTokenPanel";
+import type { useTokenEditor } from "@presentation/workbench/WorkbenchInspector/TokenEditor/useTokenEditor";
 
-import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
-import { InspectionTabs } from "@presentation/features/workbench/inspector/inspection-tabs";
+import { AuthoredValue } from "@presentation/token-display/AuthoredValue";
+import { TokenEditorTabs } from "@presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditorTabs";
 import { Badge } from "@presentation/ui/badge";
 
 import { Tabs } from "@base-ui/react/tabs";
 
 import { Button } from "@presentation/ui/button";
-import { ColorFields } from "@presentation/features/workbench/inspector/ColorFields";
+import { ColorEditor } from "@presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/ColorEditor";
 
-export type Feedback = {
-  tokenId: string;
-  tab: string;
-  applied?: string;
-  draft?: string;
-  appliedMessage: string;
-  draftMessage: string;
-};
-export function EditorFields({
+export function TokenEditorContent({
   editor,
 }: {
   editor: ReturnType<typeof useTokenEditor>;
@@ -95,7 +87,7 @@ export function EditorFields({
         </div>
       </div>
       <Tabs.Root value={tab} onValueChange={setTab}>
-        <InspectionTabs />
+        <TokenEditorTabs />
         <Tabs.Panel value="authored" className="editor-body bg-surface p-3">
           {targetUnavailable && (
             <p
@@ -155,7 +147,7 @@ export function EditorFields({
                 </div>
               </fieldset>
               {session.mode === "literal" ? (
-                <ColorFields
+                <ColorEditor
                   readOnly={accepting || readOnly}
                   session={session}
                   onChange={(s) => {

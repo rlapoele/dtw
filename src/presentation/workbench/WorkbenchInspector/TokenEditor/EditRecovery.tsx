@@ -1,6 +1,6 @@
 import type { RefObject } from "react";
 import { Button } from "@presentation/ui/button";
-import type { DraftSession } from "./session";
+import type { DraftSession } from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
 import type { ImplementedAuthoredValue } from "@domain/token";
 
 export function EditRecovery({

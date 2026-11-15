@@ -1,8 +1,8 @@
 # Increment 010: Inspector and shared display slice proposal
 
-- Contract status: Draft
-- Delivery status: Not started
-- Agreement: proposed S3 amendment to [Increment 010](010-component-oriented-presentation.md), following the user's “Committed and pushed. Proceed with next step.” on 15 November 2026. Exact scope below requires agreement and implementation authorization before source changes.
+- Contract status: Agreed
+- Delivery status: Partially completed — source organisation and independent review finished; native-browser acceptance remains unverified
+- Agreement: on 15 November 2026 the user explicitly agreed and authorized this S3 amendment to [Increment 010](010-component-oriented-presentation.md) after committing and pushing it. Later functional roadmap work remains outside scope.
 - Review baseline: `d430edd`, inspected on 15 November 2026 after the committed shell/workspace slice.
 - References: [S2 handoff](010-shell-and-workspace-slice.md#implementation-handoff--15-november-2026), [current ownership](../project/workbench-component-organisation.md), [target organisation V1](../project/workbench-layout/presentation-organisation-proposal-v1.md), [decomposition V1](../project/workbench-layout/component-map-v1.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [role workflow](../workflow/agent-roles.md).
 
@@ -239,3 +239,109 @@ status resolve; whitespace checks pass. Approximately eight of ten aggregate
 planning/source/documentation-review minutes used (estimate: analyst five,
 coordinator three), zero repairs; checks stopped. No source moves, tests, build or
 browser checks occurred. Next: user agreement and implementation authorization.
+
+## Agreement and implementation authorization — 15 November 2026
+
+The user instructed: “committed & pushed. I agree and authorize. Proceed”. The
+agreement covers the exact map, source-informed naming/helper/test-support
+exceptions and S3-AC-1 through S3-AC-5. Earlier Draft/pending wording is planning
+history, superseded here. No new UI or functional-roadmap implementation is implied.
+
+Implementation baseline: `5b626e2`, clean before coordinator authorization/status
+documentation. One fresh developer implements, then freezes source for a separate
+fresh reviewer. The single S3 verification allowance is now active: at most 30
+aggregate minutes and two harness-repair cycles, stopping earlier for low value
+or tooling dominance. Initial allocation developer ten, reviewer seven, coordinator
+ten, reserve three; all share one ceiling. Carry actual consumption at handoffs.
+Use focused affected tests, one final build and cheap available ordinary smoke;
+known native Chrome/screenshot/viewport limitations do not authorize repair/setup.
+S1/S2 and earlier stopped allowances remain unchanged. Staging, committing and
+pushing remain with the user.
+
+## Implementation handoff — 15 November 2026
+
+**Agreed S3 source organisation delivered and independently reviewed; delivery
+Partially completed with explicit native-browser evidence gaps.** No actionable
+findings remain. The three organisation slices have now migrated the existing
+presentation responsibilities without implementing the new interface roadmap.
+
+### Delivered result
+
+- All 20 remaining `features/workbench` files have their agreed owners. The old
+  wrapper and empty workbench readback module are removed without forwarding files.
+- Inspector shell, common header/comparison, GroupInspector and the single
+  TokenEditor are separated. TokenEditorContent retains the complete existing
+  heading/tabs/authored/resolved/metadata composition. ColorEditor retains its
+  current channels, Alpha and local gradient helper.
+- Shared token rendering/color helpers live under `token-display/`, with no private
+  workbench/editor dependency. Integer-RGB and failure formatting live at their
+  actual editor owner; resolved color is a shared pure helper.
+- The alternate TokenList implementation moved unchanged after import/name
+  normalization to test support. All meaningful assertions remain; its test
+  description distinguishes legacy-fixture coverage from current consumers.
+- Workbench retains editor position/key and command/completion authority. Hook/
+  effect/ref/session operations, source fencing, JSX/classes and generic UI APIs
+  remain unchanged. Current-path documentation describes actual rather than
+  speculative owners.
+
+See [move/extraction map](../../output/increment-010-inspector-display/moves.json)
+and [current ownership](../project/workbench-component-organisation.md). No new
+Details tabs, numerical policy, previews, responsive layout or dependency was added.
+
+### Snapshot and evidence
+
+Base: `5b626e2`. The [60-entry manifest](../../output/increment-010-inspector-display/review-source-manifest.json)
+and [source/test/current-doc patch](../../output/increment-010-inspector-display/review-source.patch)
+identify the frozen independent-review snapshot. Coordinator contracts/status/output
+reports are outside it. Source/tests/current owning documents remained unchanged
+after independent review.
+
+| Criterion | Evidence and remaining limits |
+| --- | --- |
+| S3-AC-1 | Move/import checks, successful build and fresh independent review verify all destinations, wrapper/readback removal and absence of forwarding/future modules. Current ownership/path docs follow actual files. |
+| S3-AC-2 | Exact hook/session and normalized shell/editor-body comparison preserve state/effect/ref/keys/callback authority. In-app smoke preserves invalid input through tabs/collapse/reopen/Keep editing and observes Cancel, literal/reference Apply. Native focus/compact/restore/exceptional-state matrix remains unverified. |
+| S3-AC-3 | Exact renderer/JSX/classes and focused tests preserve current conditions, roles, labels and control APIs. In-app authored/resolved, view/scale, feedback visibility and source disclosure work. No screenshot, exact compact geometry or full native keyboard/focus parity is claimed. |
+| S3-AC-4 | Pure helper bodies/signatures remain exact; shared display has no private shell/editor dependency. In-app alias resolution and group exact-source disclosure render current values/revision. Stale/conflicting asynchronous-source states were not induced. |
+| S3-AC-5 | Legacy renderer body and all meaningful test assertions remain; suite description accurately names legacy/current coverage. Independent review confirms no domain/application/host/codec/config/dependency/CSS/UI-primitive or new-feature change. |
+
+The [developer report](../../output/increment-010-inspector-display/developer-report.md)
+records **92 existing focused tests in 11 files passing**, with no weakened
+assertions or implementation-mirror additions. One final `npm run build` passes
+all four TypeScript checks and Vite bundling. The existing >500 kB chunk advisory
+remains; this is not performance qualification. No full-suite or redundant build
+was run.
+
+The fresh [independent reviewer](../../output/increment-010-inspector-display/reviewer.md)
+derived expectations from the agreement before consulting developer evidence,
+verified all 60 hashes/deletions and the complete tracked/new path set, and
+reconstructed patch contents against the baseline. Its independent comparisons
+confirm approved moves, shell/header/editor/content/comparison splits and both
+remaining readback helper extractions preserve source behavior. No actionable
+findings remain; no source edits or duplicate test/build run occurred in review.
+
+Coordinator [in-app Chromium observations](../../output/increment-010-inspector-display/browser-observations.md)
+cover literal/reference selection, invalid raw entry, tabs, collapse/reopen,
+departure Keep editing/Cancel, color-space and RGB-scale controls, a retained
+literal Apply, alias Apply/trace, read-only group inspection and exact-source
+disclosure. Only the disposable task project changed. The warning/error sample was
+empty. Known native Chrome, screenshot and viewport limitations were not retried
+or repaired; no native Chrome, compact, full focus or exceptional-state acceptance
+is inferred. The temporary tab and task-local Vite process were closed afterward.
+
+### Accounting and next action
+
+Approximately **21 of 30 aggregate S3 verification minutes** used (estimate:
+developer six, independent reviewer six, coordinator/browser/source/reconciliation
+nine), **zero harness repairs**. Checks stopped after useful evidence and explicit
+tool limits. The remaining allowance does not automatically authorize another
+campaign; S1/S2 and older qualification stops remain unchanged.
+
+The agreed source-organisation destination is now delivered, with the documented
+source-informed exceptions. Increment 010 is not automatically marked Completed:
+older and current unverified native-browser criteria remain as recorded. Next is
+user review/acceptance or an explicitly authorized bounded follow-up/closure
+decision, followed by separately scoped functional-roadmap planning when requested.
+No new interface implementation is implied. Staging, committing and pushing remain
+with the user.
+
+Suggested commit: `refactor: finish inspector and shared token display ownership`.

@@ -305,10 +305,10 @@ it("invalidates replacement acknowledgement whenever protected revision changes"
 
 it("preserves dirty raw editor channels across baseline refresh and resets only on Cancel", async () => {
   const { useTokenEditor } = await import(
-    "@presentation/features/workbench/inspector/useTokenEditor"
+    "@presentation/workbench/WorkbenchInspector/TokenEditor/useTokenEditor"
   );
   const { editComponent } = await import(
-    "@presentation/features/workbench/inspector/session"
+    "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session"
   );
   const { createColorLiteral } = await import("@domain/color-literal");
   let revision = "r1";

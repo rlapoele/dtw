@@ -1,10 +1,10 @@
 import { describe, it, expect } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { TokenList } from "@presentation/features/workbench/browser/TokenList";
+import { TokenList } from "@tests/presentation/support/TokenList";
 import { NamespaceTree } from "@presentation/workbench/WorkbenchNavigation/NamespaceTree/NamespaceTree";
-import { AuthoredValue } from "@presentation/features/workbench/components/AuthoredValue";
-import { EditableTokenInspector } from "@presentation/features/workbench/inspector/WorkbenchInspector";
+import { AuthoredValue } from "@presentation/token-display/AuthoredValue";
+import { TokenEditor } from "@presentation/workbench/WorkbenchInspector/TokenEditor/TokenEditor";
 import { identityLabels } from "@presentation/token-display/identity-labels";
 import { createColorLiteral } from "@domain/color-literal";
 import { createToken } from "@domain/token";
@@ -12,12 +12,12 @@ import { createTokenGroup } from "@domain/token-group";
 import { createProject } from "@domain/project";
 import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
 import { createAuthoringOperations } from "@application/authoring";
-import { ColorFields } from "@presentation/features/workbench/inspector/ColorFields";
+import { ColorEditor } from "@presentation/workbench/WorkbenchInspector/TokenEditor/ColorEditor/ColorEditor";
 import {
   baseline,
   editComponent,
-} from "@presentation/features/workbench/inspector/session";
-import type { DraftSession } from "@presentation/features/workbench/inspector/session";
+} from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
+import type { DraftSession } from "@presentation/workbench/WorkbenchInspector/TokenEditor/editor-session";
 import type {
   ApplicationResult,
   TokenInspection,
@@ -76,7 +76,7 @@ function setup() {
   ]);
   return createAuthoringOperations(storage);
 }
-describe("human identity labels in real consumers", () => {
+describe("human identity labels in current consumers and the legacy TokenList fixture", () => {
   it("renders collision-safe rows/navigation and retains selected identity", () => {
     const app = setup(),
       project = ok(app.readProject("p"));
@@ -151,7 +151,7 @@ describe("human identity labels in real consumers", () => {
     expect(missing).toContain("Missing target");
     expect(missing).not.toContain("missing-secret-id");
     const editor = renderToStaticMarkup(
-      createElement(EditableTokenInspector, {
+      createElement(TokenEditor, {
         inspectorExpanded: true,
         onToggle() {},
         readFailure: "",
@@ -190,7 +190,7 @@ describe("human identity labels in real consumers", () => {
       },
     };
     const referenceEditor = renderToStaticMarkup(
-      createElement(EditableTokenInspector, {
+      createElement(TokenEditor, {
         inspectorExpanded: true,
         onToggle() {},
         readFailure: "",
@@ -287,7 +287,7 @@ describe("integer RGB rendered fields", () => {
     const s = { ...baseline(source), scale: "bytes" as const };
     const render = (session: DraftSession) =>
       renderToStaticMarkup(
-        createElement(ColorFields, {
+        createElement(ColorEditor, {
           session,
           onChange: () => {},
           onError: () => {},
@@ -428,7 +428,7 @@ describe("final reference choice context", () => {
       }),
     );
     const html = renderToStaticMarkup(
-      createElement(EditableTokenInspector, {
+      createElement(TokenEditor, {
         inspectorExpanded: true,
         onToggle() {},
         readFailure: "",
