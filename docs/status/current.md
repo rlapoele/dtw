@@ -19,7 +19,9 @@ The user supplied a minimum supported viewport width of **320 CSS px**.
 One editor session must preserve drafts, invalid input, selection and browsing
 context throughout. The user also requested discussing the preceding Projects
 page’s content/design and possible shared layout; no Projects redesign or shared
-shell choice is agreed. Visual token grids, editable Details, relationships and
+shell choice is finalized. The user has since agreed project selection with a
+contextual inspector and a separate explicit action to enter the workbench; see
+[project operations](../project/project-operations.md). Visual token grids, editable Details, relationships and
 interchange remain later slices.
 
 The [Increment 011 contract](../increments/011-responsive-shell.md) is Draft;
@@ -32,8 +34,11 @@ The separate [Projects/shared-shell V1](../project/workbench-layout/projects-she
 and [static sheet](../project/workbench-layout/projects-shell-v1.svg) now propose
 a catalogue with Create/Restore alongside on wider screens, stacked at 320px,
 plus screen transition and shared React layout/header candidates. Existing
-Projects/workbench workflow owners remain distinct. These are proposals for
-user review; no Projects redesign or shared component extraction is agreed.
+Projects/workbench workflow owners remain distinct. V1’s direct-open behavior
+is superseded by the user’s selection/inspection direction and explicit opening
+control. Its original SVG/PNG remain historical proposals; Projects V2 is needed
+before analyst review. Shared component extraction and full delivery scope are
+not agreed.
 Concrete design states must be presented to the user before analyst design review.
 Approval for analyst review remains distinct from final contract/design agreement
 and implementation authorization. Exact breakpoints, Back/resize/focus behavior
@@ -73,9 +78,9 @@ PWA. Install/offline PWA acceptance, interchange and Electron remain later work.
 
 Discuss the identified responsive-shell contract and concrete static V1 design
 proposal with the user, including its proposed entry/Back/resize/focus policies.
-Review Projects/shared-shell V1’s content, shared-shell continuity, order/identity
-presentation and proposed stacking behavior; settle whether a Projects redesign
-belongs in 011 delivery before amending scope. Record design feedback/approval for analyst review,
+Prepare Projects V2 around selected-project inspection plus a separate explicit
+opening action; review its concrete responsive states/content with the user.
+Settle which project capabilities belong in 011 delivery before amending scope. Record design feedback/approval for analyst review,
 then obtain the separate analyst consistency review. Material revisions return to
 the user. Implementation needs final contract/design agreement and authorization.
 Leave staging, committing and pushing to the user.

@@ -14,6 +14,18 @@ treatments. These are synthetic wireframes, not application screenshots. The lon
 320px Projects frame shows a scrolling document, not a promise that all its content
 fits one phone viewport. At 320×720 the lower form/restore content is below the fold.
 
+## Subsequent user direction — 15 November 2026
+
+**V1’s direct-open behavior is superseded for the next design revision.** The user
+agreed the [project-capability inventory](../project-operations.md), then specified
+list selection with project details in a right-side inspector and explicitly
+confirmed a separate control to enter the project’s token workbench. Selecting a
+project must no longer open it directly. The coordinator recommends **Open project**
+in the inspector; label/placement and narrow inspection/Back behavior await the
+revised design. V1’s SVG/PNG below remain the original proposal, not the updated
+agreed direction or an approved implementation artifact. Projects V2 is needed
+before analyst review; this note does not authorize application implementation.
+
 ## Recommendation
 
 Use a dedicated Projects composition inside the same structural application shell.

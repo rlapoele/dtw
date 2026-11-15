@@ -65,6 +65,23 @@ acceptance and design changes explicitly before implementation. Material design
 revisions return to the user before analyst review. Do not automatically turn the
 Projects page into a token-shaped three-pane screen merely to reuse components.
 
+### Agreed project-capability and inspection direction — 15 November 2026
+
+The user agreed the [project operation inventory](../project/project-operations.md)
+as product capability coverage, not as a commitment to deliver all operations in
+011. They specified project-list selection showing details in the right-side
+inspector, following the token-workbench experience, and explicitly confirmed a
+separate control to enter/work on the selected project. Selection is therefore
+separate from opening and supersedes Projects V1’s direct-open proposal.
+
+A separate **Open project** action prominently in the inspector is the
+coordinator’s recommended label/placement. Exact content, narrow/full-width
+inspection/Back, focus, selection preservation and operation placement require
+Projects V2 designer artifacts and user review before analyst review. Read-only
+versus editable project metadata and which undelivered operations join 011 remain
+unsettled. No current application behavior, acceptance status or implementation
+authority changes through this planning decision.
+
 ## Component-decomposition continuity
 
 **User-confirmed continuation — 15 November 2026.** Increment 011 builds on the
