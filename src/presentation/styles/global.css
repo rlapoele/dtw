@@ -331,3 +331,9 @@
 .exact-source { white-space: pre; overflow: auto; max-height: min(24rem, 50dvh); max-width: 100%; }
 /* Increment 007 staged ordinary rows keep native DOM/Find/accessibility order. */
 .token-row { content-visibility: auto; contain-intrinsic-size: auto 5rem; }
+/* Workbench history actions need their own wrapping row on narrow surfaces;
+   the shared Projects header retains its existing geometry. */
+@media (max-width:879px) {
+  .workbench-header .application-header.compact-brand { flex-wrap:wrap; }
+  .workbench-header .application-header > :last-child { flex-basis:100%; justify-content:flex-end; }
+}

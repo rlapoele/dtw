@@ -108,3 +108,21 @@ it("keeps the Vite worker entry a relative TypeScript URL rather than a runtime 
   expect(worker.url.pathname).not.toContain("@presentation");
   host.dispose();
 });
+
+it("fences a lost Undo issuer and reconciles its project-target identity without replay", async () => {
+  const {host,worker}=await fixture();
+  const pending=host.call("traverse",{direction:"undo",projectId:"p",revision:"r",stepId:"step"});
+  const rejection=expect(pending).rejects.toBeInstanceOf(UnknownWriteError);
+  const original=worker.messages.at(-1)!.attempt as {commandId:string;revision:string};
+  expect(original).toMatchObject({operation:"undo",result:{entityKind:"project",id:"p"},expectedRevision:"r"});
+  const checked=host.call("check",null); await rejection;
+  await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
+  const replacement=FakeWorker.instances[1], recover=replacement.messages.find(m=>m.operation==="recoverInterrupted")!;
+  expect(recover.input).toEqual(original);
+  replacement.reply(recover,{status:"retained",revision:original.revision,receipt:{commandId:original.commandId,operation:"undo",result:{entityKind:"project",id:"p"}},readback:"available"});
+  expect((await checked).status).toBe("retained");
+  const history=host.call("historyState",{projectId:"p",revision:original.revision}); replacement.reply(replacement.messages.at(-1)!,{});
+  expect(await history).toMatchObject({notice:expect.stringContaining("Session restarted")});
+  expect(FakeWorker.instances.flatMap(w=>w.messages).filter(m=>m.operation==="traverse")).toHaveLength(1);
+  host.dispose();
+});

@@ -1,0 +1,168 @@
+{
+  "base": "cf3fa82",
+  "revision": "R2",
+  "files": [
+    {
+      "path": "src/application/retention/ports.ts",
+      "kind": "tracked diff",
+      "sha256": "28aacccd93c250359241769948ec3effa811c8ddb5fbabb909404cb954c30430",
+      "bytes": 3325
+    },
+    {
+      "path": "src/application/retention/record.ts",
+      "kind": "tracked diff",
+      "sha256": "3c869f92474e904a1e3429398f17962faf54384401692a814e3fea1de95de42e",
+      "bytes": 2805
+    },
+    {
+      "path": "src/application/retention/service.ts",
+      "kind": "tracked diff",
+      "sha256": "049b27397ff72595805358cba398a0c2ec3096ae653aae1bef0be5a41796681f",
+      "bytes": 15245
+    },
+    {
+      "path": "src/presentation/host/protocol.ts",
+      "kind": "tracked diff",
+      "sha256": "a53fe1dfead7ac49e87c069751b3ddf160796b32469679f4bda8a8ed12746983",
+      "bytes": 3646
+    },
+    {
+      "path": "src/presentation/host/validation.ts",
+      "kind": "tracked diff",
+      "sha256": "c062377396ba72d820a732e97627a4e3b7eeadfd1a567e89e2aeb0278e6cf9f8",
+      "bytes": 26892
+    },
+    {
+      "path": "src/presentation/host/worker-client.ts",
+      "kind": "tracked diff",
+      "sha256": "c924c592d4d767c4ba40107ad6bfbad82a2f143bec100e758618cf6a4b676d6d",
+      "bytes": 10842
+    },
+    {
+      "path": "src/presentation/host/worker-runtime.ts",
+      "kind": "tracked diff",
+      "sha256": "ceabc663a240d25a16419090b9f2aa550395d59d8c7e4e52f8422123d4acd003",
+      "bytes": 10530
+    },
+    {
+      "path": "src/presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore.ts",
+      "kind": "tracked diff",
+      "sha256": "28fe7a963f3fe613646fb6c931b91bc0e8d2cc5d72ca7bf00f1012395178d397",
+      "bytes": 6139
+    },
+    {
+      "path": "src/presentation/styles/global.css",
+      "kind": "tracked diff",
+      "sha256": "1cf8c82f93ca8c5806fe9b9e6757de9c3b8ea4d92b952fb15df4fe46ebd38f0a",
+      "bytes": 9962
+    },
+    {
+      "path": "src/presentation/ui/icon.tsx",
+      "kind": "tracked diff",
+      "sha256": "d568503db9c9f2e64867c8d6b882dee072cebe837fa15688706e8d6d05edadc0",
+      "bytes": 1408
+    },
+    {
+      "path": "src/presentation/workbench/Workbench.tsx",
+      "kind": "tracked diff",
+      "sha256": "79d06165249f9bd5ab7c7316262db568c528e6d5ba8df67a29540f455a39607a",
+      "bytes": 21075
+    },
+    {
+      "path": "src/presentation/workbench/components/CreationDialog/hooks/useCreationForm.ts",
+      "kind": "tracked diff",
+      "sha256": "9d2f098a71990ada588ef16a71b484377460a85c09e64578ca7c86d9ad3f7693",
+      "bytes": 6835
+    },
+    {
+      "path": "src/presentation/workbench/components/WorkbenchHeader/WorkbenchHeader.tsx",
+      "kind": "tracked diff",
+      "sha256": "4e1582978d8346472a73d6363925f549ad1f18b49c1425aa930a2e4593ca7c84",
+      "bytes": 1436
+    },
+    {
+      "path": "src/presentation/workbench/components/WorkbenchRecovery/components/DepartureGuard.tsx",
+      "kind": "tracked diff",
+      "sha256": "4d9fb7774fe91802da6510534c31eef6dc59a019736a61af0ede508662d7b530",
+      "bytes": 1783
+    },
+    {
+      "path": "src/presentation/workbench/hooks/useProjectCommands.ts",
+      "kind": "tracked diff",
+      "sha256": "5b63cc0a6558074eca3ef27ad5ae2ffdc155b44f65c8c1aa060f5ae235b20af6",
+      "bytes": 7202
+    },
+    {
+      "path": "src/presentation/workbench/hooks/useWorkbenchLayout.ts",
+      "kind": "tracked diff",
+      "sha256": "68649e724790ceb5c7d1957a3d5af6c64580009a81e4f12120cd393ce91ba6e7",
+      "bytes": 4047
+    },
+    {
+      "path": "test/application/retention/record.test.ts",
+      "kind": "tracked diff",
+      "sha256": "29de8029283194e53a2fb851e143c8acb363095e82e00ff81db601da07db4e6d",
+      "bytes": 3784
+    },
+    {
+      "path": "test/presentation/retention-protocol.test.ts",
+      "kind": "tracked diff",
+      "sha256": "a82ad02444098195c1146c433773565b2756e11aaf7d979d9ad07e0da74a1c8e",
+      "bytes": 5226
+    },
+    {
+      "path": "test/presentation/workbench-coordination.test.tsx",
+      "kind": "tracked diff",
+      "sha256": "0017ea21c9f8d0e0be7f8a8840158cb9d5b9554151fe08f7fb4848922cd54e23",
+      "bytes": 28691
+    },
+    {
+      "path": "test/presentation/worker-client.test.tsx",
+      "kind": "tracked diff",
+      "sha256": "9b0bd5547756060f7df788a2e4ce77755ba0dfadebebcd9defa26b19357bbc05",
+      "bytes": 5381
+    },
+    {
+      "path": "src/application/retention/history.ts",
+      "kind": "new file",
+      "sha256": "24987f4d02298fcd889d6c5de81ef0cd9143af3294af1daf160b299976c7ab5c",
+      "bytes": 5599
+    },
+    {
+      "path": "src/presentation/Workbench/components/WorkbenchHeader/components/HistoryControls.tsx",
+      "kind": "new file",
+      "sha256": "a13be7a9a560c1641dfa4990639633bf737792c6bdbb7d32d8b0712392ea65cd",
+      "bytes": 1325
+    },
+    {
+      "path": "src/presentation/Workbench/helpers/history-shortcuts.ts",
+      "kind": "new file",
+      "sha256": "1a02d584479bb4176e6a665ef92f9fc3da1b31c4668ce1942a051dd3284e7b5f",
+      "bytes": 890
+    },
+    {
+      "path": "src/presentation/Workbench/hooks/useWorkbenchHistory.ts",
+      "kind": "new file",
+      "sha256": "8f278e568009853eea2401b0abfa2d56823163a86d94294d416a8445d74446c9",
+      "bytes": 7249
+    },
+    {
+      "path": "test/application/retention/history-bounds.test.ts",
+      "kind": "new file",
+      "sha256": "d0b57864de0c38ec280ca2dd01eca41147c073a619a98dc7372b15826d3c53a2",
+      "bytes": 1332
+    },
+    {
+      "path": "test/application/retention/history.test.ts",
+      "kind": "new file",
+      "sha256": "121b059c986a2aa040f32063e306bc1368321ffc258d00ab387af33d00978365",
+      "bytes": 9029
+    },
+    {
+      "path": "test/presentation/history-shortcuts.test.tsx",
+      "kind": "new file",
+      "sha256": "dc9cff93853e9ec840b56b8146e9000211e9c2a2f06e2e800ae06d78941423ad",
+      "bytes": 666
+    }
+  ]
+}

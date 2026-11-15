@@ -1,4 +1,5 @@
-import { useReducer, useRef } from "react";
+import type { HistoryDirection, HistoryState } from "@application/retention/history";
+import { useEffect, useReducer, useRef, useState } from "react";
 import type { MutableRefObject } from "react";
 import type { AuthoringCommand } from "@application/retention/ports";
 import type {
@@ -39,6 +40,17 @@ export function useProjectCommands(
   setError: (message: string) => void,
   setNotice: (message: string) => void,
 ) {
+  const [history, setHistory] = useState<HistoryState>({});
+  const historyRead = useRef(0);
+  async function refreshHistory() {
+    const generation = ++historyRead.current;
+    const baseline = current.current;
+    try {
+      const next = await host.call("historyState", {projectId: current.current.project.id, revision: current.current.revision});
+      if (generation === historyRead.current && current.current.revision === baseline.revision && current.current.incarnation === baseline.incarnation) setHistory(next ?? {});
+    } catch { /* Existing coherent read/recovery owns unavailable-state feedback. */ }
+  }
+  useEffect(() => { void refreshHistory(); }, [current.current.revision, current.current.incarnation, lifecycleBlocked]);
   const [{ busy, unknown, retainedPending }, dispatch] = useReducer(
     commandReducer,
     { busy: false },
@@ -50,9 +62,10 @@ export function useProjectCommands(
     dispatch({ type: "retained", value });
   const activeMutation = useRef(false),
     completion = useRef<(() => void) | undefined>(undefined);
-  async function accept(command: AuthoringCommand): Promise<PublicAcceptance> {
+  async function execute(command: AuthoringCommand | {direction: HistoryDirection; stepId: string}): Promise<PublicAcceptance> {
     if (
       lifecycleBlocked ||
+      !current.current.writable ||
       activeMutation.current ||
       reading.current ||
       busy ||
@@ -67,10 +80,9 @@ export function useProjectCommands(
     activeMutation.current = true;
     setError("");
     try {
-      let result = await host.call("command", {
-        command,
-        revision: current.current.revision,
-      });
+      let result = "direction" in command
+        ? await host.call("traverse", {...command, projectId: current.current.project.id, revision: current.current.revision})
+        : await host.call("command", {command, revision: current.current.revision});
       if (result.status === "unknown") setUnknown(result);
       else if (result.status === "retained") {
         await host.call("consume", result.receipt.commandId);
@@ -87,6 +99,8 @@ export function useProjectCommands(
               "Retained, but readback unavailable. Retry reading without repeating the write.",
           );
         }
+      } else if (result.status === "unchanged") {
+        setNotice("No authored change. Undo/Redo history is unchanged.");
       } else {
         completion.current = undefined;
         setError(result.reason);
@@ -106,9 +120,12 @@ export function useProjectCommands(
     } finally {
       activeMutation.current = false;
       setBusy(false);
+      void refreshHistory();
     }
   }
   async function retryReading() {
+    if (activeMutation.current || reading.current) return;
+    activeMutation.current = true;
     setBusy(true);
     try {
       if (await refresh()) {
@@ -121,11 +138,14 @@ export function useProjectCommands(
         );
       }
     } finally {
+      activeMutation.current = false;
       setBusy(false);
     }
   }
 
   async function check() {
+    if (activeMutation.current || reading.current) return;
+    activeMutation.current = true;
     setBusy(true);
     try {
       let result = await host.call("check", null);
@@ -162,7 +182,9 @@ export function useProjectCommands(
           : "Result check failed; original outcome remains unknown.",
       );
     } finally {
+      activeMutation.current = false;
       setBusy(false);
+      void refreshHistory();
     }
   }
   return {
@@ -171,7 +193,9 @@ export function useProjectCommands(
     retainedPending,
     activeMutation,
     completion,
-    accept,
+    history,
+    accept: (command: AuthoringCommand) => execute(command),
+    traverse: (direction: HistoryDirection, stepId: string) => execute({direction, stepId}),
     check,
     retryReading,
     setBusy,

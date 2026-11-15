@@ -1,5 +1,7 @@
 import type { ComponentProps } from "react";
 import {
+  ArrowUturnLeftIcon,
+  ArrowUturnRightIcon,
   Bars3Icon,
   ChevronDownIcon,
   ChevronLeftIcon,
@@ -14,6 +16,8 @@ import {
 import { cn } from "@presentation/lib/cn";
 
 const icons = {
+  undo: ArrowUturnLeftIcon,
+  redo: ArrowUturnRightIcon,
   menu: Bars3Icon,
   "chevron-down": ChevronDownIcon,
   "chevron-left": ChevronLeftIcon,

@@ -71,6 +71,13 @@ export function installWorkbenchWorker(storage: BrowserRetention) {
       attempt?: WriteIdentity,
     ) => Promise<HostCalls[K]["output"]>;
   } = {
+    async historyState(input) {
+      snapshot(input.projectId, input.revision);
+      return app.historyState();
+    },
+    async traverse(input, attempt) {
+      return publish(await app.traverse(input.direction, input.projectId, input.revision, input.stepId, attempt));
+    },
     async recoverInterrupted(identity) {
       return publish(await app.checkInterruptedAttempt(identity));
     },
@@ -253,7 +260,7 @@ export function installWorkbenchWorker(storage: BrowserRetention) {
     try {
       // Every operation has a closed transport name. Commands also pass the shared
       // application candidate/runtime admission before durable acceptance.
-      const mutation = ["createProject", "command", "restore"].includes(
+      const mutation = ["createProject", "command", "restore", "traverse"].includes(
         request.operation,
       );
       shape(raw, [

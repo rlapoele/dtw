@@ -124,12 +124,17 @@ export function validateHostInput(
     case "refreshStage":
       internal(input);
       return;
+    case "historyState":
     case "backup":
     case "diagnostics": {
       const v = shape(input, ["projectId", "revision"]);
       text(v.projectId);
       internal(v.revision);
       return;
+    }
+    case "traverse": {
+      const v = shape(input, ["direction", "projectId", "revision", "stepId"]);
+      enumeration(v.direction, ["undo", "redo"]); text(v.projectId); internal(v.revision); internal(v.stepId); return;
     }
     case "restore": {
       const v = shape(input, [
@@ -236,7 +241,10 @@ function acceptance(
     ["status"],
     ["revision", "receipt", "readback", "readError", "reason", "commandId"],
   );
-  if (v.status === "retained") {
+  if (v.status === "unchanged") {
+    shape(v, ["status", "revision", "reason"]); internal(v.revision); text(v.reason);
+    if (operation === "undo" || operation === "redo") throw Error("History traversal cannot be unchanged");
+  } else if (v.status === "retained") {
     shape(v, ["status", "revision", "receipt", "readback"], ["readError"]);
     internal(v.revision);
     enumeration(v.readback, ["available", "unavailable"]);
@@ -246,6 +254,8 @@ function acceptance(
     enumeration(c.operation, [
       "createProject",
       "restoreProject",
+      "undo",
+      "redo",
       "createGroup",
       "renameGroup",
       "createColorToken",
@@ -291,6 +301,18 @@ export function validateHostOutput(
   // snapshot/command admission always retains the canonical limits.
   plainTree(output, { ...retentionLimits, strings: 8388608, values: 400000 });
   switch (operation) {
+    case "historyState": {
+      const v = shape(output, [], ["undo", "redo", "notice"]);
+      for (const direction of ["undo", "redo"]) if (v[direction]) {
+        const action = shape(v[direction], ["id", "label"]); internal(action.id); text(action.label);
+      }
+      if (Object.hasOwn(v, "notice")) text(v.notice);
+      return;
+    }
+    case "traverse": {
+      const v = input as {direction: string; projectId: string};
+      acceptance(output, v.direction, "project", v.projectId); return;
+    }
     case "recoverInterrupted": {
       const attempt =
         input as import("@application/retention/ports").WriteIdentity;
@@ -748,6 +770,9 @@ export function validateAttempt(
       result.id !== x.id
     )
       throw Error("Creation attempt mismatch");
+  } else if (operation === "traverse") {
+    const x = shape(input, ["direction", "projectId", "revision", "stepId"]);
+    if (v.operation !== x.direction || v.projectId !== x.projectId || v.expectedRevision !== x.revision || result.entityKind !== "project" || result.id !== x.projectId) throw Error("History attempt mismatch");
   } else if (operation === "restore") {
     const x = shape(input, [
       "stageId",
@@ -831,6 +856,8 @@ function validateWriteIdentity(value: unknown) {
   enumeration(v.operation, [
     "createProject",
     "restoreProject",
+    "undo",
+    "redo",
     "createGroup",
     "renameGroup",
     "createColorToken",
@@ -840,7 +867,7 @@ function validateWriteIdentity(value: unknown) {
   text(result.id);
   enumeration(result.entityKind, ["project", "group", "token"]);
   const kind =
-    v.operation === "createProject" || v.operation === "restoreProject"
+    v.operation === "createProject" || v.operation === "restoreProject" || v.operation === "undo" || v.operation === "redo"
       ? "project"
       : v.operation === "createGroup" || v.operation === "renameGroup"
         ? "group"

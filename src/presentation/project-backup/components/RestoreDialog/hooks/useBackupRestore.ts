@@ -68,7 +68,7 @@ export function useBackupRestore({
       setError(result.reason);
       return;
     }
-    if (result.status === "rejected") {
+    if (result.status === "rejected" || result.status === "unchanged") {
       setUnknown(false);
       setError(result.reason);
       try {

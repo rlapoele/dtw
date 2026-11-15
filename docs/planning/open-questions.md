@@ -25,13 +25,13 @@ for exact scope and unverified acceptance. Broader model/interchange questions
 remain open; Undo/Redo is deferred to 012. This does not authorize 012 or a new
 qualification campaign.
 
-**Increment 012 planning — 15 November 2026:** the user requested
-[session Undo/Redo](../increments/012-session-undo-redo.md) after closing 011.
-Applied token/group changes within the current open-project session and native
-input typing undo are agreed initial boundaries. Coverage, history granularity,
-unknown outcomes, revision invalidation, dirty-input behavior, diagnostic-baseline
-restoration, mechanism and resource bounds remain proposals for contract/design
-review. No persistent history or implementation is authorized by this planning.
+**Increment 012 agreement — 15 November 2026:** the user agreed the
+[refined session Undo/Redo contract and design](../increments/012-session-undo-redo.md#final-agreement-and-implementation-authorization--15-november-2026)
+and authorized implementation/review. The agreed bundle settles granularity,
+draft protection, conservative invalidation, snapshot mechanism and bounds,
+diagnostic-baseline restoration, no-op behavior, native/modal shortcuts,
+selection/focus, the 640px icon/text threshold and project-targeted/versioned receipt
+compatibility. Durable history and new authoring capabilities remain deferred.
 
 ## Canonical model
 

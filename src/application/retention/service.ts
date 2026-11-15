@@ -1,3 +1,5 @@
+import { createSessionHistory, snapshotText } from "./history";
+import type { HistoryDirection } from "./history";
 import { createAuthoringOperations } from "@application/authoring";
 import type { ProjectSnapshot } from "@application/project-storage";
 import { candidateStorage } from "./candidate";
@@ -27,6 +29,8 @@ export function createRetainedWorkbench(
   port: RetentionPort,
   nextId: () => string,
 ) {
+  const history = createSessionHistory();
+  let readbackBlocked = false;
   let active = false;
   let suspended = false;
   let unconsumed: string | undefined;
@@ -62,6 +66,8 @@ export function createRetainedWorkbench(
       readback = "unavailable";
       readError = errorText(error);
     }
+    history.accepted(attempt, before);
+    readbackBlocked = readback === "unavailable";
     unconsumed = attempt.record.lastAcceptedCommand.commandId;
     return {
       status: "retained",
@@ -84,7 +90,7 @@ export function createRetainedWorkbench(
     },
     identity?: WriteIdentity,
   ): Promise<Acceptance> {
-    if (suspended || active || uncertain || unconsumed)
+    if (suspended || active || uncertain || unconsumed || readbackBlocked)
       return rejected(
         "Another command is pending or its retained outcome is unknown.",
       );
@@ -96,6 +102,10 @@ export function createRetainedWorkbench(
       if (!port.owns(projectId) && !(await port.acquire(projectId)))
         return rejected("Project is open in another writable tab.");
       const read = await port.read(projectId);
+      if (read.record) {
+        decodeRetainedRecord(read.record, projectId);
+        history.observe(projectId, read.incarnation, read.record.revision);
+      }
       if ((read.record?.revision ?? null) !== expectedRevision)
         return rejected("revision-conflict");
       if (
@@ -117,6 +127,8 @@ export function createRetainedWorkbench(
       const snapshot = admitSnapshot(candidate.snapshot);
       // Complete emitted wrapper admission is shared with backup and restore.
       encodeBackup(snapshot, "2000-01-01T00:00:00.000Z");
+      if (before && operation !== "restoreProject" && snapshotText(before) === snapshotText(snapshot))
+        return {status: "unchanged", revision: expectedRevision!, reason: "No authored change."};
       const commandId = identity?.commandId ?? nextId(),
         revision = identity?.revision ?? nextId();
       const receipt: CommandReceipt = {
@@ -129,7 +141,7 @@ export function createRetainedWorkbench(
         incarnation: read.incarnation,
         expectedRevision,
         record: {
-          recordVersion: 1,
+          recordVersion: operation === "undo" || operation === "redo" ? 2 : (read.record?.recordVersion ?? 1),
           authoredVersion: 1,
           revision,
           lastAcceptedCommand: receipt,
@@ -161,6 +173,14 @@ export function createRetainedWorkbench(
     }
   }
   return {
+    historyState: () => history.state(),
+    traverse(direction: HistoryDirection, projectId: string, revision: string, stepId: string, identity?: WriteIdentity) {
+      return write(projectId, revision, direction, read => {
+        if (!read.record) throw Error("Project not found");
+        const snapshot = history.target(direction, projectId, read.incarnation, revision, stepId);
+        return {snapshot, entityKind: "project", id: projectId};
+      }, identity);
+    },
     suspend() {
       suspended = true;
     },
@@ -173,13 +193,19 @@ export function createRetainedWorkbench(
     },
     async openProject(projectId: string) {
       const read = await port.read(projectId);
-      if (read.record) admitSnapshot(read.record.snapshot);
+      if (read.record) {
+        decodeRetainedRecord(read.record, projectId);
+        // An unreadable acknowledgment can only unblock on its exact baseline.
+        history.observe(projectId, read.incarnation, read.record.revision);
+        readbackBlocked = false;
+      }
       const writable = await port.acquire(projectId);
       return { ...read, writable };
     },
     async leaveProject(projectId: string) {
       if (active) return false;
       await port.release(projectId);
+      history.end();
       return true;
     },
     async createProject(

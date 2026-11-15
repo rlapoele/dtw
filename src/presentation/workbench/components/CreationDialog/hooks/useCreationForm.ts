@@ -194,10 +194,11 @@ export function useCreationForm(
       onCreated(kind, id);
     };
     const result = await accept(command);
-    if (result.status === "retained" && result.readback === "available") {
+    if (result.status === "unchanged" || (result.status === "retained" && result.readback === "available")) {
       const finish = completion.current;
       completion.current = undefined;
       finish?.();
+      if (result.status === "unchanged") setNotice("No authored change. Undo/Redo history is unchanged.");
     }
   }
 

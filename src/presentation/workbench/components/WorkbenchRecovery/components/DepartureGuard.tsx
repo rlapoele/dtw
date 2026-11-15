@@ -4,6 +4,7 @@ import { Dialog } from "@base-ui/react/dialog";
 import { DialogContent } from "@presentation/ui/dialog-content";
 
 export function DepartureGuard({
+  historyIntent,
   open,
   unknown,
   busy,
@@ -11,6 +12,7 @@ export function DepartureGuard({
   onDiscard,
   finalFocus,
 }: {
+  historyIntent?: {direction: "undo" | "redo"; label: string};
   open: boolean;
   unknown: boolean;
   busy: boolean;
@@ -27,10 +29,10 @@ export function DepartureGuard({
     >
       <DialogContent finalFocus={finalFocus}>
         <Dialog.Title>
-          {unknown ? "Review before leaving" : "Discard unapplied changes?"}
+          {historyIntent ? `Discard unapplied changes and ${historyIntent.direction}?` : unknown ? "Review before leaving" : "Discard unapplied changes?"}
         </Dialog.Title>
         <Dialog.Description>
-          {unknown
+          {historyIntent ? `Session input will be discarded. Then ${historyIntent.direction}: ${historyIntent.label}. No draft value will be applied.` : unknown
             ? "An issued write may already be retained. Leaving discards session input; it does not roll back applied work."
             : "Session drafts and unfinished form input will be discarded. Applied data is unchanged."}
         </Dialog.Description>
@@ -39,7 +41,7 @@ export function DepartureGuard({
             {unknown ? "Stay here" : "Keep editing"}
           </Dialog.Close>
           <Button variant="default" disabled={busy} onClick={onDiscard}>
-            {unknown ? "Leave project" : "Discard draft"}
+            {historyIntent ? `Discard and ${historyIntent.direction}` : unknown ? "Leave project" : "Discard draft"}
           </Button>
         </div>
       </DialogContent>

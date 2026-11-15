@@ -48,9 +48,9 @@ and a [component ownership delta](undo-redo-component-map-v1.md) for the
 [draft 012 contract](../../increments/012-session-undo-redo.md). It extends the
 011 shell with proposed session history, preserving native typing undo and one
 editor. The user approved V1 for analyst review with responsive icon/text controls;
-the [review](../../increments/012-v1-analyst-review.md) is complete. Final agreement
-on the amended proposal and unresolved policies remains pending; implementation
-is not authorized. Static sheets are not runtime
+the [review](../../increments/012-v1-analyst-review.md) is complete. The user subsequently agreed the refined contract/design and authorized
+implementation, now delivered with [acceptance gaps](../../increments/012-session-undo-redo.md#implementation-completion-report--15-november-2026).
+The user amendment supersedes original text-only button drawings. Static sheets are not runtime
 acceptance evidence. Increment 011's actual closure and acceptance gaps are owned
 by its [increment record](../../increments/011-responsive-shell.md#user-directed-closure--15-november-2026).
 

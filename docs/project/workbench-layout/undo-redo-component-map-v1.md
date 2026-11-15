@@ -38,3 +38,11 @@ Undo/Redo therefore needs an explicit receipt compatibility/versioning decision;
 it cannot be mislabeled as `restoreProject`. That boundary decision remains open.
 This does not choose a new authored format, alter backup scope or authorize durable
 history persistence. It does not require different user-facing controls.
+
+## Agreement — 15 November 2026
+
+User agreed the refined contract/design and authorized implementation then independent
+review. This map's ownership allocation and 640px label threshold are agreed; exact
+file extraction remains an implementation choice within existing owner/type folders.
+The [012 final agreement](../../increments/012-session-undo-redo.md#final-agreement-and-implementation-authorization--15-november-2026)
+supersedes earlier pending-mechanism/compatibility labels in this planning artifact.

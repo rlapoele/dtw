@@ -1,0 +1,799 @@
+diff --git a/src/application/retention/ports.ts b/src/application/retention/ports.ts
+index 27a0284..246178d 100644
+--- a/src/application/retention/ports.ts
++++ b/src/application/retention/ports.ts
+@@ -17,7 +17,9 @@ export type AuthoringCommand =
+ export type Operation =
+   | AuthoringCommand["operation"]
+   | "createProject"
+-  | "restoreProject";
++  | "restoreProject"
++  | "undo"
++  | "redo";
+ export type CommandReceipt = {
+   readonly commandId: string;
+   readonly operation: Operation;
+@@ -36,7 +38,7 @@ export type WriteIdentity = {
+   readonly result: CommandReceipt["result"];
+ };
+ export type RetainedRecord = {
+-  readonly recordVersion: 1;
++  readonly recordVersion: 1 | 2;
+   readonly authoredVersion: 1;
+   readonly revision: string;
+   readonly lastAcceptedCommand: CommandReceipt;
+@@ -83,6 +85,7 @@ export interface RetentionPort {
+   commit(attempt: WriteAttempt): Promise<CommitOutcome>;
+ }
+ export type Acceptance =
++  | { readonly status: "unchanged"; readonly revision: string; readonly reason: string }
+   | {
+       readonly status: "retained";
+       readonly revision: string;
+diff --git a/src/application/retention/record.ts b/src/application/retention/record.ts
+index e7267df..3f5cd60 100644
+--- a/src/application/retention/record.ts
++++ b/src/application/retention/record.ts
+@@ -1,6 +1,8 @@
+ import { admitSnapshot, encodeBackup, assertPlainRecord } from "./codec";
+ import type { Operation, RetainedRecord } from "./ports";
+ const operations: Record<Operation, string> = {
++  undo: "project",
++  redo: "project",
+   createProject: "project",
+   restoreProject: "project",
+   createGroup: "group",
+@@ -36,7 +38,7 @@ export function decodeRetainedRecord(
+     "lastAcceptedCommand",
+     "snapshot",
+   ]);
+-  if (r.recordVersion !== 1 || r.authoredVersion !== 1)
++  if ((r.recordVersion !== 1 && r.recordVersion !== 2) || r.authoredVersion !== 1)
+     throw Error("Unsupported retained record version");
+   if (!internalId(r.revision)) throw Error("Invalid retained revision");
+   const c = closed(r.lastAcceptedCommand, ["commandId", "operation", "result"]);
+@@ -49,6 +51,8 @@ export function decodeRetainedRecord(
+     typeof result.id !== "string"
+   )
+     throw Error("Invalid retained acceptance metadata");
++  if (r.recordVersion === 1 && (c.operation === "undo" || c.operation === "redo"))
++    throw Error("History receipts require retained record version 2");
+   const snapshot = admitSnapshot(r.snapshot);
+   encodeBackup(snapshot, "2000-01-01T00:00:00.000Z");
+   if (
+@@ -61,7 +65,7 @@ export function decodeRetainedRecord(
+     throw Error("Retained receipt target mismatch");
+   if (snapshot.project.id !== key) throw Error("Retained project key mismatch");
+   return {
+-    recordVersion: 1,
++    recordVersion: r.recordVersion,
+     authoredVersion: 1,
+     revision: r.revision,
+     lastAcceptedCommand: {
+diff --git a/src/application/retention/service.ts b/src/application/retention/service.ts
+index 628ca22..8660573 100644
+--- a/src/application/retention/service.ts
++++ b/src/application/retention/service.ts
+@@ -1,3 +1,5 @@
++import { createSessionHistory, snapshotText } from "./history";
++import type { HistoryDirection } from "./history";
+ import { createAuthoringOperations } from "@application/authoring";
+ import type { ProjectSnapshot } from "@application/project-storage";
+ import { candidateStorage } from "./candidate";
+@@ -27,6 +29,8 @@ export function createRetainedWorkbench(
+   port: RetentionPort,
+   nextId: () => string,
+ ) {
++  const history = createSessionHistory();
++  let readbackBlocked = false;
+   let active = false;
+   let suspended = false;
+   let unconsumed: string | undefined;
+@@ -62,6 +66,8 @@ export function createRetainedWorkbench(
+       readback = "unavailable";
+       readError = errorText(error);
+     }
++    history.accepted(attempt, before);
++    readbackBlocked = readback === "unavailable";
+     unconsumed = attempt.record.lastAcceptedCommand.commandId;
+     return {
+       status: "retained",
+@@ -84,7 +90,7 @@ export function createRetainedWorkbench(
+     },
+     identity?: WriteIdentity,
+   ): Promise<Acceptance> {
+-    if (suspended || active || uncertain || unconsumed)
++    if (suspended || active || uncertain || unconsumed || readbackBlocked)
+       return rejected(
+         "Another command is pending or its retained outcome is unknown.",
+       );
+@@ -96,6 +102,10 @@ export function createRetainedWorkbench(
+       if (!port.owns(projectId) && !(await port.acquire(projectId)))
+         return rejected("Project is open in another writable tab.");
+       const read = await port.read(projectId);
++      if (read.record) {
++        decodeRetainedRecord(read.record, projectId);
++        history.observe(projectId, read.incarnation, read.record.revision);
++      }
+       if ((read.record?.revision ?? null) !== expectedRevision)
+         return rejected("revision-conflict");
+       if (
+@@ -117,6 +127,8 @@ export function createRetainedWorkbench(
+       const snapshot = admitSnapshot(candidate.snapshot);
+       // Complete emitted wrapper admission is shared with backup and restore.
+       encodeBackup(snapshot, "2000-01-01T00:00:00.000Z");
++      if (before && operation !== "restoreProject" && snapshotText(before) === snapshotText(snapshot))
++        return {status: "unchanged", revision: expectedRevision!, reason: "No authored change."};
+       const commandId = identity?.commandId ?? nextId(),
+         revision = identity?.revision ?? nextId();
+       const receipt: CommandReceipt = {
+@@ -129,7 +141,7 @@ export function createRetainedWorkbench(
+         incarnation: read.incarnation,
+         expectedRevision,
+         record: {
+-          recordVersion: 1,
++          recordVersion: operation === "undo" || operation === "redo" ? 2 : (read.record?.recordVersion ?? 1),
+           authoredVersion: 1,
+           revision,
+           lastAcceptedCommand: receipt,
+@@ -161,6 +173,14 @@ export function createRetainedWorkbench(
+     }
+   }
+   return {
++    historyState: () => history.state(),
++    traverse(direction: HistoryDirection, projectId: string, revision: string, stepId: string, identity?: WriteIdentity) {
++      return write(projectId, revision, direction, read => {
++        if (!read.record) throw Error("Project not found");
++        const snapshot = history.target(direction, projectId, read.incarnation, revision, stepId);
++        return {snapshot, entityKind: "project", id: projectId};
++      }, identity);
++    },
+     suspend() {
+       suspended = true;
+     },
+@@ -173,13 +193,19 @@ export function createRetainedWorkbench(
+     },
+     async openProject(projectId: string) {
+       const read = await port.read(projectId);
+-      if (read.record) admitSnapshot(read.record.snapshot);
++      if (read.record) {
++        decodeRetainedRecord(read.record, projectId);
++        // An unreadable acknowledgment can only unblock on its exact baseline.
++        history.observe(projectId, read.incarnation, read.record.revision);
++        readbackBlocked = false;
++      }
+       const writable = await port.acquire(projectId);
+       return { ...read, writable };
+     },
+     async leaveProject(projectId: string) {
+       if (active) return false;
+       await port.release(projectId);
++      history.end();
+       return true;
+     },
+     async createProject(
+diff --git a/src/presentation/host/protocol.ts b/src/presentation/host/protocol.ts
+index 7755115..759e299 100644
+--- a/src/presentation/host/protocol.ts
++++ b/src/presentation/host/protocol.ts
+@@ -1,3 +1,4 @@
++import type { HistoryDirection, HistoryState } from "@application/retention/history";
+ import type { WriteIdentity } from "@application/retention/ports";
+ import type { DiagnosticDisplay } from "@application/retention/diagnostics";
+ import type {
+@@ -32,6 +33,8 @@ export type RestorePreview = {
+   local: { revision: string; name: string } | null;
+ };
+ export interface HostCalls {
++  historyState: {input: {projectId: string; revision: string}; output: HistoryState};
++  traverse: {input: {direction: HistoryDirection; projectId: string; revision: string; stepId: string}; output: PublicAcceptance};
+   recoverInterrupted: { input: WriteIdentity; output: PublicAcceptance };
+   suspend: { input: null; output: true };
+   resume: { input: string; output: ProjectHeader };
+diff --git a/src/presentation/host/validation.ts b/src/presentation/host/validation.ts
+index d6a5d98..1450670 100644
+--- a/src/presentation/host/validation.ts
++++ b/src/presentation/host/validation.ts
+@@ -124,6 +124,7 @@ export function validateHostInput(
+     case "refreshStage":
+       internal(input);
+       return;
++    case "historyState":
+     case "backup":
+     case "diagnostics": {
+       const v = shape(input, ["projectId", "revision"]);
+@@ -131,6 +132,10 @@ export function validateHostInput(
+       internal(v.revision);
+       return;
+     }
++    case "traverse": {
++      const v = shape(input, ["direction", "projectId", "revision", "stepId"]);
++      enumeration(v.direction, ["undo", "redo"]); text(v.projectId); internal(v.revision); internal(v.stepId); return;
++    }
+     case "restore": {
+       const v = shape(input, [
+         "stageId",
+@@ -236,7 +241,10 @@ function acceptance(
+     ["status"],
+     ["revision", "receipt", "readback", "readError", "reason", "commandId"],
+   );
+-  if (v.status === "retained") {
++  if (v.status === "unchanged") {
++    shape(v, ["status", "revision", "reason"]); internal(v.revision); text(v.reason);
++    if (operation === "undo" || operation === "redo") throw Error("History traversal cannot be unchanged");
++  } else if (v.status === "retained") {
+     shape(v, ["status", "revision", "receipt", "readback"], ["readError"]);
+     internal(v.revision);
+     enumeration(v.readback, ["available", "unavailable"]);
+@@ -246,6 +254,8 @@ function acceptance(
+     enumeration(c.operation, [
+       "createProject",
+       "restoreProject",
++      "undo",
++      "redo",
+       "createGroup",
+       "renameGroup",
+       "createColorToken",
+@@ -291,6 +301,18 @@ export function validateHostOutput(
+   // snapshot/command admission always retains the canonical limits.
+   plainTree(output, { ...retentionLimits, strings: 8388608, values: 400000 });
+   switch (operation) {
++    case "historyState": {
++      const v = shape(output, [], ["undo", "redo", "notice"]);
++      for (const direction of ["undo", "redo"]) if (v[direction]) {
++        const action = shape(v[direction], ["id", "label"]); internal(action.id); text(action.label);
++      }
++      if (Object.hasOwn(v, "notice")) text(v.notice);
++      return;
++    }
++    case "traverse": {
++      const v = input as {direction: string; projectId: string};
++      acceptance(output, v.direction, "project", v.projectId); return;
++    }
+     case "recoverInterrupted": {
+       const attempt =
+         input as import("@application/retention/ports").WriteIdentity;
+@@ -748,6 +770,9 @@ export function validateAttempt(
+       result.id !== x.id
+     )
+       throw Error("Creation attempt mismatch");
++  } else if (operation === "traverse") {
++    const x = shape(input, ["direction", "projectId", "revision", "stepId"]);
++    if (v.operation !== x.direction || v.projectId !== x.projectId || v.expectedRevision !== x.revision || result.entityKind !== "project" || result.id !== x.projectId) throw Error("History attempt mismatch");
+   } else if (operation === "restore") {
+     const x = shape(input, [
+       "stageId",
+@@ -831,6 +856,8 @@ function validateWriteIdentity(value: unknown) {
+   enumeration(v.operation, [
+     "createProject",
+     "restoreProject",
++    "undo",
++    "redo",
+     "createGroup",
+     "renameGroup",
+     "createColorToken",
+@@ -840,7 +867,7 @@ function validateWriteIdentity(value: unknown) {
+   text(result.id);
+   enumeration(result.entityKind, ["project", "group", "token"]);
+   const kind =
+-    v.operation === "createProject" || v.operation === "restoreProject"
++    v.operation === "createProject" || v.operation === "restoreProject" || v.operation === "undo" || v.operation === "redo"
+       ? "project"
+       : v.operation === "createGroup" || v.operation === "renameGroup"
+         ? "group"
+diff --git a/src/presentation/host/worker-client.ts b/src/presentation/host/worker-client.ts
+index 4cf6410..6d177af 100644
+--- a/src/presentation/host/worker-client.ts
++++ b/src/presentation/host/worker-client.ts
+@@ -19,6 +19,7 @@ export class WorkerWorkbenchHost implements WorkbenchHost {
+   private interruptedAttempt: WriteIdentity | undefined;
+   private recoveryTask: Promise<HostCalls["check"]["output"]> | undefined;
+   private stopped = false;
++  private sessionRestarted = false;
+   private readonly pending = new Map<
+     number,
+     {
+@@ -100,7 +101,10 @@ export class WorkerWorkbenchHost implements WorkbenchHost {
+               response.value as { incarnation: string }
+             ).incarnation;
+           this.pending.delete(response.id);
+-          pending.resolve(response.value);
++          if (pending.operation === "leaveProject" && response.value === true) this.sessionRestarted = false;
++          pending.resolve(pending.operation === "historyState" && this.sessionRestarted
++            ? {...(response.value as object), notice: (response.value as {notice?: string}).notice ?? "Session restarted. Undo/Redo history cleared; applied project data remains retained."}
++            : response.value);
+         } else {
+           shape(response, ["id", "operation", "status", "reason"]);
+           if (
+@@ -180,6 +184,7 @@ export class WorkerWorkbenchHost implements WorkbenchHost {
+     if (!this.stopped) return;
+     this.worker.terminate();
+     this.worker = this.createWorker();
++    this.sessionRestarted = true;
+     this.stopped = false;
+     this.connectHandlers();
+     await this.call("ready", null);
+@@ -193,6 +198,7 @@ export class WorkerWorkbenchHost implements WorkbenchHost {
+       if (this.stopped) {
+         this.worker.terminate();
+         this.worker = this.createWorker();
++        this.sessionRestarted = true;
+         this.stopped = false;
+         this.connectHandlers();
+         await this.call("ready", null);
+@@ -209,7 +215,7 @@ export class WorkerWorkbenchHost implements WorkbenchHost {
+     operation: K,
+     input: HostCalls[K]["input"],
+   ): WriteIdentity | undefined {
+-    if (!["createProject", "command", "restore"].includes(operation))
++    if (!["createProject", "command", "restore", "traverse"].includes(operation))
+       return undefined;
+     if (this.interruptedAttempt)
+       throw Error(
+@@ -229,6 +235,11 @@ export class WorkerWorkbenchHost implements WorkbenchHost {
+       projectId = value.id as string;
+       expectedRevision = null;
+       result = { entityKind: "project", id: projectId };
++    } else if (operation === "traverse") {
++      op = value.direction as "undo" | "redo";
++      projectId = value.projectId as string;
++      expectedRevision = value.revision as string;
++      result = {entityKind: "project", id: projectId};
+     } else if (operation === "restore") {
+       op = "restoreProject";
+       projectId = value.projectId as string;
+diff --git a/src/presentation/host/worker-runtime.ts b/src/presentation/host/worker-runtime.ts
+index 6ea075b..f6e1140 100644
+--- a/src/presentation/host/worker-runtime.ts
++++ b/src/presentation/host/worker-runtime.ts
+@@ -71,6 +71,13 @@ export function installWorkbenchWorker(storage: BrowserRetention) {
+       attempt?: WriteIdentity,
+     ) => Promise<HostCalls[K]["output"]>;
+   } = {
++    async historyState(input) {
++      snapshot(input.projectId, input.revision);
++      return app.historyState();
++    },
++    async traverse(input, attempt) {
++      return publish(await app.traverse(input.direction, input.projectId, input.revision, input.stepId, attempt));
++    },
+     async recoverInterrupted(identity) {
+       return publish(await app.checkInterruptedAttempt(identity));
+     },
+@@ -253,7 +260,7 @@ export function installWorkbenchWorker(storage: BrowserRetention) {
+     try {
+       // Every operation has a closed transport name. Commands also pass the shared
+       // application candidate/runtime admission before durable acceptance.
+-      const mutation = ["createProject", "command", "restore"].includes(
++      const mutation = ["createProject", "command", "restore", "traverse"].includes(
+         request.operation,
+       );
+       shape(raw, [
+diff --git a/src/presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore.ts b/src/presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore.ts
+index 6b3efd7..5ca889b 100644
+--- a/src/presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore.ts
++++ b/src/presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore.ts
+@@ -68,7 +68,7 @@ export function useBackupRestore({
+       setError(result.reason);
+       return;
+     }
+-    if (result.status === "rejected") {
++    if (result.status === "rejected" || result.status === "unchanged") {
+       setUnknown(false);
+       setError(result.reason);
+       try {
+diff --git a/src/presentation/styles/global.css b/src/presentation/styles/global.css
+index ad778c6..d0c32b8 100644
+--- a/src/presentation/styles/global.css
++++ b/src/presentation/styles/global.css
+@@ -331,3 +331,9 @@
+ .exact-source { white-space: pre; overflow: auto; max-height: min(24rem, 50dvh); max-width: 100%; }
+ /* Increment 007 staged ordinary rows keep native DOM/Find/accessibility order. */
+ .token-row { content-visibility: auto; contain-intrinsic-size: auto 5rem; }
++/* Workbench history actions need their own wrapping row on narrow surfaces;
++   the shared Projects header retains its existing geometry. */
++@media (max-width:879px) {
++  .workbench-header .application-header.compact-brand { flex-wrap:wrap; }
++  .workbench-header .application-header > :last-child { flex-basis:100%; justify-content:flex-end; }
++}
+diff --git a/src/presentation/ui/icon.tsx b/src/presentation/ui/icon.tsx
+index 24b9f48..7a7d322 100644
+--- a/src/presentation/ui/icon.tsx
++++ b/src/presentation/ui/icon.tsx
+@@ -1,5 +1,7 @@
+ import type { ComponentProps } from "react";
+ import {
++  ArrowUturnLeftIcon,
++  ArrowUturnRightIcon,
+   Bars3Icon,
+   ChevronDownIcon,
+   ChevronLeftIcon,
+@@ -14,6 +16,8 @@ import {
+ import { cn } from "@presentation/lib/cn";
+ 
+ const icons = {
++  undo: ArrowUturnLeftIcon,
++  redo: ArrowUturnRightIcon,
+   menu: Bars3Icon,
+   "chevron-down": ChevronDownIcon,
+   "chevron-left": ChevronLeftIcon,
+diff --git a/src/presentation/workbench/Workbench.tsx b/src/presentation/workbench/Workbench.tsx
+index 836eac9..728d2e8 100644
+--- a/src/presentation/workbench/Workbench.tsx
++++ b/src/presentation/workbench/Workbench.tsx
+@@ -1,3 +1,4 @@
++import { useWorkbenchHistory } from "./hooks/useWorkbenchHistory";
+ import { WorkbenchStatus } from "@presentation/Workbench/components/WorkbenchStatus/WorkbenchStatus";
+ import { NavigationPane, NavigationDrawer } from "@presentation/Workbench/components/WorkbenchNavigation/WorkbenchNavigation";
+ import { useWorkbenchLifecycle } from "@presentation/Workbench/hooks/useWorkbenchLifecycle";
+@@ -87,6 +88,8 @@ export function Workbench({
+     activeMutation,
+     completion,
+     accept,
++    history,
++    traverse,
+     check,
+     retryReading,
+     setBusy,
+@@ -94,7 +97,7 @@ export function Workbench({
+     host,
+     current,
+     reading,
+-    lifecycleBlocked,
++    lifecycleBlocked || !!readFailure,
+     refresh,
+     setReadFailure,
+     setError,
+@@ -186,6 +189,12 @@ export function Workbench({
+     !!unknown ||
+     !header.writable ||
+     !!readFailure;
++  const { historyReason, historyIntent, historyReturn, requestHistory, historyRetry, clearHistoryIntent } = useWorkbenchHistory({
++    history, traverse, blocked, unknown: !!unknown, retainedPending: !!retainedPending,
++    readFailure, header, dialog: !!dialog, pending: !!pending, request, current,
++    completion, setDirty, setEditorVersion, setNotice, setError, panel, narrow, back,
++    context, selection, setSelection, view, setView,
++  });
+   const visible = useMemo(
+     () =>
+       rows.filter(
+@@ -250,14 +259,20 @@ export function Workbench({
+       }
+     />
+   );
++  // Closing clears intent before Base UI invokes its latest finalFocus callback.
++  // Keep the captured history target through close; every ordinary guard opening
++  // resets it so unrelated departures retain their existing return behavior.
++  const guardHistoryReturn = useRef<HTMLElement | null>(null);
++  if (pending !== null) guardHistoryReturn.current = historyIntent ? historyReturn.current : null;
+   const departureGuard = (
+     <DepartureGuard
++      historyIntent={historyIntent}
+       open={pending !== null}
+       unknown={!!unknown}
+       busy={busy}
+-      onStay={() => setPending(null)}
++      onStay={() => { setPending(null); clearHistoryIntent(); }}
+       finalFocus={() =>
+-        dialog
++        guardHistoryReturn.current?.isConnected ? guardHistoryReturn.current : dialog
+           ? document.querySelector<HTMLElement>('[role="dialog"] input')
+           : panel.current
+       }
+@@ -280,6 +295,9 @@ export function Workbench({
+         Skip to tokens
+       </a>
+       <WorkbenchHeader
++        history={history}
++        historyReason={historyReason}
++        onTraverse={requestHistory}
+         compact={compact}
+         onBack={narrow && surface === "inspect" ? back : undefined}
+         projectName={header.project.name}
+@@ -293,6 +311,8 @@ export function Workbench({
+         {lifecycleBlocked && !busy && !unknown && <section role="status" className="py-2"><p>Editing paused. Recheck current retained state before applying preserved input.</p><Button onClick={() => void host.call("resume", header.project.id).then(next => refresh(next)).then(() => setLifecycleBlocked(false)).catch(e => setReadFailure(String(e)))}>Check access and retained state</Button></section>}
+         {readFailure && <section role="alert" className="py-2 text-destructive"><h2>Project read unavailable</h2><p>{readFailure}</p><p>Last coherent data is stale. Inputs are preserved; writes are blocked.</p><Button disabled={busy} onClick={() => void retryReading()}>Retry reading project</Button></section>}
+         {recovery}
++        {historyRetry && <Button onClick={() => requestHistory(historyRetry)}>Retry {historyRetry === "undo" ? "Undo" : "Redo"}</Button>}
++        {history.notice && <p role="status" className="py-2">{history.notice}</p>}
+         {error && !dialog && <p role="alert" className="py-2 text-destructive">{error}</p>}
+         {notice && <p role="status" className="py-2">{notice}</p>}
+       </WorkbenchFeedback>
+@@ -397,8 +417,8 @@ export function Workbench({
+                   },
+                 });
+                 if (
+-                  result.status !== "retained" ||
+-                  result.readback === "unavailable"
++                  result.status !== "unchanged" && (result.status !== "retained" ||
++                  result.readback === "unavailable")
+                 )
+                   return {
+                     status: "failure",
+diff --git a/src/presentation/workbench/components/CreationDialog/hooks/useCreationForm.ts b/src/presentation/workbench/components/CreationDialog/hooks/useCreationForm.ts
+index 84cbab1..04f6f16 100644
+--- a/src/presentation/workbench/components/CreationDialog/hooks/useCreationForm.ts
++++ b/src/presentation/workbench/components/CreationDialog/hooks/useCreationForm.ts
+@@ -194,10 +194,11 @@ export function useCreationForm(
+       onCreated(kind, id);
+     };
+     const result = await accept(command);
+-    if (result.status === "retained" && result.readback === "available") {
++    if (result.status === "unchanged" || (result.status === "retained" && result.readback === "available")) {
+       const finish = completion.current;
+       completion.current = undefined;
+       finish?.();
++      if (result.status === "unchanged") setNotice("No authored change. Undo/Redo history is unchanged.");
+     }
+   }
+ 
+diff --git a/src/presentation/workbench/components/WorkbenchHeader/WorkbenchHeader.tsx b/src/presentation/workbench/components/WorkbenchHeader/WorkbenchHeader.tsx
+index af0b68e..e3c58ac 100644
+--- a/src/presentation/workbench/components/WorkbenchHeader/WorkbenchHeader.tsx
++++ b/src/presentation/workbench/components/WorkbenchHeader/WorkbenchHeader.tsx
+@@ -1,7 +1,9 @@
++import type { HistoryDirection, HistoryState } from "@application/retention/history";
++import { HistoryControls, HistoryDescriptions } from "./components/HistoryControls";
+ import type { Ref } from "react";
+ import { Button } from "@presentation/ui/button";
+ import { Icon } from "@presentation/ui/icon";
+ import { ApplicationHeader } from "@presentation/components/ApplicationHeader/ApplicationHeader";
+-export function WorkbenchHeader({ compact, projectName, busy, onProjectsClick, onNavigation, onBack, navigationRef }: { compact: boolean; projectName: string; busy: boolean; onProjectsClick: () => void; onNavigation: () => void; onBack?: () => void; navigationRef?: Ref<HTMLButtonElement> }) {
+-  return <ApplicationHeader compactBrand navigation={onBack ? <Button onClick={onBack}>Back</Button> : compact && <Button ref={navigationRef} variant="ghost" aria-label="Open project navigation" onClick={onNavigation}><Icon name="menu" />Browse</Button>} context={projectName || "(unnamed project)"} actions={<Button disabled={busy} onClick={onProjectsClick}>Projects</Button>} />;
++export function WorkbenchHeader({ compact, projectName, busy, onProjectsClick, onNavigation, onBack, navigationRef, history = {}, historyReason, onTraverse = () => {} }: { compact: boolean; projectName: string; busy: boolean; onProjectsClick: () => void; onNavigation: () => void; onBack?: () => void; history?: HistoryState; historyReason?: string; onTraverse?: (direction: HistoryDirection) => void; navigationRef?: Ref<HTMLButtonElement> }) {
++  return <><div className="workbench-header shrink-0"><ApplicationHeader compactBrand navigation={onBack ? <Button onClick={onBack}>Back</Button> : compact && <Button ref={navigationRef} variant="ghost" aria-label="Open project navigation" onClick={onNavigation}><Icon name="menu" />Browse</Button>} context={projectName || "(unnamed project)"} actions={<><HistoryControls history={history} reason={historyReason} onTraverse={onTraverse} /><Button disabled={busy} onClick={onProjectsClick}>Projects</Button></>} /></div><HistoryDescriptions history={history} reason={historyReason} /></>;
+ }
+diff --git a/src/presentation/workbench/components/WorkbenchRecovery/components/DepartureGuard.tsx b/src/presentation/workbench/components/WorkbenchRecovery/components/DepartureGuard.tsx
+index 2605f55..6881dfe 100644
+--- a/src/presentation/workbench/components/WorkbenchRecovery/components/DepartureGuard.tsx
++++ b/src/presentation/workbench/components/WorkbenchRecovery/components/DepartureGuard.tsx
+@@ -4,6 +4,7 @@ import { Dialog } from "@base-ui/react/dialog";
+ import { DialogContent } from "@presentation/ui/dialog-content";
+ 
+ export function DepartureGuard({
++  historyIntent,
+   open,
+   unknown,
+   busy,
+@@ -11,6 +12,7 @@ export function DepartureGuard({
+   onDiscard,
+   finalFocus,
+ }: {
++  historyIntent?: {direction: "undo" | "redo"; label: string};
+   open: boolean;
+   unknown: boolean;
+   busy: boolean;
+@@ -27,10 +29,10 @@ export function DepartureGuard({
+     >
+       <DialogContent finalFocus={finalFocus}>
+         <Dialog.Title>
+-          {unknown ? "Review before leaving" : "Discard unapplied changes?"}
++          {historyIntent ? `Discard unapplied changes and ${historyIntent.direction}?` : unknown ? "Review before leaving" : "Discard unapplied changes?"}
+         </Dialog.Title>
+         <Dialog.Description>
+-          {unknown
++          {historyIntent ? `Session input will be discarded. Then ${historyIntent.direction}: ${historyIntent.label}. No draft value will be applied.` : unknown
+             ? "An issued write may already be retained. Leaving discards session input; it does not roll back applied work."
+             : "Session drafts and unfinished form input will be discarded. Applied data is unchanged."}
+         </Dialog.Description>
+@@ -39,7 +41,7 @@ export function DepartureGuard({
+             {unknown ? "Stay here" : "Keep editing"}
+           </Dialog.Close>
+           <Button variant="default" disabled={busy} onClick={onDiscard}>
+-            {unknown ? "Leave project" : "Discard draft"}
++            {historyIntent ? `Discard and ${historyIntent.direction}` : unknown ? "Leave project" : "Discard draft"}
+           </Button>
+         </div>
+       </DialogContent>
+diff --git a/src/presentation/workbench/hooks/useProjectCommands.ts b/src/presentation/workbench/hooks/useProjectCommands.ts
+index 8e09eef..b95adbb 100644
+--- a/src/presentation/workbench/hooks/useProjectCommands.ts
++++ b/src/presentation/workbench/hooks/useProjectCommands.ts
+@@ -1,4 +1,5 @@
+-import { useReducer, useRef } from "react";
++import type { HistoryDirection, HistoryState } from "@application/retention/history";
++import { useEffect, useReducer, useRef, useState } from "react";
+ import type { MutableRefObject } from "react";
+ import type { AuthoringCommand } from "@application/retention/ports";
+ import type {
+@@ -39,6 +40,17 @@ export function useProjectCommands(
+   setError: (message: string) => void,
+   setNotice: (message: string) => void,
+ ) {
++  const [history, setHistory] = useState<HistoryState>({});
++  const historyRead = useRef(0);
++  async function refreshHistory() {
++    const generation = ++historyRead.current;
++    const baseline = current.current;
++    try {
++      const next = await host.call("historyState", {projectId: current.current.project.id, revision: current.current.revision});
++      if (generation === historyRead.current && current.current.revision === baseline.revision && current.current.incarnation === baseline.incarnation) setHistory(next ?? {});
++    } catch { /* Existing coherent read/recovery owns unavailable-state feedback. */ }
++  }
++  useEffect(() => { void refreshHistory(); }, [current.current.revision, current.current.incarnation, lifecycleBlocked]);
+   const [{ busy, unknown, retainedPending }, dispatch] = useReducer(
+     commandReducer,
+     { busy: false },
+@@ -50,9 +62,10 @@ export function useProjectCommands(
+     dispatch({ type: "retained", value });
+   const activeMutation = useRef(false),
+     completion = useRef<(() => void) | undefined>(undefined);
+-  async function accept(command: AuthoringCommand): Promise<PublicAcceptance> {
++  async function execute(command: AuthoringCommand | {direction: HistoryDirection; stepId: string}): Promise<PublicAcceptance> {
+     if (
+       lifecycleBlocked ||
++      !current.current.writable ||
+       activeMutation.current ||
+       reading.current ||
+       busy ||
+@@ -67,10 +80,9 @@ export function useProjectCommands(
+     activeMutation.current = true;
+     setError("");
+     try {
+-      let result = await host.call("command", {
+-        command,
+-        revision: current.current.revision,
+-      });
++      let result = "direction" in command
++        ? await host.call("traverse", {...command, projectId: current.current.project.id, revision: current.current.revision})
++        : await host.call("command", {command, revision: current.current.revision});
+       if (result.status === "unknown") setUnknown(result);
+       else if (result.status === "retained") {
+         await host.call("consume", result.receipt.commandId);
+@@ -87,6 +99,8 @@ export function useProjectCommands(
+               "Retained, but readback unavailable. Retry reading without repeating the write.",
+           );
+         }
++      } else if (result.status === "unchanged") {
++        setNotice("No authored change. Undo/Redo history is unchanged.");
+       } else {
+         completion.current = undefined;
+         setError(result.reason);
+@@ -106,9 +120,12 @@ export function useProjectCommands(
+     } finally {
+       activeMutation.current = false;
+       setBusy(false);
++      void refreshHistory();
+     }
+   }
+   async function retryReading() {
++    if (activeMutation.current || reading.current) return;
++    activeMutation.current = true;
+     setBusy(true);
+     try {
+       if (await refresh()) {
+@@ -121,11 +138,14 @@ export function useProjectCommands(
+         );
+       }
+     } finally {
++      activeMutation.current = false;
+       setBusy(false);
+     }
+   }
+ 
+   async function check() {
++    if (activeMutation.current || reading.current) return;
++    activeMutation.current = true;
+     setBusy(true);
+     try {
+       let result = await host.call("check", null);
+@@ -162,7 +182,9 @@ export function useProjectCommands(
+           : "Result check failed; original outcome remains unknown.",
+       );
+     } finally {
++      activeMutation.current = false;
+       setBusy(false);
++      void refreshHistory();
+     }
+   }
+   return {
+@@ -171,7 +193,9 @@ export function useProjectCommands(
+     retainedPending,
+     activeMutation,
+     completion,
+-    accept,
++    history,
++    accept: (command: AuthoringCommand) => execute(command),
++    traverse: (direction: HistoryDirection, stepId: string) => execute({direction, stepId}),
+     check,
+     retryReading,
+     setBusy,
+diff --git a/src/presentation/workbench/hooks/useWorkbenchLayout.ts b/src/presentation/workbench/hooks/useWorkbenchLayout.ts
+index 05a54fd..438503f 100644
+--- a/src/presentation/workbench/hooks/useWorkbenchLayout.ts
++++ b/src/presentation/workbench/hooks/useWorkbenchLayout.ts
+@@ -44,8 +44,9 @@ export function useWorkbenchLayout() {
+     setInspectorExpanded(true); setSurface("inspect");
+     requestAnimationFrame(() => focusHeading(inspector.current));
+   }
+-  function back() {
++  function back(moveFocus = true) {
+     setSurface("browse");
++    if (!moveFocus) return;
+     requestAnimationFrame(() => { if (reopen.current) reopen.current.focus({ preventScroll: true }); else { const row = browse.current?.querySelector<HTMLElement>('[aria-pressed="true"]'); if (row) row.focus({ preventScroll: true }); else focusHeading(browse.current); } });
+   }
+   function navigationFinalFocus() {
+diff --git a/test/application/retention/record.test.ts b/test/application/retention/record.test.ts
+index e49c91a..9cbba17 100644
+--- a/test/application/retention/record.test.ts
++++ b/test/application/retention/record.test.ts
+@@ -118,3 +118,11 @@ it("accounts maximum snapshot strings independently of retained metadata", () =>
+     ).snapshot,
+   ).toEqual(snapshot);
+ });
++
++it("accepts existing v1 and project-target v2 history receipts, refusing v1 history or unknown versions", () => {
++  expect(decodeRetainedRecord(valid, "").recordVersion).toBe(1);
++  const history = {...valid, recordVersion: 2, lastAcceptedCommand: {...valid.lastAcceptedCommand, operation: "undo"}};
++  expect(decodeRetainedRecord(history, "").lastAcceptedCommand.operation).toBe("undo");
++  expect(() => decodeRetainedRecord({...history, recordVersion: 1}, "")).toThrow();
++  expect(() => decodeRetainedRecord({...history, recordVersion: 3}, "")).toThrow();
++});
+diff --git a/test/presentation/retention-protocol.test.ts b/test/presentation/retention-protocol.test.ts
+index 6882d83..10c655f 100644
+--- a/test/presentation/retention-protocol.test.ts
++++ b/test/presentation/retention-protocol.test.ts
+@@ -139,3 +139,13 @@ describe("selected-derived and exact-source response validation", () => {
+     ).toThrow();
+   });
+ });
++
++it("validates closed project-target history calls and rejects renderer snapshots/removed-target receipts", () => {
++  const input = {direction: "undo", projectId: "p", revision: "r", stepId: "step"};
++  expect(() => validateHostInput("traverse", input)).not.toThrow();
++  expect(() => validateHostInput("traverse", {...input, snapshot: {}})).toThrow();
++  const output = {status: "retained", revision: "r2", receipt: {commandId: "c", operation: "undo", result: {entityKind: "project", id: "p"}}, readback: "available"};
++  expect(() => validateHostOutput("traverse", input, output)).not.toThrow();
++  expect(() => validateHostOutput("traverse", input, {...output, receipt: {...output.receipt, result: {entityKind: "token", id: "removed"}}})).toThrow();
++  expect(() => validateHostOutput("traverse", input, {status:"unchanged", revision:"r", reason:"no-op"})).toThrow();
++});
+diff --git a/test/presentation/workbench-coordination.test.tsx b/test/presentation/workbench-coordination.test.tsx
+index 45151ae..ce461fd 100644
+--- a/test/presentation/workbench-coordination.test.tsx
++++ b/test/presentation/workbench-coordination.test.tsx
+@@ -645,3 +645,19 @@ it.each(["available", "unavailable", "unknown", "rejected"])("restore %s notifie
+   expect(owner.retained).toBe(outcome !== "rejected");
+   expect(onOpen).toHaveBeenCalledTimes(outcome === "available" || outcome === "unknown" ? 1 : 0);
+ });
++
++it("shares the synchronous mutation gate across Apply and Undo and keeps traversal once-only through recovery", async () => {
++  const issued = deferred<PublicAcceptance>();
++  const service = host(async op => op === "traverse" ? issued.promise : op === "check" ? retained : undefined);
++  const finish = vi.fn();
++  const hook = () => useProjectCommands(service, {current:header}, {current:false}, false, async () => true, vi.fn(), vi.fn(), vi.fn());
++  let owner = render(hook); owner.completion.current = finish;
++  const undo = owner.traverse("undo", "step");
++  expect((await owner.accept({operation:"renameGroup",projectId:"p",groupId:"g",localName:"x"})).status).toBe("rejected");
++  expect((await owner.traverse("undo", "step")).status).toBe("rejected");
++  issued.resolve({status:"unknown",commandId:"original",reason:"lost"}); await undo;
++  owner = render(hook); await Promise.all([owner.check(), owner.check()]);
++  expect(finish).toHaveBeenCalledTimes(1);
++  expect(vi.mocked(service.call).mock.calls.filter(([op]) => op === "traverse")).toHaveLength(1);
++  expect(vi.mocked(service.call).mock.calls.filter(([op]) => op === "check")).toHaveLength(1);
++});
+diff --git a/test/presentation/worker-client.test.tsx b/test/presentation/worker-client.test.tsx
+index f66bb02..34f1eec 100644
+--- a/test/presentation/worker-client.test.tsx
++++ b/test/presentation/worker-client.test.tsx
+@@ -108,3 +108,21 @@ it("keeps the Vite worker entry a relative TypeScript URL rather than a runtime
+   expect(worker.url.pathname).not.toContain("@presentation");
+   host.dispose();
+ });
++
++it("fences a lost Undo issuer and reconciles its project-target identity without replay", async () => {
++  const {host,worker}=await fixture();
++  const pending=host.call("traverse",{direction:"undo",projectId:"p",revision:"r",stepId:"step"});
++  const rejection=expect(pending).rejects.toBeInstanceOf(UnknownWriteError);
++  const original=worker.messages.at(-1)!.attempt as {commandId:string;revision:string};
++  expect(original).toMatchObject({operation:"undo",result:{entityKind:"project",id:"p"},expectedRevision:"r"});
++  const checked=host.call("check",null); await rejection;
++  await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
++  const replacement=FakeWorker.instances[1], recover=replacement.messages.find(m=>m.operation==="recoverInterrupted")!;
++  expect(recover.input).toEqual(original);
++  replacement.reply(recover,{status:"retained",revision:original.revision,receipt:{commandId:original.commandId,operation:"undo",result:{entityKind:"project",id:"p"}},readback:"available"});
++  expect((await checked).status).toBe("retained");
++  const history=host.call("historyState",{projectId:"p",revision:original.revision}); replacement.reply(replacement.messages.at(-1)!,{});
++  expect(await history).toMatchObject({notice:expect.stringContaining("Session restarted")});
++  expect(FakeWorker.instances.flatMap(w=>w.messages).filter(m=>m.operation==="traverse")).toHaveLength(1);
++  host.dispose();
++});

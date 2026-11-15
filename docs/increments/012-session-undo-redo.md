@@ -1,9 +1,9 @@
 # Increment 012: Session Undo/Redo
 
-- Contract status: **Draft — analyst-reviewed V1, pending final agreement, 15 November 2026**
-- Delivery status: Not started
-- Agreement: Initial scope below was agreed during 011; this contract, history policies, design and implementation are **not agreed or authorized**.
-- Planning authority: prepare contract/design only. No application qualification restart.
+- Contract status: **Agreed — refined V1, 15 November 2026**
+- Delivery status: **Partially completed — implementation and independent review finished; remaining runtime acceptance gaps documented**
+- Agreement: User agreed the refined contract/design and authorized developer implementation followed by independent review on 15 November 2026. The agreement section below supersedes earlier proposal/pending labels.
+- Authority: implement the agreed Increment 012 scope and perform its bounded essential checks; no restart of earlier qualification campaigns.
 - References: [011 initial scope](011-responsive-shell.md#requested-undoredo-controls--15-november-2026), [workflow](../workflow/agent-roles.md), [architecture](../project/architecture.md), [principles](../project/principles.md), [project operations](../project/project-operations.md), [open questions](../planning/open-questions.md), [presentation conventions](../project/presentation-conventions.md), [current ownership](../project/workbench-component-organisation.md), [accepted visual direction](../project/visual-direction.md), [V2 shell](../project/workbench-layout/workbench-shell-v2.md).
 
 ## Outcome
@@ -383,3 +383,132 @@ aggregate minutes**, zero harness repairs. Source/static/link review stopped.
 Preparation remains stopped at 13/15. No application code/tests/build/browser work.
 Next: obtain final agreement on the resulting contract/design and resolve these
 choices; implementation requires explicit authorization separately from the review.
+
+## Final agreement and implementation authorization — 15 November 2026
+
+The user states: “I agree with the refined Increment 012 contract and design,
+including the 640px breakpoint and receipt compatibility policy. Proceed with
+implementation using a developer subagent, followed by an independent reviewer.”
+
+This agrees the resulting proposal above and amended V1 design. It supersedes
+pending/proposed authority labels preserved in the preparation/review record:
+
+- All four existing token/group operations; one changing acknowledged command per
+  step, no-write unchanged result preserving revision and Redo, exact authored data.
+- Bounded application-owned session snapshots: 50 steps / 32 MiB serialized shared
+  payload, oldest eviction and explicit oversize clearing; no durable history.
+- Explicit draft discard/Keep editing, captured intent revalidation, native input/
+  modal ownership; Cmd/Ctrl+Z and Shift+Z, no Ctrl+Y in this increment.
+- Conservative revision/incarnation invalidation, explicit session end even when
+  the worker survives, surviving-ID selection/fallback and passive Redo per V1.
+- Exact restoration of known admitted diagnostic baselines under narrow history
+  validation, without weakening new-edit validation or accepting renderer snapshots.
+- Heroicons plus text from 640 CSS px; icon-only below 640 with accessible names,
+  nearby action/reason details and 44px minimum targets; pane thresholds unchanged.
+- Distinct project-targeted undo/redo receipts and a newer internal retained-record
+  version, new-reader support for v1 and safe old-reader refusal/no overwrite of
+  newer records. Authored format/backup envelope unchanged; no persisted history.
+
+Implementation baseline: clean `cf3fa82`. Separate developer then independent
+reviewer; one code writer. Leave staging, committing and pushing to the user.
+Routine API details may be resolved within these constraints; material changes
+return to the user. Initial SVG button drawings remain superseded by the amendment.
+
+### Implementation verification allowance
+
+**40 aggregate verification/review minutes; at most two harness-repair cycles**:
+developer up to 25, independent reviewer up to 12, coordinator up to 3. This ceiling
+reflects the new atomic retained-history transition, receipt versioning and worker/
+React integration; ordinary authoring is separate. Count checks/diagnostics/waits
+and review across agents; stop earlier when evidence suffices. Carry usage across
+handoffs, never reset on repair or a new snapshot. Earlier preparation/review and
+007–011 campaigns remain stopped.
+
+Essential: focused behavior/integrity tests for AC-1–9/13, existing typecheck/build/
+relevant tests, representative Chrome wide/320/640 controls and draft/native-key/
+selection/focus/recovery observations for AC-7/10–12. Use synthetic disposable
+projects. No admission-maximum/stress matrix, broader engines or full accessibility
+certification. Missing evidence stays unverified; no check restarts on budget stop.
+Record a stable source snapshot before independent review, criterion-linked results,
+limits and aggregate consumption in completion evidence.
+
+## Implementation completion report — 15 November 2026
+
+Authorized code delivery and independent review are finished; this is not user
+manual acceptance or a request to close the increment. Delivery remains Partially
+completed because the runtime gaps below are not proven. Applied history is now
+implemented; preparation-era statements of non-delivery remain historical.
+
+### Stable snapshots and finding disposition
+
+Base `cf3fa82`. [Original source diff](../../output/increment-012-implementation/source.diff)
+and [27-file manifest](../../output/increment-012-implementation/source-manifest.json)
+identify initial review. [Final R2 diff](../../output/increment-012-implementation/source-r2.diff)
+and [R2 manifest](../../output/increment-012-implementation/source-manifest-r2.json)
+identify delivery. All 27 hashes were independently checked at both snapshots.
+No staging, commits, pushes or index/casing changes were made by agents.
+
+[Developer evidence](../../output/increment-012-implementation/developer.md) and
+[independent review](../../output/increment-012-implementation/reviewer.md) own
+criterion-linked detail. Review found one P2 AC-7/10 guard-focus defect: clearing
+the descriptive history intent before modal focus restoration lost the captured
+return control. Developer reproduced it, stored return focus independently, and
+verified Keep editing and Escape with exact invalid input, unchanged history and
+focus on invoking Undo. Reviewer confirmed the sole R2 source delta and resolved
+R1. **No actionable findings remain** in that bounded review. Independent browser
+runtime remained unavailable; source disposition and developer browser evidence
+are explicitly distinguished.
+
+### Delivered behavior and evidence
+
+- **AC-1–3:** all four operations, exact authored data/IDs/metadata/aliases,
+  multi-field atomic Apply, no-write no-op preserving revision/Redo and branching.
+- **AC-4–6:** project-targeted fresh-revision Undo/Redo through the existing command
+  gate; reject/unknown/retained-unreadable and once-only recovery tested at the
+  application/worker/hook boundaries. Snapshot payload never comes from renderer.
+- **AC-7/10–12:** developer Chrome observations cover invalid draft protection,
+  discard traversal, surviving clean editor refresh, selected creation removal,
+  passive Redo, 320 inspection return, actual final Redo focus, Keep editing/Escape
+  invoking-control focus, native typing Undo and scoped application shortcuts.
+  320/640 geometry showed no page overflow, 44px controls, decorative hidden icons
+  and agreed label switch. Independent runtime evidence is absent.
+- **AC-8/9:** revision/incarnation/ownership/lifecycle constraints and explicit
+  departure invalidation tested; cold Chrome reopen retained data with empty history.
+  v1/v2 decoder and v1 rejection of history receipts tested; v2 is preserved on
+  later writes. Old decoder refusal is source evidence, not an old-app browser run.
+- **AC-13:** count/byte eviction and oversize acceptance behavior tested with small
+  injected bounds; no maximum-payload interactive-performance claim.
+
+Full suite passed **57 files / 1122 tests** after initial integration. Later
+focused tests passed **7 files / 53 tests**, independently repeated at R1. Build
+and all TypeScript projects passed after recovery additions; final typecheck
+passed after R2. Full-suite/build results predate the final small focus corrections;
+no final full-suite rerun is claimed. Existing Vite large-chunk warning persists.
+
+### Remaining acceptance and qualification gaps
+
+| Area | Missing evidence / disposition |
+| --- | --- |
+| Independent browser review | Reviewer could not access a usable CLI session/profile; no independent wide/320/640, native key or assembled guard runtime acceptance. Developer observations remain supporting evidence. |
+| Recovery UI | No browser fault injection of pending/unknown/retained-unreadable traversal; lower-layer recovery tests passed. |
+| Selection and dialogs | Ancestor-scope fallback, modal native typing Undo and exhaustive form/focus combinations were not separately browser-observed. |
+| Concurrency and compatibility | No new two-tab replacement/ownership matrix or second old-version browser; focused tests/static decoder evidence only. |
+| Responsive/accessibility/performance qualification | Zoom/short-height/threshold-neighbor matrix, full accessibility certification, broader engines, maximum-source and stress qualification remain unrun; no promise is inferred from admission/history limits. |
+
+These gaps are not demonstrated defects or automatic passes. Earlier 007–011
+registers remain unchanged. The preexisting physical `Workbench/` versus indexed
+`workbench/` discrepancy persists; no index correction was performed in this scope.
+
+### Consumption and stopping
+
+Approximately **35/40 aggregate verification/review minutes**: developer20,
+independent reviewer12, coordinator3; **1/2 harness-repair cycles**. Product focus
+correction is distinguished from harness repair; its rechecks are included.
+Checks stopped with useful evidence and no open actionable review finding. Unused
+allowance does not authorize a restart. Earlier preparation13/15, analyst review
+7.5/8 and older application campaigns stay stopped. No dependency installation,
+admission-maximum campaign or broader-engine run was performed.
+
+Next: user review of the delivered work and stated acceptance gaps; staging,
+committing and pushing remain with the user. Suggested commit:
+`feat: add guarded session undo and redo`.

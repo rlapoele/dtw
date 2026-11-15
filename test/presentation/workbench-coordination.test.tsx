@@ -645,3 +645,19 @@ it.each(["available", "unavailable", "unknown", "rejected"])("restore %s notifie
   expect(owner.retained).toBe(outcome !== "rejected");
   expect(onOpen).toHaveBeenCalledTimes(outcome === "available" || outcome === "unknown" ? 1 : 0);
 });
+
+it("shares the synchronous mutation gate across Apply and Undo and keeps traversal once-only through recovery", async () => {
+  const issued = deferred<PublicAcceptance>();
+  const service = host(async op => op === "traverse" ? issued.promise : op === "check" ? retained : undefined);
+  const finish = vi.fn();
+  const hook = () => useProjectCommands(service, {current:header}, {current:false}, false, async () => true, vi.fn(), vi.fn(), vi.fn());
+  let owner = render(hook); owner.completion.current = finish;
+  const undo = owner.traverse("undo", "step");
+  expect((await owner.accept({operation:"renameGroup",projectId:"p",groupId:"g",localName:"x"})).status).toBe("rejected");
+  expect((await owner.traverse("undo", "step")).status).toBe("rejected");
+  issued.resolve({status:"unknown",commandId:"original",reason:"lost"}); await undo;
+  owner = render(hook); await Promise.all([owner.check(), owner.check()]);
+  expect(finish).toHaveBeenCalledTimes(1);
+  expect(vi.mocked(service.call).mock.calls.filter(([op]) => op === "traverse")).toHaveLength(1);
+  expect(vi.mocked(service.call).mock.calls.filter(([op]) => op === "check")).toHaveLength(1);
+});

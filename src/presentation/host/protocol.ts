@@ -1,3 +1,4 @@
+import type { HistoryDirection, HistoryState } from "@application/retention/history";
 import type { WriteIdentity } from "@application/retention/ports";
 import type { DiagnosticDisplay } from "@application/retention/diagnostics";
 import type {
@@ -32,6 +33,8 @@ export type RestorePreview = {
   local: { revision: string; name: string } | null;
 };
 export interface HostCalls {
+  historyState: {input: {projectId: string; revision: string}; output: HistoryState};
+  traverse: {input: {direction: HistoryDirection; projectId: string; revision: string; stepId: string}; output: PublicAcceptance};
   recoverInterrupted: { input: WriteIdentity; output: PublicAcceptance };
   suspend: { input: null; output: true };
   resume: { input: string; output: ProjectHeader };

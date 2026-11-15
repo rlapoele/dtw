@@ -3,64 +3,53 @@
 > Last updated: 15 November 2026
 >
 > Phase: Increment 011 closed by user instruction with acceptance gaps preserved;
-> Increment 012 amended V1 analyst-reviewed; final agreement pending
+> Increment 012 implementation and independent review finished; acceptance gaps preserved
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
-> session-only. New Undo/Redo history is not implemented.
+> session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
 ## Current focus
 
-After committing delivered work as `6aa6943`, the user closed 011 with its remaining
-acceptance gaps documented and requested 012 contract/design preparation. The
-[initial 012 contract](../increments/012-session-undo-redo.md) is Draft; delivery
-Not started. A separate analyst inventoried current operations and drafted it;
-a separate designer produced [Undo/Redo V1](../project/workbench-layout/undo-redo-v1.md),
-its responsive/state sheets and component ownership delta. The user approved V1 for analyst review with icons plus text on desktop/tablet
-and icon-only on mobile. The [separate review](../increments/012-v1-analyst-review.md)
-is complete; final contract/design agreement is pending. Planning is
-explicitly authorized; application implementation is not.
+The user agreed the refined [Increment 012 contract](../increments/012-session-undo-redo.md#final-agreement-and-implementation-authorization--15-november-2026)
+and amended [Undo/Redo V1 design](../project/workbench-layout/undo-redo-v1.md),
+including the 640px control-label threshold and receipt compatibility policy,
+and authorized a separate developer followed by an independent reviewer.
+Implementation baseline is `cf3fa82`. Delivery is Partially completed with
+[completion and gaps](../increments/012-session-undo-redo.md#implementation-completion-report--15-november-2026);
+no new user manual acceptance is asserted.
 
-User-agreed initial scope: applied token/group changes during the open-project
-session, native typing undo in inputs, no persistent history across project close/
-reopen/reload. Undo/Redo belongs in the workbench header; project management stays
-on Projects. Preserve the current owner-first component structure, one editor,
-current command/receipt/revision/ownership protections and minimum 320 CSS px.
-
-Source confirms four exposed operations: createGroup, renameGroup, createColorToken
-and reviseColorToken. The draft proposes covering all four and uses that inventory
-to identify required reversal support; no current inverse/delete/history API exists.
-Bounded before/after snapshots are an analyst recommendation, not a selected
-mechanism. Granularity/no-op/redo rules, pending/unknown/failure behavior, dirty-input
-protection, selection/focus, shortcuts, external-change invalidation, diagnostic-
-baseline restoration and proposed 50-step/32 MiB limits require review/agreement.
-
-## Analyst review outcome
-
-The reviewed baseline is `552f6e9` plus the approval/icon amendments, hashed in the
-report. Core scope and component ownership are consistent. AC-11 now explicitly
-captures the user's icon/text rule. Remaining recommended decisions are a separate
-640px control-label threshold and project-targeted Undo/Redo receipts with an
-explicit newer internal record version/new-reader compatibility policy. Undo
-creation removes its entity, so the current entity-target receipt cannot be reused.
-Mechanism/bounds, diagnostic restoration, no-op and keyboard/selection policies
-remain proposed in the contract. No implementation is authorized.
+Agreed: all four current token/group commands; application-owned session snapshots,
+50 steps/32 MiB serialized shared payload, no-write no-ops preserving Redo, exact
+known admitted diagnostic-baseline restoration under narrow validation, guarded
+draft discard and native/modal input undo, conservative invalidation and passive
+Redo. Icons plus text from 640 CSS px; icon-only below it with accessible names
+and touch targets. Pane thresholds remain unchanged. Project-targeted undo/redo
+receipts use a newer internal retained-record version, new-reader support for v1
+and safe old-reader refusal/no overwrite. No durable history, authored format or
+backup-envelope change. Preserve owner-first folders, one command gate and editor.
 
 ## Review order and limits
 
-V1 and its user-requested refinement have completed analyst review. Approval for
-analyst design review is separate from final contract/design agreement and
-implementation authorization. The separate review report owns the actual findings and snapshot. Material design revisions return to the user before renewed review.
+Separate developer implementation and fresh independent review finished. Reviewer
+verified both 27-file manifests and 53 targeted tests. One P2 guard-focus issue was
+reproduced and corrected; reviewer resolved it by final source-delta inspection.
+No actionable findings remain. [Evidence](../../output/increment-012-implementation/reviewer.md)
+distinguishes source review from unavailable independent browser runtime.
 
-012 planning is bounded to 15 aggregate review minutes (analyst 6, designer 5,
-coordinator 4), source/static/prose/link checks only. Analyst consumed roughly
-5.5 minutes, designer 4.5 and coordinator 3: approximately **13/15 minutes**
-with zero repairs. Source/static checks stopped at the initial handoff. No app tests,
-builds, browser qualification or harness work are part of this preparation. No
-prior campaign restarts through new agents/increment numbers.
+Developer checks: initial full suite1122 tests; later targeted53, build/typechecks,
+representative Chrome wide/320/640, native typing/application shortcuts, draft guard,
+selection/passive Redo and final actual focus checks. Full suite/build predate final
+small focus corrections; final typecheck passed. Browser recovery fault injection,
+ancestor fallback/modal key combinations, two-tab/old-app browser and broader
+responsive/accessibility/stress qualification remain unverified as detailed in the
+contract. Earlier acceptance gaps remain preserved.
 
-The separately authorized analyst-review phase stopped at approximately
-**7.5/8 aggregate minutes** (analyst 5.5, coordinator 2), zero repairs; source/static/
-link checks only. No app tests, builds or browser qualification were run.
+Implementation checks stopped at approximately **35/40 aggregate minutes**
+(developer20, reviewer12, coordinator3), **1/2 harness repairs**; unused allowance
+is not a restart. Preparation13/15 and analyst review7.5/8 remain stopped. Source
+snapshot is [R2 manifest](../../output/increment-012-implementation/source-manifest-r2.json)
+plus [R2 diff](../../output/increment-012-implementation/source-r2.diff). No agent
+staged, committed, pushed or changed index casing.
 
 ## Increment 011 closure
 
@@ -90,11 +79,10 @@ changes are made to resolve it here.
 
 ## Next meaningful action
 
-Resolve the remaining recommendations and obtain final agreement on the
-[resulting contract](../increments/012-session-undo-redo.md#analyst-review-dispositions-and-resulting-proposal)
-and amended V1 design. Keep the contract Draft and delivery Not started until
-explicit implementation authorization. Leave
-staging, committing and pushing to the user.
+User reviews delivered Increment 012 and its remaining acceptance gaps. Leave
+staging, committing and pushing to the user. Do not close the increment or relabel
+unverified runtime acceptance passed without further user instruction/evidence.
+No additional automated qualification campaign is authorized by this handoff.
 
 ## Resume
 

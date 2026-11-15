@@ -17,7 +17,9 @@ export type AuthoringCommand =
 export type Operation =
   | AuthoringCommand["operation"]
   | "createProject"
-  | "restoreProject";
+  | "restoreProject"
+  | "undo"
+  | "redo";
 export type CommandReceipt = {
   readonly commandId: string;
   readonly operation: Operation;
@@ -36,7 +38,7 @@ export type WriteIdentity = {
   readonly result: CommandReceipt["result"];
 };
 export type RetainedRecord = {
-  readonly recordVersion: 1;
+  readonly recordVersion: 1 | 2;
   readonly authoredVersion: 1;
   readonly revision: string;
   readonly lastAcceptedCommand: CommandReceipt;
@@ -83,6 +85,7 @@ export interface RetentionPort {
   commit(attempt: WriteAttempt): Promise<CommitOutcome>;
 }
 export type Acceptance =
+  | { readonly status: "unchanged"; readonly revision: string; readonly reason: string }
   | {
       readonly status: "retained";
       readonly revision: string;

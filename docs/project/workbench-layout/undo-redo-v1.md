@@ -199,3 +199,12 @@ control-label mapping and project-targeted/versioned receipt policy remain final
 agreement decisions alongside the existing policy bundle. Original SVG depictions
 remain superseded for button presentation. No interactive prototype or application
 was changed, and no implementation was authorized.
+
+## Final agreement — 15 November 2026
+
+The user agreed the refined V1 and contract, including the independent 640px
+control-label threshold and receipt compatibility policy, and authorized
+implementation followed by independent review. This supersedes pending labels
+above; the initial text-only SVG depictions remain superseded by the icon/text
+amendment. The [012 agreement](../../increments/012-session-undo-redo.md#final-agreement-and-implementation-authorization--15-november-2026)
+owns the accepted policy bundle and verification ceiling.

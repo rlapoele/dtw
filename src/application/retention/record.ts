@@ -1,6 +1,8 @@
 import { admitSnapshot, encodeBackup, assertPlainRecord } from "./codec";
 import type { Operation, RetainedRecord } from "./ports";
 const operations: Record<Operation, string> = {
+  undo: "project",
+  redo: "project",
   createProject: "project",
   restoreProject: "project",
   createGroup: "group",
@@ -36,7 +38,7 @@ export function decodeRetainedRecord(
     "lastAcceptedCommand",
     "snapshot",
   ]);
-  if (r.recordVersion !== 1 || r.authoredVersion !== 1)
+  if ((r.recordVersion !== 1 && r.recordVersion !== 2) || r.authoredVersion !== 1)
     throw Error("Unsupported retained record version");
   if (!internalId(r.revision)) throw Error("Invalid retained revision");
   const c = closed(r.lastAcceptedCommand, ["commandId", "operation", "result"]);
@@ -49,6 +51,8 @@ export function decodeRetainedRecord(
     typeof result.id !== "string"
   )
     throw Error("Invalid retained acceptance metadata");
+  if (r.recordVersion === 1 && (c.operation === "undo" || c.operation === "redo"))
+    throw Error("History receipts require retained record version 2");
   const snapshot = admitSnapshot(r.snapshot);
   encodeBackup(snapshot, "2000-01-01T00:00:00.000Z");
   if (
@@ -61,7 +65,7 @@ export function decodeRetainedRecord(
     throw Error("Retained receipt target mismatch");
   if (snapshot.project.id !== key) throw Error("Retained project key mismatch");
   return {
-    recordVersion: 1,
+    recordVersion: r.recordVersion,
     authoredVersion: 1,
     revision: r.revision,
     lastAcceptedCommand: {

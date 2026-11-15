@@ -118,3 +118,11 @@ it("accounts maximum snapshot strings independently of retained metadata", () =>
     ).snapshot,
   ).toEqual(snapshot);
 });
+
+it("accepts existing v1 and project-target v2 history receipts, refusing v1 history or unknown versions", () => {
+  expect(decodeRetainedRecord(valid, "").recordVersion).toBe(1);
+  const history = {...valid, recordVersion: 2, lastAcceptedCommand: {...valid.lastAcceptedCommand, operation: "undo"}};
+  expect(decodeRetainedRecord(history, "").lastAcceptedCommand.operation).toBe("undo");
+  expect(() => decodeRetainedRecord({...history, recordVersion: 1}, "")).toThrow();
+  expect(() => decodeRetainedRecord({...history, recordVersion: 3}, "")).toThrow();
+});

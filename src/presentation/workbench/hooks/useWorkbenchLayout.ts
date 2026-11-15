@@ -44,8 +44,9 @@ export function useWorkbenchLayout() {
     setInspectorExpanded(true); setSurface("inspect");
     requestAnimationFrame(() => focusHeading(inspector.current));
   }
-  function back() {
+  function back(moveFocus = true) {
     setSurface("browse");
+    if (!moveFocus) return;
     requestAnimationFrame(() => { if (reopen.current) reopen.current.focus({ preventScroll: true }); else { const row = browse.current?.querySelector<HTMLElement>('[aria-pressed="true"]'); if (row) row.focus({ preventScroll: true }); else focusHeading(browse.current); } });
   }
   function navigationFinalFocus() {

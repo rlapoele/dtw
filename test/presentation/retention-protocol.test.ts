@@ -139,3 +139,13 @@ describe("selected-derived and exact-source response validation", () => {
     ).toThrow();
   });
 });
+
+it("validates closed project-target history calls and rejects renderer snapshots/removed-target receipts", () => {
+  const input = {direction: "undo", projectId: "p", revision: "r", stepId: "step"};
+  expect(() => validateHostInput("traverse", input)).not.toThrow();
+  expect(() => validateHostInput("traverse", {...input, snapshot: {}})).toThrow();
+  const output = {status: "retained", revision: "r2", receipt: {commandId: "c", operation: "undo", result: {entityKind: "project", id: "p"}}, readback: "available"};
+  expect(() => validateHostOutput("traverse", input, output)).not.toThrow();
+  expect(() => validateHostOutput("traverse", input, {...output, receipt: {...output.receipt, result: {entityKind: "token", id: "removed"}}})).toThrow();
+  expect(() => validateHostOutput("traverse", input, {status:"unchanged", revision:"r", reason:"no-op"})).toThrow();
+});

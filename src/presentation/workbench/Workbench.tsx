@@ -1,3 +1,4 @@
+import { useWorkbenchHistory } from "./hooks/useWorkbenchHistory";
 import { WorkbenchStatus } from "@presentation/Workbench/components/WorkbenchStatus/WorkbenchStatus";
 import { NavigationPane, NavigationDrawer } from "@presentation/Workbench/components/WorkbenchNavigation/WorkbenchNavigation";
 import { useWorkbenchLifecycle } from "@presentation/Workbench/hooks/useWorkbenchLifecycle";
@@ -87,6 +88,8 @@ export function Workbench({
     activeMutation,
     completion,
     accept,
+    history,
+    traverse,
     check,
     retryReading,
     setBusy,
@@ -94,7 +97,7 @@ export function Workbench({
     host,
     current,
     reading,
-    lifecycleBlocked,
+    lifecycleBlocked || !!readFailure,
     refresh,
     setReadFailure,
     setError,
@@ -186,6 +189,12 @@ export function Workbench({
     !!unknown ||
     !header.writable ||
     !!readFailure;
+  const { historyReason, historyIntent, historyReturn, requestHistory, historyRetry, clearHistoryIntent } = useWorkbenchHistory({
+    history, traverse, blocked, unknown: !!unknown, retainedPending: !!retainedPending,
+    readFailure, header, dialog: !!dialog, pending: !!pending, request, current,
+    completion, setDirty, setEditorVersion, setNotice, setError, panel, narrow, back,
+    context, selection, setSelection, view, setView,
+  });
   const visible = useMemo(
     () =>
       rows.filter(
@@ -250,14 +259,20 @@ export function Workbench({
       }
     />
   );
+  // Closing clears intent before Base UI invokes its latest finalFocus callback.
+  // Keep the captured history target through close; every ordinary guard opening
+  // resets it so unrelated departures retain their existing return behavior.
+  const guardHistoryReturn = useRef<HTMLElement | null>(null);
+  if (pending !== null) guardHistoryReturn.current = historyIntent ? historyReturn.current : null;
   const departureGuard = (
     <DepartureGuard
+      historyIntent={historyIntent}
       open={pending !== null}
       unknown={!!unknown}
       busy={busy}
-      onStay={() => setPending(null)}
+      onStay={() => { setPending(null); clearHistoryIntent(); }}
       finalFocus={() =>
-        dialog
+        guardHistoryReturn.current?.isConnected ? guardHistoryReturn.current : dialog
           ? document.querySelector<HTMLElement>('[role="dialog"] input')
           : panel.current
       }
@@ -280,6 +295,9 @@ export function Workbench({
         Skip to tokens
       </a>
       <WorkbenchHeader
+        history={history}
+        historyReason={historyReason}
+        onTraverse={requestHistory}
         compact={compact}
         onBack={narrow && surface === "inspect" ? back : undefined}
         projectName={header.project.name}
@@ -293,6 +311,8 @@ export function Workbench({
         {lifecycleBlocked && !busy && !unknown && <section role="status" className="py-2"><p>Editing paused. Recheck current retained state before applying preserved input.</p><Button onClick={() => void host.call("resume", header.project.id).then(next => refresh(next)).then(() => setLifecycleBlocked(false)).catch(e => setReadFailure(String(e)))}>Check access and retained state</Button></section>}
         {readFailure && <section role="alert" className="py-2 text-destructive"><h2>Project read unavailable</h2><p>{readFailure}</p><p>Last coherent data is stale. Inputs are preserved; writes are blocked.</p><Button disabled={busy} onClick={() => void retryReading()}>Retry reading project</Button></section>}
         {recovery}
+        {historyRetry && <Button onClick={() => requestHistory(historyRetry)}>Retry {historyRetry === "undo" ? "Undo" : "Redo"}</Button>}
+        {history.notice && <p role="status" className="py-2">{history.notice}</p>}
         {error && !dialog && <p role="alert" className="py-2 text-destructive">{error}</p>}
         {notice && <p role="status" className="py-2">{notice}</p>}
       </WorkbenchFeedback>
@@ -397,8 +417,8 @@ export function Workbench({
                   },
                 });
                 if (
-                  result.status !== "retained" ||
-                  result.readback === "unavailable"
+                  result.status !== "unchanged" && (result.status !== "retained" ||
+                  result.readback === "unavailable")
                 )
                   return {
                     status: "failure",

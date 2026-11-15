@@ -19,6 +19,7 @@ export class WorkerWorkbenchHost implements WorkbenchHost {
   private interruptedAttempt: WriteIdentity | undefined;
   private recoveryTask: Promise<HostCalls["check"]["output"]> | undefined;
   private stopped = false;
+  private sessionRestarted = false;
   private readonly pending = new Map<
     number,
     {
@@ -100,7 +101,10 @@ export class WorkerWorkbenchHost implements WorkbenchHost {
               response.value as { incarnation: string }
             ).incarnation;
           this.pending.delete(response.id);
-          pending.resolve(response.value);
+          if (pending.operation === "leaveProject" && response.value === true) this.sessionRestarted = false;
+          pending.resolve(pending.operation === "historyState" && this.sessionRestarted
+            ? {...(response.value as object), notice: (response.value as {notice?: string}).notice ?? "Session restarted. Undo/Redo history cleared; applied project data remains retained."}
+            : response.value);
         } else {
           shape(response, ["id", "operation", "status", "reason"]);
           if (
@@ -180,6 +184,7 @@ export class WorkerWorkbenchHost implements WorkbenchHost {
     if (!this.stopped) return;
     this.worker.terminate();
     this.worker = this.createWorker();
+    this.sessionRestarted = true;
     this.stopped = false;
     this.connectHandlers();
     await this.call("ready", null);
@@ -193,6 +198,7 @@ export class WorkerWorkbenchHost implements WorkbenchHost {
       if (this.stopped) {
         this.worker.terminate();
         this.worker = this.createWorker();
+        this.sessionRestarted = true;
         this.stopped = false;
         this.connectHandlers();
         await this.call("ready", null);
@@ -209,7 +215,7 @@ export class WorkerWorkbenchHost implements WorkbenchHost {
     operation: K,
     input: HostCalls[K]["input"],
   ): WriteIdentity | undefined {
-    if (!["createProject", "command", "restore"].includes(operation))
+    if (!["createProject", "command", "restore", "traverse"].includes(operation))
       return undefined;
     if (this.interruptedAttempt)
       throw Error(
@@ -229,6 +235,11 @@ export class WorkerWorkbenchHost implements WorkbenchHost {
       projectId = value.id as string;
       expectedRevision = null;
       result = { entityKind: "project", id: projectId };
+    } else if (operation === "traverse") {
+      op = value.direction as "undo" | "redo";
+      projectId = value.projectId as string;
+      expectedRevision = value.revision as string;
+      result = {entityKind: "project", id: projectId};
     } else if (operation === "restore") {
       op = "restoreProject";
       projectId = value.projectId as string;
