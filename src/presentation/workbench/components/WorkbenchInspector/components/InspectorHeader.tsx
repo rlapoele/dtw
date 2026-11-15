@@ -1,11 +1,9 @@
 import { Button } from "@presentation/ui/button";
 import { Icon } from "@presentation/ui/icon";
-import { TokenValueComparison, type Feedback } from "@presentation/Workbench/components/WorkbenchInspector/components/TokenValueComparison";
 export function InspectorHeader({
   readFailure,
   targetUnavailable,
   editable,
-  feedback,
   selected,
   inspectorExpanded,
   onToggle,
@@ -13,7 +11,6 @@ export function InspectorHeader({
   readFailure: string;
   targetUnavailable: string;
   editable: boolean;
-  feedback?: Feedback;
   selected: boolean;
   inspectorExpanded: boolean;
   onToggle: () => void;
@@ -23,10 +20,7 @@ export function InspectorHeader({
       <span className="inspector-region-title flex-1 text-caption leading-3.5 min-w-0 font-medium">
         Inspector
       </span>
-      {!readFailure && !targetUnavailable && editable && feedback && (
-        <TokenValueComparison feedback={feedback} />
-      )}
-      {(readFailure || targetUnavailable || !editable || !feedback) && (
+      {(readFailure || targetUnavailable || !editable || !selected) && (
         <span className="inspector-header-status text-caption leading-4 text-secondary">
           {readFailure || targetUnavailable
             ? "Unavailable"

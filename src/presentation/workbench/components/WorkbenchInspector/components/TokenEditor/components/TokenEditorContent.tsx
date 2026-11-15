@@ -1,3 +1,4 @@
+import { TokenValueComparison } from "@presentation/Workbench/components/WorkbenchInspector/components/TokenValueComparison";
 import { EditorActions } from "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/EditorActions";
 import { EditRecovery } from "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/EditRecovery";
 import { ReferenceFields } from "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ReferenceFields";
@@ -65,10 +66,13 @@ export function TokenEditorContent({
         <span className="eyebrow uppercase text-muted-foreground font-semibold">
           {token.definition?.type ?? "Unassigned"} token
         </span>
-        <h2 className="wrap-anywhere">
+        <div className="flex flex-wrap items-start gap-3">
+        <h2 className="wrap-anywhere flex-1 basis-40 min-w-0">
           {tokenLabels.get(token.id) ??
             (token.localName || "(unnamed original token)")}
         </h2>
+        {editable && !targetUnavailable && <TokenValueComparison feedback={editor.feedback} />}
+        </div>
         {token.description && (
           <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
             {token.description}
@@ -81,8 +85,8 @@ export function TokenEditorContent({
             remain available below.
           </p>
         )}
-        <div className="flex gap-2">
-          {token.layer && <Badge>{token.layer}</Badge>}
+        <div className="flex flex-wrap gap-2 mt-3">
+          {token.layer && <Badge className="bg-muted text-foreground">{token.layer}</Badge>}
           {!editable && <Badge>Inspection only</Badge>}
         </div>
       </div>

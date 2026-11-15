@@ -51,3 +51,14 @@ ends the session explicitly on departure even when the worker survives. Existing
 remains the sole editor-session caller; no applied-history stack lives in it.
 Internal record v2 receipts are separate from authored format and backup envelope.
 See the [012 contract](../increments/012-session-undo-redo.md) for acceptance/evidence.
+
+## Browser-feedback placement refinement — 15 November 2026
+
+`TokenEditorContent` places `TokenValueComparison` in the token heading alongside
+name/path, wrapping at narrow width; `InspectorHeader` retains generic pane/status/
+collapse responsibilities. Both consume the sole editor session. `TokenTable` owns
+its private `helpers/hex-preview.ts` for supplemental row display, using existing
+domain calculation without changing authored values or the AuthoredValue column.
+Shared Button adds the needed history geometry variant; existing tablet touch rules
+and Projects geometry remain. Evidence/limits belong to the
+[012 feedback report](../increments/012-session-undo-redo.md#browser-feedback-completion-and-review--15-november-2026).

@@ -10,6 +10,7 @@ const variants = {
 };
 const sizes = {
   default: "h-8 px-3 justify-center gap-2 rounded-md",
+  history: "h-11 min-h-11 min-w-11 px-3 sm:h-8 sm:min-h-8 sm:min-w-0 justify-center gap-2 rounded-md",
   panel:
     "h-8 px-3 justify-center gap-2 rounded-md source-compact:px-2.5 source-compact:text-caption",
   navigation: "h-9 min-h-9 px-3 justify-start gap-2.5 rounded text-xs/normal",

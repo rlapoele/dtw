@@ -1,3 +1,4 @@
+import { hexPreview } from "@presentation/Workbench/components/TokenWorkspace/components/TokenTable/helpers/hex-preview";
 import type {
   DisplayRow,
   ProjectContext,
@@ -50,6 +51,11 @@ export function TokenTable({
               <small className="block text-secondary mt-1 wrap-anywhere">
                 {row.layer} · {row.type}
               </small>
+              {row.type === "color" && (
+                <span className="block text-caption text-secondary mt-2 wrap-anywhere">
+                  {hexPreview(row.preview)}
+                </span>
+              )}
               {details.get(JSON.stringify(["token", row.id])) && (
                 <span className="block text-caption wrap-anywhere">
                   {details.get(JSON.stringify(["token", row.id]))}

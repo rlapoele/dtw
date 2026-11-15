@@ -18,7 +18,6 @@ export function TokenEditor({
         readFailure={readFailure}
         targetUnavailable={props.targetUnavailable ?? ""}
         editable={editor.editable}
-        feedback={editor.feedback}
         selected
         inspectorExpanded={inspectorExpanded}
         onToggle={onToggle}

@@ -9,7 +9,7 @@ export type Feedback = {
 export function TokenValueComparison({ feedback }: { feedback: Feedback }) {
   return (
     <section
-      className="inspector-feedback flex items-center gap-2 shrink-0"
+      className="inspector-feedback flex flex-wrap items-center gap-2 shrink-0 max-w-full"
       aria-label="Applied and draft color context"
     >
       {(

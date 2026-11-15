@@ -4,7 +4,7 @@ import { Icon } from "@presentation/ui/icon";
 export function HistoryControls({history, reason, onTraverse}: {history: HistoryState; reason?: string; onTraverse(direction: HistoryDirection): void}) {
   return <>{(["undo", "redo"] as const).map(direction => {
     const name = direction === "undo" ? "Undo" : "Redo", action = history[direction];
-    return <Button key={direction} className="min-h-11 min-w-11" data-history={direction} disabled={!!reason || !action} aria-label={action ? `${name}: ${action.label}` : name} aria-describedby={`history-${direction}-description`} onClick={() => onTraverse(direction)}><Icon name={direction} /><span className="hidden sm:inline">{name}</span></Button>;
+    return <Button key={direction} size="history" data-history={direction} disabled={!!reason || !action} aria-label={action ? `${name}: ${action.label}` : name} aria-describedby={`history-${direction}-description`} onClick={() => onTraverse(direction)}><Icon name={direction} /><span className="hidden sm:inline">{name}</span></Button>;
   })}</>;
 }
 export function HistoryDescriptions({history, reason}: {history: HistoryState; reason?: string}) {

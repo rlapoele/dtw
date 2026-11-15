@@ -87,7 +87,7 @@ export function CreationDialog({
         </Dialog.Description>
         {recovery}
         <form
-          className="min-h-0 overflow-auto"
+          className="min-h-0 overflow-auto p-1.5"
           onSubmit={(e) => {
             e.preventDefault();
             onCreate();

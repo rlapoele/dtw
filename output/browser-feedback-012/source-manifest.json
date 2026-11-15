@@ -1,0 +1,42 @@
+[
+  {
+    "path": "src/presentation/Workbench/components/TokenWorkspace/components/TokenTable/helpers/hex-preview.ts",
+    "sha256": "559981d1b6e0b3340c568be5101d830c30332cb20de56c98091b095dc888429f"
+  },
+  {
+    "path": "src/presentation/ui/button.tsx",
+    "sha256": "c34921eccf03407a1156947a4c55365922147e3e7eb7f95f9a9e1c4c8696165a"
+  },
+  {
+    "path": "src/presentation/workbench/components/CreationDialog/CreationDialog.tsx",
+    "sha256": "1a9bc4db3f42e7e8246ca1d9e8d2cd7e186552cda323b5f467456097ed666ca8"
+  },
+  {
+    "path": "src/presentation/workbench/components/TokenWorkspace/components/TokenTable/TokenTable.tsx",
+    "sha256": "4fbe61b8d10f33ab97afb3a359302c6f3c8b1b673309f9790c1ae71ca3190451"
+  },
+  {
+    "path": "src/presentation/workbench/components/WorkbenchHeader/components/HistoryControls.tsx",
+    "sha256": "1fea76a2a7020d93d46882fba98b256f234b996107b5622458607555ea6b02a5"
+  },
+  {
+    "path": "src/presentation/workbench/components/WorkbenchInspector/components/InspectorHeader.tsx",
+    "sha256": "84cb61017e6e33988b8fae31dc64c57477bb5b51e602c3c279cbb8301d916de2"
+  },
+  {
+    "path": "src/presentation/workbench/components/WorkbenchInspector/components/TokenEditor/TokenEditor.tsx",
+    "sha256": "60a8dc9fbad23a66796332d16dd5aa7283fd824631cd60b6c6dba05486d708b1"
+  },
+  {
+    "path": "src/presentation/workbench/components/WorkbenchInspector/components/TokenEditor/components/TokenEditorContent.tsx",
+    "sha256": "b0bbdae20a66d97117832c913bdc8a50bb3ed47d0eaa9ea46b4a364b7dc363b3"
+  },
+  {
+    "path": "src/presentation/workbench/components/WorkbenchInspector/components/TokenValueComparison.tsx",
+    "sha256": "d9cc49f8444c9c08d138919ff1df6edbe9aaa59a98592524ae4463c7ad830d9d"
+  },
+  {
+    "path": "test/presentation/hex-preview.test.ts",
+    "sha256": "46bca3e7c07a0f2772f93b81f7e99dc532168066bc41862a4e8184746d7593f0"
+  }
+]

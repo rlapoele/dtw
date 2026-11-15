@@ -512,3 +512,76 @@ admission-maximum campaign or broader-engine run was performed.
 Next: user review of the delivered work and stated acceptance gaps; staging,
 committing and pushing remain with the user. Suggested commit:
 `feat: add guarded session undo and redo`.
+
+## User browser-feedback refinement — 15 November 2026
+
+After committing delivered work as `f63abcf`, the user supplied six annotated
+browser comments at1077×1190. Authorized focused presentation changes:
+
+1. Correct left/right clipping of the creation Name field focus outline while
+   preserving scrolling and visible keyboard focus.
+2. Move Applied/Draft swatches into the selected token heading, beside its name/path,
+   with responsive wrapping and the same single editor feedback source.
+3. Give the layer badge readable separation from the token description and retain
+   semantic theme styling.
+4. Match Undo/Redo to Projects height on desktop/tablet (>=640 CSS px); keep
+   icon-only mobile controls at least44×44 below640. This refines control geometry,
+   not the history or label breakpoint.
+5. Show a supplementary derived sRGB hex preview in token rows, preserving authored
+   values and exact source. Alpha, unresolved/missing and out-of-sRGB cases must not
+   silently invent an exact representation or clip authored data.
+6. Explain the next-action description strip. The user asked its purpose; no removal
+   was requested. It names Undo/Redo consequences and unavailable states without
+   requiring hover, especially on touch; keep its existing behavior in this pass.
+
+This bounded UI refinement uses a developer and independent reviewer; no new model,
+command history, project operations or interface redesign is authorized. Root owns
+handoff/docs; developer is sole code writer. Component ownership/type folders and
+one editor/command gate remain constraints. No staging, commits, push or index
+casing correction by agents.
+
+New focused allowance: **15 aggregate verification/review minutes, at most one
+harness-repair cycle** (developer9, reviewer4, coordinator2). Essential: affected
+source/CSS and typecheck, meaningful derived-hex behavior tests, representative
+Chrome at1077/640/320 for outline containment, heading/swatch layout, badge spacing,
+button geometry and no overflow. Use disposable data/profile; preserve the user's
+active project/draft. No broad suite, stress/engine matrix or new harness campaign.
+Earlier012 checks remain stopped at35/40 and older campaigns unchanged. Track new
+consumption separately and stop on ceiling or low value; missing evidence stays
+unverified. Initial annotated screenshots are defect evidence, not acceptance.
+
+### Browser-feedback completion and review — 15 November 2026
+
+The five requested UI changes are implemented. The sixth comment was answered;
+the next-action description strip remains. Baseline `f63abcf`; [source diff](../../output/browser-feedback-012/source.diff)
+and [10-file SHA-256 manifest](../../output/browser-feedback-012/source-manifest.json)
+identify the frozen source, including new hex helper/tests.
+
+[Developer evidence](../../output/browser-feedback-012/developer.md) and
+[independent review](../../output/browser-feedback-012/reviewer.md) record:
+
+- Creation form retains overflow scrolling and reserves6px around the5px external
+  focus extent. Chrome1077 screenshot shows the complete Name focus ring.
+- Applied/Draft feedback renders in the token heading beside name/path and wraps
+  beneath it at320. The sole existing editor hook and authored feedback are retained.
+- Badge has local spacing and semantic muted/foreground treatment.
+- Undo/Redo matches Projects:32px at1077, existing44px tablet override at640,44px
+  mobile below640. Projects and tablet CSS unchanged; label threshold still640.
+- Token identity shows a supplementary sRGB HEX preview, including quantized alpha
+  when nonopaque; authored values/reference labels remain separate. Missing,
+  unresolved/unsupported and out-of-sRGB cases give an unavailable reason rather
+  than inventing data or clipping. Only display conversion uses byte rounding.
+
+Final typecheck passed;9 affected tests passed. Reviewer independently verified all
+10 source hashes, passed3 focused hex tests and inspected all4 screenshots, finding
+**no actionable issues**. Independent browser interaction, exact DOM geometry,
+short-height dialog scrolling and screen-reader behavior remain unverified.
+Developer did not exercise unresolved/out-of-gamut rows in Chrome; helper tests
+cover their semantics. No full suite/build, stress or broader-engine run occurred.
+Prior012 and earlier acceptance gaps remain unchanged, not newly passed.
+
+Focused allowance stopped at approximately **13.5/15 aggregate minutes**:
+developer8.5, reviewer3, coordinator2; **1/1 harness repair** (selector correction).
+No further checks are authorized by leftover allowance. No agent staged, committed,
+pushed, changed dependencies or corrected index casing. Suggested commit:
+`fix: refine workbench focus and token color feedback`.

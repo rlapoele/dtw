@@ -3,10 +3,30 @@
 > Last updated: 15 November 2026
 >
 > Phase: Increment 011 closed by user instruction with acceptance gaps preserved;
-> Increment 012 implementation and independent review finished; acceptance gaps preserved
+> Increment 012 browser-feedback fixes reviewed; earlier acceptance gaps preserved
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## Current browser feedback
+
+User committed/pushed012 as `f63abcf`, then supplied six annotated UI comments.
+Five requested fixes are delivered: unclipped creation focus outline; Applied/Draft
+swatches within token heading, wrapping at320; badge spacing; Undo/Redo height
+matching Projects (32px at1077, existing44px at640/mobile); supplementary labeled
+sRGB hex preview with alpha and safe unavailable cases. The history next-action
+strip was explained and retained. One editor/command owner remains.
+
+[Feedback completion](../increments/012-session-undo-redo.md#browser-feedback-completion-and-review--15-november-2026)
+links the exact10-file manifest, developer evidence and independent review.
+Typecheck/9 affected tests passed; reviewer passed3 hex tests and independently
+inspected source hashes/four screenshots, with no actionable findings. Reviewer
+performed no browser interaction; short-height scrolling, exact independent DOM
+geometry/screen-reader behavior and unavailable row runtime remain unverified.
+
+Focused checks stopped at approximately13.5/15 aggregate minutes (developer8.5,
+reviewer3, coordinator2),1/1 repair. Earlier01235/40 and older campaigns/gaps remain
+stopped. No staging, commits, pushes, dependencies or index-casing changes by agents.
 
 ## Current focus
 
@@ -79,7 +99,8 @@ changes are made to resolve it here.
 
 ## Next meaningful action
 
-User reviews delivered Increment 012 and its remaining acceptance gaps. Leave
+User reviews the delivered browser-feedback fixes and stated evidence limits,
+then stages/commits/pushes as desired. Earlier012 acceptance gaps remain open. Leave
 staging, committing and pushing to the user. Do not close the increment or relabel
 unverified runtime acceptance passed without further user instruction/evidence.
 No additional automated qualification campaign is authorized by this handoff.
