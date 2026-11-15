@@ -3,7 +3,7 @@
 > Last updated: 15 November 2026
 >
 > Phase: Increment 010 closed by user instruction with acceptance gaps preserved;
-> Increment 011 responsive-shell contract and design preparation authorized
+> Increment 011 responsive-shell, Projects and existing-workbench UI design preparation authorized
 >
 > Implementation state: retained React browser workbench, one module worker per tab,
 > native IndexedDB/Web Locks, exact independent backups and staged protected restore.
@@ -57,6 +57,14 @@ and guard integration remain proposals until agreed. The contract records roughl
 10/10 aggregate documentation-check minutes used, with static preview inspection
 and no application tests/build or reopened qualification.
 
+The user additionally confirmed that 011 should resolve the existing workbench’s
+UI as a whole, not merely reflow panes. The
+[design-closure scope](../increments/011-responsive-shell.md#workbench-ui-design-closure)
+covers existing header/navigation/workspace/inspector/editor hierarchy, controls,
+typography/spacing/copy, actions, dialogs and feedback across responsive states.
+The revised design should become a reviewed baseline for future slices; excluded
+features and earlier qualification limits remain unchanged.
+
 ## Increment 010 closure
 
 [Increment 010 is Closed, delivery Partially completed](../increments/010-component-oriented-presentation.md#user-directed-closure--15-november-2026).
@@ -87,8 +95,8 @@ PWA. Install/offline PWA acceptance, interchange and Electron remain later work.
 
 ## Next meaningful action
 
-Discuss the identified responsive-shell contract and concrete static V1 design
-proposal with the user, including its proposed entry/Back/resize/focus policies.
+Prepare a coherent workbench V2 design for the full existing UI and responsive
+shell, resolving the scoped visual/interaction details with the user.
 Prepare Projects V2 around selected-project inspection, an explicit opening
 action and project-management controls. Revise workbench V1’s header to leave
 only Projects navigation for project management. Undo/Redo is deferred to 012.

@@ -36,6 +36,14 @@ unresolved in
 Undo/Redo placeholders. This saved request is future direction, not current
 interface delivery.
 
+**Further user scope direction — workbench UI refinement:** Increment 011 should
+iron out the existing workbench’s full UI design, beyond pane reflow. V2 must
+resolve existing header/navigation/workspace/inspector/editor hierarchy, current
+controls, typography/spacing/copy, actions, dialogs and feedback across responsive
+states, following the [design-closure scope](../../increments/011-responsive-shell.md#workbench-ui-design-closure).
+V1 is a starting proposal, not the final visual/interaction baseline. Future
+capabilities remain separately scoped; Undo/Redo is deferred to 012.
+
 ## Independent recommendation
 
 Keep the current list/table and the current Authored value / Resolved & trace

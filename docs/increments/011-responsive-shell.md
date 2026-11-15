@@ -1,4 +1,4 @@
-# Increment 011: Responsive workbench shell
+# Increment 011: Responsive shell and workbench UI refinement
 
 - Contract status: Draft
 - Delivery status: Not started
@@ -15,9 +15,16 @@ session survives these presentations, including invalid raw input and browsing
 context. This is responsive composition of the existing workbench, not delivery
 of the other capabilities illustrated in the saved mockups.
 
+**User-confirmed scope extension — 15 November 2026:** finish a coherent UI design
+for the existing token-workbench workflows, not only responsive pane geometry.
+Resolve the present interface together so future feature slices can extend a
+reviewed baseline instead of reopening avoidable layout and interaction questions.
+
 ## Scope
 
 Included:
+
+- Cohesive refinement of existing workbench header, navigation, workspace/list, inspector/editor, action hierarchy, typography, spacing, copy, dialogs and feedback across the supported responsive states.
 
 - Wide navigation/workspace/inspector composition and accessible collapse/reopen controls.
 - Minimum supported viewport width: **320 CSS px**, supplied by the user on 15 November 2026.
@@ -30,12 +37,43 @@ Included:
 Excluded:
 
 - Undo/Redo controls and history implementation: deferred by the user to Increment 012.
-
 - Visual token grids/palettes, new inventory views or filters, editable Details, relationships, previews/comparison and interchange.
 - Resizable pane drag handles or saved layout preferences unless separately agreed; collapse/reopen is sufficient for this bounded proposal.
 - Domain/application semantics, color precision or slider policy, canonical schema, storage/backup format, worker protocol, new host, router or state-management framework.
 - Draft persistence across reloads/restarts, native browser history routing and new browser/platform qualification.
 - Restarting deferred 007/009/010 qualification or treating new-shell evidence as retrospective acceptance of those increments.
+
+## Workbench UI design closure
+
+The user explicitly wants Increment 011 to iron out the current token-workbench
+UI so that avoidable visual/interaction rework is not carried into the next slices.
+This expands design preparation beyond reflow while retaining neutral Precision,
+presentation conventions, component decomposition and the existing model/command
+boundaries. It does not reopen earlier qualification or promise that future
+features will never require adaptation.
+
+The revised designer proposal should resolve these as one coherent experience:
+
+- Header/project context and Projects return; project-management actions are on Projects and Undo/Redo belongs to 012.
+- Navigation, current view/scope/search, group actions, list rows, selection and empty states.
+- Inspector hierarchy, current tabs, literal/reference controls, authored/resolved information, exact input, validation and Apply/Cancel placement.
+- Density, typography, spacing, borders/surfaces, labels and action hierarchy, including long names and wrapped feedback.
+- Current creation/rename, departure and recovery dialogs; routine retention status, errors, busy/read-only/unavailable states and reachable recovery actions.
+- Wide, compact and narrow composition down to 320 CSS px; Back/reopen, keyboard/focus, scrolling and session-preserving resize transitions.
+
+Use reviewable screens/states and explicit interaction notes at sufficient fidelity
+to assess the result. Resolve material details with the user before analyst review;
+source or static images alone cannot establish runtime acceptance. Any change to
+existing editor interactions beyond presentation must be identified explicitly,
+with its behavior/contract impact, rather than hidden as styling cleanup. Future
+visual grids, editable token Details, relationships, comparison, interchange and
+new token capabilities remain outside 011.
+
+The desired handoff is an identified, user-reviewed workbench/Projects design
+baseline and source-informed component ownership for implementation, with agreed
+states/decisions and clearly retained gaps. Reassess the eventual implementation
+verification plan against this broader scope before verification starts; the old
+30-minute proposal is not evidence that all this acceptance fits that allowance.
 
 ## Projects entry-page design discussion
 
@@ -167,6 +205,8 @@ Any unresolved interaction below must be settled before implementation.
 - **AC-7 — Reflow and access:** at agreed representative wide/half-screen/narrow/phone sizes and zoom, including the user-specified 320 CSS px minimum, long token/project names, wrapped errors and current editor controls remain readable and operable. Local scrolling reveals all fields/actions; sticky content, if used, does not obscure them. The shell does not require horizontal scrolling to reach primary actions. Existing table detail may use a contained accessible overflow region if the agreed design specifies it. Creation/restore/departure dialogs fit and retain reachable dismissal/actions.
 - **AC-8 — Protection stays visible:** read-only/unavailable selection, read failure, pending or uncertain command, retention/recovery and validation states keep their existing meaning and reachable actions in each affected surface. Changing layout does not clear an error, bypass mutation blocking, retry a write or dismiss recovery. Existing group, incomplete/unsupported and empty-project content remains discoverable.
 - **AC-9 — Boundaries:** presentation uses existing semantic theme, shared Icon/controls and current application operations. No canonical token value, identity, namespace membership, retention or backup semantics changes as a consequence of responsive composition.
+
+- **AC-10 — Coherent existing-workbench UI:** implement the final identified design baseline across the existing header/navigation/workspace/inspector/editor and affected dialogs/feedback, with consistent typography, spacing, surfaces, copy and action hierarchy at agreed responsive sizes. The designer artifacts and interaction notes must specify ordinary and relevant empty/error/recovery states before implementation; material design decisions must not remain implicitly delegated to implementation. Match those artifacts in affected browser observations and retain explicit unverified acceptance gaps.
 
 ## Decisions and open questions
 
