@@ -1,10 +1,25 @@
 # Session Undo/Redo V1
 
 **Initial designer proposal — 15 November 2026.** For user feedback on
-[draft 012](../../increments/012-session-undo-redo.md); neither analyst-reviewed nor
-agreed. This static proposal does not authorize implementation or choose a history
+[draft 012](../../increments/012-session-undo-redo.md); now [analyst-reviewed](../../increments/012-v1-analyst-review.md) with the
+user amendment below; final agreement remains pending. This static proposal does not authorize implementation or choose a history
 mechanism. Existing session-only scope and native typing undo are constraints;
 behavior refinements below are proposals.
+
+## User-approved review amendment — 15 November 2026
+
+The user approved V1 **for analyst review**, with this explicit refinement:
+Undo/Redo use **Heroicons Outline icons and text on desktop/tablet**, and
+**icon-only buttons on mobile**. This supersedes the text-only recommendation
+and button depictions below; the existing sheets remain the initial V1 artifact,
+not amended visual evidence. Use the shared Icon component and owned Button.
+Mobile controls retain accessible Undo/Redo action names, readable nearby next-action
+and unavailable-reason descriptions, suitable touch targets and optional tooltips.
+Responsive icon-only presentation does not remove action meaning or change history
+semantics. The analyst recommends a separate control-label threshold: icon-only below
+640 CSS px, icons plus text from 640, independently of pane modes. This threshold
+is proposed for final agreement; do not infer device class from user agent. No new design choice beyond this user-requested refinement
+is approved. Final contract agreement and implementation authorization are pending.
 
 ![Header and responsive surfaces](undo-redo-v1.svg)
 
@@ -175,3 +190,12 @@ copy/geometry illustrates intent; running fit, guards, acknowledgment, focus and
 native keyboard behavior remain unverified. Coordinator renders sheets once.
 
 Suggested commit: `docs: propose session undo redo V1 design`
+
+## Analyst review outcome
+
+The [review](../../increments/012-v1-analyst-review.md) confirms core state and
+ownership consistency. AC-11 now incorporates the user-requested icons; the 640px
+control-label mapping and project-targeted/versioned receipt policy remain final
+agreement decisions alongside the existing policy bundle. Original SVG depictions
+remain superseded for button presentation. No interactive prototype or application
+was changed, and no implementation was authorized.

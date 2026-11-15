@@ -3,7 +3,7 @@
 > Last updated: 15 November 2026
 >
 > Phase: Increment 011 closed by user instruction with acceptance gaps preserved;
-> Increment 012 session Undo/Redo contract/design preparation authorized
+> Increment 012 amended V1 analyst-reviewed; final agreement pending
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. New Undo/Redo history is not implemented.
@@ -15,8 +15,9 @@ acceptance gaps documented and requested 012 contract/design preparation. The
 [initial 012 contract](../increments/012-session-undo-redo.md) is Draft; delivery
 Not started. A separate analyst inventoried current operations and drafted it;
 a separate designer produced [Undo/Redo V1](../project/workbench-layout/undo-redo-v1.md),
-its responsive/state sheets and component ownership delta. These are ready for
-user feedback, not yet analyst-reviewed or agreed. Planning is
+its responsive/state sheets and component ownership delta. The user approved V1 for analyst review with icons plus text on desktop/tablet
+and icon-only on mobile. The [separate review](../increments/012-v1-analyst-review.md)
+is complete; final contract/design agreement is pending. Planning is
 explicitly authorized; application implementation is not.
 
 User-agreed initial scope: applied token/group changes during the open-project
@@ -33,12 +34,22 @@ mechanism. Granularity/no-op/redo rules, pending/unknown/failure behavior, dirty
 protection, selection/focus, shortcuts, external-change invalidation, diagnostic-
 baseline restoration and proposed 50-step/32 MiB limits require review/agreement.
 
+## Analyst review outcome
+
+The reviewed baseline is `552f6e9` plus the approval/icon amendments, hashed in the
+report. Core scope and component ownership are consistent. AC-11 now explicitly
+captures the user's icon/text rule. Remaining recommended decisions are a separate
+640px control-label threshold and project-targeted Undo/Redo receipts with an
+explicit newer internal record version/new-reader compatibility policy. Undo
+creation removes its entity, so the current entity-target receipt cannot be reused.
+Mechanism/bounds, diagnostic restoration, no-op and keyboard/selection policies
+remain proposed in the contract. No implementation is authorized.
+
 ## Review order and limits
 
-Present identified concrete design artifacts to the user first. Approval for
+V1 and its user-requested refinement have completed analyst review. Approval for
 analyst design review is separate from final contract/design agreement and
-implementation authorization. The initial analyst draft is not a review of the
-new design. Material design revisions return to the user before renewed review.
+implementation authorization. The separate review report owns the actual findings and snapshot. Material design revisions return to the user before renewed review.
 
 012 planning is bounded to 15 aggregate review minutes (analyst 6, designer 5,
 coordinator 4), source/static/prose/link checks only. Analyst consumed roughly
@@ -46,6 +57,10 @@ coordinator 4), source/static/prose/link checks only. Analyst consumed roughly
 with zero repairs. Source/static checks stopped at the initial handoff. No app tests,
 builds, browser qualification or harness work are part of this preparation. No
 prior campaign restarts through new agents/increment numbers.
+
+The separately authorized analyst-review phase stopped at approximately
+**7.5/8 aggregate minutes** (analyst 5.5, coordinator 2), zero repairs; source/static/
+link checks only. No app tests, builds or browser qualification were run.
 
 ## Increment 011 closure
 
@@ -75,10 +90,10 @@ changes are made to resolve it here.
 
 ## Next meaningful action
 
-Review the identified [V1 design](../project/workbench-layout/undo-redo-v1.md)
-and material policy choices with the user, then iterate. Obtain approval of an identified proposal
-before analyst design review. Keep the contract Draft and implementation Not
-started until final agreement and explicit implementation authorization. Leave
+Resolve the remaining recommendations and obtain final agreement on the
+[resulting contract](../increments/012-session-undo-redo.md#analyst-review-dispositions-and-resulting-proposal)
+and amended V1 design. Keep the contract Draft and delivery Not started until
+explicit implementation authorization. Leave
 staging, committing and pushing to the user.
 
 ## Resume

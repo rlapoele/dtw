@@ -1,6 +1,6 @@
 # Increment 012: Session Undo/Redo
 
-- Contract status: **Draft — initial proposal, 15 November 2026**
+- Contract status: **Draft — analyst-reviewed V1, pending final agreement, 15 November 2026**
 - Delivery status: Not started
 - Agreement: Initial scope below was agreed during 011; this contract, history policies, design and implementation are **not agreed or authorized**.
 - Planning authority: prepare contract/design only. No application qualification restart.
@@ -204,7 +204,12 @@ even when replacing a complete snapshot, protecting all data outside the history
   when possible; an unavailable/removed focus target has a predictable visible
   fallback. Exact behavior needs designer confirmation before agreement.
 - **AC-11 Header/accessibility:** Undo/Redo are reachable with names and availability
-  reasons at wide/compact/320 CSS px, in browse and inspect. Empty/pending/failed/
+  reasons at wide/compact/320 CSS px, in browse and inspect. Desktop/tablet show
+  Heroicons Outline icons plus text; mobile shows icon-only controls with the same
+  accessible action names, decorative icons hidden from assistive technology,
+  nearby next-action/unavailable descriptions and at least 44 × 44 CSS px targets.
+  Use owned Icon/Button. Proposed control-label threshold: icon-only below 640 CSS
+  px, icons plus text from 640, independent of pane layout; pending agreement. Empty/pending/failed/
   read-only/expired states are understandable without color alone; feedback stays
   outside hidden panes. Project-management controls remain on Projects.
 - **AC-12 Keyboard:** Proposed Cmd/Ctrl+Z Undo and Cmd/Ctrl+Shift+Z Redo operate only
@@ -289,9 +294,13 @@ external-change invalidation, failed reversal and truncated history at 320/wide.
   [component ownership delta](../project/workbench-layout/undo-redo-component-map-v1.md),
   prepared by a separate designer on 15 November 2026. Both SVG sheets were rendered
   and visually inspected as static artifacts; this proves no runtime behavior.
-- User approval for analyst review: pending.
-- Analyst review of new design: **not performed**; only after approval of an
-  identified proposal. This initial source-grounded contract is not that review.
+- User approval for analyst review: **granted 15 November 2026**, including
+  icon-and-text Undo/Redo on desktop/tablet and icon-only on mobile, with accessible
+  names. The [V1 amendment](../project/workbench-layout/undo-redo-v1.md#user-approved-review-amendment--15-november-2026)
+  supersedes the original text-only button depictions; other policies remain proposals.
+- Analyst review of amended V1: **completed**, [report](012-v1-analyst-review.md).
+  R1 acceptance wording reconciled below; R2/R3 remain explicit decisions.
+  Review is source/static consistency evidence, not runtime acceptance.
 - Material design revisions: return to user before renewed analyst review.
 - Final contract/design agreement and implementation authorization: pending.
 
@@ -318,3 +327,59 @@ new-design analyst review has not started. All proposed policies and the mechani
 remain unagreed.
 
 Suggested commit: `docs: close increment 011 and propose session undo redo`
+
+## Authorized analyst design review — 15 November 2026
+
+User explicitly authorized analyst review of V1 with the responsive icon/text
+amendment. Review baseline: `552f6e9` plus the two coordinator amendments to the 012
+contract/design notes. The commit became visible before analyst inspection;
+[the report](012-v1-analyst-review.md#identified-review-snapshot) records exact
+reviewed hashes. Subsequent reconciliation below is distinguished from that snapshot. No application edits authorized.
+
+Separate review-phase ceiling: **8 aggregate minutes**, analyst up to 6 and
+coordinator up to 2, source/document/link checks only, zero harness repairs.
+Earlier preparation remains stopped at approximately 13/15 minutes; all prior
+application qualification stopping decisions remain unchanged. Check criterion
+coverage, draft/native undo, atomic retained transitions/recovery, lifecycle,
+selection/focus, ownership, receipt compatibility and explicit unresolved decisions.
+No tests/build/browser or qualification restart. Stop on low value or ceiling;
+report unresolved findings rather than silently selecting product policies.
+
+## Analyst review dispositions and resulting proposal
+
+[Separate analyst report](012-v1-analyst-review.md), 15 November 2026: core V1
+scope, states and component ownership are consistent; final agreement still needs
+the policy bundle and the following explicit dispositions. No runtime defect or
+implementation acceptance is asserted.
+
+- **R1 reconciled:** AC-11 and V1/component notes now require the user's responsive
+  icon/text presentation. Original SVGs remain disclosed text-only illustrations;
+  the user-requested amendment governs actual controls.
+- **R2 unresolved, recommendation:** use icon-only below **640 CSS px**, icons and
+  text at **640 and above**, independently of the 880/1120 pane thresholds. This
+  retains text on a 768px tablet in single-pane mode. No device detection or pane
+  breakpoint changes. This precise threshold needs final agreement.
+- **R3 unresolved, recommendation:** distinct project-targeted `undo`/`redo`
+  receipts, because the existing decoder requires entity receipt targets to remain
+  present and Undo Create removes them. Keep step/entity identity session-owned.
+  Adopt an explicit newer internal retained-record version with new-reader support
+  for existing v1, old-reader safe refusal of newer records and no overwrite.
+  Authored format and backup envelope stay unchanged; history is not persisted.
+  This downgrade/old-tab restriction needs agreement before implementation. Later
+  focused checks cover Undo Create readback/reopen and old/new-reader disposition.
+
+Recommended final bundle otherwise remains: all four commands, one exact changing
+acknowledged command per step; a no-write unchanged result preserving revision and
+Redo for no-ops; bounded application-owned snapshots with 50-step/32 MiB limits and
+explicit oversize clearing; guarded draft discard, native typing/modal ownership;
+Cmd/Ctrl+Z and Shift+Z without Ctrl+Y; conservative invalidation; passive Redo and
+V1 surviving-ID/focus fallback; exact restoration of known admitted diagnostic
+baselines through narrow validation. These are recommendations, not inferred user
+agreement. Application history must explicitly end on successful project departure
+or open-session replacement even if the worker survives renderer unmount.
+
+Review phase consumption: approximately **5.5 analyst + 2 coordinator = 7.5/8
+aggregate minutes**, zero harness repairs. Source/static/link review stopped.
+Preparation remains stopped at 13/15. No application code/tests/build/browser work.
+Next: obtain final agreement on the resulting contract/design and resolve these
+choices; implementation requires explicit authorization separately from the review.
