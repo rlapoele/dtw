@@ -585,3 +585,22 @@ developer8.5, reviewer3, coordinator2; **1/1 harness repair** (selector correcti
 No further checks are authorized by leftover allowance. No agent staged, committed,
 pushed, changed dependencies or corrected index casing. Suggested commit:
 `fix: refine workbench focus and token color feedback`.
+
+## Follow-up: editor powerless hue — 15 November 2026
+
+After baseline `7759f00`, user agreed an editor-level0° fallback for computed
+powerless hue, preserving authored values and genuinely missing components, and
+requested black/white/gray/transparent regressions. Implemented only in the editor
+session display projection; domain conversion and storage/history remain unchanged.
+New regression cases first reproduced the failure, then passed. All58 files/1136
+suite tests and typechecks passed; isolated Chrome new-black switching through all
+5 supported spaces showed numeric zeros, no missing warning and no dirty draft.
+
+[Focused evidence and limits](../../output/powerless-hue-fix/checks.md) records
+self-review (no independent review claimed), approximately5 minutes of small-fix
+checks, zero repairs and no qualification restart. Genuine authored missing values
+and explicitly authored numeric hue remain untouched; view switching preserves
+exact source/alpha, and only intentional edits promote the numeric view. Earlier
+acceptance gaps remain unchanged. No staging/commit/push/index changes by agents.
+
+Suggested commit: `fix: display numeric powerless hue in color editor`.

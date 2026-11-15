@@ -73,13 +73,26 @@ export function displayed(s: DraftSession): LiteralDraft {
   // Alpha never participates in coordinate conversion. Keep the displayed
   // coordinates stable while its independent exact text is incomplete.
   const r = convertColor({ ...s.literal, alpha: "1" }, s.viewSpace);
-  return r.ok
-    ? {
-        colorSpace: r.value.colorSpace,
-        components: [...r.value.components],
-        alpha: s.literal.alpha,
-      }
-    : s.literal;
+  if (!r.ok) return s.literal;
+  const components: LiteralDraft["components"] = [...r.value.components];
+  // A computed powerless hue has no effect at zero saturation/chroma. Give
+  // the editor a numeric starting angle, without changing the conversion or
+  // replacing a genuinely missing component from the authored draft.
+  if (!s.literal.components.includes("none")) {
+    const hueIndex =
+      s.viewSpace === "hsl" ? 0 : s.viewSpace === "oklch" ? 2 : undefined;
+    if (
+      hueIndex !== undefined &&
+      components[hueIndex] === "none" &&
+      components[1] === "0"
+    )
+      components[hueIndex] = "0";
+  }
+  return {
+    colorSpace: r.value.colorSpace,
+    components,
+    alpha: s.literal.alpha,
+  };
 }
 export function fields(s: DraftSession): [string, string, string] {
   const d = displayed(s);

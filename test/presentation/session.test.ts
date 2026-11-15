@@ -6,8 +6,72 @@ import {
   changeView,
   editComponent,
   fields,
+  displayed,
+  literalIssue,
 } from "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
-import { createColorLiteral } from "@domain/color-literal";
+import { createColorLiteral, COLOR_SPACES } from "@domain/color-literal";
+import { convertColor } from "@domain/color-calculation";
+
+describe("powerless hue in editor views", () => {
+  it.each([
+    ["black", "0", "1"],
+    ["white", "1", "1"],
+    ["gray", "0.5", "1"],
+    ["transparent black", "0", "0"],
+  ])("shows numeric components for %s through every space without authoring a change", (_name, channel, alpha) => {
+    const value = createColorLiteral({colorSpace: "srgb", components: [channel, channel, channel], alpha});
+    let session = baseline(value);
+    const authored = session.literal;
+    for (const space of [...COLOR_SPACES, "srgb"] as const) {
+      session = changeView(session, space);
+      expect(fields(session)).not.toContain("none");
+      expect(fields(session).every(x => Number.isFinite(Number(x)))).toBe(true);
+      expect(literalIssue(displayed(session))).toBeUndefined();
+      expect(displayed(session).alpha).toBe(alpha);
+      if (space === "hsl") expect(fields(session).slice(0, 2)).toEqual(["0", "0"]);
+      if (space === "oklch") expect(fields(session).slice(1)).toEqual(["0", "0"]);
+      if (channel === "0") expect(fields(session)).toEqual(["0", "0", "0"]);
+      expect(session.literal).toBe(authored);
+      expect(session.edited).toBe(false);
+    }
+    expect(fields(session)).toEqual([channel, channel, channel]);
+  });
+
+  it("uses the numeric view only on a deliberate component edit", () => {
+    const value = createColorLiteral({colorSpace: "srgb", components: ["0", "0", "0"], alpha: "0.123456789123456789"});
+    const view = changeView(baseline(value), "hsl");
+    const edited = editComponent(view, 2, "50");
+    expect(edited.literal.components).toEqual(["0", "0", "50"]);
+    expect(edited.literal.colorSpace).toBe("hsl");
+    expect(edited.literal.alpha).toBe(value.alpha);
+    expect(edited.edited).toBe(true);
+    expect(literalIssue(edited.literal)).toBeUndefined();
+    expect(view.literal.components).toEqual(["0", "0", "0"]);
+    const converted = convertColor(value, "hsl");
+    expect(converted.ok && converted.value.components[0]).toBe("none");
+  });
+
+  it.each(["hsl", "oklch"] as const)("preserves genuinely authored missing hue in %s", space => {
+    const components = space === "hsl" ? ["none", "0", "0"] : ["0", "0", "none"];
+    const value = createColorLiteral({colorSpace: space, components, alpha: "1"});
+    const session = baseline(value);
+    expect(fields(session)).toEqual(components);
+    const other = changeView(session, space === "hsl" ? "oklch" : "hsl");
+    expect(fields(other)).toContain("none");
+    expect(other.literal).toBe(session.literal);
+    expect(other.edited).toBe(false);
+  });
+
+  it("preserves missing RGB components and explicitly authored numeric hue", () => {
+    const missing = baseline(createColorLiteral({colorSpace: "srgb", components: ["none", "0", "0"], alpha: "1"}));
+    expect(fields(missing)).toEqual(["none", "0", "0"]);
+    expect(() => changeView(missing, "hsl")).toThrow();
+    expect(missing.literal.components).toEqual(["none", "0", "0"]);
+    const authoredHue = baseline(createColorLiteral({colorSpace: "hsl", components: ["137", "0", "0"], alpha: "1"}));
+    expect(fields(authoredHue)).toEqual(["137", "0", "0"]);
+    expect(changeView(changeView(authoredHue, "oklch"), "hsl").literal).toBe(authoredHue.literal);
+  });
+});
 const original = createColorLiteral({
   colorSpace: "srgb",
   components: ["0.123456789123456789123456789", "0.4", "0.6"],

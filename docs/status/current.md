@@ -8,6 +8,18 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Latest focused fix
+
+User agreed the editor-only0° fallback for computed powerless hue after committing
+UI refinements as `7759f00`. The display projection now keeps black/white/gray
+numeric in converted HSL/OKLCH without changing source values, alpha, genuinely
+missing authored components or dirty state. Regression checks include transparent
+black, all supported viewing spaces, return to source and intentional editing.
+Full suite1136 tests/typechecks passed; isolated Chrome new black passed all5
+spaces with no missing warning and Apply disabled. [Evidence/limits](../../output/powerless-hue-fix/checks.md)
+records self-review, approximately5 minutes, zero repairs. Earlier campaigns and
+acceptance gaps stay stopped/unchanged. Leave staging/commits/push to the user.
+
 ## Current browser feedback
 
 User committed/pushed012 as `f63abcf`, then supplied six annotated UI comments.
