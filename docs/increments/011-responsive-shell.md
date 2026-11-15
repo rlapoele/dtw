@@ -50,11 +50,34 @@ selection. Preserve existing loading/empty/unavailable/error/unknown-command sta
 and creation/restore protections. The current workbench-only responsive wireframes
 do not settle this question or represent a Projects proposal.
 
+The user subsequently requested a concrete designer proposal showing Projects
+content/layout and sharing with the workbench shell. The
+[Projects/shared-shell V1 proposal](../project/workbench-layout/projects-shell-v1.md)
+and [static sheet](../project/workbench-layout/projects-shell-v1.svg) now supply
+1440px, 880px and 320px compositions, representative states, screen transition
+and source-informed React component-sharing candidates. The separate designer
+recommends a dedicated catalogue/Create/Restore composition inside shared outer
+presentation. This recommendation is proposed, not selected by the user.
+
 This discussion is included in planning; a Projects redesign is **not yet agreed
 implementation scope**. Record the selected direction and any resulting contract,
 acceptance and design changes explicitly before implementation. Material design
 revisions return to the user before analyst review. Do not automatically turn the
 Projects page into a token-shaped three-pane screen merely to reuse components.
+
+## Component-decomposition continuity
+
+**User-confirmed continuation — 15 November 2026.** Increment 011 builds on the
+[endorsed component-oriented organisation](../project/workbench-layout/presentation-organisation-proposal-v1.md)
+and [delivered ownership map](../project/workbench-component-organisation.md).
+Responsive shell and Projects design should identify useful shared layout
+responsibilities while preserving page-specific components and command owners.
+Candidate components remain proposals until scope/design agreement; the earlier
+map is not authority to scaffold future features or force matching page columns.
+
+App retains project switching/host lifetime, useProjects retains catalogue and
+creation coordination, and Workbench retains editor/departure/command ownership.
+Shared presentation must not merge these workflows or duplicate the editor session.
 
 ## Source-informed starting point
 
@@ -134,7 +157,7 @@ For eventual authorized implementation, use the [shared verification rules](../w
 ## Design proposals and review
 
 - Applicability: separate designer required for substantial responsive interaction decisions.
-- Proposal: [responsive shell V1](../project/workbench-layout/responsive-shell-v1.md) and its [static wireframes](../project/workbench-layout/responsive-shell-v1.svg), for initial user discussion. Workbench states only; Projects exploration remains a separate open part of the design discussion. These artifacts are not an agreed implementation plan.
+- Proposal: [responsive shell V1](../project/workbench-layout/responsive-shell-v1.md) and its [static wireframes](../project/workbench-layout/responsive-shell-v1.svg), for initial user discussion. Workbench states only; The separate [Projects/shared-shell V1](../project/workbench-layout/projects-shell-v1.md) now covers that page and component sharing for user discussion. These artifacts are not an agreed implementation plan.
 - Required states: wide expanded/collapsed shell; usable compact split and drawer; narrow browse with selection/draft indication; narrow edit with Back and Apply/Cancel; invalid input; no selection/group/read-only/unavailable; current error/recovery and dialog reflow. Show concrete sizes and the proposed transition/focus policies.
 - User review: pending. Designer first presents its independent assessment/recommended direction and meaningful options. Prototype edits follow user direction approval. The coordinator presents actual artifacts and obtains approval of the identified revision for analyst review.
 - Analyst review: **not started**; wait for explicit user approval of the identified design revision. Review against these criteria, boundaries and unresolved policies then; this initial contract drafting is not design review.
@@ -171,6 +194,29 @@ and discussion of Projects content/layout and its intended delivery scope. Prepa
 any resulting material design revision for user review; analyst design review has
 not started. No final design/contract agreement or implementation authorization is
 recorded.
+
+## Projects design handoff — 15 November 2026
+
+After committing the first planning handoff as `c8f0f2a`, the user confirmed that
+React component decomposition should continue and requested the designer’s
+Projects-page layout/content and shared-shell proposal. A separate designer
+prepared Projects/shared-shell V1; no analyst design review occurred. Candidate
+Projects stacking at 768px, list/Create/Restore order, identity prominence and
+shared ApplicationShell/Header extraction remain proposed. Workbench V1’s exact
+entry/Back/resize policies remain unresolved. Neither proposal is approved for
+analyst review or implementation.
+
+The designer used approximately one additional documentation-check minute; the
+coordinator used approximately one for rendering/link/diff checks. Planning review
+consumption is now approximately **10/10 aggregate minutes**, zero application
+harness repairs. Static thumbnail cropping was handled by rendering a square
+viewing canvas; the SVG remains unchanged. Checks stop here; no earlier application
+qualification or implementation allowance is reset. No runtime check, test, build,
+staging, commit or push was performed.
+
+Next: user design feedback on Projects/shared-shell V1 and workbench V1, then an
+identified revision approved for analyst review. Resolve any delivery-scope
+amendment before final contract/design agreement and implementation authorization.
 
 ## Agreed amendments
 

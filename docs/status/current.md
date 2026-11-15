@@ -28,12 +28,17 @@ application implementation is not.
 The initial [responsive shell V1 proposal](../project/workbench-layout/responsive-shell-v1.md)
 and [static wireframes](../project/workbench-layout/responsive-shell-v1.svg) show
 wide, compact split, 320px browse and 320px edit states for user discussion.
-Projects exploration is not depicted in those workbench wireframes.
+The separate [Projects/shared-shell V1](../project/workbench-layout/projects-shell-v1.md)
+and [static sheet](../project/workbench-layout/projects-shell-v1.svg) now propose
+a catalogue with Create/Restore alongside on wider screens, stacked at 320px,
+plus screen transition and shared React layout/header candidates. Existing
+Projects/workbench workflow owners remain distinct. These are proposals for
+user review; no Projects redesign or shared component extraction is agreed.
 Concrete design states must be presented to the user before analyst design review.
 Approval for analyst review remains distinct from final contract/design agreement
 and implementation authorization. Exact breakpoints, Back/resize/focus behavior
 and guard integration remain proposals until agreed. The contract records roughly
-8/10 aggregate documentation-check minutes used, with static preview inspection
+10/10 aggregate documentation-check minutes used, with static preview inspection
 and no application tests/build or reopened qualification.
 
 ## Increment 010 closure
@@ -68,7 +73,8 @@ PWA. Install/offline PWA acceptance, interchange and Electron remain later work.
 
 Discuss the identified responsive-shell contract and concrete static V1 design
 proposal with the user, including its proposed entry/Back/resize/focus policies.
-Discuss Projects content, shared-shell continuity and whether a Projects redesign
+Review Projects/shared-shell V1’s content, shared-shell continuity, order/identity
+presentation and proposed stacking behavior; settle whether a Projects redesign
 belongs in 011 delivery before amending scope. Record design feedback/approval for analyst review,
 then obtain the separate analyst consistency review. Material revisions return to
 the user. Implementation needs final contract/design agreement and authorization.

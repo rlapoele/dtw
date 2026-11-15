@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="2330" viewBox="0 0 1800 2330" role="img" aria-labelledby="title desc"><title id="title">Projects and shared shell V1</title><desc id="desc">Proposed Projects layouts at 1440, 880 and 320 CSS pixels, transition into the workbench and representative feedback states.</desc>
+<rect x="0" y="0" width="1800" height="2330" rx="0" fill="#f0f1f3" stroke="#f0f1f3"/>
+<text x="40" y="40" font-family="Arial,sans-serif" font-size="28" font-weight="600" fill="#24272c">Projects + shared shell · V1</text>
+<text x="40" y="68" font-family="Arial,sans-serif" font-size="16" font-weight="400" fill="#676d77">PROPOSAL · 15 November 2026 · static source-informed wireframes; no implementation or usability claim</text>
+<text x="40" y="108" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#24272c">Desktop · 1440 CSS px · project list first; create and restore alongside</text>
+<svg x="40" y="125" width="1440" height="540" viewBox="0 0 1440 540">
+<rect x="0" y="0" width="1440" height="540" rx="0" fill="#ffffff" stroke="#d6d8dd"/>
+<rect x="0" y="0" width="1440" height="64" rx="0" fill="#fafafa" stroke="#d6d8dd"/>
+<text x="16" y="38" font-family="Arial,sans-serif" font-size="18" font-weight="600" fill="#24272c">Token Workbench</text>
+<text x="1316" y="38" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">Browser local</text>
+<text x="160" y="112" font-family="Arial,sans-serif" font-size="26" font-weight="600" fill="#24272c">Projects in this browser</text>
+<text x="160" y="141" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Applied work is retained automatically in this browser profile.</text>
+<text x="160" y="162" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Keep independent backups: browser storage can be cleared or become unavailable.</text>
+<rect x="160" y="200" width="728" height="108" rx="4" fill="#ffffff" stroke="#d6d8dd"/>
+<rect x="176" y="212" width="120" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="188" y="237" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Atlas</text>
+<text x="176" y="274" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">324 tokens · 18 groups</text>
+<text x="176" y="296" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">Identity: &quot;c439f2d2-0a8c-4d78-a552-83de3b951687&quot;</text>
+<rect x="160" y="320" width="728" height="108" rx="4" fill="#ffffff" stroke="#d6d8dd"/>
+<rect x="176" y="332" width="120" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="188" y="357" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Atlas</text>
+<text x="176" y="394" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">12 tokens · 3 groups</text>
+<text x="176" y="416" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">Identity: &quot;348cb011-aeb6-488c-9989-becce5cd6d4d&quot;</text>
+<text x="928" y="222" font-family="Arial,sans-serif" font-size="19" font-weight="600" fill="#24272c">New project</text>
+<text x="928" y="255" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Project name</text>
+<rect x="928" y="266" width="352" height="42" rx="4" fill="#ffffff" stroke="#d6d8dd"/>
+<rect x="928" y="320" width="146" height="40" rx="4" fill="#24272c" stroke="#d6d8dd"/>
+<text x="940" y="345" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#fff">Create project</text>
+<text x="928" y="413" font-family="Arial,sans-serif" font-size="19" font-weight="600" fill="#24272c">Restore backup</text>
+<text x="928" y="439" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">Choose an independent project backup.</text>
+<text x="928" y="461" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#24272c">Project backup file</text>
+<rect x="928" y="473" width="110" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="940" y="498" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Choose file</text>
+<text x="1048" y="498" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">No file chosen</text>
+</svg>
+<text x="1510" y="157" font-family="Arial,sans-serif" font-size="15" font-weight="600" fill="#24272c">SHARED STRUCTURE</text>
+<text x="1510" y="188" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">Neutral application header</text>
+<text x="1510" y="213" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">Flexible content region</text>
+<text x="1510" y="238" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">Same theme and controls</text>
+<text x="1510" y="263" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">Modal/feedback conventions</text>
+<text x="1510" y="321" font-family="Arial,sans-serif" font-size="15" font-weight="600" fill="#24272c">PROJECTS CONTENT</text>
+<text x="1510" y="351" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">No token navigation</text>
+<text x="1510" y="376" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">No empty inspector</text>
+<text x="1510" y="401" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">Name opens directly</text>
+<text x="1510" y="426" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">Exact identity stays visible</text>
+<text x="40" y="706" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#24272c">Compact · 880 CSS px</text>
+<text x="960" y="706" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#24272c">Minimum · 320 CSS px</text>
+<text x="1340" y="706" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#24272c">Open Atlas → workbench · 320 CSS px</text>
+<svg x="40" y="724" width="880" height="735" viewBox="0 0 880 735">
+<rect x="0" y="0" width="880" height="735" rx="0" fill="#ffffff" stroke="#d6d8dd"/>
+<rect x="0" y="0" width="880" height="64" rx="0" fill="#fafafa" stroke="#d6d8dd"/>
+<text x="16" y="38" font-family="Arial,sans-serif" font-size="18" font-weight="600" fill="#24272c">Token Workbench</text>
+<text x="756" y="38" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">Browser local</text>
+<text x="24" y="113" font-family="Arial,sans-serif" font-size="25" font-weight="600" fill="#24272c">Projects in this browser</text>
+<text x="24" y="144" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Applied work is retained automatically in this browser profile.</text>
+<text x="24" y="165" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Keep independent backups: browser storage can be cleared or become unavailable.</text>
+<rect x="24" y="200" width="480" height="108" rx="4" fill="#ffffff" stroke="#d6d8dd"/>
+<rect x="40" y="212" width="120" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="52" y="237" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Atlas</text>
+<text x="40" y="274" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">324 tokens · 18 groups</text>
+<text x="40" y="296" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">Identity: &quot;c439f2d2-0a8c-4d78-a552-83de3b951687&quot;</text>
+<rect x="24" y="320" width="480" height="108" rx="4" fill="#ffffff" stroke="#d6d8dd"/>
+<rect x="40" y="332" width="120" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="52" y="357" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Atlas</text>
+<text x="40" y="394" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">12 tokens · 3 groups</text>
+<text x="40" y="416" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">Identity: &quot;348cb011-aeb6-488c-9989-becce5cd6d4d&quot;</text>
+<rect x="24" y="440" width="480" height="108" rx="4" fill="#ffffff" stroke="#d6d8dd"/>
+<text x="40" y="467" font-family="Arial,sans-serif" font-size="15" font-weight="600" fill="#24272c">Project unavailable</text>
+<text x="40" y="490" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">Unsupported retained project version.</text>
+<text x="40" y="536" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">Identity: &quot;0189584a-4558-43cc-99b4-344fe76feae4&quot;</text>
+<text x="536" y="222" font-family="Arial,sans-serif" font-size="19" font-weight="600" fill="#24272c">New project</text>
+<text x="536" y="255" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Project name</text>
+<rect x="536" y="266" width="320" height="42" rx="4" fill="#ffffff" stroke="#d6d8dd"/>
+<rect x="536" y="320" width="146" height="40" rx="4" fill="#24272c" stroke="#d6d8dd"/>
+<text x="548" y="345" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#fff">Create project</text>
+<text x="536" y="413" font-family="Arial,sans-serif" font-size="19" font-weight="600" fill="#24272c">Restore backup</text>
+<text x="536" y="439" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">Choose an independent project backup.</text>
+<text x="536" y="461" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#24272c">Project backup file</text>
+<rect x="536" y="473" width="110" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="548" y="498" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Choose file</text>
+<text x="656" y="498" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">No file chosen</text>
+<text x="24" y="602" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">Names can repeat. Exact identities distinguish these two projects.</text>
+<text x="24" y="709" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">Normal page scroll reveals longer lists and feedback.</text>
+</svg>
+<svg x="960" y="724" width="320" height="1110" viewBox="0 0 320 1110">
+<rect x="0" y="0" width="320" height="1110" rx="0" fill="#ffffff" stroke="#d6d8dd"/>
+<rect x="0" y="0" width="320" height="64" rx="0" fill="#fafafa" stroke="#d6d8dd"/>
+<text x="16" y="38" font-family="Arial,sans-serif" font-size="18" font-weight="600" fill="#24272c">Token Workbench</text>
+<text x="16" y="99" font-family="Arial,sans-serif" font-size="23" font-weight="600" fill="#24272c">Projects in this browser</text>
+<text x="16" y="129" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Applied work is retained automatically</text>
+<text x="16" y="150" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">in this browser profile.</text>
+<text x="16" y="171" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Keep independent backups: browser</text>
+<text x="16" y="192" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">storage can be cleared or become</text>
+<text x="16" y="213" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">unavailable.</text>
+<rect x="16" y="239" width="288" height="140" rx="4" fill="#ffffff" stroke="#d6d8dd"/>
+<rect x="32" y="251" width="120" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="44" y="276" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Atlas</text>
+<text x="32" y="313" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">324 tokens · 18 groups</text>
+<text x="32" y="337" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">Identity:</text>
+<text x="32" y="356" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">&quot;c439f2d2-0a8c-4d78-a552-</text>
+<text x="32" y="372" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">83de3b951687&quot;</text>
+<rect x="16" y="391" width="288" height="140" rx="4" fill="#ffffff" stroke="#d6d8dd"/>
+<rect x="32" y="403" width="120" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="44" y="428" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Atlas</text>
+<text x="32" y="465" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">12 tokens · 3 groups</text>
+<text x="32" y="489" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">Identity:</text>
+<text x="32" y="508" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">&quot;348cb011-aeb6-488c-9989-</text>
+<text x="32" y="524" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">becce5cd6d4d&quot;</text>
+<text x="16" y="593" font-family="Arial,sans-serif" font-size="19" font-weight="600" fill="#24272c">New project</text>
+<text x="16" y="626" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Project name</text>
+<rect x="16" y="637" width="288" height="42" rx="4" fill="#ffffff" stroke="#d6d8dd"/>
+<rect x="16" y="691" width="146" height="40" rx="4" fill="#24272c" stroke="#d6d8dd"/>
+<text x="28" y="716" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#fff">Create project</text>
+<text x="16" y="805" font-family="Arial,sans-serif" font-size="19" font-weight="600" fill="#24272c">Restore backup</text>
+<text x="16" y="831" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">Choose an independent</text>
+<text x="16" y="852" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">project backup.</text>
+<text x="16" y="874" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#24272c">Project backup file</text>
+<rect x="16" y="886" width="110" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="28" y="911" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Choose file</text>
+<text x="136" y="911" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">No file chosen</text>
+<text x="16" y="1006" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">Same reading order at all widths.</text>
+<text x="16" y="1027" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">Content scrolls; no fixed action bar.</text>
+</svg>
+<svg x="1340" y="724" width="320" height="850" viewBox="0 0 320 850">
+<rect x="0" y="0" width="320" height="850" rx="0" fill="#ffffff" stroke="#d6d8dd"/>
+<rect x="0" y="0" width="320" height="110" rx="0" fill="#fafafa" stroke="#d6d8dd"/>
+<rect x="12" y="10" width="72" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="24" y="35" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Browse</text>
+<text x="96" y="36" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#24272c">Atlas</text>
+<rect x="228" y="10" width="80" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="240" y="35" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Projects</text>
+<rect x="12" y="60" width="143" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="24" y="85" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Restore backup</text>
+<rect x="165" y="60" width="143" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="177" y="85" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Download backup</text>
+<rect x="0" y="110" width="320" height="87" rx="0" fill="#f4f5f6" stroke="#d6d8dd"/>
+<text x="16" y="136" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#24272c">Applied work is retained in this browser.</text>
+<text x="16" y="156" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#24272c">Drafts stay in this page.</text>
+<text x="16" y="176" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#24272c">Keep independent backups.</text>
+<text x="16" y="231" font-family="Arial,sans-serif" font-size="25" font-weight="600" fill="#24272c">All tokens</text>
+<text x="16" y="258" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#676d77">Browse and create color tokens.</text>
+<rect x="16" y="277" width="110" height="40" rx="4" fill="#24272c" stroke="#d6d8dd"/>
+<text x="28" y="302" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#fff">New token</text>
+<rect x="16" y="333" width="288" height="42" rx="4" fill="#ffffff" stroke="#d6d8dd"/>
+<text x="28" y="359" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Search colors…</text>
+<text x="16" y="415" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#24272c">Token</text>
+<rect x="0" y="434" width="320" height="90" rx="0" fill="#ffffff" stroke="#d6d8dd"/>
+<rect x="16" y="456" width="20" height="20" rx="3" fill="#2457df" stroke="#2457df"/>
+<text x="48" y="470" font-family="Arial,sans-serif" font-size="15" font-weight="600" fill="#24272c">color.blue.600</text>
+<text x="48" y="497" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#676d77">primitive · color</text>
+<text x="16" y="575" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#24272c">No token selected</text>
+<text x="16" y="607" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Select a token to inspect it.</text>
+<rect x="0" y="810" width="320" height="40" rx="0" fill="#fafafa" stroke="#d6d8dd"/>
+<text x="16" y="835" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#24272c">Retained locally</text>
+</svg>
+<text x="1340" y="1611" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Open uses the existing project ID.</text>
+<text x="1340" y="1635" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Projects invokes the existing departure guard.</text>
+<text x="1340" y="1659" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Keep editing preserves the draft; confirmed</text>
+<text x="1340" y="1683" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">departure returns to the catalogue.</text>
+<text x="1340" y="1707" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Resize/Back rules remain in shell V1.</text>
+<text x="40" y="1510" font-family="Arial,sans-serif" font-size="20" font-weight="600" fill="#24272c">Representative feedback · current semantics retained</text>
+<rect x="40" y="1540" width="420" height="235" rx="0" fill="#ffffff" stroke="#d6d8dd"/>
+<text x="60" y="1571" font-family="Arial,sans-serif" font-size="18" font-weight="600" fill="#24272c">Empty catalogue</text>
+<text x="60" y="1604" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">No projects retained in this browser.</text>
+<text x="60" y="1625" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Use New project or Restore backup below.</text>
+<text x="60" y="1677" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#24272c">Loading projects…</text>
+<text x="60" y="1708" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Status replaces the list, never fake rows.</text>
+<text x="60" y="1729" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Create and Restore stay disabled until read.</text>
+<rect x="484" y="1540" width="436" height="235" rx="0" fill="#ffffff" stroke="#d6d8dd"/>
+<text x="504" y="1571" font-family="Arial,sans-serif" font-size="18" font-weight="600" fill="#24272c">Projects unavailable</text>
+<text x="504" y="1604" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Projects unavailable. Existing browser data</text>
+<text x="504" y="1625" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">is unchanged.</text>
+<rect x="504" y="1650" width="209" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="516" y="1675" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Retry reading projects</text>
+<text x="504" y="1720" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Show the actual error as an alert.</text>
+<text x="504" y="1741" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Create and Restore remain disabled.</text>
+<rect x="40" y="1800" width="420" height="230" rx="0" fill="#ffffff" stroke="#d6d8dd"/>
+<text x="60" y="1831" font-family="Arial,sans-serif" font-size="18" font-weight="600" fill="#24272c">Creation validation</text>
+<text x="60" y="1861" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Project name</text>
+<rect x="60" y="1873" width="380" height="42" rx="4" fill="#fff" stroke="#b42318"/>
+<text x="60" y="1939" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#b42318">A project name is required.</text>
+<rect x="60" y="1961" width="146" height="40" rx="4" fill="#24272c" stroke="#d6d8dd"/>
+<text x="72" y="1986" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#fff">Create project</text>
+<rect x="484" y="1800" width="436" height="340" rx="0" fill="#ffffff" stroke="#d6d8dd"/>
+<text x="504" y="1831" font-family="Arial,sans-serif" font-size="18" font-weight="600" fill="#24272c">Unknown write outcome</text>
+<text x="504" y="1864" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Retained result unknown. Entered name is</text>
+<text x="504" y="1886" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">preserved; do not repeat creation.</text>
+<rect x="504" y="1922" width="184" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="516" y="1947" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Check retained result</text>
+<rect x="504" y="1974" width="184" height="40" rx="4" fill="#fff" stroke="#d6d8dd"/>
+<text x="516" y="1999" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#24272c">Review before leaving</text>
+<text x="504" y="2054" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">Keep the entered name, actual error/notice</text>
+<text x="504" y="2075" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">and disabled Open/Create/Restore controls.</text>
+<text x="504" y="2096" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#676d77">This is not a failed-create retry.</text>
+<rect x="960" y="1870" width="800" height="285" rx="0" fill="#ffffff" stroke="#d6d8dd"/>
+<text x="980" y="1902" font-family="Arial,sans-serif" font-size="20" font-weight="600" fill="#24272c">One shell, two content compositions</text>
+<text x="980" y="1937" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">Shared: header geometry, semantic theme, flexible region, modal/focus conventions.</text>
+<text x="980" y="1966" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">Projects: catalogue → New project → Restore backup → recovery/error/notice.</text>
+<text x="980" y="1995" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">Workbench: project header → navigation/workspace/inspector → status/recovery.</text>
+<text x="980" y="2024" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">App + useProjects retain host/entry authority; Workbench retains command authority.</text>
+<text x="980" y="2053" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">Shared presentational shell is a candidate extraction, not a new controller.</text>
+<text x="980" y="2082" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">No selection step, project inspector, cloud account, search or invented dates.</text>
+<text x="40" y="2204" font-family="Arial,sans-serif" font-size="18" font-weight="600" fill="#24272c">Important source limits</text>
+<text x="40" y="2235" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">Sample names, counts, UUIDs and unsupported-version reason are illustrative. All identity text must wrap exactly without truncation.</text>
+<text x="40" y="2260" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">Retained-but-unreadable and pending states keep their existing recovery controls; restore still opens its protected review dialog.</text>
+<text x="40" y="2285" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#676d77">Static forms are shown for hierarchy only. Accessible errors, keyboard/focus, control fit and short-height scrolling need later runtime verification.</text>
+</svg>
