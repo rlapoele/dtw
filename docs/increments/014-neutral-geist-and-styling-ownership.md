@@ -2,6 +2,7 @@
 
 - Contract status: Agreed
 - Delivery status: Completed
+- User acceptance: 16 November 2026. The user reviewed the application, confirmed they were happy with the changes and explicitly requested that Increment 014 acceptance be recorded.
 - Agreement: 16 November 2026. The user agreed V1 and this Increment 014 contract and authorized implementation by a developer subagent followed by an independent reviewer, preserving existing workflows and responsive behavior. Earlier analyst-review-only authorization is superseded by this explicit implementation authorization.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [visual direction](../project/visual-direction.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [styling audit F1–F9](../planning/tailwind-styling-ownership-audit.md), [V1 proposal](../project/neutral-theme-proposal-v1.md), [current handoff](../status/current.md).
 
@@ -400,7 +401,21 @@ combinations, broader engines, persistence fault/stress and PWA installation/
 offline-shell qualification remain outside this bounded delivery. Earlier
 acceptance gaps are neither closed nor promoted to passed.
 
-The user reviews the delivered interface/evidence, then stages/commits/pushes as
-desired. This completion does not authorize another increment or campaign.
+The user accepted the delivered application on 16 November 2026 as recorded
+below. Staging/committing/pushing remain with the user. This completion does not
+authorize another increment or campaign.
 
 Suggested commit: `feat: adopt Neutral Geist theme and clarify styling ownership`
+
+## User acceptance — 16 November 2026
+
+The user stated: “I've reviewed the application and I'm happy with the changes.”
+They explicitly requested recording their acceptance of Increment 014 and updating
+the project status, with committing and pushing left to them. Increment 014 is
+therefore user-accepted as delivered.
+
+This is user-reported application acceptance, not evidence of particular test
+scenarios, browsers or viewport settings beyond what the user stated. The
+completion report's verification limits and earlier increments' acceptance gaps
+remain unchanged. No additional application checks or qualification campaign were
+run for this documentation update. No next increment is authorized.

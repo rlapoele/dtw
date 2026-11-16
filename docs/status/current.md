@@ -2,14 +2,20 @@
 
 > Last updated: 16 November 2026
 >
-> Phase: Increment 014 implemented and independently reviewed; bounded acceptance
-> completed, earlier qualification limits retained. Increment 013 implemented/reviewed;
+> Phase: Increment 014 completed, independently reviewed and user-accepted
+> on 16 November 2026; earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
 ## Neutral / Geist and styling ownership completion — 16 November 2026
+
+The user reviewed the application, confirmed they were happy with the changes and
+explicitly accepted Increment 014 on 16 November 2026. The
+[acceptance record](../increments/014-neutral-geist-and-styling-ownership.md#user-acceptance--16-november-2026)
+owns that report. No particular manual scenarios or broader qualification results
+are inferred from it. This documentation update ran no application checks.
 
 The user agreed V1 and Increment 014 and authorized a separate developer followed
 by an independent reviewer. [Completion and evidence](../increments/014-neutral-geist-and-styling-ownership.md#completion-report--16-november-2026)
@@ -26,8 +32,8 @@ broader qualification limits remain explicit; earlier gaps are unchanged.
 
 Checks stopped at approximately 37/40 aggregate minutes and 1/1 repair. Delivery
 is Completed within the agreed bounded scope, without new full accessibility or
-offline/PWA claims. Next: user reviews the interface/evidence, then stages/commits/
-pushes as desired. No additional campaign or next increment is authorized.
+offline/PWA claims. User acceptance is now recorded. Staging/committing/pushing
+remain with the user. No additional campaign or next increment is authorized.
 
 ## Neutral / Geist visual proposal — 16 November 2026
 
@@ -238,7 +244,7 @@ Focused checks stopped at approximately13.5/15 aggregate minutes (developer8.5,
 reviewer3, coordinator2),1/1 repair. Earlier01235/40 and older campaigns/gaps remain
 stopped. No staging, commits, pushes, dependencies or index-casing changes by agents.
 
-## Current focus
+## Session Undo/Redo agreement — Increment 012
 
 The user agreed the refined [Increment 012 contract](../increments/012-session-undo-redo.md#final-agreement-and-implementation-authorization--15-november-2026)
 and amended [Undo/Redo V1 design](../project/workbench-layout/undo-redo-v1.md),
@@ -309,15 +315,15 @@ changes are made to resolve it here.
 
 ## Next meaningful action
 
-User reviews the shared-workbench-layout extraction and stated evidence limits,
-then stages/commits/pushes as desired. Earlier012 acceptance gaps remain open. Leave
-staging, committing and pushing to the user. Do not close the increment or relabel
-unverified runtime acceptance passed without further user instruction/evidence.
-No additional automated qualification campaign is authorized by this handoff.
+Increment 014 is complete and user-accepted. The user stages/commits/pushes as
+desired, then selects the next work to scope. Earlier acceptance/qualification
+gaps remain in their owning increments; Increment 014 acceptance does not close
+them. No additional automated campaign or next increment is authorized.
 
 ## Resume
 
-Read AGENTS.md, this handoff, actual Git state, the 012 draft and its new design
-artifacts. The [pre-closure snapshot](history/2026-11-15-increment-011-before-closure.md)
+Read AGENTS.md, this handoff, actual Git state and the
+[Increment 014 completion/acceptance](../increments/014-neutral-geist-and-styling-ownership.md#completion-report--16-november-2026)
+before scoping further work. The [pre-closure snapshot](history/2026-11-15-increment-011-before-closure.md)
 preserves outgoing 011 detail. [README](../../README.md) owns current commands and
 limits; increment records own their agreements/evidence/acceptance gaps.
