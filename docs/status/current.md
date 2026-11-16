@@ -9,6 +9,20 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Token display ownership — 16 November 2026
+
+The user authorized moving the ten token-display files into TokenWorkbench at
+their proposed owners: shared helpers/value/swatch components, inspector-shared
+ExactSource, and editor-private metadata/resolution panels. Imports and current
+documentation follow those paths; the empty top-level token-display folder is
+removed. The [ownership map](../project/workbench-component-organisation.md#token-display-ownership--16-november-2026)
+records exact placement. This path-only maintenance leaves existing behavior,
+editor/session ownership and prior qualification gaps/stopping decisions unchanged.
+Production build/all typecheck scopes, the nested presentation config and all152
+presentation tests passed. All changed source/test files were compared with the
+committed originals: only approved moves/imports changed. No browser runtime
+qualification was performed. Leave staging/committing/pushing to the user.
+
 ## Shared workbench layout — Increment 013
 
 The user approved the shared structure and authorized implementation. ProjectsWorkbench

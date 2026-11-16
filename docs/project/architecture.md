@@ -609,3 +609,22 @@ App retains host, unconditional useProjects, catalogue/page context and restore 
 and sequencing. TokenWorkbench retains its project key and one keyed TokenEditor
 in a stable slot across responsive modes. No application/domain/host authority moves
 into the shared layout. See the [013 contract](../increments/013-shared-workbench-layout.md).
+
+
+## Token display ownership — 16 November 2026
+
+The user approved distributing all ten former `src/presentation/token-display/`
+files within TokenWorkbench, their sole production consumer. Common value/swatch
+components live in `App/components/TokenWorkbench/components/`; the five color,
+identity and source helpers live in its `helpers/`. ExactSource is shared at
+`components/WorkbenchInspector/components/`; TokenMetadata and ResolvedTokenPanel
+are private to that inspector's TokenEditor/components. The
+[current ownership map](workbench-component-organisation.md#token-display-ownership--16-november-2026)
+records exact paths. The empty top-level token-display folder is removed.
+
+This is presentation ownership, not a transfer of domain meaning: formatting,
+preview CSS and display of already-resolved results remain separate from domain
+validation/resolution and application commands. Source assembly still uses the
+host protocol. No editor key, hook caller, rendered tree, host, storage or domain
+behavior changes. Earlier dated references to top-level token-display describe
+preceding implementation snapshots.

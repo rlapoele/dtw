@@ -2,11 +2,11 @@ import { TokenValueComparison } from "@presentation/App/components/TokenWorkbenc
 import { EditorActions } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/EditorActions";
 import { EditRecovery } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/EditRecovery";
 import { ReferenceFields } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/ReferenceFields";
-import { TokenMetadata } from "@presentation/token-display/components/TokenMetadata";
-import { ResolvedTokenPanel } from "@presentation/token-display/components/ResolvedTokenPanel";
+import { TokenMetadata } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/TokenMetadata";
+import { ResolvedTokenPanel } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/ResolvedTokenPanel";
 import type { useTokenEditor } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/hooks/useTokenEditor";
 
-import { AuthoredValue } from "@presentation/token-display/components/AuthoredValue";
+import { AuthoredValue } from "@presentation/App/components/TokenWorkbench/components/AuthoredValue";
 import { TokenEditorTabs } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/TokenEditorTabs";
 import { Badge } from "@presentation/ui/badge";
 

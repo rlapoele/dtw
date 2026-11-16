@@ -14,7 +14,7 @@ import { useProjectCommands } from "@presentation/App/components/TokenWorkbench/
 import { useCreationForm } from "@presentation/App/components/TokenWorkbench/components/CreationDialog/hooks/useCreationForm";
 import { useWorkbenchLayout } from "@presentation/App/components/TokenWorkbench/hooks/useWorkbenchLayout";
 
-import { readExactSource } from "@presentation/token-display/helpers/read-exact-source";
+import { readExactSource } from "@presentation/App/components/TokenWorkbench/helpers/read-exact-source";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { WorkbenchLayout } from "@presentation/App/components/WorkbenchLayout/WorkbenchLayout";
 import { WorkbenchFeedback } from "./components/WorkbenchRecovery/components/WorkbenchFeedback";
@@ -29,7 +29,7 @@ import { TokenEditor } from "@presentation/App/components/TokenWorkbench/compone
 import { CreationDialog } from "@presentation/App/components/TokenWorkbench/components/CreationDialog/CreationDialog";
 import { NamespaceTree } from "@presentation/App/components/TokenWorkbench/components/WorkbenchNavigation/components/NamespaceTree/NamespaceTree";
 
-import { identityLabels } from "@presentation/token-display/helpers/identity-labels";
+import { identityLabels } from "@presentation/App/components/TokenWorkbench/helpers/identity-labels";
 export function TokenWorkbench({
   host,
   initial,

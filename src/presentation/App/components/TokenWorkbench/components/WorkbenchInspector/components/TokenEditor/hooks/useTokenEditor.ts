@@ -16,10 +16,10 @@ import {
   eligible,
   literalIssue,
 } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
-import { colorPreview } from "@presentation/token-display/helpers/color-preview";
-import { identityLabels } from "@presentation/token-display/helpers/identity-labels";
+import { colorPreview } from "@presentation/App/components/TokenWorkbench/helpers/color-preview";
+import { identityLabels } from "@presentation/App/components/TokenWorkbench/helpers/identity-labels";
 import { failureText } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/helpers/editor-failure";
-import { resolvedColor } from "@presentation/token-display/helpers/resolved-color";
+import { resolvedColor } from "@presentation/App/components/TokenWorkbench/helpers/resolved-color";
 export function useTokenEditor({
   inspection: i,
   project,

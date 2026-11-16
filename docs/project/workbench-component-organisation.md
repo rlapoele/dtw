@@ -1,7 +1,7 @@
 # Workbench component organisation
 
 Current implementation ownership through the Increment 013 shared-layout extraction,
-including the App, screen and browser-host placement refinements of 16 November 2026.
+including the App, screen, browser-host and token-display placement refinements of 16 November 2026.
 012 implementation and independent review are finished; acceptance gaps remain
 in its increment record. This map records source ownership, not acceptance. The agreed
 [owner-first V2 tree](workbench-layout/presentation-organisation-v2.md) supplies the
@@ -24,7 +24,7 @@ Paths below are relative to `src/presentation/` unless explicitly rooted at `src
 | Creation | `App/components/TokenWorkbench/components/CreationDialog/CreationDialog.tsx`, `hooks/useCreationForm.ts`, `helpers/naming-preview.ts`. Workbench remains the hook caller; raw form and reviewed-baseline state do not depend on responsive surfaces. |
 | Inspector | `App/components/TokenWorkbench/components/WorkbenchInspector/WorkbenchInspector.tsx` retains the stable shell/fallback. Private `components/InspectorHeader.tsx`, `TokenValueComparison.tsx` and `GroupInspector/GroupInspector.tsx` retain read-only rendering. |
 | Token editor | `App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/TokenEditor.tsx` is the sole `hooks/useTokenEditor.ts` caller. Its key remains `[selection.id, editorVersion]`. Private rendering stays under `components/`; pure session transforms under `state/editor-session.ts`; shared editor helpers under `helpers/{integer-rgb,editor-failure}.ts`. ColorEditor owns `components/ColorEditor/helpers/visual-range.ts`. |
-| Shared token display | `token-display/components/{AuthoredValue,ExactSource,ResolvedTokenPanel,TokenMetadata,TokenSwatch}.tsx`; pure color/identity helpers in `token-display/helpers/`. ExactSource retains lazy revision-scoped source requests and bounded local scrolling. The legacy TokenList remains test support only. |
+| Token display | Within `App/components/TokenWorkbench/`: `components/{AuthoredValue,TokenSwatch}.tsx` serve workspace and inspector; color/identity/source helpers live in `helpers/`. `components/WorkbenchInspector/components/ExactSource.tsx` serves token/group inspection; `TokenEditor/components/{TokenMetadata,ResolvedTokenPanel}.tsx` stay private to the editor. ExactSource retains lazy revision-scoped source requests and bounded local scrolling. The legacy TokenList remains test support only. |
 
 Responsive presentation changes visibility at 1120/880 CSS px without reparenting
 or cloning the editor. Back/reopen, drawer and collapse add no session reset reason.
@@ -136,3 +136,23 @@ status/dialog ordering and the skip link before the token header are preserved.
 App still calls useProjects unconditionally; the project and TokenEditor keys and
 screen-owned command/session authority are unchanged. Review and actual verification
 limits belong to the [013 contract](../increments/013-shared-workbench-layout.md).
+
+
+## Token display ownership — 16 November 2026
+
+All production consumers of the former presentation-level `token-display/` folder
+are inside TokenWorkbench. The user requested distributing its ten files to their
+actual owners under `App/components/TokenWorkbench/`:
+
+- `components/{AuthoredValue,TokenSwatch}.tsx` are shared by workspace and inspector.
+- `helpers/{authored-color,color-preview,resolved-color,identity-labels,read-exact-source}.ts`
+  support multiple branches or the screen coordinator.
+- `components/WorkbenchInspector/components/ExactSource.tsx` is shared by group and
+  token inspection.
+- `components/WorkbenchInspector/components/TokenEditor/components/{TokenMetadata,ResolvedTokenPanel}.tsx`
+  serve only the token editor.
+
+The empty `token-display/` wrapper is removed. Tests and test-support imports follow
+these paths. This is a path/import change: authored values, preview behavior,
+resolution displays, source retrieval and mounted component/session behavior are
+unchanged. Earlier dated placement records above preserve their historical paths.

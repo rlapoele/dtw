@@ -1,4 +1,4 @@
-import { namespaceEntryDetails, pathLabel } from "@presentation/token-display/helpers/identity-labels";
+import { namespaceEntryDetails, pathLabel } from "@presentation/App/components/TokenWorkbench/helpers/identity-labels";
 import type { ProjectContext } from "@application/retention/projections";
 
 export type MembershipEntry = {

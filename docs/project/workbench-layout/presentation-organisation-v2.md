@@ -41,6 +41,13 @@ The user subsequently requested moving the Projects and Workbench subtrees under
 the dated tree below. Hook callers and state lifetimes remain unchanged; see the
 [current resulting tree](../workbench-component-organisation.md#app-screen-ownership--16-november-2026).
 
+## Later token display ownership — 16 November 2026
+
+The user subsequently requested distributing the former `token-display/` contents
+inside TokenWorkbench. This supersedes the top-level token-display placement below;
+the [current ownership map](../workbench-component-organisation.md#token-display-ownership--16-november-2026)
+records shared workbench helpers/components and inspector/editor-private components.
+
 ## Organisation principle
 
 Keep a component’s entry file at its named folder’s root. Group its supporting

@@ -7,7 +7,7 @@ import { Button } from "@presentation/ui/button";
 import { Field } from "@presentation/ui/field";
 import { Input } from "@presentation/ui/input";
 import { Select } from "@presentation/ui/select";
-import { identityLabels } from "@presentation/token-display/helpers/identity-labels";
+import { identityLabels } from "@presentation/App/components/TokenWorkbench/helpers/identity-labels";
 
 /** Creation and rename rendering; App owns drafts, operations, readback and focus policy. */
 export function CreationDialog({

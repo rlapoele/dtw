@@ -2,7 +2,7 @@ import type { BrowserView } from "@presentation/App/components/TokenWorkbench/he
 import type { ProjectContext } from "@application/retention/projections";
 import { Icon } from "@presentation/ui/icon";
 import { Button } from "@presentation/ui/button";
-import { identityLabels, namespaceEntryDetails } from "@presentation/token-display/helpers/identity-labels";
+import { identityLabels, namespaceEntryDetails } from "@presentation/App/components/TokenWorkbench/helpers/identity-labels";
 export function NamespaceTree({
   drawer,
   project,

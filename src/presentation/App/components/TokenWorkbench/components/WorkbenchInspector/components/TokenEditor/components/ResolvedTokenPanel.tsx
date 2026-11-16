@@ -3,12 +3,12 @@ import type {
   ProjectContext,
 } from "@application/retention/projections";
 import type { TokenInspection } from "@application/authoring";
-import { pathLabel } from "@presentation/token-display/helpers/identity-labels";
-import { resolvedColor } from "@presentation/token-display/helpers/resolved-color";
+import { pathLabel } from "@presentation/App/components/TokenWorkbench/helpers/identity-labels";
+import { resolvedColor } from "@presentation/App/components/TokenWorkbench/helpers/resolved-color";
 import { COLOR_COMPONENTS, COMPONENT_NAMES } from "@domain/color-components";
-import { spaceName } from "@presentation/token-display/helpers/authored-color";
+import { spaceName } from "@presentation/App/components/TokenWorkbench/helpers/authored-color";
 import { Badge } from "@presentation/ui/badge";
-import { TokenSwatch } from "@presentation/token-display/components/TokenSwatch";
+import { TokenSwatch } from "@presentation/App/components/TokenWorkbench/components/TokenSwatch";
 export function ResolvedTokenPanel({
   resolution,
   project,

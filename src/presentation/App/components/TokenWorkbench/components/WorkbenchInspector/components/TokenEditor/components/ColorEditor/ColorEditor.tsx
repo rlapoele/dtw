@@ -21,7 +21,7 @@ import {
 } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
 import type { DraftSession } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
 import { visualRangeState } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/helpers/visual-range";
-import { spaceName } from "@presentation/token-display/helpers/authored-color";
+import { spaceName } from "@presentation/App/components/TokenWorkbench/helpers/authored-color";
 function illustrativeGradient(space: ColorSpace, index: number): string {
   const identity = COLOR_COMPONENTS[space][index];
   if (identity === "hue")

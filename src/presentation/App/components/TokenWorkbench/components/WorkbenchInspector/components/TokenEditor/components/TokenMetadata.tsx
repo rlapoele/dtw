@@ -1,6 +1,6 @@
 import type { Token } from "@domain/token";
 import type { DisplayPath } from "@application/retention/projections";
-import { ExactSource } from "@presentation/token-display/components/ExactSource";
+import { ExactSource } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/ExactSource";
 export function TokenMetadata({
   token,
   groupLabels,

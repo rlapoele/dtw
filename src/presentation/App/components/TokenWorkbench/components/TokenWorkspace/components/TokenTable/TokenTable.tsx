@@ -3,11 +3,11 @@ import type {
   DisplayRow,
   ProjectContext,
 } from "@application/retention/projections";
-import { AuthoredValue } from "@presentation/token-display/components/AuthoredValue";
-import { TokenSwatch } from "@presentation/token-display/components/TokenSwatch";
+import { AuthoredValue } from "@presentation/App/components/TokenWorkbench/components/AuthoredValue";
+import { TokenSwatch } from "@presentation/App/components/TokenWorkbench/components/TokenSwatch";
 import { Button } from "@presentation/ui/button";
-import { identityLabels, namespaceEntryDetails } from "@presentation/token-display/helpers/identity-labels";
-import { colorPreview } from "@presentation/token-display/helpers/color-preview";
+import { identityLabels, namespaceEntryDetails } from "@presentation/App/components/TokenWorkbench/helpers/identity-labels";
+import { colorPreview } from "@presentation/App/components/TokenWorkbench/helpers/color-preview";
 export function TokenTable({
   context,
   creationParentLabel = "Project root",

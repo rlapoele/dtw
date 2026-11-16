@@ -1,10 +1,10 @@
 import {
   authoredColorCoordinates,
   spaceName,
-} from "@presentation/token-display/helpers/authored-color";
+} from "@presentation/App/components/TokenWorkbench/helpers/authored-color";
 import type { Token } from "@domain/token";
 import type { ProjectContext } from "@application/retention/projections";
-import { identityLabels } from "@presentation/token-display/helpers/identity-labels";
+import { identityLabels } from "@presentation/App/components/TokenWorkbench/helpers/identity-labels";
 
 type Value = NonNullable<Token["definition"]>["assignments"][number]["value"];
 
