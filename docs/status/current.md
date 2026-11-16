@@ -1,12 +1,24 @@
 # Current Project Status
 
-> Last updated: 15 November 2026
+> Last updated: 16 November 2026
 >
 > Phase: Increment 011 closed by user instruction with acceptance gaps preserved;
 > Increment 012 browser-feedback fixes reviewed; earlier acceptance gaps preserved
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## App folder reorganisation — 16 November 2026
+
+The user requested `App/` casing and moved ApplicationHeader/ApplicationShell to
+`App/components/`. Imports and current architecture/ownership documentation now
+follow those paths; the [ownership map](../project/workbench-component-organisation.md#app-placement-refinement--16-november-2026)
+records the decision. This is path-only maintenance; earlier qualification
+campaigns and acceptance gaps remain unchanged. Production build (including all
+typechecks) and 32 affected presentation tests passed; source moves/imports and
+Markdown changes were checked. No browser qualification was restarted.
+The physical folder is `App/`; Git still records the pre-existing lowercase
+`app/` paths until the user stages the case-only rename.
 
 ## Latest focused fix
 

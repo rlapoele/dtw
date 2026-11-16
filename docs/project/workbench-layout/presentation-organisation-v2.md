@@ -10,6 +10,14 @@ Read with the [review](../../increments/011-v2-analyst-review.md),
 [V2 component map](component-map-v2.md) and
 [current delivered ownership](../workbench-component-organisation.md).
 
+## Later App placement refinement — 16 November 2026
+
+The user subsequently requested `App/` casing and placement of ApplicationHeader
+and ApplicationShell under `App/components/`. The dated tree and adoption records
+below preserve the Increment 011 proposal; the [current ownership map](../workbench-component-organisation.md)
+records the revised delivered paths. This supersedes the presentation-level
+`components/` placement below without changing component or state ownership.
+
 ## Organisation principle
 
 Keep a component’s entry file at its named folder’s root. Group its supporting

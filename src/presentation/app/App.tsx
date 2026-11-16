@@ -1,8 +1,8 @@
 import { readBackupFile } from "@presentation/host/backup-file";
 import { useEffect, useRef, useState } from "react";
 import type { RestorePreview } from "@presentation/host/protocol";
-import { useWorkbenchHost } from "@presentation/app/hooks/useWorkbenchHost";
-import { useStoragePersistence } from "@presentation/app/hooks/useStoragePersistence";
+import { useWorkbenchHost } from "@presentation/App/hooks/useWorkbenchHost";
+import { useStoragePersistence } from "@presentation/App/hooks/useStoragePersistence";
 import { useProjects } from "@presentation/projects/hooks/useProjects";
 
 import { Dialog } from "@base-ui/react/dialog";

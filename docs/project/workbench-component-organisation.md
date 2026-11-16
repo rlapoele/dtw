@@ -1,17 +1,18 @@
 # Workbench component organisation
 
-Current implementation ownership through Increment 012, 15 November 2026.
+Current implementation ownership through Increment 012, with the user-requested
+App folder reorganisation of 16 November 2026.
 012 implementation and independent review are finished; acceptance gaps remain
 in its increment record. This map records source ownership, not acceptance. The agreed
 [owner-first V2 tree](workbench-layout/presentation-organisation-v2.md) supplies the
-target structure. Runtime evidence and remaining acceptance belong to the
+target structure, with the App placement refinement recorded below. Runtime evidence and remaining acceptance belong to the
 [increment contract](../increments/011-responsive-shell.md), not this path map.
 Paths below are relative to `src/presentation/`.
 
 | Owner | Components, state and lifetime |
 | --- | --- |
-| Shared application chrome | `components/ApplicationShell/ApplicationShell.tsx` and `components/ApplicationHeader/ApplicationHeader.tsx` render common frame/header slots. They own no project, host, command or editor state. Generic controls remain in `ui/`, with unchanged Base UI callback classes, Icon and Button APIs. |
-| App and host | `app/App.tsx` unconditionally calls `app/hooks/useWorkbenchHost.ts` and `projects/hooks/useProjects.ts` before the page branch. `app/hooks/useStoragePersistence.ts` owns the advisory browser persistence query, once-per-session automatic request and explicit retry across page branches; the native calls remain in `adapters/browser/storage-preference.ts`. App retains one host, restore file/preview refs, departure state and Projects selection/scroll/narrow-surface context across Workbench entry. Workbench remains keyed by project identity. |
+| Shared application chrome | `App/components/ApplicationShell/ApplicationShell.tsx` and `App/components/ApplicationHeader/ApplicationHeader.tsx` render common frame/header slots. They own no project, host, command or editor state. Generic controls remain in `ui/`, with unchanged Base UI callback classes, Icon and Button APIs. |
+| App and host | `App/App.tsx` unconditionally calls `App/hooks/useWorkbenchHost.ts` and `projects/hooks/useProjects.ts` before the page branch. `App/hooks/useStoragePersistence.ts` owns the advisory browser persistence query, once-per-session automatic request and explicit retry across page branches; the native calls remain in `adapters/browser/storage-preference.ts`. App retains one host, restore file/preview refs, departure state and Projects selection/scroll/narrow-surface context across Workbench entry. Workbench remains keyed by project identity. |
 | Projects | `projects/ProjectsScreen.tsx` composes `components/{ProjectList,ProjectInspector,CreateProjectForm,ProjectRecovery}/` and calls `hooks/useProjectsLayout.ts` only while mounted. `components/StorageProtection/StorageProtection.tsx` renders controlled status and gated conditional retry. ProjectList's private row is `components/ProjectList/components/ProjectListItem.tsx`. Selection is controlled by App, separate from the opened project. Layout owns mounted DOM refs/focus; it never opens or writes a project. |
 | Projects commands | `projects/hooks/useProjects.ts`, called by App, retains catalogue/open/create/unknown/retained state and exact name input. Selected backup captures a supported catalogue identity/revision, uses the existing download helper without opening, and refreshes stale facts without automatically retrying. Restore preview, pending, unknown and retained-result gates remain authoritative. Confirmed create acknowledgement notifies App independently of consume/readback/open; Projects only renders the owner’s storage status and retry. |
 | Restore | `project-backup/components/RestoreDialog/RestoreDialog.tsx` calls `hooks/useBackupRestore.ts` within that owner. App retains file/restaging references; the dialog retains revision protection, backup acknowledgement, staged/unknown recovery and completion. Confirmed retained restore notifies App at acceptance, separately from ordinary Open local. The former Workbench-only backup hook is removed. `host/backup-file.ts` still owns file/download effects. |
@@ -62,3 +63,10 @@ domain calculation without changing authored values or the AuthoredValue column.
 Shared Button adds the needed history geometry variant; existing tablet touch rules
 and Projects geometry remain. Evidence/limits belong to the
 [012 feedback report](../increments/012-session-undo-redo.md#browser-feedback-completion-and-review--15-november-2026).
+
+## App placement refinement — 16 November 2026
+
+The user requested `App/` casing to match its named component owner and moved
+ApplicationHeader and ApplicationShell under `App/components/`. Both screens
+continue to consume these stateless application components. Generic controls
+remain in `ui/`; hook callers, state lifetimes and rendered ancestry are unchanged.

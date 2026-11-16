@@ -16,7 +16,7 @@ import { useWorkbenchLayout } from "@presentation/Workbench/hooks/useWorkbenchLa
 
 import { readExactSource } from "@presentation/host/source";
 import { useEffect, useRef, useState, useMemo } from "react";
-import { ApplicationShell } from "@presentation/components/ApplicationShell/ApplicationShell";
+import { ApplicationShell } from "@presentation/App/components/ApplicationShell/ApplicationShell";
 import { WorkbenchFeedback } from "./components/WorkbenchRecovery/components/WorkbenchFeedback";
 import { SelectionBar } from "./components/TokenWorkspace/components/SelectionBar/SelectionBar";
 import type { ApplicationResult } from "@application/authoring";

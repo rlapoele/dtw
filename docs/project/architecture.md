@@ -93,7 +93,7 @@ Browser rendering/mapping is display-only; explicit editing conversions remain i
 existing calculation boundary. No preview calls Culori or writes display coordinates
 back into tokens. See the [current preview policy](../increments/003-color-policy-proposal.md#preview-policy).
 
-**Current implementation ownership — 15 November 2026:** `app/App.tsx` owns the
+**Current implementation ownership — 16 November 2026:** `App/App.tsx` owns the
 catalogue/Projects context and host lifetime; `Workbench/Workbench.tsx` coordinates the open project. Their
 component names are `App` and `Workbench`. The transitional `Retained` prefix was
 removed after retiring the earlier session-only implementation; historical snapshots
@@ -110,7 +110,8 @@ current automated baseline; broader engine qualification follows the user-approv
 browser policy. Earlier dated descriptions below describe their original increments.
 
 **Increment 011 delivery — 15 November 2026:** shared application chrome lives
-under `presentation/components/`; page-specific components use owner-level
+under `presentation/App/components/` following the user-requested reorganisation
+of 16 November 2026; page-specific components use owner-level
 components/hooks/helpers/state categories. App still calls
 `projects/hooks/useProjects.ts` unconditionally; Workbench calls its coordination
 hooks and the creation hook; TokenEditor remains the sole editor-session caller.

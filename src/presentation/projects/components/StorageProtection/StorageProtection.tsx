@@ -1,4 +1,4 @@
-import type { StoragePersistenceStatus } from "@presentation/app/hooks/useStoragePersistence";
+import type { StoragePersistenceStatus } from "@presentation/App/hooks/useStoragePersistence";
 import { Button } from "@presentation/ui/button";
 
 const messages: Record<StoragePersistenceStatus, string> = {

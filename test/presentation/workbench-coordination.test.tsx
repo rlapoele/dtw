@@ -527,7 +527,7 @@ it("keeps one responsive surface state, follows pane focus, and yields to modal 
 
 it("disposes App restore preview before the authorized completion opens through the guarded project owner", async () => {
   const persist = vi.fn(async () => true);
-  const { App } = await import("@presentation/app/App");
+  const { App } = await import("@presentation/App/App");
   const { Workbench } = await import("@presentation/Workbench/Workbench");
   vi.stubGlobal("navigator", { storage: { persisted: async () => false, persist } });
   vi.stubGlobal("addEventListener", vi.fn());
@@ -600,7 +600,7 @@ it("does not notify retention for opening existing projects or previewing a rest
 });
 
 it("App retains storage status through create-and-open/Projects and separates restore acknowledgement from Open local", async () => {
-  const { App } = await import("@presentation/app/App");
+  const { App } = await import("@presentation/App/App");
   const persist = vi.fn(async () => true), persisted = vi.fn(async () => false);
   vi.stubGlobal("navigator", { storage: { persist, persisted } });
   vi.stubGlobal("addEventListener", vi.fn()); vi.stubGlobal("removeEventListener", vi.fn());

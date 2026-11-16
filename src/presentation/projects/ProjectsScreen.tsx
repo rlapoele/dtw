@@ -1,9 +1,9 @@
 import type { ChangeEventHandler, ReactNode, Ref } from "react";
 import type { CatalogueEntry } from "@application/retention/ports";
-import type { StoragePersistenceStatus } from "@presentation/app/hooks/useStoragePersistence";
+import type { StoragePersistenceStatus } from "@presentation/App/hooks/useStoragePersistence";
 import { StorageProtection } from "./components/StorageProtection/StorageProtection";
-import { ApplicationShell } from "@presentation/components/ApplicationShell/ApplicationShell";
-import { ApplicationHeader } from "@presentation/components/ApplicationHeader/ApplicationHeader";
+import { ApplicationShell } from "@presentation/App/components/ApplicationShell/ApplicationShell";
+import { ApplicationHeader } from "@presentation/App/components/ApplicationHeader/ApplicationHeader";
 import { ProjectInspector } from "./components/ProjectInspector/ProjectInspector";
 import { useProjectsLayout, type ProjectsView } from "./hooks/useProjectsLayout";
 import { Button } from "@presentation/ui/button";

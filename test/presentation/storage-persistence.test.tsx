@@ -48,7 +48,7 @@ vi.mock("react", async (original) => {
     },
   };
 });
-import { useStoragePersistence } from "@presentation/app/hooks/useStoragePersistence";
+import { useStoragePersistence } from "@presentation/App/hooks/useStoragePersistence";
 import { checkPersistentStorage, requestPersistentStorage } from "@adapters/browser/storage-preference";
 function render<T>(hook: () => T) {
   runtime.cursor = 0;
