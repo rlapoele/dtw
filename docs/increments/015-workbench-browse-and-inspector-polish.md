@@ -163,9 +163,15 @@ Use [proportionate verification](../workflow/agent-roles.md#proportionate-verifi
 ## Design proposals and review
 
 - Applicability: separate designer required for the inspector and history composition.
-- Proposal: pending designer assessment. No prototype has been selected or reviewed.
-- User review: pending recommended direction, then identified artifacts; no approval
-  for analyst design review is recorded.
+- Proposal: [Workbench polish V1](../project/workbench-polish-proposal-v1.md),
+  with interactive source in `prototypes/increment-015-v1/`. The designer prepared
+  the approved direction; coordinator browser checks and limits are recorded in
+  the proposal. User artifact review is pending.
+- Direction approval — 16 November 2026: the user approved the recommended
+  direction, including the compact sticky token heading, and requested a prototype
+  for review. This authorizes prototype preparation only. Identified artifact
+  approval for analyst design review and final implementation authorization remain
+  pending.
 - Analyst review: pending user approval of the identified proposal; this draft is
   source-based requirements preparation, not a review of a design proposal.
 - Material revisions: return to the user before renewed analyst review.

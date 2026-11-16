@@ -13,13 +13,16 @@
 
 The user's 14 browser annotations and sticky token-heading addition are captured
 in [Increment 015's draft contract](../increments/015-workbench-browse-and-inspector-polish.md).
-A separate analyst prepared the draft; a separate designer recommends a compact
-sticky identity/comparison/control row with longer metadata scrolling below.
-Direction approval and reviewable design artifacts are pending, followed by user
-approval for analyst design review and final agreement/implementation authorization.
-No production or prototype changes or application checks were performed in this
-planning step. Prior qualification limits remain. Leave staging/commits/pushes to
-the user.
+A separate analyst prepared the draft and the user approved the designer's
+recommended direction on 16 November 2026. The designer then prepared
+[prototype V1](../project/workbench-polish-proposal-v1.md), including the sticky
+identity/comparison/control row, history badges and browse improvements. Isolated
+prototype build and coordinator Chrome checks at desktop/1090px/320px passed within
+the documented mock coverage; the proposal records evidence and limitations.
+The prototype is ready for user review. Approval for analyst design review and
+final agreement/implementation authorization remain pending. Production code,
+retained projects and earlier qualification limits were not changed. Leave
+staging/commits/pushes to the user.
 
 ## Variable WOFF2 font maintenance — 16 November 2026
 
