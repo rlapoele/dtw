@@ -9,6 +9,20 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Tailwind styling ownership audit — 16 November 2026
+
+The user requested a bounded audit and cleanup proposal, with broad rem preference,
+coherent dimension scales and deliberate white/black usage. The
+[audit and ordered plan](../planning/tailwind-styling-ownership-audit.md) records
+source-confirmed styling conflicts, proposed ownership, unit/scale policy and a
+separate palette/design review. Application code is unchanged; no cleanup is
+authorized by the proposal. The additional third-party Tailwind skill is not being
+adopted. Source and Markdown were reviewed; no browser, tests or build were run,
+and no new runtime acceptance or independent review is claimed. Earlier acceptance
+gaps and qualification stopping decisions remain unchanged. Next: user reviews the
+proposal before a scoped implementation contract. Leave staging/commits/pushes to
+the user.
+
 ## Presentation organization guidance — 16 November 2026
 
 The user authorized project-specific file organization/naming guidance and updated
