@@ -23,11 +23,15 @@ The user requested that creation actions remain together at the top-right; V1.1
 implements this with named icon buttons below 640px and passed the focused
 1131/1090/640/320px placement check. The user then selected a 36px baseline for buttons and inputs across all screen
 sizes, superseding the 24px/44px iterations. V1.3 demonstrates this, with focused
-1090px/320px measurements and no document overflow. The prototype is ready for
-user review. Approval for analyst design review and
-final agreement/implementation authorization remain pending. Production code,
-retained projects and earlier qualification limits were not changed. Leave
-staging/commits/pushes to the user.
+1090px/320px measurements and no document overflow. The user approved V1.3 for analyst review on 16 November 2026. The separate
+[analyst review](../increments/015-v1-3-analyst-review.md) completed against source
+baseline `07c73dff160809f485a70a8a0bbd9d78a3210acf`, reconciling control sizing,
+desktop/narrow inspector behavior and creation focus in AC-1–16. No required
+material design revision or remaining product decision was identified. Final
+contract/design agreement and explicit implementation authorization are pending.
+This review changed documentation only; no production/prototype code, new browser
+checks or earlier qualification limits changed. Leave staging/commits/pushes to
+the user.
 
 ## Variable WOFF2 font maintenance — 16 November 2026
 
