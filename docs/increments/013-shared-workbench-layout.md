@@ -91,3 +91,14 @@ The user can review and stage/commit/push the delivered extraction. No further
 implementation or qualification work is opened by this report. Suggested commit:
 `refactor: share workbench layout across project and token screens`.
 
+
+
+## Later naming maintenance — 16 November 2026
+
+After committing/pushing the extraction and subsequent file moves, the user
+requested renaming TokenWorkbench to TokensWorkbench (folder, entry file and
+component) for consistency with ProjectsWorkbench. Current documentation/imports
+use the plural name. The agreement and reviewed snapshots above retain the names
+used at that increment's implementation/review; this maintenance does not reopen
+its qualification or alter its acceptance record. See the
+[current ownership map](../project/workbench-component-organisation.md#plural-workbench-naming--16-november-2026).

@@ -17,14 +17,14 @@ Paths below are relative to `src/presentation/` unless explicitly rooted at `src
 | Projects | `App/components/ProjectsWorkbench/ProjectsWorkbench.tsx` composes `components/{ProjectList,ProjectInspector,CreateProjectForm,ProjectRecovery}/` and calls `hooks/useProjectsLayout.ts` only while mounted. `components/StorageProtection/StorageProtection.tsx` renders controlled status and gated conditional retry. ProjectList's private row is `components/ProjectList/components/ProjectListItem.tsx`. Selection is controlled by App, separate from the opened project. Layout owns mounted DOM refs/focus; it never opens or writes a project. |
 | Projects commands | `App/components/ProjectsWorkbench/hooks/useProjects.ts`, called by App, retains catalogue/open/create/unknown/retained state and exact name input. Selected backup captures a supported catalogue identity/revision, uses the existing download helper without opening, and refreshes stale facts without automatically retrying. Restore preview, pending, unknown and retained-result gates remain authoritative. Confirmed create acknowledgement notifies App independently of consume/readback/open; Projects only renders the owner’s storage status and retry. |
 | Restore | `App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog.tsx` calls `hooks/useBackupRestore.ts` within that owner. App retains file/restaging references; the dialog retains revision protection, backup acknowledgement, staged/unknown recovery and completion. Confirmed retained restore notifies App at acceptance, separately from ordinary Open local. The former Workbench-only backup hook is removed. `src/hosts/browser/backup-file.ts` still owns file/download effects. |
-| Workbench coordination | `App/components/TokenWorkbench/TokenWorkbench.tsx` retains selection, view/query, dirty/departure, editor version and completion authority. It calls `hooks/{useProjectReadback,useProjectCommands,useWorkbenchLifecycle,useWorkbenchLayout}.ts` and CreationDialog's hook at the same lifetime. `helpers/workspace-view.ts` owns view/creation-parent mapping. `hooks/useWorkbenchHistory.ts`, called by Workbench, owns captured history intent, draft guard coordination, surviving-ID reconciliation and focus timing; `helpers/history-shortcuts.ts` owns pure shortcut eligibility. It supplies no snapshots or alternate command writer. |
-| Workbench shell | `App/components/TokenWorkbench/components/{WorkbenchHeader,WorkbenchStatus,WorkbenchNavigation}/` render controlled project context, compact status/disclosure and navigation. Header-private `App/components/TokenWorkbench/components/WorkbenchHeader/components/HistoryControls.tsx` renders controlled history availability/actions and descriptions; labels switch at640 CSS px independently of pane modes. Only Projects is a project-management control. Navigation's private tree is `WorkbenchNavigation/components/NamespaceTree/NamespaceTree.tsx`. |
-| Workspace | `App/components/TokenWorkbench/components/TokenWorkspace/TokenWorkspace.tsx` composes `components/{WorkspaceToolbar,TokenTable,AllContent,SelectionBar}/`. AllContent's private helper is `AllContent/helpers/all-content.ts`. Token rows retain button semantics; narrow SelectionBar reopens the existing selected session even outside the query/scope. |
-| Recovery | `App/components/TokenWorkbench/components/WorkbenchRecovery/components/{WorkbenchFeedback,RetentionRecovery,DepartureGuard,ProjectDiagnostics}.tsx`. Feedback places safety/recovery outside hidden browse/inspect panes. Command and departure authority remain in Workbench. |
-| Creation | `App/components/TokenWorkbench/components/CreationDialog/CreationDialog.tsx`, `hooks/useCreationForm.ts`, `helpers/naming-preview.ts`. Workbench remains the hook caller; raw form and reviewed-baseline state do not depend on responsive surfaces. |
-| Inspector | `App/components/TokenWorkbench/components/WorkbenchInspector/WorkbenchInspector.tsx` retains the stable shell/fallback. Private `components/InspectorHeader.tsx`, `TokenValueComparison.tsx` and `GroupInspector/GroupInspector.tsx` retain read-only rendering. |
-| Token editor | `App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/TokenEditor.tsx` is the sole `hooks/useTokenEditor.ts` caller. Its key remains `[selection.id, editorVersion]`. Private rendering stays under `components/`; pure session transforms under `state/editor-session.ts`; shared editor helpers under `helpers/{integer-rgb,editor-failure}.ts`. ColorEditor owns `components/ColorEditor/helpers/visual-range.ts`. |
-| Token display | Within `App/components/TokenWorkbench/`: `components/{AuthoredValue,TokenSwatch}.tsx` serve workspace and inspector; color/identity/source helpers live in `helpers/`. `components/WorkbenchInspector/components/ExactSource.tsx` serves token/group inspection; `TokenEditor/components/{TokenMetadata,ResolvedTokenPanel}.tsx` stay private to the editor. ExactSource retains lazy revision-scoped source requests and bounded local scrolling. The legacy TokenList remains test support only. |
+| Workbench coordination | `App/components/TokensWorkbench/TokensWorkbench.tsx` retains selection, view/query, dirty/departure, editor version and completion authority. It calls `hooks/{useProjectReadback,useProjectCommands,useWorkbenchLifecycle,useWorkbenchLayout}.ts` and CreationDialog's hook at the same lifetime. `helpers/workspace-view.ts` owns view/creation-parent mapping. `hooks/useWorkbenchHistory.ts`, called by Workbench, owns captured history intent, draft guard coordination, surviving-ID reconciliation and focus timing; `helpers/history-shortcuts.ts` owns pure shortcut eligibility. It supplies no snapshots or alternate command writer. |
+| Workbench shell | `App/components/TokensWorkbench/components/{WorkbenchHeader,WorkbenchStatus,WorkbenchNavigation}/` render controlled project context, compact status/disclosure and navigation. Header-private `App/components/TokensWorkbench/components/WorkbenchHeader/components/HistoryControls.tsx` renders controlled history availability/actions and descriptions; labels switch at640 CSS px independently of pane modes. Only Projects is a project-management control. Navigation's private tree is `WorkbenchNavigation/components/NamespaceTree/NamespaceTree.tsx`. |
+| Workspace | `App/components/TokensWorkbench/components/TokenWorkspace/TokenWorkspace.tsx` composes `components/{WorkspaceToolbar,TokenTable,AllContent,SelectionBar}/`. AllContent's private helper is `AllContent/helpers/all-content.ts`. Token rows retain button semantics; narrow SelectionBar reopens the existing selected session even outside the query/scope. |
+| Recovery | `App/components/TokensWorkbench/components/WorkbenchRecovery/components/{WorkbenchFeedback,RetentionRecovery,DepartureGuard,ProjectDiagnostics}.tsx`. Feedback places safety/recovery outside hidden browse/inspect panes. Command and departure authority remain in Workbench. |
+| Creation | `App/components/TokensWorkbench/components/CreationDialog/CreationDialog.tsx`, `hooks/useCreationForm.ts`, `helpers/naming-preview.ts`. Workbench remains the hook caller; raw form and reviewed-baseline state do not depend on responsive surfaces. |
+| Inspector | `App/components/TokensWorkbench/components/WorkbenchInspector/WorkbenchInspector.tsx` retains the stable shell/fallback. Private `components/InspectorHeader.tsx`, `TokenValueComparison.tsx` and `GroupInspector/GroupInspector.tsx` retain read-only rendering. |
+| Token editor | `App/components/TokensWorkbench/components/WorkbenchInspector/components/TokenEditor/TokenEditor.tsx` is the sole `hooks/useTokenEditor.ts` caller. Its key remains `[selection.id, editorVersion]`. Private rendering stays under `components/`; pure session transforms under `state/editor-session.ts`; shared editor helpers under `helpers/{integer-rgb,editor-failure}.ts`. ColorEditor owns `components/ColorEditor/helpers/visual-range.ts`. |
+| Token display | Within `App/components/TokensWorkbench/`: `components/{AuthoredValue,TokenSwatch}.tsx` serve workspace and inspector; color/identity/source helpers live in `helpers/`. `components/WorkbenchInspector/components/ExactSource.tsx` serves token/group inspection; `TokenEditor/components/{TokenMetadata,ResolvedTokenPanel}.tsx` stay private to the editor. ExactSource retains lazy revision-scoped source requests and bounded local scrolling. The legacy TokenList remains test support only. |
 
 Responsive presentation changes visibility at 1120/880 CSS px without reparenting
 or cloning the editor. Back/reopen, drawer and collapse add no session reset reason.
@@ -107,8 +107,8 @@ src/presentation/App/
     │   ├── ProjectsWorkbench.tsx
     │   ├── components/
     │   └── hooks/
-    ├── TokenWorkbench/
-    │   ├── TokenWorkbench.tsx
+    ├── TokensWorkbench/
+    │   ├── TokensWorkbench.tsx
     │   ├── components/
     │   ├── helpers/
     │   └── hooks/
@@ -128,7 +128,7 @@ the preceding organisation; the ownership table records current paths.
 
 ## Shared layout extraction — Increment 013
 
-ProjectsWorkbench and TokenWorkbench both compose WorkbenchLayout. ApplicationShell
+ProjectsWorkbench and TokensWorkbench both compose WorkbenchLayout. ApplicationShell
 remains the frame owner used by that shared layout. Pane semantics, scroll refs,
 Projects wide 28px padding and token wide 24px padding stay with their existing
 roots/styles. Feedback remains before the token body and after the Projects body;
@@ -141,8 +141,8 @@ limits belong to the [013 contract](../increments/013-shared-workbench-layout.md
 ## Token display ownership — 16 November 2026
 
 All production consumers of the former presentation-level `token-display/` folder
-are inside TokenWorkbench. The user requested distributing its ten files to their
-actual owners under `App/components/TokenWorkbench/`:
+are inside TokensWorkbench. The user requested distributing its ten files to their
+actual owners under `App/components/TokensWorkbench/`:
 
 - `components/{AuthoredValue,TokenSwatch}.tsx` are shared by workspace and inspector.
 - `helpers/{authored-color,color-preview,resolved-color,identity-labels,read-exact-source}.ts`
@@ -156,3 +156,12 @@ The empty `token-display/` wrapper is removed. Tests and test-support imports fo
 these paths. This is a path/import change: authored values, preview behavior,
 resolution displays, source retrieval and mounted component/session behavior are
 unchanged. Earlier dated placement records above preserve their historical paths.
+
+
+## Plural workbench naming — 16 November 2026
+
+The user requested `TokensWorkbench/` with entry file `TokensWorkbench.tsx` and
+exported component TokensWorkbench, matching ProjectsWorkbench. All owned files
+remain within the renamed subtree; consumers and current documentation follow
+the plural name. This is a name/path/import change with no behavior or state
+ownership change. Earlier increment evidence retains the original singular name.

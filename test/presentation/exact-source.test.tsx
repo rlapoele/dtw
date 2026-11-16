@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from "vitest";
-import { readExactSource } from "@presentation/App/components/TokenWorkbench/helpers/read-exact-source";
+import { readExactSource } from "@presentation/App/components/TokensWorkbench/helpers/read-exact-source";
 import type { WorkbenchHost } from "@hosts/browser/protocol";
 afterEach(() => vi.unstubAllGlobals());
 it("assembles exact code units across an 8192-unit surrogate boundary without a partial-success source", async () => {

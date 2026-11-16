@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { authoredColorCoordinates } from "@presentation/App/components/TokenWorkbench/helpers/authored-color";
+import { authoredColorCoordinates } from "@presentation/App/components/TokensWorkbench/helpers/authored-color";
 import { createColorLiteral } from "@domain/color-literal";
 
 describe("readable authored coordinates", () => {

@@ -94,8 +94,8 @@ existing calculation boundary. No preview calls Culori or writes display coordin
 back into tokens. See the [current preview policy](../increments/003-color-policy-proposal.md#preview-policy).
 
 **Current implementation ownership — 16 November 2026:** `App/App.tsx` owns the
-catalogue/Projects context and host lifetime; `App/components/TokenWorkbench/TokenWorkbench.tsx` coordinates the open project. Their
-component names are `App`, `ProjectsWorkbench` and `TokenWorkbench`. The transitional `Retained` prefix was
+catalogue/Projects context and host lifetime; `App/components/TokensWorkbench/TokensWorkbench.tsx` coordinates the open project. Their
+component names are `App`, `ProjectsWorkbench` and `TokensWorkbench`. The transitional `Retained` prefix was
 removed after retiring the earlier session-only implementation; historical snapshots
 and evidence retain their original filenames. `src/application/retention/` owns host-independent retention,
 codec, candidate and projection operations; `src/adapters/browser/` owns native storage
@@ -584,7 +584,7 @@ App. Earlier dated implementation sections retain their historical paths; the
 
 The user approved nesting both screen subtrees under `src/presentation/App/components/`.
 Projects is now `App/components/ProjectsWorkbench/ProjectsWorkbench.tsx`; Workbench is
-`App/components/TokenWorkbench/TokenWorkbench.tsx`. Each retains its existing components,
+`App/components/TokensWorkbench/TokensWorkbench.tsx`. Each retains its existing components,
 hooks and helpers. App still calls useProjects unconditionally and owns host/page
 context and restore sequencing. This filesystem move adds no React wrapper and
 changes no editor key, mounted ancestry, hook execution or session lifetime.
@@ -598,7 +598,7 @@ historical source locations.
 ## Shared workbench layout — Increment 013, 16 November 2026
 
 `App/components/ProjectsWorkbench/ProjectsWorkbench.tsx` and
-`App/components/TokenWorkbench/TokenWorkbench.tsx` use the shared
+`App/components/TokensWorkbench/TokensWorkbench.tsx` use the shared
 `App/components/WorkbenchLayout/WorkbenchLayout.tsx`, which reuses ApplicationShell.
 Explicit content slots supply real pane roots without added pane wrappers; shared
 geometry retains the existing two/three-column modes and controlled collapse.
@@ -606,7 +606,7 @@ geometry retains the existing two/three-column modes and controlled collapse.
 thresholds, with cleanup and no initial resize-policy execution. Each screen layout
 hook still owns focus/modal/surface policy; Projects responds only to 880 changes.
 App retains host, unconditional useProjects, catalogue/page context and restore refs
-and sequencing. TokenWorkbench retains its project key and one keyed TokenEditor
+and sequencing. TokensWorkbench retains its project key and one keyed TokenEditor
 in a stable slot across responsive modes. No application/domain/host authority moves
 into the shared layout. See the [013 contract](../increments/013-shared-workbench-layout.md).
 
@@ -614,8 +614,8 @@ into the shared layout. See the [013 contract](../increments/013-shared-workbenc
 ## Token display ownership — 16 November 2026
 
 The user approved distributing all ten former `src/presentation/token-display/`
-files within TokenWorkbench, their sole production consumer. Common value/swatch
-components live in `App/components/TokenWorkbench/components/`; the five color,
+files within TokensWorkbench, their sole production consumer. Common value/swatch
+components live in `App/components/TokensWorkbench/components/`; the five color,
 identity and source helpers live in its `helpers/`. ExactSource is shared at
 `components/WorkbenchInspector/components/`; TokenMetadata and ResolvedTokenPanel
 are private to that inspector's TokenEditor/components. The
@@ -628,3 +628,12 @@ validation/resolution and application commands. Source assembly still uses the
 host protocol. No editor key, hook caller, rendered tree, host, storage or domain
 behavior changes. Earlier dated references to top-level token-display describe
 preceding implementation snapshots.
+
+
+## Plural workbench naming — 16 November 2026
+
+The user selected TokensWorkbench to match ProjectsWorkbench. The current token
+screen is `src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx`,
+exporting TokensWorkbench. Only the screen name, folder/file paths and references
+change; hooks, editor/session lifetimes and dependency boundaries are preserved.
+Recorded Increment 013 agreements/evidence retain their original singular name.

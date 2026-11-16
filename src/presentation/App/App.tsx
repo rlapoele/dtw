@@ -10,7 +10,7 @@ import { DialogContent } from "@presentation/ui/dialog-content";
 
 import { RestoreDialog } from "@presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog";
 
-import { TokenWorkbench } from "@presentation/App/components/TokenWorkbench/TokenWorkbench";
+import { TokensWorkbench } from "@presentation/App/components/TokensWorkbench/TokensWorkbench";
 
 import { WorkerWorkbenchHost } from "@hosts/browser/worker-client";
 import type { WorkbenchHost } from "@hosts/browser/protocol";
@@ -72,7 +72,7 @@ export function App({
   }, [entries]);
   if (project && host.current)
     return (
-      <TokenWorkbench
+      <TokensWorkbench
         key={project.project.id}
         onProject={(id) => void open(id)}
         host={host.current}

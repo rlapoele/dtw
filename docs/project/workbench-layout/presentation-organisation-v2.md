@@ -48,6 +48,13 @@ inside TokenWorkbench. This supersedes the top-level token-display placement bel
 the [current ownership map](../workbench-component-organisation.md#token-display-ownership--16-november-2026)
 records shared workbench helpers/components and inspector/editor-private components.
 
+## Later plural screen naming — 16 November 2026
+
+The current token screen is `App/components/TokensWorkbench/TokensWorkbench.tsx`,
+renamed from TokenWorkbench to match ProjectsWorkbench. See the
+[current ownership map](../workbench-component-organisation.md#plural-workbench-naming--16-november-2026).
+Dated proposal trees and review evidence retain their original names.
+
 ## Organisation principle
 
 Keep a component’s entry file at its named folder’s root. Group its supporting

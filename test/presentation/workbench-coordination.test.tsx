@@ -49,9 +49,9 @@ vi.mock("react", async (original) => {
   };
 });
 import { useProjects } from "@presentation/App/components/ProjectsWorkbench/hooks/useProjects";
-import { useProjectReadback } from "@presentation/App/components/TokenWorkbench/hooks/useProjectReadback";
-import { useProjectCommands } from "@presentation/App/components/TokenWorkbench/hooks/useProjectCommands";
-import { useCreationForm } from "@presentation/App/components/TokenWorkbench/components/CreationDialog/hooks/useCreationForm";
+import { useProjectReadback } from "@presentation/App/components/TokensWorkbench/hooks/useProjectReadback";
+import { useProjectCommands } from "@presentation/App/components/TokensWorkbench/hooks/useProjectCommands";
+import { useCreationForm } from "@presentation/App/components/TokensWorkbench/components/CreationDialog/hooks/useCreationForm";
 import { useBackupRestore, restoreProtectionReducer } from "@presentation/App/components/ProjectsWorkbench/components/RestoreDialog/hooks/useBackupRestore";
 import type {
   ProjectHeader,
@@ -305,10 +305,10 @@ it("invalidates replacement acknowledgement whenever protected revision changes"
 
 it("preserves dirty raw editor channels across baseline refresh and resets only on Cancel", async () => {
   const { useTokenEditor } = await import(
-    "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/hooks/useTokenEditor"
+    "@presentation/App/components/TokensWorkbench/components/WorkbenchInspector/components/TokenEditor/hooks/useTokenEditor"
   );
   const { editComponent } = await import(
-    "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session"
+    "@presentation/App/components/TokensWorkbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session"
   );
   const { createColorLiteral } = await import("@domain/color-literal");
   let revision = "r1";
@@ -489,7 +489,7 @@ it("restore preview blocks open, create, stage and selected backup", async () =>
 });
 
 it("keeps one responsive surface state, follows pane focus, and yields to modal focus", async () => {
-  const { useWorkbenchLayout } = await import("@presentation/App/components/TokenWorkbench/hooks/useWorkbenchLayout");
+  const { useWorkbenchLayout } = await import("@presentation/App/components/TokensWorkbench/hooks/useWorkbenchLayout");
   const listeners = new Map<string, () => void>();
   const media = new Map<string, { matches: boolean; addEventListener: any; removeEventListener: any }>();
   vi.stubGlobal("window", { innerWidth: 1440 });
@@ -528,7 +528,7 @@ it("keeps one responsive surface state, follows pane focus, and yields to modal 
 it("disposes App restore preview before the authorized completion opens through the guarded project owner", async () => {
   const persist = vi.fn(async () => true);
   const { App } = await import("@presentation/App/App");
-  const { TokenWorkbench } = await import("@presentation/App/components/TokenWorkbench/TokenWorkbench");
+  const { TokensWorkbench } = await import("@presentation/App/components/TokensWorkbench/TokensWorkbench");
   vi.stubGlobal("navigator", { storage: { persisted: async () => false, persist } });
   vi.stubGlobal("addEventListener", vi.fn());
   vi.stubGlobal("removeEventListener", vi.fn());
@@ -553,7 +553,7 @@ it("disposes App restore preview before the authorized completion opens through 
   page = render(app); effects();
   await Promise.resolve(); await Promise.resolve();
   page = render(app);
-  expect(page.type).toBe(TokenWorkbench);
+  expect(page.type).toBe(TokensWorkbench);
   expect(page.props.initial).toBe(header);
   expect(persist).not.toHaveBeenCalled();
   expect(vi.mocked(service.call).mock.calls.filter(([operation]) => operation === "openProject")).toHaveLength(1);

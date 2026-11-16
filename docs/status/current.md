@@ -9,9 +9,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Plural workbench naming — 16 November 2026
+
+The user requested TokensWorkbench to match ProjectsWorkbench. The folder,
+entry file/exported component and consumer imports use the plural name; the
+[ownership map](../project/workbench-component-organisation.md#plural-workbench-naming--16-november-2026)
+records the decision. This is naming-only maintenance; state/session ownership
+and prior qualification gaps/stopping decisions remain unchanged. Leave staging,
+committing and pushing to the user. Production build/all typecheck scopes, the
+nested presentation config and all152 presentation tests passed. Source/test
+comparison confirmed only approved names/imports changed. An isolated temporary
+Git index detected all53 renames, exact destination casing and no old folder; the
+real index remains untouched. No browser qualification was performed.
+
 ## Token display ownership — 16 November 2026
 
-The user authorized moving the ten token-display files into TokenWorkbench at
+The user authorized moving the ten token-display files into TokensWorkbench at
 their proposed owners: shared helpers/value/swatch components, inspector-shared
 ExactSource, and editor-private metadata/resolution panels. Imports and current
 documentation follow those paths; the empty top-level token-display folder is
@@ -26,7 +39,7 @@ qualification was performed. Leave staging/committing/pushing to the user.
 ## Shared workbench layout — Increment 013
 
 The user approved the shared structure and authorized implementation. ProjectsWorkbench
-and TokenWorkbench now use WorkbenchLayout under `App/components/`. The layout
+and TokensWorkbench now use WorkbenchLayout under `App/components/`. The layout
 reuses ApplicationShell, arranges explicit slots without pane wrappers and shares
 1120/880 viewport observation. Screen hooks retain focus/surface policy; App retains
 unconditional useProjects and host/page/restore context. Command/editor logic, keys,
