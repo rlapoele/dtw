@@ -5,7 +5,7 @@ import type {
   SelectedToken,
 } from "@application/retention/projections";
 import type { DiagnosticDisplay } from "@application/retention/diagnostics";
-import type { ProjectHeader, WorkbenchHost } from "@presentation/host/protocol";
+import type { ProjectHeader, WorkbenchHost } from "@hosts/browser/protocol";
 export type Selection = { kind: "token" | "group"; id: string } | null;
 export function useProjectReadback(
   host: WorkbenchHost,

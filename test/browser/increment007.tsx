@@ -3,7 +3,7 @@ import { encodeBackup } from "@application/retention/codec";
 // Controlled-state fixture of the actual retained application and native worker.
 import { createRoot } from "react-dom/client";
 import { App } from "@presentation/App/App";
-import { WorkerWorkbenchHost } from "@presentation/host/worker-client";
+import { WorkerWorkbenchHost } from "@hosts/browser/worker-client";
 import "@presentation/styles/global.css";
 const workers: Worker[] = [];
 const controls = document.createElement("aside");

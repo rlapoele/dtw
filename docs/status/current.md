@@ -8,6 +8,21 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Browser host reorganisation — 16 November 2026
+
+The user approved and authorized the reviewed placement proposal. Browser worker
+entry/runtime/client, protocol/validation and backup-file effects now live under
+`src/hosts/browser/`; source-display assembly lives under
+`presentation/token-display/helpers/read-exact-source.ts`. Imports, shared aliases,
+TypeScript scopes and current documentation follow the new structure. The
+[architecture decision](../project/architecture.md#browser-host-placement--16-november-2026)
+records responsibilities and retained coupling. Production build/all four
+typecheck scopes, the nested presentation config and 50 focused tests passed.
+Seven host files are byte-identical; source assembly changed only its protocol
+import. The worker URL regression assertion now checks the new location. No browser
+runtime qualification was performed. Earlier acceptance gaps and qualification
+stopping decisions remain unchanged. Leave staging/committing/pushing to the user.
+
 ## App folder reorganisation — 16 November 2026
 
 The user requested `App/` casing and moved ApplicationHeader/ApplicationShell to
@@ -17,8 +32,8 @@ records the decision. This is path-only maintenance; earlier qualification
 campaigns and acceptance gaps remain unchanged. Production build (including all
 typechecks) and 32 affected presentation tests passed; source moves/imports and
 Markdown changes were checked. No browser qualification was restarted.
-The physical folder is `App/`; Git still records the pre-existing lowercase
-`app/` paths until the user stages the case-only rename.
+The user subsequently recorded the case-only rename in Git and confirmed that
+the IDE casing error was resolved.
 
 ## Latest focused fix
 

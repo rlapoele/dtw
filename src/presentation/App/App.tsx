@@ -1,6 +1,6 @@
-import { readBackupFile } from "@presentation/host/backup-file";
+import { readBackupFile } from "@hosts/browser/backup-file";
 import { useEffect, useRef, useState } from "react";
-import type { RestorePreview } from "@presentation/host/protocol";
+import type { RestorePreview } from "@hosts/browser/protocol";
 import { useWorkbenchHost } from "@presentation/App/hooks/useWorkbenchHost";
 import { useStoragePersistence } from "@presentation/App/hooks/useStoragePersistence";
 import { useProjects } from "@presentation/projects/hooks/useProjects";
@@ -12,8 +12,8 @@ import { RestoreDialog } from "@presentation/project-backup/components/RestoreDi
 
 import { Workbench } from "@presentation/Workbench/Workbench";
 
-import { WorkerWorkbenchHost } from "@presentation/host/worker-client";
-import type { WorkbenchHost } from "@presentation/host/protocol";
+import { WorkerWorkbenchHost } from "@hosts/browser/worker-client";
+import type { WorkbenchHost } from "@hosts/browser/protocol";
 
 import { Button } from "@presentation/ui/button";
 import type { ProjectsView } from "@presentation/projects/hooks/useProjectsLayout";

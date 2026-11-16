@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Dispatch, SetStateAction, RefObject, MutableRefObject } from "react";
 import type { HistoryDirection, HistoryState } from "@application/retention/history";
 import type { ProjectContext } from "@application/retention/projections";
-import type { ProjectHeader, PublicAcceptance } from "@presentation/host/protocol";
+import type { ProjectHeader, PublicAcceptance } from "@hosts/browser/protocol";
 import type { Selection } from "./useProjectReadback";
 import type { BrowserView } from "../helpers/workspace-view";
 import { historyShortcut, ownsHistoryShortcut } from "../helpers/history-shortcuts";

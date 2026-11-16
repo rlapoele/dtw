@@ -1,7 +1,7 @@
 // Test-only worker, never imported by the production entry. All retained writes
 // still use the real native adapter, codec/service and production worker protocol.
 import { BrowserRetention } from "@adapters/browser/indexeddb-retention";
-import { installWorkbenchWorker } from "@presentation/host/worker-runtime";
+import { installWorkbenchWorker } from "@hosts/browser/worker-runtime";
 import type { CommitOutcome, WriteAttempt } from "@application/retention/ports";
 type Mode =
   | "normal"

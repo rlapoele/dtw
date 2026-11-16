@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import type { WorkbenchHost } from "@presentation/host/protocol";
+import type { WorkbenchHost } from "@hosts/browser/protocol";
 /** Own the host lifetime; reset is explicit after leaving an unknown result. */
 export function useWorkbenchHost(createHost: () => WorkbenchHost) {
   const host = useRef<WorkbenchHost | undefined>(undefined);

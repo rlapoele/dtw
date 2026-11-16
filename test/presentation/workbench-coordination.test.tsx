@@ -57,7 +57,7 @@ import type {
   ProjectHeader,
   WorkbenchHost,
   PublicAcceptance,
-} from "@presentation/host/protocol";
+} from "@hosts/browser/protocol";
 import type { SelectedToken } from "@application/retention/projections";
 function render<T>(hook: () => T) {
   runtime.cursor = 0;

@@ -1,13 +1,13 @@
 # Workbench component organisation
 
 Current implementation ownership through Increment 012, with the user-requested
-App folder reorganisation of 16 November 2026.
+App and browser-host folder reorganisations of 16 November 2026.
 012 implementation and independent review are finished; acceptance gaps remain
 in its increment record. This map records source ownership, not acceptance. The agreed
 [owner-first V2 tree](workbench-layout/presentation-organisation-v2.md) supplies the
 target structure, with the App placement refinement recorded below. Runtime evidence and remaining acceptance belong to the
 [increment contract](../increments/011-responsive-shell.md), not this path map.
-Paths below are relative to `src/presentation/`.
+Paths below are relative to `src/presentation/` unless explicitly rooted at `src/`.
 
 | Owner | Components, state and lifetime |
 | --- | --- |
@@ -15,7 +15,7 @@ Paths below are relative to `src/presentation/`.
 | App and host | `App/App.tsx` unconditionally calls `App/hooks/useWorkbenchHost.ts` and `projects/hooks/useProjects.ts` before the page branch. `App/hooks/useStoragePersistence.ts` owns the advisory browser persistence query, once-per-session automatic request and explicit retry across page branches; the native calls remain in `adapters/browser/storage-preference.ts`. App retains one host, restore file/preview refs, departure state and Projects selection/scroll/narrow-surface context across Workbench entry. Workbench remains keyed by project identity. |
 | Projects | `projects/ProjectsScreen.tsx` composes `components/{ProjectList,ProjectInspector,CreateProjectForm,ProjectRecovery}/` and calls `hooks/useProjectsLayout.ts` only while mounted. `components/StorageProtection/StorageProtection.tsx` renders controlled status and gated conditional retry. ProjectList's private row is `components/ProjectList/components/ProjectListItem.tsx`. Selection is controlled by App, separate from the opened project. Layout owns mounted DOM refs/focus; it never opens or writes a project. |
 | Projects commands | `projects/hooks/useProjects.ts`, called by App, retains catalogue/open/create/unknown/retained state and exact name input. Selected backup captures a supported catalogue identity/revision, uses the existing download helper without opening, and refreshes stale facts without automatically retrying. Restore preview, pending, unknown and retained-result gates remain authoritative. Confirmed create acknowledgement notifies App independently of consume/readback/open; Projects only renders the owner’s storage status and retry. |
-| Restore | `project-backup/components/RestoreDialog/RestoreDialog.tsx` calls `hooks/useBackupRestore.ts` within that owner. App retains file/restaging references; the dialog retains revision protection, backup acknowledgement, staged/unknown recovery and completion. Confirmed retained restore notifies App at acceptance, separately from ordinary Open local. The former Workbench-only backup hook is removed. `host/backup-file.ts` still owns file/download effects. |
+| Restore | `project-backup/components/RestoreDialog/RestoreDialog.tsx` calls `hooks/useBackupRestore.ts` within that owner. App retains file/restaging references; the dialog retains revision protection, backup acknowledgement, staged/unknown recovery and completion. Confirmed retained restore notifies App at acceptance, separately from ordinary Open local. The former Workbench-only backup hook is removed. `src/hosts/browser/backup-file.ts` still owns file/download effects. |
 | Workbench coordination | `Workbench/Workbench.tsx` retains selection, view/query, dirty/departure, editor version and completion authority. It calls `hooks/{useProjectReadback,useProjectCommands,useWorkbenchLifecycle,useWorkbenchLayout}.ts` and CreationDialog's hook at the same lifetime. `helpers/workspace-view.ts` owns view/creation-parent mapping. `hooks/useWorkbenchHistory.ts`, called by Workbench, owns captured history intent, draft guard coordination, surviving-ID reconciliation and focus timing; `helpers/history-shortcuts.ts` owns pure shortcut eligibility. It supplies no snapshots or alternate command writer. |
 | Workbench shell | `Workbench/components/{WorkbenchHeader,WorkbenchStatus,WorkbenchNavigation}/` render controlled project context, compact status/disclosure and navigation. Header-private `WorkbenchHeader/components/HistoryControls.tsx` renders controlled history availability/actions and descriptions; labels switch at640 CSS px independently of pane modes. Only Projects is a project-management control. Navigation's private tree is `WorkbenchNavigation/components/NamespaceTree/NamespaceTree.tsx`. |
 | Workspace | `Workbench/components/TokenWorkspace/TokenWorkspace.tsx` composes `components/{WorkspaceToolbar,TokenTable,AllContent,SelectionBar}/`. AllContent's private helper is `AllContent/helpers/all-content.ts`. Token rows retain button semantics; narrow SelectionBar reopens the existing selected session even outside the query/scope. |
@@ -70,3 +70,12 @@ The user requested `App/` casing to match its named component owner and moved
 ApplicationHeader and ApplicationShell under `App/components/`. Both screens
 continue to consume these stateless application components. Generic controls
 remain in `ui/`; hook callers, state lifetimes and rendered ancestry are unchanged.
+
+
+## Browser host placement — 16 November 2026
+
+Worker entry/runtime/client, protocol and its validation, and backup-file effects now
+live under `src/hosts/browser/`, outside presentation. Source-display assembly lives
+in `token-display/helpers/read-exact-source.ts`. The [architecture decision](architecture.md#browser-host-placement--16-november-2026)
+records dependencies and preserved coupling. UI hook callers, session lifetimes,
+worker messaging/recovery and retained behavior are unchanged.

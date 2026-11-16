@@ -6,8 +6,8 @@ import type {
   ProjectHeader,
   PublicAcceptance,
   WorkbenchHost,
-} from "@presentation/host/protocol";
-import { UnknownWriteError } from "@presentation/host/worker-client";
+} from "@hosts/browser/protocol";
+import { UnknownWriteError } from "@hosts/browser/worker-client";
 export type CommandState = {
   busy: boolean;
   unknown?: Extract<PublicAcceptance, { status: "unknown" }>;

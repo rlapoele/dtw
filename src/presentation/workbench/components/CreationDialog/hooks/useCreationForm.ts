@@ -6,7 +6,7 @@ import type { AuthoringCommand } from "@application/retention/ports";
 import type {
   ProjectHeader,
   PublicAcceptance,
-} from "@presentation/host/protocol";
+} from "@hosts/browser/protocol";
 export type CreationState = {
   dialog: "token" | "group" | "rename" | null;
   name: string;

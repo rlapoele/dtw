@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   UnknownWriteError,
   WorkerWorkbenchHost,
-} from "@presentation/host/worker-client";
+} from "@hosts/browser/worker-client";
 class FakeWorker {
   static instances: FakeWorker[] = [];
   onmessage: ((event: { data: unknown }) => void) | null = null;
@@ -104,8 +104,9 @@ describe("actual host dispatch fence and client attempt identity", () => {
 
 it("keeps the Vite worker entry a relative TypeScript URL rather than a runtime alias", async () => {
   const { host, worker } = await fixture();
-  expect(worker.url.pathname).toMatch(/\/host\/workbench\.worker\.ts$/);
+  expect(worker.url.pathname).toMatch(/\/hosts\/browser\/workbench\.worker\.ts$/);
   expect(worker.url.pathname).not.toContain("@presentation");
+  expect(worker.url.pathname).not.toContain("@hosts");
   host.dispose();
 });
 

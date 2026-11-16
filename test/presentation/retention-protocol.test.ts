@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   validateHostInput,
   validateHostOutput,
-} from "@presentation/host/validation";
+} from "@hosts/browser/validation";
 describe("worker boundary closed operation contract", () => {
   it("rejects unknown members and wrong per-operation inputs", () => {
     expect(() => validateHostInput("consume", "")).toThrow();

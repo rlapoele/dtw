@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import type { WorkbenchHost, ProjectHeader } from "@presentation/host/protocol";
+import type { WorkbenchHost, ProjectHeader } from "@hosts/browser/protocol";
 /** Lifecycle recovery only. Authoring acceptance/readback keep their existing owners. */
 export function useWorkbenchLifecycle({
   host,

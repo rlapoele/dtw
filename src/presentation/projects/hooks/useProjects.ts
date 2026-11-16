@@ -1,12 +1,12 @@
-import { downloadProjectBackup, readBackupFile } from "@presentation/host/backup-file";
-import { UnknownWriteError } from "@presentation/host/worker-client";
+import { downloadProjectBackup, readBackupFile } from "@hosts/browser/backup-file";
+import { UnknownWriteError } from "@hosts/browser/worker-client";
 
-import type { PublicAcceptance } from "@presentation/host/protocol";
+import type { PublicAcceptance } from "@hosts/browser/protocol";
 
-import type { RestorePreview } from "@presentation/host/protocol";
+import type { RestorePreview } from "@hosts/browser/protocol";
 import { useEffect, useRef, useState } from "react";
 
-import type { WorkbenchHost, ProjectHeader } from "@presentation/host/protocol";
+import type { WorkbenchHost, ProjectHeader } from "@hosts/browser/protocol";
 import type { CatalogueEntry } from "@application/retention/ports";
 
 export function useProjects(

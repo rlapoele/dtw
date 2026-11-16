@@ -1,11 +1,11 @@
 import { useRef, useState, useEffect, useReducer } from "react";
 
-import { downloadProjectBackup } from "@presentation/host/backup-file";
+import { downloadProjectBackup } from "@hosts/browser/backup-file";
 import type {
   RestorePreview,
   WorkbenchHost,
   PublicAcceptance,
-} from "@presentation/host/protocol";
+} from "@hosts/browser/protocol";
 export type RestoreProtection = {
   protection: string | null;
   acknowledgement: boolean;

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { acceptanceProject } from "@tests/fixtures/acceptance-project";
 import { decodeBackup, encodeBackup } from "@application/retention/codec";
 import { selectedInspection } from "@application/retention/projections";
-import { validateHostOutput } from "@presentation/host/validation";
+import { validateHostOutput } from "@hosts/browser/validation";
 describe("preserved baseline authored fixture on the retained path", () => {
   it.each([false, true])(
     "roundtrips the baseline fixture with repairable diagnostics %s",

@@ -99,7 +99,7 @@ component names are `App` and `Workbench`. The transitional `Retained` prefix wa
 removed after retiring the earlier session-only implementation; historical snapshots
 and evidence retain their original filenames. `src/application/retention/` owns host-independent retention,
 codec, candidate and projection operations; `src/adapters/browser/` owns native storage
-adapters. `src/presentation/host/` owns the module-worker delivery entry, typed protocol
+adapters. `src/hosts/browser/` owns the module-worker delivery entry, typed protocol
 and renderer client. `tsconfig.worker.json` checks the WebWorker scope separately.
 Draft and form state remains renderer-local; applied snapshots are retained per browser
 profile/origin. Increment 007 was closed on 12 November 2026 following user-reported
@@ -124,7 +124,7 @@ application/domain, codec and browser storage boundaries remain unchanged. The
 records independent review and remaining acceptance gaps. Earlier dated path
 sections below describe their historical snapshots.
 
-**Source naming — 8 November 2026:** `src/presentation/` contains the React UI, styles, editor drafts and disposable browser previews; `src/application/` contains host-independent use-case coordination. The user approved renaming the former `delivery` folder to `presentation` for clarity, with the same dependency boundaries. Matching tests and UI type configuration use `test/presentation/` and `tsconfig.presentation.json`. The broader term “delivery surface” below also covers possible non-UI entry points such as CLI or MCP; those need not live under `presentation`. Source/test imports use `@domain`, `@application`, `@adapters`, `@presentation` and `@tests` mappings; these improve path clarity without permitting new dependencies between layers. TypeScript paths and shared Vite/Vitest aliases resolve the same folders. Build configuration is checked separately in `tsconfig.tools.json` with development-only Node types; domain/application checks and browser code retain their own host scopes.
+**Source naming — 8 November 2026:** `src/presentation/` contains the React UI, styles, editor drafts and disposable browser previews; `src/application/` contains host-independent use-case coordination. The user approved renaming the former `delivery` folder to `presentation` for clarity, with the same dependency boundaries. Matching tests and UI type configuration use `test/presentation/` and `tsconfig.presentation.json`. The broader term “delivery surface” below also covers possible non-UI entry points such as CLI or MCP; those need not live under `presentation`. Source/test imports use `@domain`, `@application`, `@adapters`, `@hosts`, `@presentation` and `@tests` mappings; these improve path clarity without permitting new dependencies between layers. TypeScript paths and shared Vite/Vitest aliases resolve the same folders. Build configuration is checked separately in `tsconfig.tools.json` with development-only Node types; domain/application checks and browser code retain their own host scopes.
 
 **Presentation ownership — Increment 004, 8 November 2026:** App retains application-operation coordination, draft/departure state, readback and focus policy. ProjectNavigation, TokenList and CreationDialog render their existing responsibilities; generic controls and dialog shells are locally owned under `src/presentation/ui/`, while workbench-specific components, tabs and swatches live under `src/presentation/features/workbench/components/`. Ordinary presentation uses Tailwind utilities and semantic palette roles. The stylesheet owns only the retained dense typography foundation, explicit responsive panel/precision geometry, modal/drawer effects, native slider pseudo-elements and illustrative checkerboards. These presentation components do not parse authored strings or reimplement token semantics.
 
@@ -541,3 +541,28 @@ remove the remaining `features/workbench/` wrapper and `workbench/readback` with
 changing Workbench's command authority, editor key/position, session lifetime or
 host/domain/application boundaries. This completes the agreed source organisation,
 not the functional roadmap or unverified native-browser acceptance.
+
+
+## Browser host placement — 16 November 2026
+
+The user approved separating browser execution from presentation. `src/hosts/browser/`
+owns the worker entry/runtime, renderer-side worker client, transport protocol and
+runtime validation, plus browser backup-file reading/download effects. The worker
+entry composes BrowserRetention with the runtime; application operations continue
+to consume RetentionPort. Protocol types remain at the host boundary because they
+include lifecycle operations, staged backup handles, source frames and transferred
+buffers. They do not become application-owned contracts through this move.
+
+`src/presentation/token-display/helpers/read-exact-source.ts` assembles source frames
+for display and yields through requestAnimationFrame. Storage implementations remain
+under `src/adapters/browser/`. Host code may consume application/domain code and
+infrastructure adapters; application/domain production code must not depend on hosts
+or presentation. Presentation consumes the host interface/client and browser file
+helpers; hosts do not import presentation.
+
+This is a placement/import/configuration change. Worker-runtime backup/session
+coordination and its concrete BrowserRetention parameter remain unchanged; any
+further extraction needs a separate assessment. Browser DOM and worker TypeScript
+scopes remain separately checked, with hosts excluded from the host-independent
+root file discovery. The shared `@hosts` alias resolves identically in TypeScript,
+Vite and Vitest. No package split or new dependency is introduced.

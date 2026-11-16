@@ -14,14 +14,14 @@ import { useProjectCommands } from "@presentation/Workbench/hooks/useProjectComm
 import { useCreationForm } from "@presentation/Workbench/components/CreationDialog/hooks/useCreationForm";
 import { useWorkbenchLayout } from "@presentation/Workbench/hooks/useWorkbenchLayout";
 
-import { readExactSource } from "@presentation/host/source";
+import { readExactSource } from "@presentation/token-display/helpers/read-exact-source";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { ApplicationShell } from "@presentation/App/components/ApplicationShell/ApplicationShell";
 import { WorkbenchFeedback } from "./components/WorkbenchRecovery/components/WorkbenchFeedback";
 import { SelectionBar } from "./components/TokenWorkspace/components/SelectionBar/SelectionBar";
 import type { ApplicationResult } from "@application/authoring";
 import type { Token } from "@domain/token";
-import type { ProjectHeader, WorkbenchHost } from "@presentation/host/protocol";
+import type { ProjectHeader, WorkbenchHost } from "@hosts/browser/protocol";
 import { Button } from "@presentation/ui/button";
 
 import { WorkbenchInspector } from "@presentation/Workbench/components/WorkbenchInspector/WorkbenchInspector";

@@ -18,6 +18,14 @@ below preserve the Increment 011 proposal; the [current ownership map](../workbe
 records the revised delivered paths. This supersedes the presentation-level
 `components/` placement below without changing component or state ownership.
 
+## Later browser host placement — 16 November 2026
+
+The user subsequently approved moving the browser execution boundary to
+`src/hosts/browser/` and source-display assembly to
+`src/presentation/token-display/helpers/read-exact-source.ts`. This supersedes
+`presentation/host/` in the dated tree below. See the
+[architecture decision](../architecture.md#browser-host-placement--16-november-2026).
+
 ## Organisation principle
 
 Keep a component’s entry file at its named folder’s root. Group its supporting

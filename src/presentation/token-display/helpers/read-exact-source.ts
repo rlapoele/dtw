@@ -1,4 +1,4 @@
-import type { WorkbenchHost } from "./protocol";
+import type { WorkbenchHost } from "@hosts/browser/protocol";
 /** Frames preserve UTF-16 code units, including split surrogate pairs. Only a
  * complete same-revision assembly becomes selectable document text. */
 export async function readExactSource(

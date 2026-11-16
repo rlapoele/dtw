@@ -7,7 +7,7 @@ import { namingPreview } from '@presentation/Workbench/components/CreationDialog
 import { creationParent } from '@presentation/Workbench/helpers/workspace-view';
 import { NamespaceTree } from '@presentation/Workbench/components/WorkbenchNavigation/components/NamespaceTree/NamespaceTree';
 import { membershipBlocks } from '@presentation/Workbench/components/TokenWorkspace/components/AllContent/helpers/all-content';
-import { readBackupFile } from '@presentation/host/backup-file';
+import { readBackupFile } from '@hosts/browser/backup-file';
 const snapshot=admitSnapshot({project:{id:'p',name:'Legacy'},groups:[{id:'g',projectId:'p',localName:'foundation',parentGroupId:null},{id:'conflicting-group',projectId:'p',localName:'BRAND Blue',parentGroupId:'g'}],tokens:[{id:'token-a-full-identity',projectId:'p',localName:'Brand\u00A0Blue',parentGroupId:'g',authoring:{regeneration:'allowed'}},{id:'token-b-full-identity',projectId:'p',localName:'Brand\u00A0Blue',parentGroupId:'g',authoring:{regeneration:'allowed'}},{id:'orphan-full-identity',projectId:'p',localName:'Orphan\u200DBlue',parentGroupId:'missing-parent',authoring:{regeneration:'allowed'}}]});
 const context=projectContext(snapshot);
 it('derives one active navigation and root creation from All content',()=>{

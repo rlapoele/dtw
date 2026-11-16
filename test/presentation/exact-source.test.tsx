@@ -1,6 +1,6 @@
 import { afterEach, expect, it, vi } from "vitest";
-import { readExactSource } from "@presentation/host/source";
-import type { WorkbenchHost } from "@presentation/host/protocol";
+import { readExactSource } from "@presentation/token-display/helpers/read-exact-source";
+import type { WorkbenchHost } from "@hosts/browser/protocol";
 afterEach(() => vi.unstubAllGlobals());
 it("assembles exact code units across an 8192-unit surrogate boundary without a partial-success source", async () => {
   vi.stubGlobal("requestAnimationFrame", (callback: () => void) => {

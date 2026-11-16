@@ -7,6 +7,7 @@ export const moduleAliases = {
   "@domain": fileURLToPath(new URL("./src/domain", import.meta.url)),
   "@application": fileURLToPath(new URL("./src/application", import.meta.url)),
   "@adapters": fileURLToPath(new URL("./src/adapters", import.meta.url)),
+  "@hosts": fileURLToPath(new URL("./src/hosts", import.meta.url)),
   "@presentation": fileURLToPath(new URL("./src/presentation", import.meta.url)),
   "@tests": fileURLToPath(new URL("./test", import.meta.url)),
 };

@@ -2,7 +2,7 @@ import { GroupInspector } from "@presentation/Workbench/components/WorkbenchInsp
 import { InspectorHeader } from "@presentation/Workbench/components/WorkbenchInspector/components/InspectorHeader";
 import type { Selection } from "@presentation/Workbench/hooks/useProjectReadback";
 import type { ProjectContext } from "@application/retention/projections";
-import type { ProjectHeader } from "@presentation/host/protocol";
+import type { ProjectHeader } from "@hosts/browser/protocol";
 import { Button } from "@presentation/ui/button";
 import type { RefObject, ReactNode } from "react";
 export function WorkbenchInspector({

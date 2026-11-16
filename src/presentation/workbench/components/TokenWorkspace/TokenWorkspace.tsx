@@ -7,7 +7,7 @@ import type {
   ProjectContext,
   DisplayRow,
 } from "@application/retention/projections";
-import type { ProjectHeader } from "@presentation/host/protocol";
+import type { ProjectHeader } from "@hosts/browser/protocol";
 import type { Selection } from "@presentation/Workbench/hooks/useProjectReadback";
 import type { ReactNode, RefObject } from "react";
 export function TokenWorkspace({

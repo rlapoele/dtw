@@ -55,7 +55,7 @@ describe("coherent display-only projections", () => {
 describe("bounded derived path projections", () => {
   for (const [length, count] of [[65536, 1], [60000, 70]]) {
     it(`keeps ${count} identities beneath a ${length}-unit group readable`, async () => {
-      const { validateHostOutput } = await import("@presentation/host/validation");
+      const { validateHostOutput } = await import("@hosts/browser/validation");
       const supported = admitSnapshot({
         project: { id: "p", name: "P" },
         groups: [{ id: "g", projectId: "p", localName: "x".repeat(length), parentGroupId: null }],
@@ -79,7 +79,7 @@ describe("bounded derived path projections", () => {
 });
 
 it("separates admitted authored maximum from bounded derived transport accounting", async () => {
-  const { validateHostOutput } = await import("@presentation/host/validation");
+  const { validateHostOutput } = await import("@hosts/browser/validation");
   const input = {project: {id: "p", name: "P"}, groups: Array.from({length:64}, (_, i) => ({id:`g${i}`, projectId:"p", localName:"g", parentGroupId:null, description:""})), tokens: []};
   const units = (value: unknown): number => typeof value === "string" ? value.length : !value || typeof value !== "object" ? 0 : Array.isArray(value) ? value.reduce((n, item) => n + units(item), 0) : Object.entries(value).reduce((n, [key, item]) => n + key.length + units(item), 0);
   let remaining = 4194304 - units(input);

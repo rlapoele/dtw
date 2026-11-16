@@ -7,7 +7,7 @@ import { Button } from "@presentation/ui/button";
 import type {
   RestorePreview,
   WorkbenchHost,
-} from "@presentation/host/protocol";
+} from "@hosts/browser/protocol";
 export function RestoreDialog({
   host,
   initial,
