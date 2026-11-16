@@ -113,7 +113,7 @@ browser policy. Earlier dated descriptions below describe their original increme
 under `presentation/App/components/` following the user-requested reorganisation
 of 16 November 2026; page-specific components use owner-level
 components/hooks/helpers/state categories. App still calls
-`projects/hooks/useProjects.ts` unconditionally; Workbench calls its coordination
+`Projects/hooks/useProjects.ts` unconditionally; Workbench calls its coordination
 hooks and the creation hook; TokenEditor remains the sole editor-session caller.
 Projects owns selection/explicit opening, revision-checked backup and restore
 entry points. App preserves Projects context and sequences restore completion
@@ -566,3 +566,15 @@ further extraction needs a separate assessment. Browser DOM and worker TypeScrip
 scopes remain separately checked, with hosts excluded from the host-independent
 root file discovery. The shared `@hosts` alias resolves identically in TypeScript,
 Vite and Vitest. No package split or new dependency is introduced.
+
+
+## Projects presentation placement — 16 November 2026
+
+The user approved `src/presentation/Projects/Projects.tsx` as the named Projects
+component, replacing `projects/ProjectsScreen.tsx`. RestoreDialog and its local hook
+now live under `Projects/components/RestoreDialog/`; the separate project-backup
+presentation wrapper is removed. App remains the caller of Projects/hooks/useProjects
+and instantiates RestoreDialog through the Projects restoreDialog prop. Host lifetime,
+backup file/preview refs, page context and restore completion sequencing remain in
+App. Earlier dated implementation sections retain their historical paths; the
+[current ownership map](workbench-component-organisation.md) records current placement.

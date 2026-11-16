@@ -3,12 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import type { RestorePreview } from "@hosts/browser/protocol";
 import { useWorkbenchHost } from "@presentation/App/hooks/useWorkbenchHost";
 import { useStoragePersistence } from "@presentation/App/hooks/useStoragePersistence";
-import { useProjects } from "@presentation/projects/hooks/useProjects";
+import { useProjects } from "@presentation/Projects/hooks/useProjects";
 
 import { Dialog } from "@base-ui/react/dialog";
 import { DialogContent } from "@presentation/ui/dialog-content";
 
-import { RestoreDialog } from "@presentation/project-backup/components/RestoreDialog/RestoreDialog";
+import { RestoreDialog } from "@presentation/Projects/components/RestoreDialog/RestoreDialog";
 
 import { Workbench } from "@presentation/Workbench/Workbench";
 
@@ -16,8 +16,8 @@ import { WorkerWorkbenchHost } from "@hosts/browser/worker-client";
 import type { WorkbenchHost } from "@hosts/browser/protocol";
 
 import { Button } from "@presentation/ui/button";
-import type { ProjectsView } from "@presentation/projects/hooks/useProjectsLayout";
-import { ProjectsScreen } from "@presentation/projects/ProjectsScreen";
+import type { ProjectsView } from "@presentation/Projects/hooks/useProjectsLayout";
+import { Projects } from "@presentation/Projects/Projects";
 
 export function App({
   createHost = () => new WorkerWorkbenchHost(),
@@ -81,7 +81,7 @@ export function App({
       />
     );
   return (
-    <ProjectsScreen
+    <Projects
       storageStatus={storage.status} onRetryStorage={storage.retry}
       view={projectsView} onView={setProjectsView} onDownload={entry => void download(entry)} backupFeedback={backupFeedback} hasPreview={!!preview}
       entries={entries}

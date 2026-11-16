@@ -1,11 +1,11 @@
 import { createElement, type ComponentProps } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { expect, it } from "vitest";
-import { ProjectsScreen } from "@presentation/projects/ProjectsScreen";
+import { Projects } from "@presentation/Projects/Projects";
 
-function screen(overrides: Partial<ComponentProps<typeof ProjectsScreen>> = {}) {
+function screen(overrides: Partial<ComponentProps<typeof Projects>> = {}) {
   const noop = () => undefined;
-  return renderToStaticMarkup(createElement(ProjectsScreen, {
+  return renderToStaticMarkup(createElement(Projects, {
     storageStatus: "checking", onRetryStorage: noop,
     view: { scroll: 0, surface: "browse" }, onView: noop, onDownload: noop, backupFeedback: "", hasPreview: false,
     entries: [], error: "", notice: "", name: "  Unfinished name  ",

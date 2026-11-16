@@ -8,6 +8,20 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Projects presentation reorganisation — 16 November 2026
+
+The user authorized `Projects/Projects.tsx` and moving RestoreDialog with its hook
+to `Projects/components/RestoreDialog/`. The project-backup wrapper is removed;
+imports and current documentation follow the new names. App retains the same
+hook calls, state lifetimes and restore orchestration. The
+[ownership map](../project/workbench-component-organisation.md#projects-placement-refinement--16-november-2026)
+records this placement decision. Earlier acceptance gaps and verification stopping
+decisions remain unchanged. Leave staging/committing/pushing to the user, including
+explicit recording of the projects-to-Projects case-only folder rename.
+Production build/all typecheck scopes, the nested presentation config and 39 focused
+tests passed. Moved files were compared with their originals: only approved names
+and imports changed. No browser runtime qualification was performed.
+
 ## Browser host reorganisation — 16 November 2026
 
 The user approved and authorized the reviewed placement proposal. Browser worker

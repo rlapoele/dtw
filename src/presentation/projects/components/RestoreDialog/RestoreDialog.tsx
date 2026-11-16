@@ -1,4 +1,4 @@
-import { useBackupRestore } from "@presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore";
+import { useBackupRestore } from "@presentation/Projects/components/RestoreDialog/hooks/useBackupRestore";
 
 import { Dialog } from "@base-ui/react/dialog";
 import { DialogContent } from "@presentation/ui/dialog-content";

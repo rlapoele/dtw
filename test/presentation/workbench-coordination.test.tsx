@@ -48,11 +48,11 @@ vi.mock("react", async (original) => {
     },
   };
 });
-import { useProjects } from "@presentation/projects/hooks/useProjects";
+import { useProjects } from "@presentation/Projects/hooks/useProjects";
 import { useProjectReadback } from "@presentation/Workbench/hooks/useProjectReadback";
 import { useProjectCommands } from "@presentation/Workbench/hooks/useProjectCommands";
 import { useCreationForm } from "@presentation/Workbench/components/CreationDialog/hooks/useCreationForm";
-import { useBackupRestore, restoreProtectionReducer } from "@presentation/project-backup/components/RestoreDialog/hooks/useBackupRestore";
+import { useBackupRestore, restoreProtectionReducer } from "@presentation/Projects/components/RestoreDialog/hooks/useBackupRestore";
 import type {
   ProjectHeader,
   WorkbenchHost,

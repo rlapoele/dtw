@@ -26,6 +26,14 @@ The user subsequently approved moving the browser execution boundary to
 `presentation/host/` in the dated tree below. See the
 [architecture decision](../architecture.md#browser-host-placement--16-november-2026).
 
+## Later Projects placement refinement — 16 November 2026
+
+The user subsequently requested `Projects/Projects.tsx` and placement of RestoreDialog
+with its hook under `Projects/components/RestoreDialog/`. This supersedes lowercase
+`projects/`, `ProjectsScreen.tsx` and the separate `project-backup/` wrapper in the
+dated tree below. App retains its hook calls and restore orchestration. See the
+[current ownership map](../workbench-component-organisation.md#projects-placement-refinement--16-november-2026).
+
 ## Organisation principle
 
 Keep a component’s entry file at its named folder’s root. Group its supporting

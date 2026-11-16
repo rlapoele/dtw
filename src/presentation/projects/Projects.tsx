@@ -7,11 +7,11 @@ import { ApplicationHeader } from "@presentation/App/components/ApplicationHeade
 import { ProjectInspector } from "./components/ProjectInspector/ProjectInspector";
 import { useProjectsLayout, type ProjectsView } from "./hooks/useProjectsLayout";
 import { Button } from "@presentation/ui/button";
-import { ProjectList } from "@presentation/projects/components/ProjectList/ProjectList";
-import { CreateProjectForm } from "@presentation/projects/components/CreateProjectForm/CreateProjectForm";
-import { ProjectRecovery } from "@presentation/projects/components/ProjectRecovery/ProjectRecovery";
+import { ProjectList } from "@presentation/Projects/components/ProjectList/ProjectList";
+import { CreateProjectForm } from "@presentation/Projects/components/CreateProjectForm/CreateProjectForm";
+import { ProjectRecovery } from "@presentation/Projects/components/ProjectRecovery/ProjectRecovery";
 
-export function ProjectsScreen({
+export function Projects({
   entries,
   storageStatus, onRetryStorage,
   view, onView, onDownload, backupFeedback, hasPreview,
