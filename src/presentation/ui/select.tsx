@@ -6,7 +6,7 @@ export function Select({ className, ...props }: ComponentProps<"select">) {
     <span className="select-control block relative w-full">
       <select
         {...props}
-        className={`native-select touch:min-h-11 appearance-none w-full min-w-0 h-10 min-h-10 rounded-md border-hairline border-input bg-background text-foreground pl-2.5 pr-9.5 text-xs/normal hover:border-control-hover ${className ?? ""}`}
+        className={`native-select  appearance-none w-full min-w-0 h-9 min-h-9 rounded-md border-hairline border-input bg-background text-foreground pl-2.5 pr-9.5 text-xs/normal small:text-base/normal hover:border-control-hover ${className ?? ""}`}
       />
       <Icon
         name="chevron-down"

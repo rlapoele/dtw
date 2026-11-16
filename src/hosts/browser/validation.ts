@@ -302,7 +302,10 @@ export function validateHostOutput(
   plainTree(output, { ...retentionLimits, strings: 8388608, values: 400000 });
   switch (operation) {
     case "historyState": {
-      const v = shape(output, [], ["undo", "redo", "notice"]);
+      const v = shape(output, ["undoCount", "redoCount"], ["undo", "redo", "notice"]);
+      for (const key of ["undoCount", "redoCount"]) {
+        if (!Number.isSafeInteger(v[key]) || (v[key] as number) < 0 || (v[key] as number) > 50) throw Error("Invalid history count");
+      }
       for (const direction of ["undo", "redo"]) if (v[direction]) {
         const action = shape(v[direction], ["id", "label"]); internal(action.id); text(action.label);
       }

@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef } from "react";
 import { TokenValueComparison } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenValueComparison";
 import { EditorActions } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditorActions";
 import { EditRecovery } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditRecovery";
@@ -56,23 +57,36 @@ export function TokenEditorContent({
     readOnly,
     targetUnavailable,
   } = editor;
+  const headingRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const heading = headingRef.current;
+    const scroller = heading?.closest<HTMLElement>(".inspector-content");
+    if (!heading || !scroller) return;
+    // The title may wrap, and root text can grow: reserve the actual sticky height.
+    const update = () => { scroller.style.scrollPaddingTop = `${heading.getBoundingClientRect().height + 8}px`; };
+    update();
+    const observer = new ResizeObserver(update); observer.observe(heading);
+    return () => { observer.disconnect(); scroller.style.scrollPaddingTop = ""; };
+  }, []);
   return (
     <aside
       className="inspector small:min-h-0 flex min-w-0 min-h-full flex-col bg-surface"
       aria-label="Selected token"
       hidden={readUnavailable}
     >
-      <div className="inspector-heading bg-surface p-6 touch:px-4 touch:py-5">
-        <span className="eyebrow uppercase text-muted-foreground font-semibold">
-          {token.definition?.type ?? "Unassigned"} token
-        </span>
-        <div className="flex flex-wrap items-start gap-3">
-        <h2 className="wrap-anywhere flex-1 basis-40 min-w-0 my-1 text-inspector font-semibold">
-          {tokenLabels.get(token.id) ??
-            (token.localName || "(unnamed original token)")}
-        </h2>
-        {editable && !targetUnavailable && <TokenValueComparison feedback={editor.feedback} />}
+      <div ref={headingRef} className="inspector-heading sticky top-0 z-10 bg-surface border-b-hairline border-border p-4">
+        <div className="flex items-start gap-2 min-w-0">
+          <div className="flex flex-wrap items-start gap-3 min-w-0 flex-1">
+            <div className="min-w-0 max-w-full">
+              <span className="eyebrow uppercase text-muted-foreground font-semibold">{token.definition?.type ?? "Unassigned"} token</span>
+              <h2 className="wrap-anywhere my-1 text-inspector font-semibold">{tokenLabels.get(token.id) ?? (token.localName || "(unnamed original token)")}</h2>
+            </div>
+            {editable && !targetUnavailable && <TokenValueComparison feedback={editor.feedback} />}
+          </div>
+          <span aria-hidden="true" className="size-9 shrink-0 touch:hidden" />
         </div>
+      </div>
+      <div className="px-6 pt-4 pb-5 touch:px-4">
         {token.description && (
           <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
             {token.description}
@@ -92,7 +106,7 @@ export function TokenEditorContent({
       </div>
       <Tabs.Root value={tab} onValueChange={setTab}>
         <TokenEditorTabs />
-        <Tabs.Panel value="authored" className="editor-body bg-surface p-3">
+        <Tabs.Panel value="authored" className="editor-body bg-surface p-6 touch:p-4">
           {targetUnavailable && (
             <p
               role="status"
@@ -266,7 +280,7 @@ export function TokenEditorContent({
             path={i.path}
           />
         </Tabs.Panel>
-        <Tabs.Panel value="resolved" className="editor-body bg-surface p-3">
+        <Tabs.Panel value="resolved" className="editor-body bg-surface p-6 touch:p-4">
           <ResolvedTokenPanel
             resolution={i.resolution}
             project={project}

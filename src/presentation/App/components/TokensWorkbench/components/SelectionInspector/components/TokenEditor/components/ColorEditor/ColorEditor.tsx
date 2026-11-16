@@ -177,7 +177,7 @@ export function ColorEditor({
               {available ? (
                 <>
                   <input
-                    className="component-range touch:min-h-11 small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground"
+                    className="component-range min-h-9 block h-9 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground"
                     type="range"
                     disabled={readOnly}
                     min={min}
@@ -209,7 +209,7 @@ export function ColorEditor({
               <Input
                 id={`color-component-${i}`}
                 readOnly={readOnly}
-                className="font-mono small:h-11 small:min-h-11"
+                className="font-mono"
                 value={value}
                 spellCheck={false}
                 aria-describedby={`range-note-${i} byte-note-${i} editor-error`}
@@ -244,7 +244,7 @@ export function ColorEditor({
         </label>
         {alphaRangeState === "available" ? (
           <input
-            className="component-range touch:min-h-11 small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range"
+            className="component-range min-h-9 block h-9 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range"
             type="range"
             disabled={readOnly}
             min="0"
@@ -270,7 +270,7 @@ export function ColorEditor({
         <Input
           id="color-alpha"
           readOnly={readOnly}
-          className="font-mono small:h-11 small:min-h-11"
+          className="font-mono"
           value={s.literal.alpha}
           aria-describedby="editor-error"
           onChange={(e) =>

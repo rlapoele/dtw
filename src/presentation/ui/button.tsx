@@ -9,19 +9,19 @@ const variants = {
   mode: "border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm",
 };
 const sizes = {
-  default: "h-8 px-3 justify-center gap-2 rounded-md",
-  history: "h-11 min-h-11 min-w-11 px-3 sm:h-8 sm:min-h-8 sm:min-w-0 justify-center gap-2 rounded-md",
+  default: "min-h-9 px-3 justify-center gap-2 rounded-md",
+  history: "min-h-9 min-w-9 px-0 sm:px-3 justify-center gap-2 rounded-md w-9 sm:w-auto",
   panel:
-    "h-8 px-3 justify-center gap-2 rounded-md source-compact:px-2.5 source-compact:text-caption",
-  navigation: "h-9 min-h-9 px-3 justify-start gap-2.5 rounded text-xs/normal",
+    "min-h-9 px-3 justify-center gap-2 rounded-md source-compact:px-2.5 source-compact:text-caption",
+  navigation: "min-h-9 px-3 justify-start gap-2.5 rounded text-xs/normal",
   group:
-    "h-auto min-h-11 pl-7 pr-3 py-2 justify-start gap-2.5 rounded text-xs/normal",
-  pane: "h-11 min-h-11 w-full px-4 justify-start gap-2 rounded-none text-caption border-b-border",
-  icon: "h-11 min-h-11 w-11 min-w-11 p-0 justify-center gap-2 rounded-md shrink-0",
-  mode: "h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none",
-  inventory: "h-auto min-h-11 w-full px-3 py-2 justify-start gap-2 rounded-md text-left whitespace-normal",
-  selection: "h-10 px-3 justify-center gap-2 rounded-md text-caption",
-  sm: "h-7 px-2 justify-center gap-2 rounded-md",
+    "h-auto min-h-9 pl-7 pr-3 py-2 justify-start gap-2.5 rounded text-xs/normal",
+  pane: "min-h-9 w-full px-4 justify-start gap-2 rounded-none text-caption border-b-border",
+  icon: "min-h-9 w-9 min-w-9 p-0 justify-center gap-2 rounded-md shrink-0",
+  mode: "min-h-9 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none",
+  inventory: "h-auto min-h-9 w-full px-3 py-2 justify-start gap-2 rounded-md text-left whitespace-normal",
+  selection: "min-h-9 px-3 justify-center gap-2 rounded-md text-caption",
+  sm: "min-h-9 px-2 justify-center gap-2 rounded-md",
 };
 
 export type ButtonProps = Primitive.Props & {
@@ -36,7 +36,7 @@ export function Button({
   size = "default",
   ...props
 }: ButtonProps) {
-  const owned = `button inline-flex items-center border-hairline text-caption font-medium disabled:opacity-45 disabled:cursor-default ${sizes[size]} touch:min-h-11 ${variants[variant]}`;
+  const owned = `button inline-flex items-center border-hairline text-caption font-medium disabled:opacity-45 disabled:cursor-default ${sizes[size]} ${variants[variant]}`;
   return (
     <Primitive
       {...props}

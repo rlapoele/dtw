@@ -53,7 +53,7 @@ export function TokenTable({
               </small>
               {row.type === "color" && (
                 <span className="block text-caption text-muted-foreground mt-2 wrap-anywhere">
-                  {hexPreview(row.preview)}
+                  <HexPreview source={row.preview} />
                 </span>
               )}
               {details.get(JSON.stringify(["token", row.id])) && (
@@ -79,6 +79,7 @@ export function TokenTable({
                 value={row.color}
                 project={context}
                 layout="compact"
+                approximate
               />
             ) : row.targetId !== undefined ? (
               <span className="block">
@@ -97,7 +98,7 @@ export function TokenTable({
         <div className="empty px-5 py-17.5 text-center text-muted-foreground">
           <h2 className="text-foreground text-base/normal">
             {query
-              ? "No matching colors"
+              ? "No matching tokens"
               : context.tokens.length
                 ? "This group is empty"
                 : "Your project is empty"}
@@ -105,7 +106,7 @@ export function TokenTable({
           <p className="text-xs/normal mt-2 mb-5">
             {query
               ? "Try another search or clear it to see this view."
-              : `Create a color token in ${creationParentLabel}.`}
+              : `Create a token in ${creationParentLabel}.`}
           </p>
           <Button onClick={onEmptyAction}>
             {query ? "Clear search" : "New token"}
@@ -114,4 +115,9 @@ export function TokenTable({
       )}
     </div>
   );
+}
+
+function HexPreview({source}: {source: DisplayRow["preview"]}) {
+  const detail = hexPreview(source);
+  return <span title={detail}><span aria-hidden="true">{detail.match(/#[0-9A-F]{6,8}/)?.[0] ?? "HEX unavailable"}</span><span className="sr-only">{detail}</span></span>;
 }

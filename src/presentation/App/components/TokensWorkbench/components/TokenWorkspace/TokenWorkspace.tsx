@@ -30,6 +30,7 @@ export function TokenWorkspace({
   dialog,
   onQuery,
   onCreateToken,
+  onCreateGroup,
   onRenameGroup,
   onAllContent,
   onReveal,
@@ -57,6 +58,7 @@ export function TokenWorkspace({
   dialog: string | null;
   onQuery: (query: string) => void;
   onCreateToken: () => void;
+  onCreateGroup: () => void;
   onRenameGroup: () => void;
   onAllContent: () => void;
   onReveal: () => void;
@@ -79,6 +81,7 @@ export function TokenWorkspace({
         query={query}
         onQuery={onQuery}
         onCreateToken={onCreateToken}
+        onCreateGroup={onCreateGroup}
         onRenameGroup={onRenameGroup}
       />
       {selectionBar}

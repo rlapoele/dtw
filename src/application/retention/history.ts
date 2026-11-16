@@ -2,7 +2,7 @@ import { utf8Bytes } from "./codec";
 import type { ProjectSnapshot } from "@application/project-storage";
 import type { CommandReceipt, WriteAttempt } from "./ports";
 export type HistoryAction = { readonly id: string; readonly label: string };
-export type HistoryState = { readonly undo?: HistoryAction; readonly redo?: HistoryAction; readonly notice?: string };
+export type HistoryState = { readonly undoCount: number; readonly redoCount: number; readonly undo?: HistoryAction; readonly redo?: HistoryAction; readonly notice?: string };
 export type HistoryDirection = "undo" | "redo";
 type State = { snapshot: ProjectSnapshot; text: string; bytes: number };
 type Step = HistoryAction & { before: State; after: State };
@@ -54,7 +54,7 @@ export function createSessionHistory(limits: {steps: number; bytes: number} = hi
     end() { clear(); baseline = undefined; },
     state(): HistoryState {
       const undo = next("undo"), redo = next("redo");
-      return {...(undo ? {undo: {id: undo.id, label: undo.label}} : {}), ...(redo ? {redo: {id: redo.id, label: redo.label}} : {}), ...(notice ? {notice} : {})};
+      return {undoCount: cursor, redoCount: steps.length - cursor, ...(undo ? {undo: {id: undo.id, label: undo.label}} : {}), ...(redo ? {redo: {id: redo.id, label: redo.label}} : {}), ...(notice ? {notice} : {})};
     },
     target(direction: HistoryDirection, projectId: string, incarnation: string, revision: string, stepId: string) {
       observe(projectId, incarnation, revision);

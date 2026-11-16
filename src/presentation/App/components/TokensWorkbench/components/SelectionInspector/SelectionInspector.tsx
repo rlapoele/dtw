@@ -33,7 +33,7 @@ export function SelectionInspector({
 }) {
   return (
     <section ref={surfaceRef} hidden={hidden} tabIndex={-1}
-      className="inspector-shell touch:border-l-0 small:border-t-hairline small:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l-hairline border-border bg-surface"
+      className="inspector-shell relative touch:border-l-0 small:border-t-hairline small:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l-hairline border-border bg-surface"
       aria-label="Inspector pane"
     >
       {back && <div className="p-3 border-b-hairline border-border"><Button onClick={back}>Back to tokens</Button></div>}

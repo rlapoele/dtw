@@ -122,7 +122,7 @@ it("fences a lost Undo issuer and reconciles its project-target identity without
   expect(recover.input).toEqual(original);
   replacement.reply(recover,{status:"retained",revision:original.revision,receipt:{commandId:original.commandId,operation:"undo",result:{entityKind:"project",id:"p"}},readback:"available"});
   expect((await checked).status).toBe("retained");
-  const history=host.call("historyState",{projectId:"p",revision:original.revision}); replacement.reply(replacement.messages.at(-1)!,{});
+  const history=host.call("historyState",{projectId:"p",revision:original.revision}); replacement.reply(replacement.messages.at(-1)!,{undoCount:0,redoCount:0});
   expect(await history).toMatchObject({notice:expect.stringContaining("Session restarted")});
   expect(FakeWorker.instances.flatMap(w=>w.messages).filter(m=>m.operation==="traverse")).toHaveLength(1);
   host.dispose();

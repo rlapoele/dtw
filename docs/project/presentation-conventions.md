@@ -189,7 +189,7 @@ WorkbenchLayout owns common composition and controlled two/three-column geometry
 using ApplicationShell. Supplied navigation/workspace/inspector slots retain their
 real semantic roots, refs and scroll containers. The scoped `.workbench` and
 `.projects-layout` CSS exceptions remain in `styles/global.css`; Projects retains
-1.75rem wide browse padding and Tokens 1.5rem, owned by their workspace components. Compact Tokens (below 1120px), narrow Projects (below 880px) and token editor headings (below 880px) retain 1.25rem vertical / 1rem horizontal padding. Pane grid formulas remain focused CSS; thresholds are unchanged.
+1.75rem wide browse padding and Tokens 1.5rem, owned by their workspace components. Compact Tokens (below 1120px) and narrow Projects (below 880px) retain 1.25rem vertical / 1rem horizontal padding. Increment 015 gives the compact sticky token heading 1rem padding; authored/resolved panels use 1.5rem, reduced to 1rem below 880px. Pane grid formulas remain focused CSS; thresholds are unchanged.
 Screen hooks retain focus, modal and surface policy; shared viewport observation
 does not run those policies on mount. See the [ownership map](workbench-component-organisation.md).
 
@@ -221,8 +221,12 @@ uses .125rem width/.1875rem offset; browser rasterization can quantize strokes.
 Viewport queries deliberately remain CSS px, synchronized with the observer;
 root font size is not fixed. SVG viewBox/stroke coordinates remain SVG units.
 
-Owned controls express the below 880px2.75rem minimum with `touch:min-h-11`,
-including history's 640–879px interval, native backup input and slider hit areas.
+Increment 015 supersedes the earlier mobile minimum: standard buttons, single-line
+inputs/selects, tabs and slider target areas use a 2.25rem baseline at every width.
+Icon actions are square; wrapped text/root scaling may grow controls without a
+maximum-height clamp. Content rows, textareas and exact source retain natural
+geometry. Checkbox labels provide the clickable area without stretching native glyphs.
+Native backup file controls share the target baseline.
 Track .75rem/thumb 1.125rem geometry remains separate. Ordinary workspace/modal
 padding and table viewport/container policy live at their component owners.
 ApplicationHeader owns wrapping/context order; its existing compactBrand state
@@ -238,3 +242,15 @@ and illustrative gradients remain at their current consumers. No component/state
 owners or mounted ancestry were moved. Confirmed unused `.project-start`,
 `.range-ends`, `.exact-data` and the statically positioned `.editor-actions`
 bottom offset were removed; EditorActions remains in its current owner.
+
+Increment 015 keeps sticky token identity/comparison at TokenEditorContent, with
+an actual-heading ResizeObserver measurement setting its existing scroller's
+scroll padding. This runtime geometry exception prevents wrapped titles and text
+scaling from obscuring focused editor content; it does not change session ownership.
+WorkspaceToolbar owns the focused two-column heading formula keeping actions
+together beside shrinkable identity text. The shared inspector toggle lives under
+SelectionInspector for token and fallback consumers. TokenEditor retains one toggle outside its hidden/scrolled content,
+positioned over the heading's reserved control space; collapsed rail positioning
+is a focused pane-geometry exception. The same button/icon remains mounted and
+visible across desktop collapse so focus and a continuous rotation can be retained.
+Native file-selector-button sizing remains a focused pseudo-element exception.

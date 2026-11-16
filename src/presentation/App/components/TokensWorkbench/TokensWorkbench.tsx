@@ -105,6 +105,7 @@ export function TokensWorkbench({
   );
   const panel = useRef<HTMLElement>(null),
     formError = useRef<HTMLParagraphElement>(null);
+  const authoringReturn = useRef<HTMLElement | null>(null);
   const {
     dialog,
     name,
@@ -132,6 +133,7 @@ export function TokensWorkbench({
     setError,
     setNotice,
     (kind, id) => {
+      authoringReturn.current = null;
       if (kind === "token") {
         setView({ kind: "all-tokens" });
         setQuery("");
@@ -176,6 +178,7 @@ export function TokensWorkbench({
   function open(kind: "token" | "group" | "rename") {
     if (lifecycleBlocked || !header.writable || readFailure || busy || unknown)
       return;
+    authoringReturn.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setNavigationOpen(false);
     request(() => {
       begin(kind);
@@ -349,6 +352,7 @@ export function TokensWorkbench({
           dialog={dialog}
           onQuery={setQuery}
           onCreateToken={() => open("token")}
+          onCreateGroup={() => open("group")}
           onRenameGroup={() => open("rename")}
           onAllContent={() => setView({ kind: "all-content" })}
           choose={choose}
@@ -484,7 +488,7 @@ export function TokensWorkbench({
         readFailure={readFailure}
         error={error}
         formError={formError}
-        finalFocus={() => panel.current}
+        finalFocus={() => authoringReturn.current?.isConnected && authoringReturn.current.getClientRects().length ? authoringReturn.current : panel.current}
         onClose={() => request(close)}
         onCreate={() => void create()}
         onNameChange={(value) => {

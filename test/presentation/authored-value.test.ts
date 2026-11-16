@@ -36,3 +36,19 @@ describe("compact authored coordinates", () => {
     expect(authoredColorCoordinates(createColorLiteral({ colorSpace, components, alpha: "0.37" }), "compact")).toEqual(expected);
   });
 });
+
+
+describe("row-only four-decimal approximation", () => {
+  it.each([
+    ["1.23445", "1.2345"], ["-1.23445", "-1.2345"],
+    ["9.99995", "10"], ["-0.000049", "0"], ["0.00005", "0.0001"],
+    ["1234567890123456789.12345", "1234567890123456789.1235"],
+    ["0.12", "0.12"], ["none", "none"],
+  ])("rounds %s to %s without binary precision loss", (source, expected) => {
+    const value = createColorLiteral({colorSpace: "oklab", components: ["0.5", source, "none"], alpha: "0.12345"});
+    expect(authoredColorCoordinates(value, "compact", true)[1]).toBe(`a: ${expected}`);
+    expect(authoredColorCoordinates(value, "compact", true)[3]).toBe("Alpha: 0.1235");
+    expect(authoredColorCoordinates(value)[1]).toBe(`a ${source}`);
+    expect(value.components[1]).toBe(source);
+  });
+});

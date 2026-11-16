@@ -40,14 +40,14 @@ export function useProjectCommands(
   setError: (message: string) => void,
   setNotice: (message: string) => void,
 ) {
-  const [history, setHistory] = useState<HistoryState>({});
+  const [history, setHistory] = useState<HistoryState>({undoCount: 0, redoCount: 0});
   const historyRead = useRef(0);
   async function refreshHistory() {
     const generation = ++historyRead.current;
     const baseline = current.current;
     try {
       const next = await host.call("historyState", {projectId: current.current.project.id, revision: current.current.revision});
-      if (generation === historyRead.current && current.current.revision === baseline.revision && current.current.incarnation === baseline.incarnation) setHistory(next ?? {});
+      if (generation === historyRead.current && current.current.revision === baseline.revision && current.current.incarnation === baseline.incarnation) setHistory(next ?? {undoCount: 0, redoCount: 0});
     } catch { /* Existing coherent read/recovery owns unavailable-state feedback. */ }
   }
   useEffect(() => { void refreshHistory(); }, [current.current.revision, current.current.incarnation, lifecycleBlocked]);

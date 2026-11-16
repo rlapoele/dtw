@@ -10,7 +10,7 @@ export function TokenValueComparison({ feedback }: { feedback: Feedback }) {
   return (
     <section
       className="inspector-feedback flex flex-wrap items-center gap-2 shrink-0 max-w-full"
-      aria-label="Applied and draft color context"
+      aria-label="Current and new color context"
     >
       {(
         ["applied", ...(feedback.tab === "resolved" ? [] : ["draft"])] as (
@@ -20,17 +20,17 @@ export function TokenValueComparison({ feedback }: { feedback: Feedback }) {
       ).map((kind) => (
         <div
           key={kind}
-          className="text-caption flex flex-col items-center w-16"
+          className="text-caption flex flex-col items-center max-w-full min-w-8.5"
         >
-          <span>{kind === "applied" ? "Applied" : "Draft"}</span>
+          <span>{kind === "applied" ? "Current" : "New"}</span>
           {feedback[kind] ? (
             <span
               aria-hidden="true"
-              className="header-specimen rounded border-hairline border-specimen-border block w-9 h-4"
+              className="header-specimen rounded border-hairline border-specimen-border block size-8.5 shrink-0"
               style={{ background: feedback[kind] }}
             />
           ) : (
-            <span>Unavailable</span>
+            <span className="size-8.5 swatch-unavailable rounded border-hairline border-specimen-border" title="Preview unavailable" aria-label="Preview unavailable" />
           )}
           <span className="sr-only">
             {

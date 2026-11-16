@@ -1,15 +1,11 @@
 # Workbench polish — design proposal V1.3
 
-**16 November 2026 · V1.3 approved for analyst review.** The user explicitly
-approved prototype V1.3 for analyst review on 16 November 2026. This is distinct
-from final contract/design agreement and implementation authorization, which
-remain pending. [Increment 015](../increments/015-workbench-browse-and-inspector-polish.md)
-owns the draft requirements and review record. Earlier iteration notes below
-preserve their historical status; V1.3 is the identified review artifact.
-
-The [V1.3 analyst source review](../increments/015-v1-3-analyst-review.md) is now
-complete: no required material visual revision was identified. The resulting
-AC-1–16 contract is ready for final agreement; implementation remains pending.
+**16 November 2026 · V1.3 agreed for implementation.** Following user-approved
+analyst review, the user agreed the updated Increment 015 contract and prototype
+V1.3 and authorized developer implementation followed by independent review.
+[Increment 015](../increments/015-workbench-browse-and-inspector-polish.md) owns the
+agreement and delivery record. Earlier iteration notes below preserve historical
+status; V1.3 is the identified agreed design.
 
 ## Requested revision — V1.3
 

@@ -149,3 +149,11 @@ it("validates closed project-target history calls and rejects renderer snapshots
   expect(() => validateHostOutput("traverse", input, {...output, receipt: {...output.receipt, result: {entityKind: "token", id: "removed"}}})).toThrow();
   expect(() => validateHostOutput("traverse", input, {status:"unchanged", revision:"r", reason:"no-op"})).toThrow();
 });
+
+it("validates true history counts across the typed worker boundary", () => {
+  const input = {projectId: "p", revision: "r"};
+  expect(() => validateHostOutput("historyState", input, {undoCount: 2, redoCount: 1})).not.toThrow();
+  for (const undoCount of [-1, 0.5, 51, "2", undefined]) {
+    expect(() => validateHostOutput("historyState", input, {undoCount, redoCount: 0})).toThrow();
+  }
+});

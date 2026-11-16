@@ -134,7 +134,7 @@
 /* Page-owned pane geometry preserves one mounted editor across modes. */
 .workbench { --groups-width: 13.25rem; --inspector-width: 25rem; grid-template-columns: var(--groups-width) minmax(0, 1fr) var(--inspector-width); }
 .groups-collapsed { --groups-width: 3.25rem; }
-.inspector-collapsed { --inspector-width: 3.25rem; }
+.inspector-collapsed { --inspector-width: 3rem; }
 .projects-layout { grid-template-columns: minmax(0, 1fr) 25rem; }
 .groups-collapsed .sidebar-toggle > span { display: none; }
 .inspector-collapsed .inspector-toggle { border-bottom: 0; }
@@ -151,6 +151,8 @@
 @media (min-width:880px) {
   .inspector-collapsed .inspector-region-title, .inspector-collapsed .inspector-feedback, .inspector-collapsed .inspector-header-status { display:none; }
   .inspector-collapsed .inspector-header { padding:0; justify-content:center; gap:0; }
+  /* One token toggle stays outside the hidden scroller; only its rail position changes. */
+  .inspector-collapsed .token-inspector-toggle { top:.375rem; right:.375rem; }
 }
 @media (max-width:879px) {
   .workbench.compact-navigation, .projects-layout { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr); }
@@ -241,3 +243,15 @@
 .exact-source { white-space: pre; overflow: auto; max-height: min(24rem, 50dvh); max-width: 100%; }
 /* Increment 007 staged ordinary rows keep native DOM/Find/accessibility order. */
 .token-row { content-visibility: auto; contain-intrinsic-size: auto 5rem; }
+
+/* Increment 015: history annotation is smaller than general control typography. */
+.history-count { font-size: .625rem; line-height: 1; }
+/* A narrow named icon action retains the same square target as shared icon buttons. */
+@media (max-width:639px) {
+  .workspace-create { width:2.25rem; min-width:2.25rem; padding-inline:0; }
+}
+/* Native file-button part shares the control baseline without stretching checkbox glyphs. */
+input[type="file"]::file-selector-button { min-height:2.25rem; }
+
+/* Workspace heading keeps its creation actions together alongside a shrinkable title. */
+.panel-header { grid-template-columns:minmax(0,1fr) auto; }

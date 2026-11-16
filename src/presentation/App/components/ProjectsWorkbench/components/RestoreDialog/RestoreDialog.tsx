@@ -170,9 +170,9 @@ export function RestoreDialog({
                 >
                   Download current local backup
                 </Button>
-                <label className="flex gap-3 items-start mt-4">
+                <label className="flex gap-3 items-start mt-4 min-h-9">
                   <input
-                    className="touch:min-h-11"
+                    className="mt-1"
                     type="checkbox"
                     checked={acknowledgement}
                     disabled={!protection || busy || unknown}

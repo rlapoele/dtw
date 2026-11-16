@@ -1,5 +1,4 @@
-import { Button } from "@presentation/ui/button";
-import { Icon } from "@presentation/ui/icon";
+import { InspectorToggle } from "./InspectorToggle";
 export function InspectorHeader({
   readFailure,
   targetUnavailable,
@@ -16,32 +15,13 @@ export function InspectorHeader({
   onToggle: () => void;
 }) {
   return (
-    <div className={`inspector-header border-b-hairline border-border bg-surface h-11 min-h-11 shrink-0 flex items-center min-w-0 ${inspectorExpanded ? "gap-2 pl-3" : "touch:gap-2 touch:pl-3"}`}>
-      <span className="inspector-region-title flex-1 text-caption leading-3.5 min-w-0 font-medium">
-        Inspector
-      </span>
-      {(readFailure || targetUnavailable || !editable || !selected) && (
-        <span className="inspector-header-status text-caption leading-4 text-muted-foreground">
-          {readFailure || targetUnavailable
-            ? "Unavailable"
-            : selected
-              ? "Inspection only"
-              : "Select content"}
+    <div className="inspector-header shrink-0 flex items-center justify-between gap-2 p-1.5 min-w-0">
+      {(readFailure || targetUnavailable || !editable || !selected) && inspectorExpanded && (
+        <span className="inspector-header-status text-caption text-muted-foreground wrap-anywhere">
+          {readFailure || targetUnavailable || (selected ? "Inspection only" : "Select content")}
         </span>
       )}
-      <Button
-        variant="ghost"
-        size="icon"
-        className="pane-toggle inspector-toggle"
-        aria-label={
-          inspectorExpanded ? "Collapse inspector" : "Expand inspector"
-        }
-        aria-expanded={inspectorExpanded}
-        aria-controls="token-inspector-content"
-        onClick={() => onToggle()}
-      >
-        <Icon name="chevron-down" />
-      </Button>
+      <InspectorToggle expanded={inspectorExpanded} onToggle={onToggle} />
     </div>
   );
 }

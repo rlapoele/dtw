@@ -2,36 +2,38 @@
 
 > Last updated: 16 November 2026
 >
-> Phase: Increment 014 completed, independently reviewed and user-accepted
-> on 16 November 2026; earlier qualification limits retained. Increment 013 implemented/reviewed;
+> Phase: Increment 015 completed and independently reviewed; Increment 014
+> completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Browse and inspector polish planning — 16 November 2026
+## Increment 015 completed and independently reviewed — 16 November 2026
 
-The user's 14 browser annotations and sticky token-heading addition are captured
-in [Increment 015's draft contract](../increments/015-workbench-browse-and-inspector-polish.md).
-A separate analyst prepared the draft and the user approved the designer's
-recommended direction on 16 November 2026. The designer then prepared
-[prototype V1.3](../project/workbench-polish-proposal-v1.md), including the sticky
-identity/comparison/control row, history badges and browse improvements. Isolated
-prototype build and coordinator Chrome checks at desktop/1090px/320px passed within
-the documented mock coverage; the proposal records evidence and limitations.
-The user requested that creation actions remain together at the top-right; V1.1
-implements this with named icon buttons below 640px and passed the focused
-1131/1090/640/320px placement check. The user then selected a 36px baseline for buttons and inputs across all screen
-sizes, superseding the 24px/44px iterations. V1.3 demonstrates this, with focused
-1090px/320px measurements and no document overflow. The user approved V1.3 for analyst review on 16 November 2026. The separate
-[analyst review](../increments/015-v1-3-analyst-review.md) completed against source
-baseline `07c73dff160809f485a70a8a0bbd9d78a3210acf`, reconciling control sizing,
-desktop/narrow inspector behavior and creation focus in AC-1–16. No required
-material design revision or remaining product decision was identified. Final
-contract/design agreement and explicit implementation authorization are pending.
-This review changed documentation only; no production/prototype code, new browser
-checks or earlier qualification limits changed. Leave staging/commits/pushes to
-the user.
+The user agreed the updated [Increment 015 contract and prototype V1.3](../increments/015-workbench-browse-and-inspector-polish.md)
+and authorized developer implementation followed by independent review. The
+[completion report](../increments/015-workbench-browse-and-inspector-polish.md#completion-report--16-november-2026)
+records delivered history count badges/hidden descriptions, concise HEX and rounded
+row-only summaries, generic search and workspace group creation, sticky Current/New
+inspector composition, and the 2.25rem control baseline across shared/current consumers.
+Exact authored/editor data and existing workflow ownership remain within recorded coverage.
+
+Developer R1 passed 87 focused tests and full typechecks/build, with representative
+Chrome desktop/narrow/enlarged-root evidence. Independent R1 review passed 38
+focused tests and found one AC-10 focus/animation defect. Developer correction R2
+keeps the same toggle mounted. Following explicit user authorization for one
+five-minute/zero-repair follow-up, the [independent R2 recheck](../../output/increment-015-implementation/reviewer-R2.md)
+verified keyboard focus/same-node retention, real normal/reduced-motion rotation,
+exact draft preservation, sticky heading and full build/typechecks. No actionable
+finding remains within the bounded review. Source hashes matched before/after.
+
+Verification stopped originally at about 18/30 minutes and 2/2 harness repairs;
+the separately authorized R2 follow-up used about two of five minutes and zero
+repairs, then stopped after passing. Earlier qualification limits remain explicit;
+no exhaustive WCAG/browser/recovery matrix or new manual acceptance is claimed.
+The application is ready for user review. Staging, committing and pushing remain
+with the user; no next increment or additional campaign is authorized.
 
 ## Variable WOFF2 font maintenance — 16 November 2026
 
@@ -355,15 +357,16 @@ changes are made to resolve it here.
 
 ## Next meaningful action
 
-Increment 014 is complete and user-accepted. The user stages/commits/pushes as
-desired, then selects the next work to scope. Earlier acceptance/qualification
-gaps remain in their owning increments; Increment 014 acceptance does not close
-them. No additional automated campaign or next increment is authorized.
+Review the delivered Increment 015 application and stage/commit/push as desired.
+Its agreed implementation and independent review are complete within the recorded
+scope; user manual acceptance is not inferred. Earlier qualification/acceptance
+gaps remain with their owning increments. No next increment or renewed campaign
+is authorized.
 
 ## Resume
 
 Read AGENTS.md, this handoff, actual Git state and the
-[Increment 014 completion/acceptance](../increments/014-neutral-geist-and-styling-ownership.md#completion-report--16-november-2026)
-before scoping further work. The [pre-closure snapshot](history/2026-11-15-increment-011-before-closure.md)
+[Increment 015 contract/design and authorization](../increments/015-workbench-browse-and-inspector-polish.md)
+before scoping further work or checking the delivered handoff. The [pre-closure snapshot](history/2026-11-15-increment-011-before-closure.md)
 preserves outgoing 011 detail. [README](../../README.md) owns current commands and
 limits; increment records own their agreements/evidence/acceptance gaps.

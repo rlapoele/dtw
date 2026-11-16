@@ -13,10 +13,12 @@ export function AuthoredValue({
   value,
   project,
   layout = "expanded",
+  approximate = false,
 }: {
   value: Value | undefined;
   project?: ProjectContext;
   layout?: "expanded" | "compact";
+  approximate?: boolean;
 }) {
   if (value?.kind === "token-reference") {
     const target = project?.tokens.find(
@@ -35,11 +37,13 @@ export function AuthoredValue({
   }
   if (value?.kind !== "literal" || value.valueType !== "color")
     return <span>{value?.kind ?? "No assignment"}</span>;
+  const detail = approximate ? `Rounded to at most four decimal places. Original coordinates: ${authoredColorCoordinates(value).join("; ")}. Exact values remain in the inspector.` : undefined;
   return (
-    <span className="block min-w-0 wrap-anywhere">
+    <span className="block min-w-0 wrap-anywhere" title={detail}>
+      {detail && <span className="sr-only">{detail}</span>}
       <span className="block">{spaceName(value.colorSpace)}</span>
       <span className="block text-muted-foreground mt-1 mono">
-        {authoredColorCoordinates(value, layout).map((text, index) => (
+        {authoredColorCoordinates(value, layout, approximate).map((text, index) => (
           <span key={index}>
             {layout === "compact" && index > 0 ? " · " : ""}
             <span

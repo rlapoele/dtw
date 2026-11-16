@@ -1,0 +1,1187 @@
+diff --git a/docs/increments/015-workbench-browse-and-inspector-polish.md b/docs/increments/015-workbench-browse-and-inspector-polish.md
+index fa97502..a5e8312 100644
+--- a/docs/increments/015-workbench-browse-and-inspector-polish.md
++++ b/docs/increments/015-workbench-browse-and-inspector-polish.md
+@@ -1,8 +1,8 @@
+ # Increment 015: Workbench browse and inspector polish
+ 
+-- Contract status: Draft
+-- Delivery status: Not started
+-- Agreement: Not agreed. The 16 November 2026 browser annotations request these changes; this draft and any designer recommendation do not establish final contract/design agreement or implementation authorization.
++- Contract status: Agreed
++- Delivery status: Partially completed
++- Agreement: On 16 November 2026 the user agreed the updated AC-1–16 contract and prototype V1.3, and explicitly authorized implementation by a developer subagent followed by an independent reviewer.
+ - References: [workflow](../workflow/agent-roles.md), [presentation conventions](../project/presentation-conventions.md), [architecture](../project/architecture.md), [visual direction](../project/visual-direction.md), [responsive shell](011-responsive-shell.md), [session Undo/Redo](012-session-undo-redo.md), [Neutral / Geist](014-neutral-geist-and-styling-ownership.md).
+ 
+ ## Outcome
+@@ -159,9 +159,10 @@ comparison/tab coverage, sticky composition, desktop/narrow toggle distinction,
+ concrete panel padding and control baseline. These are reviewed proposed contract
+ terms, not final implementation authorization.
+ 
+-**Resolve before implementation:** final agreement to this resulting contract and
+-V1.3 design, plus explicit implementation authorization. No unresolved product or
+-architecture decision remains in this bounded proposal. Production must derive
++**Implementation authorization — 16 November 2026:** the user agreed this
++resulting contract and V1.3 and authorized developer implementation followed by
++independent review. No unresolved product or architecture decision remains in this
++bounded increment. Production must derive
+ history counts from its owner, preserve creation guards/parent selection and
+ successful-create focus, and account for the actual sticky heading height when
+ keeping focused content visible; the mock does not establish those behaviors.
+@@ -198,11 +199,16 @@ Use [proportionate verification](../workflow/agent-roles.md#proportionate-verifi
+ - Optional qualification excluded: maximum projects/tokens, storage recovery,
+   cross-tab concurrency, broader browser engines, exhaustive accessibility,
+   performance profiling and earlier deferred qualification campaigns.
+-- Proposed shared ceiling: 30 aggregate verification minutes and at most two harness
++- Implementation/review shared ceiling: 30 aggregate verification minutes and at most two harness
+   repair cycles across developer/reviewer/coordinator, assessed before implementation.
+   Stop at either limit or earlier for tooling dominance/low value. Report unmet or
+   unverified criteria; extensions/resumption require explicitly bounded authority.
+-- Current consumption: no application verification performed for this draft.
++- Phase-start assessment: 30 aggregate minutes/two harness repairs is suitable for
++  focused application/protocol, presentation and Chrome checks. Allocate roughly
++  18 minutes to developer checks, 10 to independent review and 2 to coordinator/
++  focused rechecks; ceilings are not targets. Prototype review consumed about
++  9/10 minutes with zero repairs and is complete, not restarted.
++- Current implementation consumption: 0/30 minutes and 0/2 repairs at authorization.
+   Source/document inspection is planning, not new qualification. Earlier increment
+   consumption and stopping decisions remain with those increments and are not reset.
+ 
+@@ -224,7 +230,10 @@ Use [proportionate verification](../workflow/agent-roles.md#proportionate-verifi
+   Contract omissions were reconciled; no required material design revision was
+   identified. Production integration and verification obligations remain explicit.
+ - Material revisions: return to the user before renewed analyst review.
+-- Final design/contract agreement and implementation authorization: pending.
++- Final design/contract agreement and implementation authorization — 16 November
++  2026: “I agree with the updated Increment 015 contract and prototype V1.3.
++  Please proceed with implementation using a developer subagent, followed by an
++  independent reviewer.”
+ - Proportionality: retain established visual character and behaviors; explore only
+   choices needed to make these annotations coherent across existing states.
+ 
+@@ -240,10 +249,81 @@ to the user.
+ 
+ ## Agreed amendments
+ 
+-No final contract agreement yet. The reviewed proposal would amend earlier exact-list
+-presentation expectations for this scoped summary only and replace the earlier
++On 16 November 2026 the user agreed AC-1–16 and V1.3. This amends earlier exact-list
++presentation expectations for this scoped summary only and replaces the earlier
+ 44px mobile control minimum with the user-selected 36px baseline. Exact inspector/
+-source and authored-data requirements remain unchanged. On final agreement,
+-reconcile the affected current presentation conventions/status during implementation;
+-retain identified historical evidence. Neither this review nor prior prototype
+-approval authorizes implementation.
++source and authored-data requirements remain unchanged. Reconcile affected current
++presentation conventions during implementation and retain historical evidence.
++
++## Implementation baseline
++
++Authorized implementation starts from `dc41528e0d3ca33d809c9cf517873506a48f2f57`.
++The working tree was clean before coordinator authorization-record edits. Staging,
++committing and pushing remain with the user. Review will identify the exact
++uncommitted implementation diff and new files against this base.
++
++## Completion report — 16 November 2026
++
++- Delivery status: **Partially completed — R2 correction awaits bounded recheck**.
++- Base: `dc41528e0d3ca33d809c9cf517873506a48f2f57`.
++- R1: exact diff/new source and hashes in
++  [review-R1 manifest](../../output/increment-015-implementation/review-R1/manifest.json).
++- R2: corrected source snapshot in
++  [review-R2 manifest](../../output/increment-015-implementation/review-R2/manifest.json).
++
++### Result and evidence
++
++The implementation covers the agreed history badges, row-only rounded summaries,
++concise HEX/search, workspace group creation, sticky Current/New inspector and
++2.25rem standard controls. Exact authored/editor data and existing workflow guards
++are retained within the source/test/runtime evidence. The
++[developer handoff](../../output/increment-015-implementation/developer-report.md)
++records AC-1–16 evidence and limits; the
++[independent R1 review](../../output/increment-015-implementation/reviewer-R1.md)
++records independently checked criteria and one required finding.
++
++| Criteria | Evidence and disposition | Status |
++| --- | --- | --- |
++| AC-1–7 | Owner/protocol/history/decimal tests; developer Chrome creation, cancel focus, exact draft/rounded row; reviewer source, 38 focused tests and fresh history sample | Verified within recorded coverage on R1 |
++| AC-8–9, AC-11–12, AC-16 | Developer Chrome comparison/padding/36px Projects and workbench controls; reviewer source and ownership checks | Verified within recorded R1 coverage; R2 heading integration recheck pending |
++| AC-10 | Independent keyboard collapse lost focus to BODY; distinct visible toggles prevented continuous arrow rotation. Developer R2 keeps one toggle mounted outside hidden content | Corrected in source; independent recheck pending |
++| AC-13–15 | Developer narrow Back/draft, actual sticky geometry and enlarged-root keyboard evidence; reviewer source/ownership assessment | R1 evidence retained; R2 focus/heading/session recheck pending |
++
++R1 developer checks: 87 focused tests/11 files and full typecheck/production build
++passed. Independent reviewer ran 38 focused tests/five files and reproduced the
++AC-10 defect in Chrome; no other actionable finding was reported. Reviewer checked
++R1 hashes before/after. Source owners/consumers, names, shared primitives and
++obsolete wrappers were reviewed; no new dependency or unrelated refactor was found.
++Prototype V1.3 is the agreed visual/interaction reference, not proof of production
++safeguards. No further designer round was needed for the source correction.
++
++### Finding disposition and stopping boundary
++
++[Developer R2 correction](../../output/increment-015-implementation/developer-R2-correction.md)
++retains one button/icon instance across token inspector collapse/expand, with the
++editor subtree retained. R2 changed the inspector composition and reserved toggle
++space plus its focused CSS/convention record. It has **not** been typechecked,
++built, tested or browser-verified after correction. The independent finding is
++therefore not marked closed. No disagreement about the required behavior remains.
++
++Approximate aggregate implementation verification use: **18/30 minutes** including
++coordinator evidence/handoff review, **2/2 harness repairs**. Developer used about
++11 minutes/one repair (Projects selection/Open routing); reviewer about six/one
++repair (Playwright callback invocation); coordinator about one minute. Verification
++stopped when the repair ceiling was reached. The remaining time does not override
++that ceiling. Genuine product correction proceeded under the workflow's existing
++authority, with no new application checks or reset. Prototype checks and earlier
++qualification campaigns remain stopped and separate.
++
++### Remaining work and proposed next step
++
++Obtain explicitly bounded verification resumption for R2: one reviewer follow-up
++of at most five aggregate minutes, no further harness repair, using the existing
++working checks. Check same-toggle keyboard collapse/expand and visible normal/
++reduced-motion rotation, focused typecheck/build and affected inspector
++sticky/draft behavior. Stop on tooling failure or time ceiling and report actual
++limits; do not restart broad qualification. Final delivery/completion requires
++that recheck or an explicit user disposition of the remaining criterion.
++
++The user retains staging/committing/pushing. Suggested commit once reviewed:
++`feat: polish workbench browsing and sticky token inspector`.
+diff --git a/docs/project/presentation-conventions.md b/docs/project/presentation-conventions.md
+index 5f6c58f..f62fbd3 100644
+--- a/docs/project/presentation-conventions.md
++++ b/docs/project/presentation-conventions.md
+@@ -189,7 +189,7 @@ WorkbenchLayout owns common composition and controlled two/three-column geometry
+ using ApplicationShell. Supplied navigation/workspace/inspector slots retain their
+ real semantic roots, refs and scroll containers. The scoped `.workbench` and
+ `.projects-layout` CSS exceptions remain in `styles/global.css`; Projects retains
+-1.75rem wide browse padding and Tokens 1.5rem, owned by their workspace components. Compact Tokens (below 1120px), narrow Projects (below 880px) and token editor headings (below 880px) retain 1.25rem vertical / 1rem horizontal padding. Pane grid formulas remain focused CSS; thresholds are unchanged.
++1.75rem wide browse padding and Tokens 1.5rem, owned by their workspace components. Compact Tokens (below 1120px) and narrow Projects (below 880px) retain 1.25rem vertical / 1rem horizontal padding. Increment 015 gives the compact sticky token heading 1rem padding; authored/resolved panels use 1.5rem, reduced to 1rem below 880px. Pane grid formulas remain focused CSS; thresholds are unchanged.
+ Screen hooks retain focus, modal and surface policy; shared viewport observation
+ does not run those policies on mount. See the [ownership map](workbench-component-organisation.md).
+ 
+@@ -221,8 +221,12 @@ uses .125rem width/.1875rem offset; browser rasterization can quantize strokes.
+ Viewport queries deliberately remain CSS px, synchronized with the observer;
+ root font size is not fixed. SVG viewBox/stroke coordinates remain SVG units.
+ 
+-Owned controls express the below 880px2.75rem minimum with `touch:min-h-11`,
+-including history's 640–879px interval, native backup input and slider hit areas.
++Increment 015 supersedes the earlier mobile minimum: standard buttons, single-line
++inputs/selects, tabs and slider target areas use a 2.25rem baseline at every width.
++Icon actions are square; wrapped text/root scaling may grow controls without a
++maximum-height clamp. Content rows, textareas and exact source retain natural
++geometry. Checkbox labels provide the clickable area without stretching native glyphs.
++Native backup file controls share the target baseline.
+ Track .75rem/thumb 1.125rem geometry remains separate. Ordinary workspace/modal
+ padding and table viewport/container policy live at their component owners.
+ ApplicationHeader owns wrapping/context order; its existing compactBrand state
+@@ -238,3 +242,15 @@ and illustrative gradients remain at their current consumers. No component/state
+ owners or mounted ancestry were moved. Confirmed unused `.project-start`,
+ `.range-ends`, `.exact-data` and the statically positioned `.editor-actions`
+ bottom offset were removed; EditorActions remains in its current owner.
++
++Increment 015 keeps sticky token identity/comparison at TokenEditorContent, with
++an actual-heading ResizeObserver measurement setting its existing scroller's
++scroll padding. This runtime geometry exception prevents wrapped titles and text
++scaling from obscuring focused editor content; it does not change session ownership.
++WorkspaceToolbar owns the focused two-column heading formula keeping actions
++together beside shrinkable identity text. The shared inspector toggle lives under
++SelectionInspector for token and fallback consumers. TokenEditor retains one toggle outside its hidden/scrolled content,
++positioned over the heading's reserved control space; collapsed rail positioning
++is a focused pane-geometry exception. The same button/icon remains mounted and
++visible across desktop collapse so focus and a continuous rotation can be retained.
++Native file-selector-button sizing remains a focused pseudo-element exception.
+diff --git a/docs/project/workbench-polish-proposal-v1.md b/docs/project/workbench-polish-proposal-v1.md
+index acadec2..091c966 100644
+--- a/docs/project/workbench-polish-proposal-v1.md
++++ b/docs/project/workbench-polish-proposal-v1.md
+@@ -1,15 +1,11 @@
+ # Workbench polish — design proposal V1.3
+ 
+-**16 November 2026 · V1.3 approved for analyst review.** The user explicitly
+-approved prototype V1.3 for analyst review on 16 November 2026. This is distinct
+-from final contract/design agreement and implementation authorization, which
+-remain pending. [Increment 015](../increments/015-workbench-browse-and-inspector-polish.md)
+-owns the draft requirements and review record. Earlier iteration notes below
+-preserve their historical status; V1.3 is the identified review artifact.
+-
+-The [V1.3 analyst source review](../increments/015-v1-3-analyst-review.md) is now
+-complete: no required material visual revision was identified. The resulting
+-AC-1–16 contract is ready for final agreement; implementation remains pending.
++**16 November 2026 · V1.3 agreed for implementation.** Following user-approved
++analyst review, the user agreed the updated Increment 015 contract and prototype
++V1.3 and authorized developer implementation followed by independent review.
++[Increment 015](../increments/015-workbench-browse-and-inspector-polish.md) owns the
++agreement and delivery record. Earlier iteration notes below preserve historical
++status; V1.3 is the identified agreed design.
+ 
+ ## Requested revision — V1.3
+ 
+diff --git a/docs/status/current.md b/docs/status/current.md
+index c792db9..07d979f 100644
+--- a/docs/status/current.md
++++ b/docs/status/current.md
+@@ -2,13 +2,43 @@
+ 
+ > Last updated: 16 November 2026
+ >
+-> Phase: Increment 014 completed, independently reviewed and user-accepted
+-> on 16 November 2026; earlier qualification limits retained. Increment 013 implemented/reviewed;
++> Phase: Increment 015 implemented with R2 correction awaiting bounded recheck; Increment 014
++> completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
+ > earlier acceptance gaps preserved
+ >
+ > Applied projects remain browser-profile/origin local. Drafts/forms remain
+ > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+ 
++## Increment 015 implementation/review handoff — 16 November 2026
++
++[Increment 015's completion report](../increments/015-workbench-browse-and-inspector-polish.md#completion-report--16-november-2026)
++records partially completed delivery. Developer R1 passed 87 focused tests and
++full typechecks/build, with focused Chrome desktop/narrow/enlarged-root evidence.
++Independent review passed 38 focused tests and found one AC-10 defect: the editable
++inspector's visible toggle changed instances, dropping keyboard focus and preventing
++a continuous arrow rotation. A source-only R2 correction keeps one toggle mounted;
++its runtime/build and independent recheck remain pending. The finding is not closed.
++
++Verification stopped at about 18/30 aggregate minutes and 2/2 harness repairs.
++The [workflow stopping rule](../workflow/agent-roles.md#proportionate-verification)
++requires explicitly bounded resumption; no remaining time or source correction
++silently restarts checks. Proposed next step is one five-minute reviewer R2 follow-up
++with no further harness repair. No renewed qualification campaign is authorized.
++Staging, committing and pushing remain with the user.
++
++## Increment 015 implementation authorized — 16 November 2026
++
++The user agreed the updated [Increment 015 contract](../increments/015-workbench-browse-and-inspector-polish.md)
++(AC-1–16) and prototype V1.3 and explicitly authorized a developer subagent followed
++by an independent reviewer. Implementation is in progress from base
++`dc41528e0d3ca33d809c9cf517873506a48f2f57`. The agreed scope includes application-owned
++history badges, concise row representations, browse actions, sticky inspector
++composition and the 2.25rem standard control baseline across current consumers.
++The contract records the shared 30-minute/two-repair implementation verification
++ceiling and exclusions. Prototype checks and earlier qualification decisions are
++not restarted. No completion or independent implementation review is claimed yet.
++Staging, committing and pushing remain with the user.
++
+ ## Browse and inspector polish planning — 16 November 2026
+ 
+ The user's 14 browser annotations and sticky token-heading addition are captured
+@@ -355,15 +385,16 @@ changes are made to resolve it here.
+ 
+ ## Next meaningful action
+ 
+-Increment 014 is complete and user-accepted. The user stages/commits/pushes as
+-desired, then selects the next work to scope. Earlier acceptance/qualification
+-gaps remain in their owning increments; Increment 014 acceptance does not close
+-them. No additional automated campaign or next increment is authorized.
++Obtain explicit bounded authorization for Increment 015's R2 reviewer follow-up,
++then close the known AC-10 finding with actual evidence or record the user's
++explicit disposition. Do not resume application verification automatically at the
++reached repair ceiling. Earlier qualification/acceptance gaps remain with their
++owning increments. Staging/committing/pushing remain with the user.
+ 
+ ## Resume
+ 
+ Read AGENTS.md, this handoff, actual Git state and the
+-[Increment 014 completion/acceptance](../increments/014-neutral-geist-and-styling-ownership.md#completion-report--16-november-2026)
+-before scoping further work. The [pre-closure snapshot](history/2026-11-15-increment-011-before-closure.md)
++[Increment 015 contract/design and authorization](../increments/015-workbench-browse-and-inspector-polish.md)
++before continuing the current implementation/review. The [pre-closure snapshot](history/2026-11-15-increment-011-before-closure.md)
+ preserves outgoing 011 detail. [README](../../README.md) owns current commands and
+ limits; increment records own their agreements/evidence/acceptance gaps.
+diff --git a/src/application/retention/history.ts b/src/application/retention/history.ts
+index ab7c152..ea59ce8 100644
+--- a/src/application/retention/history.ts
++++ b/src/application/retention/history.ts
+@@ -2,7 +2,7 @@ import { utf8Bytes } from "./codec";
+ import type { ProjectSnapshot } from "@application/project-storage";
+ import type { CommandReceipt, WriteAttempt } from "./ports";
+ export type HistoryAction = { readonly id: string; readonly label: string };
+-export type HistoryState = { readonly undo?: HistoryAction; readonly redo?: HistoryAction; readonly notice?: string };
++export type HistoryState = { readonly undoCount: number; readonly redoCount: number; readonly undo?: HistoryAction; readonly redo?: HistoryAction; readonly notice?: string };
+ export type HistoryDirection = "undo" | "redo";
+ type State = { snapshot: ProjectSnapshot; text: string; bytes: number };
+ type Step = HistoryAction & { before: State; after: State };
+@@ -54,7 +54,7 @@ export function createSessionHistory(limits: {steps: number; bytes: number} = hi
+     end() { clear(); baseline = undefined; },
+     state(): HistoryState {
+       const undo = next("undo"), redo = next("redo");
+-      return {...(undo ? {undo: {id: undo.id, label: undo.label}} : {}), ...(redo ? {redo: {id: redo.id, label: redo.label}} : {}), ...(notice ? {notice} : {})};
++      return {undoCount: cursor, redoCount: steps.length - cursor, ...(undo ? {undo: {id: undo.id, label: undo.label}} : {}), ...(redo ? {redo: {id: redo.id, label: redo.label}} : {}), ...(notice ? {notice} : {})};
+     },
+     target(direction: HistoryDirection, projectId: string, incarnation: string, revision: string, stepId: string) {
+       observe(projectId, incarnation, revision);
+diff --git a/src/hosts/browser/validation.ts b/src/hosts/browser/validation.ts
+index 1450670..13e72b5 100644
+--- a/src/hosts/browser/validation.ts
++++ b/src/hosts/browser/validation.ts
+@@ -302,7 +302,10 @@ export function validateHostOutput(
+   plainTree(output, { ...retentionLimits, strings: 8388608, values: 400000 });
+   switch (operation) {
+     case "historyState": {
+-      const v = shape(output, [], ["undo", "redo", "notice"]);
++      const v = shape(output, ["undoCount", "redoCount"], ["undo", "redo", "notice"]);
++      for (const key of ["undoCount", "redoCount"]) {
++        if (!Number.isSafeInteger(v[key]) || (v[key] as number) < 0 || (v[key] as number) > 50) throw Error("Invalid history count");
++      }
+       for (const direction of ["undo", "redo"]) if (v[direction]) {
+         const action = shape(v[direction], ["id", "label"]); internal(action.id); text(action.label);
+       }
+diff --git a/src/presentation/App/components/ProjectsWorkbench/ProjectsWorkbench.tsx b/src/presentation/App/components/ProjectsWorkbench/ProjectsWorkbench.tsx
+index aa313e6..ea6e3f0 100644
+--- a/src/presentation/App/components/ProjectsWorkbench/ProjectsWorkbench.tsx
++++ b/src/presentation/App/components/ProjectsWorkbench/ProjectsWorkbench.tsx
+@@ -112,7 +112,7 @@ export function ProjectsWorkbench({
+               <label className="text-caption block">
+                 Project backup file
+                 <input
+-                  className="block mt-3 max-w-full touch:min-h-11"
++                  className="block mt-3 max-w-full min-h-9"
+                   type="file"
+                   accept=".json,application/json"
+                   disabled={createDisabled}
+diff --git a/src/presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog.tsx b/src/presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog.tsx
+index 8af9760..0674214 100644
+--- a/src/presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog.tsx
++++ b/src/presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog.tsx
+@@ -170,9 +170,9 @@ export function RestoreDialog({
+                 >
+                   Download current local backup
+                 </Button>
+-                <label className="flex gap-3 items-start mt-4">
++                <label className="flex gap-3 items-start mt-4 min-h-9">
+                   <input
+-                    className="touch:min-h-11"
++                    className="mt-1"
+                     type="checkbox"
+                     checked={acknowledgement}
+                     disabled={!protection || busy || unknown}
+diff --git a/src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx b/src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx
+index d4228f4..965536c 100644
+--- a/src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx
++++ b/src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx
+@@ -105,6 +105,7 @@ export function TokensWorkbench({
+   );
+   const panel = useRef<HTMLElement>(null),
+     formError = useRef<HTMLParagraphElement>(null);
++  const authoringReturn = useRef<HTMLElement | null>(null);
+   const {
+     dialog,
+     name,
+@@ -132,6 +133,7 @@ export function TokensWorkbench({
+     setError,
+     setNotice,
+     (kind, id) => {
++      authoringReturn.current = null;
+       if (kind === "token") {
+         setView({ kind: "all-tokens" });
+         setQuery("");
+@@ -176,6 +178,7 @@ export function TokensWorkbench({
+   function open(kind: "token" | "group" | "rename") {
+     if (lifecycleBlocked || !header.writable || readFailure || busy || unknown)
+       return;
++    authoringReturn.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+     setNavigationOpen(false);
+     request(() => {
+       begin(kind);
+@@ -349,6 +352,7 @@ export function TokensWorkbench({
+           dialog={dialog}
+           onQuery={setQuery}
+           onCreateToken={() => open("token")}
++          onCreateGroup={() => open("group")}
+           onRenameGroup={() => open("rename")}
+           onAllContent={() => setView({ kind: "all-content" })}
+           choose={choose}
+@@ -484,7 +488,7 @@ export function TokensWorkbench({
+         readFailure={readFailure}
+         error={error}
+         formError={formError}
+-        finalFocus={() => panel.current}
++        finalFocus={() => authoringReturn.current?.isConnected && authoringReturn.current.getClientRects().length ? authoringReturn.current : panel.current}
+         onClose={() => request(close)}
+         onCreate={() => void create()}
+         onNameChange={(value) => {
+diff --git a/src/presentation/App/components/TokensWorkbench/components/AuthoredValue.tsx b/src/presentation/App/components/TokensWorkbench/components/AuthoredValue.tsx
+index 516c413..3730f88 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/AuthoredValue.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/AuthoredValue.tsx
+@@ -13,10 +13,12 @@ export function AuthoredValue({
+   value,
+   project,
+   layout = "expanded",
++  approximate = false,
+ }: {
+   value: Value | undefined;
+   project?: ProjectContext;
+   layout?: "expanded" | "compact";
++  approximate?: boolean;
+ }) {
+   if (value?.kind === "token-reference") {
+     const target = project?.tokens.find(
+@@ -35,11 +37,13 @@ export function AuthoredValue({
+   }
+   if (value?.kind !== "literal" || value.valueType !== "color")
+     return <span>{value?.kind ?? "No assignment"}</span>;
++  const detail = approximate ? `Rounded to at most four decimal places. Original coordinates: ${authoredColorCoordinates(value).join("; ")}. Exact values remain in the inspector.` : undefined;
+   return (
+-    <span className="block min-w-0 wrap-anywhere">
++    <span className="block min-w-0 wrap-anywhere" title={detail}>
++      {detail && <span className="sr-only">{detail}</span>}
+       <span className="block">{spaceName(value.colorSpace)}</span>
+       <span className="block text-muted-foreground mt-1 mono">
+-        {authoredColorCoordinates(value, layout).map((text, index) => (
++        {authoredColorCoordinates(value, layout, approximate).map((text, index) => (
+           <span key={index}>
+             {layout === "compact" && index > 0 ? " · " : ""}
+             <span
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/SelectionInspector.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/SelectionInspector.tsx
+index b2f41d8..57b56b9 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/SelectionInspector.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/SelectionInspector.tsx
+@@ -33,7 +33,7 @@ export function SelectionInspector({
+ }) {
+   return (
+     <section ref={surfaceRef} hidden={hidden} tabIndex={-1}
+-      className="inspector-shell touch:border-l-0 small:border-t-hairline small:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l-hairline border-border bg-surface"
++      className="inspector-shell relative touch:border-l-0 small:border-t-hairline small:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l-hairline border-border bg-surface"
+       aria-label="Inspector pane"
+     >
+       {back && <div className="p-3 border-b-hairline border-border"><Button onClick={back}>Back to tokens</Button></div>}
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorHeader.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorHeader.tsx
+index fb7a37a..2f3c3b0 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorHeader.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorHeader.tsx
+@@ -1,5 +1,4 @@
+-import { Button } from "@presentation/ui/button";
+-import { Icon } from "@presentation/ui/icon";
++import { InspectorToggle } from "./InspectorToggle";
+ export function InspectorHeader({
+   readFailure,
+   targetUnavailable,
+@@ -16,32 +15,13 @@ export function InspectorHeader({
+   onToggle: () => void;
+ }) {
+   return (
+-    <div className={`inspector-header border-b-hairline border-border bg-surface h-11 min-h-11 shrink-0 flex items-center min-w-0 ${inspectorExpanded ? "gap-2 pl-3" : "touch:gap-2 touch:pl-3"}`}>
+-      <span className="inspector-region-title flex-1 text-caption leading-3.5 min-w-0 font-medium">
+-        Inspector
+-      </span>
+-      {(readFailure || targetUnavailable || !editable || !selected) && (
+-        <span className="inspector-header-status text-caption leading-4 text-muted-foreground">
+-          {readFailure || targetUnavailable
+-            ? "Unavailable"
+-            : selected
+-              ? "Inspection only"
+-              : "Select content"}
++    <div className="inspector-header shrink-0 flex items-center justify-between gap-2 p-1.5 min-w-0">
++      {(readFailure || targetUnavailable || !editable || !selected) && inspectorExpanded && (
++        <span className="inspector-header-status text-caption text-muted-foreground wrap-anywhere">
++          {readFailure || targetUnavailable || (selected ? "Inspection only" : "Select content")}
+         </span>
+       )}
+-      <Button
+-        variant="ghost"
+-        size="icon"
+-        className="pane-toggle inspector-toggle"
+-        aria-label={
+-          inspectorExpanded ? "Collapse inspector" : "Expand inspector"
+-        }
+-        aria-expanded={inspectorExpanded}
+-        aria-controls="token-inspector-content"
+-        onClick={() => onToggle()}
+-      >
+-        <Icon name="chevron-down" />
+-      </Button>
++      <InspectorToggle expanded={inspectorExpanded} onToggle={onToggle} />
+     </div>
+   );
+ }
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/TokenEditor.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/TokenEditor.tsx
+index 4493378..dc3ed57 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/TokenEditor.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/TokenEditor.tsx
+@@ -1,4 +1,4 @@
+-import { InspectorHeader } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorHeader";
++import { InspectorToggle } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorToggle";
+ import { useTokenEditor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor";
+ import { TokenEditorContent } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent";
+ export function TokenEditor({
+@@ -14,14 +14,14 @@ export function TokenEditor({
+   const editor = useTokenEditor(props);
+   return (
+     <>
+-      <InspectorHeader
+-        readFailure={readFailure}
+-        targetUnavailable={props.targetUnavailable ?? ""}
+-        editable={editor.editable}
+-        selected
+-        inspectorExpanded={inspectorExpanded}
+-        onToggle={onToggle}
+-      />
++      <div className="token-inspector-toggle absolute top-4 right-4 z-20 touch:hidden">
++        <InspectorToggle expanded={inspectorExpanded} onToggle={onToggle} />
++      </div>
++      {editor.readUnavailable && inspectorExpanded && (
++        <p role="status" className="text-caption text-muted-foreground wrap-anywhere p-4 pr-16">
++          {readFailure || props.targetUnavailable || "Inspection unavailable"}
++        </p>
++      )}
+       <div
+         id="token-inspector-content"
+         className="inspector-content flex-1 bg-surface overflow-auto min-h-0"
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ColorEditor/ColorEditor.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ColorEditor/ColorEditor.tsx
+index b62a0ec..6b94f46 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ColorEditor/ColorEditor.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ColorEditor/ColorEditor.tsx
+@@ -177,7 +177,7 @@ export function ColorEditor({
+               {available ? (
+                 <>
+                   <input
+-                    className="component-range touch:min-h-11 small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground"
++                    className="component-range min-h-9 block h-9 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground"
+                     type="range"
+                     disabled={readOnly}
+                     min={min}
+@@ -209,7 +209,7 @@ export function ColorEditor({
+               <Input
+                 id={`color-component-${i}`}
+                 readOnly={readOnly}
+-                className="font-mono small:h-11 small:min-h-11"
++                className="font-mono"
+                 value={value}
+                 spellCheck={false}
+                 aria-describedby={`range-note-${i} byte-note-${i} editor-error`}
+@@ -244,7 +244,7 @@ export function ColorEditor({
+         </label>
+         {alphaRangeState === "available" ? (
+           <input
+-            className="component-range touch:min-h-11 small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range"
++            className="component-range min-h-9 block h-9 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range"
+             type="range"
+             disabled={readOnly}
+             min="0"
+@@ -270,7 +270,7 @@ export function ColorEditor({
+         <Input
+           id="color-alpha"
+           readOnly={readOnly}
+-          className="font-mono small:h-11 small:min-h-11"
++          className="font-mono"
+           value={s.literal.alpha}
+           aria-describedby="editor-error"
+           onChange={(e) =>
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent.tsx
+index 0a1d465..a818ef9 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent.tsx
+@@ -1,3 +1,4 @@
++import { useLayoutEffect, useRef } from "react";
+ import { TokenValueComparison } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenValueComparison";
+ import { EditorActions } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditorActions";
+ import { EditRecovery } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditRecovery";
+@@ -56,23 +57,36 @@ export function TokenEditorContent({
+     readOnly,
+     targetUnavailable,
+   } = editor;
++  const headingRef = useRef<HTMLDivElement>(null);
++  useLayoutEffect(() => {
++    const heading = headingRef.current;
++    const scroller = heading?.closest<HTMLElement>(".inspector-content");
++    if (!heading || !scroller) return;
++    // The title may wrap, and root text can grow: reserve the actual sticky height.
++    const update = () => { scroller.style.scrollPaddingTop = `${heading.getBoundingClientRect().height + 8}px`; };
++    update();
++    const observer = new ResizeObserver(update); observer.observe(heading);
++    return () => { observer.disconnect(); scroller.style.scrollPaddingTop = ""; };
++  }, []);
+   return (
+     <aside
+       className="inspector small:min-h-0 flex min-w-0 min-h-full flex-col bg-surface"
+       aria-label="Selected token"
+       hidden={readUnavailable}
+     >
+-      <div className="inspector-heading bg-surface p-6 touch:px-4 touch:py-5">
+-        <span className="eyebrow uppercase text-muted-foreground font-semibold">
+-          {token.definition?.type ?? "Unassigned"} token
+-        </span>
+-        <div className="flex flex-wrap items-start gap-3">
+-        <h2 className="wrap-anywhere flex-1 basis-40 min-w-0 my-1 text-inspector font-semibold">
+-          {tokenLabels.get(token.id) ??
+-            (token.localName || "(unnamed original token)")}
+-        </h2>
+-        {editable && !targetUnavailable && <TokenValueComparison feedback={editor.feedback} />}
++      <div ref={headingRef} className="inspector-heading sticky top-0 z-10 bg-surface border-b-hairline border-border p-4">
++        <div className="flex items-start gap-2 min-w-0">
++          <div className="flex flex-wrap items-start gap-3 min-w-0 flex-1">
++            <div className="min-w-0 max-w-full">
++              <span className="eyebrow uppercase text-muted-foreground font-semibold">{token.definition?.type ?? "Unassigned"} token</span>
++              <h2 className="wrap-anywhere my-1 text-inspector font-semibold">{tokenLabels.get(token.id) ?? (token.localName || "(unnamed original token)")}</h2>
++            </div>
++            {editable && !targetUnavailable && <TokenValueComparison feedback={editor.feedback} />}
++          </div>
++          <span aria-hidden="true" className="size-9 shrink-0 touch:hidden" />
+         </div>
++      </div>
++      <div className="px-6 pt-4 pb-5 touch:px-4">
+         {token.description && (
+           <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
+             {token.description}
+@@ -92,7 +106,7 @@ export function TokenEditorContent({
+       </div>
+       <Tabs.Root value={tab} onValueChange={setTab}>
+         <TokenEditorTabs />
+-        <Tabs.Panel value="authored" className="editor-body bg-surface p-3">
++        <Tabs.Panel value="authored" className="editor-body bg-surface p-6 touch:p-4">
+           {targetUnavailable && (
+             <p
+               role="status"
+@@ -266,7 +280,7 @@ export function TokenEditorContent({
+             path={i.path}
+           />
+         </Tabs.Panel>
+-        <Tabs.Panel value="resolved" className="editor-body bg-surface p-3">
++        <Tabs.Panel value="resolved" className="editor-body bg-surface p-6 touch:p-4">
+           <ResolvedTokenPanel
+             resolution={i.resolution}
+             project={project}
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorTabs.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorTabs.tsx
+index 19e9812..75bff7d 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorTabs.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorTabs.tsx
+@@ -7,13 +7,13 @@ export function TokenEditorTabs() {
+       aria-label="Token inspection"
+     >
+       <Tabs.Tab
+-        className="relative border-0 bg-transparent min-h-10.5 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-0.25 data-active:after:inset-x-0 data-active:after:bg-primary"
++        className="relative border-0 bg-transparent min-h-9 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-0.25 data-active:after:inset-x-0 data-active:after:bg-primary"
+         value="authored"
+       >
+         Authored value
+       </Tabs.Tab>
+       <Tabs.Tab
+-        className="relative border-0 bg-transparent min-h-10.5 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-0.25 data-active:after:inset-x-0 data-active:after:bg-primary"
++        className="relative border-0 bg-transparent min-h-9 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-0.25 data-active:after:inset-x-0 data-active:after:bg-primary"
+         value="resolved"
+       >
+         Resolved &amp; trace
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenValueComparison.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenValueComparison.tsx
+index 716afec..c5f8ca5 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenValueComparison.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenValueComparison.tsx
+@@ -10,7 +10,7 @@ export function TokenValueComparison({ feedback }: { feedback: Feedback }) {
+   return (
+     <section
+       className="inspector-feedback flex flex-wrap items-center gap-2 shrink-0 max-w-full"
+-      aria-label="Applied and draft color context"
++      aria-label="Current and new color context"
+     >
+       {(
+         ["applied", ...(feedback.tab === "resolved" ? [] : ["draft"])] as (
+@@ -20,17 +20,17 @@ export function TokenValueComparison({ feedback }: { feedback: Feedback }) {
+       ).map((kind) => (
+         <div
+           key={kind}
+-          className="text-caption flex flex-col items-center w-16"
++          className="text-caption flex flex-col items-center max-w-full min-w-8.5"
+         >
+-          <span>{kind === "applied" ? "Applied" : "Draft"}</span>
++          <span>{kind === "applied" ? "Current" : "New"}</span>
+           {feedback[kind] ? (
+             <span
+               aria-hidden="true"
+-              className="header-specimen rounded border-hairline border-specimen-border block w-9 h-4"
++              className="header-specimen rounded border-hairline border-specimen-border block size-8.5 shrink-0"
+               style={{ background: feedback[kind] }}
+             />
+           ) : (
+-            <span>Unavailable</span>
++            <span className="size-8.5 swatch-unavailable rounded border-hairline border-specimen-border" title="Preview unavailable" aria-label="Preview unavailable" />
+           )}
+           <span className="sr-only">
+             {
+diff --git a/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/TokenWorkspace.tsx b/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/TokenWorkspace.tsx
+index fd2ee1e..f3a49f4 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/TokenWorkspace.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/TokenWorkspace.tsx
+@@ -30,6 +30,7 @@ export function TokenWorkspace({
+   dialog,
+   onQuery,
+   onCreateToken,
++  onCreateGroup,
+   onRenameGroup,
+   onAllContent,
+   onReveal,
+@@ -57,6 +58,7 @@ export function TokenWorkspace({
+   dialog: string | null;
+   onQuery: (query: string) => void;
+   onCreateToken: () => void;
++  onCreateGroup: () => void;
+   onRenameGroup: () => void;
+   onAllContent: () => void;
+   onReveal: () => void;
+@@ -79,6 +81,7 @@ export function TokenWorkspace({
+         query={query}
+         onQuery={onQuery}
+         onCreateToken={onCreateToken}
++        onCreateGroup={onCreateGroup}
+         onRenameGroup={onRenameGroup}
+       />
+       {selectionBar}
+diff --git a/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/TokenTable/TokenTable.tsx b/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/TokenTable/TokenTable.tsx
+index 389c958..1897ce3 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/TokenTable/TokenTable.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/TokenTable/TokenTable.tsx
+@@ -53,7 +53,7 @@ export function TokenTable({
+               </small>
+               {row.type === "color" && (
+                 <span className="block text-caption text-muted-foreground mt-2 wrap-anywhere">
+-                  {hexPreview(row.preview)}
++                  <HexPreview source={row.preview} />
+                 </span>
+               )}
+               {details.get(JSON.stringify(["token", row.id])) && (
+@@ -79,6 +79,7 @@ export function TokenTable({
+                 value={row.color}
+                 project={context}
+                 layout="compact"
++                approximate
+               />
+             ) : row.targetId !== undefined ? (
+               <span className="block">
+@@ -97,7 +98,7 @@ export function TokenTable({
+         <div className="empty px-5 py-17.5 text-center text-muted-foreground">
+           <h2 className="text-foreground text-base/normal">
+             {query
+-              ? "No matching colors"
++              ? "No matching tokens"
+               : context.tokens.length
+                 ? "This group is empty"
+                 : "Your project is empty"}
+@@ -105,7 +106,7 @@ export function TokenTable({
+           <p className="text-xs/normal mt-2 mb-5">
+             {query
+               ? "Try another search or clear it to see this view."
+-              : `Create a color token in ${creationParentLabel}.`}
++              : `Create a token in ${creationParentLabel}.`}
+           </p>
+           <Button onClick={onEmptyAction}>
+             {query ? "Clear search" : "New token"}
+@@ -115,3 +116,8 @@ export function TokenTable({
+     </div>
+   );
+ }
++
++function HexPreview({source}: {source: DisplayRow["preview"]}) {
++  const detail = hexPreview(source);
++  return <span title={detail}><span aria-hidden="true">{detail.match(/#[0-9A-F]{6,8}/)?.[0] ?? "HEX unavailable"}</span><span className="sr-only">{detail}</span></span>;
++}
+diff --git a/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/WorkspaceToolbar/WorkspaceToolbar.tsx b/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/WorkspaceToolbar/WorkspaceToolbar.tsx
+index cee5225..5501373 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/WorkspaceToolbar/WorkspaceToolbar.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/WorkspaceToolbar/WorkspaceToolbar.tsx
+@@ -10,6 +10,7 @@ export function WorkspaceToolbar({
+   query,
+   onQuery,
+   onCreateToken,
++  onCreateGroup,
+   onRenameGroup,
+ }: {
+   view: TokenBrowseView;
+@@ -18,13 +19,14 @@ export function WorkspaceToolbar({
+   query: string;
+   onQuery: (query: string) => void;
+   onCreateToken: () => void;
++  onCreateGroup: () => void;
+   onRenameGroup: () => void;
+ }) {
+   const allContent = view.kind === "all-content",
+     group = view.kind === "group" ? view.id : null;
+   return (
+     <>
+-      <div className="panel-header source-compact:items-start compact:flex-wrap mb-6.5 flex justify-between items-center gap-3">
++      <div className="panel-header mb-6.5 grid  items-start gap-x-3 gap-y-2">
+         <div>
+           {!allContent && (
+             <span className="eyebrow uppercase text-muted-foreground font-semibold">
+@@ -38,32 +40,37 @@ export function WorkspaceToolbar({
+                 ? "All tokens"
+                 : (groupLabels.get(group) ?? "Missing group")}
+           </h1>
+-          <p className="text-xs/normal text-muted-foreground">
+-            {allContent
+-              ? "Every group and token, including items outside the group tree."
+-              : group === null
+-                ? "Browse and create color tokens."
+-                : "Browse and create color tokens in this group."}
+-          </p>
+         </div>
++        <div className="workspace-creation flex flex-nowrap gap-2">
++          <Button size="panel" className="workspace-create" title="New group" aria-label="New group" disabled={blocked} onClick={onCreateGroup}>
++            <Icon name="folder" /><span className="hidden sm:inline">New group</span>
++          </Button>
+         <Button
++          className="workspace-create"
++          title="New token"
++          aria-label="New token"
+           variant="default"
+           size="panel"
+           disabled={blocked}
+           onClick={() => onCreateToken()}
+         >
+           <Icon name="plus" />
+-          New token
++          <span className="hidden sm:inline">New token</span>
+         </Button>
++        </div>
++        <p className="col-span-2 text-xs/normal text-muted-foreground">
++          {allContent ? "Every group and token, including items outside the group tree." : group === null ? "Browse and create tokens." : "Browse and create tokens in this group."}
++        </p>
+       </div>
+       {!allContent && (
+         <div className="list-tools compact:flex-wrap narrow:gap-2 flex gap-3 items-center mb-5">
+           <label className="search tablet:min-w-25 flex-1 max-w-75 relative">
++            <Icon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground" />
+             <Input
+               appearance="search"
+               type="search"
+-              aria-label="Search color tokens"
+-              placeholder="Search colors…"
++              aria-label="Search tokens"
++              placeholder="Search tokens…"
+               value={query}
+               onChange={(e) => onQuery(e.target.value)}
+             />
+diff --git a/src/presentation/App/components/TokensWorkbench/components/TokensHeader/TokensHeader.tsx b/src/presentation/App/components/TokensWorkbench/components/TokensHeader/TokensHeader.tsx
+index 0aee562..7ab246c 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/TokensHeader/TokensHeader.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/TokensHeader/TokensHeader.tsx
+@@ -4,6 +4,6 @@ import type { Ref } from "react";
+ import { Button } from "@presentation/ui/button";
+ import { Icon } from "@presentation/ui/icon";
+ import { ApplicationHeader } from "@presentation/App/components/ApplicationHeader/ApplicationHeader";
+-export function TokensHeader({ compact, projectName, busy, onProjectsClick, onNavigation, onBack, navigationRef, history = {}, historyReason, onTraverse = () => {} }: { compact: boolean; projectName: string; busy: boolean; onProjectsClick: () => void; onNavigation: () => void; onBack?: () => void; history?: HistoryState; historyReason?: string; onTraverse?: (direction: HistoryDirection) => void; navigationRef?: Ref<HTMLButtonElement> }) {
++export function TokensHeader({ compact, projectName, busy, onProjectsClick, onNavigation, onBack, navigationRef, history = {undoCount: 0, redoCount: 0}, historyReason, onTraverse = () => {} }: { compact: boolean; projectName: string; busy: boolean; onProjectsClick: () => void; onNavigation: () => void; onBack?: () => void; history?: HistoryState; historyReason?: string; onTraverse?: (direction: HistoryDirection) => void; navigationRef?: Ref<HTMLButtonElement> }) {
+   return <><div className="workbench-header shrink-0"><ApplicationHeader compactBrand navigation={onBack ? <Button onClick={onBack}>Back</Button> : compact && <Button ref={navigationRef} variant="ghost" aria-label="Open project navigation" onClick={onNavigation}><Icon name="menu" />Browse</Button>} context={projectName || "(unnamed project)"} actions={<><HistoryControls history={history} reason={historyReason} onTraverse={onTraverse} /><Button disabled={busy} onClick={onProjectsClick}>Projects</Button></>} /></div><HistoryDescriptions history={history} reason={historyReason} /></>;
+ }
+diff --git a/src/presentation/App/components/TokensWorkbench/components/TokensHeader/components/HistoryControls.tsx b/src/presentation/App/components/TokensWorkbench/components/TokensHeader/components/HistoryControls.tsx
+index 31062c9..25221e0 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/TokensHeader/components/HistoryControls.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/TokensHeader/components/HistoryControls.tsx
+@@ -4,9 +4,9 @@ import { Icon } from "@presentation/ui/icon";
+ export function HistoryControls({history, reason, onTraverse}: {history: HistoryState; reason?: string; onTraverse(direction: HistoryDirection): void}) {
+   return <>{(["undo", "redo"] as const).map(direction => {
+     const name = direction === "undo" ? "Undo" : "Redo", action = history[direction];
+-    return <Button key={direction} size="history" data-history={direction} disabled={!!reason || !action} aria-label={action ? `${name}: ${action.label}` : name} aria-describedby={`history-${direction}-description`} onClick={() => onTraverse(direction)}><Icon name={direction} /><span className="hidden sm:inline">{name}</span></Button>;
++    return <Button key={direction} size="history" data-history={direction} disabled={!!reason || !action} aria-label={action ? `${name}: ${action.label}` : name} className="relative" title={`${name}: ${reason ?? action?.label ?? `No changes to ${direction}`}`} aria-describedby={`history-${direction}-description`} onClick={() => onTraverse(direction)}><Icon name={direction} /><span className="hidden sm:inline">{name}</span><span aria-hidden="true" className="history-count absolute -top-1.5 -right-1.5 min-w-4.5 min-h-4.5 px-1 rounded-full border-hairline border-border bg-background text-muted-foreground flex items-center justify-center">{history[`${direction}Count`]}</span></Button>;
+   })}</>;
+ }
+ export function HistoryDescriptions({history, reason}: {history: HistoryState; reason?: string}) {
+-  return <div className="shrink-0 border-b-hairline border-border px-5 py-2 text-caption text-muted-foreground flex flex-wrap gap-x-6 gap-y-1 wrap-anywhere">{(["undo", "redo"] as const).map(direction => <p key={direction} id={`history-${direction}-description`}>{direction === "undo" ? "Undo" : "Redo"}: {reason ?? history[direction]?.label ?? `No changes to ${direction}`}</p>)}</div>;
++  return <div className="sr-only">{(["undo", "redo"] as const).map(direction => <p key={direction} id={`history-${direction}-description`}>{direction === "undo" ? "Undo" : "Redo"}: {reason ?? history[direction]?.label ?? `No changes to ${direction}`}</p>)}</div>;
+ }
+diff --git a/src/presentation/App/components/TokensWorkbench/helpers/authored-color.ts b/src/presentation/App/components/TokensWorkbench/helpers/authored-color.ts
+index e439549..662d4f6 100644
+--- a/src/presentation/App/components/TokensWorkbench/helpers/authored-color.ts
++++ b/src/presentation/App/components/TokensWorkbench/helpers/authored-color.ts
+@@ -11,19 +11,34 @@ const compactNames: Record<ColorComponentIdentity, string> = {
+   red: "R", green: "G", blue: "B", hue: "H", saturation: "S",
+   lightness: "L", chroma: "C", a: "a", b: "b",
+ };
+-/** Exact text for the list and applied inspector; no Number conversion or rounding. */
++/** Decimal display rounding only: nearest, ties away from zero, no Number conversion. */
++function rowDecimal(value: string): string {
++  if (value === "none") return value;
++  const negative = value.startsWith("-");
++  const [integer, fraction = ""] = (negative ? value.slice(1) : value).split(".");
++  if (fraction.length <= 4) return value;
++  let units = BigInt(integer + fraction.slice(0, 4));
++  if (fraction[4] >= "5") units += 1n;
++  if (units === 0n) return "0";
++  const digits = units.toString().padStart(5, "0");
++  const tail = digits.slice(-4).replace(/0+$/, "");
++  return (negative ? "-" : "") + digits.slice(0, -4) + (tail ? "." + tail : "");
++}
++/** Exact by default; only row consumers opt in to approximation. */
+ export function authoredColorCoordinates(
+   value: ColorLiteralValue,
+   layout: "expanded" | "compact" = "expanded",
++  approximate = false,
+ ): string[] {
+   const separator = layout === "compact" ? ": " : " ";
+   return [
+     ...COLOR_COMPONENTS[value.colorSpace].map((identity, index) => {
+       const exact = value.components[index];
++      const displayed = approximate ? rowDecimal(exact) : exact;
+       const name = layout === "compact" ? compactNames[identity] : COMPONENT_NAMES[identity];
+-      return name + separator + exact +
++      return name + separator + displayed +
+         (exact === "none" ? "" : componentSuffix(value.colorSpace, identity));
+     }),
+-    "Alpha" + separator + value.alpha,
++    "Alpha" + separator + (approximate ? rowDecimal(value.alpha) : value.alpha),
+   ];
+ }
+diff --git a/src/presentation/App/components/TokensWorkbench/hooks/useProjectCommands.ts b/src/presentation/App/components/TokensWorkbench/hooks/useProjectCommands.ts
+index e8dbbef..8c0701a 100644
+--- a/src/presentation/App/components/TokensWorkbench/hooks/useProjectCommands.ts
++++ b/src/presentation/App/components/TokensWorkbench/hooks/useProjectCommands.ts
+@@ -40,14 +40,14 @@ export function useProjectCommands(
+   setError: (message: string) => void,
+   setNotice: (message: string) => void,
+ ) {
+-  const [history, setHistory] = useState<HistoryState>({});
++  const [history, setHistory] = useState<HistoryState>({undoCount: 0, redoCount: 0});
+   const historyRead = useRef(0);
+   async function refreshHistory() {
+     const generation = ++historyRead.current;
+     const baseline = current.current;
+     try {
+       const next = await host.call("historyState", {projectId: current.current.project.id, revision: current.current.revision});
+-      if (generation === historyRead.current && current.current.revision === baseline.revision && current.current.incarnation === baseline.incarnation) setHistory(next ?? {});
++      if (generation === historyRead.current && current.current.revision === baseline.revision && current.current.incarnation === baseline.incarnation) setHistory(next ?? {undoCount: 0, redoCount: 0});
+     } catch { /* Existing coherent read/recovery owns unavailable-state feedback. */ }
+   }
+   useEffect(() => { void refreshHistory(); }, [current.current.revision, current.current.incarnation, lifecycleBlocked]);
+diff --git a/src/presentation/styles/global.css b/src/presentation/styles/global.css
+index 4069f89..1eaac39 100644
+--- a/src/presentation/styles/global.css
++++ b/src/presentation/styles/global.css
+@@ -134,7 +134,7 @@
+ /* Page-owned pane geometry preserves one mounted editor across modes. */
+ .workbench { --groups-width: 13.25rem; --inspector-width: 25rem; grid-template-columns: var(--groups-width) minmax(0, 1fr) var(--inspector-width); }
+ .groups-collapsed { --groups-width: 3.25rem; }
+-.inspector-collapsed { --inspector-width: 3.25rem; }
++.inspector-collapsed { --inspector-width: 3rem; }
+ .projects-layout { grid-template-columns: minmax(0, 1fr) 25rem; }
+ .groups-collapsed .sidebar-toggle > span { display: none; }
+ .inspector-collapsed .inspector-toggle { border-bottom: 0; }
+@@ -151,6 +151,8 @@
+ @media (min-width:880px) {
+   .inspector-collapsed .inspector-region-title, .inspector-collapsed .inspector-feedback, .inspector-collapsed .inspector-header-status { display:none; }
+   .inspector-collapsed .inspector-header { padding:0; justify-content:center; gap:0; }
++  /* One token toggle stays outside the hidden scroller; only its rail position changes. */
++  .inspector-collapsed .token-inspector-toggle { top:.375rem; right:.375rem; }
+ }
+ @media (max-width:879px) {
+   .workbench.compact-navigation, .projects-layout { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr); }
+@@ -241,3 +243,15 @@
+ .exact-source { white-space: pre; overflow: auto; max-height: min(24rem, 50dvh); max-width: 100%; }
+ /* Increment 007 staged ordinary rows keep native DOM/Find/accessibility order. */
+ .token-row { content-visibility: auto; contain-intrinsic-size: auto 5rem; }
++
++/* Increment 015: history annotation is smaller than general control typography. */
++.history-count { font-size: .625rem; line-height: 1; }
++/* A narrow named icon action retains the same square target as shared icon buttons. */
++@media (max-width:639px) {
++  .workspace-create { width:2.25rem; min-width:2.25rem; padding-inline:0; }
++}
++/* Native file-button part shares the control baseline without stretching checkbox glyphs. */
++input[type="file"]::file-selector-button { min-height:2.25rem; }
++
++/* Workspace heading keeps its creation actions together alongside a shrinkable title. */
++.panel-header { grid-template-columns:minmax(0,1fr) auto; }
+diff --git a/src/presentation/ui/button.tsx b/src/presentation/ui/button.tsx
+index d7675c4..6b93adb 100644
+--- a/src/presentation/ui/button.tsx
++++ b/src/presentation/ui/button.tsx
+@@ -9,19 +9,19 @@ const variants = {
+   mode: "border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm",
+ };
+ const sizes = {
+-  default: "h-8 px-3 justify-center gap-2 rounded-md",
+-  history: "h-11 min-h-11 min-w-11 px-3 sm:h-8 sm:min-h-8 sm:min-w-0 justify-center gap-2 rounded-md",
++  default: "min-h-9 px-3 justify-center gap-2 rounded-md",
++  history: "min-h-9 min-w-9 px-0 sm:px-3 justify-center gap-2 rounded-md w-9 sm:w-auto",
+   panel:
+-    "h-8 px-3 justify-center gap-2 rounded-md source-compact:px-2.5 source-compact:text-caption",
+-  navigation: "h-9 min-h-9 px-3 justify-start gap-2.5 rounded text-xs/normal",
++    "min-h-9 px-3 justify-center gap-2 rounded-md source-compact:px-2.5 source-compact:text-caption",
++  navigation: "min-h-9 px-3 justify-start gap-2.5 rounded text-xs/normal",
+   group:
+-    "h-auto min-h-11 pl-7 pr-3 py-2 justify-start gap-2.5 rounded text-xs/normal",
+-  pane: "h-11 min-h-11 w-full px-4 justify-start gap-2 rounded-none text-caption border-b-border",
+-  icon: "h-11 min-h-11 w-11 min-w-11 p-0 justify-center gap-2 rounded-md shrink-0",
+-  mode: "h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none",
+-  inventory: "h-auto min-h-11 w-full px-3 py-2 justify-start gap-2 rounded-md text-left whitespace-normal",
+-  selection: "h-10 px-3 justify-center gap-2 rounded-md text-caption",
+-  sm: "h-7 px-2 justify-center gap-2 rounded-md",
++    "h-auto min-h-9 pl-7 pr-3 py-2 justify-start gap-2.5 rounded text-xs/normal",
++  pane: "min-h-9 w-full px-4 justify-start gap-2 rounded-none text-caption border-b-border",
++  icon: "min-h-9 w-9 min-w-9 p-0 justify-center gap-2 rounded-md shrink-0",
++  mode: "min-h-9 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none",
++  inventory: "h-auto min-h-9 w-full px-3 py-2 justify-start gap-2 rounded-md text-left whitespace-normal",
++  selection: "min-h-9 px-3 justify-center gap-2 rounded-md text-caption",
++  sm: "min-h-9 px-2 justify-center gap-2 rounded-md",
+ };
+ 
+ export type ButtonProps = Primitive.Props & {
+@@ -36,7 +36,7 @@ export function Button({
+   size = "default",
+   ...props
+ }: ButtonProps) {
+-  const owned = `button inline-flex items-center border-hairline text-caption font-medium disabled:opacity-45 disabled:cursor-default ${sizes[size]} touch:min-h-11 ${variants[variant]}`;
++  const owned = `button inline-flex items-center border-hairline text-caption font-medium disabled:opacity-45 disabled:cursor-default ${sizes[size]} ${variants[variant]}`;
+   return (
+     <Primitive
+       {...props}
+diff --git a/src/presentation/ui/icon.tsx b/src/presentation/ui/icon.tsx
+index 7a7d322..e96ed4e 100644
+--- a/src/presentation/ui/icon.tsx
++++ b/src/presentation/ui/icon.tsx
+@@ -8,6 +8,7 @@ import {
+   ChevronRightIcon,
+   FolderIcon,
+   InformationCircleIcon,
++  MagnifyingGlassIcon,
+   PlusIcon,
+   Square3Stack3DIcon,
+   Squares2X2Icon,
+@@ -24,6 +25,7 @@ const icons = {
+   "chevron-right": ChevronRightIcon,
+   folder: FolderIcon,
+   info: InformationCircleIcon,
++  search: MagnifyingGlassIcon,
+   plus: PlusIcon,
+   stack: Square3Stack3DIcon,
+   grid: Squares2X2Icon,
+diff --git a/src/presentation/ui/input.tsx b/src/presentation/ui/input.tsx
+index 51eaa16..97d54c5 100644
+--- a/src/presentation/ui/input.tsx
++++ b/src/presentation/ui/input.tsx
+@@ -8,7 +8,7 @@ export function Input({
+   return (
+     <input
+       {...props}
+-      className={`text-input touch:min-h-11 small:text-base/normal w-full min-w-0 rounded-md border-hairline border-input text-foreground px-2.5 hover:border-control-hover placeholder:text-placeholder ${appearance === "search" ? "h-8.5 pl-8.5 bg-surface text-xs/normal" : "h-10 min-h-10 bg-background text-xs/normal"} ${className ?? ""}`}
++      className={`text-input min-h-9 small:text-base/normal w-full min-w-0 rounded-md border-hairline border-input text-foreground px-2.5 hover:border-control-hover placeholder:text-placeholder ${appearance === "search" ? "h-9 pl-9 bg-surface text-xs/normal" : "h-9 bg-background text-xs/normal"} ${className ?? ""}`}
+     />
+   );
+ }
+diff --git a/src/presentation/ui/select.tsx b/src/presentation/ui/select.tsx
+index 2ee62c1..70e902e 100644
+--- a/src/presentation/ui/select.tsx
++++ b/src/presentation/ui/select.tsx
+@@ -6,7 +6,7 @@ export function Select({ className, ...props }: ComponentProps<"select">) {
+     <span className="select-control block relative w-full">
+       <select
+         {...props}
+-        className={`native-select touch:min-h-11 appearance-none w-full min-w-0 h-10 min-h-10 rounded-md border-hairline border-input bg-background text-foreground pl-2.5 pr-9.5 text-xs/normal hover:border-control-hover ${className ?? ""}`}
++        className={`native-select  appearance-none w-full min-w-0 h-9 min-h-9 rounded-md border-hairline border-input bg-background text-foreground pl-2.5 pr-9.5 text-xs/normal small:text-base/normal hover:border-control-hover ${className ?? ""}`}
+       />
+       <Icon
+         name="chevron-down"
+diff --git a/test/application/retention/history-bounds.test.ts b/test/application/retention/history-bounds.test.ts
+index 52d2b3b..13c5626 100644
+--- a/test/application/retention/history-bounds.test.ts
++++ b/test/application/retention/history-bounds.test.ts
+@@ -9,7 +9,9 @@ function edit(h: ReturnType<typeof createSessionHistory>, id: string, before: Pr
+ it("evicts oldest count steps and refuses an oversize step while keeping acceptance", () => {
+   const h = createSessionHistory({steps: 2, bytes: 10000});
+   edit(h, "1", snapshot("a"), snapshot("b")); edit(h, "2", snapshot("b"), snapshot("c")); edit(h, "3", snapshot("c"), snapshot("d"));
++  expect(h.state()).toMatchObject({undoCount: 2, redoCount: 0});
+   expect(h.state().notice).toContain("Earlier"); expect(h.state().undo?.id).toBe("3");
+   const small = createSessionHistory({steps: 50, bytes: 10}); edit(small, "1", snapshot("a"), snapshot("b"));
++  expect(small.state()).toMatchObject({undoCount: 0, redoCount: 0});
+   expect(small.state().undo).toBeUndefined(); expect(small.state().notice).toContain("cannot be undone");
+ });
+diff --git a/test/application/retention/history.test.ts b/test/application/retention/history.test.ts
+index ffbf41b..e160644 100644
+--- a/test/application/retention/history.test.ts
++++ b/test/application/retention/history.test.ts
+@@ -113,3 +113,21 @@ it("preserves history on unchanged resume, clears incarnation changes, and canno
+   expect((await replacement.checkInterruptedAttempt(identity)).status).toBe("retained");
+   expect(replacement.historyState().undo).toBeUndefined(); expect(replacement.historyState().redo).toBeUndefined();
+ });
++
++
++it("reports true retained counts through traversal, branching, suspension and invalidation", async () => {
++  const f = await opened();
++  expect(f.app.historyState()).toMatchObject({undoCount: 0, redoCount: 0});
++  await group(f); await group(f, "h");
++  expect(f.app.historyState()).toMatchObject({undoCount: 2, redoCount: 0});
++  await traverse(f, "undo");
++  expect(f.app.historyState()).toMatchObject({undoCount: 1, redoCount: 1});
++  f.app.suspend(); expect(f.app.historyState()).toMatchObject({undoCount: 1, redoCount: 1}); f.app.resume();
++  await traverse(f, "redo"); expect(f.app.historyState()).toMatchObject({undoCount: 2, redoCount: 0});
++  await traverse(f, "undo"); await group(f, "i");
++  expect(f.app.historyState()).toMatchObject({undoCount: 2, redoCount: 0});
++  f.external(); await f.app.openProject("p");
++  expect(f.app.historyState()).toMatchObject({undoCount: 0, redoCount: 0});
++  await group(f, "j"); await f.app.leaveProject("p");
++  expect(f.app.historyState()).toMatchObject({undoCount: 0, redoCount: 0});
++});
+diff --git a/test/presentation/authored-value.test.ts b/test/presentation/authored-value.test.ts
+index b601bcc..e8a38d9 100644
+--- a/test/presentation/authored-value.test.ts
++++ b/test/presentation/authored-value.test.ts
+@@ -36,3 +36,19 @@ describe("compact authored coordinates", () => {
+     expect(authoredColorCoordinates(createColorLiteral({ colorSpace, components, alpha: "0.37" }), "compact")).toEqual(expected);
+   });
+ });
++
++
++describe("row-only four-decimal approximation", () => {
++  it.each([
++    ["1.23445", "1.2345"], ["-1.23445", "-1.2345"],
++    ["9.99995", "10"], ["-0.000049", "0"], ["0.00005", "0.0001"],
++    ["1234567890123456789.12345", "1234567890123456789.1235"],
++    ["0.12", "0.12"], ["none", "none"],
++  ])("rounds %s to %s without binary precision loss", (source, expected) => {
++    const value = createColorLiteral({colorSpace: "oklab", components: ["0.5", source, "none"], alpha: "0.12345"});
++    expect(authoredColorCoordinates(value, "compact", true)[1]).toBe(`a: ${expected}`);
++    expect(authoredColorCoordinates(value, "compact", true)[3]).toBe("Alpha: 0.1235");
++    expect(authoredColorCoordinates(value)[1]).toBe(`a ${source}`);
++    expect(value.components[1]).toBe(source);
++  });
++});
+diff --git a/test/presentation/retention-protocol.test.ts b/test/presentation/retention-protocol.test.ts
+index 8d783b7..d0650e9 100644
+--- a/test/presentation/retention-protocol.test.ts
++++ b/test/presentation/retention-protocol.test.ts
+@@ -149,3 +149,11 @@ it("validates closed project-target history calls and rejects renderer snapshots
+   expect(() => validateHostOutput("traverse", input, {...output, receipt: {...output.receipt, result: {entityKind: "token", id: "removed"}}})).toThrow();
+   expect(() => validateHostOutput("traverse", input, {status:"unchanged", revision:"r", reason:"no-op"})).toThrow();
+ });
++
++it("validates true history counts across the typed worker boundary", () => {
++  const input = {projectId: "p", revision: "r"};
++  expect(() => validateHostOutput("historyState", input, {undoCount: 2, redoCount: 1})).not.toThrow();
++  for (const undoCount of [-1, 0.5, 51, "2", undefined]) {
++    expect(() => validateHostOutput("historyState", input, {undoCount, redoCount: 0})).toThrow();
++  }
++});
+diff --git a/test/presentation/workbench-sections.test.tsx b/test/presentation/workbench-sections.test.tsx
+index a5e10b0..2082f67 100644
+--- a/test/presentation/workbench-sections.test.tsx
++++ b/test/presentation/workbench-sections.test.tsx
+@@ -7,7 +7,7 @@ import { TokensStatusBar } from "@presentation/App/components/TokensWorkbench/co
+ function toolbar(view: ComponentProps<typeof WorkspaceToolbar>["view"], blocked = false) {
+   return renderToStaticMarkup(createElement(WorkspaceToolbar, {
+     view, blocked, query: "Preserved query", groupLabels: new Map([["g", "Brand"]]),
+-    onQuery() {}, onCreateToken() {}, onRenameGroup() {},
++    onQuery() {}, onCreateToken() {}, onCreateGroup() {}, onRenameGroup() {},
+   }));
+ }
+ 
+@@ -20,7 +20,7 @@ it("keeps scope headings, search and rename visibility distinct without a toolba
+   const group = toolbar({ kind: "group", id: "g" }, true);
+   expect(group).toContain("Brand");
+   expect(group).toContain("Rename group");
+-  expect((group.match(/ disabled=""/g) ?? [])).toHaveLength(2);
++  expect((group.match(/ disabled=""/g) ?? [])).toHaveLength(3);
+   expect(toolbar({ kind: "group", id: "missing" })).toContain("Missing group");
+   const all = toolbar({ kind: "all-content" });
+   expect(all).toContain("All content");
+diff --git a/test/presentation/worker-client.test.tsx b/test/presentation/worker-client.test.tsx
+index 86515cf..c92eaab 100644
+--- a/test/presentation/worker-client.test.tsx
++++ b/test/presentation/worker-client.test.tsx
+@@ -122,7 +122,7 @@ it("fences a lost Undo issuer and reconciles its project-target identity without
+   expect(recover.input).toEqual(original);
+   replacement.reply(recover,{status:"retained",revision:original.revision,receipt:{commandId:original.commandId,operation:"undo",result:{entityKind:"project",id:"p"}},readback:"available"});
+   expect((await checked).status).toBe("retained");
+-  const history=host.call("historyState",{projectId:"p",revision:original.revision}); replacement.reply(replacement.messages.at(-1)!,{});
++  const history=host.call("historyState",{projectId:"p",revision:original.revision}); replacement.reply(replacement.messages.at(-1)!,{undoCount:0,redoCount:0});
+   expect(await history).toMatchObject({notice:expect.stringContaining("Session restarted")});
+   expect(FakeWorker.instances.flatMap(w=>w.messages).filter(m=>m.operation==="traverse")).toHaveLength(1);
+   host.dispose();

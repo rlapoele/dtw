@@ -7,7 +7,7 @@ import { TokensStatusBar } from "@presentation/App/components/TokensWorkbench/co
 function toolbar(view: ComponentProps<typeof WorkspaceToolbar>["view"], blocked = false) {
   return renderToStaticMarkup(createElement(WorkspaceToolbar, {
     view, blocked, query: "Preserved query", groupLabels: new Map([["g", "Brand"]]),
-    onQuery() {}, onCreateToken() {}, onRenameGroup() {},
+    onQuery() {}, onCreateToken() {}, onCreateGroup() {}, onRenameGroup() {},
   }));
 }
 
@@ -20,7 +20,7 @@ it("keeps scope headings, search and rename visibility distinct without a toolba
   const group = toolbar({ kind: "group", id: "g" }, true);
   expect(group).toContain("Brand");
   expect(group).toContain("Rename group");
-  expect((group.match(/ disabled=""/g) ?? [])).toHaveLength(2);
+  expect((group.match(/ disabled=""/g) ?? [])).toHaveLength(3);
   expect(toolbar({ kind: "group", id: "missing" })).toContain("Missing group");
   const all = toolbar({ kind: "all-content" });
   expect(all).toContain("All content");

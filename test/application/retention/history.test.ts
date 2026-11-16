@@ -113,3 +113,21 @@ it("preserves history on unchanged resume, clears incarnation changes, and canno
   expect((await replacement.checkInterruptedAttempt(identity)).status).toBe("retained");
   expect(replacement.historyState().undo).toBeUndefined(); expect(replacement.historyState().redo).toBeUndefined();
 });
+
+
+it("reports true retained counts through traversal, branching, suspension and invalidation", async () => {
+  const f = await opened();
+  expect(f.app.historyState()).toMatchObject({undoCount: 0, redoCount: 0});
+  await group(f); await group(f, "h");
+  expect(f.app.historyState()).toMatchObject({undoCount: 2, redoCount: 0});
+  await traverse(f, "undo");
+  expect(f.app.historyState()).toMatchObject({undoCount: 1, redoCount: 1});
+  f.app.suspend(); expect(f.app.historyState()).toMatchObject({undoCount: 1, redoCount: 1}); f.app.resume();
+  await traverse(f, "redo"); expect(f.app.historyState()).toMatchObject({undoCount: 2, redoCount: 0});
+  await traverse(f, "undo"); await group(f, "i");
+  expect(f.app.historyState()).toMatchObject({undoCount: 2, redoCount: 0});
+  f.external(); await f.app.openProject("p");
+  expect(f.app.historyState()).toMatchObject({undoCount: 0, redoCount: 0});
+  await group(f, "j"); await f.app.leaveProject("p");
+  expect(f.app.historyState()).toMatchObject({undoCount: 0, redoCount: 0});
+});

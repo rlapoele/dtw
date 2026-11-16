@@ -112,7 +112,7 @@ export function ProjectsWorkbench({
               <label className="text-caption block">
                 Project backup file
                 <input
-                  className="block mt-3 max-w-full touch:min-h-11"
+                  className="block mt-3 max-w-full min-h-9"
                   type="file"
                   accept=".json,application/json"
                   disabled={createDisabled}
