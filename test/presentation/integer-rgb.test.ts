@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { integerByteDisplay, integerByteToNormalized } from "@presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/helpers/integer-rgb";
-import { visualRangeState } from "@presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/helpers/visual-range";
+import { integerByteDisplay, integerByteToNormalized } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/helpers/integer-rgb";
+import { visualRangeState } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/helpers/visual-range";
 
 describe("exact integer RGB presentation", () => {
   it.each([

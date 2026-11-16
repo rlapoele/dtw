@@ -48,11 +48,11 @@ vi.mock("react", async (original) => {
     },
   };
 });
-import { useProjects } from "@presentation/App/components/Projects/hooks/useProjects";
-import { useProjectReadback } from "@presentation/App/components/Workbench/hooks/useProjectReadback";
-import { useProjectCommands } from "@presentation/App/components/Workbench/hooks/useProjectCommands";
-import { useCreationForm } from "@presentation/App/components/Workbench/components/CreationDialog/hooks/useCreationForm";
-import { useBackupRestore, restoreProtectionReducer } from "@presentation/App/components/Projects/components/RestoreDialog/hooks/useBackupRestore";
+import { useProjects } from "@presentation/App/components/ProjectsWorkbench/hooks/useProjects";
+import { useProjectReadback } from "@presentation/App/components/TokenWorkbench/hooks/useProjectReadback";
+import { useProjectCommands } from "@presentation/App/components/TokenWorkbench/hooks/useProjectCommands";
+import { useCreationForm } from "@presentation/App/components/TokenWorkbench/components/CreationDialog/hooks/useCreationForm";
+import { useBackupRestore, restoreProtectionReducer } from "@presentation/App/components/ProjectsWorkbench/components/RestoreDialog/hooks/useBackupRestore";
 import type {
   ProjectHeader,
   WorkbenchHost,
@@ -305,10 +305,10 @@ it("invalidates replacement acknowledgement whenever protected revision changes"
 
 it("preserves dirty raw editor channels across baseline refresh and resets only on Cancel", async () => {
   const { useTokenEditor } = await import(
-    "@presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/hooks/useTokenEditor"
+    "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/hooks/useTokenEditor"
   );
   const { editComponent } = await import(
-    "@presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session"
+    "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session"
   );
   const { createColorLiteral } = await import("@domain/color-literal");
   let revision = "r1";
@@ -489,7 +489,7 @@ it("restore preview blocks open, create, stage and selected backup", async () =>
 });
 
 it("keeps one responsive surface state, follows pane focus, and yields to modal focus", async () => {
-  const { useWorkbenchLayout } = await import("@presentation/App/components/Workbench/hooks/useWorkbenchLayout");
+  const { useWorkbenchLayout } = await import("@presentation/App/components/TokenWorkbench/hooks/useWorkbenchLayout");
   const listeners = new Map<string, () => void>();
   const media = new Map<string, { matches: boolean; addEventListener: any; removeEventListener: any }>();
   vi.stubGlobal("window", { innerWidth: 1440 });
@@ -528,7 +528,7 @@ it("keeps one responsive surface state, follows pane focus, and yields to modal 
 it("disposes App restore preview before the authorized completion opens through the guarded project owner", async () => {
   const persist = vi.fn(async () => true);
   const { App } = await import("@presentation/App/App");
-  const { Workbench } = await import("@presentation/App/components/Workbench/Workbench");
+  const { TokenWorkbench } = await import("@presentation/App/components/TokenWorkbench/TokenWorkbench");
   vi.stubGlobal("navigator", { storage: { persisted: async () => false, persist } });
   vi.stubGlobal("addEventListener", vi.fn());
   vi.stubGlobal("removeEventListener", vi.fn());
@@ -553,7 +553,7 @@ it("disposes App restore preview before the authorized completion opens through 
   page = render(app); effects();
   await Promise.resolve(); await Promise.resolve();
   page = render(app);
-  expect(page.type).toBe(Workbench);
+  expect(page.type).toBe(TokenWorkbench);
   expect(page.props.initial).toBe(header);
   expect(persist).not.toHaveBeenCalled();
   expect(vi.mocked(service.call).mock.calls.filter(([operation]) => operation === "openProject")).toHaveLength(1);
@@ -660,4 +660,31 @@ it("shares the synchronous mutation gate across Apply and Undo and keeps travers
   expect(finish).toHaveBeenCalledTimes(1);
   expect(vi.mocked(service.call).mock.calls.filter(([op]) => op === "traverse")).toHaveLength(1);
   expect(vi.mocked(service.call).mock.calls.filter(([op]) => op === "check")).toHaveLength(1);
+});
+
+it("runs Projects resize policy only at 880, never on mount or a compact-only transition", async () => {
+  const { useProjectsLayout } = await import("@presentation/App/components/ProjectsWorkbench/hooks/useProjectsLayout");
+  const listeners = new Map<string, () => void>();
+  const media = new Map<string, { matches: boolean; addEventListener: any; removeEventListener: any }>();
+  vi.stubGlobal("window", { innerWidth: 1440 });
+  vi.stubGlobal("matchMedia", (query: string) => {
+    const value = { matches: false, addEventListener: (_: string, listener: () => void) => listeners.set(query, listener), removeEventListener: vi.fn() };
+    media.set(query, value); return value;
+  });
+  vi.stubGlobal("document", { activeElement: null, querySelector: () => null });
+  const onView = vi.fn();
+  const hook = () => useProjectsLayout({ scroll: 12, surface: "inspect" }, onView);
+  const owner = render(hook);
+  const browse = { scrollTop: 0, contains: () => false };
+  owner.browse.current = browse as any;
+  effects();
+  expect(browse.scrollTop).toBe(12);
+  expect(onView).not.toHaveBeenCalled();
+  media.get("(max-width:1119px)")!.matches = true;
+  listeners.get("(max-width:1119px)")!();
+  expect(onView).not.toHaveBeenCalled();
+  media.get("(max-width:879px)")!.matches = true;
+  listeners.get("(max-width:879px)")!();
+  expect(onView).toHaveBeenCalledExactlyOnceWith({ scroll: 12, surface: "browse" });
+  expect(render(hook).narrow).toBe(true);
 });

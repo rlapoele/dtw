@@ -308,3 +308,14 @@ notify only confirmed retention; they do not own browser-protection state. The
 [current ownership map](../workbench-component-organisation.md) includes these
 actual files. This extends the implemented tree above without changing its
 owner-first categories or the existing command/session boundaries.
+
+
+## Increment 013 placement refinement — 16 November 2026
+
+Current screens are `App/components/ProjectsWorkbench/ProjectsWorkbench.tsx` and
+`App/components/TokenWorkbench/TokenWorkbench.tsx`. Both use
+`App/components/WorkbenchLayout/WorkbenchLayout.tsx`, reusing ApplicationShell; its
+viewport hook shares only threshold observation. Screen hooks retain focus and
+surface policy, and App still calls useProjects unconditionally. The current
+[ownership map](../workbench-component-organisation.md) supersedes the dated tree
+for present paths. Historical evidence and the proposal tree remain dated records.

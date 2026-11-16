@@ -3,10 +3,31 @@
 > Last updated: 16 November 2026
 >
 > Phase: Increment 011 closed by user instruction with acceptance gaps preserved;
-> Increment 012 browser-feedback fixes reviewed; earlier acceptance gaps preserved
+> Increment 013 shared workbench layout implemented and independently reviewed;
+> earlier acceptance gaps preserved
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## Shared workbench layout — Increment 013
+
+The user approved the shared structure and authorized implementation. ProjectsWorkbench
+and TokenWorkbench now use WorkbenchLayout under `App/components/`. The layout
+reuses ApplicationShell, arranges explicit slots without pane wrappers and shares
+1120/880 viewport observation. Screen hooks retain focus/surface policy; App retains
+unconditional useProjects and host/page/restore context. Command/editor logic, keys,
+scroll owners, CSS dimensions and feedback ordering are preserved in source.
+
+[013 completion](../increments/013-shared-workbench-layout.md#completion-report)
+records the R1 snapshot, developer evidence and independent review with no actionable
+findings. Build/all typecheck scopes and nested presentation config passed. Developer
+presentation suite151 and later targeted30 passed; reviewer targeted37 passed.
+Browser smoke was unavailable (offline CLI ENOTCACHED); real geometry/focus/scroll,
+drawer and mounted editor-session behavior remain unverified. No new manual
+acceptance is asserted. Prior campaigns and acceptance gaps remain unchanged.
+
+Checks stopped at approximately16/20 aggregate minutes and0/1 harness repairs.
+Leave staging/committing/pushing to the user; no broader qualification restart.
 
 ## App screen nesting — 16 November 2026
 
@@ -165,7 +186,7 @@ changes are made to resolve it here.
 
 ## Next meaningful action
 
-User reviews the delivered browser-feedback fixes and stated evidence limits,
+User reviews the shared-workbench-layout extraction and stated evidence limits,
 then stages/commits/pushes as desired. Earlier012 acceptance gaps remain open. Leave
 staging, committing and pushing to the user. Do not close the increment or relabel
 unverified runtime acceptance passed without further user instruction/evidence.

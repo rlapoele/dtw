@@ -3,21 +3,21 @@ import { useEffect, useRef, useState } from "react";
 import type { RestorePreview } from "@hosts/browser/protocol";
 import { useWorkbenchHost } from "@presentation/App/hooks/useWorkbenchHost";
 import { useStoragePersistence } from "@presentation/App/hooks/useStoragePersistence";
-import { useProjects } from "@presentation/App/components/Projects/hooks/useProjects";
+import { useProjects } from "@presentation/App/components/ProjectsWorkbench/hooks/useProjects";
 
 import { Dialog } from "@base-ui/react/dialog";
 import { DialogContent } from "@presentation/ui/dialog-content";
 
-import { RestoreDialog } from "@presentation/App/components/Projects/components/RestoreDialog/RestoreDialog";
+import { RestoreDialog } from "@presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog";
 
-import { Workbench } from "@presentation/App/components/Workbench/Workbench";
+import { TokenWorkbench } from "@presentation/App/components/TokenWorkbench/TokenWorkbench";
 
 import { WorkerWorkbenchHost } from "@hosts/browser/worker-client";
 import type { WorkbenchHost } from "@hosts/browser/protocol";
 
 import { Button } from "@presentation/ui/button";
-import type { ProjectsView } from "@presentation/App/components/Projects/hooks/useProjectsLayout";
-import { Projects } from "@presentation/App/components/Projects/Projects";
+import type { ProjectsView } from "@presentation/App/components/ProjectsWorkbench/hooks/useProjectsLayout";
+import { ProjectsWorkbench } from "@presentation/App/components/ProjectsWorkbench/ProjectsWorkbench";
 
 export function App({
   createHost = () => new WorkerWorkbenchHost(),
@@ -72,7 +72,7 @@ export function App({
   }, [entries]);
   if (project && host.current)
     return (
-      <Workbench
+      <TokenWorkbench
         key={project.project.id}
         onProject={(id) => void open(id)}
         host={host.current}
@@ -81,7 +81,7 @@ export function App({
       />
     );
   return (
-    <Projects
+    <ProjectsWorkbench
       storageStatus={storage.status} onRetryStorage={storage.retry}
       view={projectsView} onView={setProjectsView} onDownload={entry => void download(entry)} backupFeedback={backupFeedback} hasPreview={!!preview}
       entries={entries}

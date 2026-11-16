@@ -4,8 +4,8 @@ import { describe, expect, it } from "vitest";
 import { admitSnapshot } from "@application/retention/codec";
 import { projectContext } from "@application/retention/projections";
 import { identityLabels } from "@presentation/token-display/helpers/identity-labels";
-import { AllContent } from "@presentation/App/components/Workbench/components/TokenWorkspace/components/AllContent/AllContent";
-import { membershipBlocks, revealMembershipBlocks } from "@presentation/App/components/Workbench/components/TokenWorkspace/components/AllContent/helpers/all-content";
+import { AllContent } from "@presentation/App/components/TokenWorkbench/components/TokenWorkspace/components/AllContent/AllContent";
+import { membershipBlocks, revealMembershipBlocks } from "@presentation/App/components/TokenWorkbench/components/TokenWorkspace/components/AllContent/helpers/all-content";
 function context(groups: number, tokens: number) {
   return projectContext(admitSnapshot({ project: { id: "p", name: "P" }, groups: Array.from({length:groups}, (_, i)=>({id:`g${i}`,projectId:"p",localName:`group${i}`,parentGroupId:null})), tokens: Array.from({length:tokens},(_,i)=>({id:`t${i}`,projectId:"p",localName:`token${i}`,parentGroupId:null,authoring:{regeneration:"allowed"}})) }));
 }

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type { DraftSession } from "@presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
+import type { DraftSession } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
 import {
   baseline,
   refreshCleanSession,
@@ -8,7 +8,7 @@ import {
   fields,
   displayed,
   literalIssue,
-} from "@presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
+} from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
 import { createColorLiteral, COLOR_SPACES } from "@domain/color-literal";
 import { convertColor } from "@domain/color-calculation";
 

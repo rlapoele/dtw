@@ -2,9 +2,9 @@ import { describe, it, expect } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { TokenList } from "@tests/presentation/support/TokenList";
-import { NamespaceTree } from "@presentation/App/components/Workbench/components/WorkbenchNavigation/components/NamespaceTree/NamespaceTree";
+import { NamespaceTree } from "@presentation/App/components/TokenWorkbench/components/WorkbenchNavigation/components/NamespaceTree/NamespaceTree";
 import { AuthoredValue } from "@presentation/token-display/components/AuthoredValue";
-import { TokenEditor } from "@presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/TokenEditor";
+import { TokenEditor } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/TokenEditor";
 import { identityLabels } from "@presentation/token-display/helpers/identity-labels";
 import { createColorLiteral } from "@domain/color-literal";
 import { createToken } from "@domain/token";
@@ -12,12 +12,12 @@ import { createTokenGroup } from "@domain/token-group";
 import { createProject } from "@domain/project";
 import { InMemoryProjectStorage } from "@adapters/in-memory-project-storage";
 import { createAuthoringOperations } from "@application/authoring";
-import { ColorEditor } from "@presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/ColorEditor";
+import { ColorEditor } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/ColorEditor";
 import {
   baseline,
   editComponent,
-} from "@presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
-import type { DraftSession } from "@presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
+} from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
+import type { DraftSession } from "@presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session";
 import type {
   ApplicationResult,
   TokenInspection,

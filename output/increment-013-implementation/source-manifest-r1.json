@@ -1,0 +1,660 @@
+{
+  "base": "274fcf5a502998ca760cee3551bc7c754ab91055",
+  "files": [
+    {
+      "path": "README.md",
+      "status": " M",
+      "sha256": "32f09b5c245b5237ddaadaa6f1bdc7f989815f70a58b28fb9cc417a0776eba7c"
+    },
+    {
+      "path": "docs/project/architecture.md",
+      "status": " M",
+      "sha256": "7ae1dc89db4d123b8be33ba3c7c2c77f433c32680a6d4dc6f7427da7354972dd"
+    },
+    {
+      "path": "docs/project/presentation-conventions.md",
+      "status": " M",
+      "sha256": "e89da86ff1712b69e4a0df1ac8ee7b444f90f98a17b1f5c75638c534a8e642c3"
+    },
+    {
+      "path": "docs/project/workbench-component-organisation.md",
+      "status": " M",
+      "sha256": "e75600e9fa76d0cc3f751db43afe8a543cc99955331dd8e16d82bea67c5d5572"
+    },
+    {
+      "path": "docs/project/workbench-layout/presentation-organisation-v2.md",
+      "status": " M",
+      "sha256": "1f881722c6d7a54adaa0e8d65e2161e1c8b756aaa90005bdb645f856bc921769"
+    },
+    {
+      "path": "src/presentation/App/App.tsx",
+      "status": " M",
+      "sha256": "1c4c9f715e27a51093b83b916ec86af72ae8842280157b40ea7425c027a20cd3"
+    },
+    {
+      "path": "src/presentation/App/components/Projects/Projects.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Projects/components/CreateProjectForm/CreateProjectForm.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Projects/components/ProjectInspector/ProjectInspector.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Projects/components/ProjectList/ProjectList.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Projects/components/ProjectList/components/ProjectListItem.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Projects/components/ProjectRecovery/ProjectRecovery.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Projects/components/RestoreDialog/RestoreDialog.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Projects/components/RestoreDialog/hooks/useBackupRestore.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Projects/components/StorageProtection/StorageProtection.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Projects/hooks/useProjects.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Projects/hooks/useProjectsLayout.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/Workbench.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/CreationDialog/CreationDialog.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/CreationDialog/helpers/naming-preview.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/CreationDialog/hooks/useCreationForm.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/TokenWorkspace/TokenWorkspace.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/TokenWorkspace/components/AllContent/AllContent.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/TokenWorkspace/components/AllContent/helpers/all-content.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/TokenWorkspace/components/SelectionBar/SelectionBar.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/TokenWorkspace/components/TokenTable/TokenTable.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/TokenWorkspace/components/TokenTable/helpers/hex-preview.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/TokenWorkspace/components/WorkspaceToolbar/WorkspaceToolbar.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchHeader/WorkbenchHeader.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchHeader/components/HistoryControls.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/WorkbenchInspector.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/components/GroupInspector/GroupInspector.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/components/InspectorHeader.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/TokenEditor.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/ColorEditor.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/helpers/visual-range.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/components/EditRecovery.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/components/EditorActions.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ReferenceFields.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/components/TokenEditorContent.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/components/TokenEditorTabs.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/helpers/editor-failure.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/helpers/integer-rgb.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/hooks/useTokenEditor.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenValueComparison.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchNavigation/WorkbenchNavigation.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchNavigation/components/NamespaceTree/NamespaceTree.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchRecovery/components/DepartureGuard.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchRecovery/components/ProjectDiagnostics.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchRecovery/components/RetentionRecovery.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchRecovery/components/WorkbenchFeedback.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/components/WorkbenchStatus/WorkbenchStatus.tsx",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/helpers/history-shortcuts.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/helpers/workspace-view.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/hooks/useProjectCommands.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/hooks/useProjectReadback.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/hooks/useWorkbenchHistory.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/hooks/useWorkbenchLayout.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "src/presentation/App/components/Workbench/hooks/useWorkbenchLifecycle.ts",
+      "status": " D",
+      "deleted": true
+    },
+    {
+      "path": "test/presentation/all-content.test.tsx",
+      "status": " M",
+      "sha256": "534235cbafc15b22058c0eaef5919059be09e97fb8e035e6abf0a2bbe4f256b7"
+    },
+    {
+      "path": "test/presentation/hex-preview.test.ts",
+      "status": " M",
+      "sha256": "474e837bcbff4f5e139ab891bc863c16e1b26c8ea3fc7c5bab26835499b263e6"
+    },
+    {
+      "path": "test/presentation/history-shortcuts.test.tsx",
+      "status": " M",
+      "sha256": "649e39a0ed5cae68e2d37ab91081836e296bb634cc58f6428db7e36290336830"
+    },
+    {
+      "path": "test/presentation/identity-presentation.test.tsx",
+      "status": " M",
+      "sha256": "5ab1b59338c948f83c3b2b4073961c6e34a50c500926a97110fa20eb6410098a"
+    },
+    {
+      "path": "test/presentation/increment-009.test.tsx",
+      "status": " M",
+      "sha256": "824c8eeb8f02c280060dbce3837b1d51fb1b00c84b0d03ffb07487a95eae2f80"
+    },
+    {
+      "path": "test/presentation/integer-rgb.test.ts",
+      "status": " M",
+      "sha256": "284b3d9a56ca9af1110dd6e7101003aa6bfdc8d7a364f61017997db40ba07a15"
+    },
+    {
+      "path": "test/presentation/projects-screen.test.tsx",
+      "status": " M",
+      "sha256": "1220a4b68c536feaddfaa853d1b743abaf66902d219d80173b05c884130235d3"
+    },
+    {
+      "path": "test/presentation/reference-fields.test.tsx",
+      "status": " M",
+      "sha256": "7f2edcede3b7ff38140f51e1208b249540476e83942930dc62d35988afba7097"
+    },
+    {
+      "path": "test/presentation/session.test.ts",
+      "status": " M",
+      "sha256": "bae3d50ff19f690551d7239a99390688e9b949188a84e0f596421b3986a69963"
+    },
+    {
+      "path": "test/presentation/visual-range.test.ts",
+      "status": " M",
+      "sha256": "07a3ad5ecffafe6ac731eb71fa677950ae2da970f07c698098b2f8e1d7560b5a"
+    },
+    {
+      "path": "test/presentation/workbench-coordination.test.tsx",
+      "status": " M",
+      "sha256": "718fecf26d570fe1a1e4a6f8c385f1632966b3f89dbaa295454b17202ffaabd9"
+    },
+    {
+      "path": "test/presentation/workbench-sections.test.tsx",
+      "status": " M",
+      "sha256": "e00161c955df0535b842eb9133d6fd9f640c0a842e375e444a8652425c5ad5e0"
+    },
+    {
+      "path": "docs/increments/013-shared-workbench-layout.md",
+      "status": "??",
+      "sha256": "70f6ccede9f0c5b6c7b16a47adf0991856fa6643e5906b47ce6edc666eb3801a"
+    },
+    {
+      "path": "output/increment-013-implementation/developer.md",
+      "status": "??",
+      "sha256": "70afdf45efc54ac9b2bbba618409f51d54462f91e4e8adb39426fe66b1e0b202"
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/ProjectsWorkbench.tsx",
+      "status": "??",
+      "sha256": "b6759e27117fd9cf788f32cd4e8470693254bdc75269d09e94eec4fe516db379"
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/components/CreateProjectForm/CreateProjectForm.tsx",
+      "status": "??",
+      "sha256": "0adaff7fbad745110cb10e3e5cadb83c7c937fef9c23842f123f2509845b847c"
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/components/ProjectInspector/ProjectInspector.tsx",
+      "status": "??",
+      "sha256": "1c7c7c95f87e0d3ac5a97559137ad7455385f5a2e86d3825c7dd5d6842ea61d3"
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/components/ProjectList/ProjectList.tsx",
+      "status": "??",
+      "sha256": "480d3cd97b7d655fd1cd5867fd427d15d6587e54e1e9fadc468cd988a26116ed"
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/components/ProjectList/components/ProjectListItem.tsx",
+      "status": "??",
+      "sha256": "1c01f743746a877bdeee01224155caed274dbf00475c2934cda7c14f810d993f"
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/components/ProjectRecovery/ProjectRecovery.tsx",
+      "status": "??",
+      "sha256": "8e0502aa6b13039982e872a8127536e5d9a29390130ef3796b773e77828684c7"
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog.tsx",
+      "status": "??",
+      "sha256": "2f6e4a3ac9f91beeeb343ee16059be31a73a015f06db5092458e145e07f91c2e"
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/components/RestoreDialog/hooks/useBackupRestore.ts",
+      "status": "??",
+      "sha256": "063a6995299553bb607ecab8514ec1870fe4396b56762f2f3a14fc4fb7bcda1d"
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/components/StorageProtection/StorageProtection.tsx",
+      "status": "??",
+      "sha256": "b091138aaab97fc748349e0cdf45d9d121346dbfdad342cb03196b8b603fe707"
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/hooks/useProjects.ts",
+      "status": "??",
+      "sha256": "d0d0fe72d8999d6bb0d26e130e51139183aa394ed79b8c5c89751f08a0e46bdc"
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/hooks/useProjectsLayout.ts",
+      "status": "??",
+      "sha256": "8afa105acd0f755aecd4b74ff7285cfed95fb97728573ef02e3cf637869665c2"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/TokenWorkbench.tsx",
+      "status": "??",
+      "sha256": "efd4fa6957b145f982e9f81b95bb0b6e48a6f623f299fb2556d81e7b66077989"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/CreationDialog/CreationDialog.tsx",
+      "status": "??",
+      "sha256": "9411d972d52b580b7a9a374dd15d4a69b3c0e8db15c0b6d31fa3fcbb369e2ee2"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/CreationDialog/helpers/naming-preview.ts",
+      "status": "??",
+      "sha256": "479ed79b129d08243a5683909d58aab8b51abc09fe58fbfbe45e870cad4a4fb1"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/CreationDialog/hooks/useCreationForm.ts",
+      "status": "??",
+      "sha256": "493627cb234323eba21281713ecabc559f767b5ee55b9136deb5270651ab7d9a"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/TokenWorkspace/TokenWorkspace.tsx",
+      "status": "??",
+      "sha256": "6811550d069c032d30c66a72f2d566ea4b71f2b601889ae3263a3e2ea9bf4630"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/TokenWorkspace/components/AllContent/AllContent.tsx",
+      "status": "??",
+      "sha256": "ebb0bd2e1a3fa3ef1d687189aa87022701b83fa65157527c51962c0f547f4eeb"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/TokenWorkspace/components/AllContent/helpers/all-content.ts",
+      "status": "??",
+      "sha256": "a16b89be5e6e3e5e53021696cda28b464df9539cdfd0050b7c3046bcafcda2af"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/TokenWorkspace/components/SelectionBar/SelectionBar.tsx",
+      "status": "??",
+      "sha256": "3489a73d3a1e219df6b7fcfa2629ea1829a1c5ffb03bee112a5af64e9b7dddcd"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/TokenWorkspace/components/TokenTable/TokenTable.tsx",
+      "status": "??",
+      "sha256": "c4dbe84c56efeabbcb38d42d124e3306f35ad6d75d9177b320346b7340daab7a"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/TokenWorkspace/components/TokenTable/helpers/hex-preview.ts",
+      "status": "??",
+      "sha256": "559981d1b6e0b3340c568be5101d830c30332cb20de56c98091b095dc888429f"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/TokenWorkspace/components/WorkspaceToolbar/WorkspaceToolbar.tsx",
+      "status": "??",
+      "sha256": "818682ea748dac8adc71e8a572757f0812c44cba6124a05250409633fe9527ef"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchHeader/WorkbenchHeader.tsx",
+      "status": "??",
+      "sha256": "ae8364bdf98ed39235c7d660b385e7eb590a3e58cd193ad022614e488885110a"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchHeader/components/HistoryControls.tsx",
+      "status": "??",
+      "sha256": "1fea76a2a7020d93d46882fba98b256f234b996107b5622458607555ea6b02a5"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/WorkbenchInspector.tsx",
+      "status": "??",
+      "sha256": "7b9cd598bfe3771b1447ecdade0ec0834a8daf065a59ac18f5730115ab21ad84"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/GroupInspector/GroupInspector.tsx",
+      "status": "??",
+      "sha256": "a5e32538a1c05af8bc2542fb8e4a4c082a90110d0915d6593f1c109a15fce1ac"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/InspectorHeader.tsx",
+      "status": "??",
+      "sha256": "84cb61017e6e33988b8fae31dc64c57477bb5b51e602c3c279cbb8301d916de2"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/TokenEditor.tsx",
+      "status": "??",
+      "sha256": "f07146f0f716e9d6be5575088bfe7009ef9fdd4ddb7265cce1abe30f0885e64f"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/ColorEditor.tsx",
+      "status": "??",
+      "sha256": "3b8f607cb9984208d368f3e30d13ba3019e0652855d11e6ebbd9217b0b816d26"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/helpers/visual-range.ts",
+      "status": "??",
+      "sha256": "5da3f238a8d75cdeaec77c6ebd09c0b6eb74f74744c4a0443caa5d8fbc21aec7"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/EditRecovery.tsx",
+      "status": "??",
+      "sha256": "2b0f7a0807b582e352cba2b1158074fb3fc4afa2025900517b0018d9de547a0f"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/EditorActions.tsx",
+      "status": "??",
+      "sha256": "2c6b6206462c3da03dca188c72de0c33e7828b6ab6936847742a7ae4a8844ec5"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/ReferenceFields.tsx",
+      "status": "??",
+      "sha256": "a96d28933f84aba5fb41d4a6f08550da087d581ad2c15b08060834882e23c599"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/TokenEditorContent.tsx",
+      "status": "??",
+      "sha256": "3db385254093934e308e10cd84e8f339f189ce5bbda9159e8d0f015b60ab0bde"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/components/TokenEditorTabs.tsx",
+      "status": "??",
+      "sha256": "7ca28289bbcca3be3ccfdce44e2f6d8793a3bbd9e6f3d49a8624540e699b5b6a"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/helpers/editor-failure.ts",
+      "status": "??",
+      "sha256": "2747c996b5a70971440b66b547dce1645194f682c6038e8768df0b3a26947ca6"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/helpers/integer-rgb.ts",
+      "status": "??",
+      "sha256": "5318715edf140365341326d4ef6d78fbdaaca510df08a1037a91095a098c8655"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/hooks/useTokenEditor.ts",
+      "status": "??",
+      "sha256": "8033c67743747ee1ef71e2214e3ff35654167d731a29e9f2cf195e9cbd50e84d"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session.ts",
+      "status": "??",
+      "sha256": "aec4f3de916d35c6ec540ad6363763f9ea0f2350d7d284840674986a233f921c"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchInspector/components/TokenValueComparison.tsx",
+      "status": "??",
+      "sha256": "d9cc49f8444c9c08d138919ff1df6edbe9aaa59a98592524ae4463c7ad830d9d"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchNavigation/WorkbenchNavigation.tsx",
+      "status": "??",
+      "sha256": "ef504bbac982da9fb0ec943a176d13400a0715f961b937c76b659f6343ce1007"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchNavigation/components/NamespaceTree/NamespaceTree.tsx",
+      "status": "??",
+      "sha256": "017911ab3bf789cb4189cc479b88e6e05388765966029b323ce18a657099bbdd"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchRecovery/components/DepartureGuard.tsx",
+      "status": "??",
+      "sha256": "4d9fb7774fe91802da6510534c31eef6dc59a019736a61af0ede508662d7b530"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchRecovery/components/ProjectDiagnostics.tsx",
+      "status": "??",
+      "sha256": "d45b118ec342a11cb6b5b8f3bcba879965eced780334abf09a30a4b3dcb26a7d"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchRecovery/components/RetentionRecovery.tsx",
+      "status": "??",
+      "sha256": "c38c345e9e5ccc2d20251677e0cb9d63e8de94480e12e0c4e9a8504b93e1f148"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchRecovery/components/WorkbenchFeedback.tsx",
+      "status": "??",
+      "sha256": "dfa767b5d381139760002e2813d9a2ce5f79460d2d411b0f61c2a8c5a80c30d5"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/components/WorkbenchStatus/WorkbenchStatus.tsx",
+      "status": "??",
+      "sha256": "7c04b1c4b322d438b8cf9c3fafa7822d435604b9b14fef615c10f152f9efbe59"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/helpers/history-shortcuts.ts",
+      "status": "??",
+      "sha256": "1a02d584479bb4176e6a665ef92f9fc3da1b31c4668ce1942a051dd3284e7b5f"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/helpers/workspace-view.ts",
+      "status": "??",
+      "sha256": "3f835b98e2c4e1dbb51c48790014bda536e307066088a20d3b8a8053217a1476"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/hooks/useProjectCommands.ts",
+      "status": "??",
+      "sha256": "aa39614b38e1d466f0e10340bee98f2be616d9b8fdf3aa9137705070a2584b50"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/hooks/useProjectReadback.ts",
+      "status": "??",
+      "sha256": "1e3f96df5ec95eda407d7f00c6bf5b283a267245ac40772532e0ee302a6c2b52"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/hooks/useWorkbenchHistory.ts",
+      "status": "??",
+      "sha256": "8e5fac2d22121058eda08c4be6763e6005691fdc66cb4f5b089227cf5bc50c26"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/hooks/useWorkbenchLayout.ts",
+      "status": "??",
+      "sha256": "71b5f50c1f01c48021337231c660eef9049d6c4fb994d873d4bcc6ab8919aa0c"
+    },
+    {
+      "path": "src/presentation/App/components/TokenWorkbench/hooks/useWorkbenchLifecycle.ts",
+      "status": "??",
+      "sha256": "4af1db038dccdd0d868556d52a7e9b577c5cd1f0cdf7aa08c96e46fb0cfbcad6"
+    },
+    {
+      "path": "src/presentation/App/components/WorkbenchLayout/WorkbenchLayout.tsx",
+      "status": "??",
+      "sha256": "785033ff2bbf6010e99290ec690678a0c56b3f123f10b4b9e1ad2731d718b451"
+    },
+    {
+      "path": "src/presentation/App/components/WorkbenchLayout/hooks/useWorkbenchViewport.ts",
+      "status": "??",
+      "sha256": "d6c234dd9338a998c771eec7817ecd5279cbbe8576053ce9c5b911b86faec130"
+    },
+    {
+      "path": "test/presentation/workbench-layout.test.tsx",
+      "status": "??",
+      "sha256": "334fc40f9213c18803e40e3ea7e71a65fa7a151b10e51d341d1a33d0d71413be"
+    }
+  ]
+}

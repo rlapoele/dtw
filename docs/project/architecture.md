@@ -94,8 +94,8 @@ existing calculation boundary. No preview calls Culori or writes display coordin
 back into tokens. See the [current preview policy](../increments/003-color-policy-proposal.md#preview-policy).
 
 **Current implementation ownership — 16 November 2026:** `App/App.tsx` owns the
-catalogue/Projects context and host lifetime; `App/components/Workbench/Workbench.tsx` coordinates the open project. Their
-component names are `App` and `Workbench`. The transitional `Retained` prefix was
+catalogue/Projects context and host lifetime; `App/components/TokenWorkbench/TokenWorkbench.tsx` coordinates the open project. Their
+component names are `App`, `ProjectsWorkbench` and `TokenWorkbench`. The transitional `Retained` prefix was
 removed after retiring the earlier session-only implementation; historical snapshots
 and evidence retain their original filenames. `src/application/retention/` owns host-independent retention,
 codec, candidate and projection operations; `src/adapters/browser/` owns native storage
@@ -113,7 +113,7 @@ browser policy. Earlier dated descriptions below describe their original increme
 under `presentation/App/components/` following the user-requested reorganisation
 of 16 November 2026; page-specific components use owner-level
 components/hooks/helpers/state categories. App still calls
-`App/components/Projects/hooks/useProjects.ts` unconditionally; Workbench calls its coordination
+`App/components/ProjectsWorkbench/hooks/useProjects.ts` unconditionally; Workbench calls its coordination
 hooks and the creation hook; TokenEditor remains the sole editor-session caller.
 Projects owns selection/explicit opening, revision-checked backup and restore
 entry points. App preserves Projects context and sequences restore completion
@@ -583,8 +583,8 @@ App. Earlier dated implementation sections retain their historical paths; the
 ## App screen ownership — 16 November 2026
 
 The user approved nesting both screen subtrees under `src/presentation/App/components/`.
-Projects is now `App/components/Projects/Projects.tsx`; Workbench is
-`App/components/Workbench/Workbench.tsx`. Each retains its existing components,
+Projects is now `App/components/ProjectsWorkbench/ProjectsWorkbench.tsx`; Workbench is
+`App/components/TokenWorkbench/TokenWorkbench.tsx`. Each retains its existing components,
 hooks and helpers. App still calls useProjects unconditionally and owns host/page
 context and restore sequencing. This filesystem move adds no React wrapper and
 changes no editor key, mounted ancestry, hook execution or session lifetime.
@@ -593,3 +593,19 @@ browser host and infrastructure ownership are unchanged. The
 [current ownership map](workbench-component-organisation.md#app-screen-ownership--16-november-2026)
 records the resulting tree. Earlier dated placement sections retain their
 historical source locations.
+
+
+## Shared workbench layout — Increment 013, 16 November 2026
+
+`App/components/ProjectsWorkbench/ProjectsWorkbench.tsx` and
+`App/components/TokenWorkbench/TokenWorkbench.tsx` use the shared
+`App/components/WorkbenchLayout/WorkbenchLayout.tsx`, which reuses ApplicationShell.
+Explicit content slots supply real pane roots without added pane wrappers; shared
+geometry retains the existing two/three-column modes and controlled collapse.
+`WorkbenchLayout/hooks/useWorkbenchViewport.ts` observes the existing 1120/880
+thresholds, with cleanup and no initial resize-policy execution. Each screen layout
+hook still owns focus/modal/surface policy; Projects responds only to 880 changes.
+App retains host, unconditional useProjects, catalogue/page context and restore refs
+and sequencing. TokenWorkbench retains its project key and one keyed TokenEditor
+in a stable slot across responsive modes. No application/domain/host authority moves
+into the shared layout. See the [013 contract](../increments/013-shared-workbench-layout.md).
