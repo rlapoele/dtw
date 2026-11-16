@@ -16,12 +16,12 @@ export function InspectorHeader({
   onToggle: () => void;
 }) {
   return (
-    <div className="inspector-header border-b border-border bg-surface h-11 min-h-11 shrink-0 flex items-center gap-2 pl-3 min-w-0">
+    <div className={`inspector-header border-b-hairline border-border bg-surface h-11 min-h-11 shrink-0 flex items-center min-w-0 ${inspectorExpanded ? "gap-2 pl-3" : "touch:gap-2 touch:pl-3"}`}>
       <span className="inspector-region-title flex-1 text-caption leading-3.5 min-w-0 font-medium">
         Inspector
       </span>
       {(readFailure || targetUnavailable || !editable || !selected) && (
-        <span className="inspector-header-status text-caption leading-4 text-secondary">
+        <span className="inspector-header-status text-caption leading-4 text-muted-foreground">
           {readFailure || targetUnavailable
             ? "Unavailable"
             : selected

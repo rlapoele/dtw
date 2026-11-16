@@ -114,7 +114,7 @@ export function AuthoringDialog({
                   rows={2}
                   value={description}
                   onChange={(e) => onDescriptionChange(e.target.value)}
-                  className="w-full min-w-0 rounded-md border border-border bg-background text-foreground px-2.5 py-2 text-xs/normal hover:border-control-hover resize-y"
+                  className="w-full min-w-0 rounded-md border-hairline border-input bg-background text-foreground px-2.5 py-2 text-xs/normal small:text-base/normal hover:border-control-hover resize-y"
                 />
               </Field>
             )}
@@ -152,7 +152,7 @@ export function AuthoringDialog({
             )}
             <section
               id="name-preview"
-              className="border border-border bg-muted rounded-md p-3 text-caption mb-4 wrap-anywhere"
+              className="border-hairline border-border bg-muted rounded-md p-3 text-caption mb-4 wrap-anywhere"
               aria-live="polite"
             >
               <h3>Name to save</h3>
@@ -234,7 +234,7 @@ export function AuthoringDialog({
                     <option value="semantic">Semantic</option>
                   </Select>
                 </Field>
-                <section className="creation-disclosure bg-muted border border-border text-xs/normal my-4 p-3 rounded-md">
+                <section className="creation-disclosure bg-muted border-hairline border-border text-xs/normal my-4 p-3 rounded-md">
                   <h3>Initial value</h3>
                   <p className="mt-2">
                     sRGB · Red 0 · Green 0 · Blue 0 · Alpha 1 (opaque black)
@@ -249,7 +249,7 @@ export function AuthoringDialog({
           </fieldset>
           {readFailure && (
             <div
-              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+              className="error border-hairline border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
               id="dialog-read-error"
               tabIndex={-1}
               role="status"
@@ -266,7 +266,7 @@ export function AuthoringDialog({
               ref={formError}
               tabIndex={-1}
               id="creation-error"
-              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+              className="error border-hairline border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
               role="alert"
             >
               {error}

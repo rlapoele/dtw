@@ -1,0 +1,100 @@
+{
+  "focus": {
+    "tag": "INPUT",
+    "outline": "oklch(0.556 0 none) solid 2px",
+    "offset": "3px",
+    "box": {
+      "x": 307,
+      "y": 181,
+      "width": 410,
+      "height": 40,
+      "top": 181,
+      "right": 717,
+      "bottom": 221,
+      "left": 307
+    }
+  },
+  "modalReturn": "Keep editing",
+  "restoreErrors": [
+    "missing-field at .format"
+  ],
+  "contrast": [
+    {
+      "pair": [
+        "foreground",
+        "background"
+      ],
+      "colors": [
+        "oklch(20.5% 0 none)",
+        "oklch(98.5% 0 none)"
+      ],
+      "ratio": 17.176123405576867
+    },
+    {
+      "pair": [
+        "muted-foreground",
+        "muted"
+      ],
+      "colors": [
+        "oklch(43.9% 0 none)",
+        "oklch(97% 0 none)"
+      ],
+      "ratio": 7.16718116046155
+    },
+    {
+      "pair": [
+        "primary-foreground",
+        "primary"
+      ],
+      "colors": [
+        "oklch(98.5% 0 none)",
+        "oklch(20.5% 0 none)"
+      ],
+      "ratio": 17.176123405576867
+    },
+    {
+      "pair": [
+        "input",
+        "background"
+      ],
+      "colors": [
+        "oklch(55.6% 0 none)",
+        "oklch(98.5% 0 none)"
+      ],
+      "ratio": 4.542848413958314
+    },
+    {
+      "pair": [
+        "ring",
+        "muted"
+      ],
+      "colors": [
+        "oklch(55.6% 0 none)",
+        "oklch(97% 0 none)"
+      ],
+      "ratio": 4.34923168556426
+    },
+    {
+      "pair": [
+        "destructive",
+        "error-surface"
+      ],
+      "colors": [
+        "oklch(50.5% 0.213 27.518)",
+        "oklch(97.1% 0.013 17.38)"
+      ],
+      "ratio": 5.869693069440314
+    },
+    {
+      "pair": [
+        "foreground",
+        "accent"
+      ],
+      "colors": [
+        "oklch(20.5% 0 none)",
+        "oklch(92.2% 0 none)"
+      ],
+      "ratio": 14.231935591755258
+    }
+  ]
+}

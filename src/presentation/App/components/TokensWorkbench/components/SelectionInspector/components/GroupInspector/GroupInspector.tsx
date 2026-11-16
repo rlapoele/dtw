@@ -15,10 +15,10 @@ export function GroupInspector({
   return (
     <div className="p-5">
       <p className="text-caption text-muted-foreground">Group · Read only</p>
-      <h2 className="wrap-anywhere">
+      <h2 className="text-inspector font-semibold wrap-anywhere">
         {entry?.authored.localName || "(unnamed group)"}
       </h2>
-      <p className="wrap-anywhere mt-2">
+      <p className="font-mono text-caption wrap-anywhere mt-2">
         {entry?.path.status === "derived"
           ? pathLabel(entry.path)
           : "Path unavailable"}

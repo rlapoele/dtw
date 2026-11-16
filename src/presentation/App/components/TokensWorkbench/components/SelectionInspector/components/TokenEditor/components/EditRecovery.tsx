@@ -19,7 +19,7 @@ export function EditRecovery({
   onReview: () => void;
 }) {
   return (
-    <section className="border border-border rounded p-3 text-caption mb-4">
+    <section className="border-hairline border-border rounded p-3 text-caption mb-4">
       <h3 ref={headingRef} tabIndex={-1}>
         Applied state changed
       </h3>

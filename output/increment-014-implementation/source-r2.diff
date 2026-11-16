@@ -1,0 +1,1430 @@
+diff --git a/docs/project/presentation-conventions.md b/docs/project/presentation-conventions.md
+index a691096..5f6c58f 100644
+--- a/docs/project/presentation-conventions.md
++++ b/docs/project/presentation-conventions.md
+@@ -89,7 +89,7 @@ qualification campaign is not required by this guidance.
+ 
+ ## Neutral theme and token source
+ 
+-Use shadcn-style semantic theming adapted to the accepted neutral Precision design. Content-first means clear token content, controls and feedback supported by restrained chrome. It is a design principle, not a newly selected preset. Preserve accepted density, hierarchy, compact actions and inspector/navigation surfaces. Stock theme scaffolds must not silently replace those decisions. Color specimens and meaningful semantic feedback may use color.
++Use shadcn-style semantic theming adapted to the accepted neutral Precision design. Content-first means clear token content, controls and feedback supported by restrained chrome. Increment 014 adopts the agreed Tailwind Neutral semantic mapping and Geist / Geist Mono typography; this remains a content-first workbench. Preserve accepted density, hierarchy, compact actions and inspector/navigation surfaces. Stock theme scaffolds must not silently replace those decisions. Color specimens and meaningful semantic feedback may use color.
+ 
+ Keep semantic design values in one source, currently `src/presentation/styles/global.css`. Map referenced semantic CSS variables through Tailwind's `@theme inline` namespaces: for example, `--color-background: var(--background)` exposes `bg-background`. Use the namespace appropriate to the decision, such as `--color-*`, `--radius-*` or `--font-*`. Focused CSS can reference the same source. Values defined directly in `@theme` also have one source; avoid adding a duplicate alias layer without a need. Application theme tokens remain distinct from user-authored design-token data.
+ 
+@@ -189,6 +189,52 @@ WorkbenchLayout owns common composition and controlled two/three-column geometry
+ using ApplicationShell. Supplied navigation/workspace/inspector slots retain their
+ real semantic roots, refs and scroll containers. The scoped `.workbench` and
+ `.projects-layout` CSS exceptions remain in `styles/global.css`; Projects retains
+-28px wide browse padding and tokens 24px, with existing compact/narrow rules.
++1.75rem wide browse padding and Tokens 1.5rem, owned by their workspace components. Compact Tokens (below 1120px), narrow Projects (below 880px) and token editor headings (below 880px) retain 1.25rem vertical / 1rem horizontal padding. Pane grid formulas remain focused CSS; thresholds are unchanged.
+ Screen hooks retain focus, modal and surface policy; shared viewport observation
+ does not run those policies on mount. See the [ownership map](workbench-component-organisation.md).
++
++
++## Neutral / Geist implementation — Increment 014
++
++`styles/global.css` owns the semantic pairs and aliases, referencing installed
++Tailwind Neutral primitives. `secondary` is a surface; supporting text uses
++`muted-foreground`. Input/select/textarea and outline-action boundaries actually
++consume `input`; structural separators use `border`. Selected/hover values alias
++accent/muted. Notice, badge, value and status roles retain meaning-specific names
++while sharing muted values. Error surface/border use Red 50/200 and destructive
++content Red 700. Scrim and elevations use the neutral foreground with deliberate
++alpha. Authored previews and checkerboards remain separate data/decoration.
++
++Geist UI roles are page 1.5rem/600/1.25, inspector 1.25rem/600/1.3,
++section 1rem/500/1.5, body .875rem/400/1.5 and caption/control .75rem/400–500/1.5.
++Technical paths, values, exact source and numeric color entry use Geist Mono
++.75rem/400–500/1.5. Actual narrow text entry uses1rem below768px; labels/prose
++retain Geist. Local fonts, upstream versions, hashes and licenses live in
++[`styles/fonts/`](../../src/presentation/styles/fonts/README.md). No remote font
++service or new offline shell is involved.
++
++Prefer rem lengths with the existing .25rem spacing foundation; preserve retained
++off-scale geometry rather than rounding it. Named `border-hairline` and directional
++`border-*-hairline` utilities express .0625rem strokes (built-in `border` uses px).
++They preserve border-width composition groups in the precompiled merger. Focus
++uses .125rem width/.1875rem offset; browser rasterization can quantize strokes.
++Viewport queries deliberately remain CSS px, synchronized with the observer;
++root font size is not fixed. SVG viewBox/stroke coordinates remain SVG units.
++
++Owned controls express the below 880px2.75rem minimum with `touch:min-h-11`,
++including history's 640–879px interval, native backup input and slider hit areas.
++Track .75rem/thumb 1.125rem geometry remains separate. Ordinary workspace/modal
++padding and table viewport/container policy live at their component owners.
++ApplicationHeader owns wrapping/context order; its existing compactBrand state
++retains the history action row. The remaining collapsed-inspector selector owns
++only that coordinated state; conflicting gap/padding utilities are conditional.
++
++Focused stylesheet exceptions remain: WorkbenchLayout pane/grid formulas;
++collapsed navigation/inspector state; modal/drawer viewport sizing and transition;
++dialog action wrapping; native slider pseudo-elements/gradients; TokenTable
++selection marker and staged row containment; ExactSource local native scrolling;
++trace decoration and the unlayered `[hidden]` invariant. Runtime authored colors
++and illustrative gradients remain at their current consumers. No component/state
++owners or mounted ancestry were moved. Confirmed unused `.project-start`,
++`.range-ends`, `.exact-data` and the statically positioned `.editor-actions`
++bottom offset were removed; EditorActions remains in its current owner.
+diff --git a/src/presentation/App/components/ApplicationHeader/ApplicationHeader.tsx b/src/presentation/App/components/ApplicationHeader/ApplicationHeader.tsx
+index 26f9051..acc845d 100644
+--- a/src/presentation/App/components/ApplicationHeader/ApplicationHeader.tsx
++++ b/src/presentation/App/components/ApplicationHeader/ApplicationHeader.tsx
+@@ -1,9 +1,9 @@
+ import type { ReactNode } from "react";
+ import { Icon } from "@presentation/ui/icon";
+ export function ApplicationHeader({ navigation, context, actions, compactBrand = false }: { navigation?: ReactNode; context?: ReactNode; actions?: ReactNode; compactBrand?: boolean }) {
+-  return <header className={`application-header ${compactBrand ? "compact-brand" : ""} shrink-0 border-b border-border flex items-center gap-4 px-5 py-3`}>
+-    {navigation}<div className="brand flex items-center gap-2 min-w-0"><Icon name="stack" /><strong>Token Workbench</strong></div>
+-    {context && <div className="application-context min-w-0 text-muted-foreground wrap-anywhere">{context}</div>}
+-    <div className="ml-auto flex shrink-0 items-center gap-2">{actions}</div>
++  return <header className={`application-header ${compactBrand ? "compact-brand" : ""} shrink-0 border-b-hairline border-border flex items-center gap-4 px-5 py-3 min-h-16 touch:flex-wrap touch:gap-2 touch:px-4`}>
++    {navigation}<div className={`brand touch:text-caption ${compactBrand ? "touch:hidden" : ""} flex items-center gap-2 min-w-0`}><Icon name="stack" /><strong>Token Workbench</strong></div>
++    {context && <div className={`application-context min-w-0 text-muted-foreground wrap-anywhere touch:text-caption ${compactBrand ? "touch:order-0 touch:flex-1" : "touch:order-3 touch:basis-full"}`}>{context}</div>}
++    <div className={`ml-auto flex shrink-0 items-center gap-2 ${compactBrand ? "touch:basis-full touch:justify-end" : ""}`}>{actions}</div>
+   </header>;
+ }
+diff --git a/src/presentation/App/components/ProjectsWorkbench/ProjectsWorkbench.tsx b/src/presentation/App/components/ProjectsWorkbench/ProjectsWorkbench.tsx
+index 8abb568..aa313e6 100644
+--- a/src/presentation/App/components/ProjectsWorkbench/ProjectsWorkbench.tsx
++++ b/src/presentation/App/components/ProjectsWorkbench/ProjectsWorkbench.tsx
+@@ -71,14 +71,16 @@ export function ProjectsWorkbench({
+       narrow={layout.narrow} surface={view.surface}
+       header={<ApplicationHeader actions={<span className="projects-header-context text-caption text-muted-foreground">Browser local</span>} />}
+       workspace={
+-      <main ref={layout.browse} tabIndex={-1} hidden={layout.narrow && view.surface === "inspect"} onScroll={event => onView({ ...view, scroll: event.currentTarget.scrollTop })} className="projects-browse min-w-0 overflow-auto p-6">
++      <main ref={layout.browse} tabIndex={-1} hidden={layout.narrow && view.surface === "inspect"} onScroll={event => onView({ ...view, scroll: event.currentTarget.scrollTop })} className="projects-browse min-w-0 overflow-auto p-7 touch:px-4 touch:py-5">
+         {
+           <>
++            <p className="eyebrow text-muted-foreground uppercase mb-2">Your workspace</p>
+             <h1>Projects in this browser</h1>
+             <p className="text-muted-foreground mt-3">
+               Applied work is retained automatically. Keep independent backups:
+               browser storage can be cleared or become unavailable.
+             </p>
++            <div className="flex items-center justify-between gap-3 border-t-hairline border-border mt-7 pt-4 mb-4"><h2>Local collection</h2><span className="font-mono text-caption text-muted-foreground">{entries === undefined ? "—" : `${entries.length} ${entries.length === 1 ? "project" : "projects"}`}</span></div>
+             {entries === undefined ? (
+               <p role="status" className="my-5">
+                 {error
+@@ -105,12 +107,12 @@ export function ProjectsWorkbench({
+               onNameChange={onNameChange}
+               onSubmit={onCreate}
+             />
+-            <section className="mt-8">
++            <section className="mt-8 border-t-hairline border-border pt-6">
+               <h2 className="mb-3">Restore backup</h2>
+               <label className="text-caption block">
+                 Project backup file
+                 <input
+-                  className="block mt-3 max-w-full"
++                  className="block mt-3 max-w-full touch:min-h-11"
+                   type="file"
+                   accept=".json,application/json"
+                   disabled={createDisabled}
+@@ -123,8 +125,8 @@ export function ProjectsWorkbench({
+         }
+         <StorageProtection status={storageStatus} disabled={openDisabled} onRetry={onRetryStorage} />
+       </main>}
+-      inspector={<section ref={layout.inspector} tabIndex={-1} aria-label="Project inspector" hidden={layout.narrow && view.surface !== "inspect"} className="projects-inspector min-w-0 overflow-auto border-l border-border bg-surface">
+-        {layout.narrow && <div className="p-4 border-b border-border"><Button onClick={() => layout.show("browse")}>Back to projects</Button></div>}
++      inspector={<section ref={layout.inspector} tabIndex={-1} aria-label="Project inspector" hidden={layout.narrow && view.surface !== "inspect"} className="projects-inspector min-w-0 overflow-auto border-l-hairline touch:border-l-0 border-border bg-surface">
++        {layout.narrow && <div className="p-4 border-b-hairline border-border"><Button onClick={() => layout.show("browse")}>Back to projects</Button></div>}
+         <ProjectInspector entry={selected} missing={missing} catalogueUnavailable={entries === undefined} disabled={openDisabled || entries === undefined} onOpen={onOpen} onDownload={onDownload} />
+       </section>}
+       afterBody={<>
+@@ -150,7 +152,7 @@ export function ProjectsWorkbench({
+           </Button>
+         )}
+       </section>
+-      {backupFeedback && <p role="status" className="shrink-0 border-t border-border p-3 text-caption wrap-anywhere">{backupFeedback}</p>}
++      {backupFeedback && <p role="status" className="shrink-0 border-t-hairline border-border p-3 text-caption wrap-anywhere">{backupFeedback}</p>}
+       </>}
+       overlays={<>{departureDialog}{restoreDialog}</>}
+     />
+diff --git a/src/presentation/App/components/ProjectsWorkbench/components/CreateProjectForm/CreateProjectForm.tsx b/src/presentation/App/components/ProjectsWorkbench/components/CreateProjectForm/CreateProjectForm.tsx
+index 5109e17..b62ce43 100644
+--- a/src/presentation/App/components/ProjectsWorkbench/components/CreateProjectForm/CreateProjectForm.tsx
++++ b/src/presentation/App/components/ProjectsWorkbench/components/CreateProjectForm/CreateProjectForm.tsx
+@@ -22,7 +22,7 @@ export function CreateProjectForm({
+ }) {
+   return (
+     <form
+-      className="mt-8"
++      className="mt-8 border-t-hairline border-border pt-6"
+       onSubmit={(e) => {
+         e.preventDefault();
+         onSubmit();
+diff --git a/src/presentation/App/components/ProjectsWorkbench/components/ProjectInspector/ProjectInspector.tsx b/src/presentation/App/components/ProjectsWorkbench/components/ProjectInspector/ProjectInspector.tsx
+index d085a61..e82f6ab 100644
+--- a/src/presentation/App/components/ProjectsWorkbench/components/ProjectInspector/ProjectInspector.tsx
++++ b/src/presentation/App/components/ProjectsWorkbench/components/ProjectInspector/ProjectInspector.tsx
+@@ -4,10 +4,10 @@ export function ProjectInspector({ entry, missing, catalogueUnavailable = false,
+   entry?: CatalogueEntry; missing: boolean; catalogueUnavailable?: boolean; disabled: boolean; onOpen: (id: string) => void;
+   onDownload: (entry: Extract<CatalogueEntry, { status: "supported" }>) => void;
+ }) {
+-  if (!entry) return <div className="p-6"><h2>Select a project</h2><p className="mt-3 text-muted-foreground">Select a project to inspect it.</p></div>;
++  if (!entry) return <div className="p-6"><h2 className="text-inspector font-semibold">Select a project</h2><p className="mt-3 text-muted-foreground">Select a project to inspect it.</p></div>;
+   const supported = entry.status === "supported" && !missing;
+   return <div className="p-6 space-y-5">
+-    <div><p className="text-caption text-muted-foreground">PROJECT</p><h2 className="wrap-anywhere mt-2">{entry.status === "supported" ? entry.name || "(unnamed project)" : "Project unavailable"}</h2></div>
++    <div><p className="text-caption text-muted-foreground">PROJECT</p><h2 className="text-inspector font-semibold wrap-anywhere mt-2">{entry.status === "supported" ? entry.name || "(unnamed project)" : "Project unavailable"}</h2></div>
+     {supported && <div className="flex flex-col gap-3"><Button variant="default" disabled={disabled} onClick={() => onOpen(entry.id)}>Open project</Button><Button disabled={disabled} onClick={() => onDownload(entry)}>Download backup</Button></div>}
+     <dl className="space-y-4"><div><dt className="text-muted-foreground">Identity</dt><dd className="m-0 mt-1 font-mono text-xs wrap-anywhere">{JSON.stringify(entry.id)}</dd></div><div><dt className="text-muted-foreground">Status</dt><dd className="m-0 mt-1">{missing ? "Unavailable — selected entry is no longer in the catalogue." : catalogueUnavailable ? "Catalogue unavailable or being refreshed. Last-known facts are shown." : entry.status === "supported" ? "Supported" : entry.reason}</dd></div>
+     {supported && <><div><dt className="text-muted-foreground">Contents</dt><dd className="m-0 mt-1">{entry.tokens} tokens · {entry.groups} groups</dd></div></>}
+diff --git a/src/presentation/App/components/ProjectsWorkbench/components/ProjectList/ProjectList.tsx b/src/presentation/App/components/ProjectsWorkbench/components/ProjectList/ProjectList.tsx
+index 722d9b7..d70bb0f 100644
+--- a/src/presentation/App/components/ProjectsWorkbench/components/ProjectList/ProjectList.tsx
++++ b/src/presentation/App/components/ProjectsWorkbench/components/ProjectList/ProjectList.tsx
+@@ -1,5 +1,5 @@
+ import type { CatalogueEntry } from "@application/retention/ports";
+ import { ProjectListItem } from "./components/ProjectListItem";
+ export function ProjectList({ entries, disabled, selected, onSelect }: { entries: readonly CatalogueEntry[]; disabled: boolean; selected?: string; onSelect: (entry: CatalogueEntry) => void }) {
+-  return <ul className="my-6 space-y-3">{entries.map(entry => <ProjectListItem key={entry.rowKey} entry={entry} disabled={disabled} selected={selected === entry.rowKey} onSelect={onSelect} />)}</ul>;
++  return <ul className="my-6 border-t-hairline border-border">{entries.map(entry => <ProjectListItem key={entry.rowKey} entry={entry} disabled={disabled} selected={selected === entry.rowKey} onSelect={onSelect} />)}</ul>;
+ }
+diff --git a/src/presentation/App/components/ProjectsWorkbench/components/ProjectList/components/ProjectListItem.tsx b/src/presentation/App/components/ProjectsWorkbench/components/ProjectList/components/ProjectListItem.tsx
+index 16c5824..157318a 100644
+--- a/src/presentation/App/components/ProjectsWorkbench/components/ProjectList/components/ProjectListItem.tsx
++++ b/src/presentation/App/components/ProjectsWorkbench/components/ProjectList/components/ProjectListItem.tsx
+@@ -1,8 +1,8 @@
+ import type { CatalogueEntry } from "@application/retention/ports";
+ export function ProjectListItem({ entry, disabled, selected, onSelect }: { entry: CatalogueEntry; disabled: boolean; selected: boolean; onSelect: (entry: CatalogueEntry) => void }) {
+-  return <li><button type="button" disabled={disabled} aria-pressed={selected} onClick={() => onSelect(entry)} className="project-row w-full text-left border border-border rounded-md p-4 bg-background hover:bg-row-hover aria-pressed:bg-selected disabled:opacity-45">
+-    <strong className="block wrap-anywhere">{entry.status === "supported" ? entry.name || "(unnamed project)" : "Project unavailable"}</strong>
++  return <li><button type="button" disabled={disabled} aria-pressed={selected} onClick={() => onSelect(entry)} className="project-row w-full text-left border-0 border-b-hairline border-border p-4 bg-background hover:bg-row-hover aria-pressed:bg-selected disabled:opacity-45">
++    <strong className="block font-medium wrap-anywhere">{entry.status === "supported" ? entry.name || "(unnamed project)" : "Project unavailable"}</strong>
+     <span className="text-caption text-muted-foreground block mt-2">{entry.status === "supported" ? `${entry.tokens} tokens · ${entry.groups} groups` : `Project unavailable: ${entry.reason}`}</span>
+-    <span className="text-caption block mt-2 wrap-anywhere">Identity: {JSON.stringify(entry.id)}</span>
++    <span className="font-mono text-caption text-muted-foreground block mt-2 wrap-anywhere">Identity: {JSON.stringify(entry.id)}</span>
+   </button></li>;
+ }
+diff --git a/src/presentation/App/components/ProjectsWorkbench/components/ProjectRecovery/ProjectRecovery.tsx b/src/presentation/App/components/ProjectsWorkbench/components/ProjectRecovery/ProjectRecovery.tsx
+index ee50f4e..4d82e6c 100644
+--- a/src/presentation/App/components/ProjectsWorkbench/components/ProjectRecovery/ProjectRecovery.tsx
++++ b/src/presentation/App/components/ProjectsWorkbench/components/ProjectRecovery/ProjectRecovery.tsx
+@@ -33,7 +33,7 @@ export function ProjectRecovery({
+       {retained && (
+         <section
+           role="status"
+-          className="text-caption border border-border rounded p-3 mt-5"
++          className="text-caption border-hairline border-border rounded p-3 mt-5"
+         >
+           <p>
+             The project is retained. Entered input is preserved while reading
+@@ -47,7 +47,7 @@ export function ProjectRecovery({
+       {unknown && (
+         <section
+           role="status"
+-          className="text-caption border border-error-border rounded p-3 mt-5"
++          className="text-caption border-hairline border-error-border rounded p-3 mt-5"
+         >
+           <p>
+             Retained result unknown. Entered name is preserved; do not repeat
+diff --git a/src/presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog.tsx b/src/presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog.tsx
+index 492fea4..8af9760 100644
+--- a/src/presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog.tsx
++++ b/src/presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog.tsx
+@@ -128,7 +128,7 @@ export function RestoreDialog({
+               )}
+             </details>
+             {preview.local && !replacement && (
+-              <section className="border border-border rounded p-3 text-caption">
++              <section className="border-hairline border-border rounded p-3 text-caption">
+                 <h3>Same project identity already exists in this browser</h3>
+                 <p className="mt-2">
+                   Local name: {preview.local.name || "(unnamed project)"}
+@@ -154,7 +154,7 @@ export function RestoreDialog({
+               </section>
+             )}
+             {replacement && preview.local && (
+-              <section className="border border-error-border bg-error-surface rounded p-3 text-caption">
++              <section className="border-hairline border-error-border bg-error-surface rounded p-3 text-caption">
+                 <p>
+                   The complete selected backup will replace this local project's
+                   applied state. Local-only authored content will be removed.
+@@ -172,6 +172,7 @@ export function RestoreDialog({
+                 </Button>
+                 <label className="flex gap-3 items-start mt-4">
+                   <input
++                    className="touch:min-h-11"
+                     type="checkbox"
+                     checked={acknowledgement}
+                     disabled={!protection || busy || unknown}
+diff --git a/src/presentation/App/components/ProjectsWorkbench/components/StorageProtection/StorageProtection.tsx b/src/presentation/App/components/ProjectsWorkbench/components/StorageProtection/StorageProtection.tsx
+index ea12495..cc07751 100644
+--- a/src/presentation/App/components/ProjectsWorkbench/components/StorageProtection/StorageProtection.tsx
++++ b/src/presentation/App/components/ProjectsWorkbench/components/StorageProtection/StorageProtection.tsx
+@@ -16,7 +16,7 @@ export function StorageProtection({ status, disabled, onRetry }: {
+   onRetry: () => void;
+ }) {
+   const actionable = status === "unprotected" || status === "check-error" || status === "request-error";
+-  return <section className="mt-8 border-t border-border pt-5">
++  return <section className="mt-8 border-t-hairline border-border pt-5">
+     <h2>Browser retention</h2>
+     <p role="status" className="mt-3 text-caption">{messages[status]}</p>
+     <p className="mt-3 text-muted-foreground">Keep independent backups. Clearing browser data still removes projects. Drafts stay in this session.</p>
+diff --git a/src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx b/src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx
+index 1c2ba81..d4228f4 100644
+--- a/src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx
++++ b/src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx
+@@ -518,7 +518,7 @@ export function TokensWorkbench({
+           <>
+             {recovery}
+             {formBaseline && formBaseline.revision !== header.revision && (
+-              <section className="text-caption border border-border rounded p-3 mb-4">
++              <section className="text-caption border-hairline border-border rounded p-3 mb-4">
+                 <h3>Form baseline changed</h3>
+                 <p className="wrap-anywhere">
+                   Original target/parent identity:{" "}
+diff --git a/src/presentation/App/components/TokensWorkbench/components/AuthoredValue.tsx b/src/presentation/App/components/TokensWorkbench/components/AuthoredValue.tsx
+index 08ccc88..516c413 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/AuthoredValue.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/AuthoredValue.tsx
+@@ -25,7 +25,7 @@ export function AuthoredValue({
+     return (
+       <span className="block min-w-0 wrap-anywhere">
+         <span className="block">Reference</span>
+-        <span className="block text-secondary mt-1">
++        <span className="block text-muted-foreground mt-1">
+           {target
+             ? identityLabels(project?.tokens ?? []).get(target.authored.id)
+             : "Missing target"}
+@@ -38,7 +38,7 @@ export function AuthoredValue({
+   return (
+     <span className="block min-w-0 wrap-anywhere">
+       <span className="block">{spaceName(value.colorSpace)}</span>
+-      <span className="block text-secondary mt-1 mono">
++      <span className="block text-muted-foreground mt-1 mono">
+         {authoredColorCoordinates(value, layout).map((text, index) => (
+           <span key={index}>
+             {layout === "compact" && index > 0 ? " · " : ""}
+diff --git a/src/presentation/App/components/TokensWorkbench/components/AuthoringDialog/AuthoringDialog.tsx b/src/presentation/App/components/TokensWorkbench/components/AuthoringDialog/AuthoringDialog.tsx
+index 2e9e86a..4eaf802 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/AuthoringDialog/AuthoringDialog.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/AuthoringDialog/AuthoringDialog.tsx
+@@ -114,7 +114,7 @@ export function AuthoringDialog({
+                   rows={2}
+                   value={description}
+                   onChange={(e) => onDescriptionChange(e.target.value)}
+-                  className="w-full min-w-0 rounded-md border border-border bg-background text-foreground px-2.5 py-2 text-xs/normal hover:border-control-hover resize-y"
++                  className="w-full min-w-0 rounded-md border-hairline border-input bg-background text-foreground px-2.5 py-2 text-xs/normal small:text-base/normal hover:border-control-hover resize-y"
+                 />
+               </Field>
+             )}
+@@ -152,7 +152,7 @@ export function AuthoringDialog({
+             )}
+             <section
+               id="name-preview"
+-              className="border border-border bg-muted rounded-md p-3 text-caption mb-4 wrap-anywhere"
++              className="border-hairline border-border bg-muted rounded-md p-3 text-caption mb-4 wrap-anywhere"
+               aria-live="polite"
+             >
+               <h3>Name to save</h3>
+@@ -234,7 +234,7 @@ export function AuthoringDialog({
+                     <option value="semantic">Semantic</option>
+                   </Select>
+                 </Field>
+-                <section className="creation-disclosure bg-muted border border-border text-xs/normal my-4 p-3 rounded-md">
++                <section className="creation-disclosure bg-muted border-hairline border-border text-xs/normal my-4 p-3 rounded-md">
+                   <h3>Initial value</h3>
+                   <p className="mt-2">
+                     sRGB · Red 0 · Green 0 · Blue 0 · Alpha 1 (opaque black)
+@@ -249,7 +249,7 @@ export function AuthoringDialog({
+           </fieldset>
+           {readFailure && (
+             <div
+-              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
++              className="error border-hairline border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+               id="dialog-read-error"
+               tabIndex={-1}
+               role="status"
+@@ -266,7 +266,7 @@ export function AuthoringDialog({
+               ref={formError}
+               tabIndex={-1}
+               id="creation-error"
+-              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
++              className="error border-hairline border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+               role="alert"
+             >
+               {error}
+diff --git a/src/presentation/App/components/TokensWorkbench/components/NamespaceNavigation/NamespaceNavigation.tsx b/src/presentation/App/components/TokensWorkbench/components/NamespaceNavigation/NamespaceNavigation.tsx
+index 9845202..1f0dc59 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/NamespaceNavigation/NamespaceNavigation.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/NamespaceNavigation/NamespaceNavigation.tsx
+@@ -14,7 +14,7 @@ export function NamespaceNavigationPane({
+ }) {
+   return (
+     <nav
+-      className="sidebar flex min-h-0 flex-col overflow-hidden border-r border-border bg-surface"
++      className="sidebar flex min-h-0 flex-col overflow-hidden border-r-hairline border-border bg-surface"
+       aria-label="Project groups"
+     >
+       <Button
+@@ -59,8 +59,8 @@ export function NamespaceNavigationDrawer({
+     <Dialog.Root open={open} onOpenChange={onOpenChange}>
+       <Dialog.Portal>
+         <Dialog.Backdrop className="navigation-backdrop fixed inset-0 z-30 bg-scrim" />
+-        <Dialog.Popup finalFocus={finalFocus} className="navigation-drawer fixed top-0 bottom-0 left-0 z-35 border-r border-border bg-background flex flex-col overflow-hidden">
+-          <div className="navigation-heading border-b border-border px-4 py-3 flex items-center justify-between gap-3">
++        <Dialog.Popup finalFocus={finalFocus} className="navigation-drawer shadow-drawer fixed top-0 bottom-0 left-0 z-35 border-r-hairline border-border bg-background flex flex-col overflow-hidden">
++          <div className="navigation-heading border-b-hairline border-border px-4 py-3 flex items-center justify-between gap-3">
+             <Dialog.Title>Project navigation</Dialog.Title>
+             <Dialog.Close
+               render={<Button variant="ghost" size="icon" />}
+diff --git a/src/presentation/App/components/TokensWorkbench/components/NamespaceNavigation/components/NamespaceTree/NamespaceTree.tsx b/src/presentation/App/components/TokensWorkbench/components/NamespaceNavigation/components/NamespaceTree/NamespaceTree.tsx
+index 0debea6..5a008a4 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/NamespaceNavigation/components/NamespaceTree/NamespaceTree.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/NamespaceNavigation/components/NamespaceTree/NamespaceTree.tsx
+@@ -33,7 +33,7 @@ export function NamespaceTree({
+         className={`sidebar-project source-compact:gap-2 flex items-center gap-2.5 ${drawer ? "px-2 pb-6" : "px-2 pb-7.5 source-compact:px-1 source-compact:pb-6.25"}`}
+       >
+         <span
+-          className="project-icon place-items-center border border-border bg-background text-xs/normal font-heading h-8 w-8 grid"
++          className="project-icon place-items-center border-hairline border-border bg-background text-xs/normal font-heading h-8 w-8 grid"
+           aria-hidden="true"
+         >
+           T
+@@ -61,7 +61,7 @@ export function NamespaceTree({
+       >
+         <Icon name="grid" className="icon block" />
+         All tokens
+-        <span className="count ml-auto text-secondary font-normal">
++        <span className="count ml-auto text-muted-foreground font-normal">
+           {project?.tokens.length ?? 0}
+         </span>
+       </Button>
+diff --git a/src/presentation/App/components/TokensWorkbench/components/RetentionRecovery.tsx b/src/presentation/App/components/TokensWorkbench/components/RetentionRecovery.tsx
+index 669ab3e..f11e360 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/RetentionRecovery.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/RetentionRecovery.tsx
+@@ -19,7 +19,7 @@ export function RetentionRecovery({
+   return busy && activeMutation && !unknown && !retainedPending ? (
+     <section
+       role="status"
+-      className="border border-border text-caption p-3 rounded my-3"
++      className="border-hairline border-border text-caption p-3 rounded my-3"
+     >
+       <p>
+         Retention pending. Inputs are preserved; duplicate submission is
+@@ -30,7 +30,7 @@ export function RetentionRecovery({
+   ) : retainedPending ? (
+     <section
+       role="status"
+-      className="border border-border text-caption p-3 rounded my-3"
++      className="border-hairline border-border text-caption p-3 rounded my-3"
+     >
+       <p>
+         The original change is retained. Display recovery is unavailable; inputs
+@@ -43,7 +43,7 @@ export function RetentionRecovery({
+   ) : unknown ? (
+     <section
+       role="status"
+-      className="border border-error-border bg-error-surface text-caption p-3 rounded my-3"
++      className="border-hairline border-error-border bg-error-surface text-caption p-3 rounded my-3"
+     >
+       <p>Retained result unknown. Inputs are preserved. {unknown.reason}</p>
+       <Button disabled={busy} onClick={() => onCheck()}>
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/SelectionInspector.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/SelectionInspector.tsx
+index 176f5b8..b2f41d8 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/SelectionInspector.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/SelectionInspector.tsx
+@@ -33,10 +33,10 @@ export function SelectionInspector({
+ }) {
+   return (
+     <section ref={surfaceRef} hidden={hidden} tabIndex={-1}
+-      className="inspector-shell small:border-l-0 small:border-t small:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l border-border bg-surface"
++      className="inspector-shell touch:border-l-0 small:border-t-hairline small:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l-hairline border-border bg-surface"
+       aria-label="Inspector pane"
+     >
+-      {back && <div className="p-3 border-b border-border"><Button onClick={back}>Back to tokens</Button></div>}
++      {back && <div className="p-3 border-b-hairline border-border"><Button onClick={back}>Back to tokens</Button></div>}
+       {children || (
+         <>
+           <InspectorHeader
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/GroupInspector/GroupInspector.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/GroupInspector/GroupInspector.tsx
+index 4a3042d..b70ae67 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/GroupInspector/GroupInspector.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/GroupInspector/GroupInspector.tsx
+@@ -15,10 +15,10 @@ export function GroupInspector({
+   return (
+     <div className="p-5">
+       <p className="text-caption text-muted-foreground">Group · Read only</p>
+-      <h2 className="wrap-anywhere">
++      <h2 className="text-inspector font-semibold wrap-anywhere">
+         {entry?.authored.localName || "(unnamed group)"}
+       </h2>
+-      <p className="wrap-anywhere mt-2">
++      <p className="font-mono text-caption wrap-anywhere mt-2">
+         {entry?.path.status === "derived"
+           ? pathLabel(entry.path)
+           : "Path unavailable"}
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorHeader.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorHeader.tsx
+index a3e41e2..fb7a37a 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorHeader.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorHeader.tsx
+@@ -16,12 +16,12 @@ export function InspectorHeader({
+   onToggle: () => void;
+ }) {
+   return (
+-    <div className="inspector-header border-b border-border bg-surface h-11 min-h-11 shrink-0 flex items-center gap-2 pl-3 min-w-0">
++    <div className={`inspector-header border-b-hairline border-border bg-surface h-11 min-h-11 shrink-0 flex items-center min-w-0 ${inspectorExpanded ? "gap-2 pl-3" : "touch:gap-2 touch:pl-3"}`}>
+       <span className="inspector-region-title flex-1 text-caption leading-3.5 min-w-0 font-medium">
+         Inspector
+       </span>
+       {(readFailure || targetUnavailable || !editable || !selected) && (
+-        <span className="inspector-header-status text-caption leading-4 text-secondary">
++        <span className="inspector-header-status text-caption leading-4 text-muted-foreground">
+           {readFailure || targetUnavailable
+             ? "Unavailable"
+             : selected
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ColorEditor/ColorEditor.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ColorEditor/ColorEditor.tsx
+index 087a846..b62a0ec 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ColorEditor/ColorEditor.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ColorEditor/ColorEditor.tsx
+@@ -177,7 +177,7 @@ export function ColorEditor({
+               {available ? (
+                 <>
+                   <input
+-                    className="component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground"
++                    className="component-range touch:min-h-11 small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground"
+                     type="range"
+                     disabled={readOnly}
+                     min={min}
+@@ -209,7 +209,7 @@ export function ColorEditor({
+               <Input
+                 id={`color-component-${i}`}
+                 readOnly={readOnly}
+-                className="small:h-11 small:min-h-11"
++                className="font-mono small:h-11 small:min-h-11"
+                 value={value}
+                 spellCheck={false}
+                 aria-describedby={`range-note-${i} byte-note-${i} editor-error`}
+@@ -235,7 +235,7 @@ export function ColorEditor({
+           );
+         })}
+       </div>
+-      <div className="component-control flex min-w-0 flex-col mb-1 alpha-control border-t border-border pt-1">
++      <div className="component-control flex min-w-0 flex-col mb-1 alpha-control border-t-hairline border-border pt-1">
+         <label
+           htmlFor="color-alpha"
+           className="component-value min-w-0 m-0 text-caption font-medium"
+@@ -244,7 +244,7 @@ export function ColorEditor({
+         </label>
+         {alphaRangeState === "available" ? (
+           <input
+-            className="component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range"
++            className="component-range touch:min-h-11 small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range"
+             type="range"
+             disabled={readOnly}
+             min="0"
+@@ -270,7 +270,7 @@ export function ColorEditor({
+         <Input
+           id="color-alpha"
+           readOnly={readOnly}
+-          className="small:h-11 small:min-h-11"
++          className="font-mono small:h-11 small:min-h-11"
+           value={s.literal.alpha}
+           aria-describedby="editor-error"
+           onChange={(e) =>
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditRecovery.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditRecovery.tsx
+index 8754480..0447f37 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditRecovery.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditRecovery.tsx
+@@ -19,7 +19,7 @@ export function EditRecovery({
+   onReview: () => void;
+ }) {
+   return (
+-    <section className="border border-border rounded p-3 text-caption mb-4">
++    <section className="border-hairline border-border rounded p-3 text-caption mb-4">
+       <h3 ref={headingRef} tabIndex={-1}>
+         Applied state changed
+       </h3>
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditorActions.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditorActions.tsx
+index 2f53356..983e70c 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditorActions.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditorActions.tsx
+@@ -14,7 +14,7 @@ export function EditorActions({
+   onApply: () => void;
+ }) {
+   return (
+-    <div className="editor-actions flex justify-end gap-2 mt-3 mb-2 border-t border-border bg-surface py-3">
++    <div className="editor-actions flex justify-end gap-2 mt-3 mb-2 border-t-hairline border-border bg-surface py-3">
+       <Button disabled={cancelDisabled} onClick={onCancel}>
+         Cancel
+       </Button>
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ResolvedTokenPanel.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ResolvedTokenPanel.tsx
+index 1f6e88f..ce22f5d 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ResolvedTokenPanel.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ResolvedTokenPanel.tsx
+@@ -63,7 +63,7 @@ export function ResolvedTokenPanel({
+       ) : (
+         <p
+           role="status"
+-          className="border border-error-border bg-error-surface rounded p-3 text-caption text-destructive"
++          className="border-hairline border-error-border bg-error-surface rounded p-3 text-caption text-destructive"
+         >
+           Unresolved: {resolution.reason}. Authored data retained.
+         </p>
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent.tsx
+index c40400b..0a1d465 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent.tsx
+@@ -62,12 +62,12 @@ export function TokenEditorContent({
+       aria-label="Selected token"
+       hidden={readUnavailable}
+     >
+-      <div className="inspector-heading bg-surface p-3">
++      <div className="inspector-heading bg-surface p-6 touch:px-4 touch:py-5">
+         <span className="eyebrow uppercase text-muted-foreground font-semibold">
+           {token.definition?.type ?? "Unassigned"} token
+         </span>
+         <div className="flex flex-wrap items-start gap-3">
+-        <h2 className="wrap-anywhere flex-1 basis-40 min-w-0">
++        <h2 className="wrap-anywhere flex-1 basis-40 min-w-0 my-1 text-inspector font-semibold">
+           {tokenLabels.get(token.id) ??
+             (token.localName || "(unnamed original token)")}
+         </h2>
+@@ -96,7 +96,7 @@ export function TokenEditorContent({
+           {targetUnavailable && (
+             <p
+               role="status"
+-              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive"
++              className="error border-hairline border-error-border bg-error-surface rounded text-caption p-3 text-destructive"
+             >
+               {targetUnavailable} Preserved input remains selectable. This
+               action cannot recreate or retarget it.
+@@ -124,7 +124,7 @@ export function TokenEditorContent({
+             <>
+               <fieldset disabled={accepting}>
+                 <legend className="sr-only">Value source</legend>
+-                <div className="mode-switch border border-border bg-mode flex p-0.75 rounded-md gap-0.75">
++                <div className="mode-switch border-hairline border-border bg-mode flex p-0.75 rounded-md gap-0.75">
+                   <Button
+                     variant="mode"
+                     size="mode"
+@@ -187,7 +187,7 @@ export function TokenEditorContent({
+                 <p
+                   ref={errorRef}
+                   tabIndex={-1}
+-                  className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
++                  className="error border-hairline border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+                   id="editor-error"
+                   role="alert"
+                 >
+@@ -229,7 +229,7 @@ export function TokenEditorContent({
+               </p>
+             </>
+           ) : (
+-            <p className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4">
++            <p className="error border-hairline border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4">
+               Inspection only: this token is outside the unconditional
+               primitive/semantic color revision flow. Its data is retained.
+             </p>
+@@ -240,7 +240,7 @@ export function TokenEditorContent({
+               unavailable and unverified.
+             </p>
+           )}
+-          <section className="applied-summary border-t border-border mt-7 pt-5">
++          <section className="applied-summary border-t-hairline border-border mt-7 pt-5">
+             <h3 className="mb-3.5">
+               {targetUnavailable
+                 ? "Previous applied · target unavailable"
+@@ -275,7 +275,7 @@ export function TokenEditorContent({
+           />
+         </Tabs.Panel>
+       </Tabs.Root>
+-      <div className="inspector-foot density:mt-5 small:mt-0 border-t border-border bg-surface px-6 py-4 mt-auto flex justify-between text-muted-foreground">
++      <div className="inspector-foot density:mt-5 small:mt-0 border-t-hairline border-border bg-surface px-6 py-4 mt-auto flex justify-between text-muted-foreground">
+         <span>Regeneration</span>
+         <span>{token.authoring.regeneration}</span>
+       </div>
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorTabs.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorTabs.tsx
+index 95f3d33..19e9812 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorTabs.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorTabs.tsx
+@@ -3,17 +3,17 @@ import { Tabs } from "@base-ui/react/tabs";
+ export function TokenEditorTabs() {
+   return (
+     <Tabs.List
+-      className="tabs flex border-b border-border px-6 gap-5.5 source-compact:px-5 source-compact:gap-4.5"
++      className="tabs flex border-b-hairline border-border px-6 gap-5.5 source-compact:px-5 source-compact:gap-4.5"
+       aria-label="Token inspection"
+     >
+       <Tabs.Tab
+-        className="relative border-0 bg-transparent min-h-10.5 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-px data-active:after:inset-x-0 data-active:after:bg-primary"
++        className="relative border-0 bg-transparent min-h-10.5 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-0.25 data-active:after:inset-x-0 data-active:after:bg-primary"
+         value="authored"
+       >
+         Authored value
+       </Tabs.Tab>
+       <Tabs.Tab
+-        className="relative border-0 bg-transparent min-h-10.5 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-px data-active:after:inset-x-0 data-active:after:bg-primary"
++        className="relative border-0 bg-transparent min-h-10.5 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-0.25 data-active:after:inset-x-0 data-active:after:bg-primary"
+         value="resolved"
+       >
+         Resolved &amp; trace
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenMetadata.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenMetadata.tsx
+index fd97dab..3b035cd 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenMetadata.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenMetadata.tsx
+@@ -15,22 +15,22 @@ export function TokenMetadata({
+   path: DisplayPath;
+ }) {
+   return (
+-    <section className="applied-summary border-t border-border mt-7 pt-5">
++    <section className="applied-summary border-t-hairline border-border mt-7 pt-5">
+       <h3 className="mb-3.5">Metadata · read only</h3>
+       <dl className="details">
+-        <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
++        <div className="flex justify-between gap-4 py-2.5 border-b-hairline border-border text-caption">
+           <dt className="text-muted-foreground">Regeneration</dt>
+           <dd className="text-right wrap-anywhere">
+             {token.authoring.regeneration}
+           </dd>
+         </div>
+-        <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
++        <div className="flex justify-between gap-4 py-2.5 border-b-hairline border-border text-caption">
+           <dt className="text-muted-foreground">Semantic role</dt>
+           <dd className="text-right wrap-anywhere">
+             {token.semanticRole ?? "Unspecified"}
+           </dd>
+         </div>
+-        <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
++        <div className="flex justify-between gap-4 py-2.5 border-b-hairline border-border text-caption">
+           <dt className="text-muted-foreground">Parent group</dt>
+           <dd className="text-right wrap-anywhere">
+             {token.parentGroupId !== null
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenValueComparison.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenValueComparison.tsx
+index 579868b..716afec 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenValueComparison.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenValueComparison.tsx
+@@ -26,7 +26,7 @@ export function TokenValueComparison({ feedback }: { feedback: Feedback }) {
+           {feedback[kind] ? (
+             <span
+               aria-hidden="true"
+-              className="header-specimen rounded border border-specimen-border block w-9 h-4"
++              className="header-specimen rounded border-hairline border-specimen-border block w-9 h-4"
+               style={{ background: feedback[kind] }}
+             />
+           ) : (
+diff --git a/src/presentation/App/components/TokensWorkbench/components/TokenSwatch.tsx b/src/presentation/App/components/TokensWorkbench/components/TokenSwatch.tsx
+index 5ed74d8..a93504a 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/TokenSwatch.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/TokenSwatch.tsx
+@@ -1,7 +1,7 @@
+ export function TokenSwatch({ css }: { css?: string }) {
+   return (
+     <span
+-      className={`swatch size-8.5 border border-swatch-border rounded block shrink-0 overflow-hidden ${css ? "" : "swatch-unavailable"}`}
++      className={`swatch size-8.5 border-hairline border-swatch-border rounded block shrink-0 overflow-hidden ${css ? "" : "swatch-unavailable"}`}
+       aria-hidden="true"
+     >
+       <span className="block size-full" style={{ background: css }} />
+diff --git a/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/TokenWorkspace.tsx b/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/TokenWorkspace.tsx
+index 4b66a2b..fd2ee1e 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/TokenWorkspace.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/TokenWorkspace.tsx
+@@ -70,7 +70,7 @@ export function TokenWorkspace({
+       hidden={hidden}
+       ref={node => { panel.current = node; if (surfaceRef) surfaceRef.current = node; }}
+       tabIndex={-1}
+-      className="token-panel relative min-w-0 min-h-0 overflow-auto"
++      className="token-panel relative min-w-0 min-h-0 overflow-auto p-6 compact:px-4 compact:py-5"
+     >
+       <WorkspaceToolbar
+         view={view}
+@@ -93,7 +93,7 @@ export function TokenWorkspace({
+         selection?.kind === "token" &&
+         complete &&
+         !visible.some((row) => row.id === selection.id) && (
+-          <section className="selection-context flex-wrap border border-border rounded-md mb-4 text-caption flex items-center justify-between gap-3 p-3 bg-muted">
++          <section className="selection-context flex-wrap border-hairline border-border rounded-md mb-4 text-caption flex items-center justify-between gap-3 p-3 bg-muted">
+             <p className="mt-2">Selected token is outside this list.</p>
+             <Button size="selection" onClick={onReveal}>
+               Show selected token
+diff --git a/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/SelectionBar/SelectionBar.tsx b/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/SelectionBar/SelectionBar.tsx
+index b281127..30df0c5 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/SelectionBar/SelectionBar.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/SelectionBar/SelectionBar.tsx
+@@ -1,5 +1,5 @@
+ import type { Ref } from "react";
+ import { Button } from "@presentation/ui/button";
+ export function SelectionBar({ label, dirty, editable, onInspect, actionRef }: { label: string; dirty: boolean; editable: boolean; onInspect: () => void; actionRef: Ref<HTMLButtonElement> }) {
+-  return <section className="selection-bar flex flex-wrap items-center justify-between gap-3 border border-border bg-muted p-3 rounded-md mb-4"><div className="min-w-0"><p className="wrap-anywhere">{label}</p>{dirty && <p className="text-caption text-muted-foreground">Unapplied changes</p>}</div><Button ref={actionRef} onClick={onInspect}>{editable ? "Edit token" : "Inspect selection"}</Button></section>;
++  return <section className="selection-bar flex flex-wrap items-center justify-between gap-3 border-hairline border-border bg-muted p-3 rounded-md mb-4"><div className="min-w-0"><p className="wrap-anywhere">{label}</p>{dirty && <p className="text-caption text-muted-foreground">Unapplied changes</p>}</div><Button ref={actionRef} onClick={onInspect}>{editable ? "Edit token" : "Inspect selection"}</Button></section>;
+ }
+diff --git a/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/TokenTable/TokenTable.tsx b/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/TokenTable/TokenTable.tsx
+index 8f696b4..389c958 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/TokenTable/TokenTable.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/TokenTable/TokenTable.tsx
+@@ -28,17 +28,17 @@ export function TokenTable({
+   const labels = identityLabels(context.tokens);
+   const details = namespaceEntryDetails(context);
+   return (
+-    <div className="token-table @container border-t border-border">
+-      <div className="table-heading border-b border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 gap-3 text-muted-foreground">
++    <div className="token-table @container border-t-hairline border-border">
++      <div className="table-heading border-b-hairline border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 touch:grid-cols-1 touch:@3xl:grid-cols-1 gap-3 text-muted-foreground">
+         <span>Token</span>
+         <span className="hidden @3xl:block">Description</span>
+-        <span>Authored value</span>
++        <span className="touch:hidden">Authored value</span>
+       </div>
+       {rows.map((row) => (
+         <button
+           key={row.id}
+           type="button"
+-          className={`token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent ${selected === row.id ? "selected" : ""}`}
++          className={`token-row border-0 border-b-hairline border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 touch:grid-cols-1 touch:@3xl:grid-cols-1 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent ${selected === row.id ? "selected" : ""}`}
+           aria-pressed={selected === row.id}
+           onClick={() => onSelect(row.id)}
+         >
+@@ -48,11 +48,11 @@ export function TokenTable({
+               <strong className="block text-xs/normal small:text-caption token-name wrap-anywhere">
+                 {labels.get(row.id)}
+               </strong>
+-              <small className="block text-secondary mt-1 wrap-anywhere">
++              <small className="block text-muted-foreground mt-1 wrap-anywhere">
+                 {row.layer} · {row.type}
+               </small>
+               {row.type === "color" && (
+-                <span className="block text-caption text-secondary mt-2 wrap-anywhere">
++                <span className="block text-caption text-muted-foreground mt-2 wrap-anywhere">
+                   {hexPreview(row.preview)}
+                 </span>
+               )}
+@@ -62,18 +62,18 @@ export function TokenTable({
+                 </span>
+               )}
+               {row.description !== undefined && (
+-                <span className="@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-secondary">
++                <span className="@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-muted-foreground">
+                   {row.description}
+                 </span>
+               )}
+             </span>
+           </span>
+-          <span className="hidden @3xl:block min-w-0 text-caption text-secondary">
++          <span className="hidden @3xl:block min-w-0 text-caption text-muted-foreground">
+             <span className="line-clamp-2 whitespace-pre-wrap wrap-anywhere">
+               {row.description ?? "—"}
+             </span>
+           </span>
+-          <span className="value-summary min-w-0 text-value text-caption wrap-anywhere">
++          <span className="value-summary touch:hidden min-w-0 text-value text-caption wrap-anywhere">
+             {row.color ? (
+               <AuthoredValue
+                 value={row.color}
+@@ -83,7 +83,7 @@ export function TokenTable({
+             ) : row.targetId !== undefined ? (
+               <span className="block">
+                 Reference
+-                <span className="block text-secondary mt-1">
++                <span className="block text-muted-foreground mt-1">
+                   {labels.get(row.targetId) ?? "Missing target"}
+                 </span>
+               </span>
+diff --git a/src/presentation/App/components/TokensWorkbench/components/TokensHeader/components/HistoryControls.tsx b/src/presentation/App/components/TokensWorkbench/components/TokensHeader/components/HistoryControls.tsx
+index 2d45b57..31062c9 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/TokensHeader/components/HistoryControls.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/TokensHeader/components/HistoryControls.tsx
+@@ -8,5 +8,5 @@ export function HistoryControls({history, reason, onTraverse}: {history: History
+   })}</>;
+ }
+ export function HistoryDescriptions({history, reason}: {history: HistoryState; reason?: string}) {
+-  return <div className="shrink-0 border-b border-border px-5 py-2 text-caption text-muted-foreground flex flex-wrap gap-x-6 gap-y-1 wrap-anywhere">{(["undo", "redo"] as const).map(direction => <p key={direction} id={`history-${direction}-description`}>{direction === "undo" ? "Undo" : "Redo"}: {reason ?? history[direction]?.label ?? `No changes to ${direction}`}</p>)}</div>;
++  return <div className="shrink-0 border-b-hairline border-border px-5 py-2 text-caption text-muted-foreground flex flex-wrap gap-x-6 gap-y-1 wrap-anywhere">{(["undo", "redo"] as const).map(direction => <p key={direction} id={`history-${direction}-description`}>{direction === "undo" ? "Undo" : "Redo"}: {reason ?? history[direction]?.label ?? `No changes to ${direction}`}</p>)}</div>;
+ }
+diff --git a/src/presentation/App/components/TokensWorkbench/components/TokensStatusBar/TokensStatusBar.tsx b/src/presentation/App/components/TokensWorkbench/components/TokensStatusBar/TokensStatusBar.tsx
+index 2d4c47f..191bc3c 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/TokensStatusBar/TokensStatusBar.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/TokensStatusBar/TokensStatusBar.tsx
+@@ -1,5 +1,5 @@
+ export function TokensStatusBar({ tokens, busy, unknown, readFailure, writable, dirty }: { tokens: number; busy: boolean; unknown: boolean; readFailure: string; writable: boolean; dirty: boolean }) {
+-  return <footer className="statusbar shrink-0 flex flex-wrap items-center gap-3 justify-between border-t border-border bg-surface px-5 py-2 text-caption">
++  return <footer className="statusbar shrink-0 flex flex-wrap items-center gap-3 justify-between border-t-hairline border-border bg-surface px-5 py-2 text-caption">
+     <span>{tokens} tokens · {dirty ? "Unapplied changes" : "Applied state"}</span>
+     <span>{busy ? "Retention pending" : unknown ? "Outcome unknown" : readFailure ? "Stale / unavailable" : writable ? "Retained locally" : "Inspection only"}</span>
+     <details><summary>About retention</summary><p className="py-2 max-w-lg">Applied work is retained in this browser. Drafts stay in this page. Browser data can be cleared; keep independent backups from Projects.</p></details>
+diff --git a/src/presentation/styles/global.css b/src/presentation/styles/global.css
+index d0c32b8..a130a36 100644
+--- a/src/presentation/styles/global.css
++++ b/src/presentation/styles/global.css
+@@ -1,8 +1,40 @@
+ @import "tailwindcss";
+-@utility annotation {
+-  font-size: 10px;
+-  line-height: 1.5;
++@font-face {
++  font-family: 'Geist';
++  font-style: normal;
++  font-weight: 400;
++  font-display: swap;
++  src: url("./fonts/geist-400.ttf") format("truetype");
+ }
++@font-face {
++  font-family: 'Geist';
++  font-style: normal;
++  font-weight: 500;
++  font-display: swap;
++  src: url("./fonts/geist-500.ttf") format("truetype");
++}
++@font-face {
++  font-family: 'Geist';
++  font-style: normal;
++  font-weight: 600;
++  font-display: swap;
++  src: url("./fonts/geist-600.ttf") format("truetype");
++}
++@font-face {
++  font-family: 'Geist Mono';
++  font-style: normal;
++  font-weight: 400;
++  font-display: swap;
++  src: url("./fonts/geist-mono-400.ttf") format("truetype");
++}
++@font-face {
++  font-family: 'Geist Mono';
++  font-style: normal;
++  font-weight: 500;
++  font-display: swap;
++  src: url("./fonts/geist-mono-500.ttf") format("truetype");
++}
++@custom-variant touch (@media (max-width: 879px));
+ @custom-variant source-compact (@media (max-width: 1120px));
+ @custom-variant compact (@media (max-width: 1119px));
+ @custom-variant tablet (@media (min-width: 768px) and (max-width: 1119px));
+@@ -10,219 +42,132 @@
+ @custom-variant small (@media (max-width: 767px));
+ @custom-variant narrow (@media (max-width: 540px));
+ @custom-variant short (@media (max-height: 500px));
+-
+-/* Precision palette: shared roles, including the accepted supporting inspector surface. */
++/* Named rem strokes: built-in border utilities retain px declarations. */
++@utility border-hairline { border-width: .0625rem; }
++@utility border-t-hairline { border-top-width: .0625rem; }
++@utility border-r-hairline { border-right-width: .0625rem; }
++@utility border-b-hairline { border-bottom-width: .0625rem; }
++@utility border-l-hairline { border-left-width: .0625rem; }
++@utility annotation { font-size: var(--text-caption); line-height: 1.5; }
+ :root {
+-  --background: #fff;
+-  --foreground: #20242d;
+-  --muted: #f5f6f8;
+-  --muted-foreground: #657080;
+-  --border: #e3e6ec;
+-  --primary: #252a33;
+-  --primary-foreground: #fff;
+-  --accent: #edf0f4;
+-  --ring: #637083;
+-  --destructive: #a53832;
+-  --radius: 0.375rem;
++  --background: var(--color-neutral-50);
++  --foreground: var(--color-neutral-900);
++  --card: var(--background);
++  --card-foreground: var(--foreground);
++  --primary: var(--color-neutral-900);
++  --primary-foreground: var(--color-neutral-50);
++  --secondary: var(--color-neutral-100);
++  --secondary-foreground: var(--foreground);
++  --muted: var(--color-neutral-100);
++  --muted-foreground: var(--color-neutral-600);
++  --accent: var(--color-neutral-200);
++  --accent-foreground: var(--foreground);
++  --border: var(--color-neutral-200);
++  --input: var(--color-neutral-500);
++  --ring: var(--color-neutral-500);
++  --ring-offset: var(--background);
++  --destructive: var(--color-red-700);
++  --destructive-foreground: var(--background);
++  --error-surface: var(--color-red-50);
++  --error-border: var(--color-red-200);
++  --radius: .375rem;
+ }
+ @theme inline {
+   --color-background: var(--background);
+   --color-foreground: var(--foreground);
+-  --color-muted: var(--muted);
+-  --color-muted-foreground: var(--muted-foreground);
+-  --color-border: var(--border);
++  --color-card: var(--card);
++  --color-card-foreground: var(--card-foreground);
+   --color-primary: var(--primary);
+   --color-primary-foreground: var(--primary-foreground);
++  --color-secondary: var(--secondary);
++  --color-secondary-foreground: var(--secondary-foreground);
++  --color-muted: var(--muted);
++  --color-muted-foreground: var(--muted-foreground);
+   --color-accent: var(--accent);
++  --color-accent-foreground: var(--accent-foreground);
++  --color-border: var(--border);
++  --color-input: var(--input);
+   --color-ring: var(--ring);
++  --color-ring-offset: var(--ring-offset);
+   --color-destructive: var(--destructive);
++  --color-destructive-foreground: var(--destructive-foreground);
++  --color-error-surface: var(--error-surface);
++  --color-error-border: var(--error-border);
++  --color-surface: var(--muted);
++  --color-value: var(--muted-foreground);
++  --color-notice: var(--muted);
++  --color-notice-foreground: var(--muted-foreground);
++  --color-badge-foreground: var(--muted-foreground);
++  --color-row-hover: var(--muted);
++  --color-selected: var(--accent);
++  --color-mode: var(--muted);
++  --color-control-hover: var(--foreground);
++  --color-placeholder: var(--muted-foreground);
++  --color-trace: var(--muted-foreground);
++  --color-status: var(--muted-foreground);
+   --radius-md: var(--radius);
+-}
+-@theme {
+-  --font-sans:
+-    Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+-    sans-serif;
+-  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+-  --color-surface: #fafbfc;
+-  --color-secondary: #5c6675;
+-  --color-value: #626d7d;
+-  --color-notice: #f7f8fa;
+-  --color-notice-foreground: #68717f;
+-  --color-badge-foreground: #687181;
+-  --color-row-hover: #f9fafb;
+-  --color-selected: #f0f2f5;
+-  --color-mode: #f4f5f7;
+-  --color-control-hover: #bac1cd;
+-  --color-placeholder: #8b929f;
+-  --color-error-border: #e8c5c2;
+-  --color-error-surface: #fff8f7;
+-  --color-trace: #939dab;
+-  --color-status: #7c8490;
+-  --color-scrim: #20263055;
++  --color-scrim: color-mix(in oklab, var(--foreground) 33%, transparent);
+   --color-swatch-border: #0000000f;
+   --color-specimen-border: #20242d1f;
+-  /* Retain the accepted dense type hierarchy; these are roles, not a spacing catalogue. */
+-  --text-caption: 0.75rem;
+-  --font-weight-heading: 650;
++  --shadow-dialog: 0 1rem 5rem color-mix(in oklab, var(--foreground) 20%, transparent);
++  --shadow-drawer: .5rem 0 1.875rem color-mix(in oklab, var(--foreground) 12%, transparent);
++  --shadow-sm: 0 .0625rem .1875rem color-mix(in oklab, var(--foreground) 10%, transparent), 0 .0625rem .125rem color-mix(in oklab, var(--foreground) 10%, transparent);
++}
++@theme {
++  --font-sans: "Geist", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
++  --font-mono: "Geist Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
++  --text-page: 1.5rem;
++  --text-page--line-height: 1.25;
++  --text-inspector: 1.25rem;
++  --text-inspector--line-height: 1.3;
++  --text-section: 1rem;
++  --text-section--line-height: 1.5;
++  --text-body: .875rem;
++  --text-body--line-height: 1.5;
++  --text-caption: .75rem;
++  --text-caption--line-height: 1.5;
++  --font-weight-heading: 600;
++  --radius-dialog: .625rem;
+ }
+ @layer base {
+-  :root {
+-    font-family: var(--font-sans);
+-    color: var(--foreground);
+-    background: var(--muted);
+-    font-synthesis: none;
+-  }
+-  html,
+-  body,
+-  #root {
+-    height: 100%;
+-    overflow: clip;
+-    overflow-anchor: none;
+-  }
+-  body {
+-    position: fixed;
+-    inset: 0;
+-    width: 100%;
+-    margin: 0;
+-    font-size: 14px;
+-    line-height: 1.5;
+-  }
+-  button,
+-  input,
+-  select {
+-    font: inherit;
+-  }
+-  button {
+-    cursor: pointer;
+-  }
+-  h1,
+-  h2,
+-  h3,
+-  p {
+-    margin: 0;
+-  }
+-  h1 {
+-    font-size: 24px;
+-    font-weight: 650;
+-    letter-spacing: -0.035em;
+-    line-height: 1.3;
+-  }
+-  h2 {
+-    font-size: 17px;
+-    font-weight: 650;
+-    letter-spacing: -0.02em;
+-  }
+-  h3 {
+-    font-size: 13px;
+-    font-weight: 650;
+-  }
+-  input:focus-visible,
+-  textarea:focus-visible,
+-  select:focus-visible,
+-  button:focus-visible,
+-  a:focus-visible,
+-  [role="tab"]:focus-visible {
+-    outline: 2px solid var(--ring);
+-    outline-offset: 3px;
+-  }
+-  fieldset {
+-    border: 0;
+-    padding: 0;
+-    margin: 0 0 22px;
+-  }
+-  legend {
+-    font-size: 11px;
+-    font-weight: 500;
+-    margin-bottom: 8px;
+-  }
++  :root { font-family: var(--font-sans); color: var(--foreground); background: var(--muted); font-synthesis: none; }
++  html, body, #root { height: 100%; overflow: clip; overflow-anchor: none; }
++  body { position: fixed; inset: 0; width: 100%; margin: 0; font-size: var(--text-body); line-height: 1.5; }
++  button, input, select, textarea { font: inherit; }
++  button { cursor: pointer; }
++  h1, h2, h3, p { margin: 0; }
++  h1 { font-size: var(--text-page); font-weight: 600; letter-spacing: -.035em; line-height: 1.25; }
++  h2 { font-size: var(--text-section); font-weight: 500; letter-spacing: -.02em; line-height: 1.5; }
++  h3 { font-size: var(--text-section); font-weight: 500; line-height: 1.5; }
++  input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible, [role="tab"]:focus-visible { outline: .125rem solid var(--ring); outline-offset: .1875rem; }
++  fieldset { border: 0; padding: 0; margin: 0 0 1.375rem; }
++  legend { font-size: var(--text-caption); font-weight: 500; margin-bottom: .5rem; }
+ }
+ @layer components {
+-  /* Narrow inherited typography roles preserve authored precision and baseline density. */
+-  .nav-label,
+-  .eyebrow,
+-  .count,
+-  .range-ends,
+-  .table-heading,
+-  .token-identity small,
+-  .value-summary small,
+-  .helper {
+-    font-size: 12px;
+-  }
+-  .badge,
+-  .statusbar,
+-  .group-label small {
+-    font-size: 12px;
+-  }
+-  .token-name {
+-    font-weight: 550;
+-  }
+-  .helper,
+-  .view-note,
+-  .error,
+-  .sidebar-bottom p,
+-  .inspector-heading p {
+-    line-height: 1.7;
+-  }
+-  .project-start > p {
+-    line-height: 1.8;
+-  }
+-  .exact-data {
+-    line-height: 1.6;
+-  }
+-  .inspector-heading .helper {
+-    font-size: 11px;
+-  }
+-  .text-input:not([type="search"]) {
+-    font-family: "SFMono-Regular", Consolas, monospace;
+-  }
+-  .sidebar-bottom p {
+-    font-size: 12px;
+-  }
+-  .brand {
+-    letter-spacing: -0.02em;
+-  }
+-  .dialog-title {
+-    font-size: 19px;
+-  }
+-  .eyebrow,
+-  .nav-label {
+-    letter-spacing: 0.07em;
+-  }
+-  .mono {
+-    font-family: var(--font-mono);
+-    font-size: 11px;
+-    letter-spacing: -0.02em;
+-  }
+-  .exact-data {
+-    font-family: ui-monospace, monospace;
+-  }
++  .nav-label, .eyebrow, .count, .table-heading, .token-identity small, .value-summary small, .helper, .badge, .statusbar, .group-label small, .sidebar-bottom p { font-size: var(--text-caption); line-height: 1.5; }
++  .token-name { font-family: var(--font-mono); font-weight: 500; }
++  .brand { letter-spacing: -.02em; }
++  .dialog-title { font-size: var(--text-inspector); font-weight: 600; line-height: 1.3; }
++  .eyebrow, .nav-label { letter-spacing: .07em; }
++  .mono { font-family: var(--font-mono); font-size: var(--text-caption); line-height: 1.5; letter-spacing: -.02em; }
+ }
+ 
+ /* Page-owned pane geometry preserves one mounted editor across modes. */
+-.workbench { --groups-width: 212px; --inspector-width: 400px; grid-template-columns: var(--groups-width) minmax(0, 1fr) var(--inspector-width); }
+-.groups-collapsed { --groups-width: 52px; }
+-.inspector-collapsed { --inspector-width: 52px; }
+-.projects-layout { grid-template-columns: minmax(0, 1fr) 400px; }
+-.projects-browse { padding: 28px; }
+-.token-panel { padding: 24px; }
+-.inspector-heading { padding: 24px; }
+-.inspector-heading h2 { margin: 4px 0; font-size:20px; }
+-.projects-inspector h2 { font-size:20px; }
++.workbench { --groups-width: 13.25rem; --inspector-width: 25rem; grid-template-columns: var(--groups-width) minmax(0, 1fr) var(--inspector-width); }
++.groups-collapsed { --groups-width: 3.25rem; }
++.inspector-collapsed { --inspector-width: 3.25rem; }
++.projects-layout { grid-template-columns: minmax(0, 1fr) 25rem; }
+ .groups-collapsed .sidebar-toggle > span { display: none; }
+ .inspector-collapsed .inspector-toggle { border-bottom: 0; }
+-.token-row { min-height: 76px; }
+-.editor-actions { bottom: -1px; }
+-.application-header { min-height: 64px; }
+-.project-start { width: min(520px, 100%); }
+-.dialog-popup { width: min(480px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); box-shadow: 0 16px 80px #20263033; border-radius: 10px; }
+-.dialog-backdrop { backdrop-filter: blur(2px); }
+-.navigation-drawer { width: min(320px, calc(100vw - 32px)); box-shadow: 8px 0 30px #20242d1f; transform: translateX(0); transition: transform 180ms ease; }
++.token-row { min-height: 4.75rem; }
++.dialog-popup { width: min(30rem, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); }
++.dialog-backdrop { backdrop-filter: blur(0.125rem); }
++.navigation-drawer { width: min(20rem, calc(100vw - 2rem)); transform: translateX(0); transition: transform 180ms ease; }
+ .navigation-backdrop { opacity: 1; transition: opacity 180ms ease; }
+ .navigation-backdrop[data-starting-style], .navigation-backdrop[data-ending-style] { opacity: 0; }
+ .navigation-drawer[data-starting-style], .navigation-drawer[data-ending-style] { transform: translateX(-100%); }
+ @media (min-width:880px) and (max-width:1119px) {
+   .workbench.compact-navigation { grid-template-columns: minmax(0,1fr) var(--inspector-width); }
+-  .token-panel { padding: 20px 16px; }
+ }
+ @media (min-width:880px) {
+   .inspector-collapsed .inspector-region-title, .inspector-collapsed .inspector-feedback, .inspector-collapsed .inspector-header-status { display:none; }
+@@ -230,21 +175,7 @@
+ }
+ @media (max-width:879px) {
+   .workbench.compact-navigation, .projects-layout { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr); }
+-  .token-panel, .projects-browse { padding:20px 16px; }
+-  .inspector-shell, .projects-inspector { border-left:0; }
+-  .token-table .table-heading { grid-template-columns:minmax(0,1fr); }
+-  .token-table .table-heading > :last-child, .token-row > .value-summary { display:none; }
+-  .token-table .token-row { grid-template-columns:minmax(0,1fr); }
+-  .application-header { flex-wrap:wrap; gap:8px; padding:12px 16px; }
+-  .application-context { order:3; flex-basis:100%; font-size:12px; }
+-  .application-header .brand { font-size:12px; }
+-  .application-header.compact-brand { flex-wrap:nowrap; }
+-  .compact-brand .brand { display:none; }
+-  .compact-brand .application-context { order:0; flex:1; }
+-  .inspector-heading { padding:20px 16px; }
+-  .button, input:not([type="range"]), select, .component-range { min-height:44px; }
+   .projects-header-context { display:none; }
+-  .dialog-popup { padding:20px 16px; }
+   .dialog-actions { flex-wrap:wrap; }
+   .dialog-actions > * { flex:1 1 auto; }
+ }
+@@ -258,14 +189,14 @@
+ /* Authored previews/checkerboards and native slider pseudo-elements cannot use ordinary utilities. */
+ .swatch,
+ .header-specimen {
+-  background: repeating-conic-gradient(#eef0f4 0% 25%, #fff 0% 50%) 50% / 10px
+-    10px;
++  background: repeating-conic-gradient(#eef0f4 0% 25%, #fff 0% 50%) 50% / 0.625rem
++    0.625rem;
+ }
+ .header-specimen {
+-  background-size: 8px 8px;
++  background-size: 0.5rem 0.5rem;
+ }
+ .swatch-unavailable {
+-  background: repeating-linear-gradient(135deg, #fff 0 4px, #e7eaf0 4px 5px);
++  background: repeating-linear-gradient(135deg, #fff 0 0.25rem, #e7eaf0 0.25rem 0.3125rem);
+ }
+ .token-row.selected:before {
+   content: "";
+@@ -273,52 +204,52 @@
+   left: 0;
+   top: 0;
+   bottom: 0;
+-  width: 4px;
++  width: 0.25rem;
+   background: var(--foreground);
+ }
+ .trace li:not(:last-child):before {
+   content: "";
+   position: absolute;
+-  left: 5px;
+-  top: 9px;
++  left: 0.3125rem;
++  top: 0.5625rem;
+   height: 100%;
+-  border-left: 1px solid #d5dae3;
++  border-left: 0.0625rem solid var(--border);
+ }
+ .component-range::-webkit-slider-runnable-track {
+-  height: 12px;
++  height: 0.75rem;
+   border: 0;
+-  border-radius: 9999px;
++  border-radius: .375rem;
+   background: var(--range-gradient);
+ }
+ .component-range::-moz-range-track {
+-  height: 12px;
++  height: 0.75rem;
+   border: 0;
+-  border-radius: 9999px;
++  border-radius: .375rem;
+   background: var(--range-gradient);
+ }
+ .component-range::-webkit-slider-thumb {
+   appearance: none;
+   box-sizing: border-box;
+-  width: 18px;
+-  height: 18px;
+-  border-radius: 9999px;
+-  background: #fff;
+-  border: 2px solid #303641;
+-  box-shadow: 0 0 0 1px #fff;
+-  margin-top: -4px;
++  width: 1.125rem;
++  height: 1.125rem;
++  border-radius: 50%;
++  background: var(--background);
++  border: 0.125rem solid var(--foreground);
++  box-shadow: 0 0 0 0.0625rem var(--background);
++  margin-top: -0.25rem;
+ }
+ .component-range::-moz-range-thumb {
+   box-sizing: border-box;
+-  width: 18px;
+-  height: 18px;
+-  border-radius: 9999px;
+-  background: #fff;
+-  border: 2px solid #303641;
++  width: 1.125rem;
++  height: 1.125rem;
++  border-radius: 50%;
++  background: var(--background);
++  border: 0.125rem solid var(--foreground);
+ }
+ .alpha-range {
+   --range-gradient:
+     linear-gradient(to right, transparent, #555),
+-    repeating-conic-gradient(#eef0f4 0% 25%, #fff 0% 50%) 50% / 8px 8px;
++    repeating-conic-gradient(#eef0f4 0% 25%, #fff 0% 50%) 50% / 0.5rem 0.5rem;
+ }
+ 
+ /* Native hidden must win over display utilities while panes stay mounted. */
+@@ -331,9 +262,3 @@
+ .exact-source { white-space: pre; overflow: auto; max-height: min(24rem, 50dvh); max-width: 100%; }
+ /* Increment 007 staged ordinary rows keep native DOM/Find/accessibility order. */
+ .token-row { content-visibility: auto; contain-intrinsic-size: auto 5rem; }
+-/* Workbench history actions need their own wrapping row on narrow surfaces;
+-   the shared Projects header retains its existing geometry. */
+-@media (max-width:879px) {
+-  .workbench-header .application-header.compact-brand { flex-wrap:wrap; }
+-  .workbench-header .application-header > :last-child { flex-basis:100%; justify-content:flex-end; }
+-}
+diff --git a/src/presentation/ui/badge.tsx b/src/presentation/ui/badge.tsx
+index 85f514d..9d04574 100644
+--- a/src/presentation/ui/badge.tsx
++++ b/src/presentation/ui/badge.tsx
+@@ -3,7 +3,7 @@ export function Badge({ className, ...props }: ComponentProps<"span">) {
+   return (
+     <span
+       {...props}
+-      className={`badge border border-border bg-surface px-1.5 py-0.5 text-badge-foreground rounded whitespace-nowrap ${className ?? ""}`}
++      className={`badge border-hairline border-border bg-surface px-1.5 py-0.5 text-badge-foreground rounded whitespace-nowrap ${className ?? ""}`}
+     />
+   );
+ }
+diff --git a/src/presentation/ui/button.tsx b/src/presentation/ui/button.tsx
+index 87655b1..d7675c4 100644
+--- a/src/presentation/ui/button.tsx
++++ b/src/presentation/ui/button.tsx
+@@ -2,7 +2,7 @@ import { Button as Primitive } from "@base-ui/react/button";
+ 
+ const variants = {
+   default: "bg-primary text-primary-foreground border-primary",
+-  outline: "border-border bg-background hover:bg-muted",
++  outline: "border-input bg-background hover:bg-muted",
+   ghost: "border-transparent hover:bg-muted",
+   navigation:
+     "border-transparent hover:bg-muted aria-current:bg-accent aria-current:text-foreground aria-current:font-semibold",
+@@ -36,7 +36,7 @@ export function Button({
+   size = "default",
+   ...props
+ }: ButtonProps) {
+-  const owned = `button inline-flex items-center border disabled:opacity-45 disabled:cursor-default ${sizes[size]} ${variants[variant]}`;
++  const owned = `button inline-flex items-center border-hairline text-caption font-medium disabled:opacity-45 disabled:cursor-default ${sizes[size]} touch:min-h-11 ${variants[variant]}`;
+   return (
+     <Primitive
+       {...props}
+diff --git a/src/presentation/ui/dialog-content.tsx b/src/presentation/ui/dialog-content.tsx
+index d2ef7b0..114ee03 100644
+--- a/src/presentation/ui/dialog-content.tsx
++++ b/src/presentation/ui/dialog-content.tsx
+@@ -2,7 +2,7 @@ import { Dialog } from "@base-ui/react/dialog";
+ /** Ordinary modal surface; navigation retains its distinct drawer geometry. */
+ export function DialogContent({ className, ...props }: Dialog.Popup.Props) {
+   const owned =
+-    "dialog-popup fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-background border border-border p-7 overflow-auto";
++    "dialog-popup fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-background border-hairline border-border p-7 touch:px-4 touch:py-5 rounded-dialog shadow-dialog overflow-auto";
+   return (
+     <Dialog.Portal>
+       <Dialog.Backdrop
+diff --git a/src/presentation/ui/input.tsx b/src/presentation/ui/input.tsx
+index bd49380..51eaa16 100644
+--- a/src/presentation/ui/input.tsx
++++ b/src/presentation/ui/input.tsx
+@@ -8,7 +8,7 @@ export function Input({
+   return (
+     <input
+       {...props}
+-      className={`text-input w-full min-w-0 rounded-md border border-border text-foreground px-2.5 hover:border-control-hover placeholder:text-placeholder ${appearance === "search" ? "h-8.5 pl-8.5 bg-surface text-xs/normal" : "h-10 min-h-10 bg-background text-xs/normal"} ${className ?? ""}`}
++      className={`text-input touch:min-h-11 small:text-base/normal w-full min-w-0 rounded-md border-hairline border-input text-foreground px-2.5 hover:border-control-hover placeholder:text-placeholder ${appearance === "search" ? "h-8.5 pl-8.5 bg-surface text-xs/normal" : "h-10 min-h-10 bg-background text-xs/normal"} ${className ?? ""}`}
+     />
+   );
+ }
+diff --git a/src/presentation/ui/select.tsx b/src/presentation/ui/select.tsx
+index 70cd36e..2ee62c1 100644
+--- a/src/presentation/ui/select.tsx
++++ b/src/presentation/ui/select.tsx
+@@ -6,7 +6,7 @@ export function Select({ className, ...props }: ComponentProps<"select">) {
+     <span className="select-control block relative w-full">
+       <select
+         {...props}
+-        className={`native-select appearance-none w-full min-w-0 h-10 min-h-10 rounded-md border border-border bg-background text-foreground pl-2.5 pr-9.5 text-xs/normal hover:border-control-hover ${className ?? ""}`}
++        className={`native-select touch:min-h-11 appearance-none w-full min-w-0 h-10 min-h-10 rounded-md border-hairline border-input bg-background text-foreground pl-2.5 pr-9.5 text-xs/normal hover:border-control-hover ${className ?? ""}`}
+       />
+       <Icon
+         name="chevron-down"
+diff --git a/test/presentation/icon.test.tsx b/test/presentation/icon.test.tsx
+index 851f4b9..f866f99 100644
+--- a/test/presentation/icon.test.tsx
++++ b/test/presentation/icon.test.tsx
+@@ -48,6 +48,12 @@ describe("shared cn", () => {
+     expect(cn("font-heading", "font-semibold")).toBe("font-semibold");
+     expect(cn("font-sans", "font-heading")).toBe("font-sans font-heading");
+   });
++  it("composes Neutral typography, elevation and rem border utilities with existing groups", () => {
++    expect(cn("text-page", "text-destructive")).toBe("text-page text-destructive");
++    expect(cn("text-page", "text-inspector")).toBe("text-inspector");
++    expect(cn("shadow-sm", "shadow-dialog")).toBe("shadow-dialog");
++    expect(cn("border-hairline", "border-0", "border-input")).toBe("border-0 border-input");
++  });
+   it("retains full class-group support beyond current icon classes", () => {
+     expect(cn("rotate-12", "rotate-45")).toBe("rotate-45");
+     expect(cn("md:size-4", "size-5", "md:size-6")).toBe("size-5 md:size-6");

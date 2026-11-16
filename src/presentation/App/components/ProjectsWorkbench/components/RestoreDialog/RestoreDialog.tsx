@@ -128,7 +128,7 @@ export function RestoreDialog({
               )}
             </details>
             {preview.local && !replacement && (
-              <section className="border border-border rounded p-3 text-caption">
+              <section className="border-hairline border-border rounded p-3 text-caption">
                 <h3>Same project identity already exists in this browser</h3>
                 <p className="mt-2">
                   Local name: {preview.local.name || "(unnamed project)"}
@@ -154,7 +154,7 @@ export function RestoreDialog({
               </section>
             )}
             {replacement && preview.local && (
-              <section className="border border-error-border bg-error-surface rounded p-3 text-caption">
+              <section className="border-hairline border-error-border bg-error-surface rounded p-3 text-caption">
                 <p>
                   The complete selected backup will replace this local project's
                   applied state. Local-only authored content will be removed.
@@ -172,6 +172,7 @@ export function RestoreDialog({
                 </Button>
                 <label className="flex gap-3 items-start mt-4">
                   <input
+                    className="touch:min-h-11"
                     type="checkbox"
                     checked={acknowledgement}
                     disabled={!protection || busy || unknown}

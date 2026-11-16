@@ -1,0 +1,526 @@
+{
+  "validation": [
+    "Name is empty after removing spacing. Enter a usable name."
+  ],
+  "faces": [
+    {
+      "family": "Geist",
+      "weight": "400",
+      "status": "loaded"
+    },
+    {
+      "family": "Geist",
+      "weight": "500",
+      "status": "loaded"
+    },
+    {
+      "family": "Geist",
+      "weight": "600",
+      "status": "loaded"
+    },
+    {
+      "family": "Geist Mono",
+      "weight": "400",
+      "status": "loaded"
+    },
+    {
+      "family": "Geist Mono",
+      "weight": "500",
+      "status": "loaded"
+    }
+  ],
+  "fonts": [
+    {
+      "url": "http://127.0.0.1:5173/src/presentation/styles/fonts/geist-400.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/src/presentation/styles/fonts/geist-500.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/src/presentation/styles/fonts/geist-mono-400.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/src/presentation/styles/fonts/geist-600.ttf",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5173/src/presentation/styles/fonts/geist-mono-500.ttf",
+      "status": 200
+    }
+  ],
+  "observations": [
+    {
+      "width": 1440,
+      "visibleInputs": [
+        {
+          "type": "search",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "12px",
+          "minHeight": "0px",
+          "width": 300,
+          "right": 536
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "auto",
+          "width": 117,
+          "right": 1170
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "12px",
+          "minHeight": "40px",
+          "width": 117,
+          "right": 1170
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "auto",
+          "width": 117,
+          "right": 1299
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "12px",
+          "minHeight": "40px",
+          "width": 117,
+          "right": 1299
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "auto",
+          "width": 117,
+          "right": 1428
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "12px",
+          "minHeight": "40px",
+          "width": 117,
+          "right": 1428
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "auto",
+          "width": 375,
+          "right": 1428
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "12px",
+          "minHeight": "40px",
+          "width": 375,
+          "right": 1428
+        }
+      ],
+      "pane": {
+        "x": 1041,
+        "y": 177,
+        "width": 399,
+        "height": 115,
+        "top": 177,
+        "right": 1440,
+        "bottom": 292,
+        "left": 1041
+      },
+      "hiddenVisible": 0
+    },
+    {
+      "width": 1024,
+      "visibleInputs": [
+        {
+          "type": "search",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "12px",
+          "minHeight": "0px",
+          "width": 300,
+          "right": 316
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "auto",
+          "width": 117,
+          "right": 754
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "12px",
+          "minHeight": "40px",
+          "width": 117,
+          "right": 754
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "auto",
+          "width": 117,
+          "right": 883
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "12px",
+          "minHeight": "40px",
+          "width": 117,
+          "right": 883
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "auto",
+          "width": 117,
+          "right": 1012
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "12px",
+          "minHeight": "40px",
+          "width": 117,
+          "right": 1012
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "auto",
+          "width": 375,
+          "right": 1012
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "12px",
+          "minHeight": "40px",
+          "width": 375,
+          "right": 1012
+        }
+      ],
+      "pane": {
+        "x": 625,
+        "y": 177,
+        "width": 399,
+        "height": 115,
+        "top": 177,
+        "right": 1024,
+        "bottom": 292,
+        "left": 625
+      },
+      "hiddenVisible": 0
+    },
+    {
+      "width": 879,
+      "visibleInputs": [
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "44px",
+          "width": 277,
+          "right": 289
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "12px",
+          "minHeight": "44px",
+          "width": 277,
+          "right": 289
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "44px",
+          "width": 277,
+          "right": 578
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "12px",
+          "minHeight": "44px",
+          "width": 277,
+          "right": 578
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "44px",
+          "width": 277,
+          "right": 867
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "12px",
+          "minHeight": "44px",
+          "width": 277,
+          "right": 867
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "44px",
+          "width": 855,
+          "right": 867
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "12px",
+          "minHeight": "44px",
+          "width": 855,
+          "right": 867
+        }
+      ],
+      "pane": {
+        "x": 0,
+        "y": 234,
+        "width": 879,
+        "height": 107,
+        "top": 234,
+        "right": 879,
+        "bottom": 341,
+        "left": 0
+      },
+      "hiddenVisible": 0
+    },
+    {
+      "width": 390,
+      "visibleInputs": [
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "44px",
+          "width": 114,
+          "right": 126
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "16px",
+          "minHeight": "44px",
+          "width": 114,
+          "right": 126
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "44px",
+          "width": 114,
+          "right": 252
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "16px",
+          "minHeight": "44px",
+          "width": 114,
+          "right": 252
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "44px",
+          "width": 114,
+          "right": 378
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "16px",
+          "minHeight": "44px",
+          "width": 114,
+          "right": 378
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "44px",
+          "width": 366,
+          "right": 378
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "16px",
+          "minHeight": "44px",
+          "width": 366,
+          "right": 378
+        }
+      ],
+      "pane": {
+        "x": 0,
+        "y": 235,
+        "width": 390,
+        "height": 107,
+        "top": 235,
+        "right": 390,
+        "bottom": 342,
+        "left": 0
+      },
+      "hiddenVisible": 0
+    },
+    {
+      "width": 320,
+      "visibleInputs": [
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "44px",
+          "width": 90.65625,
+          "right": 102.65625
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "16px",
+          "minHeight": "44px",
+          "width": 90.65625,
+          "right": 102.65625
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "44px",
+          "width": 90.671875,
+          "right": 205.328125
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "16px",
+          "minHeight": "44px",
+          "width": 90.671875,
+          "right": 205.328125
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "44px",
+          "width": 90.65625,
+          "right": 307.984375
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "16px",
+          "minHeight": "44px",
+          "width": 90.65625,
+          "right": 307.984375
+        },
+        {
+          "type": "range",
+          "font": "Geist, ui-sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", sans-serif",
+          "size": "14px",
+          "minHeight": "44px",
+          "width": 296,
+          "right": 308
+        },
+        {
+          "type": "text",
+          "font": "\"Geist Mono\", SFMono-Regular, Consolas, \"Liberation Mono\", monospace",
+          "size": "16px",
+          "minHeight": "44px",
+          "width": 296,
+          "right": 308
+        }
+      ],
+      "pane": {
+        "x": 0,
+        "y": 235,
+        "width": 320,
+        "height": 153,
+        "top": 235,
+        "right": 320,
+        "bottom": 388,
+        "left": 0
+      },
+      "hiddenVisible": 0
+    }
+  ],
+  "drawerFocus": "Open project navigation",
+  "root20": {
+    "root": "20px",
+    "border": "1px",
+    "heading": {
+      "x": 0,
+      "y": 293,
+      "width": 390,
+      "height": 191.25,
+      "top": 293,
+      "right": 390,
+      "bottom": 484.25,
+      "left": 0
+    },
+    "inputs": [
+      {
+        "right": 125,
+        "width": 110
+      },
+      {
+        "right": 125,
+        "width": 110
+      },
+      {
+        "right": 250,
+        "width": 110
+      },
+      {
+        "right": 250,
+        "width": 110
+      },
+      {
+        "right": 375,
+        "width": 110
+      },
+      {
+        "right": 375,
+        "width": 110
+      },
+      {
+        "right": 375,
+        "width": 360
+      },
+      {
+        "right": 375,
+        "width": 360
+      }
+    ]
+  },
+  "file": {
+    "type": "file",
+    "minHeight": "44px"
+  },
+  "errors": []
+}

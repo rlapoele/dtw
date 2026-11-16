@@ -22,7 +22,7 @@ export function CreateProjectForm({
 }) {
   return (
     <form
-      className="mt-8"
+      className="mt-8 border-t-hairline border-border pt-6"
       onSubmit={(e) => {
         e.preventDefault();
         onSubmit();

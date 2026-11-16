@@ -15,22 +15,22 @@ export function TokenMetadata({
   path: DisplayPath;
 }) {
   return (
-    <section className="applied-summary border-t border-border mt-7 pt-5">
+    <section className="applied-summary border-t-hairline border-border mt-7 pt-5">
       <h3 className="mb-3.5">Metadata · read only</h3>
       <dl className="details">
-        <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+        <div className="flex justify-between gap-4 py-2.5 border-b-hairline border-border text-caption">
           <dt className="text-muted-foreground">Regeneration</dt>
           <dd className="text-right wrap-anywhere">
             {token.authoring.regeneration}
           </dd>
         </div>
-        <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+        <div className="flex justify-between gap-4 py-2.5 border-b-hairline border-border text-caption">
           <dt className="text-muted-foreground">Semantic role</dt>
           <dd className="text-right wrap-anywhere">
             {token.semanticRole ?? "Unspecified"}
           </dd>
         </div>
-        <div className="flex justify-between gap-4 py-2.5 border-b border-border text-caption">
+        <div className="flex justify-between gap-4 py-2.5 border-b-hairline border-border text-caption">
           <dt className="text-muted-foreground">Parent group</dt>
           <dd className="text-right wrap-anywhere">
             {token.parentGroupId !== null

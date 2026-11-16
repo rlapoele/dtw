@@ -63,7 +63,7 @@ export function ResolvedTokenPanel({
       ) : (
         <p
           role="status"
-          className="border border-error-border bg-error-surface rounded p-3 text-caption text-destructive"
+          className="border-hairline border-error-border bg-error-surface rounded p-3 text-caption text-destructive"
         >
           Unresolved: {resolution.reason}. Authored data retained.
         </p>

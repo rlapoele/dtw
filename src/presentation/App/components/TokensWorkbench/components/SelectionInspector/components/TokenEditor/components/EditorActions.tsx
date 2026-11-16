@@ -14,7 +14,7 @@ export function EditorActions({
   onApply: () => void;
 }) {
   return (
-    <div className="editor-actions flex justify-end gap-2 mt-3 mb-2 border-t border-border bg-surface py-3">
+    <div className="editor-actions flex justify-end gap-2 mt-3 mb-2 border-t-hairline border-border bg-surface py-3">
       <Button disabled={cancelDisabled} onClick={onCancel}>
         Cancel
       </Button>

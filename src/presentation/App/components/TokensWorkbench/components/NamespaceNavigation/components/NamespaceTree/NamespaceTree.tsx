@@ -33,7 +33,7 @@ export function NamespaceTree({
         className={`sidebar-project source-compact:gap-2 flex items-center gap-2.5 ${drawer ? "px-2 pb-6" : "px-2 pb-7.5 source-compact:px-1 source-compact:pb-6.25"}`}
       >
         <span
-          className="project-icon place-items-center border border-border bg-background text-xs/normal font-heading h-8 w-8 grid"
+          className="project-icon place-items-center border-hairline border-border bg-background text-xs/normal font-heading h-8 w-8 grid"
           aria-hidden="true"
         >
           T
@@ -61,7 +61,7 @@ export function NamespaceTree({
       >
         <Icon name="grid" className="icon block" />
         All tokens
-        <span className="count ml-auto text-secondary font-normal">
+        <span className="count ml-auto text-muted-foreground font-normal">
           {project?.tokens.length ?? 0}
         </span>
       </Button>

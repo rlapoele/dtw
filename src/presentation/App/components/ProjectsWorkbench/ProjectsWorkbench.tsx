@@ -71,14 +71,16 @@ export function ProjectsWorkbench({
       narrow={layout.narrow} surface={view.surface}
       header={<ApplicationHeader actions={<span className="projects-header-context text-caption text-muted-foreground">Browser local</span>} />}
       workspace={
-      <main ref={layout.browse} tabIndex={-1} hidden={layout.narrow && view.surface === "inspect"} onScroll={event => onView({ ...view, scroll: event.currentTarget.scrollTop })} className="projects-browse min-w-0 overflow-auto p-6">
+      <main ref={layout.browse} tabIndex={-1} hidden={layout.narrow && view.surface === "inspect"} onScroll={event => onView({ ...view, scroll: event.currentTarget.scrollTop })} className="projects-browse min-w-0 overflow-auto p-7 touch:px-4 touch:py-5">
         {
           <>
+            <p className="eyebrow text-muted-foreground uppercase mb-2">Your workspace</p>
             <h1>Projects in this browser</h1>
             <p className="text-muted-foreground mt-3">
               Applied work is retained automatically. Keep independent backups:
               browser storage can be cleared or become unavailable.
             </p>
+            <div className="flex items-center justify-between gap-3 border-t-hairline border-border mt-7 pt-4 mb-4"><h2>Local collection</h2><span className="font-mono text-caption text-muted-foreground">{entries === undefined ? "—" : `${entries.length} ${entries.length === 1 ? "project" : "projects"}`}</span></div>
             {entries === undefined ? (
               <p role="status" className="my-5">
                 {error
@@ -105,12 +107,12 @@ export function ProjectsWorkbench({
               onNameChange={onNameChange}
               onSubmit={onCreate}
             />
-            <section className="mt-8">
+            <section className="mt-8 border-t-hairline border-border pt-6">
               <h2 className="mb-3">Restore backup</h2>
               <label className="text-caption block">
                 Project backup file
                 <input
-                  className="block mt-3 max-w-full"
+                  className="block mt-3 max-w-full touch:min-h-11"
                   type="file"
                   accept=".json,application/json"
                   disabled={createDisabled}
@@ -123,8 +125,8 @@ export function ProjectsWorkbench({
         }
         <StorageProtection status={storageStatus} disabled={openDisabled} onRetry={onRetryStorage} />
       </main>}
-      inspector={<section ref={layout.inspector} tabIndex={-1} aria-label="Project inspector" hidden={layout.narrow && view.surface !== "inspect"} className="projects-inspector min-w-0 overflow-auto border-l border-border bg-surface">
-        {layout.narrow && <div className="p-4 border-b border-border"><Button onClick={() => layout.show("browse")}>Back to projects</Button></div>}
+      inspector={<section ref={layout.inspector} tabIndex={-1} aria-label="Project inspector" hidden={layout.narrow && view.surface !== "inspect"} className="projects-inspector min-w-0 overflow-auto border-l-hairline touch:border-l-0 border-border bg-surface">
+        {layout.narrow && <div className="p-4 border-b-hairline border-border"><Button onClick={() => layout.show("browse")}>Back to projects</Button></div>}
         <ProjectInspector entry={selected} missing={missing} catalogueUnavailable={entries === undefined} disabled={openDisabled || entries === undefined} onOpen={onOpen} onDownload={onDownload} />
       </section>}
       afterBody={<>
@@ -150,7 +152,7 @@ export function ProjectsWorkbench({
           </Button>
         )}
       </section>
-      {backupFeedback && <p role="status" className="shrink-0 border-t border-border p-3 text-caption wrap-anywhere">{backupFeedback}</p>}
+      {backupFeedback && <p role="status" className="shrink-0 border-t-hairline border-border p-3 text-caption wrap-anywhere">{backupFeedback}</p>}
       </>}
       overlays={<>{departureDialog}{restoreDialog}</>}
     />

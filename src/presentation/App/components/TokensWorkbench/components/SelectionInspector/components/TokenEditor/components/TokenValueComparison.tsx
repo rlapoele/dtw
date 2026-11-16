@@ -26,7 +26,7 @@ export function TokenValueComparison({ feedback }: { feedback: Feedback }) {
           {feedback[kind] ? (
             <span
               aria-hidden="true"
-              className="header-specimen rounded border border-specimen-border block w-9 h-4"
+              className="header-specimen rounded border-hairline border-specimen-border block w-9 h-4"
               style={{ background: feedback[kind] }}
             />
           ) : (

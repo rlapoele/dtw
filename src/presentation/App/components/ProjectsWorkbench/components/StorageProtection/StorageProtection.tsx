@@ -16,7 +16,7 @@ export function StorageProtection({ status, disabled, onRetry }: {
   onRetry: () => void;
 }) {
   const actionable = status === "unprotected" || status === "check-error" || status === "request-error";
-  return <section className="mt-8 border-t border-border pt-5">
+  return <section className="mt-8 border-t-hairline border-border pt-5">
     <h2>Browser retention</h2>
     <p role="status" className="mt-3 text-caption">{messages[status]}</p>
     <p className="mt-3 text-muted-foreground">Keep independent backups. Clearing browser data still removes projects. Drafts stay in this session.</p>

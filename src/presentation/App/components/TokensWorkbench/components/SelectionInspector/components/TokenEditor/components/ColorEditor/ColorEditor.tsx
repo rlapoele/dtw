@@ -177,7 +177,7 @@ export function ColorEditor({
               {available ? (
                 <>
                   <input
-                    className="component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground"
+                    className="component-range touch:min-h-11 small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground"
                     type="range"
                     disabled={readOnly}
                     min={min}
@@ -209,7 +209,7 @@ export function ColorEditor({
               <Input
                 id={`color-component-${i}`}
                 readOnly={readOnly}
-                className="small:h-11 small:min-h-11"
+                className="font-mono small:h-11 small:min-h-11"
                 value={value}
                 spellCheck={false}
                 aria-describedby={`range-note-${i} byte-note-${i} editor-error`}
@@ -235,7 +235,7 @@ export function ColorEditor({
           );
         })}
       </div>
-      <div className="component-control flex min-w-0 flex-col mb-1 alpha-control border-t border-border pt-1">
+      <div className="component-control flex min-w-0 flex-col mb-1 alpha-control border-t-hairline border-border pt-1">
         <label
           htmlFor="color-alpha"
           className="component-value min-w-0 m-0 text-caption font-medium"
@@ -244,7 +244,7 @@ export function ColorEditor({
         </label>
         {alphaRangeState === "available" ? (
           <input
-            className="component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range"
+            className="component-range touch:min-h-11 small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range"
             type="range"
             disabled={readOnly}
             min="0"
@@ -270,7 +270,7 @@ export function ColorEditor({
         <Input
           id="color-alpha"
           readOnly={readOnly}
-          className="small:h-11 small:min-h-11"
+          className="font-mono small:h-11 small:min-h-11"
           value={s.literal.alpha}
           aria-describedby="editor-error"
           onChange={(e) =>

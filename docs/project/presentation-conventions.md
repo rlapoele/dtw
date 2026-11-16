@@ -89,7 +89,7 @@ qualification campaign is not required by this guidance.
 
 ## Neutral theme and token source
 
-Use shadcn-style semantic theming adapted to the accepted neutral Precision design. Content-first means clear token content, controls and feedback supported by restrained chrome. It is a design principle, not a newly selected preset. Preserve accepted density, hierarchy, compact actions and inspector/navigation surfaces. Stock theme scaffolds must not silently replace those decisions. Color specimens and meaningful semantic feedback may use color.
+Use shadcn-style semantic theming adapted to the accepted neutral Precision design. Content-first means clear token content, controls and feedback supported by restrained chrome. Increment 014 adopts the agreed Tailwind Neutral semantic mapping and Geist / Geist Mono typography; this remains a content-first workbench. Preserve accepted density, hierarchy, compact actions and inspector/navigation surfaces. Stock theme scaffolds must not silently replace those decisions. Color specimens and meaningful semantic feedback may use color.
 
 Keep semantic design values in one source, currently `src/presentation/styles/global.css`. Map referenced semantic CSS variables through Tailwind's `@theme inline` namespaces: for example, `--color-background: var(--background)` exposes `bg-background`. Use the namespace appropriate to the decision, such as `--color-*`, `--radius-*` or `--font-*`. Focused CSS can reference the same source. Values defined directly in `@theme` also have one source; avoid adding a duplicate alias layer without a need. Application theme tokens remain distinct from user-authored design-token data.
 
@@ -189,6 +189,52 @@ WorkbenchLayout owns common composition and controlled two/three-column geometry
 using ApplicationShell. Supplied navigation/workspace/inspector slots retain their
 real semantic roots, refs and scroll containers. The scoped `.workbench` and
 `.projects-layout` CSS exceptions remain in `styles/global.css`; Projects retains
-28px wide browse padding and tokens 24px, with existing compact/narrow rules.
+1.75rem wide browse padding and Tokens 1.5rem, owned by their workspace components. Compact Tokens (below 1120px), narrow Projects (below 880px) and token editor headings (below 880px) retain 1.25rem vertical / 1rem horizontal padding. Pane grid formulas remain focused CSS; thresholds are unchanged.
 Screen hooks retain focus, modal and surface policy; shared viewport observation
 does not run those policies on mount. See the [ownership map](workbench-component-organisation.md).
+
+
+## Neutral / Geist implementation — Increment 014
+
+`styles/global.css` owns the semantic pairs and aliases, referencing installed
+Tailwind Neutral primitives. `secondary` is a surface; supporting text uses
+`muted-foreground`. Input/select/textarea and outline-action boundaries actually
+consume `input`; structural separators use `border`. Selected/hover values alias
+accent/muted. Notice, badge, value and status roles retain meaning-specific names
+while sharing muted values. Error surface/border use Red 50/200 and destructive
+content Red 700. Scrim and elevations use the neutral foreground with deliberate
+alpha. Authored previews and checkerboards remain separate data/decoration.
+
+Geist UI roles are page 1.5rem/600/1.25, inspector 1.25rem/600/1.3,
+section 1rem/500/1.5, body .875rem/400/1.5 and caption/control .75rem/400–500/1.5.
+Technical paths, values, exact source and numeric color entry use Geist Mono
+.75rem/400–500/1.5. Actual narrow text entry uses1rem below768px; labels/prose
+retain Geist. Local fonts, upstream versions, hashes and licenses live in
+[`styles/fonts/`](../../src/presentation/styles/fonts/README.md). No remote font
+service or new offline shell is involved.
+
+Prefer rem lengths with the existing .25rem spacing foundation; preserve retained
+off-scale geometry rather than rounding it. Named `border-hairline` and directional
+`border-*-hairline` utilities express .0625rem strokes (built-in `border` uses px).
+They preserve border-width composition groups in the precompiled merger. Focus
+uses .125rem width/.1875rem offset; browser rasterization can quantize strokes.
+Viewport queries deliberately remain CSS px, synchronized with the observer;
+root font size is not fixed. SVG viewBox/stroke coordinates remain SVG units.
+
+Owned controls express the below 880px2.75rem minimum with `touch:min-h-11`,
+including history's 640–879px interval, native backup input and slider hit areas.
+Track .75rem/thumb 1.125rem geometry remains separate. Ordinary workspace/modal
+padding and table viewport/container policy live at their component owners.
+ApplicationHeader owns wrapping/context order; its existing compactBrand state
+retains the history action row. The remaining collapsed-inspector selector owns
+only that coordinated state; conflicting gap/padding utilities are conditional.
+
+Focused stylesheet exceptions remain: WorkbenchLayout pane/grid formulas;
+collapsed navigation/inspector state; modal/drawer viewport sizing and transition;
+dialog action wrapping; native slider pseudo-elements/gradients; TokenTable
+selection marker and staged row containment; ExactSource local native scrolling;
+trace decoration and the unlayered `[hidden]` invariant. Runtime authored colors
+and illustrative gradients remain at their current consumers. No component/state
+owners or mounted ancestry were moved. Confirmed unused `.project-start`,
+`.range-ends`, `.exact-data` and the statically positioned `.editor-actions`
+bottom offset were removed; EditorActions remains in its current owner.

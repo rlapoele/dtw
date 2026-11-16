@@ -518,7 +518,7 @@ export function TokensWorkbench({
           <>
             {recovery}
             {formBaseline && formBaseline.revision !== header.revision && (
-              <section className="text-caption border border-border rounded p-3 mb-4">
+              <section className="text-caption border-hairline border-border rounded p-3 mb-4">
                 <h3>Form baseline changed</h3>
                 <p className="wrap-anywhere">
                   Original target/parent identity:{" "}

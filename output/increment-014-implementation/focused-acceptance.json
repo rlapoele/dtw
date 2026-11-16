@@ -1,0 +1,130 @@
+{
+  "cleanReturn": {
+    "text": "New token",
+    "role": "panel",
+    "dialog": false
+  },
+  "guard": [
+    "Create a color tokenCreate a color token with an opaque black sRGB value.NameDescription (optional)GroupProject rootName to saveinkPath: inkLayerUnspecifiedPrimitiveSemanticInitial valuesRGB · Red 0 · Green 0 · Blue 0 · Alpha 1 (opaque black)Create starts with this color. You can revise it or explicitly replace it with a reference in the editor.CancelCreate",
+    "Discard unapplied changes?Session drafts and unfinished form input will be discarded. Applied data is unchanged.Keep editingDiscard draft"
+  ],
+  "dirtyReturn": {
+    "text": "New token",
+    "role": "panel",
+    "dialog": false
+  },
+  "observations": [
+    {
+      "width": 390,
+      "root": "20px",
+      "text": "Cancel",
+      "disabled": false,
+      "focused": true,
+      "rect": {
+        "x": 148.75,
+        "y": 528.5,
+        "width": 80.8125,
+        "height": 55,
+        "top": 528.5,
+        "right": 229.5625,
+        "bottom": 583.5,
+        "left": 148.75
+      },
+      "outline": "oklch(0.556 0 none) solid 2px",
+      "offset": "3px",
+      "viewportVisible": true,
+      "scrollers": [
+        {
+          "cls": "inspector-content flex-1 bg-surface overflow-auto min-h-0",
+          "scrollTop": 652,
+          "clientHeight": 526,
+          "scrollHeight": 1686
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "root": "20px",
+      "text": "Apply changes",
+      "disabled": false,
+      "focused": true,
+      "rect": {
+        "x": 239.5625,
+        "y": 528.5,
+        "width": 135.4375,
+        "height": 55,
+        "top": 528.5,
+        "right": 375,
+        "bottom": 583.5,
+        "left": 239.5625
+      },
+      "outline": "oklch(0.556 0 none) solid 2px",
+      "offset": "3px",
+      "viewportVisible": true,
+      "scrollers": [
+        {
+          "cls": "inspector-content flex-1 bg-surface overflow-auto min-h-0",
+          "scrollTop": 652,
+          "clientHeight": 526,
+          "scrollHeight": 1686
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "root": "20px",
+      "text": "Cancel",
+      "disabled": false,
+      "focused": true,
+      "rect": {
+        "x": 78.75,
+        "y": 556.5,
+        "width": 80.8125,
+        "height": 55,
+        "top": 556.5,
+        "right": 159.5625,
+        "bottom": 611.5,
+        "left": 78.75
+      },
+      "outline": "oklch(0.556 0 none) solid 2px",
+      "offset": "3px",
+      "viewportVisible": true,
+      "scrollers": [
+        {
+          "cls": "inspector-content flex-1 bg-surface overflow-auto min-h-0",
+          "scrollTop": 674,
+          "clientHeight": 499,
+          "scrollHeight": 1709
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "root": "20px",
+      "text": "Apply changes",
+      "disabled": false,
+      "focused": true,
+      "rect": {
+        "x": 169.5625,
+        "y": 556.5,
+        "width": 135.4375,
+        "height": 55,
+        "top": 556.5,
+        "right": 305,
+        "bottom": 611.5,
+        "left": 169.5625
+      },
+      "outline": "oklch(0.556 0 none) solid 2px",
+      "offset": "3px",
+      "viewportVisible": true,
+      "scrollers": [
+        {
+          "cls": "inspector-content flex-1 bg-surface overflow-auto min-h-0",
+          "scrollTop": 674,
+          "clientHeight": 499,
+          "scrollHeight": 1709
+        }
+      ]
+    }
+  ]
+}

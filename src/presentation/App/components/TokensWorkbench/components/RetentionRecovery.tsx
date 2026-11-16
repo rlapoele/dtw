@@ -19,7 +19,7 @@ export function RetentionRecovery({
   return busy && activeMutation && !unknown && !retainedPending ? (
     <section
       role="status"
-      className="border border-border text-caption p-3 rounded my-3"
+      className="border-hairline border-border text-caption p-3 rounded my-3"
     >
       <p>
         Retention pending. Inputs are preserved; duplicate submission is
@@ -30,7 +30,7 @@ export function RetentionRecovery({
   ) : retainedPending ? (
     <section
       role="status"
-      className="border border-border text-caption p-3 rounded my-3"
+      className="border-hairline border-border text-caption p-3 rounded my-3"
     >
       <p>
         The original change is retained. Display recovery is unavailable; inputs
@@ -43,7 +43,7 @@ export function RetentionRecovery({
   ) : unknown ? (
     <section
       role="status"
-      className="border border-error-border bg-error-surface text-caption p-3 rounded my-3"
+      className="border-hairline border-error-border bg-error-surface text-caption p-3 rounded my-3"
     >
       <p>Retained result unknown. Inputs are preserved. {unknown.reason}</p>
       <Button disabled={busy} onClick={() => onCheck()}>

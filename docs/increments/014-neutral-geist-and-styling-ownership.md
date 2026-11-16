@@ -1,8 +1,8 @@
 # Increment 014: Neutral / Geist theme and styling ownership
 
-- Contract status: Draft
-- Delivery status: Not started
-- Agreement: V1 approved for analyst review on 16 November 2026. Final contract/design agreement and implementation authorization remain pending. The user explicitly requested no implementation yet.
+- Contract status: Agreed
+- Delivery status: Completed
+- Agreement: 16 November 2026. The user agreed V1 and this Increment 014 contract and authorized implementation by a developer subagent followed by an independent reviewer, preserving existing workflows and responsive behavior. Earlier analyst-review-only authorization is superseded by this explicit implementation authorization.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [visual direction](../project/visual-direction.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [styling audit F1–F9](../planning/tailwind-styling-ownership-audit.md), [V1 proposal](../project/neutral-theme-proposal-v1.md), [current handoff](../status/current.md).
 
 ## Outcome
@@ -110,12 +110,12 @@ Excluded:
 
 ## Decisions and open questions
 
-### Established user direction and proposed implementation agreement
+### Agreed implementation direction
 
 The user selected Tailwind Neutral, Geist / Geist Mono, shadcn-compatible semantic
-pairs, broad rem usage and a small coherent scale. They like V1 and approved it
-for analyst review. The detailed dispositions here remain part of the Draft
-agreement, not implementation authority.
+pairs, broad rem usage and a small coherent scale. On 16 November 2026 they agreed
+V1 and the combined contract, including the detailed dispositions below, and
+authorized implementation and independent review.
 
 Use V1's semantic mapping: background/card Neutral 50 with Neutral 900 foreground;
 primary 900/50; secondary and muted surfaces 100, with foregrounds 900 and 600
@@ -179,9 +179,9 @@ no query-unit conversion or automatic breakpoint redesign is included. If enlarg
 fonts reveal unusable content, surface the smallest correction and its effect;
 do not silently redefine the pane policy or declare that case passing.
 
-- **Resolve before implementation:** the user's final agreement to this contract,
-  its explicit intentional changes and V1 as limited by these dispositions, plus
-  implementation authorization. No separate product question is currently required.
+- **Resolved before implementation:** final agreement to this contract and V1 as
+  limited by these dispositions, plus implementation authorization, received
+  16 November 2026. No separate product question is currently required.
 - **Routine technical choices:** suitable licensed self-hosted font format/files,
   documented semantic aliases and focused CSS placement within these constraints.
   Verify actual provenance and installed APIs when implementing.
@@ -222,12 +222,11 @@ proposal's isolated contrast numbers and prior desktop preview do not close thes
 gaps. No material visual revision was authored in this review. If implementation
 requires one, return it to the user before renewed analyst review.
 
-**Final design agreement: pending.** The recommendation is to agree V1 with the
-explicit production boundaries above, rather than require another prototype solely
-to repeat already delivered application states. Final agreement does not occur
-through this analyst recommendation.
+**Final design agreement and implementation authorization — 16 November 2026:**
+the user explicitly agreed V1 and this contract and requested a developer subagent
+followed by an independent reviewer. The production boundaries above apply.
 
-## Ordered implementation slices — proposed only
+## Ordered implementation slices
 
 1. Capture a small parity/state baseline and consumer inventory; confirm font
    provenance, effective CSS winners and existing dimensional exceptions. Record
@@ -265,12 +264,12 @@ Use the [shared verification rules](../workflow/agent-roles.md#proportionate-ver
   disabled gates, mounted state and class callbacks. No storage fault campaign is
   needed for presentation-only changes. No new performance guarantee is proposed;
   use realistic ordinary content to notice material layout/scroll regressions.
-- **Proposed future implementation ceiling:** 40 aggregate verification/review
+- **Agreed implementation ceiling:** 40 aggregate verification/review
   minutes, at most one browser-harness repair cycle, shared across developer,
   reviewer and coordinator (indicatively 22/13/5). The combined theme touches all
   current surfaces and fonts plus responsive cascade ownership, justifying more
-  than the small-increment default. This is a proposed allowance for a later
-  authorized implementation, not permission to run checks now. Reviewer must
+  than the small-increment default. Implementation was authorized on
+  16 November 2026. Reviewer must
   retain a usable share; stop optional checks before consuming it.
 - **Excluded qualification:** full state×viewport matrix, stress/resource ceilings,
   browser-engine campaign, persistence/concurrency faults, PWA installation/offline
@@ -310,7 +309,98 @@ criteria only; a source review is not runtime acceptance.
 
 ## Agreed amendments
 
-None. This remains an analyst draft awaiting final user agreement and separate
-implementation authorization.
+No scope amendments. Final agreement and implementation authorization received
+16 November 2026 as recorded above.
+
+## Implementation start — 16 November 2026
+
+Baseline: `da3418e216151af3381cf4ae1c189bbdb37ef8c4`; working tree was clean before
+recording authorization. Fresh-context developer followed by a fresh-context
+independent reviewer; one code writer at a time. Verification ledger starts at
+approximately 0/40 minutes and 0/1 harness repairs for this authorized delivery,
+allocated indicatively 22 developer / 13 reviewer / 5 coordinator. Previous
+planning, prototype and older qualification campaigns remain stopped.
 
 Suggested commit message: `docs: draft Neutral Geist and styling ownership increment`
+
+## Completion report — 16 November 2026
+
+- Delivery status: Completed within the agreed bounded acceptance scope.
+- Reviewed snapshot: baseline `da3418e216151af3381cf4ae1c189bbdb37ef8c4`, plus
+  [R2 implementation diff](../../output/increment-014-implementation/source-r2.diff)
+  and [50-file manifest](../../output/increment-014-implementation/source-manifest-r2.json).
+  Manifest SHA-256: `3439a7680fa7e304fbd7815c42aff342da5a17f43eaa1336cc25cad438481799`.
+  Coordinator authorization/completion/status edits are outside the application
+  snapshot; the V1 agreement annotation is documentation only.
+
+### Result
+
+Projects and Tokens use the agreed Neutral semantic mapping, locally bundled
+Geist / Geist Mono and reviewed type roles. Projects has the editorial hierarchy
+around its existing catalogue and operations. Supporting text no longer consumes
+the secondary surface token; actual controls consume the input boundary. Ordinary
+padding, header/table behavior and control minima have component owners; remaining
+coordinated CSS has documented reasons. Rem geometry preserves retained lengths,
+with viewport policies unchanged in CSS pixels. No workflow/state/command owner,
+domain/host operation, dependency or viewport observer changed. Off-scale lengths
+were retained, not rounded; authored colors and exact source remain data.
+
+### Acceptance evidence
+
+Sources: [developer R1](../../output/increment-014-implementation/developer.md),
+[R2 correction](../../output/increment-014-implementation/developer-r2.md),
+[independent R1 review](../../output/increment-014-implementation/reviewer.md),
+[independent R2 recheck](../../output/increment-014-implementation/reviewer-r2.md),
+and [focused affected acceptance](../../output/increment-014-implementation/focused-acceptance.md).
+
+| Criterion | Evidence and result | Status |
+| --- | --- | --- |
+| AC-1 | Single theme, semantic consumer migration and role inventory; independent source review and actual screen/control observations. | Verified |
+| AC-2 | Five local font faces loaded, build assets emitted, blocked-font fallback observed; provenance, embedded versions, hashes and licenses reviewed. | Verified |
+| AC-3 | Real Projects operations/gates retained; existing state tests and source review, actual creation, validation, selection/Open and native invalid-file rejection. Full recovery runtime matrix excluded. | Verified within bounded coverage |
+| AC-4 | Pre-edit computed baselines; independent viewport/container and 1119/1120, 879/880 observations; specified geometry preserved at owners. | Verified |
+| AC-5 | Composition/control tests and runtime minima; P2 checkbox omission corrected, acknowledgement test passed, exact delta and compiled utility independently rechecked. | Verified |
+| AC-6 | Rem/generated utilities, retained exceptions, unchanged observer; root-20px 320/390 layouts reach lower actions by local scrolling. | Verified |
+| AC-7 | Unchanged workflow/state/command owners and authored data; independent Back/Edit draft preservation and hidden-pane checks. | Verified |
+| AC-8 | Representative assembled contrast, keyboard outline, drawer return, clean/guarded authoring return, narrow and enlarged-root lower-action visibility/focus. Not full accessibility certification. | Verified within bounded coverage |
+| AC-9 | F1–F9 disposition, independent affected-tree/consumer review, confirmed legacy/inert rule removal and reconciled presentation conventions. | Verified |
+
+### Checks and independent review
+
+- Developer: production build/all four typecheck scopes and 153 presentation
+  tests passed before the one-line R2 correction. Its existing acknowledgement
+  test and compiled utility inspection passed afterwards. No repeated full-suite
+  or full-build claim is made for R2.
+- Independent reviewer: all 50 R1/R2 hashes and exact diffs checked; 20 targeted
+  tests passed; isolated Chrome exercised responsive endpoints, table behavior,
+  validation, hidden panes and retained draft text. Separate fresh-context review
+  found one P2: the restore replacement checkbox lost its narrow minimum after
+  removing the global selector. Its owner now declares `touch:min-h-11`, leaving
+  label, checked/disabled/onChange and protection gates unchanged. R2 recheck
+  resolved P2; no actionable findings or unresolved disagreements remain.
+- Final developer Chrome evidence reaches enabled Cancel/Apply through the actual
+  inspector scroll owner at root 20px and 320/390px, with visible keyboard focus.
+  Clean Cancel and dirty-form guard → Discard return to New token. The reviewer
+  inspected this evidence without relabeling it as independently exercised runtime.
+  All R2 source hashes remained unchanged.
+- Coordinator checked returned records/screenshots, final source hashes, local
+  documentation links and whitespace. No staging, commits or pushes occurred.
+- Verification stopped at approximately **37/40 aggregate minutes**, **1/1 repair**:
+  developer approximately 20.5, reviewer approximately 12.5, coordinator
+  approximately 4, including diagnostics/waits/rechecks. Essential checks finished;
+  unused allowance does not restart a campaign. Earlier campaign stops remain.
+
+### Limits and next step
+
+The actual replacement checkbox was not measured through the complete restore
+workflow; its correction has source/compiled-utility and acknowledgement-test
+evidence. Full restore/recovery interleavings, complete state × viewport matrices,
+short-height/zoom/long-list qualification, full contrast/fallback/keyboard
+combinations, broader engines, persistence fault/stress and PWA installation/
+offline-shell qualification remain outside this bounded delivery. Earlier
+acceptance gaps are neither closed nor promoted to passed.
+
+The user reviews the delivered interface/evidence, then stages/commits/pushes as
+desired. This completion does not authorize another increment or campaign.
+
+Suggested commit: `feat: adopt Neutral Geist theme and clarify styling ownership`

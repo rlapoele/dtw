@@ -70,7 +70,7 @@ export function TokenWorkspace({
       hidden={hidden}
       ref={node => { panel.current = node; if (surfaceRef) surfaceRef.current = node; }}
       tabIndex={-1}
-      className="token-panel relative min-w-0 min-h-0 overflow-auto"
+      className="token-panel relative min-w-0 min-h-0 overflow-auto p-6 compact:px-4 compact:py-5"
     >
       <WorkspaceToolbar
         view={view}
@@ -93,7 +93,7 @@ export function TokenWorkspace({
         selection?.kind === "token" &&
         complete &&
         !visible.some((row) => row.id === selection.id) && (
-          <section className="selection-context flex-wrap border border-border rounded-md mb-4 text-caption flex items-center justify-between gap-3 p-3 bg-muted">
+          <section className="selection-context flex-wrap border-hairline border-border rounded-md mb-4 text-caption flex items-center justify-between gap-3 p-3 bg-muted">
             <p className="mt-2">Selected token is outside this list.</p>
             <Button size="selection" onClick={onReveal}>
               Show selected token

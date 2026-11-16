@@ -1,0 +1,928 @@
+[
+  {
+    "width": 1440,
+    "items": [
+      {
+        "cls": "application-header compact-brand shrink-0 border-b border-border flex items-center gap-4 px-5 py-3",
+        "padding": "12px 20px",
+        "minHeight": "64px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 min-w-11 px-3 sm:h-8 sm:min-h-8 sm:min-w-0 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "32px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 min-w-11 px-3 sm:h-8 sm:min-h-8 sm:min-w-0 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "32px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 w-full px-4 justify-start gap-2 rounded-none text-caption border-b-border border-transparent hover:bg-muted pane-toggle sidebar-toggle",
+        "padding": "0px 16px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-9 min-h-9 px-3 justify-start gap-2.5 rounded text-xs/normal border-transparent hover:bg-muted aria-current:bg-accent aria-current:text-foreground aria-current:font-semibold nav-item w-full active",
+        "padding": "0px 12px",
+        "minHeight": "36px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-9 min-h-9 px-3 justify-start gap-2.5 rounded text-xs/normal border-transparent hover:bg-muted aria-current:bg-accent aria-current:text-foreground aria-current:font-semibold nav-item w-full text-muted-foreground",
+        "padding": "0px 12px",
+        "minHeight": "36px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-9 min-h-9 px-3 justify-start gap-2.5 rounded text-xs/normal border-transparent hover:bg-muted aria-current:bg-accent aria-current:text-foreground aria-current:font-semibold nav-item w-full add-group text-muted-foreground mt-4",
+        "padding": "0px 12px",
+        "minHeight": "36px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "token-panel relative min-w-0 min-h-0 overflow-auto",
+        "padding": "24px",
+        "minHeight": "0px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md source-compact:px-2.5 source-compact:text-caption bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "table-heading border-b border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 gap-3 text-muted-foreground",
+        "padding": "12px",
+        "minHeight": "0px",
+        "columns": "244px 244px 244px",
+        "display": "grid"
+      },
+      {
+        "cls": "token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent selected",
+        "padding": "12px",
+        "minHeight": "76px",
+        "columns": "244px 244px 244px",
+        "display": "grid"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "0px",
+        "columns": "none",
+        "display": "inline-flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 w-11 min-w-11 p-0 justify-center gap-2 rounded-md shrink-0 border-transparent hover:bg-muted pane-toggle inspector-toggle",
+        "padding": "0px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "inspector-heading bg-surface p-3",
+        "padding": "24px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      }
+    ]
+  },
+  {
+    "width": 1120,
+    "items": [
+      {
+        "cls": "application-header compact-brand shrink-0 border-b border-border flex items-center gap-4 px-5 py-3",
+        "padding": "12px 20px",
+        "minHeight": "64px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 min-w-11 px-3 sm:h-8 sm:min-h-8 sm:min-w-0 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "32px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 min-w-11 px-3 sm:h-8 sm:min-h-8 sm:min-w-0 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "32px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 w-full px-4 justify-start gap-2 rounded-none text-caption border-b-border border-transparent hover:bg-muted pane-toggle sidebar-toggle",
+        "padding": "0px 16px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-9 min-h-9 px-3 justify-start gap-2.5 rounded text-xs/normal border-transparent hover:bg-muted aria-current:bg-accent aria-current:text-foreground aria-current:font-semibold nav-item w-full active",
+        "padding": "0px 12px",
+        "minHeight": "36px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-9 min-h-9 px-3 justify-start gap-2.5 rounded text-xs/normal border-transparent hover:bg-muted aria-current:bg-accent aria-current:text-foreground aria-current:font-semibold nav-item w-full text-muted-foreground",
+        "padding": "0px 12px",
+        "minHeight": "36px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-9 min-h-9 px-3 justify-start gap-2.5 rounded text-xs/normal border-transparent hover:bg-muted aria-current:bg-accent aria-current:text-foreground aria-current:font-semibold nav-item w-full add-group text-muted-foreground mt-4",
+        "padding": "0px 12px",
+        "minHeight": "36px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "token-panel relative min-w-0 min-h-0 overflow-auto",
+        "padding": "24px",
+        "minHeight": "0px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md source-compact:px-2.5 source-compact:text-caption bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 10px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "table-heading border-b border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 gap-3 text-muted-foreground",
+        "padding": "12px",
+        "minHeight": "0px",
+        "columns": "212px 212px",
+        "display": "grid"
+      },
+      {
+        "cls": "token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent selected",
+        "padding": "12px",
+        "minHeight": "76px",
+        "columns": "212px 212px",
+        "display": "grid"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "0px",
+        "columns": "none",
+        "display": "inline-flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 w-11 min-w-11 p-0 justify-center gap-2 rounded-md shrink-0 border-transparent hover:bg-muted pane-toggle inspector-toggle",
+        "padding": "0px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "inspector-heading bg-surface p-3",
+        "padding": "24px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      }
+    ]
+  },
+  {
+    "width": 1119,
+    "items": [
+      {
+        "cls": "application-header compact-brand shrink-0 border-b border-border flex items-center gap-4 px-5 py-3",
+        "padding": "12px 20px",
+        "minHeight": "64px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-transparent hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 min-w-11 px-3 sm:h-8 sm:min-h-8 sm:min-w-0 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "32px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 min-w-11 px-3 sm:h-8 sm:min-h-8 sm:min-w-0 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "32px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "token-panel relative min-w-0 min-h-0 overflow-auto",
+        "padding": "20px 16px",
+        "minHeight": "0px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md source-compact:px-2.5 source-compact:text-caption bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 10px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "table-heading border-b border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 gap-3 text-muted-foreground",
+        "padding": "12px",
+        "minHeight": "0px",
+        "columns": "325.5px 325.5px",
+        "display": "grid"
+      },
+      {
+        "cls": "token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent selected",
+        "padding": "12px",
+        "minHeight": "76px",
+        "columns": "325.5px 325.5px",
+        "display": "grid"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "0px",
+        "columns": "none",
+        "display": "inline-flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 w-11 min-w-11 p-0 justify-center gap-2 rounded-md shrink-0 border-transparent hover:bg-muted pane-toggle inspector-toggle",
+        "padding": "0px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "inspector-heading bg-surface p-3",
+        "padding": "24px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      }
+    ]
+  },
+  {
+    "width": 880,
+    "items": [
+      {
+        "cls": "application-header compact-brand shrink-0 border-b border-border flex items-center gap-4 px-5 py-3",
+        "padding": "12px 20px",
+        "minHeight": "64px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-transparent hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 min-w-11 px-3 sm:h-8 sm:min-h-8 sm:min-w-0 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "32px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 min-w-11 px-3 sm:h-8 sm:min-h-8 sm:min-w-0 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "32px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "token-panel relative min-w-0 min-h-0 overflow-auto",
+        "padding": "20px 16px",
+        "minHeight": "0px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md source-compact:px-2.5 source-compact:text-caption bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 10px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "table-heading border-b border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 gap-3 text-muted-foreground",
+        "padding": "12px",
+        "minHeight": "0px",
+        "columns": "206px 206px",
+        "display": "grid"
+      },
+      {
+        "cls": "token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent selected",
+        "padding": "12px",
+        "minHeight": "76px",
+        "columns": "206px 206px",
+        "display": "grid"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "0px",
+        "columns": "none",
+        "display": "inline-flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 w-11 min-w-11 p-0 justify-center gap-2 rounded-md shrink-0 border-transparent hover:bg-muted pane-toggle inspector-toggle",
+        "padding": "0px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "inspector-heading bg-surface p-3",
+        "padding": "24px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range",
+        "padding": "0px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 12px",
+        "minHeight": "auto",
+        "columns": "none",
+        "display": "flex"
+      }
+    ]
+  },
+  {
+    "width": 879,
+    "items": [
+      {
+        "cls": "application-header compact-brand shrink-0 border-b border-border flex items-center gap-4 px-5 py-3",
+        "padding": "12px 16px",
+        "minHeight": "64px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-transparent hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 min-w-11 px-3 sm:h-8 sm:min-h-8 sm:min-w-0 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 min-w-11 px-3 sm:h-8 sm:min-h-8 sm:min-w-0 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "token-panel relative min-w-0 min-h-0 overflow-auto",
+        "padding": "20px 16px",
+        "minHeight": "0px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md source-compact:px-2.5 source-compact:text-caption bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 10px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "table-heading border-b border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 gap-3 text-muted-foreground",
+        "padding": "12px",
+        "minHeight": "0px",
+        "columns": "823px",
+        "display": "grid"
+      },
+      {
+        "cls": "token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent selected",
+        "padding": "12px",
+        "minHeight": "76px",
+        "columns": "823px",
+        "display": "grid"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "inline-flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 w-11 min-w-11 p-0 justify-center gap-2 rounded-md shrink-0 border-transparent hover:bg-muted pane-toggle inspector-toggle",
+        "padding": "0px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "inspector-heading bg-surface p-3",
+        "padding": "20px 16px",
+        "minHeight": "0px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range",
+        "padding": "0px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "items": [
+      {
+        "cls": "application-header compact-brand shrink-0 border-b border-border flex items-center gap-4 px-5 py-3",
+        "padding": "12px 16px",
+        "minHeight": "64px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-transparent hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 min-w-11 px-3 sm:h-8 sm:min-h-8 sm:min-w-0 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 min-w-11 px-3 sm:h-8 sm:min-h-8 sm:min-w-0 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "token-panel relative min-w-0 min-h-0 overflow-auto",
+        "padding": "20px 16px",
+        "minHeight": "0px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md source-compact:px-2.5 source-compact:text-caption bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 10px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "table-heading border-b border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 gap-3 text-muted-foreground",
+        "padding": "12px 8px",
+        "minHeight": "0px",
+        "columns": "342px",
+        "display": "grid"
+      },
+      {
+        "cls": "token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent selected",
+        "padding": "12px 8px",
+        "minHeight": "76px",
+        "columns": "342px",
+        "display": "grid"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "inline-flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-11 min-h-11 w-11 min-w-11 p-0 justify-center gap-2 rounded-md shrink-0 border-transparent hover:bg-muted pane-toggle inspector-toggle",
+        "padding": "0px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "inspector-heading bg-surface p-3",
+        "padding": "20px 16px",
+        "minHeight": "0px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground",
+        "padding": "0px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "component-range small:h-11 block h-10 w-full min-w-0 shrink-0 appearance-none rounded cursor-pointer touch-pan-y p-0 border-0 bg-transparent text-foreground alpha-range",
+        "padding": "0px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "block"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      },
+      {
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "columns": "none",
+        "display": "flex"
+      }
+    ]
+  }
+]

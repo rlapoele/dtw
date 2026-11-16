@@ -62,12 +62,12 @@ export function TokenEditorContent({
       aria-label="Selected token"
       hidden={readUnavailable}
     >
-      <div className="inspector-heading bg-surface p-3">
+      <div className="inspector-heading bg-surface p-6 touch:px-4 touch:py-5">
         <span className="eyebrow uppercase text-muted-foreground font-semibold">
           {token.definition?.type ?? "Unassigned"} token
         </span>
         <div className="flex flex-wrap items-start gap-3">
-        <h2 className="wrap-anywhere flex-1 basis-40 min-w-0">
+        <h2 className="wrap-anywhere flex-1 basis-40 min-w-0 my-1 text-inspector font-semibold">
           {tokenLabels.get(token.id) ??
             (token.localName || "(unnamed original token)")}
         </h2>
@@ -96,7 +96,7 @@ export function TokenEditorContent({
           {targetUnavailable && (
             <p
               role="status"
-              className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive"
+              className="error border-hairline border-error-border bg-error-surface rounded text-caption p-3 text-destructive"
             >
               {targetUnavailable} Preserved input remains selectable. This
               action cannot recreate or retarget it.
@@ -124,7 +124,7 @@ export function TokenEditorContent({
             <>
               <fieldset disabled={accepting}>
                 <legend className="sr-only">Value source</legend>
-                <div className="mode-switch border border-border bg-mode flex p-0.75 rounded-md gap-0.75">
+                <div className="mode-switch border-hairline border-border bg-mode flex p-0.75 rounded-md gap-0.75">
                   <Button
                     variant="mode"
                     size="mode"
@@ -187,7 +187,7 @@ export function TokenEditorContent({
                 <p
                   ref={errorRef}
                   tabIndex={-1}
-                  className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+                  className="error border-hairline border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
                   id="editor-error"
                   role="alert"
                 >
@@ -229,7 +229,7 @@ export function TokenEditorContent({
               </p>
             </>
           ) : (
-            <p className="error border border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4">
+            <p className="error border-hairline border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4">
               Inspection only: this token is outside the unconditional
               primitive/semantic color revision flow. Its data is retained.
             </p>
@@ -240,7 +240,7 @@ export function TokenEditorContent({
               unavailable and unverified.
             </p>
           )}
-          <section className="applied-summary border-t border-border mt-7 pt-5">
+          <section className="applied-summary border-t-hairline border-border mt-7 pt-5">
             <h3 className="mb-3.5">
               {targetUnavailable
                 ? "Previous applied · target unavailable"
@@ -275,7 +275,7 @@ export function TokenEditorContent({
           />
         </Tabs.Panel>
       </Tabs.Root>
-      <div className="inspector-foot density:mt-5 small:mt-0 border-t border-border bg-surface px-6 py-4 mt-auto flex justify-between text-muted-foreground">
+      <div className="inspector-foot density:mt-5 small:mt-0 border-t-hairline border-border bg-surface px-6 py-4 mt-auto flex justify-between text-muted-foreground">
         <span>Regeneration</span>
         <span>{token.authoring.regeneration}</span>
       </div>

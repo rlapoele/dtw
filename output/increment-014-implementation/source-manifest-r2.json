@@ -1,0 +1,263 @@
+{
+  "base": "da3418e216151af3381cf4ae1c189bbdb37ef8c4",
+  "excludedCoordinatorEdits": [
+    "docs/increments/014-neutral-geist-and-styling-ownership.md",
+    "docs/status/current.md"
+  ],
+  "files": [
+    {
+      "path": "docs/project/presentation-conventions.md",
+      "sha256": "d6f3b9b4ae456136583424617942bc58693d7632a1979adbf788fdb9a97d84d1",
+      "bytes": 19654
+    },
+    {
+      "path": "src/presentation/App/components/ApplicationHeader/ApplicationHeader.tsx",
+      "sha256": "b35bd683bf3cf0dea228e9fd53c7b7e7e4ccbcd18347939500fdbfd9a91e5811",
+      "bytes": 1047
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/ProjectsWorkbench.tsx",
+      "sha256": "beaadde4d7a447946819aee167b60459c7ffbfa3d1b9ff47ad10fb864e4258ed",
+      "bytes": 7444
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/components/CreateProjectForm/CreateProjectForm.tsx",
+      "sha256": "ac889ead924eb97976e7d3924b68c96f8ec6e37294bf4ff4a100e608135fae6d",
+      "bytes": 1172
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/components/ProjectInspector/ProjectInspector.tsx",
+      "sha256": "f48e171c6a68798933d0a3c6dabe5d5ef8ed3cdc0a4bf8edfd4fef09222d7d04",
+      "bytes": 2166
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/components/ProjectList/ProjectList.tsx",
+      "sha256": "62654e9ef4465bff833a8a38b2a1ad43b832e189c3110753a0e84d1dc96ed724",
+      "bytes": 550
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/components/ProjectList/components/ProjectListItem.tsx",
+      "sha256": "ac790b1c1a8d291f106ffb9bec1f1893504bf30520b5a30eeca6c62b40d6bd38",
+      "bytes": 1039
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/components/ProjectRecovery/ProjectRecovery.tsx",
+      "sha256": "0a22b725fafa3e9513c6a697171e85fcef314dd6e05af2306d0871fed2ddbf43",
+      "bytes": 1764
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog.tsx",
+      "sha256": "07ba55383996b5a3092d3b3957ab6634c5cc58e70d3ce1f4266623c3e041695e",
+      "bytes": 9431
+    },
+    {
+      "path": "src/presentation/App/components/ProjectsWorkbench/components/StorageProtection/StorageProtection.tsx",
+      "sha256": "d01221e308e9e537dee80ee6bac5513496b83eff9444c5e5f1628dcbf883f05d",
+      "bytes": 1506
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx",
+      "sha256": "75c1409b56de9402463f81f3055b5490a289f4d0c31da619e2817553ac10ed15",
+      "bytes": 21374
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/AuthoredValue.tsx",
+      "sha256": "37e8bd189e85005da24763de267f4c87c51096f4555f481d1c02a652bfb8b0fd",
+      "bytes": 1967
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/AuthoringDialog/AuthoringDialog.tsx",
+      "sha256": "2a5331a4c0a153c8fa7dab02a6295644a351a586f0172e08c4a76e68b5849685",
+      "bytes": 11273
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/NamespaceNavigation/NamespaceNavigation.tsx",
+      "sha256": "198c1c1c73033e59d285f5688006e553bd7b95f32e0bf2465b24f57013cbf26d",
+      "bytes": 2525
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/NamespaceNavigation/components/NamespaceTree/NamespaceTree.tsx",
+      "sha256": "11635c9b1d14fda8a7560541c258411fd09d207216dc5f9504a81f555f0bb2d3",
+      "bytes": 4469
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/RetentionRecovery.tsx",
+      "sha256": "1d8c553490e500b4e40901a2c16fb438cf7dd7535cb95f76bb45b530ea073b2a",
+      "bytes": 1623
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/SelectionInspector.tsx",
+      "sha256": "4077284761a5a0a3c6375644138d871d35336ed2371859978429bfe1463d5324",
+      "bytes": 3011
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/GroupInspector/GroupInspector.tsx",
+      "sha256": "18d3d559c4ad9a0806ff7a83514f5baa7a259b491ebc58d6229fd5c5fb40a1a3",
+      "bytes": 1853
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorHeader.tsx",
+      "sha256": "2526252032761ea1928908e1d26fd5a3008715307dd43fc107fd57a2ddbfb60d",
+      "bytes": 1491
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ColorEditor/ColorEditor.tsx",
+      "sha256": "2c888150be61b57aaa7b8bfc996101d42b2529f8bc680453e9c8c6632fb9b895",
+      "bytes": 11878
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditRecovery.tsx",
+      "sha256": "c722c6f1468ffa99180fbdfa18fdcef77561cac0ab2b1af04903559547532e51",
+      "bytes": 1665
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditorActions.tsx",
+      "sha256": "d4ffcb96b9464d08e6c6e8ec66aedf4da37ed969ec05a99df5f1bd523c06b89d",
+      "bytes": 638
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ResolvedTokenPanel.tsx",
+      "sha256": "7d9aec3503fee2931e0a01f464a3e69d6a7c1811ba7ad8d9c8100e1364bd11e4",
+      "bytes": 4377
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent.tsx",
+      "sha256": "e7ac2db2325fd3d32f29c914310f5fb0ccd671631ae93708476e7a2f2f955c60",
+      "bytes": 11034
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorTabs.tsx",
+      "sha256": "993d9fa740ca9220481861a7238e9704ebfff95eb226210c03290b8aa1fc9328",
+      "bytes": 1148
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenMetadata.tsx",
+      "sha256": "eee57e434122333b5016cfb11a27103c351fe62b6630b75c909306c8dbbce3f7",
+      "bytes": 2396
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenValueComparison.tsx",
+      "sha256": "492de1a11998dd3b41ed7dd03e48ecdbfd4b849b86e70d08002ab33a59b3b37b",
+      "bytes": 1298
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/TokenSwatch.tsx",
+      "sha256": "2d76a1f369e8d6d54103964c2960b96bd2373b8d8bef92d1aa69d41db0545815",
+      "bytes": 346
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/TokenWorkspace.tsx",
+      "sha256": "0324268458f58df17e6f60f2255db61f463bba7333d2473c9937cdf9e122570b",
+      "bytes": 4435
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/SelectionBar/SelectionBar.tsx",
+      "sha256": "7d2be5bdff0f1645f7523c28719622da832e3548754b6afc8a3b3d1eb88a5881",
+      "bytes": 697
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/TokenTable/TokenTable.tsx",
+      "sha256": "59f09ccb409d670fbff47efcc8ba671577138f17ab38e7f868ad54697535d667",
+      "bytes": 4999
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/TokensHeader/components/HistoryControls.tsx",
+      "sha256": "55e04eafd2079ec3fd46eb05d2c623b7f77877e5d6f25b475cadb0cdd6fbea49",
+      "bytes": 1319
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/TokensStatusBar/TokensStatusBar.tsx",
+      "sha256": "01c259a654ff03921c7135b7db82a512cd74a2a803b39075976d3d18c6a77469",
+      "bytes": 857
+    },
+    {
+      "path": "src/presentation/styles/fonts/README.md",
+      "sha256": "72abedb9dff083eab23f6707467fffd89601ce4926dd8d06ab07088d5daa7462",
+      "bytes": 1189
+    },
+    {
+      "path": "src/presentation/styles/fonts/font-provenance.json",
+      "sha256": "43c22150c46ccfd9c928bae4a4d5611dba537290c90d6b03f177c51bf61e3490",
+      "bytes": 1216
+    },
+    {
+      "path": "src/presentation/styles/fonts/font-versions.json",
+      "sha256": "d6c8dca34334a71237e5a9e55967b0620cbd2d73db87a4b1f9fa235acd73957d",
+      "bytes": 473
+    },
+    {
+      "path": "src/presentation/styles/fonts/geist-400.ttf",
+      "sha256": "ccce59465ae5c61930ada5453834f60500fbd95084d85db63e0e65fad0125455",
+      "bytes": 72916
+    },
+    {
+      "path": "src/presentation/styles/fonts/geist-500.ttf",
+      "sha256": "a8eefb873ba9c9020665f8a98302697ce1f3b79ab2deef6ee508c0ca6a82e876",
+      "bytes": 72996
+    },
+    {
+      "path": "src/presentation/styles/fonts/geist-600.ttf",
+      "sha256": "7171f481b121803d007f5c6c76cd9988c0d41cce4202db9a18dff9945505d36d",
+      "bytes": 73048
+    },
+    {
+      "path": "src/presentation/styles/fonts/geist-OFL.txt",
+      "sha256": "1781d2806a07d91c4edf4740b88449fab7d0eadad53f7c351b94cd4d4eb8c00f",
+      "bytes": 4387
+    },
+    {
+      "path": "src/presentation/styles/fonts/geist-mono-400.ttf",
+      "sha256": "7022da390e9b401ea35b722f8ed2376948e70add10954bc798839b4bfe17ef3f",
+      "bytes": 71160
+    },
+    {
+      "path": "src/presentation/styles/fonts/geist-mono-500.ttf",
+      "sha256": "5c1b7b77c2d6132460f03b60c175adc80da1ebd0b418c785135b1aed27a28b30",
+      "bytes": 71212
+    },
+    {
+      "path": "src/presentation/styles/fonts/geistmono-OFL.txt",
+      "sha256": "1781d2806a07d91c4edf4740b88449fab7d0eadad53f7c351b94cd4d4eb8c00f",
+      "bytes": 4387
+    },
+    {
+      "path": "src/presentation/styles/global.css",
+      "sha256": "31bf0f240c33d8686ca5a52616a5d50df206bfbd4e579e9e749cc70070599373",
+      "bytes": 10774
+    },
+    {
+      "path": "src/presentation/ui/badge.tsx",
+      "sha256": "316319778561a09a1ea6b6cf1c3ae448962e47d803ebf0369c09e20fb3e6f757",
+      "bytes": 318
+    },
+    {
+      "path": "src/presentation/ui/button.tsx",
+      "sha256": "db5c4ddf9a80d3996ff3b886c90300c04257b33bb66802c043458c78f89a7373",
+      "bytes": 2181
+    },
+    {
+      "path": "src/presentation/ui/dialog-content.tsx",
+      "sha256": "a0712df31402f6a311aebc0be3645ba939d78fb72d9aa52c4237eb6e05f0300e",
+      "bytes": 774
+    },
+    {
+      "path": "src/presentation/ui/input.tsx",
+      "sha256": "03dd644ce95a3a59aede4a60df1f264330a0071125c030de869471a07d827d0b",
+      "bytes": 652
+    },
+    {
+      "path": "src/presentation/ui/select.tsx",
+      "sha256": "5b9dc4b1fc1b4506031216be1e788b0b37d743492e922949a868505d1cb717a4",
+      "bytes": 806
+    },
+    {
+      "path": "test/presentation/icon.test.tsx",
+      "sha256": "2833f2ee26897f5035b43886a1359413e0100b83742eaaba5d362bcd99791826",
+      "bytes": 3161
+    }
+  ],
+  "revision": "R2",
+  "r1Delta": [
+    "src/presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog.tsx"
+  ]
+}

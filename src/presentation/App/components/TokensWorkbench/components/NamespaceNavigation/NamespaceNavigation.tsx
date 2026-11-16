@@ -14,7 +14,7 @@ export function NamespaceNavigationPane({
 }) {
   return (
     <nav
-      className="sidebar flex min-h-0 flex-col overflow-hidden border-r border-border bg-surface"
+      className="sidebar flex min-h-0 flex-col overflow-hidden border-r-hairline border-border bg-surface"
       aria-label="Project groups"
     >
       <Button
@@ -59,8 +59,8 @@ export function NamespaceNavigationDrawer({
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
         <Dialog.Backdrop className="navigation-backdrop fixed inset-0 z-30 bg-scrim" />
-        <Dialog.Popup finalFocus={finalFocus} className="navigation-drawer fixed top-0 bottom-0 left-0 z-35 border-r border-border bg-background flex flex-col overflow-hidden">
-          <div className="navigation-heading border-b border-border px-4 py-3 flex items-center justify-between gap-3">
+        <Dialog.Popup finalFocus={finalFocus} className="navigation-drawer shadow-drawer fixed top-0 bottom-0 left-0 z-35 border-r-hairline border-border bg-background flex flex-col overflow-hidden">
+          <div className="navigation-heading border-b-hairline border-border px-4 py-3 flex items-center justify-between gap-3">
             <Dialog.Title>Project navigation</Dialog.Title>
             <Dialog.Close
               render={<Button variant="ghost" size="icon" />}

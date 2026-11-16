@@ -28,17 +28,17 @@ export function TokenTable({
   const labels = identityLabels(context.tokens);
   const details = namespaceEntryDetails(context);
   return (
-    <div className="token-table @container border-t border-border">
-      <div className="table-heading border-b border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 gap-3 text-muted-foreground">
+    <div className="token-table @container border-t-hairline border-border">
+      <div className="table-heading border-b-hairline border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 touch:grid-cols-1 touch:@3xl:grid-cols-1 gap-3 text-muted-foreground">
         <span>Token</span>
         <span className="hidden @3xl:block">Description</span>
-        <span>Authored value</span>
+        <span className="touch:hidden">Authored value</span>
       </div>
       {rows.map((row) => (
         <button
           key={row.id}
           type="button"
-          className={`token-row border-0 border-b border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent ${selected === row.id ? "selected" : ""}`}
+          className={`token-row border-0 border-b-hairline border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 touch:grid-cols-1 touch:@3xl:grid-cols-1 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent ${selected === row.id ? "selected" : ""}`}
           aria-pressed={selected === row.id}
           onClick={() => onSelect(row.id)}
         >
@@ -48,11 +48,11 @@ export function TokenTable({
               <strong className="block text-xs/normal small:text-caption token-name wrap-anywhere">
                 {labels.get(row.id)}
               </strong>
-              <small className="block text-secondary mt-1 wrap-anywhere">
+              <small className="block text-muted-foreground mt-1 wrap-anywhere">
                 {row.layer} · {row.type}
               </small>
               {row.type === "color" && (
-                <span className="block text-caption text-secondary mt-2 wrap-anywhere">
+                <span className="block text-caption text-muted-foreground mt-2 wrap-anywhere">
                   {hexPreview(row.preview)}
                 </span>
               )}
@@ -62,18 +62,18 @@ export function TokenTable({
                 </span>
               )}
               {row.description !== undefined && (
-                <span className="@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-secondary">
+                <span className="@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-muted-foreground">
                   {row.description}
                 </span>
               )}
             </span>
           </span>
-          <span className="hidden @3xl:block min-w-0 text-caption text-secondary">
+          <span className="hidden @3xl:block min-w-0 text-caption text-muted-foreground">
             <span className="line-clamp-2 whitespace-pre-wrap wrap-anywhere">
               {row.description ?? "—"}
             </span>
           </span>
-          <span className="value-summary min-w-0 text-value text-caption wrap-anywhere">
+          <span className="value-summary touch:hidden min-w-0 text-value text-caption wrap-anywhere">
             {row.color ? (
               <AuthoredValue
                 value={row.color}
@@ -83,7 +83,7 @@ export function TokenTable({
             ) : row.targetId !== undefined ? (
               <span className="block">
                 Reference
-                <span className="block text-secondary mt-1">
+                <span className="block text-muted-foreground mt-1">
                   {labels.get(row.targetId) ?? "Missing target"}
                 </span>
               </span>

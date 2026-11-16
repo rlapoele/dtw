@@ -1,0 +1,30 @@
+[
+  {
+    "path": "output/increment-014-implementation/focused-acceptance.json",
+    "sha256": "3c8b2921cc9d2d601b0545ad73492d405d8b438dce37fe7118f5401950c4cd17"
+  },
+  {
+    "path": "output/increment-014-implementation/focused-acceptance.md",
+    "sha256": "78e6d1f02e968190c6e057a8e4e73494dac150ce3fcc6373b9a25a7db3faf345"
+  },
+  {
+    "path": "output/increment-014-implementation/focused-acceptance.cjs",
+    "sha256": "770e04606600c27e3015f3a77d8ad481cf72ee4060d173359b3511a8cd56459c"
+  },
+  {
+    "path": "output/increment-014-implementation/acceptance-root20-320-Apply-changes.png",
+    "sha256": "6081c32d23e358537530c259dc810cca5083ca8a21edcacb3003610292197a37"
+  },
+  {
+    "path": "output/increment-014-implementation/acceptance-root20-320-Cancel.png",
+    "sha256": "179f38af022809ad8c2fda65ac9a519772365fd2f05498feae05a9241807f01c"
+  },
+  {
+    "path": "output/increment-014-implementation/acceptance-root20-390-Apply-changes.png",
+    "sha256": "26780cd127a4220df6b77f4679da6ef9582bcbb043aa7715faae8b2ca6bc93a8"
+  },
+  {
+    "path": "output/increment-014-implementation/acceptance-root20-390-Cancel.png",
+    "sha256": "77104f9e5b5219cd9ae7b6269f3adff368952455db1b9ad452ba8412473d8e3c"
+  }
+]

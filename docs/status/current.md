@@ -2,28 +2,32 @@
 
 > Last updated: 16 November 2026
 >
-> Phase: Increment 014 drafted after V1 analyst review; final agreement and
-> implementation authorization pending. Increment 013 implemented/reviewed;
+> Phase: Increment 014 implemented and independently reviewed; bounded acceptance
+> completed, earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Neutral / Geist and styling ownership contract — 16 November 2026
+## Neutral / Geist and styling ownership completion — 16 November 2026
 
-The user liked V1 and authorized a separate analyst to review it and draft the
-combined [Increment 014 contract](../increments/014-neutral-geist-and-styling-ownership.md),
-explicitly without implementation. The draft includes F1–F9 cleanup and records
-two concrete migration hazards: secondary-text consumers and input-boundary roles.
-It specifies intentional type/color changes separately from retained geometry,
-viewport policy and workflows; broad dimension rounding remains deferred.
-No further product question is identified beyond user agreement to the proposed
-dispositions. Contract status is Draft, delivery Not started; final contract/design
-agreement and implementation authorization remain pending. Planning source/link/
-whitespace checks stopped at approximately 10/12 aggregate minutes, zero repairs;
-no app tests, build or browser qualification ran. Previous campaign stops and
-acceptance gaps remain unchanged. Next: user reviews the contract. Leave staging,
-commits and pushes to the user.
+The user agreed V1 and Increment 014 and authorized a separate developer followed
+by an independent reviewer. [Completion and evidence](../increments/014-neutral-geist-and-styling-ownership.md#completion-report--16-november-2026)
+record the Neutral semantic theme, local Geist fonts, Projects hierarchy and F1–F9
+styling cleanup. Workflows, authored data, mounted state and viewport policy are
+preserved within stated source/test/runtime coverage. Final build/all typechecks
+and 153 presentation tests passed before the one-line R2 correction; its focused
+acknowledgement test and compiled utility check passed afterwards. Independent
+review ran 20 tests and Chrome checks, found one checkbox-minimum omission and
+resolved it through exact R2 recheck; no actionable findings remain. Final focused
+developer evidence closes enlarged-root lower-action/focus and authoring-return
+checks, without changing reviewed source. Full restore/recovery/viewport and
+broader qualification limits remain explicit; earlier gaps are unchanged.
+
+Checks stopped at approximately 37/40 aggregate minutes and 1/1 repair. Delivery
+is Completed within the agreed bounded scope, without new full accessibility or
+offline/PWA claims. Next: user reviews the interface/evidence, then stages/commits/
+pushes as desired. No additional campaign or next increment is authorized.
 
 ## Neutral / Geist visual proposal — 16 November 2026
 
@@ -36,11 +40,9 @@ the reference site's editorial hierarchy while keeping selection and Open separa
 Designer source checks and coordinator desktop preview/view switching completed;
 the proposal records unverified narrow/font-scaling and host-control behavior.
 The user permits a small additional very-light neutral step if needed; none is
-selected in V1. This is a proposal for user feedback, not analyst approval, final
-design agreement or production implementation. Source/dependencies are unchanged;
-earlier acceptance gaps and qualification stopping decisions remain unchanged.
-V1 subsequently received user approval for analyst review; the draft above records
-that review and the proposed combined contract.
+selected in V1. V1 subsequently received analyst review and final user agreement
+alongside Increment 014. The completion above supersedes the prototype-only
+handoff; original preview limits remain historical evidence in the proposal.
 Leave staging, commits and pushes to the user.
 
 ## Tailwind styling ownership audit — 16 November 2026
@@ -49,12 +51,11 @@ The user requested a bounded audit and cleanup proposal, with broad rem preferen
 coherent dimension scales and deliberate white/black usage. The
 [audit and ordered plan](../planning/tailwind-styling-ownership-audit.md) records
 source-confirmed styling conflicts, proposed ownership, unit/scale policy and a
-separate palette/design review. Application code is unchanged; no cleanup is
-authorized by the proposal. The additional third-party Tailwind skill is not being
+separate palette/design review. At audit time no cleanup was authorized; the
+later agreed Increment 014 delivers it as recorded above. The additional third-party Tailwind skill is not being
 adopted. Source and Markdown were reviewed; no browser, tests or build were run,
 and no new runtime acceptance or independent review is claimed. Earlier acceptance
-gaps and qualification stopping decisions remain unchanged. Next: user reviews the
-proposal before a scoped implementation contract. Leave staging/commits/pushes to
+gaps and qualification stopping decisions remain unchanged. Leave staging/commits/pushes to
 the user.
 
 ## Presentation organization guidance — 16 November 2026

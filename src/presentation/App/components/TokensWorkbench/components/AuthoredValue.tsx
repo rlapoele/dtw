@@ -25,7 +25,7 @@ export function AuthoredValue({
     return (
       <span className="block min-w-0 wrap-anywhere">
         <span className="block">Reference</span>
-        <span className="block text-secondary mt-1">
+        <span className="block text-muted-foreground mt-1">
           {target
             ? identityLabels(project?.tokens ?? []).get(target.authored.id)
             : "Missing target"}
@@ -38,7 +38,7 @@ export function AuthoredValue({
   return (
     <span className="block min-w-0 wrap-anywhere">
       <span className="block">{spaceName(value.colorSpace)}</span>
-      <span className="block text-secondary mt-1 mono">
+      <span className="block text-muted-foreground mt-1 mono">
         {authoredColorCoordinates(value, layout).map((text, index) => (
           <span key={index}>
             {layout === "compact" && index > 0 ? " · " : ""}

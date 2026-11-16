@@ -8,5 +8,5 @@ export function HistoryControls({history, reason, onTraverse}: {history: History
   })}</>;
 }
 export function HistoryDescriptions({history, reason}: {history: HistoryState; reason?: string}) {
-  return <div className="shrink-0 border-b border-border px-5 py-2 text-caption text-muted-foreground flex flex-wrap gap-x-6 gap-y-1 wrap-anywhere">{(["undo", "redo"] as const).map(direction => <p key={direction} id={`history-${direction}-description`}>{direction === "undo" ? "Undo" : "Redo"}: {reason ?? history[direction]?.label ?? `No changes to ${direction}`}</p>)}</div>;
+  return <div className="shrink-0 border-b-hairline border-border px-5 py-2 text-caption text-muted-foreground flex flex-wrap gap-x-6 gap-y-1 wrap-anywhere">{(["undo", "redo"] as const).map(direction => <p key={direction} id={`history-${direction}-description`}>{direction === "undo" ? "Undo" : "Redo"}: {reason ?? history[direction]?.label ?? `No changes to ${direction}`}</p>)}</div>;
 }

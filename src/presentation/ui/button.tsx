@@ -2,7 +2,7 @@ import { Button as Primitive } from "@base-ui/react/button";
 
 const variants = {
   default: "bg-primary text-primary-foreground border-primary",
-  outline: "border-border bg-background hover:bg-muted",
+  outline: "border-input bg-background hover:bg-muted",
   ghost: "border-transparent hover:bg-muted",
   navigation:
     "border-transparent hover:bg-muted aria-current:bg-accent aria-current:text-foreground aria-current:font-semibold",
@@ -36,7 +36,7 @@ export function Button({
   size = "default",
   ...props
 }: ButtonProps) {
-  const owned = `button inline-flex items-center border disabled:opacity-45 disabled:cursor-default ${sizes[size]} ${variants[variant]}`;
+  const owned = `button inline-flex items-center border-hairline text-caption font-medium disabled:opacity-45 disabled:cursor-default ${sizes[size]} touch:min-h-11 ${variants[variant]}`;
   return (
     <Primitive
       {...props}

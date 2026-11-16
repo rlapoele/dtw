@@ -1,0 +1,402 @@
+[
+  {
+    "width": 1440,
+    "root": "16px",
+    "items": [
+      {
+        "tag": "HEADER",
+        "cls": "application-header  shrink-0 border-b border-border flex items-center gap-4 px-5 py-3",
+        "padding": "12px 20px",
+        "minHeight": "64px",
+        "height": "64px",
+        "flexWrap": "nowrap",
+        "gap": "16px",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "MAIN",
+        "cls": "projects-browse min-w-0 overflow-auto p-6",
+        "padding": "28px",
+        "minHeight": "auto",
+        "height": "836px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "INPUT",
+        "cls": "text-input w-full min-w-0 rounded-md border border-border text-foreground px-2.5 hover:border-control-hover placeholder:text-placeholder h-10 min-h-10 bg-background text-xs/normal ",
+        "padding": "0px 10px",
+        "minHeight": "40px",
+        "height": "40px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "1px"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 12px",
+        "minHeight": "0px",
+        "height": "32px",
+        "flexWrap": "nowrap",
+        "gap": "8px",
+        "borderLeft": "1px"
+      },
+      {
+        "tag": "INPUT",
+        "cls": "block mt-3 max-w-full",
+        "padding": "0px",
+        "minHeight": "0px",
+        "height": "18px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted mt-4",
+        "padding": "0px 12px",
+        "minHeight": "0px",
+        "height": "32px",
+        "flexWrap": "nowrap",
+        "gap": "8px",
+        "borderLeft": "1px"
+      },
+      {
+        "tag": "SECTION",
+        "cls": "projects-inspector min-w-0 overflow-auto border-l border-border bg-surface",
+        "padding": "0px",
+        "minHeight": "auto",
+        "height": "836px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "1px"
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "root": "16px",
+    "items": [
+      {
+        "tag": "HEADER",
+        "cls": "application-header  shrink-0 border-b border-border flex items-center gap-4 px-5 py-3",
+        "padding": "12px 20px",
+        "minHeight": "64px",
+        "height": "64px",
+        "flexWrap": "nowrap",
+        "gap": "16px",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "MAIN",
+        "cls": "projects-browse min-w-0 overflow-auto p-6",
+        "padding": "28px",
+        "minHeight": "auto",
+        "height": "836px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "INPUT",
+        "cls": "text-input w-full min-w-0 rounded-md border border-border text-foreground px-2.5 hover:border-control-hover placeholder:text-placeholder h-10 min-h-10 bg-background text-xs/normal ",
+        "padding": "0px 10px",
+        "minHeight": "40px",
+        "height": "40px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "1px"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 12px",
+        "minHeight": "0px",
+        "height": "32px",
+        "flexWrap": "nowrap",
+        "gap": "8px",
+        "borderLeft": "1px"
+      },
+      {
+        "tag": "INPUT",
+        "cls": "block mt-3 max-w-full",
+        "padding": "0px",
+        "minHeight": "0px",
+        "height": "18px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted mt-4",
+        "padding": "0px 12px",
+        "minHeight": "0px",
+        "height": "32px",
+        "flexWrap": "nowrap",
+        "gap": "8px",
+        "borderLeft": "1px"
+      },
+      {
+        "tag": "SECTION",
+        "cls": "projects-inspector min-w-0 overflow-auto border-l border-border bg-surface",
+        "padding": "0px",
+        "minHeight": "auto",
+        "height": "836px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "1px"
+      }
+    ]
+  },
+  {
+    "width": 880,
+    "root": "16px",
+    "items": [
+      {
+        "tag": "HEADER",
+        "cls": "application-header  shrink-0 border-b border-border flex items-center gap-4 px-5 py-3",
+        "padding": "12px 20px",
+        "minHeight": "64px",
+        "height": "64px",
+        "flexWrap": "nowrap",
+        "gap": "16px",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "MAIN",
+        "cls": "projects-browse min-w-0 overflow-auto p-6",
+        "padding": "28px",
+        "minHeight": "auto",
+        "height": "836px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "INPUT",
+        "cls": "text-input w-full min-w-0 rounded-md border border-border text-foreground px-2.5 hover:border-control-hover placeholder:text-placeholder h-10 min-h-10 bg-background text-xs/normal ",
+        "padding": "0px 10px",
+        "minHeight": "40px",
+        "height": "40px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "1px"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 12px",
+        "minHeight": "0px",
+        "height": "32px",
+        "flexWrap": "nowrap",
+        "gap": "8px",
+        "borderLeft": "1px"
+      },
+      {
+        "tag": "INPUT",
+        "cls": "block mt-3 max-w-full",
+        "padding": "0px",
+        "minHeight": "0px",
+        "height": "18px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted mt-4",
+        "padding": "0px 12px",
+        "minHeight": "0px",
+        "height": "32px",
+        "flexWrap": "nowrap",
+        "gap": "8px",
+        "borderLeft": "1px"
+      },
+      {
+        "tag": "SECTION",
+        "cls": "projects-inspector min-w-0 overflow-auto border-l border-border bg-surface",
+        "padding": "0px",
+        "minHeight": "auto",
+        "height": "836px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "1px"
+      }
+    ]
+  },
+  {
+    "width": 879,
+    "root": "16px",
+    "items": [
+      {
+        "tag": "HEADER",
+        "cls": "application-header  shrink-0 border-b border-border flex items-center gap-4 px-5 py-3",
+        "padding": "12px 16px",
+        "minHeight": "64px",
+        "height": "64px",
+        "flexWrap": "wrap",
+        "gap": "8px",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "MAIN",
+        "cls": "projects-browse min-w-0 overflow-auto p-6",
+        "padding": "20px 16px",
+        "minHeight": "auto",
+        "height": "836px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "INPUT",
+        "cls": "text-input w-full min-w-0 rounded-md border border-border text-foreground px-2.5 hover:border-control-hover placeholder:text-placeholder h-10 min-h-10 bg-background text-xs/normal ",
+        "padding": "0px 10px",
+        "minHeight": "44px",
+        "height": "44px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "1px"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "height": "44px",
+        "flexWrap": "nowrap",
+        "gap": "8px",
+        "borderLeft": "1px"
+      },
+      {
+        "tag": "INPUT",
+        "cls": "block mt-3 max-w-full",
+        "padding": "0px",
+        "minHeight": "44px",
+        "height": "44px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted mt-4",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "height": "44px",
+        "flexWrap": "nowrap",
+        "gap": "8px",
+        "borderLeft": "1px"
+      },
+      {
+        "tag": "SECTION",
+        "cls": "projects-inspector min-w-0 overflow-auto border-l border-border bg-surface",
+        "padding": "0px",
+        "minHeight": "0px",
+        "height": "auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "height": "32px",
+        "flexWrap": "nowrap",
+        "gap": "8px",
+        "borderLeft": "1px"
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "root": "16px",
+    "items": [
+      {
+        "tag": "HEADER",
+        "cls": "application-header  shrink-0 border-b border-border flex items-center gap-4 px-5 py-3",
+        "padding": "12px 16px",
+        "minHeight": "64px",
+        "height": "64px",
+        "flexWrap": "wrap",
+        "gap": "8px",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "MAIN",
+        "cls": "projects-browse min-w-0 overflow-auto p-6",
+        "padding": "20px 16px",
+        "minHeight": "auto",
+        "height": "836px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "INPUT",
+        "cls": "text-input w-full min-w-0 rounded-md border border-border text-foreground px-2.5 hover:border-control-hover placeholder:text-placeholder h-10 min-h-10 bg-background text-xs/normal ",
+        "padding": "0px 10px",
+        "minHeight": "44px",
+        "height": "44px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "1px"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md bg-primary text-primary-foreground border-primary ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "height": "44px",
+        "flexWrap": "nowrap",
+        "gap": "8px",
+        "borderLeft": "1px"
+      },
+      {
+        "tag": "INPUT",
+        "cls": "block mt-3 max-w-full",
+        "padding": "0px",
+        "minHeight": "44px",
+        "height": "44px",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted mt-4",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "height": "44px",
+        "flexWrap": "nowrap",
+        "gap": "8px",
+        "borderLeft": "1px"
+      },
+      {
+        "tag": "SECTION",
+        "cls": "projects-inspector min-w-0 overflow-auto border-l border-border bg-surface",
+        "padding": "0px",
+        "minHeight": "0px",
+        "height": "auto",
+        "flexWrap": "nowrap",
+        "gap": "normal",
+        "borderLeft": "0px"
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "button inline-flex items-center border disabled:opacity-45 disabled:cursor-default h-8 px-3 justify-center gap-2 rounded-md border-border bg-background hover:bg-muted ",
+        "padding": "0px 12px",
+        "minHeight": "44px",
+        "height": "32px",
+        "flexWrap": "nowrap",
+        "gap": "8px",
+        "borderLeft": "1px"
+      }
+    ]
+  }
+]

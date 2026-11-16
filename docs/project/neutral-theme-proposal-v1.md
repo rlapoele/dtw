@@ -1,17 +1,20 @@
 # Neutral / Geist visual proposal V1
 
-**Proposed for user review — 16 November 2026.** This is a visual proposal,
-not an agreed design, analyst approval or production implementation authorization.
+**Agreed design — 16 November 2026.** Initially prepared as a visual proposal,
+then approved for analyst review and subsequently agreed with Increment 014.
 The user selected Tailwind Neutral, Geist and Geist Mono for exploration and
 requested continuity with the [styling ownership audit](../planning/tailwind-styling-ownership-audit.md).
-Production source and dependencies are unchanged.
+The implementation and its evidence are recorded in
+[Increment 014](../increments/014-neutral-geist-and-styling-ownership.md#completion-report--16-november-2026).
+This document retains the identified proposal and its original preview limits.
 
 **Analyst review — 16 November 2026:** the user liked V1 and authorized analyst
 review plus a combined increment contract, explicitly without implementation.
 [Increment 014](../increments/014-neutral-geist-and-styling-ownership.md#design-proposals-and-analyst-review)
 records the separate analyst's findings and proposed production dispositions.
-Final design/contract agreement and implementation authorization remain pending;
-this review pointer does not revise the visual artifact.
+The user subsequently agreed V1 and the resulting contract and authorized
+implementation by a developer followed by an independent reviewer. This agreement
+annotation does not revise the visual artifact.
 
 ## Design judgment
 
@@ -141,8 +144,8 @@ Check newly exposed theme utilities against generated CSS and class composition.
 
 User review should focus on neutral surface separation, primary/supporting text,
 selection/focus/error appearance, Geist's dense UI readability and the restrained
-Projects composition. This proposal needs user feedback before analyst review;
-analyst review is distinct from final design/contract agreement and implementation.
+Projects composition. User feedback, analyst review and final agreement were
+recorded in Increment 014; the original preview limits below remain historical.
 
 Designer source review checked role aliases, declared rem sizes, local sample
 state and selector/element references; JavaScript syntax and local documentation

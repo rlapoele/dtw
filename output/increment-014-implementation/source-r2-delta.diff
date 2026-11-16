@@ -1,0 +1,10 @@
+--- R1/src/presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog.tsx
++++ R2/src/presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog.tsx
+@@ -172,6 +172,7 @@
+                 </Button>
+                 <label className="flex gap-3 items-start mt-4">
+                   <input
++                    className="touch:min-h-11"
+                     type="checkbox"
+                     checked={acknowledgement}
+                     disabled={!protection || busy || unknown}

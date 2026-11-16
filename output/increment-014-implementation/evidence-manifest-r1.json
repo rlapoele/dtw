@@ -1,0 +1,272 @@
+[
+  {
+    "path": "output/increment-014-implementation/baseline-consumers.txt",
+    "sha256": "02ac4c743325244a36aa6e4cad85e3506931b54ac28e0fc4fa9c060d259bc1f3",
+    "bytes": 24539
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-global.css",
+    "sha256": "1cf8c82f93ca8c5806fe9b9e6757de9c3b8ea4d92b952fb15df4fe46ebd38f0a",
+    "bytes": 9962
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-projects-1024.png",
+    "sha256": "bdceed7d29fc301c3ce076076d396616eebc1134e20e0a007b806502f814fa19",
+    "bytes": 65646
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-projects-1440.png",
+    "sha256": "172202221376078bf24174ab4b2540476a3e9e2f881b8d33872b2423c551015c",
+    "bytes": 66051
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-projects-390.png",
+    "sha256": "8be06f2b5a750bbc1d17f3b6b02d6852facd59d8d1193858a160ec240c9e5a71",
+    "bytes": 51445
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-projects-879.png",
+    "sha256": "f4ac89d9201d2f069115016a522cb51eb89d78ffbcd56ecfef1a20a687d53c2d",
+    "bytes": 54488
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-projects-880.png",
+    "sha256": "c9da29644970d670af889757ec4aca03a91df66edc1f180e57014eed4743e901",
+    "bytes": 65239
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-projects.cjs",
+    "sha256": "e7ee5412c6f6a837e24eb132eb4c6816d5540987005988e8afca3c8967182de8",
+    "bytes": 1127
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-runtime.json",
+    "sha256": "26a36532a9a698d449975df1a196a8cf5e61658341c3f4fa410a2d9b9b6178dc",
+    "bytes": 12788
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-token-modal.png",
+    "sha256": "e2ce3f2da5c4633bbe0de6f1c0966b3d6293b9a19df1ceb291411a900c1a30df",
+    "bytes": 137465
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-tokens-1119.png",
+    "sha256": "3ac2f5eaa1d5acb87e7ba8b601d7fd09a8067412f489003f9ddea6e5a0967a46",
+    "bytes": 98924
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-tokens-1120.png",
+    "sha256": "af3f68f3d365a1940cc74be73b28ed424a3f605af8fa12667784efb4f3f2e8e2",
+    "bytes": 110579
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-tokens-1440.png",
+    "sha256": "ed7ee24ede901947625e5087f98f48283d8bec9a28f19fa66432e8bab20d25f3",
+    "bytes": 115205
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-tokens-390.png",
+    "sha256": "402252711a16a43dcd188730a339b156439aa98b30704654c1190af68c154067",
+    "bytes": 39354
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-tokens-879.png",
+    "sha256": "786f404b88fdffb47897a17249ee902cf1c9223ed559057c4925625897042157",
+    "bytes": 45123
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-tokens-880.png",
+    "sha256": "bc4af8829246cc73b73c462e8c824903b3078276e98e4058e8d10d6f109abe02",
+    "bytes": 96918
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-tokens-runtime.json",
+    "sha256": "20a5e4d58221fa4dc73e6c59f12ea6408b85dd232ddf20a967b96b8a4fd659c8",
+    "bytes": 41947
+  },
+  {
+    "path": "output/increment-014-implementation/baseline-tokens.cjs",
+    "sha256": "c5d2d08e16e578efc00b850f11deb965f17f24c6972d3259806ac3d6a3df272f",
+    "bytes": 1583
+  },
+  {
+    "path": "output/increment-014-implementation/build-final.log",
+    "sha256": "7ea5247bf2d90696ada3d59ca02d529175f2e37889f22505a79735d0e183d648",
+    "bytes": 1644
+  },
+  {
+    "path": "output/increment-014-implementation/build.log",
+    "sha256": "a8d0111bb41f6c09060f4555de0d54b061d28c84778a6833564ec532412be139",
+    "bytes": 1644
+  },
+  {
+    "path": "output/increment-014-implementation/composition-tests.log",
+    "sha256": "9be20c7785dd13e171355ce33e4ad984caa8035a471f0a20c22a69bf000daa29",
+    "bytes": 652
+  },
+  {
+    "path": "output/increment-014-implementation/developer.md",
+    "sha256": "7f8f2d57b49c1efdc54702e932d58250fdf916a623644e36fcb967295e885334",
+    "bytes": 10629
+  },
+  {
+    "path": "output/increment-014-implementation/focus-contrast.cjs",
+    "sha256": "3b4dd23bab99ff6028af23945f0d70d35349945bb56e34845b81936f9c0cdef8",
+    "bytes": 2373
+  },
+  {
+    "path": "output/increment-014-implementation/focus-contrast.json",
+    "sha256": "225b7a119ee47b774a11d6cb25cb9f707fe742d47d2694eaa159fb8963e4289f",
+    "bytes": 1799
+  },
+  {
+    "path": "output/increment-014-implementation/legacy-consumers.txt",
+    "sha256": "a585297eed3ceaac88f2210c8075d8336c14c29fc2609acfb16bc03bc69db9dc",
+    "bytes": 597
+  },
+  {
+    "path": "output/increment-014-implementation/presentation-tests-final.log",
+    "sha256": "98c561ada56aaf0a41b3b729878fd1341f05c16344b58e77f82aa267d70d9256",
+    "bytes": 645
+  },
+  {
+    "path": "output/increment-014-implementation/presentation-tests.log",
+    "sha256": "a519bbb6d09b0bb56b1968c6b7de5934cde31816be069c10cd23aae2761a5dae",
+    "bytes": 645
+  },
+  {
+    "path": "output/increment-014-implementation/runtime-checks.cjs",
+    "sha256": "6a916b4dadc4df3f8d52365dbba85dd6d53114698efcb85e0e9568f96a2692d8",
+    "bytes": 4263
+  },
+  {
+    "path": "output/increment-014-implementation/runtime-checks.json",
+    "sha256": "14b983f348fb4006d246f4790a2de8cded36f918b1ed180d4123a50d3654febd",
+    "bytes": 13919
+  },
+  {
+    "path": "output/increment-014-implementation/source-r1.diff",
+    "sha256": "bfa8d5cd483005d9edcf06b4549af5e067e8942c5705bb655ce5534478eafd39",
+    "bytes": 86442
+  },
+  {
+    "path": "output/increment-014-implementation/theme-drawer.png",
+    "sha256": "11b7f6ced76d68f8b0febe03e6e9681bb3695873207cde33ee7cf18c317513d4",
+    "bytes": 36259
+  },
+  {
+    "path": "output/increment-014-implementation/theme-editor-1024.png",
+    "sha256": "b75397be0480fd2e59c1074a01a4b393791b39a95c41fd09439f9efd337590b6",
+    "bytes": 91321
+  },
+  {
+    "path": "output/increment-014-implementation/theme-editor-1440.png",
+    "sha256": "430d7f0a780de6857dff580e0a7ed7a518665effc1e5f36bb24eadc12a9b6f43",
+    "bytes": 106888
+  },
+  {
+    "path": "output/increment-014-implementation/theme-editor-320.png",
+    "sha256": "2db1777427ad081fca65b9eb4b4a900239e3947f1aa442d0709472091d312859",
+    "bytes": 48456
+  },
+  {
+    "path": "output/increment-014-implementation/theme-editor-390.png",
+    "sha256": "8892189268f53b613f5c1cb9b189615752656413bbe2613a5d5ed3b72dae1a29",
+    "bytes": 54703
+  },
+  {
+    "path": "output/increment-014-implementation/theme-editor-879.png",
+    "sha256": "84328c01d8a197e1356140834ef1a5c1a8738fd2f945d2157f72bc08b939a5c5",
+    "bytes": 67053
+  },
+  {
+    "path": "output/increment-014-implementation/theme-fallback.png",
+    "sha256": "b61d3d945e75bd8b125dc4ea650dc96d3cdab82ae1ce94b388d6d81b6720f802",
+    "bytes": 47528
+  },
+  {
+    "path": "output/increment-014-implementation/theme-modal-focus.png",
+    "sha256": "0b06f56152672188493c7637a9e0a2abfb10da8ea2685499d7d911cf805dcdce",
+    "bytes": 78619
+  },
+  {
+    "path": "output/increment-014-implementation/theme-projects-1024.png",
+    "sha256": "b989b4c061504998da69be8293b79aa16e8d66eca263570c7c2194ca586213f2",
+    "bytes": 85979
+  },
+  {
+    "path": "output/increment-014-implementation/theme-projects-1440.png",
+    "sha256": "9d3a568a4e764c540affeee50dc1ae1ca99d3436f7efb7e840930c048e45c36b",
+    "bytes": 90460
+  },
+  {
+    "path": "output/increment-014-implementation/theme-projects-390.png",
+    "sha256": "ad6c3b7b306e3779ee587d8961ac194ee19fff98da9c019cff3b1aed57433a30",
+    "bytes": 44561
+  },
+  {
+    "path": "output/increment-014-implementation/theme-root20.png",
+    "sha256": "8e47fadc52de10d34e724664e2157267186df226ed3058f644b985bc57f7e6e4",
+    "bytes": 45303
+  },
+  {
+    "path": "output/increment-014-implementation/theme-token-modal.png",
+    "sha256": "eccc85969112e151d3ce134c30e622be222ef755093422b40fd4c48ea52b448c",
+    "bytes": 96498
+  },
+  {
+    "path": "output/increment-014-implementation/theme-tokens-1024.png",
+    "sha256": "30218a4815acd41e74cdd79a8c5f26d7496cf6ccc915c1bfcc7363d5e9e500d9",
+    "bytes": 89424
+  },
+  {
+    "path": "output/increment-014-implementation/theme-tokens-1119.png",
+    "sha256": "1d8c3a9a3265aac3b3bed929e32c4a57273409e718fdda011eaf6bd544897902",
+    "bytes": 89803
+  },
+  {
+    "path": "output/increment-014-implementation/theme-tokens-1120.png",
+    "sha256": "fb53403da33ecaaaa5ea45730cb229e11bc161690c62bd4923f32390dda02246",
+    "bytes": 99299
+  },
+  {
+    "path": "output/increment-014-implementation/theme-tokens-1440.png",
+    "sha256": "c0e4f3dbc09fe5c13e27793f1523ac968373dcf4545660617b5ded265f1845fc",
+    "bytes": 104775
+  },
+  {
+    "path": "output/increment-014-implementation/theme-tokens-320.png",
+    "sha256": "e34e1384cd94edf6674c8b0c6935e0d787a5c69dfa8968450447e9bb2861f10d",
+    "bytes": 34510
+  },
+  {
+    "path": "output/increment-014-implementation/theme-tokens-390.png",
+    "sha256": "7e8970e176318f15c292aea5ec98f47f7954b8ef59ed2ed7daf915261565b4a7",
+    "bytes": 34944
+  },
+  {
+    "path": "output/increment-014-implementation/theme-tokens-640.png",
+    "sha256": "70cc6343b95079c7317228753cb18fa29900e8e2d5e7720896ff8a9ab99cdbcb",
+    "bytes": 37898
+  },
+  {
+    "path": "output/increment-014-implementation/theme-tokens-768.png",
+    "sha256": "c74cd617cc2a8578202aea9623b8509a9841b375d7eae55eab4c6a714466cbb0",
+    "bytes": 38654
+  },
+  {
+    "path": "output/increment-014-implementation/theme-tokens-879.png",
+    "sha256": "4fbc0dc21393accccb7a9937b49595d4cdaa10fea3834e257db29a688369beba",
+    "bytes": 40271
+  },
+  {
+    "path": "output/increment-014-implementation/theme-tokens-880.png",
+    "sha256": "36df04e28b28917d1c30f20d2599f43c661cd7bae9b84a61ae29b3fab749ed00",
+    "bytes": 86925
+  },
+  {
+    "path": "output/increment-014-implementation/theme-tokens-runtime.json",
+    "sha256": "06ceec6bf6554e962df0a566029971632afdc8c1684f6f77b3027fbb6cfd2e9f",
+    "bytes": 125044
+  }
+]

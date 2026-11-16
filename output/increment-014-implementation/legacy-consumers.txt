@@ -1,0 +1,7 @@
+src/presentation/styles/global.css:  .range-ends,
+src/presentation/styles/global.css:  .project-start > p {
+src/presentation/styles/global.css:  .exact-data {
+src/presentation/styles/global.css:  .exact-data {
+src/presentation/styles/global.css:.editor-actions { bottom: -1px; }
+src/presentation/styles/global.css:.project-start { width: min(520px, 100%); }
+src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditorActions.tsx:    <div className="editor-actions flex justify-end gap-2 mt-3 mb-2 border-t border-border bg-surface py-3">
