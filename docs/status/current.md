@@ -9,6 +9,18 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Browse and inspector polish planning — 16 November 2026
+
+The user's 14 browser annotations and sticky token-heading addition are captured
+in [Increment 015's draft contract](../increments/015-workbench-browse-and-inspector-polish.md).
+A separate analyst prepared the draft; a separate designer recommends a compact
+sticky identity/comparison/control row with longer metadata scrolling below.
+Direction approval and reviewable design artifacts are pending, followed by user
+approval for analyst design review and final agreement/implementation authorization.
+No production or prototype changes or application checks were performed in this
+planning step. Prior qualification limits remain. Leave staging/commits/pushes to
+the user.
+
 ## Variable WOFF2 font maintenance — 16 November 2026
 
 At the user's request, the five static TrueType application fonts were replaced
