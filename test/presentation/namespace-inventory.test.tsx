@@ -4,8 +4,8 @@ import { describe, expect, it } from "vitest";
 import { admitSnapshot } from "@application/retention/codec";
 import { projectContext } from "@application/retention/projections";
 import { identityLabels } from "@presentation/App/components/TokensWorkbench/helpers/identity-labels";
-import { AllContent } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/AllContent/AllContent";
-import { membershipBlocks, revealMembershipBlocks } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/AllContent/helpers/all-content";
+import { NamespaceInventory } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/NamespaceInventory/NamespaceInventory";
+import { membershipBlocks, revealMembershipBlocks } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/NamespaceInventory/helpers/namespace-inventory";
 function context(groups: number, tokens: number) {
   return projectContext(admitSnapshot({ project: { id: "p", name: "P" }, groups: Array.from({length:groups}, (_, i)=>({id:`g${i}`,projectId:"p",localName:`group${i}`,parentGroupId:null})), tokens: Array.from({length:tokens},(_,i)=>({id:`t${i}`,projectId:"p",localName:`token${i}`,parentGroupId:null,authoring:{regeneration:"allowed"}})) }));
 }
@@ -22,13 +22,13 @@ describe("complete native All content membership",()=>{
   });
   it("initially renders only a bounded native block with truthful loading feedback",()=>{
     const project=context(2000,10000);
-    const html=renderToStaticMarkup(createElement(AllContent,{context:project,groupLabels:identityLabels(project.groups),onSelect(){}}));
+    const html=renderToStaticMarkup(createElement(NamespaceInventory,{context:project,groupLabels:identityLabels(project.groups),onSelect(){}}));
     expect((html.match(/data-entity-kind=/g)??[])).toHaveLength(100);
     expect(html).toContain("Preparing all content");expect(html).toContain('data-entity-id="g0"');expect(html).not.toContain('data-entity-id="t9999"');
   });
   it("renders exact opaque group/token identities independently and uses native buttons",()=>{
     const project=projectContext(admitSnapshot({project:{id:"p",name:"P"},groups:[{id:"",projectId:"p",localName:"",parentGroupId:null}],tokens:[{id:"",projectId:"p",localName:"",parentGroupId:null,authoring:{regeneration:"allowed"}}]}));
-    const html=renderToStaticMarkup(createElement(AllContent,{context:project,groupLabels:identityLabels(project.groups),onSelect(){}}));
+    const html=renderToStaticMarkup(createElement(NamespaceInventory,{context:project,groupLabels:identityLabels(project.groups),onSelect(){}}));
     expect((html.match(/<button/g)??[])).toHaveLength(2);expect(html).toContain('data-entity-kind="group" data-entity-id=""');expect(html).toContain('data-entity-kind="token" data-entity-id=""');expect(html).toContain("All content ready");
   });
   it("keeps ordinary identity disclosure outside its action and exceptional identity inside its action",()=>{
@@ -36,7 +36,7 @@ describe("complete native All content membership",()=>{
       {id:"ordinary-full-identity",projectId:"p",localName:"ordinary",parentGroupId:null,authoring:{regeneration:"allowed"}},
       {id:"orphan-full-identity",projectId:"p",localName:"orphan",parentGroupId:"missing-parent",authoring:{regeneration:"allowed"}},
     ]}));
-    const html=renderToStaticMarkup(createElement(AllContent,{context:project,groupLabels:new Map(),onSelect(){}}));
+    const html=renderToStaticMarkup(createElement(NamespaceInventory,{context:project,groupLabels:new Map(),onSelect(){}}));
     const rows=html.match(/<li\b[\s\S]*?<\/li>/g)!;
     expect(rows).toHaveLength(2);
     expect(rows[0]).toMatch(/<\/button><details/);

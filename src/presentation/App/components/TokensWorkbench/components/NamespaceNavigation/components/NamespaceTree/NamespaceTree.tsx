@@ -1,4 +1,4 @@
-import type { BrowserView } from "@presentation/App/components/TokensWorkbench/helpers/workspace-view";
+import type { TokenBrowseView } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
 import type { ProjectContext } from "@application/retention/projections";
 import { Icon } from "@presentation/ui/icon";
 import { Button } from "@presentation/ui/button";
@@ -14,7 +14,7 @@ export function NamespaceTree({
 }: {
   drawer: boolean;
   project: ProjectContext | undefined;
-  view: BrowserView;
+  view: TokenBrowseView;
   unavailable: boolean;
   onSelect: (group: string | null) => void;
   onCreateGroup: () => void;

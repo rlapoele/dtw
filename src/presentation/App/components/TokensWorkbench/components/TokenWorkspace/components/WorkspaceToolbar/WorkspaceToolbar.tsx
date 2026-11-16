@@ -1,4 +1,4 @@
-import type { BrowserView } from "@presentation/App/components/TokensWorkbench/helpers/workspace-view";
+import type { TokenBrowseView } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
 import { Button } from "@presentation/ui/button";
 import { Icon } from "@presentation/ui/icon";
 import { Input } from "@presentation/ui/input";
@@ -12,7 +12,7 @@ export function WorkspaceToolbar({
   onCreateToken,
   onRenameGroup,
 }: {
-  view: BrowserView;
+  view: TokenBrowseView;
   groupLabels: Map<string, string>;
   blocked: boolean;
   query: string;

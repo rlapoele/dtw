@@ -62,6 +62,14 @@ flattening WorkbenchRecovery. The [current ownership map](../workbench-component
 records the renamed header/status/selection/navigation/feedback/authoring components
 and screen hooks. The dated tree below preserves its original proposal names.
 
+## Later editor ownership and browse naming — 16 November 2026
+
+The user subsequently approved TokenEditor-private TokenValueComparison and
+resolved-color, NamespaceInventory in place of AllContent, and browse-view.ts /
+TokenBrowseView in place of workspace-view.ts / BrowserView. The
+[current ownership map](../workbench-component-organisation.md#editor-ownership-and-browse-naming--16-november-2026)
+records current placement; the dated tree below retains its proposal names.
+
 ## Organisation principle
 
 Keep a component’s entry file at its named folder’s root. Group its supporting

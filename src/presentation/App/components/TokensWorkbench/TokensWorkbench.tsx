@@ -2,8 +2,8 @@ import { useHistoryInteraction } from "./hooks/useHistoryInteraction";
 import { TokensStatusBar } from "@presentation/App/components/TokensWorkbench/components/TokensStatusBar/TokensStatusBar";
 import { NamespaceNavigationPane, NamespaceNavigationDrawer } from "@presentation/App/components/TokensWorkbench/components/NamespaceNavigation/NamespaceNavigation";
 import { useProjectLifecycle } from "@presentation/App/components/TokensWorkbench/hooks/useProjectLifecycle";
-import { creationParent } from "@presentation/App/components/TokensWorkbench/helpers/workspace-view";
-import type { BrowserView } from "@presentation/App/components/TokensWorkbench/helpers/workspace-view";
+import { creationParent } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
+import type { TokenBrowseView } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
 import { RetentionRecovery } from "@presentation/App/components/TokensWorkbench/components/RetentionRecovery";
 import { TokenWorkspace } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/TokenWorkspace";
 import { DepartureGuard } from "@presentation/App/components/TokensWorkbench/components/DepartureGuard";
@@ -45,7 +45,7 @@ export function TokensWorkbench({
     useState<
       import("@presentation/App/components/TokensWorkbench/hooks/useProjectReadback").Selection
     >(null);
-  const [view, setView] = useState<BrowserView>({ kind: "all-tokens" });
+  const [view, setView] = useState<TokenBrowseView>({ kind: "all-tokens" });
   const group = creationParent(view);
   const [query, setQuery] = useState("");
   const [error, setError] = useState(""),

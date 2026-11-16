@@ -1,7 +1,7 @@
 import { WorkspaceToolbar } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/WorkspaceToolbar/WorkspaceToolbar";
-import type { BrowserView } from "@presentation/App/components/TokensWorkbench/helpers/workspace-view";
+import type { TokenBrowseView } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
 import { Button } from "@presentation/ui/button";
-import { AllContent } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/AllContent/AllContent";
+import { NamespaceInventory } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/NamespaceInventory/NamespaceInventory";
 import { TokenTable } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/TokenTable/TokenTable";
 import type {
   ProjectContext,
@@ -39,7 +39,7 @@ export function TokenWorkspace({
   surfaceRef?: RefObject<HTMLElement | null>;
   hidden?: boolean;
   selectionBar?: ReactNode;
-  view: BrowserView;
+  view: TokenBrowseView;
   groupLabels: Map<string, string>;
   blocked: boolean;
   query: string;
@@ -102,7 +102,7 @@ export function TokenWorkspace({
         )}
       {context &&
         (allContent ? (
-          <AllContent
+          <NamespaceInventory
             key={JSON.stringify([header.project.id, header.revision])}
             context={context}
             groupLabels={groupLabels}

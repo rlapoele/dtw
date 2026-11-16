@@ -4,7 +4,7 @@ import type {
 } from "@application/retention/projections";
 import type { TokenInspection } from "@application/authoring";
 import { pathLabel } from "@presentation/App/components/TokensWorkbench/helpers/identity-labels";
-import { resolvedColor } from "@presentation/App/components/TokensWorkbench/helpers/resolved-color";
+import { resolvedColor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/helpers/resolved-color";
 import { COLOR_COMPONENTS, COMPONENT_NAMES } from "@domain/color-components";
 import { spaceName } from "@presentation/App/components/TokensWorkbench/helpers/authored-color";
 import { Badge } from "@presentation/ui/badge";

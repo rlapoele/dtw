@@ -4,7 +4,7 @@ import type { HistoryDirection, HistoryState } from "@application/retention/hist
 import type { ProjectContext } from "@application/retention/projections";
 import type { ProjectHeader, PublicAcceptance } from "@hosts/browser/protocol";
 import type { Selection } from "./useProjectReadback";
-import type { BrowserView } from "../helpers/workspace-view";
+import type { TokenBrowseView } from "../helpers/browse-view";
 import { historyShortcut, ownsHistoryShortcut } from "../helpers/history-shortcuts";
 type Setter<T> = Dispatch<SetStateAction<T>>;
 type Options = {
@@ -14,7 +14,7 @@ type Options = {
   current: MutableRefObject<ProjectHeader>; completion: MutableRefObject<(() => void) | undefined>;
   setDirty: Setter<boolean>; setEditorVersion: Setter<number>; setNotice: Setter<string>; setError: Setter<string>;
   panel: RefObject<HTMLElement | null>; narrow: boolean; back(moveFocus?: boolean): void;
-  context: ProjectContext | undefined; selection: Selection; setSelection: Setter<Selection>; view: BrowserView; setView: Setter<BrowserView>;
+  context: ProjectContext | undefined; selection: Selection; setSelection: Setter<Selection>; view: TokenBrowseView; setView: Setter<TokenBrowseView>;
 };
 /** Workbench delivery coordination only: captured intent, native shortcut ownership,
  * surviving-ID browse/selection and focus. Commands stay in useProjectCommands. */

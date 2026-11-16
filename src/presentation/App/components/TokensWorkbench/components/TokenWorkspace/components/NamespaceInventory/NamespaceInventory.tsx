@@ -4,8 +4,8 @@ import { Button } from "@presentation/ui/button";
 import {
   membershipBlocks,
   revealMembershipBlocks,
-} from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/AllContent/helpers/all-content";
-import type { MembershipEntry } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/AllContent/helpers/all-content";
+} from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/NamespaceInventory/helpers/namespace-inventory";
+import type { MembershipEntry } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/NamespaceInventory/helpers/namespace-inventory";
 
 // Previous blocks retain their native DOM and do not rebuild while a later
 // block appears. Click delegation keeps callbacks current without stale closures.
@@ -52,7 +52,7 @@ const MembershipBlock = memo(function MembershipBlock({
 });
 
 /** The owning workbench keys this view by the coherent applied revision. */
-export function AllContent({
+export function NamespaceInventory({
   context,
   groupLabels,
   onSelect,

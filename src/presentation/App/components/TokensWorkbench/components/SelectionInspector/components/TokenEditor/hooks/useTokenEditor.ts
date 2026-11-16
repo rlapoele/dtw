@@ -19,7 +19,7 @@ import {
 import { colorPreview } from "@presentation/App/components/TokensWorkbench/helpers/color-preview";
 import { identityLabels } from "@presentation/App/components/TokensWorkbench/helpers/identity-labels";
 import { failureText } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/helpers/editor-failure";
-import { resolvedColor } from "@presentation/App/components/TokensWorkbench/helpers/resolved-color";
+import { resolvedColor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/helpers/resolved-color";
 export function useTokenEditor({
   inspection: i,
   project,

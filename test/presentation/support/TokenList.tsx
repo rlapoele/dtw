@@ -3,7 +3,7 @@ import type { ProjectReadback, TokenInspection } from "@application/authoring";
 import { Button } from "@presentation/ui/button";
 import { TokenSwatch } from "@presentation/App/components/TokensWorkbench/components/TokenSwatch";
 import { identityLabels } from "@presentation/App/components/TokensWorkbench/helpers/identity-labels";
-import { resolvedColor } from "@presentation/App/components/TokensWorkbench/helpers/resolved-color";
+import { resolvedColor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/helpers/resolved-color";
 import { colorPreview } from "@presentation/App/components/TokensWorkbench/helpers/color-preview";
 export function TokenList({
   project,

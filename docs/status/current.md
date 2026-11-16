@@ -9,6 +9,24 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Editor ownership and browse naming — 16 November 2026
+
+The user authorized the two editor ownership moves and both naming refinements.
+TokenValueComparison and resolved-color now live under TokenEditor components/
+helpers; NamespaceInventory and its helper replace AllContent/all-content.ts;
+browse-view.ts exports TokenBrowseView instead of workspace-view.ts/BrowserView.
+Imports and current documentation follow those paths. The
+[ownership map](../project/workbench-component-organisation.md#editor-ownership-and-browse-naming--16-november-2026)
+records the decision. Visible labels, callback contracts, view discriminator values,
+rendered structure and session/command ownership remain unchanged. Prior acceptance
+gaps/stopping decisions remain unchanged. Production build/all typecheck scopes,
+the nested presentation config and all152 presentation tests passed. Source/test
+comparison confirmed only approved names/paths/imports changed. An isolated Git
+index detected all6 exact expected renames at the default50% threshold, including
+the inventory test filename; destination paths/casing are correct and old paths
+are absent. Real index untouched; no browser qualification performed. Leave
+staging/committing/pushing to the user.
+
 ## TokensWorkbench purpose-based names — 16 November 2026
 
 The user authorized the proposed component/hook renames, including

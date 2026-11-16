@@ -651,3 +651,15 @@ under TokensWorkbench/components. The [current ownership map](workbench-componen
 records exact names and locations. Only paths/imports/export names change; browser
 lifecycle, focus/session behavior, rendered structure, CSS and host/domain/application
 boundaries are unchanged. Earlier dated sections retain their historical names.
+
+
+## Editor ownership and browse naming — 16 November 2026
+
+The user approved moving TokenValueComparison and resolved-color to the TokenEditor
+components/helpers that exclusively consume them in production. NamespaceInventory
+replaces the former AllContent component and owns namespace-inventory.ts;
+browse-view.ts exports TokenBrowseView instead of workspace-view.ts/BrowserView.
+All files remain under TokensWorkbench; the [current ownership map](workbench-component-organisation.md#editor-ownership-and-browse-naming--16-november-2026)
+records exact paths. Labels, callback contracts, `all-content` discriminators,
+rendered structure and editor/session/command ownership remain unchanged. Earlier
+increment evidence and dated path descriptions retain their original names.
