@@ -9,6 +9,23 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Neutral / Geist visual proposal — 16 November 2026
+
+The user requested a visual proposal using Tailwind Neutral, Geist and Geist Mono,
+with shadcn-compatible semantic pairs and the earlier Tailwind/CSS revamp retained.
+The designer's [V1 proposal](../project/neutral-theme-proposal-v1.md) owns the
+proposed mapping, type scale, surface tradeoff and F1–F9 cleanup integration. The
+inline review includes Tokens, Projects and palette/type views; Projects borrows
+the reference site's editorial hierarchy while keeping selection and Open separate.
+Designer source checks and coordinator desktop preview/view switching completed;
+the proposal records unverified narrow/font-scaling and host-control behavior.
+The user permits a small additional very-light neutral step if needed; none is
+selected in V1. This is a proposal for user feedback, not analyst approval, final
+design agreement or production implementation. Source/dependencies are unchanged;
+earlier acceptance gaps and qualification stopping decisions remain unchanged.
+Next: user reviews the visual proposal before analyst review and a scoped contract.
+Leave staging, commits and pushes to the user.
+
 ## Tailwind styling ownership audit — 16 November 2026
 
 The user requested a bounded audit and cleanup proposal, with broad rem preference,
