@@ -163,7 +163,7 @@ Use [proportionate verification](../workflow/agent-roles.md#proportionate-verifi
 ## Design proposals and review
 
 - Applicability: separate designer required for the inspector and history composition.
-- Proposal: [Workbench polish V1](../project/workbench-polish-proposal-v1.md),
+- Proposal: [Workbench polish V1.1](../project/workbench-polish-proposal-v1.md),
   with interactive source in `prototypes/increment-015-v1/`. The designer prepared
   the approved direction; coordinator browser checks and limits are recorded in
   the proposal. User artifact review is pending.

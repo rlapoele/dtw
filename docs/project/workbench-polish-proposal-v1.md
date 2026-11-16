@@ -1,4 +1,4 @@
-# Workbench polish — design proposal V1
+# Workbench polish — design proposal V1.1
 
 **16 November 2026 · Proposed design, awaiting artifact review.** The user approved
 the designer's recommended direction and requested this prototype. That approval
@@ -7,9 +7,19 @@ implementation authorization. Analyst review of this artifact remains pending us
 approval. [Increment 015](../increments/015-workbench-browse-and-inspector-polish.md)
 owns the draft requirements and later review records.
 
+## Requested revision — V1.1
+
+After reviewing V1, the user explicitly requested that New group and New token
+always remain together at the workspace heading's top-right, including small
+screens, without wrapping. V1.1 implements that requested layout in the prototype:
+a two-column heading, non-wrapping action pair, full-width supporting copy below,
+and named icon-only actions below 640px. All other prototype behavior is preserved.
+This revision is awaiting artifact review; no analyst design review or production
+implementation is authorized by it.
+
 ## Review artifact
 
-Source: [prototype V1](../../prototypes/increment-015-v1/main.tsx),
+Source: [prototype V1.1](../../prototypes/increment-015-v1/main.tsx),
 [styles](../../prototypes/increment-015-v1/prototype.css) and
 [Vite config](../../prototypes/increment-015-v1/vite.config.ts).
 
@@ -24,7 +34,7 @@ not proposed application UI. Review at desktop width, approximately 1090px and
 below 880px; 320px is the retained minimum. This artifact uses the production
 semantic theme and local variable Geist fonts, with isolated prototype geometry.
 
-## Identified V1 design
+## Identified V1.1 design
 
 1. Undo/Redo retain their place in the application header. Each has a neutral,
    top-right overlapping count badge: minimum 1.125rem diameter, .625rem numerals,
@@ -43,9 +53,14 @@ semantic theme and local variable Geist fonts, with isolated prototype geometry.
    exposes the original coordinates. Example: 0.532369162839 → 0.5324. This is
    proposed presentation policy, not a change to authored data or calculations.
 4. Generic token copy and a left-inset decorative magnifier support the search
-   field. Secondary **New group** sits beside primary **New token**, wrapping when
-   needed. Both invoke the existing production workflow in the proposed design;
-   creation parent follows the current browse context.
+   field. Secondary **New group** and primary **New token** stay together in one
+   unwrapped row at the workspace heading's top-right corner at every width.
+   Title/type remain on the left; descriptive copy flows across the next row.
+   Below 640px the two actions use distinct folder/plus icons in 2.75rem square
+   buttons, keeping native titles and accessible names. This preserves a readable
+   title at 320px without moving or wrapping the action pair. Both invoke the
+   existing production workflow in the proposed design; creation parent follows
+   the current browse context.
 5. The redundant Inspector strip is removed. A compact sticky heading contains
    type and token title, closely associated **Current** / **New** specimens, then
    the collapse control on the right. Colored areas match the existing list's
@@ -116,7 +131,7 @@ ceiling is 10 aggregate minutes and one harness repair; the designer used under
 one minute for the build and no harness repairs. No production qualification or
 independent implementation review is claimed.
 
-Coordinator browser review on 16 November 2026 used Chrome at 1090×865,
+The preceding V1 coordinator browser review on 16 November 2026 used Chrome at 1090×865,
 1440×1000 and 320×865. The heading stayed at the same top coordinate while its
 scroller moved 350px; all six sampled row/comparison specimens measured 34px.
 Sample Undo/Redo count changes, collapse/expand, group-state heading and workspace
@@ -131,4 +146,17 @@ performed. During construction, live reload emitted duplicate-root warnings;
 a fresh navigation completed the final checks. A missing favicon is a prototype
 404. Approximate combined prototype check use: 5/10 minutes, zero harness repairs.
 
+V1.1 source/build checks passed; browser review of the revised action placement is
+assigned to the coordinator. No additional browser checks or harness repairs were
+performed by the designer. Approximate designer V1.1 build check use: under one
+minute, within the remaining five-minute prototype allowance.
+
 Suggested commit: `docs: prototype workbench browse and inspector polish`
+
+Coordinator V1.1 follow-up checked 1131, 1090, 640 and 320px: both action
+buttons shared the heading's top coordinate, the action pair's right edge matched
+the heading, and no document horizontal overflow was observed. The 320px view
+uses 44px named icon buttons. Revised screenshots are
+`actions-v1-1-1090.png` and `actions-v1-1-320.png` in the existing evidence folder.
+Approximate cumulative prototype checks: 7/10 minutes, zero harness repairs.
+This remains a user-requested prototype revision awaiting artifact approval.
