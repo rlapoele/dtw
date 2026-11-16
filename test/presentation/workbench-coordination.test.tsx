@@ -51,7 +51,7 @@ vi.mock("react", async (original) => {
 import { useProjects } from "@presentation/App/components/ProjectsWorkbench/hooks/useProjects";
 import { useProjectReadback } from "@presentation/App/components/TokensWorkbench/hooks/useProjectReadback";
 import { useProjectCommands } from "@presentation/App/components/TokensWorkbench/hooks/useProjectCommands";
-import { useCreationForm } from "@presentation/App/components/TokensWorkbench/components/CreationDialog/hooks/useCreationForm";
+import { useAuthoringForm } from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/hooks/useAuthoringForm";
 import { useBackupRestore, restoreProtectionReducer } from "@presentation/App/components/ProjectsWorkbench/components/RestoreDialog/hooks/useBackupRestore";
 import type {
   ProjectHeader,
@@ -261,7 +261,7 @@ it("preserves exact creation input and blocks a missing original parent after ba
   };
   const accept = vi.fn();
   const hook = () =>
-    useCreationForm(
+    useAuthoringForm(
       current,
       data,
       "g",
@@ -305,10 +305,10 @@ it("invalidates replacement acknowledgement whenever protected revision changes"
 
 it("preserves dirty raw editor channels across baseline refresh and resets only on Cancel", async () => {
   const { useTokenEditor } = await import(
-    "@presentation/App/components/TokensWorkbench/components/WorkbenchInspector/components/TokenEditor/hooks/useTokenEditor"
+    "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor"
   );
   const { editComponent } = await import(
-    "@presentation/App/components/TokensWorkbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session"
+    "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session"
   );
   const { createColorLiteral } = await import("@domain/color-literal");
   let revision = "r1";
@@ -373,7 +373,7 @@ it("preserves dirty raw editor channels across baseline refresh and resets only 
 it('rejects a known naming collision before issuing a command and preserves raw creation input',async()=>{
  const data:any={project:{id:'p',name:'P'},groups:[{authored:{id:'g',projectId:'p',localName:'Straße',parentGroupId:null},path:{status:'derived',path:['Straße']}}],tokens:[]};
  const accept=vi.fn(),setError=vi.fn();
- const hook=()=>useCreationForm(header,data,null,false,undefined,'',accept,{current:undefined},setError,vi.fn(),vi.fn());
+ const hook=()=>useAuthoringForm(header,data,null,false,undefined,'',accept,{current:undefined},setError,vi.fn(),vi.fn());
  let owner=render(hook);owner.begin('token');owner=render(hook);owner.change('name',' S T R A S S E ');owner=render(hook);
  await owner.create();owner=render(hook);
  expect(owner.name).toBe(' S T R A S S E ');expect(owner.dialog).toBe('token');expect(accept).not.toHaveBeenCalled();expect(setError).toHaveBeenLastCalledWith(expect.stringContaining('already in use'));
@@ -489,7 +489,7 @@ it("restore preview blocks open, create, stage and selected backup", async () =>
 });
 
 it("keeps one responsive surface state, follows pane focus, and yields to modal focus", async () => {
-  const { useWorkbenchLayout } = await import("@presentation/App/components/TokensWorkbench/hooks/useWorkbenchLayout");
+  const { useTokensLayout } = await import("@presentation/App/components/TokensWorkbench/hooks/useTokensLayout");
   const listeners = new Map<string, () => void>();
   const media = new Map<string, { matches: boolean; addEventListener: any; removeEventListener: any }>();
   vi.stubGlobal("window", { innerWidth: 1440 });
@@ -500,24 +500,24 @@ it("keeps one responsive surface state, follows pane focus, and yields to modal 
   let active: any = "editor", modal: false | "other" | "drawer" = false;
   vi.stubGlobal("document", { get activeElement() { return active; }, querySelector: () => modal ? { classList: { contains: () => modal === "drawer" } } : null });
   vi.stubGlobal("requestAnimationFrame", (callback: () => void) => callback());
-  let owner = render(useWorkbenchLayout);
+  let owner = render(useTokensLayout);
   owner.browse.current = { querySelector: vi.fn(), contains: (node: any) => node === "browse", focus: vi.fn() } as any;
   owner.inspector.current = { querySelector: vi.fn(), contains: (node: any) => node === "editor", focus: vi.fn() } as any;
   effects();
   media.get("(max-width:1119px)")!.matches = true;
   media.get("(max-width:879px)")!.matches = true;
   listeners.get("(max-width:879px)")!();
-  owner = render(useWorkbenchLayout);
+  owner = render(useTokensLayout);
   expect(owner.narrow).toBe(true); expect(owner.surface).toBe("inspect");
-  owner.back(); owner = render(useWorkbenchLayout);
+  owner.back(); owner = render(useTokensLayout);
   expect(owner.surface).toBe("browse");
-  owner.showInspector(); owner = render(useWorkbenchLayout);
+  owner.showInspector(); owner = render(useTokensLayout);
   expect(owner.surface).toBe("inspect");
   modal = "other"; active = "browse";
-  listeners.get("(max-width:879px)")!(); owner = render(useWorkbenchLayout);
+  listeners.get("(max-width:879px)")!(); owner = render(useTokensLayout);
   expect(owner.surface).toBe("inspect");
-  modal = false; owner.setInspectorExpanded(false); owner = render(useWorkbenchLayout);
-  listeners.get("(max-width:879px)")!(); owner = render(useWorkbenchLayout);
+  modal = false; owner.setInspectorExpanded(false); owner = render(useTokensLayout);
+  listeners.get("(max-width:879px)")!(); owner = render(useTokensLayout);
   expect(owner.surface).toBe("browse"); expect(owner.inspectorExpanded).toBe(false);
   modal = "drawer"; active = { closest: () => ({}) };
   const triggerFocus = vi.fn(); owner.navigationTrigger.current = { focus: triggerFocus } as any;

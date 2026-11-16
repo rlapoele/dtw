@@ -1,33 +1,33 @@
-import { useWorkbenchHistory } from "./hooks/useWorkbenchHistory";
-import { WorkbenchStatus } from "@presentation/App/components/TokensWorkbench/components/WorkbenchStatus/WorkbenchStatus";
-import { NavigationPane, NavigationDrawer } from "@presentation/App/components/TokensWorkbench/components/WorkbenchNavigation/WorkbenchNavigation";
-import { useWorkbenchLifecycle } from "@presentation/App/components/TokensWorkbench/hooks/useWorkbenchLifecycle";
+import { useHistoryInteraction } from "./hooks/useHistoryInteraction";
+import { TokensStatusBar } from "@presentation/App/components/TokensWorkbench/components/TokensStatusBar/TokensStatusBar";
+import { NamespaceNavigationPane, NamespaceNavigationDrawer } from "@presentation/App/components/TokensWorkbench/components/NamespaceNavigation/NamespaceNavigation";
+import { useProjectLifecycle } from "@presentation/App/components/TokensWorkbench/hooks/useProjectLifecycle";
 import { creationParent } from "@presentation/App/components/TokensWorkbench/helpers/workspace-view";
 import type { BrowserView } from "@presentation/App/components/TokensWorkbench/helpers/workspace-view";
-import { RetentionRecovery } from "@presentation/App/components/TokensWorkbench/components/WorkbenchRecovery/components/RetentionRecovery";
+import { RetentionRecovery } from "@presentation/App/components/TokensWorkbench/components/RetentionRecovery";
 import { TokenWorkspace } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/TokenWorkspace";
-import { DepartureGuard } from "@presentation/App/components/TokensWorkbench/components/WorkbenchRecovery/components/DepartureGuard";
-import { ProjectDiagnostics } from "@presentation/App/components/TokensWorkbench/components/WorkbenchRecovery/components/ProjectDiagnostics";
-import { WorkbenchHeader } from "@presentation/App/components/TokensWorkbench/components/WorkbenchHeader/WorkbenchHeader";
+import { DepartureGuard } from "@presentation/App/components/TokensWorkbench/components/DepartureGuard";
+import { ProjectDiagnostics } from "@presentation/App/components/TokensWorkbench/components/ProjectDiagnostics";
+import { TokensHeader } from "@presentation/App/components/TokensWorkbench/components/TokensHeader/TokensHeader";
 import { useProjectReadback } from "@presentation/App/components/TokensWorkbench/hooks/useProjectReadback";
 import { useProjectCommands } from "@presentation/App/components/TokensWorkbench/hooks/useProjectCommands";
-import { useCreationForm } from "@presentation/App/components/TokensWorkbench/components/CreationDialog/hooks/useCreationForm";
-import { useWorkbenchLayout } from "@presentation/App/components/TokensWorkbench/hooks/useWorkbenchLayout";
+import { useAuthoringForm } from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/hooks/useAuthoringForm";
+import { useTokensLayout } from "@presentation/App/components/TokensWorkbench/hooks/useTokensLayout";
 
 import { readExactSource } from "@presentation/App/components/TokensWorkbench/helpers/read-exact-source";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { WorkbenchLayout } from "@presentation/App/components/WorkbenchLayout/WorkbenchLayout";
-import { WorkbenchFeedback } from "./components/WorkbenchRecovery/components/WorkbenchFeedback";
+import { FeedbackRegion } from "./components/FeedbackRegion";
 import { SelectionBar } from "./components/TokenWorkspace/components/SelectionBar/SelectionBar";
 import type { ApplicationResult } from "@application/authoring";
 import type { Token } from "@domain/token";
 import type { ProjectHeader, WorkbenchHost } from "@hosts/browser/protocol";
 import { Button } from "@presentation/ui/button";
 
-import { WorkbenchInspector } from "@presentation/App/components/TokensWorkbench/components/WorkbenchInspector/WorkbenchInspector";
-import { TokenEditor } from "@presentation/App/components/TokensWorkbench/components/WorkbenchInspector/components/TokenEditor/TokenEditor";
-import { CreationDialog } from "@presentation/App/components/TokensWorkbench/components/CreationDialog/CreationDialog";
-import { NamespaceTree } from "@presentation/App/components/TokensWorkbench/components/WorkbenchNavigation/components/NamespaceTree/NamespaceTree";
+import { SelectionInspector } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/SelectionInspector";
+import { TokenEditor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/TokenEditor";
+import { AuthoringDialog } from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/AuthoringDialog";
+import { NamespaceTree } from "@presentation/App/components/TokensWorkbench/components/NamespaceNavigation/components/NamespaceTree/NamespaceTree";
 
 import { identityLabels } from "@presentation/App/components/TokensWorkbench/helpers/identity-labels";
 export function TokensWorkbench({
@@ -61,7 +61,7 @@ export function TokensWorkbench({
     setSidebarExpanded,
     inspectorExpanded,
     setInspectorExpanded,
-  } = useWorkbenchLayout();
+  } = useTokensLayout();
   const {
     header,
     context,
@@ -120,7 +120,7 @@ export function TokensWorkbench({
     close,
     discard,
     review,
-  } = useCreationForm(
+  } = useAuthoringForm(
     header,
     context,
     group,
@@ -142,7 +142,7 @@ export function TokensWorkbench({
       requestAnimationFrame(() => panel.current?.focus());
     },
   );
-  useWorkbenchLifecycle({
+  useProjectLifecycle({
     host,
     projectId: initial.project.id,
     busy,
@@ -189,7 +189,7 @@ export function TokensWorkbench({
     !!unknown ||
     !header.writable ||
     !!readFailure;
-  const { historyReason, historyIntent, historyReturn, requestHistory, historyRetry, clearHistoryIntent } = useWorkbenchHistory({
+  const { historyReason, historyIntent, historyReturn, requestHistory, historyRetry, clearHistoryIntent } = useHistoryInteraction({
     history, traverse, blocked, unknown: !!unknown, retainedPending: !!retainedPending,
     readFailure, header, dialog: !!dialog, pending: !!pending, request, current,
     completion, setDirty, setEditorVersion, setNotice, setError, panel, narrow, back,
@@ -297,7 +297,7 @@ export function TokensWorkbench({
       >
         Skip to tokens
       </a>
-      <WorkbenchHeader
+      <TokensHeader
         history={history}
         historyReason={historyReason}
         onTraverse={requestHistory}
@@ -310,7 +310,7 @@ export function TokensWorkbench({
         onNavigation={() => { navigationReturn.current = "trigger"; setNavigationOpen(true); }}
       />
       </>}
-      beforeBody={<WorkbenchFeedback>
+      beforeBody={<FeedbackRegion>
         {!header.writable && <p className="py-2">Inspection only. Another tab has editing access. <Button disabled={busy} onClick={() => void refresh()}>Check access</Button></p>}
         {lifecycleBlocked && !busy && !unknown && <section role="status" className="py-2"><p>Editing paused. Recheck current retained state before applying preserved input.</p><Button onClick={() => void host.call("resume", header.project.id).then(next => refresh(next)).then(() => setLifecycleBlocked(false)).catch(e => setReadFailure(String(e)))}>Check access and retained state</Button></section>}
         {readFailure && <section role="alert" className="py-2 text-destructive"><h2>Project read unavailable</h2><p>{readFailure}</p><p>Last coherent data is stale. Inputs are preserved; writes are blocked.</p><Button disabled={busy} onClick={() => void retryReading()}>Retry reading project</Button></section>}
@@ -319,14 +319,14 @@ export function TokensWorkbench({
         {history.notice && <p role="status" className="py-2">{history.notice}</p>}
         {error && !dialog && <p role="alert" className="py-2 text-destructive">{error}</p>}
         {notice && <p role="status" className="py-2">{notice}</p>}
-      </WorkbenchFeedback>}
+      </FeedbackRegion>}
       navigation={
-          <NavigationPane
+          <NamespaceNavigationPane
             expanded={sidebarExpanded}
             onToggle={() => setSidebarExpanded(!sidebarExpanded)}
           >
             {navigation}
-          </NavigationPane>
+          </NamespaceNavigationPane>
       }
       workspace={<TokenWorkspace
           panel={panel}
@@ -370,7 +370,7 @@ export function TokensWorkbench({
             />
           }
         />}
-      inspector={<WorkbenchInspector
+      inspector={<SelectionInspector
           surfaceRef={inspector}
           hidden={narrow && surface !== "inspect"}
           selection={selection}
@@ -458,18 +458,18 @@ export function TokensWorkbench({
               }}
             />
           ) : null}
-        </WorkbenchInspector>}
-      afterBody={<WorkbenchStatus tokens={header.tokens} busy={busy} unknown={!!unknown} readFailure={readFailure} writable={header.writable} dirty={dirty} />}
+        </SelectionInspector>}
+      afterBody={<TokensStatusBar tokens={header.tokens} busy={busy} unknown={!!unknown} readFailure={readFailure} writable={header.writable} dirty={dirty} />}
       overlays={<>
-      <NavigationDrawer
+      <NamespaceNavigationDrawer
         finalFocus={navigationFinalFocus}
         open={compact && navigationOpen}
         onOpenChange={setNavigationOpen}
       >
         {navigation}
-      </NavigationDrawer>
+      </NamespaceNavigationDrawer>
       {dialog === null && departureGuard}
-      <CreationDialog
+      <AuthoringDialog
         guard={dialog !== null ? departureGuard : undefined}
         dialog={dialog}
         project={context}

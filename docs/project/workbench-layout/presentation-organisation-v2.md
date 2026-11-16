@@ -55,6 +55,13 @@ renamed from TokenWorkbench to match ProjectsWorkbench. See the
 [current ownership map](../workbench-component-organisation.md#plural-workbench-naming--16-november-2026).
 Dated proposal trees and review evidence retain their original names.
 
+## Later purpose-based names — 16 November 2026
+
+The user subsequently approved purpose-based TokensWorkbench child names and
+flattening WorkbenchRecovery. The [current ownership map](../workbench-component-organisation.md#purpose-based-component-and-hook-names--16-november-2026)
+records the renamed header/status/selection/navigation/feedback/authoring components
+and screen hooks. The dated tree below preserves its original proposal names.
+
 ## Organisation principle
 
 Keep a component’s entry file at its named folder’s root. Group its supporting

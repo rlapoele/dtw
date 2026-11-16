@@ -2,7 +2,7 @@ import { createElement, type ComponentProps } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { expect, it } from "vitest";
 import { WorkspaceToolbar } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/WorkspaceToolbar/WorkspaceToolbar";
-import { WorkbenchStatus } from "@presentation/App/components/TokensWorkbench/components/WorkbenchStatus/WorkbenchStatus";
+import { TokensStatusBar } from "@presentation/App/components/TokensWorkbench/components/TokensStatusBar/TokensStatusBar";
 
 function toolbar(view: ComponentProps<typeof WorkspaceToolbar>["view"], blocked = false) {
   return renderToStaticMarkup(createElement(WorkspaceToolbar, {
@@ -30,8 +30,8 @@ it("keeps scope headings, search and rename visibility distinct without a toolba
 });
 
 it("keeps compact retention status precedence, draft state and independent-backup disclosure", () => {
-  const status = (overrides: Partial<ComponentProps<typeof WorkbenchStatus>> = {}) =>
-    renderToStaticMarkup(createElement(WorkbenchStatus, {
+  const status = (overrides: Partial<ComponentProps<typeof TokensStatusBar>> = {}) =>
+    renderToStaticMarkup(createElement(TokensStatusBar, {
       tokens: 7, busy: false, unknown: false, readFailure: "", writable: true,
       dirty: false, ...overrides,
     }));

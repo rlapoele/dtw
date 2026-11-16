@@ -637,3 +637,17 @@ screen is `src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx`,
 exporting TokensWorkbench. Only the screen name, folder/file paths and references
 change; hooks, editor/session lifetimes and dependency boundaries are preserved.
 Recorded Increment 013 agreements/evidence retain their original singular name.
+
+
+## Purpose-based TokensWorkbench names — 16 November 2026
+
+The user approved TokensHeader, TokensStatusBar, SelectionInspector,
+NamespaceNavigation (exporting NamespaceNavigationPane/NamespaceNavigationDrawer),
+FeedbackRegion and AuthoringDialog/useAuthoringForm. Screen hooks are now
+useTokensLayout, useHistoryInteraction and useProjectLifecycle. Project readback,
+commands, diagnostics and application history retain their existing ownership.
+The WorkbenchRecovery grouping is removed; its four components now live directly
+under TokensWorkbench/components. The [current ownership map](workbench-component-organisation.md#purpose-based-component-and-hook-names--16-november-2026)
+records exact names and locations. Only paths/imports/export names change; browser
+lifecycle, focus/session behavior, rendered structure, CSS and host/domain/application
+boundaries are unchanged. Earlier dated sections retain their historical names.

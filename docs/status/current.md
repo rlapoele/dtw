@@ -9,6 +9,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## TokensWorkbench purpose-based names — 16 November 2026
+
+The user authorized the proposed component/hook renames, including
+AuthoringDialog/useAuthoringForm, and flattening WorkbenchRecovery. The
+[ownership map](../project/workbench-component-organisation.md#purpose-based-component-and-hook-names--16-november-2026)
+records the new names and paths. Imports and current documentation follow those
+names; rendered hierarchy, CSS, session/command ownership and prior acceptance
+gaps/stopping decisions remain unchanged. Build/all typecheck scopes, the nested
+presentation config and all152 presentation tests passed. Source/test comparison
+confirmed only approved names/paths/imports and an authoring-owner comment changed.
+An isolated Git index verified all34 destination paths/casing and no recovery
+wrapper:33 renames detected at the default50% similarity threshold, all34 at10%.
+The tiny FeedbackRegion signature/body share one line, causing its low similarity
+score despite preserved behavior. Real index untouched; no browser qualification.
+Leave staging/committing/pushing to the user.
+
 ## Plural workbench naming — 16 November 2026
 
 The user requested TokensWorkbench to match ProjectsWorkbench. The folder,
