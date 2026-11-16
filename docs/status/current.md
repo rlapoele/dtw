@@ -2,12 +2,28 @@
 
 > Last updated: 16 November 2026
 >
-> Phase: Increment 011 closed by user instruction with acceptance gaps preserved;
-> Increment 013 shared workbench layout implemented and independently reviewed;
+> Phase: Increment 014 drafted after V1 analyst review; final agreement and
+> implementation authorization pending. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## Neutral / Geist and styling ownership contract — 16 November 2026
+
+The user liked V1 and authorized a separate analyst to review it and draft the
+combined [Increment 014 contract](../increments/014-neutral-geist-and-styling-ownership.md),
+explicitly without implementation. The draft includes F1–F9 cleanup and records
+two concrete migration hazards: secondary-text consumers and input-boundary roles.
+It specifies intentional type/color changes separately from retained geometry,
+viewport policy and workflows; broad dimension rounding remains deferred.
+No further product question is identified beyond user agreement to the proposed
+dispositions. Contract status is Draft, delivery Not started; final contract/design
+agreement and implementation authorization remain pending. Planning source/link/
+whitespace checks stopped at approximately 10/12 aggregate minutes, zero repairs;
+no app tests, build or browser qualification ran. Previous campaign stops and
+acceptance gaps remain unchanged. Next: user reviews the contract. Leave staging,
+commits and pushes to the user.
 
 ## Neutral / Geist visual proposal — 16 November 2026
 
@@ -23,7 +39,8 @@ The user permits a small additional very-light neutral step if needed; none is
 selected in V1. This is a proposal for user feedback, not analyst approval, final
 design agreement or production implementation. Source/dependencies are unchanged;
 earlier acceptance gaps and qualification stopping decisions remain unchanged.
-Next: user reviews the visual proposal before analyst review and a scoped contract.
+V1 subsequently received user approval for analyst review; the draft above records
+that review and the proposed combined contract.
 Leave staging, commits and pushes to the user.
 
 ## Tailwind styling ownership audit — 16 November 2026
