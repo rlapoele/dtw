@@ -15,13 +15,16 @@ The user's 14 browser annotations and sticky token-heading addition are captured
 in [Increment 015's draft contract](../increments/015-workbench-browse-and-inspector-polish.md).
 A separate analyst prepared the draft and the user approved the designer's
 recommended direction on 16 November 2026. The designer then prepared
-[prototype V1.1](../project/workbench-polish-proposal-v1.md), including the sticky
+[prototype V1.3](../project/workbench-polish-proposal-v1.md), including the sticky
 identity/comparison/control row, history badges and browse improvements. Isolated
 prototype build and coordinator Chrome checks at desktop/1090px/320px passed within
 the documented mock coverage; the proposal records evidence and limitations.
 The user requested that creation actions remain together at the top-right; V1.1
 implements this with named icon buttons below 640px and passed the focused
-1131/1090/640/320px placement check. The prototype is ready for user review. Approval for analyst design review and
+1131/1090/640/320px placement check. The user then selected a 36px baseline for buttons and inputs across all screen
+sizes, superseding the 24px/44px iterations. V1.3 demonstrates this, with focused
+1090px/320px measurements and no document overflow. The prototype is ready for
+user review. Approval for analyst design review and
 final agreement/implementation authorization remain pending. Production code,
 retained projects and earlier qualification limits were not changed. Leave
 staging/commits/pushes to the user.

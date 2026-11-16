@@ -131,6 +131,15 @@ group/empty/unavailable control placement. Confirm the four-decimal rounding rul
 (including tiny values that round to zero) and concise unavailable HEX wording.
 These must be visible in the agreed design/contract rather than selected silently.
 
+**User-selected control size — 16 November 2026:** after reviewing the compact
+mobile iteration, the user rejected 24px as too small and selected 36px for all
+screen sizes, explicitly including all buttons and inputs. V1.3 uses a 2.25rem
+baseline for standard buttons, input/select fields and slider target areas;
+icon buttons are square. Content can grow without a maximum-height clamp. Token
+rows remain content surfaces rather than single-line controls. This supersedes
+V1.1's 44px and V1.2's 24px prototype choices. Production and historical
+acceptance remain unchanged pending final agreement.
+
 **Deferred:** rounding editor fields, new precision controls, durable history,
 additional token types and richer search/filter behavior.
 
@@ -163,7 +172,7 @@ Use [proportionate verification](../workflow/agent-roles.md#proportionate-verifi
 ## Design proposals and review
 
 - Applicability: separate designer required for the inspector and history composition.
-- Proposal: [Workbench polish V1.1](../project/workbench-polish-proposal-v1.md),
+- Proposal: [Workbench polish V1.3](../project/workbench-polish-proposal-v1.md),
   with interactive source in `prototypes/increment-015-v1/`. The designer prepared
   the approved direction; coordinator browser checks and limits are recorded in
   the proposal. User artifact review is pending.
