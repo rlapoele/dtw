@@ -1,19 +1,24 @@
 # Self-hosted Geist fonts
 
-Increment 014 vendors unmodified TrueType files on 16 November 2026 from the
-reviewed V1 font snapshot. Geist is embedded version 1.800 (Google Fonts delivery
-revision `geist/v5`); Geist Mono is version 1.701 (`geistmono/v6`). The exact
-upstream URLs, byte counts and SHA-256 hashes are in [font-provenance.json](font-provenance.json).
-[font-versions.json](font-versions.json) records the fonts' embedded version names.
-These delivery revisions are not asserted to be Git commit identifiers.
+The current assets are unmodified variable WOFF2 files copied on 16 November 2026
+from the user's download of the [Vercel Geist font repository](https://github.com/vercel/geist-font).
+Both Geist and Geist Mono report embedded version 1.900 and a `wght` axis spanning
+100–900 (default 400). The archive's exact upstream revision/commit was not
+verified. Source paths, byte counts and SHA-256 hashes are recorded in
+[font-provenance.json](font-provenance.json); embedded versions and axes are in
+[font-versions.json](font-versions.json).
 
-Geist 400/500/600 and Geist Mono 400/500 use `font-display: swap`. The declarations
-in `../global.css` reference these local assets; Vite fingerprints and bundles them
-in production. No font package or external runtime service is used. System sans
-and mono fallback stacks remain in the same theme source. Preserve the unmodified
-[SIL OFL Geist license](geist-OFL.txt) and [Geist Mono license](geistmono-OFL.txt)
-when distributing these files.
+These replace Increment 014's five static TrueType assets (Geist 1.800 and Geist
+Mono 1.701). Each family has one normal-style `@font-face` in `../global.css`,
+declaring `font-weight: 100 900` and `font-display: swap`. Existing UI weights,
+font sizes and fallback stacks remain in that theme source. Vite fingerprints and
+bundles the local assets in production; no font package or external runtime
+service is used.
+
+The download's unmodified SIL Open Font License is retained as the
+[Geist license](geist-OFL.txt) and [Geist Mono license](geistmono-OFL.txt).
+Preserve these licenses when distributing the files.
 
 This browser delivery has no service worker or guaranteed offline application
-shell. Bundled fonts can be served/cacheable with the application's existing
-assets; no new installation or offline guarantee is introduced here.
+shell. Bundled fonts are served with the application's existing assets; no new
+installation or offline guarantee is introduced here.

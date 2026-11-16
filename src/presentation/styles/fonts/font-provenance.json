@@ -1,30 +1,19 @@
 {
-  "stylesheet": "https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap",
+  "upstreamRepository": "https://github.com/vercel/geist-font",
+  "source": "User-supplied download of the upstream repository; archive revision/commit not verified.",
+  "vendoredOn": "2026-11-16",
   "files": [
     {
-      "url": "https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RnOM4nQ.ttf",
-      "bytes": 72916,
-      "sha256": "ccce59465ae5c61930ada5453834f60500fbd95084d85db63e0e65fad0125455"
+      "file": "geist-variable.woff2",
+      "sourcePath": "Geist/webfonts/Geist[wght].woff2",
+      "bytes": 69488,
+      "sha256": "3626eba547294501c8a4d662c7d9ea3b49734409a4c5a1ccf12fa86429b1687e"
     },
     {
-      "url": "https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RruM4nQ.ttf",
-      "bytes": 72996,
-      "sha256": "a8eefb873ba9c9020665f8a98302697ce1f3b79ab2deef6ee508c0ca6a82e876"
-    },
-    {
-      "url": "https://fonts.gstatic.com/s/geist/v5/gyBhhwUxId8gMGYQMKR3pzfaWI_RQuQ4nQ.ttf",
-      "bytes": 73048,
-      "sha256": "7171f481b121803d007f5c6c76cd9988c0d41cce4202db9a18dff9945505d36d"
-    },
-    {
-      "url": "https://fonts.gstatic.com/s/geistmono/v6/or3yQ6H-1_WfwkMZI_qYPLs1a-t7PU0AbeE9KJ5T.ttf",
-      "bytes": 71160,
-      "sha256": "7022da390e9b401ea35b722f8ed2376948e70add10954bc798839b4bfe17ef3f"
-    },
-    {
-      "url": "https://fonts.gstatic.com/s/geistmono/v6/or3yQ6H-1_WfwkMZI_qYPLs1a-t7PU0AbeEPKJ5T.ttf",
+      "file": "geist-mono-variable.woff2",
+      "sourcePath": "GeistMono/webfonts/GeistMono[wght].woff2",
       "bytes": 71212,
-      "sha256": "5c1b7b77c2d6132460f03b60c175adc80da1ebd0b418c785135b1aed27a28b30"
+      "sha256": "5d93ee62680bbec1abc5405c2658311f9396f6f9a821ef8551ec463887e600d4"
     }
   ]
 }

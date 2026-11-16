@@ -1,32 +1,30 @@
 [
   {
-    "file": "geist-400.ttf",
+    "file": "geist-variable.woff2",
     "embeddedVersions": [
-      "Version 1.800"
+      "Version 1.900"
+    ],
+    "axes": [
+      {
+        "tag": "wght",
+        "min": 100,
+        "default": 400,
+        "max": 900
+      }
     ]
   },
   {
-    "file": "geist-500.ttf",
+    "file": "geist-mono-variable.woff2",
     "embeddedVersions": [
-      "Version 1.800"
-    ]
-  },
-  {
-    "file": "geist-600.ttf",
-    "embeddedVersions": [
-      "Version 1.800"
-    ]
-  },
-  {
-    "file": "geist-mono-400.ttf",
-    "embeddedVersions": [
-      "Version 1.701"
-    ]
-  },
-  {
-    "file": "geist-mono-500.ttf",
-    "embeddedVersions": [
-      "Version 1.701"
+      "Version 1.900"
+    ],
+    "axes": [
+      {
+        "tag": "wght",
+        "min": 100,
+        "default": 400,
+        "max": 900
+      }
     ]
   }
 ]

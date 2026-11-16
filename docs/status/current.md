@@ -9,6 +9,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Variable WOFF2 font maintenance — 16 November 2026
+
+At the user's request, the five static TrueType application fonts were replaced
+with two unmodified variable WOFF2 files from the supplied Vercel Geist download.
+Both report version 1.900 and a weight axis of 100–900; existing type roles, weights
+and fallbacks remain. The [font asset record](../../src/presentation/styles/fonts/README.md)
+owns source provenance, hashes, versions and licenses. The download's exact
+upstream revision is unverified; Increment 014's original evidence remains historical.
+
+Production build/all typechecks passed. A focused Playwright CLI Chrome check
+against the production preview loaded both local WOFF2 assets and resolved
+weights 100/400/500/600/900 for each family. Source/asset metadata, resulting font
+folder ownership, obsolete TTF references and Markdown/diff checks were reviewed
+by the implementing agent. No independent review or broader qualification is
+claimed. Staging/committing/pushing remain with the user.
+
 ## Neutral / Geist and styling ownership completion — 16 November 2026
 
 The user reviewed the application, confirmed they were happy with the changes and
