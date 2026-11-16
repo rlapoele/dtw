@@ -48,11 +48,11 @@ vi.mock("react", async (original) => {
     },
   };
 });
-import { useProjects } from "@presentation/Projects/hooks/useProjects";
-import { useProjectReadback } from "@presentation/Workbench/hooks/useProjectReadback";
-import { useProjectCommands } from "@presentation/Workbench/hooks/useProjectCommands";
-import { useCreationForm } from "@presentation/Workbench/components/CreationDialog/hooks/useCreationForm";
-import { useBackupRestore, restoreProtectionReducer } from "@presentation/Projects/components/RestoreDialog/hooks/useBackupRestore";
+import { useProjects } from "@presentation/App/components/Projects/hooks/useProjects";
+import { useProjectReadback } from "@presentation/App/components/Workbench/hooks/useProjectReadback";
+import { useProjectCommands } from "@presentation/App/components/Workbench/hooks/useProjectCommands";
+import { useCreationForm } from "@presentation/App/components/Workbench/components/CreationDialog/hooks/useCreationForm";
+import { useBackupRestore, restoreProtectionReducer } from "@presentation/App/components/Projects/components/RestoreDialog/hooks/useBackupRestore";
 import type {
   ProjectHeader,
   WorkbenchHost,
@@ -305,10 +305,10 @@ it("invalidates replacement acknowledgement whenever protected revision changes"
 
 it("preserves dirty raw editor channels across baseline refresh and resets only on Cancel", async () => {
   const { useTokenEditor } = await import(
-    "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/hooks/useTokenEditor"
+    "@presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/hooks/useTokenEditor"
   );
   const { editComponent } = await import(
-    "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session"
+    "@presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/state/editor-session"
   );
   const { createColorLiteral } = await import("@domain/color-literal");
   let revision = "r1";
@@ -489,7 +489,7 @@ it("restore preview blocks open, create, stage and selected backup", async () =>
 });
 
 it("keeps one responsive surface state, follows pane focus, and yields to modal focus", async () => {
-  const { useWorkbenchLayout } = await import("@presentation/Workbench/hooks/useWorkbenchLayout");
+  const { useWorkbenchLayout } = await import("@presentation/App/components/Workbench/hooks/useWorkbenchLayout");
   const listeners = new Map<string, () => void>();
   const media = new Map<string, { matches: boolean; addEventListener: any; removeEventListener: any }>();
   vi.stubGlobal("window", { innerWidth: 1440 });
@@ -528,7 +528,7 @@ it("keeps one responsive surface state, follows pane focus, and yields to modal 
 it("disposes App restore preview before the authorized completion opens through the guarded project owner", async () => {
   const persist = vi.fn(async () => true);
   const { App } = await import("@presentation/App/App");
-  const { Workbench } = await import("@presentation/Workbench/Workbench");
+  const { Workbench } = await import("@presentation/App/components/Workbench/Workbench");
   vi.stubGlobal("navigator", { storage: { persisted: async () => false, persist } });
   vi.stubGlobal("addEventListener", vi.fn());
   vi.stubGlobal("removeEventListener", vi.fn());

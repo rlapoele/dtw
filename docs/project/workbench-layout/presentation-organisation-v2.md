@@ -34,6 +34,13 @@ with its hook under `Projects/components/RestoreDialog/`. This supersedes lowerc
 dated tree below. App retains its hook calls and restore orchestration. See the
 [current ownership map](../workbench-component-organisation.md#projects-placement-refinement--16-november-2026).
 
+## Later App screen nesting — 16 November 2026
+
+The user subsequently requested moving the Projects and Workbench subtrees under
+`src/presentation/App/components/`. This supersedes their root-level placement in
+the dated tree below. Hook callers and state lifetimes remain unchanged; see the
+[current resulting tree](../workbench-component-organisation.md#app-screen-ownership--16-november-2026).
+
 ## Organisation principle
 
 Keep a component’s entry file at its named folder’s root. Group its supporting

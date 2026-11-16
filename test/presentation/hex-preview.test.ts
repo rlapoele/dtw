@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { hexPreview } from "@presentation/Workbench/components/TokenWorkspace/components/TokenTable/helpers/hex-preview";
+import { hexPreview } from "@presentation/App/components/Workbench/components/TokenWorkspace/components/TokenTable/helpers/hex-preview";
 import { createColorLiteral } from "@domain/color-literal";
 const color = (colorSpace: "srgb" | "hsl" | "display-p3", components: string[], alpha = "1") => createColorLiteral({ colorSpace, components, alpha });
 describe("derived sRGB HEX preview", () => {

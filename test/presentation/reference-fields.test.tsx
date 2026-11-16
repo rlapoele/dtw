@@ -1,7 +1,7 @@
 import { expect, it, vi } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { ReferenceFields } from "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ReferenceFields";
+import { ReferenceFields } from "@presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ReferenceFields";
 
 it("preserves an unavailable exact reference and disables selection during read-only or retaining states", () => {
   const reference = 'missing "target"';

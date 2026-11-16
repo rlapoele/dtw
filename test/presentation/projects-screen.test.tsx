@@ -1,7 +1,7 @@
 import { createElement, type ComponentProps } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { expect, it } from "vitest";
-import { Projects } from "@presentation/Projects/Projects";
+import { Projects } from "@presentation/App/components/Projects/Projects";
 
 function screen(overrides: Partial<ComponentProps<typeof Projects>> = {}) {
   const noop = () => undefined;

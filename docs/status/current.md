@@ -8,6 +8,19 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## App screen nesting — 16 November 2026
+
+The user authorized moving Projects and Workbench under `App/components/`, with
+all imports and current ownership/architecture documentation updated. The
+[resulting tree](../project/workbench-component-organisation.md#app-screen-ownership--16-november-2026)
+records physical placement. App retains its unconditional useProjects call,
+host/page context and restore sequencing; editor keys and mounted ancestry are
+unchanged. Earlier qualification stopping decisions and acceptance gaps remain
+unchanged. Production build/all typecheck scopes, the nested presentation config
+and all 149 presentation tests passed. All 54 moved files were compared against
+the committed originals; only import paths changed. No browser runtime
+qualification was performed. Leave staging/committing/pushing to the user.
+
 ## Projects presentation reorganisation — 16 November 2026
 
 The user authorized `Projects/Projects.tsx` and moving RestoreDialog with its hook
@@ -16,8 +29,8 @@ imports and current documentation follow the new names. App retains the same
 hook calls, state lifetimes and restore orchestration. The
 [ownership map](../project/workbench-component-organisation.md#projects-placement-refinement--16-november-2026)
 records this placement decision. Earlier acceptance gaps and verification stopping
-decisions remain unchanged. Leave staging/committing/pushing to the user, including
-explicit recording of the projects-to-Projects case-only folder rename.
+decisions remain unchanged. The user subsequently committed/pushed the casing
+correction; Git-tree inspection confirmed all Projects paths used uppercase casing.
 Production build/all typecheck scopes, the nested presentation config and 39 focused
 tests passed. Moved files were compared with their originals: only approved names
 and imports changed. No browser runtime qualification was performed.

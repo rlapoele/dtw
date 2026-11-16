@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { visualRangeState } from "@presentation/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/helpers/visual-range";
+import { visualRangeState } from "@presentation/App/components/Workbench/components/WorkbenchInspector/components/TokenEditor/components/ColorEditor/helpers/visual-range";
 
 // These exact coordinates collapse onto a binary Number endpoint. The range
 // must be withheld rather than displaying a thumb for that different value.

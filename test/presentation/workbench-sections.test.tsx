@@ -1,8 +1,8 @@
 import { createElement, type ComponentProps } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { expect, it } from "vitest";
-import { WorkspaceToolbar } from "@presentation/Workbench/components/TokenWorkspace/components/WorkspaceToolbar/WorkspaceToolbar";
-import { WorkbenchStatus } from "@presentation/Workbench/components/WorkbenchStatus/WorkbenchStatus";
+import { WorkspaceToolbar } from "@presentation/App/components/Workbench/components/TokenWorkspace/components/WorkspaceToolbar/WorkspaceToolbar";
+import { WorkbenchStatus } from "@presentation/App/components/Workbench/components/WorkbenchStatus/WorkbenchStatus";
 
 function toolbar(view: ComponentProps<typeof WorkspaceToolbar>["view"], blocked = false) {
   return renderToStaticMarkup(createElement(WorkspaceToolbar, {
