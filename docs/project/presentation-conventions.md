@@ -8,6 +8,85 @@
 
 Apply these rules to new interface work and changes to existing presentation, with verification proportionate to the change. They do not claim every existing component already satisfies every convention.
 
+## File organization and naming
+
+**Established guidance — 16 November 2026.** The user approved these rules after
+reviewing presentation ownership and naming. This section owns the decision
+procedure; the [ownership map](workbench-component-organisation.md) records current
+locations and [architecture](architecture.md) owns dependency boundaries. Generic
+skill examples and dated proposal trees do not override these project conventions.
+This guidance does not authorize another refactor or application increment.
+
+### Choose the owner from actual consumers
+
+- Inspect current production consumers before adding, moving or sharing a file.
+  Keep private code under its actual component or screen owner. Place code used by
+  sibling branches at their nearest meaningful common owner; sharing within one
+  workbench does not make a file presentation-wide. Tests and test-support consumers
+  alone do not justify broadening production ownership. Possible future reuse is
+  not a reason to create a shared module.
+- Physical ownership, React caller and state lifetime are separate decisions.
+  App may call a screen-owned hook to preserve context across screen changes.
+  Moving that file must not silently move the call or change keys, mounted ancestry,
+  draft lifetime, command authority or focus policy.
+- Distinguish component owners, organizational categories and runtime boundaries.
+  Generic token/project-agnostic primitives shared across screens belong in `ui/`;
+  browser startup, worker transport and infrastructure wiring belong at their
+  architecture-defined host/adapter boundary.
+  A `.ts` extension does not make a file a helper, and absence of JSX alone does
+  not decide its layer.
+
+### Make structure and names express responsibility
+
+- For a named component folder, use PascalCase and keep its matching entry file
+  at the folder root. Group actual supporting files into `components/`, `hooks/`,
+  `helpers/` and `state/` as appropriate. Hook filenames follow their `use…` exports;
+  supporting helper/state filenames use the existing kebab-case convention.
+  Shared categories such as `ui/`, `lib/` and `styles/` stay lowercase.
+- A simple child may be a standalone file in its parent's `components/`. Add a
+  named folder when supporting files or a substantial subtree justify it. Do not
+  create empty categories, speculative wrappers or a one-folder-per-leaf rule.
+  Related pane/drawer exports may share one module when that is their useful owner.
+- Name components and hooks for their complete current responsibility, and revisit
+  names when behavior changes. For example, AuthoringDialog covers creation and
+  rename; SelectionInspector handles tokens and groups. Avoid repeating a parent
+  name when a role-specific name is clearer; retain qualifiers that disambiguate
+  responsibilities. Follow established screen names ProjectsWorkbench and
+  TokensWorkbench; singular compounds such as TokenEditor remain appropriate.
+- Evaluate common layout separately from shared workflows. Similar screens may
+  share a layout without sharing selection, commands or editor state. Do not
+  extract a generic framework or force the component hierarchy to mirror the
+  domain containment model.
+
+### Review the affected resulting tree
+
+Before handoff, the developer and reviewer each perform a bounded structure check
+of affected files and their actual consumers, rather than reviewing only changed
+lines. For small work without a separate reviewer, the implementing agent performs
+this check and does not claim independent review.
+
+1. Check each changed file's role, production consumers and nearest meaningful
+   owner. Look for private code left in a broad shared folder and host/adapter
+   responsibilities placed in presentation.
+2. Check names against complete current responsibilities and neighboring naming
+   conventions. Identify obsolete grouping folders, redundant wrappers and empty
+   directories; do not flatten a useful owner merely to reduce depth.
+3. Confirm placement changes preserve caller/state/session ownership, component
+   keys, semantic roots, focus policy and relevant component APIs. Distinguish
+   source evidence from behavior actually exercised by tests or a browser.
+4. For moves/renames, check imports, exports, actual destination casing and Git's
+   view of paths; a case-insensitive filesystem is not proof of committed casing.
+   Respect the repository's user-owned staging/commit policy. Update current path
+   documentation while preserving identified historical snapshots and evidence.
+5. Report concrete convention/dependency violations separately from optional
+   organizational preferences or newly proposed product structure. Resolve work
+   within the agreed scope and surface material decisions; this check is not an
+   invitation to sweep unrelated files or add approval stages.
+
+Use the existing proportionate verification allowance. Record the check and any
+material exceptions in the handoff; a new automated structural test or broad
+qualification campaign is not required by this guidance.
+
 ## Neutral theme and token source
 
 Use shadcn-style semantic theming adapted to the accepted neutral Precision design. Content-first means clear token content, controls and feedback supported by restrained chrome. It is a design principle, not a newly selected preset. Preserve accepted density, hierarchy, compact actions and inspector/navigation surfaces. Stock theme scaffolds must not silently replace those decisions. Color specimens and meaningful semantic feedback may use color.
@@ -90,6 +169,7 @@ Preserve native controls when custom behavior adds no demonstrated value; a styl
 
 For affected interface code, the developer and reviewer check:
 
+- The affected resulting tree was checked against [file organization and naming](#file-organization-and-naming), including actual consumers, ownership, responsibility names and obsolete wrappers.
 - Existing primitives were reused appropriately; additions and dependencies serve the scoped feature.
 - Named utilities and semantic tokens express ordinary styling; exceptions have an owner/reason and no duplicated palette or cascade workaround.
 - UI icons use Heroicons Outline and controls retain accessible names.

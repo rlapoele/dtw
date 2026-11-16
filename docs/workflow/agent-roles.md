@@ -23,7 +23,7 @@ Give the designer the draft contract, relevant domain constraints, [visual direc
 
 Keep the developer's rationale and completion claims out of the reviewer's initial brief. After the reviewer forms expectations and inspects the work independently, they may consult implementation evidence to reconcile findings. All agents may inspect relevant repository files and should request missing context.
 
-For interface work, designer, developer and reviewer handoffs include the [presentation conventions](../project/presentation-conventions.md). Apply their theme, utility, icon and component rules within the agreed scope; reviewers check affected styling exceptions, class composition and accessible/responsive behavior. These conventions do not authorize a redesign, dependency migration or unrelated cleanup.
+For interface work, designer, developer and reviewer handoffs include the [presentation conventions](../project/presentation-conventions.md), including [file organization and naming](../project/presentation-conventions.md#file-organization-and-naming). Apply their ownership, naming, theme, utility, icon and component rules within the agreed scope; reviewers check the affected resulting tree as well as styling exceptions, class composition and accessible/responsive behavior. These conventions do not authorize a redesign, dependency migration or unrelated cleanup.
 
 The coordinator is the user's point of contact. Relay material questions and findings faithfully, distinguish proposals from agreements, and report unresolved disagreements. Do not silently dismiss findings or settle product questions. Subagents should not spawn additional agents unless the coordinator explicitly assigns that delegation.
 
@@ -115,6 +115,7 @@ Read the applicable repository instructions, agreed contract, agreed design arti
 - Write meaningful behavior tests and run checks appropriate to the increment. Map results to acceptance criterion IDs and report commands, outcomes, and limitations accurately.
 - Use the shared remaining verification allowance; return approximate elapsed effort, harness cycles and stopping reasons with evidence. Separate product failures from harness failures before proposing application changes.
 - Do not weaken criteria, suppress checks, or alter requirements to obtain passing results.
+- Before handoff, perform the [affected-tree structure check](../project/presentation-conventions.md#review-the-affected-resulting-tree) for presentation changes. Inspect actual consumers, placement and responsibility names; report material exceptions and separate source inspection from runtime evidence. Keep the check within the existing verification allowance.
 - Prepare preliminary completion evidence and respond to review findings with fixes or evidence-based explanations. Do not claim independent review of your own work.
 
 Return changed behavior, verification evidence, decisions made, and remaining gaps. Pause edits while the reviewer assesses the designated snapshot.
@@ -123,6 +124,7 @@ Return changed behavior, verification evidence, decisions made, and remaining ga
 
 Read repository instructions, the agreed contract, agreed design artifacts where applicable, and referenced decisions first. Derive expected behaviors and important failure cases before inspecting implementation details. Then inspect the designated snapshot, including new files and tests, and run appropriate independent checks. For interface increments, check design fidelity, interaction states, and accessibility with appropriate runtime evidence; identify unverified areas explicitly.
 
+- For presentation changes, independently perform the [affected-tree structure check](../project/presentation-conventions.md#review-the-affected-resulting-tree), using actual production consumers and current responsibilities rather than treating existing placement or passing tests as proof of coherent organization. Distinguish convention/dependency violations from optional naming/layout preferences; report the check and any unverified areas within the existing allowance.
 - Look for requirement mismatches, unsupported assumptions, invariant violations, regressions, missing tests, misleading evidence, and unnecessary scope or complexity.
 - Do not treat developer explanations, passing tests, or another agent's agreement as proof of intended behavior.
 - Do not edit production code, tests, or requirements. Return reproducible scenarios and proposed checks; ask the developer to make necessary changes. This is an instruction boundary, not a separate read-only sandbox.

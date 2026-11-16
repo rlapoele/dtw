@@ -9,7 +9,7 @@ This repository contains product and domain documentation for the Design Token W
 - Start with `docs/project/vision.md`, `product-concept.md`, and `principles.md`.
 - Use `docs/project/architecture.md` for implementation boundaries.
 - For interface design and prototyping, use `docs/project/visual-direction.md` and its accepted reference image; preserve the distinction between visual guidance and unresolved interaction or feature decisions.
-- Before presentation changes, read [presentation conventions](docs/project/presentation-conventions.md) for agreed Tailwind, Heroicons and shadcn/Base UI rules, review checks and CSS exceptions.
+- Before presentation changes, read [presentation conventions](docs/project/presentation-conventions.md), including [file organization and naming](docs/project/presentation-conventions.md#file-organization-and-naming), alongside the agreed Tailwind, Heroicons and shadcn/Base UI rules, review checks and CSS exceptions.
 - Use `docs/design-tokens/` for domain language and modeling constraints.
 - Read `docs/design-tokens/interoperability.md` before changing import, export, compatibility, or external-tool behavior.
 - Check `docs/planning/open-questions.md` before making a product, schema, persistence, or technology choice.
@@ -57,6 +57,7 @@ Treat status labels as meaningful: **established** directions and principles are
 
 ## Presentation conventions
 
+- Follow the [file organization and naming rules](docs/project/presentation-conventions.md#file-organization-and-naming): choose private/shared placement from actual production consumers and their nearest meaningful owner, preserve caller/state lifetime separately, and name code by its complete current responsibility. Before handoff, review the affected resulting tree, names, consumers and obsolete wrappers; distinguish concrete violations from optional preferences.
 - Preserve the accepted neutral, content-first Precision design and shadcn-style semantic theming. Keep one token source; map referenced semantic CSS variables through Tailwind's `@theme inline` namespaces.
 - Prefer standard or existing project-defined Tailwind utilities in JSX. Avoid arbitrary values and direct CSS-variable expressions when named utilities suffice. Add tokens only for meaningful reusable decisions; document necessary CSS/runtime-style exceptions.
 - Use Heroicons Outline as the sole application UI icon family, including inside copied/generated components. Render through the shared `Icon` component; keep direct Heroicons imports in that component. Preserve accessible control names and hide decorative icons from assistive technology.

@@ -9,6 +9,19 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Presentation organization guidance — 16 November 2026
+
+The user authorized project-specific file organization/naming guidance and updated
+review instructions. [Presentation conventions](../project/presentation-conventions.md#file-organization-and-naming)
+own the consumer-based placement/naming procedure and bounded resulting-tree check;
+AGENTS.md links it and developer/reviewer briefs apply it. The ownership map remains
+the source of current paths; architecture retains dependency boundaries. This is
+documentation-only guidance, not authorization for another application increment,
+unrelated refactoring or renewed qualification. Earlier acceptance gaps/stopping
+decisions are unchanged. Changed Markdown, new links/anchors and whitespace were
+reviewed; no application tests were run for this documentation-only update. Leave
+staging/committing/pushing to the user.
+
 ## Editor ownership and browse naming — 16 November 2026
 
 The user authorized the two editor ownership moves and both naming refinements.
