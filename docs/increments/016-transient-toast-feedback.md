@@ -1,7 +1,7 @@
 # Increment 016: Transient toast feedback
 
 - Contract status: Agreed
-- Delivery status: Partially completed — implementation and independent review finished; runtime acceptance gaps below
+- Delivery status: Completed — independently reviewed and user-accepted; remaining verification limits retained below
 - Agreement: Initial scope/direction accepted and visual prototype authorized on 17 November 2026. V4 was reviewed by the user and explicitly approved for analyst recheck on 17 November 2026; the targeted source recheck below closes the prior design findings. The user agreed Increment 016 and V4 and authorized implementation followed by independent review on 17 November 2026, with a 15-minute aggregate verification ceiling and at most two harness repairs.
 - Prepared: 17 November 2026.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [workflow](../workflow/agent-roles.md), [current handoff](../status/current.md).
@@ -374,14 +374,15 @@ The user reported committing and pushing, agreed Increment 016 and V4, and autho
 implementation followed by review. Baseline: `b0319a7f3afc1f16c5e51bdfc25f2f7acf2d59b2`,
 with a clean working tree. The new allowance is 15 aggregate verification minutes and
 at most two harness repairs, superseding the unused proposed 30-minute allowance.
-Production acceptance is still pending. Palette refinement remains deferred.
+Production acceptance was pending at this authorization stage; the subsequent user
+acceptance is recorded below. Palette refinement remains deferred.
 
 ## Implementation and independent review — 17 November 2026
 
 Implementation is finished and independently reviewed. No actionable production-code
-finding remains. Delivery is **Partially completed** because the bounded checks do not
-establish all browser acceptance behavior. User acceptance of the production change
-is not inferred from acceptance of V4.
+finding remains. At this handoff, delivery was **Partially completed** because the
+bounded checks did not establish all browser acceptance behavior. The subsequent
+production acceptance below closes the increment while retaining those evidence limits.
 
 ### Delivered behavior
 
@@ -450,7 +451,25 @@ a project, creating or renaming a group and applying a token edit: expect one bo
 outcome, no duplicate inline confirmation, and contextual errors/recovery actions where
 needed. This checks integration and visual fit, not screen-reader or background timing.
 Those missing checks remain owned by the agent in a separately authorized bounded
-follow-up; they prevent claiming complete acceptance of all criteria today. Git staging,
+follow-up. At that handoff, they prevented claiming complete acceptance of all criteria. Git staging,
 commit and push remain with the user.
 
 Suggested commit: `feat: add transient outcome toasts and status notifications`.
+
+## User acceptance — 17 November 2026
+
+After testing the implemented workbench, the user stated: “I've tested it and I'm happy
+with the result. You can record my acceptance of increment 016, keeping the remaining
+verification limits documented.” Increment 016 is completed and user-accepted.
+
+This is user-reported acceptance of the implemented result. No specific test sequence,
+browser coverage or criterion-by-criterion execution is inferred. The evidence table
+above remains unchanged: full production-flow coverage, background timing, reduced
+motion, screen-reader delivery and the other listed runtime cases remain unverified
+to the extent recorded. Acceptance does not turn these checks into passes.
+
+The approximately 14-minute/one-repair verification record is preserved. Verification
+campaigns remain stopped; this acceptance does not authorize a restart. Further agent
+verification requires a separately authorized bounded follow-up. Palette refinement
+remains deferred. No application code changed and no application tests ran to record
+acceptance; documentation consistency, local links and whitespace were checked.

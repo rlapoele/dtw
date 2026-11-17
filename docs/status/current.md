@@ -2,7 +2,7 @@
 
 > Last updated: 17 November 2026
 >
-> Phase: Increment 016 implemented and independently reviewed; runtime acceptance gaps remain.
+> Phase: Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
 > completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
@@ -10,22 +10,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Increment 016 implementation handoff — 17 November 2026
+## Increment 016 user acceptance — 17 November 2026
 
-The user agreed Increment 016 and V4 and authorized implementation followed by review.
-The implementation now provides transient outcome toasts and scoped dark status
-notifications. Independent review found no actionable production-code defect. Typecheck,
-39 developer tests and 32 reviewer tests passed. Narrow no-storage browser checks covered
-long-message bounds, reachable dismissal and modal suppression. Colors remain provisional.
+The user tested the implemented workbench, reported being happy with the result and
+explicitly accepted Increment 016 while retaining its remaining verification limits.
+The increment is completed and user-accepted. Independent review found no actionable
+production-code defect. Colors remain provisional; palette refinement is deferred.
 
-[The increment record](../increments/016-transient-toast-feedback.md#implementation-and-independent-review--17-november-2026)
-owns evidence and limits. Delivery remains partially completed: full production flows,
-hidden-tab timing, reduced-motion rendering and actual screen-reader delivery are not
-fully tested. Approximately 14 of 15 aggregate minutes and one of two repairs were used;
-checks stopped. Earlier campaigns remain stopped. No design decision is pending. The
-next useful user check is production visual/integration acceptance; any further agent
-verification needs a separately authorized bounded follow-up. Staging, committing and
-pushing remain with the user.
+[The increment record](../increments/016-transient-toast-feedback.md#user-acceptance--17-november-2026)
+owns the acceptance, evidence and limits. Specific manual test cases are not inferred.
+Full production-flow coverage, hidden-tab timing, reduced-motion rendering, actual
+screen-reader delivery and other recorded runtime cases remain unverified as documented.
+Approximately 14 of 15 aggregate minutes and one of two repairs were used before checks
+stopped. Acceptance does not restart verification or mark untested cases as passed.
+Earlier campaigns remain stopped; any further agent verification needs a separately
+authorized bounded follow-up. No further acceptance action is pending for Increment 016.
+Staging, committing and pushing remain with the user.
 
 ## Historical handoffs
 
