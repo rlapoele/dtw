@@ -14,11 +14,11 @@ export function TokenEditor({
   const editor = useTokenEditor(props);
   return (
     <>
-      <div className="token-inspector-toggle absolute top-4 right-4 z-20 touch:hidden">
+      <div className="token-inspector-toggle absolute top-4 left-4 z-20 touch:hidden">
         <InspectorToggle expanded={inspectorExpanded} onToggle={onToggle} />
       </div>
       {editor.readUnavailable && inspectorExpanded && (
-        <p role="status" className="text-caption text-muted-foreground wrap-anywhere p-4 pr-16">
+        <p role="status" className="text-caption text-muted-foreground wrap-anywhere p-4 pl-16 touch:pl-4">
           {readFailure || props.targetUnavailable || "Inspection unavailable"}
         </p>
       )}

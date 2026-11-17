@@ -152,7 +152,7 @@
   .inspector-collapsed .inspector-region-title, .inspector-collapsed .inspector-feedback, .inspector-collapsed .inspector-header-status { display:none; }
   .inspector-collapsed .inspector-header { padding:0; justify-content:center; gap:0; }
   /* One token toggle stays outside the hidden scroller; only its rail position changes. */
-  .inspector-collapsed .token-inspector-toggle { top:.375rem; right:.375rem; }
+  .inspector-collapsed .token-inspector-toggle { top:.375rem; left:.375rem; }
 }
 @media (max-width:879px) {
   .workbench.compact-navigation, .projects-layout { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr); }

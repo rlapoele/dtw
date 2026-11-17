@@ -15,13 +15,13 @@ export function InspectorHeader({
   onToggle: () => void;
 }) {
   return (
-    <div className="inspector-header shrink-0 flex items-center justify-between gap-2 p-1.5 min-w-0">
+    <div className="inspector-header shrink-0 flex items-center gap-2 p-1.5 min-w-0">
+      <InspectorToggle expanded={inspectorExpanded} onToggle={onToggle} />
       {(readFailure || targetUnavailable || !editable || !selected) && inspectorExpanded && (
         <span className="inspector-header-status text-caption text-muted-foreground wrap-anywhere">
           {readFailure || targetUnavailable || (selected ? "Inspection only" : "Select content")}
         </span>
       )}
-      <InspectorToggle expanded={inspectorExpanded} onToggle={onToggle} />
     </div>
   );
 }

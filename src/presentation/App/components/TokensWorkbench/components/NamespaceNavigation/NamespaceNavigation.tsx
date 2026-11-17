@@ -27,12 +27,8 @@ export function NamespaceNavigationPane({
         aria-expanded={expanded}
         onClick={() => onToggle()}
       >
-        {expanded ? (
-          <Icon name="chevron-left" />
-        ) : (
-          <Icon name="chevron-right" />
-        )}
-        <span>Project groups</span>
+        <span className="flex-1 text-left">Project groups</span>
+        <Icon name="chevron-right" className={`transition-transform motion-reduce:transition-none ${expanded ? "rotate-180" : ""}`} />
       </Button>
       <div
         hidden={!expanded}

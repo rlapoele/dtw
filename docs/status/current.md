@@ -9,6 +9,29 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Panel chevron feedback — 17 November 2026
+
+The user accepted, committed and pushed the previous three browser corrections,
+then requested panel-toggle placement changes. The navigation chevron now sits
+at the far right of its label, pointing left when open and right when closed.
+One mounted icon rotates through a transform transition, disabled for reduced motion.
+The inspector toggle now sits left of the status text and token heading. Its existing
+rotation and persistent mounted control remain intact; the token heading spacer and
+collapsed-rail offset move with it. This is a focused fix, not a reopened increment.
+
+All typecheck scopes and 34 existing layout/coordination/inspector tests passed.
+In-app browser checks at approximately 1395 × 1269 confirmed placement, both panels'
+collapse/expand actions and retained keyboard focus. Computed styles confirmed the
+navigation rotation endpoints and transform transition. Source review covered reduced
+motion, the token-editor spacer/offset, existing owners and unchanged callbacks.
+Reduced-motion runtime, selected-token rendering and narrow layouts were not exercised;
+these limit visual evidence, not claimed passes. No project data was changed.
+
+Self-review and whitespace checks completed in approximately four minutes, with no
+harness repair campaign or independent review. Earlier acceptance and verification
+stops remain unchanged. No user decision or check is needed. Staging, committing and
+pushing remain with the user.
+
 ## Focused browser feedback — 17 November 2026
 
 The user's three annotated corrections are implemented: group rename is a pencil
