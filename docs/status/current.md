@@ -2,14 +2,14 @@
 
 > Last updated: 16 November 2026
 >
-> Phase: Increment 015 completed and independently reviewed; Increment 014
+> Phase: Increment 015 completed, independently reviewed and user-accepted; Increment 014
 > completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Increment 015 completed and independently reviewed — 16 November 2026
+## Increment 015 completed and user-accepted — 16 November 2026
 
 The user agreed the updated [Increment 015 contract and prototype V1.3](../increments/015-workbench-browse-and-inspector-polish.md)
 and authorized developer implementation followed by independent review. The
@@ -31,9 +31,14 @@ finding remains within the bounded review. Source hashes matched before/after.
 Verification stopped originally at about 18/30 minutes and 2/2 harness repairs;
 the separately authorized R2 follow-up used about two of five minutes and zero
 repairs, then stopped after passing. Earlier qualification limits remain explicit;
-no exhaustive WCAG/browser/recovery matrix or new manual acceptance is claimed.
-The application is ready for user review. Staging, committing and pushing remain
-with the user; no next increment or additional campaign is authorized.
+no exhaustive WCAG/browser/recovery matrix is claimed.
+
+The user opened the application from the IDE, checked it and confirmed all requested
+changes were correctly implemented. The [acceptance record](../increments/015-workbench-browse-and-inspector-polish.md#user-acceptance--16-november-2026)
+owns this 16 November 2026 report. No particular unreported scenario or broader
+qualification is inferred. This documentation-only update reran no application
+checks. Staging, committing and pushing remain with the user; no further work,
+next increment or additional campaign is authorized.
 
 ## Variable WOFF2 font maintenance — 16 November 2026
 
@@ -357,9 +362,8 @@ changes are made to resolve it here.
 
 ## Next meaningful action
 
-Review the delivered Increment 015 application and stage/commit/push as desired.
-Its agreed implementation and independent review are complete within the recorded
-scope; user manual acceptance is not inferred. Earlier qualification/acceptance
+Increment 015 is complete and user-accepted. The user stages/commits/pushes as
+desired and selects any future work to scope. Earlier qualification/acceptance
 gaps remain with their owning increments. No next increment or renewed campaign
 is authorized.
 

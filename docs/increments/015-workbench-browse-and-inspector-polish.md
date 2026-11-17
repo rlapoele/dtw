@@ -1,7 +1,7 @@
 # Increment 015: Workbench browse and inspector polish
 
 - Contract status: Agreed
-- Delivery status: Completed
+- Delivery status: Completed; user-accepted on 16 November 2026
 - Agreement: On 16 November 2026 the user agreed the updated AC-1–16 contract and prototype V1.3, and explicitly authorized implementation by a developer subagent followed by an independent reviewer.
 - References: [workflow](../workflow/agent-roles.md), [presentation conventions](../project/presentation-conventions.md), [architecture](../project/architecture.md), [visual direction](../project/visual-direction.md), [responsive shell](011-responsive-shell.md), [session Undo/Redo](012-session-undo-redo.md), [Neutral / Geist](014-neutral-geist-and-styling-ownership.md).
 
@@ -341,6 +341,23 @@ repeat the earlier narrow/enlarged-root matrix. R1/developer limits remain expli
 in their reports, and earlier qualification/acceptance gaps are unchanged. No new
 user manual acceptance is inferred from implementation authorization.
 
-The application is ready for user review. The user retains staging/committing/
+The user subsequently accepted the delivered application as recorded below. The user retains staging/committing/
 pushing; no next increment or additional campaign is authorized. Suggested commit:
 `feat: polish workbench browsing and sticky token inspector`.
+
+## User acceptance — 16 November 2026
+
+After opening the application from the IDE and checking it, the user confirmed:
+
+> I've opened the app from the IDE and checked it. The changes requested have all
+> been correctly implemented. We are good for now.
+
+Increment 015 is completed and user-accepted. This records the user's reported
+review of the requested changes; no particular unreported scenario, browser,
+exhaustive accessibility result or broader qualification is inferred. Earlier
+qualification limits remain unchanged. No further application work, next increment
+or renewed verification campaign is authorized. This acceptance update changes
+documentation only; no application checks were rerun. Staging, committing and
+pushing remain with the user.
+
+Suggested commit: `docs: record Increment 015 user acceptance`.
