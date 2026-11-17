@@ -18,22 +18,23 @@ export function NamespaceNavigationPane({
       aria-label="Project groups"
     >
       <div className="sidebar-header shrink-0 flex items-center gap-2 p-1.5 min-w-0">
-        <h2 hidden={!expanded} className="flex-1 pl-2.5 text-caption font-semibold text-muted-foreground">NAVIGATION</h2>
+        <h2 aria-hidden={!expanded} className="sidebar-heading flex-1 pl-2.5 text-caption font-semibold text-muted-foreground">NAVIGATION</h2>
         <Button
           variant="ghost"
           size="icon"
-          className="sidebar-toggle"
+          className="sidebar-toggle ml-auto"
           aria-label={
             expanded ? "Collapse project groups" : "Expand project groups"
           }
           aria-expanded={expanded}
           onClick={() => onToggle()}
         >
-          <Icon name="chevron-right" className={`transition-transform duration-300 motion-reduce:transition-none ${expanded ? "rotate-180" : "rotate-0"}`} />
+          <Icon name="chevron-right" className={`panel-motion-chevron ${expanded ? "rotate-180" : "rotate-0"}`} />
         </Button>
       </div>
       <div
-        hidden={!expanded}
+        inert={!expanded}
+        aria-hidden={!expanded}
         className="sidebar-content flex-1 px-3 pt-5.5 pb-5 flex flex-col min-h-0 overflow-auto"
       >
         {children}

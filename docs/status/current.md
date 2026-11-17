@@ -9,6 +9,32 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Panel slides and navigation footer — 17 November 2026
+
+The user requested smooth panel entrance/exit with slower synchronized chevrons,
+then removal of the navigation project/group-count footer. Both are implemented.
+Desktop tracks resize as fixed-width content slides outward/inward; headings and
+chevrons share a 500 ms duration/easing. Content stays mounted, with collapsed
+content immediately inert and hidden from assistive technology, then visually hidden
+after exit. Reduced motion disables transitions. The footer and obsolete selector
+are removed. [Presentation conventions](../project/presentation-conventions.md#panel-motion-refinement--17-november-2026)
+own the CSS exception and state-preservation approach.
+
+All typecheck scopes and 34 existing layout/coordination/inspector tests passed before
+the subsequent footer removal and equivalent width-variable consolidation. Browser
+checks at approximately 1395 × 1269 confirmed intermediate width/translation values
+in both directions for both panels, final collapsed widths of 52/48 px, hidden/inert
+content and retained toggle focus. Final visual inspection confirmed the footer is
+absent and both panels are open. No project data was edited. Selected-token drafts,
+rapid reversals, narrow layouts and reduced-motion runtime were not exercised; their
+coverage is limited to source review and existing tests, not new runtime acceptance.
+
+Self-review checked affected component owners, callbacks and CSS scope; whitespace
+passed. Approximately seven minutes of focused verification, no harness repair or
+independent review. Initial browser annotations intercepted actions; checks succeeded
+after that overlay cleared. Earlier campaigns remain stopped. No decision or human
+check is needed. Staging, committing and pushing remain with the user.
+
 ## Panel header refinement — 17 November 2026
 
 Further user annotations requested plain NAVIGATION and INSPECTOR headings,

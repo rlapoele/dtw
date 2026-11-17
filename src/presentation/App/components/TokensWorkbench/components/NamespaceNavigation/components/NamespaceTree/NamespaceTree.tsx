@@ -116,16 +116,6 @@ export function NamespaceTree({
         <Icon name="plus" className="icon block" />
         New group
       </Button>
-      <div
-        className={`sidebar-bottom mt-auto px-3 pt-8 pb-1 ${drawer ? "" : "density:hidden"}`}
-      >
-        <span className="eyebrow uppercase text-muted-foreground font-semibold">
-          Project
-        </span>
-        <span className="helper text-muted-foreground font-normal">
-          {project?.groups.length ?? 0} groups
-        </span>
-      </div>
     </>
   );
 }

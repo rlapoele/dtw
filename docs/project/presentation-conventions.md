@@ -254,3 +254,19 @@ positioned over the heading's reserved control space; collapsed rail positioning
 is a focused pane-geometry exception. The same button/icon remains mounted and
 visible across desktop collapse so focus and a continuous rotation can be retained.
 Native file-selector-button sizing remains a focused pseudo-element exception.
+
+### Panel motion refinement — 17 November 2026
+
+Desktop panel tracks and their content now animate together using the shared
+500 ms panel-motion duration and easing in `global.css`. Content slides toward
+its outer edge while the workspace gains space. Fixed expanded content widths
+prevent text reflow during the slide; their dimensions share the pane geometry
+variables. Headings slide while toggle buttons stay available. Chevrons use the
+same timing. These remain focused pane-geometry CSS exceptions, not a new layout
+owner or animation dependency. Narrow navigation drawer behavior is unchanged.
+
+Collapsed content stays mounted to preserve editor state and scroll position.
+`inert` and `aria-hidden` exclude it from interaction immediately; visibility is
+hidden when the exit finishes. Reduced motion removes transitions. The generic
+`[hidden]` rule still applies to other hidden surfaces. Browser evidence and limits
+are recorded in the current status handoff.

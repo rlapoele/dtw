@@ -29,6 +29,8 @@
 @utility border-l-hairline { border-left-width: .0625rem; }
 @utility annotation { font-size: var(--text-caption); line-height: 1.5; }
 :root {
+  --panel-motion-duration: 500ms;
+  --panel-motion-easing: cubic-bezier(.4, 0, .2, 1);
   --background: var(--color-neutral-50);
   --foreground: var(--color-neutral-900);
   --card: var(--background);
@@ -123,7 +125,7 @@
   legend { font-size: var(--text-caption); font-weight: 500; margin-bottom: .5rem; }
 }
 @layer components {
-  .nav-label, .eyebrow, .count, .table-heading, .token-identity small, .value-summary small, .helper, .badge, .statusbar, .group-label small, .sidebar-bottom p { font-size: var(--text-caption); line-height: 1.5; }
+  .nav-label, .eyebrow, .count, .table-heading, .token-identity small, .value-summary small, .helper, .badge, .statusbar, .group-label small { font-size: var(--text-caption); line-height: 1.5; }
   .token-name { font-family: var(--font-mono); font-weight: 500; }
   .brand { letter-spacing: -.02em; }
   .dialog-title { font-size: var(--text-inspector); font-weight: 600; line-height: 1.3; }
@@ -132,11 +134,11 @@
 }
 
 /* Page-owned pane geometry preserves one mounted editor across modes. */
-.workbench { --groups-width: 13.25rem; --inspector-width: 25rem; grid-template-columns: var(--groups-width) minmax(0, 1fr) var(--inspector-width); }
+.workbench { --groups-expanded-width:13.25rem; --inspector-expanded-width:25rem; --groups-width:var(--groups-expanded-width); --inspector-width:var(--inspector-expanded-width); grid-template-columns: var(--groups-width) minmax(0, 1fr) var(--inspector-width); }
 .groups-collapsed { --groups-width: 3.25rem; }
 .inspector-collapsed { --inspector-width: 3rem; }
 .projects-layout { grid-template-columns: minmax(0, 1fr) 25rem; }
-.groups-collapsed .sidebar-header { justify-content:center; }
+
 .inspector-collapsed .inspector-toggle { border-bottom: 0; }
 .token-row { min-height: 4.75rem; }
 .dialog-popup { width: min(30rem, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); }
@@ -149,8 +151,35 @@
   .workbench.compact-navigation { grid-template-columns: minmax(0,1fr) var(--inspector-width); }
 }
 @media (min-width:880px) {
-  .inspector-collapsed .inspector-region-title, .inspector-collapsed .inspector-feedback, .inspector-collapsed .inspector-header-status { display:none; }
-  .inspector-collapsed .inspector-header { padding:0; justify-content:center; gap:0; }
+  .workbench { transition: grid-template-columns var(--panel-motion-duration) var(--panel-motion-easing); }
+  .workbench > .sidebar > .sidebar-content { width:var(--groups-expanded-width); }
+  .workbench > .inspector-shell > .inspector-content { width:var(--inspector-expanded-width); }
+  .sidebar-header { position:relative; }
+  .sidebar-heading { position:absolute; left:.375rem; }
+  .inspector-heading-label { flex-shrink:0; max-width:20rem; }
+  .workbench > .sidebar > .sidebar-content,
+  .sidebar-heading,
+  .workbench > .inspector-shell > .inspector-content,
+  .inspector-heading-label {
+    transform:translateX(0);
+    visibility:visible;
+    transition:transform var(--panel-motion-duration) var(--panel-motion-easing), visibility 0s;
+  }
+  .groups-collapsed > .sidebar > .sidebar-content,
+  .groups-collapsed .sidebar-heading {
+    transform:translateX(-100%);
+    visibility:hidden;
+    transition-delay:0s, var(--panel-motion-duration);
+  }
+  .inspector-collapsed > .inspector-shell > .inspector-content,
+  .inspector-collapsed .inspector-heading-label {
+    transform:translateX(100%);
+    visibility:hidden;
+    transition-delay:0s, var(--panel-motion-duration);
+  }
+  .token-inspector-toggle {
+    transition:top var(--panel-motion-duration) var(--panel-motion-easing), left var(--panel-motion-duration) var(--panel-motion-easing);
+  }
   /* One token toggle stays outside the hidden scroller; only its rail position changes. */
   .inspector-collapsed .token-inspector-toggle { top:.375rem; left:.375rem; }
 }
@@ -160,7 +189,15 @@
   .dialog-actions { flex-wrap:wrap; }
   .dialog-actions > * { flex:1 1 auto; }
 }
+.panel-motion-chevron {
+  transition:rotate var(--panel-motion-duration) var(--panel-motion-easing), transform var(--panel-motion-duration) var(--panel-motion-easing);
+}
 @media (prefers-reduced-motion: reduce) {
+  .workbench, .panel-motion-chevron, .token-inspector-toggle,
+  .workbench > .sidebar > .sidebar-content, .sidebar-heading,
+  .workbench > .inspector-shell > .inspector-content, .inspector-heading-label {
+    transition:none;
+  }
   .navigation-backdrop,
   .navigation-drawer {
     transition: none;

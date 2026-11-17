@@ -50,7 +50,8 @@ export function SelectionInspector({
           <div
             id="token-inspector-content"
             className="inspector-content flex-1 bg-surface overflow-auto min-h-0"
-            hidden={!inspectorExpanded}
+            inert={!inspectorExpanded}
+        aria-hidden={!inspectorExpanded}
           >
             {selection?.kind === "group" && context ? (
               <GroupInspector
