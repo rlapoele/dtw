@@ -250,6 +250,27 @@ browser/source review approximately three, completing the six-minute revision
 ceiling, with no harness repair campaign. Checks stopped. Earlier budgets and stop
 decisions remain unchanged; no application tests or production edits occurred.
 
+### V4 queued-preview refinement — 17 November 2026
+
+The user reported committing/pushing V3 and requested a glimpse of the next queued
+message, plus more top space for the oversized message's information icon. The
+separate designer implemented [V4](../project/toast-feedback-v1.md) at the same URL.
+A noninteractive 1.5rem partial preview of the next queued message, with .5rem gap,
+fits within the existing stack-height budget. It is not admitted, announced or timed
+until fully displayed. Its reserved space may reduce the full-message count; it
+never displaces the sole full toast. An oversized single message omits the preview
+when there is no room. Oversized vertical padding is now .875rem, with .125rem
+additional icon alignment. Colors and other behavior remain provisional/unchanged.
+
+Coordinator browser viewing confirmed two full toasts and the partial third in
+Five outcomes with Short-window budget on, then the increased oversized padding.
+The accessible snapshot exposed only the two full messages and their close buttons.
+This simulation is not a real short-screen test. Designer source/whitespace review
+used approximately two minutes and coordinator viewing/checks approximately one;
+three of four aggregate revision minutes used, then stopped. No application tests,
+production edits or renewed analyst review. Earlier verification limits remain.
+V4 awaits user artifact review before analyst recheck.
+
 ### Review budget and evidence
 
 Earlier preparation: approximately eight aggregate minutes, stopped. V1 prototype

@@ -9,6 +9,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Toast visual prototype V4 — 17 November 2026
+
+The user requested a partial queued-message cue and more icon spacing after
+committing/pushing V3. The designer's [V4](../project/toast-feedback-v1.md) shows the
+beginning of the next queued message beneath the full stack within its height cap.
+The cue has no actions, timer or announcement until admitted. Oversized messages
+retain sole/manual-dismissal behavior and now have increased top padding.
+
+Coordinator browser viewing confirmed two full toasts plus a partial third in the
+short-window simulation and checked the long-message spacing. The
+[increment record](../increments/016-transient-toast-feedback.md#v4-queued-preview-refinement--17-november-2026)
+records tradeoffs and evidence limits. Approximately three of four aggregate minutes
+used, zero repair campaign; checks stopped. No production code or application tests.
+V4 awaits user review before analyst recheck; colors remain provisional. Staging,
+committing and pushing remain with the user.
+
 ## Toast visual prototype V3 — 17 November 2026
 
 The user reported committing/pushing the review and accepted adaptive overflow.

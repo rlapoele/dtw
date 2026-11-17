@@ -1,11 +1,45 @@
-# Toast feedback — design proposal V3
+# Toast feedback — design proposal V4
 
-**17 November 2026 · V3 awaiting user artifact review.** The user accepted
+**17 November 2026 · V4 awaiting user artifact review.** The user accepted
 completed-action success/information toasts with persistent contextual errors and
 recovery, and authorized this prototype. They explicitly requested appropriate
 error status colors. This artifact is not production implementation, final design
 agreement or implementation authorization. [Increment 016](../increments/016-transient-toast-feedback.md)
 owns the contract and approval record.
+
+## Requested queue cue and alignment refinement — V4
+
+After reviewing and committing V3, the user requested a glimpse of the next queued
+notification because two visible messages did not suggest that more were waiting.
+V4 adopts a **decorative partial preview of the next FIFO message**, beneath the
+fully admitted stack. The preview is 1.5rem tall plus a .5rem gap, softly faded at
+its lower edge, with the next message's status color, icon and opening text. It
+has no close control, pointer target, keyboard stop or announcement. Its timer
+remains paused until full admission. No queue count is displayed.
+
+The preview and complete messages together stay within the accepted height cap.
+Admission reserves 2rem for the cue when there is a backlog; this can reduce the
+number of fully visible messages, but never below one merely to create a preview.
+At most three fully admitted messages remain visible. An oversized message still
+appears alone, scrolls and requires manual dismissal: the preview is omitted when
+it cannot fit safely. This intentionally prioritizes a readable message and its
+close control over an always-present backlog cue. Waiting messages are not dropped.
+
+Try Short-window budget, then Five outcomes: two full short messages and the
+beginning of the next message indicate the backlog. Dismissing a full message
+admits the next one; only then does its ordinary timing/announcement begin.
+The cue is illustrative visual continuity, not a partially interactive toast.
+Long-message containers now have .875rem vertical padding; their information icon
+has a .125rem top adjustment to align with the first line rather than hug the
+upper edge. The close button remains fully visible and the scroll area accounts
+for the increased padding.
+
+V3 focus, announcement, manual-dismissal and queue behavior otherwise remain in
+place. V2 dark colors remain provisional. V4 is an authorized prototype revision,
+not final design agreement, renewed analyst-review approval or implementation.
+Designer source/whitespace review took approximately two minutes, zero repairs;
+no browser checks or application tests. Coordinator viewing is separately bounded
+to two minutes. Earlier verification campaigns remain stopped.
 
 ## Accepted overflow revision — V3
 
@@ -85,14 +119,14 @@ the focused rendered check. No production source or dependencies were changed.
 
 ## Review artifact
 
-Open [interactive V3](http://localhost:5174/prototypes/increment-016-v1/index.html)
+Open [interactive V4](http://localhost:5174/prototypes/increment-016-v1/index.html)
 on the existing repository Vite server. Source:
 [entry](../../prototypes/increment-016-v1/index.html),
 [React prototype](../../prototypes/increment-016-v1/main.tsx),
 [isolated styles](../../prototypes/increment-016-v1/prototype.css).
 If no server is running, run `npm run dev -- --port 5174` from the repository root.
 
-The separate “Toast feedback · V3” review strip exposes scenarios; it is not a
+The separate “Toast feedback · V4” review strip exposes scenarios; it is not a
 proposed product toolbar. The workbench is illustrative fixture data. Its controls
 never call the host, persistence, worker or project operations. Existing local
 Geist fonts and the shared Heroicons Outline Icon component are reused; no
