@@ -17,10 +17,15 @@ export function InspectorHeader({
   return (
     <div className="inspector-header shrink-0 flex items-center gap-2 p-1.5 min-w-0">
       <InspectorToggle expanded={inspectorExpanded} onToggle={onToggle} />
-      {(readFailure || targetUnavailable || !editable || !selected) && inspectorExpanded && (
-        <span className="inspector-header-status text-caption text-muted-foreground wrap-anywhere">
-          {readFailure || targetUnavailable || (selected ? "Inspection only" : "Select content")}
-        </span>
+      {inspectorExpanded && (
+        <div className="min-w-0">
+          <h2 className="text-caption font-semibold text-muted-foreground">INSPECTOR</h2>
+          {(readFailure || targetUnavailable || (selected && !editable)) && (
+            <p className="inspector-header-status text-caption text-muted-foreground wrap-anywhere">
+              {readFailure || targetUnavailable || "Inspection only"}
+            </p>
+          )}
+        </div>
       )}
     </div>
   );

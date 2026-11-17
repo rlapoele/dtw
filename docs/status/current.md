@@ -9,6 +9,28 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Panel header refinement — 17 November 2026
+
+Further user annotations requested plain NAVIGATION and INSPECTOR headings,
+matching icon-only controls, and a visible inspector rotation. Navigation now has
+an independent heading and the same ghost/icon Button variant as the inspector.
+Inspector warnings and inspection-only feedback remain separate from its heading.
+Both chevrons use explicit rotation endpoints and a 300 ms transition, with the
+existing reduced-motion exception. Existing callbacks and component owners remain.
+
+All typecheck scopes and 34 layout/coordination/inspector tests passed; whitespace
+and affected owners were self-reviewed. Browser checks at approximately 1395 × 1269
+confirmed both buttons are 36 × 36, labels are headings, and collapse/expand retains
+focus. Live computed rotation progressed from 0 to 5.69 degrees during inspector
+collapse, confirming interpolation rather than just changed endpoints. Both panels
+were left open. No data was edited. Reduced-motion runtime, narrow layouts and
+selected-token rendering were not exercised; source inspection is not runtime proof.
+
+Verification took approximately four minutes, including one unsupported animation
+inspection call replaced by computed-style sampling. No further campaign or independent
+review was started. Earlier stopping decisions remain intact. No human decision or
+check is needed; staging, committing and pushing remain with the user.
+
 ## Panel chevron feedback — 17 November 2026
 
 The user accepted, committed and pushed the previous three browser corrections,

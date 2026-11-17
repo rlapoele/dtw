@@ -136,7 +136,7 @@
 .groups-collapsed { --groups-width: 3.25rem; }
 .inspector-collapsed { --inspector-width: 3rem; }
 .projects-layout { grid-template-columns: minmax(0, 1fr) 25rem; }
-.groups-collapsed .sidebar-toggle > span { display: none; }
+.groups-collapsed .sidebar-header { justify-content:center; }
 .inspector-collapsed .inspector-toggle { border-bottom: 0; }
 .token-row { min-height: 4.75rem; }
 .dialog-popup { width: min(30rem, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); }
