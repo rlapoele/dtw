@@ -2,14 +2,14 @@
 
 - Contract status: Draft
 - Delivery status: Not started
-- Agreement: None. Initial direction, design review and implementation authorization are pending.
+- Agreement: Initial scope/direction accepted and visual prototype authorized on 17 November 2026. Final design/contract agreement, analyst design review and production implementation authorization remain pending.
 - Prepared: 17 November 2026.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [workflow](../workflow/agent-roles.md), [current handoff](../status/current.md).
 
 ## Outcome
 
 Show short completed-operation feedback such as “Group created and retained.” in
-bottom-center dismissible toasts, using a pale status background, dark foreground,
+bottom-center dismissible toasts, using a dark status background, light foreground,
 and fade/slide motion. Free the workbench's persistent feedback area from routine
 confirmations while preserving messages needed to understand or recover current state.
 
@@ -18,7 +18,9 @@ all existing notice strings or status live regions as transient notifications.
 
 ## Scope and source inventory
 
-The following is a proposed migration inventory, not an agreed design.
+The transient-confirmation versus persistent-actionable-feedback scope was accepted
+on 17 November 2026. The following detailed migration inventory still awaits final
+contract/design review.
 Paths below are relative to `src/presentation/App/components/`.
 
 | Current owner and message category | Proposed treatment |
@@ -48,8 +50,9 @@ campaigns remain stopped; this increment does not reopen them.
 - AC-1: Each approved completed outcome appears bottom-center above the current
   workbench, with readable wrapping and no horizontal overflow at desktop and 320 CSS px.
   The migrated confirmation no longer occupies a duplicate inline region.
-- AC-2: Success and information use distinct pale status surfaces with dark readable
-  text. Text and an accessible dismissal name convey meaning without relying on color.
+- AC-2: Success and information use distinct dark status surfaces with light readable
+  text. Persistent error and warning feedback use the same inverted status-color
+  treatment requested after V1 review. Text and an accessible dismissal name convey meaning without relying on color.
   Theme tokens, shared Icon usage and component ownership follow presentation conventions.
 - AC-3: A toast can be dismissed with pointer or keyboard. Proposed automatic duration
   is five seconds of unpaused display, paused while hovered, keyboard-focused or the
@@ -71,13 +74,20 @@ campaigns remain stopped; this increment does not reopen them.
 
 ## Decisions and open questions
 
+- V2 revision requested — 17 November 2026: the user found V1 broadly good but
+  requested inverted background/foreground colors for every toast and notification
+  type, to make feedback stand out against the light neutral workbench. This
+  supersedes V1's pale-surface direction; scope and timing are unchanged. Revised
+  prototype review remains pending, without analyst or implementation authorization.
+
 - Established request: bottom placement, manual dismissal, fade/slide, pale status
   background, dark text and a common few-second duration. Horizontal centering was
   suggested by the user ("probably center") and is the recommended proposal.
-- Recommended scope question: should only completed success/information outcomes
-  become transient, with progress, errors and actionable safety feedback retained
-  contextually? This preserves recovery instructions while covering routine confirmations.
-  Scope agreement is needed before final inventory and implementation.
+- Accepted initial scope — 17 November 2026: completed success/information outcomes
+  become transient, while progress, errors and actionable safety feedback remain
+  contextual. The user authorized a visual prototype and explicitly requested
+  appropriate status colors for errors. Persistent error examples therefore need
+  a pale error surface/dark error foreground without weakening their recovery content.
 - Proposed timing: five seconds with interaction/document-visibility pauses. This is
   a concrete default proposal, not an accessibility or universal-duration claim.
 - Before final agreement: identify the design's stacking/overflow, cross-project
@@ -112,7 +122,8 @@ remaining gaps, and require an explicitly authorized bounded follow-up to resume
 
 ## Design proposals and review
 
-- Designer: separate initial recommendation completed; no prototype or reviewed artifact yet.
+- Designer: [interactive V1 and design record](../project/toast-feedback-v1.md) completed
+  under the user’s prototype authorization. Awaiting user review; no analyst review yet.
   Proposed compact bottom-center treatment, 24px desktop bottom clearance and 16px
   narrow clearance plus safe area, capped at 28rem with 16px side margins. Success
   uses pale/dark green, information pale/dark blue, with text and an Outline icon.
@@ -125,7 +136,9 @@ remaining gaps, and require an explicitly authorized bounded follow-up to resume
   DTW; this does not establish suitability for every message.
 - Preparation totals: approximately eight aggregate minutes (analyst four, designer
   three, coordinator one), source/self-review only, no harness repairs or runtime checks.
-- User review and approval for analyst review: pending.
+- User review of revised V2 and approval for analyst review: pending. Initial scope and
+  permission to build the prototype were granted on 17 November 2026; these do not
+  constitute approval for analyst review or production implementation.
 - Analyst design review: not started; this draft is source/scope analysis only.
 - Final contract/design agreement and implementation authorization: pending.
 - Material design revisions return to the user before renewed analyst review.

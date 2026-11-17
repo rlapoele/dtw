@@ -9,6 +9,42 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Toast visual prototype V2 — 17 November 2026
+
+The user found V1 broadly good and requested inverted status colors for every
+notification/toast type to improve separation from the neutral workbench. The
+[design record](../project/toast-feedback-v1.md) now identifies V2 at the same
+prototype URL. Success, information, error and warning use dark status surfaces
+with light text/icons; dismissal and action controls have adapted hover/focus colors.
+Scope, timing and behavior remain unchanged. Production source is untouched.
+
+The designer checked source and isolated contrast (all four pairs exceed 4.5:1),
+and the coordinator visually inspected all four treatments together in the browser.
+This focused revision used approximately two aggregate minutes, zero repairs; prior
+V1 checks remain stopped and their runtime limits are unchanged. No application tests
+or analyst review ran. V2 awaits user approval for analyst review, not implementation.
+Staging, committing and pushing remain with the user.
+
+## Toast visual prototype V1 — 17 November 2026
+
+The user accepted the transient-confirmation scope and authorized the visual
+prototype, explicitly requesting appropriate error status colors. The separate
+designer delivered [V1](../project/toast-feedback-v1.md): bottom-center green success
+and blue information toasts, persistent red errors and amber warnings, dismissal,
+paused five-second timers and proposed stack/modal/navigation behavior. The live
+prototype is available from its design record. Production code is unchanged.
+
+Coordinator browser checks confirmed rendering, expiry, dismissal/focus return and
+three visible toasts after a five-event burst. Isolated text/surface contrast checks
+passed 4.5:1 for all four pairs. Remaining runtime gaps and prototype-only behavior
+are explicit in the design record. Prototype verification stopped at approximately
+five of eight aggregate minutes; initial preparation remains eight minutes separately.
+Markdown links and whitespace checked; no application tests or analyst design review.
+
+Next: user assesses placement, colors and motion in V1 and identifies whether it is
+ready for analyst review. Final contract/design agreement and production authorization
+remain pending. Staging, committing and pushing remain with the user.
+
 ## Toast feedback proposal — 17 November 2026
 
 The user requested transient dismissible notifications with bottom fade/slide motion
