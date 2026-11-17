@@ -1,18 +1,20 @@
 # Toast feedback — design proposal V2
 
-**17 November 2026 · V2 visual prototype awaiting user review.** The user accepted
+**17 November 2026 · V2 approved for analyst review; review findings remain open.** The user accepted
 completed-action success/information toasts with persistent contextual errors and
 recovery, and authorized this prototype. They explicitly requested appropriate
 error status colors. This artifact is not production implementation, final design
-agreement or approval for analyst review. [Increment 016](../increments/016-transient-toast-feedback.md)
+agreement or implementation authorization. [Increment 016](../increments/016-transient-toast-feedback.md)
 owns the contract and approval record.
 
 ## Requested color revision — V2
 
 The user reviewed V1 as “pretty good” and requested inverted background/foreground
 for **all toast and notification types**, because pale surfaces blended into the
-neutral application. V2 applies this authorized prototype revision; it is awaiting
-review and does not establish analyst-review approval or implementation authority.
+neutral application. V2 applies this authorized prototype revision. The user subsequently approved it
+for analyst review, stating that visibility/readability improved but palette taste
+should be refined later. Colors remain provisional; no production implementation
+is authorized. The analyst findings are recorded in Increment 016.
 The URL and source directory remain unchanged; the visible review strip identifies V2.
 
 | Status | Dark surface | Light text/icon/focus | Border | Text contrast |

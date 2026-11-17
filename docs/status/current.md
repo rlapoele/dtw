@@ -9,6 +9,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Toast V2 analyst review — 17 November 2026
+
+The user approved V2 for analyst review, with aesthetic palette refinement deferred.
+The [Increment 016 review](../increments/016-transient-toast-feedback.md#v2-analyst-findings--17-november-2026)
+confirms the status scope and records three required findings: exiting-toast focus
+can stall removal; background outcomes can consume announcements before return;
+and short-viewport stack handling plus the persistent-color region inventory need
+clarification. The prototype is not ready to be treated as implementation evidence.
+
+The separate analyst performed source/contract review only, approximately four of
+five minutes, zero repairs, then stopped. No browser or application tests ran.
+Earlier budgets/campaigns stay stopped. Final contract/design agreement and production
+implementation authorization remain pending. Next is a concrete overflow proposal
+for user review plus corrections to the intended focus/announcement behavior.
+Staging, committing and pushing remain with the user.
+
 ## Toast visual prototype V2 — 17 November 2026
 
 The user found V1 broadly good and requested inverted status colors for every

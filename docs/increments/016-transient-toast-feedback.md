@@ -2,7 +2,7 @@
 
 - Contract status: Draft
 - Delivery status: Not started
-- Agreement: Initial scope/direction accepted and visual prototype authorized on 17 November 2026. Final design/contract agreement, analyst design review and production implementation authorization remain pending.
+- Agreement: Initial scope/direction accepted and visual prototype authorized on 17 November 2026. V2 was approved for analyst review on 17 November 2026; that source review is recorded below. Final design/contract agreement and production implementation authorization remain pending.
 - Prepared: 17 November 2026.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [workflow](../workflow/agent-roles.md), [current handoff](../status/current.md).
 
@@ -13,7 +13,7 @@ bottom-center dismissible toasts, using a dark status background, light foregrou
 and fade/slide motion. Free the workbench's persistent feedback area from routine
 confirmations while preserving messages needed to understand or recover current state.
 
-This document proposes a boundary for “similar notifications”; it does not treat
+The accepted scope distinguishes transient confirmations from contextual state; it does not treat
 all existing notice strings or status live regions as transient notifications.
 
 ## Scope and source inventory
@@ -52,12 +52,17 @@ campaigns remain stopped; this increment does not reopen them.
   The migrated confirmation no longer occupies a duplicate inline region.
 - AC-2: Success and information use distinct dark status surfaces with light readable
   text. Persistent error and warning feedback use the same inverted status-color
-  treatment requested after V1 review. Text and an accessible dismissal name convey meaning without relying on color.
+  treatment requested after V1 review. Exact colors remain provisional at the user’s request.
+  Apply this treatment to notification regions, not indiscriminately to destructive
+  controls, field labels or every use of an error text token. Text and an accessible dismissal name convey meaning without relying on color.
   Theme tokens, shared Icon usage and component ownership follow presentation conventions.
 - AC-3: A toast can be dismissed with pointer or keyboard. Proposed automatic duration
   is five seconds of unpaused display, paused while hovered, keyboard-focused or the
   document is hidden. Dismissal/expiry never performs a project command or loses focus
-  into a removed element. Exact keyboard access/return behavior belongs in the design.
+  into a removed element. F8 reaches an active close control; dismissal returns to
+  another active toast, then an available original trigger, then a stable workspace
+  landmark. Exiting, hidden, disabled or inert targets are excluded. No global Escape
+  handler competes with existing dialogs.
 - AC-4: Entry and exit use restrained fade/slide motion; reduced-motion preference
   removes positional animation. Arrival does not move focus or interrupt typing.
   Each outcome receives one polite announcement rather than duplicate inline/toast announcements.
@@ -69,32 +74,31 @@ campaigns remain stopped; this increment does not reopen them.
   validation, recovery, history semantics and dirty-editor helpers remain intact.
 - AC-7: Rapid outcomes, project transitions and modal overlap follow the identified
   agreed design without stale cross-project feedback, obscured required actions or
-  premature expiry of a notification that could not be read. Final queue/stack and
-  modal policies must be recorded before this criterion can be agreed.
+  premature expiry of a notification that could not be read. Proposed V2 policy:
+  at most three visible, oldest above newest, FIFO overflow without timer until
+  admission; a modal hides/pauses the stack and delays new announcements. Explicit
+  project/screen navigation clears prior-context events; automatic opening after
+  project creation carries only its own named confirmation. Long stacks must retain
+  reachable dismissal controls in short/narrow viewports; exact height handling
+  remains to be specified. These policies await final agreement.
 
 ## Decisions and open questions
 
-- V2 revision requested — 17 November 2026: the user found V1 broadly good but
-  requested inverted background/foreground colors for every toast and notification
-  type, to make feedback stand out against the light neutral workbench. This
-  supersedes V1's pale-surface direction; scope and timing are unchanged. Revised
-  prototype review remains pending, without analyst or implementation authorization.
-
-- Established request: bottom placement, manual dismissal, fade/slide, pale status
-  background, dark text and a common few-second duration. Horizontal centering was
-  suggested by the user ("probably center") and is the recommended proposal.
-- Accepted initial scope — 17 November 2026: completed success/information outcomes
-  become transient, while progress, errors and actionable safety feedback remain
-  contextual. The user authorized a visual prototype and explicitly requested
-  appropriate status colors for errors. Persistent error examples therefore need
-  a pale error surface/dark error foreground without weakening their recovery content.
-- Proposed timing: five seconds with interaction/document-visibility pauses. This is
-  a concrete default proposal, not an accessibility or universal-duration claim.
-- Before final agreement: identify the design's stacking/overflow, cross-project
-  lifetime, modal overlap, keyboard access and focus-return behavior. A maximum-three
-  upward stack is an initial designer suggestion; overflow behavior remains unresolved.
-- Technology remains unselected. Reusing the installed Base UI toast capability is a
-  candidate to assess within existing presentation constraints, not a new dependency decision.
+- Accepted scope: completed success/information outcomes become transient; progress,
+  errors and actionable safety/backup feedback remain contextual.
+- V2 supersedes the initial pale treatment with dark surfaces/light foregrounds for
+  toast and persistent notification types. On 17 November the user found V2 easier
+  to see/read and approved analyst review, while explicitly deferring color taste.
+  Current color pairs are provisional; no final palette acceptance is inferred.
+- Proposed timing and interaction: five seconds of unpaused display, modal and
+  hidden-document pauses, three visible/FIFO overflow, F8 and safe focus return,
+  and project-transition behavior as specified in AC-3/7 and the V2 design record.
+- Before final agreement: resolve the review findings below in the design handoff;
+  identify persistent notification regions receiving the inverted treatment and
+  specify a short-viewport height policy. These are bounded clarifications, not
+  authorization for a wider validation or destructive-control redesign.
+- Technology remains unselected. Reusing installed Base UI toast capability is a
+  candidate; do not copy the demonstration timer/focus engine as qualified production code.
 
 ## Verification approach and limits
 
@@ -122,30 +126,93 @@ remaining gaps, and require an explicitly authorized bounded follow-up to resume
 
 ## Design proposals and review
 
-- Designer: [interactive V1 and design record](../project/toast-feedback-v1.md) completed
-  under the user’s prototype authorization. Awaiting user review; no analyst review yet.
-  Proposed compact bottom-center treatment, 24px desktop bottom clearance and 16px
-  narrow clearance plus safe area, capped at 28rem with 16px side margins. Success
-  uses pale/dark green, information pale/dark blue, with text and an Outline icon.
-  A close button is named “Dismiss notification”. Proposed entry is an 8px upward
-  fade/slide over 180ms, exit 150ms, with reduced motion respected. These are starting
-  values for the prototype, not agreed tokens or contrast evidence.
-- Duration evidence: the installed Base UI toast type declarations and the
-  [official Toast reference](https://base-ui.com/react/components/toast), checked
-  17 November 2026, both document a 5000ms default. Five seconds is a proposal for
-  DTW; this does not establish suitability for every message.
-- Preparation totals: approximately eight aggregate minutes (analyst four, designer
-  three, coordinator one), source/self-review only, no harness repairs or runtime checks.
-- User review of revised V2 and approval for analyst review: pending. Initial scope and
-  permission to build the prototype were granted on 17 November 2026; these do not
-  constitute approval for analyst review or production implementation.
-- Analyst design review: not started; this draft is source/scope analysis only.
+- Identified proposal: [V2 design and prototype](../project/toast-feedback-v1.md),
+  retaining the original `increment-016-v1` paths. V1’s pale palette is historical.
+- User approval for analyst review, 17 November 2026: “This is better in sense that
+  it is easier to see and read. The colors are however not yet to my taste. We will
+  improve these later. This V2 looks ready for the analyst review.”
+- Analyst review: completed source/contract review below; no prototype or production
+  edits, runtime checks, tests or assistive-technology qualification.
 - Final contract/design agreement and implementation authorization: pending.
 - Material design revisions return to the user before renewed analyst review.
 
+### V2 analyst findings — 17 November 2026
+
+The proposed status boundary fits the accepted local-first workbench and preserves
+command/retention authority. Prototype fixtures do not call the host. Dark success,
+information, error and warning pairs match the requested inversion; palette aesthetics
+are explicitly deferred, not a blocking finding. Source supports the proposed FIFO,
+distinct IDs, hover/focus/modal/document-hidden timer pauses, modal suppression,
+reduced-motion CSS and responsive width. Source review does not prove live-region
+delivery, contrast in every state or real application navigation.
+
+1. **Required focus correction (AC-3/4).** In
+   [prototype main.tsx lines 11–14](../../prototypes/increment-016-v1/main.tsx),
+   dismissal and F8 select close controls without excluding exiting toasts. Dismissing
+   two notifications rapidly can return focus to the first notification during its
+   150ms exit. Focus then pauses its removal even though its animation becomes
+   invisible. Production must exclude exiting targets and keep exit cleanup independent
+   of hover/focus pauses. Connected-only trigger checks must also exclude hidden,
+   disabled or inert triggers. This is a prototype behavior mismatch, not a request
+   to change the intended safe-focus design.
+2. **Required announcement clarification (AC-4/7).** Line 13 suppresses new
+   announcements during a modal but not while the document is hidden, and marks
+   events announced immediately. An outcome arriving in a background document can
+   therefore consume its announcement before return. Require admission/announcement
+   only when the notification is actually eligible to be perceived, with visibility
+   restoration triggering pending announcements. Existing source is not evidence of
+   that behavior; real screen-reader delivery remains unverified.
+3. **Required boundary clarification (AC-1/2/7).** Three wrapped messages have no
+   maximum stack height or overflow handling in the prototype stylesheet; sufficiently
+   long messages can put older controls above a short viewport. Specify accessible
+   height handling before implementation, without dropping confirmations silently.
+   Also inventory the existing persistent error/warning notification regions covered
+   by the color inversion so shared destructive styles are not changed indiscriminately.
+
+The project-creation automatic-open exception is explicitly specified but deliberately
+not demonstrated by the fixture; keep it as an implementation acceptance check. The
+unbounded session FIFO is a documented proposal for ordinary command rates, not a
+performance guarantee. No new domain semantics, notification persistence or new Undo
+action is needed. Cosmetic palette refinement can remain deferred.
+
+**Recommended disposition:** refine the design handoff for these three findings,
+then seek final agreement to the identified contract/design and implementation
+scope. None is resolved merely by recording it here. A material new height or
+interaction design must be surfaced to the user under the normal workflow.
+
+### Designer follow-up proposal — pending user decision
+
+For the height finding, the designer recommends at most three visible toasts in
+no more than half the available viewport height, capped at 24rem. Admit fewer when
+necessary; queued events retain their unstarted timers. If one message cannot fit,
+show it alone with a scrollable message body, an always-visible close button and
+manual dismissal rather than automatic expiry. Existing bottom/side clearances stay.
+
+Tradeoff: unusually long messages on short screens require dismissal and delay queued
+confirmations, but remain readable without covering most of the workspace. This
+changes stacking and adds an exception to five-second expiry, so user agreement is
+needed before demonstrating it in a revised prototype. This is a proposal, not a
+resolved finding. The focus and announcement corrections preserve intended behavior;
+no user decision about their technical causes is needed. Designer follow-up reasoning
+took under one minute, with no file edits, tests or renewed qualification.
+
+### Review budget and evidence
+
+Earlier preparation: approximately eight aggregate minutes, stopped. V1 prototype
+checks: five of eight minutes, stopped. V2 revision/viewing: approximately two
+minutes, stopped. This separately authorized analyst source review used approximately
+four of five minutes, zero repairs, then stopped; no earlier campaign was reopened.
+The proposed 30-minute implementation allowance remains unused and unauthorized.
+
 ## Review baseline
 
-Source inspection baseline: `f5361d52bd6b8168f4982b6de2aec0630eb0b539`; working tree
-was clean at inspection. This draft is the only analyst edit. Capture a fresh baseline
-and preserve any intervening user work before implementation; reviewer snapshot is pending.
-Staging, committing and pushing remain with the user.
+V2 source review baseline: clean `9087738`, before this contract edit. SHA-256:
+
+- `prototypes/increment-016-v1/index.html`: `daa1f6b92a7486bff0bf17085d47df81a98131a762833bd8e236516cc4064eb1`
+- `prototypes/increment-016-v1/main.tsx`: `6496c6fc93301224f27289df1df405b3c5f4a10c45aabbc0e65ca4147203bb3d`
+- `prototypes/increment-016-v1/prototype.css`: `283d11e6aa2193bc109f32c7d0890a930bdb0d435c11e94ab21f26532ee79b36`
+- `docs/project/toast-feedback-v1.md`: `bc162f845bbc2fd21640156cb8cdb92ec57f172d066ee6130e134a6dcee8a88f`
+
+This analyst edited only this contract. Capture a fresh baseline before implementation
+and an exact stable snapshot for independent implementation review. Staging, committing
+and pushing remain with the user.
