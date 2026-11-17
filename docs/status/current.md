@@ -9,6 +9,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Toast feedback proposal — 17 November 2026
+
+The user requested transient dismissible notifications with bottom fade/slide motion
+and status colors. Separate analyst and designer preparation produced the
+[Increment 016 draft](../increments/016-transient-toast-feedback.md), still Draft /
+Not started. The initial recommendation is five-second bottom-center confirmations,
+with hover/focus/hidden-page pauses and pale success/information colors. Progress,
+errors and actionable recovery messages would stay contextual. That scope and the
+initial design direction await user feedback before prototyping; analyst design
+review and final implementation authorization have not occurred.
+
+Only preparation documents changed. Source review, Markdown links and whitespace
+were checked; no application tests or runtime acceptance. Approximately eight aggregate
+preparation minutes, zero repairs. Existing application work, acceptance and stopped
+campaigns are preserved. Staging, committing and pushing remain with the user.
+
 ## Panel slides and navigation footer — 17 November 2026
 
 The user requested smooth panel entrance/exit with slower synchronized chevrons,
