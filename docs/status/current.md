@@ -9,6 +9,33 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Focused browser feedback — 17 November 2026
+
+The user's three annotated corrections are implemented: group rename is a pencil
+button beside the group heading, with title and accessible name `Rename group`;
+Undo/Redo counts use the primary foreground/background pair; and the Projects
+button is replaced by `Projects / current project` in the header context.
+Projects is a native link. Ordinary activation reuses the existing guarded return;
+modified activation keeps native link behavior. Busy state prevents ordinary
+activation. No routing system, persistence policy or session owner changed.
+
+All typecheck scopes and 11 existing toolbar/layout/icon tests passed. In the
+in-app browser at approximately 951 × 865, the placement and colors were inspected;
+rename opened with the current name, and cancellation restored focus to the pencil.
+No project data was edited. Source review confirmed the existing draft guard and
+leave-project callback are reused. The Projects link was not activated in the user's
+session to preserve its Undo history. Busy/modified navigation, dirty-draft navigation,
+narrow wrapping and long names were not exercised in the browser. These limit the
+runtime evidence; they are not reported as passed or as new user acceptance.
+
+Self-review checked the four affected component owners and consumers, shared Icon
+use, semantic utilities and unchanged callback ownership. No independent review or
+new component/dependency was needed for these small fixes. Verification stopped after
+approximately five minutes, without a harness repair campaign. Earlier increment
+acceptance and verification stops remain unchanged. No decision or human check is
+required now; any further runtime check belongs to the agent if a concrete concern
+arises. Staging, committing and pushing remain with the user.
+
 ## Workflow communication update — 17 November 2026
 
 The requested v0.6.0 human-review guidance is applied locally in the

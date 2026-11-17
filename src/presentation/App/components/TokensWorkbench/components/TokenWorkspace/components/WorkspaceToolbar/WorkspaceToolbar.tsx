@@ -33,13 +33,20 @@ export function WorkspaceToolbar({
               Tokens
             </span>
           )}
-          <h1 className="my-1.5 small-title">
-            {allContent
-              ? "All content"
-              : group === null
-                ? "All tokens"
-                : (groupLabels.get(group) ?? "Missing group")}
-          </h1>
+          <div className="flex items-center gap-2">
+            <h1 className="my-1.5 small-title min-w-0 wrap-anywhere">
+              {allContent
+                ? "All content"
+                : group === null
+                  ? "All tokens"
+                  : (groupLabels.get(group) ?? "Missing group")}
+            </h1>
+            {group !== null && (
+              <Button size="icon" variant="ghost" title="Rename group" aria-label="Rename group" disabled={blocked} onClick={onRenameGroup}>
+                <Icon name="pencil" />
+              </Button>
+            )}
+          </div>
         </div>
         <div className="workspace-creation flex flex-nowrap gap-2">
           <Button size="panel" className="workspace-create" title="New group" aria-label="New group" disabled={blocked} onClick={onCreateGroup}>
@@ -75,11 +82,6 @@ export function WorkspaceToolbar({
               onChange={(e) => onQuery(e.target.value)}
             />
           </label>
-          {group !== null && (
-            <Button disabled={blocked} onClick={() => onRenameGroup()}>
-              Rename group
-            </Button>
-          )}
         </div>
       )}
     </>
