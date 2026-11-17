@@ -29,6 +29,7 @@ Treat status labels as meaningful: **established** directions and principles are
 - Setting up or editing the workflow does not authorize opening or implementing the next application increment.
 - Apply the [proportionate verification and stopping rules](docs/workflow/agent-roles.md#proportionate-verification) across all agents and handoffs. Carry consumed effort and stopping decisions forward; workflow upgrades grant no new verification allowance and do not remove agreed acceptance gates.
 - Leave staging, committing and pushing to the user. Preserve existing staged work and include a focused suggested commit message in the handoff.
+- Apply the [human-review and communication guidance](docs/workflow/agent-roles.md#human-review-and-communication) in chat, records and delegated handoffs. Chat must state the outcome, important unfinished work and next actions without requiring the user to open a report.
 
 ## Product and model invariants
 

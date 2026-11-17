@@ -12,4 +12,10 @@ Contract status is `Draft`, `Agreed`, or `Superseded`. Completion is recorded se
 
 Keep documents concise. Link to the authoritative product, model, architecture, and planning documents instead of creating competing definitions. If an increment needs to change those decisions, obtain agreement and update their owning documents. Status handoffs summarize and link to the increment; they do not replace it.
 
+Keep completion evidence in the existing task or increment record by default. Use a
+separate report only for a distinct purpose and link it without duplicating evidence.
+Omit unused template sections while retaining required agreements, evidence and limits.
+Follow the [human-review guidance](../workflow/agent-roles.md#human-review-and-communication):
+the chat handoff must explain the outcome, unfinished work and next actions on its own.
+
 Adding workflow documentation and templates does not itself open or authorize an increment. [Increment 001](001-in-memory-authoring-workflow.md) separately records the agreed and completed in-memory application workflow. The complete PWA user workflow, durable persistence boundary, first compatibility profile, and PWA/Electron acceptance criteria remain subject to the existing [open questions](../planning/open-questions.md#decision-priorities).

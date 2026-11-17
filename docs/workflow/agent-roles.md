@@ -27,6 +27,42 @@ For interface work, designer, developer and reviewer handoffs include the [prese
 
 The coordinator is the user's point of contact. Relay material questions and findings faithfully, distinguish proposals from agreements, and report unresolved disagreements. Do not silently dismiss findings or settle product questions. Subagents should not spawn additional agents unless the coordinator explicitly assigns that delegation.
 
+## Human review and communication
+
+Apply this guidance to proposals, progress updates that need a decision, and completion.
+It supplements the workflow above; it does not change design review order, acceptance
+criteria, existing authority or verification stopping decisions.
+
+- Lead with the outcome, important unfinished work and next actions. Chat must make
+  sense without opening reports; links supply supporting detail. Distinguish passing
+  checks, completed implementation and human acceptance.
+- For each needed human decision, ask a concrete question. Explain why it matters,
+  recommend an option with its main tradeoff, and name the work waiting for an answer.
+  Investigate technical facts autonomously within authorized scope. Pause only dependent
+  work and continue unaffected work. Do not request approval already given.
+- Request human checks only for useful judgment or missing evidence. Give the starting
+  place, actions, expected result and what the check establishes. Do not transfer the
+  whole acceptance checklist to the user or ask for repeated checks without a reason.
+  Keep agreed acceptance gates and the limits of manual evidence intact.
+- Explain failed or untested requirements in plain language: the behavior at risk,
+  its effect on agreed delivery, and the next action with its owner. Preserve the actual
+  status; separate optional improvements from required work.
+- Use familiar words, short sentences and one main point per paragraph or bullet in
+  chat and documents. Keep precise technical terms where useful. Describe behavior
+  alongside criterion IDs; an ID alone does not explain a result.
+- Keep completion evidence in the existing task or increment record by default.
+  Create another report only for a distinct purpose, link it rather than duplicating
+  evidence, and omit unused template sections. Preserve required evidence and limits.
+- If no human decision or check is needed, say so briefly at handoff. Do not invent
+  a request. For changed files, include a concise summary, checks and limits, and a
+  ready-to-copy focused commit message. Leave staging, committing and pushing to the
+  user, preserving staged work; include this boundary in assignments that may edit files.
+
+Subagents return the information needed for this handoff. The coordinator relays it
+in chat, including the suggested commit message; an internal return is not enough.
+Before sending, check that the user can understand the result, uncertainty and next
+action from the message alone.
+
 ## Proportionate verification
 
 Choose checks for the current product stage, intended workload and concrete risks.

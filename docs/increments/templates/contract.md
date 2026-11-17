@@ -1,6 +1,7 @@
 # Increment NNN: [short name]
 
 > Template only. Copy into an increment document when planning is requested.
+> Omit unused sections; retain required agreements, criteria and verification limits.
 
 - Contract status: Draft
 - Delivery status: Not started
@@ -24,6 +25,10 @@
 
 ## Decisions and open questions
 
+[For each needed human decision: concrete question, reason, recommended option,
+main tradeoff and work waiting for the answer. Investigate technical facts within
+authority; continue unaffected work and preserve approval already given.]
+
 - Established: [decision and source]
 - Proposed: [choice requiring agreement]
 - Resolve before implementation: [blocking question, or none]
@@ -32,6 +37,10 @@
 ## Verification approach
 
 [How each criterion will be demonstrated: behavior tests, browser observations, artifacts, or other appropriate evidence. Identify checks that cannot yet be performed.]
+
+[For useful human checks: starting place, actions, expected result and what the check
+establishes. For checks that cannot be performed: behavior at risk, effect on delivery
+and next action with its owner. Do not silently replace an agreed automated check.]
 
 Use the [shared verification rules](../../workflow/agent-roles.md#proportionate-verification).
 Record briefly in this section, not a separate budget document:

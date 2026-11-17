@@ -1,6 +1,6 @@
 # Current Project Status
 
-> Last updated: 16 November 2026
+> Last updated: 17 November 2026
 >
 > Phase: Increment 015 completed, independently reviewed and user-accepted; Increment 014
 > completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
@@ -8,6 +8,22 @@
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## Workflow communication update — 17 November 2026
+
+The requested v0.6.0 human-review guidance is applied locally in the
+[workflow](../workflow/agent-roles.md#human-review-and-communication) and
+[increment templates](../increments/README.md). Future chat handoffs explain outcomes,
+unfinished work and next actions directly. Questions include a recommendation and
+tradeoff; useful human checks include steps, expected results and purpose. Completion
+evidence stays in the existing task record by default.
+
+This documentation-only update preserves design review order, authority, acceptance
+criteria and all earlier verification limits and stopping decisions. No historical
+report or accepted increment is changed or reopened. No conflict needs a user decision
+and no human check is requested. Verification is limited to self-review of preservation,
+consistency, local links and whitespace; no application tests or independent review.
+Staging, committing and pushing remain with the user. No new increment is authorized.
 
 ## Increment 015 completed and user-accepted — 16 November 2026
 
