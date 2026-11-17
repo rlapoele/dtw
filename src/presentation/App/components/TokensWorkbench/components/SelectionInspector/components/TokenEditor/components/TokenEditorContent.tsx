@@ -110,7 +110,7 @@ export function TokenEditorContent({
           {targetUnavailable && (
             <p
               role="status"
-              className="error border-hairline border-error-border bg-error-surface rounded text-caption p-3 text-destructive"
+              className="notification notification-warning text-caption"
             >
               {targetUnavailable} Preserved input remains selectable. This
               action cannot recreate or retarget it.
@@ -201,7 +201,7 @@ export function TokenEditorContent({
                 <p
                   ref={errorRef}
                   tabIndex={-1}
-                  className="error border-hairline border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+                  className="notification notification-error text-caption mt-4"
                   id="editor-error"
                   role="alert"
                 >
@@ -243,7 +243,7 @@ export function TokenEditorContent({
               </p>
             </>
           ) : (
-            <p className="error border-hairline border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4">
+            <p className="notification notification-warning text-caption mt-4">
               Inspection only: this token is outside the unconditional
               primitive/semantic color revision flow. Its data is retained.
             </p>

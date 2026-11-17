@@ -249,7 +249,7 @@ export function AuthoringDialog({
           </fieldset>
           {readFailure && (
             <div
-              className="error border-hairline border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+              className="notification notification-warning text-caption mt-4"
               id="dialog-read-error"
               tabIndex={-1}
               role="status"
@@ -266,7 +266,7 @@ export function AuthoringDialog({
               ref={formError}
               tabIndex={-1}
               id="creation-error"
-              className="error border-hairline border-error-border bg-error-surface rounded text-caption p-3 text-destructive mt-4"
+              className="notification notification-error text-caption mt-4"
               role="alert"
             >
               {error}
@@ -275,7 +275,7 @@ export function AuthoringDialog({
             <span id="creation-error" />
           )}
           {submissionBlocked && (
-            <p role="status" className="text-caption mt-3">
+            <p role="status" className="notification notification-warning text-caption mt-3">
               {submissionBlocked}
             </p>
           )}

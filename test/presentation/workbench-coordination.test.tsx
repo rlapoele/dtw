@@ -1,5 +1,8 @@
 import { afterEach, expect, it, vi } from "vitest";
 
+const outcomes = vi.hoisted(() => ({ publish: vi.fn(), clear: vi.fn(), recover: vi.fn((_message: string, finish?: () => void) => finish?.()) }));
+vi.mock("@presentation/App/components/OutcomeFeedback/OutcomeFeedback", () => ({ useOutcomeFeedback: () => outcomes, OutcomeFeedback: ({children}: any) => children }));
+
 // A small deterministic hook runner: exercises the real owners with controlled host
 // promises. Browser smoke separately checks React mounts, focus and layout.
 const runtime = vi.hoisted(() => ({
@@ -96,6 +99,7 @@ afterEach(() => {
   runtime.cursor = 0;
   runtime.effects = [];
   vi.unstubAllGlobals();
+  outcomes.publish.mockClear(); outcomes.clear.mockClear(); outcomes.recover.mockClear();
 });
 
 it("publishes only the newest coherent revision when an older context read finishes later", async () => {
@@ -202,11 +206,14 @@ it("blocks duplicate issue, keeps unavailable readback distinct, and consumes co
   });
   owner = render(hook);
   expect(owner.retainedPending?.status).toBe("retained");
+  expect(outcomes.publish).not.toHaveBeenCalled();
+  expect(outcomes.recover).not.toHaveBeenCalled();
   expect(finish).not.toHaveBeenCalled();
   await owner.retryReading();
   owner = render(hook);
   await owner.retryReading();
   expect(finish).toHaveBeenCalledTimes(1);
+  expect(outcomes.recover).toHaveBeenCalledTimes(1);
   expect(
     vi
       .mocked(service.call)
@@ -247,6 +254,7 @@ it("checks the original unknown outcome and completes once after coherent readba
   owner = render(hook);
   await owner.check();
   expect(finish).toHaveBeenCalledTimes(1);
+  expect(outcomes.recover).toHaveBeenCalledTimes(1);
   expect(
     vi
       .mocked(service.call)
@@ -421,6 +429,7 @@ it("retries retained project reading without replaying creation", async () => {
   await owner.create();
   owner = render(hook);
   expect(owner.retainedId).not.toBeNull();
+  expect(outcomes.publish).not.toHaveBeenCalled();
   expect(owner.name).toBe("  Exact name  ");
   await owner.create();
   owner.retryCreated();
@@ -428,6 +437,7 @@ it("retries retained project reading without replaying creation", async () => {
   await Promise.resolve();
   owner = render(hook);
   expect(owner.project).toEqual(header);
+  expect(outcomes.publish).toHaveBeenCalledExactlyOnceWith("Project “Project” retained in this browser.");
   expect(owner.name).toBe("");
   expect(vi.mocked(service.call).mock.calls.filter(([op]) => op === "createProject")).toHaveLength(1);
 });
@@ -538,7 +548,7 @@ it("disposes App restore preview before the authorized completion opens through 
     if (operation === "stageBackup") return preview;
     if (operation === "openProject") return header;
   });
-  const app = () => App({ createHost: () => service });
+  const app = () => { const wrapper = App({ createHost: () => service }); return wrapper.props.children.type(wrapper.props.children.props); };
   let page = render(app);
   effects();
   await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
@@ -610,7 +620,7 @@ it("App retains storage status through create-and-open/Projects and separates re
     if (op === "openProject") return header;
     if (op === "stageBackup") return { project: header.project };
   });
-  const app = () => App({ createHost: () => service });
+  const app = () => { const wrapper = App({ createHost: () => service }); return wrapper.props.children.type(wrapper.props.children.props); };
   let page = render(app); effects(); for (let i=0;i<12;i++) await Promise.resolve();
   page = render(app); expect(page.props.storageStatus).toBe("unprotected"); expect(persist).not.toHaveBeenCalled();
   page.props.onNameChange("P"); page = render(app); page.props.onCreate();

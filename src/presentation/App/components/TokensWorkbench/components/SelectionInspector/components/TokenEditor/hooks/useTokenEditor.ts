@@ -1,3 +1,4 @@
+import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
 import type { SelectedToken } from "@application/retention/projections";
 import type { ProjectContext } from "@application/retention/projections";
 
@@ -54,6 +55,7 @@ export function useTokenEditor({
   readOnly?: boolean;
   targetUnavailable?: string;
 }) {
+  const outcomes = useOutcomeFeedback();
   const projected = "token" in i;
   const token = projected ? i.token : i.authored,
     value = projected
@@ -211,7 +213,6 @@ export function useTokenEditor({
     setSession(next);
     onDirty(false);
     setError("");
-    setNotice("Changes applied and retained.");
     setRestoreApplyFocus(true);
   }
   function cancel() {
@@ -221,7 +222,7 @@ export function useTokenEditor({
     setRecovery(undefined);
     onDirty(false);
     setError("");
-    setNotice("Both drafts discarded. Applied value unchanged.");
+    outcomes.publish("Both drafts discarded. Applied value unchanged.", "information");
     modeRef.current?.focus();
   }
   return {

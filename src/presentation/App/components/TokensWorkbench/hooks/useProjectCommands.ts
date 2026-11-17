@@ -1,3 +1,4 @@
+import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
 import type { HistoryDirection, HistoryState } from "@application/retention/history";
 import { useEffect, useReducer, useRef, useState } from "react";
 import type { MutableRefObject } from "react";
@@ -40,7 +41,9 @@ export function useProjectCommands(
   setError: (message: string) => void,
   setNotice: (message: string) => void,
 ) {
+  const outcomes = useOutcomeFeedback();
   const [history, setHistory] = useState<HistoryState>({undoCount: 0, redoCount: 0});
+  const completedRecoveries = useRef(new Set<string>());
   const historyRead = useRef(0);
   async function refreshHistory() {
     const generation = ++historyRead.current;
@@ -61,7 +64,7 @@ export function useProjectCommands(
   const setRetainedPending = (value: CommandState["retainedPending"]) =>
     dispatch({ type: "retained", value });
   const activeMutation = useRef(false),
-    completion = useRef<(() => void) | undefined>(undefined);
+    completion = useRef<((clarification?: string) => void) | undefined>(undefined);
   async function execute(command: AuthoringCommand | {direction: HistoryDirection; stepId: string}): Promise<PublicAcceptance> {
     if (
       lifecycleBlocked ||
@@ -100,7 +103,7 @@ export function useProjectCommands(
           );
         }
       } else if (result.status === "unchanged") {
-        setNotice("No authored change. Undo/Redo history is unchanged.");
+        outcomes.publish("No authored change. Undo/Redo history is unchanged.", "information");
       } else {
         completion.current = undefined;
         setError(result.reason);
@@ -132,10 +135,11 @@ export function useProjectCommands(
         const finish = completion.current;
         completion.current = undefined;
         setRetainedPending(undefined);
-        finish?.();
-        setNotice(
-          "Retained applied state recovered. The original write was not repeated.",
-        );
+        const receipt = retainedPending?.receipt.commandId;
+        if (finish || (receipt && !completedRecoveries.current.has(receipt))) {
+          outcomes.recover("Retained applied state recovered. The original write was not repeated.", finish);
+          if (receipt) completedRecoveries.current.add(receipt);
+        }
       }
     } finally {
       activeMutation.current = false;
@@ -167,8 +171,10 @@ export function useProjectCommands(
           } else {
             const finish = completion.current;
             completion.current = undefined;
-            finish?.();
-            setNotice("Original command retained and completed once.");
+            if (!completedRecoveries.current.has(result.receipt.commandId)) {
+              completedRecoveries.current.add(result.receipt.commandId);
+              outcomes.recover("Original command retained and completed once.", finish);
+            }
           }
         } else {
           completion.current = undefined;

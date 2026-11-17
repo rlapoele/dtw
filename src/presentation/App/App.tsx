@@ -1,3 +1,4 @@
+import { OutcomeFeedback } from "./components/OutcomeFeedback/OutcomeFeedback";
 import { readBackupFile } from "@hosts/browser/backup-file";
 import { useEffect, useRef, useState } from "react";
 import type { RestorePreview } from "@hosts/browser/protocol";
@@ -19,7 +20,7 @@ import { Button } from "@presentation/ui/button";
 import type { ProjectsView } from "@presentation/App/components/ProjectsWorkbench/hooks/useProjectsLayout";
 import { ProjectsWorkbench } from "@presentation/App/components/ProjectsWorkbench/ProjectsWorkbench";
 
-export function App({
+function AppContent({
   createHost = () => new WorkerWorkbenchHost(),
 }: { createHost?: () => WorkbenchHost } = {}) {
   const storage = useStoragePersistence();
@@ -31,7 +32,7 @@ export function App({
   const [restoreOpen, setRestoreOpen] = useState<string>();
   const [projectsView, setProjectsView] = useState<ProjectsView>({ scroll: 0, surface: "browse" });
   const {
-    download, backupFeedback,
+    download, backupFeedback, backupFeedbackKind,
     entries,
     project,
     unknown,
@@ -83,7 +84,7 @@ export function App({
   return (
     <ProjectsWorkbench
       storageStatus={storage.status} onRetryStorage={storage.retry}
-      view={projectsView} onView={setProjectsView} onDownload={entry => void download(entry)} backupFeedback={backupFeedback} hasPreview={!!preview}
+      view={projectsView} onView={setProjectsView} onDownload={entry => void download(entry)} backupFeedback={backupFeedback} backupFeedbackKind={backupFeedbackKind} hasPreview={!!preview}
       entries={entries}
       error={error}
       notice={notice}
@@ -156,4 +157,8 @@ export function App({
       )}
     />
   );
+}
+
+export function App(props: { createHost?: () => WorkbenchHost } = {}) {
+  return <OutcomeFeedback><AppContent {...props} /></OutcomeFeedback>;
 }

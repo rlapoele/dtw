@@ -1,3 +1,4 @@
+import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
 import { useHistoryInteraction } from "./hooks/useHistoryInteraction";
 import { TokensStatusBar } from "@presentation/App/components/TokensWorkbench/components/TokensStatusBar/TokensStatusBar";
 import { NamespaceNavigationPane, NamespaceNavigationDrawer } from "@presentation/App/components/TokensWorkbench/components/NamespaceNavigation/NamespaceNavigation";
@@ -41,6 +42,7 @@ export function TokensWorkbench({
   onProjects(reset?: boolean): void;
   onProject(id: string): void;
 }) {
+  const outcomes = useOutcomeFeedback();
   const [selection, setSelection] =
     useState<
       import("@presentation/App/components/TokensWorkbench/hooks/useProjectReadback").Selection
@@ -314,14 +316,14 @@ export function TokensWorkbench({
       />
       </>}
       beforeBody={<FeedbackRegion>
-        {!header.writable && <p className="py-2">Inspection only. Another tab has editing access. <Button disabled={busy} onClick={() => void refresh()}>Check access</Button></p>}
-        {lifecycleBlocked && !busy && !unknown && <section role="status" className="py-2"><p>Editing paused. Recheck current retained state before applying preserved input.</p><Button onClick={() => void host.call("resume", header.project.id).then(next => refresh(next)).then(() => setLifecycleBlocked(false)).catch(e => setReadFailure(String(e)))}>Check access and retained state</Button></section>}
-        {readFailure && <section role="alert" className="py-2 text-destructive"><h2>Project read unavailable</h2><p>{readFailure}</p><p>Last coherent data is stale. Inputs are preserved; writes are blocked.</p><Button disabled={busy} onClick={() => void retryReading()}>Retry reading project</Button></section>}
+        {!header.writable && <p className="notification notification-warning my-2">Inspection only. Another tab has editing access. <Button disabled={busy} onClick={() => void refresh()}>Check access</Button></p>}
+        {lifecycleBlocked && !busy && !unknown && <section role="status" className="notification notification-warning my-2"><p>Editing paused. Recheck current retained state before applying preserved input.</p><Button onClick={() => void host.call("resume", header.project.id).then(next => refresh(next)).then(() => setLifecycleBlocked(false)).catch(e => setReadFailure(String(e)))}>Check access and retained state</Button></section>}
+        {readFailure && <section role="alert" className="notification notification-error my-2"><h2>Project read unavailable</h2><p>{readFailure}</p><p>Last coherent data is stale. Inputs are preserved; writes are blocked.</p><Button disabled={busy} onClick={() => void retryReading()}>Retry reading project</Button></section>}
         {recovery}
         {historyRetry && <Button onClick={() => requestHistory(historyRetry)}>Retry {historyRetry === "undo" ? "Undo" : "Redo"}</Button>}
-        {history.notice && <p role="status" className="py-2">{history.notice}</p>}
-        {error && !dialog && <p role="alert" className="py-2 text-destructive">{error}</p>}
-        {notice && <p role="status" className="py-2">{notice}</p>}
+        {history.notice && <p role="status" className="notification notification-information my-2">{history.notice}</p>}
+        {error && !dialog && <p role="alert" className={`notification ${unknown || retainedPending ? "notification-warning" : "notification-error"} my-2`}>{error}</p>}
+        {notice && <p role="status" className="notification notification-information my-2">{notice}</p>}
       </FeedbackRegion>}
       navigation={
           <NamespaceNavigationPane
@@ -408,9 +410,10 @@ export function TokensWorkbench({
               revision={header.revision}
               requestSource={() => source("token", selection.id)}
               onApply={async (value) => {
-                completion.current = () => {
+                completion.current = (clarification) => {
                   setEditorVersion((v) => v + 1);
                   setDirty(false);
+                  outcomes.publish(`Changes applied and retained.${clarification ? ` ${clarification}` : ""}`);
                 };
                 const result = await accept({
                   operation: "reviseColorToken",
@@ -448,6 +451,7 @@ export function TokensWorkbench({
                     },
                   };
                 completion.current = undefined;
+                if (result.status === "retained") outcomes.publish("Changes applied and retained.");
                 return {
                   status: "ok",
                   value: {

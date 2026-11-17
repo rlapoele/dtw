@@ -14,7 +14,7 @@ import { ProjectRecovery } from "@presentation/App/components/ProjectsWorkbench/
 export function ProjectsWorkbench({
   entries,
   storageStatus, onRetryStorage,
-  view, onView, onDownload, backupFeedback, hasPreview,
+  view, onView, onDownload, backupFeedback, backupFeedbackKind = "information", hasPreview,
   error,
   notice,
   name,
@@ -41,6 +41,7 @@ export function ProjectsWorkbench({
   onView: (next: ProjectsView) => void;
   onDownload: (entry: Extract<CatalogueEntry, { status: "supported" }>) => void;
   backupFeedback: string;
+  backupFeedbackKind?: "information" | "error";
   hasPreview: boolean;
   error: string;
   notice: string;
@@ -140,19 +141,19 @@ export function ProjectsWorkbench({
           onRetryReading={onRetryReading}
           onReviewLeaving={onReviewLeaving}
         />
-        <p id="project-error" role="alert" className={error ? "text-destructive py-2" : "sr-only"}>
-          {error}
-        </p>
-        <p role="status" className={notice ? "text-caption py-2" : "sr-only"}>
+        <div className={error ? `notification ${unknown || retained ? "notification-warning" : "notification-error"} my-2` : "sr-only"}>
+          <p id="project-error" role="alert">{error}</p>
+          {error && entries === undefined && (
+            <Button disabled={pending || hasPreview} onClick={onRetryCatalogue}>
+              Retry reading projects
+            </Button>
+          )}
+        </div>
+        <p role="status" className={notice ? "notification notification-information text-caption my-2" : "sr-only"}>
           {notice}
         </p>
-        {error && entries === undefined && (
-          <Button disabled={pending || hasPreview} onClick={onRetryCatalogue}>
-            Retry reading projects
-          </Button>
-        )}
       </section>
-      {backupFeedback && <p role="status" className="shrink-0 border-t-hairline border-border p-3 text-caption wrap-anywhere">{backupFeedback}</p>}
+      {backupFeedback && <p role="status" className={`notification notification-${backupFeedbackKind} shrink-0 text-caption wrap-anywhere`}>{backupFeedback}</p>}
       </>}
       overlays={<>{departureDialog}{restoreDialog}</>}
     />

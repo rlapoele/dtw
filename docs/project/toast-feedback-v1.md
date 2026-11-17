@@ -1,10 +1,9 @@
 # Toast feedback — design proposal V4
 
-**17 November 2026 · V4 user-reviewed and analyst-rechecked; ready for final agreement.** The user accepted
+**17 November 2026 · V4 agreed and implementation authorized; palette refinement deferred.** The user accepted
 completed-action success/information toasts with persistent contextual errors and
 recovery, and authorized this prototype. They explicitly requested appropriate
-error status colors. This artifact is not production implementation, final design
-agreement or implementation authorization. [Increment 016](../increments/016-transient-toast-feedback.md)
+error status colors. This artifact defines the agreed design; it is not production implementation. [Increment 016](../increments/016-transient-toast-feedback.md)
 owns the contract and approval record.
 
 ## Requested queue cue and alignment refinement — V4
@@ -37,8 +36,9 @@ for the increased padding.
 V3 focus, announcement, manual-dismissal and queue behavior otherwise remain in
 place. V2 dark colors remain provisional. The user subsequently reported being
 happy with V4 and authorized the analyst recheck. That bounded source review found
-no remaining actionable design findings, as recorded in Increment 016. Final
-contract/design agreement and production implementation authorization remain pending.
+no remaining actionable design findings, as recorded in Increment 016. The user subsequently agreed Increment 016 and V4 and authorized production
+implementation followed by review with a 15-minute aggregate verification ceiling
+and at most two harness repairs.
 Designer source/whitespace review took approximately two minutes, zero repairs;
 no browser checks or application tests. Coordinator viewing is separately bounded
 to two minutes. Earlier verification campaigns remain stopped.

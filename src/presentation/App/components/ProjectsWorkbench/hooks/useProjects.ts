@@ -1,3 +1,4 @@
+import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
 import { downloadProjectBackup, readBackupFile } from "@hosts/browser/backup-file";
 import { UnknownWriteError } from "@hosts/browser/worker-client";
 
@@ -16,6 +17,7 @@ export function useProjects(
   hasPreview: boolean,
   onRetained?: () => void | Promise<void>,
 ) {
+  const outcomes = useOutcomeFeedback();
   const [entries, setEntries] = useState<readonly CatalogueEntry[]>();
   const [project, setProject] = useState<ProjectHeader>();
   const [unknown, setUnknown] =
@@ -30,6 +32,7 @@ export function useProjects(
   }
   const activeMutation = useRef(false);
   const commandPending = useRef(false);
+  const [backupFeedbackKind, setBackupFeedbackKind] = useState<"information" | "error">("information");
   const [backupFeedback, setBackupFeedback] = useState("");
   const [name, setName] = useState(""),
     [error, setError] = useState(""),
@@ -69,7 +72,8 @@ export function useProjects(
       setProject(next);
       setName("");
       setRetainedId(null);
-      setNotice("Project retained in this browser.");
+      outcomes.clear();
+      outcomes.publish(`Project “${next.project.name}” retained in this browser.`);
     } catch (e) {
       setError(
         "Project retained, but reading is unavailable. " +
@@ -112,6 +116,7 @@ export function useProjects(
       if (!entries?.some(entry => entry.status === "supported" && entry.id === id)) {
         try { setEntries(await host.current!.call("catalogue", null)); } catch { /* Preserve successful open. */ }
       }
+      outcomes.clear();
       setProject(next);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Project unavailable");
@@ -190,12 +195,14 @@ export function useProjects(
     const { id, revision } = entry;
     commandPending.current = true;
     setPending(true);
+    setBackupFeedbackKind("information");
     setBackupFeedback(`Preparing backup for ${JSON.stringify(id)}…`);
     try {
       await downloadProjectBackup(ensureHost(), id, revision);
       setBackupFeedback(`Download initiated for ${JSON.stringify(id)} at revision ${revision}. Confirm that you have saved an independent copy. Drafts are excluded.`);
     } catch (error) {
       const reason = error instanceof Error ? error.message : "Backup unavailable";
+      setBackupFeedbackKind("error");
       setBackupFeedback(`Backup for ${JSON.stringify(id)} failed: ${reason}. Refreshing catalogue facts; review them before a fresh explicit Download backup.`);
       await catalogue();
     } finally {
@@ -204,11 +211,13 @@ export function useProjects(
     }
   }
   function returnToProjects(reset?: boolean) {
+    outcomes.clear();
     if (reset) resetHost();
     setProject(undefined);
     void catalogue();
   }
   function leaveUnknown() {
+    outcomes.clear();
     host.current?.fence();
     resetHost();
     setUnknown(undefined);
@@ -226,6 +235,7 @@ export function useProjects(
     entries,
     download,
     backupFeedback,
+    backupFeedbackKind,
     project,
     unknown,
     retainedId,

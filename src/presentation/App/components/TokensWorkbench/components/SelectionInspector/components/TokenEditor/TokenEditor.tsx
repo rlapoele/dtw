@@ -18,7 +18,7 @@ export function TokenEditor({
         <InspectorToggle expanded={inspectorExpanded} onToggle={onToggle} />
       </div>
       {editor.readUnavailable && inspectorExpanded && (
-        <p role="status" className="text-caption text-muted-foreground wrap-anywhere p-4 pl-16 touch:pl-4">
+        <p role="status" className="notification notification-warning text-caption wrap-anywhere m-4">
           {readFailure || props.targetUnavailable || "Inspection unavailable"}
         </p>
       )}

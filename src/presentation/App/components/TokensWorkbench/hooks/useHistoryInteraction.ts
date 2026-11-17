@@ -1,3 +1,4 @@
+import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
 import { useEffect, useRef, useState } from "react";
 import type { Dispatch, SetStateAction, RefObject, MutableRefObject } from "react";
 import type { HistoryDirection, HistoryState } from "@application/retention/history";
@@ -11,7 +12,7 @@ type Options = {
   history: HistoryState; traverse(direction: HistoryDirection, stepId: string): Promise<PublicAcceptance>;
   blocked: boolean; unknown: boolean; retainedPending: boolean; readFailure: string;
   header: ProjectHeader; dialog: boolean; pending: boolean; request(action: () => void): void;
-  current: MutableRefObject<ProjectHeader>; completion: MutableRefObject<(() => void) | undefined>;
+  current: MutableRefObject<ProjectHeader>; completion: MutableRefObject<((clarification?: string) => void) | undefined>;
   setDirty: Setter<boolean>; setEditorVersion: Setter<number>; setNotice: Setter<string>; setError: Setter<string>;
   panel: RefObject<HTMLElement | null>; narrow: boolean; back(moveFocus?: boolean): void;
   context: ProjectContext | undefined; selection: Selection; setSelection: Setter<Selection>; view: TokenBrowseView; setView: Setter<TokenBrowseView>;
@@ -19,10 +20,12 @@ type Options = {
 /** Workbench delivery coordination only: captured intent, native shortcut ownership,
  * surviving-ID browse/selection and focus. Commands stay in useProjectCommands. */
 export function useHistoryInteraction({history, traverse, blocked, unknown, retainedPending, readFailure, header, dialog, pending, request, current, completion, setDirty, setEditorVersion, setNotice, setError, panel, narrow, back, context, selection, setSelection, view, setView}: Options) {
+  const outcomes = useOutcomeFeedback();
   const [historyIntent, setHistoryIntent] = useState<{direction: HistoryDirection; label: string}>();
   const historyReturn = useRef<HTMLElement | null>(null);
   const [retry, setRetry] = useState<{direction: HistoryDirection; id: string; revision: string}>();
   const [historyRefresh, setHistoryRefresh] = useState(0);
+  const outcomeMessage = useRef("");
   const processedRefresh = useRef(0);
   const pendingFocus = useRef<{invoked: HTMLElement | null; direction: HistoryDirection} | undefined>(undefined);
   const historyReason = blocked ? unknown ? "Result unknown. Check retained result before Undo/Redo." : retainedPending || readFailure ? "Current project read unavailable. Retry reading project." : !header.writable ? "Paused. Another tab has write access." : "Paused until access and retained state are checked." : dialog ? "Close the current form before Undo/Redo." : undefined;
@@ -39,9 +42,10 @@ export function useHistoryInteraction({history, traverse, blocked, unknown, reta
       if (current.current.revision !== baseline.revision || current.current.incarnation !== baseline.incarnation) {
         setError("Original history action is no longer available. No change was retained."); return;
       }
-      const finish = () => {
+      const finish = (clarification?: string) => {
         setDirty(false); setEditorVersion(v => v + 1); setHistoryRefresh(v => v + 1);
-        setNotice(`${direction === "undo" ? "Undid" : "Redid"} ${step.label}.`);
+        setNotice("");
+        outcomeMessage.current = `${direction === "undo" ? "Undid" : "Redid"} ${step.label}.${clarification ? ` ${clarification}` : ""}`;
         pendingFocus.current = {invoked, direction};
       };
       setRetry(undefined);
@@ -73,8 +77,10 @@ export function useHistoryInteraction({history, traverse, blocked, unknown, reta
     if (selection && !(selection.kind === "token" ? context.tokens : context.groups).some(item => item.authored.id === selection.id)) {
       setSelection(null); setDirty(false); setEditorVersion(v => v + 1);
       if (narrow) back(false);
-      setNotice(previous => `${previous} Selected ${selection.kind} was removed.`);
+      outcomeMessage.current += ` Selected ${selection.kind} was removed.`;
     }
+    outcomes.publish(outcomeMessage.current);
+    outcomeMessage.current = "";
     if (view.kind === "group" && !context.groups.some(g => g.authored.id === view.id)) {
       // Follow the previous scope's authored parent chain, never a matching name.
       let parent = previousGroups.current.find(g => g.id === view.id)?.parentGroupId ?? null;

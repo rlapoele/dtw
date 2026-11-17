@@ -2,12 +2,35 @@
 
 > Last updated: 17 November 2026
 >
-> Phase: Increment 015 completed, independently reviewed and user-accepted; Increment 014
+> Phase: Increment 016 implemented and independently reviewed; runtime acceptance gaps remain.
+> Increment 015 completed, independently reviewed and user-accepted; Increment 014
 > completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## Increment 016 implementation handoff — 17 November 2026
+
+The user agreed Increment 016 and V4 and authorized implementation followed by review.
+The implementation now provides transient outcome toasts and scoped dark status
+notifications. Independent review found no actionable production-code defect. Typecheck,
+39 developer tests and 32 reviewer tests passed. Narrow no-storage browser checks covered
+long-message bounds, reachable dismissal and modal suppression. Colors remain provisional.
+
+[The increment record](../increments/016-transient-toast-feedback.md#implementation-and-independent-review--17-november-2026)
+owns evidence and limits. Delivery remains partially completed: full production flows,
+hidden-tab timing, reduced-motion rendering and actual screen-reader delivery are not
+fully tested. Approximately 14 of 15 aggregate minutes and one of two repairs were used;
+checks stopped. Earlier campaigns remain stopped. No design decision is pending. The
+next useful user check is production visual/integration acceptance; any further agent
+verification needs a separately authorized bounded follow-up. Staging, committing and
+pushing remain with the user.
+
+## Historical handoffs
+
+The following entries describe their state at the time. Their pending-approval wording
+and proposed budgets are superseded by the current handoff above.
 
 ## Toast V4 analyst recheck — 17 November 2026
 

@@ -23,7 +23,7 @@ export function ProjectRecovery({
         activeMutation &&
         !unknown &&
         !retained && (
-          <section role="status" className="text-caption mt-4">
+          <section role="status" className="notification notification-information text-caption mt-4">
             <p>Retention or preparation pending. Inputs are preserved.</p>
             <Button onClick={onCheck}>
               Check retained result
@@ -33,7 +33,7 @@ export function ProjectRecovery({
       {retained && (
         <section
           role="status"
-          className="text-caption border-hairline border-border rounded p-3 mt-5"
+          className="notification notification-warning text-caption mt-5"
         >
           <p>
             The project is retained. Entered input is preserved while reading
@@ -47,7 +47,7 @@ export function ProjectRecovery({
       {unknown && (
         <section
           role="status"
-          className="text-caption border-hairline border-error-border rounded p-3 mt-5"
+          className="notification notification-warning text-caption mt-5"
         >
           <p>
             Retained result unknown. Entered name is preserved; do not repeat

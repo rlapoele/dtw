@@ -154,7 +154,7 @@ export function RestoreDialog({
               </section>
             )}
             {replacement && preview.local && (
-              <section className="border-hairline border-error-border bg-error-surface rounded p-3 text-caption">
+              <section className="notification notification-warning text-caption">
                 <p>
                   The complete selected backup will replace this local project's
                   applied state. Local-only authored content will be removed.
@@ -186,13 +186,13 @@ export function RestoreDialog({
               </section>
             )}
             {busy && activeMutation.current && !unknown && (
-              <section role="status" className="text-caption mt-4">
+              <section role="status" className="notification notification-information text-caption mt-4">
                 <p>Retention pending. Duplicate restore is blocked.</p>
                 <Button onClick={checkPending}>Check retained result</Button>
               </section>
             )}
             {retained && (
-              <section role="status" className="text-caption mt-4">
+              <section role="status" className="notification notification-warning text-caption mt-4">
                 <p>
                   The original restore is retained. It will not be repeated.
                 </p>
@@ -205,7 +205,7 @@ export function RestoreDialog({
               </section>
             )}
             {stageLost && (
-              <section role="status" className="text-caption mt-4">
+              <section role="status" className="notification notification-warning text-caption mt-4">
                 <p>
                   Selected file input is preserved; staging needs a fresh
                   explicit review.
@@ -216,7 +216,7 @@ export function RestoreDialog({
               </section>
             )}
             {unknown && (
-              <section role="status" className="text-caption mt-4">
+              <section role="status" className="notification notification-warning text-caption mt-4">
                 <p>Retained result unknown. Do not repeat restore.</p>
                 <Button disabled={busy} onClick={checkUnknown}>
                   Check retained result
@@ -227,11 +227,11 @@ export function RestoreDialog({
               </section>
             )}
             {error && (
-              <p role="alert" className="text-caption text-destructive mt-4">
+              <p role="alert" className={`notification ${unknown || retained || stageLost ? "notification-warning" : "notification-error"} text-caption mt-4`}>
                 {error}
               </p>
             )}
-            <p role="status" className="text-caption mt-3">
+            <p role="status" className={notice ? "notification notification-information text-caption mt-3" : "sr-only"}>
               {notice}
             </p>
             <div className="dialog-actions flex justify-end gap-3 mt-6">

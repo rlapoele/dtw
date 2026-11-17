@@ -292,3 +292,41 @@ input[type="file"]::file-selector-button { min-height:2.25rem; }
 
 /* Workspace heading keeps its creation actions together alongside a shrinkable title. */
 .panel-header { grid-template-columns:minmax(0,1fr) auto; }
+
+/* Increment 016 notification roles. Provisional palette; field/action colors stay separate. */
+:root {
+  --notification-success: #166534; --notification-success-foreground: #f0fdf4; --notification-success-border: #15803d;
+  --notification-information: #1e40af; --notification-information-foreground: #eff6ff; --notification-information-border: #1d4ed8;
+  --notification-error: #b91c1c; --notification-error-foreground: #fef2f2; --notification-error-border: #dc2626;
+  --notification-warning: #92400e; --notification-warning-foreground: #fffbeb; --notification-warning-border: #b45309;
+}
+@theme inline {
+  --color-notification-success: var(--notification-success); --color-notification-success-foreground: var(--notification-success-foreground); --color-notification-success-border: var(--notification-success-border);
+  --color-notification-information: var(--notification-information); --color-notification-information-foreground: var(--notification-information-foreground); --color-notification-information-border: var(--notification-information-border);
+  --color-notification-error: var(--notification-error); --color-notification-error-foreground: var(--notification-error-foreground); --color-notification-error-border: var(--notification-error-border);
+  --color-notification-warning: var(--notification-warning); --color-notification-warning-foreground: var(--notification-warning-foreground); --color-notification-warning-border: var(--notification-warning-border);
+}
+/* Notification descendants share light control/focus treatment; no global destructive override. */
+.notification { border: .0625rem solid; border-radius: var(--radius); padding: .75rem; }
+.notification-success { background:var(--notification-success); color:var(--notification-success-foreground); border-color:var(--notification-success-border); }
+.notification-information { background:var(--notification-information); color:var(--notification-information-foreground); border-color:var(--notification-information-border); }
+.notification-error { background:var(--notification-error); color:var(--notification-error-foreground); border-color:var(--notification-error-border); }
+.notification-warning { background:var(--notification-warning); color:var(--notification-warning-foreground); border-color:var(--notification-warning-border); }
+.notification button { color:inherit; background:transparent; border-color:currentColor; }
+.notification button:hover { background:#ffffff1a; }
+.notification :focus-visible { outline:.125rem solid currentColor; outline-offset:.125rem; }
+/* Viewport/safe-area and measured admission geometry cannot be expressed by static utilities.
+   Measurement clones are inert; only fully admitted cards own controls or announcements. */
+.toast-stack, .toast-measure { width:min(28rem, calc(100vw - 2rem)); }
+.toast-stack { position:fixed; z-index:35; bottom:calc(1.5rem + env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); display:flex; flex-direction:column; gap:.5rem; pointer-events:none; }
+.toast-stack[hidden] { display:none; }
+.toast-measure { position:fixed; visibility:hidden; pointer-events:none; top:0; left:0; }
+.toast-card { display:grid; grid-template-columns:1rem minmax(0,1fr) 2.25rem; align-items:start; gap:.625rem; padding:.875rem .625rem .875rem .875rem; border:.0625rem solid; border-radius:var(--radius); font-size:var(--text-body); line-height:1.5; }
+.toast-stack .toast-card { pointer-events:auto; box-shadow:var(--shadow-sm); animation:toast-enter 180ms ease-out; }
+.toast-card[data-exiting] { animation:toast-exit 150ms ease-in forwards; pointer-events:none; }
+.toast-preview { height:1.5rem; overflow:hidden; display:flex; gap:.625rem; padding:.25rem .875rem; mask-image:linear-gradient(#000, transparent); }
+.toast-preview span { white-space:nowrap; overflow:hidden; }
+@keyframes toast-enter { from { opacity:0; transform:translateY(.5rem); } to { opacity:1; transform:translateY(0); } }
+@keyframes toast-exit { from { opacity:1; transform:translateY(0); } to { opacity:0; transform:translateY(.5rem); } }
+@media (max-width:540px) { .toast-stack { bottom:calc(1rem + env(safe-area-inset-bottom)); } }
+@media (prefers-reduced-motion:reduce) { .toast-stack .toast-card { animation:none; } .toast-card[data-exiting] { opacity:0; } }

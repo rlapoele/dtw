@@ -1,3 +1,4 @@
+import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
 import { namingPreview } from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/helpers/naming-preview";
 import { useEffect, useReducer } from "react";
 import type { MutableRefObject } from "react";
@@ -61,11 +62,12 @@ export function useAuthoringForm(
   unknown: unknown,
   readFailure: string,
   accept: (command: AuthoringCommand) => Promise<PublicAcceptance>,
-  completion: MutableRefObject<(() => void) | undefined>,
+  completion: MutableRefObject<((clarification?: string) => void) | undefined>,
   setError: (message: string) => void,
   setNotice: (message: string) => void,
   onCreated: (kind: NonNullable<CreationState["dialog"]>, id: string) => void,
 ) {
+  const outcomes = useOutcomeFeedback();
   const [state, dispatch] = useReducer(creationReducer, emptyCreation);
   const {
     dialog,
@@ -181,24 +183,25 @@ export function useAuthoringForm(
               },
             };
     const kind = dialog;
-    completion.current = () => {
+    let unchanged = false;
+    completion.current = (clarification) => {
       setDialog(null);
       setFormDirty(false);
       setDescription("");
       setError("");
-      setNotice(
-        kind === "rename"
+      if (!unchanged) outcomes.publish(
+        `${kind === "rename"
           ? "Group renamed. Identities and references retained."
-          : `${kind === "token" ? "Color token" : "Group"} created and retained.`,
+          : `${kind === "token" ? "Color token" : "Group"} created and retained.`}${clarification ? ` ${clarification}` : ""}`,
       );
       onCreated(kind, id);
     };
     const result = await accept(command);
     if (result.status === "unchanged" || (result.status === "retained" && result.readback === "available")) {
+      unchanged = result.status === "unchanged";
       const finish = completion.current;
       completion.current = undefined;
       finish?.();
-      if (result.status === "unchanged") setNotice("No authored change. Undo/Redo history is unchanged.");
     }
   }
 

@@ -1,8 +1,8 @@
 # Increment 016: Transient toast feedback
 
-- Contract status: Draft
-- Delivery status: Not started
-- Agreement: Initial scope/direction accepted and visual prototype authorized on 17 November 2026. V4 was reviewed by the user and explicitly approved for analyst recheck on 17 November 2026; the targeted source recheck below closes the prior design findings. Final design/contract agreement and production implementation authorization remain pending.
+- Contract status: Agreed
+- Delivery status: Partially completed — implementation and independent review finished; runtime acceptance gaps below
+- Agreement: Initial scope/direction accepted and visual prototype authorized on 17 November 2026. V4 was reviewed by the user and explicitly approved for analyst recheck on 17 November 2026; the targeted source recheck below closes the prior design findings. The user agreed Increment 016 and V4 and authorized implementation followed by independent review on 17 November 2026, with a 15-minute aggregate verification ceiling and at most two harness repairs.
 - Prepared: 17 November 2026.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [workflow](../workflow/agent-roles.md), [current handoff](../status/current.md).
 
@@ -19,8 +19,7 @@ all existing notice strings or status live regions as transient notifications.
 ## Scope and source inventory
 
 The transient-confirmation versus persistent-actionable-feedback scope was accepted
-on 17 November 2026. The following detailed migration inventory still awaits final
-contract/design agreement.
+on 17 November 2026. The following detailed migration inventory is included in the final agreement.
 Paths below are relative to `src/presentation/App/components/`.
 
 | Current owner and message category | Proposed treatment |
@@ -45,7 +44,7 @@ notification history, new Undo actions inside toasts, broad copy rewrites, depen
 migration and unrelated interface cleanup. Safety recovery and backup qualification
 campaigns remain stopped; this increment does not reopen them.
 
-### Persistent notification color inventory for final contract review
+### Persistent notification color inventory
 
 Use dedicated notification surface/foreground roles at these owners. This source
 inventory bounds the requested inversion; it does not globally redefine existing
@@ -69,7 +68,7 @@ not message-string matching. Field borders/labels, destructive action buttons,
 structural diagnostics, exact-source output and static retention/storage disclosures
 are not notification surfaces and are not recolored by this increment.
 
-## Proposed acceptance criteria
+## Acceptance criteria
 
 - AC-1: Each approved completed outcome appears bottom-center above the current
   workbench, with readable wrapping and no horizontal overflow at desktop and 320 CSS px.
@@ -80,7 +79,7 @@ are not notification surfaces and are not recolored by this increment.
   Apply this treatment to notification regions, not indiscriminately to destructive
   controls, field labels or every use of an error text token. Text and an accessible dismissal name convey meaning without relying on color.
   Theme tokens, shared Icon usage and component ownership follow presentation conventions.
-- AC-3: A toast can be dismissed with pointer or keyboard. Proposed automatic duration
+- AC-3: A toast can be dismissed with pointer or keyboard. The automatic duration
   is five seconds of unpaused display, paused while hovered, keyboard-focused or the
   document is hidden. Dismissal/expiry never performs a project command or loses focus
   into a removed element. F8 reaches an active close control; dismissal returns to
@@ -106,7 +105,6 @@ are not notification surfaces and are not recolored by this increment.
   project/screen navigation clears prior-context events; automatic opening after
   project creation carries only its own named confirmation. Long stacks must retain
   reachable dismissal controls in short/narrow viewports using accepted AC-8.
-  The complete contract still awaits final agreement.
 
 - AC-8: On short viewports, admit at most three toasts within half the available
   viewport height, capped at 24rem. Admit fewer when needed; FIFO waiting time does
@@ -129,26 +127,30 @@ are not notification surfaces and are not recolored by this increment.
   toast and persistent notification types. On 17 November the user found V2 easier
   to see/read and approved analyst review, while explicitly deferring color taste.
   Current color pairs are provisional; no final palette acceptance is inferred.
-- Proposed timing and interaction: five seconds of unpaused display, modal and
+- Agreed timing and interaction: five seconds of unpaused display, modal and
   hidden-document pauses, three visible/FIFO overflow, F8 and safe focus return,
   and project-transition behavior as specified in AC-3/7 and the V4 design record.
   Accepted AC-8 supplies the oversized-message manual-dismissal exception.
-- V4 source recheck closes the V2 findings below. No additional product decision is
-  needed before seeking final agreement to this contract and V4. Palette refinement
+- V4 source recheck closes the V2 findings below. The user has now agreed this contract and V4; no additional product decision is
+  needed to begin implementation. Palette refinement
   remains deferred; use the identified provisional pairs until a later agreed change.
   This scope does not authorize wider validation or destructive-control redesign.
-- Technology remains unselected. Reusing installed Base UI toast capability is a
-  candidate; do not copy the demonstration timer/focus engine as qualified production code.
+- Implementation choice: an App-owned outcome provider and private testable queue
+  model. Installed Base UI toast admission/timer ownership did not fit the agreed
+  FIFO and adaptive policy. Existing Base UI dialogs and shared controls remain;
+  no dependency changes. The prototype remains a design artifact.
 
 ## Verification approach and limits
 
-For this draft, source inspection only; no tests or browser qualification. Approximately
+During draft preparation, source inspection only; no tests or browser qualification. Approximately
 four analyst minutes consumed in preparation, zero harness repairs. Coordinator and
 designer preparation time must be added at handoff rather than assumed zero.
 
-Proposed implementation verification ceiling: 30 aggregate minutes and at most two
-harness-repair cycles across developer, reviewer and coordinator, starting only after
-implementation authorization. Essential checks: focused lifecycle/event tests for
+Authorized implementation verification ceiling: 15 aggregate minutes and at most two
+harness-repair cycles across developer, reviewer and coordinator. Allocate initially
+eight minutes to developer checks, five to independent review and two to coordinator
+checks or targeted rechecks. This is a ceiling, not a target; report any unmet checks
+without weakening acceptance criteria. Earlier review campaigns remain stopped. Essential checks: focused lifecycle/event tests for
 AC-3/5/6/7/8/9, appropriate typechecks, and a Chrome desktop/narrow smoke for placement,
 wrapping, dismissal/focus, announcements, pause/expiry and reduced motion. Independently
 review the stable snapshot and affected resulting tree. Use representative rapid
@@ -164,9 +166,9 @@ campaigns, including Increment 007's zero remaining campaign allowance.
 Stop at either ceiling or earlier when tooling dominates or value is low; report
 remaining gaps, and require an explicitly authorized bounded follow-up to resume.
 
-## Design proposals and review
+## Design proposals and review history
 
-- Identified proposal for final agreement: [V4 design and prototype](../project/toast-feedback-v1.md),
+- Agreed proposal: [V4 design and prototype](../project/toast-feedback-v1.md),
   retaining the original `increment-016-v1` paths. V1’s pale palette is historical.
 - User approval for analyst review, 17 November 2026: “This is better in sense that
   it is easier to see and read. The colors are however not yet to my taste. We will
@@ -175,7 +177,8 @@ remaining gaps, and require an explicitly authorized bounded follow-up to resume
   The analyste can recheck.”
 - Analyst review: V2 findings and completed V4 source recheck below; no prototype or production
   edits, runtime checks, tests or assistive-technology qualification.
-- Final contract/design agreement and implementation authorization: pending.
+- Final contract/design agreement and implementation authorization: granted on
+  17 November 2026; see the implementation authorization record below.
 - Material design revisions return to the user before renewed analyst review.
 
 ### V2 analyst findings — 17 November 2026
@@ -364,3 +367,90 @@ Clean Git baseline before the analyst contract edit:
 
 Only this contract was edited by the rechecking analyst. Subsequent approval/status
 annotations do not substitute for a new check if prototype behavior changes.
+
+## Implementation authorization — 17 November 2026
+
+The user reported committing and pushing, agreed Increment 016 and V4, and authorized
+implementation followed by review. Baseline: `b0319a7f3afc1f16c5e51bdfc25f2f7acf2d59b2`,
+with a clean working tree. The new allowance is 15 aggregate verification minutes and
+at most two harness repairs, superseding the unused proposed 30-minute allowance.
+Production acceptance is still pending. Palette refinement remains deferred.
+
+## Implementation and independent review — 17 November 2026
+
+Implementation is finished and independently reviewed. No actionable production-code
+finding remains. Delivery is **Partially completed** because the bounded checks do not
+establish all browser acceptance behavior. User acceptance of the production change
+is not inferred from acceptance of V4.
+
+### Delivered behavior
+
+`App/components/OutcomeFeedback` owns the shared delivery lifetime for both workbenches.
+Its private queue model handles event identity, FIFO admission, remaining display time,
+once-only announcement admission and oversized manual dismissal. Explicit completed
+outcomes now emit from their existing source owners; progress, uncertain results,
+recovery actions and backup instructions remain contextual. Scoped notification tokens
+apply the provisional dark/light status pairs without recoloring ordinary field errors
+or destructive buttons. No domain, persistence or dependency change was made.
+
+The reviewer checked the 21-file source/test snapshot against baseline
+`b0319a7f3afc1f16c5e51bdfc25f2f7acf2d59b2`. Its ordered SHA-256 manifest digest was
+`45d38cec018c3842605e240196f86311cd1894c66e3d6bec410b12585d1949d3`.
+No production or test edits followed that review. Both developer and reviewer checked
+actual consumers, App ownership, private state placement, shared Icon use and semantic
+tokens. Runtime geometry exceptions are explained beside their implementation.
+
+### Evidence and limits
+
+| Criteria and behavior | Evidence | Remaining limits |
+| --- | --- | --- |
+| AC-1/2: placement, wrapping and status treatment | Source inventory review; coordinator fixture showed bottom-center dark toasts and a long message at measured 320 × 360 CSS px with document width 320 | Full production operation flows and every persistent status surface were not browser-tested; palette remains provisional |
+| AC-3/4: dismissal, focus, timers and announcements | Queue tests; desktop fixture F8 reached close and dismissal moved focus to the next active toast; final narrow fixture F8 reached long-message close | Actual screen-reader delivery, hidden-tab timing and reduced-motion rendering were not tested; ordinary five-second expiry and all focus fallback paths lack final browser evidence |
+| AC-5/6: distinct outcomes and safe completion | Queue and representative mocked command/recovery tests; independent source review of both inventories | End-to-end retained/recovery operations were not rerun; earlier storage qualification stays stopped |
+| AC-7: modal and navigation lifetime | Source/tests; fixture navigation cleared events; final Base UI modal hid the stack and closing restored it | Automatic project-creation carryover and modal timing were not exercised through the full application |
+| AC-8/9: adaptive stack and queued preview | Queue tests; desktop fixture showed three full toasts and decorative fourth, excluded from AX; short fixture showed fewer full toasts; final 320 × 360 long-message fixture had scroll area and reachable close | Resize permutations, native keyboard scrolling and all queue/focus combinations were not exhaustively tested |
+
+Developer checks passed:
+
+```sh
+npm run typecheck
+npm test -- test/presentation/toast-queue.test.tsx test/presentation/workbench-coordination.test.tsx test/presentation/projects-screen.test.tsx
+git diff --check
+```
+
+The focused run passed 39 tests across three files. Independent reviewer command:
+
+```sh
+npx vitest run test/presentation/toast-queue.test.tsx test/presentation/workbench-coordination.test.tsx
+```
+
+That run passed 32 tests across two files; reviewer whitespace checks also passed.
+The independent review found no actionable production defect. It requested correction
+of stale pending-agreement statements; the coordinator corrected active statements and
+explicitly labeled preceding status handoffs as historical. No requirements were relaxed.
+
+The developer could not access a browser; pending CLI attempts were canceled without
+installing or repairing infrastructure. Coordinator browser checks used the in-app
+browser and the no-storage `test/browser/increment016.html` fixture. They did not modify
+retained projects and are not a separate Chrome or Firefox qualification. The earlier
+desktop smoke preceded final self-review corrections; the narrow/modal smoke used the
+final reviewed source. The temporary viewport override was reset.
+
+### Budget and next action
+
+Approximately 14 aggregate verification minutes were used: developer four, independent
+reviewer five and a half, and coordinator four and a half including browser, snapshot,
+document/link and whitespace checks. One browser-call correction is conservatively
+counted as a harness repair; no other repair cycle. Checks stopped within the authorized
+15-minute/two-repair ceiling because further coverage needs a separate useful follow-up.
+Earlier verification campaigns remain stopped.
+
+No new design decision is needed. The user can assess production integration by opening
+a project, creating or renaming a group and applying a token edit: expect one bottom-center
+outcome, no duplicate inline confirmation, and contextual errors/recovery actions where
+needed. This checks integration and visual fit, not screen-reader or background timing.
+Those missing checks remain owned by the agent in a separately authorized bounded
+follow-up; they prevent claiming complete acceptance of all criteria today. Git staging,
+commit and push remain with the user.
+
+Suggested commit: `feat: add transient outcome toasts and status notifications`.
