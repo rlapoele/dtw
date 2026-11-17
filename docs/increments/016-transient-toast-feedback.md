@@ -45,6 +45,30 @@ notification history, new Undo actions inside toasts, broad copy rewrites, depen
 migration and unrelated interface cleanup. Safety recovery and backup qualification
 campaigns remain stopped; this increment does not reopen them.
 
+### Persistent notification color inventory for final contract review
+
+Use dedicated notification surface/foreground roles at these owners. This source
+inventory bounds the requested inversion; it does not globally redefine existing
+`destructive` or field-error tokens. Preserve exact messages, live regions, actions,
+focus targets and operation-specific completion conditions.
+
+| Owner (under `src/presentation/App/components/`) | Regions receiving notification treatment |
+| --- | --- |
+| `TokensWorkbench/TokensWorkbench.tsx` | Access/paused-editing warnings, failed-read/error feedback and persistent history/progress notices; keep associated retry/check controls together |
+| `TokensWorkbench/components/RetentionRecovery.tsx` | Pending, retained-but-unreadable and unknown-result blocks with their recovery controls |
+| `ProjectsWorkbench/ProjectsWorkbench.tsx` and `components/ProjectRecovery/ProjectRecovery.tsx` | Project errors, pending/unknown/read-recovery blocks and persistent backup feedback |
+| `ProjectsWorkbench/components/RestoreDialog/RestoreDialog.tsx` | Pending, retained, lost-stage, unknown and error/notice feedback; retain required acknowledgment and review controls |
+| `TokensWorkbench/components/AuthoringDialog/AuthoringDialog.tsx` | Read-unavailable, creation-error and submission-blocked notification blocks; preserve focus/description IDs |
+| `TokensWorkbench/components/SelectionInspector/components/TokenEditor/TokenEditor.tsx` and `components/TokenEditorContent.tsx` | Read-unavailable, target-unavailable, editor-error and inspection-only notification blocks; ordinary dirty-state/help copy remains contextual text |
+
+At these boundaries use success only for an established completed outcome, error
+for an established failure, warning for restricted/uncertain states and information
+for progress/instructions. Do not infer success from the presence of a retained flag
+when display/read recovery is still unresolved. Bind variants to existing typed state,
+not message-string matching. Field borders/labels, destructive action buttons,
+structural diagnostics, exact-source output and static retention/storage disclosures
+are not notification surfaces and are not recolored by this increment.
+
 ## Proposed acceptance criteria
 
 - AC-1: Each approved completed outcome appears bottom-center above the current
@@ -79,8 +103,13 @@ campaigns remain stopped; this increment does not reopen them.
   admission; a modal hides/pauses the stack and delays new announcements. Explicit
   project/screen navigation clears prior-context events; automatic opening after
   project creation carries only its own named confirmation. Long stacks must retain
-  reachable dismissal controls in short/narrow viewports; exact height handling
-  remains to be specified. These policies await final agreement.
+  reachable dismissal controls in short/narrow viewports using accepted AC-8.
+  The complete contract still awaits final agreement.
+
+- AC-8: On short viewports, admit at most three toasts within half the available
+  viewport height, capped at 24rem. Admit fewer when needed; FIFO waiting time does
+  not consume display duration. A single oversized message appears alone with a
+  scrollable body and reachable close control, and requires manual dismissal.
 
 ## Decisions and open questions
 
@@ -92,11 +121,11 @@ campaigns remain stopped; this increment does not reopen them.
   Current color pairs are provisional; no final palette acceptance is inferred.
 - Proposed timing and interaction: five seconds of unpaused display, modal and
   hidden-document pauses, three visible/FIFO overflow, F8 and safe focus return,
-  and project-transition behavior as specified in AC-3/7 and the V2 design record.
-- Before final agreement: resolve the review findings below in the design handoff;
-  identify persistent notification regions receiving the inverted treatment and
-  specify a short-viewport height policy. These are bounded clarifications, not
-  authorization for a wider validation or destructive-control redesign.
+  and project-transition behavior as specified in AC-3/7 and the V3 design record.
+  Accepted AC-8 supplies the oversized-message manual-dismissal exception.
+- Before final agreement: recheck V3 against the V2 findings after user artifact
+  review. The persistent-region inventory is now explicit and overflow behavior
+  accepted; these do not authorize wider validation or destructive-control redesign.
 - Technology remains unselected. Reusing installed Base UI toast capability is a
   candidate; do not copy the demonstration timer/focus engine as qualified production code.
 
@@ -180,7 +209,7 @@ then seek final agreement to the identified contract/design and implementation
 scope. None is resolved merely by recording it here. A material new height or
 interaction design must be surfaced to the user under the normal workflow.
 
-### Designer follow-up proposal — pending user decision
+### Designer follow-up — overflow accepted, 17 November 2026
 
 For the height finding, the designer recommends at most three visible toasts in
 no more than half the available viewport height, capped at 24rem. Admit fewer when
@@ -190,11 +219,36 @@ manual dismissal rather than automatic expiry. Existing bottom/side clearances s
 
 Tradeoff: unusually long messages on short screens require dismissal and delay queued
 confirmations, but remain readable without covering most of the workspace. This
-changes stacking and adds an exception to five-second expiry, so user agreement is
-needed before demonstrating it in a revised prototype. This is a proposal, not a
-resolved finding. The focus and announcement corrections preserve intended behavior;
+changes stacking and adds an exception to five-second expiry. The user accepted
+this overflow behavior on 17 November 2026 and reported committing/pushing the
+review record. The revised prototype may now demonstrate it; implementation and
+independent verification of the finding remain pending. The focus and announcement corrections preserve intended behavior;
 no user decision about their technical causes is needed. Designer follow-up reasoning
 took under one minute, with no file edits, tests or renewed qualification.
+
+### V3 prototype handoff — 17 November 2026
+
+The designer applied the accepted overflow rule and corrected exit cleanup/focus
+selection and hidden-document announcement handling in the isolated prototype.
+The explicit persistent-notification owner inventory above completes the proposed
+color boundary. These are corrections awaiting analyst recheck, not independent
+closure of the V2 findings. V3 is available at the existing URL and awaits user
+artifact review before renewed analyst review. Palette preference remains deferred.
+
+Coordinator browser checks used the Short-window budget simulation: the oversized
+message remained beyond five seconds, its body had 800px scroll content in a 142px
+viewport, the close control remained in view, and dismissal returned focus to its
+trigger. A five-outcome burst admitted two short toasts in the constrained budget;
+two rapid dismissals advanced to queued outcomes without a stuck exiting control.
+Source review confirms visibility restoration is observed for announcements; real
+background/screen-reader delivery was not exercised. The simulation is not a real
+short-viewport or narrow-browser test. Modal overlap, resize interleavings and full
+keyboard/screen-reader qualification remain untested in this revision.
+
+Designer source/whitespace review used approximately three minutes; coordinator
+browser/source review approximately three, completing the six-minute revision
+ceiling, with no harness repair campaign. Checks stopped. Earlier budgets and stop
+decisions remain unchanged; no application tests or production edits occurred.
 
 ### Review budget and evidence
 

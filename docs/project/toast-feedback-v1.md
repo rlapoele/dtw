@@ -1,11 +1,56 @@
-# Toast feedback — design proposal V2
+# Toast feedback — design proposal V3
 
-**17 November 2026 · V2 approved for analyst review; review findings remain open.** The user accepted
+**17 November 2026 · V3 awaiting user artifact review.** The user accepted
 completed-action success/information toasts with persistent contextual errors and
 recovery, and authorized this prototype. They explicitly requested appropriate
 error status colors. This artifact is not production implementation, final design
 agreement or implementation authorization. [Increment 016](../increments/016-transient-toast-feedback.md)
 owns the contract and approval record.
+
+## Accepted overflow revision — V3
+
+The user accepted the designer's adaptive-stack proposal and authorized this V3
+prototype revision. V3 awaits user viewing before renewed analyst review; neither
+final design agreement nor production implementation is authorized. The V2 dark
+status colors remain provisional with aesthetic refinement deferred.
+
+At most three toasts are admitted FIFO, provided their complete measured heights
+fit within half the available viewport height, capped at 24rem. Available height
+excludes the top and bottom clearance. Waiting notifications do not spend their
+display time. A single oversized message is admitted alone: its body scrolls, its
+close button stays visible, and it requires manual dismissal. Once classified as
+oversized, it remains manually dismissed even if the window subsequently grows.
+The scrollable body is keyboard-focusable; its focus and the close button preserve
+ordinary focus-pause behavior. Resizing can return later messages to the queue with
+their remaining time preserved. No messages are silently dropped.
+
+The review strip adds **Long message** and **Short-window budget**. The latter
+simulates a 360px-high viewport for admission calculations; it does not resize the
+browser or claim to test native viewport behavior. Turn it on, add Long message,
+then Five outcomes. The long message appears alone, can be scrolled, remains after
+five seconds, and releases queued outcomes when dismissed. Ordinary short messages
+continue to expire after five unpaused seconds. The stack remains at the actual
+viewport bottom, preserving the selected placement while exposing the smaller budget.
+
+V3 also corrects the two source defects identified in the V2 analyst review:
+exiting toasts are excluded from F8/return targets and exit cleanup continues
+independently of interaction/modal/hidden-document pauses; trigger return checks
+connectedness, visibility, disabled and inert states. New announcements wait until
+the document is visible, the modal is closed, and the toast is admitted. Visibility
+restoration triggers pending announcements rather than consuming them in background.
+
+Persistent color inversion applies to the explicit notification-owner inventory
+in [Increment 016](../increments/016-transient-toast-feedback.md), not every use of
+the destructive token. Prototype error/warning fixtures illustrate that treatment;
+ordinary destructive controls, field decorations and unrelated surfaces are outside
+this visual change. V3 supersedes V1's fixed three-toast admission/expiry assumptions
+and V2's defective focus/announcement code, while preserving unaffected decisions.
+
+V3 designer source review used approximately three minutes, zero harness repairs;
+whitespace checked. No browser or application tests were run by the designer. The
+coordinator owns up to three minutes of focused browser viewing. Earlier preparation,
+V1/V2 and analyst-review budgets remain stopped. Actual assistive-technology delivery,
+automatic project-opening carryover and production semantics remain unverified.
 
 ## Requested color revision — V2
 
@@ -40,14 +85,14 @@ the focused rendered check. No production source or dependencies were changed.
 
 ## Review artifact
 
-Open [interactive V2](http://localhost:5174/prototypes/increment-016-v1/index.html)
+Open [interactive V3](http://localhost:5174/prototypes/increment-016-v1/index.html)
 on the existing repository Vite server. Source:
 [entry](../../prototypes/increment-016-v1/index.html),
 [React prototype](../../prototypes/increment-016-v1/main.tsx),
 [isolated styles](../../prototypes/increment-016-v1/prototype.css).
 If no server is running, run `npm run dev -- --port 5174` from the repository root.
 
-The separate “Toast feedback · V2” review strip exposes scenarios; it is not a
+The separate “Toast feedback · V3” review strip exposes scenarios; it is not a
 proposed product toolbar. The workbench is illustrative fixture data. Its controls
 never call the host, persistence, worker or project operations. Existing local
 Geist fonts and the shared Heroicons Outline Icon component are reused; no

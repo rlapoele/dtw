@@ -9,6 +9,23 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Toast visual prototype V3 — 17 November 2026
+
+The user reported committing/pushing the review and accepted adaptive overflow.
+The designer delivered [V3](../project/toast-feedback-v1.md), with fewer visible
+toasts when space is tight, an oversized manually dismissed scrollable message,
+and corrections for exiting-toast focus and hidden-document announcements.
+The [increment record](../increments/016-transient-toast-feedback.md#v3-prototype-handoff--17-november-2026)
+owns evidence, the explicit persistent-color inventory and remaining limits.
+
+Browser checks confirmed simulated height handling, oversized persistence/scrolling,
+reachable dismissal, focus return and queue advancement after rapid dismissal.
+Background/screen-reader delivery and real narrow/short viewport behavior remain
+unverified. Six aggregate revision minutes consumed, zero harness-repair campaign;
+checks stopped. Production code is unchanged; no application tests ran. V3 awaits
+user artifact review before analyst recheck, final agreement and implementation
+authorization. Colors remain provisional. Staging/committing/pushing stay with user.
+
 ## Toast V2 analyst review — 17 November 2026
 
 The user approved V2 for analyst review, with aesthetic palette refinement deferred.
