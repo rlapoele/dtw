@@ -9,6 +9,24 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Toast V4 analyst recheck — 17 November 2026
+
+The user reviewed V4, reported being happy and authorized the analyst recheck.
+The separate analyst found no remaining actionable design findings in the bounded
+source review. [Increment 016](../increments/016-transient-toast-feedback.md#v4-analyst-recheck--17-november-2026)
+records closures, AC-1–AC-9, both message-owner inventories and the stable snapshot.
+Focus/exit cleanup, visible-only announcement admission, adaptive overflow and the
+noninteractive queued preview are consistent at source/design level. Colors remain
+provisional, with aesthetic refinement deferred.
+
+Recheck used approximately three of four minutes, zero repairs, then stopped.
+No browser or application tests ran; actual integration, short/narrow viewport and
+assistive-technology evidence remain implementation checks. Earlier campaigns remain
+stopped. Documentation links and whitespace checked. The contract is Draft / Not
+started. Next is user agreement to Increment 016 and V4 plus authorization for a
+separate developer followed by independent review under the proposed 30-minute /
+two-repair verification ceiling. Staging, committing and pushing remain with user.
+
 ## Toast visual prototype V4 — 17 November 2026
 
 The user requested a partial queued-message cue and more icon spacing after

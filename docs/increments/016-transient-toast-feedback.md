@@ -2,7 +2,7 @@
 
 - Contract status: Draft
 - Delivery status: Not started
-- Agreement: Initial scope/direction accepted and visual prototype authorized on 17 November 2026. V2 was approved for analyst review on 17 November 2026; that source review is recorded below. Final design/contract agreement and production implementation authorization remain pending.
+- Agreement: Initial scope/direction accepted and visual prototype authorized on 17 November 2026. V4 was reviewed by the user and explicitly approved for analyst recheck on 17 November 2026; the targeted source recheck below closes the prior design findings. Final design/contract agreement and production implementation authorization remain pending.
 - Prepared: 17 November 2026.
 - References: [vision](../project/vision.md), [product concept](../project/product-concept.md), [principles](../project/principles.md), [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [open questions](../planning/open-questions.md), [workflow](../workflow/agent-roles.md), [current handoff](../status/current.md).
 
@@ -20,7 +20,7 @@ all existing notice strings or status live regions as transient notifications.
 
 The transient-confirmation versus persistent-actionable-feedback scope was accepted
 on 17 November 2026. The following detailed migration inventory still awaits final
-contract/design review.
+contract/design agreement.
 Paths below are relative to `src/presentation/App/components/`.
 
 | Current owner and message category | Proposed treatment |
@@ -89,7 +89,9 @@ are not notification surfaces and are not recolored by this increment.
   handler competes with existing dialogs.
 - AC-4: Entry and exit use restrained fade/slide motion; reduced-motion preference
   removes positional animation. Arrival does not move focus or interrupt typing.
-  Each outcome receives one polite announcement rather than duplicate inline/toast announcements.
+  Each admitted outcome receives one polite announcement when the document is
+  visible and no modal obscures it; visibility restoration releases pending
+  announcements. Queued previews are not announced. No duplicate inline/toast announcements.
 - AC-5: Two separate operations with identical outcome text each produce feedback.
   Rerendering, reopening a screen or replaying existing state does not replay an old
   notification. A single completed command/recovery does not generate duplicate toasts.
@@ -98,7 +100,7 @@ are not notification surfaces and are not recolored by this increment.
   validation, recovery, history semantics and dirty-editor helpers remain intact.
 - AC-7: Rapid outcomes, project transitions and modal overlap follow the identified
   agreed design without stale cross-project feedback, obscured required actions or
-  premature expiry of a notification that could not be read. Proposed V2 policy:
+  premature expiry of a notification that could not be read. Reviewed V4 policy:
   at most three visible, oldest above newest, FIFO overflow without timer until
   admission; a modal hides/pauses the stack and delays new announcements. Explicit
   project/screen navigation clears prior-context events; automatic opening after
@@ -109,7 +111,15 @@ are not notification surfaces and are not recolored by this increment.
 - AC-8: On short viewports, admit at most three toasts within half the available
   viewport height, capped at 24rem. Admit fewer when needed; FIFO waiting time does
   not consume display duration. A single oversized message appears alone with a
-  scrollable body and reachable close control, and requires manual dismissal.
+  keyboard-scrollable body and reachable close control, and requires manual dismissal,
+  including after later viewport growth. Resizing may return later messages to the
+  FIFO queue with their remaining display time preserved.
+- AC-9: When it fits within the same height cap, show a 1.5rem decorative partial
+  preview of the next queued message with a .5rem gap. It has no pointer target,
+  focus stop, announcement or running timer until full admission. Reserve its space
+  without displacing the sole full toast; omit it when an oversized message fills
+  the budget. Oversized toast vertical padding is .875rem with the icon aligned
+  to the first line, and the scroll-body limit accounts for that padding.
 
 ## Decisions and open questions
 
@@ -121,11 +131,12 @@ are not notification surfaces and are not recolored by this increment.
   Current color pairs are provisional; no final palette acceptance is inferred.
 - Proposed timing and interaction: five seconds of unpaused display, modal and
   hidden-document pauses, three visible/FIFO overflow, F8 and safe focus return,
-  and project-transition behavior as specified in AC-3/7 and the V3 design record.
+  and project-transition behavior as specified in AC-3/7 and the V4 design record.
   Accepted AC-8 supplies the oversized-message manual-dismissal exception.
-- Before final agreement: recheck V3 against the V2 findings after user artifact
-  review. The persistent-region inventory is now explicit and overflow behavior
-  accepted; these do not authorize wider validation or destructive-control redesign.
+- V4 source recheck closes the V2 findings below. No additional product decision is
+  needed before seeking final agreement to this contract and V4. Palette refinement
+  remains deferred; use the identified provisional pairs until a later agreed change.
+  This scope does not authorize wider validation or destructive-control redesign.
 - Technology remains unselected. Reusing installed Base UI toast capability is a
   candidate; do not copy the demonstration timer/focus engine as qualified production code.
 
@@ -138,15 +149,15 @@ designer preparation time must be added at handoff rather than assumed zero.
 Proposed implementation verification ceiling: 30 aggregate minutes and at most two
 harness-repair cycles across developer, reviewer and coordinator, starting only after
 implementation authorization. Essential checks: focused lifecycle/event tests for
-AC-3/5/6/7, appropriate typechecks, and a Chrome desktop/narrow smoke for placement,
+AC-3/5/6/7/8/9, appropriate typechecks, and a Chrome desktop/narrow smoke for placement,
 wrapping, dismissal/focus, announcements, pause/expiry and reduced motion. Independently
 review the stable snapshot and affected resulting tree. Use representative rapid
 outcomes, not a notification-load benchmark. Safety non-regression evidence should
 focus on affected routing and existing representative tests, without restarting
 storage/concurrency fault injection.
 
-The user should assess the actual prototype's placement, visual weight and motion
-before analyst design review; no application manual acceptance is claimed here.
+The user reviewed V4 and approved analyst recheck; this is design feedback, not
+application manual acceptance. No production behavior is claimed here.
 Broader browser/assistive-technology, stress and previous increment qualification
 remain outside this slice. Preserve all prior failed/unverified criteria and stopped
 campaigns, including Increment 007's zero remaining campaign allowance.
@@ -155,12 +166,14 @@ remaining gaps, and require an explicitly authorized bounded follow-up to resume
 
 ## Design proposals and review
 
-- Identified proposal: [V2 design and prototype](../project/toast-feedback-v1.md),
+- Identified proposal for final agreement: [V4 design and prototype](../project/toast-feedback-v1.md),
   retaining the original `increment-016-v1` paths. V1’s pale palette is historical.
 - User approval for analyst review, 17 November 2026: “This is better in sense that
   it is easier to see and read. The colors are however not yet to my taste. We will
   improve these later. This V2 looks ready for the analyst review.”
-- Analyst review: completed source/contract review below; no prototype or production
+- V4 approval for analyst recheck, 17 November 2026: “I've reviewed and am happy.
+  The analyste can recheck.”
+- Analyst review: V2 findings and completed V4 source recheck below; no prototype or production
   edits, runtime checks, tests or assistive-technology qualification.
 - Final contract/design agreement and implementation authorization: pending.
 - Material design revisions return to the user before renewed analyst review.
@@ -204,7 +217,7 @@ unbounded session FIFO is a documented proposal for ordinary command rates, not 
 performance guarantee. No new domain semantics, notification persistence or new Undo
 action is needed. Cosmetic palette refinement can remain deferred.
 
-**Recommended disposition:** refine the design handoff for these three findings,
+**V2 disposition (superseded by the V4 recheck below):** refine the design handoff for these three findings,
 then seek final agreement to the identified contract/design and implementation
 scope. None is resolved merely by recording it here. A material new height or
 interaction design must be surfaced to the user under the normal workflow.
@@ -271,13 +284,60 @@ three of four aggregate revision minutes used, then stopped. No application test
 production edits or renewed analyst review. Earlier verification limits remain.
 V4 awaits user artifact review before analyst recheck.
 
+### V4 analyst recheck — 17 November 2026
+
+**Outcome: no remaining actionable design findings in this bounded source review.**
+The user reviewed V4 and explicitly authorized this recheck. The contract remains
+Draft / Not started until final agreement and implementation authorization.
+
+- **Focus/exit finding closed at source level.** `focusAfter` and F8 exclude leaving
+  elements and the immediate exiting-ID set; `safeTarget` checks connection,
+  visibility, disabled and inert states. Exit cleanup precedes all interaction,
+  hidden-document and modal timer pauses. The reviewed correction removes the
+  identified rapid-dismissal/invisible-focus path. Resize readmission also redirects
+  focus from messages returned to the queue.
+- **Hidden-document announcement finding closed at source level.** The visibility
+  listener updates state; announcement admission checks modal, document visibility,
+  full admission and exit status. Queued events retain their unannounced identities
+  until eligible; the separate timer gate prevents background display-time consumption.
+- **Overflow/color-boundary finding closed at design/source level.** V4 measures
+  admission within the accepted half-available-height/24rem cap, limits full admission
+  to three and reserves the decorative preview's 2rem only when it fits. The preview
+  has `aria-hidden`, no interactive descendant and no timer/announcement admission.
+  Oversized messages remain manual, expose a focusable scrolling body and account for
+  the revised vertical padding. The explicit persistent-owner inventory bounds
+  notification recoloring without changing destructive controls or field decoration.
+
+The reviewed scope still preserves contextual progress, safety, recovery, validation
+and backup instructions. No host/domain operation or persistence semantics are
+introduced by the fixture. Repeated outcomes retain distinct event identities;
+no new Undo action or notification history is proposed. The user-requested preview
+is consistent with accepted adaptive admission rather than an extra active toast.
+
+These closures establish design/source consistency only. This analyst performed no
+browser interaction, test run, live screen-reader check or production validation.
+Actual narrow/short viewports, resize/modal interleavings, focus/live announcements,
+automatic project-opening carryover and integration with existing typed recovery
+states remain implementation checks within the proposed bounded verification plan.
+The existing fixture simulation and coordinator evidence retain their stated limits.
+Provisional colors are usable design references, not final aesthetic acceptance.
+
+**Ready for final agreement:** this Increment 016 draft (AC-1–AC-9 and the two owner
+inventories) together with V4 at the snapshot below. The next user decision is final
+contract/design agreement and authorization for separate developer implementation
+followed by independent review. No further design exploration or qualification
+campaign is proposed as a prerequisite.
+
 ### Review budget and evidence
 
 Earlier preparation: approximately eight aggregate minutes, stopped. V1 prototype
 checks: five of eight minutes, stopped. V2 revision/viewing: approximately two
 minutes, stopped. This separately authorized analyst source review used approximately
 four of five minutes, zero repairs, then stopped; no earlier campaign was reopened.
-The proposed 30-minute implementation allowance remains unused and unauthorized.
+V3 checks stopped at six of six minutes; V4 checks stopped at three of four.
+The separately authorized V4 analyst recheck used approximately three of four
+minutes, zero repairs, then stopped. Earlier campaigns stay stopped.
+The proposed 30-minute/two-repair implementation allowance remains unused and unauthorized.
 
 ## Review baseline
 
@@ -291,3 +351,16 @@ V2 source review baseline: clean `9087738`, before this contract edit. SHA-256:
 This analyst edited only this contract. Capture a fresh baseline before implementation
 and an exact stable snapshot for independent implementation review. Staging, committing
 and pushing remain with the user.
+
+### V4 source recheck snapshot
+
+Clean Git baseline before the analyst contract edit:
+`ba53f298063c4f75f60c9ebf2d41446c26561b9a`. SHA-256:
+
+- `prototypes/increment-016-v1/index.html`: `901bb8c42c6c89378981cae153153fc495b6d61fc972bd3f9d2cb6a4aa77fd35`
+- `prototypes/increment-016-v1/main.tsx`: `677a722b63333948b439e4579619b44ca105f81552ecd36a86a5ccad9aa1dde5`
+- `prototypes/increment-016-v1/prototype.css`: `dbe6de81968574c0bb560193a03225b02a8c90306e4f715c81fd09752394b4d0`
+- `docs/project/toast-feedback-v1.md`: `9979ae5cd046e83be605933e8e535a7f31c460a33bf88a8482d2e3bcc26ed93f`
+
+Only this contract was edited by the rechecking analyst. Subsequent approval/status
+annotations do not substitute for a new check if prototype behavior changes.

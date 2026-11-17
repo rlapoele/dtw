@@ -1,6 +1,6 @@
 # Toast feedback — design proposal V4
 
-**17 November 2026 · V4 awaiting user artifact review.** The user accepted
+**17 November 2026 · V4 user-reviewed and analyst-rechecked; ready for final agreement.** The user accepted
 completed-action success/information toasts with persistent contextual errors and
 recovery, and authorized this prototype. They explicitly requested appropriate
 error status colors. This artifact is not production implementation, final design
@@ -35,8 +35,10 @@ upper edge. The close button remains fully visible and the scroll area accounts
 for the increased padding.
 
 V3 focus, announcement, manual-dismissal and queue behavior otherwise remain in
-place. V2 dark colors remain provisional. V4 is an authorized prototype revision,
-not final design agreement, renewed analyst-review approval or implementation.
+place. V2 dark colors remain provisional. The user subsequently reported being
+happy with V4 and authorized the analyst recheck. That bounded source review found
+no remaining actionable design findings, as recorded in Increment 016. Final
+contract/design agreement and production implementation authorization remain pending.
 Designer source/whitespace review took approximately two minutes, zero repairs;
 no browser checks or application tests. Coordinator viewing is separately bounded
 to two minutes. Earlier verification campaigns remain stopped.
