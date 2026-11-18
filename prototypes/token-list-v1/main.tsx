@@ -67,7 +67,7 @@ function TypeNavigation({scope,onScope}:{scope:string;onScope:(value:string)=>vo
  const toggle=(key:string)=>setExpanded(previous=>{const next=new Set(previous);if(next.has(key))next.delete(key);else next.add(key);return next;});
  const plural:Record<string,string>={Color:'Colors',Dimension:'Dimensions',Duration:'Durations'};
  const item=(key:string,label:string,count:number,depth:number,icon:'swatch'|'measure'|'clock'|'folder'|undefined,children?:React.ReactNode)=><div key={key}>
-  <div className={'tree-entry '+(scope===key?'active':'')} style={{paddingLeft:12+depth*12}}>
+  <div className={'tree-entry tree-depth-'+depth+' '+(scope===key?'active':'')}>
    <button className="tree-scope" aria-current={scope===key?'page':undefined} onClick={()=>onScope(key)}>{icon&&<Icon name={icon} className="size-3.5"/>}<span className="tree-label">{label}</span><span className="tree-count">{count}</span></button>
    {children&&count>1?<button className="tree-expand" aria-label={(expanded.has(key)?'Collapse ':'Expand ')+label} aria-expanded={expanded.has(key)} onClick={()=>toggle(key)}><Icon name="chevron-right" className="size-3 tree-chevron"/></button>:<span className="tree-spacer" aria-hidden="true"/>}
   </div>{children&&<div className="tree-children" data-expanded={count===1||expanded.has(key)} inert={count!==1&&!expanded.has(key)} aria-hidden={count!==1&&!expanded.has(key)}><div className="tree-children-inner">{children}</div></div>}

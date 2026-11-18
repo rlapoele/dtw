@@ -106,3 +106,12 @@ production token lists. Identity now retains the prominent local name, full
 path including name, and description under the existing responsive rules.
 Inspector identity and diagnostic identity details are unchanged. Earlier captures
 precede this refinement. The unused prototype parent-path style was removed.
+
+## Equal-pane width trial — 18 November 2026
+
+User requested a mockup-only trial: expanded navigation uses the inspector's
+25rem width, and layer labels align with type text after its icon. Namespace
+paths indent a further .75rem. Alignment derives from the actual icon width/gap.
+Existing compact threshold/drawer behavior remains unchanged. Production geometry
+is not modified. Wide in-app rendering was visually inspected; near-breakpoint
+usability remains for review. The wider navigation leaves less room for the list.

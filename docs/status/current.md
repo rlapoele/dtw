@@ -10,6 +10,14 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Navigation width mockup trial — 18 November 2026
+
+[V3's equal-pane trial](../../prototypes/token-list-v1/DESIGN-V3.md#equal-pane-width-trial--18-november-2026)
+aligns layer labels beneath type text and gives expanded navigation the inspector's
+25rem width. Wide rendering was visually checked; near-breakpoint usability is
+unverified. This is mockup-only, awaiting user feedback; production is unchanged.
+Suggested commit: `docs: try equal-width mockup side panels`.
+
 ## Token identity simplification — 18 November 2026
 
 Removed the redundant parent-only path line from mockup and production lists,

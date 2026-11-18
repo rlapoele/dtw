@@ -30,3 +30,10 @@
 .tree-children[data-expanded="true"]{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows 180ms ease-in-out,visibility 0s}
 .tree-children-inner{min-height:0;overflow:hidden}
 @media(prefers-reduced-motion:reduce){.tree-chevron,.tree-children,.tree-children[data-expanded="true"]{transition:none}}
+
+/* Mockup-only trial: symmetric expanded panes and text-aligned layers. */
+.workbench{--groups-expanded-width:var(--inspector-expanded-width)}
+.tree-entry{--type-icon-width:.875rem;--type-icon-gap:.4rem;padding-left:.75rem}
+.tree-scope{gap:var(--type-icon-gap)}
+.tree-depth-1{padding-left:calc(.75rem + var(--type-icon-width) + var(--type-icon-gap))}
+.tree-depth-2{padding-left:calc(1.5rem + var(--type-icon-width) + var(--type-icon-gap))}
