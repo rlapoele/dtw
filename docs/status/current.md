@@ -10,6 +10,18 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Production navigation proportions — 18 November 2026
+
+User approved the equal-width mockup and authorized production adoption.
+Expanded navigation now shares the inspector's25rem width; layer labels align
+with type text and namespace leaves indent one further step. The
+[presentation rule](../project/presentation-conventions.md#equal-expanded-side-panels--18-november-2026)
+owns the geometry. Nine focused token-list/layout tests and typecheck passed;
+affected consumers and CSS geometry were source-reviewed. No new production
+browser check was run, so near-breakpoint density remains unverified. Existing
+qualification limits remain unchanged. Suggested commit:
+`fix: align navigation layers and equalize side panels`.
+
 ## Navigation width mockup trial — 18 November 2026
 
 [V3's equal-pane trial](../../prototypes/token-list-v1/DESIGN-V3.md#equal-pane-width-trial--18-november-2026)

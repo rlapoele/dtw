@@ -325,3 +325,15 @@ including name, then description under existing responsive visibility rules.
 Omit the redundant parent-only path line. Preserve protection indicators and
 honest diagnostic/identity fallbacks when a full derived path is unavailable.
 This applies to the production list and current prototype, not inspector headings.
+
+### Equal expanded side panels — 18 November 2026
+
+Following approval of the mockup trial, production TokensWorkbench navigation
+shares the inspector's 25rem expanded width through the existing pane geometry
+variable. Collapsed rails, drawer width and responsive breakpoints retain their
+existing behavior. The central workspace receives the remaining space.
+
+TypeBranch layer text aligns with the type label after its size-4 icon and
+navigation button gap-2.5: a pl-6.5 wrapper offsets the layer by1.625rem.
+Namespace leaves use pl-9.5, a further .75rem. The same content is used in the
+pane and drawer. Existing button padding, count columns and transitions remain.
