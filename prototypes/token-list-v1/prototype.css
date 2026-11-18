@@ -13,3 +13,8 @@
 @media(max-width:1119px){.list-heading,.list-row{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}.type-column,.layer-column,.description{display:none}.compact-meta{display:block;margin-top:.5rem;color:var(--muted-foreground)}}
 @media(min-width:1120px){.list-row{padding-top:.75rem;padding-bottom:.75rem;min-height:5.5rem}}
 @media(max-width:1119px){.workbench.compact-navigation{grid-template-columns:minmax(0,1fr)}}
+/* V2: full identity and all five coordinate representations. */
+.full-path{display:block;font-family:var(--font-mono);font-size:.6875rem;color:var(--muted-foreground);margin-top:.4rem;overflow-wrap:anywhere}.type-label{display:inline-flex;align-items:center;gap:.35rem}.value-main{display:flex;align-items:flex-start;gap:.4rem}.value-main>svg{margin-top:.125rem;flex-shrink:0}.reference-hex{display:block;font-family:var(--font-mono);font-size:.75rem;margin-top:.4rem;color:var(--muted-foreground)}.color-spaces{display:block;margin-top:.65rem}.space-values{display:block;font-family:var(--font-mono);font-size:.6875rem;line-height:1.5;margin-top:.5rem;color:var(--muted-foreground)}.space-name{display:block;font-family:var(--font-sans);font-size:.6875rem}.space-coordinates{display:block;overflow-wrap:anywhere}.authored-space{color:var(--foreground);font-weight:600}.color-spaces .alpha-detail{margin-top:.65rem}.list-row{padding-top:1rem;padding-bottom:1rem}.type-column{min-width:0}.specimen.duration{font-size:inherit}
+@media(min-width:1120px){.list-heading,.list-row{grid-template-columns:minmax(0,1.05fr) 6rem 5.5rem minmax(0,1.35fr)}}
+@media(max-width:1119px){.compact-meta{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap}.list-row{min-height:6rem}}
+@media(max-width:1119px){.space-values:not(.source-space){display:none}}

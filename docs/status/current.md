@@ -10,6 +10,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Token list V2 mockup — 18 November 2026
+
+The [V2 proposal](../../prototypes/token-list-v1/DESIGN-V2.md) incorporates the user's
+six browser annotations: link/clock/type icons, HEX headlines, all five color-space
+representations with authored emphasis and separate alpha, and full paths below
+parent paths. The follow-up small-device instruction limits compact color rows to
+HEX plus the authored source representation and alpha; references retain their target.
+The existing preview route now shows V2; V1 notes and screenshots remain historical.
+
+Designer and coordinator visually inspected the revised mockup, including a 390px
+phone capture. V2 notes own the bounded verification evidence and the prototype-only
+perceptual HEX fallback proposal; no production fallback/export policy was changed.
+Approximately four of six additional verification minutes used, zero harness repairs.
+User feedback is next. No analyst approval or production implementation is inferred.
+Suggested commit: `docs: refine token list color representations mockup`.
+
 ## Token list V1 mockup — 18 November 2026
 
 The user requested a mockup of the proposed token-list properties in the existing
