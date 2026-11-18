@@ -10,6 +10,15 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Token list ordering amendment — 18 November 2026
+
+The mockup now follows the user's requested All tokens order (type → layer → group
+→ natural name) and selected-group order (relative subgroup → natural name).
+The [V2 ordering amendment](../../prototypes/token-list-v1/DESIGN-V2.md#ordering-amendment--18-november-2026)
+owns the sample type/layer order and verification. Both scopes were checked in the
+in-app browser; production behavior remains unchanged. User design feedback is next.
+Suggested commit: `docs: apply contextual token list ordering to mockup`.
+
 ## Token list V2 mockup — 18 November 2026
 
 The [V2 proposal](../../prototypes/token-list-v1/DESIGN-V2.md) incorporates the user's

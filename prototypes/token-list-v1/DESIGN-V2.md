@@ -74,3 +74,24 @@ scoped visual checks. User design feedback remains next; no analyst approval or
 implementation authorization is inferred.
 
 Suggested commit: `docs: refine token list color representations mockup`.
+
+## Ordering amendment — 18 November 2026
+
+The user requested and the prototype now applies:
+
+- All tokens: type → layer → full group path → local name.
+- Selected group: relative subgroup path → local name, without type/layer partitioning.
+
+The sample type order is Color, Dimension, Duration. Layer order is Primitive,
+Semantic, Component, Unspecified. Paths compare by namespace segment, and both
+segments and names use English natural numeric ordering (2 before 10 before 100).
+Direct members sort before descendants. Stable identity breaks remaining ties.
+Search filters retain the active scope's ordering; sorting does not mutate fixtures
+or selected-token identity. The existing V2 screenshots predate this ordering amendment.
+
+A focused in-app browser check confirmed All tokens order and the selected color
+group's action → brand → neutral → text subgroup order, then restored All tokens.
+Approximately two minutes of scoped follow-up verification, no repairs; no production
+suite or new numerical/browser qualification. This remains prototype-only.
+
+Suggested commit: `docs: apply contextual token list ordering to mockup`.

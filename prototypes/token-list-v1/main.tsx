@@ -41,11 +41,30 @@ function Value({token:t}:{token:Token}) {
  {t.type==='Color'&&<ColorSpaces source={source} authored={!t.target}/>}
  </span></span>;
 }
+const typeOrder = ['Color', 'Dimension', 'Duration'];
+const layerOrder = ['Primitive', 'Semantic', 'Component', '—'];
+const naturalOrder = new Intl.Collator('en', {numeric:true, sensitivity:'base'});
+function comparePaths(a:string,b:string):number {
+ const left=a?a.split(' / '):[], right=b?b.split(' / '):[];
+ for(let i=0;i<Math.min(left.length,right.length);i++) {
+  const order=naturalOrder.compare(left[i],right[i]);
+  if(order) return order;
+ }
+ return left.length-right.length;
+}
+function compareTokens(a:Token,b:Token,scope:string):number {
+ const subgroup=(t:Token)=>t.parent===scope?'':t.parent.startsWith(scope+' / ')?t.parent.slice(scope.length+3):t.parent;
+ const category=scope==='All tokens'
+  ? typeOrder.indexOf(a.type)-typeOrder.indexOf(b.type) || layerOrder.indexOf(a.layer)-layerOrder.indexOf(b.layer)
+  : 0;
+ return category || comparePaths(scope==='All tokens'?a.parent:subgroup(a),scope==='All tokens'?b.parent:subgroup(b))
+  || naturalOrder.compare(a.name,b.name) || a.id.localeCompare(b.id);
+}
 function App(){
  const [selected,setSelected]=useState('brand'),[query,setQuery]=useState(''),[scope,setScope]=useState('All tokens'),[compact,setCompact]=useState(innerWidth<1120),[inspect,setInspect]=useState(false);
  useEffect(()=>{const fn=()=>setCompact(innerWidth<1120);addEventListener('resize',fn);return()=>removeEventListener('resize',fn)},[]);
  const chosen=tokens.find(t=>t.id===selected)!;
- const shown=tokens.filter(t=>(scope==='All tokens'||t.parent===scope||t.parent.startsWith(scope+' /'))&&`${t.parent} ${t.name} ${t.type} ${t.layer} ${t.description}`.toLowerCase().includes(query.toLowerCase()));
+ const shown=tokens.filter(t=>(scope==='All tokens'||t.parent===scope||t.parent.startsWith(scope+' /'))&&`${t.parent} ${t.name} ${t.type} ${t.layer} ${t.description}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>compareTokens(a,b,scope));
  const select=(id:string)=>{setSelected(id);};
  const navigation=<nav className="sidebar border-r-hairline border-border min-h-0 overflow-auto" aria-label="Project groups"><div className="nav-heading">NAVIGATION<Icon name="chevron-left"/></div><div className="nav-project"><span className="project-tile">T</span><div><strong>Precision</strong><small>Token workbench</small></div></div><div className="nav-label">Library</div><button className={'nav-entry '+(scope==='All tokens'?'active':'')} onClick={()=>setScope('All tokens')}><Icon name="grid"/>All tokens<span>9</span></button><button className="nav-entry" disabled>All content</button><div className="nav-label groups-label">Groups</div>{['color','space','radius','button','motion','exploration'].map(name=><button key={name} className={'nav-entry '+(scope===name?'active':'')} onClick={()=>setScope(name)}><Icon name="folder"/>{name}<span>{tokens.filter(t=>t.parent===name||t.parent.startsWith(name+' /')).length}</span></button>)}<button className="nav-entry new-group" disabled><Icon name="plus"/>New group</button></nav>;
  const inspector=<aside hidden={compact&&!inspect} className="mock-inspector border-l-hairline border-border min-h-0 overflow-auto" aria-label="Inspector pane">{compact&&<Button variant="outline" onClick={()=>setInspect(false)}>Back to tokens</Button>}<div className="inspector-heading"><div><small>{chosen.type.toUpperCase()} TOKEN</small><h2>{chosen.name}</h2><p>{chosen.parent}</p></div><div><small>Current</small><Specimen token={chosen}/></div></div><div className="inspector-tabs"><strong>Authored value</strong><span>Resolved &amp; trace</span></div><div className="inspector-body">{chosen.type==='Color'&&!chosen.target?<><div className="source-toggle"><strong>Literal color</strong><span>Reference</span></div><ColorEditor session={baseline(createColorLiteral(chosen.id==='brand'?{colorSpace:'oklch',components:['0.5461','0.2152','262.8809'],alpha:'1'}:chosen.id==='ink'?{colorSpace:'srgb',components:['0.0902','0.0902','0.0902'],alpha:'1'}:{colorSpace:'oklch',components:['0.702','0.148','68.4'],alpha:'1'}))} readOnly onChange={()=>{}} onError={()=>{}}/></>:chosen.target?<><div className="source-toggle"><span>Literal color</span><strong>Reference</strong></div><label className="reference-label">Referenced token</label><div className="reference-value">{chosen.value}</div><p className="text-caption text-muted-foreground mt-3">The value follows the referenced token.</p></>:<><label className="reference-label">Authored value</label><div className="reference-value">{chosen.value}</div></>}
