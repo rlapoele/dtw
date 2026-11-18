@@ -2,7 +2,7 @@
 
 > Last updated: 18 November 2026
 >
-> Phase: Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
+> Phase: Increment 019 implemented and independently reviewed; scoped browser evidence gaps remain. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
 > completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
@@ -10,21 +10,30 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Project metadata agreement and draft — 18 November 2026
+## Project metadata implementation and review — 18 November 2026
 
 User agreed optional description at creation, creationDate/lastUpdatedDate lifecycle
 semantics, exact restore preserving dates, Undo/Redo recording a new update, and
 unknown legacy dates remaining unknown until an edit establishes lastUpdatedDate.
 The inspector will show description and read-only Created / Last updated values.
 [Increment 019](../increments/019-project-description-and-lifecycle-dates.md) records
-these agreements, nine criteria and the proposed authored-version2 compatibility
+these agreements, nine criteria and the agreed authored-version2 compatibility
 strategy. Owning model/architecture/interoperability documents record the direction.
 
-The separate analyst found no remaining substantive behavior question. Contract and
-migration proposal await final agreement and implementation authorization; production
-is unchanged. Documentation/source review only; no tests/browser checks or previous
-qualification restart. Suggested commit:
-`docs: define project description and lifecycle dates`.
+The authorized implementation now captures description and displays it with local
+Created / Last updated values. Writes stamp dates once; history preserves creation
+metadata and restore preserves backup dates. Version 1 remains readable; new writes
+and backups emit authored version 2. Independent review found no actionable defects.
+
+Typecheck, 68 targeted tests, an updated 8-test inspector file and 45 independent
+review tests passed. Isolated Chrome checks covered multiline creation, unknown-input
+preservation, clearing after readback, desktop/narrow display, description-only leave
+handler and keyboard scrolling of long descriptions. Forced pending/rejected and
+retained-but-unreadable form recovery remain browser evidence gaps, so the increment
+report retains partial delivery status. Approximately 22/30 aggregate verification
+minutes and one/two harness repairs consumed; no previous qualification restart.
+User review and commit are next. Suggested commit:
+`feat: retain project descriptions and lifecycle dates`.
 
 ## Centered Projects production adoption — 18 November 2026
 

@@ -34,6 +34,7 @@ export function useProjects(
   const commandPending = useRef(false);
   const [backupFeedbackKind, setBackupFeedbackKind] = useState<"information" | "error">("information");
   const [backupFeedback, setBackupFeedback] = useState("");
+  const [description, setDescription] = useState("");
   const [name, setName] = useState(""),
     [error, setError] = useState(""),
     [pending, setPending] = useState(false),
@@ -55,14 +56,14 @@ export function useProjects(
   }, []);
   useEffect(() => {
     const guard = (event: BeforeUnloadEvent) => {
-      if (name !== "" || pending || unknown || hasPreview) {
+      if (name !== "" || description !== "" || pending || unknown || hasPreview) {
         event.preventDefault();
         event.returnValue = "";
       }
     };
     addEventListener("beforeunload", guard);
     return () => removeEventListener("beforeunload", guard);
-  }, [name, pending, unknown, hasPreview]);
+  }, [name, description, pending, unknown, hasPreview]);
   async function recoverCreated(id: string) {
     setRetainedId(id);
     try {
@@ -71,6 +72,7 @@ export function useProjects(
       try { setEntries(await host.current!.call("catalogue", null)); } catch { /* Open result remains authoritative; catalogue can be retried on return. */ }
       setProject(next);
       setName("");
+      setDescription("");
       setRetainedId(null);
       outcomes.clear();
       outcomes.publish(`Project “${next.project.name}” retained in this browser.`);
@@ -137,7 +139,7 @@ export function useProjects(
     let acceptedId: string | undefined;
     try {
       const id = crypto.randomUUID();
-      const result = await host.current!.call("createProject", { id, name });
+      const result = await host.current!.call("createProject", { id, name, ...(description === "" ? {} : { description }) });
       if (result.status !== "retained") {
         if (result.status === "unknown") setUnknown(result);
         setError(result.reason);
@@ -223,6 +225,7 @@ export function useProjects(
     setUnknown(undefined);
     setRetainedId(null);
     setName("");
+    setDescription("");
     void catalogue();
   }
   function retryCreated() {
@@ -242,6 +245,8 @@ export function useProjects(
     activeMutation,
     name,
     setName,
+    description,
+    setDescription,
     error,
     pending,
     notice,

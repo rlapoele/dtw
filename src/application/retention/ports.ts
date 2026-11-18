@@ -39,7 +39,7 @@ export type WriteIdentity = {
 };
 export type RetainedRecord = {
   readonly recordVersion: 1 | 2;
-  readonly authoredVersion: 1;
+  readonly authoredVersion: 1 | 2;
   readonly revision: string;
   readonly lastAcceptedCommand: CommandReceipt;
   readonly snapshot: ProjectSnapshot;
@@ -50,6 +50,9 @@ export type CatalogueEntry =
       readonly id: string;
       readonly status: "supported";
       readonly name: string;
+      readonly description?: string;
+      readonly creationDate?: string;
+      readonly lastUpdatedDate?: string;
       readonly revision: string;
       readonly tokens: number;
       readonly groups: number;

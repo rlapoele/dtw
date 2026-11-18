@@ -38,7 +38,7 @@ export function decodeRetainedRecord(
     "lastAcceptedCommand",
     "snapshot",
   ]);
-  if ((r.recordVersion !== 1 && r.recordVersion !== 2) || r.authoredVersion !== 1)
+  if ((r.recordVersion !== 1 && r.recordVersion !== 2) || (r.authoredVersion !== 1 && r.authoredVersion !== 2))
     throw Error("Unsupported retained record version");
   if (!internalId(r.revision)) throw Error("Invalid retained revision");
   const c = closed(r.lastAcceptedCommand, ["commandId", "operation", "result"]);
@@ -53,7 +53,7 @@ export function decodeRetainedRecord(
     throw Error("Invalid retained acceptance metadata");
   if (r.recordVersion === 1 && (c.operation === "undo" || c.operation === "redo"))
     throw Error("History receipts require retained record version 2");
-  const snapshot = admitSnapshot(r.snapshot);
+  const snapshot = admitSnapshot(r.snapshot, r.authoredVersion);
   encodeBackup(snapshot, "2000-01-01T00:00:00.000Z");
   if (
     (result.entityKind === "project" && result.id !== key) ||
@@ -66,7 +66,7 @@ export function decodeRetainedRecord(
   if (snapshot.project.id !== key) throw Error("Retained project key mismatch");
   return {
     recordVersion: r.recordVersion,
-    authoredVersion: 1,
+    authoredVersion: r.authoredVersion,
     revision: r.revision,
     lastAcceptedCommand: {
       commandId: c.commandId,

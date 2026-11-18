@@ -40,6 +40,7 @@ function AppContent({
     activeMutation,
     name,
     setName,
+    description, setDescription,
     error,
     pending,
     notice,
@@ -62,7 +63,7 @@ function AppContent({
   }, [preview, restoreOpen]);
   useEffect(() => {
     if (!project) return;
-    setProjectsView(view => ({ ...view, selection: { rowKey: entries?.find(entry => entry.status === "supported" && entry.id === project.project.id)?.rowKey ?? project.project.id, status: "supported", id: project.project.id, name: project.project.name, revision: project.revision, tokens: project.tokens, groups: project.groups } }));
+    setProjectsView(view => ({ ...view, selection: { rowKey: entries?.find(entry => entry.status === "supported" && entry.id === project.project.id)?.rowKey ?? project.project.id, status: "supported", ...project.project, revision: project.revision, tokens: project.tokens, groups: project.groups } }));
   }, [project]);
   useEffect(() => {
     if (!entries) return;
@@ -89,6 +90,8 @@ function AppContent({
       error={error}
       notice={notice}
       name={name}
+      description={description}
+      onDescriptionChange={setDescription}
       pending={pending}
       activeMutation={activeMutation.current}
       retained={retainedId !== null}

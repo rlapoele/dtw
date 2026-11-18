@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { createRetainedWorkbench } from "@application/retention/service";
+import { createRetainedWorkbench as createWithClock } from "@application/retention/service";
 import type { Acceptance, RetainedRecord, RetentionPort } from "@application/retention/ports";
+const createRetainedWorkbench = (port: RetentionPort, nextId: () => string) => createWithClock(port, nextId, () => "2026-11-18T10:00:00.000Z");
+
 function setup() {
   let record: RetainedRecord | undefined, n = 0, writes = 0;
   let outcome: "retained" | "rejected" | "unknown" = "retained";

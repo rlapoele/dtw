@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  validateAttempt,
   validateHostInput,
   validateHostOutput,
 } from "@hosts/browser/validation";
@@ -156,4 +157,11 @@ it("validates true history counts across the typed worker boundary", () => {
   for (const undoCount of [-1, 0.5, 51, "2", undefined]) {
     expect(() => validateHostOutput("historyState", input, {undoCount, redoCount: 0})).toThrow();
   }
+});
+
+it("admits description across creation input and attempt correlation", () => {
+  const input = {id: "p", name: "Project", description: "  line one\nline two  "};
+  expect(() => validateHostInput("createProject", input)).not.toThrow();
+  expect(() => validateAttempt({commandId: "command", revision: "revision", incarnation: "db", projectId: "p", expectedRevision: null, operation: "createProject", result: {entityKind: "project", id: "p"}}, "createProject", input)).not.toThrow();
+  expect(() => validateHostInput("createProject", {...input, description: null})).toThrow();
 });

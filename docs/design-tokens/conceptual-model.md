@@ -33,7 +33,7 @@ A Project is the stable working context and initial ownership boundary. Its core
 
 Project identity is distinct from its workspace location. Moving or renaming a workspace does not change the project. Settings, provenance, export targets, generated-artifact records, and other project-owned concerns may remain associated entities or configuration rather than fields embedded into the core Project entity.
 
-**Lifecycle direction agreed — 18 November 2026; implementation pending:** projects
+**Lifecycle implementation — 18 November 2026:** projects
 also carry read-only `creationDate` and `lastUpdatedDate` as UTC ISO timestamps.
 New creation sets both; applied metadata/token/group changes, including Undo/Redo,
 update only `lastUpdatedDate`. Viewing, drafts, no-ops, rejected writes and backup
@@ -41,9 +41,8 @@ downloads do not update them. Known creation dates remain fixed under editing;
 legacy unknown dates stay absent, with a future edit establishing only the update
 date. Exact backup restore preserves both known and absent project dates rather
 than stamping restoration time. Backup generation time is separate metadata.
-See the [Increment 019 draft](../increments/019-project-description-and-lifecycle-dates.md)
-for the agreed behavior and proposed delivery/versioning boundary; implementation
-is not yet authorized.
+See the [Increment 019](../increments/019-project-description-and-lifecycle-dates.md)
+for the agreed behavior and implemented delivery/versioning boundary.
 
 ### Token identity and lifecycle
 

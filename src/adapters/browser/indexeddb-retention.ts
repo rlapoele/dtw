@@ -150,9 +150,8 @@ export class BrowserRetention implements RetentionPort {
           const record = decodeRetainedRecord(cursor.value, id);
           rows.push({
             rowKey: JSON.stringify(["project", id]),
-            id,
             status: "supported",
-            name: record.snapshot.project.name,
+            ...record.snapshot.project,
             revision: record.revision,
             tokens: record.snapshot.tokens.length,
             groups: record.snapshot.groups.length,

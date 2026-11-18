@@ -42,15 +42,18 @@ Use the W3C Design Tokens Community Group format as the primary interoperability
 
 DTCG is not yet selected as canonical persistence. The internal project may need additional information, and vendor claims of DTCG support do not guarantee identical interpretation or lossless round trips.
 
-**Project lifecycle direction — 18 November 2026; implementation pending:** project
+**Project lifecycle implementation — 18 November 2026:** project
 `creationDate` and `lastUpdatedDate` are canonical project metadata, not an implicit
 DTCG mapping. Exact project backups preserve known and absent lifecycle dates;
 their wrapper `createdAt` remains the separate backup generation timestamp.
 Restore preserves these project facts even when replacing a newer local state.
 See the [project model](./conceptual-model.md#project-ownership-and-identity) and
-[Increment 019 draft](../increments/019-project-description-and-lifecycle-dates.md)
-for agreed semantics and the proposed versioned backward-read strategy. No
-external-tool export behavior or production schema change is authorized here.
+[Increment 019](../increments/019-project-description-and-lifecycle-dates.md)
+for agreed semantics. Readers accept authored versions 1 and 2 with closed,
+version-specific validation; new writes and backups emit authored version 2.
+Legacy reads do not rewrite storage or invent dates. Retained record versions
+1/2 and backup format version 1 are unchanged. External-tool export behavior
+is unchanged.
 
 **Working decision**
 

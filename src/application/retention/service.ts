@@ -28,6 +28,7 @@ const rejected = (reason: string): Acceptance => ({
 export function createRetainedWorkbench(
   port: RetentionPort,
   nextId: () => string,
+  now: () => string,
 ) {
   const history = createSessionHistory();
   let readbackBlocked = false;
@@ -124,11 +125,21 @@ export function createRetainedWorkbench(
           identity.result.entityKind !== candidate.entityKind)
       )
         return rejected("Attempt result identity changed.");
-      const snapshot = admitSnapshot(candidate.snapshot);
+      let snapshot = admitSnapshot(candidate.snapshot);
       // Complete emitted wrapper admission is shared with backup and restore.
       encodeBackup(snapshot, "2000-01-01T00:00:00.000Z");
-      if (before && operation !== "restoreProject" && snapshotText(before) === snapshotText(snapshot))
+      if (before && operation !== "restoreProject" && contentText(before) === contentText(snapshot))
         return {status: "unchanged", revision: expectedRevision!, reason: "No authored change."};
+      if (operation !== "restoreProject") {
+        const timestamp = now();
+        const { creationDate: _creation, lastUpdatedDate: _updated, ...project } = snapshot.project;
+        snapshot = admitSnapshot({ ...snapshot, project: { ...project,
+          ...(operation === "createProject" ? { creationDate: timestamp } :
+            before?.project.creationDate === undefined ? {} : { creationDate: before.project.creationDate }),
+          lastUpdatedDate: timestamp,
+        } });
+        encodeBackup(snapshot, "2000-01-01T00:00:00.000Z");
+      }
       const commandId = identity?.commandId ?? nextId(),
         revision = identity?.revision ?? nextId();
       const receipt: CommandReceipt = {
@@ -142,7 +153,7 @@ export function createRetainedWorkbench(
         expectedRevision,
         record: {
           recordVersion: operation === "undo" || operation === "redo" ? 2 : (read.record?.recordVersion ?? 1),
-          authoredVersion: 1,
+          authoredVersion: 2,
           revision,
           lastAcceptedCommand: receipt,
           snapshot,
@@ -209,7 +220,7 @@ export function createRetainedWorkbench(
       return true;
     },
     async createProject(
-      input: { id: string; name: string },
+      input: { id: string; name: string; description?: string },
       identity?: WriteIdentity,
     ): Promise<Acceptance> {
       if (!input.name.trim()) return rejected("A project name is required.");
@@ -219,7 +230,7 @@ export function createRetainedWorkbench(
         "createProject",
         () => ({
           snapshot: {
-            project: input as ProjectSnapshot["project"],
+            project: { id: input.id, name: input.name, ...(input.description === undefined || input.description === "" ? {} : { description: input.description }) } as ProjectSnapshot["project"],
             groups: [],
             tokens: [],
           },
@@ -414,6 +425,11 @@ export function createRetainedWorkbench(
       return !active;
     },
   };
+}
+
+function contentText(snapshot: ProjectSnapshot) {
+  const { creationDate: _creation, lastUpdatedDate: _updated, ...project } = snapshot.project;
+  return snapshotText({ ...snapshot, project });
 }
 
 function sameReceipt(a: CommandReceipt, b: CommandReceipt) {

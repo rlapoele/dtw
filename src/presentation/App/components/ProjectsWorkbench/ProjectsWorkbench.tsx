@@ -17,7 +17,7 @@ export function ProjectsWorkbench({
   view, onView, onDownload, backupFeedback, backupFeedbackKind = "information", hasPreview,
   error,
   notice,
-  name,
+  name, description, onDescriptionChange,
   pending,
   activeMutation,
   retained,
@@ -46,6 +46,8 @@ export function ProjectsWorkbench({
   error: string;
   notice: string;
   name: string;
+  description: string;
+  onDescriptionChange: (description: string) => void;
   pending: boolean;
   activeMutation: boolean;
   retained: boolean;
@@ -101,6 +103,8 @@ export function ProjectsWorkbench({
             {layout.narrow && selected && <Button ref={layout.entry} className="w-full" disabled={openDisabled} onClick={() => layout.show("inspect")}>Inspect selected project</Button>}
             <CreateProjectForm
               name={name}
+              description={description}
+              onDescriptionChange={onDescriptionChange}
               disabled={createDisabled}
               pending={pending}
               error={error}

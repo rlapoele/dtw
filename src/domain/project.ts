@@ -6,6 +6,8 @@ export type Project = {
   readonly id: ProjectId;
   readonly name: ProjectName;
   readonly description?: string;
+  readonly creationDate?: string;
+  readonly lastUpdatedDate?: string;
 };
 
 export type ProjectInput = {

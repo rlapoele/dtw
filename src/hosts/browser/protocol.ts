@@ -99,7 +99,7 @@ export interface HostCalls {
   ready: { input: null; output: { incarnation: string } };
   catalogue: { input: null; output: readonly CatalogueEntry[] };
   createProject: {
-    input: { id: string; name: string };
+    input: { id: string; name: string; description?: string };
     output: PublicAcceptance;
   };
   consume: { input: string; output: true };

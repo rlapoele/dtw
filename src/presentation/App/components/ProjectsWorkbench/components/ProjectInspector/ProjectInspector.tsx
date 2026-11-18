@@ -10,7 +10,11 @@ export function ProjectInspector({ entry, missing, catalogueUnavailable = false,
     <div><p className="text-caption text-muted-foreground">PROJECT</p><h2 className="text-inspector font-semibold wrap-anywhere mt-2">{entry.status === "supported" ? entry.name || "(unnamed project)" : "Project unavailable"}</h2></div>
     {supported && <div className="flex flex-col gap-3"><Button variant="default" disabled={disabled} onClick={() => onOpen(entry.id)}>Open project</Button><Button disabled={disabled} onClick={() => onDownload(entry)}>Download backup</Button></div>}
     <dl className="space-y-4"><div><dt className="text-muted-foreground">Identity</dt><dd className="m-0 mt-1 font-mono text-xs wrap-anywhere">{JSON.stringify(entry.id)}</dd></div><div><dt className="text-muted-foreground">Status</dt><dd className="m-0 mt-1">{missing ? "Unavailable — selected entry is no longer in the catalogue." : catalogueUnavailable ? "Catalogue unavailable or being refreshed. Last-known facts are shown." : entry.status === "supported" ? "Supported" : entry.reason}</dd></div>
-    {supported && <><div><dt className="text-muted-foreground">Contents</dt><dd className="m-0 mt-1">{entry.tokens} tokens · {entry.groups} groups</dd></div></>}
+    {supported && <>
+      {entry.description !== undefined && <div><dt className="text-muted-foreground">Description</dt><dd tabIndex={0} className="m-0 mt-1 max-h-48 overflow-auto whitespace-pre-wrap wrap-anywhere">{entry.description}</dd></div>}
+      <div><dt className="text-muted-foreground">Created</dt><dd className="m-0 mt-1 wrap-anywhere">{entry.creationDate ? <time dateTime={entry.creationDate} title={entry.creationDate}>{new Date(entry.creationDate).toLocaleString()}</time> : "Unknown"}</dd></div>
+      <div><dt className="text-muted-foreground">Last updated</dt><dd className="m-0 mt-1 wrap-anywhere">{entry.lastUpdatedDate ? <time dateTime={entry.lastUpdatedDate} title={entry.lastUpdatedDate}>{new Date(entry.lastUpdatedDate).toLocaleString()}</time> : "Unknown"}</dd></div>
+      <div><dt className="text-muted-foreground">Contents</dt><dd className="m-0 mt-1">{entry.tokens} tokens · {entry.groups} groups</dd></div></>}
     </dl><p className="text-caption text-muted-foreground">{supported ? "Catalogue facts are read only. Opening checks current retained state. Backups contain applied work, excluding drafts." : "This entry can be inspected. Open and backup are unavailable."}</p>
   </div>;
 }

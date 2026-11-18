@@ -59,7 +59,7 @@ export function installWorkbenchWorker(storage: BrowserRetention) {
     };
   }
 
-  const app = createRetainedWorkbench(storage, () => crypto.randomUUID());
+  const app = createRetainedWorkbench(storage, () => crypto.randomUUID(), () => new Date().toISOString());
   function publish(result: Acceptance): PublicAcceptance {
     if (result.status !== "retained") return result;
     const { before: _before, after: _after, ...publicResult } = result;

@@ -8,6 +8,7 @@ function screen(overrides: Partial<ComponentProps<typeof ProjectsWorkbench>> = {
   return renderToStaticMarkup(createElement(ProjectsWorkbench, {
     storageStatus: "checking", onRetryStorage: noop,
     view: { scroll: 0, surface: "browse" }, onView: noop, onDownload: noop, backupFeedback: "", hasPreview: false,
+    description: "", onDescriptionChange: noop,
     entries: [], error: "", notice: "", name: "  Unfinished name  ",
     pending: false, activeMutation: false, retained: false, unknown: false,
     nameRef: { current: null }, onOpen: noop, onRetryCatalogue: noop,
@@ -110,4 +111,17 @@ it("renders actual persistence status with conditional retry and existing action
   }
   expect(screen({ storageStatus: "request-error" })).toContain("request failed");
   expect(screen({ storageStatus: "check-error" })).toContain("status could not be checked");
+});
+
+it("renders optional description entry and read-only known or unknown project dates", () => {
+  const entry = {rowKey: "p", id: "p", name: "Project", status: "supported" as const, revision: "r", tokens: 0, groups: 0, description: "First line\nSecond line", creationDate: "2026-11-18T10:00:00.000Z", lastUpdatedDate: "2026-11-18T11:00:00.000Z"};
+  const html = screen({entries: [entry], view: {scroll: 0, surface: "browse", selection: entry}, description: "Unfinished\nDescription"});
+  expect(html).toContain("Description (optional)");
+  expect(html).toContain("Unfinished\nDescription");
+  expect(html).toContain("First line\nSecond line");
+  expect(html).toContain('dateTime="2026-11-18T10:00:00.000Z"');
+  expect(html).toContain('dateTime="2026-11-18T11:00:00.000Z"');
+  const {creationDate: _creation, lastUpdatedDate: _updated, ...legacy} = entry;
+  const unknown = screen({entries: [legacy], view: {scroll: 0, surface: "browse", selection: legacy}});
+  expect(unknown.match(/>Unknown</g)).toHaveLength(2);
 });

@@ -50,7 +50,7 @@ export function ProjectRecovery({
           className="notification notification-warning text-caption mt-5"
         >
           <p>
-            Retained result unknown. Entered name is preserved; do not repeat
+            Retained result unknown. Entered name and description are preserved; do not repeat
             creation.
           </p>
           <Button disabled={pending} onClick={onCheck}>
