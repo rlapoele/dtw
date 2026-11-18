@@ -1,7 +1,7 @@
 # Increment 019: Project description and lifecycle dates
 
 - Contract status: Agreed
-- Delivery status: Partially completed — implementation and independent review finished; browser coverage gaps below
+- Delivery status: Completed — independently reviewed and user-accepted; verification limits retained
 - Behavior agreement: on 18 November 2026 the user requested description at creation and `creationDate` / `lastUpdatedDate`, and confirmed exact restore preserves dates, successful Undo/Redo establishes a new update date, and legacy dates remain unknown until an edit establishes `lastUpdatedDate`.
 - Display agreement: the user also confirmed description and read-only Created / Last updated in the existing project inspector.
 - Final contract agreement and implementation authorization: granted by the user on 18 November 2026, explicitly including storage/backup migration and independent review.
@@ -78,8 +78,10 @@ writes stamp lifecycle dates using an injected clock; exact restore preserves th
 New writes/backups use authored version 2, with closed backward reading of version 1.
 No staging, committing or pushing was performed.
 
-Delivery remains partially completed for the browser evidence gaps described below;
-this does not identify a demonstrated product defect or claim user acceptance.
+On 18 November 2026 the user reported committing and pushing the implementation,
+then confirmed manual verification and acceptance for now. Delivery is completed
+on that basis. The specific browser coverage gaps below remain documented; the
+user did not identify individual failure scenarios as tested.
 
 ### Acceptance evidence
 
@@ -115,5 +117,6 @@ native confirmation-dialog behavior. A future explicitly bounded verification pa
 can close these remaining UI evidence gaps; broader Increment 007 deferrals remain.
 No additional product decision or implementation authorization is needed.
 
-User review and commit remain with the user. Suggested commit:
-`feat: retain project descriptions and lifecycle dates`.
+Implementation was committed and pushed by the user, then manually accepted. No
+further verification campaign is requested. Suggested commit for this acceptance
+record: `docs: record Increment 019 manual acceptance`.

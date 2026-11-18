@@ -2,7 +2,7 @@
 
 > Last updated: 18 November 2026
 >
-> Phase: Increment 019 implemented and independently reviewed; scoped browser evidence gaps remain. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
+> Phase: Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
 > completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
@@ -15,7 +15,7 @@
 User agreed optional description at creation, creationDate/lastUpdatedDate lifecycle
 semantics, exact restore preserving dates, Undo/Redo recording a new update, and
 unknown legacy dates remaining unknown until an edit establishes lastUpdatedDate.
-The inspector will show description and read-only Created / Last updated values.
+The inspector shows description and read-only Created / Last updated values.
 [Increment 019](../increments/019-project-description-and-lifecycle-dates.md) records
 these agreements, nine criteria and the agreed authored-version2 compatibility
 strategy. Owning model/architecture/interoperability documents record the direction.
@@ -29,11 +29,13 @@ Typecheck, 68 targeted tests, an updated 8-test inspector file and 45 independen
 review tests passed. Isolated Chrome checks covered multiline creation, unknown-input
 preservation, clearing after readback, desktop/narrow display, description-only leave
 handler and keyboard scrolling of long descriptions. Forced pending/rejected and
-retained-but-unreadable form recovery remain browser evidence gaps, so the increment
-report retains partial delivery status. Approximately 22/30 aggregate verification
+retained-but-unreadable form recovery remain browser evidence gaps. Approximately 22/30 aggregate verification
 minutes and one/two harness repairs consumed; no previous qualification restart.
-User review and commit are next. Suggested commit:
-`feat: retain project descriptions and lifecycle dates`.
+The user reported committing and pushing, then confirmed manual verification and
+acceptance for now on 18 November 2026. Increment 019 is completed on that basis;
+no claim is made that each previously unexercised failure scenario was tested.
+No additional verification campaign is requested. Suggested commit for this record:
+`docs: record Increment 019 manual acceptance`.
 
 ## Centered Projects production adoption — 18 November 2026
 
