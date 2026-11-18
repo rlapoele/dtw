@@ -42,6 +42,16 @@ Use the W3C Design Tokens Community Group format as the primary interoperability
 
 DTCG is not yet selected as canonical persistence. The internal project may need additional information, and vendor claims of DTCG support do not guarantee identical interpretation or lossless round trips.
 
+**Project lifecycle direction — 18 November 2026; implementation pending:** project
+`creationDate` and `lastUpdatedDate` are canonical project metadata, not an implicit
+DTCG mapping. Exact project backups preserve known and absent lifecycle dates;
+their wrapper `createdAt` remains the separate backup generation timestamp.
+Restore preserves these project facts even when replacing a newer local state.
+See the [project model](./conceptual-model.md#project-ownership-and-identity) and
+[Increment 019 draft](../increments/019-project-description-and-lifecycle-dates.md)
+for agreed semantics and the proposed versioned backward-read strategy. No
+external-tool export behavior or production schema change is authorized here.
+
 **Working decision**
 
 Use the stable DTCG `2025.10` Format, Color, and Resolver modules as the current strict interchange baseline. The repository contains a pinned source snapshot at `docs/references/dtcg-2025.10/`. A later specification version must be adopted explicitly rather than silently changing validation behavior.

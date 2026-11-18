@@ -10,6 +10,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Project metadata agreement and draft — 18 November 2026
+
+User agreed optional description at creation, creationDate/lastUpdatedDate lifecycle
+semantics, exact restore preserving dates, Undo/Redo recording a new update, and
+unknown legacy dates remaining unknown until an edit establishes lastUpdatedDate.
+The inspector will show description and read-only Created / Last updated values.
+[Increment 019](../increments/019-project-description-and-lifecycle-dates.md) records
+these agreements, nine criteria and the proposed authored-version2 compatibility
+strategy. Owning model/architecture/interoperability documents record the direction.
+
+The separate analyst found no remaining substantive behavior question. Contract and
+migration proposal await final agreement and implementation authorization; production
+is unchanged. Documentation/source review only; no tests/browser checks or previous
+qualification restart. Suggested commit:
+`docs: define project description and lifecycle dates`.
+
 ## Centered Projects production adoption — 18 November 2026
 
 User approved the layout and requested removal of the content max-width. Production

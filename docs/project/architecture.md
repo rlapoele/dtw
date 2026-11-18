@@ -211,6 +211,16 @@ The domain engine does not open files, display dialogs, start processes, or know
 
 The application layer coordinates domain operations with external capabilities. Its API should express meaningful workbench use cases rather than expose low-level Electron or filesystem primitives.
 
+**Project lifecycle direction — 18 November 2026; implementation pending:** the
+[agreed lifecycle semantics](../design-tokens/conceptual-model.md#project-ownership-and-identity)
+belong at this boundary. The proposed [Increment 019](../increments/019-project-description-and-lifecycle-dates.md)
+injects a host clock into application write coordination, stamps each retained
+attempt once, and commits content and dates together. Domain operations do not
+read the system clock. Unknown-outcome recovery reuses the original attempt;
+Undo/Redo updates lifecycle metadata while restoring authored content, and exact
+backup restore preserves imported dates. These timestamps are informational;
+opaque revisions continue to govern concurrency. Implementation remains pending.
+
 Representative operations include:
 
 ```text
