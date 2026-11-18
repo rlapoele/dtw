@@ -10,6 +10,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Centered Projects production adoption — 18 November 2026
+
+User approved the layout and requested removal of the content max-width. Production
+Projects now uses equal wide side regions, with the blank left region yielding on
+smaller desktops. The middle content fills its track without a max-width cap;
+both prototype caps were removed too. Existing token-workbench collapsed rails
+share3.25rem. [Presentation conventions](../project/presentation-conventions.md#centered-projects-and-common-rails--18-november-2026)
+own the geometry and preserved responsive policy.
+
+Two existing layout tests passed and diff/source checks passed. Production Projects
+was visually checked at1588px in the in-app browser; no stored data was changed.
+Narrow resize and collapsed-token runtime checks were not repeated. This focused
+CSS change preserves existing state/semantic pane owners; no new inspector workflow
+was added. Earlier qualification limits remain. Suggested commit:
+`fix: center Projects content and unify collapsed rails`.
+
 ## Centered Projects mockup — 18 November 2026
 
 The user requested a Projects layout trial centered between equal side regions.

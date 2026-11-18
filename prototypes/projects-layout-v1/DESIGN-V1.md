@@ -88,3 +88,13 @@ qualification was run. Existing production acceptance gaps remain unchanged.
 User design feedback is next; this mockup does not authorize production adoption.
 
 Suggested commit: `docs: mock up balanced Projects layout and equal collapsed rails`.
+
+## Production adoption and width amendment — 18 November 2026
+
+User approved production adoption with one correction: remove the projects-content
+max-width so content fills the middle region up to normal inspector-side padding.
+This supersedes the56rem/42rem caps above; both caps are removed from the prototype,
+and production uses its existing uncapped main element. Production Projects now
+uses the balancing left track and existing narrow browse/inspect policy. Both
+existing token-workbench collapsed rails use a common3.25rem variable. The mockup
+inspector preview toggle is not added as a new Projects interaction.

@@ -337,3 +337,17 @@ TypeBranch layer text aligns with the type label after its size-4 icon and
 navigation button gap-2.5: a pl-6.5 wrapper offsets the layer by1.625rem.
 Namespace leaves use pl-9.5, a further .75rem. The same content is used in the
 pane and drawer. Existing button padding, count columns and transitions remain.
+
+### Centered Projects and common rails — 18 November 2026
+
+Approved Projects geometry uses a borderless balancing left grid track,
+`clamp(0rem, calc(100vw - 67rem), 25rem)`, and a25rem right inspector. At wide
+widths the side regions match; the blank track yields first below1472px and
+reaches zero at1072px. Below880px the existing single-column browse/inspect policy
+continues. Content fills the middle track with its existing padding and no
+max-width cap, per the user's explicit amendment. CSS grid placement preserves
+existing semantic pane roots, scroll refs, focus and state ownership.
+
+The token workbench's collapsed navigation and inspector tracks both use
+`--collapsed-pane-width:3.25rem`. Existing pane motion derives from those tracks;
+expanded widths, toggle behavior and responsive thresholds are unchanged.

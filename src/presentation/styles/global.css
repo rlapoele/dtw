@@ -134,10 +134,16 @@
 }
 
 /* Page-owned pane geometry preserves one mounted editor across modes. */
-.workbench { --groups-expanded-width:var(--inspector-expanded-width); --inspector-expanded-width:25rem; --groups-width:var(--groups-expanded-width); --inspector-width:var(--inspector-expanded-width); grid-template-columns: var(--groups-width) minmax(0, 1fr) var(--inspector-width); }
-.groups-collapsed { --groups-width: 3.25rem; }
-.inspector-collapsed { --inspector-width: 3rem; }
-.projects-layout { grid-template-columns: minmax(0, 1fr) 25rem; }
+.workbench { --collapsed-pane-width:3.25rem; --groups-expanded-width:var(--inspector-expanded-width); --inspector-expanded-width:25rem; --groups-width:var(--groups-expanded-width); --inspector-width:var(--inspector-expanded-width); grid-template-columns: var(--groups-width) minmax(0, 1fr) var(--inspector-width); }
+.groups-collapsed { --groups-width: var(--collapsed-pane-width); }
+.inspector-collapsed { --inspector-width: var(--collapsed-pane-width); }
+/* The blank left track balances the inspector, yielding first on smaller desktops. */
+.projects-layout { --project-inspector-width:25rem; --project-balance-width:clamp(0rem, calc(100vw - 67rem), 25rem); grid-template-columns:var(--project-balance-width) minmax(0, 1fr) var(--project-inspector-width); }
+@media (min-width:880px) {
+  .projects-layout::before { content:""; grid-column:1; grid-row:1; }
+  .projects-layout > .projects-browse { grid-column:2; grid-row:1; }
+  .projects-layout > .projects-inspector { grid-column:3; grid-row:1; }
+}
 
 .inspector-collapsed .inspector-toggle { border-bottom: 0; }
 .token-row { min-height: 4.75rem; }
