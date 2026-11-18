@@ -317,3 +317,11 @@ opening and closing; reduced motion disables transitions. Mounted descendants
 are inert and hidden from assistive technology while collapsed. This CSS exception
 handles animated intrinsic height and delayed visibility, without a new theme
 value or animation dependency. Ordinary spacing uses named Tailwind utilities.
+
+### Token list identity refinement — 18 November 2026
+
+User-approved token list identity shows the local name followed by the full path
+including name, then description under existing responsive visibility rules.
+Omit the redundant parent-only path line. Preserve protection indicators and
+honest diagnostic/identity fallbacks when a full derived path is unavailable.
+This applies to the production list and current prototype, not inspector headings.

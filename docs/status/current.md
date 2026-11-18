@@ -10,6 +10,16 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Token identity simplification — 18 November 2026
+
+Removed the redundant parent-only path line from mockup and production lists,
+retaining local name, full path and description with existing responsive rules.
+[Presentation conventions](../project/presentation-conventions.md#token-list-identity-refinement--18-november-2026)
+own the approved display rule. Removed the now-unused prototype style; inspector
+and identity diagnostics remain unchanged. Sixteen focused token-list/identity
+tests passed; source and diff reviewed. No new browser qualification was run.
+Suggested commit: `fix: remove redundant token parent paths`.
+
 ## Increment 018 implementation and review — 18 November 2026
 
 The approved Tokens navigation is implemented: type → layer → full namespace path,

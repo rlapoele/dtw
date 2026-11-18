@@ -98,3 +98,11 @@ not make their contents unreachable. Existing transitions remain in place.
 Coordinator visually checked the desktop result; no new broad qualification ran.
 Earlier screenshots precede this small placement refinement; the live preview
 shows the current proposal.
+
+## Token identity simplification — 18 November 2026
+
+User approved removing the redundant parent-only path from both mockup and
+production token lists. Identity now retains the prominent local name, full
+path including name, and description under the existing responsive rules.
+Inspector identity and diagnostic identity details are unchanged. Earlier captures
+precede this refinement. The unused prototype parent-path style was removed.

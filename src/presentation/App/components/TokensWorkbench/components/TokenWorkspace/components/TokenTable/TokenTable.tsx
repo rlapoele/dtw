@@ -29,7 +29,6 @@ export function TokenTable({ context, creationParentLabel = "Project root", rows
       </div>
       {rows.map(row => {
         const token = identity.tokens.get(row.id);
-        const parent = token?.path.status === "derived" ? token.path.path.slice(0, -1).join(" / ") || "Project root" : "Parent path unavailable";
         const detail = identity.details.get(JSON.stringify(["token", row.id]));
         const layer = row.layer === "Unspecified" ? "—" : title(row.layer);
         return <button key={row.id} type="button"
@@ -38,7 +37,6 @@ export function TokenTable({ context, creationParentLabel = "Project root", rows
           <span className="flex gap-3 min-w-0 items-start @3xl:col-span-2 compact:@3xl:col-span-1">
             <span className="token-identity flex-1 min-w-0">
               <span className="flex items-start gap-1.5"><strong className="text-xs/normal small:text-caption token-name wrap-anywhere">{token?.authored.localName || "(unnamed)"}</strong>{row.regeneration === "protected" && <Icon name="protected" label="Protected from regeneration" className="text-muted-foreground" />}</span>
-              <span className="block text-caption text-muted-foreground mt-1 wrap-anywhere">{parent}</span>
               <span className="block text-caption font-mono text-muted-foreground mt-1 wrap-anywhere">{identity.labels.get(row.id) ?? row.label}</span>
               <span className="flex items-center gap-1.5 mt-2 text-caption text-muted-foreground @3xl:hidden compact:@3xl:flex"><Icon name={typeIcon(row.type)} />{title(row.type)} · {layer}</span>
               {detail && <span className="block text-caption wrap-anywhere mt-1">{detail}</span>}
