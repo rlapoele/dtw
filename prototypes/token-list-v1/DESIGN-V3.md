@@ -73,3 +73,28 @@ Production source, dependencies, stored projects and domain semantics are unchan
 User feedback is next; no analyst approval or implementation authorization is inferred.
 
 Suggested commit: `docs: add hierarchical token navigation mockup`.
+
+## Navigation motion refinement — 18 November 2026
+
+User-requested navigation disclosures now use synchronized 180ms ease-in-out
+transitions for chevron rotation and branch expansion/collapse. Mounted branch
+contents allow closing to animate too; collapsed branches are inert and hidden
+from assistive technology. Reduced-motion preferences disable transitions.
+This applies to type and layer branches on desktop and in the compact drawer.
+
+Focused in-app browser checks confirmed collapse removes descendant controls
+from the accessibility snapshot, reopening restores them, and focus remains on
+the toggle. Source inspection verified the motion and reduced-motion rules;
+frame-by-frame motion and OS reduced-motion behavior were not independently
+measured. Approximately two minutes of focused verification; no repair campaign
+or broader qualification restart. Production components are unchanged.
+
+## Trailing chevrons — 18 November 2026
+
+Chevrons now follow the count on expandable branches containing more than one
+token. Single-token branches and leaves reserve the same trailing space without
+an icon. Single-token branches remain expanded so removing their disclosure does
+not make their contents unreachable. Existing transitions remain in place.
+Coordinator visually checked the desktop result; no new broad qualification ran.
+Earlier screenshots precede this small placement refinement; the live preview
+shows the current proposal.

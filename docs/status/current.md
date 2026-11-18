@@ -17,7 +17,10 @@ proposal to type → layer → group/path. The [V3 proposal](../../prototypes/to
 owns the interactive prototype and evidence. The proposed **Tokens** section uses
 the list's type icons, populated branches only, and project-wide counts. Labels
 filter the list independently of branch expansion; Groups retains namespace browsing
-across types. Compact Browse exposes the same navigation.
+across types. Compact Browse exposes the same navigation. A subsequent user-requested refinement
+adds 180ms chevron/branch transitions with reduced-motion support; V3 records the
+focused disclosure checks and limits. Chevrons now trail counts and are omitted
+with space reserved for single-token branches, which remain expanded.
 
 Coordinator visually inspected the hierarchy in the in-app browser. Designer checks
 and remaining limits are recorded in V3. This is a prototype awaiting user feedback;

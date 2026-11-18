@@ -68,9 +68,9 @@ function TypeNavigation({scope,onScope}:{scope:string;onScope:(value:string)=>vo
  const plural:Record<string,string>={Color:'Colors',Dimension:'Dimensions',Duration:'Durations'};
  const item=(key:string,label:string,count:number,depth:number,icon:'swatch'|'measure'|'clock'|'folder'|undefined,children?:React.ReactNode)=><div key={key}>
   <div className={'tree-entry '+(scope===key?'active':'')} style={{paddingLeft:12+depth*12}}>
-   {children?<button className="tree-expand" aria-label={(expanded.has(key)?'Collapse ':'Expand ')+label} aria-expanded={expanded.has(key)} onClick={()=>toggle(key)}><Icon name={expanded.has(key)?'chevron-down':'chevron-right'} className="size-3"/></button>:<span className="tree-spacer"/>}
    <button className="tree-scope" aria-current={scope===key?'page':undefined} onClick={()=>onScope(key)}>{icon&&<Icon name={icon} className="size-3.5"/>}<span className="tree-label">{label}</span><span className="tree-count">{count}</span></button>
-  </div>{children&&expanded.has(key)&&<div>{children}</div>}
+   {children&&count>1?<button className="tree-expand" aria-label={(expanded.has(key)?'Collapse ':'Expand ')+label} aria-expanded={expanded.has(key)} onClick={()=>toggle(key)}><Icon name="chevron-right" className="size-3 tree-chevron"/></button>:<span className="tree-spacer" aria-hidden="true"/>}
+  </div>{children&&<div className="tree-children" data-expanded={count===1||expanded.has(key)} inert={count!==1&&!expanded.has(key)} aria-hidden={count!==1&&!expanded.has(key)}><div className="tree-children-inner">{children}</div></div>}
  </div>;
  return <><div className="nav-label groups-label">Tokens</div>{typeOrder.map(type=>{
   const typed=tokens.filter(t=>t.type===type);if(!typed.length)return null;
