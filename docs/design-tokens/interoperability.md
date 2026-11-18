@@ -280,7 +280,7 @@ Canonical sRGB and Display P3 coordinates may remain outside their nominal `[0, 
 
 The [DTCG `2025.10` Color Module](https://www.w3.org/community/reports/design-tokens/CG-FINAL-color-20251028/#format) specifies a primary `colorSpace` and `components`, optional alpha, and an optional six-digit HEX fallback. The fallback's alpha is supplied separately by the color value. This supports interchange of a primary color and fallback; it does not select our canonical schema, require a stored fallback for every token, or establish that every fallback is exactly equivalent to its primary color.
 
-Canonical fallback ownership, automatic generation, gamut-mapping algorithms, precision, and target emission policies remain open. A fallback must not become an independently authoritative copy or silently overwrite the primary value on re-import. Fixtures should test conversion loss and fallback handling separately from theme variants and equivalent display representations.
+Canonical fallback ownership, automatic generation, gamut-mapping algorithms, precision, and target emission policies remain open. The [Increment 017 display-only HEX approximation](./conceptual-model.md#authored-color-and-alternative-representations) selects no interchange fallback or target emission policy. A fallback must not become an independently authoritative copy or silently overwrite the primary value on re-import. Fixtures should test conversion loss and fallback handling separately from theme variants and equivalent display representations.
 
 ## Round-trip strategy
 

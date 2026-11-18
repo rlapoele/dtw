@@ -1,22 +1,22 @@
-import { hexPreview } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/TokenTable/helpers/hex-preview";
-import type {
-  DisplayRow,
-  ProjectContext,
-} from "@application/retention/projections";
-import { AuthoredValue } from "@presentation/App/components/TokensWorkbench/components/AuthoredValue";
-import { TokenSwatch } from "@presentation/App/components/TokensWorkbench/components/TokenSwatch";
+import { useMemo } from "react";
+import type { DisplayRow, ProjectContext } from "@application/retention/projections";
 import { Button } from "@presentation/ui/button";
+import { Icon, type IconName } from "@presentation/ui/icon";
 import { identityLabels, namespaceEntryDetails } from "@presentation/App/components/TokensWorkbench/helpers/identity-labels";
-import { colorPreview } from "@presentation/App/components/TokensWorkbench/helpers/color-preview";
-export function TokenTable({
-  context,
-  creationParentLabel = "Project root",
-  rows,
-  selected,
-  query,
-  onSelect,
-  onEmptyAction,
-}: {
+import { TokenValue } from "./components/TokenValue";
+
+function typeIcon(type: string): IconName {
+  if (type === "color" || type === "gradient") return "swatch";
+  if (type === "dimension") return "dimension";
+  if (type === "duration" || type === "transition") return "clock";
+  if (["number", "percentage", "angle"].includes(type)) return "number";
+  if (["fontFamily", "fontWeight", "typography", "string"].includes(type)) return "text";
+  if (["shadow", "border"].includes(type)) return "stack";
+  return "settings";
+}
+const title = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
+
+export function TokenTable({ context, creationParentLabel = "Project root", rows, selected, query, onSelect, onEmptyAction }: {
   context: ProjectContext;
   creationParentLabel?: string;
   rows: readonly DisplayRow[];
@@ -25,75 +25,39 @@ export function TokenTable({
   onSelect(id: string): void;
   onEmptyAction(): void;
 }) {
-  const labels = identityLabels(context.tokens);
-  const details = namespaceEntryDetails(context);
+  const identity = useMemo(() => ({ labels: identityLabels(context.tokens), details: namespaceEntryDetails(context),
+    tokens: new Map(context.tokens.map(token => [token.authored.id as string, token])) }), [context]);
   return (
     <div className="token-table @container border-t-hairline border-border">
-      <div className="table-heading border-b-hairline border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-3 touch:grid-cols-1 touch:@3xl:grid-cols-1 gap-3 text-muted-foreground">
-        <span>Token</span>
-        <span className="hidden @3xl:block">Description</span>
-        <span className="touch:hidden">Authored value</span>
+      <div className="table-heading border-b-hairline border-border p-3 narrow:px-2 grid grid-cols-2 @3xl:grid-cols-6 compact:@3xl:grid-cols-2 touch:grid-cols-1 touch:@3xl:grid-cols-1 gap-3 text-muted-foreground">
+        <span className="@3xl:col-span-2 compact:@3xl:col-span-1">Token</span>
+        <span className="hidden @3xl:block compact:@3xl:hidden">Type</span>
+        <span className="hidden @3xl:block compact:@3xl:hidden">Layer</span>
+        <span className="@3xl:col-span-2 compact:@3xl:col-span-1 touch:hidden">Value</span>
       </div>
-      {rows.map((row) => (
-        <button
-          key={row.id}
-          type="button"
-          className={`token-row border-0 border-b-hairline border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-3 touch:grid-cols-1 touch:@3xl:grid-cols-1 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent ${selected === row.id ? "selected" : ""}`}
-          aria-pressed={selected === row.id}
-          onClick={() => onSelect(row.id)}
-        >
-          <span className="flex gap-3 min-w-0 items-start">
-            <TokenSwatch css={colorPreview(row.preview).css} />
+      {rows.map(row => {
+        const token = identity.tokens.get(row.id);
+        const parent = token?.path.status === "derived" ? token.path.path.slice(0, -1).join(" / ") || "Project root" : "Parent path unavailable";
+        const detail = identity.details.get(JSON.stringify(["token", row.id]));
+        const layer = row.layer === "Unspecified" ? "—" : title(row.layer);
+        return <button key={row.id} type="button"
+          className={`token-row border-0 border-b-hairline border-border hover:bg-row-hover aria-pressed:bg-selected relative grid grid-cols-2 @3xl:grid-cols-6 compact:@3xl:grid-cols-2 touch:grid-cols-1 touch:@3xl:grid-cols-1 gap-3 items-start w-full text-left p-3 narrow:px-2 bg-transparent ${selected === row.id ? "selected" : ""}`}
+          aria-pressed={selected === row.id} onClick={() => onSelect(row.id)}>
+          <span className="flex gap-3 min-w-0 items-start @3xl:col-span-2 compact:@3xl:col-span-1">
             <span className="token-identity flex-1 min-w-0">
-              <strong className="block text-xs/normal small:text-caption token-name wrap-anywhere">
-                {labels.get(row.id)}
-              </strong>
-              <small className="block text-muted-foreground mt-1 wrap-anywhere">
-                {row.layer} · {row.type}
-              </small>
-              {row.type === "color" && (
-                <span className="block text-caption text-muted-foreground mt-2 wrap-anywhere">
-                  <HexPreview source={row.preview} />
-                </span>
-              )}
-              {details.get(JSON.stringify(["token", row.id])) && (
-                <span className="block text-caption wrap-anywhere">
-                  {details.get(JSON.stringify(["token", row.id]))}
-                </span>
-              )}
-              {row.description !== undefined && (
-                <span className="@3xl:hidden mt-2 line-clamp-2 whitespace-pre-wrap wrap-anywhere text-caption text-muted-foreground">
-                  {row.description}
-                </span>
-              )}
+              <span className="flex items-start gap-1.5"><strong className="text-xs/normal small:text-caption token-name wrap-anywhere">{token?.authored.localName || "(unnamed)"}</strong>{row.regeneration === "protected" && <Icon name="protected" label="Protected from regeneration" className="text-muted-foreground" />}</span>
+              <span className="block text-caption text-muted-foreground mt-1 wrap-anywhere">{parent}</span>
+              <span className="block text-caption font-mono text-muted-foreground mt-1 wrap-anywhere">{identity.labels.get(row.id) ?? row.label}</span>
+              <span className="flex items-center gap-1.5 mt-2 text-caption text-muted-foreground @3xl:hidden compact:@3xl:flex"><Icon name={typeIcon(row.type)} />{title(row.type)} · {layer}</span>
+              {detail && <span className="block text-caption wrap-anywhere mt-1">{detail}</span>}
+              {row.description !== undefined && <span className="hidden @3xl:line-clamp-1 compact:@3xl:hidden mt-2 text-caption text-muted-foreground wrap-anywhere">{row.description}</span>}
             </span>
           </span>
-          <span className="hidden @3xl:block min-w-0 text-caption text-muted-foreground">
-            <span className="line-clamp-2 whitespace-pre-wrap wrap-anywhere">
-              {row.description ?? "—"}
-            </span>
-          </span>
-          <span className="value-summary touch:hidden min-w-0 text-value text-caption wrap-anywhere">
-            {row.color ? (
-              <AuthoredValue
-                value={row.color}
-                project={context}
-                layout="compact"
-                approximate
-              />
-            ) : row.targetId !== undefined ? (
-              <span className="block">
-                Reference
-                <span className="block text-muted-foreground mt-1">
-                  {labels.get(row.targetId) ?? "Missing target"}
-                </span>
-              </span>
-            ) : (
-              row.valueKind
-            )}
-          </span>
-        </button>
-      ))}
+          <span className="hidden @3xl:flex compact:@3xl:hidden items-center gap-1.5 min-w-0 text-caption text-muted-foreground wrap-anywhere"><Icon name={typeIcon(row.type)} />{title(row.type)}</span>
+          <span className="hidden @3xl:block compact:@3xl:hidden text-caption text-muted-foreground">{layer}</span>
+          <span className="min-w-0 @3xl:col-span-2 compact:@3xl:col-span-1"><TokenValue row={row} targetLabel={row.targetId === undefined ? undefined : identity.labels.get(row.targetId)} /></span>
+        </button>;
+      })}
       {rows.length === 0 && (
         <div className="empty px-5 py-17.5 text-center text-muted-foreground">
           <h2 className="text-foreground text-base/normal">
@@ -115,9 +79,4 @@ export function TokenTable({
       )}
     </div>
   );
-}
-
-function HexPreview({source}: {source: DisplayRow["preview"]}) {
-  const detail = hexPreview(source);
-  return <span title={detail}><span aria-hidden="true">{detail.match(/#[0-9A-F]{6,8}/)?.[0] ?? "HEX unavailable"}</span><span className="sr-only">{detail}</span></span>;
 }

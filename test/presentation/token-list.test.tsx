@@ -1,0 +1,55 @@
+import { describe, expect, it } from "vitest";
+import { renderToStaticMarkup } from "react-dom/server";
+import { admitSnapshot, encodeBackup } from "@application/retention/codec";
+import { displayRows, projectContext } from "@application/retention/projections";
+import { validateHostOutput } from "@hosts/browser/validation";
+import { tokenListRows } from "@presentation/App/components/TokensWorkbench/helpers/token-list-order";
+import { TokenTable } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/TokenTable/TokenTable";
+const color = { kind: "literal", valueType: "color", colorSpace: "srgb", components: ["0.5", "0", "1"], alpha: "0.5" };
+const ref = (id: string, valuePath: string[] = []) => ({ kind: "token-reference", targetTokenId: id, valuePath: valuePath.map(key => ({ kind: "field", key })) });
+const group = (id: string, localName: string, parentGroupId: string | null = null) => ({ id, localName, parentGroupId, projectId: "p" });
+const token = (id: string, localName: string, parentGroupId: string | null, type = "color", layer?: string, value: unknown = color) => ({ id, localName, parentGroupId, projectId: "p", authoring: { regeneration: "protected" }, description: "A description", ...(layer ? { layer } : {}), ...(layer === "component" ? { componentDefinitionId: "component" } : {}), definition: { type, assignments: [{ condition: [], value }] } });
+const snapshot = () => admitSnapshot({ project: { id: "p", name: "List fixture" }, groups: [group("root", "root"), group("sub10", "10", "root"), group("sub2", "2", "root"), group("lookalike", "root"), group("cycle", "cycle", "cycle"), group("missing", "missing", "absent")], tokens: [
+  token("c10", "10", "sub2", "color", "primitive"), token("c2", "2", "sub2", "color", "primitive"), token("c100", "100", "sub2", "color", "primitive"),
+  token("semantic", "alias", "root", "color", "semantic", ref("c2")), token("component", "component", "sub10", "color", "component"), token("unspecified", "loose", null),
+  token("dimension", "spacing", "root", "dimension", "primitive", { kind: "literal", valueType: "dimension", value: "12", unit: "px" }), token("duration", "time", "root", "duration", undefined, { kind: "literal", valueType: "duration", value: "150", unit: "ms" }),
+  token("lookalike", "different", "lookalike"), token("cyclic", "cyclic", "cycle"), token("orphan", "orphan", "missing"),
+  token("broken", "broken", null, "color", "semantic", ref("absent")), token("self", "self", null, "color", "semantic", ref("self")), token("path", "path", null, "color", "semantic", ref("c2", ["alpha"])),
+] });
+describe("production token list properties and contextual ordering", () => {
+  it("sorts by declared type/layer then natural paths/names; search retains order without writes", () => {
+    const source = snapshot(), context = projectContext(source), rows = displayRows(source, 0, 100), before = encodeBackup(source, "2026-11-18T00:00:00.000Z");
+    const ordered = tokenListRows(rows, context, null, "");
+    expect(ordered.slice(0, 3).map(row => row.id)).toEqual(["c2", "c10", "c100"]);
+    expect(ordered.indexOf(rows.find(row => row.id === "semantic")!)).toBeLessThan(ordered.indexOf(rows.find(row => row.id === "component")!));
+    expect(ordered.slice(-2).map(row => row.id)).toEqual(["dimension", "duration"]);
+    expect(tokenListRows(rows, context, null, "root / 2").map(row => row.id)).toEqual(["c2", "c10", "c100"]);
+    expect(encodeBackup(source, "2026-11-18T00:00:00.000Z")).toBe(before);
+  });
+  it("includes descendants by identity, direct names first, rejecting broken ancestry and lookalikes", () => {
+    const source = snapshot(), context = projectContext(source), rows = displayRows(source, 0, 100);
+    expect(tokenListRows(rows, context, "root", "").map(row => row.id)).toEqual(["semantic", "dimension", "duration", "c2", "c10", "c100", "component"]);
+    expect(tokenListRows(rows, context, "cycle", "")).toEqual([]);
+    expect(tokenListRows(rows, context, "missing", "")).toEqual([]);
+    const foreign = { ...context, groups: context.groups.map(g => g.authored.id === "root" ? { ...g, authored: { ...g.authored, projectId: "foreign" as typeof g.authored.projectId } } : g) };
+    expect(tokenListRows(rows, foreign, "root", "")).toEqual([]);
+  });
+  it("transports only needed summaries with protection and honest failed-reference previews", () => {
+    const rows = displayRows(snapshot(), 0, 100);
+    expect(() => validateHostOutput("rows", { projectId: "p", revision: "r", offset: 0, count: 100 }, rows)).not.toThrow();
+    expect(rows.find(row => row.id === "dimension")).toMatchObject({ quantity: { value: "12", unit: "px" }, regeneration: "protected" });
+    expect(rows.find(row => row.id === "duration")).toMatchObject({ quantity: { value: "150", unit: "ms" } });
+    for (const id of ["broken", "self", "path"]) expect(rows.find(row => row.id === id)?.preview).toBeUndefined();
+    expect(rows.find(row => row.id === "semantic")?.preview).toEqual(color);
+  });
+  it("renders full identity, protection, all five spaces, separate alpha and an unemphasized alias stack", () => {
+    const source = snapshot(), context = projectContext(source), rows = displayRows(source, 0, 100);
+    const render = (id: string) => renderToStaticMarkup(<TokenTable context={context} rows={rows.filter(row => row.id === id)} selected={id} query="" onSelect={() => {}} onEmptyAction={() => {}} />);
+    const literal = render("c2"), alias = render("semantic");
+    for (const label of ["Type", "Layer", "Value", "Protected from regeneration", "root / 2 / 2", "A description", "#8000FF", "sRGB", "Display P3", "HSL", "OKLAB", "OKLCH", "Alpha 0.5"]) expect(literal).toContain(label);
+    expect(literal).toContain('aria-pressed="true"');
+    expect(literal).toContain("font-semibold text-foreground");
+    expect(alias).not.toContain("font-semibold text-foreground");
+    expect(alias).toContain("root / 2 / 2");
+  });
+});

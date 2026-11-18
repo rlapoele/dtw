@@ -1,5 +1,13 @@
 import type { ComponentProps } from "react";
 import {
+  SwatchIcon,
+  ArrowsPointingOutIcon,
+  ClockIcon,
+  LinkIcon,
+  LockClosedIcon,
+  HashtagIcon,
+  LanguageIcon,
+  AdjustmentsHorizontalIcon,
   ArrowUturnLeftIcon,
   ArrowUturnRightIcon,
   Bars3Icon,
@@ -18,6 +26,14 @@ import {
 import { cn } from "@presentation/lib/cn";
 
 const icons = {
+  swatch: SwatchIcon,
+  dimension: ArrowsPointingOutIcon,
+  clock: ClockIcon,
+  link: LinkIcon,
+  protected: LockClosedIcon,
+  number: HashtagIcon,
+  text: LanguageIcon,
+  settings: AdjustmentsHorizontalIcon,
   undo: ArrowUturnLeftIcon,
   redo: ArrowUturnRightIcon,
   menu: Bars3Icon,

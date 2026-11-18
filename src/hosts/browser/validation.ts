@@ -473,7 +473,7 @@ export function validateHostOutput(
         const row = shape(
           item,
           ["id", "parentGroupId", "label", "layer", "type", "valueKind"],
-          ["description", "color", "targetId", "preview"],
+          ["description", "color", "targetId", "preview", "regeneration", "quantity", "referenceDetail"],
         );
         for (const key of [
           "id",
@@ -483,8 +483,15 @@ export function validateHostOutput(
           "valueKind",
           "description",
           "targetId",
+          "referenceDetail",
         ])
           if (Object.hasOwn(row, key)) text(row[key]);
+        if (Object.hasOwn(row, "regeneration")) enumeration(row.regeneration, ["allowed", "protected"]);
+        if (Object.hasOwn(row, "quantity")) {
+          const quantity = shape(row.quantity, ["value", "unit"]);
+          text(quantity.value);
+          enumeration(quantity.unit, row.type === "dimension" ? ["px", "rem"] : row.type === "duration" ? ["ms", "s"] : []);
+        }
         if (row.parentGroupId !== null) text(row.parentGroupId);
         for (const key of ["color", "preview"])
           if (row[key])

@@ -1,3 +1,4 @@
+import { tokenListRows } from "./helpers/token-list-order";
 import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
 import { useHistoryInteraction } from "./hooks/useHistoryInteraction";
 import { TokensStatusBar } from "@presentation/App/components/TokensWorkbench/components/TokensStatusBar/TokensStatusBar";
@@ -201,13 +202,8 @@ export function TokensWorkbench({
     context, selection, setSelection, view, setView,
   });
   const visible = useMemo(
-    () =>
-      rows.filter(
-        (row) =>
-          (group === null || row.parentGroupId === group) &&
-          row.label.toLowerCase().includes(query.toLowerCase()),
-      ),
-    [rows, group, query],
+    () => tokenListRows(rows, context, group, query),
+    [rows, context, group, query],
   );
   const groupLabels = useMemo(
     () => identityLabels(context?.groups ?? [], ["Project root", "All tokens"]),

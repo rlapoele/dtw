@@ -71,6 +71,9 @@ export type DisplayRow = {
   layer: string;
   type: string;
   valueKind: string;
+  regeneration?: Token["authoring"]["regeneration"];
+  quantity?: { value: string; unit: string };
+  referenceDetail?: string;
   color?: ColorLiteralValue;
   targetId?: string;
   preview?: ColorLiteralValue;
@@ -138,6 +141,11 @@ export function displayRows(
       layer: token.layer ?? "Unspecified",
       type: token.definition?.type ?? "Unassigned",
       valueKind: value?.kind ?? "No assignment",
+      regeneration: token.authoring.regeneration,
+      ...(value?.kind === "literal" && (value.valueType === "dimension" || value.valueType === "duration")
+        ? { quantity: { value: value.value, unit: value.unit } } : {}),
+      ...(value?.kind === "token-reference" && value.valuePath.length > 0
+        ? { referenceDetail: "Value-path reference · preview unavailable" } : {}),
       ...(color ? { color } : {}),
       ...(value?.kind === "token-reference"
         ? { targetId: value.targetTokenId }

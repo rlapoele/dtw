@@ -2,13 +2,35 @@
 
 > Last updated: 18 November 2026
 >
-> Phase: Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
+> Phase: Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
 > completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## Increment 017 implementation and review — 18 November 2026
+
+Implemented the user-authorized V2 list and contextual ordering. Production now
+shows token properties, protection/type/link icons, HEX and color-space summaries,
+compact source-only coordinates, and dimension/duration summaries. All tokens sorts
+by type/layer/group/natural name; selected groups include descendants sorted by
+subgroup/name. All content and canonical authoring remain unchanged.
+
+[Increment 017](../increments/017-token-list-properties-and-ordering.md#independent-review-and-handoff--18-november-2026)
+owns the agreed scope, bounded HEX mapping, evidence and limits. Typecheck and 55
+focused tests passed; final presentation changes passed seven focused tests. The
+independent reviewer passed 16 tests and reported no actionable production findings.
+Developer browser checks covered wide/compact/phone, search, scope ordering, keyboard
+selection and narrow inspect/back; coordinator/reviewer inspected captures.
+
+User review is next, especially density: the production Value column wraps some
+coordinate triples into taller rows. Screen-reader output, comprehensive long-path,
+larger-list, broader-engine and full draft/history qualification remain unverified.
+Approximately 26/30 aggregate verification minutes and one/two harness repairs used;
+checks stopped. Earlier campaigns remain stopped. Staging/commits/push remain user-owned.
+Suggested commit: `feat: expand token list properties and contextual ordering`.
 
 ## Token list ordering amendment — 18 November 2026
 

@@ -292,3 +292,18 @@ Collapsed content stays mounted to preserve editor state and scroll position.
 hidden when the exit finishes. Reduced motion removes transitions. The generic
 `[hidden]` rule still applies to other hidden surfaces. Browser evidence and limits
 are recorded in the current status handoff.
+
+
+### Token list properties — Increment 017
+
+The [agreed token-list scope](../increments/017-token-list-properties-and-ordering.md)
+adds Token / Type / Layer / Value columns when the workspace has sufficient width.
+Compact rows retain the authored source-space coordinates and separate alpha;
+wide rows add all five supported spaces. Protection means protected from
+regeneration, not an edit lock. Derived six-digit HEX uses the explicit display-only
+approximation below; native source swatches and authored values remain separate.
+
+All tokens sorts by declared type, layer, full group path and local name, using
+natural numeric name ordering. A selected group includes descendants by stable
+identity ancestry and orders by subgroup path then local name. All content remains
+the separate namespace inventory, including invalid-path recovery.

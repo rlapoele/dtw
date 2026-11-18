@@ -1054,6 +1054,18 @@ Alternative representations are derived from the authoritative color and may be 
 
 A fallback is distinct from an equivalent representation: a color outside a target gamut may need an approximation. Keep that distinction visible, report loss, and never overwrite the authored color with a preview or export approximation implicitly. Whether fallbacks are author-managed data or generated adapter output, and how they remain current after edits, is unresolved. Theme/condition variants are different authored decisions, not formatting alternatives.
 
+**Display-only HEX policy — Increment 017, 18 November 2026:** the user-authorized
+list displays six-digit sRGB HEX derived through guarded color conversion. Eligible
+finite numeric sRGB is quantized directly when in gamut; out-of-gamut values use
+installed Culori 4.0.2 `toGamut("rgb", "oklch")` before quantization. This is a
+practical perceptual approximation, not mathematical nearest-color certification.
+Alpha remains separate. Missing information, invalid conversion and unresolved
+references show unavailable. The list adds no visible approximation paragraph;
+this explicit presentation exception does not change authored values, precise
+coordinate displays, native swatches, canonical fallback ownership or export policy.
+See [Increment 017](../increments/017-token-list-properties-and-ordering.md).
+
+
 #### Color manipulation
 
 **Established direction — 2 October 2026**
