@@ -115,3 +115,12 @@ paths indent a further .75rem. Alignment derives from the actual icon width/gap.
 Existing compact threshold/drawer behavior remains unchanged. Production geometry
 is not modified. Wide in-app rendering was visually inspected; near-breakpoint
 usability remains for review. The wider navigation leaves less room for the list.
+
+## Equal collapsed rails trial — 18 November 2026
+
+The separate [Projects layout mockup](../projects-layout-v1/DESIGN-V1.md#equal-collapsed-widths)
+proposes a shared3.25rem collapsed width. This prototype's existing collapse-state
+CSS classes now reference one `--collapsed-pane-width` value for both navigation
+and inspector. No new token collapse controls were added; expanded25rem widths
+and layer alignment are preserved. This addition is mockup-only and source-reviewed;
+production adoption and independent runtime qualification remain pending.

@@ -37,3 +37,8 @@
 .tree-scope{gap:var(--type-icon-gap)}
 .tree-depth-1{padding-left:calc(.75rem + var(--type-icon-width) + var(--type-icon-gap))}
 .tree-depth-2{padding-left:calc(1.5rem + var(--type-icon-width) + var(--type-icon-gap))}
+
+/* Projects-layout trial: one proposed collapsed width for both token side rails. */
+.workbench{--collapsed-pane-width:3.25rem}
+.workbench.groups-collapsed{--groups-width:var(--collapsed-pane-width)}
+.workbench.inspector-collapsed{--inspector-width:var(--collapsed-pane-width)}

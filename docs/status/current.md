@@ -10,6 +10,21 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Centered Projects mockup — 18 November 2026
+
+The user requested a Projects layout trial centered between equal side regions.
+[Projects V1](../../prototypes/projects-layout-v1/DESIGN-V1.md) reuses the current
+shell and owned project components with sample data and disabled mutations. Wide
+layout balances a blank25rem left gutter with the25rem inspector; the gutter yields
+at intermediate widths. A separate preview control demonstrates equal3.25rem
+collapsed sides. Token mockup collapsed-pane CSS also uses the shared3.25rem size.
+Production source is unchanged.
+
+Designer checked wide/intermediate/collapsed/phone layouts and narrow inspect/back;
+coordinator viewed wide in-app rendering and the saved wide capture. V1 owns exact
+geometry, evidence and limits. User feedback is next; production implementation
+is not authorized. Suggested commit: `docs: prototype centered Projects layout`.
+
 ## Production navigation proportions — 18 November 2026
 
 User approved the equal-width mockup and authorized production adoption.
