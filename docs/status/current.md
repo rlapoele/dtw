@@ -2,13 +2,35 @@
 
 > Last updated: 18 November 2026
 >
-> Phase: Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
+> Phase: Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
 > completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## Increment 018 implementation and review — 18 November 2026
+
+The approved Tokens navigation is implemented: type → layer → full namespace path,
+project-wide counts, shared list icons, stable-ID filters, retained Groups, and
+shared desktop/compact navigation. Branches have 180ms transitions with
+reduced-motion rules; chevrons follow counts and single-token branches stay open
+with reserved trailing space. Draft and selected-token ownership are preserved.
+
+[Increment 018](../increments/018-hierarchical-token-navigation.md#independent-review-and-handoff--18-november-2026)
+owns the scope, evidence and remaining gaps. A fresh reviewer reported no actionable
+production findings; 20 independent focused tests and final build/typecheck passed.
+Developer checks passed 51 focused tests and representative browser filtering,
+disclosure focus, draft preservation/reveal and compact Escape/scope return.
+
+Final settled geometry, close-button activation, computed reduced motion and visual
+transition timing remain unverified; prior captures caught transitional states.
+User review should check expansion/aligned counts, compact Browse/close and reduced
+motion as described in the increment. Approximately24.5/30 aggregate verification
+minutes and2/2 repair cycles were used; checks stopped. Earlier campaigns remain
+stopped. Staging/commits/push stay user-owned. Suggested commit:
+`feat: add hierarchical token navigation`.
 
 ## Token navigation V3 mockup — 18 November 2026
 

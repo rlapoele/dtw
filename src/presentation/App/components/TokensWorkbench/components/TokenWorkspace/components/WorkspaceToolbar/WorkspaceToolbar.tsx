@@ -1,3 +1,4 @@
+import { typeScopeLabel } from "../../../../helpers/token-navigation";
 import type { TokenBrowseView } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
 import { Button } from "@presentation/ui/button";
 import { Icon } from "@presentation/ui/icon";
@@ -35,7 +36,7 @@ export function WorkspaceToolbar({
           )}
           <div className="flex items-center gap-2">
             <h1 className="my-1.5 small-title min-w-0 wrap-anywhere">
-              {allContent
+              {view.kind === "type" ? typeScopeLabel(view, groupLabels) : allContent
                 ? "All content"
                 : group === null
                   ? "All tokens"

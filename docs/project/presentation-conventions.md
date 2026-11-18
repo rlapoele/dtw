@@ -307,3 +307,13 @@ All tokens sorts by declared type, layer, full group path and local name, using
 natural numeric name ordering. A selected group includes descendants by stable
 identity ancestry and orders by subgroup path then local name. All content remains
 the separate namespace inventory, including invalid-path recovery.
+
+## Hierarchical navigation motion — Increment 018
+
+TokenNavigation owns intrinsic-height branch disclosures. The focused
+`.navigation-children` grid-row/visibility and `.navigation-chevron` transform
+rules in `styles/global.css` implement the agreed synchronized 180ms ease-in-out
+opening and closing; reduced motion disables transitions. Mounted descendants
+are inert and hidden from assistive technology while collapsed. This CSS exception
+handles animated intrinsic height and delayed visibility, without a new theme
+value or animation dependency. Ordinary spacing uses named Tailwind utilities.

@@ -3,7 +3,7 @@ import { Dialog } from "@base-ui/react/dialog";
 import { Button } from "@presentation/ui/button";
 import { Icon } from "@presentation/ui/icon";
 
-export function NamespaceNavigationPane({
+export function TokenNavigationPane({
   expanded,
   onToggle,
   children,
@@ -15,7 +15,7 @@ export function NamespaceNavigationPane({
   return (
     <nav
       className="sidebar flex min-h-0 flex-col overflow-hidden border-r-hairline border-border bg-surface"
-      aria-label="Project groups"
+      aria-label="Token navigation"
     >
       <div className="sidebar-header shrink-0 flex items-center gap-2 p-1.5 min-w-0">
         <h2 aria-hidden={!expanded} className="sidebar-heading flex-1 pl-2.5 text-caption font-semibold text-muted-foreground">NAVIGATION</h2>
@@ -24,7 +24,7 @@ export function NamespaceNavigationPane({
           size="icon"
           className="sidebar-toggle ml-auto"
           aria-label={
-            expanded ? "Collapse project groups" : "Expand project groups"
+            expanded ? "Collapse token navigation" : "Expand token navigation"
           }
           aria-expanded={expanded}
           onClick={() => onToggle()}
@@ -43,7 +43,7 @@ export function NamespaceNavigationPane({
   );
 }
 
-export function NamespaceNavigationDrawer({
+export function TokenNavigationDrawer({
   finalFocus,
   open,
   onOpenChange,
@@ -59,7 +59,7 @@ export function NamespaceNavigationDrawer({
       <Dialog.Portal>
         <Dialog.Backdrop className="navigation-backdrop fixed inset-0 z-30 bg-scrim" />
         <Dialog.Popup finalFocus={finalFocus} className="navigation-drawer shadow-drawer fixed top-0 bottom-0 left-0 z-35 border-r-hairline border-border bg-background flex flex-col overflow-hidden">
-          <div className="navigation-heading border-b-hairline border-border px-4 py-3 flex items-center justify-between gap-3">
+          <div className="navigation-heading shrink-0 border-b-hairline border-border px-4 py-3 flex items-center justify-between gap-3">
             <Dialog.Title>Project navigation</Dialog.Title>
             <Dialog.Close
               render={<Button variant="ghost" size="icon" />}
@@ -69,9 +69,9 @@ export function NamespaceNavigationDrawer({
             </Dialog.Close>
           </div>
           <Dialog.Description className="sr-only">
-            Browse groups. Closing preserves drafts.
+            Browse tokens and groups. Closing preserves drafts.
           </Dialog.Description>
-          <nav className="sidebar-content flex-1 px-3 py-6 overflow-auto">
+          <nav className="sidebar-content flex-1 min-h-0 px-3 py-6 overflow-auto">
             {children}
           </nav>
         </Dialog.Popup>

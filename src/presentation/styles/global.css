@@ -330,3 +330,11 @@ input[type="file"]::file-selector-button { min-height:2.25rem; }
 @keyframes toast-exit { from { opacity:1; transform:translateY(0); } to { opacity:0; transform:translateY(.5rem); } }
 @media (max-width:540px) { .toast-stack { bottom:calc(1rem + env(safe-area-inset-bottom)); } }
 @media (prefers-reduced-motion:reduce) { .toast-stack .toast-card { animation:none; } .toast-card[data-exiting] { opacity:0; } }
+
+/* TokenNavigation: intrinsic-height disclosures keep descendants mounted for closing. */
+.navigation-chevron { transition: transform 180ms ease-in-out; }
+.navigation-children { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows 180ms ease-in-out, visibility 0s linear 180ms; }
+.navigation-children[data-expanded="true"] { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows 180ms ease-in-out, visibility 0s; }
+@media (prefers-reduced-motion: reduce) {
+  .navigation-chevron, .navigation-children, .navigation-children[data-expanded="true"] { transition: none; }
+}

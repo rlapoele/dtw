@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { TokenList } from "@tests/presentation/support/TokenList";
-import { NamespaceTree } from "@presentation/App/components/TokensWorkbench/components/NamespaceNavigation/components/NamespaceTree/NamespaceTree";
+import { NavigationContent } from "@presentation/App/components/TokensWorkbench/components/TokenNavigation/components/NavigationContent";
 import { AuthoredValue } from "@presentation/App/components/TokensWorkbench/components/AuthoredValue";
 import { TokenEditor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/TokenEditor";
 import { identityLabels } from "@presentation/App/components/TokensWorkbench/helpers/identity-labels";
@@ -113,8 +113,8 @@ describe("human identity labels in current consumers and the legacy TokenList fi
     expect(html).not.toContain("unique-token-id");
     expect(html).toContain("same / unique");
     const nav = renderToStaticMarkup(
-      createElement(NamespaceTree, {
-        drawer: false,
+      createElement(NavigationContent, {
+        drawer: false, rows: [], collapsed: new Set<string>(), onToggle() {},
         project,
         view: { kind: "group", id: "shared-prefix-group-b" },
         unavailable: false,

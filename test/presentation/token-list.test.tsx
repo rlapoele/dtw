@@ -1,3 +1,6 @@
+import { tokenNavigation } from "@presentation/App/components/TokensWorkbench/helpers/token-navigation";
+import { scopeKey, creationParent } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
+import { TypeBranch } from "@presentation/App/components/TokensWorkbench/components/TokenNavigation/components/TypeBranch";
 import { describe, expect, it } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { admitSnapshot, encodeBackup } from "@application/retention/codec";
@@ -51,5 +54,51 @@ describe("production token list properties and contextual ordering", () => {
     expect(literal).toContain("font-semibold text-foreground");
     expect(alias).not.toContain("font-semibold text-foreground");
     expect(alias).toContain("root / 2 / 2");
+  });
+});
+
+describe("hierarchical token navigation", () => {
+  it("projects whole-project counts, root scopes and stable overlapping subtree leaves", () => {
+    const source = snapshot(), context = projectContext(source), rows = displayRows(source, 0, 100);
+    const branches = tokenNavigation(rows, context), colors = branches.find(branch => branch.scope.type === "color")!;
+    expect(colors.count).toBe(12);
+    expect(branches.map(branch => branch.scope.type)).toEqual(["color", "dimension", "duration"]);
+    expect(colors.children!.map(branch => branch.scope.layer)).toEqual(["primitive", "semantic", "component", "Unspecified"]);
+    const root = colors.children!.find(branch => branch.scope.layer === "semantic")!.children!.find(branch => branch.label === "Project root")!;
+    expect(tokenListRows(rows, context, root.scope, "").map(row => row.id)).toEqual(["broken", "path", "self"]);
+    expect(tokenListRows(rows, context, {kind: "type", type: "color", layer: "primitive", location: {kind: "group", id: "root"}}, "").map(row => row.id)).toEqual(["c2", "c10", "c100"]);
+    expect(tokenListRows(rows, context, {kind: "type", type: "color"}, "root / 2").map(row => row.id)).toEqual(["c2", "c10", "c100"]);
+    expect(tokenNavigation(rows, context)).toEqual(branches);
+    expect(creationParent(root.scope)).toBeNull();
+    expect(creationParent({kind: "type", type: "color", layer: "primitive"})).toBeNull();
+    expect(creationParent({kind: "type", type: "color", location: {kind: "group", id: "root"}})).toBe("root");
+  });
+  it("keeps identities through rename/move, disambiguates equal paths and drops empty branches", () => {
+    const source = snapshot(), context = projectContext(source), rows = displayRows(source, 0, 100);
+    const scope = {kind: "type" as const, type: "color" as const, layer: "Unspecified" as const, location: {kind: "group" as const, id: "lookalike"}};
+    expect(tokenListRows(rows, context, scope, "").map(row => row.id)).toEqual(["lookalike"]);
+    const changed = projectContext({...source, groups: source.groups.map(group => group.id === "lookalike" ? {...group, localName: "renamed", parentGroupId: source.groups[0].id} : group)});
+    expect(tokenListRows(rows, changed, scope, "").map(row => row.id)).toEqual(["lookalike"]);
+    expect(tokenNavigation(rows, context).find(branch => branch.scope.type === "color")!.children!.find(branch => branch.scope.layer === "Unspecified")!.children!.find(branch => branch.scope.location?.kind === "group" && branch.scope.location.id === "lookalike")!.label).toContain("lookalik");
+    expect(tokenNavigation([], context)).toEqual([]);
+    expect(tokenNavigation(rows.filter(row => row.type !== "duration"), context).some(branch => branch.scope.type === "duration")).toBe(false);
+    const layered = [...rows, {...rows[0], id: "direct", parentGroupId: "root"}];
+    const leaves = tokenNavigation(layered, context)[0].children![0].children!;
+    expect(leaves.find(leaf => leaf.scope.location?.kind === "group" && leaf.scope.location.id === "root")?.count).toBe(4);
+    expect(leaves.find(leaf => leaf.scope.location?.kind === "group" && leaf.scope.location.id === "sub2")?.count).toBe(3);
+  });
+  it("renders separate current scope and disclosure controls, with single-token paths always expanded", () => {
+    const source = snapshot(), context = projectContext(source), rows = displayRows(source, 0, 100), branches = tokenNavigation(rows, context);
+    const color = branches[0], duration = branches.find(branch => branch.scope.type === "duration")!;
+    const render = (branch: typeof color) => renderToStaticMarkup(<TypeBranch branch={branch} depth={0} view={branch.scope} collapsed={new Set([scopeKey(branch.scope)])} onToggle={() => {}} onSelect={() => {}} />);
+    const closed = render(color), single = render(duration);
+    expect(closed).toContain('aria-current="page"');
+    expect(closed).toContain('aria-expanded="false"');
+    expect(closed).toContain('inert=""');
+    expect(closed).toContain('aria-hidden="true"');
+    expect(single).not.toContain('aria-expanded=');
+    expect(single).not.toContain('inert=');
+    expect(single).toContain('data-expanded="true"');
+    expect(single).toContain("Unspecified")
   });
 });

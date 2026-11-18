@@ -1,8 +1,9 @@
 import type { DisplayRow, ProjectContext } from "@application/retention/projections";
+import type { TokenBrowseView } from "./browse-view";
 import { TOKEN_TYPES, TOKEN_LAYERS } from "@domain/token";
 
 const natural = new Intl.Collator("en", { numeric: true, sensitivity: "variant" });
-function comparePath(a: readonly string[], b: readonly string[]): number {
+export function comparePath(a: readonly string[], b: readonly string[]): number {
   for (let i = 0; i < Math.min(a.length, b.length); i++) {
     const difference = natural.compare(a[i], b[i]);
     if (difference) return difference;
@@ -14,8 +15,10 @@ const rank = (values: readonly string[], value: string) => {
   return index < 0 ? values.length : index;
 };
 /** Identity ancestry establishes scope. Display paths are only ordering keys. */
-export function tokenListRows(rows: readonly DisplayRow[], context: ProjectContext | undefined, groupId: string | null, query: string): DisplayRow[] {
+export function tokenListRows(rows: readonly DisplayRow[], context: ProjectContext | undefined, scope: TokenBrowseView | string | null, query: string): DisplayRow[] {
   if (!context) return [];
+  const view: TokenBrowseView = typeof scope === "string" ? {kind: "group", id: scope} : scope ?? {kind: "all-tokens"};
+  const groupId = view.kind === "group" ? view.id : view.kind === "type" && view.location?.kind === "group" ? view.location.id : null;
   const tokens = new Map(context.tokens.map(token => [token.authored.id as string, token]));
   const groups = new Map(context.groups.map(group => [group.authored.id as string, group.authored]));
   const membership = new Map<string, boolean>();
@@ -42,8 +45,8 @@ export function tokenListRows(rows: readonly DisplayRow[], context: ProjectConte
     return [row.id, { path: token?.path.status === "derived" ? token.path.path.slice(0, -1) : null,
       name: token?.authored.localName ?? row.id }];
   }));
-  return rows.filter(row => belongs(row.parentGroupId) && row.label.toLowerCase().includes(query.toLowerCase())).sort((a, b) => {
-    if (groupId === null) {
+  return rows.filter(row => (view.kind !== "type" || (row.type === view.type && (view.layer === undefined || row.layer === view.layer) && (view.location?.kind !== "root" || row.parentGroupId === null))) && belongs(row.parentGroupId) && row.label.toLowerCase().includes(query.toLowerCase())).sort((a, b) => {
+    if (view.kind !== "group") {
       const type = rank(TOKEN_TYPES, a.type) - rank(TOKEN_TYPES, b.type);
       if (type) return type;
       const layer = rank(TOKEN_LAYERS, a.layer) - rank(TOKEN_LAYERS, b.layer);

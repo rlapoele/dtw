@@ -5,14 +5,14 @@ import { admitSnapshot, encodeBackup, decodeBackup } from '@application/retentio
 import { projectContext } from '@application/retention/projections';
 import { namingPreview } from '@presentation/App/components/TokensWorkbench/components/AuthoringDialog/helpers/naming-preview';
 import { creationParent } from '@presentation/App/components/TokensWorkbench/helpers/browse-view';
-import { NamespaceTree } from '@presentation/App/components/TokensWorkbench/components/NamespaceNavigation/components/NamespaceTree/NamespaceTree';
+import { NavigationContent } from '@presentation/App/components/TokensWorkbench/components/TokenNavigation/components/NavigationContent';
 import { membershipBlocks } from '@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/NamespaceInventory/helpers/namespace-inventory';
 import { readBackupFile } from '@hosts/browser/backup-file';
 const snapshot=admitSnapshot({project:{id:'p',name:'Legacy'},groups:[{id:'g',projectId:'p',localName:'foundation',parentGroupId:null},{id:'conflicting-group',projectId:'p',localName:'BRAND Blue',parentGroupId:'g'}],tokens:[{id:'token-a-full-identity',projectId:'p',localName:'Brand\u00A0Blue',parentGroupId:'g',authoring:{regeneration:'allowed'}},{id:'token-b-full-identity',projectId:'p',localName:'Brand\u00A0Blue',parentGroupId:'g',authoring:{regeneration:'allowed'}},{id:'orphan-full-identity',projectId:'p',localName:'Orphan\u200DBlue',parentGroupId:'missing-parent',authoring:{regeneration:'allowed'}}]});
 const context=projectContext(snapshot);
 it('derives one active navigation and root creation from All content',()=>{
  const view={kind:'all-content'} as const;
- const html=renderToStaticMarkup(createElement(NamespaceTree,{drawer:false,project:context,view,unavailable:false,onSelect(){},onCreateGroup(){},onAllContent(){}}));
+ const html=renderToStaticMarkup(createElement(NavigationContent,{drawer:false,rows:[],collapsed:new Set<string>(),onToggle(){},project:context,view,unavailable:false,onSelect(){},onCreateGroup(){},onAllContent(){}}));
  expect((html.match(/aria-current="true"/g)??[])).toHaveLength(1);
  expect(html).toMatch(/aria-current="true"[^>]*>All content/);
  expect(creationParent(view)).toBe(null);expect(creationParent({kind:'group',id:'g'})).toBe('g');

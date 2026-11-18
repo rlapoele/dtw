@@ -5,6 +5,7 @@ import type { HistoryDirection, HistoryState } from "@application/retention/hist
 import type { ProjectContext } from "@application/retention/projections";
 import type { ProjectHeader, PublicAcceptance } from "@hosts/browser/protocol";
 import type { Selection } from "./useProjectReadback";
+import { creationParent } from "../helpers/browse-view";
 import type { TokenBrowseView } from "../helpers/browse-view";
 import { historyShortcut, ownsHistoryShortcut } from "../helpers/history-shortcuts";
 type Setter<T> = Dispatch<SetStateAction<T>>;
@@ -81,14 +82,15 @@ export function useHistoryInteraction({history, traverse, blocked, unknown, reta
     }
     outcomes.publish(outcomeMessage.current);
     outcomeMessage.current = "";
-    if (view.kind === "group" && !context.groups.some(g => g.authored.id === view.id)) {
+    const scopedGroup = creationParent(view);
+    if (scopedGroup !== null && !context.groups.some(g => g.authored.id === scopedGroup)) {
       // Follow the previous scope's authored parent chain, never a matching name.
-      let parent = previousGroups.current.find(g => g.id === view.id)?.parentGroupId ?? null;
+      let parent = previousGroups.current.find(g => g.id === scopedGroup)?.parentGroupId ?? null;
       const seen = new Set<string>();
       while (parent && !context.groups.some(g => g.authored.id === parent) && !seen.has(parent)) {
         seen.add(parent); parent = previousGroups.current.find(g => g.id === parent)?.parentGroupId ?? null;
       }
-      setView(parent ? {kind: "group", id: parent} : {kind: "all-tokens"});
+      setView(view.kind === "type" ? {...view, location: parent ? {kind: "group", id: parent} : undefined} : parent ? {kind: "group", id: parent} : {kind: "all-tokens"});
     }
   }, [historyRefresh, context]);
   const previousGroups = useRef(context?.groups.map(g => g.authored) ?? []);

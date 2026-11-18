@@ -1,4 +1,5 @@
 import { WorkspaceToolbar } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/WorkspaceToolbar/WorkspaceToolbar";
+import { creationParent } from "../../helpers/browse-view";
 import type { TokenBrowseView } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
 import { Button } from "@presentation/ui/button";
 import { NamespaceInventory } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/NamespaceInventory/NamespaceInventory";
@@ -65,7 +66,7 @@ export function TokenWorkspace({
   choose: (kind: "token" | "group", id: string) => void;
 }) {
   const allContent = view.kind === "all-content",
-    group = view.kind === "group" ? view.id : null;
+    group = creationParent(view);
   return (
     <main
       id="tokens"

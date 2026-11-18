@@ -2,7 +2,7 @@ import { tokenListRows } from "./helpers/token-list-order";
 import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
 import { useHistoryInteraction } from "./hooks/useHistoryInteraction";
 import { TokensStatusBar } from "@presentation/App/components/TokensWorkbench/components/TokensStatusBar/TokensStatusBar";
-import { NamespaceNavigationPane, NamespaceNavigationDrawer } from "@presentation/App/components/TokensWorkbench/components/NamespaceNavigation/NamespaceNavigation";
+import { TokenNavigationPane, TokenNavigationDrawer } from "@presentation/App/components/TokensWorkbench/components/TokenNavigation/TokenNavigation";
 import { useProjectLifecycle } from "@presentation/App/components/TokensWorkbench/hooks/useProjectLifecycle";
 import { creationParent } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
 import type { TokenBrowseView } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
@@ -29,7 +29,7 @@ import { Button } from "@presentation/ui/button";
 import { SelectionInspector } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/SelectionInspector";
 import { TokenEditor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/TokenEditor";
 import { AuthoringDialog } from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/AuthoringDialog";
-import { NamespaceTree } from "@presentation/App/components/TokensWorkbench/components/NamespaceNavigation/components/NamespaceTree/NamespaceTree";
+import { NavigationContent } from "./components/TokenNavigation/components/NavigationContent";
 
 import { identityLabels } from "@presentation/App/components/TokensWorkbench/helpers/identity-labels";
 export function TokensWorkbench({
@@ -50,6 +50,7 @@ export function TokensWorkbench({
     >(null);
   const [view, setView] = useState<TokenBrowseView>({ kind: "all-tokens" });
   const group = creationParent(view);
+  const [collapsedNavigation, setCollapsedNavigation] = useState<Set<string>>(() => new Set());
   const [query, setQuery] = useState("");
   const [error, setError] = useState(""),
     [notice, setNotice] = useState("");
@@ -201,9 +202,14 @@ export function TokensWorkbench({
     completion, setDirty, setEditorVersion, setNotice, setError, panel, narrow, back,
     context, selection, setSelection, view, setView,
   });
+  useEffect(() => {
+    if (context && complete && view.kind === "type" && view.location?.kind === "group" && !context.groups.some(g => g.authored.id === group)) {
+      setView(currentView => currentView.kind === "type" && currentView.location?.kind === "group" && !context.groups.some(g => g.authored.id === creationParent(currentView)) ? {...currentView, location: undefined} : currentView);
+    }
+  }, [context, complete, view, group]);
   const visible = useMemo(
-    () => tokenListRows(rows, context, group, query),
-    [rows, context, group, query],
+    () => tokenListRows(rows, context, view, query),
+    [rows, context, view, query],
   );
   const groupLabels = useMemo(
     () => identityLabels(context?.groups ?? [], ["Project root", "All tokens"]),
@@ -221,14 +227,18 @@ export function TokensWorkbench({
       });
     });
   const navigation = (
-    <NamespaceTree
+    <NavigationContent
+      rows={complete ? rows : []}
+      collapsed={collapsedNavigation}
+      onToggle={key => setCollapsedNavigation(previous => { const next = new Set(previous); if (next.has(key)) next.delete(key); else next.add(key); return next; })}
       drawer={compact}
       project={context}
       view={view}
       unavailable={blocked}
-      onSelect={(id) => {
+      onSelect={(next) => {
         if (!busy) {
-          setView(id === null ? { kind: "all-tokens" } : { kind: "group", id });
+          setView(next);
+          if (compact) back(false);
           navigationReturn.current = "workspace";
           setNavigationOpen(false);
         }
@@ -237,6 +247,7 @@ export function TokensWorkbench({
       onAllContent={() => {
         if (!busy) {
           setView({ kind: "all-content" });
+          if (compact) back(false);
           navigationReturn.current = "workspace";
           setNavigationOpen(false);
         }
@@ -322,12 +333,12 @@ export function TokensWorkbench({
         {notice && <p role="status" className="notification notification-information my-2">{notice}</p>}
       </FeedbackRegion>}
       navigation={
-          <NamespaceNavigationPane
+          <TokenNavigationPane
             expanded={sidebarExpanded}
             onToggle={() => setSidebarExpanded(!sidebarExpanded)}
           >
             {navigation}
-          </NamespaceNavigationPane>
+          </TokenNavigationPane>
       }
       workspace={<TokenWorkspace
           panel={panel}
@@ -465,13 +476,13 @@ export function TokensWorkbench({
         </SelectionInspector>}
       afterBody={<TokensStatusBar tokens={header.tokens} busy={busy} unknown={!!unknown} readFailure={readFailure} writable={header.writable} dirty={dirty} />}
       overlays={<>
-      <NamespaceNavigationDrawer
+      <TokenNavigationDrawer
         finalFocus={navigationFinalFocus}
         open={compact && navigationOpen}
         onOpenChange={setNavigationOpen}
       >
         {navigation}
-      </NamespaceNavigationDrawer>
+      </TokenNavigationDrawer>
       {dialog === null && departureGuard}
       <AuthoringDialog
         guard={dialog !== null ? departureGuard : undefined}

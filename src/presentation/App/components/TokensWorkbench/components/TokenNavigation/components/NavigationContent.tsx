@@ -1,9 +1,13 @@
+import { useMemo } from "react";
+import { tokenNavigation } from "../../../helpers/token-navigation";
+import { TypeBranch } from "./TypeBranch";
 import type { TokenBrowseView } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
 import type { ProjectContext } from "@application/retention/projections";
 import { Icon } from "@presentation/ui/icon";
 import { Button } from "@presentation/ui/button";
 import { identityLabels, namespaceEntryDetails } from "@presentation/App/components/TokensWorkbench/helpers/identity-labels";
-export function NamespaceTree({
+export function NavigationContent({
+  rows, collapsed, onToggle,
   drawer,
   project,
   view,
@@ -12,14 +16,18 @@ export function NamespaceTree({
   onCreateGroup,
   onAllContent,
 }: {
+  rows: readonly import("@application/retention/projections").DisplayRow[];
+  collapsed: ReadonlySet<string>;
+  onToggle: (key: string) => void;
   drawer: boolean;
   project: ProjectContext | undefined;
   view: TokenBrowseView;
   unavailable: boolean;
-  onSelect: (group: string | null) => void;
+  onSelect: (view: TokenBrowseView) => void;
   onCreateGroup: () => void;
   onAllContent?: () => void;
 }) {
+  const branches = useMemo(() => tokenNavigation(rows, project), [rows, project]);
   const details = project
     ? namespaceEntryDetails(project)
     : new Map<string, string>();
@@ -56,7 +64,7 @@ export function NamespaceTree({
         className={`nav-item w-full ${view.kind === "all-tokens" ? "active" : ""}`}
         aria-current={view.kind === "all-tokens" ? "true" : undefined}
         onClick={() => {
-          onSelect(null);
+          onSelect({kind: "all-tokens"});
         }}
       >
         <Icon name="grid" className="icon block" />
@@ -76,6 +84,9 @@ export function NamespaceTree({
           All content
         </Button>
       )}
+      <div className="nav-label uppercase text-muted-foreground font-semibold px-3 pb-2.5 mt-6">Tokens</div>
+      {branches.map(branch => <TypeBranch key={branch.scope.type} branch={branch} depth={0} view={view} collapsed={collapsed} onToggle={onToggle} onSelect={onSelect} />)}
+      <div className="nav-label uppercase text-muted-foreground font-semibold px-3 pb-2.5 mt-6">Groups</div>
       <div className="group-tree">
         {project?.groups.map((g) => (
           <Button
@@ -89,7 +100,7 @@ export function NamespaceTree({
                 : undefined
             }
             onClick={() => {
-              onSelect(g.authored.id);
+              onSelect({kind: "group", id: g.authored.id});
             }}
           >
             <Icon name="folder" className="icon block" />

@@ -1,19 +1,11 @@
+import { typeIcon } from "@presentation/App/components/TokensWorkbench/helpers/token-type-presentation";
 import { useMemo } from "react";
 import type { DisplayRow, ProjectContext } from "@application/retention/projections";
 import { Button } from "@presentation/ui/button";
-import { Icon, type IconName } from "@presentation/ui/icon";
+import { Icon } from "@presentation/ui/icon";
 import { identityLabels, namespaceEntryDetails } from "@presentation/App/components/TokensWorkbench/helpers/identity-labels";
 import { TokenValue } from "./components/TokenValue";
 
-function typeIcon(type: string): IconName {
-  if (type === "color" || type === "gradient") return "swatch";
-  if (type === "dimension") return "dimension";
-  if (type === "duration" || type === "transition") return "clock";
-  if (["number", "percentage", "angle"].includes(type)) return "number";
-  if (["fontFamily", "fontWeight", "typography", "string"].includes(type)) return "text";
-  if (["shadow", "border"].includes(type)) return "stack";
-  return "settings";
-}
 const title = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
 
 export function TokenTable({ context, creationParentLabel = "Project root", rows, selected, query, onSelect, onEmptyAction }: {
