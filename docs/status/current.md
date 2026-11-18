@@ -10,6 +10,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Token list V1 mockup — 18 November 2026
+
+The user requested a mockup of the proposed token-list properties in the existing
+app shell. A separate designer created the [standalone V1 prototype](../../prototypes/token-list-v1/DESIGN-V1.md)
+with Token / Type / Layer / Value columns, descriptions under identity, protected-only
+regeneration indicators, authored reference targets and responsive summaries.
+Search, namespace scopes and selection illustrate the proposal using sample data.
+Current shell, theme, fonts and owned controls are reused; production application
+files and dependencies are unchanged. The designer's notes own the viewing command,
+artifacts, verification evidence and prototype limits.
+
+Coordinator visually checked desktop and narrower renderings. This is a design
+proposal awaiting user feedback, not an agreed increment, analyst-reviewed contract,
+or implementation authorization. Earlier qualification campaigns remain stopped.
+Suggested commit: `docs: add token list design prototype`.
+
 ## Four-decimal color presentation — 18 November 2026
 
 Implemented the user's requested [color display policy](../project/presentation-conventions.md#color-display-precision)
@@ -31,8 +47,8 @@ verification allowance were used, with one environment setup retry and no produc
 repair cycle; checks stopped after the focused checks passed. Earlier qualification
 campaigns remain stopped.
 
-Ready for user review; staging, commit and push remain with the user.
-Suggested commit: `feat: use four-decimal color presentation without losing precision`.
+The user reported committing and pushing this change on 18 November 2026.
+The verification limits above remain unchanged.
 
 ## Increment 016 user acceptance — 17 November 2026
 
