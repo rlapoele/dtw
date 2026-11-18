@@ -167,6 +167,10 @@ Canonical, calculation, and presentation precision remain separate:
 - deterministic calculations use an explicit precision and rounding policy appropriate to the operation;
 - editors and adapters may format or round displayed and exported representations without mutating the canonical value.
 
+The [color display policy](../project/presentation-conventions.md#color-display-precision)
+uses up to four decimal places for summaries and unfocused color fields, with full
+precision on focus and in exact data. It does not change canonical or calculation precision.
+
 If preserving authored numeric formatting later proves useful, it belongs to non-semantic authoring metadata. Calculation contexts and rounding modes remain to be defined only for operations whose exact result is not a finite decimal; the initial number and dimension operations below do not round.
 
 #### Number and dimension literals

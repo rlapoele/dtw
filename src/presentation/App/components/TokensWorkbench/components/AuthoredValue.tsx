@@ -37,7 +37,7 @@ export function AuthoredValue({
   }
   if (value?.kind !== "literal" || value.valueType !== "color")
     return <span>{value?.kind ?? "No assignment"}</span>;
-  const detail = approximate ? `Rounded to at most four decimal places. Original coordinates: ${authoredColorCoordinates(value).join("; ")}. Exact values remain in the inspector.` : undefined;
+  const detail = approximate ? `Rounded to at most four decimal places. Original coordinates: ${authoredColorCoordinates(value).join("; ")}. Focus an inspector field or open exact source for full precision.` : undefined;
   return (
     <span className="block min-w-0 wrap-anywhere" title={detail}>
       {detail && <span className="sr-only">{detail}</span>}

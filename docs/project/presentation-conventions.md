@@ -93,6 +93,28 @@ Use shadcn-style semantic theming adapted to the accepted neutral Precision desi
 
 Keep semantic design values in one source, currently `src/presentation/styles/global.css`. Map referenced semantic CSS variables through Tailwind's `@theme inline` namespaces: for example, `--color-background: var(--background)` exposes `bg-background`. Use the namespace appropriate to the decision, such as `--color-*`, `--radius-*` or `--font-*`. Focused CSS can reference the same source. Values defined directly in `@theme` also have one source; avoid adding a duplicate alias layer without a need. Application theme tokens remain distinct from user-authored design-token data.
 
+## Color display precision
+
+**Established presentation choice — 18 November 2026.** Show color coordinates
+and alpha with up to four decimal places in readable summaries and unfocused
+normalized/component entry fields. Omit unnecessary trailing zeros. Reuse decimal
+text rounding (nearest, ties away from zero) without converting authored text to
+binary floating point. This display policy is distinct from calculation rounding.
+
+Focusing a decimal field reveals its full underlying text; typing edits that text.
+Focus and blur alone never write a draft, promote a derived color space, or mark a
+token dirty. Incomplete or non-canonical input remains verbatim so validation stays
+understandable. The existing whole-number 0–255 entry policy remains unchanged.
+Precision guidance identifies rounded fields; rounded summaries expose original
+coordinates in their title/accessibility text or the existing raw-data disclosure.
+Exact source and raw resolution data retain full precision.
+
+Canonical values, conversion candidates (12 significant digits, ties to even),
+slider steps, preview rendering, backups and target export policies are unchanged.
+The formatter belongs to TokensWorkbench helpers because summaries and the editor
+consume it; the focus-aware input belongs privately to ColorEditor. This is a small
+presentation change, not a new feature increment or numerical qualification campaign.
+
 ## Utilities and exceptions
 
 Use Tailwind's standard scale and existing project-defined utilities first. Avoid arbitrary-value utilities and direct CSS-variable expressions in JSX when named utilities express the design. A meaningful reusable non-standard decision should become a token exposed through the appropriate theme namespace before use. Do not create a token for every isolated measurement, duplicate palette literals in components, or move ordinary utility styling into broad CSS rules or mass `@apply` blocks.

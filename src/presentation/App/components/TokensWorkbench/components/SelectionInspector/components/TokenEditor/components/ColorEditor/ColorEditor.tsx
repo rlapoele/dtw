@@ -4,7 +4,7 @@ import {
   componentSuffix,
 } from "@domain/color-components";
 import { Field } from "@presentation/ui/field";
-import { Input } from "@presentation/ui/input";
+import { ColorDecimalInput } from "./components/ColorDecimalInput";
 import type { CSSProperties } from "react";
 import { COLOR_SPACES } from "@domain/color-literal";
 import type { ColorSpace } from "@domain/color-literal";
@@ -130,6 +130,9 @@ export function ColorEditor({
           ? `Draft in ${spaceName(s.literal.colorSpace)}. Switching view keeps exact values.`
           : `Viewing approximate ${spaceName(s.viewSpace)}. Draft remains in ${spaceName(s.literal.colorSpace)} until a component edit.`}
       </p>
+      <p id="color-precision-note" className="text-caption text-muted-foreground mb-2">
+        Up to 4 decimal places. Focus a field for full precision.
+      </p>
       <div className="component-controls grid grid-cols-3 gap-x-3 min-w-0">
         {values.map((value, i) => {
           const identity = COLOR_COMPONENTS[d.colorSpace][i];
@@ -206,13 +209,14 @@ export function ColorEditor({
                       : "Complete exact entry to use slider."}
                 </p>
               )}
-              <Input
+              <ColorDecimalInput
                 id={`color-component-${i}`}
                 readOnly={readOnly}
                 className="font-mono"
                 value={value}
+                rounded={!bytes}
                 spellCheck={false}
-                aria-describedby={`range-note-${i} byte-note-${i} editor-error`}
+                aria-describedby={`range-note-${i} byte-note-${i} color-precision-note editor-error`}
                 aria-invalid={!!issue || undefined}
                 onChange={(e) => change(i, e.target.value)}
               />
@@ -267,12 +271,12 @@ export function ColorEditor({
               : "Complete alpha in exact entry."}
           </p>
         )}
-        <Input
+        <ColorDecimalInput
           id="color-alpha"
           readOnly={readOnly}
           className="font-mono"
           value={s.literal.alpha}
-          aria-describedby="editor-error"
+          aria-describedby="color-precision-note editor-error"
           onChange={(e) =>
             onChange({
               ...s,

@@ -268,7 +268,7 @@ export function TokenEditorContent({
                   "No assignment"
                 )
               ) : (
-                <AuthoredValue value={value} project={project} />
+                <AuthoredValue value={value} project={project} approximate />
               )}
             </div>
           </section>

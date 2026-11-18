@@ -301,7 +301,7 @@ describe("integer RGB rendered fields", () => {
     expect(html).toContain('aria-label="Blue slider"');
     expect(html).toContain("Approximate · exact normalized 0.2314");
     expect(html).toContain(
-      'aria-describedby="range-note-2 byte-note-2 editor-error"',
+      'aria-describedby="range-note-2 byte-note-2 color-precision-note editor-error"',
     );
     const invalid = render(editComponent(s, 2, "59.5"));
     expect(invalid).toContain('value="59.5"');

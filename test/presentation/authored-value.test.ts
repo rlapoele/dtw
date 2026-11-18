@@ -1,3 +1,4 @@
+import { colorDecimalDisplay } from "@presentation/App/components/TokensWorkbench/helpers/color-decimal-display";
 import { describe, expect, it } from "vitest";
 import { authoredColorCoordinates } from "@presentation/App/components/TokensWorkbench/helpers/authored-color";
 import { createColorLiteral } from "@domain/color-literal";
@@ -38,7 +39,7 @@ describe("compact authored coordinates", () => {
 });
 
 
-describe("row-only four-decimal approximation", () => {
+describe("four-decimal presentation", () => {
   it.each([
     ["1.23445", "1.2345"], ["-1.23445", "-1.2345"],
     ["9.99995", "10"], ["-0.000049", "0"], ["0.00005", "0.0001"],
@@ -52,3 +53,8 @@ describe("row-only four-decimal approximation", () => {
     expect(value.components[1]).toBe(source);
   });
 });
+
+it.each(["", "-", "0.", "0.123450", "1e-7", "invalid"])(
+  "leaves incomplete or invalid draft text %s visible",
+  (value) => expect(colorDecimalDisplay(value)).toBe(value),
+);

@@ -1,6 +1,6 @@
 # Current Project Status
 
-> Last updated: 17 November 2026
+> Last updated: 18 November 2026
 >
 > Phase: Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
@@ -9,6 +9,30 @@
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## Four-decimal color presentation — 18 November 2026
+
+Implemented the user's requested [color display policy](../project/presentation-conventions.md#color-display-precision)
+as a focused presentation change. Table and inspector summaries plus unfocused decimal
+fields use up to four decimal places; focused fields and exact/raw data retain full
+precision. Focus/blur never writes the draft. Existing integer RGB entry and domain
+conversion precision remain unchanged. No separate feature increment or independent
+review was required or claimed.
+
+Verification: `npm run typecheck` passed; focused authored-value, identity-presentation,
+session and integer-RGB tests passed (70 tests). An isolated Chrome project verified
+rounding, precise component/alpha values after Apply, passive space switching,
+invalid input preservation, Cancel, keyboard focus/blur, resolved summaries and raw
+derived precision. The [desktop capture](../../output/playwright/color-precision.png)
+was visually reviewed. Affected file ownership/consumers and Markdown links were
+reviewed; no styling exceptions or dependencies were added. Broader responsive and
+screen-reader checks were not run. Approximately five of ten minutes of the scoped
+verification allowance were used, with one environment setup retry and no product
+repair cycle; checks stopped after the focused checks passed. Earlier qualification
+campaigns remain stopped.
+
+Ready for user review; staging, commit and push remain with the user.
+Suggested commit: `feat: use four-decimal color presentation without losing precision`.
 
 ## Increment 016 user acceptance — 17 November 2026
 

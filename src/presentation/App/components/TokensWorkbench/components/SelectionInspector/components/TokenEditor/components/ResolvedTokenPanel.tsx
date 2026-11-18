@@ -1,3 +1,4 @@
+import { colorDecimalDisplay } from "@presentation/App/components/TokensWorkbench/helpers/color-decimal-display";
 import type {
   SelectedToken,
   ProjectContext,
@@ -39,18 +40,21 @@ export function ResolvedTokenPanel({
         color ? (
           <>
             <h4>{spaceName(color.colorSpace)}</h4>
+            <p className="text-caption text-muted-foreground">
+              Up to 4 decimal places. Full precision is available in raw derived resolution data.
+            </p>
             <dl className="text-caption my-3">
               {color.components.map((value, index) => (
                 <div className="flex justify-between gap-3 py-1" key={index}>
                   <dt>
                     {COMPONENT_NAMES[COLOR_COMPONENTS[color.colorSpace][index]]}
                   </dt>
-                  <dd className="wrap-anywhere text-right min-w-0">{value}</dd>
+                  <dd className="wrap-anywhere text-right min-w-0" title={value}>{colorDecimalDisplay(value)}</dd>
                 </div>
               ))}
               <div className="flex justify-between gap-3 py-1">
                 <dt>Alpha</dt>
-                <dd className="wrap-anywhere min-w-0">{color.alpha}</dd>
+                <dd className="wrap-anywhere min-w-0" title={color.alpha}>{colorDecimalDisplay(color.alpha)}</dd>
               </div>
             </dl>
           </>
