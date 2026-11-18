@@ -10,6 +10,24 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Token navigation V3 mockup — 18 November 2026
+
+The user requested type navigation alongside namespace groups, then refined the
+proposal to type → layer → group/path. The [V3 proposal](../../prototypes/token-list-v1/DESIGN-V3.md)
+owns the interactive prototype and evidence. The proposed **Tokens** section uses
+the list's type icons, populated branches only, and project-wide counts. Labels
+filter the list independently of branch expansion; Groups retains namespace browsing
+across types. Compact Browse exposes the same navigation.
+
+Coordinator visually inspected the hierarchy in the in-app browser. Designer checks
+and remaining limits are recorded in V3. This is a prototype awaiting user feedback;
+production navigation is unchanged and no implementation authorization is inferred.
+Earlier qualification campaigns remain stopped. Suggested commit:
+`docs: prototype hierarchical token navigation`.
+
+The user reported committing and pushing Increment 017; this does not add manual
+qualification evidence to its existing review record.
+
 ## Increment 017 implementation and review — 18 November 2026
 
 Implemented the user-authorized V2 list and contextual ordering. Production now
