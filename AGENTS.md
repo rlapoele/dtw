@@ -67,6 +67,14 @@ Treat status labels as meaningful: **established** directions and principles are
 - `cn` may compose conditional classes and resolve Tailwind conflicts through one shared project entry point when needed. Preserve Base UI callback `className` behavior and existing component precedence contracts. Permission to use `cn` does not itself migrate dependencies or change those contracts.
 - Review affected code for duplicated primitives, avoidable custom values, foreign icon families and unnecessary dependencies; verify affected responsive, keyboard/focus and class-composition behavior. Use the linked conventions for details rather than imposing blanket bans on brackets or runtime styles.
 
+## React component contracts
+
+- Group related props by responsibility when a component spans several concerns, using narrowly typed contracts that express its actual needs. Keep focused props explicit; remove unused or obsolete inputs before regrouping. Do not impose a numerical prop limit, wrap unrelated values in one object, or introduce context solely to shorten a prop list.
+- Expose intentional actions from owning hooks instead of raw state setters when an interaction coordinates draft, validation, feedback or recovery updates. Keep those transitions together in the owner; components invoke actions such as changing a reference or reviewing recovery. Preserve existing validation, action gates and focus timing.
+- Use discriminated models when modes require different fields or callbacks, such as token creation, group creation and group renaming. Require each mode's relevant inputs instead of making every field optional or requiring irrelevant values. Represent unavailable original identities explicitly where recovery needs them; do not invent replacement targets. Keep dialog visibility separate when needed to preserve mounted content and closing behavior.
+- Preserve state and command ownership when simplifying contracts. Physical file placement and prop grouping do not determine state lifetime. Keep hook callers, component keys, mounted ancestry, draft/session lifetimes and command authority unchanged unless a behavior change is explicitly agreed. Do not move a hook into a conditionally mounted child merely to reduce props.
+- Review the resulting contracts against their actual consumers and update affected callers and tests together. Verify the relevant transitions and state-preservation behavior proportionately; smaller prop counts alone do not establish a better boundary.
+
 ## Documentation and verification
 
 - Reuse the terminology in `docs/design-tokens/glossary.md`; update the glossary when introducing a durable term.
