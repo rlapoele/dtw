@@ -419,3 +419,10 @@ labels retain the accessible unit, and full-precision focus behavior is unchange
 The expanded applied-color summary uses metadata-style rows: Color Space and
 component/alpha labels left, values right, using the same caption font and separators.
 Compact authored summaries retain their existing format.
+
+### Value-source radios — 19 November 2026
+
+The user approved native radio inputs for Literal color / Reference. Both share
+a per-editor name and the existing Value source fieldset/disabled gate, retain
+explicit labels and invoke the existing changeMode action. Apply/Cancel focus
+continues to target the literal choice; draft ownership and validation are unchanged.

@@ -79,12 +79,12 @@ export function useTokenEditor({
   const [tab, setTab] = useState("authored"),
     [error, setError] = useState(""),
     [notice, setNotice] = useState("");
-  const modeRef = useRef<HTMLButtonElement>(null),
+  const modeRef = useRef<HTMLInputElement>(null),
     errorRef = useRef<HTMLParagraphElement>(null);
   const [restoreApplyFocus, setRestoreApplyFocus] = useState(false);
   useEffect(() => {
     if (restoreApplyFocus && !accepting) {
-      // The mode button inherits disabled from the retaining fieldset. Focus
+      // The mode radio inherits disabled from the retaining fieldset. Focus
       // only after React commits the successful, re-enabled editor.
       modeRef.current?.focus();
       setRestoreApplyFocus(false);

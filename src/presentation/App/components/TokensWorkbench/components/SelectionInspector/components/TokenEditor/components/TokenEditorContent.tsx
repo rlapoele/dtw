@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useId, useLayoutEffect, useRef } from "react";
 import { TokenValueComparison } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenValueComparison";
 import { EditorActions } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditorActions";
 import { EditRecovery } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditRecovery";
@@ -13,7 +13,6 @@ import { Badge } from "@presentation/ui/badge";
 
 import { Tabs } from "@base-ui/react/tabs";
 
-import { Button } from "@presentation/ui/button";
 import { ColorEditor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ColorEditor/ColorEditor";
 
 export function TokenEditorContent({
@@ -58,6 +57,7 @@ export function TokenEditorContent({
     readOnly,
     targetUnavailable,
   } = editor;
+  const modeName = useId();
   const headingRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     const heading = headingRef.current;
@@ -136,24 +136,19 @@ export function TokenEditorContent({
             <>
               <fieldset disabled={accepting}>
                 <legend className="sr-only">Value source</legend>
-                <div className="mode-switch border-hairline border-border bg-mode flex p-0.75 rounded-md gap-0.75">
-                  <Button
-                    variant="mode"
-                    size="mode"
-                    ref={modeRef}
-                    aria-pressed={session.mode === "literal"}
-                    onClick={() => changeMode("literal")}
-                  >
-                    Literal color
-                  </Button>
-                  <Button
-                    variant="mode"
-                    size="mode"
-                    aria-pressed={session.mode === "reference"}
-                    onClick={() => changeMode("reference")}
-                  >
-                    Reference
-                  </Button>
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+                  {(["literal", "reference"] as const).map(mode => <label key={mode} className="inline-flex min-h-9 items-center gap-2 text-caption cursor-pointer">
+                    <input
+                      type="radio"
+                      name={modeName}
+                      value={mode}
+                      ref={mode === "literal" ? modeRef : undefined}
+                      checked={session.mode === mode}
+                      onChange={() => changeMode(mode)}
+                      className="size-4 shrink-0 accent-primary disabled:cursor-default"
+                    />
+                    {mode === "literal" ? "Literal color" : "Reference"}
+                  </label>)}
                 </div>
               </fieldset>
               {session.mode === "literal" ? (

@@ -10,6 +10,23 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Value-source radios and layer-editing request — 19 November 2026
+
+Replaced Literal color / Reference buttons with native labeled radio inputs,
+using the existing mode transition and disabled gate. Focus ref now targets the
+literal radio. Typechecking, 53 focused coordination/session/reference/section
+tests and diff checks passed before the final literal focus-ref refinement;
+that refinement was source-reviewed. Live radio keyboard/focus behavior remains
+unverified. Checks stopped at approximately three minutes, zero harness repairs.
+
+The editable-layer request was assessed separately: current commands revise
+values only, and Component requires a paired component-definition association.
+Layer editing is not implemented. Analyst recommends a bounded draft/apply
+workflow for Unspecified/Primitive/Semantic on current editable color tokens,
+including dirty protection, cancellation, recovery and Undo/Redo. Component stays
+inspect-only pending its association workflow. This remains a proposal requiring
+the project's increment agreement; existing qualification limits remain unchanged.
+
 ## Inspector color presentation — 19 November 2026
 
 Implemented requested [entry units and applied-color facts](../project/presentation-conventions.md#applied-color-facts-and-entry-units--19-november-2026).
@@ -17,10 +34,8 @@ Typechecking, 31 focused authored-value/editor/section tests and diff checks pas
 Source review preserved draft parsing and focus-precision behavior; no state-owner
 moves or new dependencies. Live unit placement and layout remain unverified after
 prior browser connection timeouts. Focused checks stopped after approximately two
-minutes, zero harness repairs; earlier qualification remains closed. The proposed
-radio-button treatment for Literal/Reference remains a recommendation, not an
-approved change; the existing mode control is unchanged. User visual review and
-mode-control preference are next. Changes are unstaged.
+minutes, zero harness repairs; earlier qualification remains closed. The user subsequently approved Literal/Reference radio inputs; see the follow-up
+below. User visual review is next. Changes are unstaged.
 
 ## Color summary grid — 19 November 2026
 
