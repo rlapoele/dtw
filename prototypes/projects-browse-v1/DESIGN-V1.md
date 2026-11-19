@@ -2,8 +2,9 @@
 
 **19 November 2026 · interactive proposal, not production implementation.**
 The user approved the initial direction and authorized this prototype, including
-Keep editing / Discard draft on dirty form dismissal. Approval for analyst review,
-final contract agreement and implementation authorization remain separate.
+Keep editing / Discard draft on dirty form dismissal. On 19 November 2026, the
+user approved V1.1 for analyst review. Final contract agreement and production
+implementation authorization remain pending.
 
 ## View
 
@@ -102,8 +103,8 @@ boundary from the entry point and disposes the root if that entry point is repla
 That repair was source-reviewed and build-checked; no additional browser pass was
 performed. These checks do not claim production tests or accessibility qualification. No deferred retention or
 cross-browser campaigns were restarted. Review the visual hierarchy, list density,
-dialog flow and retention/restore discoverability. User approval of this identified
-V1 proposal is required before analyst design review.
+dialog flow and retention/restore discoverability. The user subsequently approved
+V1.1 for analyst review; that approval does not authorize production implementation.
 
 ## V1.1 — user-requested lifecycle dates
 

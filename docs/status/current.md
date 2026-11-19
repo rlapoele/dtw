@@ -20,7 +20,14 @@ and authorized an isolated prototype on 19 November 2026.
 [Design V1.1](../../prototypes/projects-browse-v1/DESIGN-V1.md) is ready for user review,
 including the user-requested Created and Last updated list fields;
 its build and bounded browsing/dialog checks passed, with detailed limits in the
-increment record. Analyst review and final agreement remain pending. Production
+increment record. The user approved V1.1 for analyst review; the separate analyst
+completed that source/document review at `8404f48`. No material redesign was
+recommended. The refined draft preserves production recovery/restore gates and
+proposes a two-line description preview, with explicit search/order/query-lifetime
+and date-display details for final agreement. Prototype recovery handlers are
+illustrative and must not replace the existing command owners. Final agreement
+and implementation authorization remain pending. No browser tests were run for
+this analytical review. Production
 code and saved projects are unchanged; no qualification campaign was restarted. Existing deferred qualification remains deferred.
 
 ## Navigation and history display cleanup — 19 November 2026
