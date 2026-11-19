@@ -311,7 +311,7 @@ it("invalidates replacement acknowledgement whenever protected revision changes"
   ).toEqual({ protection: null, acknowledgement: false });
 });
 
-it("preserves dirty raw editor channels across baseline refresh and resets only on Cancel", async () => {
+it("preserves editor drafts through intentional actions and baseline review, resetting only on Cancel", async () => {
   const { useTokenEditor } = await import(
     "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor"
   );
@@ -354,7 +354,36 @@ it("preserves dirty raw editor channels across baseline refresh and resets only 
   let owner = render(hook);
   effects();
   owner = render(hook);
-  owner.setSession(editComponent(owner.session, 0, "-"));
+  const originalSession = owner.session;
+  owner.reportColorError("Conversion unavailable");
+  owner = render(hook);
+  expect(owner.error).toBe("Conversion unavailable");
+  owner.changeMode("reference");
+  owner = render(hook);
+  expect(owner.session).toEqual({ ...originalSession, mode: "reference" });
+  expect(owner.error).toBe("");
+  expect(owner.dirty).toBe(false);
+  owner.reportColorError("Choose a target");
+  owner = render(hook);
+  owner.changeReference("other-token");
+  owner = render(hook);
+  expect(owner.session.reference).toBe("other-token");
+  expect(owner.session.literal).toEqual(originalSession.literal);
+  expect(owner.dirty).toBe(true);
+  expect(owner.error).toBe("");
+  owner.changeMode("literal");
+  owner = render(hook);
+  owner.reportColorError("Incomplete component");
+  owner = render(hook);
+  owner.changeColorDraft(editComponent(owner.session, 0, "-"));
+  owner = render(hook);
+  expect(owner.error).toBe("");
+  expect(owner.session.reference).toBe("other-token");
+  const preservedDraft = owner.session;
+  owner.selectTab("resolved");
+  owner = render(hook);
+  expect(owner.tab).toBe("resolved");
+  expect(owner.session).toBe(preservedDraft);
   owner = render(hook);
   effects();
   revision = "r2";
@@ -372,6 +401,19 @@ it("preserves dirty raw editor channels across baseline refresh and resets only 
   expect(owner.session.literal.components[0]).toBe("-");
   expect(owner.dirty).toBe(true);
   expect(owner.recovery?.reviewed).toBe(false);
+  const frame = vi.fn();
+  vi.stubGlobal("requestAnimationFrame", frame);
+  const focus = vi.fn();
+  owner.reviewHeading.current = { focus } as unknown as HTMLHeadingElement;
+  const preservedRecovery = owner.recovery;
+  owner.reviewRecovery();
+  owner = render(hook);
+  expect(owner.recovery).toEqual({ ...preservedRecovery, reviewed: true });
+  expect(owner.session).toBe(preservedDraft);
+  expect(focus).not.toHaveBeenCalled();
+  expect(frame).toHaveBeenCalledOnce();
+  frame.mock.calls[0][0]();
+  expect(focus).toHaveBeenCalledOnce();
   owner.cancel();
   owner = render(hook);
   expect(owner.session.literal.components[0]).toBe("0.8");

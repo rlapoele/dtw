@@ -12,6 +12,7 @@ import type { Token } from "@domain/token";
 import type { ReviseColorTokenInput } from "@application/authoring";
 
 import {
+  type DraftSession,
   baseline,
   refreshCleanSession,
   eligible,
@@ -148,6 +149,30 @@ export function useTokenEditor({
     [project.groups],
   );
   const editable = projected ? i.editable : eligible(i.authored);
+  function changeMode(mode: DraftSession["mode"]) {
+    setSession({ ...session, mode });
+    setError("");
+  }
+  function changeReference(reference: string | null) {
+    setSession({ ...session, reference, edited: true });
+    setError("");
+  }
+  function changeColorDraft(next: DraftSession) {
+    setSession(next);
+    setError("");
+    setNotice("");
+  }
+  function reportColorError(message: string) {
+    setError(message);
+  }
+  function selectTab(next: string) {
+    setTab(next);
+  }
+  function reviewRecovery() {
+    if (!recovery) return;
+    setRecovery({ ...recovery, reviewed: true });
+    requestAnimationFrame(() => reviewHeading.current?.focus());
+  }
   async function apply() {
     if (
       accepting ||
@@ -233,16 +258,11 @@ export function useTokenEditor({
     value,
     accepting,
     session,
-    setSession,
     recovery,
-    setRecovery,
     reviewHeading,
     tab,
-    setTab,
     error,
-    setError,
     notice,
-    setNotice,
     modeRef,
     errorRef,
     dirty,
@@ -254,6 +274,12 @@ export function useTokenEditor({
     referenceLabels,
     groupLabels,
     editable,
+    changeMode,
+    changeReference,
+    changeColorDraft,
+    reportColorError,
+    selectTab,
+    reviewRecovery,
     apply,
     cancel,
     readUnavailable,

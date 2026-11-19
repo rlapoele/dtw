@@ -29,16 +29,11 @@ export function TokenEditorContent({
     value,
     accepting,
     session,
-    setSession,
     recovery,
-    setRecovery,
     reviewHeading,
     tab,
-    setTab,
     error,
-    setError,
     notice,
-    setNotice,
     modeRef,
     errorRef,
     dirty,
@@ -49,6 +44,12 @@ export function TokenEditorContent({
     referenceLabels,
     groupLabels,
     editable,
+    changeMode,
+    changeReference,
+    changeColorDraft,
+    reportColorError,
+    selectTab,
+    reviewRecovery,
     apply,
     cancel,
     readUnavailable,
@@ -104,7 +105,7 @@ export function TokenEditorContent({
           {!editable && <Badge>Inspection only</Badge>}
         </div>
       </div>
-      <Tabs.Root value={tab} onValueChange={setTab}>
+      <Tabs.Root value={tab} onValueChange={selectTab}>
         <TokenEditorTabs />
         <Tabs.Panel value="authored" className="editor-body bg-surface p-6 touch:p-4">
           {targetUnavailable && (
@@ -128,10 +129,7 @@ export function TokenEditorContent({
               preserved={session}
               reviewed={recovery.reviewed}
               headingRef={reviewHeading}
-              onReview={() => {
-                setRecovery({ ...recovery, reviewed: true });
-                requestAnimationFrame(() => reviewHeading.current?.focus());
-              }}
+              onReview={reviewRecovery}
             />
           )}
           {editable || dirty ? (
@@ -144,10 +142,7 @@ export function TokenEditorContent({
                     size="mode"
                     ref={modeRef}
                     aria-pressed={session.mode === "literal"}
-                    onClick={() => {
-                      setSession({ ...session, mode: "literal" });
-                      setError("");
-                    }}
+                    onClick={() => changeMode("literal")}
                   >
                     Literal color
                   </Button>
@@ -155,10 +150,7 @@ export function TokenEditorContent({
                     variant="mode"
                     size="mode"
                     aria-pressed={session.mode === "reference"}
-                    onClick={() => {
-                      setSession({ ...session, mode: "reference" });
-                      setError("");
-                    }}
+                    onClick={() => changeMode("reference")}
                   >
                     Reference
                   </Button>
@@ -168,12 +160,8 @@ export function TokenEditorContent({
                 <ColorEditor
                   readOnly={accepting || readOnly}
                   session={session}
-                  onChange={(s) => {
-                    setSession(s);
-                    setError("");
-                    setNotice("");
-                  }}
-                  onError={setError}
+                  onChange={changeColorDraft}
+                  onError={reportColorError}
                 />
               ) : (
                 <ReferenceFields
@@ -188,10 +176,7 @@ export function TokenEditorContent({
                     )
                   }
                   disabled={accepting || readOnly}
-                  onReferenceChange={(reference) => {
-                    setSession({ ...session, reference, edited: true });
-                    setError("");
-                  }}
+                  onReferenceChange={changeReference}
                 />
               )}
               <p className="helper text-muted-foreground font-normal preview-detail mt-2 wrap-anywhere">
