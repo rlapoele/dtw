@@ -403,3 +403,9 @@ space groups use additional vertical spacing. Each label/value pair stays in one
 grid cell, with long values allowed to wrap within narrow cells. Alpha remains a
 separate final line. Authored/converted visibility, precision and color emphasis
 are unchanged. TokenValue owns this presentation through Tailwind utilities.
+
+### Token table column balance — 19 November 2026
+
+At the user's request, the wide token table uses 12 equal tracks: Token spans 4,
+Type 2, Layer 1 and Value 5. This transfers space from Layer to Value while
+preserving the existing compact/touch layouts and shared header/row alignment.
