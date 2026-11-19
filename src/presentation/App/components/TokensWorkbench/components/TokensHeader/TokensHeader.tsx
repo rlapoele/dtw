@@ -1,5 +1,5 @@
 import type { HistoryDirection, HistoryState } from "@application/retention/history";
-import { HistoryControls, HistoryDescriptions } from "./components/HistoryControls";
+import { HistoryControls, HistoryDescriptions } from "@presentation/App/components/TokensWorkbench/components/TokensHeader/components/HistoryControls";
 import type { Ref } from "react";
 import { Button } from "@presentation/ui/button";
 import { Icon } from "@presentation/ui/icon";

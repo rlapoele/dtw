@@ -1,5 +1,5 @@
 import type { DisplayRow, ProjectContext } from "@application/retention/projections";
-import type { TokenBrowseView } from "./browse-view";
+import type { TokenBrowseView } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
 import { TOKEN_TYPES, TOKEN_LAYERS } from "@domain/token";
 
 const natural = new Intl.Collator("en", { numeric: true, sensitivity: "variant" });

@@ -4,7 +4,7 @@ import type { DisplayRow, ProjectContext } from "@application/retention/projecti
 import { Button } from "@presentation/ui/button";
 import { Icon } from "@presentation/ui/icon";
 import { identityLabels, namespaceEntryDetails } from "@presentation/App/components/TokensWorkbench/helpers/identity-labels";
-import { TokenValue } from "./components/TokenValue";
+import { TokenValue } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/TokenTable/components/TokenValue";
 
 const title = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
 

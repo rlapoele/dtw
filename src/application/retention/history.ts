@@ -1,6 +1,6 @@
-import { utf8Bytes } from "./codec";
+import { utf8Bytes } from "@application/retention/codec";
 import type { ProjectSnapshot } from "@application/project-storage";
-import type { CommandReceipt, WriteAttempt } from "./ports";
+import type { CommandReceipt, WriteAttempt } from "@application/retention/ports";
 export type HistoryAction = { readonly id: string; readonly label: string };
 export type HistoryState = { readonly undoCount: number; readonly redoCount: number; readonly undo?: HistoryAction; readonly redo?: HistoryAction; readonly notice?: string };
 export type HistoryDirection = "undo" | "redo";

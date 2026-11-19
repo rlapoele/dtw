@@ -1,4 +1,4 @@
-import { combiningClass, decomposition, composition, lowercase, caseFold, cased, caseIgnorable } from './unicode-17-data';
+import { combiningClass, decomposition, composition, lowercase, caseFold, cased, caseIgnorable } from '@domain/unicode-17-data';
 
 export const NAMESPACE_NAMING_POLICY = 'DTW namespace naming v1 / Unicode 17.0.0';
 const removed = /[\u0009-\u000D\u0020\u0085\u00A0\u1680\u2000-\u200B\u2028\u2029\u202F\u205F\u2060\u3000\uFEFF]/g;

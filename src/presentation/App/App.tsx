@@ -1,4 +1,4 @@
-import { OutcomeFeedback } from "./components/OutcomeFeedback/OutcomeFeedback";
+import { OutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
 import { readBackupFile } from "@hosts/browser/backup-file";
 import { useEffect, useRef, useState } from "react";
 import type { RestorePreview } from "@hosts/browser/protocol";

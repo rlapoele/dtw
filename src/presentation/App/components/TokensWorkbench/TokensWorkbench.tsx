@@ -1,6 +1,6 @@
-import { tokenListRows } from "./helpers/token-list-order";
+import { tokenListRows } from "@presentation/App/components/TokensWorkbench/helpers/token-list-order";
 import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
-import { useHistoryInteraction } from "./hooks/useHistoryInteraction";
+import { useHistoryInteraction } from "@presentation/App/components/TokensWorkbench/hooks/useHistoryInteraction";
 import { TokensStatusBar } from "@presentation/App/components/TokensWorkbench/components/TokensStatusBar/TokensStatusBar";
 import { TokenNavigationPane, TokenNavigationDrawer } from "@presentation/App/components/TokensWorkbench/components/TokenNavigation/TokenNavigation";
 import { useProjectLifecycle } from "@presentation/App/components/TokensWorkbench/hooks/useProjectLifecycle";
@@ -19,8 +19,8 @@ import { useTokensLayout } from "@presentation/App/components/TokensWorkbench/ho
 import { readExactSource } from "@presentation/App/components/TokensWorkbench/helpers/read-exact-source";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { WorkbenchLayout } from "@presentation/App/components/WorkbenchLayout/WorkbenchLayout";
-import { FeedbackRegion } from "./components/FeedbackRegion";
-import { SelectionBar } from "./components/TokenWorkspace/components/SelectionBar/SelectionBar";
+import { FeedbackRegion } from "@presentation/App/components/TokensWorkbench/components/FeedbackRegion";
+import { SelectionBar } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/SelectionBar/SelectionBar";
 import type { ApplicationResult } from "@application/authoring";
 import type { Token } from "@domain/token";
 import type { ProjectHeader, WorkbenchHost } from "@hosts/browser/protocol";
@@ -29,7 +29,7 @@ import { Button } from "@presentation/ui/button";
 import { SelectionInspector } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/SelectionInspector";
 import { TokenEditor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/TokenEditor";
 import { AuthoringDialog } from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/AuthoringDialog";
-import { NavigationContent } from "./components/TokenNavigation/components/NavigationContent";
+import { NavigationContent } from "@presentation/App/components/TokensWorkbench/components/TokenNavigation/components/NavigationContent";
 
 import { identityLabels } from "@presentation/App/components/TokensWorkbench/helpers/identity-labels";
 export function TokensWorkbench({

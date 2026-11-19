@@ -1,11 +1,11 @@
 import type { ChangeEventHandler, ReactNode, Ref } from "react";
 import type { CatalogueEntry } from "@application/retention/ports";
 import type { StoragePersistenceStatus } from "@presentation/App/hooks/useStoragePersistence";
-import { StorageProtection } from "./components/StorageProtection/StorageProtection";
+import { StorageProtection } from "@presentation/App/components/ProjectsWorkbench/components/StorageProtection/StorageProtection";
 import { WorkbenchLayout } from "@presentation/App/components/WorkbenchLayout/WorkbenchLayout";
 import { ApplicationHeader } from "@presentation/App/components/ApplicationHeader/ApplicationHeader";
-import { ProjectInspector } from "./components/ProjectInspector/ProjectInspector";
-import { useProjectsLayout, type ProjectsView } from "./hooks/useProjectsLayout";
+import { ProjectInspector } from "@presentation/App/components/ProjectsWorkbench/components/ProjectInspector/ProjectInspector";
+import { useProjectsLayout, type ProjectsView } from "@presentation/App/components/ProjectsWorkbench/hooks/useProjectsLayout";
 import { Button } from "@presentation/ui/button";
 import { ProjectList } from "@presentation/App/components/ProjectsWorkbench/components/ProjectList/ProjectList";
 import { CreateProjectForm } from "@presentation/App/components/ProjectsWorkbench/components/CreateProjectForm/CreateProjectForm";

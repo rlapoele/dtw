@@ -1,4 +1,4 @@
-import { colorDecimalDisplay } from "./color-decimal-display";
+import { colorDecimalDisplay } from "@presentation/App/components/TokensWorkbench/helpers/color-decimal-display";
 import {
   COLOR_COMPONENTS,
   COMPONENT_NAMES,

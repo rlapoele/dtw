@@ -1,4 +1,4 @@
-import { typeScopeLabel } from "../../../../helpers/token-navigation";
+import { typeScopeLabel } from "@presentation/App/components/TokensWorkbench/helpers/token-navigation";
 import type { TokenBrowseView } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
 import { Button } from "@presentation/ui/button";
 import { Icon } from "@presentation/ui/icon";

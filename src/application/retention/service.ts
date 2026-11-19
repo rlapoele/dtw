@@ -1,10 +1,10 @@
-import { createSessionHistory, snapshotText } from "./history";
-import type { HistoryDirection } from "./history";
+import { createSessionHistory, snapshotText } from "@application/retention/history";
+import type { HistoryDirection } from "@application/retention/history";
 import { createAuthoringOperations } from "@application/authoring";
 import type { ProjectSnapshot } from "@application/project-storage";
-import { candidateStorage } from "./candidate";
-import { decodeRetainedRecord } from "./record";
-import { admitSnapshot, encodeBackup } from "./codec";
+import { candidateStorage } from "@application/retention/candidate";
+import { decodeRetainedRecord } from "@application/retention/record";
+import { admitSnapshot, encodeBackup } from "@application/retention/codec";
 import type {
   Acceptance,
   AuthoringCommand,
@@ -13,7 +13,7 @@ import type {
   RetentionPort,
   WriteAttempt,
   WriteIdentity,
-} from "./ports";
+} from "@application/retention/ports";
 const errorText = (error: unknown) =>
   error instanceof Error
     ? error.message.slice(0, 500)

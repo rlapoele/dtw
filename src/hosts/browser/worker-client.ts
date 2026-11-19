@@ -1,6 +1,6 @@
 import type { WriteIdentity } from "@application/retention/ports";
-import { shape, validateHostInput, validateHostOutput } from "./validation";
-import type { HostCalls, HostOperation, WorkbenchHost } from "./protocol";
+import { shape, validateHostInput, validateHostOutput } from "@hosts/browser/validation";
+import type { HostCalls, HostOperation, WorkbenchHost } from "@hosts/browser/protocol";
 /** The renderer owns only responses for its live host. No mutation replay after
  * worker loss. Termination fences dispatch and publication, not issued rollback. */
 export class UnknownWriteError extends Error {

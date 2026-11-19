@@ -1,4 +1,4 @@
-import { namespacePathKey } from './namespace-naming';
+import { namespacePathKey } from '@domain/namespace-naming';
 export type NamingMember = { readonly id: string; readonly projectId: string; readonly parentGroupId: string | null; readonly localName: string };
 export type NamingNamespace = { readonly projectId: string; readonly groups: readonly NamingMember[]; readonly tokens: readonly NamingMember[] };
 export type NamespaceCollisionMember = { readonly kind: 'group' | 'token'; readonly id: string; readonly path: readonly string[] };

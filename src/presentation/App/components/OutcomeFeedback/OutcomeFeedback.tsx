@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { Icon } from "@presentation/ui/icon";
-import { admitToasts, ToastQueue, type OutcomeKind } from "./state/toast-queue";
+import { admitToasts, ToastQueue, type OutcomeKind } from "@presentation/App/components/OutcomeFeedback/state/toast-queue";
 
 type OutcomeDelivery = { publish(message: string, kind?: OutcomeKind): void; clear(): void; recover(message: string, finish?: (clarification?: string) => void): void };
 const Context = createContext<OutcomeDelivery>({ publish() {}, clear() {}, recover(_message, finish) { finish?.(_message); } });

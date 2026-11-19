@@ -4,7 +4,7 @@ import {
   componentSuffix,
 } from "@domain/color-components";
 import { Field } from "@presentation/ui/field";
-import { ColorDecimalInput } from "./components/ColorDecimalInput";
+import { ColorDecimalInput } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ColorEditor/components/ColorDecimalInput";
 import type { CSSProperties } from "react";
 import { COLOR_SPACES } from "@domain/color-literal";
 import type { ColorSpace } from "@domain/color-literal";

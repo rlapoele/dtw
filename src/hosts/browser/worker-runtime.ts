@@ -5,7 +5,7 @@ import {
 } from "@application/retention/codec";
 import { diagnosticDisplay } from "@application/retention/diagnostics";
 import type { BackupPreview } from "@application/retention/codec";
-import type { RestorePreview } from "./protocol";
+import type { RestorePreview } from "@hosts/browser/protocol";
 import {
   projectContext,
   displayRows,
@@ -17,11 +17,11 @@ import {
   validateAttempt,
   validateHostInput,
   validateHostOutput,
-} from "./validation";
+} from "@hosts/browser/validation";
 import { BrowserRetention } from "@adapters/browser/indexeddb-retention";
 import { createRetainedWorkbench } from "@application/retention/service";
 import type { Acceptance, WriteIdentity } from "@application/retention/ports";
-import type { HostCalls, HostOperation, PublicAcceptance } from "./protocol";
+import type { HostCalls, HostOperation, PublicAcceptance } from "@hosts/browser/protocol";
 
 export function installWorkbenchWorker(storage: BrowserRetention) {
   let loaded: RetainedRecord | undefined;

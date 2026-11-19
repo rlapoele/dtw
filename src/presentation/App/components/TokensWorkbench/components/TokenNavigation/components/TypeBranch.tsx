@@ -1,8 +1,8 @@
 import { Button } from "@presentation/ui/button";
 import { Icon } from "@presentation/ui/icon";
-import { scopeKey, type TokenBrowseView } from "../../../helpers/browse-view";
-import { typeIcon } from "../../../helpers/token-type-presentation";
-import type { NavigationBranch } from "../../../helpers/token-navigation";
+import { scopeKey, type TokenBrowseView } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
+import { typeIcon } from "@presentation/App/components/TokensWorkbench/helpers/token-type-presentation";
+import type { NavigationBranch } from "@presentation/App/components/TokensWorkbench/helpers/token-navigation";
 export function TypeBranch({branch, depth, view, collapsed, onToggle, onSelect}: {
   branch: NavigationBranch; depth: number; view: TokenBrowseView; collapsed: ReadonlySet<string>;
   onToggle(key: string): void; onSelect(view: TokenBrowseView): void;

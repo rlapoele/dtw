@@ -1,4 +1,4 @@
-import type { WorkbenchHost } from "./protocol";
+import type { WorkbenchHost } from "@hosts/browser/protocol";
 /** Download initiation is observable; file custody is the user's separate
  * acknowledgement. Never infer a recoverable independent copy from a click. */
 export async function downloadProjectBackup(

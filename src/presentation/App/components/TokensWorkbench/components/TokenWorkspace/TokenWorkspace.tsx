@@ -1,5 +1,5 @@
 import { WorkspaceToolbar } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/WorkspaceToolbar/WorkspaceToolbar";
-import { creationParent } from "../../helpers/browse-view";
+import { creationParent } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
 import type { TokenBrowseView } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
 import { Button } from "@presentation/ui/button";
 import { NamespaceInventory } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/NamespaceInventory/NamespaceInventory";

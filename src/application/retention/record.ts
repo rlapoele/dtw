@@ -1,5 +1,5 @@
-import { admitSnapshot, encodeBackup, assertPlainRecord } from "./codec";
-import type { Operation, RetainedRecord } from "./ports";
+import { admitSnapshot, encodeBackup, assertPlainRecord } from "@application/retention/codec";
+import type { Operation, RetainedRecord } from "@application/retention/ports";
 const operations: Record<Operation, string> = {
   undo: "project",
   redo: "project",

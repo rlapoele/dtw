@@ -1,9 +1,9 @@
 import type { DisplayRow, ProjectContext } from "@application/retention/projections";
 import { TOKEN_TYPES, TOKEN_LAYERS } from "@domain/token";
-import { identityLabels } from "./identity-labels";
-import { tokenListRows, comparePath } from "./token-list-order";
-import type { TokenTypeScope } from "./browse-view";
-import { typeLabel, layerLabel } from "./token-type-presentation";
+import { identityLabels } from "@presentation/App/components/TokensWorkbench/helpers/identity-labels";
+import { tokenListRows, comparePath } from "@presentation/App/components/TokensWorkbench/helpers/token-list-order";
+import type { TokenTypeScope } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
+import { typeLabel, layerLabel } from "@presentation/App/components/TokensWorkbench/helpers/token-type-presentation";
 export type NavigationBranch = { scope: TokenTypeScope; label: string; count: number; children?: NavigationBranch[] };
 /** Complete project rows only; selection/search never influence these counts. */
 export function tokenNavigation(rows: readonly DisplayRow[], context: ProjectContext | undefined): NavigationBranch[] {

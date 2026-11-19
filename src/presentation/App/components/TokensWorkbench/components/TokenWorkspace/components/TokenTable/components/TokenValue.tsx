@@ -7,7 +7,7 @@ import type { DisplayRow } from "@application/retention/projections";
 import { authoredColorCoordinates, spaceName } from "@presentation/App/components/TokensWorkbench/helpers/authored-color";
 import { colorDecimalDisplay } from "@presentation/App/components/TokensWorkbench/helpers/color-decimal-display";
 import { Icon } from "@presentation/ui/icon";
-import { hexPreview } from "../helpers/hex-preview";
+import { hexPreview } from "@presentation/App/components/TokensWorkbench/components/TokenWorkspace/components/TokenTable/helpers/hex-preview";
 
 const ColorRepresentations = memo(function ColorRepresentations({ source, authored }: { source: ColorLiteralValue; authored: boolean }) {
   const display = useMemo(() => ({

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { tokenNavigation } from "../../../helpers/token-navigation";
-import { TypeBranch } from "./TypeBranch";
+import { tokenNavigation } from "@presentation/App/components/TokensWorkbench/helpers/token-navigation";
+import { TypeBranch } from "@presentation/App/components/TokensWorkbench/components/TokenNavigation/components/TypeBranch";
 import type { TokenBrowseView } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
 import type { ProjectContext } from "@application/retention/projections";
 import { Icon } from "@presentation/ui/icon";

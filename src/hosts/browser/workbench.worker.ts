@@ -1,3 +1,3 @@
 import { BrowserRetention } from "@adapters/browser/indexeddb-retention";
-import { installWorkbenchWorker } from "./worker-runtime";
+import { installWorkbenchWorker } from "@hosts/browser/worker-runtime";
 installWorkbenchWorker(new BrowserRetention());

@@ -1,8 +1,8 @@
-import { validateResolution } from "./derived-validation";
+import { validateResolution } from "@hosts/browser/derived-validation";
 import { TOKEN_TYPES } from "@domain/token";
 import { admitSnapshot, assertTimestamp, plainTree, retentionLimits } from "@application/retention/codec";
 import { internalId } from "@application/retention/record";
-import type { HostOperation } from "./protocol";
+import type { HostOperation } from "@hosts/browser/protocol";
 type Data = Record<string, unknown>;
 export function shape(
   value: unknown,

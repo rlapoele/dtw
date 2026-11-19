@@ -4,10 +4,10 @@ import type { Dispatch, SetStateAction, RefObject, MutableRefObject } from "reac
 import type { HistoryDirection, HistoryState } from "@application/retention/history";
 import type { ProjectContext } from "@application/retention/projections";
 import type { ProjectHeader, PublicAcceptance } from "@hosts/browser/protocol";
-import type { Selection } from "./useProjectReadback";
-import { creationParent } from "../helpers/browse-view";
-import type { TokenBrowseView } from "../helpers/browse-view";
-import { historyShortcut, ownsHistoryShortcut } from "../helpers/history-shortcuts";
+import type { Selection } from "@presentation/App/components/TokensWorkbench/hooks/useProjectReadback";
+import { creationParent } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
+import type { TokenBrowseView } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
+import { historyShortcut, ownsHistoryShortcut } from "@presentation/App/components/TokensWorkbench/helpers/history-shortcuts";
 type Setter<T> = Dispatch<SetStateAction<T>>;
 type Options = {
   history: HistoryState; traverse(direction: HistoryDirection, stepId: string): Promise<PublicAcceptance>;
