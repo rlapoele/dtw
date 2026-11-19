@@ -40,7 +40,8 @@ export function Button({
   const motionClasses = actionMotion
     ? "motion-safe:transition-transform duration-150 ease-out motion-safe:not-disabled:not-data-disabled:hover:scale-[1.02] motion-safe:not-disabled:not-data-disabled:active:scale-[0.98]"
     : "";
-  const owned = `button ${motionClasses} inline-flex items-center border-hairline text-caption font-medium disabled:opacity-45 disabled:cursor-default ${sizes[size]} ${variants[variant]}`;
+  const borderWidth = variant === "default" || variant === "outline" ? "border-2" : "border-hairline";
+  const owned = `button ${motionClasses} inline-flex items-center ${borderWidth} text-caption font-medium disabled:opacity-45 disabled:cursor-default ${sizes[size]} ${variants[variant]}`;
   return (
     <Primitive
       {...props}

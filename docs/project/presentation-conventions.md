@@ -386,3 +386,10 @@ values preserve the requested ±1.5% effect: the installed Tailwind compiler doe
 emit decimal numeric `scale-101.5` / `scale-98.5` utilities. The square navigation
 disclosure geometry remains a focused CSS rule; no new tokens,
 dependencies, state owners or wrappers are introduced.
+
+### Visible control borders — 19 November 2026
+
+At the user's request, primary/outline buttons and text/search inputs, native
+selects and textareas use Tailwind `border-2` (2px at the default root size,
+double the previous hairline). Transparent/borderless buttons, structural
+separators and focus outlines retain their existing treatment.

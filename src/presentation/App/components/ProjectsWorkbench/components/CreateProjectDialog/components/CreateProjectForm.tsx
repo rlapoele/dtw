@@ -53,7 +53,7 @@ export function CreateProjectForm({
           disabled={disabled}
           onChange={(e) => onDescriptionChange(e.target.value)}
           aria-describedby="project-name-error"
-          className="w-full min-w-0 rounded-md border-hairline border-input bg-background text-foreground px-2.5 py-2 text-xs/normal small:text-base/normal hover:border-control-hover resize-y"
+          className="w-full min-w-0 rounded-md border-2 border-input bg-background text-foreground px-2.5 py-2 text-xs/normal small:text-base/normal hover:border-control-hover resize-y"
         />
       </Field>
       <p id="project-name-error" role="alert" className="text-destructive text-caption">{error}</p>
