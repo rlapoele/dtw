@@ -8,7 +8,6 @@ import { Button } from "@presentation/ui/button";
 import { identityLabels, namespaceEntryDetails } from "@presentation/App/components/TokensWorkbench/helpers/identity-labels";
 export function NavigationContent({
   rows, collapsed, onToggle,
-  drawer,
   project,
   view,
   unavailable,
@@ -19,7 +18,6 @@ export function NavigationContent({
   rows: readonly import("@application/retention/projections").DisplayRow[];
   collapsed: ReadonlySet<string>;
   onToggle: (key: string) => void;
-  drawer: boolean;
   project: ProjectContext | undefined;
   view: TokenBrowseView;
   unavailable: boolean;
@@ -37,24 +35,6 @@ export function NavigationContent({
   ]);
   return (
     <>
-      <div
-        className={`sidebar-project source-compact:gap-2 flex items-center gap-2.5 ${drawer ? "px-2 pb-6" : "px-2 pb-7.5 source-compact:px-1 source-compact:pb-6.25"}`}
-      >
-        <span
-          className="project-icon place-items-center border-hairline border-border bg-background text-xs/normal font-heading h-8 w-8 grid"
-          aria-hidden="true"
-        >
-          T
-        </span>
-        <div>
-          <strong className="block text-xs/normal source-compact:text-caption">
-            {project?.project.name || "(unnamed project)"}
-          </strong>
-          <span className="block text-caption text-muted-foreground">
-            Token workbench
-          </span>
-        </div>
-      </div>
       <div className="nav-label uppercase text-muted-foreground font-semibold px-3 pb-2.5">
         Library
       </div>

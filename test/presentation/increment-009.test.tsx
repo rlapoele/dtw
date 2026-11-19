@@ -12,7 +12,7 @@ const snapshot=admitSnapshot({project:{id:'p',name:'Legacy'},groups:[{id:'g',pro
 const context=projectContext(snapshot);
 it('derives one active navigation and root creation from All content',()=>{
  const view={kind:'all-content'} as const;
- const html=renderToStaticMarkup(createElement(NavigationContent,{drawer:false,rows:[],collapsed:new Set<string>(),onToggle(){},project:context,view,unavailable:false,onSelect(){},onCreateGroup(){},onAllContent(){}}));
+ const html=renderToStaticMarkup(createElement(NavigationContent,{rows:[],collapsed:new Set<string>(),onToggle(){},project:context,view,unavailable:false,onSelect(){},onCreateGroup(){},onAllContent(){}}));
  expect((html.match(/aria-current="true"/g)??[])).toHaveLength(1);
  expect(html).toMatch(/aria-current="true"[^>]*>All content/);
  expect(creationParent(view)).toBe(null);expect(creationParent({kind:'group',id:'g'})).toBe('g');

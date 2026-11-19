@@ -10,6 +10,18 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Navigation and history display cleanup — 19 November 2026
+
+Removed the static project identity block from shared navigation content; the
+header breadcrumb already identifies the project. Removed its now-unused drawer
+prop from the caller and test fixtures. Undo/Redo badges render only for positive
+counts; command gates, accessible descriptions and state ownership are unchanged.
+Browser inspection confirmed the redundant block and zero badges are absent,
+with the project breadcrumb and disabled history buttons retained. Typechecking
+and all 13 tests in the affected navigation/identity suites passed. Positive-count
+rendering was source-reviewed, not exercised through browser history mutations.
+Existing deferred qualification and acceptance limits remain unchanged.
+
 ## Form text color consistency — 19 November 2026
 
 Removed an obsolete `text-input` class from the shared Input component: Tailwind

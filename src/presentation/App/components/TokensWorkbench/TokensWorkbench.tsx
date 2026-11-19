@@ -231,7 +231,6 @@ export function TokensWorkbench({
       rows={complete ? rows : []}
       collapsed={collapsedNavigation}
       onToggle={key => setCollapsedNavigation(previous => { const next = new Set(previous); if (next.has(key)) next.delete(key); else next.add(key); return next; })}
-      drawer={compact}
       project={context}
       view={view}
       unavailable={blocked}

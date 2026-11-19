@@ -114,7 +114,7 @@ describe("human identity labels in current consumers and the legacy TokenList fi
     expect(html).toContain("same / unique");
     const nav = renderToStaticMarkup(
       createElement(NavigationContent, {
-        drawer: false, rows: [], collapsed: new Set<string>(), onToggle() {},
+        rows: [], collapsed: new Set<string>(), onToggle() {},
         project,
         view: { kind: "group", id: "shared-prefix-group-b" },
         unavailable: false,
