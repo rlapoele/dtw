@@ -10,6 +10,18 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Inspector color presentation — 19 November 2026
+
+Implemented requested [entry units and applied-color facts](../project/presentation-conventions.md#applied-color-facts-and-entry-units--19-november-2026).
+Typechecking, 31 focused authored-value/editor/section tests and diff checks passed.
+Source review preserved draft parsing and focus-precision behavior; no state-owner
+moves or new dependencies. Live unit placement and layout remain unverified after
+prior browser connection timeouts. Focused checks stopped after approximately two
+minutes, zero harness repairs; earlier qualification remains closed. The proposed
+radio-button treatment for Literal/Reference remains a recommendation, not an
+approved change; the existing mode control is unchanged. User visual review and
+mode-control preference are next. Changes are unstaged.
+
 ## Color summary grid — 19 November 2026
 
 Implemented the user-approved [three-column component layout](../project/presentation-conventions.md#color-summary-component-grid--19-november-2026)

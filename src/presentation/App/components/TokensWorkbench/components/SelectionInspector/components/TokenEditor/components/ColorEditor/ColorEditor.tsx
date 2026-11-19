@@ -215,6 +215,7 @@ export function ColorEditor({
                 className="font-mono"
                 value={value}
                 rounded={!bytes}
+                suffix={value === "none" ? undefined : suffix}
                 spellCheck={false}
                 aria-describedby={`range-note-${i} byte-note-${i} color-precision-note editor-error`}
                 aria-invalid={!!issue || undefined}

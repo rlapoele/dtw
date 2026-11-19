@@ -409,3 +409,13 @@ are unchanged. TokenValue owns this presentation through Tailwind utilities.
 At the user's request, the wide token table uses 12 equal tracks: Token spans 4,
 Type 2, Layer 1 and Value 5. This transfers space from Layer to Value while
 preserving the existing compact/touch layouts and shared header/row alignment.
+
+### Applied color facts and entry units — 19 November 2026
+
+Color component fields show their applicable unit (degrees or percent) as a
+non-editable suffix inside the field; missing `none` components omit the suffix.
+The suffix is presentation only and never enters draft text or parsing. Existing
+labels retain the accessible unit, and full-precision focus behavior is unchanged.
+The expanded applied-color summary uses metadata-style rows: Color Space and
+component/alpha labels left, values right, using the same caption font and separators.
+Compact authored summaries retain their existing format.
