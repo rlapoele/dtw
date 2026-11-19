@@ -84,34 +84,44 @@ function AppContent({
     );
   return (
     <ProjectsWorkbench
-      storageStatus={storage.status} onRetryStorage={storage.retry}
-      view={projectsView} onView={setProjectsView} onDownload={entry => void download(entry)} backupFeedback={backupFeedback} backupFeedbackKind={backupFeedbackKind} hasPreview={!!preview}
       entries={entries}
-      error={error}
-      notice={notice}
-      name={name}
-      description={description}
-      onDescriptionChange={setDescription}
-      pending={pending}
-      activeMutation={activeMutation.current}
-      retained={retainedId !== null}
-      unknown={!!unknown}
-      nameRef={nameRef}
+      view={projectsView}
+      onView={setProjectsView}
       onOpen={(id) => void open(id)}
       onRetryCatalogue={() => void catalogue()}
-      onBackupChange={async (event) => {
-        const file = event.target.files?.[0];
-        if (!file) return;
-        selectedBackupFile.current = file;
-        const next = await stageBackup(file);
-        if (next) setPreview(next);
-        event.target.value = "";
+      creation={{
+        name,
+        description,
+        nameRef,
+        onNameChange: setName,
+        onDescriptionChange: setDescription,
+        onCreate: () => void create(),
       }}
-      onNameChange={setName}
-      onCreate={() => void create()}
-      onCheck={() => void check()}
-      onRetryReading={retryCreated}
-      onReviewLeaving={() => setLeaving(true)}
+      recovery={{
+        pending,
+        activeMutation: activeMutation.current,
+        retained: retainedId !== null,
+        unknown: !!unknown,
+        onCheck: () => void check(),
+        onRetryReading: retryCreated,
+        onReviewLeaving: () => setLeaving(true),
+      }}
+      storage={{ status: storage.status, onRetry: storage.retry }}
+      backup={{
+        onDownload: entry => void download(entry),
+        feedback: backupFeedback,
+        feedbackKind: backupFeedbackKind,
+        hasPreview: !!preview,
+        onFileChange: async (event) => {
+          const file = event.target.files?.[0];
+          if (!file) return;
+          selectedBackupFile.current = file;
+          const next = await stageBackup(file);
+          if (next) setPreview(next);
+          event.target.value = "";
+        },
+      }}
+      feedback={{ error, notice }}
       departureDialog={
       <Dialog.Root open={leaving} onOpenChange={setLeaving}>
         <DialogContent initialFocus={() => stay.current}>

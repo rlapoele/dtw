@@ -553,9 +553,9 @@ it("disposes App restore preview before the authorized completion opens through 
   effects();
   await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
   page = render(app); effects();
-  await page.props.onBackupChange({ target: { files: [{ size: 0, arrayBuffer: async () => new ArrayBuffer(0) }], value: "selected" } });
+  await page.props.backup.onFileChange({ target: { files: [{ size: 0, arrayBuffer: async () => new ArrayBuffer(0) }], value: "selected" } });
   page = render(app); effects();
-  expect(page.props.hasPreview).toBe(true);
+  expect(page.props.backup.hasPreview).toBe(true);
   page.props.onOpen("p");
   expect(vi.mocked(service.call).mock.calls.some(([operation]) => operation === "openProject")).toBe(false);
   expect(persist).not.toHaveBeenCalled();
@@ -622,18 +622,18 @@ it("App retains storage status through create-and-open/Projects and separates re
   });
   const app = () => { const wrapper = App({ createHost: () => service }); return wrapper.props.children.type(wrapper.props.children.props); };
   let page = render(app); effects(); for (let i=0;i<12;i++) await Promise.resolve();
-  page = render(app); expect(page.props.storageStatus).toBe("unprotected"); expect(persist).not.toHaveBeenCalled();
-  page.props.onNameChange("P"); page = render(app); page.props.onCreate();
+  page = render(app); expect(page.props.storage.status).toBe("unprotected"); expect(persist).not.toHaveBeenCalled();
+  page.props.creation.onNameChange("P"); page = render(app); page.props.creation.onCreate();
   for (let i=0;i<12;i++) await Promise.resolve();
   page = render(app); effects(); expect(persist).toHaveBeenCalledOnce();
   page.props.onProjects(); for (let i=0;i<12;i++) await Promise.resolve();
-  page = render(app); effects(); expect(page.props.storageStatus).toBe("protected");
+  page = render(app); effects(); expect(page.props.storage.status).toBe("protected");
   expect(persisted).toHaveBeenCalledOnce();
   // A fresh App session makes the restore callback's wiring independently observable.
   runtime.cells = []; runtime.effects = []; persisted.mockClear(); persist.mockClear();
   page = render(app); effects(); for (let i=0;i<12;i++) await Promise.resolve();
   page = render(app);
-  await page.props.onBackupChange({ target: { files: [{ size: 0, arrayBuffer: async () => new ArrayBuffer(0) }], value: "file" } });
+  await page.props.backup.onFileChange({ target: { files: [{ size: 0, arrayBuffer: async () => new ArrayBuffer(0) }], value: "file" } });
   page = render(app); effects(); expect(persist).not.toHaveBeenCalled();
   page.props.restoreDialog.props.onRetained();
   for (let i=0;i<12;i++) await Promise.resolve(); expect(persist).toHaveBeenCalledOnce();

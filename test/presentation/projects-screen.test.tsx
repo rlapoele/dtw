@@ -3,26 +3,40 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { expect, it } from "vitest";
 import { ProjectsWorkbench } from "@presentation/App/components/ProjectsWorkbench/ProjectsWorkbench";
 
-function screen(overrides: Partial<ComponentProps<typeof ProjectsWorkbench>> = {}) {
+type Props = ComponentProps<typeof ProjectsWorkbench>;
+type Groups = "creation" | "recovery" | "storage" | "backup" | "feedback";
+type ScreenOverrides = Partial<Omit<Props, Groups>> & {
+  [Key in Groups]?: Partial<Props[Key]>;
+};
+
+function screen(overrides: ScreenOverrides = {}) {
   const noop = () => undefined;
   return renderToStaticMarkup(createElement(ProjectsWorkbench, {
-    storageStatus: "checking", onRetryStorage: noop,
-    view: { scroll: 0, surface: "browse" }, onView: noop, onDownload: noop, backupFeedback: "", hasPreview: false,
-    description: "", onDescriptionChange: noop,
-    entries: [], error: "", notice: "", name: "  Unfinished name  ",
-    pending: false, activeMutation: false, retained: false, unknown: false,
-    nameRef: { current: null }, onOpen: noop, onRetryCatalogue: noop,
-    onBackupChange: noop, onNameChange: noop, onCreate: noop,
-    onCheck: noop, onRetryReading: noop, onReviewLeaving: noop,
+    entries: [],
+    view: { scroll: 0, surface: "browse" }, onView: noop,
+    onOpen: noop, onRetryCatalogue: noop,
     departureDialog: createElement("aside", null, "Departure dialog"),
     restoreDialog: createElement("aside", null, "Restore dialog"),
     ...overrides,
+    creation: {
+      name: "  Unfinished name  ", description: "", nameRef: { current: null },
+      onNameChange: noop, onDescriptionChange: noop, onCreate: noop,
+      ...overrides.creation,
+    },
+    recovery: {
+      pending: false, activeMutation: false, retained: false, unknown: false,
+      onCheck: noop, onRetryReading: noop, onReviewLeaving: noop,
+      ...overrides.recovery,
+    },
+    storage: { status: "checking", onRetry: noop, ...overrides.storage },
+    backup: { onDownload: noop, feedback: "", hasPreview: false, onFileChange: noop, ...overrides.backup },
+    feedback: { error: "", notice: "", ...overrides.feedback },
   }));
 }
 
 it("keeps loading, unavailable/retry and empty catalogue feedback distinct", () => {
   expect(screen({ entries: undefined })).toContain("Loading projects…");
-  const unavailable = screen({ entries: undefined, error: "Read failed" });
+  const unavailable = screen({ entries: undefined, feedback: { error: "Read failed" } });
   expect(unavailable).toContain("Projects unavailable. Existing browser data is unchanged.");
   expect(unavailable).toContain("Retry reading projects");
   expect(unavailable).toContain('role="alert"');
@@ -45,7 +59,7 @@ it("shows legacy names, exact identities, counts and unavailable rows together",
 });
 
 it("preserves form validation associations and dialog order with recovery protections", () => {
-  const html = screen({ unknown: true, error: "Write unknown" });
+  const html = screen({ recovery: { unknown: true }, feedback: { error: "Write unknown" } });
   expect(html).toContain('value="  Unfinished name  "');
   expect(html).toContain('aria-describedby="project-error"');
   expect(html).toContain('aria-invalid="true"');
@@ -55,8 +69,8 @@ it("preserves form validation associations and dialog order with recovery protec
   expect(html).toContain("Review before leaving");
   expect(html.indexOf("</main>")).toBeLessThan(html.indexOf("Departure dialog"));
   expect(html.indexOf("Departure dialog")).toBeLessThan(html.indexOf("Restore dialog"));
-  expect(screen({ retained: true })).toContain("Retry reading project");
-  expect(screen({ pending: true, activeMutation: true })).toContain("Retention or preparation pending. Inputs are preserved.");
+  expect(screen({ recovery: { retained: true } })).toContain("Retry reading project");
+  expect(screen({ recovery: { pending: true, activeMutation: true } })).toContain("Retention or preparation pending. Inputs are preserved.");
 });
 
 it("keeps supported inspection separate from the selectable catalogue and explains missing rows", () => {
@@ -82,7 +96,7 @@ it("keeps narrow inspection errors, catalogue retry and recovery outside both hi
   Object.defineProperty(globalThis, "window", { configurable: true, value: { innerWidth: 720 } });
   try {
     const selection = { rowKey: "p", status: "supported", id: "p", name: "P", revision: "r", tokens: 0, groups: 0 } as const;
-    const html = screen({ entries: undefined, error: 'Reading project "p" failed', retained: true, view: { selection, scroll: 100, surface: "inspect" } });
+    const html = screen({ entries: undefined, feedback: { error: 'Reading project "p" failed' }, recovery: { retained: true }, view: { selection, scroll: 100, surface: "inspect" } });
     expect(html).toMatch(/<main[^>]*hidden=""/);
     const feedback = html.slice(html.indexOf('aria-label="Project feedback"'));
     expect(feedback).toContain('id="project-error"');
@@ -100,22 +114,22 @@ it("keeps narrow inspection errors, catalogue retry and recovery outside both hi
 
 it("renders actual persistence status with conditional retry and existing action gates", () => {
   for (const status of ["checking", "requesting", "protected", "unsupported"] as const)
-    expect(screen({ storageStatus: status })).not.toContain("Retry storage protection");
-  expect(screen({ storageStatus: "protected" })).toContain("Storage protection is enabled");
+    expect(screen({ storage: { status } })).not.toContain("Retry storage protection");
+  expect(screen({ storage: { status: "protected" } })).toContain("Storage protection is enabled");
   for (const status of ["unprotected", "check-error", "request-error"] as const) {
-    const html = screen({ storageStatus: status });
+    const html = screen({ storage: { status } });
     expect(html).toContain("Retry storage protection");
     expect(html).not.toContain("Request persistent storage");
     for (const gate of ["pending", "retained", "unknown", "hasPreview"] as const)
-      expect(screen({ storageStatus: status, [gate]: true })).toMatch(/<button[^>]*disabled=""[^>]*>Retry storage protection/);
+      expect(screen({ storage: { status }, ...(gate === "hasPreview" ? { backup: { hasPreview: true } } : { recovery: { [gate]: true } }) })).toMatch(/<button[^>]*disabled=""[^>]*>Retry storage protection/);
   }
-  expect(screen({ storageStatus: "request-error" })).toContain("request failed");
-  expect(screen({ storageStatus: "check-error" })).toContain("status could not be checked");
+  expect(screen({ storage: { status: "request-error" } })).toContain("request failed");
+  expect(screen({ storage: { status: "check-error" } })).toContain("status could not be checked");
 });
 
 it("renders optional description entry and read-only known or unknown project dates", () => {
   const entry = {rowKey: "p", id: "p", name: "Project", status: "supported" as const, revision: "r", tokens: 0, groups: 0, description: "First line\nSecond line", creationDate: "2026-11-18T10:00:00.000Z", lastUpdatedDate: "2026-11-18T11:00:00.000Z"};
-  const html = screen({entries: [entry], view: {scroll: 0, surface: "browse", selection: entry}, description: "Unfinished\nDescription"});
+  const html = screen({entries: [entry], view: {scroll: 0, surface: "browse", selection: entry}, creation: { description: "Unfinished\nDescription" }});
   expect(html).toContain("Description (optional)");
   expect(html).toContain("Unfinished\nDescription");
   expect(html).toContain("First line\nSecond line");

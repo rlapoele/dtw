@@ -11,59 +11,79 @@ import { ProjectList } from "@presentation/App/components/ProjectsWorkbench/comp
 import { CreateProjectForm } from "@presentation/App/components/ProjectsWorkbench/components/CreateProjectForm/CreateProjectForm";
 import { ProjectRecovery } from "@presentation/App/components/ProjectsWorkbench/components/ProjectRecovery/ProjectRecovery";
 
-export function ProjectsWorkbench({
-  entries,
-  storageStatus, onRetryStorage,
-  view, onView, onDownload, backupFeedback, backupFeedbackKind = "information", hasPreview,
-  error,
-  notice,
-  name, description, onDescriptionChange,
-  pending,
-  activeMutation,
-  retained,
-  unknown,
-  nameRef,
-  onOpen,
-  onRetryCatalogue,
-  onBackupChange,
-  onNameChange,
-  onCreate,
-  onCheck,
-  onRetryReading,
-  onReviewLeaving,
-  departureDialog,
-  restoreDialog,
-}: {
-  entries: readonly CatalogueEntry[] | undefined;
-  storageStatus: StoragePersistenceStatus;
-  onRetryStorage: () => void;
-  view: ProjectsView;
-  onView: (next: ProjectsView) => void;
-  onDownload: (entry: Extract<CatalogueEntry, { status: "supported" }>) => void;
-  backupFeedback: string;
-  backupFeedbackKind?: "information" | "error";
-  hasPreview: boolean;
-  error: string;
-  notice: string;
+type ProjectCreation = {
   name: string;
   description: string;
+  nameRef: Ref<HTMLInputElement>;
+  onNameChange: (name: string) => void;
   onDescriptionChange: (description: string) => void;
+  onCreate: () => void;
+};
+
+type ProjectRecoveryControls = {
   pending: boolean;
   activeMutation: boolean;
   retained: boolean;
   unknown: boolean;
-  nameRef: Ref<HTMLInputElement>;
-  onOpen: (id: string) => void;
-  onRetryCatalogue: () => void;
-  onBackupChange: ChangeEventHandler<HTMLInputElement>;
-  onNameChange: (name: string) => void;
-  onCreate: () => void;
   onCheck: () => void;
   onRetryReading: () => void;
   onReviewLeaving: () => void;
+};
+
+type ProjectStorageProtection = {
+  status: StoragePersistenceStatus;
+  onRetry: () => void;
+};
+
+type ProjectBackup = {
+  onDownload: (entry: Extract<CatalogueEntry, { status: "supported" }>) => void;
+  feedback: string;
+  feedbackKind?: "information" | "error";
+  hasPreview: boolean;
+  onFileChange: ChangeEventHandler<HTMLInputElement>;
+};
+
+type ProjectsFeedback = {
+  error: string;
+  notice: string;
+};
+
+type ProjectsWorkbenchProps = {
+  entries: readonly CatalogueEntry[] | undefined;
+  view: ProjectsView;
+  onView: (next: ProjectsView) => void;
+  onOpen: (id: string) => void;
+  onRetryCatalogue: () => void;
+  creation: ProjectCreation;
+  recovery: ProjectRecoveryControls;
+  storage: ProjectStorageProtection;
+  backup: ProjectBackup;
+  feedback: ProjectsFeedback;
   departureDialog: ReactNode;
   restoreDialog: ReactNode;
-}) {
+};
+
+// App owns these workflows across screen changes; this screen only composes them.
+export function ProjectsWorkbench({
+  entries,
+  view,
+  onView,
+  onOpen,
+  onRetryCatalogue,
+  creation: { name, description, nameRef, onNameChange, onDescriptionChange, onCreate },
+  recovery: { pending, activeMutation, retained, unknown, onCheck, onRetryReading, onReviewLeaving },
+  storage: { status: storageStatus, onRetry: onRetryStorage },
+  backup: {
+    onDownload,
+    feedback: backupFeedback,
+    feedbackKind: backupFeedbackKind = "information",
+    hasPreview,
+    onFileChange: onBackupChange,
+  },
+  feedback: { error, notice },
+  departureDialog,
+  restoreDialog,
+}: ProjectsWorkbenchProps) {
   const layout = useProjectsLayout(view, onView);
   const selected = entries?.find(entry => entry.rowKey === view.selection?.rowKey) ?? view.selection;
   const missing = !!view.selection && entries !== undefined && !entries.some(entry => entry.rowKey === view.selection?.rowKey);
