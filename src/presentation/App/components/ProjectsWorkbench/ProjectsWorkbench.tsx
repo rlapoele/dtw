@@ -140,8 +140,8 @@ export function ProjectsWorkbench({
           {selected && !missing && entries !== undefined && !visible.some(entry => entry.rowKey === selected.rowKey) && <section className="mb-4 rounded-md border-hairline border-border bg-muted p-3 flex flex-wrap items-center justify-between gap-3 text-caption">
             <p>Selected project is outside this list.</p><Button onClick={() => onView({ ...view, query: "" })}>Show selected project</Button>
           </section>}
-          <section className="project-list-container" aria-label="Project collection">
-            <div aria-hidden="true" className="project-table-head p-3 border-y-hairline border-border text-caption text-muted-foreground"><span>Project</span><span>Contents</span><span className="project-date-column">Created</span><span className="project-date-column">Last updated</span></div>
+          <section className="project-list-container border-t-hairline border-border" aria-label="Project collection">
+            <div aria-hidden="true" className="project-table-head table-heading p-3 narrow:px-2 border-b-hairline border-border gap-3 text-muted-foreground"><span>Project</span><span>Contents</span><span className="project-date-column">Created</span><span className="project-date-column">Last updated</span></div>
             {entries === undefined ? <p role="status" className="py-12 text-center">{error ? "Projects unavailable. Existing browser data is unchanged." : "Loading projects…"}</p>
               : entries.length === 0 ? <div className="py-12 text-center space-y-3"><h2>No projects yet</h2><p className="text-muted-foreground">No projects retained in this browser.</p><Button variant="default" disabled={createDisabled} onClick={() => beginDialog(creation.onOpen)}>New project</Button></div>
               : visible.length === 0 ? <div className="py-12 text-center space-y-3"><h2>No matching projects</h2><p className="text-muted-foreground">Try another name, description or identity.</p><Button onClick={() => onView({ ...view, query: "" })}>Clear search</Button></div>

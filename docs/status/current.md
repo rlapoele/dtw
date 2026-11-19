@@ -10,6 +10,17 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Project table styling alignment — 19 November 2026
+
+Following Increment 020 closure, the user requested matching Tokens table styling.
+Projects now uses the same header hairlines/typography, row padding/gaps, top
+alignment, minimum height and selected-row foreground marker. The undefined
+`border-y-hairline` usage was replaced with existing explicit border utilities.
+Columns, responsive date placement, state ownership and commands are unchanged.
+Browser computed-style comparison confirmed matching header/selected-row geometry
+and colors. Typechecking, 12 focused catalogue/screen tests and diff checks passed.
+This small styling follow-up does not reopen Increment 020 or deferred qualification.
+
 ## Projects browse and creation dialog — Increment 020 complete
 
 The user authorized the refined contract and V1.1, including lifecycle dates and

@@ -19,10 +19,10 @@ export function ProjectListItem({ entry, disabled, selected, disambiguate, onSel
   const created = <ProjectDate value={supported ? entry.creationDate : undefined} unavailable={!supported} />;
   const updated = <ProjectDate value={supported ? entry.lastUpdatedDate : undefined} unavailable={!supported} />;
   return <li>
-    <button type="button" disabled={disabled} aria-pressed={selected} onClick={() => onSelect(entry)} className="project-table-row w-full text-left border-0 border-b-hairline border-border p-3 bg-background hover:bg-row-hover aria-pressed:bg-selected disabled:opacity-45">
+    <button type="button" disabled={disabled} aria-pressed={selected} onClick={() => onSelect(entry)} className="project-table-row relative w-full text-left border-0 border-b-hairline border-border p-3 narrow:px-2 gap-3 items-start bg-transparent hover:bg-row-hover aria-pressed:bg-selected disabled:opacity-45">
       <span className="min-w-0">
-        <strong className="block font-medium wrap-anywhere">{projectLabel(entry)}</strong>
-        {supported && entry.description && <span className="block line-clamp-2 mt-1.5 text-caption text-muted-foreground wrap-anywhere">{entry.description}</span>}
+        <strong className="block text-xs/normal small:text-caption font-medium wrap-anywhere">{projectLabel(entry)}</strong>
+        {supported && entry.description && <span className="block line-clamp-2 mt-2 text-caption text-muted-foreground wrap-anywhere">{entry.description}</span>}
         {(disambiguate || !supported || !entry.name) && <span className="block mt-1.5 font-mono text-caption text-muted-foreground wrap-anywhere">Identity: {JSON.stringify(entry.id)}</span>}
         {!supported && <span className="block mt-1.5 text-caption text-muted-foreground wrap-anywhere">Project unavailable: {entry.reason}</span>}
         <span className="project-dates-compact mt-2.5 text-caption text-muted-foreground"><span>Created: {created}</span><span>Last updated: {updated}</span></span>

@@ -359,3 +359,11 @@ owns this threshold because the centered browse track can be narrow on a wide
 viewport. Ordinary row styling remains semantic utilities; the two-line description
 preview uses `line-clamp-2` and `wrap-anywhere`. Verification is recorded in the
 [increment](../increments/020-projects-browse-and-creation-dialog.md).
+
+The 19 November table-style follow-up aligns Projects with Tokens: shared header
+typography, explicit top/bottom hairlines, row padding/gaps, top alignment and
+4.75rem minimum height. Both reuse the same foreground selection-marker rule
+in `global.css`; hover/selected backgrounds remain semantic utilities. Project
+names retain UI typography, while technical token names retain Geist Mono.
+Project columns, responsive date metadata and two-line description previews remain
+specific to the Projects list.
