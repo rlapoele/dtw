@@ -38,6 +38,33 @@ new increment is authorized; the user selects the next scoped work. The requeste
 comparison with the unavailable Playground skill was dropped at the user's
 direction; no skill compatibility claim or skill modification was made.
 
+### Authorized browser smoke follow-up — 19 November 2026
+
+At the user's request, one bounded pass exercised the production UI at `c2df799`
+in isolated headless Chrome 157, at 1280×720, using two disposable projects.
+Projects name/description drafts survived catalogue selection changes. A literal
+color draft survived Literal/Reference and Authored/Resolved tab switches without
+changing applied data; Keep editing preserved it and Discard draft completed token
+navigation. Apply and Cancel restored focus to Literal color, with Cancel restoring
+the applied value. Token creation, group creation and group rename showed their
+mode-specific fields and preserved typed input through the dirty-close guard.
+Keyboard opening focused Name; Tab wrapping settled inside each dialog. Clean
+token/group Escape closure returned focus to their triggers; rename submission
+returned focus to Rename group. No console warnings or errors were observed.
+
+The pass took approximately seven minutes against a 15-minute ceiling. One focus
+assertion timing adjustment allowed Base UI's transient focus-wrap handoff to
+settle; no application repair was needed. The cached Playwright CLI was used after
+the wrapper's registry lookup failed. The isolated browser and dedicated server
+were closed. [Final screenshot](../../output/playwright/react-contract-smoke/final.png)
+records the final applied value and New token focus ring.
+
+This adds evidence only for the listed ordinary flows. It does not establish
+screen-reader delivery, animation fidelity, responsive/engine coverage, recovery
+fault handling, multi-tab behavior or broader retention qualification. Existing
+deferred qualification, acceptance gaps and stopped campaign allowances remain
+unchanged; this bounded smoke pass is finished.
+
 ## Project metadata implementation and review — 18 November 2026
 
 User agreed optional description at creation, creationDate/lastUpdatedDate lifecycle
