@@ -1,7 +1,7 @@
 # Increment 020: Projects browsing and creation dialog
 
 - Contract status: Agreed
-- Delivery status: Completed — implementation and independent review; user acceptance pending
+- Delivery status: Completed — independently reviewed and user-accepted on 19 November 2026
 - Agreement: on 19 November 2026, the user agreed to the refined contract, including the two-line description preview, and explicitly authorized implementation following V1.1 analyst review.
 - References: [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [React contracts](../../AGENTS.md#react-component-contracts), [workflow](../workflow/agent-roles.md), [project metadata](019-project-description-and-lifecycle-dates.md), [retention limits](007-local-retention-and-backup.md#deferred-qualification).
 
@@ -248,7 +248,7 @@ correction/recheck; it does not reopen deferred qualification.
 
 ## Completion report — 19 November 2026
 
-**Implemented and independently reviewed; user acceptance pending.** The production
+**Completed, independently reviewed and user-accepted — 19 November 2026.** The production
 change follows agreed V1.1 and the refined contract. The prototype was used as an
 interaction reference; its sample data, fake recovery and compressed component
 structure were not copied into production.
@@ -309,6 +309,7 @@ all viewport sizes and screen-reader delivery remain outside this bounded pass.
 The controlled tests do not replace those runtime qualifications. The test tab was
 closed; a disposable backup file was downloaded during verification.
 
-The implementation is ready for user review and acceptance. Staging, committing
-and pushing remain user-owned. Suggested commit:
-`feat: improve project browsing and creation dialogs`.
+The user confirmed that the implementation looks good, reported committing and
+pushing the changes, and declared Increment 020 complete on 19 November 2026.
+The verification limits above remain unchanged; acceptance does not claim further
+qualification or authorize another increment. No further work is requested.

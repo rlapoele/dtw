@@ -2,7 +2,7 @@
 
 > Last updated: 19 November 2026
 >
-> Phase: Increment 020 implemented and independently reviewed; user acceptance pending. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
+> Phase: Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
 > completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
@@ -10,11 +10,12 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Projects browse and creation dialog — Increment 020 implemented
+## Projects browse and creation dialog — Increment 020 complete
 
 The user authorized the refined contract and V1.1, including lifecycle dates and
 two-line description previews. [Increment 020](../increments/020-projects-browse-and-creation-dialog.md#completion-report--19-november-2026)
-is implemented and independently reviewed; user acceptance is pending.
+is complete, independently reviewed and user-accepted on 19 November 2026. The
+user reported committing and pushing the implementation and confirmed closure.
 
 Projects now has searchable/sorted rows, preserved filtered selection, responsive
 dates, New project with dirty-close protection, and restore-file selection feeding
@@ -29,8 +30,8 @@ The original 30-minute verification allowance/two harness cycles were consumed;
 the user authorized ten further minutes, of which approximately five were used
 to finish the focus check and correction. Nested fault-recovery focus, full restore
 replacement and earlier qualification limits remain explicitly unqualified. No
-deferred qualification was restarted. The user can review and commit the change;
-no further implementation or testing is needed within this increment's bounded pass.
+deferred qualification was restarted. No further implementation or testing is
+requested for this increment; acceptance preserves all stated verification limits.
 
 ## Navigation and history display cleanup — 19 November 2026
 
