@@ -9,62 +9,78 @@ import { Input } from "@presentation/ui/input";
 import { Select } from "@presentation/ui/select";
 import { identityLabels } from "@presentation/App/components/TokensWorkbench/helpers/identity-labels";
 
+type NamedForm = {
+  name: string;
+  onNameChange: (value: string) => void;
+};
+
+type CreationParent = {
+  parent: string | null;
+  onParentChange: (value: string | null) => void;
+};
+
+export type AuthoringForm = NamedForm & (
+  | (CreationParent & {
+      kind: "token";
+      description: string;
+      onDescriptionChange: (value: string) => void;
+      layer: string;
+      onLayerChange: (value: string) => void;
+    })
+  | (CreationParent & { kind: "group" })
+  | {
+      kind: "rename";
+      // Missing original identities remain explicit recovery inputs.
+      target: string | null | undefined;
+    }
+);
+
 /** Creation and rename rendering; TokensWorkbench owns draft, command and focus coordination. */
 export function AuthoringDialog({
-  dialog,
+  open,
+  form,
   project,
-  name,
-  renameTarget,
-  description,
-  onDescriptionChange,
-  parent,
-  layer,
   readFailure,
   error,
   formError,
   finalFocus,
   onClose,
-  onCreate,
+  onSubmit,
   onRetry,
-  onNameChange,
-  onParentChange,
-  onLayerChange,
   pending = false,
   recovery,
   guard,
   submissionBlocked,
 }: {
-  dialog: "token" | "group" | "rename" | null;
+  open: boolean;
+  form: AuthoringForm;
   project: ProjectContext | undefined;
-  name: string;
-  renameTarget?: string | null;
-  description: string;
-  onDescriptionChange: (value: string) => void;
-  parent: string | null;
-  layer: string;
   readFailure: string;
   error: string;
   formError: Ref<HTMLParagraphElement>;
   finalFocus: () => HTMLElement | null;
   onClose: () => void;
-  onCreate: () => void;
+  onSubmit: () => void;
   onRetry: () => void;
-  onNameChange: (value: string) => void;
-  onParentChange: (value: string | null) => void;
-  onLayerChange: (value: string) => void;
   pending?: boolean;
   recovery?: import("react").ReactNode;
   guard?: import("react").ReactNode;
   submissionBlocked?: string;
 }) {
-  const preview = namingPreview(project, dialog, name, parent, renameTarget);
+  const preview = namingPreview(
+    project,
+    open ? form.kind : null,
+    form.name,
+    form.kind === "rename" ? null : form.parent,
+    form.kind === "rename" ? form.target : undefined,
+  );
   const labels = identityLabels(project?.groups ?? [], [
     "Project root",
     "All tokens",
   ]);
   return (
     <Dialog.Root
-      open={dialog !== null}
+      open={open}
       onOpenChange={(o) => {
         if (!o && !pending) onClose();
       }}
@@ -74,14 +90,14 @@ export function AuthoringDialog({
         finalFocus={finalFocus}
       >
         <Dialog.Title className="dialog-title mb-2.5">
-          {dialog === "token"
+          {form.kind === "token"
             ? "Create a color token"
-            : dialog === "rename"
+            : form.kind === "rename"
               ? "Rename group"
               : "Create a group"}
         </Dialog.Title>
         <Dialog.Description className="text-xs/normal text-muted-foreground mb-6">
-          {dialog === "token"
+          {form.kind === "token"
             ? "Create a color token with an opaque black sRGB value."
             : "Groups organize paths; names do not define types."}
         </Dialog.Description>
@@ -90,7 +106,7 @@ export function AuthoringDialog({
           className="min-h-0 overflow-auto p-1.5"
           onSubmit={(e) => {
             e.preventDefault();
-            onCreate();
+            onSubmit();
           }}
         >
           <fieldset>
@@ -98,13 +114,13 @@ export function AuthoringDialog({
               Name
               <Input
                 readOnly={pending}
-                value={name}
-                onChange={(e) => onNameChange(e.target.value)}
+                value={form.name}
+                onChange={(e) => form.onNameChange(e.target.value)}
                 aria-describedby="name-preview creation-error"
                 aria-invalid={!!error || undefined}
               />
             </Field>
-            {dialog === "token" && (
+            {form.kind === "token" && (
               <Field>
                 Description (optional)
                 <textarea
@@ -112,20 +128,20 @@ export function AuthoringDialog({
                   aria-describedby="creation-error"
                   aria-invalid={!!error && error.includes("token-description")}
                   rows={2}
-                  value={description}
-                  onChange={(e) => onDescriptionChange(e.target.value)}
+                  value={form.description}
+                  onChange={(e) => form.onDescriptionChange(e.target.value)}
                   className="w-full min-w-0 rounded-md border-hairline border-input bg-background text-foreground px-2.5 py-2 text-xs/normal small:text-base/normal hover:border-control-hover resize-y"
                 />
               </Field>
             )}
-            {dialog !== "rename" && (
+            {form.kind !== "rename" && (
               <Field>
-                {dialog === "token" ? "Group" : "Parent group"}
+                {form.kind === "token" ? "Group" : "Parent group"}
                 <Select
                   disabled={pending}
-                  value={parent === null ? "" : JSON.stringify(parent)}
+                  value={form.parent === null ? "" : JSON.stringify(form.parent)}
                   onChange={(e) =>
-                    onParentChange(
+                    form.onParentChange(
                       e.target.value === ""
                         ? null
                         : (JSON.parse(e.target.value) as string),
@@ -133,10 +149,10 @@ export function AuthoringDialog({
                   }
                 >
                   <option value="">Project root</option>
-                  {parent !== null &&
-                    !project?.groups.some((g) => g.authored.id === parent) && (
-                      <option value={JSON.stringify(parent)}>
-                        Unavailable original parent · {JSON.stringify(parent)}
+                  {form.parent !== null &&
+                    !project?.groups.some((g) => g.authored.id === form.parent) && (
+                      <option value={JSON.stringify(form.parent)}>
+                        Unavailable original parent · {JSON.stringify(form.parent)}
                       </option>
                     )}
                   {project?.groups.map((g) => (
@@ -220,14 +236,14 @@ export function AuthoringDialog({
                 </>
               )}
             </section>
-            {dialog === "token" && (
+            {form.kind === "token" && (
               <>
                 <Field>
                   Layer
                   <Select
                     disabled={pending}
-                    value={layer}
-                    onChange={(e) => onLayerChange(e.target.value)}
+                    value={form.layer}
+                    onChange={(e) => form.onLayerChange(e.target.value)}
                   >
                     <option value="">Unspecified</option>
                     <option value="primitive">Primitive</option>
@@ -288,7 +304,7 @@ export function AuthoringDialog({
               variant="default"
               disabled={!!readFailure || pending || !!submissionBlocked}
             >
-              {dialog === "rename" ? "Rename group" : "Create"}
+              {form.kind === "rename" ? "Rename group" : "Create"}
             </Button>
           </div>
         </form>

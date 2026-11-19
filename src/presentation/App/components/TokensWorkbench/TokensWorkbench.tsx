@@ -480,31 +480,37 @@ export function TokensWorkbench({
       {dialog === null && departureGuard}
       <AuthoringDialog
         guard={dialog !== null ? departureGuard : undefined}
-        dialog={dialog}
-        project={context}
-        name={name}
-        renameTarget={formBaseline?.target}
-        description={description}
-        onDescriptionChange={(value) => {
-          change("description", value);
+        open={dialog !== null}
+        form={dialog === "token" ? {
+          kind: "token",
+          name,
+          onNameChange: value => change("name", value),
+          parent,
+          onParentChange: value => change("parent", value),
+          description,
+          onDescriptionChange: value => change("description", value),
+          layer,
+          onLayerChange: value => change("layer", value),
+        } : dialog === "rename" ? {
+          kind: "rename",
+          name,
+          onNameChange: value => change("name", value),
+          target: formBaseline?.target,
+        } : {
+          // Preserve the existing group-shaped content while the dialog is closed.
+          kind: "group",
+          name,
+          onNameChange: value => change("name", value),
+          parent,
+          onParentChange: value => change("parent", value),
         }}
-        parent={parent}
-        layer={layer}
+        project={context}
         readFailure={readFailure}
         error={error}
         formError={formError}
         finalFocus={() => authoringReturn.current?.isConnected && authoringReturn.current.getClientRects().length ? authoringReturn.current : panel.current}
         onClose={() => request(close)}
-        onCreate={() => void create()}
-        onNameChange={(value) => {
-          change("name", value);
-        }}
-        onParentChange={(value) => {
-          change("parent", value);
-        }}
-        onLayerChange={(value) => {
-          change("layer", value);
-        }}
+        onSubmit={() => void create()}
         onRetry={() => void retryReading()}
         submissionBlocked={
           !!formBaseline &&
