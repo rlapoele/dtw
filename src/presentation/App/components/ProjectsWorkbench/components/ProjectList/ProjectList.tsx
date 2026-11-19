@@ -1,5 +1,15 @@
 import type { CatalogueEntry } from "@application/retention/ports";
 import { ProjectListItem } from "@presentation/App/components/ProjectsWorkbench/components/ProjectList/components/ProjectListItem";
-export function ProjectList({ entries, disabled, selected, onSelect }: { entries: readonly CatalogueEntry[]; disabled: boolean; selected?: string; onSelect: (entry: CatalogueEntry) => void }) {
-  return <ul className="my-6 border-t-hairline border-border">{entries.map(entry => <ProjectListItem key={entry.rowKey} entry={entry} disabled={disabled} selected={selected === entry.rowKey} onSelect={onSelect} />)}</ul>;
+import { projectLabel } from "@presentation/App/components/ProjectsWorkbench/helpers/project-catalogue";
+
+export function ProjectList({ entries, ambiguousNames, disabled, selected, onSelect }: {
+  entries: readonly CatalogueEntry[];
+  ambiguousNames: ReadonlySet<string>;
+  disabled: boolean;
+  selected?: string;
+  onSelect: (entry: CatalogueEntry) => void;
+}) {
+  return <ul aria-label="Projects">{entries.map(entry =>
+    <ProjectListItem key={entry.rowKey} entry={entry} disambiguate={ambiguousNames.has(projectLabel(entry))} disabled={disabled} selected={selected === entry.rowKey} onSelect={onSelect} />
+  )}</ul>;
 }

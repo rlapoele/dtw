@@ -351,3 +351,11 @@ existing semantic pane roots, scroll refs, focus and state ownership.
 The token workbench's collapsed navigation and inspector tracks both use
 `--collapsed-pane-width:3.25rem`. Existing pane motion derives from those tracks;
 expanded widths, toggle behavior and responsive thresholds are unchanged.
+
+Increment 020 gives ProjectList a focused container-geometry exception in
+`styles/global.css`: Project/Contents columns grow into four columns at 42rem of
+list width, while lifecycle dates otherwise use labeled row metadata. The list
+owns this threshold because the centered browse track can be narrow on a wide
+viewport. Ordinary row styling remains semantic utilities; the two-line description
+preview uses `line-clamp-2` and `wrap-anywhere`. Verification is recorded in the
+[increment](../increments/020-projects-browse-and-creation-dialog.md).

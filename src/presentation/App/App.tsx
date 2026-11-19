@@ -27,8 +27,12 @@ function AppContent({
   const { host, ensure, reset } = useWorkbenchHost(createHost);
   const selectedBackupFile = useRef<File | undefined>(undefined),
     stay = useRef<HTMLButtonElement>(null);
+  const restoreTrigger = useRef<HTMLElement | null>(null);
+  const restoreFocusPending = useRef(false);
   const [preview, setPreview] = useState<RestorePreview>(),
     [leaving, setLeaving] = useState(false);
+  const [creationOpen, setCreationOpen] = useState(false);
+  const [restoreSelectionOpen, setRestoreSelectionOpen] = useState(false);
   const [restoreOpen, setRestoreOpen] = useState<string>();
   const [projectsView, setProjectsView] = useState<ProjectsView>({ scroll: 0, surface: "browse" });
   const {
@@ -39,8 +43,9 @@ function AppContent({
     retainedId,
     activeMutation,
     name,
-    setName,
-    description, setDescription,
+    changeName,
+    description, changeDescription,
+    nameError, discardDraft,
     error,
     pending,
     notice,
@@ -54,6 +59,20 @@ function AppContent({
     leaveUnknown,
     retryCreated,
   } = useProjects(host, ensure, reset, !!preview, storage.onRetained);
+  // Cancellation refreshes the catalogue, temporarily disabling the invoking
+  // button. Restore focus only after that render enables it, and only if the
+  // user has not already moved focus elsewhere.
+  useEffect(() => {
+    if (!restoreFocusPending.current || preview || project || pending || entries === undefined) return;
+    const frame = requestAnimationFrame(() => {
+      restoreFocusPending.current = false;
+      const trigger = restoreTrigger.current;
+      if (trigger?.isConnected && document.activeElement === document.body && !document.querySelector('[role="dialog"]')) {
+        trigger.focus({ preventScroll: true });
+      }
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [entries, preview, project, pending]);
   // Restore completion is an explicit request, issued only by a render after
   // preview disposal. Normal Open keeps its conflicting-preview gate intact.
   useEffect(() => {
@@ -63,6 +82,7 @@ function AppContent({
   }, [preview, restoreOpen]);
   useEffect(() => {
     if (!project) return;
+    setCreationOpen(false);
     setProjectsView(view => ({ ...view, selection: { rowKey: entries?.find(entry => entry.status === "supported" && entry.id === project.project.id)?.rowKey ?? project.project.id, status: "supported", ...project.project, revision: project.revision, tokens: project.tokens, groups: project.groups } }));
   }, [project]);
   useEffect(() => {
@@ -93,8 +113,13 @@ function AppContent({
         name,
         description,
         nameRef,
-        onNameChange: setName,
-        onDescriptionChange: setDescription,
+        open: creationOpen,
+        onOpen: () => setCreationOpen(true),
+        onClose: () => setCreationOpen(false),
+        onDiscard: discardDraft,
+        nameError,
+        onNameChange: changeName,
+        onDescriptionChange: changeDescription,
         onCreate: () => void create(),
       }}
       recovery={{
@@ -108,17 +133,27 @@ function AppContent({
       }}
       storage={{ status: storage.status, onRetry: storage.retry }}
       backup={{
+        selectionOpen: restoreSelectionOpen,
+        onSelectFile: () => {
+          restoreTrigger.current = typeof document === "undefined" ? null : document.activeElement as HTMLElement;
+          setRestoreSelectionOpen(true);
+        },
+        onCloseSelection: () => setRestoreSelectionOpen(false),
         onDownload: entry => void download(entry),
         feedback: backupFeedback,
         feedbackKind: backupFeedbackKind,
         hasPreview: !!preview,
         onFileChange: async (event) => {
-          const file = event.target.files?.[0];
+          const input = event.currentTarget;
+          const file = input.files?.[0];
           if (!file) return;
           selectedBackupFile.current = file;
           const next = await stageBackup(file);
-          if (next) setPreview(next);
-          event.target.value = "";
+          if (next) {
+            setRestoreSelectionOpen(false);
+            setPreview(next);
+          }
+          input.value = "";
         },
       }}
       feedback={{ error, notice }}
@@ -137,6 +172,7 @@ function AppContent({
             <Button
               onClick={() => {
                 leaveUnknown();
+                setCreationOpen(false);
                 setLeaving(false);
               }}
             >
@@ -148,6 +184,7 @@ function AppContent({
       }
       restoreDialog={preview && host.current && (
         <RestoreDialog
+          returnFocus={() => restoreTrigger.current}
           onRetained={storage.onRetained}
           restage={async () => {
             if (!selectedBackupFile.current)
@@ -159,6 +196,7 @@ function AppContent({
           host={host.current}
           initial={preview}
           onCancel={(shouldReset) => {
+            restoreFocusPending.current = true;
             setPreview(undefined);
             returnToProjects(shouldReset);
           }}

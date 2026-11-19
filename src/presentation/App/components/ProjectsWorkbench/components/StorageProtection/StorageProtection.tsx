@@ -16,10 +16,10 @@ export function StorageProtection({ status, disabled, onRetry }: {
   onRetry: () => void;
 }) {
   const actionable = status === "unprotected" || status === "check-error" || status === "request-error";
-  return <section className="mt-8 border-t-hairline border-border pt-5">
-    <h2>Browser retention</h2>
+  return <details className="mt-8 border-t-hairline border-border pt-5">
+    <summary className="cursor-pointer text-caption min-h-9">Browser retention</summary>
     <p role="status" className="mt-3 text-caption">{messages[status]}</p>
     <p className="mt-3 text-muted-foreground">Keep independent backups. Clearing browser data still removes projects. Drafts stay in this session.</p>
     {actionable && <Button className="mt-4" disabled={disabled} onClick={onRetry}>Retry storage protection</Button>}
-  </section>;
+  </details>;
 }

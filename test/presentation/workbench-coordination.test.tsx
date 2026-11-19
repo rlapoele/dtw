@@ -441,10 +441,10 @@ it("keeps project entry input after validation and open failure", async () => {
   owner.nameRef.current = { focus } as unknown as HTMLInputElement;
   await owner.create();
   owner = render(hook);
-  expect(owner.error).toBe("A project name is required.");
+  expect(owner.nameError).toBe("A project name is required.");
   expect(focus).toHaveBeenCalledOnce();
   expect(service.call).not.toHaveBeenCalled();
-  owner.setName("  Unfinished name  ");
+  owner.changeName("  Unfinished name  ");
   owner = render(hook);
   await owner.open("existing");
   owner = render(hook);
@@ -466,7 +466,7 @@ it("retries retained project reading without replaying creation", async () => {
   });
   const hook = () => useProjects({ current: service }, () => service, vi.fn(), false);
   let owner = render(hook);
-  owner.setName("  Exact name  ");
+  owner.changeName("  Exact name  ");
   owner = render(hook);
   await owner.create();
   owner = render(hook);
@@ -491,7 +491,7 @@ it("blocks unknown project creation until explicit departure fences and resets",
   const reset = vi.fn();
   const hook = () => useProjects({ current: service }, () => service, reset, false);
   let owner = render(hook);
-  owner.setName("  Keep input  ");
+  owner.changeName("  Keep input  ");
   owner = render(hook);
   await owner.create();
   owner = render(hook);
@@ -595,9 +595,13 @@ it("disposes App restore preview before the authorized completion opens through 
   effects();
   await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
   page = render(app); effects();
-  await page.props.backup.onFileChange({ target: { files: [{ size: 0, arrayBuffer: async () => new ArrayBuffer(0) }], value: "selected" } });
+  page.props.backup.onSelectFile();
+  page = render(app);
+  expect(page.props.backup.selectionOpen).toBe(true);
+  await page.props.backup.onFileChange({ currentTarget: { files: [{ size: 0, arrayBuffer: async () => new ArrayBuffer(0) }], value: "selected" } });
   page = render(app); effects();
   expect(page.props.backup.hasPreview).toBe(true);
+  expect(page.props.backup.selectionOpen).toBe(false);
   page.props.onOpen("p");
   expect(vi.mocked(service.call).mock.calls.some(([operation]) => operation === "openProject")).toBe(false);
   expect(persist).not.toHaveBeenCalled();
@@ -620,7 +624,7 @@ it.each(["retained", "unknown", "rejected"])("notifies creation retention only a
     if (op === "openProject") throw Error("Read failed");
   });
   const hook = () => useProjects({ current: service }, () => service, vi.fn(), false, onRetained);
-  let owner = render(hook); owner.setName("P"); owner = render(hook); await owner.create();
+  let owner = render(hook); owner.changeName("P"); owner = render(hook); await owner.create();
   expect(onRetained).toHaveBeenCalledTimes(status === "retained" ? 1 : 0);
   if (status === "unknown") { owner = render(hook); await owner.check(); expect(onRetained).toHaveBeenCalledOnce(); }
   if (status !== "rejected") {
@@ -665,17 +669,21 @@ it("App retains storage status through create-and-open/Projects and separates re
   const app = () => { const wrapper = App({ createHost: () => service }); return wrapper.props.children.type(wrapper.props.children.props); };
   let page = render(app); effects(); for (let i=0;i<12;i++) await Promise.resolve();
   page = render(app); expect(page.props.storage.status).toBe("unprotected"); expect(persist).not.toHaveBeenCalled();
+  page.props.onView({ ...page.props.view, query: "  My search  " });
+  page.props.creation.onOpen();
   page.props.creation.onNameChange("P"); page = render(app); page.props.creation.onCreate();
   for (let i=0;i<12;i++) await Promise.resolve();
   page = render(app); effects(); expect(persist).toHaveBeenCalledOnce();
   page.props.onProjects(); for (let i=0;i<12;i++) await Promise.resolve();
   page = render(app); effects(); expect(page.props.storage.status).toBe("protected");
+  expect(page.props.view.query).toBe("  My search  ");
+  expect(page.props.creation.open).toBe(false);
   expect(persisted).toHaveBeenCalledOnce();
   // A fresh App session makes the restore callback's wiring independently observable.
   runtime.cells = []; runtime.effects = []; persisted.mockClear(); persist.mockClear();
   page = render(app); effects(); for (let i=0;i<12;i++) await Promise.resolve();
   page = render(app);
-  await page.props.backup.onFileChange({ target: { files: [{ size: 0, arrayBuffer: async () => new ArrayBuffer(0) }], value: "file" } });
+  await page.props.backup.onFileChange({ currentTarget: { files: [{ size: 0, arrayBuffer: async () => new ArrayBuffer(0) }], value: "file" } });
   page = render(app); effects(); expect(persist).not.toHaveBeenCalled();
   page.props.restoreDialog.props.onRetained();
   for (let i=0;i<12;i++) await Promise.resolve(); expect(persist).toHaveBeenCalledOnce();
@@ -739,4 +747,83 @@ it("runs Projects resize policy only at 880, never on mount or a compact-only tr
   listeners.get("(max-width:879px)")!();
   expect(onView).toHaveBeenCalledExactlyOnceWith({ scroll: 12, surface: "browse" });
   expect(render(hook).narrow).toBe(true);
+});
+
+it("discards only a safe creation draft and preserves exact text during unknown recovery", async () => {
+  const service = host(async op => op === "createProject" ? { status: "unknown", commandId: "c", reason: "Check required" } : []);
+  const hook = () => useProjects({ current: service }, () => service, vi.fn(), false);
+  let owner = render(hook);
+  owner.changeName("  Exact  "); owner.changeDescription(" A\nB "); owner = render(hook);
+  await owner.create(); owner = render(hook);
+  owner.discardDraft(); owner = render(hook);
+  expect(owner.name).toBe("  Exact  "); expect(owner.description).toBe(" A\nB ");
+  expect(owner.unknown?.commandId).toBe("c");
+  runtime.cells = []; runtime.effects = [];
+  owner = render(hook); owner.changeName("  Exact  "); owner.changeDescription(" A\nB "); owner = render(hook);
+  owner.discardDraft(); owner = render(hook);
+  expect(owner.name).toBe(""); expect(owner.description).toBe(""); expect(owner.nameError).toBe("");
+});
+
+it("creation dialog requests dirty confirmation and blocks dismissal during recovery", async () => {
+  const { CreateProjectDialog } = await import("@presentation/App/components/ProjectsWorkbench/components/CreateProjectDialog/CreateProjectDialog");
+  const { Dialog } = await import("@base-ui/react/dialog");
+  const close = vi.fn(), discard = vi.fn();
+  const props = {
+    open: true, onClose: close, onDiscard: discard, returnFocus: () => null, blocked: false,
+    form: { name: "  Draft  ", description: "Text", nameRef: { current: null }, onNameChange: vi.fn(), onDescriptionChange: vi.fn(), onSubmit: vi.fn(), disabled: false, pending: false, error: "" },
+    recovery: null, departureDialog: null,
+  };
+  let dialog = render(() => CreateProjectDialog(props));
+  dialog.props.onOpenChange(false); dialog = render(() => CreateProjectDialog(props));
+  const confirmation = dialog.props.children.props.children.find((child: any) => child?.type === Dialog.Root);
+  expect(confirmation.props.open).toBe(true); expect(close).not.toHaveBeenCalled(); expect(discard).not.toHaveBeenCalled();
+  confirmation.props.onOpenChange(false);
+  dialog = render(() => CreateProjectDialog({ ...props, blocked: true }));
+  dialog.props.onOpenChange(false); dialog = render(() => CreateProjectDialog({ ...props, blocked: true }));
+  expect(dialog.props.children.props.children.find((child: any) => child?.type === Dialog.Root).props.open).toBe(false);
+  dialog = render(() => CreateProjectDialog({ ...props, form: { ...props.form, name: "", description: "" } }));
+  dialog.props.onOpenChange(false); expect(close).toHaveBeenCalledOnce();
+});
+
+it("transfers focus authority from backup selection to preview and preserves its explicit return target", async () => {
+  const { RestoreSelectionDialog } = await import("@presentation/App/components/ProjectsWorkbench/components/RestoreSelectionDialog");
+  const { RestoreDialog } = await import("@presentation/App/components/ProjectsWorkbench/components/RestoreDialog/RestoreDialog");
+  const returnFocus = vi.fn(() => null);
+  const selection = (handingOff: boolean) => RestoreSelectionDialog({ open: false, handingOff, pending: false, onClose: vi.fn(), onFileChange: vi.fn(), feedback: null, returnFocus });
+  expect(selection(true).props.children.props.finalFocus).toBe(false);
+  expect(selection(false).props.children.props.finalFocus).toBe(returnFocus);
+  const dialog = render(() => RestoreDialog({ host: host(async () => undefined), initial: { stageId: "s", project: { id: "p", name: "P" }, diagnostics: { total: 0, items: [], complete: true } } as any, onCancel: vi.fn(), onOpen: vi.fn(), returnFocus }));
+  expect(dialog.props.children.props.initialFocus()).toBe(true);
+  expect(dialog.props.children.props.finalFocus).toBe(returnFocus);
+});
+
+it.each([false, true])("returns restore-cancel focus after catalogue refresh without stealing user focus (%s)", async movedFocus => {
+  const { App } = await import("@presentation/App/App");
+  const refresh = deferred<any>();
+  let reads = 0;
+  const service = host(async op => {
+    if (op === "catalogue") return ++reads === 1 ? [] : refresh.promise;
+    if (op === "stageBackup") return { project: header.project };
+  });
+  const focus = vi.fn();
+  const trigger = { isConnected: true, focus };
+  const body = {};
+  const document = { activeElement: trigger as object, body, querySelector: () => null };
+  let runFrame: (() => void) | undefined;
+  vi.stubGlobal("document", document);
+  vi.stubGlobal("requestAnimationFrame", (callback: () => void) => { runFrame = callback; return 1; });
+  vi.stubGlobal("cancelAnimationFrame", vi.fn());
+  vi.stubGlobal("navigator", { storage: { persisted: async () => false, persist: async () => false } });
+  vi.stubGlobal("addEventListener", vi.fn()); vi.stubGlobal("removeEventListener", vi.fn());
+  const app = () => { const wrapper = App({ createHost: () => service }); return wrapper.props.children.type(wrapper.props.children.props); };
+  let page = render(app); effects(); for (let i=0;i<8;i++) await Promise.resolve();
+  page = render(app); effects(); page.props.backup.onSelectFile(); page = render(app);
+  await page.props.backup.onFileChange({ currentTarget: { files: [{ size: 0, arrayBuffer: async () => new ArrayBuffer(0) }], value: "selected" } });
+  page = render(app); effects(); page.props.restoreDialog.props.onCancel(); page = render(app); effects();
+  document.activeElement = movedFocus ? {} : body;
+  expect(page.props.entries).toBeUndefined(); expect(focus).not.toHaveBeenCalled(); expect(runFrame).toBeUndefined();
+  refresh.resolve([]); for (let i=0;i<8;i++) await Promise.resolve();
+  page = render(app); effects(); expect(page.props.entries).toEqual([]);
+  runFrame!();
+  expect(focus).toHaveBeenCalledTimes(movedFocus ? 0 : 1);
 });

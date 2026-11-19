@@ -1,8 +1,8 @@
 # Increment 020: Projects browsing and creation dialog
 
-- Contract status: Draft
-- Delivery status: Not started
-- Agreement: not yet agreed. The user requested Tokens-like Projects browsing, search, a similar list and dialog-based creation on 19 November 2026. The user approved Design V1.1 for analyst review on 19 November 2026; final contract/design agreement and implementation authorization remain pending.
+- Contract status: Agreed
+- Delivery status: Completed — implementation and independent review; user acceptance pending
+- Agreement: on 19 November 2026, the user agreed to the refined contract, including the two-line description preview, and explicitly authorized implementation following V1.1 analyst review.
 - References: [architecture](../project/architecture.md), [presentation conventions](../project/presentation-conventions.md), [React contracts](../../AGENTS.md#react-component-contracts), [workflow](../workflow/agent-roles.md), [project metadata](019-project-description-and-lifecycle-dates.md), [retention limits](007-local-retention-and-backup.md#deferred-qualification).
 
 ## Outcome
@@ -181,7 +181,7 @@ from those rules returns to design review before implementation.
   build/source checks; browser checks were not repeated after that tooling fix.
 - Analyst design review completed on 19 November 2026 against V1.1 at
   `8404f4831baa21144ae505b11e1f78ce328e3c97`. Findings and dispositions follow.
-- Final contract/design agreement and implementation authorization: pending.
+- Final contract/design agreement and implementation authorization: explicitly granted on 19 November 2026, including all refined interaction details and the two-line description preview.
 - Material revisions return to the user before renewed analyst review.
 
 ## Review baseline
@@ -215,3 +215,100 @@ source-review ceiling and no harness repairs. It is additional to the earlier
 four-minute analyst planning and coordinator-recorded prototype checks; no earlier
 verification budget or deferred qualification was reset. Final implementation and
 independent review still require their bounded allowance to be recorded before use.
+
+## Implementation authorization and verification allowance
+
+Implementation baseline: `23027206f9facf279573151b0b8e59b70a770e74`; working tree
+was clean before recording authorization. The user agreed the refined contract
+and authorized implementation on 19 November 2026. The final interaction details
+above are now agreed, including the two-line preview; earlier proposal language
+records the review sequence rather than an outstanding decision.
+
+The user additionally emphasized production code quality: prototype code is a
+visual/interaction reference, not production architecture. Implement through the
+existing workflow owners, typed component contracts and shared primitives; do not
+copy illustrative state, recovery handlers, identity shortcuts or compressed
+prototype structure. Independent review must explicitly assess this boundary.
+
+The production implementation and independent review share a 30-minute aggregate
+verification ceiling and at most two harness-repair cycles. Allocate approximately
+15 minutes to focused developer tests/browser checks and 10 to independent review,
+leaving five for targeted corrections. Earlier planning (four analyst minutes),
+prototype checks (approximately ten aggregate minutes) and analyst review (five
+minutes) remain recorded and do not count as production qualification evidence.
+This is the separately planned production allowance, not a restart of any prior
+qualification. Essential checks cover search/selection, modal draft/focus behavior,
+real recovery gates using controlled tests, restore handoff and representative
+responsive layout. No stress, cross-engine or deferred retention campaigns.
+
+After that allowance was consumed, the user explicitly authorized up to ten
+additional minutes on 19 November 2026 to complete the browser check. This
+follow-up is limited to the restore-cancellation focus gap and any confirmed
+correction/recheck; it does not reopen deferred qualification.
+
+## Completion report — 19 November 2026
+
+**Implemented and independently reviewed; user acceptance pending.** The production
+change follows agreed V1.1 and the refined contract. The prototype was used as an
+interaction reference; its sample data, fake recovery and compressed component
+structure were not copied into production.
+
+Reviewed snapshot: base `23027206f9facf279573151b0b8e59b70a770e74` plus the working-tree
+changes in App, ProjectsWorkbench, its creation/list/restore/storage components,
+useProjects/useProjectsLayout, global CSS and affected tests/conventions. New files
+are CreateProjectDialog/CreateProjectDialog.tsx, its private components/CreateProjectForm.tsx,
+RestoreSelectionDialog.tsx, helpers/project-catalogue.ts and
+`test/presentation/project-catalogue.test.ts`. The old standalone creation form
+was removed. The reviewer assessed the stable implementation and subsequent
+restore-focus deltas separately; documentation completion records were added after review.
+
+### Acceptance evidence
+
+| Criterion | Evidence and result | Status |
+| --- | --- | --- |
+| AC-1 — browsing hierarchy | Production browser shows heading/actions, search, list/empty states, inspector and retention disclosure; inline creation removed. | Verified |
+| AC-2 — search and ordering | Pure catalogue tests cover matching/sorting/fallbacks; uppercase description search, no matches and query Open/Back persistence exercised in browser. | Verified |
+| AC-3 — rows, selection and dates | Tests cover rowKey/identity and missing-state behavior; browser confirmed filtered selection/reveal, retained dates and responsive labeled metadata at observed 480 CSS pixels without overflow. | Verified |
+| AC-4 — creation | Real disposable project creation with description opens Tokens; required-name validation focuses the input. Existing exact-text workflow remains. | Verified |
+| AC-5 — recovery | Controlled coordination tests and independent source review cover retained/unknown/pending gates and preserved ownership. No real storage faults were forced. | Verified by controlled tests/source |
+| AC-6 — drafts and focus | Browser checked initial focus, dirty Cancel/Keep editing exact text, Escape/Discard and return to New project; focused tests cover discard/recovery gates. Nested unknown-write safe-leaving focus was not exercised live. | Verified with stated runtime limit |
+| AC-7 — backup/retention | Existing restore machinery retained; real disposable backup staged into existing same-identity review, then canceled without replacement. Browser confirmed focus enters preview and returns to Restore backup after refresh. | Verified for changed handoff; full restore qualification unchanged |
+| AC-8 — state and architecture | App-owned query/open state, unconditional useProjects and command authority retained; tests and independent affected-tree review confirm ownership. | Verified |
+
+### Checks and findings
+
+- `npm run typecheck` passed. The initial three focused suites passed 42 tests
+  and were independently rerun. Following focus corrections, the coordination
+  suite passed all 33 tests, including added focus-policy, delayed-refresh and
+  no-focus-stealing checks. `git diff --check` passed.
+- Separate reviewer `projects_reviewer` found no actionable source/test defects
+  and explicitly checked production quality, component consumers, aliases,
+  recovery gates and documented CSS exceptions. Its browser surface was unavailable;
+  runtime evidence was gathered by the coordinator in an isolated origin.
+- Browser checks found two restore-focus issues: ordinary preview initial focus
+  did nothing, and cancellation attempted return focus while catalogue refresh
+  disabled the trigger. The fixes explicitly request preview focus, suppress the
+  outgoing selection dialog's return focus, and restore the original trigger
+  after refresh only when focus is still on the body and no modal is active.
+  Separate source rechecks found no further issue; final browser cancellation
+  settled with zero dialogs and Restore backup focused.
+- Transient Vite reload errors occurred while files were moved during development;
+  final imports/typecheck passed. These are not a clean-console qualification claim.
+- Approximate aggregate verification: the original 30-minute allowance and two
+  harness adaptation cycles were consumed. The user's additional ten-minute
+  follow-up used approximately five minutes for confirmation, correction tests,
+  independent source recheck and settled browser proof. Stop after the focused
+  checks passed; unused allowance is not a reason to broaden testing.
+
+### Limits and next step
+
+No deferred retention, stress or cross-engine campaign restarted. The live browser
+pass used disposable data at a separate origin and did not touch the user's usual
+workspace. Real fault-driven nested safe-leaving focus, full restore replacement,
+all viewport sizes and screen-reader delivery remain outside this bounded pass.
+The controlled tests do not replace those runtime qualifications. The test tab was
+closed; a disposable backup file was downloaded during verification.
+
+The implementation is ready for user review and acceptance. Staging, committing
+and pushing remain user-owned. Suggested commit:
+`feat: improve project browsing and creation dialogs`.

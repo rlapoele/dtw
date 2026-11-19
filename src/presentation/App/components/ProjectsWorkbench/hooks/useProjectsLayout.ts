@@ -1,7 +1,7 @@
 import { useWorkbenchViewport } from "@presentation/App/components/WorkbenchLayout/hooks/useWorkbenchViewport";
 import { useEffect, useRef } from "react";
 import type { CatalogueEntry } from "@application/retention/ports";
-export type ProjectsView = { selection?: CatalogueEntry; scroll: number; surface: "browse" | "inspect" };
+export type ProjectsView = { query?: string; selection?: CatalogueEntry; scroll: number; surface: "browse" | "inspect" };
 export function useProjectsLayout(view: ProjectsView, onView: (next: ProjectsView) => void) {
   const browse = useRef<HTMLElement>(null), inspector = useRef<HTMLElement>(null), entry = useRef<HTMLButtonElement>(null);
   const current = useRef({ view, onView }); current.current = { view, onView };

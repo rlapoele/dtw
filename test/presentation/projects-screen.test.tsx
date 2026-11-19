@@ -19,6 +19,7 @@ function screen(overrides: ScreenOverrides = {}) {
     restoreDialog: createElement("aside", null, "Restore dialog"),
     ...overrides,
     creation: {
+      open: false, onOpen: noop, onClose: noop, onDiscard: noop, nameError: "",
       name: "  Unfinished name  ", description: "", nameRef: { current: null },
       onNameChange: noop, onDescriptionChange: noop, onCreate: noop,
       ...overrides.creation,
@@ -29,7 +30,7 @@ function screen(overrides: ScreenOverrides = {}) {
       ...overrides.recovery,
     },
     storage: { status: "checking", onRetry: noop, ...overrides.storage },
-    backup: { onDownload: noop, feedback: "", hasPreview: false, onFileChange: noop, ...overrides.backup },
+    backup: { selectionOpen: false, onSelectFile: noop, onCloseSelection: noop, onDownload: noop, feedback: "", hasPreview: false, onFileChange: noop, ...overrides.backup },
     feedback: { error: "", notice: "", ...overrides.feedback },
   }));
 }
@@ -58,17 +59,13 @@ it("shows legacy names, exact identities, counts and unavailable rows together",
   expect(html).toContain('Identity: &quot;unavailable-id&quot;');
 });
 
-it("preserves form validation associations and dialog order with recovery protections", () => {
+it("keeps creation out of browse content and preserves recovery protections", () => {
   const html = screen({ recovery: { unknown: true }, feedback: { error: "Write unknown" } });
-  expect(html).toContain('value="  Unfinished name  "');
-  expect(html).toContain('aria-describedby="project-error"');
-  expect(html).toContain('aria-invalid="true"');
-  expect(html).toMatch(/<input[^>]+type="file"[^>]+disabled=""/);
-  expect(html).toMatch(/<input[^>]+aria-describedby="project-error"[^>]+disabled=""|<input[^>]+disabled=""[^>]+aria-describedby="project-error"/);
+  expect(html).not.toContain('value="  Unfinished name  "');
+  expect(html).not.toContain('type="file"');
   expect(html).toContain("Retained result unknown.");
   expect(html).toContain("Review before leaving");
   expect(html.indexOf("</main>")).toBeLessThan(html.indexOf("Departure dialog"));
-  expect(html.indexOf("Departure dialog")).toBeLessThan(html.indexOf("Restore dialog"));
   expect(screen({ recovery: { retained: true } })).toContain("Retry reading project");
   expect(screen({ recovery: { pending: true, activeMutation: true } })).toContain("Retention or preparation pending. Inputs are preserved.");
 });
@@ -99,12 +96,12 @@ it("keeps narrow inspection errors, catalogue retry and recovery outside both hi
     const html = screen({ entries: undefined, feedback: { error: 'Reading project "p" failed' }, recovery: { retained: true }, view: { selection, scroll: 100, surface: "inspect" } });
     expect(html).toMatch(/<main[^>]*hidden=""/);
     const feedback = html.slice(html.indexOf('aria-label="Project feedback"'));
-    expect(feedback).toContain('id="project-error"');
+    expect(feedback).toContain('role="alert"');
     expect(feedback).toContain('Reading project &quot;p&quot; failed');
     expect(feedback).toContain("Retry reading projects");
     expect(feedback).toContain("Retry reading project");
     expect(html.indexOf('aria-label="Project feedback"')).toBeGreaterThan(html.indexOf('aria-label="Project inspector"'));
-    expect(html.match(/id="project-error"/g)).toHaveLength(1);
+    expect(html.match(/role="alert"/g)).toHaveLength(1);
     expect(html.slice(0, html.indexOf("</main>"))).not.toContain('role="alert"');
   } finally {
     if (previousWindow === undefined) Reflect.deleteProperty(globalThis, "window");
@@ -130,12 +127,26 @@ it("renders actual persistence status with conditional retry and existing action
 it("renders optional description entry and read-only known or unknown project dates", () => {
   const entry = {rowKey: "p", id: "p", name: "Project", status: "supported" as const, revision: "r", tokens: 0, groups: 0, description: "First line\nSecond line", creationDate: "2026-11-18T10:00:00.000Z", lastUpdatedDate: "2026-11-18T11:00:00.000Z"};
   const html = screen({entries: [entry], view: {scroll: 0, surface: "browse", selection: entry}, creation: { description: "Unfinished\nDescription" }});
-  expect(html).toContain("Description (optional)");
-  expect(html).toContain("Unfinished\nDescription");
+  expect(html).not.toContain("Description (optional)");
+  expect(html).not.toContain("Unfinished\nDescription");
   expect(html).toContain("First line\nSecond line");
   expect(html).toContain('dateTime="2026-11-18T10:00:00.000Z"');
   expect(html).toContain('dateTime="2026-11-18T11:00:00.000Z"');
   const {creationDate: _creation, lastUpdatedDate: _updated, ...legacy} = entry;
   const unknown = screen({entries: [legacy], view: {scroll: 0, surface: "browse", selection: legacy}});
-  expect(unknown.match(/>Unknown</g)).toHaveLength(2);
+  expect(unknown.match(/>Unknown</g)).toHaveLength(4);
+});
+
+it("distinguishes filtered selection from missing entries and genuine emptiness", () => {
+  const entry = { rowKey: "stable", status: "supported", id: "p", name: "Atlas", description: "Storefront", revision: "r", tokens: 1, groups: 0 } as const;
+  const view = { query: "absent", selection: entry, scroll: 100, surface: "browse" as const };
+  const filtered = screen({ entries: [entry], view });
+  expect(filtered).toContain("No matching projects");
+  expect(filtered).toContain("Show selected project");
+  expect(filtered).toContain("Open project");
+  const missing = screen({ entries: [], view });
+  expect(missing).toContain("No projects yet");
+  expect(missing).not.toContain("Show selected project");
+  expect(screen({ entries: [entry], view: { ...view, query: "  STOREFRONT  " } })).toContain('aria-pressed="true"');
+  expect(screen({ entries: [entry], view: { ...view, query: "   " } })).not.toContain("of 1");
 });

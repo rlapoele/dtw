@@ -11,6 +11,8 @@ export function CreateProjectForm({
   nameRef,
   onNameChange,
   onSubmit,
+  onCancel,
+  closeBlocked,
 }: {
   name: string;
   description: string;
@@ -21,16 +23,17 @@ export function CreateProjectForm({
   nameRef: Ref<HTMLInputElement>;
   onNameChange: (name: string) => void;
   onSubmit: () => void;
+  onCancel: () => void;
+  closeBlocked: boolean;
 }) {
   return (
     <form
-      className="mt-8 border-t-hairline border-border pt-6"
+      className="mt-5"
       onSubmit={(e) => {
         e.preventDefault();
         onSubmit();
       }}
     >
-      <h2 className="mb-4">New project</h2>
       <Field>
         Project name
         <Input
@@ -38,7 +41,7 @@ export function CreateProjectForm({
           value={name}
           disabled={disabled}
           onChange={(e) => onNameChange(e.target.value)}
-          aria-describedby="project-error"
+          aria-describedby="project-name-error"
           aria-invalid={!!error}
         />
       </Field>
@@ -49,10 +52,13 @@ export function CreateProjectForm({
           value={description}
           disabled={disabled}
           onChange={(e) => onDescriptionChange(e.target.value)}
-          aria-describedby="project-error"
+          aria-describedby="project-name-error"
           className="w-full min-w-0 rounded-md border-hairline border-input bg-background text-foreground px-2.5 py-2 text-xs/normal small:text-base/normal hover:border-control-hover resize-y"
         />
       </Field>
+      <p id="project-name-error" role="alert" className="text-destructive text-caption">{error}</p>
+      <div className="dialog-actions flex justify-end gap-3 mt-6">
+      <Button disabled={closeBlocked} onClick={onCancel}>Cancel</Button>
       <Button
         type="submit"
         variant="default"
@@ -60,6 +66,7 @@ export function CreateProjectForm({
       >
         {pending ? "Retaining project…" : "Create project"}
       </Button>
+      </div>
     </form>
   );
 }

@@ -39,6 +39,7 @@ export function useProjects(
     [error, setError] = useState(""),
     [pending, setPending] = useState(false),
     [notice, setNotice] = useState("");
+  const [nameError, setNameError] = useState("");
   const nameRef = useRef<HTMLInputElement>(null);
   async function catalogue() {
     setError("");
@@ -129,12 +130,13 @@ export function useProjects(
   async function create() {
     if (commandPending.current || pending || unknown || retainedId !== null || hasPreview) return;
     if (!name.trim()) {
-      setError("A project name is required.");
+      setNameError("A project name is required.");
       nameRef.current?.focus();
       return;
     }
     setPending(true);
     activeMutation.current = true;
+    setNameError("");
     setError("");
     let acceptedId: string | undefined;
     try {
@@ -234,7 +236,19 @@ export function useProjects(
       void recoverCreated(retainedId).finally(() => setPending(false));
     }
   }
+  function changeName(next: string) {
+    setName(next);
+    setNameError("");
+  }
+  function discardDraft() {
+    if (pending || unknown || retainedId !== null || activeMutation.current) return;
+    setName("");
+    setDescription("");
+    setNameError("");
+  }
   return {
+    nameError,
+    discardDraft,
     entries,
     download,
     backupFeedback,
@@ -244,9 +258,9 @@ export function useProjects(
     retainedId,
     activeMutation,
     name,
-    setName,
+    changeName,
     description,
-    setDescription,
+    changeDescription: setDescription,
     error,
     pending,
     notice,

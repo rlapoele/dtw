@@ -344,3 +344,14 @@ input[type="file"]::file-selector-button { min-height:2.25rem; }
 @media (prefers-reduced-motion: reduce) {
   .navigation-chevron, .navigation-children, .navigation-children[data-expanded="true"] { transition: none; }
 }
+
+/* Projects dates respond to the actual browse track, including the centered layout. */
+.project-list-container { container-type: inline-size; container-name: projects-list; }
+.project-table-head, .project-table-row { display: grid; grid-template-columns: minmax(0, 1fr) 6rem; gap: 1rem; align-items: center; }
+.project-date-column { display: none; }
+.project-dates-compact { display: flex; flex-direction: column; gap: .25rem; }
+@container projects-list (min-width: 42rem) {
+  .project-table-head, .project-table-row { grid-template-columns: minmax(0, 1fr) 6rem 6.5rem 6.5rem; }
+  .project-date-column { display: block; }
+  .project-dates-compact { display: none; }
+}

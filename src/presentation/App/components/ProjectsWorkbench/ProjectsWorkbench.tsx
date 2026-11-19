@@ -1,4 +1,4 @@
-import type { ChangeEventHandler, ReactNode, Ref } from "react";
+import { useRef, type ChangeEventHandler, type ReactNode, type Ref } from "react";
 import type { CatalogueEntry } from "@application/retention/ports";
 import type { StoragePersistenceStatus } from "@presentation/App/hooks/useStoragePersistence";
 import { StorageProtection } from "@presentation/App/components/ProjectsWorkbench/components/StorageProtection/StorageProtection";
@@ -8,10 +8,19 @@ import { ProjectInspector } from "@presentation/App/components/ProjectsWorkbench
 import { useProjectsLayout, type ProjectsView } from "@presentation/App/components/ProjectsWorkbench/hooks/useProjectsLayout";
 import { Button } from "@presentation/ui/button";
 import { ProjectList } from "@presentation/App/components/ProjectsWorkbench/components/ProjectList/ProjectList";
-import { CreateProjectForm } from "@presentation/App/components/ProjectsWorkbench/components/CreateProjectForm/CreateProjectForm";
+import { CreateProjectDialog } from "@presentation/App/components/ProjectsWorkbench/components/CreateProjectDialog/CreateProjectDialog";
+import { RestoreSelectionDialog } from "@presentation/App/components/ProjectsWorkbench/components/RestoreSelectionDialog";
+import { Input } from "@presentation/ui/input";
+import { Icon } from "@presentation/ui/icon";
+import { ambiguousProjectNames, browseProjects } from "@presentation/App/components/ProjectsWorkbench/helpers/project-catalogue";
 import { ProjectRecovery } from "@presentation/App/components/ProjectsWorkbench/components/ProjectRecovery/ProjectRecovery";
 
 type ProjectCreation = {
+  open: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  onDiscard: () => void;
+  nameError: string;
   name: string;
   description: string;
   nameRef: Ref<HTMLInputElement>;
@@ -36,6 +45,9 @@ type ProjectStorageProtection = {
 };
 
 type ProjectBackup = {
+  selectionOpen: boolean;
+  onSelectFile: () => void;
+  onCloseSelection: () => void;
   onDownload: (entry: Extract<CatalogueEntry, { status: "supported" }>) => void;
   feedback: string;
   feedbackKind?: "information" | "error";
@@ -70,10 +82,11 @@ export function ProjectsWorkbench({
   onView,
   onOpen,
   onRetryCatalogue,
-  creation: { name, description, nameRef, onNameChange, onDescriptionChange, onCreate },
+  creation,
   recovery: { pending, activeMutation, retained, unknown, onCheck, onRetryReading, onReviewLeaving },
   storage: { status: storageStatus, onRetry: onRetryStorage },
   backup: {
+    selectionOpen, onSelectFile, onCloseSelection,
     onDownload,
     feedback: backupFeedback,
     feedbackKind: backupFeedbackKind = "information",
@@ -84,102 +97,77 @@ export function ProjectsWorkbench({
   departureDialog,
   restoreDialog,
 }: ProjectsWorkbenchProps) {
+  const returnFocus = useRef<HTMLElement | null>(null);
+  const { name, description, nameRef, onNameChange, onDescriptionChange, onCreate } = creation;
+  const query = view.query ?? "";
+  const visible = browseProjects(entries ?? [], query);
+  const ambiguousNames = ambiguousProjectNames(entries ?? []);
   const layout = useProjectsLayout(view, onView);
   const selected = entries?.find(entry => entry.rowKey === view.selection?.rowKey) ?? view.selection;
   const missing = !!view.selection && entries !== undefined && !entries.some(entry => entry.rowKey === view.selection?.rowKey);
   const openDisabled = pending || retained || unknown || hasPreview;
   const createDisabled = openDisabled || entries === undefined;
+  const recoveryControls = <ProjectRecovery pending={pending} activeMutation={activeMutation} retained={retained} unknown={unknown} onCheck={onCheck} onRetryReading={onRetryReading} onReviewLeaving={onReviewLeaving} />;
+  const feedback = <>
+    <div className={error ? `notification ${unknown || retained ? "notification-warning" : "notification-error"} my-2` : "sr-only"}>
+      <p role="alert">{error}</p>
+      {error && entries === undefined && <Button disabled={pending || hasPreview} onClick={onRetryCatalogue}>Retry reading projects</Button>}
+    </div>
+    <p role="status" className={notice ? "notification notification-information text-caption my-2" : "sr-only"}>{notice}</p>
+  </>;
+  function beginDialog(action: () => void) {
+    returnFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    action();
+  }
   return (
     <WorkbenchLayout
       narrow={layout.narrow} surface={view.surface}
       header={<ApplicationHeader actions={<span className="projects-header-context text-caption text-muted-foreground">Browser local</span>} />}
       workspace={
-      <main ref={layout.browse} tabIndex={-1} hidden={layout.narrow && view.surface === "inspect"} onScroll={event => onView({ ...view, scroll: event.currentTarget.scrollTop })} className="projects-browse min-w-0 overflow-auto p-7 touch:px-4 touch:py-5">
-        {
-          <>
-            <p className="eyebrow text-muted-foreground uppercase mb-2">Your workspace</p>
-            <h1>Projects in this browser</h1>
-            <p className="text-muted-foreground mt-3">
-              Applied work is retained automatically. Keep independent backups:
-              browser storage can be cleared or become unavailable.
-            </p>
-            <div className="flex items-center justify-between gap-3 border-t-hairline border-border mt-7 pt-4 mb-4"><h2>Local collection</h2><span className="font-mono text-caption text-muted-foreground">{entries === undefined ? "—" : `${entries.length} ${entries.length === 1 ? "project" : "projects"}`}</span></div>
-            {entries === undefined ? (
-              <p role="status" className="my-5">
-                {error
-                  ? "Projects unavailable. Existing browser data is unchanged."
-                  : "Loading projects…"}
-              </p>
-            ) : entries.length === 0 ? (
-              <p className="my-5">No projects retained in this browser.</p>
-            ) : (
-              <ProjectList
-                entries={entries}
-                disabled={openDisabled}
-                selected={selected?.rowKey}
-                onSelect={entry => onView({ ...view, selection: entry })}
-              />
-            )}
-            {layout.narrow && selected && <Button ref={layout.entry} className="w-full" disabled={openDisabled} onClick={() => layout.show("inspect")}>Inspect selected project</Button>}
-            <CreateProjectForm
-              name={name}
-              description={description}
-              onDescriptionChange={onDescriptionChange}
-              disabled={createDisabled}
-              pending={pending}
-              error={error}
-              nameRef={nameRef}
-              onNameChange={onNameChange}
-              onSubmit={onCreate}
-            />
-            <section className="mt-8 border-t-hairline border-border pt-6">
-              <h2 className="mb-3">Restore backup</h2>
-              <label className="text-caption block">
-                Project backup file
-                <input
-                  className="block mt-3 max-w-full min-h-9"
-                  type="file"
-                  accept=".json,application/json"
-                  disabled={createDisabled}
-                  onChange={onBackupChange}
-                />
-              </label>
-            </section>
-
-          </>
-        }
-        <StorageProtection status={storageStatus} disabled={openDisabled} onRetry={onRetryStorage} />
-      </main>}
+        <main ref={layout.browse} tabIndex={-1} hidden={layout.narrow && view.surface === "inspect"} onScroll={event => onView({ ...view, scroll: event.currentTarget.scrollTop })} className="projects-browse min-w-0 overflow-auto p-7 touch:px-4 touch:py-5">
+          <div className="flex flex-wrap items-start justify-between gap-3 mb-6">
+            <div><p className="eyebrow text-muted-foreground uppercase mb-2">Projects</p><h1>All projects</h1></div>
+            <div className="flex flex-wrap gap-2">
+              <Button disabled={createDisabled} onClick={() => beginDialog(onSelectFile)}>Restore backup</Button>
+              <Button variant="default" disabled={createDisabled} onClick={() => beginDialog(creation.onOpen)}><Icon name="plus" />New project</Button>
+            </div>
+            <p className="w-full text-caption text-muted-foreground">Browse and create projects in this browser.</p>
+          </div>
+          <div className="relative max-w-xs mb-5">
+            <Icon name="search" className="absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground" />
+            <Input appearance="search" type="search" aria-label="Search projects" placeholder="Search projects…" value={query} disabled={entries === undefined} onChange={event => onView({ ...view, query: event.target.value })} />
+          </div>
+          {selected && !missing && entries !== undefined && !visible.some(entry => entry.rowKey === selected.rowKey) && <section className="mb-4 rounded-md border-hairline border-border bg-muted p-3 flex flex-wrap items-center justify-between gap-3 text-caption">
+            <p>Selected project is outside this list.</p><Button onClick={() => onView({ ...view, query: "" })}>Show selected project</Button>
+          </section>}
+          <section className="project-list-container" aria-label="Project collection">
+            <div aria-hidden="true" className="project-table-head p-3 border-y-hairline border-border text-caption text-muted-foreground"><span>Project</span><span>Contents</span><span className="project-date-column">Created</span><span className="project-date-column">Last updated</span></div>
+            {entries === undefined ? <p role="status" className="py-12 text-center">{error ? "Projects unavailable. Existing browser data is unchanged." : "Loading projects…"}</p>
+              : entries.length === 0 ? <div className="py-12 text-center space-y-3"><h2>No projects yet</h2><p className="text-muted-foreground">No projects retained in this browser.</p><Button variant="default" disabled={createDisabled} onClick={() => beginDialog(creation.onOpen)}>New project</Button></div>
+              : visible.length === 0 ? <div className="py-12 text-center space-y-3"><h2>No matching projects</h2><p className="text-muted-foreground">Try another name, description or identity.</p><Button onClick={() => onView({ ...view, query: "" })}>Clear search</Button></div>
+              : <ProjectList entries={visible} ambiguousNames={ambiguousNames} disabled={openDisabled} selected={selected?.rowKey} onSelect={entry => onView({ ...view, selection: entry })} />}
+          </section>
+          {entries !== undefined && <p className="text-caption text-muted-foreground mt-3">{query.trim() ? `${visible.length} of ${entries.length}` : entries.length} {entries.length === 1 ? "project" : "projects"}</p>}
+          {layout.narrow && selected && <Button ref={layout.entry} className="w-full mt-4" disabled={openDisabled} onClick={() => layout.show("inspect")}>Inspect selected project</Button>}
+          <StorageProtection status={storageStatus} disabled={openDisabled} onRetry={onRetryStorage} />
+        </main>
+      }
       inspector={<section ref={layout.inspector} tabIndex={-1} aria-label="Project inspector" hidden={layout.narrow && view.surface !== "inspect"} className="projects-inspector min-w-0 overflow-auto border-l-hairline touch:border-l-0 border-border bg-surface">
         {layout.narrow && <div className="p-4 border-b-hairline border-border"><Button onClick={() => layout.show("browse")}>Back to projects</Button></div>}
         <ProjectInspector entry={selected} missing={missing} catalogueUnavailable={entries === undefined} disabled={openDisabled || entries === undefined} onOpen={onOpen} onDownload={onDownload} />
       </section>}
       afterBody={<>
-      <section aria-label="Project feedback" className="shrink-0 max-h-48 overflow-auto px-4 text-caption wrap-anywhere">
-        <ProjectRecovery
-          pending={pending}
-          activeMutation={activeMutation}
-          retained={retained}
-          unknown={unknown}
-          onCheck={onCheck}
-          onRetryReading={onRetryReading}
-          onReviewLeaving={onReviewLeaving}
-        />
-        <div className={error ? `notification ${unknown || retained ? "notification-warning" : "notification-error"} my-2` : "sr-only"}>
-          <p id="project-error" role="alert">{error}</p>
-          {error && entries === undefined && (
-            <Button disabled={pending || hasPreview} onClick={onRetryCatalogue}>
-              Retry reading projects
-            </Button>
-          )}
-        </div>
-        <p role="status" className={notice ? "notification notification-information text-caption my-2" : "sr-only"}>
-          {notice}
-        </p>
-      </section>
-      {backupFeedback && <p role="status" className={`notification notification-${backupFeedbackKind} shrink-0 text-caption wrap-anywhere`}>{backupFeedback}</p>}
+        {!creation.open && !selectionOpen && <section aria-label="Project feedback" className="shrink-0 max-h-48 overflow-auto px-4 text-caption wrap-anywhere">{recoveryControls}{feedback}</section>}
+        {backupFeedback && <p role="status" className={`notification notification-${backupFeedbackKind} shrink-0 text-caption wrap-anywhere`}>{backupFeedback}</p>}
       </>}
-      overlays={<>{departureDialog}{restoreDialog}</>}
+      overlays={<>
+        <CreateProjectDialog open={creation.open} onClose={creation.onClose} onDiscard={creation.onDiscard} returnFocus={() => returnFocus.current} blocked={pending || retained || unknown}
+          form={{ name, description, nameRef, onNameChange, onDescriptionChange, onSubmit: onCreate, disabled: createDisabled, pending, error: creation.nameError }}
+          recovery={<>{recoveryControls}{feedback}</>} departureDialog={departureDialog} />
+        {!creation.open && departureDialog}
+        <RestoreSelectionDialog handingOff={hasPreview} open={selectionOpen} pending={pending} onClose={onCloseSelection} onFileChange={onBackupChange} feedback={feedback} returnFocus={() => returnFocus.current} />
+        {restoreDialog}
+      </>}
     />
   );
 }

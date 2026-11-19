@@ -2,7 +2,7 @@
 
 > Last updated: 19 November 2026
 >
-> Phase: Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
+> Phase: Increment 020 implemented and independently reviewed; user acceptance pending. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
 > completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
@@ -10,25 +10,27 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Projects browse and creation dialog proposal — 19 November 2026
+## Projects browse and creation dialog — Increment 020 implemented
 
-The user requested a Tokens-like Projects workspace, with search, comparable
-project rows and dialog-based creation. [Increment 020](../increments/020-projects-browse-and-creation-dialog.md)
-is a draft contract; an independent designer assessed the section mapping.
-The user approved the direction, including dirty-form dismissal confirmation,
-and authorized an isolated prototype on 19 November 2026.
-[Design V1.1](../../prototypes/projects-browse-v1/DESIGN-V1.md) is ready for user review,
-including the user-requested Created and Last updated list fields;
-its build and bounded browsing/dialog checks passed, with detailed limits in the
-increment record. The user approved V1.1 for analyst review; the separate analyst
-completed that source/document review at `8404f48`. No material redesign was
-recommended. The refined draft preserves production recovery/restore gates and
-proposes a two-line description preview, with explicit search/order/query-lifetime
-and date-display details for final agreement. Prototype recovery handlers are
-illustrative and must not replace the existing command owners. Final agreement
-and implementation authorization remain pending. No browser tests were run for
-this analytical review. Production
-code and saved projects are unchanged; no qualification campaign was restarted. Existing deferred qualification remains deferred.
+The user authorized the refined contract and V1.1, including lifecycle dates and
+two-line description previews. [Increment 020](../increments/020-projects-browse-and-creation-dialog.md#completion-report--19-november-2026)
+is implemented and independently reviewed; user acceptance is pending.
+
+Projects now has searchable/sorted rows, preserved filtered selection, responsive
+dates, New project with dirty-close protection, and restore-file selection feeding
+the existing staged preview. Production ownership and real command/recovery gates
+remain intact; independent review found no copied prototype shortcuts or unresolved
+actionable defects. Typechecking and focused tests passed. Isolated browser checks
+covered creation/drafts/search, responsive browse/inspect and real restore staging.
+The discovered restore focus issues were corrected and re-reviewed; final browser
+proof confirmed preview focus and return to Restore backup after cancellation.
+
+The original 30-minute verification allowance/two harness cycles were consumed;
+the user authorized ten further minutes, of which approximately five were used
+to finish the focus check and correction. Nested fault-recovery focus, full restore
+replacement and earlier qualification limits remain explicitly unqualified. No
+deferred qualification was restarted. The user can review and commit the change;
+no further implementation or testing is needed within this increment's bounded pass.
 
 ## Navigation and history display cleanup — 19 November 2026
 

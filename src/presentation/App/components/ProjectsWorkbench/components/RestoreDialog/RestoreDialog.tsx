@@ -15,6 +15,7 @@ export function RestoreDialog({
   onOpen,
   onRetained,
   restage,
+  returnFocus,
 }: {
   host: WorkbenchHost;
   initial: RestorePreview;
@@ -22,6 +23,7 @@ export function RestoreDialog({
   onOpen(id: string): void;
   onRetained?: () => void | Promise<void>;
   restage?: () => Promise<RestorePreview>;
+  returnFocus?: () => HTMLElement | null;
 }) {
   const {
     preview,
@@ -58,7 +60,7 @@ export function RestoreDialog({
         }
       }}
     >
-      <DialogContent initialFocus={() => (leaving ? stay.current : undefined)}>
+      <DialogContent initialFocus={() => (leaving ? stay.current : true)} finalFocus={returnFocus}>
         {leaving ? (
           <>
             <Dialog.Title>Review before leaving</Dialog.Title>
