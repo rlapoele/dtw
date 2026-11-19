@@ -10,6 +10,15 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Projects browse and creation dialog proposal — 19 November 2026
+
+The user requested a Tokens-like Projects workspace, with search, comparable
+project rows and dialog-based creation. [Increment 020](../increments/020-projects-browse-and-creation-dialog.md)
+is a draft contract; an independent designer assessed the section mapping.
+The proposed direction awaits user feedback before prototyping, followed by
+analyst review and final agreement. No application changes or new qualification
+runs have started. Existing deferred qualification remains deferred.
+
 ## Navigation and history display cleanup — 19 November 2026
 
 Removed the static project identity block from shared navigation content; the
