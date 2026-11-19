@@ -49,10 +49,11 @@ describe("production token list properties and contextual ordering", () => {
     const source = snapshot(), context = projectContext(source), rows = displayRows(source, 0, 100);
     const render = (id: string) => renderToStaticMarkup(<TokenTable context={context} rows={rows.filter(row => row.id === id)} selected={id} query="" onSelect={() => {}} onEmptyAction={() => {}} />);
     const literal = render("c2"), alias = render("semantic");
-    for (const label of ["Type", "Layer", "Value", "Protected from regeneration", "root / 2 / 2", "A description", "#8000FF", "sRGB", "Display P3", "HSL", "OKLAB", "OKLCH", "Alpha 0.5"]) expect(literal).toContain(label);
+    for (const label of ["Type", "Layer", "Value", "Protected from regeneration", "root / 2 / 2", "A description", "#8000FF", "sRGB", "Display P3", "HSL", "OKLAB", "OKLCH"]) expect(literal).toContain(label);
     expect(literal).toContain('aria-pressed="true"');
-    expect(literal).toContain("font-semibold text-foreground");
-    expect(alias).not.toContain("font-semibold text-foreground");
+    expect(literal.replace(/<[^>]*>/g, "")).toContain("Alpha 0.5");
+    expect(literal).toContain('class="block text-foreground"');
+    expect(alias).not.toContain('class="block text-foreground"');
     expect(alias).toContain("root / 2 / 2");
   });
 });

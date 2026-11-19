@@ -1,6 +1,6 @@
 import { TokenSwatch } from "@presentation/App/components/TokensWorkbench/components/TokenSwatch";
 import { colorPreview } from "@presentation/App/components/TokensWorkbench/helpers/color-preview";
-import { memo, useMemo } from "react";
+import { Fragment, memo, useMemo } from "react";
 import { convertColor } from "@domain/color-calculation";
 import { COLOR_SPACES, type ColorLiteralValue } from "@domain/color-literal";
 import type { DisplayRow } from "@application/retention/projections";
@@ -14,19 +14,22 @@ const ColorRepresentations = memo(function ColorRepresentations({ source, author
     hex: hexPreview(source),
     spaces: COLOR_SPACES.map(space => {
       const converted = convertColor(source, space);
-      return { space, coordinates: converted.ok ? authoredColorCoordinates(converted.value, "compact", true).slice(0, 3).join(" · ") : "Unavailable" };
+      return { space, coordinates: converted.ok ? authoredColorCoordinates(converted.value, "compact", true).slice(0, 3) : undefined };
     }),
   }), [source]);
   return <>
     <span className="block font-medium text-foreground" title={display.hex}>{display.hex.match(/#[0-9A-F]{6}/)?.[0] ?? "HEX unavailable"}</span>
     <span className="block mt-2 space-y-1">
       {display.spaces.map(({ space, coordinates }) => <span key={space}
-        className={`${space === source.colorSpace ? "block" : "hidden @3xl:block compact:@3xl:hidden"} ${authored && space === source.colorSpace ? "font-semibold text-foreground" : "text-muted-foreground"}`}>
-        <span className="block">{spaceName(space)}</span>
-        <span className="block">{coordinates}</span>
+        className={`${space === source.colorSpace ? "block" : "hidden @3xl:block compact:@3xl:hidden"} ${authored && space === source.colorSpace ? "text-foreground" : "text-muted-foreground"}`}>
+        <span className="block font-semibold">{spaceName(space)}</span>
+        <span className="block font-normal">{coordinates ? coordinates.map((coordinate, index) => {
+          const separator = coordinate.indexOf(": ");
+          return <Fragment key={index}>{index > 0 && " · "}<span className="font-semibold">{coordinate.slice(0, separator + 1)}</span>{coordinate.slice(separator + 1)}</Fragment>;
+        }) : "Unavailable"}</span>
       </span>)}
     </span>
-    <span className="block mt-2 text-muted-foreground">Alpha {colorDecimalDisplay(source.alpha)}</span>
+    <span className="block mt-2 font-normal text-muted-foreground"><span className="font-semibold">Alpha</span> {colorDecimalDisplay(source.alpha)}</span>
   </>;
 });
 

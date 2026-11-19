@@ -2,7 +2,7 @@ import { Button as Primitive } from "@base-ui/react/button";
 
 const variants = {
   default: "bg-primary text-primary-foreground border-primary",
-  outline: "border-input bg-background hover:bg-muted",
+  outline: "border-primary bg-background hover:bg-muted",
   ghost: "border-transparent hover:bg-muted",
   navigation:
     "relative border-transparent hover:bg-accent aria-current:bg-accent aria-current:text-foreground aria-current:font-semibold",
