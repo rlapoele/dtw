@@ -32,16 +32,16 @@ outside the old layer filter and Undo/Redo. The disposable project
 After the user committed/pushed and authorized follow-up, Chrome reload retained
 the layer/value and a320-pixel emulated inspector kept shared actions visible and
 keyboard-reachable. All48 focused retention/history, coordination and layer tests
-passed. Keyboard Cancel discarded the draft, but focus restoration in narrow
-emulation remains inconclusive; desktop pointer Cancel returned focus to Layer.
+passed. A separately authorized five-minute narrow check subsequently verified
+keyboard Cancel restoring Semantic and focus to Layer at320 ×800; the next Tab
+reached Resolved & trace. The earlier focus discrepancy did not reproduce.
 Live fault injection and screen-reader delivery remain unverified. The follow-up
 stopped at its bounded15-minute allowance with its one tooling repair consumed;
 see the021 evidence for the Chrome interruption and exact limits.
 Review was independent but not fully rationale-blind; the reviewer inadvertently
 read appended developer evidence before source inspection. Verification stopped at
 approximately21/30 minutes plus less than one minute final handoff review,1/2
-harness repairs. Earlier campaigns remain stopped. User visual acceptance and
-reliable reproduction of the narrow keyboard focus observation are next.
+harness repairs. Earlier campaigns remain stopped. User visual acceptance is next.
 
 ## Value-source radios and layer-editing request — 19 November 2026
 

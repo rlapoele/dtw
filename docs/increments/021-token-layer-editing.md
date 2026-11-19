@@ -326,3 +326,20 @@ reliable reproduction. Live storage/conflict fault injection and actual
 screen-reader delivery remain unverified; accessibility-tree inspection is not
 screen-reader testing. Implementation acceptance remains pending. Only evidence
 documentation changed in this follow-up; no staging, committing or pushing occurred.
+
+## Narrow keyboard verification — 19 November 2026
+
+The user authorized a further check with a strict five-minute maximum, at committed
+baseline `f694de8`. In external Chrome at320 ×800, using the same disposable token
+on Resolved & trace, changing Layer from Semantic to Primitive enabled the shared
+actions. Five Tab presses from Layer reached Cancel. Return restored Semantic,
+disabled both actions and returned actual accessibility focus to Layer. The next
+Tab focused Resolved & trace, confirming the restored tab order. This focused
+scenario passed; the earlier inconclusive observation did not reproduce. It does
+not establish the cause of that earlier observation.
+
+The first accessibility-index click missed the scaled select; a screenshot-based
+click reached it without a tooling repair. No application code changed. Emulation
+was restored to900 ×800 and DevTools closed, leaving Semantic applied with no
+draft. The check and evidence update completed within five minutes. Live fault
+injection and screen-reader delivery remain outside this check.
