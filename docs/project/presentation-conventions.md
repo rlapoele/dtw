@@ -393,3 +393,13 @@ At the user's request, primary/outline buttons and text/search inputs, native
 selects and textareas use Tailwind `border-2` (2px at the default root size,
 double the previous hairline). Transparent/borderless buttons, structural
 separators and focus outlines retain their existing treatment.
+
+### Color summary component grid — 19 November 2026
+
+The user approved a three-column grid in token-table color summaries. Each color
+space has a semibold heading, then three aligned component labels above their
+normal-weight values. Labels omit colons and values omit middle-dot separators;
+space groups use additional vertical spacing. Each label/value pair stays in one
+grid cell, with long values allowed to wrap within narrow cells. Alpha remains a
+separate final line. Authored/converted visibility, precision and color emphasis
+are unchanged. TokenValue owns this presentation through Tailwind utilities.

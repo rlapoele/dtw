@@ -10,6 +10,18 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Color summary grid — 19 November 2026
+
+Implemented the user-approved [three-column component layout](../project/presentation-conventions.md#color-summary-component-grid--19-november-2026)
+in TokenValue, preserving color conversion/precision and responsive space visibility.
+Labels/names are semibold; values are normal weight, with more space between color
+spaces and alpha separate. Typechecking, 32 focused token-list/authored-value tests
+and diff checks passed. Local ownership/consumer review found no new wrappers or
+state changes. Browser connection timed out; visual/narrow-layout acceptance remains
+pending. Approximately 2 minutes of focused verification, zero harness repairs;
+checks stopped without restarting earlier qualification. User visual review is next;
+changes remain unstaged.
+
 ## Five browser presentation fixes — 19 November 2026
 
 Implemented the user's annotated count, navigation, button-motion and inspector
