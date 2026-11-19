@@ -15,9 +15,13 @@
 The user requested a Tokens-like Projects workspace, with search, comparable
 project rows and dialog-based creation. [Increment 020](../increments/020-projects-browse-and-creation-dialog.md)
 is a draft contract; an independent designer assessed the section mapping.
-The proposed direction awaits user feedback before prototyping, followed by
-analyst review and final agreement. No application changes or new qualification
-runs have started. Existing deferred qualification remains deferred.
+The user approved the direction, including dirty-form dismissal confirmation,
+and authorized an isolated prototype on 19 November 2026.
+[Design V1.1](../../prototypes/projects-browse-v1/DESIGN-V1.md) is ready for user review,
+including the user-requested Created and Last updated list fields;
+its build and bounded browsing/dialog checks passed, with detailed limits in the
+increment record. Analyst review and final agreement remain pending. Production
+code and saved projects are unchanged; no qualification campaign was restarted. Existing deferred qualification remains deferred.
 
 ## Navigation and history display cleanup — 19 November 2026
 

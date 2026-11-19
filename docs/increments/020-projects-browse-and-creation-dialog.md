@@ -110,10 +110,35 @@ project-model questions remain deferred under existing owning documents.
 
 ## Design proposals and review
 
-- A separate designer is assessing the existing Tokens/Projects sections and
-  preparing an independent recommendation. No design artifact has been approved.
-- User feedback on the direction precedes prototype editing. An identified
-  proposal is then presented for approval for analyst review.
+- Prototype amendment requested on 19 November 2026: show project creation and
+  last-updated dates in the project list as well as the inspector. Adapt their
+  presentation to available width and preserve explicit unknown-date fallbacks.
+  Design V1.1 implements this in the isolated prototype. Build and browser
+  inspection of populated date columns passed; narrower placement was source-checked.
+  This amendment used approximately two additional minutes of focused checks.
+- On 19 November 2026, the user approved the recommended direction and explicitly
+  authorized a prototype, including dirty-form Keep editing / Discard draft.
+  The approved direction uses Projects / All projects, Restore backup and New
+  project actions, name/description search, Project and Contents columns, the
+  existing inspector, contextual empty states and a Browser retention disclosure.
+  Centered geometry remains; dates/identity stay in the inspector except where
+  row disambiguation or unavailable-entry feedback needs them.
+- [Design V1](../../prototypes/projects-browse-v1/DESIGN-V1.md) is ready for user
+  review, with an isolated interactive prototype at `prototypes/projects-browse-v1/`.
+  Sample data and all operations are in-memory illustrations. Prototype
+  authorization is not approval for analyst review or production implementation.
+- Bounded prototype checks: Vite build passed; browser inspection exercised
+  description search with uppercase query, no matches, preserved filtered
+  selection/reveal, empty collection, creation initial focus, dirty Cancel,
+  Keep editing preservation and Discard focus return. At an observed 780 CSS-pixel
+  width, browse/inspect/back worked without page overflow. Requested viewport
+  dimensions were scaled by the browser tooling, so no exact 390px claim is made.
+  Approximately eight aggregate minutes of prototype source/build/browser checks
+  were used against a ten-minute ceiling. No production qualification was run.
+  Recovery/restore scenarios are provided for review but were not runtime-qualified.
+- A duplicate React-root warning during live prototype edits was repaired by
+  separating the Fast Refresh component from the root entry. The repair passed
+  build/source checks; browser checks were not repeated after that tooling fix.
 - Analyst design review: not started; it must wait for that approval.
 - Final contract/design agreement and implementation authorization: pending.
 - Material revisions return to the user before renewed analyst review.
