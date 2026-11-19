@@ -16,7 +16,7 @@ export function TypeBranch({branch, depth, view, collapsed, onToggle, onSelect}:
         <span className="min-w-0 flex-1 text-left wrap-anywhere">{branch.label}</span>
         <span className="text-muted-foreground font-normal">{branch.count}</span>
       </Button>
-      {expandable && branch.count > 1 ? <Button variant="ghost" size="icon" aria-label={`${open ? "Collapse" : "Expand"} ${branch.label}`} aria-expanded={open} onClick={() => onToggle(key)}>
+      {expandable && branch.count > 1 ? <Button variant="plain" size="icon" aria-label={`${open ? "Collapse" : "Expand"} ${branch.label}`} aria-expanded={open} onClick={() => onToggle(key)}>
         <Icon name="chevron-right" className={`navigation-chevron size-3 ${open ? "rotate-90" : ""}`} />
       </Button> : <span className="size-9 shrink-0" aria-hidden="true" />}
     </div>

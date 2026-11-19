@@ -4,6 +4,7 @@ const variants = {
   default: "bg-primary text-primary-foreground border-primary",
   outline: "border-primary bg-background hover:bg-muted",
   ghost: "border-transparent hover:bg-muted",
+  plain: "border-transparent bg-transparent",
   navigation:
     "relative border-transparent hover:bg-accent aria-current:bg-accent aria-current:text-foreground aria-current:font-semibold",
   mode: "border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm",
