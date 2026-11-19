@@ -288,3 +288,41 @@ Resolved & trace. The draft and shared actions should remain available. Cancel
 should restore the applied layer; Apply should update classification without
 losing the inspector, and Undo should restore it. Judge the layout/interaction;
 the tested correctness evidence above need not be repeated wholesale.
+
+## Authorized follow-up checks — 19 November 2026
+
+After committing and pushing implementation (`03f2c6b`), the user explicitly
+authorized the remaining checks. This follow-up used a separate ceiling of15
+minutes and one tooling repair; it does not reopen earlier qualification campaigns.
+
+Observed in external Chrome using only `Layer editing verification 021`:
+
+- Reload retained the applied Semantic layer and unchanged black color values.
+  Undo/Redo reset with the session, as expected.
+- At a320 ×800 emulated viewport, the inspector and shared Cancel/Apply actions
+  fit horizontally. Keyboard navigation reached Layer, changed its draft to
+  Primitive, switched to Resolved & trace and reached Cancel. Cancel restored
+  Semantic and disabled both actions.
+- Focus after that keyboard Cancel was inconclusive: accessibility state reported
+  the document, and the next Tab reached About retention rather than a control
+  adjacent to Layer. The normal desktop pointer Cancel path subsequently returned
+  focus to Layer. A further desktop keyboard attempt did not reliably stage a
+  draft and supplies no additional pass/fail evidence. The existing focus effect
+  and controlled test do not resolve this live discrepancy; no speculative code
+  change was made.
+- Browser automation unexpectedly lost Chrome while adjusting emulation width.
+  The single repair allowance was consumed reconnecting/reopening the app. The
+  cause was not established as an application defect. Emulation dimensions were
+  restored to900 ×800 and DevTools closed; browser zoom remained110%. The
+  disposable token was left applied as Semantic with no draft.
+
+The three focused suites for retained history, workbench coordination and layer
+editing passed48 tests. These cover controlled failure/recovery and focus behavior;
+they are not evidence of injected failures in a live browser.
+
+Follow-up browser work stopped at the bounded allowance with the tooling repair
+used. Narrow keyboard Cancel focus remains an unresolved observation requiring
+reliable reproduction. Live storage/conflict fault injection and actual
+screen-reader delivery remain unverified; accessibility-tree inspection is not
+screen-reader testing. Implementation acceptance remains pending. Only evidence
+documentation changed in this follow-up; no staging, committing or pushing occurred.
