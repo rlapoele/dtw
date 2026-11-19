@@ -293,3 +293,26 @@ describe("revision eligibility and atomic storage boundary", () => {
     expect(ok(app.inspectToken("p", "alias")).resolution).toMatchObject({ status: "resolved", value: { components: ["0.2", "none", "1.2"] } });
   });
 });
+
+it("revises all editable layers atomically while preserving exact values and unrelated authored facts", () => {
+  const { app } = setup();
+  const exact = { ...literal, components: ["0.123456789123456789", "none", "-0.2"], alpha: "0.987654321987654321" };
+  const original = ok(app.createColorToken(color("edited", exact)));
+  for (const layer of ["semantic", null, "primitive"] as const) {
+    const revised = ok(app.reviseColorToken({ projectId: "p", tokenId: "edited", value: exact, layer }));
+    const { layer: _previous, ...rest } = original;
+    expect(revised).toEqual({ ...rest, ...(layer === null ? {} : { layer }) });
+    expect(Object.hasOwn(revised, "layer")).toBe(layer !== null);
+  }
+  ok(app.createColorToken(color("target")));
+  const combined = ok(app.reviseColorToken({ projectId: "p", tokenId: "edited", value: reference("target"), layer: "semantic" }));
+  expect(combined.layer).toBe("semantic");
+  expect(combined.definition?.assignments[0].value).toEqual(reference("target"));
+  const before = ok(app.inspectToken("p", "edited"));
+  for (const layer of ["component", "invalid", 1, {}]) {
+    expect(app.reviseColorToken({ projectId: "p", tokenId: "edited", value: literal, layer } as never)).toMatchObject({ status: "failure" });
+    expect(ok(app.inspectToken("p", "edited"))).toEqual(before);
+  }
+  expect(app.reviseColorToken({ projectId: "p", tokenId: "edited", value: reference("missing"), layer: null })).toMatchObject({ status: "failure" });
+  expect(ok(app.inspectToken("p", "edited"))).toEqual(before);
+});

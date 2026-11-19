@@ -50,6 +50,8 @@ export type CreateColorTokenInput = {
 export type ReviseColorTokenInput = {
   readonly projectId: string;
   readonly tokenId: string;
+  /** Omitted preserves the layer; null explicitly removes it. */
+  readonly layer?: "primitive" | "semantic" | null;
   readonly value: CreateColorTokenInput["value"];
 };
 
@@ -183,10 +185,19 @@ export function createAuthoringOperations(storage: ProjectStorage) {
         if (input.value.kind !== "literal" && input.value.kind !== "token-reference") {
           throw new RangeError("Color revision requires an explicit color literal or reference");
         }
+        if (input.layer !== undefined && input.layer !== null && input.layer !== "primitive" && input.layer !== "semantic") {
+          throw new RangeError("Color revision supports primitive, semantic or unspecified layer only");
+        }
         const value = input.value.kind === "literal" ? createColorLiteral(input.value) : createTokenReference(input.value);
         // Both pure steps operate on detached data; only the final checked
         // candidate is committed, never the intermediate unassigned token.
         revised = addTokenAssignment(removeTokenAssignment(token, []), { condition: [], value }, []);
+        if (input.layer === null) {
+          const { layer: _layer, ...withoutLayer } = revised;
+          revised = withoutLayer;
+        } else if (input.layer !== undefined) {
+          revised = { ...revised, layer: input.layer };
+        }
       } catch (error) {
         if (!(error instanceof RangeError)) throw error;
         return { status: "failure", error: { code: "invalid-domain-input", message: error.message } };

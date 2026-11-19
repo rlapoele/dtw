@@ -409,7 +409,7 @@ export function TokensWorkbench({
               targetUnavailable={targetUnavailable}
               revision={header.revision}
               requestSource={() => source("token", selection.id)}
-              onApply={async (value) => {
+              onApply={async (value, layer) => {
                 completion.current = (clarification) => {
                   setEditorVersion((v) => v + 1);
                   setDirty(false);
@@ -421,6 +421,7 @@ export function TokensWorkbench({
                     projectId: header.project.id,
                     tokenId: selection.id,
                     value,
+                    ...(layer === undefined ? {} : { layer }),
                   },
                 });
                 if (
@@ -455,6 +456,7 @@ export function TokensWorkbench({
                 return {
                   status: "ok",
                   value: {
+                    ...(next.token.layer === undefined ? {} : { layer: next.token.layer }),
                     definition: {
                       type: "color",
                       assignments: [
@@ -462,7 +464,7 @@ export function TokensWorkbench({
                       ],
                     },
                   },
-                } satisfies ApplicationResult<Pick<Token, "definition">>;
+                } satisfies ApplicationResult<Pick<Token, "definition" | "layer">>;
               }}
             />
           ) : null}

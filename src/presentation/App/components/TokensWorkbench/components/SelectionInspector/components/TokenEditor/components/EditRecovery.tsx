@@ -1,7 +1,6 @@
 import type { RefObject } from "react";
 import { Button } from "@presentation/ui/button";
 import type { DraftSession } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session";
-import type { ImplementedAuthoredValue } from "@domain/token";
 
 export function EditRecovery({
   previous,
@@ -11,7 +10,7 @@ export function EditRecovery({
   headingRef,
   onReview,
 }: {
-  previous: ImplementedAuthoredValue | undefined;
+  previous: unknown;
   current: unknown;
   preserved: DraftSession;
   reviewed: boolean;
@@ -24,7 +23,7 @@ export function EditRecovery({
         Applied state changed
       </h3>
       <p>
-        Raw literal/reference input and view/scale choices are preserved. Review
+        Layer, raw literal/reference input and view/scale choices are preserved. Review
         opens a comparison; only Reapply changes submits a fresh command.
       </p>
       {!reviewed ? (

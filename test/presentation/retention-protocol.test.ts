@@ -165,3 +165,15 @@ it("admits description across creation input and attempt correlation", () => {
   expect(() => validateAttempt({commandId: "command", revision: "revision", incarnation: "db", projectId: "p", expectedRevision: null, operation: "createProject", result: {entityKind: "project", id: "p"}}, "createProject", input)).not.toThrow();
   expect(() => validateHostInput("createProject", {...input, description: null})).toThrow();
 });
+
+it("validates layer revision requests and correlates their acceptance receipts", () => {
+  const request = (layer: unknown) => ({revision: "r", command: {operation: "reviseColorToken", input: {projectId: "p", tokenId: "t", value: {kind: "literal", colorSpace: "srgb", components: ["0", "0", "0"], alpha: "1"}, layer}}});
+  for (const layer of [null, "primitive", "semantic"]) {
+    const input = request(layer);
+    expect(() => validateHostInput("command", input)).not.toThrow();
+    const output = {status: "retained", revision: "r2", readback: "available", receipt: {commandId: "c", operation: "reviseColorToken", result: {entityKind: "token", id: "t"}}};
+    expect(() => validateHostOutput("command", input, output)).not.toThrow();
+    expect(() => validateHostOutput("command", input, {...output, receipt: {...output.receipt, result: {entityKind: "token", id: "other"}}})).toThrow();
+  }
+  for (const layer of ["component", "unspecified", 0, {}, []]) expect(() => validateHostInput("command", request(layer))).toThrow();
+});

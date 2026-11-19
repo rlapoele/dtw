@@ -1,0 +1,53 @@
+{
+  "base": "16d8f5b7e53fba79747f3db8e7636b1e3034fcb8",
+  "files": [
+    {
+      "path": "src/application/authoring.ts",
+      "sha256": "b93d85fbcafe07fcecff280b3ea5e1701fccecd06ff5d048959cd697eefb6188"
+    },
+    {
+      "path": "src/hosts/browser/validation.ts",
+      "sha256": "59e42cec0e8d4c3372f71f072dc0893f978aebbfca4265fa38f0d1d63406b16f"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx",
+      "sha256": "3ff809f3a430d99851e77a9226cb6e78222468ad341210fced011fad247facf6"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditRecovery.tsx",
+      "sha256": "41fd7cd50499f05442d2931c96d167c1198950048e60b4f12ade432afdc6d92b"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent.tsx",
+      "sha256": "50ba4e360d61ff3e93e95e491302c3e5a6896cc54f09ac450c7f1c23b132cf45"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor.ts",
+      "sha256": "e25fd9b39cb8c273fa61895b3d3cc0c2e09bc02966a38338f9cf718c7dd09f51"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session.ts",
+      "sha256": "563a70cbe6404de5d5f2823b17ae83bdeaec48eecec30c61d55813e483ac8af3"
+    },
+    {
+      "path": "test/application/color-revision.test.ts",
+      "sha256": "0284620418e1fd1c689454ea059e9d296e1644330e8a5cb4430607fd6cbb42e1"
+    },
+    {
+      "path": "test/application/retention/history.test.ts",
+      "sha256": "07727455a0904432425c845ab9acae3533470e0629840221333a9a5e767a5d76"
+    },
+    {
+      "path": "test/presentation/layer-editing.test.tsx",
+      "sha256": "8182bfbacce42932f56df94bf7d2c52e2b4be4a0e9cc78dd0245907c3484d022"
+    },
+    {
+      "path": "test/presentation/retention-protocol.test.ts",
+      "sha256": "7af87053d3a2e1db0e508b387412dff868200b616d9cd06c13241ceb24ac9500"
+    },
+    {
+      "path": "test/presentation/workbench-coordination.test.tsx",
+      "sha256": "407263a069facd4390b150e900a16dfe5d71bf06804100f7d5fc616156225164"
+    }
+  ]
+}

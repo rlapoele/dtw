@@ -2,13 +2,39 @@
 
 > Last updated: 19 November 2026
 >
-> Phase: Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
+> Phase: Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
 > completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## Token layer editing — Increment 021 implemented
+
+The user agreed the bounded scope and authorized implementation. The
+[021 contract, completion and evidence](../increments/021-token-layer-editing.md)
+and [design V1](../project/workbench-layout/layer-editing-v1.md) record the accepted
+conversational proposal and designer/analyst/developer/reviewer handoffs.
+
+Eligible color tokens now have a Layer select for Unspecified/Primitive/Semantic.
+Layer/value drafts share Apply/Cancel across both tabs, dirty protection, conflict
+recovery, retention and Undo/Redo. Component remains inspection-only pending an
+association workflow. Reclassification preserves stable selected-token inspection.
+
+Typechecking and125 developer focused tests passed; production build passed before
+a final Cancel focus adjustment, which was rechecked with35 tests and typechecking.
+Independent R1 review found no actionable defects and passed93 tests. Native Chrome
+verified draft/Cancel/Apply from Resolved, actual focus to Layer, stable selection
+outside the old layer filter and Undo/Redo. The disposable project
+`Layer editing verification 021` remains in external Chrome for inspection.
+
+Narrow layout, live reload/fault recovery and screen-reader checks remain unverified.
+Review was independent but not fully rationale-blind; the reviewer inadvertently
+read appended developer evidence before source inspection. Verification stopped at
+approximately21/30 minutes plus less than one minute final handoff review,1/2
+harness repairs. Earlier campaigns remain stopped. User visual acceptance is next;
+all changes remain unstaged.
 
 ## Value-source radios and layer-editing request — 19 November 2026
 
@@ -1008,15 +1034,15 @@ changes are made to resolve it here.
 
 ## Next meaningful action
 
-Increment 015 is complete and user-accepted. The user stages/commits/pushes as
-desired and selects any future work to scope. Earlier qualification/acceptance
-gaps remain with their owning increments. No next increment or renewed campaign
-is authorized.
+The user reviews Increment 021 Layer editing in the inspector and
+stages/commits/pushes as desired. Earlier
+qualification and acceptance limits remain with their owning increments; no
+broader verification campaign is reopened.
 
 ## Resume
 
 Read AGENTS.md, this handoff, actual Git state and the
-[Increment 015 contract/design and authorization](../increments/015-workbench-browse-and-inspector-polish.md)
-before scoping further work or checking the delivered handoff. The [pre-closure snapshot](history/2026-11-15-increment-011-before-closure.md)
+[Increment 021 contract/design and evidence](../increments/021-token-layer-editing.md)
+before continuing the current handoff or scoping further work. The [pre-closure snapshot](history/2026-11-15-increment-011-before-closure.md)
 preserves outgoing 011 detail. [README](../../README.md) owns current commands and
 limits; increment records own their agreements/evidence/acceptance gaps.

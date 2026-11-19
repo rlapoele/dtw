@@ -46,9 +46,10 @@ export function useTokenEditor({
     | undefined;
   onApply: (
     value: ReviseColorTokenInput["value"],
+    layer?: ReviseColorTokenInput["layer"],
   ) =>
-    | ApplicationResult<Pick<Token, "definition">>
-    | Promise<ApplicationResult<Pick<Token, "definition">>>;
+    | ApplicationResult<Pick<Token, "definition" | "layer">>
+    | Promise<ApplicationResult<Pick<Token, "definition" | "layer">>>;
   onDirty: (d: boolean) => void;
   readUnavailable: boolean;
   revision?: string;
@@ -63,15 +64,15 @@ export function useTokenEditor({
       ? i.authoredValue
       : i.authored.definition?.assignments[0]?.value;
   const [accepting, setAccepting] = useState(false);
-  const [session, setSession] = useState(() => baseline(value));
+  const [session, setSession] = useState(() => baseline(value, token.layer ?? null));
   const initial = useRef(session);
   const baselineRevision = useRef({
     revision,
     value: JSON.stringify({ token, value }),
-    previous: value,
+    previous: { value, layer: token.layer ?? null },
   });
   const [recovery, setRecovery] = useState<{
-    previous: typeof value;
+    previous: { value: typeof value; layer: DraftSession["layer"] };
     reviewed: boolean;
   }>();
   const reviewHeading = useRef<HTMLHeadingElement>(null);
@@ -79,6 +80,7 @@ export function useTokenEditor({
   const [tab, setTab] = useState("authored"),
     [error, setError] = useState(""),
     [notice, setNotice] = useState("");
+  const layerRef = useRef<HTMLSelectElement>(null);
   const modeRef = useRef<HTMLInputElement>(null),
     errorRef = useRef<HTMLParagraphElement>(null);
   const [restoreApplyFocus, setRestoreApplyFocus] = useState(false);
@@ -86,12 +88,12 @@ export function useTokenEditor({
     if (restoreApplyFocus && !accepting) {
       // The mode radio inherits disabled from the retaining fieldset. Focus
       // only after React commits the successful, re-enabled editor.
-      modeRef.current?.focus();
+      (tab === "authored" ? modeRef.current : layerRef.current)?.focus();
       setRestoreApplyFocus(false);
     }
-  }, [restoreApplyFocus, accepting]);
+  }, [restoreApplyFocus, accepting, tab]);
   const dirty =
-    session.edited || session.reference !== initial.current.reference;
+    session.edited || session.reference !== initial.current.reference || session.layer !== initial.current.layer;
   useEffect(() => onDirty(dirty), [dirty, onDirty]);
   useEffect(() => {
     const before = baselineRevision.current;
@@ -99,7 +101,7 @@ export function useTokenEditor({
       if (dirty && before.value !== JSON.stringify({ token, value }))
         setRecovery({ previous: before.previous, reviewed: false });
       if (!dirty) {
-        const next = refreshCleanSession(session, value);
+        const next = refreshCleanSession(session, value, token.layer ?? null);
         initial.current = next;
         setSession(next);
         setRecovery(undefined);
@@ -107,7 +109,7 @@ export function useTokenEditor({
       baselineRevision.current = {
         revision,
         value: JSON.stringify({ token, value }),
-        previous: value,
+        previous: { value, layer: token.layer ?? null },
       };
     }
   }, [revision, value, dirty]);
@@ -149,6 +151,11 @@ export function useTokenEditor({
     [project.groups],
   );
   const editable = projected ? i.editable : eligible(i.authored);
+  function changeLayer(layer: DraftSession["layer"]) {
+    if (layer === "component") return;
+    setSession({ ...session, layer });
+    setError("");
+  }
   function changeMode(mode: DraftSession["mode"]) {
     setSession({ ...session, mode });
     setError("");
@@ -210,9 +217,9 @@ export function useTokenEditor({
             valuePath: [],
           };
     setAccepting(true);
-    let result: ApplicationResult<Pick<Token, "definition">>;
+    let result: ApplicationResult<Pick<Token, "definition" | "layer">>;
     try {
-      result = await onApply(candidate);
+      result = await onApply(candidate, session.layer === "component" ? undefined : session.layer);
     } catch (error) {
       setError(
         error instanceof Error
@@ -227,12 +234,12 @@ export function useTokenEditor({
       setError("Apply failed. " + failureText(result));
       return;
     }
-    const next = baseline(result.value.definition?.assignments[0]?.value);
+    const next = baseline(result.value.definition?.assignments[0]?.value, result.value.layer ?? null);
     initial.current = next;
     baselineRevision.current = {
       revision,
       value: JSON.stringify(result.value.definition?.assignments[0]?.value),
-      previous: result.value.definition?.assignments[0]?.value,
+      previous: { value: result.value.definition?.assignments[0]?.value, layer: result.value.layer ?? null },
     };
     setRecovery(undefined);
     setSession(next);
@@ -241,14 +248,14 @@ export function useTokenEditor({
     setRestoreApplyFocus(true);
   }
   function cancel() {
-    const currentBaseline = baseline(value);
+    const currentBaseline = baseline(value, token.layer ?? null);
     initial.current = currentBaseline;
     setSession(currentBaseline);
     setRecovery(undefined);
     onDirty(false);
     setError("");
-    outcomes.publish("Both drafts discarded. Applied value unchanged.", "information");
-    modeRef.current?.focus();
+    outcomes.publish("Draft changes discarded. Applied value and layer unchanged.", "information");
+    setRestoreApplyFocus(true);
   }
   return {
     i,
@@ -264,6 +271,7 @@ export function useTokenEditor({
     error,
     notice,
     modeRef,
+    layerRef,
     errorRef,
     dirty,
     applied,
@@ -275,6 +283,7 @@ export function useTokenEditor({
     groupLabels,
     editable,
     changeMode,
+    changeLayer,
     changeReference,
     changeColorDraft,
     reportColorError,

@@ -1,0 +1,666 @@
+diff --git a/src/application/authoring.ts b/src/application/authoring.ts
+index a1a2479..e074ff6 100644
+--- a/src/application/authoring.ts
++++ b/src/application/authoring.ts
+@@ -50,6 +50,8 @@ export type CreateColorTokenInput = {
+ export type ReviseColorTokenInput = {
+   readonly projectId: string;
+   readonly tokenId: string;
++  /** Omitted preserves the layer; null explicitly removes it. */
++  readonly layer?: "primitive" | "semantic" | null;
+   readonly value: CreateColorTokenInput["value"];
+ };
+ 
+@@ -183,10 +185,19 @@ export function createAuthoringOperations(storage: ProjectStorage) {
+         if (input.value.kind !== "literal" && input.value.kind !== "token-reference") {
+           throw new RangeError("Color revision requires an explicit color literal or reference");
+         }
++        if (input.layer !== undefined && input.layer !== null && input.layer !== "primitive" && input.layer !== "semantic") {
++          throw new RangeError("Color revision supports primitive, semantic or unspecified layer only");
++        }
+         const value = input.value.kind === "literal" ? createColorLiteral(input.value) : createTokenReference(input.value);
+         // Both pure steps operate on detached data; only the final checked
+         // candidate is committed, never the intermediate unassigned token.
+         revised = addTokenAssignment(removeTokenAssignment(token, []), { condition: [], value }, []);
++        if (input.layer === null) {
++          const { layer: _layer, ...withoutLayer } = revised;
++          revised = withoutLayer;
++        } else if (input.layer !== undefined) {
++          revised = { ...revised, layer: input.layer };
++        }
+       } catch (error) {
+         if (!(error instanceof RangeError)) throw error;
+         return { status: "failure", error: { code: "invalid-domain-input", message: error.message } };
+diff --git a/src/hosts/browser/validation.ts b/src/hosts/browser/validation.ts
+index aeda26a..72910aa 100644
+--- a/src/hosts/browser/validation.ts
++++ b/src/hosts/browser/validation.ts
+@@ -47,10 +47,11 @@ function command(value: unknown) {
+   ]);
+   shape(v, ["operation", "input"]);
+   if (v.operation === "reviseColorToken") {
+-    const x = shape(v.input, ["projectId", "tokenId", "value"]);
++    const x = shape(v.input, ["projectId", "tokenId", "value"], ["layer"]);
+     text(x.projectId);
+     text(x.tokenId);
+     colorValue(x.value);
++    if (x.layer !== undefined && x.layer !== null) enumeration(x.layer, ["primitive", "semantic"]);
+     return;
+   }
+   const x = shape(
+diff --git a/src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx b/src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx
+index 947c9d3..fcc8e1f 100644
+--- a/src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx
++++ b/src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx
+@@ -409,7 +409,7 @@ export function TokensWorkbench({
+               targetUnavailable={targetUnavailable}
+               revision={header.revision}
+               requestSource={() => source("token", selection.id)}
+-              onApply={async (value) => {
++              onApply={async (value, layer) => {
+                 completion.current = (clarification) => {
+                   setEditorVersion((v) => v + 1);
+                   setDirty(false);
+@@ -421,6 +421,7 @@ export function TokensWorkbench({
+                     projectId: header.project.id,
+                     tokenId: selection.id,
+                     value,
++                    ...(layer === undefined ? {} : { layer }),
+                   },
+                 });
+                 if (
+@@ -455,6 +456,7 @@ export function TokensWorkbench({
+                 return {
+                   status: "ok",
+                   value: {
++                    ...(next.token.layer === undefined ? {} : { layer: next.token.layer }),
+                     definition: {
+                       type: "color",
+                       assignments: [
+@@ -462,7 +464,7 @@ export function TokensWorkbench({
+                       ],
+                     },
+                   },
+-                } satisfies ApplicationResult<Pick<Token, "definition">>;
++                } satisfies ApplicationResult<Pick<Token, "definition" | "layer">>;
+               }}
+             />
+           ) : null}
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditRecovery.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditRecovery.tsx
+index 0447f37..e729daf 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditRecovery.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditRecovery.tsx
+@@ -1,7 +1,6 @@
+ import type { RefObject } from "react";
+ import { Button } from "@presentation/ui/button";
+ import type { DraftSession } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session";
+-import type { ImplementedAuthoredValue } from "@domain/token";
+ 
+ export function EditRecovery({
+   previous,
+@@ -11,7 +10,7 @@ export function EditRecovery({
+   headingRef,
+   onReview,
+ }: {
+-  previous: ImplementedAuthoredValue | undefined;
++  previous: unknown;
+   current: unknown;
+   preserved: DraftSession;
+   reviewed: boolean;
+@@ -24,7 +23,7 @@ export function EditRecovery({
+         Applied state changed
+       </h3>
+       <p>
+-        Raw literal/reference input and view/scale choices are preserved. Review
++        Layer, raw literal/reference input and view/scale choices are preserved. Review
+         opens a comparison; only Reapply changes submits a fresh command.
+       </p>
+       {!reviewed ? (
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent.tsx b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent.tsx
+index ce55e83..a4fc34c 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent.tsx
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent.tsx
+@@ -9,6 +9,7 @@ import type { useTokenEditor } from "@presentation/App/components/TokensWorkbenc
+ 
+ import { AuthoredValue } from "@presentation/App/components/TokensWorkbench/components/AuthoredValue";
+ import { TokenEditorTabs } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorTabs";
++import { Select } from "@presentation/ui/select";
+ import { Badge } from "@presentation/ui/badge";
+ 
+ import { Tabs } from "@base-ui/react/tabs";
+@@ -34,6 +35,7 @@ export function TokenEditorContent({
+     error,
+     notice,
+     modeRef,
++    layerRef,
+     errorRef,
+     dirty,
+     applied,
+@@ -44,6 +46,7 @@ export function TokenEditorContent({
+     groupLabels,
+     editable,
+     changeMode,
++    changeLayer,
+     changeReference,
+     changeColorDraft,
+     reportColorError,
+@@ -58,6 +61,7 @@ export function TokenEditorContent({
+     targetUnavailable,
+   } = editor;
+   const modeName = useId();
++  const layerId = useId();
+   const headingRef = useRef<HTMLDivElement>(null);
+   useLayoutEffect(() => {
+     const heading = headingRef.current;
+@@ -101,37 +105,25 @@ export function TokenEditorContent({
+           </p>
+         )}
+         <div className="flex flex-wrap gap-2 mt-3">
+-          {token.layer && <Badge className="bg-muted text-foreground">{token.layer}</Badge>}
++          <div className="w-full">
++            <label htmlFor={layerId} className="block text-caption font-medium mb-1">Layer</label>
++            <Select id={layerId} ref={layerRef} value={session.layer ?? ""}
++              aria-describedby={`${layerId}-help`}
++              disabled={!editable || accepting || readOnly || readUnavailable || !!targetUnavailable || (!!recovery && !recovery.reviewed)}
++              onChange={event => changeLayer(event.target.value === "" ? null : event.target.value as "primitive" | "semantic")}>
++              <option value="">Unspecified</option>
++              <option value="primitive">Primitive</option>
++              <option value="semantic">Semantic</option>
++              <option value="component" disabled>Component</option>
++            </Select>
++            <p id={`${layerId}-help`} className="text-caption text-muted-foreground mt-2">Component requires a component association; editing it is not available yet.</p>
++          </div>
+           {!editable && <Badge>Inspection only</Badge>}
+         </div>
+       </div>
+       <Tabs.Root value={tab} onValueChange={selectTab}>
+         <TokenEditorTabs />
+         <Tabs.Panel value="authored" className="editor-body bg-surface p-6 touch:p-4">
+-          {targetUnavailable && (
+-            <p
+-              role="status"
+-              className="notification notification-warning text-caption"
+-            >
+-              {targetUnavailable} Preserved input remains selectable. This
+-              action cannot recreate or retarget it.
+-            </p>
+-          )}
+-          {recovery && (
+-            <EditRecovery
+-              previous={recovery.previous}
+-              current={
+-                value ?? {
+-                  type: token.definition?.type,
+-                  kind: "token" in i ? i.authoredKind : "No assignment",
+-                }
+-              }
+-              preserved={session}
+-              reviewed={recovery.reviewed}
+-              headingRef={reviewHeading}
+-              onReview={reviewRecovery}
+-            />
+-          )}
+           {editable || dirty ? (
+             <>
+               <fieldset disabled={accepting}>
+@@ -177,50 +169,6 @@ export function TokenEditorContent({
+               <p className="helper text-muted-foreground font-normal preview-detail mt-2 wrap-anywhere">
+                 Draft preview: {draft.message}
+               </p>
+-              {error ? (
+-                <p
+-                  ref={errorRef}
+-                  tabIndex={-1}
+-                  className="notification notification-error text-caption mt-4"
+-                  id="editor-error"
+-                  role="alert"
+-                >
+-                  {error}
+-                </p>
+-              ) : (
+-                <span id="editor-error" />
+-              )}
+-              <EditorActions
+-                cancelDisabled={!dirty || accepting}
+-                applyDisabled={
+-                  !dirty ||
+-                  !editable ||
+-                  !!targetUnavailable ||
+-                  (!!recovery && !recovery.reviewed) ||
+-                  readUnavailable ||
+-                  readOnly ||
+-                  accepting ||
+-                  session.byteInvalid
+-                }
+-                applyLabel={
+-                  accepting
+-                    ? "Retaining changes…"
+-                    : recovery?.reviewed
+-                      ? "Reapply changes"
+-                      : "Apply changes"
+-                }
+-                onCancel={cancel}
+-                onApply={apply}
+-              />
+-              <p
+-                className="helper text-muted-foreground font-normal"
+-                role="status"
+-              >
+-                {notice ||
+-                  (dirty
+-                    ? "Changes are not applied yet."
+-                    : "Editing preserves name and metadata.")}
+-              </p>
+             </>
+           ) : (
+             <p className="notification notification-warning text-caption mt-4">
+@@ -269,6 +217,73 @@ export function TokenEditorContent({
+           />
+         </Tabs.Panel>
+       </Tabs.Root>
++      <div className="px-6 pb-4 touch:px-4">
++          {targetUnavailable && (
++            <p
++              role="status"
++              className="notification notification-warning text-caption"
++            >
++              {targetUnavailable} Preserved input remains selectable. This
++              action cannot recreate or retarget it.
++            </p>
++          )}
++          {recovery && (
++            <EditRecovery
++              previous={recovery.previous}
++              current={{ value, layer: token.layer ?? null }}
++              preserved={session}
++              reviewed={recovery.reviewed}
++              headingRef={reviewHeading}
++              onReview={reviewRecovery}
++            />
++          )}
++        {(editable || dirty) && <>
++              {error ? (
++                <p
++                  ref={errorRef}
++                  tabIndex={-1}
++                  className="notification notification-error text-caption mt-4"
++                  id="editor-error"
++                  role="alert"
++                >
++                  {error}
++                </p>
++              ) : (
++                <span id="editor-error" />
++              )}
++              <EditorActions
++                cancelDisabled={!dirty || accepting}
++                applyDisabled={
++                  !dirty ||
++                  !editable ||
++                  !!targetUnavailable ||
++                  (!!recovery && !recovery.reviewed) ||
++                  readUnavailable ||
++                  readOnly ||
++                  accepting ||
++                  (session.mode === "literal" && session.byteInvalid)
++                }
++                applyLabel={
++                  accepting
++                    ? "Retaining changes…"
++                    : recovery?.reviewed
++                      ? "Reapply changes"
++                      : "Apply changes"
++                }
++                onCancel={cancel}
++                onApply={apply}
++              />
++              <p
++                className="helper text-muted-foreground font-normal"
++                role="status"
++              >
++                {notice ||
++                  (dirty
++                    ? "Changes are not applied yet."
++                    : "Edit value and layer; name and other metadata are preserved.")}
++              </p>
++        </>}
++      </div>
+       <div className="inspector-foot density:mt-5 small:mt-0 border-t-hairline border-border bg-surface px-6 py-4 mt-auto flex justify-between text-muted-foreground">
+         <span>Regeneration</span>
+         <span>{token.authoring.regeneration}</span>
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor.ts b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor.ts
+index 2f098b5..5ecb5ec 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor.ts
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor.ts
+@@ -46,9 +46,10 @@ export function useTokenEditor({
+     | undefined;
+   onApply: (
+     value: ReviseColorTokenInput["value"],
++    layer?: ReviseColorTokenInput["layer"],
+   ) =>
+-    | ApplicationResult<Pick<Token, "definition">>
+-    | Promise<ApplicationResult<Pick<Token, "definition">>>;
++    | ApplicationResult<Pick<Token, "definition" | "layer">>
++    | Promise<ApplicationResult<Pick<Token, "definition" | "layer">>>;
+   onDirty: (d: boolean) => void;
+   readUnavailable: boolean;
+   revision?: string;
+@@ -63,15 +64,15 @@ export function useTokenEditor({
+       ? i.authoredValue
+       : i.authored.definition?.assignments[0]?.value;
+   const [accepting, setAccepting] = useState(false);
+-  const [session, setSession] = useState(() => baseline(value));
++  const [session, setSession] = useState(() => baseline(value, token.layer ?? null));
+   const initial = useRef(session);
+   const baselineRevision = useRef({
+     revision,
+     value: JSON.stringify({ token, value }),
+-    previous: value,
++    previous: { value, layer: token.layer ?? null },
+   });
+   const [recovery, setRecovery] = useState<{
+-    previous: typeof value;
++    previous: { value: typeof value; layer: DraftSession["layer"] };
+     reviewed: boolean;
+   }>();
+   const reviewHeading = useRef<HTMLHeadingElement>(null);
+@@ -79,6 +80,7 @@ export function useTokenEditor({
+   const [tab, setTab] = useState("authored"),
+     [error, setError] = useState(""),
+     [notice, setNotice] = useState("");
++  const layerRef = useRef<HTMLSelectElement>(null);
+   const modeRef = useRef<HTMLInputElement>(null),
+     errorRef = useRef<HTMLParagraphElement>(null);
+   const [restoreApplyFocus, setRestoreApplyFocus] = useState(false);
+@@ -86,12 +88,12 @@ export function useTokenEditor({
+     if (restoreApplyFocus && !accepting) {
+       // The mode radio inherits disabled from the retaining fieldset. Focus
+       // only after React commits the successful, re-enabled editor.
+-      modeRef.current?.focus();
++      (tab === "authored" ? modeRef.current : layerRef.current)?.focus();
+       setRestoreApplyFocus(false);
+     }
+-  }, [restoreApplyFocus, accepting]);
++  }, [restoreApplyFocus, accepting, tab]);
+   const dirty =
+-    session.edited || session.reference !== initial.current.reference;
++    session.edited || session.reference !== initial.current.reference || session.layer !== initial.current.layer;
+   useEffect(() => onDirty(dirty), [dirty, onDirty]);
+   useEffect(() => {
+     const before = baselineRevision.current;
+@@ -99,7 +101,7 @@ export function useTokenEditor({
+       if (dirty && before.value !== JSON.stringify({ token, value }))
+         setRecovery({ previous: before.previous, reviewed: false });
+       if (!dirty) {
+-        const next = refreshCleanSession(session, value);
++        const next = refreshCleanSession(session, value, token.layer ?? null);
+         initial.current = next;
+         setSession(next);
+         setRecovery(undefined);
+@@ -107,7 +109,7 @@ export function useTokenEditor({
+       baselineRevision.current = {
+         revision,
+         value: JSON.stringify({ token, value }),
+-        previous: value,
++        previous: { value, layer: token.layer ?? null },
+       };
+     }
+   }, [revision, value, dirty]);
+@@ -149,6 +151,11 @@ export function useTokenEditor({
+     [project.groups],
+   );
+   const editable = projected ? i.editable : eligible(i.authored);
++  function changeLayer(layer: DraftSession["layer"]) {
++    if (layer === "component") return;
++    setSession({ ...session, layer });
++    setError("");
++  }
+   function changeMode(mode: DraftSession["mode"]) {
+     setSession({ ...session, mode });
+     setError("");
+@@ -210,9 +217,9 @@ export function useTokenEditor({
+             valuePath: [],
+           };
+     setAccepting(true);
+-    let result: ApplicationResult<Pick<Token, "definition">>;
++    let result: ApplicationResult<Pick<Token, "definition" | "layer">>;
+     try {
+-      result = await onApply(candidate);
++      result = await onApply(candidate, session.layer === "component" ? undefined : session.layer);
+     } catch (error) {
+       setError(
+         error instanceof Error
+@@ -227,12 +234,12 @@ export function useTokenEditor({
+       setError("Apply failed. " + failureText(result));
+       return;
+     }
+-    const next = baseline(result.value.definition?.assignments[0]?.value);
++    const next = baseline(result.value.definition?.assignments[0]?.value, result.value.layer ?? null);
+     initial.current = next;
+     baselineRevision.current = {
+       revision,
+       value: JSON.stringify(result.value.definition?.assignments[0]?.value),
+-      previous: result.value.definition?.assignments[0]?.value,
++      previous: { value: result.value.definition?.assignments[0]?.value, layer: result.value.layer ?? null },
+     };
+     setRecovery(undefined);
+     setSession(next);
+@@ -241,14 +248,14 @@ export function useTokenEditor({
+     setRestoreApplyFocus(true);
+   }
+   function cancel() {
+-    const currentBaseline = baseline(value);
++    const currentBaseline = baseline(value, token.layer ?? null);
+     initial.current = currentBaseline;
+     setSession(currentBaseline);
+     setRecovery(undefined);
+     onDirty(false);
+     setError("");
+-    outcomes.publish("Both drafts discarded. Applied value unchanged.", "information");
+-    modeRef.current?.focus();
++    outcomes.publish("Draft changes discarded. Applied value and layer unchanged.", "information");
++    setRestoreApplyFocus(true);
+   }
+   return {
+     i,
+@@ -264,6 +271,7 @@ export function useTokenEditor({
+     error,
+     notice,
+     modeRef,
++    layerRef,
+     errorRef,
+     dirty,
+     applied,
+@@ -275,6 +283,7 @@ export function useTokenEditor({
+     groupLabels,
+     editable,
+     changeMode,
++    changeLayer,
+     changeReference,
+     changeColorDraft,
+     reportColorError,
+diff --git a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session.ts b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session.ts
+index 32f380d..d478e5d 100644
+--- a/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session.ts
++++ b/src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session.ts
+@@ -14,6 +14,7 @@ export type LiteralDraft = {
+   alpha: string;
+ };
+ export type DraftSession = {
++  layer: "primitive" | "semantic" | "component" | null;
+   mode: "literal" | "reference";
+   literal: LiteralDraft;
+   reference: string | null;
+@@ -24,7 +25,7 @@ export type DraftSession = {
+   byteEdited: [boolean, boolean, boolean];
+   edited: boolean;
+ };
+-export function baseline(value?: ImplementedAuthoredValue): DraftSession {
++export function baseline(value?: ImplementedAuthoredValue, layer: DraftSession["layer"] = null): DraftSession {
+   const literal =
+     value?.kind === "literal" && value.valueType === "color"
+       ? {
+@@ -38,6 +39,7 @@ export function baseline(value?: ImplementedAuthoredValue): DraftSession {
+           alpha: "1",
+         };
+   return {
++    layer,
+     mode: value?.kind === "token-reference" ? "reference" : "literal",
+     literal,
+     reference: value?.kind === "token-reference" ? value.targetTokenId : null,
+@@ -53,9 +55,10 @@ export function baseline(value?: ImplementedAuthoredValue): DraftSession {
+ export function refreshCleanSession(
+   session: DraftSession,
+   value?: ImplementedAuthoredValue,
++  layer: DraftSession["layer"] = null,
+ ): DraftSession {
+   return {
+-    ...baseline(value),
++    ...baseline(value, layer),
+     viewSpace: session.viewSpace,
+     scale: session.scale,
+   };
+diff --git a/test/application/color-revision.test.ts b/test/application/color-revision.test.ts
+index 9902e67..bc87be9 100644
+--- a/test/application/color-revision.test.ts
++++ b/test/application/color-revision.test.ts
+@@ -293,3 +293,26 @@ describe("revision eligibility and atomic storage boundary", () => {
+     expect(ok(app.inspectToken("p", "alias")).resolution).toMatchObject({ status: "resolved", value: { components: ["0.2", "none", "1.2"] } });
+   });
+ });
++
++it("revises all editable layers atomically while preserving exact values and unrelated authored facts", () => {
++  const { app } = setup();
++  const exact = { ...literal, components: ["0.123456789123456789", "none", "-0.2"], alpha: "0.987654321987654321" };
++  const original = ok(app.createColorToken(color("edited", exact)));
++  for (const layer of ["semantic", null, "primitive"] as const) {
++    const revised = ok(app.reviseColorToken({ projectId: "p", tokenId: "edited", value: exact, layer }));
++    const { layer: _previous, ...rest } = original;
++    expect(revised).toEqual({ ...rest, ...(layer === null ? {} : { layer }) });
++    expect(Object.hasOwn(revised, "layer")).toBe(layer !== null);
++  }
++  ok(app.createColorToken(color("target")));
++  const combined = ok(app.reviseColorToken({ projectId: "p", tokenId: "edited", value: reference("target"), layer: "semantic" }));
++  expect(combined.layer).toBe("semantic");
++  expect(combined.definition?.assignments[0].value).toEqual(reference("target"));
++  const before = ok(app.inspectToken("p", "edited"));
++  for (const layer of ["component", "invalid", 1, {}]) {
++    expect(app.reviseColorToken({ projectId: "p", tokenId: "edited", value: literal, layer } as never)).toMatchObject({ status: "failure" });
++    expect(ok(app.inspectToken("p", "edited"))).toEqual(before);
++  }
++  expect(app.reviseColorToken({ projectId: "p", tokenId: "edited", value: reference("missing"), layer: null })).toMatchObject({ status: "failure" });
++  expect(ok(app.inspectToken("p", "edited"))).toEqual(before);
++});
+diff --git a/test/application/retention/history.test.ts b/test/application/retention/history.test.ts
+index 2465092..4eb88d3 100644
+--- a/test/application/retention/history.test.ts
++++ b/test/application/retention/history.test.ts
+@@ -133,3 +133,29 @@ it("reports true retained counts through traversal, branching, suspension and in
+   await group(f, "j"); await f.app.leaveProject("p");
+   expect(f.app.historyState()).toMatchObject({undoCount: 0, redoCount: 0});
+ });
++
++it("retains layer edits and exact backup data in one history step, preserving redo on a no-op", async () => {
++  const { decodeRetainedRecord } = await import("@application/retention/record");
++  const { encodeBackup, decodeBackup } = await import("@application/retention/codec");
++  const f = await opened();
++  const value = {kind: "literal", colorSpace: "srgb", components: ["0.123456789123456789", "none", "0"], alpha: "1"} as const;
++  f.finish(await f.app.command({operation: "createColorToken", input: {projectId: "p", id: "t", localName: "color", parentGroupId: null, type: "color", regeneration: "protected", layer: "primitive", value}}, f.record().revision));
++  const original = f.record().snapshot;
++  const count = f.app.historyState().undoCount;
++  f.finish(await f.app.command({operation: "reviseColorToken", input: {projectId: "p", tokenId: "t", value, layer: "semantic"}}, f.record().revision));
++  expect(f.app.historyState().undoCount).toBe(count + 1);
++  const changed = f.record().snapshot;
++  expect(changed.tokens[0].layer).toBe("semantic");
++  expect(changed.tokens[0].definition).toEqual(original.tokens[0].definition);
++  expect(decodeRetainedRecord(f.record(), "p").snapshot).toEqual(changed);
++  expect(decodeBackup(encodeBackup(changed, "2026-11-19T10:00:00.000Z")).snapshot).toEqual(changed);
++  await traverse(f, "undo");
++  expect(f.record().snapshot).toEqual(original);
++  const before = f.record(), writes = f.writes(), redo = f.app.historyState().redo;
++  expect(await f.app.command({operation: "reviseColorToken", input: {projectId: "p", tokenId: "t", value, layer: "primitive"}}, before.revision)).toMatchObject({status: "unchanged"});
++  expect(f.record()).toBe(before); expect(f.writes()).toBe(writes); expect(f.app.historyState().redo).toEqual(redo);
++  await traverse(f, "redo"); expect(f.record().snapshot).toEqual(changed);
++  f.finish(await f.app.command({operation: "reviseColorToken", input: {projectId: "p", tokenId: "t", value: {...value, alpha: "0.5"}, layer: null}}, f.record().revision));
++  expect(Object.hasOwn(f.record().snapshot.tokens[0], "layer")).toBe(false);
++  await traverse(f, "undo"); expect(f.record().snapshot).toEqual(changed);
++});
+diff --git a/test/presentation/retention-protocol.test.ts b/test/presentation/retention-protocol.test.ts
+index 01117c7..69c63ee 100644
+--- a/test/presentation/retention-protocol.test.ts
++++ b/test/presentation/retention-protocol.test.ts
+@@ -165,3 +165,15 @@ it("admits description across creation input and attempt correlation", () => {
+   expect(() => validateAttempt({commandId: "command", revision: "revision", incarnation: "db", projectId: "p", expectedRevision: null, operation: "createProject", result: {entityKind: "project", id: "p"}}, "createProject", input)).not.toThrow();
+   expect(() => validateHostInput("createProject", {...input, description: null})).toThrow();
+ });
++
++it("validates layer revision requests and correlates their acceptance receipts", () => {
++  const request = (layer: unknown) => ({revision: "r", command: {operation: "reviseColorToken", input: {projectId: "p", tokenId: "t", value: {kind: "literal", colorSpace: "srgb", components: ["0", "0", "0"], alpha: "1"}, layer}}});
++  for (const layer of [null, "primitive", "semantic"]) {
++    const input = request(layer);
++    expect(() => validateHostInput("command", input)).not.toThrow();
++    const output = {status: "retained", revision: "r2", readback: "available", receipt: {commandId: "c", operation: "reviseColorToken", result: {entityKind: "token", id: "t"}}};
++    expect(() => validateHostOutput("command", input, output)).not.toThrow();
++    expect(() => validateHostOutput("command", input, {...output, receipt: {...output.receipt, result: {entityKind: "token", id: "other"}}})).toThrow();
++  }
++  for (const layer of ["component", "unspecified", 0, {}, []]) expect(() => validateHostInput("command", request(layer))).toThrow();
++});
+diff --git a/test/presentation/workbench-coordination.test.tsx b/test/presentation/workbench-coordination.test.tsx
+index 1475685..61da38f 100644
+--- a/test/presentation/workbench-coordination.test.tsx
++++ b/test/presentation/workbench-coordination.test.tsx
+@@ -827,3 +827,54 @@ it.each([false, true])("returns restore-cancel focus after catalogue refresh wit
+   runFrame!();
+   expect(focus).toHaveBeenCalledTimes(movedFocus ? 0 : 1);
+ });
++
++it("coordinates layer-only drafts, resolved-tab focus, exact values and metadata-only recovery", async () => {
++  const { useTokenEditor } = await import("@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor");
++  const { changeView } = await import("@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session");
++  const { createColorLiteral } = await import("@domain/color-literal");
++  const value = createColorLiteral({colorSpace: "srgb", components: ["0.123456789123456789", "0.2", "0.3"], alpha: "0.987654321987654321"});
++  let inspection: any = {token: {id: "t", localName: "Token", layer: "primitive", definition: {type: "color"}, authoring: {regeneration: "protected"}}, authoredValue: value, editable: true, resolution: {status: "unresolved", reason: "test", trace: [], diagnostics: []}};
++  let revision = "r1";
++  const pending = deferred<any>();
++  const onApply = vi.fn(() => pending.promise);
++  const hook = () => useTokenEditor({inspection, revision, project: context as any, inspect: () => undefined, onApply, onDirty: vi.fn(), readUnavailable: false});
++  let owner = render(hook); effects(); owner = render(hook);
++  owner.changeLayer("semantic"); owner = render(hook); expect(owner.dirty).toBe(true);
++  owner.changeLayer("primitive"); owner = render(hook); expect(owner.dirty).toBe(false);
++  owner.changeColorDraft(changeView(owner.session, "oklch")); owner = render(hook);
++  owner.changeLayer(null); owner = render(hook);
++  owner.selectTab("resolved"); owner = render(hook);
++  const focus = vi.fn(), hiddenFocus = vi.fn();
++  owner.layerRef.current = {focus} as any; owner.modeRef.current = {focus: hiddenFocus} as any;
++  const applying = owner.apply(); owner = render(hook);
++  expect(owner.accepting).toBe(true);
++  await owner.apply(); expect(onApply).toHaveBeenCalledTimes(1);
++  expect(onApply).toHaveBeenCalledWith({kind: "literal", colorSpace: "srgb", components: value.components, alpha: value.alpha}, null);
++  pending.resolve({status: "ok", value: {definition: {type: "color", assignments: [{condition: [], value}]}}});
++  await applying; owner = render(hook); effects(); owner = render(hook);
++  expect(owner.dirty).toBe(false); expect(owner.session.layer).toBe(null);
++  expect(focus).toHaveBeenCalled(); expect(hiddenFocus).not.toHaveBeenCalled();
++  owner.changeLayer("semantic"); owner = render(hook); effects();
++  revision = "r2"; inspection = {...inspection, token: {...inspection.token, layer: "semantic"}};
++  owner = render(hook); effects(); owner = render(hook);
++  expect(owner.recovery?.reviewed).toBe(false); expect(owner.session.layer).toBe("semantic");
++  expect(owner.recovery?.previous.layer).toBe(null);
++  await owner.apply(); expect(onApply).toHaveBeenCalledTimes(1);
++  focus.mockClear();
++  owner.cancel(); expect(focus).not.toHaveBeenCalled(); owner = render(hook); effects(); owner = render(hook);
++  expect(focus).toHaveBeenCalled();
++  expect(owner.session.layer).toBe("semantic"); expect(owner.dirty).toBe(false); expect(owner.recovery).toBeUndefined();
++});
++
++it("retains the layer draft on a failed combined reference edit", async () => {
++  const { useTokenEditor } = await import("@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor");
++  const onApply = vi.fn(async () => ({status: "failure", error: {code: "storage-failure", operation: "commit", message: "Unknown outcome"}} as const));
++  const inspection: any = {token: {id: "t", localName: "Token", definition: {type: "color"}, authoring: {regeneration: "allowed"}}, authoredValue: {kind: "token-reference", targetTokenId: "target", valuePath: []}, editable: true, resolution: {status: "unresolved", reason: "test", trace: [], diagnostics: []}};
++  const hook = () => useTokenEditor({inspection, project: context as any, inspect: () => undefined, onApply, onDirty: vi.fn(), readUnavailable: false});
++  let owner = render(hook); effects(); owner = render(hook);
++  owner.changeLayer("semantic"); owner = render(hook);
++  owner.changeColorDraft({...owner.session, byteInvalid: true}); owner = render(hook);
++  await owner.apply(); owner = render(hook);
++  expect(onApply).toHaveBeenCalledWith(inspection.authoredValue, "semantic");
++  expect(owner.session.layer).toBe("semantic"); expect(owner.dirty).toBe(true); expect(owner.error).toContain("Unknown outcome");
++});

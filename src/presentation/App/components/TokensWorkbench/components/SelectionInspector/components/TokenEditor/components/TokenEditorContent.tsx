@@ -9,6 +9,7 @@ import type { useTokenEditor } from "@presentation/App/components/TokensWorkbenc
 
 import { AuthoredValue } from "@presentation/App/components/TokensWorkbench/components/AuthoredValue";
 import { TokenEditorTabs } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorTabs";
+import { Select } from "@presentation/ui/select";
 import { Badge } from "@presentation/ui/badge";
 
 import { Tabs } from "@base-ui/react/tabs";
@@ -34,6 +35,7 @@ export function TokenEditorContent({
     error,
     notice,
     modeRef,
+    layerRef,
     errorRef,
     dirty,
     applied,
@@ -44,6 +46,7 @@ export function TokenEditorContent({
     groupLabels,
     editable,
     changeMode,
+    changeLayer,
     changeReference,
     changeColorDraft,
     reportColorError,
@@ -58,6 +61,7 @@ export function TokenEditorContent({
     targetUnavailable,
   } = editor;
   const modeName = useId();
+  const layerId = useId();
   const headingRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     const heading = headingRef.current;
@@ -101,37 +105,25 @@ export function TokenEditorContent({
           </p>
         )}
         <div className="flex flex-wrap gap-2 mt-3">
-          {token.layer && <Badge className="bg-muted text-foreground">{token.layer}</Badge>}
+          <div className="w-full">
+            <label htmlFor={layerId} className="block text-caption font-medium mb-1">Layer</label>
+            <Select id={layerId} ref={layerRef} value={session.layer ?? ""}
+              aria-describedby={`${layerId}-help`}
+              disabled={!editable || accepting || readOnly || readUnavailable || !!targetUnavailable || (!!recovery && !recovery.reviewed)}
+              onChange={event => changeLayer(event.target.value === "" ? null : event.target.value as "primitive" | "semantic")}>
+              <option value="">Unspecified</option>
+              <option value="primitive">Primitive</option>
+              <option value="semantic">Semantic</option>
+              <option value="component" disabled>Component</option>
+            </Select>
+            <p id={`${layerId}-help`} className="text-caption text-muted-foreground mt-2">Component requires a component association; editing it is not available yet.</p>
+          </div>
           {!editable && <Badge>Inspection only</Badge>}
         </div>
       </div>
       <Tabs.Root value={tab} onValueChange={selectTab}>
         <TokenEditorTabs />
         <Tabs.Panel value="authored" className="editor-body bg-surface p-6 touch:p-4">
-          {targetUnavailable && (
-            <p
-              role="status"
-              className="notification notification-warning text-caption"
-            >
-              {targetUnavailable} Preserved input remains selectable. This
-              action cannot recreate or retarget it.
-            </p>
-          )}
-          {recovery && (
-            <EditRecovery
-              previous={recovery.previous}
-              current={
-                value ?? {
-                  type: token.definition?.type,
-                  kind: "token" in i ? i.authoredKind : "No assignment",
-                }
-              }
-              preserved={session}
-              reviewed={recovery.reviewed}
-              headingRef={reviewHeading}
-              onReview={reviewRecovery}
-            />
-          )}
           {editable || dirty ? (
             <>
               <fieldset disabled={accepting}>
@@ -176,50 +168,6 @@ export function TokenEditorContent({
               )}
               <p className="helper text-muted-foreground font-normal preview-detail mt-2 wrap-anywhere">
                 Draft preview: {draft.message}
-              </p>
-              {error ? (
-                <p
-                  ref={errorRef}
-                  tabIndex={-1}
-                  className="notification notification-error text-caption mt-4"
-                  id="editor-error"
-                  role="alert"
-                >
-                  {error}
-                </p>
-              ) : (
-                <span id="editor-error" />
-              )}
-              <EditorActions
-                cancelDisabled={!dirty || accepting}
-                applyDisabled={
-                  !dirty ||
-                  !editable ||
-                  !!targetUnavailable ||
-                  (!!recovery && !recovery.reviewed) ||
-                  readUnavailable ||
-                  readOnly ||
-                  accepting ||
-                  session.byteInvalid
-                }
-                applyLabel={
-                  accepting
-                    ? "Retaining changes…"
-                    : recovery?.reviewed
-                      ? "Reapply changes"
-                      : "Apply changes"
-                }
-                onCancel={cancel}
-                onApply={apply}
-              />
-              <p
-                className="helper text-muted-foreground font-normal"
-                role="status"
-              >
-                {notice ||
-                  (dirty
-                    ? "Changes are not applied yet."
-                    : "Editing preserves name and metadata.")}
               </p>
             </>
           ) : (
@@ -269,6 +217,73 @@ export function TokenEditorContent({
           />
         </Tabs.Panel>
       </Tabs.Root>
+      <div className="px-6 pb-4 touch:px-4">
+          {targetUnavailable && (
+            <p
+              role="status"
+              className="notification notification-warning text-caption"
+            >
+              {targetUnavailable} Preserved input remains selectable. This
+              action cannot recreate or retarget it.
+            </p>
+          )}
+          {recovery && (
+            <EditRecovery
+              previous={recovery.previous}
+              current={{ value, layer: token.layer ?? null }}
+              preserved={session}
+              reviewed={recovery.reviewed}
+              headingRef={reviewHeading}
+              onReview={reviewRecovery}
+            />
+          )}
+        {(editable || dirty) && <>
+              {error ? (
+                <p
+                  ref={errorRef}
+                  tabIndex={-1}
+                  className="notification notification-error text-caption mt-4"
+                  id="editor-error"
+                  role="alert"
+                >
+                  {error}
+                </p>
+              ) : (
+                <span id="editor-error" />
+              )}
+              <EditorActions
+                cancelDisabled={!dirty || accepting}
+                applyDisabled={
+                  !dirty ||
+                  !editable ||
+                  !!targetUnavailable ||
+                  (!!recovery && !recovery.reviewed) ||
+                  readUnavailable ||
+                  readOnly ||
+                  accepting ||
+                  (session.mode === "literal" && session.byteInvalid)
+                }
+                applyLabel={
+                  accepting
+                    ? "Retaining changes…"
+                    : recovery?.reviewed
+                      ? "Reapply changes"
+                      : "Apply changes"
+                }
+                onCancel={cancel}
+                onApply={apply}
+              />
+              <p
+                className="helper text-muted-foreground font-normal"
+                role="status"
+              >
+                {notice ||
+                  (dirty
+                    ? "Changes are not applied yet."
+                    : "Edit value and layer; name and other metadata are preserved.")}
+              </p>
+        </>}
+      </div>
       <div className="inspector-foot density:mt-5 small:mt-0 border-t-hairline border-border bg-surface px-6 py-4 mt-auto flex justify-between text-muted-foreground">
         <span>Regeneration</span>
         <span>{token.authoring.regeneration}</span>

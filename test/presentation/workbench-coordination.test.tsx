@@ -827,3 +827,54 @@ it.each([false, true])("returns restore-cancel focus after catalogue refresh wit
   runFrame!();
   expect(focus).toHaveBeenCalledTimes(movedFocus ? 0 : 1);
 });
+
+it("coordinates layer-only drafts, resolved-tab focus, exact values and metadata-only recovery", async () => {
+  const { useTokenEditor } = await import("@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor");
+  const { changeView } = await import("@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session");
+  const { createColorLiteral } = await import("@domain/color-literal");
+  const value = createColorLiteral({colorSpace: "srgb", components: ["0.123456789123456789", "0.2", "0.3"], alpha: "0.987654321987654321"});
+  let inspection: any = {token: {id: "t", localName: "Token", layer: "primitive", definition: {type: "color"}, authoring: {regeneration: "protected"}}, authoredValue: value, editable: true, resolution: {status: "unresolved", reason: "test", trace: [], diagnostics: []}};
+  let revision = "r1";
+  const pending = deferred<any>();
+  const onApply = vi.fn(() => pending.promise);
+  const hook = () => useTokenEditor({inspection, revision, project: context as any, inspect: () => undefined, onApply, onDirty: vi.fn(), readUnavailable: false});
+  let owner = render(hook); effects(); owner = render(hook);
+  owner.changeLayer("semantic"); owner = render(hook); expect(owner.dirty).toBe(true);
+  owner.changeLayer("primitive"); owner = render(hook); expect(owner.dirty).toBe(false);
+  owner.changeColorDraft(changeView(owner.session, "oklch")); owner = render(hook);
+  owner.changeLayer(null); owner = render(hook);
+  owner.selectTab("resolved"); owner = render(hook);
+  const focus = vi.fn(), hiddenFocus = vi.fn();
+  owner.layerRef.current = {focus} as any; owner.modeRef.current = {focus: hiddenFocus} as any;
+  const applying = owner.apply(); owner = render(hook);
+  expect(owner.accepting).toBe(true);
+  await owner.apply(); expect(onApply).toHaveBeenCalledTimes(1);
+  expect(onApply).toHaveBeenCalledWith({kind: "literal", colorSpace: "srgb", components: value.components, alpha: value.alpha}, null);
+  pending.resolve({status: "ok", value: {definition: {type: "color", assignments: [{condition: [], value}]}}});
+  await applying; owner = render(hook); effects(); owner = render(hook);
+  expect(owner.dirty).toBe(false); expect(owner.session.layer).toBe(null);
+  expect(focus).toHaveBeenCalled(); expect(hiddenFocus).not.toHaveBeenCalled();
+  owner.changeLayer("semantic"); owner = render(hook); effects();
+  revision = "r2"; inspection = {...inspection, token: {...inspection.token, layer: "semantic"}};
+  owner = render(hook); effects(); owner = render(hook);
+  expect(owner.recovery?.reviewed).toBe(false); expect(owner.session.layer).toBe("semantic");
+  expect(owner.recovery?.previous.layer).toBe(null);
+  await owner.apply(); expect(onApply).toHaveBeenCalledTimes(1);
+  focus.mockClear();
+  owner.cancel(); expect(focus).not.toHaveBeenCalled(); owner = render(hook); effects(); owner = render(hook);
+  expect(focus).toHaveBeenCalled();
+  expect(owner.session.layer).toBe("semantic"); expect(owner.dirty).toBe(false); expect(owner.recovery).toBeUndefined();
+});
+
+it("retains the layer draft on a failed combined reference edit", async () => {
+  const { useTokenEditor } = await import("@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor");
+  const onApply = vi.fn(async () => ({status: "failure", error: {code: "storage-failure", operation: "commit", message: "Unknown outcome"}} as const));
+  const inspection: any = {token: {id: "t", localName: "Token", definition: {type: "color"}, authoring: {regeneration: "allowed"}}, authoredValue: {kind: "token-reference", targetTokenId: "target", valuePath: []}, editable: true, resolution: {status: "unresolved", reason: "test", trace: [], diagnostics: []}};
+  const hook = () => useTokenEditor({inspection, project: context as any, inspect: () => undefined, onApply, onDirty: vi.fn(), readUnavailable: false});
+  let owner = render(hook); effects(); owner = render(hook);
+  owner.changeLayer("semantic"); owner = render(hook);
+  owner.changeColorDraft({...owner.session, byteInvalid: true}); owner = render(hook);
+  await owner.apply(); owner = render(hook);
+  expect(onApply).toHaveBeenCalledWith(inspection.authoredValue, "semantic");
+  expect(owner.session.layer).toBe("semantic"); expect(owner.dirty).toBe(true); expect(owner.error).toContain("Unknown outcome");
+});

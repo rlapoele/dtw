@@ -47,10 +47,11 @@ function command(value: unknown) {
   ]);
   shape(v, ["operation", "input"]);
   if (v.operation === "reviseColorToken") {
-    const x = shape(v.input, ["projectId", "tokenId", "value"]);
+    const x = shape(v.input, ["projectId", "tokenId", "value"], ["layer"]);
     text(x.projectId);
     text(x.tokenId);
     colorValue(x.value);
+    if (x.layer !== undefined && x.layer !== null) enumeration(x.layer, ["primitive", "semantic"]);
     return;
   }
   const x = shape(

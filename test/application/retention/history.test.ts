@@ -133,3 +133,29 @@ it("reports true retained counts through traversal, branching, suspension and in
   await group(f, "j"); await f.app.leaveProject("p");
   expect(f.app.historyState()).toMatchObject({undoCount: 0, redoCount: 0});
 });
+
+it("retains layer edits and exact backup data in one history step, preserving redo on a no-op", async () => {
+  const { decodeRetainedRecord } = await import("@application/retention/record");
+  const { encodeBackup, decodeBackup } = await import("@application/retention/codec");
+  const f = await opened();
+  const value = {kind: "literal", colorSpace: "srgb", components: ["0.123456789123456789", "none", "0"], alpha: "1"} as const;
+  f.finish(await f.app.command({operation: "createColorToken", input: {projectId: "p", id: "t", localName: "color", parentGroupId: null, type: "color", regeneration: "protected", layer: "primitive", value}}, f.record().revision));
+  const original = f.record().snapshot;
+  const count = f.app.historyState().undoCount;
+  f.finish(await f.app.command({operation: "reviseColorToken", input: {projectId: "p", tokenId: "t", value, layer: "semantic"}}, f.record().revision));
+  expect(f.app.historyState().undoCount).toBe(count + 1);
+  const changed = f.record().snapshot;
+  expect(changed.tokens[0].layer).toBe("semantic");
+  expect(changed.tokens[0].definition).toEqual(original.tokens[0].definition);
+  expect(decodeRetainedRecord(f.record(), "p").snapshot).toEqual(changed);
+  expect(decodeBackup(encodeBackup(changed, "2026-11-19T10:00:00.000Z")).snapshot).toEqual(changed);
+  await traverse(f, "undo");
+  expect(f.record().snapshot).toEqual(original);
+  const before = f.record(), writes = f.writes(), redo = f.app.historyState().redo;
+  expect(await f.app.command({operation: "reviseColorToken", input: {projectId: "p", tokenId: "t", value, layer: "primitive"}}, before.revision)).toMatchObject({status: "unchanged"});
+  expect(f.record()).toBe(before); expect(f.writes()).toBe(writes); expect(f.app.historyState().redo).toEqual(redo);
+  await traverse(f, "redo"); expect(f.record().snapshot).toEqual(changed);
+  f.finish(await f.app.command({operation: "reviseColorToken", input: {projectId: "p", tokenId: "t", value: {...value, alpha: "0.5"}, layer: null}}, f.record().revision));
+  expect(Object.hasOwn(f.record().snapshot.tokens[0], "layer")).toBe(false);
+  await traverse(f, "undo"); expect(f.record().snapshot).toEqual(changed);
+});
