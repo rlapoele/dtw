@@ -10,6 +10,17 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Form text color consistency — 19 November 2026
+
+Removed an obsolete `text-input` class from the shared Input component: Tailwind
+interpreted it as the input-border color and it overrode `text-foreground`.
+Inputs now use the same darker foreground as textareas. Browser computed-style
+checks confirmed matching font, size, weight and color in the project and token
+creation forms, including the token form's select controls. The existing project
+draft remained intact; no project or token was created. `npm run typecheck` passed.
+This bounded styling check does not restart deferred qualification or change
+existing acceptance limits. State ownership and form behavior are unchanged.
+
 ## React component contract improvements and final review — 19 November 2026
 
 **Completed and user-accepted — 19 November 2026.** The user reported committing
