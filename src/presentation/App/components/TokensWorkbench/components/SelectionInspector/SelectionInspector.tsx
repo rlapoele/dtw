@@ -3,13 +3,11 @@ import { InspectorHeader } from "@presentation/App/components/TokensWorkbench/co
 import type { Selection } from "@presentation/App/components/TokensWorkbench/hooks/useProjectReadback";
 import type { ProjectContext } from "@application/retention/projections";
 import type { ProjectHeader } from "@hosts/browser/protocol";
-import { Button } from "@presentation/ui/button";
 import type { RefObject, ReactNode } from "react";
 export function SelectionInspector({
-  children, surfaceRef, hidden, back,
+  children, surfaceRef, hidden,
   selection,
   context,
-  groupLabels,
   header,
   inspectorExpanded,
   onToggle,
@@ -20,10 +18,8 @@ export function SelectionInspector({
   children: ReactNode;
   surfaceRef?: RefObject<HTMLElement | null>;
   hidden?: boolean;
-  back?: () => void;
   selection: Selection;
   context?: ProjectContext;
-  groupLabels: Map<string, string>;
   header: ProjectHeader;
   inspectorExpanded: boolean;
   onToggle: () => void;
@@ -36,7 +32,6 @@ export function SelectionInspector({
       className="inspector-shell relative touch:border-l-0 small:border-t-hairline small:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l-hairline border-border bg-surface"
       aria-label="Inspector pane"
     >
-      {back && <div className="p-3 border-b-hairline border-border"><Button onClick={back}>Back to tokens</Button></div>}
       {children || (
         <>
           <InspectorHeader

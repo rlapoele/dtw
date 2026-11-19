@@ -24,16 +24,11 @@ export function TokenWorkspace({
   selection,
   visible,
   context,
-  recovery,
   diagnostics,
-  notice,
-  error,
-  dialog,
   onQuery,
   onCreateToken,
   onCreateGroup,
   onRenameGroup,
-  onAllContent,
   onReveal,
   choose,
 }: {
@@ -52,16 +47,11 @@ export function TokenWorkspace({
   selection: Selection;
   visible: DisplayRow[];
   context?: ProjectContext;
-  recovery: ReactNode;
   diagnostics: ReactNode;
-  notice: string;
-  error: string;
-  dialog: string | null;
   onQuery: (query: string) => void;
   onCreateToken: () => void;
   onCreateGroup: () => void;
   onRenameGroup: () => void;
-  onAllContent: () => void;
   onReveal: () => void;
   choose: (kind: "token" | "group", id: string) => void;
 }) {
@@ -86,7 +76,6 @@ export function TokenWorkspace({
         onRenameGroup={onRenameGroup}
       />
       {selectionBar}
-      {recovery}
       {!complete && !readFailure && (
         <p role="status">
           Preparing complete project list… {rows.length} of {header.tokens}{" "}
@@ -130,14 +119,6 @@ export function TokenWorkspace({
           </>
         ))}
       {diagnostics}
-      <p role="status" className="helper text-muted-foreground">
-        {notice}
-      </p>
-      {error && !dialog && (
-        <p role="alert" className="text-destructive text-caption mt-3">
-          {error}
-        </p>
-      )}
     </main>
   );
 }

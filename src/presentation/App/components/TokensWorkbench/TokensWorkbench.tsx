@@ -356,14 +356,10 @@ export function TokensWorkbench({
           selection={selection}
           visible={visible}
           context={context}
-          notice=""
-          error=""
-          dialog={dialog}
           onQuery={setQuery}
           onCreateToken={() => open("token")}
           onCreateGroup={() => open("group")}
           onRenameGroup={() => open("rename")}
-          onAllContent={() => setView({ kind: "all-content" })}
           choose={choose}
           onReveal={() => {
             setView({ kind: "all-tokens" });
@@ -374,7 +370,6 @@ export function TokensWorkbench({
                 ?.focus(),
             );
           }}
-          recovery={null}
           diagnostics={
             <ProjectDiagnostics
               diagnostics={diagnostics}
@@ -388,7 +383,6 @@ export function TokensWorkbench({
           hidden={narrow && surface !== "inspect"}
           selection={selection}
           context={context}
-          groupLabels={groupLabels}
           header={header}
           inspectorExpanded={inspectorExpanded}
           onToggle={() => narrow ? back() : setInspectorExpanded(!inspectorExpanded)}
