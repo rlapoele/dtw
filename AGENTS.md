@@ -49,6 +49,7 @@ Treat status labels as meaningful: **established** directions and principles are
 
 ## Architecture guardrails
 
+- In files under `src/`, use the existing TypeScript path aliases (`@domain/…`, `@application/…`, `@adapters/…`, `@hosts/…`, `@presentation/…`) for module imports and re-exports whenever the target is covered by an alias, including same-folder imports. Do not introduce relative module paths where an existing alias applies. Preserve architectural dependency boundaries; this rule does not apply to resource URLs such as `new URL("./workbench.worker.ts", import.meta.url)` or require changes outside `src/`.
 - Use restrained hexagonal architecture: delivery surfaces → application operations → domain engine, with explicit ports to infrastructure adapters.
 - Keep the domain engine independent of Electron, UI frameworks, filesystems, databases, RPC transports, and networks. Prefer serializable plain data, pure functions, and explicit dependencies.
 - Put project workflows and coordination in coarse application operations. Delivery surfaces must not reimplement token semantics.
