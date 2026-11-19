@@ -1,6 +1,6 @@
 # Current Project Status
 
-> Last updated: 18 November 2026
+> Last updated: 19 November 2026
 >
 > Phase: Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
@@ -9,6 +9,34 @@
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## React component contract improvements and final review — 19 November 2026
+
+The user authorized focused contract refactors. ProjectsWorkbench now groups
+creation, recovery, storage, backup and feedback props by responsibility.
+TokenWorkspace and SelectionInspector no longer accept the identified unused or
+obsolete props. TokenEditorContent invokes intentional useTokenEditor actions
+instead of raw state setters. AuthoringDialog uses a discriminated model for token
+creation, group creation and group renaming, with dialog visibility kept separate.
+[AGENTS.md](../../AGENTS.md#react-component-contracts) records the agreed guidelines.
+
+Final review through commit `022b99d` found no actionable regression or guideline
+conflict. Source comparison confirmed preserved hook callers, component keys,
+state/session lifetimes, command gates and dialog ancestry; editor Apply/Cancel
+implementations and Projects rendering/gates remain unchanged. This was the
+implementing agent's source-level re-review, not an independent agent review.
+`npm run typecheck`, all 181 presentation tests across 22 files
+(`npm test -- test/presentation`), and diff checks passed. Existing tests were
+adapted to the contracts; editor coverage checks draft preservation, feedback
+clearing and scheduled recovery focus.
+
+Browser focus, dialog transitions and responsive behavior were not requalified.
+These checks do not close earlier runtime evidence or acceptance gaps, restart
+deferred qualification, or grant a new verification allowance. Existing increment
+statuses and stopping decisions remain unchanged. No further contract refactor or
+new increment is authorized; the user selects the next scoped work. The requested
+comparison with the unavailable Playground skill was dropped at the user's
+direction; no skill compatibility claim or skill modification was made.
 
 ## Project metadata implementation and review — 18 November 2026
 
