@@ -12,6 +12,11 @@
 
 ## React component contract improvements and final review — 19 November 2026
 
+**Completed and user-accepted — 19 November 2026.** The user reported committing
+and pushing the changes, then confirmed this cleanup is complete. The review and
+bounded smoke evidence below retain their stated limits; no further verification
+or implementation is requested.
+
 The user authorized focused contract refactors. ProjectsWorkbench now groups
 creation, recovery, storage, backup and feedback props by responsibility.
 TokenWorkspace and SelectionInspector no longer accept the identified unused or
