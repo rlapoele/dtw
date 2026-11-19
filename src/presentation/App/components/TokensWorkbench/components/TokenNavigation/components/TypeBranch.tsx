@@ -10,7 +10,7 @@ export function TypeBranch({branch, depth, view, collapsed, onToggle, onSelect}:
   const key = scopeKey(branch.scope), active = scopeKey(view) === key;
   const expandable = !!branch.children?.length, open = branch.count === 1 || !collapsed.has(key);
   return <div>
-    <div className={`flex items-center rounded-md ${active ? "bg-selected" : ""} ${depth === 2 ? "pl-9.5" : depth === 1 ? "pl-6.5" : ""}`}>
+    <div className={`navigation-row relative flex items-center hover:bg-accent ${active ? "active bg-selected" : ""} ${depth === 2 ? "pl-9.5" : depth === 1 ? "pl-6.5" : ""}`}>
       <Button variant="navigation" size="navigation" className={`nav-item min-w-0 flex-1 ${active ? "active" : ""}`} aria-current={active ? "page" : undefined} onClick={() => onSelect(branch.scope)}>
         {depth === 0 && <Icon name={typeIcon(branch.scope.type)} />}
         <span className="min-w-0 flex-1 text-left wrap-anywhere">{branch.label}</span>

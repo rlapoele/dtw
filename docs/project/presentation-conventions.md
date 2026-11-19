@@ -367,3 +367,22 @@ in `global.css`; hover/selected backgrounds remain semantic utilities. Project
 names retain UI typography, while technical token names retain Geist Mono.
 Project columns, responsive date metadata and two-line description previews remain
 specific to the Projects list.
+
+## Browser feedback refinements — 19 November 2026
+
+User-requested small presentation fixes: project list contents use separate
+`tokens: n` and `groups: n` blocks. Project inspector facts start with Description
+(`No description` when empty), align labels left and values right, and end with a
+separate Identity section. Existing unavailable/last-known fact gates remain.
+Navigation rows are square, hover with accent contrast against the muted pane,
+and reuse the table's foreground left selection marker (0.25rem).
+
+Shared Button action sizes (default, history, panel, sm, selection) use a subtle
+1.015 hover / 0.985 pressed scale with a 150ms ease-out transition. Navigation,
+mode, pane, inventory and icon sizes stay stationary. Motion only runs without a
+reduced-motion preference; disabled buttons do not scale. Shared Button owns the motion through Tailwind `motion-safe`, `transition-transform`,
+`duration-150`, `ease-out` and guarded hover/active utilities. The two arbitrary scale
+values preserve the requested ±1.5% effect: the installed Tailwind compiler does not
+emit decimal numeric `scale-101.5` / `scale-98.5` utilities. The square navigation
+disclosure geometry remains a focused CSS rule; no new tokens,
+dependencies, state owners or wrappers are introduced.

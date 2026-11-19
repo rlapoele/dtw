@@ -27,7 +27,7 @@ export function ProjectListItem({ entry, disabled, selected, disambiguate, onSel
         {!supported && <span className="block mt-1.5 text-caption text-muted-foreground wrap-anywhere">Project unavailable: {entry.reason}</span>}
         <span className="project-dates-compact mt-2.5 text-caption text-muted-foreground"><span>Created: {created}</span><span>Last updated: {updated}</span></span>
       </span>
-      <span className="text-caption text-muted-foreground wrap-anywhere">{supported ? `${entry.tokens} tokens · ${entry.groups} groups` : "Unavailable"}</span>
+      <span className="text-caption text-muted-foreground wrap-anywhere">{supported ? <><span className="block">tokens: {entry.tokens}</span><span className="block">groups: {entry.groups}</span></> : "Unavailable"}</span>
       <span className="project-date-column text-caption text-muted-foreground">{created}</span>
       <span className="project-date-column text-caption text-muted-foreground">{updated}</span>
     </button>

@@ -223,13 +223,17 @@
   background: repeating-linear-gradient(135deg, #fff 0 0.25rem, #e7eaf0 0.25rem 0.3125rem);
 }
 .token-row.selected:before,
-.project-table-row[aria-pressed="true"]:before {
+.project-table-row[aria-pressed="true"]:before,
+.navigation-row.active:before,
+.nav-item.active:not(.navigation-row .nav-item):before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
   width: 0.25rem;
+  z-index: 1;
+  pointer-events: none;
   background: var(--foreground);
 }
 .trace li:not(:last-child):before {
@@ -356,3 +360,6 @@ input[type="file"]::file-selector-button { min-height:2.25rem; }
   .project-date-column { display: block; }
   .project-dates-compact { display: none; }
 }
+
+/* The full navigation row, including its disclosure control, stays square. */
+.navigation-row > .button { border-radius: 0; }

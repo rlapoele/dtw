@@ -53,7 +53,8 @@ it("shows legacy names, exact identities, counts and unavailable rows together",
   ] });
   expect(html).toContain("(unnamed project)");
   expect(html).toContain("  Legacy name  ");
-  expect(html).toContain("3 tokens · 2 groups");
+  expect(html).toContain("tokens: 3</span>");
+  expect(html).toContain("groups: 2</span>");
   expect(html).toContain('Identity: &quot;  legacy id  &quot;');
   expect(html).toContain("Project unavailable: Unsupported version");
   expect(html).toContain('Identity: &quot;unavailable-id&quot;');

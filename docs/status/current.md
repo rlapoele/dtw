@@ -10,6 +10,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Five browser presentation fixes — 19 November 2026
+
+Implemented the user's annotated count, navigation, button-motion and inspector
+requests; [presentation conventions](../project/presentation-conventions.md#browser-feedback-refinements--19-november-2026)
+record the choices. Typechecking, 21 focused project/catalogue/identity tests and
+diff checks passed. Affected owners/consumers and selection-marker layering were
+self-reviewed; no state ownership or component placement changed. Browser connection
+timed out, so live layout, hover/press, reduced-motion and keyboard/focus behavior
+remain unverified. User visual review is next; no independent review is claimed.
+A follow-up moves button motion from global CSS into shared Button Tailwind
+utilities, retaining scale values and guards. Installed-compiler output verified
+both scale rules and their media/state conditions; typechecking passed.
+Focused verification used approximately 6 minutes with zero harness repairs and
+stopped after these checks. Prior qualification campaigns remain closed. Changes
+are left unstaged for the user.
+
 ## Project table styling alignment — 19 November 2026
 
 Following Increment 020 closure, the user requested matching Tokens table styling.
