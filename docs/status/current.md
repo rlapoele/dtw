@@ -10,6 +10,24 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Color ramp Increment 024 preparation — 20 November 2026
+
+The user selected the fixed 11-step scope and confirmed that editing the seed token
+creates a manual override while leaving the saved recipe seed unchanged. Separate
+analyst and designer agents prepared the [Draft 024 contract](../increments/024-color-ramp-authoring.md)
+and [initial interaction proposal V1](../project/workbench-layout/color-ramps-v1.md).
+These are preparation artifacts, not an agreed contract, reviewed design or
+implementation. The initial proposal is written, with textual wireframes; no
+interactive prototype or production changes were made.
+
+Next: user feedback on the proposed authoring/review flow and remaining product
+choices, then the identified design work and analyst review in workflow order.
+Numerical generation, alpha/gamut/storage policy, protection reconciliation and
+other draft decisions remain open. Earlier acceptance/qualification limits remain
+unchanged. Changed Markdown and local links were checked; no application tests or
+qualification campaign ran. Leave staging/committing/pushing to the user.
+Suggested commit: `docs: draft first color ramp increment and interaction proposal`.
+
 ## Color ramp direction recorded — 20 November 2026
 
 The user agreed and requested documentation of [ramps as ordinary groups with

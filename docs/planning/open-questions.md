@@ -101,7 +101,11 @@ while preserving the exact seed and saving the accepted position. The
 [agreed direction and remaining questions](../project/guided-color-palette-generation.md#agreed-ramp-direction--20-november-2026)
 own these behaviors. Metadata schema, override/protection reconciliation,
 detachment and membership changes, fitting algorithm, export policies and the
-first-slice batch/Undo contract remain open.
+first-slice batch/Undo contract remain open. The user subsequently selected a fixed
+11-step first slice and confirmed that inspector edits to the seed token leave the
+recipe seed unchanged and create a manual override. The
+[024 draft contract](../increments/024-color-ramp-authoring.md) records preparation;
+final design/contract agreement and implementation authorization remain pending.
 
 Open choices include ramp algorithms/steps and numerical policies; accent harmony and status distinguishability; opinionated predefined semantic names and recipe customization; light/dark integration with existing variation configuration; WCAG/APCA profiles, contextual inputs, pair selection and diagnostics; and acceptance/collision/regeneration behavior. Resolve these explicitly in the bounded future proposal rather than through implementation convenience.
 

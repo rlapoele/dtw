@@ -105,8 +105,11 @@ ramps without introducing live computed token values.
 
 ### Manual overrides
 
-- The seed anchor preserves the exact seed at its assigned step and is a generation
-  input, not a manual override.
+- The recipe seed preserves the exact chosen seed and its assigned step as generation
+  inputs. Editing that step through the ordinary token inspector creates a manual
+  override, leaving the saved recipe seed unchanged (agreed 20 November 2026).
+  The applied anchor-step token may therefore differ from the recipe seed; the
+  ramp editor must make that difference explicit.
 - Generated steps are eligible for proposed changes when settings change.
 - An intentional manual value edit, whether in the ramp preview or ordinary token
   inspector, marks that step as manual and preserves its value by default during
@@ -136,6 +139,15 @@ Preserve the exact seed and fit the proposal around it. Save the accepted positi
 so reopening does not unexpectedly move it. Users can explicitly recalculate
 placement after changing the seed or recipe. The fitting algorithm, tie-breaking,
 edge cases and interaction details remain open.
+
+## First increment exploration — 20 November 2026
+
+The user selected a fixed 11-step scope (`50`, `100`, `200`, `300`, `400`, `500`,
+`600`, `700`, `800`, `900`, `950`) and authorized preparation of a draft contract
+and initial interaction proposal. The seed-token override behavior above is also
+agreed. The [Increment 024 draft](../increments/024-color-ramp-authoring.md) owns
+proposed delivery boundaries and remaining decisions. These scoped decisions do
+not constitute final contract/design agreement or implementation authorization.
 
 ## Questions for future work
 

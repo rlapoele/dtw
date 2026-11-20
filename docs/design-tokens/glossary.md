@@ -386,3 +386,5 @@ token regeneration-protection metadata remains open.
 The exact seed color assigned to a ramp step as a generation input. Automatic seed
 placement proposes a recipe-dependent position; users can choose another. The
 accepted position is retained until explicitly revised, not recomputed on reopening.
+Editing the corresponding token creates a manual override without changing the
+saved recipe seed; the token and recipe seed can therefore differ.
