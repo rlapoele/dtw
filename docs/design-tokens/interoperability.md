@@ -285,7 +285,7 @@ Canonical numeric values use exact base-10 decimals. Adapters that emit platform
 
 Namespaced [DTCG extensions](https://www.w3.org/community/reports/design-tokens/CG-FINAL-format-20251028/#extensions) may preserve optional expression metadata alongside a valid standard value. They do not make an invalid `$value` conforming or guarantee that another tool can reconstruct the expression. Exact profile-level fallback, blocking, and extension policies remain unresolved. A preview measurement must not become an export fallback implicitly.
 
-Scale helpers create ordinary tokens; their generation recipes are not required to export those tokens. Do not confuse accepted tokens produced by a helper with generated target artifacts: the former become authored canonical data, while the latter remain derived output.
+Scale helpers create ordinary tokens; their generation recipes are not required to export those tokens. The confirmed 20 November 2026 color-ramp direction retains optional group metadata for reopening and reviewed regeneration. Project retention and backups should preserve it; each export profile must explicitly decide whether to include, translate or omit it. No profile mapping or round-trip guarantee for ramp metadata is selected. Do not confuse accepted tokens produced by a helper with generated target artifacts: the former become authored canonical data, while the latter remain derived output.
 
 ## Color representation and fallback boundary
 

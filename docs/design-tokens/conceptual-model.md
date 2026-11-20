@@ -818,6 +818,31 @@ For example, a helper using a base of `1rem`, a ratio of `1.25`, and four steps 
 
 Supported patterns, parameter validation, rounding, naming, collision handling, and initial release scope remain open. Saving helper presets, if later useful, is a separate product/configuration decision and must not silently introduce live scale dependencies.
 
+### Color ramp group metadata
+
+**Confirmed product direction — 20 November 2026; not implemented.**
+
+A color ramp uses an ordinary namespace group with optional ramp authoring metadata,
+not a separate ramp entity or token value type. Retain generation settings, the
+seed and accepted anchor position, and ordered step-to-token identity associations
+so users can reopen the ramp. Exact schema remains unresolved. Tokens retain their
+normal identity, explicit type and independently authored values; namespace
+containment still determines paths.
+
+This explicitly settles recipe retention for color ramps while preserving the
+scale-helper boundary: changed settings produce reviewed proposals, never automatic
+updates or live computed dependencies. Retention and project backups should preserve
+ramp metadata; interchange handling belongs to each export profile.
+
+The [agreed ramp direction](../project/guided-color-palette-generation.md#agreed-ramp-direction--20-november-2026)
+owns manual-override and automatic-placement behavior. Intentional value edits in
+both ramp and token editors protect the affected step by default, without reshaping
+its neighbours. Accepting a generated replacement explicitly clears that override.
+The exact seed remains a generation anchor rather than an override. Auto placement
+suggests a recipe-dependent step; the accepted position is saved, with explicit
+recalculation rather than movement on reopening. Schema, fitting algorithm,
+membership changes and reconciliation with token-level protection remain open.
+
 ### Generated change proposals and protection
 
 **Working decision — 5 October 2026**

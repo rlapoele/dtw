@@ -365,3 +365,24 @@ The desktop-first authoring, reasoning, validation, import, and export environme
 ## Workspace
 
 The local location or active environment in which a project is stored and edited. A workspace may be moved or renamed without changing project identity.
+
+## Color ramp
+
+An ordered progression of color tokens. The confirmed 20 November 2026 direction
+represents an authored ramp as an ordinary namespace group with optional ramp
+metadata remembering generation settings and step membership. Tokens remain
+independently authored; regeneration requires reviewed acceptance. This capability
+is not yet implemented.
+
+## Ramp manual override
+
+An intentionally edited ramp-step value preserved by default during regeneration.
+It does not reshape neighbouring steps or detach the token from the ramp. Accepting
+an explicit generated replacement clears the override; the exact relationship to
+token regeneration-protection metadata remains open.
+
+## Ramp seed anchor
+
+The exact seed color assigned to a ramp step as a generation input. Automatic seed
+placement proposes a recipe-dependent position; users can choose another. The
+accepted position is retained until explicitly revised, not recomputed on reopening.

@@ -10,6 +10,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Color ramp direction recorded — 20 November 2026
+
+The user agreed and requested documentation of [ramps as ordinary groups with
+optional authoring metadata](../project/guided-color-palette-generation.md#agreed-ramp-direction--20-november-2026),
+remembered generation settings and reviewed regeneration. The concept owns manual
+overrides across ramp/token editing and automatic seed-placement suggestions with
+an exact seed and saved accepted position. Model, product concept, glossary,
+interoperability and open questions are aligned. Schema, numerical algorithm,
+membership/protection details, export policies and first-slice scope remain open.
+
+Documentation only; no prototype or implementation is authorized. Future work needs
+the usual bounded design/contract agreement. Existing increment acceptance and
+qualification limits remain unchanged. Markdown, links and consistency were
+reviewed; no application tests were needed. Leave staging/committing/pushing to the
+user. Suggested commit: `docs: record editable color ramp direction`.
+
 ## Token description and inspector sections — Increment 023 implemented/reviewed
 
 The user approved refined V1 and asked to proceed. Analyst consistency review

@@ -77,19 +77,77 @@ The all-pairs view, relevant-pair selection, thresholds, typography inputs, and 
 
 - Follow the existing [scale-helper boundary](../design-tokens/conceptual-model.md#scale-generation): calculations propose candidates; selected candidates become ordinary editable canonical tokens. There is no implicit live link to a generation recipe.
 - Semantic tokens retain authored references to primitive or other semantic tokens. Those aliases are real model relationships, distinct from a live dependency on the helper that proposed them.
-- A recipe is authoring guidance, not a new canonical entity, persistence schema, or plugin mechanism. Whether useful recipe configuration should later be retained is open.
+- A recipe is authoring guidance, not a new canonical entity, persistence schema, or plugin mechanism. For color ramps, the 20 November direction below agrees retaining generation settings as optional group metadata; exact schema and broader recipe retention remain open.
 - Keep deterministic color operations in the domain engine and accepted-change coordination in application operations. The guided UI collects choices and presents proposals.
 - Preserve the existing exact authored-color policy. Algorithms, gamut mapping, and approximations must be agreed for this new operation scope; the feature does not silently extend the bounded Increment 003 conversion contract.
 - No AI service is selected or required by this concept. Suggestions must not silently invent semantics or overwrite authored choices.
 
+## Agreed ramp direction — 20 November 2026
+
+**Confirmed product direction; documentation only, no implementation authorized.**
+
+A color ramp is an ordinary namespace group with optional ramp authoring metadata,
+not a separate entity alongside groups and tokens. Its members remain ordinary,
+independently editable color tokens with stable identities. Group containment
+continues to determine paths; ramp metadata does not introduce a token value type
+or group-level type inheritance.
+
+Remember generation settings so users can reopen and adjust a ramp. Metadata
+needs to describe ordered steps and their token identities, the seed and its
+assigned step, and the agreed generation settings. Exact fields and schema remain
+open. Project retention and backups should preserve this information; individual
+export profiles may include, translate or omit it under an explicit policy.
+
+Generation and regeneration produce an editable proposal. Only reviewed, accepted
+changes become applied data; reopening or changing settings never automatically
+rewrites tokens. This extends the earlier recipe-retention question for color
+ramps without introducing live computed token values.
+
+### Manual overrides
+
+- The seed anchor preserves the exact seed at its assigned step and is a generation
+  input, not a manual override.
+- Generated steps are eligible for proposed changes when settings change.
+- An intentional manual value edit, whether in the ramp preview or ordinary token
+  inspector, marks that step as manual and preserves its value by default during
+  regeneration. Renaming or changing a description does not create an override.
+- Show manual steps visibly. Offer **Keep manual value** by default and **Use
+  generated value** to preview the current generated candidate. Only accepting
+  that candidate removes the override; returning manually to an earlier value
+  does not silently re-enable generation.
+- A manual override affects its own step, not neighbouring candidates. Turning it
+  into another generation anchor would be a separate future capability.
+- If a step-count or naming change would remove an overridden step, surface that
+  consequence for review; never silently delete its token.
+
+Protection from regeneration and detachment from ramp membership are different
+concepts. Detachment behavior and the relationship between ramp overrides and the
+existing token regeneration-protection metadata remain unresolved.
+
+### Automatic seed placement
+
+Offer **Auto** alongside explicit seed-step selection. Auto proposes a suitable
+step using the selected ramp's lightness distribution and generation policy,
+shows the suggested position, and lets the user choose another. A color has no
+intrinsic scale label: placement is recipe-dependent, not an objective property
+of the seed.
+
+Preserve the exact seed and fit the proposal around it. Save the accepted position
+so reopening does not unexpectedly move it. Users can explicitly recalculate
+placement after changing the seed or recipe. The fitting algorithm, tie-breaking,
+edge cases and interaction details remain open.
+
 ## Questions for future work
 
-1. Which ramp algorithm, color space, step count, hue behavior, precision, alpha, and gamut policies should be used? How does an exact anchor relate to named ramp steps?
+1. Which ramp algorithm, color space, step count, hue behavior, precision, alpha, and gamut policies should be used? How should Auto fit the exact seed to the named steps, resolve ties and handle seeds outside the intended distribution?
 2. How should users compare accent suggestions, control neutral tint, and revise or retain selected candidates?
 3. What makes status colors sufficiently coherent and distinguishable, and how should conflicts be surfaced?
 4. Which opinionated semantic names, roles, states, and intended pairs belong in the first recipe? How much customization is useful?
 5. How are light/dark assignments and any needed axes or presets proposed within existing project configuration?
 6. Which WCAG/APCA profiles and contextual inputs should be supported, and how should diagnostics and an independent contrast view be presented?
 7. How should acceptance, existing-token collisions, repeated generation, and user-edited tokens be handled safely?
+8. What is the versioned ramp-metadata schema, and how do retention, backup and each export profile preserve or omit it? How are ordered step membership, renamed/moved tokens, references and missing members handled?
+9. How do manual overrides relate to existing regeneration protection? What are the explicit detach, removed-step, reset and partial-acceptance behaviors?
+10. Which settings and entry points belong in the first slice, how do naming presets constrain step counts, and what batch/Undo contract applies? No detailed layout, algorithm or implementation contract is agreed yet.
 
 When this work is explicitly resumed, use this concept and the [open questions](../planning/open-questions.md#guided-color-foundations-and-interface-semantics) to prepare a bounded proposal through the existing designer/user/analyst workflow. The first exploration is agreed in direction only; its design, contract, and execution still require the usual authorization.

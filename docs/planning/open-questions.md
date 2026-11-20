@@ -93,7 +93,17 @@ These questions remain open beyond that bounded subset. Culori 4.0.2 is installe
 
 **Confirmed future direction — 10 November 2026; work deferred:** support a color foundation first, followed by optional semantic-token recipes for light and dark interface themes. Contrast guidance is especially valuable when defining semantic uses, with an independent contrast view available beyond the guide. The [concept note](../project/guided-color-palette-generation.md) owns the example flow and agreed first exploration; this is not a selected next increment or execution authorization.
 
-Open choices include ramp algorithms/steps/anchor behavior and numerical policies; accent harmony and status distinguishability; opinionated predefined semantic names and recipe customization; light/dark integration with existing variation configuration; WCAG/APCA profiles, contextual inputs, pair selection and diagnostics; and acceptance/collision/regeneration behavior. Resolve these explicitly in the bounded future proposal rather than through implementation convenience.
+**Confirmed refinement — 20 November 2026; no implementation authorized:** ramps
+use ordinary groups with optional metadata retaining settings and ordered token
+membership. Regeneration is reviewed before application. Manual value edits are
+preserved by default, and Auto seed placement suggests a recipe-dependent position
+while preserving the exact seed and saving the accepted position. The
+[agreed direction and remaining questions](../project/guided-color-palette-generation.md#agreed-ramp-direction--20-november-2026)
+own these behaviors. Metadata schema, override/protection reconciliation,
+detachment and membership changes, fitting algorithm, export policies and the
+first-slice batch/Undo contract remain open.
+
+Open choices include ramp algorithms/steps and numerical policies; accent harmony and status distinguishability; opinionated predefined semantic names and recipe customization; light/dark integration with existing variation configuration; WCAG/APCA profiles, contextual inputs, pair selection and diagnostics; and acceptance/collision/regeneration behavior. Resolve these explicitly in the bounded future proposal rather than through implementation convenience.
 
 ## Authoring helpers and value previews
 
