@@ -19,7 +19,10 @@ const ColorRepresentations = memo(function ColorRepresentations({ source, author
     }),
   }), [source]);
   return <>
-    <span className="block font-medium text-foreground" title={display.hex}>{display.hex.match(/#[0-9A-F]{6}/)?.[0] ?? "HEX unavailable"}</span>
+    <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+      <span className="font-medium text-foreground" title={display.hex}>{display.hex.match(/#[0-9A-F]{6}/)?.[0] ?? "HEX unavailable"}</span>
+      <span className="font-normal text-muted-foreground whitespace-nowrap"><span className="font-semibold">Alpha</span> {colorDecimalDisplay(source.alpha)}</span>
+    </span>
     <span className="block mt-2 space-y-3">
       {display.spaces.map(({ space, coordinates }) => <span key={space}
         className={`${space === source.colorSpace ? "block" : "hidden @3xl:block compact:@3xl:hidden"} ${authored && space === source.colorSpace ? "text-foreground" : "text-muted-foreground"}`}>
@@ -35,7 +38,6 @@ const ColorRepresentations = memo(function ColorRepresentations({ source, author
         </span> : <span className="block font-normal">Unavailable</span>}
       </span>)}
     </span>
-    <span className="block mt-2 font-normal text-muted-foreground"><span className="font-semibold">Alpha</span> {colorDecimalDisplay(source.alpha)}</span>
   </>;
 });
 

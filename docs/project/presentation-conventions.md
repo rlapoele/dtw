@@ -473,8 +473,9 @@ The user approved a three-column grid in token-table color summaries. Each color
 space has a semibold heading, then three aligned component labels above their
 normal-weight values. Labels omit colons and values omit middle-dot separators;
 space groups use additional vertical spacing. Each label/value pair stays in one
-grid cell, with long values allowed to wrap within narrow cells. Alpha remains a
-separate final line. Authored/converted visibility, precision and color emphasis
+grid cell, with long values allowed to wrap within narrow cells. Following the
+20 November refinement, Alpha appears once alongside HEX above the color spaces;
+the summary row wraps when space is limited. Authored/converted visibility, precision and color emphasis
 are unchanged. TokenValue owns this presentation through Tailwind utilities.
 
 ### Token table column balance — 19 November 2026
