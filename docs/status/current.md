@@ -10,6 +10,31 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Inspector actions moved below editable fields — 20 November 2026
+
+Implemented the user's requested [action placement](../project/presentation-conventions.md#inspector-action-placement--20-november-2026).
+Cancel/Apply and their recovery/error feedback now precede read-only information
+on both tabs. Authored value places them after its editable fields; shared draft
+ownership, action gates and focus targets are preserved.
+
+Typechecking and 38 focused tests passed. Chrome verified action order, tab-panel
+labels, draft preservation and keyboard Apply/Cancel focus. Desktop rendering was
+inspected; narrow layout, screen-reader delivery and fault recovery were not
+requalified. Checks stopped after approximately four minutes with no harness repairs.
+User visual review is next. This and the earlier applied-HEX work remain unstaged.
+Suggested combined commit: `feat: improve applied color summary and inspector action placement`.
+
+## Applied HEX summary — 20 November 2026
+
+The user accepted, committed and pushed HEX entry. The requested follow-up now adds
+[HEX to Currently applied](../project/presentation-conventions.md#applied-hex-summary--20-november-2026),
+using the applied color and the token list's shared preview conversion. Unsaved
+drafts do not alter this read-only summary; alpha stays separate.
+Typechecking, 12 focused tests and diff checks passed. Source/consumer review was
+performed by the implementing agent; browser rendering was not repeated. Checks
+stopped after approximately two minutes with no harness repairs. Changes are left
+unstaged. Suggested commit: `feat: show HEX in currently applied color summary`.
+
 ## HEX color entry — 20 November 2026
 
 Implemented the user-approved additional input representation in the sRGB editor.
@@ -24,8 +49,8 @@ verified ordinary entry, invalid Apply, tab preservation, Cancel, shorthand Appl
 exact alpha and keyboard order. Desktop rendering was inspected; narrow layouts
 and screen-reader delivery remain unverified. Review was by the implementing agent.
 Focused verification stopped at approximately six of 15 minutes with one tooling
-fallback; no prior qualification was restarted. User visual acceptance is next.
-Changes are left unstaged. Suggested commit: `feat: add HEX entry to sRGB color editor`.
+fallback; no prior qualification was restarted. The user subsequently accepted the input, committed and pushed it; see the applied
+HEX follow-up above.
 
 ## Token layer editing — Increment 021 implemented
 

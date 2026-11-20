@@ -14,9 +14,15 @@ it.each(["authored", "resolved"])("renders one shared editable layer and action 
   if (project.status !== "ok" || inspection.status !== "ok") throw Error("Fixture unavailable");
   function Content() {
     const editor = useTokenEditor({project: project.status === "ok" ? project.value : undefined!, inspection: inspection.status === "ok" ? inspection.value : undefined!, inspect: () => undefined, onApply: () => {throw Error("No render mutation");}, onDirty() {}, readUnavailable: false});
-    return createElement(TokenEditorContent, {editor: {...editor, tab, dirty: true, session: {...editor.session, mode: "reference", reference: "target", byteInvalid: true, layer: "semantic"}}});
+    return createElement(TokenEditorContent, {editor: {...editor, tab, dirty: true, session: {...editor.session, literal: {...editor.session.literal, components: ["1", "0", "0"]}, mode: "reference", reference: "target", byteInvalid: true, layer: "semantic"}}});
   }
   const html = renderToStaticMarkup(createElement(Content));
+  if (tab === "authored") {
+    const summary = html.slice(html.indexOf("Currently applied"), html.indexOf("Metadata · read only"));
+    expect(summary).toContain("HEX (sRGB preview)");
+    expect(summary).toContain("#000000");
+    expect(summary).not.toContain("#FF0000");
+  }
   expect(html).toContain('value="semantic" selected=""');
   expect(html).toContain('value="component" disabled=""');
   expect(html).toContain("Component requires a component association");
@@ -24,5 +30,14 @@ it.each(["authored", "resolved"])("renders one shared editable layer and action 
   expect((html.match(/>Cancel<\/button>/g) ?? [])).toHaveLength(1);
   expect(html).not.toMatch(/<button[^>]* disabled=""[^>]*>Apply changes/);
   expect(html.indexOf(">Layer</label>")).toBeLessThan(html.indexOf('role="tablist"'));
-  expect(html.lastIndexOf("editor-actions")).toBeGreaterThan(html.lastIndexOf('role="tabpanel"'));
+  expect((html.match(/role="tabpanel"/g) ?? [])).toHaveLength(1);
+  expect(html.indexOf("editor-actions")).toBeGreaterThan(html.indexOf('role="tabpanel"'));
+  if (tab === "authored") {
+    expect(html.indexOf("editor-actions")).toBeGreaterThan(html.indexOf("Draft preview:"));
+    expect(html.indexOf("editor-actions")).toBeLessThan(html.indexOf("Currently applied"));
+    expect(html.indexOf("editor-actions")).toBeLessThan(html.indexOf("Metadata · read only"));
+  } else {
+    expect(html).not.toContain("Currently applied");
+    expect(html.indexOf("editor-actions")).toBeLessThan(html.indexOf("Resolved value"));
+  }
 });

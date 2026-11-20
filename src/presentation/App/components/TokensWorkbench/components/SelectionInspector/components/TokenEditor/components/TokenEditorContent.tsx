@@ -1,3 +1,5 @@
+import { hexPreview } from "@presentation/App/components/TokensWorkbench/helpers/hex-preview";
+import { resolvedColor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/helpers/resolved-color";
 import { useId, useLayoutEffect, useRef } from "react";
 import { TokenValueComparison } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenValueComparison";
 import { EditorActions } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditorActions";
@@ -73,6 +75,9 @@ export function TokenEditorContent({
     const observer = new ResizeObserver(update); observer.observe(heading);
     return () => { observer.disconnect(); scroller.style.scrollPaddingTop = ""; };
   }, []);
+  const appliedHex = hexPreview(
+    value?.kind === "literal" && value.valueType === "color" ? value : resolvedColor(i),
+  );
   return (
     <aside
       className="inspector small:min-h-0 flex min-w-0 min-h-full flex-col bg-surface"
@@ -123,167 +128,179 @@ export function TokenEditorContent({
       </div>
       <Tabs.Root value={tab} onValueChange={selectTab}>
         <TokenEditorTabs />
-        <Tabs.Panel value="authored" className="editor-body bg-surface p-6 touch:p-4">
-          {editable || dirty ? (
-            <>
-              <fieldset disabled={accepting}>
-                <legend className="sr-only">Value source</legend>
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-                  {(["literal", "reference"] as const).map(mode => <label key={mode} className="inline-flex min-h-9 items-center gap-2 text-caption cursor-pointer">
-                    <input
-                      type="radio"
-                      name={modeName}
-                      value={mode}
-                      ref={mode === "literal" ? modeRef : undefined}
-                      checked={session.mode === mode}
-                      onChange={() => changeMode(mode)}
-                      className="size-4 shrink-0 accent-primary disabled:cursor-default"
-                    />
-                    {mode === "literal" ? "Literal color" : "Reference"}
-                  </label>)}
-                </div>
-              </fieldset>
-              {session.mode === "literal" ? (
-                <ColorEditor
-                  readOnly={accepting || readOnly}
-                  session={session}
-                  onChange={changeColorDraft}
-                  onError={reportColorError}
-                />
-              ) : (
-                <ReferenceFields
-                  reference={session.reference}
-                  choices={referenceChoices.map(({ authored }) => ({
-                    id: authored.id,
-                    label: referenceLabels.get(authored.id) ?? authored.id,
-                  }))}
-                  missingTarget={
-                    !project.tokens.some(
-                      ({ authored }) => authored.id === session.reference,
-                    )
-                  }
-                  disabled={accepting || readOnly}
-                  onReferenceChange={changeReference}
-                />
-              )}
-              <p className="helper text-muted-foreground font-normal preview-detail mt-2 wrap-anywhere">
-                Draft preview: {draft.message}
-              </p>
-            </>
-          ) : (
-            <p className="notification notification-warning text-caption mt-4">
-              Inspection only: this token is outside the unconditional
-              primitive/semantic color revision flow. Its data is retained.
-            </p>
-          )}
-          {token.layer === "component" && (
-            <p role="status" className="helper text-muted-foreground">
-              Component association is preserved. Component ownership context is
-              unavailable and unverified.
-            </p>
-          )}
-          <section className="applied-summary border-t-hairline border-border mt-7 pt-5">
-            <h3 className="mb-3.5">
-              {targetUnavailable
-                ? "Previous applied · target unavailable"
-                : "Currently applied"}
-            </h3>
-            <div className="text-caption">
-              {projected && !value ? (
-                "token" in i ? (
-                  i.authoredKind
+        <Tabs.Panel value={tab} className="editor-body bg-surface p-6 touch:p-4">
+          {tab === "authored" && <>
+            {editable || dirty ? (
+              <>
+                <fieldset disabled={accepting}>
+                  <legend className="sr-only">Value source</legend>
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+                    {(["literal", "reference"] as const).map(mode => <label key={mode} className="inline-flex min-h-9 items-center gap-2 text-caption cursor-pointer">
+                      <input
+                        type="radio"
+                        name={modeName}
+                        value={mode}
+                        ref={mode === "literal" ? modeRef : undefined}
+                        checked={session.mode === mode}
+                        onChange={() => changeMode(mode)}
+                        className="size-4 shrink-0 accent-primary disabled:cursor-default"
+                      />
+                      {mode === "literal" ? "Literal color" : "Reference"}
+                    </label>)}
+                  </div>
+                </fieldset>
+                {session.mode === "literal" ? (
+                  <ColorEditor
+                    readOnly={accepting || readOnly}
+                    session={session}
+                    onChange={changeColorDraft}
+                    onError={reportColorError}
+                  />
                 ) : (
-                  "No assignment"
-                )
-              ) : (
-                <AuthoredValue value={value} project={project} approximate />
-              )}
-            </div>
-          </section>
-          <TokenMetadata
-            token={token}
-            groupLabels={groupLabels}
-            revision={revision}
-            requestSource={requestSource}
-            path={i.path}
-          />
-        </Tabs.Panel>
-        <Tabs.Panel value="resolved" className="editor-body bg-surface p-6 touch:p-4">
-          <ResolvedTokenPanel
-            resolution={i.resolution}
-            project={project}
-            css={applied.css}
-            message={applied.message}
-          />
-        </Tabs.Panel>
-      </Tabs.Root>
-      <div className="px-6 pb-4 touch:px-4">
-          {targetUnavailable && (
-            <p
-              role="status"
-              className="notification notification-warning text-caption"
-            >
-              {targetUnavailable} Preserved input remains selectable. This
-              action cannot recreate or retarget it.
-            </p>
-          )}
-          {recovery && (
-            <EditRecovery
-              previous={recovery.previous}
-              current={{ value, layer: token.layer ?? null }}
-              preserved={session}
-              reviewed={recovery.reviewed}
-              headingRef={reviewHeading}
-              onReview={reviewRecovery}
+                  <ReferenceFields
+                    reference={session.reference}
+                    choices={referenceChoices.map(({ authored }) => ({
+                      id: authored.id,
+                      label: referenceLabels.get(authored.id) ?? authored.id,
+                    }))}
+                    missingTarget={
+                      !project.tokens.some(
+                        ({ authored }) => authored.id === session.reference,
+                      )
+                    }
+                    disabled={accepting || readOnly}
+                    onReferenceChange={changeReference}
+                  />
+                )}
+                <p className="helper text-muted-foreground font-normal preview-detail mt-2 wrap-anywhere">
+                  Draft preview: {draft.message}
+                </p>
+              </>
+            ) : (
+              <p className="notification notification-warning text-caption mt-4">
+                Inspection only: this token is outside the unconditional
+                primitive/semantic color revision flow. Its data is retained.
+              </p>
+            )}
+          </>}
+          <div>
+            {targetUnavailable && (
+              <p
+                role="status"
+                className="notification notification-warning text-caption"
+              >
+                {targetUnavailable} Preserved input remains selectable. This
+                action cannot recreate or retarget it.
+              </p>
+            )}
+            {recovery && (
+              <EditRecovery
+                previous={recovery.previous}
+                current={{ value, layer: token.layer ?? null }}
+                preserved={session}
+                reviewed={recovery.reviewed}
+                headingRef={reviewHeading}
+                onReview={reviewRecovery}
+              />
+            )}
+            {(editable || dirty) && <>
+                {error ? (
+                  <p
+                    ref={errorRef}
+                    tabIndex={-1}
+                    className="notification notification-error text-caption mt-4"
+                    id="editor-error"
+                    role="alert"
+                  >
+                    {error}
+                  </p>
+                ) : (
+                  <span id="editor-error" />
+                )}
+                <EditorActions
+                  cancelDisabled={!dirty || accepting}
+                  applyDisabled={
+                    !dirty ||
+                    !editable ||
+                    !!targetUnavailable ||
+                    (!!recovery && !recovery.reviewed) ||
+                    readUnavailable ||
+                    readOnly ||
+                    accepting ||
+                    (session.mode === "literal" && (session.byteInvalid || session.hexInvalid))
+                  }
+                  applyLabel={
+                    accepting
+                      ? "Retaining changes…"
+                      : recovery?.reviewed
+                        ? "Reapply changes"
+                        : "Apply changes"
+                  }
+                  onCancel={cancel}
+                  onApply={apply}
+                />
+                <p
+                  className="helper text-muted-foreground font-normal"
+                  role="status"
+                >
+                  {notice ||
+                    (dirty
+                      ? "Changes are not applied yet."
+                      : "Edit value and layer; name and other metadata are preserved.")}
+                </p>
+            </>}
+          </div>
+          {tab === "authored" ? <>
+            {token.layer === "component" && (
+              <p role="status" className="helper text-muted-foreground">
+                Component association is preserved. Component ownership context is
+                unavailable and unverified.
+              </p>
+            )}
+            <section className="applied-summary border-t-hairline border-border mt-7 pt-5">
+              <h3 className="mb-3.5">
+                {targetUnavailable
+                  ? "Previous applied · target unavailable"
+                  : "Currently applied"}
+              </h3>
+              <div className="text-caption">
+                {projected && !value ? (
+                  "token" in i ? (
+                    i.authoredKind
+                  ) : (
+                    "No assignment"
+                  )
+                ) : (
+                  <AuthoredValue value={value} project={project} approximate />
+                )}
+              </div>
+              <dl className="details text-caption">
+                <div className="flex justify-between gap-4 py-2.5 border-b-hairline border-border">
+                  <dt className="text-muted-foreground">HEX (sRGB preview)</dt>
+                  <dd className="text-right min-w-0 wrap-anywhere font-mono"
+                    title={appliedHex}>
+                    {appliedHex.match(/#[0-9A-F]{6}$/)?.[0] ?? "Unavailable"}
+                  </dd>
+                </div>
+              </dl>
+            </section>
+            <TokenMetadata
+              token={token}
+              groupLabels={groupLabels}
+              revision={revision}
+              requestSource={requestSource}
+              path={i.path}
+            />
+          </> : (
+            <ResolvedTokenPanel
+              resolution={i.resolution}
+              project={project}
+              css={applied.css}
+              message={applied.message}
             />
           )}
-        {(editable || dirty) && <>
-              {error ? (
-                <p
-                  ref={errorRef}
-                  tabIndex={-1}
-                  className="notification notification-error text-caption mt-4"
-                  id="editor-error"
-                  role="alert"
-                >
-                  {error}
-                </p>
-              ) : (
-                <span id="editor-error" />
-              )}
-              <EditorActions
-                cancelDisabled={!dirty || accepting}
-                applyDisabled={
-                  !dirty ||
-                  !editable ||
-                  !!targetUnavailable ||
-                  (!!recovery && !recovery.reviewed) ||
-                  readUnavailable ||
-                  readOnly ||
-                  accepting ||
-                  (session.mode === "literal" && (session.byteInvalid || session.hexInvalid))
-                }
-                applyLabel={
-                  accepting
-                    ? "Retaining changes…"
-                    : recovery?.reviewed
-                      ? "Reapply changes"
-                      : "Apply changes"
-                }
-                onCancel={cancel}
-                onApply={apply}
-              />
-              <p
-                className="helper text-muted-foreground font-normal"
-                role="status"
-              >
-                {notice ||
-                  (dirty
-                    ? "Changes are not applied yet."
-                    : "Edit value and layer; name and other metadata are preserved.")}
-              </p>
-        </>}
-      </div>
+        </Tabs.Panel>
+      </Tabs.Root>
       <div className="inspector-foot density:mt-5 small:mt-0 border-t-hairline border-border bg-surface px-6 py-4 mt-auto flex justify-between text-muted-foreground">
         <span>Regeneration</span>
         <span>{token.authoring.regeneration}</span>

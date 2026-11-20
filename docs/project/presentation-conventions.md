@@ -93,6 +93,41 @@ Use shadcn-style semantic theming adapted to the accepted neutral Precision desi
 
 Keep semantic design values in one source, currently `src/presentation/styles/global.css`. Map referenced semantic CSS variables through Tailwind's `@theme inline` namespaces: for example, `--color-background: var(--background)` exposes `bg-background`. Use the namespace appropriate to the decision, such as `--color-*`, `--radius-*` or `--font-*`. Focused CSS can reference the same source. Values defined directly in `@theme` also have one source; avoid adding a duplicate alias layer without a need. Application theme tokens remain distinct from user-authored design-token data.
 
+## Inspector action placement — 20 November 2026
+
+The user requested Cancel/Apply immediately below editable fields, before read-only
+information. The inspector now uses one active, labeled tab panel with a single
+shared action/recovery/error area. Authored value places it after color/reference
+entry and draft preview, before Currently applied and metadata. Resolved & trace
+places it before the read-only resolved information, retaining access to shared
+layer/value actions. Gates, command handlers, session owner and focus targets are
+unchanged. This supersedes the earlier actions-after-all-tab-content placement.
+
+Typechecking, 38 focused rendering/coordination tests and diff checks passed.
+Isolated Chrome verified visual/DOM order, a single action pair, both tab-panel
+accessible names, preserved HEX draft across tabs, and keyboard Cancel/Apply with
+focus returning to Literal color. The desktop screenshot was inspected. Source
+review confirmed no new component/helper or state-owner relocation. Narrow layout,
+screen-reader delivery and fault-recovery focus were not requalified. This was
+implementing-agent review; focused verification stopped after approximately four
+minutes with no harness repairs. Earlier qualification limits remain unchanged.
+
+## Applied HEX summary — 20 November 2026
+
+At the user's request, Currently applied includes a read-only **HEX (sRGB preview)**
+row. It uses the applied literal or applied resolved reference, never the editor
+session. The shared workbench HEX preview helper preserves the token list's existing
+conversion, gamut mapping and six-digit display policy; alpha stays separate.
+Unavailable previews show “Unavailable” with the diagnostic in the title.
+The authored space and coordinates remain visible and unchanged.
+
+Typechecking, 12 focused HEX-preview/token-list/editor rendering tests and diff
+checks passed. The editor assertion checks that a red draft leaves the applied
+black HEX unchanged. Source review confirmed shared helper placement under the
+nearest common workbench owner and unchanged session ownership. Browser rendering
+was not repeated for this display-only addition. Focused verification stopped after
+approximately two minutes, zero harness repairs; earlier qualification stays closed.
+
 ## HEX color entry — 20 November 2026
 
 The user approved adding HEX alongside the existing sRGB component fields, with
