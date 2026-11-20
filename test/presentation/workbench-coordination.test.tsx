@@ -852,11 +852,11 @@ it("coordinates layer-only drafts, resolved-tab focus, exact values and metadata
   owner.changeLayer(null); owner = render(hook);
   owner.selectTab("resolved"); owner = render(hook);
   const focus = vi.fn(), hiddenFocus = vi.fn();
-  owner.layerRef.current = {focus} as any; owner.modeRef.current = {focus: hiddenFocus} as any;
+  owner.descriptionRef.current = {focus} as any; owner.modeRef.current = {focus: hiddenFocus} as any;
   const applying = owner.apply(); owner = render(hook);
   expect(owner.accepting).toBe(true);
   await owner.apply(); expect(onApply).toHaveBeenCalledTimes(1);
-  expect(onApply).toHaveBeenCalledWith({kind: "literal", colorSpace: "srgb", components: value.components, alpha: value.alpha}, null);
+  expect(onApply).toHaveBeenCalledWith({kind: "literal", colorSpace: "srgb", components: value.components, alpha: value.alpha}, null, undefined);
   pending.resolve({status: "ok", value: {definition: {type: "color", assignments: [{condition: [], value}]}}});
   await applying; owner = render(hook); effects(); owner = render(hook);
   expect(owner.dirty).toBe(false); expect(owner.session.layer).toBe(null);
@@ -882,7 +882,7 @@ it("retains the layer draft on a failed combined reference edit", async () => {
   owner.changeLayer("semantic"); owner = render(hook);
   owner.changeColorDraft({...owner.session, byteInvalid: true}); owner = render(hook);
   await owner.apply(); owner = render(hook);
-  expect(onApply).toHaveBeenCalledWith(inspection.authoredValue, "semantic");
+  expect(onApply).toHaveBeenCalledWith(inspection.authoredValue, "semantic", undefined);
   expect(owner.session.layer).toBe("semantic"); expect(owner.dirty).toBe(true); expect(owner.error).toContain("Unknown outcome");
 });
 
@@ -903,7 +903,7 @@ it("retains incomplete HEX across tabs, guards Apply, and clears it on Cancel", 
   expect(owner.session.hexText).toBeNull(); expect(owner.dirty).toBe(false);
   owner.changeColorDraft(editHex(owner.session, "#ff0000")); owner = render(hook);
   await owner.apply(); owner = render(hook);
-  expect(onApply).toHaveBeenCalledWith({kind: "literal", colorSpace: "srgb", components: ["1", "0", "0"], alpha: value.alpha}, null);
+  expect(onApply).toHaveBeenCalledWith({kind: "literal", colorSpace: "srgb", components: ["1", "0", "0"], alpha: value.alpha}, null, undefined);
   expect(owner.session.hexText).toBe("#ff0000"); expect(owner.dirty).toBe(true);
 });
 
@@ -942,3 +942,62 @@ it("retains incomplete HEX across tabs, guards Apply, and clears it on Cancel", 
   waiting.resolve({status: "rejected", reason: "Unavailable"}); await create;
   owner = render(hook); expect(owner.defaultColorSpace).toBe("oklab"); expect(owner.name).toBe("Pending");
  });
+
+it("keeps description and section choices across tabs, reviews description conflicts, and reopens on Cancel", async () => {
+  const { useTokenEditor } = await import("@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor");
+  const value = {kind: "literal", valueType: "color", colorSpace: "srgb", components: ["0", "0", "0"], alpha: "1"};
+  let inspection: any = {token: {id: "t", localName: "Token", description: "previous", definition: {type: "color"}, authoring: {regeneration: "allowed"}}, authoredValue: value, editable: true, resolution: {status: "unresolved", reason: "test", trace: [], diagnostics: []}};
+  let revision = "r1";
+  const onApply = vi.fn(async () => ({status: "failure", error: {code: "storage-failure", operation: "commit", message: "Retain draft"}} as const));
+  const hook = () => useTokenEditor({inspection, revision, project: context as any, inspect: () => undefined, onApply, onDirty: vi.fn(), readUnavailable: false});
+  let owner = render(hook); effects(); owner = render(hook);
+  expect(owner.sections).toEqual({edit:true, applied:false, metadata:false, source:false, resolved:false, trace:false, diagnostics:false, raw:false});
+  owner.changeDescription("  draft\ntext  "); owner = render(hook);
+  owner.toggleSection("edit"); owner.toggleSection("metadata"); owner.selectTab("resolved"); owner = render(hook);
+  expect(owner.session.description).toBe("  draft\ntext  "); expect(owner.dirty).toBe(true); expect(owner.sections.edit).toBe(false);
+  await owner.apply(); owner = render(hook);
+  expect(onApply).toHaveBeenLastCalledWith(expect.objectContaining({kind: "literal"}), null, "  draft\ntext  ");
+  expect(owner.session.description).toBe("  draft\ntext  ");
+  revision = "r2"; inspection = {...inspection, token: {...inspection.token, description: "current"}};
+  owner = render(hook); effects(); owner = render(hook);
+  expect(owner.recovery?.previous.description).toBe("previous"); expect(owner.recovery?.reviewed).toBe(false);
+  await owner.apply(); expect(onApply).toHaveBeenCalledTimes(1);
+  vi.stubGlobal("requestAnimationFrame", (callback: () => void) => callback());
+  owner.reviewRecovery(); owner = render(hook); await owner.apply(); expect(onApply).toHaveBeenCalledTimes(2);
+  owner.cancel(); owner = render(hook); effects(); owner = render(hook);
+  expect(owner.session.description).toBe("current"); expect(owner.sections.edit).toBe(true); expect(owner.sections.metadata).toBe(true); expect(owner.dirty).toBe(false);
+  owner.changeDescription(""); owner = render(hook); await owner.apply();
+  expect(onApply).toHaveBeenLastCalledWith(expect.anything(), null, null);
+});
+
+it.each([undefined, ""])("omits untouched description %s during an unrelated edit", async description => {
+  const { useTokenEditor } = await import("@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor");
+  const value = {kind:"token-reference", targetTokenId:"target", valuePath:[]};
+  const inspection: any = {token:{id:"t", description, definition:{type:"color"}, authoring:{regeneration:"allowed"}}, authoredValue:value, editable:true, resolution:{status:"unresolved", reason:"test", trace:[], diagnostics:[]}};
+  const onApply = vi.fn(async () => ({status:"failure", error:{code:"storage-failure", operation:"commit", message:"failed"}} as const));
+  const hook = () => useTokenEditor({inspection, project:context as any, inspect:()=>undefined, onApply, onDirty:vi.fn(), readUnavailable:false});
+  let owner = render(hook); effects(); owner = render(hook); owner.changeLayer("semantic"); owner = render(hook); await owner.apply();
+  expect(onApply).toHaveBeenCalledWith(value,"semantic",undefined);
+  owner = render(hook); owner.changeDescription("temporary"); owner = render(hook); owner.changeDescription(""); owner = render(hook); await owner.apply();
+  expect(onApply).toHaveBeenLastCalledWith(value,"semantic",description === "" ? null : undefined);
+});
+
+it("loads source only on disclosure, rejects stale completions, and retries a failed current request", async () => {
+  const { ExactSource } = await import("@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/ExactSource");
+  const first = deferred<string>(), second = deferred<string>();
+  const request = vi.fn().mockReturnValueOnce(first.promise).mockReturnValueOnce(second.promise).mockRejectedValueOnce(Error("failure")).mockResolvedValue("retried");
+  let expanded = false, revision = "r1";
+  const component = () => ExactSource({revision, request, expanded, onToggle: () => {}});
+  const content = (element: any): any[] => element.props.children;
+  let view = render(component); effects(); expect(request).not.toHaveBeenCalled();
+  expanded = true; view = render(component); effects(); expect(request).toHaveBeenCalledTimes(1);
+  expanded = false; render(component); effects(); first.resolve("stale"); await first.promise;
+  view = render(component); expect(JSON.stringify(content(view))).not.toContain("stale");
+  expanded = true; render(component); effects(); second.resolve("fresh"); await second.promise;
+  view = render(component); expect(JSON.stringify(content(view))).toContain("fresh");
+  revision = "r2"; render(component); effects(); await Promise.resolve();
+  view = render(component); expect(JSON.stringify(content(view))).not.toContain("fresh");
+  const error = content(view).find((child: any) => child?.props?.role === "status" && child?.type === "div");
+  expect(error).toBeDefined(); error.props.children[1].props.onClick(); await Promise.resolve();
+  view = render(component); expect(JSON.stringify(content(view))).toContain("retried");
+});

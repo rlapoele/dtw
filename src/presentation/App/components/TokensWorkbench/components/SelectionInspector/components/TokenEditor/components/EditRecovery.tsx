@@ -23,7 +23,7 @@ export function EditRecovery({
         Applied state changed
       </h3>
       <p>
-        Layer, raw literal/reference input and view/scale choices are preserved. Review
+        Description, layer, raw literal/reference input and view/scale choices are preserved. Review
         opens a comparison; only Reapply changes submits a fresh command.
       </p>
       {!reviewed ? (

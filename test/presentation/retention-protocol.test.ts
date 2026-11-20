@@ -207,3 +207,10 @@ it("admits adapter-shaped catalogue rows with preferences or historical absence 
   }
   expect(() => validateHostOutput("catalogue", null, [{rowKey: "p", id: "p", status: "unavailable", reason: "Unsupported", preferences: {defaultColorSpace: "oklch"}}])).toThrow();
 });
+
+it("validates description omission, exact text and explicit removal on color revision", () => {
+  const input = {projectId: "p", tokenId: "t", value: {kind: "literal", colorSpace: "srgb", components: ["0", "0", "0"], alpha: "1"}};
+  const check = (extra: object) => validateHostInput("command", {command: {operation: "reviseColorToken", input: {...input, ...extra}}, revision: "r"});
+  for (const extra of [{}, {description: null}, {description: ""}, {description: "  exact\ntext "}]) expect(() => check(extra)).not.toThrow();
+  for (const description of [undefined, 42, false, {}, []]) expect(() => check({description})).toThrow();
+});

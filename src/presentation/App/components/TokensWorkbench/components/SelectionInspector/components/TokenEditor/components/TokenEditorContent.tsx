@@ -1,3 +1,7 @@
+import { InspectorSection } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorSection";
+import { ExactSource } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/ExactSource";
+import { Button } from "@presentation/ui/button";
+import { literalIssue } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session";
 import { hexPreview } from "@presentation/App/components/TokensWorkbench/helpers/hex-preview";
 import { resolvedColor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/helpers/resolved-color";
 import { useId, useLayoutEffect, useRef } from "react";
@@ -12,7 +16,7 @@ import type { useTokenEditor } from "@presentation/App/components/TokensWorkbenc
 import { AuthoredValue } from "@presentation/App/components/TokensWorkbench/components/AuthoredValue";
 import { TokenEditorTabs } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorTabs";
 import { Select } from "@presentation/ui/select";
-import { Badge } from "@presentation/ui/badge";
+
 
 import { Tabs } from "@base-ui/react/tabs";
 
@@ -62,6 +66,10 @@ export function TokenEditorContent({
     readOnly,
     targetUnavailable,
   } = editor;
+  const { sections, toggleSection, descriptionRef, changeDescription, revealDescription } = editor;
+  const disabled = !editable || accepting || readOnly || readUnavailable || !!targetUnavailable || (!!recovery && !recovery.reviewed);
+  const invalid = session.mode === "literal" ? session.hexInvalid || session.byteInvalid || !!literalIssue(session.literal) : session.reference === null;
+  const descriptionId = useId();
   const modeName = useId();
   const layerId = useId();
   const headingRef = useRef<HTMLDivElement>(null);
@@ -96,94 +104,10 @@ export function TokenEditorContent({
           </div>
         </div>
       </div>
-      <div className="px-6 pt-4 pb-5 touch:px-4">
-        {token.description && (
-          <p className="text-caption text-muted-foreground whitespace-pre-wrap wrap-anywhere">
-            {token.description}
-          </p>
-        )}
-        {i.path.status !== "derived" && (
-          <p className="text-caption wrap-anywhere">
-            Path unavailable · Parent identity:{" "}
-            {JSON.stringify(token.parentGroupId)}. Exact namespace details
-            remain available below.
-          </p>
-        )}
-        <div className="flex flex-wrap gap-2 mt-3">
-          <div className="w-full">
-            <label htmlFor={layerId} className="block text-caption font-medium mb-1">Layer</label>
-            <Select id={layerId} ref={layerRef} value={session.layer ?? ""}
-              aria-describedby={`${layerId}-help`}
-              disabled={!editable || accepting || readOnly || readUnavailable || !!targetUnavailable || (!!recovery && !recovery.reviewed)}
-              onChange={event => changeLayer(event.target.value === "" ? null : event.target.value as "primitive" | "semantic")}>
-              <option value="">Unspecified</option>
-              <option value="primitive">Primitive</option>
-              <option value="semantic">Semantic</option>
-              <option value="component" disabled>Component</option>
-            </Select>
-            <p id={`${layerId}-help`} className="text-caption text-muted-foreground mt-2">Component requires a component association; editing it is not available yet.</p>
-          </div>
-          {!editable && <Badge>Inspection only</Badge>}
-        </div>
-      </div>
-      <Tabs.Root value={tab} onValueChange={selectTab}>
-        <TokenEditorTabs />
-        <Tabs.Panel value={tab} className="editor-body bg-surface p-6 touch:p-4">
-          {tab === "authored" && <>
-            {editable || dirty ? (
-              <>
-                <fieldset disabled={accepting}>
-                  <legend className="sr-only">Value source</legend>
-                  <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-                    {(["literal", "reference"] as const).map(mode => <label key={mode} className="inline-flex min-h-9 items-center gap-2 text-caption cursor-pointer">
-                      <input
-                        type="radio"
-                        name={modeName}
-                        value={mode}
-                        ref={mode === "literal" ? modeRef : undefined}
-                        checked={session.mode === mode}
-                        onChange={() => changeMode(mode)}
-                        className="size-4 shrink-0 accent-primary disabled:cursor-default"
-                      />
-                      {mode === "literal" ? "Literal color" : "Reference"}
-                    </label>)}
-                  </div>
-                </fieldset>
-                {session.mode === "literal" ? (
-                  <ColorEditor
-                    readOnly={accepting || readOnly}
-                    session={session}
-                    onChange={changeColorDraft}
-                    onError={reportColorError}
-                  />
-                ) : (
-                  <ReferenceFields
-                    reference={session.reference}
-                    choices={referenceChoices.map(({ authored }) => ({
-                      id: authored.id,
-                      label: referenceLabels.get(authored.id) ?? authored.id,
-                    }))}
-                    missingTarget={
-                      !project.tokens.some(
-                        ({ authored }) => authored.id === session.reference,
-                      )
-                    }
-                    disabled={accepting || readOnly}
-                    onReferenceChange={changeReference}
-                  />
-                )}
-                <p className="helper text-muted-foreground font-normal preview-detail mt-2 wrap-anywhere">
-                  Draft preview: {draft.message}
-                </p>
-              </>
-            ) : (
-              <p className="notification notification-warning text-caption mt-4">
-                Inspection only: this token is outside the unconditional
-                primitive/semantic color revision flow. Its data is retained.
-              </p>
-            )}
-          </>}
-          <div>
+      <div className="px-6 touch:px-4">
+        <InspectorSection title="Edit token" open={sections.edit} onToggle={() => toggleSection("edit")}
+          badge={!sections.edit && dirty ? "Unapplied changes" : !editable ? "Inspection only" : undefined}
+          footer={<div className="pb-4">
             {targetUnavailable && (
               <p
                 role="status"
@@ -196,7 +120,7 @@ export function TokenEditorContent({
             {recovery && (
               <EditRecovery
                 previous={recovery.previous}
-                current={{ value, layer: token.layer ?? null }}
+                current={{ value, layer: token.layer ?? null, description: token.description }}
                 preserved={session}
                 reviewed={recovery.reviewed}
                 headingRef={reviewHeading}
@@ -217,6 +141,7 @@ export function TokenEditorContent({
                 ) : (
                   <span id="editor-error" />
                 )}
+                {!sections.edit && invalid && <Button onClick={revealDescription}>Open editable fields</Button>}
                 <EditorActions
                   cancelDisabled={!dirty || accepting}
                   applyDisabled={
@@ -227,7 +152,7 @@ export function TokenEditorContent({
                     readUnavailable ||
                     readOnly ||
                     accepting ||
-                    (session.mode === "literal" && (session.byteInvalid || session.hexInvalid))
+                    invalid
                   }
                   applyLabel={
                     accepting
@@ -246,10 +171,78 @@ export function TokenEditorContent({
                   {notice ||
                     (dirty
                       ? "Changes are not applied yet."
-                      : "Edit value and layer; name and other metadata are preserved.")}
+                      : "")}
                 </p>
             </>}
+          </div>}>
+          {(editable || dirty) ? <>
+            <label htmlFor={descriptionId} className="block text-caption font-medium mb-1.75">Description</label>
+            <textarea id={descriptionId} ref={descriptionRef} rows={3} value={session.description} disabled={disabled}
+              onChange={event => changeDescription(event.target.value)}
+              className="block w-full min-w-0 rounded-md border-2 border-input bg-background text-foreground px-2.5 py-2 text-caption resize-y mb-4.25" />
+          <div className="w-full mb-4.25">
+            <label htmlFor={layerId} className="block text-caption font-medium mb-1">Layer</label>
+            <Select id={layerId} ref={layerRef} value={session.layer ?? ""}
+              aria-describedby={`${layerId}-help`}
+              disabled={!editable || accepting || readOnly || readUnavailable || !!targetUnavailable || (!!recovery && !recovery.reviewed)}
+              onChange={event => changeLayer(event.target.value === "" ? null : event.target.value as "primitive" | "semantic")}>
+              <option value="">Unspecified</option>
+              <option value="primitive">Primitive</option>
+              <option value="semantic">Semantic</option>
+              <option value="component" disabled>Component</option>
+            </Select>
+            <p id={`${layerId}-help`} className="text-caption text-muted-foreground mt-2">Component requires a component association; editing it is not available yet.</p>
           </div>
+                <fieldset disabled={disabled} className="mb-0">
+                  <legend className="sr-only">Value source</legend>
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+                    {(["literal", "reference"] as const).map(mode => <label key={mode} className="inline-flex min-h-9 items-center gap-2 text-caption cursor-pointer">
+                      <input
+                        type="radio"
+                        name={modeName}
+                        value={mode}
+                        ref={mode === "literal" ? modeRef : undefined}
+                        checked={session.mode === mode}
+                        onChange={() => changeMode(mode)}
+                        className="size-4 shrink-0 accent-primary disabled:cursor-default"
+                      />
+                      {mode === "literal" ? "Literal color" : "Reference"}
+                    </label>)}
+                  </div>
+                </fieldset>
+                <div className="mt-4.25">{session.mode === "literal" ? (
+                  <ColorEditor
+                    readOnly={disabled}
+                    session={session}
+                    onChange={changeColorDraft}
+                    onError={reportColorError}
+                  />
+                ) : (
+                  <ReferenceFields
+                    reference={session.reference}
+                    choices={referenceChoices.map(({ authored }) => ({
+                      id: authored.id,
+                      label: referenceLabels.get(authored.id) ?? authored.id,
+                    }))}
+                    missingTarget={
+                      !project.tokens.some(
+                        ({ authored }) => authored.id === session.reference,
+                      )
+                    }
+                    disabled={disabled}
+                    onReferenceChange={changeReference}
+                  />
+                )}
+                </div>
+                <p className="helper text-muted-foreground font-normal preview-detail mt-2 wrap-anywhere">
+                  Draft preview: {draft.message}
+                </p>
+          </> : <p className="notification notification-warning text-caption">Inspection only: this token is outside the unconditional primitive/semantic color revision flow. Its data is retained.</p>}
+        </InspectorSection>
+      </div>
+      <Tabs.Root value={tab} onValueChange={selectTab}>
+        <TokenEditorTabs />
+        <Tabs.Panel value={tab} className="editor-body bg-surface px-6 pb-6 touch:px-4 touch:pb-4">
           {tab === "authored" ? <>
             {token.layer === "component" && (
               <p role="status" className="helper text-muted-foreground">
@@ -257,12 +250,8 @@ export function TokenEditorContent({
                 unavailable and unverified.
               </p>
             )}
-            <section className="applied-summary border-t-hairline border-border mt-7 pt-5">
-              <h3 className="mb-3.5">
-                {targetUnavailable
-                  ? "Previous applied · target unavailable"
-                  : "Currently applied"}
-              </h3>
+            <InspectorSection title={targetUnavailable ? "Previous applied · target unavailable" : "Currently applied"} open={sections.applied} onToggle={() => toggleSection("applied")}>
+              <dl className="text-caption mb-3"><dt className="text-muted-foreground">Description</dt><dd className="whitespace-pre-wrap wrap-anywhere">{token.description ?? "No description"}</dd><dt className="text-muted-foreground mt-3">Layer</dt><dd>{token.layer ?? "Unspecified"}</dd></dl>
               <div className="text-caption">
                 {projected && !value ? (
                   "token" in i ? (
@@ -283,16 +272,18 @@ export function TokenEditorContent({
                   </dd>
                 </div>
               </dl>
-            </section>
-            <TokenMetadata
+            </InspectorSection>
+            <InspectorSection title="Metadata" open={sections.metadata} onToggle={() => toggleSection("metadata")}><TokenMetadata
               token={token}
               groupLabels={groupLabels}
-              revision={revision}
-              requestSource={requestSource}
               path={i.path}
-            />
+            /></InspectorSection>
+            <ExactSource key={revision} revision={revision} expanded={sections.source} onToggle={() => toggleSection("source")} request={requestSource ?? (() => Promise.resolve(JSON.stringify("authored" in i ? i.authored : token, null, 2)))} />
           </> : (
             <ResolvedTokenPanel
+              sections={sections}
+              onToggle={toggleSection}
+              revision={revision}
               resolution={i.resolution}
               project={project}
               css={applied.css}
@@ -301,10 +292,6 @@ export function TokenEditorContent({
           )}
         </Tabs.Panel>
       </Tabs.Root>
-      <div className="inspector-foot density:mt-5 small:mt-0 border-t-hairline border-border bg-surface px-6 py-4 mt-auto flex justify-between text-muted-foreground">
-        <span>Regeneration</span>
-        <span>{token.authoring.regeneration}</span>
-      </div>
     </aside>
   );
 }

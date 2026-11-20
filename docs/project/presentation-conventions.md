@@ -95,22 +95,25 @@ Keep semantic design values in one source, currently `src/presentation/styles/gl
 
 ## Inspector action placement — 20 November 2026
 
-The user requested Cancel/Apply immediately below editable fields, before read-only
-information. The inspector now uses one active, labeled tab panel with a single
-shared action/recovery/error area. Authored value places it after color/reference
-entry and draft preview, before Currently applied and metadata. Resolved & trace
-places it before the read-only resolved information, retaining access to shared
-layer/value actions. Gates, command handlers, session owner and focus targets are
-unchanged. This supersedes the earlier actions-after-all-tab-content placement.
+[Increment 023](../increments/023-token-description-and-inspector-sections.md)
+supersedes the earlier tab-local action placement. A common **Edit token** section
+above Applied / Resolved & trace contains Description, Layer and value fields.
+Its one action/error/recovery footer stays visible when fields are collapsed; there
+is no action-top hairline and the action row uses `pt-1`. Idle helper copy is empty.
+Successful Apply and Cancel reopen the editor and focus Description after commit.
+The existing session hook retains draft, recovery and command ownership.
 
-Typechecking, 38 focused rendering/coordination tests and diff checks passed.
-Isolated Chrome verified visual/DOM order, a single action pair, both tab-panel
-accessible names, preserved HEX draft across tabs, and keyboard Cancel/Apply with
-focus returning to Literal color. The desktop screenshot was inspected. Source
-review confirmed no new component/helper or state-owner relocation. Narrow layout,
-screen-reader delivery and fault-recovery focus were not requalified. This was
-implementing-agent review; focused verification stopped after approximately four
-minutes with no harness repairs. Earlier qualification limits remain unchanged.
+InspectorSection supplies native heading buttons with expanded/content linkage,
+hidden collapsed content and shared Heroicons chevrons. Tailwind transform motion
+is suppressed for reduced motion. Edit token initially opens; read-only sections
+initially close. Per-token session choices survive tab switches. ExactSource uses
+that treatment for authored and raw derived source, retaining bounded rendering,
+explicit requests, retry and stale-generation guards. Metadata contains direct
+identity/path rows and the single Regeneration row. ColorEditor delegates its
+initial top spacing to its sole production caller so field gaps remain consistent.
+
+Earlier action-placement verification remains historical; current checks and
+remaining limits are recorded in Increment 023.
 
 ## Applied HEX summary — 20 November 2026
 

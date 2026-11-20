@@ -10,7 +10,7 @@ export function TokenEditorTabs() {
         className="relative border-0 bg-transparent min-h-9 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-0.25 data-active:after:inset-x-0 data-active:after:bg-primary"
         value="authored"
       >
-        Authored value
+        Applied
       </Tabs.Tab>
       <Tabs.Tab
         className="relative border-0 bg-transparent min-h-9 text-caption text-muted-foreground p-0 data-active:text-foreground data-active:font-semibold data-active:after:absolute data-active:after:h-1 data-active:after:-bottom-0.25 data-active:after:inset-x-0 data-active:after:bg-primary"

@@ -1,3 +1,5 @@
+import { InspectorSection } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorSection";
+import { ExactSource } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/ExactSource";
 import { colorDecimalDisplay } from "@presentation/App/components/TokensWorkbench/helpers/color-decimal-display";
 import type {
   SelectedToken,
@@ -11,11 +13,15 @@ import { spaceName } from "@presentation/App/helpers/color-space";
 import { Badge } from "@presentation/ui/badge";
 import { TokenSwatch } from "@presentation/App/components/TokensWorkbench/components/TokenSwatch";
 export function ResolvedTokenPanel({
+  sections, onToggle, revision,
   resolution,
   project,
   css,
   message,
 }: {
+  sections: Record<"resolved" | "trace" | "diagnostics" | "raw", boolean>;
+  onToggle: (key: "resolved" | "trace" | "diagnostics" | "raw") => void;
+  revision: string;
   resolution: SelectedToken["resolution"] | TokenInspection["resolution"];
   project: ProjectContext;
   css?: string;
@@ -28,8 +34,8 @@ export function ResolvedTokenPanel({
   };
   return (
     <>
+      <InspectorSection title="Resolved value" open={sections.resolved} onToggle={() => onToggle("resolved")}>
       <div className="flex items-center gap-2 mb-3">
-        <h3>Resolved value</h3>
         <Badge>Applied value</Badge>
       </div>
       <div className="resolved-preview flex flex-col gap-2 my-3">
@@ -72,7 +78,8 @@ export function ResolvedTokenPanel({
           Unresolved: {resolution.reason}. Authored data retained.
         </p>
       )}
-      <h3 className="mt-5">Resolution trace</h3>
+      </InspectorSection>
+      <InspectorSection title="Resolution trace" open={sections.trace} onToggle={() => onToggle("trace")}>
       <ol className="text-caption my-3 space-y-3">
         {resolution.trace.map((step, index) => (
           <li key={index} className="wrap-anywhere">
@@ -94,7 +101,8 @@ export function ResolvedTokenPanel({
           </li>
         ))}
       </ol>
-      <h3>Resolution diagnostics</h3>
+      </InspectorSection>
+      <InspectorSection title="Resolution diagnostics" open={sections.diagnostics} onToggle={() => onToggle("diagnostics")}>
       {resolution.diagnostics.length ? (
         <ul className="text-caption space-y-2 my-3">
           {resolution.diagnostics.map((issue, index) => (
@@ -113,12 +121,8 @@ export function ResolvedTokenPanel({
             : "No resolution issues."}
         </p>
       )}
-      <details className="text-caption mt-4">
-        <summary>Raw derived resolution data</summary>
-        <pre className="whitespace-pre-wrap wrap-anywhere">
-          {JSON.stringify(resolution, null, 2)}
-        </pre>
-      </details>
+      </InspectorSection>
+      <ExactSource key={revision} title="Raw resolution data" revision={revision} expanded={sections.raw} onToggle={() => onToggle("raw")} request={() => Promise.resolve(JSON.stringify(resolution, null, 2))} />
     </>
   );
 }

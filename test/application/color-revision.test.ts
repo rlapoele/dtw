@@ -316,3 +316,18 @@ it("revises all editable layers atomically while preserving exact values and unr
   expect(app.reviseColorToken({ projectId: "p", tokenId: "edited", value: reference("missing"), layer: null })).toMatchObject({ status: "failure" });
   expect(ok(app.inspectToken("p", "edited"))).toEqual(before);
 });
+
+it("revises exact descriptions atomically, distinguishes omission/removal, and preserves historical empty text", () => {
+  const { app } = setup();
+  const original = ok(app.createColorToken({...color("description"), description: ""}));
+  const input = {projectId: "p", tokenId: "description", value: literal};
+  expect(ok(app.reviseColorToken({...input, layer: "semantic"})).description).toBe("");
+  const description = "  First line\nSecond line  \n";
+  const revised = ok(app.reviseColorToken({...input, description, layer: null, value: {...literal, alpha: "0.5"}}));
+  expect(revised.description).toBe(description);
+  expect(revised.layer).toBeUndefined();
+  expect(revised.semanticRole).toBe(original.semanticRole);
+  expect(ok(app.reviseColorToken(input)).description).toBe(description);
+  expect(Object.hasOwn(ok(app.reviseColorToken({...input, description: null})), "description")).toBe(false);
+  expect(app.reviseColorToken({...input, description: 42 as never}).status).toBe("failure");
+});

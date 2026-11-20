@@ -48,10 +48,11 @@ function command(value: unknown) {
   ]);
   shape(v, ["operation", "input"]);
   if (v.operation === "reviseColorToken") {
-    const x = shape(v.input, ["projectId", "tokenId", "value"], ["layer"]);
+    const x = shape(v.input, ["projectId", "tokenId", "value"], ["layer", "description"]);
     text(x.projectId);
     text(x.tokenId);
     colorValue(x.value);
+    if (Object.hasOwn(x, "description") && x.description !== null) text(x.description);
     if (x.layer !== undefined && x.layer !== null) enumeration(x.layer, ["primitive", "semantic"]);
     return;
   }

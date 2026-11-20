@@ -15,6 +15,8 @@ export type LiteralDraft = {
   alpha: string;
 };
 export type DraftSession = {
+  description: string;
+  descriptionEdited: boolean;
   layer: "primitive" | "semantic" | "component" | null;
   mode: "literal" | "reference";
   literal: LiteralDraft;
@@ -28,7 +30,7 @@ export type DraftSession = {
   byteEdited: [boolean, boolean, boolean];
   edited: boolean;
 };
-export function baseline(value?: ImplementedAuthoredValue, layer: DraftSession["layer"] = null): DraftSession {
+export function baseline(value?: ImplementedAuthoredValue, layer: DraftSession["layer"] = null, description?: string): DraftSession {
   const literal =
     value?.kind === "literal" && value.valueType === "color"
       ? {
@@ -42,6 +44,8 @@ export function baseline(value?: ImplementedAuthoredValue, layer: DraftSession["
           alpha: "1",
         };
   return {
+    description: description ?? "",
+    descriptionEdited: false,
     layer,
     mode: value?.kind === "token-reference" ? "reference" : "literal",
     literal,
@@ -61,9 +65,10 @@ export function refreshCleanSession(
   session: DraftSession,
   value?: ImplementedAuthoredValue,
   layer: DraftSession["layer"] = null,
+  description?: string,
 ): DraftSession {
   return {
-    ...baseline(value, layer),
+    ...baseline(value, layer, description),
     viewSpace: session.viewSpace,
     scale: session.scale,
   };

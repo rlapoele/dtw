@@ -52,6 +52,8 @@ export type ReviseColorTokenInput = {
   readonly tokenId: string;
   /** Omitted preserves the layer; null explicitly removes it. */
   readonly layer?: "primitive" | "semantic" | null;
+  /** Omitted preserves description; null explicitly removes it. */
+  readonly description?: string | null;
   readonly value: CreateColorTokenInput["value"];
 };
 
@@ -190,6 +192,7 @@ export function createAuthoringOperations(storage: ProjectStorage) {
         if (input.layer !== undefined && input.layer !== null && input.layer !== "primitive" && input.layer !== "semantic") {
           throw new RangeError("Color revision supports primitive, semantic or unspecified layer only");
         }
+        if (input.description !== undefined && input.description !== null && typeof input.description !== "string") throw new RangeError("Description must be text or null");
         const value = input.value.kind === "literal" ? createColorLiteral(input.value) : createTokenReference(input.value);
         // Both pure steps operate on detached data; only the final checked
         // candidate is committed, never the intermediate unassigned token.
@@ -200,6 +203,10 @@ export function createAuthoringOperations(storage: ProjectStorage) {
         } else if (input.layer !== undefined) {
           revised = { ...revised, layer: input.layer };
         }
+        if (input.description === null) {
+          const { description: _description, ...withoutDescription } = revised;
+          revised = withoutDescription;
+        } else if (input.description !== undefined) revised = { ...revised, description: input.description };
       } catch (error) {
         if (!(error instanceof RangeError)) throw error;
         return { status: "failure", error: { code: "invalid-domain-input", message: error.message } };

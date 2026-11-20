@@ -2,7 +2,7 @@
 
 > Last updated: 20 November 2026
 >
-> Phase: Increment 022 completed, independently reviewed and user-accepted; verification limits retained. Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
+> Phase: Increment 023 implemented and independently reviewed; user acceptance pending. Increment 022 completed, independently reviewed and user-accepted; verification limits retained. Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
 > completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
@@ -10,24 +10,31 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Token description and inspector sections — Increment 023 draft
+## Token description and inspector sections — Increment 023 implemented/reviewed
 
-The user requested description editing, grouped editable fields, consistent
-collapsible inspector sections, Metadata identity/path rows and removal of duplicate
-Regeneration. Description editing is agreed for the current editable color-token
-flow, preserving existing regeneration/manual-edit semantics. The analyst drafted
-[Increment 023](../increments/023-token-description-and-inspector-sections.md).
-Description is already modeled and retained; no persistence migration is proposed.
-The separate designer recommends Edit token above read-only Applied / Resolved &
-trace tabs, with actions/error/recovery always visible and independent disclosure
-headers. The user approved this structure for a visual prototype on 20 November. The
-separate designer completed [V1](../../prototypes/increment-023-v1/DESIGN-V1.md).
-Build/typecheck and bounded Chrome interaction checks passed; desktop/narrow
-rendering was inspected, with one sticky-background issue corrected. User review
-of V1 is next, before analyst design review or final implementation agreement.
-The user subsequently requested all read-only sections collapsed by default;
-V1 now follows that choice while Edit token starts open. Production remains
-unchanged. Earlier increments remain closed.
+The user approved refined V1 and asked to proceed. Analyst consistency review
+found no material mismatch, and the coordinator implemented that scope through
+separate developer and reviewer agents. [Increment 023](../increments/023-token-description-and-inspector-sections.md)
+owns the contract, authorization chronology and evidence.
+
+Description now shares Apply/Cancel, history and recovery with layer/value within
+the existing eligible color-token flow. Edit token sits above read-only tabs;
+all read-only sections start collapsed, with consistent keyboard-operable chevrons.
+Actions/recovery remain visible when editing collapses. Metadata contains exact
+identity/path rows and a single Regeneration entry; source remains opt-in/bounded.
+User spacing and helper-copy refinements are preserved.
+
+Typecheck/build and focused developer tests passed; independent review passed117
+focused tests and found no actionable code findings. Chrome verified exact text,
+removal, Undo/Redo, collapsed Apply/Cancel and focus, source/metadata, reload/reopen,
+keyboard toggling, reduced motion and narrow layout. Final source/Chrome recheck
+confirmed both requested gaps at17px. Details distinguish earlier build evidence
+from the final small refinements. Known unrelated Icon assertion remains unchanged.
+
+User acceptance is next. Screen-reader delivery and live fault-injected recovery
+remain unverified. Checks stopped at approximately22/30 production verification
+minutes with2/2 harness repairs; earlier qualification stays closed. Changes are
+unstaged. Suggested commit: `feat: edit token descriptions and organize inspector sections`.
 
 ## Project creation preferences — Increment 022 complete
 

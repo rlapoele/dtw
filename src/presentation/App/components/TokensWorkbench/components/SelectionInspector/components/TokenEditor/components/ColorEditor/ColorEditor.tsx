@@ -69,7 +69,7 @@ export function ColorEditor({
   const alphaRangeState = visualRangeState(s.literal.alpha, "0", "1");
   return (
     <>
-      <div className="grid grid-cols-2 gap-3 mt-3">
+      <div className="grid grid-cols-2 gap-3">
         <Field className="mb-1!">
           View color space
           <Select

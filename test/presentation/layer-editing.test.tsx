@@ -18,11 +18,14 @@ it.each(["authored", "resolved"])("renders one shared editable layer and action 
   }
   const html = renderToStaticMarkup(createElement(Content));
   if (tab === "authored") {
-    const summary = html.slice(html.indexOf("Currently applied"), html.indexOf("Metadata · read only"));
+    const summary = html.slice(html.indexOf("Currently applied"), html.indexOf("Metadata"));
     expect(summary).toContain("HEX (sRGB preview)");
     expect(summary).toContain("#000000");
     expect(summary).not.toContain("#FF0000");
   }
+  expect(html).toContain("Description</label>");
+  expect(html).toContain('aria-expanded="true"');
+  expect((html.match(/>Regeneration</g) ?? [])).toHaveLength(tab === "authored" ? 1 : 0);
   expect(html).toContain('value="semantic" selected=""');
   expect(html).toContain('value="component" disabled=""');
   expect(html).toContain("Component requires a component association");
@@ -31,11 +34,11 @@ it.each(["authored", "resolved"])("renders one shared editable layer and action 
   expect(html).not.toMatch(/<button[^>]* disabled=""[^>]*>Apply changes/);
   expect(html.indexOf(">Layer</label>")).toBeLessThan(html.indexOf('role="tablist"'));
   expect((html.match(/role="tabpanel"/g) ?? [])).toHaveLength(1);
-  expect(html.indexOf("editor-actions")).toBeGreaterThan(html.indexOf('role="tabpanel"'));
+  expect(html.indexOf("editor-actions")).toBeLessThan(html.indexOf('role="tabpanel"'));
   if (tab === "authored") {
     expect(html.indexOf("editor-actions")).toBeGreaterThan(html.indexOf("Draft preview:"));
     expect(html.indexOf("editor-actions")).toBeLessThan(html.indexOf("Currently applied"));
-    expect(html.indexOf("editor-actions")).toBeLessThan(html.indexOf("Metadata · read only"));
+    expect(html.indexOf("editor-actions")).toBeLessThan(html.indexOf("Metadata"));
   } else {
     expect(html).not.toContain("Currently applied");
     expect(html.indexOf("editor-actions")).toBeLessThan(html.indexOf("Resolved value"));

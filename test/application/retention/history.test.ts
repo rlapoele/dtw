@@ -159,3 +159,33 @@ it("retains layer edits and exact backup data in one history step, preserving re
   expect(Object.hasOwn(f.record().snapshot.tokens[0], "layer")).toBe(false);
   await traverse(f, "undo"); expect(f.record().snapshot).toEqual(changed);
 });
+
+it("retains description and combined revisions in one step without rewriting unchanged absence or historical empty text", async () => {
+  const { encodeBackup, decodeBackup } = await import("@application/retention/codec");
+  const f = await opened();
+  const value = {kind: "literal", colorSpace: "srgb", components: ["0.123456789123456789", "0", "0"], alpha: "0.987654321"} as const;
+  f.finish(await f.app.command({operation: "createColorToken", input: {projectId: "p", id: "t", localName: "t", parentGroupId: null, type: "color", regeneration: "protected", description: "", value}}, f.record().revision));
+  const input = {projectId: "p", tokenId: "t", value};
+  const original = f.record(); const writes = f.writes(); const history = f.app.historyState();
+  expect((await f.app.command({operation: "reviseColorToken", input}, original.revision)).status).toBe("unchanged");
+  expect(f.record()).toBe(original); expect(f.writes()).toBe(writes); expect(f.app.historyState()).toEqual(history);
+  const description = "  Exact\nmultiline  \n";
+  f.finish(await f.app.command({operation: "reviseColorToken", input: {...input, description, layer: "semantic"}}, f.record().revision));
+  const changed = f.record().snapshot;
+  expect(changed.tokens[0].description).toBe(description);
+  expect(changed.tokens[0].definition).toEqual(original.snapshot.tokens[0].definition);
+  expect(f.app.historyState().undoCount).toBe(history.undoCount + 1);
+  expect(decodeBackup(encodeBackup(changed, "2026-11-20T10:00:00.000Z")).snapshot).toEqual(changed);
+  await traverse(f, "undo"); expect(f.record().snapshot).toEqual(original.snapshot);
+  await traverse(f, "redo"); expect(f.record().snapshot).toEqual(changed);
+  f.finish(await f.app.command({operation: "reviseColorToken", input: {...input, description: null}}, f.record().revision));
+  expect(Object.hasOwn(f.record().snapshot.tokens[0], "description")).toBe(false);
+  const removed = f.record();
+  expect((await f.app.command({operation: "reviseColorToken", input}, removed.revision)).status).toBe("unchanged");
+  expect(f.record()).toBe(removed);
+  await f.app.leaveProject("p"); await f.app.openProject("p");
+  expect(f.record().snapshot).toEqual(removed.snapshot);
+  const restored = decodeBackup(encodeBackup(changed, "2026-11-20T10:00:00.000Z")).snapshot;
+  expect(f.finish(await f.app.restoreProject(restored, f.record().revision, f.record().revision)).status).toBe("retained");
+  expect(f.record().snapshot).toEqual(changed);
+});

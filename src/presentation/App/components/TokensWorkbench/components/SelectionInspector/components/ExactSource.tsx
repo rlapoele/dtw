@@ -1,12 +1,23 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { InspectorSection } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorSection";
 import { Button } from "@presentation/ui/button";
 export function ExactSource({
   revision,
   request,
+  expanded,
+  onToggle,
+  title = "All authored data",
 }: {
   revision: string;
   request: () => Promise<string>;
+  expanded?: boolean;
+  onToggle?: () => void;
+  title?: string;
 }) {
+  const [localOpen, setLocalOpen] = useState(false);
+  const isOpen = expanded ?? localOpen;
+  const requestRef = useRef(request);
+  requestRef.current = request;
   const [text, setText] = useState<string>(),
     [error, setError] = useState(""),
     [preparing, setPreparing] = useState(false);
@@ -18,54 +29,45 @@ export function ExactSource({
     setError("");
     setText(undefined);
     try {
-      const source = await request();
+      const source = await requestRef.current();
       if (open.current && current === generation.current) setText(source);
     } catch {
       if (open.current && current === generation.current)
         setError(
-          "Authored data unavailable. Applied data and drafts are unchanged.",
+          "Source unavailable. Applied data and drafts are unchanged.",
         );
     } finally {
       if (current === generation.current) setPreparing(false);
     }
   }
+  useEffect(() => {
+    open.current = isOpen;
+    if (isOpen) void prepare();
+    else { setPreparing(false); setText(undefined); setError(""); }
+    return () => { open.current = false; generation.current++; };
+  }, [isOpen, revision]);
   return (
-    <div className="mt-4">
-      <p className="helper text-muted-foreground">
-        Opening very large exact source may briefly pause this view.
-      </p>
-      <details
-        onToggle={(event) => {
-          open.current = event.currentTarget.open;
-          if (open.current) void prepare();
-          else {
-            generation.current++;
-            setPreparing(false);
-            setText(undefined);
-          }
-        }}
-      >
-        <summary>All authored data</summary>
+    <InspectorSection title={title} open={isOpen} onToggle={onToggle ?? (() => setLocalOpen(value => !value))}>
+        <p className="helper text-muted-foreground">Opening very large exact source may briefly pause this view.</p>
         <p className="text-caption my-3 wrap-anywhere">
-          Applied data · Revision {revision} · Read only
+          {title === "All authored data" ? "Applied data" : "Derived resolution data"} · Revision {revision} · Read only
         </p>
-        {preparing && <p role="status">Preparing authored data…</p>}
+        {preparing && <p role="status">Preparing source…</p>}
         {error && (
           <div role="status">
             <p>{error}</p>
-            <Button onClick={() => void prepare()}>Retry authored data</Button>
+            <Button onClick={() => void prepare()}>Retry source</Button>
           </div>
         )}
         {text !== undefined && (
           <pre
             tabIndex={0}
-            aria-label="Complete applied authored data"
+            aria-label={title === "All authored data" ? "Complete applied authored data" : "Raw derived resolution data"}
             className="exact-source text-caption my-3"
           >
             {text}
           </pre>
         )}
-      </details>
-    </div>
+    </InspectorSection>
   );
 }
