@@ -10,6 +10,18 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Project creation preferences — Increment 022 draft
+
+The user requested a default color-space preference in project creation, with
+OKLCH preselected, and confirmed sRGB fallback for existing projects without a
+saved setting. The separate analyst prepared [Increment 022](../increments/022-project-default-color-space.md).
+It proposes a Project preferences form group, saved per-project default for new
+color tokens, no conversion of existing tokens, and authored version 3 with
+version 1/2 readers and exact legacy absence preserved. Later preference editing
+is outside the proposed slice. A native Select in the existing form needs no
+separate design prototype. Contract agreement is next; production implementation
+has not started. Earlier qualification remains closed.
+
 ## Inspector actions moved below editable fields — 20 November 2026
 
 Implemented the user's requested [action placement](../project/presentation-conventions.md#inspector-action-placement--20-november-2026).
@@ -21,7 +33,7 @@ Typechecking and 38 focused tests passed. Chrome verified action order, tab-pane
 labels, draft preservation and keyboard Apply/Cancel focus. Desktop rendering was
 inspected; narrow layout, screen-reader delivery and fault recovery were not
 requalified. Checks stopped after approximately four minutes with no harness repairs.
-User visual review is next. This and the earlier applied-HEX work remain unstaged.
+The user subsequently confirmed committing and pushing this and the earlier applied-HEX work.
 Suggested combined commit: `feat: improve applied color summary and inspector action placement`.
 
 ## Applied HEX summary — 20 November 2026
