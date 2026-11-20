@@ -10,6 +10,19 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Token description and inspector sections — Increment 023 draft
+
+The user requested description editing, grouped editable fields, consistent
+collapsible inspector sections, Metadata identity/path rows and removal of duplicate
+Regeneration. Description editing is agreed for the current editable color-token
+flow, preserving existing regeneration/manual-edit semantics. The analyst drafted
+[Increment 023](../increments/023-token-description-and-inspector-sections.md).
+Description is already modeled and retained; no persistence migration is proposed.
+The separate designer recommends Edit token above read-only Applied / Resolved &
+trace tabs, with actions/error/recovery always visible and independent disclosure
+headers. This material layout proposal awaits user approval before a prototype.
+No production code or prototype was changed. Earlier increments remain closed.
+
 ## Project creation preferences — Increment 022 complete
 
 The user authorized the agreed [Increment 022](../increments/022-project-default-color-space.md)
