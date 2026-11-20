@@ -16,7 +16,7 @@ import "./prototype.css";
 
 type SectionKey = "edit" | "applied" | "metadata" | "source" | "resolved" | "trace" | "diagnostics" | "raw";
 type Scenario = "ordinary" | "failure" | "conflict" | "readonly" | "source-failure";
-const initialSections: Record<SectionKey, boolean> = {edit:true,applied:true,metadata:true,source:false,resolved:true,trace:true,diagnostics:true,raw:false};
+const initialSections: Record<SectionKey, boolean> = {edit:true,applied:false,metadata:false,source:false,resolved:false,trace:false,diagnostics:false,raw:false};
 const blue = createColorLiteral({colorSpace:"srgb",components:["0.2","0.4","0.6"],alpha:"1"});
 const sample = {description:"Primary action background. Use with the on-accent text color.", session:baseline(blue,"semantic")};
 const reference = createColorLiteral({colorSpace:"oklch",components:["0.55","0.14","250"],alpha:"1"});

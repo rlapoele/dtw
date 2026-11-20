@@ -25,7 +25,9 @@ separate designer completed [V1](../../prototypes/increment-023-v1/DESIGN-V1.md)
 Build/typecheck and bounded Chrome interaction checks passed; desktop/narrow
 rendering was inspected, with one sticky-background issue corrected. User review
 of V1 is next, before analyst design review or final implementation agreement.
-Production remains unchanged. Earlier increments remain closed.
+The user subsequently requested all read-only sections collapsed by default;
+V1 now follows that choice while Edit token starts open. Production remains
+unchanged. Earlier increments remain closed.
 
 ## Project creation preferences — Increment 022 complete
 

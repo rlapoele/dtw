@@ -106,8 +106,8 @@ other metadata, and Regeneration appears once.
    headings/chevrons. Metadata contains direct identity/path rows; All authored data
    is a separate lazy, bounded top-level section. The design artifact/link is pending
    user direction and must be identified before analyst consistency review.
-4. **Expansion policy — approved for prototype:** editing and ordinary
-   read-only sections start open; raw source sections start closed. A collapsed edit
+4. **Expansion policy — approved for prototype:** Edit token starts open; all
+   read-only sections start collapsed, per the user’s V1 feedback on 20 November. A collapsed edit
    section indicates unsaved changes. Independent toggles avoid an exclusive
    accordion. No persisted preference is proposed; selection-lifetime and focus
    details must be explicit in the design artifact. Material layout changes remain

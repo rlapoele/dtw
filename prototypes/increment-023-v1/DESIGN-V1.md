@@ -39,9 +39,9 @@ Typecheck: `npx tsc --project prototypes/increment-023-v1/tsconfig.json --noEmit
   The chevron rotates right → down in 160ms; reduced-motion removes its transition.
   Panels open independently, not as an exclusive accordion. There is no height
   animation or simulated async animation dependency.
-- Edit token, Currently applied, Metadata, Resolved value, Resolution trace and
-  Resolution diagnostics start open. All authored data and Raw resolution data
-  start closed. Tab changes preserve expansion choices and drafts.
+- Edit token starts open. All read-only sections—Currently applied, Metadata,
+  All authored data, Resolved value, Resolution trace, Resolution diagnostics and
+  Raw resolution data—start collapsed, as requested on 20 November 2026. Tab changes preserve expansion choices and drafts.
 - Description/layer/value Apply and Cancel update one local sample atomically.
   The applied sample row and read-only information remain unchanged while drafting.
   Clearing the description removes it from the sample authored object. Exact
