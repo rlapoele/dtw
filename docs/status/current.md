@@ -2,7 +2,7 @@
 
 > Last updated: 20 November 2026
 >
-> Phase: Increment 022 implemented and independently reviewed; user acceptance pending. Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
+> Phase: Increment 022 completed, independently reviewed and user-accepted; verification limits retained. Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
 > completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
@@ -10,7 +10,7 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Project creation preferences — Increment 022 implemented and reviewed
+## Project creation preferences — Increment 022 complete
 
 The user authorized the agreed [Increment 022](../increments/022-project-default-color-space.md)
 on 20 November. Project creation now includes Project preferences with OKLCH
@@ -29,9 +29,11 @@ Full suite has one pre-existing Icon class assertion failure (1233 passed); it w
 not changed. Native-select keyboard selection and screen-reader delivery remain
 unverified; keyboard focus works. Browser fault injection was not repeated.
 Verification stopped at approximately 26/30 aggregate minutes, one/two harness
-repairs. Earlier qualification remains closed. User visual/keyboard acceptance is
-next. Changes remain unstaged. Suggested commit:
-`feat: add project default color space preferences`.
+repairs. Earlier qualification remains closed. On 20 November the user reported
+that the browser preview works well and accepted the increment. This does not
+establish individual keyboard/accessibility checks; recorded limits remain.
+No further verification or preference-editing work is requested. Suggested commit
+for this acceptance record: `docs: record Increment 022 browser acceptance`.
 
 ## Inspector actions moved below editable fields — 20 November 2026
 

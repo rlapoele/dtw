@@ -1,7 +1,7 @@
 # Increment 022: Project default color space
 
 - Contract status: Agreed
-- Delivery status: In progress
+- Delivery status: Completed — user-accepted on 20 November 2026
 - User request — 20 November 2026: allow choosing a default color space in project creation, with OKLCH selected by default. The user then clarified this belongs to project creation options/preferences and explicitly selected “Keep sRGB for existing projects.”
 - Agreement — 20 November 2026: after the typed ProjectPreferences correction, the user explicitly authorized: “Proceed with the implementation.” The contract, scoped semantics and compatibility strategy below are agreed.
 - References: [project model](../design-tokens/conceptual-model.md#project-ownership-and-identity), [product concept](../project/product-concept.md#project-centered-workflow), [architecture](../project/architecture.md), [interoperability](../design-tokens/interoperability.md), [presentation conventions](../project/presentation-conventions.md), [workflow](../workflow/agent-roles.md), [019 compatibility precedent](019-project-description-and-lifecycle-dates.md#agreed-implementation-and-migration-boundary).
@@ -258,3 +258,14 @@ targeted review and successful runtime recheck; no further campaign is requested
 Next human check: open New project, inspect Project preferences and try choosing
 a color space with the keyboard; create a project/token to assess the intended flow.
 Staging, committing and pushing remain with the user.
+
+### User acceptance — 20 November 2026
+
+The user reported: “I previewed in the browser and it works well.” Increment 022
+is complete on the basis of this browser acceptance, implementation evidence and
+independent review. The user did not identify individual keyboard or accessibility
+checks, so acceptance does not claim those previously unverified paths were tested.
+All recorded verification limits and the pre-existing Icon test failure remain.
+No additional verification campaign or later preference-editing work is opened.
+
+Suggested commit: `docs: record Increment 022 browser acceptance`.
