@@ -272,7 +272,7 @@ export function ColorEditor({
           );
         })}
       </div>
-      <div className="component-control flex min-w-0 flex-col mb-1 alpha-control border-t-hairline border-border pt-1">
+      <div className="component-control flex min-w-0 flex-col mb-1 alpha-control pt-1">
         <label
           htmlFor="color-alpha"
           className="component-value min-w-0 m-0 text-caption font-medium"
