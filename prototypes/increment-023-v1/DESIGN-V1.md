@@ -121,3 +121,10 @@ coordinator recheck confirmed an opaque heading and inspected the corrected narr
 irrelevant browser 404. These browser results are coordinator-reported evidence. Prototype work stops for user feedback. The user must see and
 approve identified V1 for analyst review before that review starts; final contract/
 design agreement and production implementation authorization follow separately.
+
+### Spacing refinement — 20 November 2026
+
+At the user’s request, the gap after the Literal color / Reference radio group
+now matches the shared Field spacing between Description and Layer (1.0625rem).
+The prototype removes stacked radio-group and color-editor margins locally;
+production ColorEditor is unchanged.

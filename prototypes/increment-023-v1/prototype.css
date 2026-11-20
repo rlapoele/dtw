@@ -12,3 +12,6 @@
 @media(max-width:1119px){.preview-workspace{grid-template-columns:minmax(0,1fr) 25rem}.preview-navigation{display:none}.preview-list{padding:1.25rem}}
 @media(max-width:879px){.preview-workspace{display:block}.preview-navigation,.preview-list{display:none}.preview-inspector{height:100%;border:0}.preview-header{min-height:3rem;padding:.75rem 1rem;gap:1rem}.preview-chrome small{display:none}.preview-inspector-heading{padding:1rem}.preview-inspector-body{padding:0 1rem 1rem}.preview-chrome{gap:.5rem}.preview-chrome select{max-width:12rem}}
 @media(prefers-reduced-motion:reduce){.preview-section-trigger .chevron{transition:none}}
+
+/* Match the existing Field spacing after the value-source radio group. */
+.preview-color-entry > :first-child{margin-top:0}
