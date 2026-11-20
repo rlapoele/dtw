@@ -2,7 +2,7 @@
 
 - Contract status: Draft
 - Delivery status: Not started
-- Agreement: on 20 November 2026 the user agreed a fixed 11-step first scope and that editing the seed's token in the ordinary inspector creates a manual override while leaving the recipe seed unchanged. These decisions do not constitute agreement to this complete contract or implementation authorization.
+- Agreement: on 20 November 2026 the user agreed a fixed 11-step first scope and that editing the seed's token in the ordinary inspector creates a manual override while leaving the recipe seed unchanged. The user subsequently agreed entry through a checkbox in group creation and keeping the group provisional until final confirmation, and requested comparison wireframes. These decisions do not constitute agreement to this complete contract or implementation authorization.
 - References: [ramp direction](../project/guided-color-palette-generation.md#agreed-ramp-direction--20-november-2026), [scale model](../design-tokens/conceptual-model.md#scale-generation), [architecture](../project/architecture.md), [interoperability](../design-tokens/interoperability.md), [workflow](../workflow/agent-roles.md), [presentation conventions](../project/presentation-conventions.md), [existing retention qualification limits](007-local-retention-and-backup.md#deferred-qualification).
 
 ## Outcome
@@ -17,6 +17,10 @@ control or migration workflow.
 The following is the proposed contract scope; only the explicitly recorded user
 decisions below are already agreed.
 
+- Enter through the existing group-creation form with **Generate a color ramp**.
+  Unchecked, retain ordinary group creation; checked, **Continue** opens ramp setup
+  without saving an empty group. Final confirmation creates group, tokens and ramp
+  metadata together; cancelling leaves no provisional group in applied data.
 - Create a new named ramp group in an existing project beneath a selected namespace,
   containing 11 ordinary color tokens named `50`, `100`, `200`, `300`, `400`, `500`,
   `600`, `700`, `800`, `900`, `950`. No adoption or overwrite of existing groups.
@@ -47,7 +51,8 @@ decisions below are already agreed.
 These are draft observable requirements, subject to the unresolved decisions and
 identified design agreement. Criteria are not claims of existing behavior.
 
-- AC-1 — Preview and creation: seed/settings and per-step changes remain draft-only
+- AC-1 — Preview and creation: the group-creation checkbox starts ramp setup without
+  creating an applied group. Seed/settings and per-step changes remain draft-only
   until confirmation. The preview exposes all 11 names, paths and values, with
   generated, seed-anchor and manual states distinguishable without color alone.
   Invalid input or a namespace collision blocks creation with actionable feedback.
@@ -116,6 +121,9 @@ identified design agreement. Criteria are not claims of existing behavior.
   changes in this slice. User agreement recorded 20 November 2026.
 - Inspector edits of the seed-position token create a manual override without
   changing the recipe seed. User agreement recorded 20 November 2026.
+- Entry through group creation with a ramp checkbox and a provisional group until
+  final confirmation: user agreement recorded 20 November 2026. No separate permanent
+  New ramp action. Dialog versus central preview plus inspector is not yet selected.
 - Exact seed, recipe-dependent Auto suggestion and saved accepted placement remain
   established direction. This does not select an automatic placement algorithm.
 
@@ -149,7 +157,7 @@ identified design agreement. Criteria are not claims of existing behavior.
    behavior and backup fidelity. This is technical preparation, not a new canonical
    persistence-platform choice.
 7. **Creation conventions and design:** confirm new-group-only collision behavior,
-   default token layer, entry point, selected namespace behavior, and the review
+   default token layer, selected namespace behavior, and the review
    layout. Recommend primitive-layer creation with no inferred semantic role; this
    remains a proposal. The designer owns the identified interaction proposal.
 
@@ -190,9 +198,11 @@ Proposed only; no production verification campaign has started.
 ## Design proposals and review
 
 - Designer required: substantial creation, regeneration and per-step review flow.
-- Initial written proposal: [Color ramps V1](../project/workbench-layout/color-ramps-v1.md),
-  with textual wireframes for creation, an overridden seed step and change review.
-  No interactive prototype exists; this is the initial recommendation for user feedback.
+- Current comparison: [Color ramps V2](../project/workbench-layout/color-ramps-v2.md),
+  static wireframes comparing the dialog and central-preview/inspector surfaces
+  through the agreed group-creation entry point. The [V1 written proposal](../project/workbench-layout/color-ramps-v1.md)
+  remains historical; its separate New ramp entry is superseded. No interactive
+  prototype exists and neither editing surface is selected.
 - User review: pending; no identified proposal approved for analyst review.
 - Analyst design review: not performed. Begins only after the user approves the
   identified proposal for that review.
@@ -208,5 +218,7 @@ Leave staging, committing and pushing to the user.
 
 ## Agreed amendments
 
-None to this draft. The two user decisions above are recorded as planning inputs;
-remaining criteria and proposals await agreement.
+20 November 2026: after the initial draft, the user agreed the group-creation
+checkbox and provisional creation until confirmation, and requested surface
+comparison wireframes. These planning inputs supersede V1’s separate New ramp
+entry. Remaining criteria and proposals await agreement.

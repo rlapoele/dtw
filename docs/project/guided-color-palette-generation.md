@@ -145,7 +145,11 @@ edge cases and interaction details remain open.
 The user selected a fixed 11-step scope (`50`, `100`, `200`, `300`, `400`, `500`,
 `600`, `700`, `800`, `900`, `950`) and authorized preparation of a draft contract
 and initial interaction proposal. The seed-token override behavior above is also
-agreed. The [Increment 024 draft](../increments/024-color-ramp-authoring.md) owns
+agreed. Subsequently, the user selected a **Generate a color ramp** checkbox in
+the ordinary group-creation form, with the group remaining provisional until final
+confirmation creates the group and tokens together. Cancelling setup leaves no
+applied group. Comparison wireframes for a dialog versus a central preview with
+inspector are authorized; the editing surface remains undecided. The [Increment 024 draft](../increments/024-color-ramp-authoring.md) owns
 proposed delivery boundaries and remaining decisions. These scoped decisions do
 not constitute final contract/design agreement or implementation authorization.
 

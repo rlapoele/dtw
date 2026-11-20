@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="850" viewBox="0 0 1280 850" role="img"><title>Color ramp authoring wireframe comparison</title><rect width="1280" height="850" fill="#f5f5f5"/>
+<text x="40" y="42" font-family="Arial, sans-serif" font-size="25" fill="#171717" font-weight="700">Color ramps V2 · Shared entry and narrow layouts</text>
+<text x="40" y="70" font-family="Arial, sans-serif" font-size="14" fill="#686868" font-weight="400">Static wireframes · agreed entry, proposed surfaces · no palette algorithm represented</text>
+<rect x="40" y="105" width="560" height="510" rx="6" fill="white" stroke="#d4d4d4"/>
+<text x="65" y="141" font-family="Arial, sans-serif" font-size="19" fill="#171717" font-weight="600">Shared entry: New group</text>
+<text x="70" y="183" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">Name</text>
+<rect x="70" y="193" width="490" height="32" rx="6" fill="white" stroke="#d4d4d4"/>
+<text x="80" y="214" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="400">blue</text>
+<text x="70" y="252" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">Parent group</text>
+<rect x="70" y="262" width="490" height="32" rx="6" fill="white" stroke="#d4d4d4"/>
+<text x="80" y="283" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="400">color                                     ▾</text>
+<rect x="70" y="322" width="20" height="20" rx="3" fill="#171717" stroke="#171717"/>
+<text x="74" y="337" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="600">✓</text>
+<text x="102" y="338" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">Generate a color ramp</text>
+<text x="102" y="364" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">Create 11 color tokens and remember their settings.</text>
+<rect x="70" y="394" width="490" height="84" rx="6" fill="#fafafa" stroke="#d4d4d4"/>
+<text x="87" y="419" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="600">Path: color.blue</text>
+<text x="87" y="444" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">The group and tokens are saved only after review.</text>
+<rect x="324" y="527" width="90" height="32" rx="6" fill="white" stroke="#d4d4d4"/>
+<text x="336" y="548" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="600">Cancel</text>
+<rect x="426" y="527" width="134" height="32" rx="6" fill="#171717" stroke="#171717"/>
+<text x="438" y="548" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="600">Continue</text>
+<text x="65" y="592" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">Unchecked: ordinary group creation stays unchanged.</text>
+<text x="640" y="142" font-family="Arial, sans-serif" font-size="19" fill="#171717" font-weight="600">Same editor responsibilities at narrow widths</text>
+<rect x="640" y="170" width="270" height="395" rx="12" fill="white" stroke="#d4d4d4"/>
+<text x="656" y="200" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">A · Full-window dialog</text>
+<text x="656" y="225" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">blue · Draft, not saved</text>
+<path d="M640 240h270" stroke="#d4d4d4"/>
+<text x="656" y="266" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">Single vertical editing session</text>
+<text x="656" y="286" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">Recipe seed</text>
+<rect x="656" y="296" width="236" height="32" rx="6" fill="white" stroke="#d4d4d4"/>
+<text x="666" y="317" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="400">#3b82f6</text>
+<rect x="656" y="345" width="33" height="35" rx="3" fill="#eff6ff" stroke="#eff6ff"/>
+<rect x="695" y="345" width="33" height="35" rx="3" fill="#dbeafe" stroke="#dbeafe"/>
+<rect x="734" y="345" width="33" height="35" rx="3" fill="#bfdbfe" stroke="#bfdbfe"/>
+<rect x="773" y="345" width="33" height="35" rx="3" fill="#93c5fd" stroke="#93c5fd"/>
+<rect x="812" y="345" width="33" height="35" rx="3" fill="#60a5fa" stroke="#60a5fa"/>
+<rect x="851" y="345" width="33" height="35" rx="3" fill="#4876d8" stroke="#4876d8"/>
+<rect x="656" y="385" width="33" height="35" rx="3" fill="#2563eb" stroke="#2563eb"/>
+<rect x="695" y="385" width="33" height="35" rx="3" fill="#1d4ed8" stroke="#1d4ed8"/>
+<rect x="734" y="385" width="33" height="35" rx="3" fill="#1e40af" stroke="#1e40af"/>
+<rect x="773" y="385" width="33" height="35" rx="3" fill="#1e3a8a" stroke="#1e3a8a"/>
+<rect x="812" y="385" width="33" height="35" rx="3" fill="#172554" stroke="#172554"/>
+<text x="656" y="444" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="600">500 · Manual · Seed position</text>
+<text x="656" y="469" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">Step editor or stacked review cards</text>
+<rect x="656" y="508" width="84" height="32" rx="6" fill="white" stroke="#d4d4d4"/>
+<text x="668" y="529" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="600">Cancel</text>
+<rect x="752" y="508" width="140" height="32" rx="6" fill="#171717" stroke="#171717"/>
+<text x="764" y="529" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="600">Review</text>
+<rect x="950" y="170" width="270" height="395" rx="12" fill="white" stroke="#d4d4d4"/>
+<text x="966" y="200" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">B · Workbench surfaces</text>
+<text x="966" y="225" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">blue · Draft, not saved</text>
+<path d="M950 240h270" stroke="#d4d4d4"/>
+<text x="966" y="266" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">Preview and Edit step switch views</text>
+<rect x="966" y="283" width="110" height="32" rx="6" fill="#171717" stroke="#171717"/>
+<text x="978" y="304" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="600">Preview</text>
+<rect x="1086" y="283" width="116" height="32" rx="6" fill="white" stroke="#d4d4d4"/>
+<text x="1098" y="304" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="600">Edit step</text>
+<rect x="966" y="345" width="33" height="35" rx="3" fill="#eff6ff" stroke="#eff6ff"/>
+<rect x="1005" y="345" width="33" height="35" rx="3" fill="#dbeafe" stroke="#dbeafe"/>
+<rect x="1044" y="345" width="33" height="35" rx="3" fill="#bfdbfe" stroke="#bfdbfe"/>
+<rect x="1083" y="345" width="33" height="35" rx="3" fill="#93c5fd" stroke="#93c5fd"/>
+<rect x="1122" y="345" width="33" height="35" rx="3" fill="#60a5fa" stroke="#60a5fa"/>
+<rect x="1161" y="345" width="33" height="35" rx="3" fill="#4876d8" stroke="#4876d8"/>
+<rect x="966" y="385" width="33" height="35" rx="3" fill="#2563eb" stroke="#2563eb"/>
+<rect x="1005" y="385" width="33" height="35" rx="3" fill="#1d4ed8" stroke="#1d4ed8"/>
+<rect x="1044" y="385" width="33" height="35" rx="3" fill="#1e40af" stroke="#1e40af"/>
+<rect x="1083" y="385" width="33" height="35" rx="3" fill="#1e3a8a" stroke="#1e3a8a"/>
+<rect x="1122" y="385" width="33" height="35" rx="3" fill="#172554" stroke="#172554"/>
+<text x="966" y="444" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="600">500 · Manual · Seed position</text>
+<text x="966" y="469" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">Step editor or stacked review cards</text>
+<rect x="966" y="508" width="84" height="32" rx="6" fill="white" stroke="#d4d4d4"/>
+<text x="978" y="529" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="600">Cancel</text>
+<rect x="1062" y="508" width="140" height="32" rx="6" fill="#171717" stroke="#171717"/>
+<text x="1074" y="529" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="600">Review</text>
+<text x="640" y="595" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="600">No three-column layout squeezed onto a phone.</text>
+<text x="40" y="666" font-family="Arial, sans-serif" font-size="18" fill="#171717" font-weight="600">Shared behavior</text>
+<text x="40" y="700" font-family="Arial, sans-serif" font-size="14" fill="#686868" font-weight="400">Continue begins one provisional ramp draft; final confirmation saves group, tokens and settings together.</text>
+<text x="40" y="729" font-family="Arial, sans-serif" font-size="14" fill="#686868" font-weight="400">Back preserves the draft. Cancel/discard leaves no empty group. Reopening starts from applied values.</text>
+<text x="40" y="758" font-family="Arial, sans-serif" font-size="14" fill="#686868" font-weight="400">Manual step edits stay local. Editing the seed-position token does not change the saved recipe seed.</text>
+<text x="40" y="787" font-family="Arial, sans-serif" font-size="14" fill="#686868" font-weight="400">On narrow screens swatches wrap in order; review rows stack as labeled cards; actions remain reachable.</text>
+</svg>

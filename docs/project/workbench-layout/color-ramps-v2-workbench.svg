@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1160" viewBox="0 0 1400 1160" role="img"><title>Color ramp authoring wireframe comparison</title><rect width="1400" height="1160" fill="#f5f5f5"/>
+<text x="40" y="40" font-family="Arial, sans-serif" font-size="26" fill="#171717" font-weight="700">B · Central preview + contextual inspector</text>
+<text x="40" y="68" font-family="Arial, sans-serif" font-size="14" fill="#686868" font-weight="400">Create and revise in the workbench; the selected group remains a draft until final confirmation.</text>
+<rect x="40" y="95" width="1320" height="475" rx="8" fill="white" stroke="#d4d4d4"/>
+<text x="60" y="123" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="700">DTW</text>
+<text x="130" y="122" font-family="Arial, sans-serif" font-size="14" fill="#686868" font-weight="400">Brand system</text>
+<path d="M40 139h1320" stroke="#d4d4d4"/>
+<rect x="40" y="140" width="170" height="430" rx="0" fill="#fafafa" stroke="#d4d4d4"/>
+<text x="60" y="172" font-family="Arial, sans-serif" font-size="11" fill="#686868" font-weight="600">NAMESPACE</text>
+<text x="60" y="206" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="600">color</text>
+<text x="76" y="238" font-family="Arial, sans-serif" font-size="14" fill="#686868" font-weight="400">neutral</text>
+<rect x="52" y="252" width="146" height="55" rx="4" fill="#f0f0f0" stroke="#d4d4d4"/>
+<text x="76" y="274" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="600">blue</text>
+<text x="76" y="293" font-family="Arial, sans-serif" font-size="11" fill="#686868" font-weight="400">Draft · not saved</text>
+<text x="60" y="545" font-family="Arial, sans-serif" font-size="11" fill="#686868" font-weight="400">New group   New token</text>
+<text x="235" y="174" font-family="Arial, sans-serif" font-size="21" fill="#171717" font-weight="600">Create ramp · color.blue</text>
+<rect x="730" y="154" width="155" height="24" rx="4" fill="#f0f0f0" stroke="#d4d4d4"/>
+<text x="738" y="170" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="600">Draft · not saved</text>
+<text x="235" y="205" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">11 steps · select a step to edit its candidate</text>
+<rect x="235.0" y="233" width="57.72727272727273" height="48" rx="4" fill="#eff6ff" stroke="#eff6ff"/>
+<text x="240.0" y="299" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="400">50</text>
+<rect x="297.72727272727275" y="233" width="57.72727272727273" height="48" rx="4" fill="#dbeafe" stroke="#dbeafe"/>
+<text x="302.72727272727275" y="299" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="400">100</text>
+<rect x="360.45454545454544" y="233" width="57.72727272727273" height="48" rx="4" fill="#bfdbfe" stroke="#bfdbfe"/>
+<text x="365.45454545454544" y="299" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="400">200</text>
+<rect x="423.1818181818182" y="233" width="57.72727272727273" height="48" rx="4" fill="#93c5fd" stroke="#93c5fd"/>
+<text x="428.1818181818182" y="299" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="400">300</text>
+<rect x="485.9090909090909" y="233" width="57.72727272727273" height="48" rx="4" fill="#60a5fa" stroke="#60a5fa"/>
+<text x="490.9090909090909" y="299" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="400">400</text>
+<rect x="548.6363636363636" y="233" width="57.72727272727273" height="48" rx="4" fill="#4876d8" stroke="#171717"/>
+<text x="553.6363636363636" y="299" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="600">500</text>
+<rect x="611.3636363636364" y="233" width="57.72727272727273" height="48" rx="4" fill="#2563eb" stroke="#2563eb"/>
+<text x="616.3636363636364" y="299" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="400">600</text>
+<rect x="674.090909090909" y="233" width="57.72727272727273" height="48" rx="4" fill="#1d4ed8" stroke="#1d4ed8"/>
+<text x="679.090909090909" y="299" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="400">700</text>
+<rect x="736.8181818181818" y="233" width="57.72727272727273" height="48" rx="4" fill="#1e40af" stroke="#1e40af"/>
+<text x="741.8181818181818" y="299" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="400">800</text>
+<rect x="799.5454545454545" y="233" width="57.72727272727273" height="48" rx="4" fill="#1e3a8a" stroke="#1e3a8a"/>
+<text x="804.5454545454545" y="299" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="400">900</text>
+<rect x="862.2727272727273" y="233" width="57.72727272727273" height="48" rx="4" fill="#172554" stroke="#172554"/>
+<text x="867.2727272727273" y="299" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="400">950</text>
+<text x="235" y="322" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="600">500 selected · Seed position · Manual</text>
+<rect x="235" y="350" width="685" height="70" rx="6" fill="#fafafa" stroke="#d4d4d4"/>
+<text x="250" y="375" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="600">Step 500 is manual and differs from the recipe seed.</text>
+<text x="250" y="399" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">The seed remains #3b82f6 at 500. This candidate stays #4876d8.</text>
+<text x="235" y="452" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">Select a swatch to edit it on the right.</text>
+<rect x="235" y="509" width="90" height="32" rx="6" fill="white" stroke="#d4d4d4"/>
+<text x="247" y="530" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="600">Cancel</text>
+<rect x="664" y="509" width="256" height="32" rx="6" fill="#171717" stroke="#171717"/>
+<text x="676" y="530" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="600">Review creation</text>
+<rect x="945" y="140" width="415" height="430" rx="0" fill="#fafafa" stroke="#d4d4d4"/>
+<text x="969" y="173" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="600">Ramp settings</text>
+<text x="969" y="204" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">Recipe seed</text>
+<rect x="969" y="214" width="170" height="32" rx="6" fill="white" stroke="#d4d4d4"/>
+<text x="979" y="235" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="400">#3b82f6</text>
+<text x="1155" y="204" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">Seed position</text>
+<rect x="1155" y="214" width="178" height="32" rx="6" fill="white" stroke="#d4d4d4"/>
+<text x="1165" y="235" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="400">500                 ▾</text>
+<rect x="969" y="258" width="210" height="32" rx="6" fill="white" stroke="#d4d4d4"/>
+<text x="981" y="279" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="600">Suggest position again</text>
+<text x="969" y="314" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">Step 500 · Manual · Seed position</text>
+<text x="969" y="346" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">Candidate</text>
+<rect x="969" y="356" width="364" height="32" rx="6" fill="white" stroke="#d4d4d4"/>
+<text x="979" y="377" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="400">#4876d8</text>
+<rect x="969" y="408" width="210" height="32" rx="6" fill="white" stroke="#d4d4d4"/>
+<text x="981" y="429" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="600">Use generated value</text>
+<text x="969" y="473" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">Editing this step does not</text>
+<text x="969" y="494" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">change the recipe seed.</text>
+<text x="40" y="601" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="600">Review after reopening · central comparison, settings and selected-step context remain visible</text>
+<rect x="40" y="625" width="1320" height="465" rx="8" fill="white" stroke="#d4d4d4"/>
+<text x="60" y="653" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="700">DTW</text>
+<text x="130" y="652" font-family="Arial, sans-serif" font-size="14" fill="#686868" font-weight="400">Brand system</text>
+<path d="M40 669h1320" stroke="#d4d4d4"/>
+<rect x="40" y="670" width="170" height="420" rx="0" fill="#fafafa" stroke="#d4d4d4"/>
+<text x="60" y="702" font-family="Arial, sans-serif" font-size="11" fill="#686868" font-weight="600">NAMESPACE</text>
+<text x="60" y="736" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="600">color</text>
+<text x="76" y="768" font-family="Arial, sans-serif" font-size="14" fill="#686868" font-weight="400">neutral</text>
+<text x="76" y="802" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="600">blue</text>
+<text x="60" y="1065" font-family="Arial, sans-serif" font-size="11" fill="#686868" font-weight="400">New group   New token</text>
+<text x="235" y="704" font-family="Arial, sans-serif" font-size="21" fill="#171717" font-weight="600">Review changes · color.blue</text>
+<text x="235" y="731" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">Recipe seed changed · seed position stays at 500</text>
+<text x="235" y="768" font-family="Arial, sans-serif" font-size="11" fill="#686868" font-weight="600">STEP</text>
+<text x="350" y="768" font-family="Arial, sans-serif" font-size="11" fill="#686868" font-weight="600">APPLIED</text>
+<text x="505" y="768" font-family="Arial, sans-serif" font-size="11" fill="#686868" font-weight="600">PROPOSED</text>
+<text x="690" y="768" font-family="Arial, sans-serif" font-size="11" fill="#686868" font-weight="600">DECISION</text>
+<path d="M235 781h685" stroke="#d4d4d4"/>
+<text x="235" y="801" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="400">50</text>
+<rect x="350" y="785" width="20" height="20" rx="3" fill="#eff6ff" stroke="#eff6ff"/>
+<text x="377" y="800" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">#eff6ff</text>
+<rect x="505" y="785" width="20" height="20" rx="3" fill="#f0f5ff" stroke="#f0f5ff"/>
+<text x="532" y="800" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">#f0f5ff</text>
+<text x="690" y="800" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="400">Use proposed  ▾</text>
+<path d="M235 815h685" stroke="#d4d4d4"/>
+<text x="235" y="835" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="400">100</text>
+<rect x="350" y="819" width="20" height="20" rx="3" fill="#dbeafe" stroke="#dbeafe"/>
+<text x="377" y="834" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">#dbeafe</text>
+<rect x="505" y="819" width="20" height="20" rx="3" fill="#dce7ff" stroke="#dce7ff"/>
+<text x="532" y="834" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">#dce7ff</text>
+<text x="690" y="834" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="400">Use proposed  ▾</text>
+<path d="M235 849h685" stroke="#d4d4d4"/>
+<text x="235" y="869" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="400">200</text>
+<rect x="350" y="853" width="20" height="20" rx="3" fill="#bfdbfe" stroke="#bfdbfe"/>
+<text x="377" y="868" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">#bfdbfe</text>
+<rect x="505" y="853" width="20" height="20" rx="3" fill="#bfd0ff" stroke="#bfd0ff"/>
+<text x="532" y="868" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">#bfd0ff</text>
+<text x="690" y="868" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="400">Use proposed  ▾</text>
+<path d="M235 883h685" stroke="#d4d4d4"/>
+<text x="235" y="903" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="400">300</text>
+<rect x="350" y="887" width="20" height="20" rx="3" fill="#93c5fd" stroke="#93c5fd"/>
+<text x="377" y="902" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">#93c5fd</text>
+<rect x="505" y="887" width="20" height="20" rx="3" fill="#9ab8ff" stroke="#9ab8ff"/>
+<text x="532" y="902" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">#9ab8ff</text>
+<text x="690" y="902" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="400">Use proposed  ▾</text>
+<path d="M235 917h685" stroke="#d4d4d4"/>
+<text x="235" y="937" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="600">500 · Manual</text>
+<rect x="350" y="921" width="20" height="20" rx="3" fill="#4876d8" stroke="#4876d8"/>
+<text x="377" y="936" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">#4876d8</text>
+<rect x="505" y="921" width="20" height="20" rx="3" fill="#3b82f6" stroke="#3b82f6"/>
+<text x="532" y="936" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">#3b82f6</text>
+<text x="690" y="936" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="600">Keep current  ▾</text>
+<path d="M235 951h685" stroke="#d4d4d4"/>
+<text x="235" y="971" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="400">950</text>
+<rect x="350" y="955" width="20" height="20" rx="3" fill="#172554" stroke="#172554"/>
+<text x="377" y="970" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">#172554</text>
+<rect x="505" y="955" width="20" height="20" rx="3" fill="#172554" stroke="#172554"/>
+<text x="532" y="970" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">#172554</text>
+<text x="690" y="970" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="400">Unchanged</text>
+<text x="235" y="1009" font-family="Arial, sans-serif" font-size="12" fill="#686868" font-weight="400">6 of 11 rows shown; all steps remain reviewable.</text>
+<rect x="235" y="1032" width="160" height="32" rx="6" fill="white" stroke="#d4d4d4"/>
+<text x="247" y="1053" font-family="Arial, sans-serif" font-size="13" fill="#171717" font-weight="600">Back to editing</text>
+<rect x="688" y="1032" width="232" height="32" rx="6" fill="#171717" stroke="#171717"/>
+<text x="700" y="1053" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="600">Apply ramp changes</text>
+<rect x="945" y="670" width="415" height="420" rx="0" fill="#fafafa" stroke="#d4d4d4"/>
+<text x="969" y="705" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="600">Selected step: 500</text>
+<rect x="969" y="725" width="85" height="24" rx="4" fill="#f0f0f0" stroke="#d4d4d4"/>
+<text x="977" y="741" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="600">Manual</text>
+<rect x="1064" y="725" width="122" height="24" rx="4" fill="#f0f0f0" stroke="#d4d4d4"/>
+<text x="1072" y="741" font-family="Arial, sans-serif" font-size="12" fill="#171717" font-weight="600">Seed position</text>
+<text x="969" y="784" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">Applied</text>
+<rect x="969" y="797" width="37" height="37" rx="6" fill="#4876d8" stroke="#4876d8"/>
+<text x="1020" y="821" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="400">#4876d8</text>
+<text x="969" y="864" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">Generated proposal</text>
+<rect x="969" y="877" width="37" height="37" rx="6" fill="#3b82f6" stroke="#3b82f6"/>
+<text x="1020" y="901" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="400">#3b82f6</text>
+<text x="969" y="953" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">Keep current value</text>
+<text x="969" y="981" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">This step stays manual.</text>
+<text x="40" y="1127" font-family="Arial, sans-serif" font-size="13" fill="#686868" font-weight="400">Illustrative colors only. Navigation stays visible; leaving a dirty ramp requires Keep editing or Discard.</text>
+</svg>

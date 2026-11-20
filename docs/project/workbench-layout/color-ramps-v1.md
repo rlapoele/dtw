@@ -1,6 +1,10 @@
 # Color ramp authoring — interaction proposal V1
 
-**Initial designer proposal — 20 November 2026. Not approved or analyst-reviewed.**
+**Historical initial designer proposal — 20 November 2026. Not approved or analyst-reviewed.**
+
+The later [V2 comparison](color-ramps-v2.md) supersedes this proposal’s separate
+New ramp entry with the agreed group-creation checkbox and provisional creation.
+Dialog versus central preview plus inspector remains undecided.
 
 This written proposal supports the [Increment 024 draft](../../increments/024-color-ramp-authoring.md).
 The user has selected the fixed 11-step scope and the rule that editing the seed

@@ -10,23 +10,27 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Color ramp Increment 024 preparation — 20 November 2026
+## Color ramp Increment 024 wireframe comparison — 20 November 2026
 
-The user selected the fixed 11-step scope and confirmed that editing the seed token
-creates a manual override while leaving the saved recipe seed unchanged. Separate
-analyst and designer agents prepared the [Draft 024 contract](../increments/024-color-ramp-authoring.md)
-and [initial interaction proposal V1](../project/workbench-layout/color-ramps-v1.md).
-These are preparation artifacts, not an agreed contract, reviewed design or
-implementation. The initial proposal is written, with textual wireframes; no
-interactive prototype or production changes were made.
+The user agreed the fixed 11-step scope, seed-token edits as manual overrides that
+leave the recipe seed unchanged, entry through a group-creation checkbox, and a
+provisional group until final confirmation. The [Draft 024 contract](../increments/024-color-ramp-authoring.md)
+records those inputs; complete contract/design agreement and implementation
+remain unauthorized.
 
-Next: user feedback on the proposed authoring/review flow and remaining product
-choices, then the identified design work and analyst review in workflow order.
-Numerical generation, alpha/gamut/storage policy, protection reconciliation and
-other draft decisions remain open. Earlier acceptance/qualification limits remain
-unchanged. Changed Markdown and local links were checked; no application tests or
-qualification campaign ran. Leave staging/committing/pushing to the user.
-Suggested commit: `docs: draft first color ramp increment and interaction proposal`.
+The designer prepared [V2 static comparison wireframes](../project/workbench-layout/color-ramps-v2.md):
+shared group entry/narrow sketches, dialog creation/review, and central preview
+plus inspector creation/review. V1’s separate New ramp entry is superseded.
+Neither surface is selected or approved for analyst design review. Next: user
+feedback/choice of editing surface, followed by refinement and workflow review.
+Numerical policy, protection rules and other contract decisions remain open.
+
+SVG XML/basic bounds, local links and Markdown whitespace were checked. The
+coordinator rendered and visually inspected all three sheets; these are illustrative
+wireframes, not runtime or generation evidence. No implementation or interactive
+prototype changes, application tests or qualification campaign occurred. Earlier
+acceptance/qualification limits remain unchanged. Leave staging/committing/pushing
+to the user. Suggested commit: `docs: compare color ramp authoring surfaces`.
 
 ## Color ramp direction recorded — 20 November 2026
 
