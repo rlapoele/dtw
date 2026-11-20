@@ -8,7 +8,7 @@ export function TokensHeader({ compact, projectName, busy, onProjectsClick, onNa
   return <><div className="workbench-header shrink-0"><ApplicationHeader compactBrand navigation={onBack ? <Button onClick={onBack}>Back</Button> : compact && <Button ref={navigationRef} variant="ghost" aria-label="Open project navigation" onClick={onNavigation}><Icon name="menu" />Browse</Button>} context={
     <nav aria-label="Breadcrumb">
       <ol className="flex flex-wrap items-center gap-x-2">
-        <li><a href="./" aria-disabled={busy || undefined} className="inline-flex min-h-9 items-center font-medium text-foreground underline decoration-2 underline-offset-8 aria-disabled:opacity-45" onClick={(event) => {
+        <li><a href="./" aria-disabled={busy || undefined} className="inline-flex min-h-9 items-center font-medium text-foreground underline decoration-2 decoration-dotted underline-offset-8 aria-disabled:opacity-45" onClick={(event) => {
           if (busy) { event.preventDefault(); return; }
           if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
           event.preventDefault();
