@@ -38,7 +38,7 @@ export function decodeRetainedRecord(
     "lastAcceptedCommand",
     "snapshot",
   ]);
-  if ((r.recordVersion !== 1 && r.recordVersion !== 2) || (r.authoredVersion !== 1 && r.authoredVersion !== 2))
+  if ((r.recordVersion !== 1 && r.recordVersion !== 2) || (r.authoredVersion !== 1 && r.authoredVersion !== 2 && r.authoredVersion !== 3))
     throw Error("Unsupported retained record version");
   if (!internalId(r.revision)) throw Error("Invalid retained revision");
   const c = closed(r.lastAcceptedCommand, ["commandId", "operation", "result"]);

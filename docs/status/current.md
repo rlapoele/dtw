@@ -2,7 +2,7 @@
 
 > Last updated: 20 November 2026
 >
-> Phase: Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
+> Phase: Increment 022 implemented and independently reviewed; user acceptance pending. Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
 > completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
@@ -10,19 +10,28 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Project creation preferences — Increment 022 draft
+## Project creation preferences — Increment 022 implemented and reviewed
 
-The user requested a default color-space preference in project creation, with
-OKLCH preselected, and confirmed sRGB fallback for existing projects without a
-saved setting. The separate analyst prepared [Increment 022](../increments/022-project-default-color-space.md).
-The user additionally agreed a typed ProjectPreferences model, with optional
-project.preferences and required preferences.defaultColorSpace when present.
-The contract now records that correction. It proposes a Project preferences form
-group, saved per-project default for new color tokens, no conversion of existing tokens, and authored version 3 with
-version 1/2 readers and exact legacy absence preserved. Later preference editing
-is outside the proposed slice. A native Select in the existing form needs no
-separate design prototype. Contract agreement is next; production implementation
-has not started. Earlier qualification remains closed.
+The user authorized the agreed [Increment 022](../increments/022-project-default-color-space.md)
+on 20 November. Project creation now includes Project preferences with OKLCH
+preselected. Typed project.preferences.defaultColorSpace persists through retention,
+history and backups; old projects without preferences keep sRGB for new tokens.
+Existing colors remain unchanged. Later preference editing remains deferred.
+
+Developer focused tests (167), typecheck and build passed. Separate review ran
+112 tests; the coordinator's browser reload exposed a catalogue validator omission,
+which was fixed and independently rechecked with 14 protocol tests. Chrome now
+confirms creation, discard/keep protection, P3 token defaults, reload/reopen and a
+fresh OKLCH project/token. Desktop and narrow form screenshots were inspected.
+No actionable review findings remain. Review was separate but not fully blinded.
+
+Full suite has one pre-existing Icon class assertion failure (1233 passed); it was
+not changed. Native-select keyboard selection and screen-reader delivery remain
+unverified; keyboard focus works. Browser fault injection was not repeated.
+Verification stopped at approximately 26/30 aggregate minutes, one/two harness
+repairs. Earlier qualification remains closed. User visual/keyboard acceptance is
+next. Changes remain unstaged. Suggested commit:
+`feat: add project default color space preferences`.
 
 ## Inspector actions moved below editable fields — 20 November 2026
 

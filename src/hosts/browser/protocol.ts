@@ -1,3 +1,4 @@
+import type { ProjectInput } from "@domain/project";
 import type { HistoryDirection, HistoryState } from "@application/retention/history";
 import type { WriteIdentity } from "@application/retention/ports";
 import type { DiagnosticDisplay } from "@application/retention/diagnostics";
@@ -99,7 +100,7 @@ export interface HostCalls {
   ready: { input: null; output: { incarnation: string } };
   catalogue: { input: null; output: readonly CatalogueEntry[] };
   createProject: {
-    input: { id: string; name: string; description?: string };
+    input: ProjectInput;
     output: PublicAcceptance;
   };
   consume: { input: string; output: true };

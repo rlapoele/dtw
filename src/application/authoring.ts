@@ -112,7 +112,9 @@ export function createAuthoringOperations(storage: ProjectStorage) {
       const existing = storage.load(input.id);
       if (existing.status === "failure") return { status: "failure", error: { code: "storage-failure", operation: "load", message: existing.message } };
       if (existing.value !== undefined) return { status: "failure", error: { code: "duplicate-identity", entityKind: "project", entityId: input.id } };
-      const project = createProject(input);
+      let project: Project;
+      try { project = createProject(input); }
+      catch (error) { return { status: "failure", error: { code: "invalid-domain-input", message: error instanceof Error ? error.message : "Invalid project preferences" } }; }
       return commit({ project, groups: [], tokens: [] }, project);
     },
 

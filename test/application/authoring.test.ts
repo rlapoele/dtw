@@ -34,11 +34,11 @@ describe("project authoring boundary", () => {
   it("creates and reads an empty project without a workspace path", () => {
     const app = createAuthoringOperations(new InMemoryProjectStorage());
     expect(app.createProject({ id: "p", name: "  Product  ", description: "" })).toEqual({
-      status: "ok", value: { id: "p", name: "  Product  ", description: "" },
+      status: "ok", value: { id: "p", name: "  Product  ", description: "", preferences: { defaultColorSpace: "oklch" } },
     });
     expect(app.readProject("p")).toEqual({
       status: "ok", value: {
-        project: { id: "p", name: "  Product  ", description: "" }, groups: [], tokens: [],
+        project: { id: "p", name: "  Product  ", description: "", preferences: { defaultColorSpace: "oklch" } }, groups: [], tokens: [],
       },
     });
   });

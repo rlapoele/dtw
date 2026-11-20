@@ -49,8 +49,14 @@ their wrapper `createdAt` remains the separate backup generation timestamp.
 Restore preserves these project facts even when replacing a newer local state.
 See the [project model](./conceptual-model.md#project-ownership-and-identity) and
 [Increment 019](../increments/019-project-description-and-lifecycle-dates.md)
-for agreed semantics. Readers accept authored versions 1 and 2 with closed,
-version-specific validation; new writes and backups emit authored version 2.
+for agreed lifecycle semantics. As of [Increment 022](../increments/022-project-default-color-space.md),
+readers accept authored versions 1, 2 and 3 with closed, version-specific
+validation; new writes and backups emit authored version 3. Optional typed
+project preferences belong to version 3 only; present preferences require a
+supported default color space. Versions 1/2 reject that field, and older builds
+reject version 3 rather than silently dropping it. Exact restore preserves both
+present preferences and historical absence. Preferences define an authoring
+starter, not token conversion, a DTCG mapping or an export profile.
 Legacy reads do not rewrite storage or invent dates. Retained record versions
 1/2 and backup format version 1 are unchanged. External-tool export behavior
 is unchanged.

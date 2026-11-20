@@ -1,3 +1,4 @@
+import { effectiveDefaultColorSpace } from "@domain/project";
 import { tokenListRows } from "@presentation/App/components/TokensWorkbench/helpers/token-list-order";
 import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
 import { useHistoryInteraction } from "@presentation/App/components/TokensWorkbench/hooks/useHistoryInteraction";
@@ -484,6 +485,7 @@ export function TokensWorkbench({
         open={dialog !== null}
         form={dialog === "token" ? {
           kind: "token",
+          defaultColorSpace: effectiveDefaultColorSpace(header.project),
           name,
           onNameChange: value => change("name", value),
           parent,

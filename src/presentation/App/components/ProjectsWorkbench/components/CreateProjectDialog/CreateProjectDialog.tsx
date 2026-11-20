@@ -21,7 +21,7 @@ export function CreateProjectDialog({ open, onClose, onDiscard, returnFocus, for
   const focusName = () => typeof form.nameRef === "object" ? form.nameRef?.current ?? null : null;
   function requestClose() {
     if (blocked) return;
-    if (form.name !== "" || form.description !== "") setConfirmDiscard(true);
+    if (form.name !== "" || form.description !== "" || form.defaultColorSpace !== "oklch") setConfirmDiscard(true);
     else onClose();
   }
   return <Dialog.Root open={open} onOpenChange={next => { if (!next) requestClose(); }}>
@@ -33,7 +33,7 @@ export function CreateProjectDialog({ open, onClose, onDiscard, returnFocus, for
       <Dialog.Root open={confirmDiscard} onOpenChange={setConfirmDiscard}>
         <DialogContent initialFocus={keepEditing} finalFocus={focusName}>
           <Dialog.Title className="dialog-title mb-3">Discard this project draft?</Dialog.Title>
-          <Dialog.Description className="text-caption text-muted-foreground">Your name and description have not been saved.</Dialog.Description>
+          <Dialog.Description className="text-caption text-muted-foreground">Your project details and preferences have not been saved.</Dialog.Description>
           <div className="dialog-actions flex justify-end gap-3 mt-6">
             <Button ref={keepEditing} onClick={() => setConfirmDiscard(false)}>Keep editing</Button>
             <Button variant="default" onClick={() => { onDiscard(); setConfirmDiscard(false); onClose(); }}>Discard draft</Button>

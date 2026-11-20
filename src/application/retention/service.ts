@@ -1,3 +1,4 @@
+import { createProject, type ProjectInput } from "@domain/project";
 import { createSessionHistory, snapshotText } from "@application/retention/history";
 import type { HistoryDirection } from "@application/retention/history";
 import { createAuthoringOperations } from "@application/authoring";
@@ -153,7 +154,7 @@ export function createRetainedWorkbench(
         expectedRevision,
         record: {
           recordVersion: operation === "undo" || operation === "redo" ? 2 : (read.record?.recordVersion ?? 1),
-          authoredVersion: 2,
+          authoredVersion: 3,
           revision,
           lastAcceptedCommand: receipt,
           snapshot,
@@ -220,7 +221,7 @@ export function createRetainedWorkbench(
       return true;
     },
     async createProject(
-      input: { id: string; name: string; description?: string },
+      input: ProjectInput,
       identity?: WriteIdentity,
     ): Promise<Acceptance> {
       if (!input.name.trim()) return rejected("A project name is required.");
@@ -230,7 +231,7 @@ export function createRetainedWorkbench(
         "createProject",
         () => ({
           snapshot: {
-            project: { id: input.id, name: input.name, ...(input.description === undefined || input.description === "" ? {} : { description: input.description }) } as ProjectSnapshot["project"],
+            project: createProject({ ...input, ...(input.description === "" ? { description: undefined } : {}) }),
             groups: [],
             tokens: [],
           },

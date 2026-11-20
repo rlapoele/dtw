@@ -1,3 +1,4 @@
+import type { ProjectPreferences } from "@domain/project";
 import type { ProjectSnapshot } from "@application/project-storage";
 import type {
   CreateColorTokenInput,
@@ -39,7 +40,7 @@ export type WriteIdentity = {
 };
 export type RetainedRecord = {
   readonly recordVersion: 1 | 2;
-  readonly authoredVersion: 1 | 2;
+  readonly authoredVersion: 1 | 2 | 3;
   readonly revision: string;
   readonly lastAcceptedCommand: CommandReceipt;
   readonly snapshot: ProjectSnapshot;
@@ -51,6 +52,7 @@ export type CatalogueEntry =
       readonly status: "supported";
       readonly name: string;
       readonly description?: string;
+      readonly preferences?: ProjectPreferences;
       readonly creationDate?: string;
       readonly lastUpdatedDate?: string;
       readonly revision: string;

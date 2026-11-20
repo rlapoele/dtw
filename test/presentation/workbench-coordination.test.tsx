@@ -466,13 +466,13 @@ it("retries retained project reading without replaying creation", async () => {
   });
   const hook = () => useProjects({ current: service }, () => service, vi.fn(), false);
   let owner = render(hook);
-  owner.changeName("  Exact name  ");
+  owner.changeName("  Exact name  "); owner.changeDefaultColorSpace("display-p3");
   owner = render(hook);
   await owner.create();
   owner = render(hook);
   expect(owner.retainedId).not.toBeNull();
   expect(outcomes.publish).not.toHaveBeenCalled();
-  expect(owner.name).toBe("  Exact name  ");
+  expect(owner.name).toBe("  Exact name  "); expect(owner.defaultColorSpace).toBe("display-p3");
   await owner.create();
   owner.retryCreated();
   await Promise.resolve();
@@ -480,7 +480,7 @@ it("retries retained project reading without replaying creation", async () => {
   owner = render(hook);
   expect(owner.project).toEqual(header);
   expect(outcomes.publish).toHaveBeenCalledExactlyOnceWith("Project “Project” retained in this browser.");
-  expect(owner.name).toBe("");
+  expect(owner.name).toBe(""); expect(owner.defaultColorSpace).toBe("oklch");
   expect(vi.mocked(service.call).mock.calls.filter(([op]) => op === "createProject")).toHaveLength(1);
 });
 
@@ -624,7 +624,8 @@ it.each(["retained", "unknown", "rejected"])("notifies creation retention only a
     if (op === "openProject") throw Error("Read failed");
   });
   const hook = () => useProjects({ current: service }, () => service, vi.fn(), false, onRetained);
-  let owner = render(hook); owner.changeName("P"); owner = render(hook); await owner.create();
+  let owner = render(hook); owner.changeName("P"); owner.changeDefaultColorSpace("hsl"); owner = render(hook); await owner.create();
+  expect(render(hook).defaultColorSpace).toBe("hsl");
   expect(onRetained).toHaveBeenCalledTimes(status === "retained" ? 1 : 0);
   if (status === "unknown") { owner = render(hook); await owner.check(); expect(onRetained).toHaveBeenCalledOnce(); }
   if (status !== "rejected") {
@@ -770,7 +771,7 @@ it("creation dialog requests dirty confirmation and blocks dismissal during reco
   const close = vi.fn(), discard = vi.fn();
   const props = {
     open: true, onClose: close, onDiscard: discard, returnFocus: () => null, blocked: false,
-    form: { name: "  Draft  ", description: "Text", nameRef: { current: null }, onNameChange: vi.fn(), onDescriptionChange: vi.fn(), onSubmit: vi.fn(), disabled: false, pending: false, error: "" },
+    form: { defaultColorSpace: "oklch" as const, onDefaultColorSpaceChange: vi.fn(), name: "  Draft  ", description: "Text", nameRef: { current: null }, onNameChange: vi.fn(), onDescriptionChange: vi.fn(), onSubmit: vi.fn(), disabled: false, pending: false, error: "" },
     recovery: null, departureDialog: null,
   };
   let dialog = render(() => CreateProjectDialog(props));
@@ -783,6 +784,12 @@ it("creation dialog requests dirty confirmation and blocks dismissal during reco
   expect(dialog.props.children.props.children.find((child: any) => child?.type === Dialog.Root).props.open).toBe(false);
   dialog = render(() => CreateProjectDialog({ ...props, form: { ...props.form, name: "", description: "" } }));
   dialog.props.onOpenChange(false); expect(close).toHaveBeenCalledOnce();
+  close.mockClear();
+  const colorOnly = {...props, form: {...props.form, name: "", description: "", defaultColorSpace: "display-p3" as const}};
+  dialog = render(() => CreateProjectDialog(colorOnly)); dialog.props.onOpenChange(false);
+  dialog = render(() => CreateProjectDialog(colorOnly));
+  expect(dialog.props.children.props.children.find((child: any) => child?.type === Dialog.Root).props.open).toBe(true);
+  expect(close).not.toHaveBeenCalled();
 });
 
 it("transfers focus authority from backup selection to preview and preserves its explicit return target", async () => {
@@ -899,3 +906,39 @@ it("retains incomplete HEX across tabs, guards Apply, and clears it on Cancel", 
   expect(onApply).toHaveBeenCalledWith({kind: "literal", colorSpace: "srgb", components: ["1", "0", "0"], alpha: value.alpha}, null);
   expect(owner.session.hexText).toBe("#ff0000"); expect(owner.dirty).toBe(true);
 });
+
+ it("protects a color-only project draft on browser leave and resets explicit discard", () => {
+  const listeners = new Map<string, any>();
+  vi.stubGlobal("addEventListener", (name: string, listener: any) => listeners.set(name, listener));
+  vi.stubGlobal("removeEventListener", (name: string) => listeners.delete(name));
+  const service = host(async () => []);
+  const hook = () => useProjects({current: service}, () => service, vi.fn(), false);
+  let owner = render(hook); effects();
+  expect(owner.defaultColorSpace).toBe("oklch");
+  owner.changeDefaultColorSpace("oklab"); owner = render(hook); effects();
+  const event = {preventDefault: vi.fn(), returnValue: undefined}; listeners.get("beforeunload")(event);
+  expect(event.preventDefault).toHaveBeenCalledOnce();
+  owner.discardDraft(); owner = render(hook); effects();
+  expect(owner.defaultColorSpace).toBe("oklch");
+  event.preventDefault.mockClear(); listeners.get("beforeunload")(event); expect(event.preventDefault).not.toHaveBeenCalled();
+ });
+ it.each([undefined, "srgb", "display-p3", "hsl", "oklab", "oklch"] as const)("creates opaque black in effective project space %s", async space => {
+  const project = {...header.project, ...(space ? {preferences: {defaultColorSpace: space}} : {})};
+  const accept = vi.fn(async () => ({status: "rejected" as const, reason: "Keep draft"}));
+  const hook = () => useAuthoringForm({...header, project}, {...context, project}, null, false, undefined, "", accept, {current: undefined}, vi.fn(), vi.fn(), vi.fn());
+  let owner = render(hook); owner.begin("token"); owner = render(hook); owner.change("name", "black"); owner = render(hook); await owner.create();
+  expect(accept).toHaveBeenCalledWith(expect.objectContaining({operation: "createColorToken", input: expect.objectContaining({value: {kind: "literal", colorSpace: space ?? "srgb", components: ["0", "0", "0"], alpha: "1"}})}));
+  expect(render(hook).name).toBe("black");
+ });
+
+ it("preserves the selected preference while project creation is pending", async () => {
+  const waiting = deferred<any>();
+  const service = host(async op => op === "createProject" ? waiting.promise : []);
+  const hook = () => useProjects({current: service}, () => service, vi.fn(), false);
+  let owner = render(hook); owner.changeName("Pending"); owner.changeDefaultColorSpace("oklab"); owner = render(hook);
+  const create = owner.create(); owner = render(hook); owner.discardDraft();
+  expect(render(hook).defaultColorSpace).toBe("oklab");
+  expect(service.call).toHaveBeenCalledWith("createProject", expect.objectContaining({preferences: {defaultColorSpace: "oklab"}}));
+  waiting.resolve({status: "rejected", reason: "Unavailable"}); await create;
+  owner = render(hook); expect(owner.defaultColorSpace).toBe("oklab"); expect(owner.name).toBe("Pending");
+ });

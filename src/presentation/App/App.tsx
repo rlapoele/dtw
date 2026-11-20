@@ -45,6 +45,7 @@ function AppContent({
     name,
     changeName,
     description, changeDescription,
+    defaultColorSpace, changeDefaultColorSpace,
     nameError, discardDraft,
     error,
     pending,
@@ -112,6 +113,8 @@ function AppContent({
       creation={{
         name,
         description,
+        defaultColorSpace,
+        onDefaultColorSpaceChange: changeDefaultColorSpace,
         nameRef,
         open: creationOpen,
         onOpen: () => setCreationOpen(true),

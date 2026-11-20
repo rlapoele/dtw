@@ -44,6 +44,17 @@ than stamping restoration time. Backup generation time is separate metadata.
 See the [Increment 019](../increments/019-project-description-and-lifecycle-dates.md)
 for the agreed behavior and implemented delivery/versioning boundary.
 
+**Project preferences — agreed 20 November 2026:** `Project.preferences` is an
+optional typed `ProjectPreferences` object. When present it requires
+`defaultColorSpace: ColorSpace` (sRGB, Display P3, HSL, OKLAB or OKLCH); it is not
+an arbitrary settings bag. New creation establishes this preference, defaulting
+to OKLCH when omitted. Historical absence remains absent and uses sRGB for new
+workbench color tokens. New tokens start with three explicit zero components and
+alpha 1 in that space. Existing colors, aliases and explicit operation inputs
+retain their authored values. Reading, ordinary editing, Undo/Redo and exact
+backup restore preserve preferences or their absence. Later preference editing
+is outside [Increment 022](../increments/022-project-default-color-space.md).
+
 ### Token identity and lifecycle
 
 **Working decision — 5 October 2026**

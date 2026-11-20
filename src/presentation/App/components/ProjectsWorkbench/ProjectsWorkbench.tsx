@@ -1,3 +1,4 @@
+import type { ColorSpace } from "@domain/color-literal";
 import { useRef, type ChangeEventHandler, type ReactNode, type Ref } from "react";
 import type { CatalogueEntry } from "@application/retention/ports";
 import type { StoragePersistenceStatus } from "@presentation/App/hooks/useStoragePersistence";
@@ -23,6 +24,8 @@ type ProjectCreation = {
   nameError: string;
   name: string;
   description: string;
+  defaultColorSpace: ColorSpace;
+  onDefaultColorSpaceChange: (space: ColorSpace) => void;
   nameRef: Ref<HTMLInputElement>;
   onNameChange: (name: string) => void;
   onDescriptionChange: (description: string) => void;
@@ -98,7 +101,7 @@ export function ProjectsWorkbench({
   restoreDialog,
 }: ProjectsWorkbenchProps) {
   const returnFocus = useRef<HTMLElement | null>(null);
-  const { name, description, nameRef, onNameChange, onDescriptionChange, onCreate } = creation;
+  const { defaultColorSpace, onDefaultColorSpaceChange, name, description, nameRef, onNameChange, onDescriptionChange, onCreate } = creation;
   const query = view.query ?? "";
   const visible = browseProjects(entries ?? [], query);
   const ambiguousNames = ambiguousProjectNames(entries ?? []);
@@ -162,7 +165,7 @@ export function ProjectsWorkbench({
       </>}
       overlays={<>
         <CreateProjectDialog open={creation.open} onClose={creation.onClose} onDiscard={creation.onDiscard} returnFocus={() => returnFocus.current} blocked={pending || retained || unknown}
-          form={{ name, description, nameRef, onNameChange, onDescriptionChange, onSubmit: onCreate, disabled: createDisabled, pending, error: creation.nameError }}
+          form={{ defaultColorSpace, onDefaultColorSpaceChange, name, description, nameRef, onNameChange, onDescriptionChange, onSubmit: onCreate, disabled: createDisabled, pending, error: creation.nameError }}
           recovery={<>{recoveryControls}{feedback}</>} departureDialog={departureDialog} />
         {!creation.open && departureDialog}
         <RestoreSelectionDialog handingOff={hasPreview} open={selectionOpen} pending={pending} onClose={onCloseSelection} onFileChange={onBackupChange} feedback={feedback} returnFocus={() => returnFocus.current} />

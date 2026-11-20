@@ -177,3 +177,33 @@ it("validates layer revision requests and correlates their acceptance receipts",
   }
   for (const layer of ["component", "unspecified", 0, {}, []]) expect(() => validateHostInput("command", request(layer))).toThrow();
 });
+
+ it.each(["srgb", "display-p3", "hsl", "oklab", "oklch"])("validates project preferences in creation, context and header (%s)", defaultColorSpace => {
+  const project = {id: "p", name: "P", preferences: {defaultColorSpace}};
+  expect(() => validateHostInput("createProject", project)).not.toThrow();
+  expect(() => validateHostOutput("context", {projectId: "p", revision: "r"}, {project, groups: [], tokens: []})).not.toThrow();
+  expect(() => validateHostOutput("openProject", "p", {project, groups: 0, tokens: 0, revision: "r", incarnation: "db", writable: true})).not.toThrow();
+  for (const preferences of [{}, undefined, null, {defaultColorSpace: "bad"}, {defaultColorSpace, future: true}]) {
+    expect(() => validateHostInput("createProject", {...project, preferences})).toThrow();
+    expect(() => validateHostOutput("context", {projectId: "p", revision: "r"}, {project: {...project, preferences}, groups: [], tokens: []})).toThrow();
+  }
+ });
+
+
+it("admits adapter-shaped catalogue rows with preferences or historical absence and rejects malformed rows whole", () => {
+  // Match IndexedDbRetention.catalogue: spread the complete project into its row.
+  const catalogueRow = (project: object) => ({
+    rowKey: JSON.stringify(["project", "p"]), status: "supported", ...project,
+    revision: "r", tokens: 1, groups: 0,
+  });
+  const legacy = {id: "p", name: "Legacy"};
+  expect(() => validateHostOutput("catalogue", null, [catalogueRow(legacy)])).not.toThrow();
+  for (const defaultColorSpace of ["srgb", "display-p3", "hsl", "oklab", "oklch"]) {
+    const project = {...legacy, preferences: {defaultColorSpace}, description: "Exact", creationDate: "2026-11-20T12:00:00.000Z", lastUpdatedDate: "2026-11-20T12:00:00.000Z"};
+    expect(() => validateHostOutput("catalogue", null, [catalogueRow(legacy), catalogueRow(project)])).not.toThrow();
+  }
+  for (const preferences of [undefined, null, {}, {defaultColorSpace: "bad"}, {defaultColorSpace: "oklch", extra: true}]) {
+    expect(() => validateHostOutput("catalogue", null, [catalogueRow(legacy), catalogueRow({...legacy, preferences})])).toThrow();
+  }
+  expect(() => validateHostOutput("catalogue", null, [{rowKey: "p", id: "p", status: "unavailable", reason: "Unsupported", preferences: {defaultColorSpace: "oklch"}}])).toThrow();
+});

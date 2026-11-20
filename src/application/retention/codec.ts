@@ -1,3 +1,4 @@
+import { assertProjectPreferences } from "@domain/project";
 import { createScanner, visit } from "jsonc-parser";
 import type { ProjectSnapshot } from "@application/project-storage";
 import { TOKEN_TYPES } from "@domain/token";
@@ -516,7 +517,7 @@ export function utf8Bytes(text: string): number {
 }
 // Closed shapes are emitted deterministically; array/operand order stays exact.
 const schemaKeys =
-  "format formatVersion authoredVersion createdAt creationDate lastUpdatedDate snapshot project groups tokens id name description projectId localName parentGroupId layer semanticRole componentDefinitionId definition type assignments condition value authoring regeneration kind valueType colorSpace components alpha unit ratio families family controlPoints duration delay timingFunction fontFamily fontSize fontWeight letterSpacing lineHeight layers color offsetX offsetY blur spread inset targetTokenId valuePath key index operation operands".split(
+  "format formatVersion authoredVersion createdAt creationDate lastUpdatedDate snapshot project groups tokens id name description preferences defaultColorSpace projectId localName parentGroupId layer semanticRole componentDefinitionId definition type assignments condition value authoring regeneration kind valueType colorSpace components alpha unit ratio families family controlPoints duration delay timingFunction fontFamily fontSize fontWeight letterSpacing lineHeight layers color offsetX offsetY blur spread inset targetTokenId valuePath key index operation operands".split(
     " ",
   );
 const schemaRank = new Map(schemaKeys.map((key, index) => [key, index]));
@@ -537,12 +538,16 @@ export function assertTimestamp(value: unknown): asserts value is string {
     !Number.isFinite(Date.parse(value)) || new Date(value).toISOString() !== value)
     fail("invalid-snapshot-date");
 }
-export function admitSnapshot(input: unknown, authoredVersion: 1 | 2 = 2): ProjectSnapshot {
+export function admitSnapshot(input: unknown, authoredVersion: 1 | 2 | 3 = 3): ProjectSnapshot {
+  if (authoredVersion !== 1 && authoredVersion !== 2 && authoredVersion !== 3) fail("unsupported-authored-version");
   const s = object(plainTree(input), ["project", "groups", "tokens"]);
-  const p = object(s.project, ["id", "name"], authoredVersion === 1 ? ["description"] : ["description", "creationDate", "lastUpdatedDate"]);
+  const p = object(s.project, ["id", "name"], authoredVersion === 1 ? ["description"] : ["description", "creationDate", "lastUpdatedDate", ...(authoredVersion === 3 ? ["preferences"] : [])]);
   for (const key of ["creationDate", "lastUpdatedDate"])
     if (Object.hasOwn(p, key)) assertTimestamp(p[key]);
-  Object.values(p).forEach((v) => string(v));
+  for (const [key, value] of Object.entries(p)) {
+    if (key === "preferences") assertProjectPreferences(value);
+    else string(value);
+  }
   const projectId = string(p.id);
   const totals = { ast: 0 };
   for (const kind of ["groups", "tokens"] as const) {
@@ -738,7 +743,7 @@ export function decodeBackup(text: string): BackupPreview {
   if (
     wrapper.format !== "dtw.project-backup" ||
     wrapper.formatVersion !== 1 ||
-    (wrapper.authoredVersion !== 1 && wrapper.authoredVersion !== 2)
+    (wrapper.authoredVersion !== 1 && wrapper.authoredVersion !== 2 && wrapper.authoredVersion !== 3)
   )
     fail("unsupported-backup-version");
   const createdAt = string(wrapper.createdAt);
@@ -748,7 +753,7 @@ export function decodeBackup(text: string): BackupPreview {
     new Date(createdAt).toISOString() !== createdAt
   )
     fail("invalid-snapshot-date");
-  const snapshot = admitSnapshot(wrapper.snapshot, wrapper.authoredVersion as 1 | 2);
+  const snapshot = admitSnapshot(wrapper.snapshot, wrapper.authoredVersion as 1 | 2 | 3);
   checkOutput(snapshot, createdAt);
   return { snapshot, createdAt };
 }
@@ -757,7 +762,7 @@ function checkOutput(snapshot: ProjectSnapshot, createdAt: string): string {
     ordered({
       format: "dtw.project-backup",
       formatVersion: 1,
-      authoredVersion: 2,
+      authoredVersion: 3,
       createdAt,
       snapshot: snapshot as unknown as Json,
     }) + "\n";

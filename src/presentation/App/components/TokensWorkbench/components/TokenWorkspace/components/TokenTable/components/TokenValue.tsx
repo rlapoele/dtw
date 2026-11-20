@@ -1,10 +1,11 @@
+import { spaceName } from "@presentation/App/helpers/color-space";
 import { TokenSwatch } from "@presentation/App/components/TokensWorkbench/components/TokenSwatch";
 import { colorPreview } from "@presentation/App/components/TokensWorkbench/helpers/color-preview";
 import { memo, useMemo } from "react";
 import { convertColor } from "@domain/color-calculation";
 import { COLOR_SPACES, type ColorLiteralValue } from "@domain/color-literal";
 import type { DisplayRow } from "@application/retention/projections";
-import { authoredColorCoordinates, spaceName } from "@presentation/App/components/TokensWorkbench/helpers/authored-color";
+import { authoredColorCoordinates } from "@presentation/App/components/TokensWorkbench/helpers/authored-color";
 import { colorDecimalDisplay } from "@presentation/App/components/TokensWorkbench/helpers/color-decimal-display";
 import { Icon } from "@presentation/ui/icon";
 import { hexPreview } from "@presentation/App/components/TokensWorkbench/helpers/hex-preview";

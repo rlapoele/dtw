@@ -1,3 +1,6 @@
+import type { ColorSpace } from "@domain/color-literal";
+import { COLOR_COMPONENTS, COMPONENT_NAMES } from "@domain/color-components";
+import { spaceName } from "@presentation/App/helpers/color-space";
 import { namingPreview } from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/helpers/naming-preview";
 import type { Ref } from "react";
 import type { ProjectContext } from "@application/retention/projections";
@@ -22,6 +25,7 @@ type CreationParent = {
 export type AuthoringForm = NamedForm & (
   | (CreationParent & {
       kind: "token";
+      defaultColorSpace: ColorSpace;
       description: string;
       onDescriptionChange: (value: string) => void;
       layer: string;
@@ -98,7 +102,7 @@ export function AuthoringDialog({
         </Dialog.Title>
         <Dialog.Description className="text-xs/normal text-muted-foreground mb-6">
           {form.kind === "token"
-            ? "Create a color token with an opaque black sRGB value."
+            ? `Create a color token with an opaque black ${spaceName(form.defaultColorSpace)} value.`
             : "Groups organize paths; names do not define types."}
         </Dialog.Description>
         {recovery}
@@ -253,7 +257,7 @@ export function AuthoringDialog({
                 <section className="creation-disclosure bg-muted border-hairline border-border text-xs/normal my-4 p-3 rounded-md">
                   <h3>Initial value</h3>
                   <p className="mt-2">
-                    sRGB · Red 0 · Green 0 · Blue 0 · Alpha 1 (opaque black)
+                    {spaceName(form.defaultColorSpace)} · {COLOR_COMPONENTS[form.defaultColorSpace].map(identity => `${COMPONENT_NAMES[identity]} 0`).join(" · ")} · Alpha 1 (opaque black)
                   </p>
                   <p className="mt-2">
                     Create starts with this color. You can revise it or

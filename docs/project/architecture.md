@@ -222,6 +222,19 @@ backup restore preserves imported dates. These timestamps are informational;
 opaque revisions continue to govern concurrency. Substantive no-op comparison
 excludes lifecycle metadata and precedes clock reading.
 
+**Project preferences implementation — 20 November 2026:** the domain owns
+`ProjectPreferences`, its closed supported-space validation, creation default
+OKLCH and the historical-absence sRGB authoring fallback. Application creation
+establishes preferences; presentation uses the effective default only for the
+new-color-token starter and disclosure. Explicit token operation values remain
+authoritative. The existing project creation hook owns the preference draft
+through pending and recovery states, resetting on successful readback or explicit
+discard. Retention, history, projections and browser protocol carry preferences
+without a separate store. Authored version 3 admits the optional typed preference;
+version 1/2 readers retain their closed shapes, and reads do not migrate data.
+Retained record versions 1/2 and backup envelope version 1 stay unchanged. See
+[Increment 022](../increments/022-project-default-color-space.md).
+
 Representative operations include:
 
 ```text

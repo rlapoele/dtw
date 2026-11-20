@@ -1,3 +1,4 @@
+import { effectiveDefaultColorSpace } from "@domain/project";
 import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
 import { namingPreview } from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/helpers/naming-preview";
 import { useEffect, useReducer } from "react";
@@ -176,7 +177,7 @@ export function useAuthoringForm(
                 ...(layer ? { layer: layer as "primitive" | "semantic" } : {}),
                 value: {
                   kind: "literal",
-                  colorSpace: "srgb",
+                  colorSpace: effectiveDefaultColorSpace(header.project),
                   components: ["0", "0", "0"],
                   alpha: "1",
                 },

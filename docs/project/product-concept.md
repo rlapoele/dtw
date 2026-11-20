@@ -66,6 +66,14 @@ A project is distinct from:
 
 The Project entity initially consists of a stable identity, name, and optional description. Its identity remains independent of a directory name so the project can be renamed or moved. Settings, provenance, target configuration, generated-artifact records, and other project-owned concerns need not become fields on the core entity. The exact manifest, on-disk layout, schema, and identity mechanism remain open.
 
+**Project creation preference — agreed 20 November 2026:** the creation form
+includes Project preferences with Default color space, initially OKLCH. This
+establishes typed project preferences for the starting value of new color tokens;
+existing tokens retain their own spaces and values. Historical projects without
+preferences continue starting new tokens in sRGB. Later preference editing and
+color conversion are not part of this slice. See the
+[project model](../design-tokens/conceptual-model.md#project-ownership-and-identity).
+
 ## Core desktop workflows
 
 ### Author and understand

@@ -5,9 +5,7 @@ import {
   componentSuffix,
   type ColorComponentIdentity,
 } from "@domain/color-components";
-import type { ColorLiteralValue, ColorSpace } from "@domain/color-literal";
-export const spaceName = (space: ColorSpace) =>
-  space === "srgb" ? "sRGB" : space === "display-p3" ? "Display P3" : space.toUpperCase();
+import type { ColorLiteralValue } from "@domain/color-literal";
 const compactNames: Record<ColorComponentIdentity, string> = {
   red: "R", green: "G", blue: "B", hue: "H", saturation: "S",
   lightness: "L", chroma: "C", a: "a", b: "b",

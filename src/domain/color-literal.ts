@@ -63,8 +63,8 @@ export function createColorLiteral(
   };
 }
 
-function isColorSpace(value: string): value is ColorSpace {
-  return colorSpaceSet.has(value);
+export function isColorSpace(value: unknown): value is ColorSpace {
+  return typeof value === "string" && colorSpaceSet.has(value);
 }
 
 function parseComponent(value: string): ColorComponent {

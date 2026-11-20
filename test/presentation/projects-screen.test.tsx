@@ -19,6 +19,7 @@ function screen(overrides: ScreenOverrides = {}) {
     restoreDialog: createElement("aside", null, "Restore dialog"),
     ...overrides,
     creation: {
+      defaultColorSpace: "oklch", onDefaultColorSpaceChange: noop,
       open: false, onOpen: noop, onClose: noop, onDiscard: noop, nameError: "",
       name: "  Unfinished name  ", description: "", nameRef: { current: null },
       onNameChange: noop, onDescriptionChange: noop, onCreate: noop,

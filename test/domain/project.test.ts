@@ -10,6 +10,7 @@ describe("createProject", () => {
   it("creates a project without requiring tokens or a workspace location", () => {
     expect(createProject({ id: "project-1", name: "Design system" })).toEqual({
       id: "project-1",
+      preferences: { defaultColorSpace: "oklch" },
       name: "Design system",
     });
   });
@@ -17,10 +18,12 @@ describe("createProject", () => {
   it("preserves an optional description exactly", () => {
     expect(createProject({
       id: "project-1",
+      preferences: { defaultColorSpace: "oklch" },
       name: "Design system",
       description: "  Shared product foundations\n",
     })).toEqual({
       id: "project-1",
+      preferences: { defaultColorSpace: "oklch" },
       name: "Design system",
       description: "  Shared product foundations\n",
     });
@@ -38,12 +41,14 @@ describe("project changes", () => {
   it("renames a project while preserving identity and description", () => {
     const project = createProject({
       id: "project-1",
+      preferences: { defaultColorSpace: "oklch" },
       name: "Before",
       description: "Shared foundations",
     });
 
     expect(renameProject(project, "  After  ")).toEqual({
       id: "project-1",
+      preferences: { defaultColorSpace: "oklch" },
       name: "  After  ",
       description: "Shared foundations",
     });
@@ -80,13 +85,14 @@ describe("project changes", () => {
   it("removes a description as an absent field while preserving identity", () => {
     const project = createProject({
       id: "project-1",
+      preferences: { defaultColorSpace: "oklch" },
       name: "Design system",
       description: "Before",
     });
 
     const changed = changeProjectDescription(project, undefined);
 
-    expect(changed).toEqual({ id: "project-1", name: "Design system" });
+    expect(changed).toEqual({ id: "project-1", name: "Design system", preferences: { defaultColorSpace: "oklch" } });
     expect(changed).not.toHaveProperty("description");
     expect(project.description).toBe("Before");
   });

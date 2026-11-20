@@ -1,3 +1,5 @@
+import { NEW_PROJECT_COLOR_SPACE } from "@domain/project";
+import type { ColorSpace } from "@domain/color-literal";
 import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
 import { downloadProjectBackup, readBackupFile } from "@hosts/browser/backup-file";
 import { UnknownWriteError } from "@hosts/browser/worker-client";
@@ -34,6 +36,7 @@ export function useProjects(
   const commandPending = useRef(false);
   const [backupFeedbackKind, setBackupFeedbackKind] = useState<"information" | "error">("information");
   const [backupFeedback, setBackupFeedback] = useState("");
+  const [defaultColorSpace, setDefaultColorSpace] = useState<ColorSpace>(NEW_PROJECT_COLOR_SPACE);
   const [description, setDescription] = useState("");
   const [name, setName] = useState(""),
     [error, setError] = useState(""),
@@ -57,14 +60,14 @@ export function useProjects(
   }, []);
   useEffect(() => {
     const guard = (event: BeforeUnloadEvent) => {
-      if (name !== "" || description !== "" || pending || unknown || hasPreview) {
+      if (name !== "" || description !== "" || defaultColorSpace !== NEW_PROJECT_COLOR_SPACE || pending || unknown || hasPreview) {
         event.preventDefault();
         event.returnValue = "";
       }
     };
     addEventListener("beforeunload", guard);
     return () => removeEventListener("beforeunload", guard);
-  }, [name, description, pending, unknown, hasPreview]);
+  }, [name, description, defaultColorSpace, pending, unknown, hasPreview]);
   async function recoverCreated(id: string) {
     setRetainedId(id);
     try {
@@ -74,6 +77,7 @@ export function useProjects(
       setProject(next);
       setName("");
       setDescription("");
+      setDefaultColorSpace(NEW_PROJECT_COLOR_SPACE);
       setRetainedId(null);
       outcomes.clear();
       outcomes.publish(`Project “${next.project.name}” retained in this browser.`);
@@ -141,7 +145,7 @@ export function useProjects(
     let acceptedId: string | undefined;
     try {
       const id = crypto.randomUUID();
-      const result = await host.current!.call("createProject", { id, name, ...(description === "" ? {} : { description }) });
+      const result = await host.current!.call("createProject", { id, name, preferences: { defaultColorSpace }, ...(description === "" ? {} : { description }) });
       if (result.status !== "retained") {
         if (result.status === "unknown") setUnknown(result);
         setError(result.reason);
@@ -228,6 +232,7 @@ export function useProjects(
     setRetainedId(null);
     setName("");
     setDescription("");
+    setDefaultColorSpace(NEW_PROJECT_COLOR_SPACE);
     void catalogue();
   }
   function retryCreated() {
@@ -244,6 +249,7 @@ export function useProjects(
     if (pending || unknown || retainedId !== null || activeMutation.current) return;
     setName("");
     setDescription("");
+    setDefaultColorSpace(NEW_PROJECT_COLOR_SPACE);
     setNameError("");
   }
   return {
@@ -259,6 +265,8 @@ export function useProjects(
     activeMutation,
     name,
     changeName,
+    defaultColorSpace,
+    changeDefaultColorSpace: setDefaultColorSpace,
     description,
     changeDescription: setDescription,
     error,

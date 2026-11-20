@@ -1,6 +1,6 @@
+import { spaceName } from "@presentation/App/helpers/color-space";
 import {
   authoredColorCoordinates,
-  spaceName,
 } from "@presentation/App/components/TokensWorkbench/helpers/authored-color";
 import type { Token } from "@domain/token";
 import type { ProjectContext } from "@application/retention/projections";

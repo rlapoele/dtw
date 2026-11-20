@@ -214,6 +214,14 @@ The isolated Electron boundary that exposes a narrow workbench-specific API to t
 
 The primary working context and initial ownership boundary for a product, brand, client, or design system. Its core entity has a stable identity, name, and optional description. A project may contain no tokens; every token and namespace group belongs to exactly one project.
 
+## Project preferences
+
+Typed project-owned authoring choices. The current `ProjectPreferences` requires
+`defaultColorSpace`, which supplies the starting space for new workbench color
+tokens. Historical projects may omit preferences and use sRGB; new projects
+establish them with OKLCH by default. Preferences do not convert existing values.
+See [project ownership](./conceptual-model.md#project-ownership-and-identity).
+
 ## Project identity
 
 A stable identifier for a project that remains distinct from its human-readable name and local directory path.

@@ -1,3 +1,4 @@
+import { assertProjectPreferences } from "@domain/project";
 import { validateResolution } from "@hosts/browser/derived-validation";
 import { TOKEN_TYPES } from "@domain/token";
 import { admitSnapshot, assertTimestamp, plainTree, retentionLimits } from "@application/retention/codec";
@@ -218,7 +219,8 @@ export function validateHostInput(
       text(input);
       return;
     case "createProject": {
-      const v = shape(input, ["id", "name"], ["description"]);
+      const v = shape(input, ["id", "name"], ["description", "preferences"]);
+      if (Object.hasOwn(v, "preferences")) assertProjectPreferences(v.preferences);
       if (Object.hasOwn(v, "description")) text(v.description);
       text(v.id);
       text(v.name);
@@ -355,7 +357,8 @@ export function validateHostOutput(
         "local",
       ]);
       internal(v.stageId);
-      const p = shape(v.project, ["id", "name"], ["description", "creationDate", "lastUpdatedDate"]);
+      const p = shape(v.project, ["id", "name"], ["description", "creationDate", "lastUpdatedDate", "preferences"]);
+      if (Object.hasOwn(p, "preferences")) assertProjectPreferences(p.preferences);
       for (const key of ["creationDate", "lastUpdatedDate"]) if (Object.hasOwn(p, key)) assertTimestamp(p[key]);
       text(p.id);
       text(p.name);
@@ -428,7 +431,8 @@ export function validateHostOutput(
     case "context": {
       const v = shape(output, ["project", "groups", "tokens"]);
       const request = shape(input, ["projectId", "revision"]);
-      const p = shape(v.project, ["id", "name"], ["description", "creationDate", "lastUpdatedDate"]);
+      const p = shape(v.project, ["id", "name"], ["description", "creationDate", "lastUpdatedDate", "preferences"]);
+      if (Object.hasOwn(p, "preferences")) assertProjectPreferences(p.preferences);
       for (const key of ["creationDate", "lastUpdatedDate"]) if (Object.hasOwn(p, key)) assertTimestamp(p[key]);
       if (p.id !== request.projectId) throw Error("Context project mismatch");
       text(p.name);
@@ -608,7 +612,7 @@ export function validateHostOutput(
         const v = shape(
           item,
           ["rowKey", "id", "status"],
-          ["name", "revision", "tokens", "groups", "reason", "description", "creationDate", "lastUpdatedDate"],
+          ["name", "revision", "tokens", "groups", "reason", "description", "creationDate", "lastUpdatedDate", "preferences"],
         );
         text(v.rowKey);
         text(v.id);
@@ -621,7 +625,8 @@ export function validateHostOutput(
             "revision",
             "tokens",
             "groups",
-          ], ["description", "creationDate", "lastUpdatedDate"]);
+          ], ["description", "creationDate", "lastUpdatedDate", "preferences"]);
+          if (Object.hasOwn(v, "preferences")) assertProjectPreferences(v.preferences);
           if (Object.hasOwn(v, "description")) text(v.description);
           for (const key of ["creationDate", "lastUpdatedDate"]) if (Object.hasOwn(v, key)) assertTimestamp(v[key]);
           text(v.name);
@@ -645,7 +650,8 @@ export function validateHostOutput(
         "tokens",
         "groups",
       ]);
-      const p = shape(v.project, ["id", "name"], ["description", "creationDate", "lastUpdatedDate"]);
+      const p = shape(v.project, ["id", "name"], ["description", "creationDate", "lastUpdatedDate", "preferences"]);
+      if (Object.hasOwn(p, "preferences")) assertProjectPreferences(p.preferences);
       for (const key of ["creationDate", "lastUpdatedDate"]) if (Object.hasOwn(p, key)) assertTimestamp(p[key]);
       text(p.id);
       text(p.name);
@@ -659,7 +665,8 @@ export function validateHostOutput(
       return;
     }
     case "createProject": {
-      const v = shape(input, ["id", "name"], ["description"]);
+      const v = shape(input, ["id", "name"], ["description", "preferences"]);
+      if (Object.hasOwn(v, "preferences")) assertProjectPreferences(v.preferences);
       if (Object.hasOwn(v, "description")) text(v.description);
       acceptance(output, "createProject", "project", text(v.id));
       return;
@@ -779,7 +786,8 @@ export function validateAttempt(
   text(result.id);
   enumeration(result.entityKind, ["project", "group", "token"]);
   if (operation === "createProject") {
-    const x = shape(input, ["id", "name"], ["description"]);
+    const x = shape(input, ["id", "name"], ["description", "preferences"]);
+    if (Object.hasOwn(x, "preferences")) assertProjectPreferences(x.preferences);
     if (
       v.operation !== "createProject" ||
       v.projectId !== x.id ||
