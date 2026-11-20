@@ -15,8 +15,10 @@
 The user requested a default color-space preference in project creation, with
 OKLCH preselected, and confirmed sRGB fallback for existing projects without a
 saved setting. The separate analyst prepared [Increment 022](../increments/022-project-default-color-space.md).
-It proposes a Project preferences form group, saved per-project default for new
-color tokens, no conversion of existing tokens, and authored version 3 with
+The user additionally agreed a typed ProjectPreferences model, with optional
+project.preferences and required preferences.defaultColorSpace when present.
+The contract now records that correction. It proposes a Project preferences form
+group, saved per-project default for new color tokens, no conversion of existing tokens, and authored version 3 with
 version 1/2 readers and exact legacy absence preserved. Later preference editing
 is outside the proposed slice. A native Select in the existing form needs no
 separate design prototype. Contract agreement is next; production implementation

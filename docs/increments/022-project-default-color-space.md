@@ -3,7 +3,7 @@
 - Contract status: Draft
 - Delivery status: Not started
 - User request — 20 November 2026: allow choosing a default color space in project creation, with OKLCH selected by default. The user then clarified this belongs to project creation options/preferences and explicitly selected “Keep sRGB for existing projects.”
-- Agreement: the creation selector and OKLCH preselection are requested. The legacy fallback to sRGB is also agreed. The remaining detailed scope and compatibility strategy below are proposals; final contract agreement and implementation authorization against this contract are pending.
+- Agreement: the creation selector and OKLCH preselection are requested. The legacy fallback to sRGB and a typed ProjectPreferences model are also agreed; later preference editing is deferred. The remaining detailed scope and compatibility strategy below are proposals; final contract agreement and implementation authorization against this contract are pending.
 - References: [project model](../design-tokens/conceptual-model.md#project-ownership-and-identity), [product concept](../project/product-concept.md#project-centered-workflow), [architecture](../project/architecture.md), [interoperability](../design-tokens/interoperability.md), [presentation conventions](../project/presentation-conventions.md), [workflow](../workflow/agent-roles.md), [019 compatibility precedent](019-project-description-and-lifecycle-dates.md#agreed-implementation-and-migration-boundary).
 
 ## Outcome
@@ -17,8 +17,9 @@ switch away from sRGB. Existing authored colors retain their explicit spaces and
 - Add a labeled Default color space native Select to the established project creation
   form, grouped under Project preferences and using existing owned controls and the five supported canonical spaces:
   sRGB, Display P3, HSL, OKLAB and OKLCH. Preselect OKLCH.
-- Persist an optional `defaultColorSpace: ColorSpace` project field. New project
-  creation explicitly establishes it; omission from a creation operation defaults
+- Persist an optional `preferences: ProjectPreferences` project field, where
+  `ProjectPreferences` requires `defaultColorSpace: ColorSpace`. New project
+  creation explicitly establishes this typed object; omission from a creation operation defaults
   to OKLCH. Absence in loaded historical data remains absence, not inferred authorship.
 - Use the project's effective default for the workbench's new-color-token starter
   value and its creation-dialog disclosure. Preserve the existing opaque-black
@@ -55,7 +56,7 @@ switch away from sRGB. Existing authored colors retain their explicit spaces and
   explicit values survive ordinary edits, Undo/Redo, backup and exact restore;
   absence stays absent through exact restore.
 - AC-7: Closed version-specific validation accepts old authored versions 1/2 and
-  new version 3, rejects the new field in versions 1/2, rejects unsupported spaces,
+  new version 3, rejects preferences in versions 1/2, rejects malformed preferences, unsupported spaces,
   unknown fields and unsupported future versions, and preserves whole-snapshot
   rejection. New writes/backups identify authored version 3 so older builds fail
   closed instead of silently dropping the preference.
@@ -69,15 +70,19 @@ switch away from sRGB. Existing authored colors retain their explicit spaces and
    without the setting on 20 November 2026, preserving their previous new-token
    behavior. Existing tokens remain unchanged and absence remains absent. This
    decision no longer requires confirmation.
-3. **Compatibility:** recommend authored version 3, with optional `defaultColorSpace`
-   so exact historical restores can remain absent. Keep retained record versions
+3. **Compatibility:** recommend authored version 3, with optional `preferences: ProjectPreferences`
+   so exact historical restores can preserve absent preferences. Present preferences
+   require a supported `defaultColorSpace`; an empty object is not a legacy fallback. Keep retained record versions
    1/2 and backup envelope format version 1: their outer structures are unchanged.
    No eager migration or write on read. New writes and generated backups emit 3;
    old versions retain their original closed project-field rules. This follows the
    established version separation rather than introducing a migration framework.
-4. **Storage boundary:** store this one concrete project authoring setting directly
-   as an optional Project field. Do not introduce a generic settings bag. Update
-   the model/product owning descriptions to name the accepted addition.
+4. **Preferences model — agreed:** the user explicitly requested a project
+   preferences data model, even though later preference editing is deferred.
+   Store `preferences?: ProjectPreferences`, with the typed required member
+   `defaultColorSpace: ColorSpace`. New projects establish this object; historical
+   absence stays absent and uses the agreed sRGB fallback. This is a focused typed
+   model, not an arbitrary settings bag. Update affected owning documentation.
 
 Implementation waits for agreement to the resulting contract. No approval
 already given for the selector or OKLCH preselection needs to be repeated separately.
@@ -90,13 +95,13 @@ phase is not recommended. Place a Project preferences group after Description an
 before actions, containing the selector with existing color-space labels. Suggested
 help: “Starting color space for new color tokens. Existing tokens keep their own
 color space.” This is a saved project authoring preference, not a color restriction;
-the visual group does not require a generic persisted preferences container. Update dirty-discard copy to cover
+the visual group corresponds to the agreed typed ProjectPreferences model. Update dirty-discard copy to cover
 all project details, and update the new-token dialog's current hardcoded sRGB
 headline and initial-value facts. No layout redesign is needed.
 
 ## Implementation touchpoints
 
-- `src/domain/project.ts`: project/input field and new-creation default; reuse
+- `src/domain/project.ts`: typed ProjectPreferences, project/input preferences and new-creation default; reuse
   `ColorSpace`, `COLOR_SPACES` and existing supported-space validation.
 - `src/application/retention/{service,codec,record,ports}.ts`: creation, authored
   version 3, closed validation and backup output. Check snapshot/history admission
