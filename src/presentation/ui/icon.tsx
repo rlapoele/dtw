@@ -66,7 +66,7 @@ export function Icon({ name, className, label, ...props }: IconProps) {
   return (
     <Glyph
       {...props}
-      className={cn("size-4 shrink-0", className)}
+      className={cn("size-4 shrink-0 stroke-2", className)}
       aria-hidden={label ? undefined : true}
       aria-label={label || undefined}
       role={label ? "img" : undefined}
