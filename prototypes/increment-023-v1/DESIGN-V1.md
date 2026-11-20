@@ -128,3 +128,17 @@ At the user’s request, the gap after the Literal color / Reference radio group
 now matches the shared Field spacing between Description and Layer (1.0625rem).
 The prototype removes stacked radio-group and color-editor margins locally;
 production ColorEditor is unchanged.
+
+### Action divider refinement — 20 November 2026
+
+The user approved removing the hairline immediately above Cancel / Apply changes.
+Spacing separates the actions from the editable fields; the divider below the
+Edit token section remains. Prototype only; production is unchanged. Source and
+diff checks passed; browser verification was not repeated for this class removal.
+
+The subsequent user refinement reduces action-row top padding from 12px to 4px,
+keeping the existing field-to-footer separation and lower section divider.
+
+Removed the idle “Description, layer and value share Apply and Cancel” helper
+copy at the user’s request. The status region remains available for unsaved-change
+and action-outcome feedback, with no idle message.

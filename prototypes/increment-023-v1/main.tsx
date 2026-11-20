@@ -72,11 +72,11 @@ function App(){
     {readOnly?<p className="text-caption text-muted-foreground">Inspection only for this sample token. Applied information remains available below.</p>:<>
       {scenario==="conflict"&&<div className="border-hairline border-border rounded p-3 mb-3 text-caption"><p className="font-semibold mb-1">Applied token changed elsewhere</p><p className="mb-2">Your description, layer and value draft are preserved. Review the current description before reapplying.</p><Rows rows={[["Previous description",applied.description],["Current description","Updated guidance from another session."]]}/><Button ref={reviewRef} className="mt-2" disabled={reviewed} onClick={()=>{setReviewed(true);setNotice("Current applied changes reviewed. Reapply is available.")}}>{reviewed?"Changes reviewed":"Review current changes"}</Button></div>}
       {error&&<p ref={errorRef} tabIndex={-1} role="alert" className="text-caption text-destructive mb-3">{error}</p>}
-      <div className="flex justify-end gap-2 border-t-hairline border-border pt-3 mb-2">
+      <div className="flex justify-end gap-2 pt-1 mb-2">
         <Button disabled={!dirty||pending} onClick={cancel}>Cancel</Button>
         <Button variant="default" disabled={!dirty||pending||unavailable||!!issue} onClick={apply}>{pending?"Applying…":scenario==="conflict"&&reviewed?"Reapply changes":"Apply changes"}</Button>
       </div>
-      <p role="status" className="text-caption text-muted-foreground">{notice||(dirty?"Changes are not applied yet.":"Description, layer and value share Apply and Cancel.")}</p>
+      <p role="status" className="text-caption text-muted-foreground">{notice||(dirty?"Changes are not applied yet.":"")}</p>
       {issue&&<p className="text-caption text-destructive mt-2">{issue} <button className="underline" onClick={revealDescription}>Open editable fields</button></p>}
     </>}
   </div>;
