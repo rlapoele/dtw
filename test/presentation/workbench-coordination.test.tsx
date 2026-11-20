@@ -878,3 +878,24 @@ it("retains the layer draft on a failed combined reference edit", async () => {
   expect(onApply).toHaveBeenCalledWith(inspection.authoredValue, "semantic");
   expect(owner.session.layer).toBe("semantic"); expect(owner.dirty).toBe(true); expect(owner.error).toContain("Unknown outcome");
 });
+
+it("retains incomplete HEX across tabs, guards Apply, and clears it on Cancel", async () => {
+  const { useTokenEditor } = await import("@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor");
+  const { editHex } = await import("@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session");
+  const value = {kind: "literal", valueType: "color", colorSpace: "srgb", components: ["0.2", "0.4", "0.6"], alpha: "0.123456789"};
+  const onApply = vi.fn(async () => ({status: "failure", error: {code: "storage-failure", operation: "commit", message: "Retain draft"}} as const));
+  const inspection: any = {token: {id: "t", localName: "Token", definition: {type: "color"}, authoring: {regeneration: "allowed"}}, authoredValue: value, editable: true, resolution: {status: "unresolved", reason: "test", trace: [], diagnostics: []}};
+  const hook = () => useTokenEditor({inspection, project: context as any, inspect: () => undefined, onApply, onDirty: vi.fn(), readUnavailable: false});
+  let owner = render(hook); effects(); owner = render(hook);
+  owner.changeColorDraft(editHex(owner.session, "#12")); owner = render(hook);
+  owner.selectTab("resolved"); owner = render(hook);
+  expect(owner.session.hexText).toBe("#12"); expect(owner.dirty).toBe(true);
+  await owner.apply(); owner = render(hook);
+  expect(onApply).not.toHaveBeenCalled(); expect(owner.error).toContain("HEX");
+  owner.cancel(); owner = render(hook); effects(); owner = render(hook);
+  expect(owner.session.hexText).toBeNull(); expect(owner.dirty).toBe(false);
+  owner.changeColorDraft(editHex(owner.session, "#ff0000")); owner = render(hook);
+  await owner.apply(); owner = render(hook);
+  expect(onApply).toHaveBeenCalledWith({kind: "literal", colorSpace: "srgb", components: ["1", "0", "0"], alpha: value.alpha}, null);
+  expect(owner.session.hexText).toBe("#ff0000"); expect(owner.dirty).toBe(true);
+});

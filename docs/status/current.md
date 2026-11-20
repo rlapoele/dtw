@@ -1,6 +1,6 @@
 # Current Project Status
 
-> Last updated: 19 November 2026
+> Last updated: 20 November 2026
 >
 > Phase: Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
@@ -9,6 +9,23 @@
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## HEX color entry — 20 November 2026
+
+Implemented the user-approved additional input representation in the sRGB editor.
+[Presentation conventions](../project/presentation-conventions.md#hex-color-entry--20-november-2026)
+own accepted syntax, precision, alpha and draft behavior, plus verification evidence.
+HEX updates the existing canonical sRGB draft; incomplete text is retained and
+blocks literal Apply. Display alone preserves exact values. Apply/Cancel and
+reference-mode behavior retain their existing ownership.
+
+All 71 focused tests and the production build/typecheck passed. Isolated Chrome
+verified ordinary entry, invalid Apply, tab preservation, Cancel, shorthand Apply,
+exact alpha and keyboard order. Desktop rendering was inspected; narrow layouts
+and screen-reader delivery remain unverified. Review was by the implementing agent.
+Focused verification stopped at approximately six of 15 minutes with one tooling
+fallback; no prior qualification was restarted. User visual acceptance is next.
+Changes are left unstaged. Suggested commit: `feat: add HEX entry to sRGB color editor`.
 
 ## Token layer editing — Increment 021 implemented
 

@@ -122,9 +122,11 @@ export function useTokenEditor({
     session.reference !== null ? inspect(session.reference) : undefined;
   const draft =
     session.mode === "literal"
-      ? session.byteInvalid
-        ? { message: "Unavailable: finish the incomplete byte entries." }
-        : colorPreview(session.literal)
+      ? session.hexInvalid
+        ? { message: "Unavailable: finish the incomplete HEX entry." }
+        : session.byteInvalid
+          ? { message: "Unavailable: finish the incomplete byte entries." }
+          : colorPreview(session.literal)
       : colorPreview(resolvedColor(targetInspection));
   const feedback = {
     tokenId: token.id,
@@ -195,12 +197,14 @@ export function useTokenEditor({
     if (!editable) return;
     if (
       session.mode === "literal" &&
-      (session.byteInvalid || literalIssue(session.literal))
+      (session.hexInvalid || session.byteInvalid || literalIssue(session.literal))
     ) {
       setError(
-        session.byteInvalid
-          ? "Finish the incomplete byte entries."
-          : (literalIssue(session.literal) ?? "Invalid color"),
+        session.hexInvalid
+          ? "Finish the incomplete HEX entry."
+          : session.byteInvalid
+            ? "Finish the incomplete byte entries."
+            : (literalIssue(session.literal) ?? "Invalid color"),
       );
       return;
     }

@@ -261,7 +261,7 @@ export function TokenEditorContent({
                   readUnavailable ||
                   readOnly ||
                   accepting ||
-                  (session.mode === "literal" && session.byteInvalid)
+                  (session.mode === "literal" && (session.byteInvalid || session.hexInvalid))
                 }
                 applyLabel={
                   accepting

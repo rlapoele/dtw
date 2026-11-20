@@ -3,6 +3,7 @@ import {
   COMPONENT_NAMES,
   componentSuffix,
 } from "@domain/color-components";
+import { Input } from "@presentation/ui/input";
 import { Field } from "@presentation/ui/field";
 import { ColorDecimalInput } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ColorEditor/components/ColorDecimalInput";
 import type { CSSProperties } from "react";
@@ -17,6 +18,8 @@ import {
   changeView,
   displayed,
   editComponent,
+  editHex,
+  hexField,
   fields,
 } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session";
 import type { DraftSession } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session";
@@ -130,6 +133,35 @@ export function ColorEditor({
           ? `Draft in ${spaceName(s.literal.colorSpace)}. Switching view keeps exact values.`
           : `Viewing approximate ${spaceName(s.viewSpace)}. Draft remains in ${spaceName(s.literal.colorSpace)} until a component edit.`}
       </p>
+      {d.colorSpace === "srgb" && (
+        <div className="mb-3">
+          <Field className="mb-1!" htmlFor="color-hex">
+            HEX
+            <Input
+              id="color-hex"
+              className="font-mono"
+              readOnly={readOnly}
+              value={hexField(s)}
+              placeholder="#RRGGBB"
+              spellCheck={false}
+              autoComplete="off"
+              aria-invalid={s.hexInvalid || undefined}
+              aria-describedby="color-hex-note"
+              onChange={(e) => {
+                onChange(editHex(s, e.target.value));
+                onError("");
+              }}
+            />
+          </Field>
+          <p id="color-hex-note" className={`text-caption ${s.hexInvalid ? "text-destructive" : "text-muted-foreground"}`}>
+            {s.hexInvalid
+              ? "Enter 3 or 6 HEX digits, with an optional #. Set alpha separately."
+              : hexField(s)
+                ? "sRGB · rounded to 8 bits per channel. Alpha stays separate."
+                : "HEX unavailable for these components. Enter a code to replace them; alpha stays separate."}
+          </p>
+        </div>
+      )}
       <p id="color-precision-note" className="text-caption text-muted-foreground mb-2">
         Up to 4 decimal places. Focus a field for full precision.
       </p>

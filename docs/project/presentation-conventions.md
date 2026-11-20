@@ -93,6 +93,41 @@ Use shadcn-style semantic theming adapted to the accepted neutral Precision desi
 
 Keep semantic design values in one source, currently `src/presentation/styles/global.css`. Map referenced semantic CSS variables through Tailwind's `@theme inline` namespaces: for example, `--color-background: var(--background)` exposes `bg-background`. Use the namespace appropriate to the decision, such as `--color-*`, `--radius-*` or `--font-*`. Focused CSS can reference the same source. Values defined directly in `@theme` also have one source; avoid adding a duplicate alias layer without a need. Application theme tokens remain distinct from user-authored design-token data.
 
+## HEX color entry — 20 November 2026
+
+The user approved adding HEX alongside the existing sRGB component fields, with
+alpha kept separate. This bounded editor enhancement uses the existing canonical
+color model and Apply/Cancel workflow; it does not introduce a color space.
+
+- The sRGB view accepts three or six hexadecimal digits, case-insensitively,
+  with an optional `#` and surrounding whitespace. Four/eight-digit alpha forms
+  are not accepted; the inline guidance points to the separate alpha control.
+- Viewing HEX quantizes only the display to eight bits per channel using existing
+  byte rounding. It never changes exact coordinates, alpha or dirty state.
+  Missing, invalid, out-of-range or calculation-guarded components have no HEX
+  display; no silent clamping or gamut mapping occurs.
+- Editing valid HEX replaces all three coordinates with sRGB values using the
+  existing byte conversion policy and preserves exact alpha. In an alternate
+  sRGB view this promotes the draft to sRGB, like other component edits.
+- Raw HEX belongs to the existing editor session. Incomplete text survives tab
+  switches, marks the draft dirty, blocks literal Apply and representation changes,
+  and shows an inline error. Component edits supersede HEX text; valid HEX replaces
+  stale byte entries. Cancel resets the draft; failed saves retain it. Inactive
+  literal errors do not block applying a valid reference.
+
+Verification: 71 focused session, HEX, layer and coordination tests passed;
+`npm run build` passed, including typechecking (bundle-size warning retained).
+Isolated Chrome exercised synchronized components, invalid Apply, tab preservation,
+Cancel, shorthand Apply, exact-alpha preservation and Tab from HEX to Red slider.
+The desktop screenshot was inspected. Source review checked actual consumers,
+private editor placement, shared Input reuse, existing state lifetime and semantic
+classes; no new dependencies, wrappers, icons or style exceptions were introduced.
+This was implementing-agent review, not independent review. Screen-reader delivery,
+narrow layouts, reload and fault-injected retention were not checked for this change.
+Approximately six minutes of the 15-minute focused verification ceiling were used,
+with one tooling fallback to the cached Playwright CLI after the wrapper stalled.
+Checks stopped after the listed evidence; previous qualification remains closed.
+
 ## Color display precision
 
 **Established presentation choice — 18 November 2026.** Show color coordinates

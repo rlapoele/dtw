@@ -1,3 +1,4 @@
+import { compareDecimals, decimalFromCanonical } from "@domain/decimal";
 import type { ColorLiteralInput, ColorSpace } from "@domain/color-literal";
 import { createColorLiteral } from "@domain/color-literal";
 import { convertColor } from "@domain/color-calculation";
@@ -22,6 +23,8 @@ export type DraftSession = {
   scale: "normalized" | "bytes";
   byteText: [string, string, string] | null;
   byteInvalid: boolean;
+  hexText: string | null;
+  hexInvalid: boolean;
   byteEdited: [boolean, boolean, boolean];
   edited: boolean;
 };
@@ -45,6 +48,8 @@ export function baseline(value?: ImplementedAuthoredValue, layer: DraftSession["
     reference: value?.kind === "token-reference" ? value.targetTokenId : null,
     viewSpace: literal.colorSpace,
     scale: "normalized",
+    hexText: null,
+    hexInvalid: false,
     byteText: null,
     byteInvalid: false,
     byteEdited: [false, false, false],
@@ -109,6 +114,8 @@ export function fields(s: DraftSession): [string, string, string] {
     : d.components;
 }
 export function changeView(s: DraftSession, target: ColorSpace): DraftSession {
+  if (s.hexInvalid)
+    throw new RangeError("Finish the incomplete HEX entry before changing representation.");
   if (s.byteInvalid)
     throw new RangeError(
       "Finish the incomplete byte entries before changing representation.",
@@ -124,6 +131,7 @@ export function editComponent(
   index: number,
   text: string,
 ): DraftSession {
+  s = { ...s, hexText: null, hexInvalid: false };
   const d = displayed(s);
   const bytes = d.colorSpace === "srgb" && s.scale === "bytes";
   const components: [string, string, string] = [...d.components];
@@ -162,6 +170,47 @@ export function editComponent(
     byteText: null,
     byteEdited: [false, false, false],
     byteInvalid: false,
+    edited: true,
+  };
+}
+
+/** HEX is only an sRGB view; display never authors quantized components. */
+export function hexField(s: DraftSession): string {
+  const d = displayed(s);
+  if (d.colorSpace !== "srgb") return "";
+  if (s.hexText !== null) return s.hexText;
+  if (s.byteInvalid) return "";
+  try {
+    const channels = d.components.map(text => {
+      const value = decimalFromCanonical(text);
+      if (compareDecimals(value, decimalFromCanonical("0")) < 0 ||
+          compareDecimals(value, decimalFromCanonical("1")) > 0)
+        throw new RangeError("Outside sRGB HEX range");
+      return Number(integerByteDisplay(text).text).toString(16).padStart(2, "0");
+    });
+    return "#" + channels.join("");
+  } catch {
+    return "";
+  }
+}
+
+export function editHex(s: DraftSession, text: string): DraftSession {
+  const raw = text.trim().replace(/^#/, "");
+  if (!/^(?:[0-9a-f]{3}|[0-9a-f]{6})$/i.test(raw))
+    return { ...s, hexText: text, hexInvalid: true, edited: true };
+  const expanded = raw.length === 3 ? [...raw].map(x => x + x).join("") : raw;
+  const components = [0, 2, 4].map(i =>
+    integerByteToNormalized(String(parseInt(expanded.slice(i, i + 2), 16))),
+  ) as LiteralDraft["components"];
+  return {
+    ...s,
+    literal: { colorSpace: "srgb", components, alpha: s.literal.alpha },
+    viewSpace: "srgb",
+    hexText: text,
+    hexInvalid: false,
+    byteText: null,
+    byteInvalid: false,
+    byteEdited: [false, false, false],
     edited: true,
   };
 }
