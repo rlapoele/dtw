@@ -20,8 +20,12 @@ flow, preserving existing regeneration/manual-edit semantics. The analyst drafte
 Description is already modeled and retained; no persistence migration is proposed.
 The separate designer recommends Edit token above read-only Applied / Resolved &
 trace tabs, with actions/error/recovery always visible and independent disclosure
-headers. This material layout proposal awaits user approval before a prototype.
-No production code or prototype was changed. Earlier increments remain closed.
+headers. The user approved this structure for a visual prototype on 20 November. The
+separate designer completed [V1](../../prototypes/increment-023-v1/DESIGN-V1.md).
+Build/typecheck and bounded Chrome interaction checks passed; desktop/narrow
+rendering was inspected, with one sticky-background issue corrected. User review
+of V1 is next, before analyst design review or final implementation agreement.
+Production remains unchanged. Earlier increments remain closed.
 
 ## Project creation preferences — Increment 022 complete
 

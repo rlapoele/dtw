@@ -3,7 +3,7 @@
 - Contract status: Draft
 - Delivery status: Not started
 - User request — 20 November 2026: edit token descriptions; group editable fields under a labeled section; consistently labeled expandable/collapsible read-only sections with a far-right animated chevron; show identity/path as Metadata field/value rows; remove duplicate Regeneration information.
-- Agreement: the requested outcome is established. The user agreed description editing within the current editable color-token scope. The detailed interaction design below remains proposed. Designer assessment, user review, analyst design review, final contract agreement and implementation authorization are pending.
+- Agreement: the requested outcome is established. The user agreed description editing within the current editable color-token scope. On 20 November the user approved the proposed structure for a visual prototype. Prototype review, analyst design review, final contract agreement and production implementation authorization remain pending.
 - References: [workflow](../workflow/agent-roles.md), [presentation conventions](../project/presentation-conventions.md), [visual direction](../project/visual-direction.md), [architecture](../project/architecture.md), [token model](../design-tokens/conceptual-model.md), [layer editing](021-token-layer-editing.md), [retention limits](007-local-retention-and-backup.md#deferred-qualification).
 
 ## Outcome
@@ -98,16 +98,15 @@ other metadata, and Regeneration appears once.
    color-token scope. Preserve existing regeneration/manual-edit semantics; no
    broader metadata operation or token-editing eligibility is authorized.
 2. **Section name:** recommend Edit token. Value is accurate for the color/reference
-   subsection but too narrow for description and layer. Final wording is a design
-   decision, not yet approved.
-3. **Section inventory and tabs — designer proposal, not approved:** place a
+   subsection but too narrow for description and layer. The user approved this label as part of the structure for the visual prototype.
+3. **Section inventory and tabs — approved for prototype:** place a
    complete Edit token section above read-only Applied / Resolved & trace tabs.
    Group Description, Layer and value fields there, keeping its action/error/recovery
    area visible even when collapsed. Read-only sections use independent consistent
    headings/chevrons. Metadata contains direct identity/path rows; All authored data
    is a separate lazy, bounded top-level section. The design artifact/link is pending
    user direction and must be identified before analyst consistency review.
-4. **Expansion policy — designer proposal, not approved:** editing and ordinary
+4. **Expansion policy — approved for prototype:** editing and ordinary
    read-only sections start open; raw source sections start closed. A collapsed edit
    section indicates unsaved changes. Independent toggles avoid an exclusive
    accordion. No persisted preference is proposed; selection-lifetime and focus
@@ -161,3 +160,30 @@ harness repairs. Increment 022 and earlier acceptance/qualification limits remai
 closed. No production implementation or independent implementation review occurred.
 
 Suggested commit: `docs: draft token description and inspector section increment`.
+
+## Prototype authorization — 20 November 2026
+
+The user stated: “I approve this structure for a visual prototype. Committed and
+pushed.” This approves the presented common Edit token section, visible actions,
+read-only tabs and independently collapsible sections for prototype work only.
+The designer is preparing `prototypes/increment-023-v1/` with local illustrative
+state. No production implementation is authorized. The prototype will be shown
+to the user before analyst consistency review; material revisions return to the
+user. Prototype verification is bounded to 15 aggregate minutes and one harness
+repair, separate from the not-yet-started implementation allowance.
+
+## Prototype V1 handoff — 20 November 2026
+
+[Interactive V1 and design notes](../../prototypes/increment-023-v1/DESIGN-V1.md)
+implement the approved structure with local sample state only. Prototype build and
+isolated TypeScript checks passed. Coordinator Chrome checks covered description
+editing, collapsed dirty state with visible actions, Cancel/Apply, tab preservation,
+keyboard Metadata disclosure and reduced-motion. Desktop/narrow captures were
+inspected; a transparent sticky heading was corrected and rechecked. Approximately
+eight of 15 prototype verification minutes used, zero harness repairs.
+
+The prototype server is available at `http://127.0.0.1:4223/` while running.
+Production source is unchanged. Failure/conflict/source scenarios are illustrative;
+no real command, history or retention acceptance is implied. User review of V1 is
+next, including approval for analyst consistency review. Neither analyst design
+review nor production implementation is authorized yet.

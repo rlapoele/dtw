@@ -1,0 +1,6 @@
+{
+  "extends": "../../tsconfig.presentation.json",
+  "compilerOptions": { "noEmit": true },
+  "include": ["main.tsx"],
+  "exclude": []
+}
