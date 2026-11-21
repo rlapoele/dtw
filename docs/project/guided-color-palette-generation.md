@@ -171,12 +171,27 @@ not constitute final contract/design agreement or implementation authorization.
   as the default, and offer **A — Linear taper** as an alternative. These are two
   chroma behaviors, not a change in hue policy. Save the chosen behavior with ramp
   settings; changing it produces a reviewed proposal under the existing ramp rules.
+- Alpha behavior agreed 21 November: preserve the seed's alpha uniformly across
+  generated steps. Do not generate an opacity progression or bake the preview
+  background into authored colors. Preview/compositing and numerical edge cases
+  still need specification; see the agreed authoring/gamut direction below.
+- Authored space and gamut agreed 21 November: author generated steps in **OKLCH**
+  and preserve the seed's original authored space and exact value. Default the
+  target gamut to **sRGB**. If the seed lies outside it, require an explicit choice;
+  never silently alter the seed or describe an out-of-gamut exception as a wholly
+  sRGB-compatible ramp. Wider-gamut selection versus an explicitly accepted
+  adjusted seed, the supported wider gamut(s), and the precise interaction remain
+  to be agreed. Target gamut does not determine authored space.
+- Interface wording agreed 21 November: **Color intensity**, with **Retained**
+  (default, B) and **Restrained** (linear taper, A). These labels control chroma
+  distribution; they do not change hue or lightness. Technical documentation may
+  retain the precise recipe names and formulas.
 - Creation uses the group checkbox and a provisional dialog flow; later editing
   uses the central workbench, with the inspector's exact role still to be refined.
 
 The comparison records the quadratic retained-chroma and linear taper formulas
 that demonstrate the selected behaviors. Selection of B does not approve all
-illustrative endpoint parameters, Auto placement, sRGB mapping, precision or alpha
+illustrative endpoint parameters, Auto placement, sRGB mapping, precision or remaining alpha-preview/edge-case
 rules as a production calculation contract. These still require explicit definition,
 including extreme seeds and the interaction between gamut limits and the taper.
 Step-count changes during later editing also need membership/override review rules.
@@ -187,7 +202,7 @@ requested by recording these choices.
 
 ## Questions for future work
 
-1. With the first-slice count, constant-hue direction and chroma choices agreed above, what exact lightness/endpoints, precision, alpha, authored output space and gamut policies complete the numerical contract? How should Auto fit the exact seed to the named steps, resolve ties and handle seeds outside the intended distribution?
+1. With the first-slice count, constant-hue direction and chroma choices agreed above, what exact lightness/endpoints, precision, alpha-preview/edge-case handling, numerical conversion and gamut-mapping policies complete the agreed OKLCH-authoring/sRGB-default direction? How should Auto fit the exact seed to the named steps, resolve ties and handle seeds outside the intended distribution?
 2. How should users compare accent suggestions, control neutral tint, and revise or retain selected candidates?
 3. What makes status colors sufficiently coherent and distinguishable, and how should conflicts be surfaced?
 4. Which opinionated semantic names, roles, states, and intended pairs belong in the first recipe? How much customization is useful?

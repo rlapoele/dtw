@@ -12,6 +12,12 @@ proposals below are historical and are superseded by the
 [latest owning decisions](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026):
 single seed, adjustable **2–20** steps with **11** default, positional naming,
 constant OKLCH hue, **B retained chroma by default** with **A linear taper** available.
+Agreed interface wording is **Color intensity: Retained / Restrained**, with
+Retained selected by default. The seed’s alpha is preserved uniformly across
+generated steps (agreed 21 November). Generated values are authored in OKLCH;
+the seed retains its original authored space. sRGB is the default target gamut,
+with an explicit decision required for an out-of-gamut seed. Exact choice UI,
+supported wider gamuts and mapping rules remain open.
 Creation uses a provisional dialog entered through group creation; subsequent
 editing uses the central workbench. Multiple anchors are deferred. Detailed
 numerical, count-change and interaction criteria remain to be revised; none of

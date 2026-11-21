@@ -10,6 +10,38 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp authored space and default gamut agreed — 21 November 2026
+
+The user agreed OKLCH-authored generated steps, preserving the seed's original
+space, and sRGB as default target gamut with an explicit choice for a seed outside
+it. The [owning direction](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026)
+and draft decision notice record these choices. Wider-gamut support, adjusted-seed
+acceptance interaction and mapping policy remain proposed/unresolved. Creation
+flow discussion continues; no implementation or qualification restart. Changed
+Markdown/whitespace checked. Suggested commit:
+`docs: record ramp authoring space and default gamut`.
+
+## Ramp alpha agreed; gamut under discussion — 21 November 2026
+
+The user agreed that every generated step keeps the seed's alpha. The
+[owning direction](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026)
+and draft decision notice record this; gamut and authored output space remain
+unselected. Preview-background handling and edge cases still need specification.
+No implementation or qualification restart. Documentation whitespace checked.
+Suggested commit: `docs: preserve seed alpha across color ramps`.
+
+## Ramp interface wording — 21 November 2026
+
+The user agreed **Color intensity** with **Retained** (default, B) and
+**Restrained** (linear, A). The [owning direction](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026)
+and draft's latest-decision notice record the wording. Creation-flow refinement
+still needs color/gamut and alpha policy, endpoint/placement behavior, and the
+extent of per-step editing before creation. Detailed regeneration/membership and
+technical contracts can be addressed separately before implementation. No new
+implementation or qualification is authorized. Documentation whitespace and the
+existing owning link were checked. Suggested commit:
+`docs: name ramp color intensity options`.
+
 ## Ramp recipe default agreed — 21 November 2026
 
 The user selected **B retained chroma as default**, with **A linear taper** available,
