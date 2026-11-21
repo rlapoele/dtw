@@ -1,5 +1,10 @@
 # Color ramp authoring — wireframe comparison V2
 
+**Historical comparison:** the user subsequently selected dialog creation and
+central-workbench editing. [Creation V3](color-ramp-creation-v3.md) supersedes the
+creation portions, including removal of individual-step editing before creation.
+V2 is not the current creation proposal.
+
 **Designer exploration — 20 November 2026. Surface choice and design approval pending.**
 
 The user authorized static wireframes comparing a focused dialog with a central

@@ -176,10 +176,25 @@ not constitute final contract/design agreement or implementation authorization.
   background into authored colors. Preview/compositing and numerical edge cases
   still need specification; see the agreed authoring/gamut direction below.
 - Authored space and gamut agreed 21 November: author generated steps in **OKLCH**
-  and preserve the seed's original authored space and exact value. Default the
+  and preserve an explicitly chosen advanced-editor seed space and value. Default the
   target gamut to **sRGB**. If the seed lies outside it, require an explicit choice;
   never silently alter the seed or describe an out-of-gamut exception as a wholly
   sRGB-compatible ramp. Target gamut does not determine authored space.
+- HEX-entry refinement agreed 21 November: treat HEX as sRGB input notation for a
+  new seed, authored in the project's **effective default color space** (not always
+  OKLCH). Convert once from the input using the agreed bounded conversion policy;
+  keep original HEX in the creation draft to avoid cumulative conversion. Preserve
+  alpha and show a quiet “Will be authored in [space] · Project default” helper,
+  without a separate conversion confirmation. Conversion is numerically approximate,
+  not a universal lossless round-trip promise. No gamut mapping is implied by
+  conversion; numerical gamut-boundary tolerances still require qualification.
+- An explicit space chosen in the advanced editor governs that seed when **Use
+  color** is accepted; do not convert it back to the project default on return.
+  Advanced Cancel retains the prior seed and authored-space choice. This is a
+  narrow creation-only exception to preserving the original input space, not a
+  change to existing token editing, passive viewing or the generated-OKLCH policy.
+  The prepared authored seed is the exact anchor for generation; entering it from
+  HEX has already incurred the documented conversion precision.
 - Out-of-gamut choice agreed 21 November: show an inline choice beneath the seed,
   without a preselected option. Offer **Keep the exact color / Display P3** only
   when P3 contains the seed, or preview an **sRGB-compatible version** whose
@@ -209,6 +224,21 @@ not constitute final contract/design agreement or implementation authorization.
   retain the precise recipe names and formulas.
 - Creation uses the group checkbox and a provisional dialog flow; later editing
   uses the central workbench, with the inspector's exact role still to be refined.
+- Creation refinement agreed 21 November: keep individual generated-step editing
+  **after creation**, in the workbench. Before creation, edit only the seed, count,
+  Color intensity and seed position while inspecting the preview. This supersedes
+  the earlier editable-candidate creation proposal, not later manual-override rules.
+- During creation, Auto recalculates placement after seed/count changes. A manual
+  position is retained when its label remains available and its placement is valid;
+  if a count change removes it, propose a replacement and require confirmation.
+  Exact white/black restrictions still apply after a seed change; never silently
+  accept an invalid interior position. Exact recovery wording remains design work.
+- Review on the final positioning view, showing full paths, ramp preview, resolved
+  target gamut and any non-blocking repeated-preview feedback. **Create ramp**
+  creates the group, tokens and settings together; no separate confirmation screen.
+  Offer checkerboard, light and dark preview backgrounds without altering authored
+  colors or alpha. No individual token is created while navigating these views.
+
 
 The comparison records the quadratic retained-chroma and linear taper formulas
 that demonstrate the selected behaviors. The lightness endpoint and Auto policies above are now agreed in direction.
@@ -223,7 +253,7 @@ requested by recording these choices.
 
 ## Questions for future work
 
-1. With the first-slice count, constant-hue direction and chroma choices agreed above, what chroma endpoint proportions, precision, alpha-preview/edge-case handling, numerical conversion and gamut-mapping rules complete the production calculation contract? How should placement be reconciled when the user changes the seed or step count?
+1. With the first-slice count, constant-hue direction and chroma choices agreed above, what chroma endpoint proportions, precision, alpha-preview/edge-case handling, numerical conversion and gamut-mapping rules complete the production calculation contract? How should the agreed creation placement rules be expressed in detailed validation/recovery states, and how should later editing handle count changes?
 2. How should users compare accent suggestions, control neutral tint, and revise or retain selected candidates?
 3. What makes status colors sufficiently coherent and distinguishable, and how should conflicts be surfaced?
 4. Which opinionated semantic names, roles, states, and intended pairs belong in the first recipe? How much customization is useful?

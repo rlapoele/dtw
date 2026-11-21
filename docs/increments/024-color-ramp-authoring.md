@@ -15,7 +15,11 @@ constant OKLCH hue, **B retained chroma by default** with **A linear taper** ava
 Agreed interface wording is **Color intensity: Retained / Restrained**, with
 Retained selected by default. The seed’s alpha is preserved uniformly across
 generated steps (agreed 21 November). Generated values are authored in OKLCH;
-the seed retains its original authored space. sRGB is the default target gamut,
+HEX input for a new seed uses the effective project default authored space, with
+an unobtrusive helper and no conversion-confirmation step. Explicit advanced-editor
+space selection is preserved instead. Alpha remains unchanged; conversions are
+approximate under existing policy, not claimed universally lossless. This does not
+change existing-token behavior. sRGB is the default target gamut,
 with an explicit inline choice for an out-of-gamut seed: preserve it using Display
 P3 when it fits, or explicitly accept a previewed sRGB-adjusted seed. No option is
 preselected; original-seed restoration remains available during the draft. Seeds
@@ -26,7 +30,14 @@ halfway-to-white/black expansion for near-extreme interior seeds, white/black
 endpoint restrictions and non-blocking repeated-preview feedback. The owning
 record specifies the formulas; detailed numerical qualification remains pending.
 Creation uses a provisional dialog entered through group creation; subsequent
-editing uses the central workbench. Multiple anchors are deferred. Detailed
+editing uses the central workbench. Creation has no individual-step editing;
+Auto recalculates on seed/count changes, while removed manual positions require
+confirmation of a replacement. Final positioning includes review, target gamut,
+full paths and repeated-preview feedback, with checkerboard/light/dark preview
+backgrounds. A separate final confirmation screen is not required. The
+[creation wireframes V3](../project/workbench-layout/color-ramp-creation-v3.md)
+refine this direction for user review; they are not approved for analyst review.
+Multiple anchors are deferred. Detailed
 numerical, count-change and interaction criteria remain to be revised; none of
 this constitutes final contract/design agreement or implementation authorization.
 

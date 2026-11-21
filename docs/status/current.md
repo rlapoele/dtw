@@ -10,6 +10,41 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp HEX-entry authoring agreed — 21 November 2026
+
+The user accepted creation flow V3 and requested documentation/wireframe changes:
+HEX entry for a new seed uses the effective project default authored space;
+explicit Advanced-editor space selection is preserved instead. The
+[owning direction](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026)
+and [amended V3](../project/workbench-layout/color-ramp-creation-v3.md) explain the
+quiet helper, unchanged alpha, retained HEX draft and approximate conversion.
+Generated tokens remain OKLCH; target gamut remains separate. Existing token
+behavior is unchanged. No implementation, analyst design review or complete
+contract agreement is authorized. Next: inspect amended V3 and reconcile the
+remaining numerical/metadata/editing contract before implementation. The two
+amended SVGs were rendered and visually inspected; the journey PNG was refreshed.
+Links, XML and whitespace checks passed. No runtime conversion tests were run.
+Suggested commit: `docs: align ramp seed authoring with project color defaults`.
+
+## Ramp creation-flow refinement V3 — 21 November 2026
+
+The user agreed individual-step editing only after creation, creation Auto updates
+on seed/count changes, confirmation when a manual position disappears, and review
+on the final positioning view with full paths/gamut/repeated-preview feedback and
+checkerboard/light/dark preview backgrounds. The [owning direction](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026)
+and draft decision notice record the changes.
+
+The designer prepared [V3 creation wireframes](../project/workbench-layout/color-ramp-creation-v3.md)
+for user review, covering group/seed/scale/positioning, advanced color/gamut views
+and placement/repeated-preview/narrow states. Earlier V1/V2 mixed creation/editing
+flows are historical where they differ. No analyst design review, final contract
+agreement, implementation or broader qualification is authorized. Next: review
+V3, then reconcile the complete draft and remaining numerical/editing rules in
+workflow order. Existing acceptance limits remain unchanged. All three SVG sheets
+were rendered and visually inspected; SVG structure, local links and Markdown
+whitespace were checked. No runtime checks were performed. Suggested commit:
+`docs: refine provisional ramp creation flow`.
+
 ## Ramp endpoint policy agreed — 21 November 2026
 
 The user accepted the [endpoint/placement policy](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026),

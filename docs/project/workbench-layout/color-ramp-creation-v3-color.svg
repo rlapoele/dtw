@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1600" viewBox="0 0 1600 1600" role="img"><title>Color ramp creation V3 · Advanced color and gamut decisions</title><defs><pattern id="checker" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#fff"/><path d="M0 0h8v8H0zM8 8h8v8H8z" fill="#ddd"/></pattern></defs><rect width="1600" height="1600" fill="#f5f5f5"/>
+<text x="40" y="48" font-family="Arial, sans-serif" font-size="28" fill="#171717" font-weight="700">Color ramp creation V3 · Advanced color and gamut decisions</text>
+<text x="40" y="82" font-family="Arial, sans-serif" font-size="16" fill="#626262" font-weight="400">Advanced editing replaces the contents of the same dialog. Gamut choices stay inline and have no default selection.</text>
+<rect x="40" y="120" width="740" height="670" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="64" y="158" font-family="Arial, sans-serif" font-size="22" fill="#171717" font-weight="700">Advanced seed color</text>
+<text x="738" y="157" font-family="Arial, sans-serif" font-size="24" fill="#171717" font-weight="400">×</text>
+<text x="64" y="187" font-family="Arial, sans-serif" font-size="14" fill="#626262" font-weight="400">Return to the seed stage; keep the rest of the ramp draft.</text>
+<text x="64" y="230" font-family="Arial, sans-serif" font-size="14" fill="#626262" font-weight="400">Color space</text>
+<rect x="64" y="242" width="692" height="40" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="76" y="268" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="400">Display P3                                           ▾</text>
+<text x="64" y="304" font-family="Arial, sans-serif" font-size="14" fill="#626262" font-weight="400">Your explicit space choice is preserved.</text>
+<text x="64" y="322" font-family="Arial, sans-serif" font-size="14" fill="#626262" font-weight="400">Red</text>
+<rect x="64" y="334" width="692" height="40" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="76" y="360" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="400">1</text>
+<text x="64" y="410" font-family="Arial, sans-serif" font-size="14" fill="#626262" font-weight="400">Green</text>
+<rect x="64" y="422" width="692" height="40" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="76" y="448" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="400">0</text>
+<text x="64" y="498" font-family="Arial, sans-serif" font-size="14" fill="#626262" font-weight="400">Blue</text>
+<rect x="64" y="510" width="692" height="40" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="76" y="536" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="400">0</text>
+<text x="64" y="586" font-family="Arial, sans-serif" font-size="14" fill="#626262" font-weight="400">Alpha</text>
+<rect x="64" y="598" width="692" height="40" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="76" y="624" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="400">1</text>
+<rect x="64" y="720" width="100" height="38" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="76" y="745" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">Cancel</text>
+<rect x="552" y="720" width="204" height="38" rx="5" fill="#171717" stroke="#171717"/>
+<text x="564" y="745" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="600">Use color</text>
+<rect x="820" y="120" width="740" height="670" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="844" y="158" font-family="Arial, sans-serif" font-size="22" fill="#171717" font-weight="700">Seed color</text>
+<text x="1518" y="157" font-family="Arial, sans-serif" font-size="24" fill="#171717" font-weight="400">×</text>
+<text x="844" y="187" font-family="Arial, sans-serif" font-size="14" fill="#626262" font-weight="400">color.blue · Draft, not saved</text>
+<text x="844" y="226" font-family="Arial, sans-serif" font-size="19" fill="#171717" font-weight="600">Display P3 · 1, 0, 0 · Alpha 1</text>
+<rect x="844" y="251" width="150" height="38" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="856" y="276" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">Edit seed</text>
+<path d="M844 316h692" stroke="#d4d4d4"/>
+<text x="844" y="346" font-family="Arial, sans-serif" font-size="19" fill="#171717" font-weight="600">This seed is outside sRGB.</text>
+<text x="844" y="373" font-family="Arial, sans-serif" font-size="15" fill="#626262" font-weight="400">Choose how to continue. Your seed has not been changed.</text>
+<rect x="844" y="397" width="692" height="76" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="862" y="426" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="600">○ Keep the exact color</text>
+<text x="886" y="453" font-family="Arial, sans-serif" font-size="15" fill="#626262" font-weight="400">Display P3 contains this seed; use it for this ramp.</text>
+<rect x="844" y="487" width="692" height="130" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="862" y="516" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="600">○ Use an sRGB-compatible version</text>
+<text x="886" y="544" font-family="Arial, sans-serif" font-size="15" fill="#626262" font-weight="400">Original [value]  →  Adjusted [proposed value]</text>
+<rect x="886" y="560" width="230" height="38" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="898" y="585" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">Use adjusted seed</text>
+<text x="844" y="651" font-family="Arial, sans-serif" font-size="14" fill="#626262" font-weight="400">This changes the seed only after explicit acceptance.</text>
+<text x="844" y="674" font-family="Arial, sans-serif" font-size="14" fill="#626262" font-weight="400">Your display may not show the full difference.</text>
+<rect x="844" y="720" width="92" height="38" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="856" y="745" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">Back</text>
+<rect x="1340" y="720" width="196" height="38" rx="5" fill="#e5e5e5" stroke="#d4d4d4"/>
+<text x="1352" y="745" font-family="Arial, sans-serif" font-size="15" fill="#888" font-weight="600">Continue</text>
+<rect x="40" y="835" width="480" height="570" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="64" y="873" font-family="Arial, sans-serif" font-size="22" fill="#171717" font-weight="700">Exact seed retained</text>
+<text x="478" y="872" font-family="Arial, sans-serif" font-size="24" fill="#171717" font-weight="400">×</text>
+<rect x="560" y="835" width="480" height="570" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="584" y="873" font-family="Arial, sans-serif" font-size="22" fill="#171717" font-weight="700">Adjusted seed accepted</text>
+<text x="998" y="872" font-family="Arial, sans-serif" font-size="24" fill="#171717" font-weight="400">×</text>
+<rect x="1080" y="835" width="480" height="570" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="1104" y="873" font-family="Arial, sans-serif" font-size="22" fill="#171717" font-weight="700">Outside Display P3 too</text>
+<text x="1518" y="872" font-family="Arial, sans-serif" font-size="24" fill="#171717" font-weight="400">×</text>
+<text x="64" y="933" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="600">Seed: explicitly chosen space and value</text>
+<text x="64" y="970" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="600">Target gamut: Display P3</text>
+<text x="64" y="1015" font-family="Arial, sans-serif" font-size="16" fill="#626262" font-weight="400">Alpha: unchanged</text>
+<text x="64" y="1050" font-family="Arial, sans-serif" font-size="16" fill="#626262" font-weight="400">Generated tokens: OKLCH</text>
+<text x="64" y="1110" font-family="Arial, sans-serif" font-size="15" fill="#626262" font-weight="400">The target changes; the seed does not</text>
+<text x="64" y="1135" font-family="Arial, sans-serif" font-size="15" fill="#626262" font-weight="400">change its selected authoring space.</text>
+<rect x="64" y="1190" width="150" height="38" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="76" y="1215" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">Edit seed</text>
+<rect x="330" y="1335" width="166" height="38" rx="5" fill="#171717" stroke="#171717"/>
+<text x="342" y="1360" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="600">Continue</text>
+<text x="584" y="933" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="600">Seed: accepted adjusted color</text>
+<text x="584" y="970" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="600">Target gamut: sRGB</text>
+<text x="584" y="1015" font-family="Arial, sans-serif" font-size="16" fill="#626262" font-weight="400">Alpha: unchanged</text>
+<rect x="584" y="1050" width="242" height="38" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="596" y="1075" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">Restore original seed</text>
+<text x="584" y="1120" font-family="Arial, sans-serif" font-size="15" fill="#626262" font-weight="400">Restoring returns to the unresolved</text>
+<text x="584" y="1145" font-family="Arial, sans-serif" font-size="15" fill="#626262" font-weight="400">gamut choice when necessary.</text>
+<text x="584" y="1190" font-family="Arial, sans-serif" font-size="15" fill="#626262" font-weight="400">Description and other draft settings</text>
+<text x="584" y="1215" font-family="Arial, sans-serif" font-size="15" fill="#626262" font-weight="400">remain intact.</text>
+<rect x="850" y="1335" width="166" height="38" rx="5" fill="#171717" stroke="#171717"/>
+<text x="584" y="1260" font-family="Arial, sans-serif" font-size="14" fill="#626262" font-weight="400">Target gamut is separate from authored space.</text>
+<text x="862" y="1360" font-family="Arial, sans-serif" font-size="15" fill="white" font-weight="600">Continue</text>
+<text x="1104" y="933" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="600">The seed is outside both targets.</text>
+<text x="1104" y="977" font-family="Arial, sans-serif" font-size="15" fill="#626262" font-weight="400">Edit the seed, or review an adjusted</text>
+<text x="1104" y="1002" font-family="Arial, sans-serif" font-size="15" fill="#626262" font-weight="400">sRGB-compatible replacement.</text>
+<rect x="1104" y="1050" width="150" height="38" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="1116" y="1075" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">Edit seed</text>
+<rect x="1104" y="1100" width="290" height="38" rx="5" fill="white" stroke="#d4d4d4"/>
+<text x="1116" y="1125" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">Preview sRGB adjustment</text>
+<text x="1104" y="1170" font-family="Arial, sans-serif" font-size="15" fill="#626262" font-weight="400">No unsupported wider target is</text>
+<text x="1104" y="1195" font-family="Arial, sans-serif" font-size="15" fill="#626262" font-weight="400">chosen automatically.</text>
+<text x="1104" y="1250" font-family="Arial, sans-serif" font-size="15" fill="#626262" font-weight="400">Continue requires a resolved choice.</text>
+<text x="40" y="1543" font-family="Arial, sans-serif" font-size="15" fill="#626262" font-weight="400">Gamut branches are structural wireframes. Bracketed values await the numerical mapping policy; no fabricated conversion is shown.</text>
+<text x="40" y="1573" font-family="Arial, sans-serif" font-size="14" fill="#737373" font-weight="400">V3 · Static proposal · 21 November 2026 · No implementation or analyst design review</text>
+</svg>
