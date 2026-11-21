@@ -5,6 +5,18 @@
 - Agreement: on 20 November 2026 the user agreed a fixed 11-step first scope and that editing the seed's token in the ordinary inspector creates a manual override while leaving the recipe seed unchanged. The user subsequently agreed entry through a checkbox in group creation and keeping the group provisional until final confirmation, and requested comparison wireframes. These decisions do not constitute agreement to this complete contract or implementation authorization.
 - References: [ramp direction](../project/guided-color-palette-generation.md#agreed-ramp-direction--20-november-2026), [scale model](../design-tokens/conceptual-model.md#scale-generation), [architecture](../project/architecture.md), [interoperability](../design-tokens/interoperability.md), [workflow](../workflow/agent-roles.md), [presentation conventions](../project/presentation-conventions.md), [existing retention qualification limits](007-local-retention-and-backup.md#deferred-qualification).
 
+## Latest planning decisions — 21 November 2026
+
+**This draft requires reconciliation before agreement.** The fixed-11 and single-recipe
+proposals below are historical and are superseded by the
+[latest owning decisions](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026):
+single seed, adjustable **2–20** steps with **11** default, positional naming,
+constant OKLCH hue, **B retained chroma by default** with **A linear taper** available.
+Creation uses a provisional dialog entered through group creation; subsequent
+editing uses the central workbench. Multiple anchors are deferred. Detailed
+numerical, count-change and interaction criteria remain to be revised; none of
+this constitutes final contract/design agreement or implementation authorization.
+
 ## Outcome
 
 Authors create a color ramp, reopen its remembered settings, and review proposed

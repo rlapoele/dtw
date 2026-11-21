@@ -142,6 +142,8 @@ edge cases and interaction details remain open.
 
 ## First increment exploration — 20 November 2026
 
+**Historical preparation; superseded where noted by the 21 November decisions below.**
+
 The user selected a fixed 11-step scope (`50`, `100`, `200`, `300`, `400`, `500`,
 `600`, `700`, `800`, `900`, `950`) and authorized preparation of a draft contract
 and initial interaction proposal. The seed-token override behavior above is also
@@ -153,9 +155,39 @@ inspector are authorized; the editing surface remains undecided. The [Increment 
 proposed delivery boundaries and remaining decisions. These scoped decisions do
 not constitute final contract/design agreement or implementation authorization.
 
+## First-increment decisions — 21 November 2026
+
+**Agreed product direction; no implementation authorized.**
+
+- Use a single seed in the first increment; multiple anchors are deferred.
+- Allow integer step counts from **2 through 20 inclusive**, default **11**. The
+  user reconfirmed the maximum of 20 when selecting the recipe default.
+- Name the first step `50`, the last `950`, and each interior step
+  `round(1000 × i / (n − 1))`, where `i` is its zero-based index and `n` the count.
+  Names describe position, not measured color lightness.
+- Keep the seed's OKLCH hue constant while generating lightness and chroma;
+  neutral seeds remain neutral. Preserve the exact seed.
+- Use **B — Retained chroma** from the [single-seed comparison](workbench-layout/color-ramp-recipes-v1.md)
+  as the default, and offer **A — Linear taper** as an alternative. These are two
+  chroma behaviors, not a change in hue policy. Save the chosen behavior with ramp
+  settings; changing it produces a reviewed proposal under the existing ramp rules.
+- Creation uses the group checkbox and a provisional dialog flow; later editing
+  uses the central workbench, with the inspector's exact role still to be refined.
+
+The comparison records the quadratic retained-chroma and linear taper formulas
+that demonstrate the selected behaviors. Selection of B does not approve all
+illustrative endpoint parameters, Auto placement, sRGB mapping, precision or alpha
+rules as a production calculation contract. These still require explicit definition,
+including extreme seeds and the interaction between gamut limits and the taper.
+Step-count changes during later editing also need membership/override review rules.
+
+The earlier Increment 024 draft must be reconciled with these decisions before
+final contract/design agreement. No implementation or broader verification is
+requested by recording these choices.
+
 ## Questions for future work
 
-1. Which ramp algorithm, color space, step count, hue behavior, precision, alpha, and gamut policies should be used? How should Auto fit the exact seed to the named steps, resolve ties and handle seeds outside the intended distribution?
+1. With the first-slice count, constant-hue direction and chroma choices agreed above, what exact lightness/endpoints, precision, alpha, authored output space and gamut policies complete the numerical contract? How should Auto fit the exact seed to the named steps, resolve ties and handle seeds outside the intended distribution?
 2. How should users compare accent suggestions, control neutral tint, and revise or retain selected candidates?
 3. What makes status colors sufficiently coherent and distinguishable, and how should conflicts be surfaced?
 4. Which opinionated semantic names, roles, states, and intended pairs belong in the first recipe? How much customization is useful?

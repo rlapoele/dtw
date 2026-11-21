@@ -1,0 +1,321 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1600" viewBox="0 0 1600 1600" role="img" aria-labelledby="title desc">
+<title id="title">Single-seed color ramps: two chroma recipes</title>
+<desc id="desc">Four seeds, each with linear and retained chroma recipes. Hue and lightness are held constant between the two rows. Exact anchors are marked A; gamut mapped colors are marked with a star. Retained chroma maps four blue and seven yellow samples into sRGB, changes muted mauve subtly and leaves neutral gray unchanged.</desc>
+<rect width="1600" height="1600" fill="#ffffff"/>
+<text x="40" y="48" font-family="Arial, sans-serif" font-size="30" fill="#171717" font-weight="700">Single seed, constant hue: how much chroma should the ramp keep?</text>
+<text x="40" y="80" font-family="Arial, sans-serif" font-size="18" fill="#525252" font-weight="400">A · Restrained linear taper     B · More chroma retained between the seed and each endpoint</text>
+<text x="40" y="112" font-family="Arial, sans-serif" font-size="16" fill="#525252" font-weight="400">Same lightness and exact seed in each pair.  A on a swatch = exact anchor.  * = mapped into sRGB for display.</text>
+<path d="M40 134H1560" stroke="#d4d4d4"/>
+<text x="40" y="163" font-family="Arial, sans-serif" font-size="22" fill="#171717" font-weight="700">1. Blue</text>
+<text x="350" y="163" font-family="Arial, sans-serif" font-size="16" fill="#525252" font-weight="400">Seed #3b82f6 · illustrative Auto position: 500</text>
+<text x="40" y="220" font-family="Arial, sans-serif" font-size="18" fill="#171717" font-weight="700">A · Linear</text>
+<rect x="200" y="188" width="116" height="59" rx="3" fill="#f1f5fc" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="202" y="267" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">50</text>
+<text x="202" y="287" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#f1f5fc</text>
+<rect x="322" y="188" width="116" height="59" rx="3" fill="#dde9fd" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="324" y="267" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">100</text>
+<text x="324" y="287" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#dde9fd</text>
+<rect x="444" y="188" width="116" height="59" rx="3" fill="#b5d1fd" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="446" y="267" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">200</text>
+<text x="446" y="287" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#b5d1fd</text>
+<rect x="566" y="188" width="116" height="59" rx="3" fill="#8db8fc" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="568" y="267" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">300</text>
+<text x="568" y="287" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#8db8fc</text>
+<rect x="688" y="188" width="116" height="59" rx="3" fill="#659efa" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="690" y="267" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">400</text>
+<text x="690" y="287" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#659efa</text>
+<rect x="810" y="188" width="116" height="59" rx="3" fill="#3b82f6" stroke="#d4d4d4" stroke-width="0.6"/>
+<rect x="815" y="193" width="23" height="23" rx="3" fill="#ffffff" stroke="#737373" stroke-width="0.7"/>
+<text x="821" y="210" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="700">A</text>
+<text x="812" y="267" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">500</text>
+<text x="812" y="287" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#3b82f6</text>
+<rect x="932" y="188" width="116" height="59" rx="3" fill="#3168c2" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="934" y="267" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">600</text>
+<text x="934" y="287" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#3168c2</text>
+<rect x="1054" y="188" width="116" height="59" rx="3" fill="#274f90" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1056" y="267" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">700</text>
+<text x="1056" y="287" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#274f90</text>
+<rect x="1176" y="188" width="116" height="59" rx="3" fill="#1d3762" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1178" y="267" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">800</text>
+<text x="1178" y="287" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#1d3762</text>
+<rect x="1298" y="188" width="116" height="59" rx="3" fill="#132137" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1300" y="267" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">900</text>
+<text x="1300" y="287" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#132137</text>
+<rect x="1420" y="188" width="116" height="59" rx="3" fill="#0e1623" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1422" y="267" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">950</text>
+<text x="1422" y="287" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#0e1623</text>
+<text x="40" y="327" font-family="Arial, sans-serif" font-size="18" fill="#171717" font-weight="700">B · Retained</text>
+<rect x="200" y="295" width="116" height="59" rx="3" fill="#f1f5fc" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="202" y="374" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">50</text>
+<text x="202" y="394" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#f1f5fc</text>
+<rect x="322" y="295" width="116" height="59" rx="3" fill="#dce9ff" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="324" y="374" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">100 *</text>
+<text x="324" y="394" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#dce9ff</text>
+<rect x="444" y="295" width="116" height="59" rx="3" fill="#b4d1ff" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="446" y="374" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">200 *</text>
+<text x="446" y="394" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#b4d1ff</text>
+<rect x="566" y="295" width="116" height="59" rx="3" fill="#8bb7ff" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="568" y="374" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">300 *</text>
+<text x="568" y="394" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#8bb7ff</text>
+<rect x="688" y="295" width="116" height="59" rx="3" fill="#619dff" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="690" y="374" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">400 *</text>
+<text x="690" y="394" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#619dff</text>
+<rect x="810" y="295" width="116" height="59" rx="3" fill="#3b82f6" stroke="#d4d4d4" stroke-width="0.6"/>
+<rect x="815" y="300" width="23" height="23" rx="3" fill="#ffffff" stroke="#737373" stroke-width="0.7"/>
+<text x="821" y="317" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="700">A</text>
+<text x="812" y="374" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">500</text>
+<text x="812" y="394" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#3b82f6</text>
+<rect x="932" y="295" width="116" height="59" rx="3" fill="#2265d1" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="934" y="374" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">600</text>
+<text x="934" y="394" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#2265d1</text>
+<rect x="1054" y="295" width="116" height="59" rx="3" fill="#124ba5" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1056" y="374" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">700</text>
+<text x="1056" y="394" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#124ba5</text>
+<rect x="1176" y="295" width="116" height="59" rx="3" fill="#0d3473" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1178" y="374" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">800</text>
+<text x="1178" y="394" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#0d3473</text>
+<rect x="1298" y="295" width="116" height="59" rx="3" fill="#0e203e" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1300" y="374" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">900</text>
+<text x="1300" y="394" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#0e203e</text>
+<rect x="1420" y="295" width="116" height="59" rx="3" fill="#0e1623" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1422" y="374" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">950</text>
+<text x="1422" y="394" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#0e1623</text>
+<text x="200" y="425" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">B keeps more blue in the darker steps; its four lighter intermediate samples need gamut mapping.</text>
+<text x="200" y="451" font-family="Arial, sans-serif" font-size="15" fill="#525252" font-weight="400">Mapping count: A 0 / B 4. At 700: A #274f90 → B #124ba5.</text>
+<path d="M40 459H1560" stroke="#d4d4d4"/>
+<text x="40" y="488" font-family="Arial, sans-serif" font-size="22" fill="#171717" font-weight="700">2. Yellow</text>
+<text x="350" y="488" font-family="Arial, sans-serif" font-size="16" fill="#525252" font-weight="400">Seed #facc15 · illustrative Auto position: 200</text>
+<text x="40" y="545" font-family="Arial, sans-serif" font-size="18" fill="#171717" font-weight="700">A · Linear</text>
+<rect x="200" y="513" width="116" height="59" rx="3" fill="#f7f5ef" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="202" y="592" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">50</text>
+<text x="202" y="612" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#f7f5ef</text>
+<rect x="322" y="513" width="116" height="59" rx="3" fill="#f8e9b9" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="324" y="592" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">100</text>
+<text x="324" y="612" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#f8e9b9</text>
+<rect x="444" y="513" width="116" height="59" rx="3" fill="#facc15" stroke="#d4d4d4" stroke-width="0.6"/>
+<rect x="449" y="518" width="23" height="23" rx="3" fill="#ffffff" stroke="#737373" stroke-width="0.7"/>
+<text x="455" y="535" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="700">A</text>
+<text x="446" y="592" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">200</text>
+<text x="446" y="612" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#facc15</text>
+<rect x="566" y="513" width="116" height="59" rx="3" fill="#d8b118" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="568" y="592" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">300</text>
+<text x="568" y="612" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#d8b118</text>
+<rect x="688" y="513" width="116" height="59" rx="3" fill="#b7961a" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="690" y="592" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">400</text>
+<text x="690" y="612" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#b7961a</text>
+<rect x="810" y="513" width="116" height="59" rx="3" fill="#987c19" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="812" y="592" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">500</text>
+<text x="812" y="612" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#987c19</text>
+<rect x="932" y="513" width="116" height="59" rx="3" fill="#796317" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="934" y="592" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">600</text>
+<text x="934" y="612" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#796317</text>
+<rect x="1054" y="513" width="116" height="59" rx="3" fill="#5c4b14" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1056" y="592" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">700</text>
+<text x="1056" y="612" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#5c4b14</text>
+<rect x="1176" y="513" width="116" height="59" rx="3" fill="#403510" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1178" y="592" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">800</text>
+<text x="1178" y="612" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#403510</text>
+<rect x="1298" y="513" width="116" height="59" rx="3" fill="#26200b" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1300" y="592" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">900</text>
+<text x="1300" y="612" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#26200b</text>
+<rect x="1420" y="513" width="116" height="59" rx="3" fill="#1a1608" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1422" y="592" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">950</text>
+<text x="1422" y="612" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#1a1608</text>
+<text x="40" y="652" font-family="Arial, sans-serif" font-size="18" fill="#171717" font-weight="700">B · Retained</text>
+<rect x="200" y="620" width="116" height="59" rx="3" fill="#f7f5ef" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="202" y="699" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">50</text>
+<text x="202" y="719" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#f7f5ef</text>
+<rect x="322" y="620" width="116" height="59" rx="3" fill="#ffe8a2" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="324" y="699" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">100 *</text>
+<text x="324" y="719" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#ffe8a2</text>
+<rect x="444" y="620" width="116" height="59" rx="3" fill="#facc15" stroke="#d4d4d4" stroke-width="0.6"/>
+<rect x="449" y="625" width="23" height="23" rx="3" fill="#ffffff" stroke="#737373" stroke-width="0.7"/>
+<text x="455" y="642" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="700">A</text>
+<text x="446" y="699" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">200</text>
+<text x="446" y="719" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#facc15</text>
+<rect x="566" y="620" width="116" height="59" rx="3" fill="#d9b000" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="568" y="699" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">300 *</text>
+<text x="568" y="719" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#d9b000</text>
+<rect x="688" y="620" width="116" height="59" rx="3" fill="#b99600" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="690" y="699" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">400 *</text>
+<text x="690" y="719" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#b99600</text>
+<rect x="810" y="620" width="116" height="59" rx="3" fill="#997c00" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="812" y="699" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">500 *</text>
+<text x="812" y="719" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#997c00</text>
+<rect x="932" y="620" width="116" height="59" rx="3" fill="#7b6300" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="934" y="699" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">600 *</text>
+<text x="934" y="719" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#7b6300</text>
+<rect x="1054" y="620" width="116" height="59" rx="3" fill="#5e4b00" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1056" y="699" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">700 *</text>
+<text x="1056" y="719" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#5e4b00</text>
+<rect x="1176" y="620" width="116" height="59" rx="3" fill="#423400" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1178" y="699" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">800 *</text>
+<text x="1178" y="719" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#423400</text>
+<rect x="1298" y="620" width="116" height="59" rx="3" fill="#281f04" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1300" y="699" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">900</text>
+<text x="1300" y="719" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#281f04</text>
+<rect x="1420" y="620" width="116" height="59" rx="3" fill="#1a1608" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1422" y="699" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">950</text>
+<text x="1422" y="719" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#1a1608</text>
+<text x="200" y="750" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">The yellow seed lands at 200. B reaches the sRGB boundary across much of the darker side.</text>
+<text x="200" y="776" font-family="Arial, sans-serif" font-size="15" fill="#525252" font-weight="400">Mapping count: A 0 / B 7. More requested chroma does not all survive into the displayed result.</text>
+<path d="M40 784H1560" stroke="#d4d4d4"/>
+<text x="40" y="813" font-family="Arial, sans-serif" font-size="22" fill="#171717" font-weight="700">3. Muted mauve</text>
+<text x="350" y="813" font-family="Arial, sans-serif" font-size="16" fill="#525252" font-weight="400">Seed #8b7b89 · illustrative Auto position: 500</text>
+<text x="40" y="870" font-family="Arial, sans-serif" font-size="18" fill="#171717" font-weight="700">A · Linear</text>
+<rect x="200" y="838" width="116" height="59" rx="3" fill="#f6f5f5" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="202" y="917" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">50</text>
+<text x="202" y="937" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#f6f5f5</text>
+<rect x="322" y="838" width="116" height="59" rx="3" fill="#e9e6e9" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="324" y="917" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">100</text>
+<text x="324" y="937" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#e9e6e9</text>
+<rect x="444" y="838" width="116" height="59" rx="3" fill="#d1cad0" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="446" y="917" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">200</text>
+<text x="446" y="937" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#d1cad0</text>
+<rect x="566" y="838" width="116" height="59" rx="3" fill="#b9afb8" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="568" y="917" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">300</text>
+<text x="568" y="937" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#b9afb8</text>
+<rect x="688" y="838" width="116" height="59" rx="3" fill="#a295a0" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="690" y="917" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">400</text>
+<text x="690" y="937" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#a295a0</text>
+<rect x="810" y="838" width="116" height="59" rx="3" fill="#8b7b89" stroke="#d4d4d4" stroke-width="0.6"/>
+<rect x="815" y="843" width="23" height="23" rx="3" fill="#ffffff" stroke="#737373" stroke-width="0.7"/>
+<text x="821" y="860" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="700">A</text>
+<text x="812" y="917" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">500</text>
+<text x="812" y="937" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#8b7b89</text>
+<rect x="932" y="838" width="116" height="59" rx="3" fill="#6f626d" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="934" y="917" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">600</text>
+<text x="934" y="937" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#6f626d</text>
+<rect x="1054" y="838" width="116" height="59" rx="3" fill="#544b53" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1056" y="917" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">700</text>
+<text x="1056" y="937" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#544b53</text>
+<rect x="1176" y="838" width="116" height="59" rx="3" fill="#3a3439" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1178" y="917" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">800</text>
+<text x="1178" y="937" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#3a3439</text>
+<rect x="1298" y="838" width="116" height="59" rx="3" fill="#221f22" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1300" y="917" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">900</text>
+<text x="1300" y="937" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#221f22</text>
+<rect x="1420" y="838" width="116" height="59" rx="3" fill="#171517" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1422" y="917" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">950</text>
+<text x="1422" y="937" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#171517</text>
+<text x="40" y="977" font-family="Arial, sans-serif" font-size="18" fill="#171717" font-weight="700">B · Retained</text>
+<rect x="200" y="945" width="116" height="59" rx="3" fill="#f6f5f5" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="202" y="1024" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">50</text>
+<text x="202" y="1044" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#f6f5f5</text>
+<rect x="322" y="945" width="116" height="59" rx="3" fill="#eae6ea" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="324" y="1024" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">100</text>
+<text x="324" y="1044" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#eae6ea</text>
+<rect x="444" y="945" width="116" height="59" rx="3" fill="#d3c9d2" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="446" y="1024" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">200</text>
+<text x="446" y="1044" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#d3c9d2</text>
+<rect x="566" y="945" width="116" height="59" rx="3" fill="#bcaeba" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="568" y="1024" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">300</text>
+<text x="568" y="1044" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#bcaeba</text>
+<rect x="688" y="945" width="116" height="59" rx="3" fill="#a494a2" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="690" y="1024" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">400</text>
+<text x="690" y="1044" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#a494a2</text>
+<rect x="810" y="945" width="116" height="59" rx="3" fill="#8b7b89" stroke="#d4d4d4" stroke-width="0.6"/>
+<rect x="815" y="950" width="23" height="23" rx="3" fill="#ffffff" stroke="#737373" stroke-width="0.7"/>
+<text x="821" y="967" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="700">A</text>
+<text x="812" y="1024" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">500</text>
+<text x="812" y="1044" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#8b7b89</text>
+<rect x="932" y="945" width="116" height="59" rx="3" fill="#70616e" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="934" y="1024" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">600</text>
+<text x="934" y="1044" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#70616e</text>
+<rect x="1054" y="945" width="116" height="59" rx="3" fill="#564a54" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1056" y="1024" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">700</text>
+<text x="1056" y="1044" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#564a54</text>
+<rect x="1176" y="945" width="116" height="59" rx="3" fill="#3c333b" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1178" y="1024" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">800</text>
+<text x="1178" y="1044" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#3c333b</text>
+<rect x="1298" y="945" width="116" height="59" rx="3" fill="#231f22" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1300" y="1024" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">900</text>
+<text x="1300" y="1044" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#231f22</text>
+<rect x="1420" y="945" width="116" height="59" rx="3" fill="#171517" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1422" y="1024" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">950</text>
+<text x="1422" y="1044" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#171517</text>
+<text x="200" y="1075" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">B retains a little more mauve on both sides of the seed; the difference stays restrained.</text>
+<text x="200" y="1101" font-family="Arial, sans-serif" font-size="15" fill="#525252" font-weight="400">Mapping count: A 0 / B 0. Neither recipe raises chroma above the seed.</text>
+<path d="M40 1109H1560" stroke="#d4d4d4"/>
+<text x="40" y="1138" font-family="Arial, sans-serif" font-size="22" fill="#171717" font-weight="700">4. Neutral gray</text>
+<text x="350" y="1138" font-family="Arial, sans-serif" font-size="16" fill="#525252" font-weight="400">Seed #808080 · illustrative Auto position: 500</text>
+<text x="40" y="1195" font-family="Arial, sans-serif" font-size="18" fill="#171717" font-weight="700">A · Linear</text>
+<rect x="200" y="1163" width="116" height="59" rx="3" fill="#f5f5f5" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="202" y="1242" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">50</text>
+<text x="202" y="1262" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#f5f5f5</text>
+<rect x="322" y="1163" width="116" height="59" rx="3" fill="#e7e7e7" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="324" y="1242" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">100</text>
+<text x="324" y="1262" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#e7e7e7</text>
+<rect x="444" y="1163" width="116" height="59" rx="3" fill="#cccccc" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="446" y="1242" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">200</text>
+<text x="446" y="1262" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#cccccc</text>
+<rect x="566" y="1163" width="116" height="59" rx="3" fill="#b2b2b2" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="568" y="1242" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">300</text>
+<text x="568" y="1262" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#b2b2b2</text>
+<rect x="688" y="1163" width="116" height="59" rx="3" fill="#999999" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="690" y="1242" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">400</text>
+<text x="690" y="1262" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#999999</text>
+<rect x="810" y="1163" width="116" height="59" rx="3" fill="#808080" stroke="#d4d4d4" stroke-width="0.6"/>
+<rect x="815" y="1168" width="23" height="23" rx="3" fill="#ffffff" stroke="#737373" stroke-width="0.7"/>
+<text x="821" y="1185" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="700">A</text>
+<text x="812" y="1242" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">500</text>
+<text x="812" y="1262" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#808080</text>
+<rect x="932" y="1163" width="116" height="59" rx="3" fill="#666666" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="934" y="1242" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">600</text>
+<text x="934" y="1262" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#666666</text>
+<rect x="1054" y="1163" width="116" height="59" rx="3" fill="#4e4e4e" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1056" y="1242" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">700</text>
+<text x="1056" y="1262" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#4e4e4e</text>
+<rect x="1176" y="1163" width="116" height="59" rx="3" fill="#363636" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1178" y="1242" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">800</text>
+<text x="1178" y="1262" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#363636</text>
+<rect x="1298" y="1163" width="116" height="59" rx="3" fill="#202020" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1300" y="1242" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">900</text>
+<text x="1300" y="1262" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#202020</text>
+<rect x="1420" y="1163" width="116" height="59" rx="3" fill="#161616" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1422" y="1242" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">950</text>
+<text x="1422" y="1262" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#161616</text>
+<text x="40" y="1302" font-family="Arial, sans-serif" font-size="18" fill="#171717" font-weight="700">B · Retained</text>
+<rect x="200" y="1270" width="116" height="59" rx="3" fill="#f5f5f5" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="202" y="1349" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">50</text>
+<text x="202" y="1369" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#f5f5f5</text>
+<rect x="322" y="1270" width="116" height="59" rx="3" fill="#e7e7e7" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="324" y="1349" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">100</text>
+<text x="324" y="1369" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#e7e7e7</text>
+<rect x="444" y="1270" width="116" height="59" rx="3" fill="#cccccc" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="446" y="1349" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">200</text>
+<text x="446" y="1369" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#cccccc</text>
+<rect x="566" y="1270" width="116" height="59" rx="3" fill="#b2b2b2" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="568" y="1349" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">300</text>
+<text x="568" y="1369" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#b2b2b2</text>
+<rect x="688" y="1270" width="116" height="59" rx="3" fill="#999999" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="690" y="1349" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">400</text>
+<text x="690" y="1369" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#999999</text>
+<rect x="810" y="1270" width="116" height="59" rx="3" fill="#808080" stroke="#d4d4d4" stroke-width="0.6"/>
+<rect x="815" y="1275" width="23" height="23" rx="3" fill="#ffffff" stroke="#737373" stroke-width="0.7"/>
+<text x="821" y="1292" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="700">A</text>
+<text x="812" y="1349" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">500</text>
+<text x="812" y="1369" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#808080</text>
+<rect x="932" y="1270" width="116" height="59" rx="3" fill="#666666" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="934" y="1349" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">600</text>
+<text x="934" y="1369" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#666666</text>
+<rect x="1054" y="1270" width="116" height="59" rx="3" fill="#4e4e4e" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1056" y="1349" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">700</text>
+<text x="1056" y="1369" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#4e4e4e</text>
+<rect x="1176" y="1270" width="116" height="59" rx="3" fill="#363636" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1178" y="1349" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">800</text>
+<text x="1178" y="1369" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#363636</text>
+<rect x="1298" y="1270" width="116" height="59" rx="3" fill="#202020" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1300" y="1349" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">900</text>
+<text x="1300" y="1369" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#202020</text>
+<rect x="1420" y="1270" width="116" height="59" rx="3" fill="#161616" stroke="#d4d4d4" stroke-width="0.6"/>
+<text x="1422" y="1349" font-family="Arial, sans-serif" font-size="15" fill="#171717" font-weight="600">950</text>
+<text x="1422" y="1369" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#161616</text>
+<text x="200" y="1400" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">The rows are identical: a neutral seed remains neutral, with no hue tint introduced.</text>
+<text x="200" y="1426" font-family="Arial, sans-serif" font-size="15" fill="#525252" font-weight="400">Mapping count: A 0 / B 0. With zero seed chroma, there is no chroma to retain.</text>
+<path d="M40 1451H1560" stroke="#d4d4d4"/>
+<text x="40" y="1481" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="700">Shared recipe assumptions</text>
+<text x="40" y="1509" font-family="Arial, sans-serif" font-size="16" fill="#525252" font-weight="400">Fixed OKLCH hue. Lightness endpoints .97 / .20. Endpoint chroma: 5% / 15% of seed chroma.</text>
+<text x="40" y="1537" font-family="Arial, sans-serif" font-size="16" fill="#525252" font-weight="400">A tapers linearly; B tapers quadratically. Both stay at or below seed chroma. All swatches show 8-bit sRGB HEX.</text>
+<text x="40" y="1573" font-family="Arial, sans-serif" font-size="14" fill="#737373" font-weight="400">Exploration · 21 November 2026 · Illustrative Auto and gamut policies; no production recipe selected.</text>
+</svg>

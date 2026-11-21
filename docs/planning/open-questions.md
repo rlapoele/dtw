@@ -91,6 +91,12 @@ These questions remain open beyond that bounded subset. Culori 4.0.2 is installe
 
 ## Guided color foundations and interface semantics
 
+**Latest first-slice decisions — 21 November 2026:** one seed, 2–20 steps (11 default),
+constant OKLCH hue, retained chroma B by default and linear taper A as an option.
+The [owning decisions](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026)
+supersede earlier fixed-11/single-recipe assumptions. Endpoint, Auto, gamut, alpha,
+precision and later count-change policies remain unresolved; no implementation.
+
 **Confirmed future direction — 10 November 2026; work deferred:** support a color foundation first, followed by optional semantic-token recipes for light and dark interface themes. Contrast guidance is especially valuable when defining semantic uses, with an independent contrast view available beyond the guide. The [concept note](../project/guided-color-palette-generation.md) owns the example flow and agreed first exploration; this is not a selected next increment or execution authorization.
 
 **Confirmed refinement — 20 November 2026; no implementation authorized:** ramps

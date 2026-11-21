@@ -1,6 +1,6 @@
 # Current Project Status
 
-> Last updated: 20 November 2026
+> Last updated: 21 November 2026
 >
 > Phase: Increment 023 implemented and independently reviewed; user acceptance pending. Increment 022 completed, independently reviewed and user-accepted; verification limits retained. Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
@@ -9,6 +9,64 @@
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## Ramp recipe default agreed — 21 November 2026
+
+The user selected **B retained chroma as default**, with **A linear taper** available,
+and reconfirmed **20 maximum steps** (range 2–20, default 11). The
+[owning direction](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026)
+records this alongside constant hue and the single-seed first scope. The comparison
+remains illustrative evidence; endpoint/Auto/gamut/alpha/precision policies are not
+implicitly approved. Draft 024 now prominently flags its superseded assumptions
+and required reconciliation before agreement. Next: resolve remaining generation
+policies and refine creation/editing design. No implementation is authorized.
+Documentation and links checked; no application tests or qualification restart.
+Suggested commit: `docs: select default ramp taper and confirm step limits`.
+
+## Single-seed ramp recipe comparison — 21 November 2026
+
+The user narrowed the first increment to one seed, deferring multiple anchors,
+then requested [two single-seed recipes compared visually](../project/workbench-layout/color-ramp-recipes-v1.md)
+for blue, yellow, muted mauve and neutral gray. The user also expressed a preference
+for constant hue; both examples keep the seed's OKLCH hue and leave neutral seeds
+neutral. This supersedes the multiple-seed first-slice direction recorded below.
+Adjustable 2–20 steps, 11 default and the agreed naming rule remain unchanged.
+
+Both recipes share exact anchors, illustrative Auto placement, piecewise-linear
+lightness and endpoints. Only chroma taper differs: linear versus greater retention
+between seed and ends. Retained chroma requires more sRGB mapping for blue/yellow;
+neutral rows match. Parameters, mapping and display assumptions are explicit; the subsequent default-taper choice is recorded above, while the full
+numerical contract remains unresolved. Further recipe/design refinement and
+reconciliation of Draft024 remain necessary.
+No application implementation or reopened qualification campaign is authorized.
+All 88 swatch values/markers and SVG structure were checked; the rendered sheet
+was visually inspected. Checks cover these samples only. Suggested commit:
+`docs: compare constant-hue single-seed ramp recipes`.
+
+## Color ramp interpolation exploration — 21 November 2026
+
+The user requested a visual OKLab/OKLCH comparison for one blue seed, two related
+hues and two contrasting hues. The [comparison and assumptions](../project/workbench-layout/color-ramp-interpolation-v1.md)
+link an isolated reproducible calculation and static visual artifact. Identical
+anchors, fixed placement and outer targets isolate interpolation behavior; this
+does not implement Auto placement or select production numerical/gamut policy.
+The single-seed displayed ramps match under the chosen same-hue targets; related
+hues differ modestly; the contrasting example produces a muted OKLab midpoint
+versus a vivid pink OKLCH shorter-hue midpoint. No method has been accepted.
+
+Latest conversational direction supersedes parts of the earlier draft: creation
+uses a dialog entered through the group checkbox; later editing uses the central
+workbench with a potential inspector role. One or more seeds, optional descriptions,
+advanced color entry, primitive-only ramp tokens, and adjustable 2–20 steps with
+11 default are agreed in direction. Naming uses first 50, last 950, and rounded
+`1000 * index / (count - 1)` for interiors. The earlier 024/V2 fixed-11 scope and
+surface comparison need reconciliation before final contract/design agreement;
+this calculation exercise is not that agreement or implementation authorization.
+Broader semantic/component layer restrictions remain a separate unresolved decision.
+
+Next: user assesses interpolation results, then the chosen generation and endpoint
+policies can be refined and the contract/design updated. Earlier qualification
+limits remain unchanged. Leave staging/committing/pushing to the user.
 
 ## Color ramp Increment 024 wireframe comparison — 20 November 2026
 
