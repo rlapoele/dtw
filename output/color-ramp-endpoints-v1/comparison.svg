@@ -1,0 +1,263 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1600" viewBox="0 0 1600 1600" role="img" aria-labelledby="title desc">
+<title id="title">Extreme color seeds: endpoint and interior placement comparison</title>
+<desc id="desc">Near-white and near-black seeds shown with Auto endpoint placement and manual step 500 placement. Interior placement compresses raw lightness steps and repeats some displayed HEX values. Exact white and black have one endpoint row each; interior placement is blocked in this proposal. S marks the seed; equals marks a HEX matching the previous displayed step.</desc>
+<rect width="1600" height="1600" fill="#ffffff"/>
+<text x="40" y="49" font-family="Arial, sans-serif" font-size="30" fill="#171717" font-weight="700">Extreme seeds: endpoint placement or a compressed interior?</text>
+<text x="40" y="82" font-family="Arial, sans-serif" font-size="18" fill="#525252" font-weight="400">Neutral, opaque examples isolate lightness. Same exact seed; different placement and endpoint rules.</text>
+<text x="40" y="113" font-family="Arial, sans-serif" font-size="15" fill="#525252" font-weight="400">S = seed anchor     = after a step label = same displayed HEX as the previous step     L = actual endpoints, rounded</text>
+<path d="M40 138H1560" stroke="#d4d4d4"/>
+<text x="40" y="169" font-family="Arial, sans-serif" font-size="23" fill="#171717" font-weight="700">1. Near-white #fafafa</text>
+<text x="620" y="169" font-family="Arial, sans-serif" font-size="16" fill="#525252" font-weight="400">Seed L 0.98510</text>
+<text x="40" y="218" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="700">Auto · 50</text>
+<text x="40" y="246" font-family="Arial, sans-serif" font-size="14" fill="#525252" font-weight="400">L 0.98510</text>
+<text x="40" y="268" font-family="Arial, sans-serif" font-size="14" fill="#525252" font-weight="400">→ 0.20000</text>
+<rect x="215" y="194" width="116" height="59" rx="3" fill="#fafafa" stroke="#c5c5c5" stroke-width="0.7"/>
+<rect x="220" y="199" width="23" height="23" rx="3" fill="#ffffff" stroke="#737373" stroke-width="0.7"/>
+<text x="226" y="216" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="700">S</text>
+<text x="217" y="274" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">50</text>
+<text x="217" y="297" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#fafafa</text>
+<rect x="337" y="194" width="116" height="59" rx="3" fill="#ebebeb" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="339" y="274" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">100</text>
+<text x="339" y="297" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#ebebeb</text>
+<rect x="459" y="194" width="116" height="59" rx="3" fill="#cfcfcf" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="461" y="274" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">200</text>
+<text x="461" y="297" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#cfcfcf</text>
+<rect x="581" y="194" width="116" height="59" rx="3" fill="#b3b3b3" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="583" y="274" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">300</text>
+<text x="583" y="297" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#b3b3b3</text>
+<rect x="703" y="194" width="116" height="59" rx="3" fill="#989898" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="705" y="274" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">400</text>
+<text x="705" y="297" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#989898</text>
+<rect x="825" y="194" width="116" height="59" rx="3" fill="#7e7e7e" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="827" y="274" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">500</text>
+<text x="827" y="297" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#7e7e7e</text>
+<rect x="947" y="194" width="116" height="59" rx="3" fill="#656565" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="949" y="274" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">600</text>
+<text x="949" y="297" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#656565</text>
+<rect x="1069" y="194" width="116" height="59" rx="3" fill="#4c4c4c" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1071" y="274" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">700</text>
+<text x="1071" y="297" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#4c4c4c</text>
+<rect x="1191" y="194" width="116" height="59" rx="3" fill="#353535" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1193" y="274" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">800</text>
+<text x="1193" y="297" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#353535</text>
+<rect x="1313" y="194" width="116" height="59" rx="3" fill="#202020" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1315" y="274" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">900</text>
+<text x="1315" y="297" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#202020</text>
+<rect x="1435" y="194" width="116" height="59" rx="3" fill="#161616" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1437" y="274" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">950</text>
+<text x="1437" y="297" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#161616</text>
+<text x="40" y="348" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="700">Interior · 500</text>
+<text x="40" y="376" font-family="Arial, sans-serif" font-size="14" fill="#525252" font-weight="400">L 0.99255</text>
+<text x="40" y="398" font-family="Arial, sans-serif" font-size="14" fill="#525252" font-weight="400">→ 0.20000</text>
+<rect x="215" y="324" width="116" height="59" rx="3" fill="#fcfcfc" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="217" y="404" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">50</text>
+<text x="217" y="427" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#fcfcfc</text>
+<rect x="337" y="324" width="116" height="59" rx="3" fill="#fcfcfc" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="339" y="404" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">100 =</text>
+<text x="339" y="427" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#fcfcfc</text>
+<rect x="459" y="324" width="116" height="59" rx="3" fill="#fcfcfc" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="461" y="404" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">200 =</text>
+<text x="461" y="427" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#fcfcfc</text>
+<rect x="581" y="324" width="116" height="59" rx="3" fill="#fbfbfb" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="583" y="404" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">300</text>
+<text x="583" y="427" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#fbfbfb</text>
+<rect x="703" y="324" width="116" height="59" rx="3" fill="#fbfbfb" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="705" y="404" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">400 =</text>
+<text x="705" y="427" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#fbfbfb</text>
+<rect x="825" y="324" width="116" height="59" rx="3" fill="#fafafa" stroke="#c5c5c5" stroke-width="0.7"/>
+<rect x="830" y="329" width="23" height="23" rx="3" fill="#ffffff" stroke="#737373" stroke-width="0.7"/>
+<text x="836" y="346" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="700">S</text>
+<text x="827" y="404" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">500</text>
+<text x="827" y="427" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#fafafa</text>
+<rect x="947" y="324" width="116" height="59" rx="3" fill="#c1c1c1" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="949" y="404" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">600</text>
+<text x="949" y="427" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#c1c1c1</text>
+<rect x="1069" y="324" width="116" height="59" rx="3" fill="#8b8b8b" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1071" y="404" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">700</text>
+<text x="1071" y="427" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#8b8b8b</text>
+<rect x="1191" y="324" width="116" height="59" rx="3" fill="#585858" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1193" y="404" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">800</text>
+<text x="1193" y="427" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#585858</text>
+<rect x="1313" y="324" width="116" height="59" rx="3" fill="#2b2b2b" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1315" y="404" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">900</text>
+<text x="1315" y="427" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#2b2b2b</text>
+<rect x="1435" y="324" width="116" height="59" rx="3" fill="#161616" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1437" y="404" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">950</text>
+<text x="1437" y="427" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#161616</text>
+<text x="215" y="461" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">Auto: 11 distinct HEX values. Interior: 8. Steps 50/100/200 repeat #fcfcfc; 300/400 repeat #fbfbfb.</text>
+<text x="215" y="486" font-family="Arial, sans-serif" font-size="15" fill="#525252" font-weight="400">Interior upper endpoint becomes (1 + seed L) / 2 = .99255; there is very little lightness left above the seed.</text>
+<path d="M40 498H1560" stroke="#d4d4d4"/>
+<text x="40" y="529" font-family="Arial, sans-serif" font-size="23" fill="#171717" font-weight="700">2. Near-black #030303</text>
+<text x="620" y="529" font-family="Arial, sans-serif" font-size="16" fill="#525252" font-weight="400">Seed L 0.09693</text>
+<text x="40" y="578" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="700">Auto · 950</text>
+<text x="40" y="606" font-family="Arial, sans-serif" font-size="14" fill="#525252" font-weight="400">L 0.97000</text>
+<text x="40" y="628" font-family="Arial, sans-serif" font-size="14" fill="#525252" font-weight="400">→ 0.09693</text>
+<rect x="215" y="554" width="116" height="59" rx="3" fill="#f5f5f5" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="217" y="634" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">50</text>
+<text x="217" y="657" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#f5f5f5</text>
+<rect x="337" y="554" width="116" height="59" rx="3" fill="#e5e5e5" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="339" y="634" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">100</text>
+<text x="339" y="657" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#e5e5e5</text>
+<rect x="459" y="554" width="116" height="59" rx="3" fill="#c5c5c5" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="461" y="634" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">200</text>
+<text x="461" y="657" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#c5c5c5</text>
+<rect x="581" y="554" width="116" height="59" rx="3" fill="#a7a7a7" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="583" y="634" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">300</text>
+<text x="583" y="657" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#a7a7a7</text>
+<rect x="703" y="554" width="116" height="59" rx="3" fill="#898989" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="705" y="634" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">400</text>
+<text x="705" y="657" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#898989</text>
+<rect x="825" y="554" width="116" height="59" rx="3" fill="#6d6d6d" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="827" y="634" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">500</text>
+<text x="827" y="657" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#6d6d6d</text>
+<rect x="947" y="554" width="116" height="59" rx="3" fill="#515151" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="949" y="634" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">600</text>
+<text x="949" y="657" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#515151</text>
+<rect x="1069" y="554" width="116" height="59" rx="3" fill="#383838" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1071" y="634" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">700</text>
+<text x="1071" y="657" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#383838</text>
+<rect x="1191" y="554" width="116" height="59" rx="3" fill="#202020" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1193" y="634" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">800</text>
+<text x="1193" y="657" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#202020</text>
+<rect x="1313" y="554" width="116" height="59" rx="3" fill="#0a0a0a" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1315" y="634" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">900</text>
+<text x="1315" y="657" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#0a0a0a</text>
+<rect x="1435" y="554" width="116" height="59" rx="3" fill="#030303" stroke="#c5c5c5" stroke-width="0.7"/>
+<rect x="1440" y="559" width="23" height="23" rx="3" fill="#ffffff" stroke="#737373" stroke-width="0.7"/>
+<text x="1446" y="576" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="700">S</text>
+<text x="1437" y="634" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">950</text>
+<text x="1437" y="657" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#030303</text>
+<text x="40" y="708" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="700">Interior · 500</text>
+<text x="40" y="736" font-family="Arial, sans-serif" font-size="14" fill="#525252" font-weight="400">L 0.97000</text>
+<text x="40" y="758" font-family="Arial, sans-serif" font-size="14" fill="#525252" font-weight="400">→ 0.04846</text>
+<rect x="215" y="684" width="116" height="59" rx="3" fill="#f5f5f5" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="217" y="764" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">50</text>
+<text x="217" y="787" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#f5f5f5</text>
+<rect x="337" y="684" width="116" height="59" rx="3" fill="#d5d5d5" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="339" y="764" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">100</text>
+<text x="339" y="787" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#d5d5d5</text>
+<rect x="459" y="684" width="116" height="59" rx="3" fill="#989898" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="461" y="764" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">200</text>
+<text x="461" y="787" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#989898</text>
+<rect x="581" y="684" width="116" height="59" rx="3" fill="#5f5f5f" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="583" y="764" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">300</text>
+<text x="583" y="787" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#5f5f5f</text>
+<rect x="703" y="684" width="116" height="59" rx="3" fill="#2b2b2b" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="705" y="764" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">400</text>
+<text x="705" y="787" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#2b2b2b</text>
+<rect x="825" y="684" width="116" height="59" rx="3" fill="#030303" stroke="#c5c5c5" stroke-width="0.7"/>
+<rect x="830" y="689" width="23" height="23" rx="3" fill="#ffffff" stroke="#737373" stroke-width="0.7"/>
+<text x="836" y="706" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="700">S</text>
+<text x="827" y="764" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">500</text>
+<text x="827" y="787" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#030303</text>
+<rect x="947" y="684" width="116" height="59" rx="3" fill="#020202" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="949" y="764" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">600</text>
+<text x="949" y="787" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#020202</text>
+<rect x="1069" y="684" width="116" height="59" rx="3" fill="#010101" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1071" y="764" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">700</text>
+<text x="1071" y="787" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#010101</text>
+<rect x="1191" y="684" width="116" height="59" rx="3" fill="#010101" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1193" y="764" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">800 =</text>
+<text x="1193" y="787" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#010101</text>
+<rect x="1313" y="684" width="116" height="59" rx="3" fill="#010101" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1315" y="764" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">900 =</text>
+<text x="1315" y="787" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#010101</text>
+<rect x="1435" y="684" width="116" height="59" rx="3" fill="#000000" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1437" y="764" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">950</text>
+<text x="1437" y="787" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#000000</text>
+<text x="215" y="821" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">Auto: 11 distinct HEX values. Interior: 9. Steps 700/800/900 all display #010101.</text>
+<text x="215" y="846" font-family="Arial, sans-serif" font-size="15" fill="#525252" font-weight="400">Interior lower endpoint becomes seed L / 2 = .04846. Its positive raw L still rounds to #000000 in HEX.</text>
+<path d="M40 858H1560" stroke="#d4d4d4"/>
+<text x="40" y="889" font-family="Arial, sans-serif" font-size="23" fill="#171717" font-weight="700">3. Exact white #ffffff</text>
+<text x="620" y="889" font-family="Arial, sans-serif" font-size="16" fill="#525252" font-weight="400">Seed L 1.00000 · 11 distinct HEX values</text>
+<text x="40" y="938" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="700">Auto · 50</text>
+<text x="40" y="966" font-family="Arial, sans-serif" font-size="14" fill="#525252" font-weight="400">L 1.00000</text>
+<text x="40" y="988" font-family="Arial, sans-serif" font-size="14" fill="#525252" font-weight="400">→ 0.20000</text>
+<rect x="215" y="914" width="116" height="59" rx="3" fill="#ffffff" stroke="#c5c5c5" stroke-width="0.7"/>
+<rect x="220" y="919" width="23" height="23" rx="3" fill="#ffffff" stroke="#737373" stroke-width="0.7"/>
+<text x="226" y="936" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="700">S</text>
+<text x="217" y="994" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">50</text>
+<text x="217" y="1017" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#ffffff</text>
+<rect x="337" y="914" width="116" height="59" rx="3" fill="#f0f0f0" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="339" y="994" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">100</text>
+<text x="339" y="1017" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#f0f0f0</text>
+<rect x="459" y="914" width="116" height="59" rx="3" fill="#d3d3d3" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="461" y="994" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">200</text>
+<text x="461" y="1017" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#d3d3d3</text>
+<rect x="581" y="914" width="116" height="59" rx="3" fill="#b6b6b6" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="583" y="994" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">300</text>
+<text x="583" y="1017" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#b6b6b6</text>
+<rect x="703" y="914" width="116" height="59" rx="3" fill="#9b9b9b" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="705" y="994" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">400</text>
+<text x="705" y="1017" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#9b9b9b</text>
+<rect x="825" y="914" width="116" height="59" rx="3" fill="#808080" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="827" y="994" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">500</text>
+<text x="827" y="1017" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#808080</text>
+<rect x="947" y="914" width="116" height="59" rx="3" fill="#666666" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="949" y="994" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">600</text>
+<text x="949" y="1017" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#666666</text>
+<rect x="1069" y="914" width="116" height="59" rx="3" fill="#4e4e4e" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1071" y="994" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">700</text>
+<text x="1071" y="1017" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#4e4e4e</text>
+<rect x="1191" y="914" width="116" height="59" rx="3" fill="#363636" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1193" y="994" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">800</text>
+<text x="1193" y="1017" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#363636</text>
+<rect x="1313" y="914" width="116" height="59" rx="3" fill="#202020" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1315" y="994" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">900</text>
+<text x="1315" y="1017" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#202020</text>
+<rect x="1435" y="914" width="116" height="59" rx="3" fill="#161616" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1437" y="994" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">950</text>
+<text x="1437" y="1017" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#161616</text>
+<rect x="215" y="1041" width="1336" height="53" rx="4" fill="#f7f7f7" stroke="#d4d4d4"/>
+<text x="231" y="1073" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">Interior 500: blocked in this proposal — exact white has no lighter values. No generated row is shown.</text>
+<path d="M40 1133H1560" stroke="#d4d4d4"/>
+<text x="40" y="1164" font-family="Arial, sans-serif" font-size="23" fill="#171717" font-weight="700">4. Exact black #000000</text>
+<text x="620" y="1164" font-family="Arial, sans-serif" font-size="16" fill="#525252" font-weight="400">Seed L 0.00000 · 11 distinct HEX values</text>
+<text x="40" y="1213" font-family="Arial, sans-serif" font-size="17" fill="#171717" font-weight="700">Auto · 950</text>
+<text x="40" y="1241" font-family="Arial, sans-serif" font-size="14" fill="#525252" font-weight="400">L 0.97000</text>
+<text x="40" y="1263" font-family="Arial, sans-serif" font-size="14" fill="#525252" font-weight="400">→ 0.00000</text>
+<rect x="215" y="1189" width="116" height="59" rx="3" fill="#f5f5f5" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="217" y="1269" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">50</text>
+<text x="217" y="1292" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#f5f5f5</text>
+<rect x="337" y="1189" width="116" height="59" rx="3" fill="#e3e3e3" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="339" y="1269" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">100</text>
+<text x="339" y="1292" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#e3e3e3</text>
+<rect x="459" y="1189" width="116" height="59" rx="3" fill="#c0c0c0" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="461" y="1269" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">200</text>
+<text x="461" y="1292" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#c0c0c0</text>
+<rect x="581" y="1189" width="116" height="59" rx="3" fill="#9e9e9e" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="583" y="1269" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">300</text>
+<text x="583" y="1292" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#9e9e9e</text>
+<rect x="703" y="1189" width="116" height="59" rx="3" fill="#7e7e7e" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="705" y="1269" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">400</text>
+<text x="705" y="1292" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#7e7e7e</text>
+<rect x="825" y="1189" width="116" height="59" rx="3" fill="#5f5f5f" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="827" y="1269" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">500</text>
+<text x="827" y="1292" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#5f5f5f</text>
+<rect x="947" y="1189" width="116" height="59" rx="3" fill="#424242" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="949" y="1269" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">600</text>
+<text x="949" y="1292" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#424242</text>
+<rect x="1069" y="1189" width="116" height="59" rx="3" fill="#262626" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1071" y="1269" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">700</text>
+<text x="1071" y="1292" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#262626</text>
+<rect x="1191" y="1189" width="116" height="59" rx="3" fill="#0e0e0e" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1193" y="1269" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">800</text>
+<text x="1193" y="1292" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#0e0e0e</text>
+<rect x="1313" y="1189" width="116" height="59" rx="3" fill="#010101" stroke="#c5c5c5" stroke-width="0.7"/>
+<text x="1315" y="1269" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">900</text>
+<text x="1315" y="1292" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#010101</text>
+<rect x="1435" y="1189" width="116" height="59" rx="3" fill="#000000" stroke="#c5c5c5" stroke-width="0.7"/>
+<rect x="1440" y="1194" width="23" height="23" rx="3" fill="#ffffff" stroke="#737373" stroke-width="0.7"/>
+<text x="1446" y="1211" font-family="Arial, sans-serif" font-size="14" fill="#171717" font-weight="700">S</text>
+<text x="1437" y="1269" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">950</text>
+<text x="1437" y="1292" font-family="monospace" font-size="15" fill="#525252" font-weight="400">#000000</text>
+<rect x="215" y="1316" width="1336" height="53" rx="4" fill="#f7f7f7" stroke="#d4d4d4"/>
+<text x="231" y="1348" font-family="Arial, sans-serif" font-size="16" fill="#171717" font-weight="600">Interior 500: blocked in this proposal — exact black has no darker values. No generated row is shown.</text>
+<path d="M40 1414H1560" stroke="#d4d4d4"/>
+<text x="40" y="1446" font-family="Arial, sans-serif" font-size="18" fill="#171717" font-weight="700">What the repeated swatches mean</text>
+<text x="40" y="1474" font-family="Arial, sans-serif" font-size="16" fill="#525252" font-weight="400">Raw OKLCH lightness remains strictly descending. Different raw values can round to the same 8-bit sRGB HEX.</text>
+<text x="40" y="1501" font-family="Arial, sans-serif" font-size="16" fill="#525252" font-weight="400">The = marker reports exact displayed duplicates only; no perceptual distinguishability threshold is selected.</text>
+<text x="40" y="1528" font-family="Arial, sans-serif" font-size="16" fill="#525252" font-weight="400">Defaults are L .97 / .20. An endpoint seed replaces that endpoint. Auto and adjustment rules remain exploratory.</text>
+<text x="40" y="1554" font-family="Arial, sans-serif" font-size="14" fill="#525252" font-weight="400">Final rows are neutral; a preliminary #040404 conversion anomaly is recorded in the report and remains unqualified.</text>
+<text x="40" y="1580" font-family="Arial, sans-serif" font-size="14" fill="#737373" font-weight="400">Exploration · 21 November 2026 · 11 steps · No chromatic-extreme, alpha or production-policy validation.</text>
+</svg>

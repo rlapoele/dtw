@@ -10,6 +10,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Extreme-seed endpoint exploration — 21 November 2026
+
+The user requested [visual endpoint-policy examples](../project/workbench-layout/color-ramp-endpoints-v1.md)
+for near-white, near-black, white and black, including interior placement. Six
+computed neutral ramps compare Auto endpoints with step-500 placement where valid.
+Under the proposed policy, interior near-extreme seeds keep strictly ordered raw
+lightness but produce repeated 8-bit HEX previews on the compressed side; exact
+white/black interior placement is blocked. Endpoints, Auto and these restrictions
+remain proposals pending user review, not an agreed numerical contract.
+
+Reproducible isolated calculations and a static sheet support this exploration.
+A preliminary neutral conversion/quantization boundary observation is retained
+in the report as an unresolved qualification limitation, not silently fixed.
+No production changes or broad qualification campaign. Next: user judges endpoint
+and interior-placement behavior before finalizing policy. Earlier limits remain.
+
 ## Ramp gamut interaction agreed — 21 November 2026
 
 The user accepted the inline out-of-sRGB choice, including Display P3 only when
