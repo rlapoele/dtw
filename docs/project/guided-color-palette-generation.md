@@ -123,9 +123,43 @@ ramps without introducing live computed token values.
 - If a step-count or naming change would remove an overridden step, surface that
   consequence for review; never silently delete its token.
 
-Protection from regeneration and detachment from ramp membership are different
-concepts. Detachment behavior and the relationship between ramp overrides and the
-existing token regeneration-protection metadata remain unresolved.
+### Manual status and regeneration protection
+
+**Agreed 22 November 2026; not implemented.**
+
+Keep **Manual** ramp status separate from token-wide **Protected from regeneration**.
+Manual identifies an intentionally edited or retained ramp-step value; Protected
+is a safeguard against generated updates generally. Either condition keeps the
+current value by default. Ordinary manual editing remains allowed.
+
+- A manual value edit marks the ramp member Manual without changing its existing
+  token-wide protection. Do not automatically enable global protection for every
+  manual ramp edit.
+- Regeneration keeps Manual and Protected tokens by default and explains the
+  applicable reason(s). A token can have both states.
+- An accepted generated replacement clears Manual status. If the token is also
+  Protected, require an explicit reviewed **one-time replacement**, preserve its
+  protection and say that it remains protected. The result may be Generated and
+  Protected: it came from the recipe but future regeneration still keeps it.
+- Allowing future regeneration requires an explicit protection change. Removing
+  protection alone does not clear Manual status. Neither state is silently cleared
+  by the other action, settings changes or an ordinary manual edit.
+- Departing ramp members retain their ordinary token and its protection. Reusing
+  them with **Keep value** establishes Manual ramp status again without changing
+  that protection.
+
+Within an editing session, replacement, Manual-status and protection changes
+remain draft proposals until final Apply; acceptance must preserve their separate effects. This describes intended
+behavior, not a finalized metadata schema or permission model. General detachment
+and exact eligibility still need specification.
+
+### Next design work — deferred
+
+**Recorded at the user's request — 22 November 2026:** next, prepare ramp-editing
+wireframes for the central workspace and inspector, including settings changes,
+manual values, returning-step conflicts and one-time protected replacements.
+**Do not prepare those wireframes now.** Wait for the user to resume that work.
+No implementation or new prototype is authorized by this note.
 
 ### Automatic seed placement
 
@@ -266,7 +300,7 @@ assume it is a former member.
 - **Reuse and use generated value** preserves identity and references but proposes
   a value replacement and a return to generation. Show that dependent references
   will resolve to the changed value. Existing protection must be explicitly handled;
-  its interaction with Manual remains the next decision.
+  its interaction with Manual follows the separate protection rules above.
 - **Leave outside the ramp** preserves the token untouched. The required name must
   be freed or another count selected before applying the ramp; do not silently
   omit a required step or rename existing data.
@@ -275,8 +309,8 @@ assume it is a former member.
   an explicit **Reuse all and keep values** action may set the batch choice while
   retaining individual review.
 
-No identity, value or membership changes before final Apply. Complete override and
-protection rules remain unresolved.
+No identity, value or membership changes before final Apply. Manual/protection
+behavior is agreed above; detailed schema, eligibility and review design remain open.
 
 The earlier Increment 024 draft must be reconciled with these decisions before
 final contract/design agreement. No implementation or broader verification is
@@ -292,7 +326,7 @@ requested by recording these choices.
 6. Which WCAG/APCA profiles and contextual inputs should be supported, and how should diagnostics and an independent contrast view be presented?
 7. How should acceptance, existing-token collisions, repeated generation, and user-edited tokens be handled safely?
 8. What is the versioned ramp-metadata schema, and how do retention, backup and each export profile preserve or omit it? How are ordered step membership, renamed/moved tokens, references and missing members handled?
-9. How do manual overrides relate to existing regeneration protection? What are the explicit detach, removed-step, reset and partial-acceptance behaviors?
+9. How should the agreed separate Manual/Protected states and one-time replacement behavior be represented and reviewed? What remaining detach, reset and partial-acceptance details complete that contract?
 10. Which settings and entry points belong in the first slice, how do naming presets constrain step counts, and what batch/Undo contract applies? No detailed layout, algorithm or implementation contract is agreed yet.
 
 When this work is explicitly resumed, use this concept and the [open questions](../planning/open-questions.md#guided-color-foundations-and-interface-semantics) to prepare a bounded proposal through the existing designer/user/analyst workflow. The first exploration is agreed in direction only; its design, contract, and execution still require the usual authorization.

@@ -105,7 +105,8 @@ membership. Regeneration is reviewed before application. Manual value edits are
 preserved by default, and Auto seed placement suggests a recipe-dependent position
 while preserving the exact seed and saving the accepted position. The
 [agreed direction and remaining questions](../project/guided-color-palette-generation.md#agreed-ramp-direction--20-november-2026)
-own these behaviors. Metadata schema, override/protection reconciliation,
+own these behaviors. The [22 November Manual/protection agreement](../project/guided-color-palette-generation.md#manual-status-and-regeneration-protection)
+settles their separation and explicit one-time replacement behavior. Metadata schema,
 detachment and membership changes, fitting algorithm, export policies and the
 first-slice batch/Undo contract remain open. The user subsequently selected a fixed
 11-step first slice and confirmed that inspector edits to the seed token leave the

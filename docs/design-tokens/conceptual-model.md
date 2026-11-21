@@ -843,7 +843,11 @@ in the ordinary inspector creates a manual override without changing that seed;
 the applied token may then differ from the recipe anchor (agreed 20 November 2026). Auto placement
 suggests a recipe-dependent step; the accepted position is saved, with explicit
 recalculation rather than movement on reopening. Schema, fitting algorithm,
-membership changes and reconciliation with token-level protection remain open.
+membership details remain open. The [22 November Manual/protection agreement](../project/guided-color-palette-generation.md#manual-status-and-regeneration-protection)
+keeps Manual ramp status and token-wide protection separate: either preserves the
+value by default; an explicitly reviewed one-time generated replacement clears
+Manual but preserves protection. Removing protection alone does not clear Manual.
+Ordinary manual editing remains allowed. Exact metadata representation is open.
 
 ### Generated change proposals and protection
 

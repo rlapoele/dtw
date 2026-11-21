@@ -1,6 +1,6 @@
 # Current Project Status
 
-> Last updated: 21 November 2026
+> Last updated: 22 November 2026
 >
 > Phase: Increment 023 implemented and independently reviewed; user acceptance pending. Increment 022 completed, independently reviewed and user-accepted; verification limits retained. Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
@@ -9,6 +9,22 @@
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## Manual/protection agreed; editing wireframes deferred — 22 November 2026
+
+The user agreed [separate Manual ramp status and token-wide protection](../project/guided-color-palette-generation.md#manual-status-and-regeneration-protection).
+Either preserves a value by default. An explicit reviewed one-time generated
+replacement clears Manual but keeps protection; removing protection alone does
+not clear Manual. Manual editing remains allowed and does not implicitly toggle
+protection. Model, owning direction, open questions and draft notice are aligned.
+
+**Next, but not now:** prepare ramp-editing wireframes for the central workspace
+and inspector when the user resumes. The user explicitly deferred that task.
+No editing wireframes, prototype, implementation or analyst review was started
+by this documentation update. Numerical policy, exact schema/eligibility and
+complete draft reconciliation remain outstanding. Earlier qualification limits
+are unchanged. Markdown links/whitespace reviewed; no application tests needed.
+Suggested commit: `docs: agree ramp protection rules and defer editing wireframes`.
 
 ## Returning ramp steps conflict choices agreed — 21 November 2026
 

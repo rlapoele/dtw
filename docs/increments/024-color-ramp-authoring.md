@@ -41,10 +41,21 @@ Departing steps after a count change are kept as ordinary tokens by default,
 preserving their identities, values and references. Returning labels use explicit reviewed conflict choices, defaulting to reuse
 and keep value as Manual. Alternatives are reuse with generated value, or leave
 outside with name/count resolution required. Preserve identities; do not silently
-rename, skip required steps or convert incompatible tokens. Protection interaction
-and exact reuse eligibility remain unresolved. Multiple anchors are deferred. Detailed
+rename, skip required steps or convert incompatible tokens. The [22 November protection agreement](../project/guided-color-palette-generation.md#manual-status-and-regeneration-protection)
+keeps Manual and Protected separate: either preserves the value by default;
+explicit one-time generated replacements clear Manual while retaining protection.
+Removing protection alone does not clear Manual. Exact reuse eligibility and
+metadata representation remain unresolved. Multiple anchors are deferred. Detailed
 numerical, count-change and interaction criteria remain to be revised; none of
 this constitutes final contract/design agreement or implementation authorization.
+
+## Next design task — explicitly deferred, 22 November 2026
+
+Prepare ramp-editing wireframes next when the user resumes: central workspace and
+inspector, settings, manual overrides, returning-step conflicts and protected
+one-time replacements. The user explicitly instructed **not now**. This note is a
+handoff reminder, not authorization to start wireframes, a prototype, analyst design
+review or implementation. The historical draft body still requires reconciliation.
 
 ## Outcome
 
