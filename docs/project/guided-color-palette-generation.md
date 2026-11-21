@@ -179,9 +179,16 @@ not constitute final contract/design agreement or implementation authorization.
   and preserve the seed's original authored space and exact value. Default the
   target gamut to **sRGB**. If the seed lies outside it, require an explicit choice;
   never silently alter the seed or describe an out-of-gamut exception as a wholly
-  sRGB-compatible ramp. Wider-gamut selection versus an explicitly accepted
-  adjusted seed, the supported wider gamut(s), and the precise interaction remain
-  to be agreed. Target gamut does not determine authored space.
+  sRGB-compatible ramp. Target gamut does not determine authored space.
+- Out-of-gamut choice agreed 21 November: show an inline choice beneath the seed,
+  without a preselected option. Offer **Keep the exact color / Display P3** only
+  when P3 contains the seed, or preview an **sRGB-compatible version** whose
+  acceptance explicitly replaces the draft seed. Keep Edit seed and Restore
+  original seed available; neither path saves before final creation. If outside
+  P3 too, offer editing or explicit sRGB adjustment, not an unsupported wider
+  target. Recheck after advanced color editing, preserve other draft settings and
+  alpha, and show the resolved target gamut. Mapping/conversion precision remains
+  open; lightness endpoints and Auto placement are the next design questions.
 - Interface wording agreed 21 November: **Color intensity**, with **Retained**
   (default, B) and **Restrained** (linear taper, A). These labels control chroma
   distribution; they do not change hue or lightness. Technical documentation may

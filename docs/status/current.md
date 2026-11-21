@@ -10,6 +10,16 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp gamut interaction agreed — 21 November 2026
+
+The user accepted the inline out-of-sRGB choice, including Display P3 only when
+it contains the seed, explicit previewed seed adjustment, draft restoration and
+no automatic selection. The [owning direction](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026)
+and draft notice record this. Next discussion: lightness endpoints and automatic
+placement, particularly extreme seeds. Mapping precision and the full numerical
+contract remain unresolved. No implementation or qualification restart. Markdown
+whitespace checked. Suggested commit: `docs: agree ramp gamut choice flow`.
+
 ## Ramp authored space and default gamut agreed — 21 November 2026
 
 The user agreed OKLCH-authored generated steps, preserving the seed's original

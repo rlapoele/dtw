@@ -16,8 +16,11 @@ Agreed interface wording is **Color intensity: Retained / Restrained**, with
 Retained selected by default. The seed’s alpha is preserved uniformly across
 generated steps (agreed 21 November). Generated values are authored in OKLCH;
 the seed retains its original authored space. sRGB is the default target gamut,
-with an explicit decision required for an out-of-gamut seed. Exact choice UI,
-supported wider gamuts and mapping rules remain open.
+with an explicit inline choice for an out-of-gamut seed: preserve it using Display
+P3 when it fits, or explicitly accept a previewed sRGB-adjusted seed. No option is
+preselected; original-seed restoration remains available during the draft. Seeds
+outside P3 require editing or explicit adjustment. Numerical mapping rules remain
+open; the owning direction records the accepted interaction.
 Creation uses a provisional dialog entered through group creation; subsequent
 editing uses the central workbench. Multiple anchors are deferred. Detailed
 numerical, count-change and interaction criteria remain to be revised; none of
