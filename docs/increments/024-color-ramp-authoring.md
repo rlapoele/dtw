@@ -37,7 +37,9 @@ full paths and repeated-preview feedback, with checkerboard/light/dark preview
 backgrounds. A separate final confirmation screen is not required. The
 [creation wireframes V3](../project/workbench-layout/color-ramp-creation-v3.md)
 refine this direction for user review; they are not approved for analyst review.
-Multiple anchors are deferred. Detailed
+Departing steps after a count change are kept as ordinary tokens by default,
+preserving their identities, values and references. Conflict handling when labels
+return remains under discussion. Multiple anchors are deferred. Detailed
 numerical, count-change and interaction criteria remain to be revised; none of
 this constitutes final contract/design agreement or implementation authorization.
 

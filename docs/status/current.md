@@ -10,6 +10,15 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Departing ramp steps retained — 21 November 2026
+
+The user agreed that count changes keep departing steps as ordinary tokens by
+default, preserving values and references. The [owning direction](../project/guided-color-palette-generation.md#departing-steps-during-later-editing)
+and draft decision notice record the policy. Returning-label conflicts, explicit
+reuse and protection behavior remain proposals. No implementation or analyst
+review; documentation whitespace checked. Suggested commit:
+`docs: preserve departing ramp steps as ordinary tokens`.
+
 ## Ramp HEX-entry authoring agreed — 21 November 2026
 
 The user accepted creation flow V3 and requested documentation/wireframe changes:

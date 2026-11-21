@@ -245,7 +245,18 @@ that demonstrate the selected behaviors. The lightness endpoint and Auto policie
 Chroma endpoint proportions, exact gamut mapping, precision and remaining
 alpha-preview/edge-case rules still require a production calculation contract.
 The neutral-conversion rounding observation in the endpoint report remains open.
-Step-count changes during later editing also need membership/override review rules.
+### Departing steps during later editing
+
+**Agreed 21 November 2026:** when a count change removes steps from the ramp,
+keep their tokens as ordinary tokens by default. Preserve their stable identities,
+names, values and references; remove ramp membership only when the reviewed count
+change is applied. Do not delete them as an implicit part of regeneration.
+
+Increasing the count again may encounter those tokens or unrelated tokens at the
+required paths. Reuse, eligibility, manual/protected state and value-update choices
+remain to be agreed. A matching path alone is not authorization to overwrite a
+token or assume it is a former member. Later editing still needs complete
+membership/override review rules.
 
 The earlier Increment 024 draft must be reconciled with these decisions before
 final contract/design agreement. No implementation or broader verification is
