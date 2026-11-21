@@ -10,6 +10,17 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Returning ramp steps conflict choices agreed — 21 November 2026
+
+The user accepted returning-step conflict choices, defaulting to explicit reviewed
+reuse while keeping the existing value as Manual. Alternatives replace the value
+while preserving identity, or leave the token outside pending name/count resolution.
+The [owning direction](../project/guided-color-palette-generation.md#departing-steps-during-later-editing)
+and draft notice record these choices. Exact eligibility and interaction with
+existing regeneration protection remain under discussion. No implementation or
+analyst review; documentation whitespace checked. Suggested commit:
+`docs: agree returning ramp step conflict choices`.
+
 ## Departing ramp steps retained — 21 November 2026
 
 The user agreed that count changes keep departing steps as ordinary tokens by

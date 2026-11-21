@@ -38,8 +38,11 @@ backgrounds. A separate final confirmation screen is not required. The
 [creation wireframes V3](../project/workbench-layout/color-ramp-creation-v3.md)
 refine this direction for user review; they are not approved for analyst review.
 Departing steps after a count change are kept as ordinary tokens by default,
-preserving their identities, values and references. Conflict handling when labels
-return remains under discussion. Multiple anchors are deferred. Detailed
+preserving their identities, values and references. Returning labels use explicit reviewed conflict choices, defaulting to reuse
+and keep value as Manual. Alternatives are reuse with generated value, or leave
+outside with name/count resolution required. Preserve identities; do not silently
+rename, skip required steps or convert incompatible tokens. Protection interaction
+and exact reuse eligibility remain unresolved. Multiple anchors are deferred. Detailed
 numerical, count-change and interaction criteria remain to be revised; none of
 this constitutes final contract/design agreement or implementation authorization.
 

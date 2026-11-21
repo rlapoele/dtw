@@ -245,6 +245,7 @@ that demonstrate the selected behaviors. The lightness endpoint and Auto policie
 Chroma endpoint proportions, exact gamut mapping, precision and remaining
 alpha-preview/edge-case rules still require a production calculation contract.
 The neutral-conversion rounding observation in the endpoint report remains open.
+
 ### Departing steps during later editing
 
 **Agreed 21 November 2026:** when a count change removes steps from the ramp,
@@ -253,10 +254,29 @@ names, values and references; remove ramp membership only when the reviewed coun
 change is applied. Do not delete them as an implicit part of regeneration.
 
 Increasing the count again may encounter those tokens or unrelated tokens at the
-required paths. Reuse, eligibility, manual/protected state and value-update choices
-remain to be agreed. A matching path alone is not authorization to overwrite a
-token or assume it is a former member. Later editing still needs complete
-membership/override review rules.
+required paths. A matching path alone is not authorization to overwrite a token or
+assume it is a former member.
+
+**Returning-step conflict choices agreed 21 November 2026:**
+
+- **Reuse and keep its value** is the default reviewed choice for an eligible
+  existing color token. Preserve identity, value and references, and add it to the
+  ramp as Manual. This requires acceptance of the overall proposal, not automatic
+  reuse merely on changing the count.
+- **Reuse and use generated value** preserves identity and references but proposes
+  a value replacement and a return to generation. Show that dependent references
+  will resolve to the changed value. Existing protection must be explicitly handled;
+  its interaction with Manual remains the next decision.
+- **Leave outside the ramp** preserves the token untouched. The required name must
+  be freed or another count selected before applying the ramp; do not silently
+  omit a required step or rename existing data.
+- A conflicting group or incompatible token is not automatically converted into a
+  ramp color. Exact eligibility remains to be specified. For eligible conflicts,
+  an explicit **Reuse all and keep values** action may set the batch choice while
+  retaining individual review.
+
+No identity, value or membership changes before final Apply. Complete override and
+protection rules remain unresolved.
 
 The earlier Increment 024 draft must be reconciled with these decisions before
 final contract/design agreement. No implementation or broader verification is
