@@ -188,7 +188,21 @@ not constitute final contract/design agreement or implementation authorization.
   P3 too, offer editing or explicit sRGB adjustment, not an unsupported wider
   target. Recheck after advanced color editing, preserve other draft settings and
   alpha, and show the resolved target gamut. Mapping/conversion precision remains
-  open; lightness endpoints and Auto placement are the next design questions.
+  open; endpoint and placement direction is recorded below.
+- Endpoint/placement policy agreed 21 November after the
+  [extreme-seed comparison](workbench-layout/color-ramp-endpoints-v1.md): use default
+  OKLCH lightness endpoints **0.97 / 0.20**. Auto chooses the nearest reference
+  lightness `0.97 − 0.77 × (step − 50) / 900`, with ties toward the lighter step.
+  Rebuild lightness linearly on each side of the exact seed using numeric step
+  positions. A seed placed at an endpoint replaces that endpoint's default.
+- Allow manual interior placement for near-extreme seeds. For an interior seed at
+  or above 0.97, set the upper endpoint to `(1 + seed L) / 2`; at or below 0.20,
+  set the lower endpoint to `seed L / 2`. Exact white is restricted to step 50 and
+  exact black to step 950. Preserve the seed rather than silently moving it.
+- Give non-blocking feedback about repeated preview values for compressed ramps;
+  do not describe different OKLCH authored values as identical merely because their
+  8-bit sRGB HEX previews match. Exact display/target-gamut comparison and message
+  details remain to be refined; no perceptual distinguishability threshold is agreed.
 - Interface wording agreed 21 November: **Color intensity**, with **Retained**
   (default, B) and **Restrained** (linear taper, A). These labels control chroma
   distribution; they do not change hue or lightness. Technical documentation may
@@ -197,10 +211,10 @@ not constitute final contract/design agreement or implementation authorization.
   uses the central workbench, with the inspector's exact role still to be refined.
 
 The comparison records the quadratic retained-chroma and linear taper formulas
-that demonstrate the selected behaviors. Selection of B does not approve all
-illustrative endpoint parameters, Auto placement, sRGB mapping, precision or remaining alpha-preview/edge-case
-rules as a production calculation contract. These still require explicit definition,
-including extreme seeds and the interaction between gamut limits and the taper.
+that demonstrate the selected behaviors. The lightness endpoint and Auto policies above are now agreed in direction.
+Chroma endpoint proportions, exact gamut mapping, precision and remaining
+alpha-preview/edge-case rules still require a production calculation contract.
+The neutral-conversion rounding observation in the endpoint report remains open.
 Step-count changes during later editing also need membership/override review rules.
 
 The earlier Increment 024 draft must be reconciled with these decisions before
@@ -209,7 +223,7 @@ requested by recording these choices.
 
 ## Questions for future work
 
-1. With the first-slice count, constant-hue direction and chroma choices agreed above, what exact lightness/endpoints, precision, alpha-preview/edge-case handling, numerical conversion and gamut-mapping policies complete the agreed OKLCH-authoring/sRGB-default direction? How should Auto fit the exact seed to the named steps, resolve ties and handle seeds outside the intended distribution?
+1. With the first-slice count, constant-hue direction and chroma choices agreed above, what chroma endpoint proportions, precision, alpha-preview/edge-case handling, numerical conversion and gamut-mapping rules complete the production calculation contract? How should placement be reconciled when the user changes the seed or step count?
 2. How should users compare accent suggestions, control neutral tint, and revise or retain selected candidates?
 3. What makes status colors sufficiently coherent and distinguishable, and how should conflicts be surfaced?
 4. Which opinionated semantic names, roles, states, and intended pairs belong in the first recipe? How much customization is useful?

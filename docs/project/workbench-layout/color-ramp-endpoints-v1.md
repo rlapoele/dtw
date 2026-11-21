@@ -1,6 +1,12 @@
 # Extreme-seed endpoint comparison V1
 
-**Numerical and visual exploration — 21 November 2026. Endpoint policy not selected; no implementation authorized.**
+**Numerical and visual exploration — 21 November 2026.**
+
+**Subsequent user agreement:** adopt this endpoint/placement policy, allowing
+near-extreme interior placement with non-blocking repeated-preview feedback.
+The [owning direction](../guided-color-palette-generation.md#first-increment-decisions--21-november-2026)
+records the accepted rules. Numerical limitations below remain open; no
+implementation is authorized.
 
 This comparison tests an illustrative endpoint policy with near-white, near-black,
 exact white and exact black seeds. Neutral opaque inputs deliberately isolate
@@ -51,8 +57,8 @@ The design implication is that preserving an extreme interior seed can produce
 several visually repetitive steps on its short side. Auto endpoint placement avoids
 those exact HEX repetitions in these samples, while manual placement provides the
 requested anchor at the cost of an uneven distribution. A later interface could
-explain the repeated preview values before acceptance. This comparison does not
-decide whether to warn, restrict placement or accept such ramps without a warning.
+explain the repeated preview values before acceptance. The user subsequently chose to allow near-extreme interior placement with
+feedback about repeated previews; exact white/black retain the endpoint restrictions.
 
 ## Numerical qualification limit
 
@@ -77,5 +83,4 @@ notices with no clipping observed. A
 
 Other counts, chromatic extreme colors, alpha, precision guarantees and visual
 distinguishability remain unqualified. No application code, contract or retained
-project data was changed. No analyst review or production-policy agreement is
-claimed.
+project data was changed. No analyst review or completed production numerical qualification is claimed.

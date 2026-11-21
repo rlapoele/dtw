@@ -10,6 +10,19 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp endpoint policy agreed — 21 November 2026
+
+The user accepted the [endpoint/placement policy](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026),
+including manual interior placement for near-extreme seeds with non-blocking
+repeated-preview feedback. Exact white/black remain endpoint-only. The owning
+concept and draft decision notice record the formulas; numerical rounding/gamut
+and preview qualifications remain unresolved. Creation-flow refinement can now
+focus on preview editing scope, placement after seed/count changes, and final
+review/alpha-preview presentation. Full draft reconciliation and later editing
+semantics remain necessary before implementation. No implementation or renewed
+qualification. Markdown whitespace checked. Suggested commit:
+`docs: agree ramp endpoints and repeated-preview feedback`.
+
 ## Extreme-seed endpoint exploration — 21 November 2026
 
 The user requested [visual endpoint-policy examples](../project/workbench-layout/color-ramp-endpoints-v1.md)
@@ -17,14 +30,14 @@ for near-white, near-black, white and black, including interior placement. Six
 computed neutral ramps compare Auto endpoints with step-500 placement where valid.
 Under the proposed policy, interior near-extreme seeds keep strictly ordered raw
 lightness but produce repeated 8-bit HEX previews on the compressed side; exact
-white/black interior placement is blocked. Endpoints, Auto and these restrictions
-remain proposals pending user review, not an agreed numerical contract.
+white/black interior placement is blocked. The subsequent user agreement is
+recorded above; this sample set is not full numerical qualification.
 
 Reproducible isolated calculations and a static sheet support this exploration.
 A preliminary neutral conversion/quantization boundary observation is retained
 in the report as an unresolved qualification limitation, not silently fixed.
-No production changes or broad qualification campaign. Next: user judges endpoint
-and interior-placement behavior before finalizing policy. Earlier limits remain.
+No production changes or broad qualification campaign. Policy feedback has since
+been recorded above; earlier qualification limits remain.
 
 ## Ramp gamut interaction agreed — 21 November 2026
 

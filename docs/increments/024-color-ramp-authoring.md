@@ -20,7 +20,11 @@ with an explicit inline choice for an out-of-gamut seed: preserve it using Displ
 P3 when it fits, or explicitly accept a previewed sRGB-adjusted seed. No option is
 preselected; original-seed restoration remains available during the draft. Seeds
 outside P3 require editing or explicit adjustment. Numerical mapping rules remain
-open; the owning direction records the accepted interaction.
+open; the owning direction records the accepted interaction. The user also agreed
+lightness endpoints 0.97/0.20, nearest-reference Auto, exact endpoint seed replacement,
+halfway-to-white/black expansion for near-extreme interior seeds, white/black
+endpoint restrictions and non-blocking repeated-preview feedback. The owning
+record specifies the formulas; detailed numerical qualification remains pending.
 Creation uses a provisional dialog entered through group creation; subsequent
 editing uses the central workbench. Multiple anchors are deferred. Detailed
 numerical, count-change and interaction criteria remain to be revised; none of
