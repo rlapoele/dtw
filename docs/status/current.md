@@ -10,6 +10,16 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Accepted remappings after seed changes — 22 November 2026
+
+The user agreed to preserve accepted remappings when only the seed color changes
+and targets remain valid, refreshing impact notices/previews without repeat
+acceptance. The [owning rule](../project/guided-color-palette-generation.md#accepted-remappings-after-seed-changes--agreed-22-november-2026)
+and Draft 024 distinguish this from confirmed count replacement. Next: discuss
+indirect reference impacts and the scope of remapping actions. No implementation
+or qualification restart. Markdown/whitespace checked. Suggested commit:
+`docs: retain accepted remappings across seed color changes`.
+
 ## Color reset after ramp replacement — 22 November 2026
 
 The user agreed that Reset color to generated restores the replacement's generated

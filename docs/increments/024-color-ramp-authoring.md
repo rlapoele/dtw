@@ -67,6 +67,12 @@ leaving description and protection unchanged. It does not recover the old saved
 color; Discard draft still restores the saved ramp. This replaces the earlier
 Revert-to-applied proposal in the confirmed-replacement context only.
 
+**Seed-change remapping agreement:** when only the seed color changes, accepted
+remappings remain in place if their targets remain valid. Update impact notices and
+previews; no repeat acceptance is required solely because the target color changes.
+Users may still revise the target before Apply. Confirmed count replacement retains
+its separate rule of clearing prior remapping choices.
+
 This material change has not yet been incorporated into revised wireframes or
 analyst re-review. AC-13/14, D2/D4, related verification and the historical V2
 count sheet below require reconciliation with it before agreement. Remaining Manual/Protected

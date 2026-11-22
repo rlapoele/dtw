@@ -419,6 +419,15 @@ This explicitly supersedes the earlier unapplied count-round-trip restoration ru
 Surviving token identities and descriptions are preserved under the agreements
 above. Other metadata details remain separate decisions; those details remain separate decisions. No implementation authorized.
 
+### Accepted remappings after seed changes — agreed 22 November 2026
+
+When only the seed color changes, preserve accepted remapping choices whose targets
+remain valid. Refresh impact notices and color previews to reflect the new proposed
+colors. Acceptance identifies the connection; a changed target color alone does not
+require accepting that connection again. Users can still choose another target before
+Apply. This does not preserve remappings across another confirmed count replacement,
+which follows the separate fresh-draft rule, or resolve invalid-target handling.
+
 ### Color reset after replacement — agreed 22 November 2026
 
 After confirming count replacement, an individually edited candidate can be reset
