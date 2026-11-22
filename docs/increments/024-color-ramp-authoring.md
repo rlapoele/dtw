@@ -106,6 +106,13 @@ choose another count or resolve the existing name through ordinary editing and
 retry, respecting draft guards. Do not mutate the conflicting token or its references.
 This supersedes earlier arbitrary non-member reuse proposals in AC-14/D4 below.
 
+**Disappearing seed-position agreement:** when confirmed replacement removes the
+assigned seed label, use existing Auto placement for the unchanged recipe seed.
+Show the result and allow a valid manual selection before Apply, with no additional
+confirmation dialog. This overrides the older later-editing missing-position block
+for count replacement only; it is not the nearest-label remapping rule. Surviving
+seed-position handling remains separate.
+
 This material change has not yet been incorporated into revised wireframes or
 analyst re-review. AC-13/14, D2/D4, related verification and the historical V2
 count sheet below require reconciliation with it before agreement. Remaining Manual/Protected

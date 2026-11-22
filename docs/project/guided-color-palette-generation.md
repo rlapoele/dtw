@@ -421,6 +421,17 @@ This explicitly supersedes the earlier unapplied count-round-trip restoration ru
 Surviving token identities and descriptions are preserved under the agreements
 above. Other metadata details remain separate decisions; those details remain separate decisions. No implementation authorized.
 
+### Disappearing seed position on replacement — agreed 22 November 2026
+
+When confirmed count replacement removes the seed's assigned label, use the existing
+Auto placement rule to position the unchanged recipe seed in the new ramp. Make the
+result visible and editable before Apply, without a second confirmation dialog.
+Use seed lightness and the agreed Auto rule, not numerical-label proximity used for
+reference remapping. This supersedes the historical later-editing requirement to
+block Apply pending explicit confirmation of a replacement seed position in this
+count-replacement case. Creation rules and invalid seed positions caused by other
+changes remain distinct; surviving seed-position behavior is still to decide.
+
 ### Non-member name conflicts — agreed 22 November 2026
 
 An occupied required step name belonging to a token outside the ramp blocks count

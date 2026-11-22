@@ -10,6 +10,16 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Disappearing seed position on replacement — 22 November 2026
+
+The user agreed to use existing Auto placement when count replacement removes the
+seed's assigned label, preserving the recipe seed and showing an editable result
+before Apply without another confirmation dialog. The [owning rule](../project/guided-color-palette-generation.md#disappearing-seed-position-on-replacement--agreed-22-november-2026)
+and Draft 024 distinguish this from reference-remapping proximity and historical
+missing-position review. Next: decide surviving seed-position handling. No
+implementation or qualification restart. Markdown/whitespace checked. Suggested
+commit: `docs: use Auto placement for disappearing ramp seed steps`.
+
 ## Non-member ramp name conflicts — 22 November 2026
 
 The user agreed that an occupied required name belonging to a non-member token
