@@ -202,9 +202,9 @@
 <rect x="1144" y="302" width="408" height="57" rx="7" fill="#fff" stroke="#d4d4d4"/>
 <text x="1154" y="326" font-size="14" font-weight="400" fill="#262626">Primary brand blue</text>
 <text x="1144" y="386" font-size="14" font-weight="600" fill="#262626">Layer</text>
-<rect x="1144" y="396" width="408" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
-<text x="1156" y="419" font-size="15" font-weight="400" fill="#262626">Primitive  ▾</text>
-<text x="1144" y="451" font-size="12" font-weight="400" fill="#737373">Layer changes outside this ramp view.</text>
+<rect x="1144" y="396" width="408" height="35" rx="7" fill="#ededed" stroke="#d4d4d4"/>
+<text x="1156" y="419" font-size="15" font-weight="400" fill="#262626">Primitive</text>
+<text x="1144" y="451" font-size="12" font-weight="400" fill="#737373">Read-only · Ramp steps are Primitive.</text>
 <text x="1144" y="485" font-size="14" font-weight="400" fill="#262626">● Literal color       ○ Reference</text>
 <text x="1144" y="508" font-size="12" font-weight="400" fill="#737373">Reference editing requires eligibility review.</text>
 <text x="1144" y="541" font-size="14" font-weight="600" fill="#262626">View color space</text>

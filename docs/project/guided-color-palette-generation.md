@@ -176,6 +176,8 @@ The user agreed a single Apply boundary and requested updated wireframes:
   no intermediate **Keep modified color** confirmation and no independent step save.
 - Show Current/New color comparison and retain the existing color-token inspector's
   visual structure and controls as closely as possible, adding ramp-specific context.
+  The ramp-step inspector displays Layer as **Primitive**, read-only/disabled
+  (explicit user amendment, 22 November). It cannot change layer in this surface.
 - **Revert step changes** restores the selected step to its applied state while
   preserving other steps' pending edits and ramp settings. This is distinct from requesting a
   generated replacement; reverting does not silently clear an applied Manual state.
@@ -192,8 +194,9 @@ The user agreed a single Apply boundary and requested updated wireframes:
 - Manual editing is allowed in either protection state. Saving an intentional
   value edit establishes Manual without changing protection or the recipe seed.
 
-These scoped agreements do not approve every V2 detail, the complete increment
-contract, analyst review or implementation. Exact draft reconciliation and numerical
+The user subsequently approved V2, including the fixed-Primitive amendment, for
+analyst review and authorized reconciliation of the draft contract. This is not
+final complete contract agreement or implementation authorization. Exact draft reconciliation and numerical
 policies remain unresolved. Static wireframes illustrate intended behavior only.
 
 ### Automatic seed placement

@@ -10,6 +10,29 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp V2 analyst review and reconciled Draft 024 — 22 November 2026
+
+The user approved V2 for analyst review and required the ramp-step Layer field to
+be read-only/disabled and fixed to Primitive. The [amended V2](../project/workbench-layout/color-ramp-editing-v2.md)
+note, SVG and rendered workspace show that requirement. A separate analyst reviewed
+V2 against the owning decisions and [reconciled Draft 024](../increments/024-color-ramp-authoring.md),
+replacing superseded fixed-count, creation-editing and protection assumptions with
+current criteria. The ramp open-question register is aligned.
+
+The review identifies five remaining decision areas: production numerical policy,
+draft reconciliation, member eligibility/field ownership, safe conflict name
+resolution, and versioned metadata/history/backup compatibility. Recommendations
+are proposals, not implicit agreements. In particular, fixed Primitive cannot
+misrepresent or automatically convert a token changed through ordinary editing.
+
+Next: resolve the draft's D1–D5, return material design changes to the user, then
+obtain final contract/design agreement and explicit implementation authorization.
+No implementation, application tests or broader qualification occurred. The amended
+workspace was rendered/visually inspected; changed Markdown links and whitespace
+were checked. Review stopped at approximately 13/15 aggregate minutes, zero harness
+repairs; earlier evidence limits remain stopped. Leave staging/committing/pushing
+to the user. Suggested commit: `docs: reconcile ramp authoring contract after V2 review`.
+
 ## Ramp-editing V2 and single Apply agreement — 22 November 2026
 
 The user agreed [one Apply boundary](../project/guided-color-palette-generation.md#single-apply-and-step-inspector--agreed-22-november-2026),

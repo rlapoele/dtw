@@ -91,30 +91,38 @@ These questions remain open beyond that bounded subset. Culori 4.0.2 is installe
 
 ## Guided color foundations and interface semantics
 
-**Latest first-slice decisions — 21 November 2026:** one seed, 2–20 steps (11 default),
-constant OKLCH hue, retained chroma B by default and linear taper A as an option.
-The [owning decisions](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026)
-supersede earlier fixed-11/single-recipe assumptions. Endpoint, Auto, gamut, alpha,
-precision and later count-change policies remain unresolved; no implementation.
+**Latest first-slice decisions — 21–22 November 2026; no implementation authorized:**
+one seed, 2–20 steps (11 default), positional naming, constant OKLCH hue,
+Retained chroma by default with Restrained available, uniform seed alpha, OKLCH
+generated values and explicit seed/gamut decisions. Endpoint and Auto direction,
+creation without individual-step edits, preserved departing tokens and reviewed
+returning-token choices are agreed in the [owning direction](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026).
+The [Manual/protection agreement](../project/guided-color-palette-generation.md#manual-status-and-regeneration-protection)
+keeps those states separate. Editing uses one shared draft/Apply, guarded departure
+and a fixed read-only Primitive layer in the ramp-step inspector. These decisions
+supersede fixed-11/single-behavior/fixed-membership proposals.
 
-**Confirmed future direction — 10 November 2026; work deferred:** support a color foundation first, followed by optional semantic-token recipes for light and dark interface themes. Contrast guidance is especially valuable when defining semantic uses, with an independent contrast view available beyond the guide. The [concept note](../project/guided-color-palette-generation.md) owns the example flow and agreed first exploration; this is not a selected next increment or execution authorization.
+The user approved [Editing V2](../project/workbench-layout/color-ramp-editing-v2.md),
+including the Primitive amendment, for analyst review on 22 November. The
+[reconciled Increment 024 draft](../increments/024-color-ramp-authoring.md) records
+that review and the remaining decisions D1–D5: exact numerical contract; draft
+reconciliation (Revert, count round trips, changed replacement candidates and new
+members); eligibility/field ownership; safe name-resolution workflow; versioned
+metadata, history and compatibility. Multi-setting regeneration triggers remain a
+proposal; the user has not selected seed-only regeneration. Final complete
+contract/design agreement and implementation authorization remain pending.
 
-**Confirmed refinement — 20 November 2026; no implementation authorized:** ramps
-use ordinary groups with optional metadata retaining settings and ordered token
-membership. Regeneration is reviewed before application. Manual value edits are
-preserved by default, and Auto seed placement suggests a recipe-dependent position
-while preserving the exact seed and saving the accepted position. The
-[agreed direction and remaining questions](../project/guided-color-palette-generation.md#agreed-ramp-direction--20-november-2026)
-own these behaviors. The [22 November Manual/protection agreement](../project/guided-color-palette-generation.md#manual-status-and-regeneration-protection)
-settles their separation and explicit one-time replacement behavior. Metadata schema,
-detachment and membership changes, fitting algorithm, export policies and the
-first-slice batch/Undo contract remain open. The user subsequently selected a fixed
-11-step first slice and confirmed that inspector edits to the seed token leave the
-recipe seed unchanged and create a manual override. The
-[024 draft contract](../increments/024-color-ramp-authoring.md) records preparation;
-final design/contract agreement and implementation authorization remain pending.
+**Broader confirmed future direction — 10 November 2026; work deferred:** support a
+color foundation first, followed by optional semantic-token recipes for light and
+dark interface themes, with contextual contrast guidance and an independent contrast
+view. The [concept note](../project/guided-color-palette-generation.md) owns this
+broader scope; ramp preparation does not authorize it.
 
-Open choices include ramp algorithms/steps and numerical policies; accent harmony and status distinguishability; opinionated predefined semantic names and recipe customization; light/dark integration with existing variation configuration; WCAG/APCA profiles, contextual inputs, pair selection and diagnostics; and acceptance/collision/regeneration behavior. Resolve these explicitly in the bounded future proposal rather than through implementation convenience.
+Remaining broader choices include accent harmony, neutral tint and status
+distinguishability; semantic names and recipe customization; light/dark integration
+with existing variation configuration; WCAG/APCA profiles, inputs and diagnostics;
+general detachment/adoption and interchange mappings. Do not reopen settled first-slice
+choices or silently settle these future questions during implementation.
 
 ## Authoring helpers and value previews
 

@@ -5,8 +5,9 @@
 V2 keeps the central component matrix from [V1](./color-ramp-editing-v1.md), replaces
 text protection switches with ghost lock buttons and brings the step inspector
 closer to the existing application. The user accepted one final Apply for the
-whole ramp draft and requested these changes; the complete V2 design has not been
-approved for analyst review or implementation. The
+whole ramp draft and requested these changes; on 22 November the user approved V2 for analyst review with the explicit amendment
+that Layer is read-only/disabled and fixed to Primitive in the ramp-step inspector.
+This is not final contract agreement or implementation authorization. The
 [owning agreement](../guided-color-palette-generation.md#single-apply-and-step-inspector--agreed-22-november-2026)
 remains authoritative. V1 is historical where V2 differs.
 
@@ -31,9 +32,10 @@ applied, Metadata and All authored data. V2 adds the ramp-specific actions and
 protection below those existing sections. Long content scrolls; the drawing shows
 the expanded structure rather than promising that it fits a short viewport.
 
-The Layer and Reference controls are shown to preserve context, but unavailable
-in this ramp proposal pending membership/eligibility decisions. Their helper text
-explains that boundary; this does not authorize removing ordinary token-editor
+Layer is fixed to **Primitive**, read-only/disabled, as explicitly directed by the
+user. It cannot change in the ramp-step inspector. Reference remains unavailable
+in this proposal pending membership/eligibility decisions. Helper text explains
+these boundaries; this does not authorize removing ordinary token-editor
 capabilities or silently adding layer/alias edits to the ramp contract. Description
 and color edits share the ramp session. Ordinary description changes do not mark
 Manual. The exact field-capability policy still belongs in the reconciled contract.
@@ -163,3 +165,13 @@ artifacts were edited. No interactive/browser, numerical or independent analyst
 review occurred. This bounded follow-up stopped at approximately 8 aggregate verification minutes
 (designer 6, coordinator 2), with zero rendering harness repairs. The coordinator
 also inspected the rendered sheets. Earlier V1 verification remains stopped.
+
+### Analyst review — 22 November 2026
+
+Following the user's approval with Layer fixed read-only to Primitive, the separate
+analyst reviewed V2 and reconciled [Draft 024](../../increments/024-color-ramp-authoring.md#analyst-review--22-november-2026).
+Its findings and D1–D5 distinguish agreed directions from unresolved calculation,
+draft, eligibility, conflict-recovery and metadata details. No material redesign
+was silently applied; final agreement and implementation remain unauthorized.
+The coordinator refreshed and visually inspected the workspace PNG after removing
+the Layer dropdown affordance and adding the read-only treatment.
