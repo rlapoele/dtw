@@ -112,6 +112,11 @@ sheet does not validate generation math.
 
 ## Count conflicts and departure
 
+**Superseded after analyst review:** the user subsequently selected confirmed count
+replacement and explicit per-referencing-token remapping. See the [latest direction](../guided-color-palette-generation.md#count-replacement-and-reference-remapping--22-november-2026).
+The count sheet below is historical for departure/reuse behavior; revised wireframes
+await the remaining decisions. The shared Apply/departure guard remains applicable.
+
 ![Count-change review and the departure guard](./color-ramp-editing-v2-count.svg)
 
 [PNG preview](../../../output/color-ramp-editing-v2/color-ramp-editing-v2-count.svg.png).

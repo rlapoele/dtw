@@ -328,7 +328,34 @@ Chroma endpoint proportions, exact gamut mapping, precision and remaining
 alpha-preview/edge-case rules still require a production calculation contract.
 The neutral-conversion rounding observation in the endpoint report remains open.
 
+### Count replacement and reference remapping — 22 November 2026
+
+**Latest direction; supersedes ordinary-token retention on count changes below.**
+The user wants a count change to replace the ramp after a clear confirmation,
+without listing departing steps or accumulating hidden ordinary tokens. This remains
+a draft operation until the shared Apply. Manual/Protected and pending-edit handling
+during replacement still need explicit reconciliation; do not infer that confirmation
+already authorizes overriding every safeguard.
+
+For referencing tokens whose target step disappears, the user selected explicit
+per-token review: accept a suggested new ramp step, choose another new step, or make
+the referencing token's value unspecified rather than leave a broken reference.
+Suggest the nearest new step by numerical label, choosing the lower label on a tie
+(e.g. 300 → 200 when 200 and 400 are equally near). Each suggested remapping requires
+user acceptance; no automatic reassignment. This is positional guidance, not inferred
+semantic intent or color similarity. All accepted changes share the final Apply.
+
+Surviving-name identity preservation and notices about their changed colors remain
+recommended design details; no remapping is needed if their identities survive.
+Exact impacted-reference eligibility and unspecified-value representation need the
+technical contract. The earlier unapplied count-round-trip agreement remains recorded;
+its interaction with confirmed replacement and remapping drafts must be reconciled.
+No revised wireframes, analyst re-review or implementation is authorized here.
+
 ### Departing steps during later editing
+
+**Historical policy, superseded for count replacement by the 22 November direction
+above.** Keep this record for provenance, not as the active count-change contract.
 
 **Agreed 21 November 2026:** when a count change removes steps from the ramp,
 keep their tokens as ordinary tokens by default. Preserve their stable identities,

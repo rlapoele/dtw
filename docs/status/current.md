@@ -10,6 +10,19 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp replacement and remapping direction — 22 November 2026
+
+The user replaced the ordinary-token-retention direction with confirmed ramp
+replacement on count changes. For each referencing token whose target disappears,
+suggest the nearest new numerical label (lower on ties), requiring individual
+acceptance; alternatives are another new step or unspecified value. The
+[owning amendment](../project/guided-color-palette-generation.md#count-replacement-and-reference-remapping--22-november-2026)
+and Draft 024 prominently flag superseded departure/reuse behavior; V2 count
+wireframes require a later revision. Next: reconcile Manual/Protected replacement
+and remaining draft cases one decision at a time. No implementation or renewed
+qualification. Markdown/whitespace checked. Suggested commit:
+`docs: record confirmed ramp replacement and reviewed remapping`.
+
 ## Unapplied ramp count round trips agreed — 22 November 2026
 
 The user agreed that unapplied count round trips preserve membership, identities

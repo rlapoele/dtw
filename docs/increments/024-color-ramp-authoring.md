@@ -12,6 +12,21 @@
   [workflow](../workflow/agent-roles.md), [presentation conventions](../project/presentation-conventions.md),
   [existing retention qualification limits](007-local-retention-and-backup.md#deferred-qualification).
 
+## Post-review direction amendment — 22 November 2026
+
+The [count replacement and remapping direction](../project/guided-color-palette-generation.md#count-replacement-and-reference-remapping--22-november-2026)
+supersedes the reviewed ordinary-token departure/reuse design. Count changes require
+confirmation of replacing the ramp; avoid hidden leftover ordinary tokens and a list
+of departing steps. For each affected referencing token, suggest the numerically
+nearest new label, lower label on a tie, and require explicit acceptance. The user
+may choose another step or an unspecified value instead of a broken reference.
+
+This material change has not yet been incorporated into revised wireframes or
+analyst re-review. AC-13/14, D2/D4, related verification and the historical V2
+count sheet below require reconciliation with it before agreement. Manual/Protected
+reset, surviving identities, draft round trips and technical reference eligibility
+remain to settle; the older rules below cannot override this notice. No implementation.
+
 ## Outcome and scope
 
 Create a single-seed color ramp in a provisional group-creation dialog, then reopen
