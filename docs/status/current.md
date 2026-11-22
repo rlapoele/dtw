@@ -10,6 +10,17 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp editing V4 UX accepted — 22 November 2026
+
+The user accepted [V4](../project/workbench-layout/color-ramp-editing-v4.md) as good
+enough for now. Stop further UX polishing; V4 owns compact confirmation/impact review
+and V3 retains workspace/coverage context. The owning direction and Draft 024 record
+acceptance separately from a renewed analyst check, full contract agreement and
+implementation authorization. Remaining numerical, eligibility/reference, metadata
+and ordinary-edit details remain open. No implementation, tests or qualification
+restart. Markdown/whitespace checked. Suggested commit:
+`docs: record ramp editing V4 UX acceptance`.
+
 ## Ramp review progressive disclosure V4 — 22 November 2026
 
 The user reviewed V3 as covering the scenarios and agreed a focused UX refinement

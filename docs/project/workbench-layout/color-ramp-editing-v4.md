@@ -1,6 +1,11 @@
 # Color ramp editing V4
 
-**Focused usability proposal — 22 November 2026. User review pending.**
+**User-accepted UX version — 22 November 2026.**
+
+The user accepted V4 as good enough for now. Further UX polish is deferred; do not
+keep iterating without a concrete need. This records design acceptance, not completed
+analyst review, final agreement to the full increment contract or implementation
+authorization.
 
 The user endorsed V3's workflow coverage but found it too verbose for frequent use.
 V4 keeps the [agreed behavior](../guided-color-palette-generation.md) and replaces
@@ -92,8 +97,8 @@ acceptance, skip-review mode, automatic remapping or new behavioral policy.
 
 Outstanding numerical, reference eligibility/Unspecified, repeated-replacement identity,
 ordinary Revert and metadata/history contracts remain the [Draft 024](../../increments/024-color-ramp-authoring.md)
-questions. This visual refinement does not settle them. Review V4 before any analyst
-check; no implementation is authorized.
+questions. UX acceptance does not settle them. A renewed analyst check remains
+a separate next step; no implementation is authorized.
 
 Both SVGs were parsed, rendered and visually inspected; local links and Markdown
 whitespace checked. Existing color examples were reused without numerical claims.

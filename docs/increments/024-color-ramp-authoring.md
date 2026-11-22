@@ -6,8 +6,9 @@
   reference-impact decisions consolidated here. The user authorized this contract
   cleanup and new wireframes. The user reviewed V3 as covering the scenarios, then
   agreed progressive-disclosure refinement. [Editing V4](../project/workbench-layout/color-ramp-editing-v4.md)
-  is for user review; V3 remains the coverage reference. No V3/V4 analyst review,
-  final agreement or implementation is implied.
+  was accepted as good enough for now on 22 November; further UX polish is deferred.
+  V3 remains the coverage/workspace reference. No completed V3/V4 analyst review,
+  final full-contract agreement or implementation authorization is implied.
 - References: [owning ramp direction](../project/guided-color-palette-generation.md),
   [creation V3](../project/workbench-layout/color-ramp-creation-v3.md),
   [scale model](../design-tokens/conceptual-model.md#scale-generation),
@@ -49,8 +50,8 @@ The [progressive-disclosure direction](../project/guided-color-palette-generatio
 shortens repeated reading without changing the requirements: important consequences
 stay visible, optional detail expands, pending reference decisions come first, and
 accepted choices collapse with Change. Individual remapping acceptance and explicit
-Unspecified consequence disclosure remain mandatory. V4 supplies the next static
-proposal, pending user review before any renewed analyst check.
+Unspecified consequence disclosure remain mandatory. V4 is the user-accepted static UX version; a renewed analyst check remains a
+separate next step.
 
 ## Acceptance criteria
 

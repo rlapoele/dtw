@@ -350,9 +350,11 @@ direction keeps the behavior and safeguards while shortening their presentation:
 - Show contextual guidance where relevant. Do not hide consequential replacement of
   manual/protected colors or downstream unresolved effects behind optional disclosure.
 
-[Editing V4](workbench-layout/color-ramp-editing-v4.md) explores this presentation for
-user review. V3 remains the scenario-coverage reference. This is authorization for
-static design refinement, not final layout agreement, analyst review or implementation.
+The user accepted [Editing V4](workbench-layout/color-ramp-editing-v4.md) as good
+enough for now on 22 November. Further UX polish is deferred. V3 remains the
+scenario-coverage/workspace reference; V4 owns the accepted compact confirmation
+and impact review. Acceptance does not imply completed analyst review, full contract
+agreement or implementation authorization.
 
 ### Count replacement and reference remapping — 22 November 2026
 
@@ -421,8 +423,8 @@ not automatic restoration of older drafts when a count is changed back.
 Exact impacted-reference eligibility and unspecified-value representation need the
 technical contract. The earlier count-round-trip agreement is superseded by the lifecycle below.
 The user authorized consolidation into [Editing V3](workbench-layout/color-ramp-editing-v3.md)
-and the active draft contract. V3 requires user review before a renewed analyst
-check; no implementation is authorized.
+and the active draft contract. The user accepted the subsequent V4 UX refinement;
+a renewed analyst check remains separate. No implementation is authorized.
 
 ### Confirmed replacement lifecycle — agreed 22 November 2026
 
@@ -591,6 +593,6 @@ requested by recording these choices.
 7. Which exact reference forms can participate in the agreed impact review/remapping, and how is an explicitly accepted unspecified value represented and validated? Count replacement, non-member collisions and color resets follow the agreements above.
 8. What is the versioned ramp-metadata schema, and how do retention, backup and each export profile preserve or omit it? How are ordered step membership, renamed/moved tokens, references and missing members handled?
 9. How should Manual and ramp-step protection be represented technically? Ordinary regeneration preserves protected values without prompts; confirmed count replacement is the agreed exception. What precise ordinary-edit Revert behavior remains outside the agreed replacement reset?
-10. What atomic operation/Undo and persistence compatibility contract implements the agreed shared Apply? Creation V3 and editing V3 supply the identified interaction designs, with V3 pending user review; numerical and implementation contracts remain unfinished.
+10. What atomic operation/Undo and persistence compatibility contract implements the agreed shared Apply? Creation V3 and the V3 workspace with accepted V4 review flows supply the identified interaction designs; numerical and implementation contracts remain unfinished.
 
 When this work is explicitly resumed, use this concept and the [open questions](../planning/open-questions.md#guided-color-foundations-and-interface-semantics) to prepare a bounded proposal through the existing designer/user/analyst workflow. The first exploration is agreed in direction only; its design, contract, and execution still require the usual authorization.
