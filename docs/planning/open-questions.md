@@ -92,25 +92,33 @@ These questions remain open beyond that bounded subset. Culori 4.0.2 is installe
 ## Guided color foundations and interface semantics
 
 **Latest first-slice decisions — 21–22 November 2026; no implementation authorized:**
-one seed, 2–20 steps (11 default), positional naming, constant OKLCH hue,
-Retained chroma by default with Restrained available, uniform seed alpha, OKLCH
-generated values and explicit seed/gamut decisions. Endpoint and Auto direction,
-creation without individual-step edits, preserved departing tokens and reviewed
-returning-token choices are agreed in the [owning direction](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026).
-The [Manual/protection agreement](../project/guided-color-palette-generation.md#manual-status-and-regeneration-protection)
-keeps those states separate. Editing uses one shared draft/Apply, guarded departure
-and a fixed read-only Primitive layer in the ramp-step inspector. These decisions
-supersede fixed-11/single-behavior/fixed-membership proposals.
+one seed, 2–20 steps (11 default), positional naming, constant OKLCH hue, Retained
+chroma by default with Restrained available, uniform seed alpha, OKLCH generated
+values, and explicit seed/gamut/endpoint decisions. Creation has no individual-step
+editing; subsequent editing uses one shared draft/Apply and read-only Primitive layer.
 
-The user approved [Editing V2](../project/workbench-layout/color-ramp-editing-v2.md),
-including the Primitive amendment, for analyst review on 22 November. The
-[reconciled Increment 024 draft](../increments/024-color-ramp-authoring.md) records
-that review and the remaining decisions D1–D5: exact numerical contract; draft
-reconciliation (Revert, changed replacement candidates and new members; confirmed
-count changes now replace the draft without automatic round-trip recovery); eligibility/field ownership; safe name-resolution workflow; versioned
-metadata, history and compatibility. Multi-setting regeneration triggers remain a
-proposal; the user has not selected seed-only regeneration. Final complete
-contract/design agreement and implementation authorization remain pending.
+The [owning direction](../project/guided-color-palette-generation.md) now distinguishes
+ordinary regeneration (Manual/Protected preserved) from confirmed count replacement
+(color adjustments reset; absent steps removed; no ordinary-token leftovers or
+count-round-trip draft recovery). Surviving names retain identities, latest descriptions
+and protection; new steps are Generated/unprotected. Required non-member name conflicts
+block replacement without adoption/overwrite. Surviving valid seed positions remain;
+disappearing ones use visible/editable Auto placement. Protection scope is ramp steps.
+
+Reference review shows direct/indirect impacts while keeping chains intact. Immediate
+lost targets require individual acceptance of nearest-label suggestions (lower on ties),
+another new step or explicit Unspecified. Disclosed downstream unresolved outcomes are
+allowed. Seed-only changes retain valid accepted remappings and refresh previews;
+another confirmed count change resets choices. Confirmation replaces the draft, Apply
+saves it, and Discard restores the saved ramp.
+
+[Draft 024](../increments/024-color-ramp-authoring.md) consolidates these requirements
+and retains the historical V2 analyst review. [Editing V3](../project/workbench-layout/color-ramp-editing-v3.md)
+is for user review, not yet analyst-reviewed. Remaining D1–D5 concern exact numerical
+policy; ordinary editing/revert and non-count invalid seed placement; member eligibility
+and creation description ownership; reference forms/Unspecified/traversal; and versioned
+metadata/history/backup. Settled count/protection/remapping choices are not reopened.
+Final contract/design agreement and implementation authorization remain pending.
 
 **Broader confirmed future direction — 10 November 2026; work deferred:** support a
 color foundation first, followed by optional semantic-token recipes for light and

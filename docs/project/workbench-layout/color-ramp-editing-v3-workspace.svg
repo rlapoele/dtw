@@ -1,0 +1,256 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1280" viewBox="0 0 1600 1280">
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<style>text{font-family:Arial,sans-serif} .mono{font-family:Menlo,monospace}</style>
+<text x="32" y="40" font-size="24" font-weight="600" fill="#262626">Ramp editing V3 · one replacement draft, familiar token inspector</text>
+<text x="32" y="67" font-size="15" font-weight="400" fill="#666">22 November 2026 · After confirmed 3 → 11 replacement, then one manual edit</text>
+<rect x="24" y="90" width="1552" height="1127" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="45" y="125" font-size="17" font-weight="600" fill="#262626">Token Workbench</text>
+<text x="225" y="125" font-size="15" font-weight="400" fill="#262626">Projects / Studio System</text>
+<line x1="24" y1="146" x2="1576" y2="146" stroke="#e5e5e5" stroke-width="1"/>
+<line x1="184" y1="146" x2="184" y2="1217" stroke="#e5e5e5" stroke-width="1"/>
+<text x="42" y="184" font-size="12" font-weight="600" fill="#737373">NAVIGATION</text>
+<text x="42" y="228" font-size="15" font-weight="600" fill="#262626">Color</text>
+<rect x="35" y="247" width="135" height="36" rx="7" fill="#e5e5e5" stroke="#e5e5e5"/>
+<text x="54" y="271" font-size="15" font-weight="600" fill="#262626">Brand</text>
+<text x="54" y="312" font-size="15" font-weight="400" fill="#262626">Neutral</text>
+<text x="42" y="369" font-size="15" font-weight="400" fill="#262626">Spacing</text>
+<line x1="1120" y1="146" x2="1120" y2="1217" stroke="#e5e5e5" stroke-width="1"/>
+<text x="208" y="187" font-size="23" font-weight="600" fill="#262626">color.brand</text>
+<rect x="936" y="162" width="160" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1016.0" y="184" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Ramp settings</text>
+<text x="208" y="219" font-size="14" font-weight="400" fill="#666">11 steps · Seed at 500 · Target sRGB</text>
+<text x="208" y="267" font-size="14" font-weight="600" fill="#262626">Component space</text>
+<rect x="350" y="245" width="132" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="416.0" y="267" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">OKLCH  ▾</text>
+<text x="496" y="267" font-size="13" font-weight="400" fill="#666">Project default</text>
+<rect x="746" y="245" width="126" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="809.0" y="267" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Checkerboard</text>
+<rect x="881" y="245" width="95" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="928.5" y="267" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Light</text>
+<rect x="986" y="245" width="110" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1041.0" y="267" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Dark</text>
+<text x="208" y="307" font-size="13" font-weight="400" fill="#666">HEX (sRGB preview) · Alpha 100% · Locks protect against regeneration only</text>
+<rect x="649" y="328" width="72" height="559" rx="7" fill="#f0f0f0" stroke="#e5e5e5"/>
+<text x="315" y="356" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">50</text>
+<rect x="290" y="370" width="50" height="54" rx="7" fill="#f1f5fc" stroke="#d4d4d4"/>
+<text x="315" y="448" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#F1F5FC</text>
+<svg x="301" y="461" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<line x1="315" y1="550" x2="315" y2="605" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="307" y="547.65" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="315" y="629" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.97</text>
+<line x1="315" y1="658" x2="315" y2="713" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="307" y="707.7073987002581" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="315" y="737" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.009</text>
+<line x1="315" y1="766" x2="315" y2="821" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="307" y="777.3061136974959" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="315" y="845" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="389" y="356" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">100</text>
+<rect x="364" y="370" width="50" height="54" rx="7" fill="#dce9ff" stroke="#d4d4d4"/>
+<text x="389" y="448" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#DCE9FF</text>
+<svg x="375" y="461" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<line x1="389" y1="550" x2="389" y2="605" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="381" y="549.7700481338982" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="389" y="629" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.93</text>
+<line x1="389" y1="658" x2="389" y2="713" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="381" y="702.5529515420277" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="389" y="737" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.047</text>
+<line x1="389" y1="766" x2="389" y2="821" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="381" y="777.3061136974959" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="389" y="845" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="463" y="356" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">200</text>
+<rect x="438" y="370" width="50" height="54" rx="7" fill="#b4d1ff" stroke="#d4d4d4"/>
+<text x="463" y="448" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#B4D1FF</text>
+<svg x="449" y="461" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<line x1="463" y1="550" x2="463" y2="605" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="455" y="554.0101444016943" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="463" y="629" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.85</text>
+<line x1="463" y1="658" x2="463" y2="713" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="455" y="694.0632738696484" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="463" y="737" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.109</text>
+<line x1="463" y1="766" x2="463" y2="821" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="455" y="777.3061136974959" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="463" y="845" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="537" y="356" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">300</text>
+<rect x="512" y="370" width="50" height="54" rx="7" fill="#8bb7ff" stroke="#d4d4d4"/>
+<text x="537" y="448" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#8BB7FF</text>
+<svg x="523" y="461" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<line x1="537" y1="550" x2="537" y2="605" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="529" y="558.2502406694906" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="537" y="629" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.78</text>
+<line x1="537" y1="658" x2="537" y2="713" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="529" y="687.9992183893775" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="537" y="737" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.153</text>
+<line x1="537" y1="766" x2="537" y2="821" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="529" y="777.3061136974959" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="537" y="845" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="611" y="356" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">400</text>
+<rect x="586" y="370" width="50" height="54" rx="7" fill="#619dff" stroke="#d4d4d4"/>
+<text x="611" y="448" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#619DFF</text>
+<svg x="597" y="461" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<line x1="611" y1="550" x2="611" y2="605" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="603" y="562.4903369372869" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="611" y="629" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.70</text>
+<line x1="611" y1="658" x2="611" y2="713" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="603" y="684.3607851012149" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="611" y="737" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.179</text>
+<line x1="611" y1="766" x2="611" y2="821" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="603" y="777.3061136974959" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="611" y="845" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="685" y="356" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">500</text>
+<rect x="660" y="370" width="50" height="54" rx="7" fill="#4488f7" stroke="#d4d4d4"/>
+<text x="685" y="448" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#4488F7</text>
+<svg x="671" y="461" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<text x="685" y="514" font-size="11" font-weight="600" fill="#262626" text-anchor="middle">Seed · M</text>
+<line x1="685" y1="550" x2="685" y2="605" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="677" y="565.8" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="685" y="629" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.64</text>
+<line x1="685" y1="658" x2="685" y2="713" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="677" y="684.25" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="685" y="737" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.180</text>
+<line x1="685" y1="766" x2="685" y2="821" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="677" y="777.3083333333333" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="685" y="845" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="759" y="356" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">600</text>
+<rect x="734" y="370" width="50" height="54" rx="7" fill="#2265d1" stroke="#d4d4d4"/>
+<text x="759" y="448" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#2265D1</text>
+<svg x="745" y="461" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<line x1="759" y1="550" x2="759" y2="605" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="751" y="571.9014480483979" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="759" y="629" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.53</text>
+<line x1="759" y1="658" x2="759" y2="713" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="751" y="684.2331207753144" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="759" y="737" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.180</text>
+<line x1="759" y1="766" x2="759" y2="821" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="751" y="777.3061136974959" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="759" y="845" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="833" y="356" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">700</text>
+<rect x="808" y="370" width="50" height="54" rx="7" fill="#124ba5" stroke="#d4d4d4"/>
+<text x="833" y="448" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#124BA5</text>
+<svg x="819" y="461" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<text x="833" y="514" font-size="11" font-weight="600" fill="#262626" text-anchor="middle"></text>
+<line x1="833" y1="550" x2="833" y2="605" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="825" y="577.0724628917128" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="833" y="629" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.44</text>
+<line x1="833" y1="658" x2="833" y2="713" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="825" y="687.4885610857757" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="833" y="737" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.156</text>
+<line x1="833" y1="766" x2="833" y2="821" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="825" y="777.3061136974959" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="833" y="845" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="907" y="356" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">800</text>
+<rect x="882" y="370" width="50" height="54" rx="7" fill="#0d3473" stroke="#d4d4d4"/>
+<text x="907" y="448" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#0D3473</text>
+<svg x="893" y="461" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<line x1="907" y1="550" x2="907" y2="605" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="899" y="582.2434777350277" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="907" y="629" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.34</text>
+<line x1="907" y1="658" x2="907" y2="713" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="899" y="692.9142949365445" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="907" y="737" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.117</text>
+<line x1="907" y1="766" x2="907" y2="821" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="899" y="777.3061136974959" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="907" y="845" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="981" y="356" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">900</text>
+<rect x="956" y="370" width="50" height="54" rx="7" fill="#0e203e" stroke="#d4d4d4"/>
+<text x="981" y="448" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#0E203E</text>
+<svg x="967" y="461" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<line x1="981" y1="550" x2="981" y2="605" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="973" y="587.4144925783426" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="981" y="629" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.25</text>
+<line x1="981" y1="658" x2="981" y2="713" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="973" y="700.5103223276207" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="981" y="737" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.062</text>
+<line x1="981" y1="766" x2="981" y2="821" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="973" y="777.3061136974959" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="981" y="845" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="1055" y="356" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">950</text>
+<rect x="1030" y="370" width="50" height="54" rx="7" fill="#0e1623" stroke="#d4d4d4"/>
+<text x="1055" y="448" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#0E1623</text>
+<svg x="1041" y="461" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<line x1="1055" y1="550" x2="1055" y2="605" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="1047" y="590.0" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="1055" y="629" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.20</text>
+<line x1="1055" y1="658" x2="1055" y2="713" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="1047" y="705.1221961007741" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="1055" y="737" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.028</text>
+<line x1="1055" y1="766" x2="1055" y2="821" stroke="#d4d4d4" stroke-width="4"/>
+<rect x="1047" y="777.3061136974959" width="16" height="8" rx="4" fill="#525252" stroke="#525252"/>
+<text x="1055" y="845" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="208" y="577" font-size="13" font-weight="600" fill="#262626">Lightness</text>
+<text x="208" y="598" font-size="12" font-weight="400" fill="#737373">0–1</text>
+<text x="208" y="685" font-size="13" font-weight="600" fill="#262626">Chroma</text>
+<text x="208" y="706" font-size="12" font-weight="400" fill="#737373">0–0.4</text>
+<text x="208" y="793" font-size="13" font-weight="600" fill="#262626">Hue</text>
+<text x="208" y="814" font-size="12" font-weight="400" fill="#737373">0–360°</text>
+<text x="208" y="929" font-size="15" font-weight="400" fill="#262626">Drag a slider or edit its number. The change is already in the ramp draft.</text>
+<text x="208" y="960" font-size="14" font-weight="400" fill="#666">Select another step or Ramp settings freely; your edits stay in this session.</text>
+<line x1="208" y1="997" x2="1096" y2="997" stroke="#e5e5e5" stroke-width="1"/>
+<text x="208" y="1031" font-size="16" font-weight="600" fill="#262626">Draft summary</text>
+<text x="208" y="1060" font-size="14" font-weight="400" fill="#262626">Count 3 → 11 · 1 manual color edit · 1 protection change</text>
+<text x="208" y="1105" font-size="14" font-weight="600" fill="#262626">Reset color restores the replacement candidate; description and lock stay.</text>
+<text x="208" y="1136" font-size="14" font-weight="400" fill="#262626">Apply ramp changes saves the complete draft from the inspector footer.</text>
+<text x="1144" y="179" font-size="12" font-weight="600" fill="#737373">COLOR TOKEN</text>
+<text x="1144" y="208" font-size="20" font-weight="600" fill="#262626">color.brand.500</text>
+<text x="1446" y="175" font-size="12" font-weight="400" fill="#262626">Current</text>
+<text x="1505" y="175" font-size="12" font-weight="400" fill="#262626">New</text>
+<rect x="1446" y="184" width="34" height="34" rx="7" fill="#3b82f6" stroke="#d4d4d4"/>
+<rect x="1505" y="184" width="34" height="34" rx="7" fill="#4488f7" stroke="#d4d4d4"/>
+<line x1="1144" y1="234" x2="1552" y2="234" stroke="#e5e5e5" stroke-width="1"/>
+<text x="1144" y="258" font-size="15" font-weight="600" fill="#262626">Edit token</text>
+<text x="1539" y="258" font-size="16" font-weight="400" fill="#262626">⌄</text>
+<text x="1144" y="292" font-size="13" font-weight="600" fill="#262626">Description</text>
+<rect x="1144" y="302" width="408" height="57" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1154" y="326" font-size="14" font-weight="400" fill="#262626">Primary brand blue</text>
+<text x="1144" y="386" font-size="14" font-weight="600" fill="#262626">Layer</text>
+<rect x="1144" y="396" width="408" height="35" rx="7" fill="#ededed" stroke="#d4d4d4"/>
+<text x="1156" y="419" font-size="15" font-weight="400" fill="#262626">Primitive</text>
+<text x="1144" y="451" font-size="12" font-weight="400" fill="#737373">Read-only · Ramp steps are Primitive.</text>
+<text x="1144" y="485" font-size="14" font-weight="400" fill="#262626">● Literal color       ○ Reference</text>
+<text x="1144" y="508" font-size="12" font-weight="400" fill="#737373">Reference editing requires eligibility review.</text>
+<text x="1144" y="541" font-size="14" font-weight="600" fill="#262626">View color space</text>
+<rect x="1144" y="551" width="196" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1156" y="574" font-size="15" font-weight="400" fill="#262626">OKLCH  ▾</text>
+<text x="1144" y="605" font-size="12" font-weight="400" fill="#737373">Draft in OKLCH. Switching view keeps exact values.</text>
+<text x="1144" y="633" font-size="12" font-weight="400" fill="#737373">Up to 4 decimal places. Focus for full precision.</text>
+<text x="1144" y="662" font-size="13" font-weight="600" fill="#262626">Lightness</text>
+<line x1="1151" y1="683" x2="1262" y2="683" stroke="#c4c4c4" stroke-width="5"/>
+<rect x="1211" y="677" width="8" height="12" rx="3" fill="#525252" stroke="#525252"/>
+<rect x="1144" y="699" width="128" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1154" y="721" font-size="14" font-weight="400" fill="#262626" class="mono">0.64</text>
+<text x="1284" y="662" font-size="13" font-weight="600" fill="#262626">Chroma</text>
+<line x1="1291" y1="683" x2="1402" y2="683" stroke="#c4c4c4" stroke-width="5"/>
+<rect x="1351" y="677" width="8" height="12" rx="3" fill="#525252" stroke="#525252"/>
+<rect x="1284" y="699" width="128" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1294" y="721" font-size="14" font-weight="400" fill="#262626" class="mono">0.18</text>
+<text x="1424" y="662" font-size="13" font-weight="600" fill="#262626">Hue (°)</text>
+<line x1="1431" y1="683" x2="1542" y2="683" stroke="#c4c4c4" stroke-width="5"/>
+<rect x="1491" y="677" width="8" height="12" rx="3" fill="#525252" stroke="#525252"/>
+<rect x="1424" y="699" width="128" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1434" y="721" font-size="14" font-weight="400" fill="#262626" class="mono">259.8</text>
+<text x="1144" y="759" font-size="13" font-weight="600" fill="#262626">Alpha</text>
+<line x1="1151" y1="781" x2="1544" y2="781" stroke="#bdbdbd" stroke-width="5"/>
+<rect x="1537" y="775" width="8" height="12" rx="3" fill="#525252" stroke="#525252"/>
+<rect x="1144" y="798" width="408" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1154" y="820" font-size="14" font-weight="400" fill="#262626" class="mono">1</text>
+<text x="1144" y="858" font-size="13" font-weight="400" fill="#262626">▸ Color entry guidance</text>
+<text x="1144" y="888" font-size="12" font-weight="400" fill="#666">Draft preview: #4488F7 · Manual seed-step value</text>
+<rect x="1144" y="903" width="242" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1265.0" y="925" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Reset color to generated</text>
+<text x="1144" y="960" font-size="14" font-weight="600" fill="#262626">Applied</text>
+<text x="1233" y="960" font-size="14" font-weight="400" fill="#737373">Resolved &amp; trace</text>
+<line x1="1144" y1="972" x2="1552" y2="972" stroke="#e5e5e5" stroke-width="1"/>
+<text x="1144" y="999" font-size="14" font-weight="600" fill="#262626">Currently applied</text>
+<text x="1537" y="999" font-size="15" font-weight="400" fill="#262626">›</text>
+<text x="1144" y="1032" font-size="14" font-weight="600" fill="#262626">Metadata</text>
+<text x="1537" y="1032" font-size="15" font-weight="400" fill="#262626">›</text>
+<text x="1144" y="1065" font-size="14" font-weight="600" fill="#262626">All authored data</text>
+<text x="1537" y="1065" font-size="15" font-weight="400" fill="#262626">›</text>
+<line x1="1144" y1="1080" x2="1552" y2="1080" stroke="#e5e5e5" stroke-width="1"/>
+<svg x="1144" y="1094" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<text x="1185" y="1113" font-size="13" font-weight="400" fill="#262626">Not protected from regeneration</text>
+<line x1="1144" y1="1134" x2="1552" y2="1134" stroke="#e5e5e5" stroke-width="1"/>
+<text x="1144" y="1160" font-size="13" font-weight="600" fill="#262626">Count + color + protection · entire ramp draft</text>
+<rect x="1144" y="1177" width="408" height="34" rx="7" fill="#262626" stroke="#d4d4d4"/>
+<text x="1348.0" y="1199" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Apply ramp changes</text>
+<text x="32" y="1253" font-size="15" font-weight="400" fill="#262626">Ordinary regeneration keeps protected colors. Count replacement is the explicit exception; Apply saves the reviewed draft.</text>
+</svg>

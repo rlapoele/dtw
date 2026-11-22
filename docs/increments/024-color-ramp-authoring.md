@@ -1,164 +1,51 @@
 # Increment 024: Color ramp authoring
 
-- Contract status: **Draft** — reconciled 22 November 2026; not finally agreed.
+- Contract status: **Draft** — consolidated 22 November 2026; not finally agreed.
 - Delivery status: **Not started; no implementation authorized**.
-- Review authority: the user approved **Ramp editing V2**, including the fixed
-  Primitive inspector amendment, for analyst review on 22 November and requested
-  reconciliation of this contract with all recorded decisions. Approval for this
-  review is distinct from final contract/design agreement and implementation.
+- Authority: V2 received analyst review, then the user made the replacement and
+  reference-impact decisions consolidated here. The user authorized this contract
+  cleanup and new wireframes. [Editing V3](../project/workbench-layout/color-ramp-editing-v3.md)
+  is for user review; no V3 analyst review, final agreement or implementation is implied.
 - References: [owning ramp direction](../project/guided-color-palette-generation.md),
+  [creation V3](../project/workbench-layout/color-ramp-creation-v3.md),
   [scale model](../design-tokens/conceptual-model.md#scale-generation),
   [architecture](../project/architecture.md), [interoperability](../design-tokens/interoperability.md),
   [workflow](../workflow/agent-roles.md), [presentation conventions](../project/presentation-conventions.md),
-  [existing retention qualification limits](007-local-retention-and-backup.md#deferred-qualification).
-
-## Post-review direction amendment — 22 November 2026
-
-The [count replacement and remapping direction](../project/guided-color-palette-generation.md#count-replacement-and-reference-remapping--22-november-2026)
-supersedes the reviewed ordinary-token departure/reuse design. Count changes require
-confirmation of replacing the ramp; avoid hidden leftover ordinary tokens and a list
-of departing steps. For each affected referencing token, suggest the numerically
-nearest new label, lower label on a tie, and require explicit acceptance. The user
-may choose another step or an unspecified value instead of a broken reference.
-
-The user subsequently agreed that the explicit count-replacement confirmation can
-authorize one-time replacement of protected values at surviving labels, preserving
-protection afterward and saving only on Apply. Separate per-step replacement review
-is not required for this clearly disclosed count-replacement action. The user also agreed that confirmed replacement may remove protected steps whose
-labels disappear once affected references are explicitly resolved. The confirmation
-discloses removal despite protection; no hidden ordinary tokens or transferred
-protection. Removal/reference changes share Apply. Ordinary regeneration safeguards
-remain.
-
-The user also agreed that confirmed count replacement resets saved and pending
-manual color adjustments to generated values, clearing Manual for replaced surviving
-steps while retaining protection. Disclose this in confirmation; subsequent manual
-candidate edits establish Manual again. No change is saved until Apply. Descriptions
-and other metadata are not implicitly reset by this color decision. The later confirmed replacement lifecycle below supersedes automatic round-trip recovery.
-
-**Latest lifecycle agreement:** confirmation replaces the draft; Apply saves it;
-discarding the whole draft restores the saved ramp. Cancelling confirmation keeps
-the current draft. Every confirmed count change starts a fresh replacement, even
-when returning to an earlier count: no automatic restoration of old individual edits
-or remapping choices. Disclose consequences before confirmation. This supersedes
-the earlier unapplied count-round-trip agreement; see the [owning lifecycle](../project/guided-color-palette-generation.md#confirmed-replacement-lifecycle--agreed-22-november-2026).
-
-**Surviving identity and impact-notice agreement:** preserve identities and existing
-references for step names present in both ramps. Inform the user of impacted
-referencing tokens even when the target survives and only its color changes.
-Provide context-appropriate actions: notice for a changed surviving target, explicit
-resolution for a disappearing target. Do not require remapping solely for a changed
-color. Exact impact traversal and UI details remain to specify before implementation.
-
-**Description agreement:** surviving steps preserve saved and pending descriptions
-during replacement. Color-reset semantics do not erase separately authored text;
-new steps do not inherit descriptions from removed steps. This does not reinstate
-automatic recovery of older drafts after another confirmed count change.
-
-**Pending protection agreement:** surviving steps retain their latest protection
-state, including pending lock/unlock changes as well as saved protection. Count
-replacement resets color adjustments without reverting those separate choices;
-the shared Apply saves the resulting state. No protection transfer or recovery of
-older removed-step drafts is implied.
-
-**Post-replacement reset agreement:** Reset color to generated restores an edited
-candidate to the replacement's generated color and clears the new Manual adjustment,
-leaving description and protection unchanged. It does not recover the old saved
-color; Discard draft still restores the saved ramp. This replaces the earlier
-Revert-to-applied proposal in the confirmed-replacement context only.
-
-**Seed-change remapping agreement:** when only the seed color changes, accepted
-remappings remain in place if their targets remain valid. Update impact notices and
-previews; no repeat acceptance is required solely because the target color changes.
-Users may still revise the target before Apply. Confirmed count replacement retains
-its separate rule of clearing prior remapping choices.
-
-**Reference-chain agreement:** show notices for direct and indirect impacts; require
-remapping only where the immediate target disappears. Preserve chains and update
-downstream notices/previews without flattening indirect references. The user agreed that explicitly choosing Unspecified can leave downstream tokens
-unresolved when consequences are clearly disclosed before Apply. Preserve chains,
-show unresolved previews, and do not invent fallbacks or force indirect remapping.
-Distinguish that accepted outcome from an unanswered required choice in Apply gating;
-its technical representation and validation remain to specify.
-
-**Protection scope agreement:** protection is limited to ramp steps for this
-increment; broader token protection is out of scope. Do not implement protection
-controls/workflows for external referencing tokens. The proposed protected-external-
-token case is set aside. Earlier token-wide terminology does not broaden the slice
-or authorize a schema migration/removal of existing data. Manual/Protected separation
-and agreed replacement behavior within ramps still apply.
-
-**Ordinary regeneration protection amendment:** preserve Protected step colors
-without prompting on seed/ordinary settings changes. Remove Use generated value
-once and renewed candidate acceptance from this flow. Manual editing remains allowed;
-unlocking does not clear Manual. Confirmed count replacement is the agreed exception.
-This supersedes the earlier protected-candidate review criteria/proposals below and
-the V2 protected replacement state; revise them in the next design consolidation.
-
-**New-step default agreement:** genuinely new replacement steps begin Generated and
-unprotected, with no inherited protection from other steps. An explicit draft lock
-can protect them before Apply. Surviving-step protection rules remain unchanged;
-this does not authorize reuse or overwrite at occupied non-member paths.
-
-**Non-member collision agreement:** a required step name occupied by a non-member
-token blocks replacement, with no adoption or overwrite. Explain the conflict;
-choose another count or resolve the existing name through ordinary editing and
-retry, respecting draft guards. Do not mutate the conflicting token or its references.
-This supersedes earlier arbitrary non-member reuse proposals in AC-14/D4 below.
-
-**Disappearing seed-position agreement:** when confirmed replacement removes the
-assigned seed label, use existing Auto placement for the unchanged recipe seed.
-Show the result and allow a valid manual selection before Apply, with no additional
-confirmation dialog. This overrides the older later-editing missing-position block
-for count replacement only; it is not the nearest-label remapping rule.
-
-**Surviving seed-position agreement:** retain a surviving, valid assigned position
-during replacement, preserving the exact recipe seed and generating around it.
-The user may choose another valid position or explicitly recalculate Auto before
-Apply; a count change alone does not reposition a surviving valid seed.
-
-This material change has not yet been incorporated into revised wireframes or
-analyst re-review. AC-13/14, D2/D4, related verification and the historical V2
-count sheet below require reconciliation with it before agreement. Remaining Manual/Protected
-replacement details, metadata preservation, impact presentation and technical reference eligibility
-remain to settle; the older rules below cannot override this notice. No implementation.
+  [retention qualification limits](007-local-retention-and-backup.md#deferred-qualification).
 
 ## Outcome and scope
 
-Create a single-seed color ramp in a provisional group-creation dialog, then reopen
-its remembered settings in the central workbench and review changes in one shared
-draft. Members remain ordinary color tokens with stable identities. Optional group
-metadata records authoring settings and ordered membership, without live computed
-values, a new token type, group type inheritance or external-tool semantics.
+Create a single-seed color ramp in a provisional group-creation dialog, then edit
+its ordinary Primitive color tokens in the central workspace and familiar inspector.
+Optional group metadata retains the recipe, accepted seed position and ordered
+member identities; it does not create live computed values or group type inheritance.
 
-The active scope follows the [21 November decisions](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026)
-and [22 November editing agreement](../project/guided-color-palette-generation.md#single-apply-and-step-inspector--agreed-22-november-2026):
+- Counts 2–20, default 11; positional labels; constant OKLCH hue; seed alpha;
+  Retained intensity by default and Restrained available.
+- Creation has four stages and no per-step editing. Later editing has a shared draft
+  for settings, values, descriptions, ramp-step protection and reference changes.
+- Ordinary regeneration preserves Manual and Protected colors. Count changes are
+  explicitly confirmed replacements: confirmation replaces the draft, Apply saves,
+  and Discard draft restores the saved ramp.
+- Replacement removes absent steps rather than leaving ordinary-token leftovers.
+  Surviving labels keep identity, descriptions and protection; affected references
+  receive notices or explicit remapping decisions as appropriate.
+- New-group-only creation remains the proposed first boundary. Exclude existing-group
+  adoption, non-member adoption/overwrite, custom labels, multiple anchors, extra curve
+  controls, general detachment UI, semantic recipes, contrast calculations, pasted-list
+  import, new interchange mappings and broad compatibility qualification. Protection
+  controls/workflows outside ramp steps are out of scope; existing data is preserved.
 
-- Single seed; integer counts **2–20**, default **11**; positional names; constant
-  OKLCH hue and uniform seed alpha for generated steps.
-- **Color intensity: Retained** (quadratic retained chroma B, default) or
-  **Restrained** (linear taper A). Numerical completion is still required below.
-- Four-stage creation: group, seed, scale, positioning/final review. No individual
-  step editing before creation. Later editing uses the central matrix and inspector.
-- Retained seed, accepted position, settings and stable member identities; reviewed
-  regeneration, manual editing, separate Manual and Protected states, count changes
-  with preserved departing tokens and explicit returning-name conflict choices.
-- One final Apply for the entire editing draft, including descriptions, protection,
-  settings, values and membership; drafts remain session-only. Atomic history,
-  versioned persistence and recovery details below remain contract proposals.
-
-New-group-only creation is the proposed first boundary: no adoption or overwriting
-of an existing group. Exclude custom labels, multiple anchors, additional curve
-controls, general detachment UI, pasted-list import, semantic recipes, contrast
-calculations, new export mappings and broad compatibility qualification. Count
-changes and returning-token conflict review are included, not deferred topology.
+The active requirements below incorporate the latest owning agreements. Historical
+fixed-count, departing-token retention, returning-token adoption, automatic draft
+round-trip restoration and protected one-time replacement prompts are not alternatives.
+AC identifiers are retained where practical, with AC-20–22 added for reference review.
 
 ## Acceptance criteria
 
-These numbered criteria describe intended delivery, not implemented behavior.
-Explicit user decisions are requirements; details marked **proposed** await final
-agreement. Open decisions D1–D5 block the dependent criteria rather than allowing
-implementation to fill gaps implicitly.
+These criteria describe intended delivery, not implemented behavior. Explicit user
+decisions are requirements; **proposed** details and D1–D5 remain subject to agreement.
+The latest design must return to the user before renewed analyst review.
 
 ### Creation and calculation
 
@@ -200,8 +87,7 @@ implementation to fill gaps implicitly.
   recalculates after seed/count changes; a valid surviving manual label stays.
   Removed/invalid manual positions remain visible and require a confirmed valid
   replacement. No illustrative replacement label selects an algorithm. Save the
-  accepted placement; reopening never moves it. Later explicit Recalculate position
-  and setting-change reconciliation are proposed in D2; numerical edges need D1.
+  accepted placement; reopening never moves it. Later count replacement follows AC-13; non-count setting changes remain in D2; numerical edges need D1.
 - **AC-6 — Preview truthfulness.** Show full names, paths and values even at 20
   steps, using scrolling as needed. Repeated 8-bit sRGB previews produce non-blocking
   feedback identifying steps, without claiming authored equality or perceptual
@@ -212,102 +98,140 @@ implementation to fill gaps implicitly.
 
 ### Shared editing draft
 
-- **AC-7 — Workspace and inspector.** Reopen with saved settings/identities/states;
-  do not regenerate on open. Show named rounded swatches, HEX previews and exactly
-  three aligned component rows with thin vertical sliders/values per step. The
-  selected step uses the familiar token inspector with Current/New comparison,
-  description, value fields, alpha and read-only detail sections. Layer is fixed
-  **Primitive**, read-only/disabled in this surface. Reference is unavailable in V2
-  pending D3, not permission to remove ordinary token-editor capabilities. Keep
-  precise inputs for unavailable/out-of-range sliders, with honest range feedback.
+- **AC-7 — Workspace and inspector.** Reopen saved settings/identities/states without
+  regeneration. Show named rounded swatches, HEX previews and three aligned component
+  rows with thin vertical sliders and values. Selected-step details use the familiar
+  token inspector with Current/New comparison, description, color fields, alpha and
+  read-only details. Layer is fixed Primitive and disabled/read-only. Reference-mode
+  editing in the ramp inspector remains unavailable pending D3; do not mislabel an
+  incompatible token or remove ordinary-editor capabilities. Precise inputs remain
+  available for otherwise valid values outside the slider's visual range.
 - **AC-8 — View and edit semantics.** Proposed: initialize Component space from the
-  effective project default and retain one synchronized matrix/inspector selection
-  during the session. Viewing another space changes neither source values nor Manual
-  state. An actual component edit promotes only that step under existing editing
-  policy; alpha-only edits retain source space. Alpha is separate from the three
-  rows and the summary can show Mixed alpha. Description-only changes, viewing,
-  unchanged Apply and renaming do not establish Manual. No bulk conversion occurs.
-- **AC-9 — Manual and recipe seed.** Intentional value edits in either ramp or
-  ordinary token editing mark a member Manual while retaining token-wide protection.
-  Manual edits affect only that step; editing the seed-position token does not change
-  the recipe seed or reshape neighbours. Clearly show any difference between recipe
-  seed and anchor token. Returning manually to an older color does not itself clear
-  Manual. Any deliberate keep against a changed recipe follows Manual preservation;
-  exact draft/no-op reconciliation remains D2.
-- **AC-10 — Separate protection.** Manual or Protected keeps the value by default;
-  both can coexist. Manual editing remains allowed in either protection state. Matrix
-  open/closed ghost locks and the inspector control edit the same pending protection
-  state. Unlocking does not clear Manual, save, or immediately replace a value.
-  Accepting a generated candidate clears Manual; for a Protected token this requires
-  an explicit reviewed one-time replacement and retains protection. Generated plus
-  Protected is valid. Changed candidate authorization must be resolved under D2.
-- **AC-11 — One Apply, revert and departure.** Step/description/protection edits
-  update the shared draft immediately with no intermediate keep/save action. Switching
-  steps/settings or disclosures retains it. Apply ramp changes after editable fields
-  saves the entire reviewed draft and shows its scope; invalid/unresolved/pending
-  states block it with reasons. Revert step changes restores the selected step to
-  its applied state without reverting other steps/settings or silently clearing an
-  applied Manual state. D2 defines fields, membership interaction and new-member
-  behavior. Leaving offers Apply and leave, Discard and leave, Keep editing. Apply
-  and leave navigates only after confirmed success; failure retains the draft.
-- **AC-12 — Regeneration triggers and review.** Proposed V2 behavior: seed, count,
-  intensity, placement and target-gamut changes can prepare candidates. Manual edits,
-  passive view-space/background changes and lock toggles do not regenerate neighbours.
-  Settings/review remain draft-only. Show current versus generated candidate and
-  default keep reasons. Review generated value and Back to token fields preserve
-  the same session. Do not treat review approval as acceptance of a later changed
-  candidate. D2 resolves candidate invalidation and settings changed back.
+  effective project default and synchronize matrix/inspector viewing during the session.
+  Passive viewing never converts source values or establishes Manual. A component edit
+  promotes only that step under existing editing policy; alpha-only edits retain source
+  space. Alpha is separate from the three rows; show Mixed alpha when appropriate.
+  Description edits, viewing, renaming and unchanged Apply do not establish Manual.
+- **AC-9 — Manual and recipe seed.** Intentional value edits mark that ramp member
+  Manual, without changing protection or neighbouring candidates. Editing the seed-step
+  token leaves the recipe seed unchanged; clearly expose any difference. Returning
+  manually to an older color does not itself clear Manual. Ordinary regeneration keeps
+  Manual values by default. For an unprotected Manual step, the already agreed explicit
+  Use generated value choice previews the candidate; accepting it clears Manual. This
+  is distinct from the removed protected override. Count replacement follows AC-13.
+- **AC-10 — Protection.** Open/closed ghost locks and the inspector control share one
+  pending protection state. Manual editing remains allowed. Ordinary regeneration
+  preserves Protected colors without prompts; there is no Use generated value once
+  action or repeated protected-candidate approval. Unlocking alone neither clears
+  Manual nor replaces a color. Confirmed count replacement is the explicit exception:
+  protected surviving colors can be replaced and protected absent steps removed after
+  reference resolution. Surviving protection choices persist; new steps are unprotected.
+  Broader token protection is outside this increment.
+- **AC-11 — One Apply, reset and departure.** Edits immediately update one draft;
+  selecting another step/settings view preserves it. Apply ramp changes saves the whole
+  reviewed draft and displays scope. Unanswered required choices, invalid input and
+  pending work block Apply with reasons; explicitly accepted Unspecified is distinct
+  (AC-21). In ordinary editing, Revert restores the selected step to applied state
+  without changing other steps/settings or erasing an applied Manual status; its exact
+  field scope remains D2. After count replacement use Reset color to generated: restore
+  the replacement candidate, clear the new Manual adjustment, and leave description
+  and protection unchanged. Leaving offers Apply and leave / Discard and leave / Keep
+  editing. Navigate after confirmed save success only; failure retains the draft.
+- **AC-12 — Ordinary generation settings.** Seed and ordinary generation-setting
+  changes prepare draft candidates while preserving Manual/Protected values. Manual
+  step edits, view/background changes and lock toggles do not regenerate neighbours.
+  Count replacement follows AC-13 instead. Reopening does not regenerate. Detailed
+  non-count placement/setting reconciliation remains D2. Accepted reference remappings
+  survive seed-only changes while their targets remain valid; refresh all impacted
+  notices and previews without requiring acceptance solely for changed color (AC-22).
 
-### Membership and integrity
+### Replacement, membership and integrity
 
-- **AC-13 — Count reduction and seed destination.** A reviewed count reduction
-  removes membership only on Apply. Departing tokens keep their stable identities,
-  names, values, references and token-wide protection as ordinary tokens. No implicit
-  deletion. Resolve a disappearing seed position visibly. Moving the recipe anchor
-  does not authorize overwriting a Manual/Protected destination; retain its value by
-  default and show recipe-seed divergence or obtain explicit replacement review.
-  This historical departure criterion is superseded by the post-review replacement
-  amendment: each confirmed count change resets the draft, without round-trip recovery.
-- **AC-14 — Returning-name collisions.** A matching path alone does not authorize
-  reuse. For an eligible token, reviewed Reuse and keep value is default: preserve
-  identity/value/references/protection and establish Manual membership. Reuse with
-  generated value preserves identity, explains changed reference resolution and
-  follows protection/replacement rules. Leave outside keeps the token untouched
-  and blocks Apply until its required name is freed or count changed. Do not skip
-  required steps, silently rename, or convert a group/incompatible token. An explicit
-  batch keep-values choice may retain individual review. D3 defines eligibility and
-  D4 the name-resolution workflow; incidental extra group tokens remain outside.
+- **AC-13 — Confirmed count replacement.** A count change requires confirmation
+  explaining that saved/pending individual color adjustments will be replaced,
+  protected colors may be regenerated, absent protected steps removed and affected
+  references require resolution. Do not list departing steps. Cancel preserves the
+  current draft. Confirmation creates the replacement draft, not a save. Returning
+  to an earlier count is another confirmed replacement, never automatic recovery of
+  older color edits or remapping choices. Discard draft restores the saved ramp.
+  Before Apply, absent tokens are only proposed removals; apply removal and reviewed
+  reference changes together, leaving no hidden ordinary-token leftovers.
+
+  Surviving labels retain token identities, existing references and their latest
+  saved/pending descriptions and protection. Replace saved/pending manual colors with
+  generated values and clear Manual; subsequent edits establish Manual again. New
+  steps start Generated and unprotected, with no transferred description/protection.
+  Retain a surviving valid seed position; otherwise, when its label disappears, use
+  existing Auto placement for the unchanged recipe seed without another confirmation.
+  Show the position and permit manual selection or explicit Auto recalculation before
+  Apply. Reference remapping uses label distance, not this lightness-based seed rule.
+- **AC-14 — Non-member name conflicts.** A required name occupied by a non-member
+  token blocks replacement. Do not adopt, overwrite, silently rename, skip a required
+  step or mutate that token/references. Explain the conflict and preserve the current
+  draft. The user can choose another count or resolve the name through ordinary editing
+  before retrying, respecting the existing draft/departure guard. A conflicting group
+  is not converted into a token. No second independently saving editor is authorized.
 - **AC-15 — Structural integrity.** Preserve stable associations on group rename.
-  Missing, moved, renamed or unsupported members must receive explicit diagnostics
-  and cannot be silently recreated, converted or reassigned by path. Proposed first
-  boundary: block regeneration until the inconsistency is resolved; preserve ordinary
-  editing and all authored data (D3). Layer/type/role/composition stay separate.
-- **AC-16 — Atomic application and history.** Proposed: creation and each whole-ramp
-  Apply are one atomic application operation and one Undo/Redo step, restoring all
-  values, identities/membership, settings, descriptions, Manual and protection changes
-  consistently. A genuinely unchanged result writes nothing; settings-only changes
-  may be meaningful. Domain generation remains pure; application operations coordinate
-  accepted changes, UI does not implement token semantics. D2/D5 complete this contract.
-- **AC-17 — Retention and compatibility.** Preserve applied settings, recipe identity,
-  exact seed, accepted placement, ordered token identities and Manual/protection states
-  through reload and exact project backup/restore. Drafts are session-only. Existing
-  projects without ramp metadata keep their behavior. Proposed: validated versioned
-  metadata and explicit unknown-version/recipe refusal without silent discard. D5
-  supplies the exact schema/read-write compatibility policy. No new interchange claims.
-- **AC-18 — Revision and recovery.** Check Apply against the reviewed project revision.
-  Staleness, ownership loss, rejected or unknown writes cannot silently overwrite
-  tokens or claim unconfirmed success. Preserve the draft with explicit recovery,
-  pending gates and actionable errors consistent with existing authoring. Ordinary
-  token edits and ramp edits must not bypass one another's draft/revision guards.
+  Missing, moved, renamed or unsupported members need truthful diagnostics and cannot
+  be silently recreated, converted or reassigned by path. Proposed first boundary:
+  block affected regeneration until repaired through ordinary editing (D3). Keep
+  layer/type/role/composition separate. Repeated draft replacement must not silently
+  restore discarded edits; exact retained/new identity bookkeeping is specified in D5.
+- **AC-16 — Atomic application and history.** Creation and whole-ramp Apply coordinate
+  all accepted values, member creations/removals, references, settings, descriptions,
+  Manual and protection changes together. Proposed: one atomic application operation
+  and one Undo/Redo entry. A genuinely unchanged result writes nothing; settings-only
+  changes may matter. Domain generation remains pure; application operations coordinate
+  accepted changes. UI does not implement token semantics. D2/D5 complete this contract.
+- **AC-17 — Retention and compatibility.** Preserve applied settings/recipe identity,
+  exact seed, placement, member identities and statuses through reload and exact backup.
+  Drafts are session-only. Historical projects without ramp metadata retain behavior.
+  Proposed: validated versioned metadata and explicit unknown-version/recipe refusal
+  without silent loss. D5 defines the exact schema/compatibility policy. No new
+  interchange conformance or round-trip claims are made.
+- **AC-18 — Revision and recovery.** Apply checks the reviewed project revision.
+  Staleness, ownership loss, rejected or unknown writes cannot silently overwrite,
+  delete or remap tokens or claim unconfirmed success. Preserve the draft with existing
+  recovery and no blind retry. Ordinary token editing cannot bypass the ramp draft's
+  guard. Recompute/revalidate impacted references against the accepted revision.
 - **AC-19 — Accessible review.** Follow owned components, semantic theme, Heroicons
-  through Icon, and existing presentation conventions. All controls have keyboard
-  access, visible focus, labels and reachable errors/actions. Ghost lock action names
-  contain token path and expose current protection state; statuses are not color-only.
-  Preserve stage/Advanced return focus, selected-step context and one dialog boundary.
-  A representative narrow layout and 20-step scrolling retain full paths and actions.
-  Static SVGs establish none of the runtime keyboard/screen-reader behavior.
+  through Icon and presentation conventions. Controls have keyboard access, visible
+  focus, labels and reachable errors/actions. Lock action names include token path and
+  current protection; status is not color-only. Preserve stage/Advanced return focus
+  and selected-step context. Narrow layout and 20-step scrolling retain paths/actions.
+  Static wireframes do not establish runtime accessibility or responsive behavior.
 
-## Analyst review — 22 November 2026
+### Reference-impact review
+
+- **AC-20 — Impact notices and explicit remapping.** Inform the user whenever a
+  referencing token is found impacted, including changed colors at surviving targets.
+  Show direct and indirect effects. Require a choice only when the immediate target
+  disappears: explicitly accept the suggested new step, select another new step, or
+  choose Unspecified. Suggest nearest numerical label, lower label on ties; this is
+  positional guidance, not semantic/color inference. Every remapping requires individual
+  acceptance; no automatic assignment or accept-all shortcut is agreed. Unanswered
+  choices block Apply. Surviving-target color notices require no forced remapping.
+- **AC-21 — Chains and Unspecified.** Preserve reference chains. If button.background
+  references action.primary, which references a disappearing ramp step, edit the latter
+  connection only. Show the indirect button impact and updated preview. Explicitly
+  choosing Unspecified removes the affected token's reference/value under the technical
+  representation to define in D4; downstream references stay intact and may resolve to
+  no color. Clearly disclose that before Apply, show unresolved previews, and invent
+  no fallback. An explicitly accepted unresolved outcome does not remain an unanswered
+  choice or require remapping every indirect token.
+- **AC-22 — Remapping draft lifetime.** Reference edits share the ramp draft/Apply.
+  Seed-only changes preserve accepted remappings with still-valid targets; refresh
+  notices/previews, and allow later target revision. Another confirmed count change
+  discards earlier remapping choices and rebuilds the impact review for the new ramp.
+  Cancelling that confirmation preserves the existing choices; Discard draft restores
+  the saved references along with the saved ramp. D4 defines supported reference forms,
+  impact traversal and technical representation without weakening these behaviors.
+
+## Historical V2 analyst review — 22 November 2026
+
+This is the review of V2 before the later replacement decisions, not a review of
+V3 or of this consolidated draft. Findings below retain their historical wording;
+current dispositions are recorded immediately after the table.
 
 ### Reviewed baseline and authorization
 
@@ -338,144 +262,128 @@ review, numerical validation or usability acceptance.
 | F7 | High, open D5 | Optional group metadata lacks a validated version/compatibility contract. Existing backup support does not imply new metadata will survive it. AC-16–18 need technical preparation. |
 | F8 | Resolved as requirement/proposal split | Added fixed Primitive, shared Apply/departure and current/new requirements. Kept multi-setting candidate triggers, detailed revert, component-view and seed-description ownership explicitly proposed rather than silently agreed. |
 
-## Decisions still needed
+### Current dispositions after user decisions
 
-These are genuine missing details, not requests to reopen agreed count, endpoint,
-Manual/Protected, creation flow, fixed Primitive or single-Apply decisions.
+F1/F2/F8 are superseded by the active criteria above where their old wording differs.
+Most F4 interaction questions are now settled by AC-10–13 and AC-22; only D2 below
+remains. F6's adoption/leave-outside design was rejected: AC-14 now blocks non-member
+conflicts. F3/F5/F7 still require numerical, eligibility and metadata proposals.
+Reference-impact requirements AC-20–22 are new since V2 review. This consolidation
+is editorial/contract preparation, not renewed independent review of V3.
 
-### D1 — Production numerical contract (high priority)
+## Remaining preparation and decisions
 
-Prepare an identified versioned numerical proposal before implementation: exact A/B
-formulas and endpoint chroma proportions (comparison samples use 0.05/0.15 but do
-not establish production values), gamut mapping for generated colors and explicit
-seed adjustment, tolerances, precision/rounding, admissible seed/component domain,
-missing/powerless hue, exact-neutral preservation and white/black classification.
-Specify extended/negative lightness handling rather than extrapolating agreed
-endpoint formulas outside their supported domain. Define repeated-preview equality,
-alpha/compositing and Display P3 feedback without changing authored values.
+Do not reopen agreed replacement, reference notices/remapping, protection defaults,
+seed-count placement or single-Apply decisions. The remaining work is bounded below.
 
-**Recommendation:** qualify the two selected behaviors on representative brand,
-neutral, near-extreme, chromatic-boundary and transparent seeds; reuse existing
-conversion boundaries where applicable but explicitly scope any new mapping.
-Resolve the documented [neutral rounding observation](../project/workbench-layout/color-ramp-endpoints-v1.md)
-without changing fixtures to imply a general guarantee. No new algorithm or numerical
-threshold is selected by this analyst review; a small technical proposal is needed.
+### D1 — Production numerical contract
 
-### D2 — Draft reconciliation (high priority)
+Prepare versioned exact A/B formulas and chroma endpoint proportions; the samples'
+0.05/0.15 are not production approval. Specify generated-color and seed-adjustment
+gamut mapping, tolerances, precision, accepted seed domain, missing/powerless hue,
+neutral preservation, white/black classification, extended values, alpha/compositing
+and repeated-preview equality. Preserve the accepted endpoint/Auto formulas.
 
-**Agreed, superseding the earlier round-trip rule:** confirmation replaces the
-draft, Apply saves it, and discarding the whole draft restores the saved ramp.
-Cancel confirmation preserves the current draft. Returning to an earlier count is
-another replacement, not restoration of older edits or reference-remapping choices.
-See the [owning lifecycle](../project/guided-color-palette-generation.md#confirmed-replacement-lifecycle--agreed-22-november-2026).
+Use representative fixtures and the existing conversion boundary where applicable;
+address the recorded neutral-rounding observation explicitly. No new numerical
+algorithm, thresholds or qualification campaign is authorized by this consolidation.
 
-The following detailed Revert/new-member proposals still need reconciliation with
-replacement; they must not silently reinstate the superseded round-trip behavior.
+### D2 — Ordinary editing and remaining draft details
 
-Revert an existing step's color, description, protection and pending replacement
-choice to the applied baseline while preserving count/settings. Preserve applied
-Manual; if keeping a previously generated applied value against a changed recipe,
-make the resulting deliberate keep Manual and explain it. For a newly proposed
-member with no applied state, recommend a separately labeled Reset to generated
-value, not a misleading Current or Revert-to-applied claim. This is a design detail
-to return to the user if selected.
+Count replacement and its reset/lifetime rules are settled above. Remaining details
+are ordinary, non-replacement Revert's field scope (color/description/protection),
+no-op versus intentional edit-then-return handling, and non-count seed edits that invalidate a retained position.
+Clarify these without reintroducing protected replacement prompts or automatic
+count-round-trip recovery. Exact reset-candidate behavior after subsequent ordinary
+setting changes also needs an identified state rule; do not silently restore an older
+replacement recipe. These are small interaction decisions, not implementation latitude.
 
-Tie an accepted replacement to the reviewed candidate and settings context. If the
-candidate changes, invalidate that choice and require renewed review; recommend no
-automatic resurrection of a one-time choice when settings change back. Specify
-unchanged proposals/no-ops, edit-then-return versus explicit Revert, surviving seed
-placement on later edits, and all seed-destination Manual/Protected combinations.
-Keep multi-setting regeneration triggers proposed; no seed-only rule is inferred.
+### D3 — Member eligibility and creation field ownership
 
-### D3 — Eligibility and field ownership (high priority)
+Recommendation still awaiting agreement: support literal Primitive color members in
+the calculation domain; diagnose incompatible ordinary-editor layer/reference changes
+without coercion, false Primitive labels or alias flattening. Define missing/renamed/
+moved-member recovery. Non-member adoption is excluded, so eligibility is not a route
+to bypass AC-14. Existing ordinary-editor behavior must not be silently restricted.
 
-**Recommendation:** first support direct literal Primitive color members in the
-supported calculation domain; all supported literal spaces/alpha remain usable
-under existing policy. A token changed outside that boundary through ordinary
-editing stays intact but blocks affected regeneration with a truthful diagnostic
-and an explicit ordinary-editor repair route. Never show a non-Primitive token as
-Primitive, silently change its layer, or flatten an alias to its resolved color.
-Decide eligibility of absent layer, aliases/expressions, incomplete components,
-renamed/moved members and restored inconsistencies explicitly. New ramps being
-Primitive does not settle arbitrary existing-token eligibility.
+Seed description initializing only the creation anchor remains proposed. Surviving
+replacement descriptions are already agreed to persist; do not reopen that rule.
 
-Recommend seed description initializes only the creation anchor token; later moving
-the recipe anchor does not move/copy descriptions. Preserve reused tokens' descriptions
-and protection. Confirm these field semantics with the eligibility boundary.
+### D4 — Reference technical scope
 
-### D4 — Leave-outside name resolution (medium priority)
+Specify supported authored reference forms and impact traversal, cycle/missing-target
+handling, and the canonical Unspecified operation while preserving token identity,
+layer and descriptions. Separate explicit accepted unresolved outcomes from unsupported
+or unanswered states. Notices must cover direct/indirect impacts in the supported model;
+do not invent fallback values or silently claim support for unknown forms. Detail the
+ordinary name-repair navigation under existing guards; the user-facing collision policy
+itself is settled, with no adoption/overwrite workflow to design.
 
-**Recommendation:** for this slice, allow selecting a non-conflicting count inside
-the draft; to rename/move an existing conflicting token, leave through the agreed
-Apply/Discard/Keep guard, edit it ordinarily, then reopen/review the ramp against
-the new revision. An unresolved draft cannot Apply and leave. This is smaller than
-adding a second saving inspector or transactional rename workflow; tradeoff is
-re-entering discarded settings. Any richer in-session workflow needs an identified
-design revision. Do not silently remove Leave outside or skip required labels.
+### D5 — Metadata, history and compatibility
 
-### D5 — Metadata, history and compatibility (high priority)
-
-Prepare the exact typed, versioned group metadata and application-operation proposal,
-including recipe/version identifiers, ordered stable identities, position mode versus
-accepted position, Manual representation, token-wide protection, reader/writer and
-unknown-recipe behavior, historical absence, retention and backup validation.
-Recommend refusal over silent metadata loss and one atomic history operation per
-Apply; this is technical preparation within existing architecture, not a new storage
-platform decision. Do not guess an authored-version number or schema here.
+Prepare typed versioned group metadata and application-operation proposals: recipe
+identifiers, stable membership identities, accepted seed position/mode, Manual and
+ramp protection, validation, unknown readers/recipes, historical absence, retention
+and exact backup. Preserve existing protection data without expanding this feature's
+controls outside ramps. Define repeated-draft replacement identity bookkeeping against
+saved data without restoring discarded color edits. Original saved ramp members still
+exist until Apply; do not mistake them for unrelated non-members during a repeated
+draft replacement. Specify atomic removals, accepted
+reference changes and history together. Recommend one Undo/Redo entry per Apply;
+no schema version or storage platform is selected here.
 
 ## Verification approach and limits
 
-No production tests or browser qualification are authorized by this reconciliation.
-After agreement, use targeted evidence mapped to the criteria:
+No production tests, new numerical research or browser qualification occur in this pass.
+After final agreement, target evidence to the criteria:
 
-- **Essential function:** creation cancel/back/Advanced/gamut/placement; counts 2,
-  6, 11 and 20; both intensities; representative numerical fixtures after D1; same
-  session and applied count round trips; seed-destination conflicts; independent
-  Manual/Protected transitions; Revert and new-member reset; changing candidate
-  authorization; description-only/view-only/no-op behavior (AC-1–15).
-- **Integrity:** atomic apply/history, stable aliases and departing identities,
-  collision rejection, ordinary-editor incompatibility, stale revision/unknown
-  write, new/historical metadata round trips and malformed/unknown versions through
-  retention and exact backup (AC-13–18). Do not restart the prior retention matrix.
-- **Representative UI:** Chrome creation/reopen/edit/settings/conflict/departure
-  flow, keyboard/focus, one narrow layout, 20-step scrolling and familiar inspector
-  hierarchy (AC-7–12/19). The ordinary 11-step ramp is the performance workload;
-  20-step reachability is not a large-project performance promise.
-- **Human judgment:** from a saved ramp, change intensity/seed, edit a protected
-  anchor, inspect Current/New and preview a one-time replacement; assess whether
-  recipe seed versus token value and whole-ramp Apply are understandable. Numerical
-  correctness and integrity still need their own evidence.
-- Proposed future production ceiling remains **45 aggregate minutes / two harness
-  repairs**, to reassess before implementation. This is not an active allowance.
-  Exclude broad engine qualification, accessibility certification, stress and the
-  deferred Increment 007/PWA recovery matrix. Preserve failed/unverified criteria
-  and stop at the shared limits; no automatic restarts.
+- **Essential function:** creation cancel/back/Advanced/gamut/placement; counts 2/6/11/20;
+  both intensities; numerical fixtures after D1; ordinary Manual/Protected preservation;
+  replacement confirmation/cancel/repeated count changes; generated reset; survivor
+  description/protection/identity; seed-position survival/Auto; new-step defaults.
+- **Reference and integrity:** direct/indirect notices; nearest-label ties; individual
+  remap acceptance and explicit Unspecified; preserved chains; seed-only preview refresh;
+  another count resetting choices; non-member blocking; atomic removals/reference edits;
+  stale revision/unknown write; versioned retention/backup and history (AC-13–18/20–22).
+- **Representative UI:** Chrome creation/reopen/settings/replacement/impact/departure,
+  keyboard/focus, one narrow layout and 20-step scrolling. Eleven steps is the ordinary
+  performance workload; no large-project guarantee or accessibility certification.
+- **Human judgment:** confirmation consequences, informational versus actionable impacts,
+  whole-ramp Apply and Discard are understandable; inspector still feels like token
+  details. Human checks do not replace numerical/integrity evidence.
+- Proposed future production ceiling: **45 aggregate minutes / two harness repairs**,
+  reassess before implementation. Not an active allowance. Do not reopen Increment 007's
+  deferred qualification, broad engine/stress/recovery campaigns or exhausted budgets.
 
-This newly authorized analyst/document reconciliation has a separate **15 aggregate
-minute / one tool-repair ceiling** (analyst target ≤11, coordinator ≤4). Analyst
-consumption is approximately **9 minutes**, zero tool/harness repairs: source/document
-inspection, SVG text/structure inspection and changed Markdown/link checks only.
-Coordinator consumption is approximately **4 minutes**, including the Primitive
-wireframe amendment/render inspection and document checks: **13/15 aggregate
-minutes**, zero harness repairs; review stopped. Older static review budgets remain
-stopped: Editing V2 approximately 8 aggregate minutes, zero repairs; prior V1 and
-creation/recipe/endpoint evidence retain their own recorded limits. No budget reset,
-new numerical evidence, visual runtime validation or implementation review is claimed.
+Historical V2 analyst reconciliation stopped at approximately **13/15 aggregate minutes**
+(analyst 9, coordinator 4), zero harness repairs. V2 static preparation stopped at about
+8 aggregate minutes, zero repairs; V1/creation/recipe/endpoint limits remain with their
+records. These are not reset by the current pass.
 
-## Review history and next gate
+The newly authorized consolidation/V3 preparation has a shared **15 aggregate minute**
+static-check ceiling, at most one harness repair (designer ≤8, coordinator ≤3, contract
+consolidation ≤4). Contract checks cover changed Markdown, links and decision consistency;
+no numerical/runtime evidence or independent V3 review is claimed. Consumption is recorded
+at handoff, and unresolved issues remain visible when checks stop. Contract
+consolidation checks used approximately **3 minutes**, zero harness repairs: changed
+Markdown/whitespace, local link paths and active decision consistency. The completed V3 note and its local links were checked at handoff. Total checks
+stopped at approximately **14/15 aggregate minutes** (designer 8, contract 3,
+coordinator 3), zero harness repairs. The coordinator visually inspected the three
+rendered sheets. This is static inspection, not independent V3 analyst review.
 
-- **20 November:** fixed 11 was the initial planning scope; seed-token edits keep
-  recipe seed unchanged; group checkbox/provisional creation selected. Fixed count
-  is historical, superseded by 21 November; V1 separate New ramp entry is obsolete.
-- **21 November:** adjustable count, both intensity behaviors, authored/gamut/alpha,
-  endpoint/Auto policy, creation-only seed/settings editing and departing/reused
-  token rules selected. Creation V3 records these refinements; old comparison
-  surfaces do not remain competing active options.
-- **22 November:** Manual/Protected separation, editing V2 and fixed Primitive
-  amendment; explicit approval for analyst review, followed by this reconciliation.
-  Static design checks remain historical evidence, not implemented acceptance.
-- **Next:** resolve D1–D5, identify any revised design details and obtain final
-  contract/design agreement and explicit implementation authorization. Material
-  design revisions return to the user before renewed analyst review.
-- Before implementation/review, capture the actual base commit and complete stable
-  diff/new files. Leave staging, committing and pushing to the user.
+## History and next gate
+
+- 20–21 November: initial fixed 11 scope evolved into 2–20 steps, both intensities,
+  accepted seed/gamut/alpha/endpoint and creation flow. Earlier fixed-count designs
+  are historical, not competing active requirements.
+- 22 November: V2 plus fixed Primitive received analyst review. Later user decisions
+  replaced ordinary-token retention with confirmed count replacement, removed protected
+  override prompts and settled reference review, draft lifecycle and seed-count placement.
+- Current pass: consolidated the active contract and prepared V3 for user review.
+  V3 has not received analyst review or final approval. Earlier V2 findings do not
+  certify the changed design.
+- Next: user reviews V3; material revisions return to the user before a separately
+  authorized analyst check. Prepare D1–D5 as needed, then obtain final contract/design
+  agreement and explicit implementation authorization. No implementation yet.
+- Capture actual base commit and stable diff/new files before later implementation/review.
+  Leave staging, committing and pushing to the user.

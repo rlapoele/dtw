@@ -1,5 +1,9 @@
 # Color ramp editing V2
 
+**Historical review baseline:** [Editing V3](./color-ramp-editing-v3.md) consolidates
+the later user decisions and replaces this proposal for current review. V2's analyst
+review remains historical evidence; it is not review or approval of V3.
+
 **User-directed refinement — 22 November 2026. Static wireframes for review.**
 
 V2 keeps the central component matrix from [V1](./color-ramp-editing-v1.md), replaces

@@ -10,6 +10,29 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp contract consolidation and editing V3 — 22 November 2026
+
+The user authorized consolidation after the replacement/reference decisions. The
+[active Draft 024](../increments/024-color-ramp-authoring.md) now incorporates those
+agreements in its scope and acceptance criteria rather than an amendment pile over
+contradictory rules. Historical V2 analyst findings remain labeled as historical.
+The model, owning direction and open-question register reflect current protection
+and replacement scope.
+
+[Editing V3](../project/workbench-layout/color-ramp-editing-v3.md) provides the familiar
+workspace/inspector, explicit count-replacement confirmation, conflict/departure
+states and direct/indirect reference-impact review. Protected one-time prompts,
+ordinary-token leftovers and automatic old-draft restoration are not active designs.
+Next: user reviews V3, then explicitly approves any renewed analyst review. No V3
+analyst review, final contract agreement or application implementation occurred.
+
+Remaining preparation is limited to numerical policy, member/reference eligibility,
+versioned metadata/history and a few ordinary-edit/repeated-draft details. Previously
+settled product decisions are not reopened. Static checks and limits are recorded
+in the draft and V3 notes; older qualification campaigns remain stopped. Leave
+staging/committing/pushing to the user. Suggested commit:
+`docs: consolidate ramp replacement contract and V3 wireframes`.
+
 ## Surviving seed position retained — 22 November 2026
 
 The user agreed that count replacement retains a surviving, valid assigned seed

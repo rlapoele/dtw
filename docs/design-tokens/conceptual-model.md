@@ -844,10 +844,19 @@ the applied token may then differ from the recipe anchor (agreed 20 November 202
 suggests a recipe-dependent step; the accepted position is saved, with explicit
 recalculation rather than movement on reopening. Schema, fitting algorithm,
 membership details remain open. The [22 November Manual/protection agreement](../project/guided-color-palette-generation.md#manual-status-and-regeneration-protection)
-keeps Manual ramp status and token-wide protection separate: either preserves the
-value by default; an explicitly reviewed one-time generated replacement clears
-Manual but preserves protection. Removing protection alone does not clear Manual.
-Ordinary manual editing remains allowed. Exact metadata representation is open.
+keeps Manual status and protection separate. For the first ramp increment,
+protection controls apply only to ramp steps. Ordinary regeneration preserves
+Protected values without replacement prompts; removing protection alone does not
+clear Manual. Ordinary manual editing remains allowed.
+
+The [confirmed count-replacement rules](../project/guided-color-palette-generation.md#count-replacement-and-reference-remapping--22-november-2026)
+are the explicit exception: confirmation prepares a new draft with generated colors,
+removes disappearing steps on Apply after reference resolution, and preserves
+surviving identities, descriptions and protection choices. New steps are Generated
+and unprotected. Remapping and unspecified choices are explicit; indirect chains
+remain intact. Confirmation is not persistence: Apply saves the whole reviewed
+result; Discard restores the saved ramp. Exact schema, eligible reference forms,
+unspecified representation and numerical policy remain open.
 
 ### Generated change proposals and protection
 

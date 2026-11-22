@@ -121,20 +121,21 @@ ramps without introducing live computed token values.
 - A manual override affects its own step, not neighbouring candidates. Turning it
   into another generation anchor would be a separate future capability.
 - If a step-count or naming change would remove an overridden step, surface that
-  consequence for review; never silently delete its token.
+  consequence through the explicit replacement confirmation and reference-impact
+  review below; no silent deletion or individual departing-step list.
 
 ### Manual status and regeneration protection
 
 **Agreed 22 November 2026; not implemented.**
 
-Keep **Manual** ramp status separate from token-wide **Protected from regeneration**.
+Keep **Manual** ramp status separate from **Protected from regeneration**.
+Protection controls in this increment apply to ramp steps only.
 Manual identifies an intentionally edited or retained ramp-step value; Protected
 is a safeguard against generated updates generally. Either condition keeps the
 current value by default. Ordinary manual editing remains allowed.
 
 - A manual value edit marks the ramp member Manual without changing its existing
-  token-wide protection. Do not automatically enable global protection for every
-  manual ramp edit.
+  protection. Do not automatically protect every manual ramp edit.
 - Regeneration keeps Manual and Protected tokens by default and explains the
   applicable reason(s). A token can have both states.
 - Ordinary regeneration preserves Protected steps without replacement prompts.
@@ -338,9 +339,8 @@ The neutral-conversion rounding observation in the endpoint report remains open.
 **Latest direction; supersedes ordinary-token retention on count changes below.**
 The user wants a count change to replace the ramp after a clear confirmation,
 without listing departing steps or accumulating hidden ordinary tokens. This remains
-a draft operation until the shared Apply. Manual/Protected and pending-edit handling
-during replacement still need explicit reconciliation; do not infer that confirmation
-already authorizes overriding every safeguard.
+a draft operation until the shared Apply. The agreements below define the
+Manual/Protected reset, preserved descriptions/protection and reference resolution.
 
 For referencing tokens whose target step disappears, the user selected explicit
 per-token review: accept a suggested new ramp step, choose another new step, or make
@@ -384,6 +384,7 @@ an impact notice, not forced remapping; a disappearing target requires explicit
 resolution under the agreed remapping rules. Do not imply that notice alone authorizes
 a remapping. Exact impact traversal, presentation and technical eligibility remain
 to specify; this agreement does not silently promise unsupported reference forms.
+
 **Surviving draft protection — agreed 22 November 2026:** surviving steps retain
 their latest protection state, including pending lock or unlock changes as well as
 saved protection. Confirmed count replacement regenerates their color under its
@@ -399,7 +400,9 @@ not automatic restoration of older drafts when a count is changed back.
 
 Exact impacted-reference eligibility and unspecified-value representation need the
 technical contract. The earlier count-round-trip agreement is superseded by the lifecycle below.
-No revised wireframes, analyst re-review or implementation is authorized here.
+The user authorized consolidation into [Editing V3](workbench-layout/color-ramp-editing-v3.md)
+and the active draft contract. V3 requires user review before a renewed analyst
+check; no implementation is authorized.
 
 ### Confirmed replacement lifecycle — agreed 22 November 2026
 
@@ -419,7 +422,7 @@ saves it, and discarding the whole draft restores the saved ramp**.
 
 This explicitly supersedes the earlier unapplied count-round-trip restoration rule.
 Surviving token identities and descriptions are preserved under the agreements
-above. Other metadata details remain separate decisions; those details remain separate decisions. No implementation authorized.
+above. Other metadata details remain separate decisions. No implementation authorized.
 
 ### Disappearing seed position on replacement — agreed 22 November 2026
 
@@ -456,8 +459,8 @@ Genuinely new steps created by replacement start **Generated and unprotected**.
 Do not inherit protection from nearby, removed or other steps. Users may explicitly
 protect a new step in the draft before Apply. Surviving steps retain their separately
 agreed protection state. This default does not authorize overwriting an existing
-non-member token or treating an occupied name as a genuinely new step; collision
-handling remains a separate decision.
+non-member token or treating an occupied name as a genuinely new step; the
+non-member collision rule above blocks replacement.
 
 ### Ordinary regeneration preserves protection — agreed 22 November 2026
 
@@ -490,7 +493,9 @@ reference chains intact: if button.background references action.primary, which
 references a disappearing ramp step, review the target of action.primary while
 leaving button.background connected to action.primary. Refresh downstream impact
 notices/previews through that connection; do not flatten chains or require each
-indirect token to select a ramp step. **Unspecified consequences — agreed 22 November 2026:** an explicit Unspecified
+indirect token to select a ramp step.
+
+**Unspecified consequences — agreed 22 November 2026:** an explicit Unspecified
 choice may leave downstream tokens without a resolved color, provided those
 consequences are clearly shown before Apply. Preserve the reference chains; do not
 invent a fallback or require additional remapping for indirectly affected tokens.
@@ -557,15 +562,15 @@ requested by recording these choices.
 
 ## Questions for future work
 
-1. With the first-slice count, constant-hue direction and chroma choices agreed above, what chroma endpoint proportions, precision, alpha-preview/edge-case handling, numerical conversion and gamut-mapping rules complete the production calculation contract? How should the agreed creation placement rules be expressed in detailed validation/recovery states, and how should later editing handle count changes?
+1. With the first-slice count, constant-hue direction and chroma choices agreed above, what chroma endpoint proportions, precision, alpha-preview/edge-case handling, numerical conversion and gamut-mapping rules complete the production calculation contract? How should the agreed creation placement rules be expressed in detailed validation/recovery states outside confirmed count replacement?
 2. How should users compare accent suggestions, control neutral tint, and revise or retain selected candidates?
 3. What makes status colors sufficiently coherent and distinguishable, and how should conflicts be surfaced?
 4. Which opinionated semantic names, roles, states, and intended pairs belong in the first recipe? How much customization is useful?
 5. How are light/dark assignments and any needed axes or presets proposed within existing project configuration?
 6. Which WCAG/APCA profiles and contextual inputs should be supported, and how should diagnostics and an independent contrast view be presented?
-7. How should acceptance, existing-token collisions, repeated generation, and user-edited tokens be handled safely?
+7. Which exact reference forms can participate in the agreed impact review/remapping, and how is an explicitly accepted unspecified value represented and validated? Count replacement, non-member collisions and color resets follow the agreements above.
 8. What is the versioned ramp-metadata schema, and how do retention, backup and each export profile preserve or omit it? How are ordered step membership, renamed/moved tokens, references and missing members handled?
-9. How should the agreed separate Manual/Protected states and one-time replacement behavior be represented and reviewed? What remaining detach, reset and partial-acceptance details complete that contract?
-10. Which settings and entry points belong in the first slice, how do naming presets constrain step counts, and what batch/Undo contract applies? No detailed layout, algorithm or implementation contract is agreed yet.
+9. How should Manual and ramp-step protection be represented technically? Ordinary regeneration preserves protected values without prompts; confirmed count replacement is the agreed exception. What precise ordinary-edit Revert behavior remains outside the agreed replacement reset?
+10. What atomic operation/Undo and persistence compatibility contract implements the agreed shared Apply? Creation V3 and editing V3 supply the identified interaction designs, with V3 pending user review; numerical and implementation contracts remain unfinished.
 
 When this work is explicitly resumed, use this concept and the [open questions](../planning/open-questions.md#guided-color-foundations-and-interface-semantics) to prepare a bounded proposal through the existing designer/user/analyst workflow. The first exploration is agreed in direction only; its design, contract, and execution still require the usual authorization.
