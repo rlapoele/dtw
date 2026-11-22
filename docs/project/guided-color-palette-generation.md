@@ -201,6 +201,9 @@ policies remain unresolved. Static wireframes illustrate intended behavior only.
 
 ### Unapplied count round trips — agreed 22 November 2026
 
+**Superseded later on 22 November by the confirmed replacement lifecycle below.**
+The following records the earlier decision only; it is no longer active behavior.
+
 Within one editing draft, changing the count and then restoring it preserves the
 original members' identities, membership and pending edits without returning-token
 conflict review. For example, an unapplied 11→6→11 sequence restores the temporarily
@@ -345,12 +348,63 @@ Suggest the nearest new step by numerical label, choosing the lower label on a t
 user acceptance; no automatic reassignment. This is positional guidance, not inferred
 semantic intent or color similarity. All accepted changes share the final Apply.
 
-Surviving-name identity preservation and notices about their changed colors remain
-recommended design details; no remapping is needed if their identities survive.
+**Protected surviving steps — agreed 22 November 2026:** the clearly worded
+count-replacement confirmation may authorize a one-time generated replacement of
+protected values for steps whose labels survive. Explicitly warn that protected
+colors will also be regenerated; no separate per-step replacement confirmation is
+required in this count-replacement flow. Apply the replacement only at the shared
+Apply and keep the surviving token's protection afterward. This scoped exception
+does not remove ordinary regeneration safeguards.
+
+**Protected disappearing steps — agreed 22 November 2026:** confirmed ramp
+replacement may remove protected steps whose labels disappear, once their affected
+references have been explicitly resolved. The confirmation must state that protection
+does not preserve steps absent from the new ramp. Do not leave hidden ordinary tokens
+behind or transfer their protection to another step. Removal and reviewed reference
+changes occur together only at the shared Apply.
+
+**Manual adjustments on replacement — agreed 22 November 2026:** confirmed
+count replacement resets both saved and pending manual color adjustments to the
+newly generated values. For surviving steps, accepting the generated replacement
+clears Manual while preserving protection. The confirmation explicitly discloses
+that individual color adjustments will be replaced. Editing a new candidate before
+Apply establishes Manual again. These are draft effects until the shared Apply;
+the confirmed replacement lifecycle below supersedes automatic round-trip recovery. This color-reset decision does not silently reset descriptions
+or other token metadata.
+
+**Surviving identities and reference impact — agreed 22 November 2026:** steps
+whose names survive replacement retain their token identities and existing references.
+Updating their colors does not require remapping. Inform the user about referencing
+tokens whose resolved color changes, as well as those whose targets disappear.
+Whenever a referencing token is found impacted, disclose the impact consistently;
+the available action depends on context. A surviving target's changed color requires
+an impact notice, not forced remapping; a disappearing target requires explicit
+resolution under the agreed remapping rules. Do not imply that notice alone authorizes
+a remapping. Exact impact traversal, presentation and technical eligibility remain
+to specify; this agreement does not silently promise unsupported reference forms.
 Exact impacted-reference eligibility and unspecified-value representation need the
-technical contract. The earlier unapplied count-round-trip agreement remains recorded;
-its interaction with confirmed replacement and remapping drafts must be reconciled.
+technical contract. The earlier count-round-trip agreement is superseded by the lifecycle below.
 No revised wireframes, analyst re-review or implementation is authorized here.
+
+### Confirmed replacement lifecycle — agreed 22 November 2026
+
+The user selected a simple lifecycle: **confirmation replaces the draft, Apply
+saves it, and discarding the whole draft restores the saved ramp**.
+
+- Cancel the replacement confirmation to preserve the current draft unchanged.
+- Confirm a count change to prepare a fresh replacement draft. Do not retain older
+  individual edits or remapping choices for automatic recovery when returning to
+  an earlier count. Every confirmed count change is another replacement.
+- Clearly disclose that individual color adjustments are replaced, protected values
+  may be replaced and protected disappearing steps removed, and affected references
+  require explicit resolution. Returning to an earlier count does not recover the
+  earlier draft. Retain the saved ramp until the shared Apply succeeds.
+- Discarding the whole draft restores the saved ramp; confirmation is not a save
+  and does not eliminate that escape route. Avoid misleading “no going back” copy.
+
+This explicitly supersedes the earlier unapplied count-round-trip restoration rule.
+Surviving token identities are preserved under the agreement above. Descriptions
+and other metadata remain separate decisions; those details remain separate decisions. No implementation authorized.
 
 ### Departing steps during later editing
 

@@ -106,8 +106,8 @@ The user approved [Editing V2](../project/workbench-layout/color-ramp-editing-v2
 including the Primitive amendment, for analyst review on 22 November. The
 [reconciled Increment 024 draft](../increments/024-color-ramp-authoring.md) records
 that review and the remaining decisions D1–D5: exact numerical contract; draft
-reconciliation (Revert, count round trips, changed replacement candidates and new
-members); eligibility/field ownership; safe name-resolution workflow; versioned
+reconciliation (Revert, changed replacement candidates and new members; confirmed
+count changes now replace the draft without automatic round-trip recovery); eligibility/field ownership; safe name-resolution workflow; versioned
 metadata, history and compatibility. Multi-setting regeneration triggers remain a
 proposal; the user has not selected seed-only regeneration. Final complete
 contract/design agreement and implementation authorization remain pending.

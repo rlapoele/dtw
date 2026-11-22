@@ -21,10 +21,39 @@ of departing steps. For each affected referencing token, suggest the numerically
 nearest new label, lower label on a tie, and require explicit acceptance. The user
 may choose another step or an unspecified value instead of a broken reference.
 
+The user subsequently agreed that the explicit count-replacement confirmation can
+authorize one-time replacement of protected values at surviving labels, preserving
+protection afterward and saving only on Apply. Separate per-step replacement review
+is not required for this clearly disclosed count-replacement action. The user also agreed that confirmed replacement may remove protected steps whose
+labels disappear once affected references are explicitly resolved. The confirmation
+discloses removal despite protection; no hidden ordinary tokens or transferred
+protection. Removal/reference changes share Apply. Ordinary regeneration safeguards
+remain.
+
+The user also agreed that confirmed count replacement resets saved and pending
+manual color adjustments to generated values, clearing Manual for replaced surviving
+steps while retaining protection. Disclose this in confirmation; subsequent manual
+candidate edits establish Manual again. No change is saved until Apply. Descriptions
+and other metadata are not implicitly reset by this color decision. The later confirmed replacement lifecycle below supersedes automatic round-trip recovery.
+
+**Latest lifecycle agreement:** confirmation replaces the draft; Apply saves it;
+discarding the whole draft restores the saved ramp. Cancelling confirmation keeps
+the current draft. Every confirmed count change starts a fresh replacement, even
+when returning to an earlier count: no automatic restoration of old individual edits
+or remapping choices. Disclose consequences before confirmation. This supersedes
+the earlier unapplied count-round-trip agreement; see the [owning lifecycle](../project/guided-color-palette-generation.md#confirmed-replacement-lifecycle--agreed-22-november-2026).
+
+**Surviving identity and impact-notice agreement:** preserve identities and existing
+references for step names present in both ramps. Inform the user of impacted
+referencing tokens even when the target survives and only its color changes.
+Provide context-appropriate actions: notice for a changed surviving target, explicit
+resolution for a disappearing target. Do not require remapping solely for a changed
+color. Exact impact traversal and UI details remain to specify before implementation.
+
 This material change has not yet been incorporated into revised wireframes or
 analyst re-review. AC-13/14, D2/D4, related verification and the historical V2
-count sheet below require reconciliation with it before agreement. Manual/Protected
-reset, surviving identities, draft round trips and technical reference eligibility
+count sheet below require reconciliation with it before agreement. Remaining Manual/Protected
+replacement details, metadata preservation, impact presentation and technical reference eligibility
 remain to settle; the older rules below cannot override this notice. No implementation.
 
 ## Outcome and scope
@@ -170,9 +199,8 @@ implementation to fill gaps implicitly.
   deletion. Resolve a disappearing seed position visibly. Moving the recipe anchor
   does not authorize overwriting a Manual/Protected destination; retain its value by
   default and show recipe-seed divergence or obtain explicit replacement review.
-  An unapplied count round trip restores membership and pending edits without
-  conflict review; an applied reduction followed by an increase requires reuse review.
-  D2 still governs pending edits when a departure is actually applied.
+  This historical departure criterion is superseded by the post-review replacement
+  amendment: each confirmed count change resets the draft, without round-trip recovery.
 - **AC-14 — Returning-name collisions.** A matching path alone does not authorize
   reuse. For an eligible token, reviewed Reuse and keep value is default: preserve
   identity/value/references/protection and establish Manual membership. Reuse with
@@ -268,14 +296,14 @@ threshold is selected by this analyst review; a small technical proposal is need
 
 ### D2 — Draft reconciliation (high priority)
 
-**Agreed 22 November 2026:** an unapplied count round trip preserves original
-membership, identities and pending edits without conflict review. After applying
-a reduction, later returning names require the agreed explicit reuse choices.
-See the [owning decision](../project/guided-color-palette-generation.md#unapplied-count-round-trips--agreed-22-november-2026).
+**Agreed, superseding the earlier round-trip rule:** confirmation replaces the
+draft, Apply saves it, and discarding the whole draft restores the saved ramp.
+Cancel confirmation preserves the current draft. Returning to an earlier count is
+another replacement, not restoration of older edits or reference-remapping choices.
+See the [owning lifecycle](../project/guided-color-palette-generation.md#confirmed-replacement-lifecycle--agreed-22-november-2026).
 
-**Still open:** handling pending edits on departing steps when the reduced count
-is actually applied. The earlier recommendation to exclude those edits from Apply
-is not agreed; review the user-visible preservation/discard choice separately.
+The following detailed Revert/new-member proposals still need reconciliation with
+replacement; they must not silently reinstate the superseded round-trip behavior.
 
 Revert an existing step's color, description, protection and pending replacement
 choice to the applied baseline while preserving count/settings. Preserve applied

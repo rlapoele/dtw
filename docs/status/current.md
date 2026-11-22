@@ -10,6 +10,61 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Surviving ramp identities and reference impact — 22 November 2026
+
+The user agreed that surviving step names retain identities and existing references.
+Inform the user whenever a referencing token is found impacted, including a changed
+color at a surviving target. Available action depends on context: notice versus
+explicit resolution for disappearing targets. The [owning agreement](../project/guided-color-palette-generation.md#count-replacement-and-reference-remapping--22-november-2026)
+and Draft 024 record this; exact traversal/presentation remains to specify. Next:
+decide descriptions/metadata on surviving steps, one case at a time. No implementation
+or qualification restart. Markdown/whitespace checked. Suggested commit:
+`docs: preserve ramp identities and disclose reference impacts`.
+
+## Confirmed ramp replacement lifecycle — 22 November 2026
+
+The user agreed: confirmation replaces the draft, Apply saves it, and discarding
+the whole draft restores the saved ramp. Cancelling confirmation preserves the
+current draft. Returning to an earlier count does not restore earlier edits or
+remapping choices. This explicitly supersedes the prior unapplied round-trip rule;
+the [owning lifecycle](../project/guided-color-palette-generation.md#confirmed-replacement-lifecycle--agreed-22-november-2026),
+Draft 024 and open-question register are aligned. Next: decide surviving token
+identities, one case at a time. Revised design/contract consolidation remains pending.
+No implementation or qualification restart. Markdown/whitespace checked. Suggested
+commit: `docs: agree confirmed ramp replacement draft lifecycle`.
+
+## Manual color reset on ramp replacement — 22 November 2026
+
+The user agreed that confirmed count replacement resets saved and pending manual
+color adjustments to generated values. Surviving steps clear Manual and retain
+protection; editing a new candidate marks it Manual again. The
+[owning direction](../project/guided-color-palette-generation.md#count-replacement-and-reference-remapping--22-november-2026)
+and Draft 024 record disclosure and the shared Apply. Next: reconcile this reset
+with the earlier unapplied count-round-trip agreement. No implementation or renewed
+qualification. Markdown/whitespace checked. Suggested commit:
+`docs: agree manual color reset during ramp replacement`.
+
+## Protected disappearing ramp steps — 22 November 2026
+
+The user agreed that confirmed ramp replacement may remove protected steps whose
+labels disappear once affected references are explicitly resolved. The
+[owning direction](../project/guided-color-palette-generation.md#count-replacement-and-reference-remapping--22-november-2026)
+and Draft 024 preserve disclosure, the shared Apply, no hidden ordinary tokens and
+no transfer of protection. Next: decide manual-adjustment behavior in replacement,
+one case at a time. No implementation or qualification restart. Markdown/whitespace
+checked. Suggested commit: `docs: agree removal of protected departing ramp steps`.
+
+## Protected surviving ramp steps — 22 November 2026
+
+The user agreed that a clearly worded count-replacement confirmation authorizes
+one-time replacement of protected values at surviving labels, with protection
+retained afterward. Changes still wait for the shared Apply. The
+[owning direction](../project/guided-color-palette-generation.md#count-replacement-and-reference-remapping--22-november-2026)
+and Draft 024 record this scoped exception. Next: decide what happens to protected
+steps whose names disappear. No implementation, wireframe revision or renewed
+qualification. Markdown/whitespace checked. Suggested commit:
+`docs: agree protected values in confirmed ramp replacement`.
+
 ## Ramp replacement and remapping direction — 22 November 2026
 
 The user replaced the ordinary-token-retention direction with confirmed ramp
