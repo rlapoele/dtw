@@ -73,6 +73,11 @@ previews; no repeat acceptance is required solely because the target color chang
 Users may still revise the target before Apply. Confirmed count replacement retains
 its separate rule of clearing prior remapping choices.
 
+**Reference-chain agreement:** show notices for direct and indirect impacts; require
+remapping only where the immediate target disappears. Preserve chains and update
+downstream notices/previews without flattening indirect references. The downstream
+consequences of choosing Unspecified remain to be clarified separately.
+
 This material change has not yet been incorporated into revised wireframes or
 analyst re-review. AC-13/14, D2/D4, related verification and the historical V2
 count sheet below require reconciliation with it before agreement. Remaining Manual/Protected

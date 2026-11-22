@@ -10,6 +10,16 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Direct and indirect reference impacts — 22 November 2026
+
+The user agreed to show indirect impact notices while requiring remapping only
+for references whose immediate target disappears. Reference chains remain intact.
+The [owning rule](../project/guided-color-palette-generation.md#direct-and-indirect-reference-impacts--agreed-22-november-2026)
+and Draft 024 record this. Next: clarify downstream behavior when a direct
+referencing token is explicitly made Unspecified. No implementation or renewed
+qualification. Markdown/whitespace checked. Suggested commit:
+`docs: preserve reference chains during ramp remapping`.
+
 ## Accepted remappings after seed changes — 22 November 2026
 
 The user agreed to preserve accepted remappings when only the seed color changes

@@ -419,6 +419,17 @@ This explicitly supersedes the earlier unapplied count-round-trip restoration ru
 Surviving token identities and descriptions are preserved under the agreements
 above. Other metadata details remain separate decisions; those details remain separate decisions. No implementation authorized.
 
+### Direct and indirect reference impacts — agreed 22 November 2026
+
+Show notices for indirectly affected tokens as well as directly affected tokens.
+Require remapping only for references whose immediate target disappears. Keep
+reference chains intact: if button.background references action.primary, which
+references a disappearing ramp step, review the target of action.primary while
+leaving button.background connected to action.primary. Refresh downstream impact
+notices/previews through that connection; do not flatten chains or require each
+indirect token to select a ramp step. The consequences of explicitly choosing an
+unspecified value within such a chain still need review policy.
+
 ### Accepted remappings after seed changes — agreed 22 November 2026
 
 When only the seed color changes, preserve accepted remapping choices whose targets
