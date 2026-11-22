@@ -382,6 +382,13 @@ an impact notice, not forced remapping; a disappearing target requires explicit
 resolution under the agreed remapping rules. Do not imply that notice alone authorizes
 a remapping. Exact impact traversal, presentation and technical eligibility remain
 to specify; this agreement does not silently promise unsupported reference forms.
+**Surviving draft protection — agreed 22 November 2026:** surviving steps retain
+their latest protection state, including pending lock or unlock changes as well as
+saved protection. Confirmed count replacement regenerates their color under its
+explicit one-time authorization without reverting those protection choices. The
+preserved protection state is saved only with the shared Apply. This is not recovery
+of a removed step's older draft or transfer of protection to a different step.
+
 **Surviving descriptions — agreed 22 November 2026:** surviving steps keep both
 saved and pending descriptions during count replacement. Resetting manual color
 adjustments does not reset separately authored descriptions. Newly created steps

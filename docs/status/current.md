@@ -10,6 +10,15 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Surviving ramp protection drafts — 22 November 2026
+
+The user agreed that surviving steps retain pending lock/unlock changes as well as
+saved protection during replacement. The [owning agreement](../project/guided-color-palette-generation.md#count-replacement-and-reference-remapping--22-november-2026)
+and Draft 024 preserve these choices separately from color reset, with saving only
+on shared Apply. Next: decide step-level Revert after confirmed replacement, one
+case at a time. No implementation or qualification restart. Markdown/whitespace
+checked. Suggested commit: `docs: preserve surviving ramp-step protection drafts`.
+
 ## Surviving ramp descriptions — 22 November 2026
 
 The user agreed that surviving steps preserve saved and pending descriptions during
