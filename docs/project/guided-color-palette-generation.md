@@ -419,6 +419,18 @@ This explicitly supersedes the earlier unapplied count-round-trip restoration ru
 Surviving token identities and descriptions are preserved under the agreements
 above. Other metadata details remain separate decisions; those details remain separate decisions. No implementation authorized.
 
+### Protection scope for this increment — agreed 22 November 2026
+
+Protection controls and behavior in this increment are limited to ramp steps.
+Broader token protection outside ramps is out of scope. Earlier references to
+“token-wide protection” describe the conceptual distinction from Manual status;
+they do not authorize expanding this increment to ordinary-token protection UI or
+workflows. The proposed case of a protected external referencing token is set aside,
+not a requirement or an agreed exception. Preserve existing authored data and do
+not infer a canonical-schema migration or removal of existing capabilities from
+this feature-scope decision. Separate Manual and Protected behavior within ramps,
+including the agreed replacement rules, remains unchanged.
+
 ### Direct and indirect reference impacts — agreed 22 November 2026
 
 Show notices for indirectly affected tokens as well as directly affected tokens.
@@ -427,8 +439,12 @@ reference chains intact: if button.background references action.primary, which
 references a disappearing ramp step, review the target of action.primary while
 leaving button.background connected to action.primary. Refresh downstream impact
 notices/previews through that connection; do not flatten chains or require each
-indirect token to select a ramp step. The consequences of explicitly choosing an
-unspecified value within such a chain still need review policy.
+indirect token to select a ramp step. **Unspecified consequences — agreed 22 November 2026:** an explicit Unspecified
+choice may leave downstream tokens without a resolved color, provided those
+consequences are clearly shown before Apply. Preserve the reference chains; do not
+invent a fallback or require additional remapping for indirectly affected tokens.
+Show their preview as unresolved. A consciously accepted unspecified value is not
+an unanswered remapping choice; the technical contract must distinguish them.
 
 ### Accepted remappings after seed changes — agreed 22 November 2026
 

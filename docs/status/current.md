@@ -10,6 +10,29 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp-only protection scope — 22 November 2026
+
+The user limited protection to ramp steps for this increment; broader token
+protection is out of scope. The [owning scope](../project/guided-color-palette-generation.md#protection-scope-for-this-increment--agreed-22-november-2026)
+and Draft 024 set aside the proposed protected-external-reference case without
+changing existing authored data or inferring a schema migration. Ramp Manual and
+Protected rules remain. Next: decide renewed review when a selected generated
+replacement candidate changes before Apply. No implementation or qualification
+restart. Markdown/whitespace checked. Suggested commit:
+`docs: limit increment protection scope to ramp steps`.
+
+## Unspecified downstream consequences — 22 November 2026
+
+The user agreed that an explicit Unspecified choice may leave downstream tokens
+unresolved if consequences are clearly shown before Apply. Preserve reference
+chains, show unresolved previews and do not invent fallbacks or require indirect
+remapping. The [owning rule](../project/guided-color-palette-generation.md#direct-and-indirect-reference-impacts--agreed-22-november-2026)
+and Draft 024 distinguish accepted unspecified outcomes from unanswered choices.
+Next: decide how protection on a directly referencing token affects explicit
+remapping/Unspecified actions. No implementation or qualification restart.
+Markdown/whitespace checked. Suggested commit:
+`docs: disclose unresolved effects of explicit unspecified values`.
+
 ## Direct and indirect reference impacts — 22 November 2026
 
 The user agreed to show indirect impact notices while requiring remapping only

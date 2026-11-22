@@ -75,8 +75,18 @@ its separate rule of clearing prior remapping choices.
 
 **Reference-chain agreement:** show notices for direct and indirect impacts; require
 remapping only where the immediate target disappears. Preserve chains and update
-downstream notices/previews without flattening indirect references. The downstream
-consequences of choosing Unspecified remain to be clarified separately.
+downstream notices/previews without flattening indirect references. The user agreed that explicitly choosing Unspecified can leave downstream tokens
+unresolved when consequences are clearly disclosed before Apply. Preserve chains,
+show unresolved previews, and do not invent fallbacks or force indirect remapping.
+Distinguish that accepted outcome from an unanswered required choice in Apply gating;
+its technical representation and validation remain to specify.
+
+**Protection scope agreement:** protection is limited to ramp steps for this
+increment; broader token protection is out of scope. Do not implement protection
+controls/workflows for external referencing tokens. The proposed protected-external-
+token case is set aside. Earlier token-wide terminology does not broaden the slice
+or authorize a schema migration/removal of existing data. Manual/Protected separation
+and agreed replacement behavior within ramps still apply.
 
 This material change has not yet been incorporated into revised wireframes or
 analyst re-review. AC-13/14, D2/D4, related verification and the historical V2
