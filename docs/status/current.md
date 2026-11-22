@@ -10,6 +10,16 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Color reset after ramp replacement — 22 November 2026
+
+The user agreed that Reset color to generated restores the replacement's generated
+color, clears the new Manual adjustment and leaves description/protection unchanged.
+The [owning rule](../project/guided-color-palette-generation.md#color-reset-after-replacement--agreed-22-november-2026)
+and Draft 024 distinguish this draft action from restoring the saved ramp through
+Discard draft. Next: decide whether accepted remappings persist when only the seed color
+changes, with count and selected targets unchanged. No implementation or qualification restart. Markdown/whitespace
+checked. Suggested commit: `docs: agree color reset after ramp replacement`.
+
 ## Surviving ramp protection drafts — 22 November 2026
 
 The user agreed that surviving steps retain pending lock/unlock changes as well as

@@ -419,6 +419,16 @@ This explicitly supersedes the earlier unapplied count-round-trip restoration ru
 Surviving token identities and descriptions are preserved under the agreements
 above. Other metadata details remain separate decisions; those details remain separate decisions. No implementation authorized.
 
+### Color reset after replacement — agreed 22 November 2026
+
+After confirming count replacement, an individually edited candidate can be reset
+to the replacement's generated color using **Reset color to generated**. Clear the
+new Manual color adjustment; leave description and protection unchanged. This
+applies to the replacement candidate rather than restoring the old saved color.
+The whole saved ramp remains recoverable through Discard draft. Reset is a draft
+action, not a save or a new count replacement. The ordinary non-replacement Revert
+behavior remains a separate context.
+
 ### Departing steps during later editing
 
 **Historical policy, superseded for count replacement by the 22 November direction

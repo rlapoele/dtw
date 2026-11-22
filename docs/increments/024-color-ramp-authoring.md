@@ -61,6 +61,12 @@ replacement resets color adjustments without reverting those separate choices;
 the shared Apply saves the resulting state. No protection transfer or recovery of
 older removed-step drafts is implied.
 
+**Post-replacement reset agreement:** Reset color to generated restores an edited
+candidate to the replacement's generated color and clears the new Manual adjustment,
+leaving description and protection unchanged. It does not recover the old saved
+color; Discard draft still restores the saved ramp. This replaces the earlier
+Revert-to-applied proposal in the confirmed-replacement context only.
+
 This material change has not yet been incorporated into revised wireframes or
 analyst re-review. AC-13/14, D2/D4, related verification and the historical V2
 count sheet below require reconciliation with it before agreement. Remaining Manual/Protected
