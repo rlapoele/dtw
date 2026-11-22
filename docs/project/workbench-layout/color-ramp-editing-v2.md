@@ -76,7 +76,7 @@ do not clear Manual, and a manual edit does not close the lock automatically.
 
 ## Settings and regeneration review in context
 
-![Workspace context and triggering actions for settings and protected replacement](./color-ramp-editing-v2-settings.svg)
+[Historical settings sheet; protected replacement panel superseded](./color-ramp-editing-v2-settings.svg)
 
 [PNG preview](../../../output/color-ramp-editing-v2/color-ramp-editing-v2-settings.svg.png).
 
@@ -88,27 +88,16 @@ horizontal central matrix with a vertical token list.
    recipe settings and a pending proposal summary. Seed, count, intensity,
    placement and target changes can affect proposed candidates. Merely reopening
    the ramp does not regenerate. Recalculate position is explicit in later editing.
-2. **Select step 800 → Review generated value:** regeneration review replaces the
-   editable fields temporarily while retaining the same token header, workspace
-   context, protection and whole-ramp Apply. The protected current value is kept
-   by default, so Current/New remain equal before the one-time choice. **Use
-   generated value once** changes New to that candidate within the draft. It is a
-   regeneration choice, not a save or a manual-edit confirmation. Final acceptance
-   clears Manual and preserves protection. **Back to token fields** restores the
-   ordinary inspector without discarding choices.
+2. **Protected step during ordinary regeneration — amended after review:** preserve
+   its color without a replacement prompt. The user removed Use generated value once;
+   the old protected-replacement panel in the linked SVG/PNG is historical and must
+   not be implemented. Confirmed count replacement remains the explicit exception.
+   See the [owning amendment](../guided-color-palette-generation.md#ordinary-regeneration-preserves-protection--agreed-22-november-2026).
 
-A changed recipe can prepare generated candidates; an individual manual edit,
-view-space change or lock toggle does not recalculate neighbouring colors. Unlocking
-alone does not immediately substitute a generated value. Settings and review always
-stay draft-only until the shared Apply. If a newly changed setting changes a
-previously authorized one-time candidate, recommend renewed review of that candidate
-rather than silently extending the earlier choice. Complete reconciliation remains
-unresolved. The user has asked about regeneration triggers; this sheet retains the
-current multi-setting proposal pending any resulting direction change.
-
-The protected replacement color pair is illustrative, not a computed step-800
-candidate. Scope counts illustrate mutually exclusive kept/generated cases. This
-sheet does not validate generation math.
+Individual manual edits, view changes and lock toggles do not regenerate neighbours.
+Unlocking alone does not replace a value or clear Manual. Changes remain draft-only
+until Apply. The settings sheet's right-hand panel requires replacement in the next
+wireframe revision; it is no longer an active interaction proposal.
 
 ## Count conflicts and departure
 

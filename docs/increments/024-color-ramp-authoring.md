@@ -88,6 +88,13 @@ token case is set aside. Earlier token-wide terminology does not broaden the sli
 or authorize a schema migration/removal of existing data. Manual/Protected separation
 and agreed replacement behavior within ramps still apply.
 
+**Ordinary regeneration protection amendment:** preserve Protected step colors
+without prompting on seed/ordinary settings changes. Remove Use generated value
+once and renewed candidate acceptance from this flow. Manual editing remains allowed;
+unlocking does not clear Manual. Confirmed count replacement is the agreed exception.
+This supersedes the earlier protected-candidate review criteria/proposals below and
+the V2 protected replacement state; revise them in the next design consolidation.
+
 This material change has not yet been incorporated into revised wireframes or
 analyst re-review. AC-13/14, D2/D4, related verification and the historical V2
 count sheet below require reconciliation with it before agreement. Remaining Manual/Protected

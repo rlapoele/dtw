@@ -10,6 +10,18 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ordinary regeneration preserves protected steps — 22 November 2026
+
+The user agreed that ordinary regeneration preserves Protected colors without
+prompts; confirmed count replacement is the explicit exception. Use generated
+value once is removed from the active design; the old V2 protected-replacement
+panel is marked historical pending wireframe consolidation. The
+[owning amendment](../project/guided-color-palette-generation.md#ordinary-regeneration-preserves-protection--agreed-22-november-2026)
+and Draft 024 record the supersession. Manual editing and separate Manual status
+remain. Next: decide protection defaults for genuinely new replacement steps.
+No implementation or qualification restart. Markdown/whitespace checked. Suggested
+commit: `docs: preserve protected colors during ordinary regeneration`.
+
 ## Ramp-only protection scope — 22 November 2026
 
 The user limited protection to ramp steps for this increment; broader token

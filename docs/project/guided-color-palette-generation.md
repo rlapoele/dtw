@@ -137,16 +137,18 @@ current value by default. Ordinary manual editing remains allowed.
   manual ramp edit.
 - Regeneration keeps Manual and Protected tokens by default and explains the
   applicable reason(s). A token can have both states.
-- An accepted generated replacement clears Manual status. If the token is also
-  Protected, require an explicit reviewed **one-time replacement**, preserve its
-  protection and say that it remains protected. The result may be Generated and
-  Protected: it came from the recipe but future regeneration still keeps it.
+- Ordinary regeneration preserves Protected steps without replacement prompts.
+  Remove **Use generated value once** from this flow. To participate in ordinary
+  regeneration, a step must be explicitly unlocked; separate Manual rules still apply.
+- Confirmed count replacement is the agreed exception: its disclosed consequences
+  authorize replacing protected values and removing disappearing protected steps,
+  subject to reference resolution, while preserving surviving protection choices.
+  An accepted generated replacement clears Manual under the applicable rules.
 - Allowing future regeneration requires an explicit protection change. Removing
   protection alone does not clear Manual status. Neither state is silently cleared
   by the other action, settings changes or an ordinary manual edit.
-- Departing ramp members retain their ordinary token and its protection. Reusing
-  them with **Keep value** establishes Manual ramp status again without changing
-  that protection.
+- Count replacement follows the later replacement/remapping agreements below,
+  not the historical ordinary-token-retention policy.
 
 Within an editing session, replacement, Manual-status and protection changes
 remain draft proposals until final Apply; acceptance must preserve their separate effects. This describes intended
@@ -418,6 +420,17 @@ saves it, and discarding the whole draft restores the saved ramp**.
 This explicitly supersedes the earlier unapplied count-round-trip restoration rule.
 Surviving token identities and descriptions are preserved under the agreements
 above. Other metadata details remain separate decisions; those details remain separate decisions. No implementation authorized.
+
+### Ordinary regeneration preserves protection — agreed 22 November 2026
+
+Changing the seed or other ordinary generation settings leaves Protected ramp-step
+colors unchanged, without prompting to replace them. Remove **Use generated value
+once** and its candidate re-acceptance workflow from ordinary regeneration. Manual
+editing remains allowed. Explicit unlocking permits participation subject to the
+separate Manual rules; unlocking alone does not clear Manual or replace a color.
+Confirmed step-count replacement is the sole agreed regeneration exception, with
+its explicit confirmation and shared Apply. This supersedes earlier per-protected-step
+one-time replacement proposals and the associated V2 review state.
 
 ### Protection scope for this increment — agreed 22 November 2026
 
