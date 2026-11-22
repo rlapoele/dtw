@@ -421,6 +421,15 @@ This explicitly supersedes the earlier unapplied count-round-trip restoration ru
 Surviving token identities and descriptions are preserved under the agreements
 above. Other metadata details remain separate decisions; those details remain separate decisions. No implementation authorized.
 
+### New replacement-step defaults — agreed 22 November 2026
+
+Genuinely new steps created by replacement start **Generated and unprotected**.
+Do not inherit protection from nearby, removed or other steps. Users may explicitly
+protect a new step in the draft before Apply. Surviving steps retain their separately
+agreed protection state. This default does not authorize overwriting an existing
+non-member token or treating an occupied name as a genuinely new step; collision
+handling remains a separate decision.
+
 ### Ordinary regeneration preserves protection — agreed 22 November 2026
 
 Changing the seed or other ordinary generation settings leaves Protected ramp-step

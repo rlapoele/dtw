@@ -10,6 +10,15 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## New replacement-step defaults — 22 November 2026
+
+The user agreed that new replacement steps start Generated and unprotected,
+without inheriting protection. The [owning default](../project/guided-color-palette-generation.md#new-replacement-step-defaults--agreed-22-november-2026)
+and Draft 024 preserve explicit draft locking and surviving-step protection.
+Next: decide collisions with existing tokens outside ramp membership. No
+implementation or qualification restart. Markdown/whitespace checked. Suggested
+commit: `docs: define new ramp-step protection defaults`.
+
 ## Ordinary regeneration preserves protected steps — 22 November 2026
 
 The user agreed that ordinary regeneration preserves Protected colors without

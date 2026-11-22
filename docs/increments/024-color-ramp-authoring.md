@@ -95,6 +95,11 @@ unlocking does not clear Manual. Confirmed count replacement is the agreed excep
 This supersedes the earlier protected-candidate review criteria/proposals below and
 the V2 protected replacement state; revise them in the next design consolidation.
 
+**New-step default agreement:** genuinely new replacement steps begin Generated and
+unprotected, with no inherited protection from other steps. An explicit draft lock
+can protect them before Apply. Surviving-step protection rules remain unchanged;
+this does not authorize reuse or overwrite at occupied non-member paths.
+
 This material change has not yet been incorporated into revised wireframes or
 analyst re-review. AC-13/14, D2/D4, related verification and the historical V2
 count sheet below require reconciliation with it before agreement. Remaining Manual/Protected
