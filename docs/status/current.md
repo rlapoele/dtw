@@ -10,6 +10,24 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp review progressive disclosure V4 — 22 November 2026
+
+The user reviewed V3 as covering the scenarios and agreed a focused UX refinement
+for frequent use. [Editing V4](../project/workbench-layout/color-ramp-editing-v4.md)
+proposes a shorter replacement confirmation with optional Details, inline individual
+remapping acceptance, compact accepted choices and expandable information-only
+impacts. Important Manual/Protected replacement consequences and downstream
+Unspecified warnings remain visible. The familiar V3 workspace and agreed behavior
+remain the baseline; no bulk acceptance or reduced safeguards are introduced.
+
+Next: user reviews V4 before any renewed analyst check. V3 remains the coverage
+reference. Numerical, eligibility/reference, metadata and remaining draft details
+remain with Draft 024. No implementation, runtime qualification or V4 analyst
+review occurred. Both renders were visually inspected; SVG XML, local links and whitespace passed.
+Static checks stopped at approximately 8/10 aggregate minutes with zero harness
+repairs; earlier limits remain stopped.
+Suggested commit: `docs: simplify ramp review with progressive disclosure`.
+
 ## Ramp contract consolidation and editing V3 — 22 November 2026
 
 The user authorized consolidation after the replacement/reference decisions. The

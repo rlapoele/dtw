@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1030" viewBox="0 0 1600 1030">
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<style>text{font-family:Arial,sans-serif} .mono{font-family:Menlo,monospace}</style>
+<text x="32" y="40" font-size="24" font-weight="600" fill="#262626">Ramp editing V4 · short confirmation, details on demand</text>
+<text x="32" y="67" font-size="15" font-weight="400" fill="#666">Proposal · 22 November 2026 · Same replacement behavior, less reading on the frequent path.</text>
+<text x="48" y="117" font-size="17" font-weight="600" fill="#262626">Default: change Step count → confirm</text>
+<text x="838" y="117" font-size="17" font-weight="600" fill="#262626">Optional: expand Details</text>
+<rect x="24" y="141" width="762" height="423" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="54" y="190" font-size="24" font-weight="600" fill="#262626">Replace ramp with 6 steps?</text>
+<text x="54" y="239" font-size="16" font-weight="400" fill="#262626">Regenerates all colors, including Manual and Protected.</text>
+<text x="54" y="273" font-size="16" font-weight="400" fill="#262626">Removes steps absent from the new ramp, even if Protected.</text>
+<text x="54" y="307" font-size="15" font-weight="400" fill="#262626">Earlier draft edits will not return if you change the count back.</text>
+<text x="54" y="359" font-size="15" font-weight="600" fill="#262626">1 reference needs a new target · 2 other tokens affected</text>
+<text x="54" y="402" font-size="15" font-weight="400" fill="#666">Saved ramp unchanged until Apply.</text>
+<rect x="54" y="490" width="200" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="154.0" y="512" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Cancel</text>
+<rect x="270" y="490" width="486" height="34" rx="7" fill="#262626" stroke="#d4d4d4"/>
+<text x="513.0" y="512" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Replace in draft</text>
+<rect x="814" y="141" width="762" height="650" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="844" y="190" font-size="24" font-weight="600" fill="#262626">Replace ramp with 6 steps?</text>
+<text x="844" y="239" font-size="16" font-weight="400" fill="#262626">Regenerates all colors, including Manual and Protected.</text>
+<text x="844" y="273" font-size="16" font-weight="400" fill="#262626">Removes steps absent from the new ramp, even if Protected.</text>
+<text x="844" y="307" font-size="15" font-weight="400" fill="#262626">Earlier draft edits will not return if you change the count back.</text>
+<text x="844" y="359" font-size="15" font-weight="600" fill="#262626">1 reference needs a new target · 2 other tokens affected</text>
+<text x="844" y="402" font-size="15" font-weight="400" fill="#666">Saved ramp unchanged until Apply.</text>
+<rect x="844" y="720" width="200" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="944.0" y="742" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Cancel</text>
+<rect x="1060" y="720" width="486" height="34" rx="7" fill="#262626" stroke="#d4d4d4"/>
+<text x="1303.0" y="742" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Replace in draft</text>
+<text x="54" y="451" font-size="15" font-weight="600" fill="#262626">▸ Details</text>
+<text x="844" y="451" font-size="15" font-weight="600" fill="#262626">▾ Details</text>
+<line x1="844" y1="472" x2="1546" y2="472" stroke="#e5e5e5" stroke-width="1"/>
+<text x="844" y="509" font-size="14" font-weight="400" fill="#262626">Surviving steps keep their identity, description and lock choices.</text>
+<text x="844" y="542" font-size="14" font-weight="400" fill="#262626">New steps start Generated and unprotected.</text>
+<text x="844" y="575" font-size="14" font-weight="400" fill="#262626">Old remapping choices are cleared; each required new choice</text>
+<text x="844" y="600" font-size="14" font-weight="400" fill="#262626">must be accepted before Apply.</text>
+<text x="844" y="633" font-size="14" font-weight="400" fill="#262626">A surviving valid seed position stays; otherwise Auto places it.</text>
+<text x="844" y="666" font-size="14" font-weight="400" fill="#262626">Discarding the whole draft restores the saved ramp.</text>
+<text x="48" y="850" font-size="15" font-weight="400" fill="#262626">The default opens with Details collapsed. Confirming never saves; Cancel keeps the current draft.</text>
+<text x="48" y="885" font-size="14" font-weight="400" fill="#666">Counts are live: omit the impact line when nothing is affected. Never hide Manual / Protected replacement consequences.</text>
+<rect x="24" y="925" width="1552" height="68" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="48" y="954" font-size="14" font-weight="600" fill="#262626">Name conflict</text>
+<text x="188" y="954" font-size="14" font-weight="400" fill="#262626">color.brand.300 exists outside this ramp. Choose another count or resolve its name.</text>
+<text x="188" y="978" font-size="13" font-weight="400" fill="#666">Replacement unavailable · current draft unchanged</text>
+</svg>

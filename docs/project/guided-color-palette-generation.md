@@ -334,6 +334,26 @@ Chroma endpoint proportions, exact gamut mapping, precision and remaining
 alpha-preview/edge-case rules still require a production calculation contract.
 The neutral-conversion rounding observation in the endpoint report remains open.
 
+### Progressive disclosure for ramp review — agreed 22 November 2026
+
+The user reviewed V3 as covering the scenarios, but requested a simpler, faster
+experience for frequent use with details available when needed. The agreed refinement
+direction keeps the behavior and safeguards while shortening their presentation:
+
+- Brief confirmations show the action and important consequences immediately;
+  secondary explanation is available through Details.
+- Reference review puts required individual decisions first and groups information-only
+  impacts separately, with fuller paths, previews and explanations available on demand.
+- Accepted choices collapse to a concise summary with Change, rather than repeating
+  the entire decision form. Required per-token acceptance is preserved; no automatic
+  or batch remapping acceptance is introduced.
+- Show contextual guidance where relevant. Do not hide consequential replacement of
+  manual/protected colors or downstream unresolved effects behind optional disclosure.
+
+[Editing V4](workbench-layout/color-ramp-editing-v4.md) explores this presentation for
+user review. V3 remains the scenario-coverage reference. This is authorization for
+static design refinement, not final layout agreement, analyst review or implementation.
+
 ### Count replacement and reference remapping — 22 November 2026
 
 **Latest direction; supersedes ordinary-token retention on count changes below.**

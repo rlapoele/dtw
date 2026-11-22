@@ -4,8 +4,10 @@
 - Delivery status: **Not started; no implementation authorized**.
 - Authority: V2 received analyst review, then the user made the replacement and
   reference-impact decisions consolidated here. The user authorized this contract
-  cleanup and new wireframes. [Editing V3](../project/workbench-layout/color-ramp-editing-v3.md)
-  is for user review; no V3 analyst review, final agreement or implementation is implied.
+  cleanup and new wireframes. The user reviewed V3 as covering the scenarios, then
+  agreed progressive-disclosure refinement. [Editing V4](../project/workbench-layout/color-ramp-editing-v4.md)
+  is for user review; V3 remains the coverage reference. No V3/V4 analyst review,
+  final agreement or implementation is implied.
 - References: [owning ramp direction](../project/guided-color-palette-generation.md),
   [creation V3](../project/workbench-layout/color-ramp-creation-v3.md),
   [scale model](../design-tokens/conceptual-model.md#scale-generation),
@@ -40,6 +42,15 @@ The active requirements below incorporate the latest owning agreements. Historic
 fixed-count, departing-token retention, returning-token adoption, automatic draft
 round-trip restoration and protected one-time replacement prompts are not alternatives.
 AC identifiers are retained where practical, with AC-20–22 added for reference review.
+
+## Current UX refinement
+
+The [progressive-disclosure direction](../project/guided-color-palette-generation.md#progressive-disclosure-for-ramp-review--agreed-22-november-2026)
+shortens repeated reading without changing the requirements: important consequences
+stay visible, optional detail expands, pending reference decisions come first, and
+accepted choices collapse with Change. Individual remapping acceptance and explicit
+Unspecified consequence disclosure remain mandatory. V4 supplies the next static
+proposal, pending user review before any renewed analyst check.
 
 ## Acceptance criteria
 

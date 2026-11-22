@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1220" viewBox="0 0 1600 1220">
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<style>text{font-family:Arial,sans-serif} .mono{font-family:Menlo,monospace}</style>
+<text x="32" y="40" font-size="24" font-weight="600" fill="#262626">Reference impacts V4 · act in the row, expand only what you need</text>
+<text x="32" y="67" font-size="15" font-weight="400" fill="#666">Three successive inspector states · Main workspace remains the V3 layout; one shared Apply.</text>
+<text x="36" y="117" font-size="16" font-weight="600" fill="#262626">Default: accept a suggested target</text>
+<rect x="24" y="141" width="500" height="1000" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="48" y="180" font-size="21" font-weight="600" fill="#262626">Reference impacts</text>
+<text x="48" y="209" font-size="13" font-weight="400" fill="#666">color.brand · 11 → 6 steps</text>
+<line x1="24" y1="228" x2="524" y2="228" stroke="#e5e5e5" stroke-width="1"/>
+<text x="562" y="117" font-size="16" font-weight="600" fill="#262626">Accepted: compact summary</text>
+<rect x="550" y="141" width="500" height="1000" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="574" y="180" font-size="21" font-weight="600" fill="#262626">Reference impacts</text>
+<text x="574" y="209" font-size="13" font-weight="400" fill="#666">color.brand · 11 → 6 steps</text>
+<line x1="550" y1="228" x2="1050" y2="228" stroke="#e5e5e5" stroke-width="1"/>
+<text x="1088" y="117" font-size="16" font-weight="600" fill="#262626">Unspecified: warning before acceptance</text>
+<rect x="1076" y="141" width="500" height="1000" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1100" y="180" font-size="21" font-weight="600" fill="#262626">Reference impacts</text>
+<text x="1100" y="209" font-size="13" font-weight="400" fill="#666">color.brand · 11 → 6 steps</text>
+<line x1="1076" y1="228" x2="1576" y2="228" stroke="#e5e5e5" stroke-width="1"/>
+<text x="48" y="267" font-size="16" font-weight="600" fill="#262626">Needs a choice · 1</text>
+<text x="48" y="311" font-size="17" font-weight="600" fill="#262626">color.action.primary</text>
+<text x="48" y="342" font-size="13" font-weight="400" fill="#666">Current target: color.brand.300 · removed</text>
+<text x="48" y="379" font-size="13" font-weight="600" fill="#262626">New target</text>
+<rect x="48" y="393" width="275" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="185.5" y="415" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">color.brand.200  ▾</text>
+<rect x="335" y="393" width="165" height="34" rx="7" fill="#262626" stroke="#d4d4d4"/>
+<text x="417.5" y="415" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Accept</text>
+<text x="48" y="455" font-size="14" font-weight="400" fill="#262626">▸ Details &amp; color preview</text>
+<line x1="48" y1="488" x2="500" y2="488" stroke="#e5e5e5" stroke-width="1"/>
+<text x="48" y="532" font-size="15" font-weight="600" fill="#262626">▸ Other affected tokens · 2</text>
+<text x="48" y="563" font-size="13" font-weight="400" fill="#666">Connections stay intact; colors change.</text>
+<text x="48" y="1024" font-size="13" font-weight="600" fill="#262626">1 required choice remains</text>
+<rect x="48" y="1045" width="452" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="274.0" y="1067" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Apply ramp changes · unavailable</text>
+<text x="574" y="267" font-size="16" font-weight="600" fill="#262626">Accepted · 1</text>
+<text x="574" y="311" font-size="17" font-weight="600" fill="#262626">color.action.primary</text>
+<text x="574" y="342" font-size="14" font-weight="400" fill="#262626">300 → 200</text>
+<rect x="906" y="310" width="120" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="966.0" y="332" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Change</text>
+<line x1="574" y1="379" x2="1026" y2="379" stroke="#e5e5e5" stroke-width="1"/>
+<text x="574" y="423" font-size="15" font-weight="600" fill="#262626">▾ Other affected tokens · 2</text>
+<text x="574" y="470" font-size="16" font-weight="600" fill="#262626">color.button.background</text>
+<text x="574" y="500" font-size="12" font-weight="400" fill="#666">Via color.action.primary · connection unchanged</text>
+<text x="574" y="533" font-size="13" font-weight="400" fill="#262626">▸ Path &amp; color preview</text>
+<line x1="574" y1="563" x2="1026" y2="563" stroke="#e5e5e5" stroke-width="1"/>
+<text x="574" y="607" font-size="16" font-weight="600" fill="#262626">color.link.text</text>
+<text x="574" y="637" font-size="13" font-weight="400" fill="#666">color.brand.400 · same target, new color</text>
+<text x="574" y="671" font-size="13" font-weight="400" fill="#262626">▾ Path &amp; color preview</text>
+<text x="574" y="712" font-size="13" font-weight="400" fill="#262626" class="mono">color.link.text → color.brand.400</text>
+<text x="574" y="750" font-size="12" font-weight="400" fill="#666">Current</text>
+<text x="666" y="750" font-size="12" font-weight="400" fill="#666">New</text>
+<rect x="574" y="762" width="42" height="42" rx="7" fill="#619dff" stroke="#d4d4d4"/>
+<rect x="666" y="762" width="42" height="42" rx="7" fill="#3b82f6" stroke="#d4d4d4"/>
+<text x="574" y="1024" font-size="13" font-weight="600" fill="#262626">All required choices resolved</text>
+<rect x="574" y="1045" width="452" height="34" rx="7" fill="#262626" stroke="#d4d4d4"/>
+<text x="800.0" y="1067" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Apply ramp changes</text>
+<text x="1100" y="267" font-size="16" font-weight="600" fill="#262626">Needs a choice · 1</text>
+<text x="1100" y="311" font-size="17" font-weight="600" fill="#262626">color.action.primary</text>
+<text x="1100" y="342" font-size="13" font-weight="400" fill="#666">Current target: color.brand.300 · removed</text>
+<text x="1100" y="379" font-size="13" font-weight="600" fill="#262626">New value</text>
+<rect x="1100" y="393" width="452" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1326.0" y="415" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Unspecified  ▾</text>
+<rect x="1100" y="453" width="452" height="168" rx="7" fill="#f2f2f2" stroke="#d4d4d4"/>
+<text x="1116" y="484" font-size="14" font-weight="600" fill="#262626">These tokens will have no resolved color:</text>
+<text x="1116" y="521" font-size="14" font-weight="400" fill="#262626" class="mono">color.action.primary</text>
+<text x="1116" y="552" font-size="14" font-weight="400" fill="#262626" class="mono">color.button.background</text>
+<text x="1116" y="593" font-size="13" font-weight="400" fill="#262626">The downstream reference stays connected.</text>
+<rect x="1100" y="641" width="452" height="34" rx="7" fill="#262626" stroke="#d4d4d4"/>
+<text x="1326.0" y="663" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Accept Unspecified</text>
+<text x="1100" y="707" font-size="14" font-weight="400" fill="#262626">▸ Path &amp; details</text>
+<line x1="1100" y1="741" x2="1552" y2="741" stroke="#e5e5e5" stroke-width="1"/>
+<text x="1100" y="785" font-size="15" font-weight="600" fill="#262626">▸ Other color changes · 1</text>
+<text x="1100" y="1024" font-size="13" font-weight="600" fill="#262626">1 required choice remains</text>
+<rect x="1100" y="1045" width="452" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1326.0" y="1067" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Apply ramp changes · unavailable</text>
+<text x="48" y="1180" font-size="14" font-weight="400" fill="#666">A target selection is not acceptance. Each direct reference has its own Accept. Informational notices never need approval.</text>
+</svg>

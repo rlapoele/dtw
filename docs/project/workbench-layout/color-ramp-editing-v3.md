@@ -1,6 +1,11 @@
 # Color ramp editing V3
 
-**Consolidated static proposal — 22 November 2026. For user review before analyst review.**
+**Scenario-coverage reference — 22 November 2026.**
+
+The user reviewed this proposal as covering the scenarios and requested a more
+compact presentation for repeated use. [Editing V4](./color-ramp-editing-v4.md)
+explores progressive disclosure without changing these behaviors. No analyst
+review or implementation approval is inferred from that feedback.
 
 V3 replaces the superseded count/reuse and protected-replacement interactions in
 [V2](./color-ramp-editing-v2.md). It preserves the accepted central component matrix,
