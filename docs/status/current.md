@@ -10,6 +10,16 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Surviving ramp descriptions — 22 November 2026
+
+The user agreed that surviving steps preserve saved and pending descriptions during
+replacement; new steps do not inherit descriptions from removed steps. The
+[owning agreement](../project/guided-color-palette-generation.md#count-replacement-and-reference-remapping--22-november-2026)
+and Draft 024 distinguish description preservation from manual-color reset and do
+not restore older drafts. Next: decide pending protection changes on surviving
+steps. No implementation or qualification restart. Markdown/whitespace checked.
+Suggested commit: `docs: preserve surviving ramp-step descriptions`.
+
 ## Surviving ramp identities and reference impact — 22 November 2026
 
 The user agreed that surviving step names retain identities and existing references.

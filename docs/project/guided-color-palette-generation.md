@@ -382,6 +382,12 @@ an impact notice, not forced remapping; a disappearing target requires explicit
 resolution under the agreed remapping rules. Do not imply that notice alone authorizes
 a remapping. Exact impact traversal, presentation and technical eligibility remain
 to specify; this agreement does not silently promise unsupported reference forms.
+**Surviving descriptions — agreed 22 November 2026:** surviving steps keep both
+saved and pending descriptions during count replacement. Resetting manual color
+adjustments does not reset separately authored descriptions. Newly created steps
+do not inherit descriptions from removed steps. This is a scoped preservation rule,
+not automatic restoration of older drafts when a count is changed back.
+
 Exact impacted-reference eligibility and unspecified-value representation need the
 technical contract. The earlier count-round-trip agreement is superseded by the lifecycle below.
 No revised wireframes, analyst re-review or implementation is authorized here.
@@ -403,8 +409,8 @@ saves it, and discarding the whole draft restores the saved ramp**.
   and does not eliminate that escape route. Avoid misleading “no going back” copy.
 
 This explicitly supersedes the earlier unapplied count-round-trip restoration rule.
-Surviving token identities are preserved under the agreement above. Descriptions
-and other metadata remain separate decisions; those details remain separate decisions. No implementation authorized.
+Surviving token identities and descriptions are preserved under the agreements
+above. Other metadata details remain separate decisions; those details remain separate decisions. No implementation authorized.
 
 ### Departing steps during later editing
 

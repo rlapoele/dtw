@@ -50,6 +50,11 @@ Provide context-appropriate actions: notice for a changed surviving target, expl
 resolution for a disappearing target. Do not require remapping solely for a changed
 color. Exact impact traversal and UI details remain to specify before implementation.
 
+**Description agreement:** surviving steps preserve saved and pending descriptions
+during replacement. Color-reset semantics do not erase separately authored text;
+new steps do not inherit descriptions from removed steps. This does not reinstate
+automatic recovery of older drafts after another confirmed count change.
+
 This material change has not yet been incorporated into revised wireframes or
 analyst re-review. AC-13/14, D2/D4, related verification and the historical V2
 count sheet below require reconciliation with it before agreement. Remaining Manual/Protected
