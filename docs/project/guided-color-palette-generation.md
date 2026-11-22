@@ -199,6 +199,16 @@ analyst review and authorized reconciliation of the draft contract. This is not
 final complete contract agreement or implementation authorization. Exact draft reconciliation and numerical
 policies remain unresolved. Static wireframes illustrate intended behavior only.
 
+### Unapplied count round trips — agreed 22 November 2026
+
+Within one editing draft, changing the count and then restoring it preserves the
+original members' identities, membership and pending edits without returning-token
+conflict review. For example, an unapplied 11→6→11 sequence restores the temporarily
+excluded members and their pending edits; they never departed in applied data.
+After applying the reduction, a later increase follows the agreed explicit reuse
+review for occupied names. This agreement does not settle how pending edits on
+departing steps are handled if the reduced count is actually applied.
+
 ### Automatic seed placement
 
 Offer **Auto** alongside explicit seed-step selection. Auto proposes a suitable

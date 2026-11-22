@@ -10,6 +10,16 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Unapplied ramp count round trips agreed — 22 November 2026
+
+The user agreed that unapplied count round trips preserve membership, identities
+and pending edits without conflict review. The [owning decision](../project/guided-color-palette-generation.md#unapplied-count-round-trips--agreed-22-november-2026)
+and Draft 024 D2 distinguish this from an applied departure followed by later reuse.
+Next: decide what happens to pending edits on departing steps when a reduced count
+is applied, one decision at a time. Other D2 details and D1/D3–D5 remain open.
+Documentation only; no implementation or qualification restart. Changed Markdown
+and whitespace checked. Suggested commit: `docs: preserve unapplied ramp count round trips`.
+
 ## Ramp V2 analyst review and reconciled Draft 024 — 22 November 2026
 
 The user approved V2 for analyst review and required the ramp-step Layer field to

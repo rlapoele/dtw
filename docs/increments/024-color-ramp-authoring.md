@@ -155,7 +155,9 @@ implementation to fill gaps implicitly.
   deletion. Resolve a disappearing seed position visibly. Moving the recipe anchor
   does not authorize overwriting a Manual/Protected destination; retain its value by
   default and show recipe-seed divergence or obtain explicit replacement review.
-  D2 must distinguish same-session count reversal from reopening applied departures.
+  An unapplied count round trip restores membership and pending edits without
+  conflict review; an applied reduction followed by an increase requires reuse review.
+  D2 still governs pending edits when a departure is actually applied.
 - **AC-14 — Returning-name collisions.** A matching path alone does not authorize
   reuse. For an eligible token, reviewed Reuse and keep value is default: preserve
   identity/value/references/protection and establish Manual membership. Reuse with
@@ -251,12 +253,14 @@ threshold is selected by this analyst review; a small technical proposal is need
 
 ### D2 — Draft reconciliation (high priority)
 
-**Recommended policy for agreement:** derive membership from the applied baseline
-plus the latest reviewed count. An unapplied 11→6→11 round trip restores original
-membership/identities and pending edits rather than treating the five members as
-already departed. After applying 6 and later returning to 11, those names require
-explicit conflict choices. Retain temporarily excluded edits in the draft but expose
-that they are not applied while outside the proposed ramp; decide this explicitly.
+**Agreed 22 November 2026:** an unapplied count round trip preserves original
+membership, identities and pending edits without conflict review. After applying
+a reduction, later returning names require the agreed explicit reuse choices.
+See the [owning decision](../project/guided-color-palette-generation.md#unapplied-count-round-trips--agreed-22-november-2026).
+
+**Still open:** handling pending edits on departing steps when the reduced count
+is actually applied. The earlier recommendation to exclude those edits from Apply
+is not agreed; review the user-visible preservation/discard choice separately.
 
 Revert an existing step's color, description, protection and pending replacement
 choice to the applied baseline while preserving count/settings. Preserve applied
