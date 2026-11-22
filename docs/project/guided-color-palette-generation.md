@@ -421,6 +421,17 @@ This explicitly supersedes the earlier unapplied count-round-trip restoration ru
 Surviving token identities and descriptions are preserved under the agreements
 above. Other metadata details remain separate decisions; those details remain separate decisions. No implementation authorized.
 
+### Non-member name conflicts — agreed 22 November 2026
+
+An occupied required step name belonging to a token outside the ramp blocks count
+replacement. Show a clear name-conflict message; do not offer adoption or overwrite.
+Users can choose another count, or resolve the existing token's name through ordinary
+editing before retrying. Replacement authority covers actual ramp members only.
+Keep the existing token and its references untouched, and preserve the current draft
+when replacement cannot proceed. The ordinary editing route must respect the shared
+draft/departure guard; it does not authorize a second independently saving editor.
+This supersedes historical proposals to reuse arbitrary non-members at returning names.
+
 ### New replacement-step defaults — agreed 22 November 2026
 
 Genuinely new steps created by replacement start **Generated and unprotected**.

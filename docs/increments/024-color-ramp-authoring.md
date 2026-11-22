@@ -100,6 +100,12 @@ unprotected, with no inherited protection from other steps. An explicit draft lo
 can protect them before Apply. Surviving-step protection rules remain unchanged;
 this does not authorize reuse or overwrite at occupied non-member paths.
 
+**Non-member collision agreement:** a required step name occupied by a non-member
+token blocks replacement, with no adoption or overwrite. Explain the conflict;
+choose another count or resolve the existing name through ordinary editing and
+retry, respecting draft guards. Do not mutate the conflicting token or its references.
+This supersedes earlier arbitrary non-member reuse proposals in AC-14/D4 below.
+
 This material change has not yet been incorporated into revised wireframes or
 analyst re-review. AC-13/14, D2/D4, related verification and the historical V2
 count sheet below require reconciliation with it before agreement. Remaining Manual/Protected

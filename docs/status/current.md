@@ -10,6 +10,16 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Non-member ramp name conflicts — 22 November 2026
+
+The user agreed that an occupied required name belonging to a non-member token
+blocks replacement, without adoption or overwrite. The [owning rule](../project/guided-color-palette-generation.md#non-member-name-conflicts--agreed-22-november-2026)
+and Draft 024 preserve the token and require a different count or ordinary name
+resolution with draft guards. Next: decide seed-position handling when replacement
+removes its current label. No implementation or qualification restart.
+Markdown/whitespace checked. Suggested commit:
+`docs: block ramp replacement on non-member name conflicts`.
+
 ## New replacement-step defaults — 22 November 2026
 
 The user agreed that new replacement steps start Generated and unprotected,
