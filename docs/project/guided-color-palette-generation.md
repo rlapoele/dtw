@@ -430,7 +430,14 @@ Use seed lightness and the agreed Auto rule, not numerical-label proximity used 
 reference remapping. This supersedes the historical later-editing requirement to
 block Apply pending explicit confirmation of a replacement seed position in this
 count-replacement case. Creation rules and invalid seed positions caused by other
-changes remain distinct; surviving seed-position behavior is still to decide.
+changes remain distinct.
+
+**Surviving seed position — agreed 22 November 2026:** retain the assigned seed
+position during count replacement when its label survives and remains valid.
+Preserve the exact recipe seed and generate the replacement around that position.
+Do not automatically reposition it merely because the count changed. The user can
+still select another valid position or explicitly recalculate Auto placement before
+Apply.
 
 ### Non-member name conflicts — agreed 22 November 2026
 

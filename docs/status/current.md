@@ -10,6 +10,17 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Surviving seed position retained — 22 November 2026
+
+The user agreed that count replacement retains a surviving, valid assigned seed
+position. Preserve the exact recipe seed and generate around that position; manual
+selection or explicit Auto recalculation remains available before Apply. The
+[owning rule](../project/guided-color-palette-generation.md#disappearing-seed-position-on-replacement--agreed-22-november-2026)
+and Draft 024 now cover both surviving and disappearing labels. Design/contract
+consolidation and remaining open decisions are still pending. No implementation
+or qualification restart. Markdown/whitespace checked. Suggested commit:
+`docs: retain valid surviving ramp seed positions`.
+
 ## Disappearing seed position on replacement — 22 November 2026
 
 The user agreed to use existing Auto placement when count replacement removes the
