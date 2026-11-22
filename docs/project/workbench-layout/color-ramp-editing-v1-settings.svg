@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1110" viewBox="0 0 1600 1110">
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<style>text{font-family:Arial,sans-serif} .mono{font-family:Menlo,monospace}</style>
+<text x="32" y="40" font-size="24" font-weight="600" fill="#262626">Settings changes · manual values · one-time replacements</text>
+<text x="32" y="67" font-size="15" font-weight="400" fill="#666">V1 proposal • Successive inspector states within the same ramp draft</text>
+<rect x="24" y="96" width="493" height="910" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="48" y="130" font-size="20" font-weight="600" fill="#262626">Ramp settings</text>
+<line x1="24" y1="149" x2="517" y2="149" stroke="#e5e5e5" stroke-width="1"/>
+<text x="48" y="182" font-size="14" font-weight="600" fill="#262626">Recipe seed</text>
+<rect x="48" y="192" width="445" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="60" y="215" font-size="15" font-weight="400" fill="#262626">#3B82F6 · authored in sRGB</text>
+<rect x="48" y="235" width="144" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="120.0" y="257" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Edit recipe seed</text>
+<text x="48" y="311" font-size="14" font-weight="600" fill="#262626">Step count</text>
+<rect x="48" y="321" width="445" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="60" y="344" font-size="15" font-weight="400" fill="#262626">11</text>
+<text x="48" y="388" font-size="14" font-weight="600" fill="#262626">Color intensity</text>
+<rect x="48" y="398" width="445" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="60" y="421" font-size="15" font-weight="400" fill="#262626">Retained  ▾</text>
+<text x="48" y="449" font-size="13" font-weight="400" fill="#666">Changed from Restrained</text>
+<text x="48" y="499" font-size="14" font-weight="600" fill="#262626">Target gamut</text>
+<rect x="48" y="509" width="445" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="60" y="532" font-size="15" font-weight="400" fill="#262626">sRGB</text>
+<text x="48" y="576" font-size="14" font-weight="600" fill="#262626">Saved seed position</text>
+<rect x="48" y="586" width="445" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="60" y="609" font-size="15" font-weight="400" fill="#262626">500</text>
+<rect x="48" y="631" width="174" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="135.0" y="653" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Recalculate position</text>
+<text x="48" y="697" font-size="15" font-weight="600" fill="#262626">Settings update the proposal only.</text>
+<text x="48" y="726" font-size="14" font-weight="400" fill="#262626">Manual and Protected values are kept.</text>
+<text x="48" y="755" font-size="14" font-weight="400" fill="#262626">Reopening never moves the saved seed.</text>
+<rect x="48" y="790" width="445" height="116" rx="7" fill="#f5f5f5" stroke="#d4d4d4"/>
+<text x="66" y="819" font-size="15" font-weight="600" fill="#262626">Review changes</text>
+<text x="66" y="847" font-size="14" font-weight="400" fill="#262626">8 generated updates · 1 manual kept</text>
+<text x="66" y="874" font-size="14" font-weight="400" fill="#262626">1 protected kept · seed unchanged</text>
+<rect x="48" y="933" width="445" height="34" rx="7" fill="#262626" stroke="#d4d4d4"/>
+<text x="270.5" y="955" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Review proposed values</text>
+<rect x="553" y="96" width="493" height="910" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="577" y="130" font-size="20" font-weight="600" fill="#262626">Step 700 · Manual</text>
+<line x1="553" y1="149" x2="1046" y2="149" stroke="#e5e5e5" stroke-width="1"/>
+<text x="577" y="183" font-size="15" font-weight="600" fill="#262626">Current value</text>
+<rect x="577" y="201" width="70" height="56" rx="7" fill="#274f90" stroke="#d4d4d4"/>
+<text x="664" y="235" font-size="16" font-weight="400" fill="#262626" class="mono">#274F90</text>
+<text x="577" y="308" font-size="15" font-weight="600" fill="#262626">Generated candidate</text>
+<rect x="577" y="326" width="70" height="56" rx="7" fill="#124ba5" stroke="#d4d4d4"/>
+<text x="664" y="360" font-size="16" font-weight="400" fill="#262626" class="mono">#124BA5</text>
+<text x="577" y="428" font-size="15" font-weight="600" fill="#262626">Value choice</text>
+<rect x="577" y="447" width="445" height="55" rx="7" fill="#ededed" stroke="#d4d4d4"/>
+<text x="595" y="480" font-size="15" font-weight="600" fill="#262626">●  Keep manual value</text>
+<rect x="577" y="514" width="445" height="55" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="595" y="547" font-size="15" font-weight="400" fill="#262626">○  Use generated value</text>
+<text x="577" y="609" font-size="14" font-weight="400" fill="#262626">Accepting the generated value clears Manual.</text>
+<text x="577" y="639" font-size="14" font-weight="400" fill="#262626">Other ramp steps are unaffected by this choice.</text>
+<text x="577" y="699" font-size="15" font-weight="600" fill="#262626">Protected from regeneration</text>
+<rect x="577" y="719" width="87" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="620.5" y="741" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Off  ▾</text>
+<text x="577" y="794" font-size="14" font-weight="400" fill="#262626">Removing protection alone would not clear</text>
+<text x="577" y="820" font-size="14" font-weight="400" fill="#262626">Manual. A manual edit never enables protection.</text>
+<text x="577" y="891" font-size="14" font-weight="600" fill="#262626">Only final Apply writes this choice.</text>
+<rect x="577" y="933" width="445" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="799.5" y="955" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Back to ramp</text>
+<rect x="1082" y="96" width="494" height="910" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1106" y="130" font-size="20" font-weight="600" fill="#262626">Step 800 · Manual + Protected</text>
+<line x1="1082" y1="149" x2="1576" y2="149" stroke="#e5e5e5" stroke-width="1"/>
+<text x="1106" y="183" font-size="15" font-weight="600" fill="#262626">Generated replacement requested</text>
+<text x="1106" y="217" font-size="14" font-weight="400" fill="#262626">This token is protected from regeneration.</text>
+<rect x="1106" y="245" width="446" height="117" rx="7" fill="#f5f5f5" stroke="#d4d4d4"/>
+<text x="1124" y="275" font-size="14" font-weight="600" fill="#262626">Current value → Generated candidate</text>
+<rect x="1124" y="293" width="47" height="46" rx="7" fill="#274f90" stroke="#d4d4d4"/>
+<text x="1184" y="322" font-size="14" font-weight="400" fill="#262626" class="mono">#274F90</text>
+<rect x="1346" y="293" width="47" height="46" rx="7" fill="#124ba5" stroke="#d4d4d4"/>
+<text x="1406" y="322" font-size="14" font-weight="400" fill="#262626" class="mono">#124BA5</text>
+<text x="1106" y="413" font-size="16" font-weight="600" fill="#262626">Review this one-time replacement</text>
+<text x="1106" y="449" font-size="14" font-weight="400" fill="#262626">• The token keeps its identity and references.</text>
+<text x="1106" y="482" font-size="14" font-weight="400" fill="#262626">• References will resolve to the changed value.</text>
+<text x="1106" y="515" font-size="14" font-weight="400" fill="#262626">• Manual clears when the replacement is applied.</text>
+<text x="1106" y="548" font-size="14" font-weight="400" fill="#262626">• Protection stays on for future regeneration.</text>
+<rect x="1106" y="589" width="446" height="34" rx="7" fill="#262626" stroke="#d4d4d4"/>
+<text x="1329.0" y="611" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Use generated value once</text>
+<rect x="1106" y="638" width="446" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1329.0" y="660" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Keep current value</text>
+<line x1="1106" y1="706" x2="1552" y2="706" stroke="#e5e5e5" stroke-width="1"/>
+<text x="1106" y="742" font-size="15" font-weight="600" fill="#262626">After choosing the replacement</text>
+<rect x="1106" y="765" width="90" height="23" rx="4" fill="#eeeeee" stroke="#e5e5e5"/>
+<text x="1151.0" y="781" font-size="12" font-weight="600" fill="#262626" text-anchor="middle">Generated</text>
+<rect x="1205" y="765" width="90" height="23" rx="4" fill="#eeeeee" stroke="#e5e5e5"/>
+<text x="1250.0" y="781" font-size="12" font-weight="600" fill="#262626" text-anchor="middle">Protected</text>
+<rect x="1304" y="765" width="56" height="23" rx="4" fill="#eeeeee" stroke="#e5e5e5"/>
+<text x="1332.0" y="781" font-size="12" font-weight="600" fill="#262626" text-anchor="middle">Draft</text>
+<text x="1106" y="829" font-size="14" font-weight="400" fill="#262626">This is a pending choice, not a saved change.</text>
+<text x="1106" y="858" font-size="14" font-weight="400" fill="#262626">Changing settings again requires fresh review</text>
+<text x="1106" y="887" font-size="14" font-weight="400" fill="#262626">if the candidate changes.</text>
+<rect x="1106" y="933" width="446" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1329.0" y="955" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Back to ramp</text>
+<text x="32" y="1044" font-size="16" font-weight="400" fill="#262626">The workspace keeps current / proposed comparison available; one final Apply covers settings, values and membership.</text>
+<text x="32" y="1075" font-size="13" font-weight="400" fill="#666">Values in the protection comparison illustrate the interaction, not a computed step-800 regeneration.</text>
+</svg>

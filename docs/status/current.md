@@ -10,6 +10,43 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp-editing V2 and single Apply agreement — 22 November 2026
+
+The user agreed [one Apply boundary](../project/guided-color-palette-generation.md#single-apply-and-step-inspector--agreed-22-november-2026),
+with immediate draft updates, selected-step revert, and guarded navigation offering
+Apply and leave / Discard and leave / Keep editing. [Editing V2](../project/workbench-layout/color-ramp-editing-v2.md)
+adds open/closed ghost lock buttons, aligns step details with the existing color-token
+inspector and makes settings/conflict-review triggers explicit. V1 is historical
+where superseded.
+
+The revised static design remains for user review before analyst review. Complete
+Draft 024 reconciliation, numerical policy, eligibility/schema and detailed draft
+reconciliation remain outstanding. No application implementation or broader
+qualification is authorized. Earlier acceptance limits remain unchanged.
+The designer grounded the inspector in current source and an existing application
+capture. Three sheets were rendered and visually checked; XML, local links and
+whitespace checks passed. This bounded static follow-up stopped at approximately
+8 aggregate minutes with zero rendering harness repairs; no runtime checks.
+Suggested commit: `docs: refine ramp editing actions and inspector wireframes`.
+
+## Ramp-editing wireframes V1 — 22 November 2026
+
+The user resumed the deferred editing-design task. [Ramp editing V1](../project/workbench-layout/color-ramp-editing-v1.md)
+proposes central-workspace swatches and three component-slider rows, a viewing/editing
+space selector initially using the project default, and contextual settings/step
+inspection. Supporting states cover settings previews, Manual overrides, departing
+and returning steps, and protected one-time replacements.
+
+The user reviews this design before analyst review. Workspace space/session choices
+remain proposals; creation's explicit seed space is distinct from a ramp-wide
+viewing preference. The complete Draft 024 still needs reconciliation, including
+numerical policy, exact schema and eligibility. No implementation or renewed
+qualification is authorized. Earlier acceptance limits remain unchanged.
+All three sheets were rendered and visually inspected; SVG XML, local links and
+whitespace were checked. Static checks stopped at approximately 10 aggregate minutes
+and one rendering repair cycle. No runtime behavior was tested.
+Suggested commit: `docs: propose ramp editing workspace and conflict wireframes`.
+
 ## Manual/protection agreed; editing wireframes deferred — 22 November 2026
 
 The user agreed [separate Manual ramp status and token-wide protection](../project/guided-color-palette-generation.md#manual-status-and-regeneration-protection).

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1130" viewBox="0 0 1600 1130">
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<style>text{font-family:Arial,sans-serif} .mono{font-family:Menlo,monospace}</style>
+<text x="32" y="40" font-size="24" font-weight="600" fill="#262626">Count changes · keep departing tokens · review returning conflicts</text>
+<text x="32" y="67" font-size="15" font-weight="400" fill="#666">V1 proposal • No value, identity or membership changes before final Apply</text>
+<rect x="24" y="96" width="744" height="868" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="48" y="130" font-size="20" font-weight="600" fill="#262626">11 → 6 steps</text>
+<line x1="24" y1="149" x2="768" y2="149" stroke="#e5e5e5" stroke-width="1"/>
+<text x="48" y="188" font-size="16" font-weight="600" fill="#262626">Proposed members</text>
+<text x="48" y="223" font-size="20" font-weight="600" fill="#262626" class="mono">50     200     400     600     800     950</text>
+<text x="48" y="275" font-size="16" font-weight="600" fill="#262626">5 tokens leave the ramp, but stay in the project.</text>
+<text x="48" y="307" font-size="14" font-weight="400" fill="#262626">Their names, values, identities and references are preserved.</text>
+<rect x="48" y="338" width="696" height="256" rx="7" fill="#f7f7f7" stroke="#d4d4d4"/>
+<text x="68" y="371" font-size="12" font-weight="600" fill="#262626">TOKEN</text>
+<text x="331" y="371" font-size="12" font-weight="600" fill="#262626">CURRENT STATE</text>
+<text x="550" y="371" font-size="12" font-weight="600" fill="#262626">AFTER APPLY</text>
+<text x="68" y="408" font-size="14" font-weight="400" fill="#262626" class="mono">color.brand.100</text>
+<text x="331" y="408" font-size="14" font-weight="400" fill="#262626">Generated</text>
+<text x="550" y="408" font-size="14" font-weight="400" fill="#262626">Ordinary token</text>
+<text x="68" y="445" font-size="14" font-weight="400" fill="#262626" class="mono">color.brand.300</text>
+<text x="331" y="445" font-size="14" font-weight="400" fill="#262626">Manual</text>
+<text x="550" y="445" font-size="14" font-weight="400" fill="#262626">Ordinary token</text>
+<text x="68" y="482" font-size="14" font-weight="400" fill="#262626" class="mono">color.brand.500</text>
+<text x="331" y="482" font-size="14" font-weight="400" fill="#262626">Seed step</text>
+<text x="550" y="482" font-size="14" font-weight="400" fill="#262626">Ordinary token</text>
+<text x="68" y="519" font-size="14" font-weight="400" fill="#262626" class="mono">color.brand.700</text>
+<text x="331" y="519" font-size="14" font-weight="400" fill="#262626">Manual</text>
+<text x="550" y="519" font-size="14" font-weight="400" fill="#262626">Ordinary token</text>
+<text x="68" y="556" font-size="14" font-weight="400" fill="#262626" class="mono">color.brand.900</text>
+<text x="331" y="556" font-size="14" font-weight="400" fill="#262626">Protected</text>
+<text x="550" y="556" font-size="14" font-weight="400" fill="#262626">Ordinary token</text>
+<text x="48" y="642" font-size="15" font-weight="600" fill="#262626">The saved seed position 500 is no longer available.</text>
+<text x="48" y="675" font-size="14" font-weight="400" fill="#262626">Choose a replacement before applying the count change.</text>
+<rect x="48" y="703" width="198" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="147.0" y="725" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Use step 400</text>
+<rect x="259" y="703" width="209" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="363.5" y="725" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Choose another step</text>
+<text x="48" y="766" font-size="13" font-weight="400" fill="#666">400 is illustrative; no replacement algorithm is selected.</text>
+<text x="48" y="815" font-size="14" font-weight="400" fill="#262626">Protected departing tokens retain protection.</text>
+<text x="48" y="843" font-size="14" font-weight="400" fill="#262626">The recipe seed stays exact at the reviewed new position.</text>
+<rect x="48" y="896" width="222" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="159.0" y="918" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Apply unavailable</text>
+<text x="289" y="919" font-size="14" font-weight="400" fill="#666">Resolve seed placement first</text>
+<rect x="804" y="96" width="772" height="868" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="828" y="130" font-size="20" font-weight="600" fill="#262626">6 → 11 steps · returning name conflicts</text>
+<line x1="804" y1="149" x2="1576" y2="149" stroke="#e5e5e5" stroke-width="1"/>
+<text x="828" y="186" font-size="17" font-weight="600" fill="#262626">Review 5 existing tokens at required paths</text>
+<text x="828" y="217" font-size="14" font-weight="400" fill="#262626">Default for eligible colors: reuse identity and keep value as Manual.</text>
+<rect x="828" y="239" width="284" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="970.0" y="261" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Reuse all and keep values</text>
+<text x="828" y="317" font-size="19" font-weight="600" fill="#262626">color.brand.300</text>
+<text x="828" y="347" font-size="14" font-weight="400" fill="#262626">Existing color · referenced by color.action.primary</text>
+<rect x="828" y="369" width="724" height="64" rx="7" fill="#ededed" stroke="#d4d4d4"/>
+<text x="846" y="395" font-size="15" font-weight="600" fill="#262626">●  Reuse and keep its value</text>
+<text x="846" y="417" font-size="13" font-weight="400" fill="#262626">Joins as Manual; existing protection is unchanged.</text>
+<rect x="828" y="445" width="724" height="64" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="846" y="471" font-size="15" font-weight="600" fill="#262626">○  Reuse and use generated value</text>
+<text x="846" y="493" font-size="13" font-weight="400" fill="#262626">Keeps identity; referenced colors will change. Review protection if on.</text>
+<rect x="828" y="521" width="724" height="64" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="846" y="547" font-size="15" font-weight="600" fill="#262626">○  Leave outside the ramp</text>
+<text x="846" y="569" font-size="13" font-weight="400" fill="#262626">Preserves this token; the required name must be resolved before Apply.</text>
+<line x1="828" y1="614" x2="1552" y2="614" stroke="#e5e5e5" stroke-width="1"/>
+<text x="828" y="651" font-size="16" font-weight="600" fill="#262626">If “Leave outside” is chosen</text>
+<text x="828" y="684" font-size="14" font-weight="400" fill="#262626">Step 300 is still required by the 11-step naming rule.</text>
+<text x="828" y="714" font-size="14" font-weight="400" fill="#262626">Choose another count, or resolve the existing name first.</text>
+<text x="828" y="744" font-size="14" font-weight="600" fill="#262626">No automatic rename, deletion or skipped step.</text>
+<rect x="828" y="768" width="162" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="909.0" y="790" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Change count</text>
+<rect x="1002" y="768" width="188" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1096.0" y="790" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Review existing token</text>
+<text x="828" y="841" font-size="14" font-weight="400" fill="#262626">A group or unsupported token blocks reuse with a reason.</text>
+<text x="828" y="867" font-size="13" font-weight="400" fill="#666">Exact eligible token forms remain a contract decision.</text>
+<rect x="828" y="896" width="218" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="937.0" y="918" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Apply unavailable</text>
+<text x="1064" y="919" font-size="14" font-weight="400" fill="#666">1 unresolved conflict</text>
+<rect x="24" y="987" width="1552" height="95" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="48" y="1018" font-size="15" font-weight="600" fill="#262626">Shared review footer</text>
+<text x="48" y="1047" font-size="16" font-weight="400" fill="#262626">Count 6 → 11 · 5 tokens rejoining as Manual · no replacements · protection unchanged</text>
+<rect x="1205" y="1017" width="130" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1270.0" y="1039" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Discard draft</text>
+<rect x="1347" y="1017" width="205" height="34" rx="7" fill="#262626" stroke="#d4d4d4"/>
+<text x="1449.5" y="1039" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Apply ramp changes</text>
+<text x="32" y="1110" font-size="13" font-weight="400" fill="#666">The footer example is the fully resolved keep-values outcome; the blocked states above cannot be applied.</text>
+</svg>

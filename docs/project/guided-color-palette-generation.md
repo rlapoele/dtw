@@ -153,13 +153,48 @@ remain draft proposals until final Apply; acceptance must preserve their separat
 behavior, not a finalized metadata schema or permission model. General detachment
 and exact eligibility still need specification.
 
-### Next design work — deferred
+### Ramp-editing design resumed — 22 November 2026
 
-**Recorded at the user's request — 22 November 2026:** next, prepare ramp-editing
-wireframes for the central workspace and inspector, including settings changes,
-manual values, returning-step conflicts and one-time protected replacements.
-**Do not prepare those wireframes now.** Wait for the user to resume that work.
-No implementation or new prototype is authorized by this note.
+The user resumed preparation of central-workspace and inspector wireframes,
+including settings changes, manual overrides, count-change conflicts and protected
+one-time replacements. The requested central workspace includes a color-space
+selector initially using the effective project default, named rounded swatches
+with HEX previews, and three component rows with a thin vertical slider and value
+for every step. The user invited additional useful workspace elements.
+
+[Editing V2](workbench-layout/color-ramp-editing-v2.md) refines the initial
+[Editing V1](workbench-layout/color-ramp-editing-v1.md) after user feedback.
+The distinction between workspace viewing/editing space and the creation seed's
+explicit authored space remains proposed; passive space selection preserves authored
+values. No analyst review or application implementation is authorized.
+
+### Single Apply and step inspector — agreed 22 November 2026
+
+The user agreed a single Apply boundary and requested updated wireframes:
+
+- Step edits immediately update the shared ramp draft and its preview. There is
+  no intermediate **Keep modified color** confirmation and no independent step save.
+- Show Current/New color comparison and retain the existing color-token inspector's
+  visual structure and controls as closely as possible, adding ramp-specific context.
+- **Revert step changes** restores the selected step to its applied state while
+  preserving other steps' pending edits and ramp settings. This is distinct from requesting a
+  generated replacement; reverting does not silently clear an applied Manual state.
+- **Apply ramp changes**, available after the inspector's editable fields, saves
+  the complete reviewed draft. Show the overall scope of pending changes beside it.
+- Switching steps or opening **Ramp settings** changes inspector content and keeps
+  the draft. Leaving the ramp offers **Apply and leave**, **Discard and leave**, or
+  **Keep editing**. Apply remains subject to validation and existing recovery gates;
+  a failed save does not navigate away or discard the draft.
+- Each step has an icon-only ghost protection button: open lock when unprotected,
+  closed lock when protected. The inspector's **Protected from regeneration**
+  section reflects and edits the same draft state. Provide action labels/tooltips;
+  protection changes remain pending until the shared Apply.
+- Manual editing is allowed in either protection state. Saving an intentional
+  value edit establishes Manual without changing protection or the recipe seed.
+
+These scoped agreements do not approve every V2 detail, the complete increment
+contract, analyst review or implementation. Exact draft reconciliation and numerical
+policies remain unresolved. Static wireframes illustrate intended behavior only.
 
 ### Automatic seed placement
 

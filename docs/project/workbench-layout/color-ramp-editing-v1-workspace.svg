@@ -1,0 +1,231 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1060" viewBox="0 0 1600 1060">
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<style>text{font-family:Arial,sans-serif} .mono{font-family:Menlo,monospace}</style>
+<text x="32" y="40" font-size="24" font-weight="600" fill="#262626">Ramp editing · central workspace + selected-step inspector</text>
+<text x="32" y="67" font-size="15" font-weight="400" fill="#666">V1 proposal • 22 November 2026 • Static wireframe; not implemented</text>
+<rect x="24" y="90" width="1552" height="900" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<line x1="24" y1="145" x2="1576" y2="145" stroke="#e5e5e5" stroke-width="1"/>
+<text x="46" y="124" font-size="17" font-weight="600" fill="#262626">Design Token Workbench</text>
+<text x="278" y="124" font-size="15" font-weight="400" fill="#262626">Studio System / Tokens</text>
+<text x="1288" y="124" font-size="14" font-weight="400" fill="#666">Applied project saved locally</text>
+<line x1="206" y1="145" x2="206" y2="990" stroke="#e5e5e5" stroke-width="1"/>
+<text x="43" y="183" font-size="12" font-weight="600" fill="#737373">NAMESPACES</text>
+<text x="43" y="225" font-size="15" font-weight="600" fill="#262626">Color</text>
+<rect x="35" y="243" width="158" height="36" rx="7" fill="#ededed" stroke="#ededed"/>
+<text x="57" y="267" font-size="15" font-weight="600" fill="#262626">Brand</text>
+<text x="57" y="308" font-size="15" font-weight="400" fill="#262626">Neutral</text>
+<text x="57" y="349" font-size="15" font-weight="400" fill="#262626">Semantic</text>
+<text x="43" y="406" font-size="15" font-weight="400" fill="#262626">Spacing</text>
+<text x="43" y="447" font-size="15" font-weight="400" fill="#262626">Typography</text>
+<line x1="1205" y1="145" x2="1205" y2="990" stroke="#e5e5e5" stroke-width="1"/>
+<text x="231" y="184" font-size="23" font-weight="600" fill="#262626">color.brand</text>
+<rect x="396" y="165" width="87" height="23" rx="4" fill="#eeeeee" stroke="#e5e5e5"/>
+<text x="439.5" y="181" font-size="12" font-weight="600" fill="#262626" text-anchor="middle">Color ramp</text>
+<rect x="1030" y="160" width="150" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1105.0" y="182" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Ramp settings</text>
+<text x="231" y="216" font-size="14" font-weight="400" fill="#666">11 steps · Seed at 500 · Target sRGB</text>
+<text x="231" y="259" font-size="14" font-weight="600" fill="#262626">Component space</text>
+<rect x="370" y="237" width="130" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="435.0" y="259" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">OKLCH  ▾</text>
+<text x="515" y="259" font-size="13" font-weight="400" fill="#666">Project default</text>
+<text x="838" y="259" font-size="13" font-weight="400" fill="#262626">Background</text>
+<rect x="925" y="237" width="118" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="984.0" y="259" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Checkerboard</text>
+<rect x="1051" y="237" width="62" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1082.0" y="259" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Light</text>
+<rect x="1121" y="237" width="59" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1150.5" y="259" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Dark</text>
+<text x="231" y="294" font-size="13" font-weight="400" fill="#666">HEX is an sRGB preview · Alpha 100% for all steps</text>
+<rect x="718" y="313" width="75" height="548" rx="5" fill="#f1f1f1" stroke="#e5e5e5"/>
+<text x="355" y="339" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">50</text>
+<rect x="330" y="351" width="50" height="54" rx="6" fill="#f1f5fc" stroke="#bdbdbd"/>
+<text x="355" y="428" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#F1F5FC</text>
+<line x1="355" y1="500" x2="355" y2="565" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="347" y="496.95" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="355" y="588" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.97</text>
+<line x1="355" y1="615" x2="355" y2="680" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="347" y="673.4723802821231" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="355" y="703" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.009</text>
+<line x1="355" y1="730" x2="355" y2="795" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="347" y="743.089043460677" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="355" y="818" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="432" y="339" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">100</text>
+<rect x="407" y="351" width="50" height="54" rx="6" fill="#dce9ff" stroke="#bdbdbd"/>
+<text x="432" y="428" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#DCE9FF</text>
+<line x1="432" y1="500" x2="432" y2="565" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="424" y="499.4555114309705" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="432" y="588" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.93</text>
+<line x1="432" y1="615" x2="432" y2="680" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="424" y="667.3807609133055" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="432" y="703" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.047</text>
+<line x1="432" y1="730" x2="432" y2="795" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="424" y="743.089043460677" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="432" y="818" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="509" y="339" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">200</text>
+<rect x="484" y="351" width="50" height="54" rx="6" fill="#b4d1ff" stroke="#bdbdbd"/>
+<text x="509" y="428" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#B4D1FF</text>
+<line x1="509" y1="500" x2="509" y2="565" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="501" y="504.46653429291155" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="509" y="588" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.85</text>
+<line x1="509" y1="615" x2="509" y2="680" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="501" y="657.3475054823118" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="509" y="703" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.109</text>
+<line x1="509" y1="730" x2="509" y2="795" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="501" y="743.089043460677" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="509" y="818" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="586" y="339" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">300</text>
+<rect x="561" y="351" width="50" height="54" rx="6" fill="#8bb7ff" stroke="#bdbdbd"/>
+<text x="586" y="428" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#8BB7FF</text>
+<line x1="586" y1="500" x2="586" y2="565" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="578" y="509.47755715485255" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="586" y="588" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.78</text>
+<line x1="586" y1="615" x2="586" y2="680" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="578" y="650.1808944601734" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="586" y="703" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.153</text>
+<line x1="586" y1="730" x2="586" y2="795" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="578" y="743.089043460677" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="586" y="818" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="663" y="339" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">400</text>
+<rect x="638" y="351" width="50" height="54" rx="6" fill="#619dff" stroke="#bdbdbd"/>
+<text x="663" y="428" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#619DFF</text>
+<line x1="663" y1="500" x2="663" y2="565" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="655" y="514.4885800167935" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="663" y="588" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.70</text>
+<line x1="663" y1="615" x2="663" y2="680" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="655" y="645.8809278468904" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="663" y="703" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.179</text>
+<line x1="663" y1="730" x2="663" y2="795" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="655" y="743.089043460677" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="663" y="818" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="740" y="339" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">500</text>
+<rect x="715" y="351" width="50" height="54" rx="6" fill="#4488f7" stroke="#bdbdbd"/>
+<text x="740" y="428" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#4488F7</text>
+<rect x="707" y="439" width="68" height="23" rx="4" fill="#eeeeee" stroke="#e5e5e5"/>
+<text x="741.0" y="455" font-size="12" font-weight="600" fill="#262626" text-anchor="middle">Seed · M</text>
+<line x1="740" y1="500" x2="740" y2="565" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="732" y="518.4" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="740" y="588" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.64</text>
+<line x1="740" y1="615" x2="740" y2="680" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="732" y="645.75" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="740" y="703" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.180</text>
+<line x1="740" y1="730" x2="740" y2="795" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="732" y="743.0916666666667" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="740" y="818" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="817" y="339" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">600</text>
+<rect x="792" y="351" width="50" height="54" rx="6" fill="#2265d1" stroke="#bdbdbd"/>
+<text x="817" y="428" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#2265D1</text>
+<line x1="817" y1="500" x2="817" y2="565" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="809" y="525.6108022390158" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="817" y="588" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.53</text>
+<line x1="817" y1="615" x2="817" y2="680" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="809" y="645.7300518253717" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="817" y="703" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.180</text>
+<line x1="817" y1="730" x2="817" y2="795" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="809" y="743.089043460677" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="817" y="818" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="894" y="339" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">700</text>
+<rect x="869" y="351" width="50" height="54" rx="6" fill="#124ba5" stroke="#bdbdbd"/>
+<text x="894" y="428" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#124BA5</text>
+<rect x="864" y="439" width="63" height="23" rx="4" fill="#eeeeee" stroke="#e5e5e5"/>
+<text x="895.5" y="455" font-size="12" font-weight="600" fill="#262626" text-anchor="middle">Manual</text>
+<line x1="894" y1="500" x2="894" y2="565" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="886" y="531.722001599297" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="894" y="588" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.44</text>
+<line x1="894" y1="615" x2="894" y2="680" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="886" y="649.5773903740985" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="894" y="703" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.156</text>
+<line x1="894" y1="730" x2="894" y2="795" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="886" y="743.089043460677" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="894" y="818" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="971" y="339" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">800</text>
+<rect x="946" y="351" width="50" height="54" rx="6" fill="#0d3473" stroke="#bdbdbd"/>
+<text x="971" y="428" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#0D3473</text>
+<rect x="938" y="439" width="70" height="23" rx="4" fill="#eeeeee" stroke="#e5e5e5"/>
+<text x="973.0" y="455" font-size="12" font-weight="600" fill="#262626" text-anchor="middle">Protected</text>
+<line x1="971" y1="500" x2="971" y2="565" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="963" y="537.8332009595782" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="971" y="588" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.34</text>
+<line x1="971" y1="615" x2="971" y2="680" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="963" y="655.9896212886434" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="971" y="703" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.117</text>
+<line x1="971" y1="730" x2="971" y2="795" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="963" y="743.089043460677" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="971" y="818" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="1048" y="339" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">900</text>
+<rect x="1023" y="351" width="50" height="54" rx="6" fill="#0e203e" stroke="#bdbdbd"/>
+<text x="1048" y="428" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#0E203E</text>
+<line x1="1048" y1="500" x2="1048" y2="565" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="1040" y="543.9444003198594" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="1048" y="588" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.25</text>
+<line x1="1048" y1="615" x2="1048" y2="680" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="1040" y="664.9667445690062" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="1048" y="703" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.062</text>
+<line x1="1048" y1="730" x2="1048" y2="795" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="1040" y="743.089043460677" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="1048" y="818" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="1125" y="339" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">950</text>
+<rect x="1100" y="351" width="50" height="54" rx="6" fill="#0e1623" stroke="#bdbdbd"/>
+<text x="1125" y="428" font-size="11" font-weight="400" fill="#262626" text-anchor="middle" class="mono">#0E1623</text>
+<line x1="1125" y1="500" x2="1125" y2="565" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="1117" y="547.0" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="1125" y="588" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.20</text>
+<line x1="1125" y1="615" x2="1125" y2="680" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="1117" y="670.4171408463694" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="1125" y="703" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">0.028</text>
+<line x1="1125" y1="730" x2="1125" y2="795" stroke="#d4d4d4" stroke-width="5"/>
+<rect x="1117" y="743.089043460677" width="16" height="10" rx="4" fill="#525252" stroke="#525252"/>
+<text x="1125" y="818" font-size="12" font-weight="400" fill="#262626" text-anchor="middle" class="mono">259.8°</text>
+<text x="231" y="530" font-size="14" font-weight="600" fill="#262626">Lightness</text>
+<text x="231" y="552" font-size="12" font-weight="400" fill="#737373">0–1</text>
+<text x="231" y="645" font-size="14" font-weight="600" fill="#262626">Chroma</text>
+<text x="231" y="667" font-size="12" font-weight="400" fill="#737373">0–0.4</text>
+<text x="231" y="760" font-size="14" font-weight="600" fill="#262626">Hue</text>
+<text x="231" y="782" font-size="12" font-weight="400" fill="#737373">0–360°</text>
+<text x="231" y="887" font-size="14" font-weight="400" fill="#666">Selecting a swatch keeps the full ramp visible. Editing affects only that step.</text>
+<line x1="207" y1="913" x2="1205" y2="913" stroke="#e5e5e5" stroke-width="1"/>
+<text x="231" y="944" font-size="15" font-weight="600" fill="#262626">Draft · 1 manual value change</text>
+<text x="231" y="969" font-size="13" font-weight="400" fill="#666">Recipe seed and neighbouring steps are unchanged.</text>
+<rect x="871" y="937" width="114" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="928.0" y="959" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Discard draft</text>
+<rect x="997" y="937" width="184" height="34" rx="7" fill="#262626" stroke="#d4d4d4"/>
+<text x="1089.0" y="959" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Apply ramp changes</text>
+<text x="1229" y="184" font-size="20" font-weight="600" fill="#262626">color.brand.500</text>
+<rect x="1229" y="202" width="83" height="23" rx="4" fill="#eeeeee" stroke="#e5e5e5"/>
+<text x="1270.5" y="218" font-size="12" font-weight="600" fill="#262626" text-anchor="middle">Seed step</text>
+<rect x="1320" y="202" width="72" height="23" rx="4" fill="#eeeeee" stroke="#e5e5e5"/>
+<text x="1356.0" y="218" font-size="12" font-weight="600" fill="#262626" text-anchor="middle">Manual</text>
+<text x="1229" y="259" font-size="17" font-weight="600" fill="#262626">Edit step</text>
+<text x="1229" y="286" font-size="13" font-weight="400" fill="#666">One shared ramp draft</text>
+<text x="1229" y="320" font-size="14" font-weight="600" fill="#262626">Description</text>
+<rect x="1229" y="330" width="321" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1241" y="353" font-size="15" font-weight="400" fill="#262626">Primary brand blue</text>
+<text x="1229" y="398" font-size="14" font-weight="600" fill="#262626">Authored draft space</text>
+<rect x="1229" y="408" width="321" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1241" y="431" font-size="15" font-weight="400" fill="#262626">OKLCH</text>
+<text x="1229" y="475" font-size="14" font-weight="600" fill="#262626">L</text>
+<rect x="1229" y="485" width="96" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1241" y="508" font-size="15" font-weight="400" fill="#262626">0.64</text>
+<text x="1341" y="475" font-size="14" font-weight="600" fill="#262626">C</text>
+<rect x="1341" y="485" width="96" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1353" y="508" font-size="15" font-weight="400" fill="#262626">0.18</text>
+<text x="1453" y="475" font-size="14" font-weight="600" fill="#262626">H</text>
+<rect x="1453" y="485" width="97" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1465" y="508" font-size="15" font-weight="400" fill="#262626">259.8°</text>
+<text x="1229" y="550" font-size="14" font-weight="600" fill="#262626">Alpha</text>
+<rect x="1229" y="560" width="321" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1241" y="583" font-size="15" font-weight="400" fill="#262626">100%</text>
+<text x="1229" y="629" font-size="14" font-weight="600" fill="#262626">Applied</text>
+<rect x="1229" y="642" width="55" height="39" rx="7" fill="#3b82f6" stroke="#d4d4d4"/>
+<text x="1298" y="667" font-size="14" font-weight="400" fill="#262626" class="mono">#3B82F6</text>
+<text x="1229" y="714" font-size="14" font-weight="400" fill="#262626">Recipe seed remains #3B82F6 at 500.</text>
+<text x="1229" y="739" font-size="13" font-weight="400" fill="#666">Your draft changes the token, not the seed.</text>
+<rect x="1229" y="762" width="321" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1389.5" y="784" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Review generated value</text>
+<line x1="1229" y1="817" x2="1550" y2="817" stroke="#e5e5e5" stroke-width="1"/>
+<text x="1229" y="847" font-size="14" font-weight="600" fill="#262626">Protected from regeneration</text>
+<rect x="1229" y="865" width="85" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1271.5" y="887" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Off  ▾</text>
+<text x="1229" y="923" font-size="14" font-weight="400" fill="#262626">Manual is kept on regeneration.</text>
+<text x="1229" y="949" font-size="13" font-weight="400" fill="#666">Protection is a separate safeguard.</text>
+<text x="32" y="1024" font-size="16" font-weight="400" fill="#262626">Proposal: component rows are the editing surface; precise input, alpha and token details stay in the inspector.</text>
+</svg>

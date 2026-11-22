@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1290" viewBox="0 0 1600 1290">
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<style>text{font-family:Arial,sans-serif} .mono{font-family:Menlo,monospace}</style>
+<text x="32" y="40" font-size="24" font-weight="600" fill="#262626">Count changes · same workspace, focused inspector review</text>
+<text x="32" y="67" font-size="15" font-weight="400" fill="#666">Count is edited in Ramp settings. The resulting review stays inside this ramp session.</text>
+<rect x="24" y="99" width="762" height="882" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="48" y="133" font-size="20" font-weight="600" fill="#262626">3 · Reduce 11 steps to 6</text>
+<line x1="24" y1="152" x2="786" y2="152" stroke="#e5e5e5" stroke-width="1"/>
+<text x="44" y="177" font-size="15" font-weight="600" fill="#262626">Ramp settings → Step count 6</text>
+<rect x="44" y="201" width="230" height="742" rx="7" fill="#fafafa" stroke="#d4d4d4"/>
+<text x="59" y="229" font-size="17" font-weight="600" fill="#262626">color.brand</text>
+<rect x="59" y="243" width="200" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="159.0" y="265" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Ramp settings</text>
+<text x="59" y="305" font-size="12" font-weight="400" fill="#737373">OKLCH · sRGB preview</text>
+<rect x="59" y="326" width="25" height="25" rx="7" fill="#f1f5fc" stroke="#d4d4d4"/>
+<text x="94" y="344" font-size="13" font-weight="600" fill="#262626">50</text>
+<svg x="231" y="324" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="59" y="363" width="25" height="25" rx="7" fill="#b4d1ff" stroke="#d4d4d4"/>
+<text x="94" y="381" font-size="13" font-weight="600" fill="#262626">200</text>
+<svg x="231" y="361" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="59" y="400" width="25" height="25" rx="7" fill="#619dff" stroke="#d4d4d4"/>
+<text x="94" y="418" font-size="13" font-weight="600" fill="#262626">400</text>
+<svg x="231" y="398" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="59" y="437" width="25" height="25" rx="7" fill="#2265d1" stroke="#d4d4d4"/>
+<text x="94" y="455" font-size="13" font-weight="600" fill="#262626">600</text>
+<svg x="231" y="435" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="59" y="474" width="25" height="25" rx="7" fill="#0d3473" stroke="#d4d4d4"/>
+<text x="94" y="492" font-size="13" font-weight="600" fill="#262626">800</text>
+<svg x="231" y="472" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="59" y="511" width="25" height="25" rx="7" fill="#0e1623" stroke="#d4d4d4"/>
+<text x="94" y="529" font-size="13" font-weight="600" fill="#262626">950</text>
+<svg x="231" y="509" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<text x="59" y="897" font-size="13" font-weight="600" fill="#262626">Shared ramp draft</text>
+<text x="59" y="921" font-size="12" font-weight="400" fill="#666">No changes saved yet</text>
+<line x1="294" y1="201" x2="294" y2="943" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="814" y="99" width="762" height="882" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="838" y="133" font-size="20" font-weight="600" fill="#262626">4 · Restore 6 steps to 11</text>
+<line x1="814" y1="152" x2="1576" y2="152" stroke="#e5e5e5" stroke-width="1"/>
+<text x="834" y="177" font-size="15" font-weight="600" fill="#262626">Ramp settings → Step count 11 → select conflict 300</text>
+<rect x="834" y="201" width="230" height="742" rx="7" fill="#fafafa" stroke="#d4d4d4"/>
+<text x="849" y="229" font-size="17" font-weight="600" fill="#262626">color.brand</text>
+<rect x="849" y="243" width="200" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="949.0" y="265" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Ramp settings</text>
+<text x="849" y="305" font-size="12" font-weight="400" fill="#737373">OKLCH · sRGB preview</text>
+<rect x="849" y="326" width="25" height="25" rx="7" fill="#f1f5fc" stroke="#d4d4d4"/>
+<text x="884" y="344" font-size="13" font-weight="600" fill="#262626">50</text>
+<svg x="1021" y="324" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="849" y="363" width="25" height="25" rx="7" fill="#b4d1ff" stroke="#d4d4d4"/>
+<text x="884" y="381" font-size="13" font-weight="600" fill="#262626">200</text>
+<svg x="1021" y="361" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="849" y="400" width="25" height="25" rx="7" fill="#619dff" stroke="#d4d4d4"/>
+<text x="884" y="418" font-size="13" font-weight="600" fill="#262626">400</text>
+<svg x="1021" y="398" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="849" y="437" width="25" height="25" rx="7" fill="#2265d1" stroke="#d4d4d4"/>
+<text x="884" y="455" font-size="13" font-weight="600" fill="#262626">600</text>
+<svg x="1021" y="435" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="849" y="474" width="25" height="25" rx="7" fill="#0d3473" stroke="#d4d4d4"/>
+<text x="884" y="492" font-size="13" font-weight="600" fill="#262626">800</text>
+<svg x="1021" y="472" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="849" y="511" width="25" height="25" rx="7" fill="#0e1623" stroke="#d4d4d4"/>
+<text x="884" y="529" font-size="13" font-weight="600" fill="#262626">950</text>
+<svg x="1021" y="509" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<text x="849" y="897" font-size="13" font-weight="600" fill="#262626">Shared ramp draft</text>
+<text x="849" y="921" font-size="12" font-weight="400" fill="#666">No changes saved yet</text>
+<line x1="1084" y1="201" x2="1084" y2="943" stroke="#e5e5e5" stroke-width="1"/>
+<text x="314" y="232" font-size="21" font-weight="600" fill="#262626">Review count change</text>
+<text x="314" y="274" font-size="17" font-weight="600" fill="#262626">50 · 200 · 400 · 600 · 800 · 950</text>
+<text x="314" y="317" font-size="15" font-weight="600" fill="#262626">These tokens leave the ramp:</text>
+<text x="314" y="350" font-size="14" font-weight="400" fill="#262626">color.brand.100  →  ordinary token</text>
+<text x="314" y="382" font-size="14" font-weight="400" fill="#262626">color.brand.300  →  ordinary token</text>
+<text x="314" y="414" font-size="14" font-weight="400" fill="#262626">color.brand.500  →  ordinary token</text>
+<text x="314" y="446" font-size="14" font-weight="400" fill="#262626">color.brand.700  →  ordinary token</text>
+<text x="314" y="478" font-size="14" font-weight="400" fill="#262626">color.brand.900  →  ordinary token</text>
+<text x="314" y="531" font-size="15" font-weight="600" fill="#262626">No token is deleted or renamed.</text>
+<text x="314" y="560" font-size="14" font-weight="400" fill="#262626">Values, references and protection remain.</text>
+<text x="314" y="609" font-size="15" font-weight="600" fill="#262626">The seed position 500 no longer exists.</text>
+<rect x="314" y="635" width="199" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="413.5" y="657" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Use step 400</text>
+<rect x="525" y="635" width="237" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="643.5" y="657" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Choose another step</text>
+<text x="314" y="705" font-size="14" font-weight="400" fill="#262626">Review destination Manual / Protected state.</text>
+<text x="314" y="735" font-size="14" font-weight="400" fill="#262626">The recipe seed can differ from that token.</text>
+<text x="314" y="784" font-size="12" font-weight="400" fill="#737373">400 is an illustrative proposal, not a fixed rule.</text>
+<line x1="314" y1="828" x2="762" y2="828" stroke="#e5e5e5" stroke-width="1"/>
+<text x="314" y="857" font-size="13" font-weight="600" fill="#262626">1 count change · 5 departures · 1 decision</text>
+<rect x="314" y="875" width="448" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="538.0" y="897" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Apply ramp changes · unavailable</text>
+<text x="314" y="931" font-size="13" font-weight="400" fill="#666">Resolve seed placement first.</text>
+<text x="1104" y="232" font-size="21" font-weight="600" fill="#262626">Existing token at step 300</text>
+<text x="1104" y="274" font-size="15" font-weight="400" fill="#262626">color.brand.300 · eligible color</text>
+<text x="1104" y="305" font-size="13" font-weight="400" fill="#666">Referenced by color.action.primary</text>
+<rect x="1104" y="334" width="448" height="79" rx="7" fill="#ededed" stroke="#d4d4d4"/>
+<text x="1118" y="362" font-size="15" font-weight="600" fill="#262626">● Reuse and keep value</text>
+<text x="1118" y="390" font-size="12" font-weight="400" fill="#262626">Same identity; joins as Manual.</text>
+<rect x="1104" y="430" width="448" height="79" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1118" y="458" font-size="15" font-weight="600" fill="#262626">○ Reuse with generated value</text>
+<text x="1118" y="486" font-size="12" font-weight="400" fill="#262626">Same identity; review changed value and protection.</text>
+<rect x="1104" y="526" width="448" height="79" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1118" y="554" font-size="15" font-weight="600" fill="#262626">○ Leave outside the ramp</text>
+<text x="1118" y="582" font-size="12" font-weight="400" fill="#262626">Preserves token; required name still needs resolution.</text>
+<rect x="1104" y="633" width="448" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1328.0" y="655" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Reuse all and keep values</text>
+<text x="1104" y="705" font-size="14" font-weight="400" fill="#262626">Leave outside blocks Apply until the name</text>
+<text x="1104" y="734" font-size="14" font-weight="400" fill="#262626">is resolved or another count is selected.</text>
+<text x="1104" y="777" font-size="14" font-weight="600" fill="#262626">No automatic rename, overwrite or skipped step.</text>
+<line x1="1104" y1="828" x2="1552" y2="828" stroke="#e5e5e5" stroke-width="1"/>
+<text x="1104" y="854" font-size="13" font-weight="600" fill="#262626">5 reviewed reuses · values and protection unchanged</text>
+<rect x="1104" y="871" width="448" height="34" rx="7" fill="#262626" stroke="#d4d4d4"/>
+<text x="1328.0" y="893" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Apply ramp changes</text>
+<rect x="24" y="1010" width="1552" height="234" rx="7" fill="#f0f0f0" stroke="#d4d4d4"/>
+<text x="48" y="1046" font-size="18" font-weight="600" fill="#262626">5 · Leave the ramp while a draft exists</text>
+<text x="48" y="1080" font-size="15" font-weight="400" fill="#262626">Navigation away → one departure guard</text>
+<text x="48" y="1115" font-size="14" font-weight="400" fill="#262626">Selecting another step or Ramp settings does not open this guard.</text>
+<rect x="830" y="1031" width="722" height="190" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="852" y="1064" font-size="19" font-weight="600" fill="#262626">Apply ramp changes before leaving?</text>
+<text x="852" y="1096" font-size="14" font-weight="400" fill="#262626">1 edited color · 1 protection change · entire ramp draft</text>
+<rect x="852" y="1120" width="218" height="34" rx="7" fill="#262626" stroke="#d4d4d4"/>
+<text x="961.0" y="1142" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Apply and leave</text>
+<rect x="1082" y="1120" width="218" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1191.0" y="1142" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Discard and leave</text>
+<rect x="1312" y="1120" width="218" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1421.0" y="1142" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Keep editing</text>
+<text x="852" y="1191" font-size="13" font-weight="400" fill="#262626">Invalid draft: Apply unavailable. Failed Apply: stay here with draft intact.</text>
+<text x="32" y="1270" font-size="13" font-weight="400" fill="#666">All changes remain proposals until final Apply. Exact token reuse eligibility and name-resolution flow still require the contract.</text>
+</svg>

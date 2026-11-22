@@ -49,13 +49,19 @@ metadata representation remain unresolved. Multiple anchors are deferred. Detail
 numerical, count-change and interaction criteria remain to be revised; none of
 this constitutes final contract/design agreement or implementation authorization.
 
-## Next design task — explicitly deferred, 22 November 2026
+## Editing design refinement — 22 November 2026
 
-Prepare ramp-editing wireframes next when the user resumes: central workspace and
-inspector, settings, manual overrides, returning-step conflicts and protected
-one-time replacements. The user explicitly instructed **not now**. This note is a
-handoff reminder, not authorization to start wireframes, a prototype, analyst design
-review or implementation. The historical draft body still requires reconciliation.
+The user agreed the [single Apply and step-inspector behavior](../project/guided-color-palette-generation.md#single-apply-and-step-inspector--agreed-22-november-2026)
+and requested [Ramp editing V2](../project/workbench-layout/color-ramp-editing-v2.md):
+open/closed ghost lock buttons, existing color-token inspector structure with
+Current/New comparison, selected-step revert, and one shared Apply for all changes.
+Switching inspector views retains the draft; leaving offers Apply and leave,
+Discard and leave, or Keep editing. There is no intermediate step confirmation.
+V2 also clarifies triggers for contextual settings and conflict review.
+
+V2 remains for user feedback before analyst review. The historical draft body still
+requires reconciliation; this design work does not authorize production implementation
+or establish final complete contract agreement.
 
 ## Outcome
 

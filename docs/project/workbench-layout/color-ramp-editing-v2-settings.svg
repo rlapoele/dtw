@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1170" viewBox="0 0 1600 1170">
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<style>text{font-family:Arial,sans-serif} .mono{font-family:Menlo,monospace}</style>
+<text x="32" y="40" font-size="24" font-weight="600" fill="#262626">Settings and generated replacements · where each inspector comes from</text>
+<text x="32" y="67" font-size="15" font-weight="400" fill="#666">A setting prepares a proposal. Ordinary manual editing never needs a second “keep” action.</text>
+<rect x="24" y="99" width="762" height="1001" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="48" y="133" font-size="20" font-weight="600" fill="#262626">1 · Change ramp settings</text>
+<line x1="24" y1="152" x2="786" y2="152" stroke="#e5e5e5" stroke-width="1"/>
+<text x="44" y="177" font-size="15" font-weight="600" fill="#262626">Click Ramp settings → change Color intensity</text>
+<rect x="44" y="201" width="230" height="861" rx="7" fill="#fafafa" stroke="#d4d4d4"/>
+<text x="59" y="229" font-size="17" font-weight="600" fill="#262626">color.brand</text>
+<rect x="59" y="243" width="200" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="159.0" y="265" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Ramp settings</text>
+<text x="59" y="305" font-size="12" font-weight="400" fill="#737373">OKLCH · sRGB preview</text>
+<rect x="59" y="326" width="25" height="25" rx="7" fill="#f1f5fc" stroke="#d4d4d4"/>
+<text x="94" y="344" font-size="13" font-weight="600" fill="#262626">50</text>
+<svg x="231" y="324" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="59" y="363" width="25" height="25" rx="7" fill="#dce9ff" stroke="#d4d4d4"/>
+<text x="94" y="381" font-size="13" font-weight="600" fill="#262626">100</text>
+<svg x="231" y="361" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="59" y="400" width="25" height="25" rx="7" fill="#b4d1ff" stroke="#d4d4d4"/>
+<text x="94" y="418" font-size="13" font-weight="600" fill="#262626">200</text>
+<svg x="231" y="398" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="59" y="437" width="25" height="25" rx="7" fill="#8bb7ff" stroke="#d4d4d4"/>
+<text x="94" y="455" font-size="13" font-weight="600" fill="#262626">300</text>
+<svg x="231" y="435" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="59" y="474" width="25" height="25" rx="7" fill="#619dff" stroke="#d4d4d4"/>
+<text x="94" y="492" font-size="13" font-weight="600" fill="#262626">400</text>
+<svg x="231" y="472" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="59" y="511" width="25" height="25" rx="7" fill="#3b82f6" stroke="#d4d4d4"/>
+<text x="94" y="529" font-size="13" font-weight="600" fill="#262626">500</text>
+<svg x="231" y="509" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="59" y="548" width="25" height="25" rx="7" fill="#2265d1" stroke="#d4d4d4"/>
+<text x="94" y="566" font-size="13" font-weight="600" fill="#262626">600</text>
+<svg x="231" y="546" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="59" y="585" width="25" height="25" rx="7" fill="#124ba5" stroke="#d4d4d4"/>
+<text x="94" y="603" font-size="13" font-weight="600" fill="#262626">700</text>
+<svg x="231" y="583" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="59" y="622" width="25" height="25" rx="7" fill="#0d3473" stroke="#d4d4d4"/>
+<text x="94" y="640" font-size="13" font-weight="600" fill="#262626">800</text>
+<svg x="231" y="620" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="59" y="659" width="25" height="25" rx="7" fill="#0e203e" stroke="#d4d4d4"/>
+<text x="94" y="677" font-size="13" font-weight="600" fill="#262626">900</text>
+<svg x="231" y="657" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="59" y="696" width="25" height="25" rx="7" fill="#0e1623" stroke="#d4d4d4"/>
+<text x="94" y="714" font-size="13" font-weight="600" fill="#262626">950</text>
+<svg x="231" y="694" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<text x="59" y="1016" font-size="13" font-weight="600" fill="#262626">Shared ramp draft</text>
+<text x="59" y="1040" font-size="12" font-weight="400" fill="#666">No changes saved yet</text>
+<line x1="294" y1="201" x2="294" y2="1062" stroke="#e5e5e5" stroke-width="1"/>
+<rect x="814" y="99" width="762" height="1001" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="838" y="133" font-size="20" font-weight="600" fill="#262626">2 · Review a protected candidate</text>
+<line x1="814" y1="152" x2="1576" y2="152" stroke="#e5e5e5" stroke-width="1"/>
+<text x="834" y="177" font-size="15" font-weight="600" fill="#262626">Select step 800 → Review generated value</text>
+<rect x="834" y="201" width="230" height="861" rx="7" fill="#fafafa" stroke="#d4d4d4"/>
+<text x="849" y="229" font-size="17" font-weight="600" fill="#262626">color.brand</text>
+<rect x="849" y="243" width="200" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="949.0" y="265" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Ramp settings</text>
+<text x="849" y="305" font-size="12" font-weight="400" fill="#737373">OKLCH · sRGB preview</text>
+<rect x="849" y="326" width="25" height="25" rx="7" fill="#f1f5fc" stroke="#d4d4d4"/>
+<text x="884" y="344" font-size="13" font-weight="600" fill="#262626">50</text>
+<svg x="1021" y="324" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="849" y="363" width="25" height="25" rx="7" fill="#dce9ff" stroke="#d4d4d4"/>
+<text x="884" y="381" font-size="13" font-weight="600" fill="#262626">100</text>
+<svg x="1021" y="361" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="849" y="400" width="25" height="25" rx="7" fill="#b4d1ff" stroke="#d4d4d4"/>
+<text x="884" y="418" font-size="13" font-weight="600" fill="#262626">200</text>
+<svg x="1021" y="398" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="849" y="437" width="25" height="25" rx="7" fill="#8bb7ff" stroke="#d4d4d4"/>
+<text x="884" y="455" font-size="13" font-weight="600" fill="#262626">300</text>
+<svg x="1021" y="435" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="849" y="474" width="25" height="25" rx="7" fill="#619dff" stroke="#d4d4d4"/>
+<text x="884" y="492" font-size="13" font-weight="600" fill="#262626">400</text>
+<svg x="1021" y="472" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="849" y="511" width="25" height="25" rx="7" fill="#3b82f6" stroke="#d4d4d4"/>
+<text x="884" y="529" font-size="13" font-weight="600" fill="#262626">500</text>
+<svg x="1021" y="509" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="849" y="548" width="25" height="25" rx="7" fill="#2265d1" stroke="#d4d4d4"/>
+<text x="884" y="566" font-size="13" font-weight="600" fill="#262626">600</text>
+<svg x="1021" y="546" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="849" y="585" width="25" height="25" rx="7" fill="#124ba5" stroke="#d4d4d4"/>
+<text x="884" y="603" font-size="13" font-weight="600" fill="#262626">700</text>
+<svg x="1021" y="583" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="849" y="622" width="25" height="25" rx="7" fill="#0d3473" stroke="#d4d4d4"/>
+<text x="884" y="640" font-size="13" font-weight="600" fill="#262626">800</text>
+<svg x="1021" y="620" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="849" y="659" width="25" height="25" rx="7" fill="#0e203e" stroke="#d4d4d4"/>
+<text x="884" y="677" font-size="13" font-weight="600" fill="#262626">900</text>
+<svg x="1021" y="657" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<rect x="849" y="696" width="25" height="25" rx="7" fill="#0e1623" stroke="#d4d4d4"/>
+<text x="884" y="714" font-size="13" font-weight="600" fill="#262626">950</text>
+<svg x="1021" y="694" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<text x="849" y="1016" font-size="13" font-weight="600" fill="#262626">Shared ramp draft</text>
+<text x="849" y="1040" font-size="12" font-weight="400" fill="#666">No changes saved yet</text>
+<line x1="1084" y1="201" x2="1084" y2="1062" stroke="#e5e5e5" stroke-width="1"/>
+<text x="314" y="231" font-size="21" font-weight="600" fill="#262626">Ramp settings</text>
+<text x="314" y="275" font-size="14" font-weight="600" fill="#262626">Recipe seed</text>
+<rect x="314" y="285" width="448" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="326" y="308" font-size="15" font-weight="400" fill="#262626">#3B82F6 · sRGB</text>
+<rect x="314" y="328" width="140" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="384.0" y="350" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Edit seed</text>
+<text x="314" y="401" font-size="14" font-weight="600" fill="#262626">Step count</text>
+<rect x="314" y="411" width="207" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="326" y="434" font-size="15" font-weight="400" fill="#262626">11</text>
+<text x="541" y="401" font-size="14" font-weight="600" fill="#262626">Seed position</text>
+<rect x="541" y="411" width="221" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="553" y="434" font-size="15" font-weight="400" fill="#262626">500</text>
+<text x="314" y="485" font-size="14" font-weight="600" fill="#262626">Color intensity</text>
+<rect x="314" y="495" width="448" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="326" y="518" font-size="15" font-weight="400" fill="#262626">Retained  ▾</text>
+<text x="314" y="546" font-size="13" font-weight="400" fill="#737373">Changed from Restrained</text>
+<text x="314" y="594" font-size="14" font-weight="600" fill="#262626">Target gamut</text>
+<rect x="314" y="604" width="448" height="35" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="326" y="627" font-size="15" font-weight="400" fill="#262626">sRGB</text>
+<rect x="314" y="651" width="207" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="417.5" y="673" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Recalculate position</text>
+<text x="314" y="725" font-size="17" font-weight="600" fill="#262626">Proposal ready</text>
+<text x="314" y="755" font-size="15" font-weight="400" fill="#262626">8 generated values change.</text>
+<text x="314" y="784" font-size="15" font-weight="400" fill="#262626">1 Manual + 1 Protected value are kept.</text>
+<text x="314" y="813" font-size="15" font-weight="400" fill="#262626">The seed stays unchanged.</text>
+<rect x="314" y="846" width="448" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="538.0" y="868" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Review proposed changes</text>
+<text x="314" y="907" font-size="13" font-weight="400" fill="#666">Selecting a candidate opens its token inspector.</text>
+<line x1="314" y1="969" x2="762" y2="969" stroke="#e5e5e5" stroke-width="1"/>
+<text x="314" y="995" font-size="13" font-weight="600" fill="#262626">1 setting changed · 8 proposed value updates</text>
+<rect x="314" y="1012" width="448" height="34" rx="7" fill="#262626" stroke="#d4d4d4"/>
+<text x="538.0" y="1034" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Apply ramp changes</text>
+<text x="1104" y="230" font-size="12" font-weight="600" fill="#737373">COLOR TOKEN</text>
+<text x="1104" y="259" font-size="20" font-weight="600" fill="#262626">color.brand.800</text>
+<text x="1446" y="226" font-size="12" font-weight="400" fill="#262626">Current</text>
+<text x="1505" y="226" font-size="12" font-weight="400" fill="#262626">New</text>
+<rect x="1446" y="235" width="34" height="34" rx="7" fill="#274f90" stroke="#d4d4d4"/>
+<rect x="1505" y="235" width="34" height="34" rx="7" fill="#274f90" stroke="#d4d4d4"/>
+<line x1="1104" y1="285" x2="1552" y2="285" stroke="#e5e5e5" stroke-width="1"/>
+<text x="1104" y="319" font-size="17" font-weight="600" fill="#262626">Regeneration review</text>
+<text x="1104" y="350" font-size="13" font-weight="400" fill="#666">Current and New stay equal while kept.</text>
+<text x="1104" y="393" font-size="14" font-weight="600" fill="#262626">Generated candidate</text>
+<rect x="1104" y="410" width="48" height="48" rx="7" fill="#124ba5" stroke="#d4d4d4"/>
+<text x="1168" y="440" font-size="15" font-weight="400" fill="#262626" class="mono">#124BA5</text>
+<text x="1104" y="499" font-size="15" font-weight="600" fill="#262626">This token is Manual and Protected.</text>
+<text x="1104" y="537" font-size="17" font-weight="600" fill="#262626">Use this generated value once?</text>
+<text x="1104" y="575" font-size="14" font-weight="400" fill="#262626">Identity and references are preserved.</text>
+<text x="1104" y="604" font-size="14" font-weight="400" fill="#262626">References will resolve to the new value.</text>
+<text x="1104" y="633" font-size="14" font-weight="400" fill="#262626">Manual clears; protection stays on.</text>
+<rect x="1104" y="665" width="448" height="34" rx="7" fill="#262626" stroke="#d4d4d4"/>
+<text x="1328.0" y="687" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Use generated value once</text>
+<rect x="1104" y="711" width="448" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1328.0" y="733" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Keep current value</text>
+<text x="1104" y="778" font-size="14" font-weight="400" fill="#262626">Choosing once updates New in the shared draft.</text>
+<text x="1104" y="807" font-size="14" font-weight="400" fill="#262626">It does not save. Apply below saves the ramp.</text>
+<rect x="1104" y="846" width="448" height="34" rx="7" fill="#fff" stroke="#d4d4d4"/>
+<text x="1328.0" y="868" font-size="14" font-weight="600" fill="#262626" text-anchor="middle">Back to token fields</text>
+<svg x="1104" y="904" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+<text x="1146" y="923" font-size="14" font-weight="400" fill="#262626">Protected from regeneration</text>
+<line x1="1104" y1="969" x2="1552" y2="969" stroke="#e5e5e5" stroke-width="1"/>
+<text x="1104" y="995" font-size="13" font-weight="600" fill="#262626">8 value updates · protected step kept</text>
+<rect x="1104" y="1012" width="448" height="34" rx="7" fill="#262626" stroke="#d4d4d4"/>
+<text x="1328.0" y="1034" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">Apply ramp changes</text>
+<text x="32" y="1140" font-size="13" font-weight="400" fill="#666">After “Use generated value once”, New becomes the candidate and the footer includes that replacement. Nothing is saved until Apply.</text>
+</svg>
