@@ -10,6 +10,28 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp numerical technical draft prepared — 23 November 2026
+
+The user authorized the next specification task. The separate analyst and coordinator
+prepared a [concrete D1 technical draft](../increments/024-ramp-numerical-specification.md)
+for calculation/rounding order, fixed-lightness/hue gamut fitting, seed classification
+and sRGB-plus-exact-alpha preview comparison. Source inspection found clipping
+fallbacks in installed gamut helpers, so adopting them wholesale would not preserve
+the agreed generated-color behavior. No new backend or implementation is proposed.
+
+Next user decision: require editing of extended seeds whose lightness cannot fit the
+supported range, rather than automatically changing lightness. The draft recommends
+editing for Increment 024. Mapping details are proposed, not validated; cross-space
+exact-endpoint classification and seed-adjustment representation still need technical
+reconciliation. D1 remains open, alongside D5 metadata/versioning and AC-15 validation
+integration. Final contract agreement and implementation authorization remain required.
+
+Document/source checks stopped at about 7/8 aggregate minutes, zero repairs. Local
+links/whitespace checked. No numerical calculations, tests, browser, rendering or
+retention qualification restarted. The neutral-rounding observation remains unresolved.
+Leave staging, committing and pushing to the user. Suggested commit:
+`docs: draft ramp numerical calculation specification`.
+
 ## Ramp numerical decisions: repeated-preview comparison agreed — 23 November 2026
 
 At the user's request, the coordinator and a separate analyst prepared a

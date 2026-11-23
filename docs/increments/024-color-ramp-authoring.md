@@ -575,6 +575,28 @@ zero repairs. Changed Markdown and local links checked. All prior verification
 stopping decisions remain intact. Product choices remain proposals until agreed;
 technical evidence gaps remain explicit before implementation.
 
+#### D1 technical specification preparation — 23 November 2026
+
+At the user's request, a separate analyst and coordinator prepared the
+[numerical specification draft](024-ramp-numerical-specification.md). It proposes
+serialization-before-membership checks, bounded fixed-lightness/hue chroma fitting,
+exact authored seed classification and precise sRGB-plus-alpha comparison keys.
+Installed Culori mapping helpers have clipping fallbacks that must not be inherited
+silently. No dependency or production change was made.
+
+The draft is not numerically qualified. The 64-bisection work bound, strict membership,
+rounding behavior and comparison quantization are technical proposals. Cross-space
+exact-endpoint preparation/metadata remains unresolved. The next product question is
+whether extended seeds outside supported lightness must be edited; the recommendation
+is yes for Increment 024, without automatic lightness adjustment. Seed-adjustment
+representation also remains to be specified. D1 is not closed.
+
+Document/source checks stopped at about 7/8 aggregate minutes (analyst 4, coordinator
+3), zero repairs. This is the newly authorized specification task, not renewed
+numerical qualification. Earlier stops and the unresolved neutral observation remain;
+no calculations, tests, rendering, browser or retention runs. Details and evidence
+limits are in the linked draft. Final agreement/implementation gates remain intact.
+
 ### D2 — Ordinary editing and remaining draft details
 
 The previously listed D2 product decisions are now recorded in AC-9/11/12/22;
