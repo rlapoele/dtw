@@ -282,7 +282,7 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   exact seed, placement, member identities and statuses through reload and exact backup.
   Drafts are session-only. Historical projects without ramp metadata retain behavior.
   Proposed: validated versioned metadata and explicit unknown-version/recipe refusal
-  without silent loss. D5 defines the exact schema/compatibility policy. No new
+  without silent loss. D5 now links the concrete schema/compatibility proposal. No new
   interchange conformance or round-trip claims are made.
 - **AC-18 — Revision and recovery.** Apply checks the reviewed project revision.
   Staleness, ownership loss, rejected or unknown writes cannot silently overwrite,
@@ -938,8 +938,36 @@ session-only continuity, atomic removals, accepted reference changes and history
 together; do not persist absent draft-only members. One Undo/Redo entry per substantive ramp
 Apply and one entry for successful creation are agreed in AC-16, with no entries
 for draft edits, creation navigation or cancellation. Exact operation/schema
-representation still requires preparation; no schema version or storage platform
-is selected here.
+representation still requires preparation; the subsequent proposal below specifies versions without changing the
+storage platform.
+
+### D5 and validation integration prepared — 23 November 2026
+
+At the user's request, a separate analyst and coordinator prepared the
+[metadata, history, backup and validation contract](024-ramp-persistence-and-validation.md).
+It proposes optional group `colorRamp` schema version 1, containing recipe/version,
+exact prepared seed, target gamut, accepted placement and ordered member identities/
+Manual status. Protection remains on tokens. Draft-only continuity stays in memory.
+Authored version 4 covers ramp metadata and incomplete composites together; existing
+backup/record envelopes and whole-snapshot history remain. No new storage system.
+
+One coarse creation/Apply operation owns each complete candidate and history entry.
+Unknown data schemas refuse admission without rewriting; known metadata with an
+unknown recipe remains inspectable with only that ramp's operations unavailable.
+The proposed baseline-aware validation gate permits unchanged pre-existing problems
+while rejecting new/changed integrity errors; it compares diagnostic identity and
+causal authored fields, not counts or the capped UI diagnostic list. Structural
+admission remains strict, and Undo restores its previously admitted snapshot.
+
+No additional user behavior decision was identified. These are technical proposals,
+not implementation or final independent review. The currently identified D5/AC-15
+preparation gaps now have concrete contracts; the next step is the focused final
+consolidated analyst check against accepted UX, numerical and composite contracts.
+Final full-contract agreement and explicit implementation authorization remain required.
+
+Document/source checks stopped at approximately 10/12 aggregate minutes (analyst 4,
+coordinator 6), zero repairs. Local links and Markdown whitespace checked. No production,
+dependency, test, browser, numerical or retention runs/changes; earlier stops remain.
 
 ## Verification approach and limits
 

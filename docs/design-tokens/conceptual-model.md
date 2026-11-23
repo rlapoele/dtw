@@ -860,7 +860,9 @@ Supported patterns, parameter validation, rounding, naming, collision handling, 
 A color ramp uses an ordinary namespace group with optional ramp authoring metadata,
 not a separate ramp entity or token value type. Retain generation settings, the
 seed and accepted anchor position, and ordered step-to-token identity associations
-so users can reopen the ramp. Exact schema remains unresolved. Tokens retain their
+so users can reopen the ramp. The [Increment 024 technical proposal](../increments/024-ramp-persistence-and-validation.md)
+now specifies the metadata shape and versioned retention, subject to final contract
+review/agreement. Tokens retain their
 normal identity, explicit type and independently authored values; namespace
 containment still determines paths.
 

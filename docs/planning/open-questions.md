@@ -149,11 +149,15 @@ proposes typed-unassigned for whole-color Unspecified. The user subsequently agr
 with explicit missing fields and derived completeness, enabling a shared contract
 for clearing only the affected composite reference field. The [minimal shared draft](../design-tokens/incomplete-composites.md) proposes omission
 of known fields, present-value validation, derived completeness, narrow field edits
-and versioned retention/backup. Source assessment and contract drafting are complete;
-agreement and necessary field-review/completion interaction details remain pending. The earlier direct-composite blocker remains
-undecided. Typed-unassigned editing recovery and unaffected-work validation also
-need technical preparation. Final contract/design agreement and implementation
-authorization remain pending.
+and versioned retention/backup. The field-review/refill V1 flow was subsequently user-accepted and analyst-reviewed
+at design-contract level. The [numerical draft](../increments/024-ramp-numerical-specification.md)
+and [metadata/history/backup/validation proposal](../increments/024-ramp-persistence-and-validation.md)
+now supply concrete technical contracts for the identified preparation gaps. They
+remain subject to the final focused consolidated analyst check and full-contract
+agreement. No implementation or renewed qualification is authorized. The earlier
+composite-blocker proposal is superseded by the agreed field-only Unspecified path;
+no new general composite editor is included.
+
 
 **Broader confirmed future direction — 10 November 2026; work deferred:** support a
 color foundation first, followed by optional semantic-token recipes for light and

@@ -10,6 +10,28 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp persistence and validation preparation completed — 23 November 2026
+
+The user authorized simple metadata/history/backup/validation preparation, with no
+implementation. A separate analyst and coordinator prepared the
+[technical integration contract](../increments/024-ramp-persistence-and-validation.md):
+optional group metadata, token-owned protection, session-only draft continuity, one
+atomic creation/Apply command, existing whole-snapshot history, and authored version 4
+for ramps plus incomplete composites. Existing backup and retained-record envelopes
+remain. Baseline-aware validation permits unchanged pre-existing problems while
+rejecting new/changed integrity errors; no global diagnostic suppression.
+
+No additional user behavior decision was identified. The currently identified numerical,
+D5 and AC-15 preparation gaps now have concrete drafts. Next: the focused final
+consolidated analyst check against accepted UX and owning contracts, then user
+full-contract agreement and explicit implementation authorization. Nothing is implemented
+or numerically validated by this preparation. No accepted UX was redesigned.
+
+Document/source checks stopped at about 10/12 aggregate minutes, zero repairs. Local
+links and whitespace passed. No tests, numerical, browser or retention qualification
+restarted. Leave staging, committing and pushing to the user. Suggested commit:
+`docs: specify ramp persistence history and validation integration`.
+
 ## Ramp numerical specification draft completed — 23 November 2026
 
 The user requested completion of numerical details and agreed the below-zero explicit

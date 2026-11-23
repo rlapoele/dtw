@@ -98,7 +98,10 @@ Keep older version readers strict; read existing complete data unchanged. Preser
 missing fields exactly in the new version; older builds must refuse unsupported
 versions instead of dropping data. No automatic repair or read-time rewrite. Envelope
 and storage-platform changes are unnecessary unless later technical evidence requires
-one. Existing version numbers are not reassigned here.
+one. The [Increment 024 integration proposal](../increments/024-ramp-persistence-and-validation.md)
+now proposes authored version 4 for both ramp metadata and known composite-field
+omissions, without changing historical readers or the backup envelope. This remains
+subject to final contract review/agreement; no version has been implemented.
 
 This is canonical/backup behavior, not a new interchange guarantee. Incomplete values
 cannot be exported as complete conforming composites or silently filled. Existing
