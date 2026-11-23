@@ -132,7 +132,13 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
 - **AC-9 — Manual and recipe seed.** Intentional value edits mark that ramp member
   Manual, without changing protection or neighbouring candidates. Editing the seed-step
   token leaves the recipe seed unchanged; clearly expose any difference. Returning
-  manually to an older color does not itself clear Manual. **Amended 23 November:**
+  manually to an older color does not itself clear Manual. **Edit intent agreed
+  23 November:** focusing/leaving a color field without a value change does not
+  establish Manual. Changing the color and then manually returning to its original
+  value retains Manual. Ordinary Revert restores the saved color and saved status.
+  Apply may therefore persist a Manual-status change even when the final color
+  equals the saved color; a result with no value or metadata changes writes nothing.
+  **Amended 23 November:**
   Manual describes authorship, not preservation. Ordinary generation-setting changes
   regenerate unprotected Manual steps and clear Manual when generated colors replace
   them, without per-step acceptance. Protected colors remain unchanged. This supersedes
@@ -168,7 +174,9 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   invalidates the retained seed position, keep that requested position visible,
   explain the conflict and block Apply until the user explicitly chooses a valid
   position or edits the seed. For exact white at 500, offer Use step 50 or Edit seed;
-  exact black has the corresponding 950 restriction. Use the agreed white-seed
+  exact black has the corresponding 950 restriction, with lighter colors before it.
+  At an invalid interior position, offer Use step 950 or Edit seed; darker-side steps
+  cannot be darker than exact black. Use the agreed white-seed
   message: “White needs to start the ramp. Move the seed to 50 to generate darker
   steps.” White at 50 permits a darker ramp; do not imply white itself is unsupported
   or silently reposition the seed.
@@ -406,16 +414,18 @@ algorithm, thresholds or qualification campaign is authorized by this consolidat
 
 ### D2 — Ordinary editing and remaining draft details
 
-Count replacement and its reset/lifetime rules are settled above. Remaining details
-include no-op versus intentional edit-then-return handling. Non-count seed edits
+The previously listed D2 product decisions are now recorded in AC-9/11/12/22;
+a focused consistency check of the post-review amendments remains pending.
+No-op versus intentional edit-return handling is agreed in AC-9. Non-count seed edits
 that invalidate a retained position now follow AC-12's explicit correction gate.
 Ordinary non-replacement Revert's field scope
 was agreed on 23 November: saved color, Manual status, description and protection,
 with other steps and ramp settings preserved (AC-11).
 Clarify these without reintroducing protected replacement prompts or automatic
 count-round-trip recovery. Reset after subsequent settings changes uses the latest
-draft recipe/settings, as agreed in AC-11. Remaining questions are interaction
-decisions, not implementation latitude.
+draft recipe/settings, as agreed in AC-11. Any additional material reconciliation
+ambiguity found during preparation must be surfaced, not settled as implementation
+latitude.
 
 V4's interim **Change** state was settled on 23 November and is specified in AC-22;
 it is no longer an open D2 decision.
@@ -533,7 +543,10 @@ follow-up grants no runtime or numerical allowance.
   creation anchor token and then becomes its ordinary description (AC-6).
 - 23 November, clarification: white at 50 supports a darker ramp; the user retained
   the position-correction behavior and agreed clearer explanatory wording (AC-12).
-- Next: settle no-op versus intentional edit-return handling, then continue remaining
+- 23 November, subsequent decision: unchanged input does not establish Manual;
+  intentional edit-return retains it and may be a metadata-only Apply (AC-9).
+  Exact black at 950 is the mirror of the white-at-50 rule (AC-12).
+- Next: decide member eligibility under D3, then continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

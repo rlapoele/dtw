@@ -120,6 +120,11 @@ ramps without introducing live computed token values.
   Manual steps without a per-step acceptance requirement, clearing Manual when the
   generated color replaces the edit. Returning manually to an earlier color does
   not itself clear Manual. The earlier default Keep manual value rule is superseded.
+- **Edit intent agreed 23 November:** focusing and leaving a color field unchanged
+  does not establish Manual. Changing a color and then manually restoring its original
+  value retains Manual; ordinary Revert restores saved color and saved status. Apply
+  may save only the Manual-status difference when colors match. If values and metadata
+  are all unchanged, Apply writes nothing.
 - A manual override affects its own step, not neighbouring candidates. Turning it
   into another generation anchor would be a separate future capability.
 - If a step-count or naming change would remove an overridden step, surface that
@@ -527,7 +532,11 @@ The user confirmed this behavior and the clearer white-seed wording:
 **“White needs to start the ramp. Move the seed to 50 to generate darker steps.”**
 A white seed at 50 is supported: remaining steps can be progressively darker.
 The conflict is retaining an interior position with a lighter side above white,
-not using white as a seed. Do not silently reposition. This later-editing rule is distinct from the agreed
+not using white as a seed. Exact black is the mirror case: place it at 950, with
+lighter colors before it. If an interior position is retained, offer Use step 950
+or Edit seed rather than requiring colors darker than black. Explain that black
+needs to end the ramp so lighter steps can precede it. This clarifies the existing
+endpoint rule, not a new numerical policy. Do not silently reposition. This later-editing rule is distinct from the agreed
 Auto placement when count replacement removes the assigned label. Numerical
 classification/tolerances remain with Draft 024 D1; this agreement selects no new
 threshold or algorithm.

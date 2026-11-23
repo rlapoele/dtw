@@ -47,12 +47,16 @@ receives it; after creation it is that token's ordinary description (AC-6).
 The user retained the white-seed position rule and agreed clearer wording: “White
 needs to start the ramp. Move the seed to 50 to generate darker steps.” A white seed
 is supported; only its invalid retained position needs correction.
-Next: settle no-op versus intentional edit-return handling.
+The user agreed that unchanged input does not establish Manual, while intentional
+color edit-return retains Manual and can produce a metadata-only Apply (AC-9).
+Exact black at 950 is the mirror of white at 50, allowing lighter preceding steps.
+Next: decide member eligibility under D3. Listed D2 decisions are recorded; the
+focused consistency check of post-review amendments remains pending.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: clarify white seed position guidance`.
+`docs: define intentional ramp edits and clarify black seed placement`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.
