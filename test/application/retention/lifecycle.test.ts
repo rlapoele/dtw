@@ -27,7 +27,7 @@ it("stamps creation once, preserves exact description and never stamps reads, no
   const f = fixture();
   f.finish(await f.app.createProject({id: "p", name: "Project", description: "  First\nSecond  "}));
   expect(f.record().snapshot.project).toEqual({id: "p", name: "Project", description: "  First\nSecond  ", preferences: { defaultColorSpace: "oklch" }, creationDate: date(1), lastUpdatedDate: date(1)});
-  expect(f.record().authoredVersion).toBe(3);
+  expect(f.record().authoredVersion).toBe(4);
   const group = {operation: "createGroup" as const, input: {id: "g", projectId: "p", localName: "group", parentGroupId: null}};
   f.finish(await f.app.command(group, f.record().revision));
   expect(f.record().snapshot.project).toMatchObject({creationDate: date(1), lastUpdatedDate: date(2)});
@@ -79,13 +79,13 @@ it("strictly admits legacy/new versions and rejects malformed dates and future f
   const modern = {...legacy, authoredVersion: 2, snapshot: {...legacy.snapshot, project: {...legacy.snapshot.project, creationDate: date(1)}}};
   expect(decodeRetainedRecord(modern, "p").snapshot).toEqual(modern.snapshot);
   const envelope = JSON.parse(encodeBackup(modern.snapshot, date(50)));
-  expect(envelope.authoredVersion).toBe(3);
+  expect(envelope.authoredVersion).toBe(4);
   for (const bad of ["2026-02-30T10:00:00.000Z", "2026-11-18T10:00:00Z", "2026-11-18T11:00:00.000+01:00", 0, null]) {
     const snapshot = {...modern.snapshot, project: {...modern.snapshot.project, lastUpdatedDate: bad}};
     expect(() => decodeRetainedRecord({...modern, snapshot}, "p")).toThrow();
     expect(() => decodeBackup(JSON.stringify({...envelope, snapshot}))).toThrow();
   }
-  for (const authoredVersion of [1, 4]) {
+  for (const authoredVersion of [1, 5]) {
     expect(() => decodeRetainedRecord({...modern, authoredVersion}, "p")).toThrow();
     expect(() => decodeBackup(JSON.stringify({...envelope, authoredVersion}))).toThrow();
   }
@@ -114,15 +114,15 @@ it("strictly admits legacy/new versions and rejects malformed dates and future f
   expect((await f.app.createProject({id: "p", name: "P", preferences} as never)).status).toBe("rejected");
   expect(f.record()).toBeUndefined();
  });
- it("admits v3 preferences only, rejects whole malformed snapshots and leaves legacy absence intact", () => {
+ it("admits v3/v4 preferences, rejects whole malformed snapshots and leaves legacy absence intact", () => {
   const old = fixture(true).record();
   const project = {...old.snapshot.project, preferences: {defaultColorSpace: "display-p3"}};
   for (const authoredVersion of [1, 2, 3, 4]) {
     const record = {...old, authoredVersion, snapshot: {...old.snapshot, project}};
     const read = () => decodeRetainedRecord(record, "p");
-    if (authoredVersion === 3) expect(read().snapshot.project).toEqual(project); else expect(read).toThrow();
+    if ((authoredVersion === 3 || authoredVersion === 4)) expect(read().snapshot.project).toEqual(project); else expect(read).toThrow();
     const backup = () => decodeBackup(JSON.stringify({format: "dtw.project-backup", formatVersion: 1, authoredVersion, createdAt: date(1), snapshot: record.snapshot}));
-    if (authoredVersion === 3) expect(backup().snapshot.project).toEqual(project); else expect(backup).toThrow();
+    if ((authoredVersion === 3 || authoredVersion === 4)) expect(backup().snapshot.project).toEqual(project); else expect(backup).toThrow();
   }
   for (const preferences of [{}, null, {defaultColorSpace: "bad"}, {defaultColorSpace: "oklch", extra: 1}]) {
     expect(() => decodeRetainedRecord({...old, authoredVersion: 3, snapshot: {...old.snapshot, project: {...project, preferences}}}, "p")).toThrow();

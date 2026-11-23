@@ -1,3 +1,5 @@
+import type {RampCreationValue} from "@presentation/App/components/TokensWorkbench/components/ColorRamp/ColorRamp";
+import {rampLabels} from "@domain/color-ramp";
 import { effectiveDefaultColorSpace } from "@domain/project";
 import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
 import { namingPreview } from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/helpers/naming-preview";
@@ -109,7 +111,7 @@ export function useAuthoringForm(
     });
     setError("");
   }
-  async function create() {
+  async function create(ramp?:RampCreationValue) {
     if (
       !dialog ||
       busy ||
@@ -183,6 +185,7 @@ export function useAuthoringForm(
                 },
               },
             };
+    const finalCommand:AuthoringCommand=ramp&&dialog==="group"?{operation:"createColorRamp",input:{projectId:header.project.id,group:{id,projectId:header.project.id,localName:name,parentGroupId:parent},settings:ramp.settings,members:rampLabels(ramp.count).map(label=>({label,id:crypto.randomUUID()})),seedDescription:ramp.seedDescription}}:command;
     const kind = dialog;
     let unchanged = false;
     completion.current = (clarification) => {
@@ -197,7 +200,7 @@ export function useAuthoringForm(
       );
       onCreated(kind, id);
     };
-    const result = await accept(command);
+    const result = await accept(finalCommand);
     if (result.status === "unchanged" || (result.status === "retained" && result.readback === "available")) {
       unchanged = result.status === "unchanged";
       const finish = completion.current;

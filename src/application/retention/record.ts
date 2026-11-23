@@ -9,6 +9,9 @@ const operations: Record<Operation, string> = {
   renameGroup: "group",
   createColorToken: "token",
   reviseColorToken: "token",
+  createColorRamp: "group",
+  applyColorRamp: "group",
+  refillColor: "token",
 };
 function closed(input: unknown, keys: string[]): Record<string, unknown> {
   if (
@@ -38,7 +41,7 @@ export function decodeRetainedRecord(
     "lastAcceptedCommand",
     "snapshot",
   ]);
-  if ((r.recordVersion !== 1 && r.recordVersion !== 2) || (r.authoredVersion !== 1 && r.authoredVersion !== 2 && r.authoredVersion !== 3))
+  if ((r.recordVersion !== 1 && r.recordVersion !== 2) || (r.authoredVersion !== 1 && r.authoredVersion !== 2 && r.authoredVersion !== 3 && r.authoredVersion !== 4))
     throw Error("Unsupported retained record version");
   if (!internalId(r.revision)) throw Error("Invalid retained revision");
   const c = closed(r.lastAcceptedCommand, ["commandId", "operation", "result"]);

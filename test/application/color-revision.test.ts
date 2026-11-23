@@ -154,7 +154,7 @@ describe("reference targets and bounded repair", () => {
   ])("AC-4: rejects $code with the domain diagnostic details", ({ target, targetId, code }) => {
     const { app, storage } = fixture([storedColor("edited"), ...(target === undefined ? [] : [target])]);
     const before = storage.delegate.load("p");
-    expect(app.reviseColorToken({ projectId: "p", tokenId: "edited", value: reference(targetId) })).toMatchObject({ status: "failure", error: { code: "invalid-candidate", referenceDiagnostics: expect.arrayContaining([{ code, tokenId: "edited", targetTokenId: targetId, condition: [] }]) } });
+    expect(app.reviseColorToken({ projectId: "p", tokenId: "edited", value: reference(targetId) })).toMatchObject({ status: "failure", error: code === "cross-project-reference" ? {code:"invalid-domain-input"} : { code: "invalid-candidate", referenceDiagnostics: expect.arrayContaining([{ code, tokenId: "edited", targetTokenId: targetId, condition: [] }]) } });
     expect(storage.delegate.load("p")).toEqual(before);
     expect(storage.commits).toBe(0);
   });
@@ -188,19 +188,14 @@ describe("reference targets and bounded repair", () => {
     expect(storage.commits).toBe(1);
   });
 
-  it("AC-5/6: remaining namespace and reference errors block a selected repair and expose candidate checks", () => {
+  it("Increment 024: unchanged unrelated errors do not block a selected repair", () => {
     const group = createTokenGroup({ id: "broken", projectId: "p", localName: "", parentGroupId: "absent-group" });
     const { app, storage } = fixture([storedAlias("edited", "absent"), storedAlias("other", "still-absent")], [group]);
-    const before = storage.delegate.load("p");
-    const inspection = ok(app.inspectToken("p", "edited"));
-    expect(app.reviseColorToken({ projectId: "p", tokenId: "edited", value: literal })).toEqual({ status: "failure", error: {
-      code: "invalid-candidate",
-      namespaceDiagnostics: [{ code: "missing-parent-group", entityKind: "group", entityId: "broken", parentGroupId: "absent-group" }],
-      referenceDiagnostics: [{ code: "missing-reference", tokenId: "other", targetTokenId: "still-absent", condition: [] }],
-    } });
-    expect(storage.delegate.load("p")).toEqual(before);
-    expect(ok(app.inspectToken("p", "edited"))).toEqual(inspection);
-    expect(storage.commits).toBe(0);
+    expect(app.reviseColorToken({ projectId: "p", tokenId: "edited", value: literal }).status).toBe("ok");
+    expect(ok(app.validateProject("p"))).toEqual({namespaceDiagnostics:[{code:"missing-parent-group",entityKind:"group",entityId:"broken",parentGroupId:"absent-group"}],referenceDiagnostics:[{code:"missing-reference",tokenId:"other",targetTokenId:"still-absent",condition:[]}]});
+    expect(storage.commits).toBe(1);
+    expect(app.reviseColorToken({projectId:"p",tokenId:"other",value:reference("different-absent")}).status).toBe("failure");
+    expect(storage.commits).toBe(1);
   });
 });
 

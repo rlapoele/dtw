@@ -48,6 +48,7 @@ export function useTokenEditor({
     value: ReviseColorTokenInput["value"],
     layer?: ReviseColorTokenInput["layer"],
     description?: ReviseColorTokenInput["description"],
+    markManual?: boolean,
   ) =>
     | ApplicationResult<Pick<Token, "definition" | "layer" | "description">>
     | Promise<ApplicationResult<Pick<Token, "definition" | "layer" | "description">>>;
@@ -64,6 +65,8 @@ export function useTokenEditor({
     value = projected
       ? i.authoredValue
       : i.authored.definition?.assignments[0]?.value;
+  const manualIntent=useRef(false);
+  const rampMember=project.groups.some(g=>g.authored.colorRamp?.members.some(m=>m.tokenId===token.id));
   const [accepting, setAccepting] = useState(false);
   const [session, setSession] = useState(() => baseline(value, token.layer ?? null, token.description));
   const initial = useRef(session);
@@ -181,6 +184,7 @@ export function useTokenEditor({
     setError("");
   }
   function changeColorDraft(next: DraftSession) {
+    if(JSON.stringify(next.literal)!==JSON.stringify(session.literal))manualIntent.current=true;
     setSession(next);
     setError("");
     setNotice("");
@@ -237,8 +241,10 @@ export function useTokenEditor({
     setAccepting(true);
     let result: ApplicationResult<Pick<Token, "definition" | "layer" | "description">>;
     try {
-      result = await onApply(candidate, session.layer === "component" ? undefined : session.layer,
-        !descriptionChanged ? undefined : session.description === "" ? null : session.description);
+      const args: Parameters<typeof onApply> = [candidate, session.layer === "component" ? undefined : session.layer,
+        !descriptionChanged ? undefined : session.description === "" ? null : session.description];
+      if (rampMember) args.push(manualIntent.current);
+      result = await onApply(...args);
     } catch (error) {
       setError(
         error instanceof Error
@@ -261,6 +267,7 @@ export function useTokenEditor({
       value: JSON.stringify(result.value.definition?.assignments[0]?.value),
       previous: { value: result.value.definition?.assignments[0]?.value, layer: result.value.layer ?? null, description: result.value.description },
     };
+    manualIntent.current=false;
     setRecovery(undefined);
     setSession(next);
     onDirty(false);
@@ -268,6 +275,7 @@ export function useTokenEditor({
     revealDescription();
   }
   function cancel() {
+    manualIntent.current=false;
     const currentBaseline = baseline(value, token.layer ?? null, token.description);
     initial.current = currentBaseline;
     initialDescription.current = token.description;

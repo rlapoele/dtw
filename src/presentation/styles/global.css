@@ -363,3 +363,6 @@ input[type="file"]::file-selector-button { min-height:2.25rem; }
 
 /* The full navigation row, including its disclosure control, stays square. */
 .navigation-row > .button { border-radius: 0; }
+
+/* Native vertical ramp sliders; authored colors are supplied at the preview consumer. */
+.ramp-component-slider { writing-mode: vertical-lr; direction: rtl; }

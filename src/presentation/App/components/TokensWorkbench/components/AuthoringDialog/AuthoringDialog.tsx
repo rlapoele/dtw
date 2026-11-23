@@ -1,3 +1,6 @@
+import {useState,useEffect} from "react";
+import {effectiveDefaultColorSpace} from "@domain/project";
+import {RampCreation,type RampCreationValue} from "@presentation/App/components/TokensWorkbench/components/ColorRamp/ColorRamp";
 import type { ColorSpace } from "@domain/color-literal";
 import { COLOR_COMPONENTS, COMPONENT_NAMES } from "@domain/color-components";
 import { spaceName } from "@presentation/App/helpers/color-space";
@@ -50,6 +53,7 @@ export function AuthoringDialog({
   finalFocus,
   onClose,
   onSubmit,
+  onCreateRamp,
   onRetry,
   pending = false,
   recovery,
@@ -65,12 +69,15 @@ export function AuthoringDialog({
   finalFocus: () => HTMLElement | null;
   onClose: () => void;
   onSubmit: () => void;
+  onCreateRamp: (value:RampCreationValue)=>void;
   onRetry: () => void;
   pending?: boolean;
   recovery?: import("react").ReactNode;
   guard?: import("react").ReactNode;
   submissionBlocked?: string;
 }) {
+  const [generate,setGenerate]=useState(false),[rampOpen,setRampOpen]=useState(false);
+  useEffect(()=>{if(!open){setGenerate(false);setRampOpen(false);}},[open]);
   const preview = namingPreview(
     project,
     open ? form.kind : null,
@@ -106,14 +113,16 @@ export function AuthoringDialog({
             : "Groups organize paths; names do not define types."}
         </Dialog.Description>
         {recovery}
-        <form
+        {form.kind==="group"&&generate&&<div hidden={!rampOpen}><RampCreation defaultSpace={project?effectiveDefaultColorSpace(project.project):"srgb"} path={preview.path?.join(" / ")??form.name} disabled={pending||!!submissionBlocked||!!readFailure} onBack={()=>setRampOpen(false)} onCancel={onClose} onCreate={onCreateRamp}/></div>}
+        <form hidden={rampOpen}
           className="min-h-0 overflow-auto p-1.5"
           onSubmit={(e) => {
             e.preventDefault();
-            onSubmit();
+            if(form.kind==="group"&&generate&&!preview.error&&!preview.collisions.length)setRampOpen(true);else onSubmit();
           }}
         >
           <fieldset>
+            {form.kind==="group"&&<label className="flex gap-2 mb-4"><input type="checkbox" checked={generate} onChange={e=>setGenerate(e.target.checked)}/>Generate a color ramp</label>}
             <Field>
               Name
               <Input
@@ -308,7 +317,7 @@ export function AuthoringDialog({
               variant="default"
               disabled={!!readFailure || pending || !!submissionBlocked}
             >
-              {form.kind === "rename" ? "Rename group" : "Create"}
+              {form.kind === "rename" ? "Rename group" : generate&&form.kind==="group"?"Continue":"Create"}
             </Button>
           </div>
         </form>

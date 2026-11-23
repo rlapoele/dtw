@@ -64,6 +64,7 @@ export const TOKEN_RESOLUTION_FAILURE_REASONS = [
   "unsupported-expression",
   "context-required",
   "invalid-composite",
+  "incomplete-composite",
 ] as const;
 
 export type TokenResolutionFailureReason =
@@ -429,6 +430,7 @@ export function resolveToken(
       } else if (value.kind === "composite") {
         if (value.valueType === "transition") {
           for (const field of TRANSITION_FIELDS) {
+            if (!Object.hasOwn(value, field)) return fail("incomplete-composite", ownerId, { field, fieldOwnerId: ownerId });
             if (!isTransitionFieldValue(value[field], field))
               return fail("invalid-composite", ownerId, {
                 compositeCode: "invalid-transition-field",
@@ -440,7 +442,7 @@ export function resolveToken(
           for (const field of [...TRANSITION_FIELDS].reverse()) {
             push({
               kind: "value",
-              value: value[field],
+              value: value[field]!,
               ownerId,
               expectedType: TRANSITION_FIELD_TYPES[field],
               path: [],
@@ -459,13 +461,14 @@ export function resolveToken(
             layerIndex += 1
           ) {
             const layer = value.layers[layerIndex];
-            if (typeof layer !== "object" || layer === null)
+            if (typeof layer !== "object" || layer === null || Object.keys(layer).some(key=>!(SHADOW_FIELDS as readonly string[]).includes(key)))
               return fail("invalid-composite", ownerId, {
                 compositeCode: "invalid-shadow-layers",
                 layerIndex,
               });
             for (const field of SHADOW_FIELDS) {
-              if (!isShadowFieldValue(layer[field], field))
+              if (!Object.hasOwn(layer, field)) return fail("incomplete-composite", ownerId, { field, fieldOwnerId: ownerId, layerIndex });
+            if (!isShadowFieldValue(layer[field], field))
                 return fail("invalid-composite", ownerId, {
                   compositeCode: "invalid-shadow-field",
                   layerIndex,
@@ -483,7 +486,7 @@ export function resolveToken(
             for (const field of [...SHADOW_FIELDS].reverse()) {
               push({
                 kind: "value",
-                value: value.layers[layerIndex][field],
+                value: value.layers[layerIndex][field]!,
                 ownerId,
                 expectedType: SHADOW_FIELD_TYPES[field],
                 path: [],
@@ -495,6 +498,7 @@ export function resolveToken(
           }
         } else {
           for (const field of TYPOGRAPHY_FIELDS) {
+            if (!Object.hasOwn(value, field)) return fail("incomplete-composite", ownerId, { field, fieldOwnerId: ownerId });
             if (!isTypographyFieldValue(value[field], field))
               return fail("invalid-composite", ownerId, {
                 compositeCode: "invalid-typography-field",
@@ -506,7 +510,7 @@ export function resolveToken(
           for (const field of [...TYPOGRAPHY_FIELDS].reverse()) {
             push({
               kind: "value",
-              value: value[field],
+              value: value[field]!,
               ownerId,
               expectedType: TYPOGRAPHY_FIELD_TYPES[field],
               path: [],

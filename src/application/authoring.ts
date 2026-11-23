@@ -1,3 +1,6 @@
+import { createRampCandidate, applyRampCandidate, refillColorCandidate, type CreateRampInput, type ApplyRampInput, type RefillColorInput } from "@application/color-ramp-authoring";
+import { newIntegrityErrors, assertRampIntegrity } from "@application/baseline-validation";
+import { admitSnapshot } from "@application/retention/codec";
 import { prepareNamespaceName } from "@domain/namespace-naming";
 import { introducedNamespaceCollisions } from "@domain/namespace-collisions";
 import { canReviseColorToken } from "@application/color-revision-policy";
@@ -50,6 +53,7 @@ export type CreateColorTokenInput = {
 export type ReviseColorTokenInput = {
   readonly projectId: string;
   readonly tokenId: string;
+  readonly markManual?: boolean;
   /** Omitted preserves the layer; null explicitly removes it. */
   readonly layer?: "primitive" | "semantic" | null;
   /** Omitted preserves description; null explicitly removes it. */
@@ -102,7 +106,9 @@ export function createAuthoringOperations(storage: ProjectStorage) {
       const collisions = introducedNamespaceCollisions(namespaceOf(previous), namespaceOf(candidate));
       if (collisions.length) return { status: "failure", error: { code: "invalid-domain-input", message: "Namespace path collision: " + JSON.stringify(collisions) } };
     }
-    const checks = validate(candidate);
+    try { admitSnapshot(candidate); assertRampIntegrity(previous,candidate); }
+    catch(error) { return {status:"failure",error:{code:"invalid-domain-input",message:error instanceof Error?error.message:"Invalid candidate"}}; }
+    const checks = previous ? newIntegrityErrors(previous,candidate,validate(previous),validate(candidate)) : validate(candidate);
     if (checks.namespaceDiagnostics.length > 0 || checks.referenceDiagnostics.length > 0) {
       return { status: "failure", error: { code: "invalid-candidate", ...checks } };
     }
@@ -110,6 +116,21 @@ export function createAuthoringOperations(storage: ProjectStorage) {
   }
 
   return {
+    createColorRamp(input:CreateRampInput):ApplicationResult<TokenGroup> {
+      const result=load(input.projectId);if(result.status==="failure")return result;
+      try {const candidate=createRampCandidate(result.value,{...input,group:{...input.group,localName:prepareNamespaceName(input.group.localName)}});return accept(candidate,candidate.groups.find(g=>g.id===input.group.id)!,result.value);}
+      catch(error){if(!(error instanceof RangeError))throw error;return {status:"failure",error:{code:"invalid-domain-input",message:error.message}};}
+    },
+    applyColorRamp(input:ApplyRampInput):ApplicationResult<TokenGroup> {
+      const result=load(input.projectId);if(result.status==="failure")return result;
+      try {const candidate=applyRampCandidate(result.value,input);return accept(candidate,candidate.groups.find(g=>g.id===input.groupId)!,result.value);}
+      catch(error){if(!(error instanceof RangeError))throw error;return {status:"failure",error:{code:"invalid-domain-input",message:error.message}};}
+    },
+    refillColor(input:RefillColorInput):ApplicationResult<Token> {
+      const result=load(input.projectId);if(result.status==="failure")return result;
+      try {const candidate=refillColorCandidate(result.value,input);return accept(candidate,candidate.tokens.find(t=>t.id===input.tokenId)!,result.value);}
+      catch(error){if(!(error instanceof RangeError))throw error;return {status:"failure",error:{code:"invalid-domain-input",message:error.message}};}
+    },
     createProject(input: ProjectInput): ApplicationResult<Project> {
       const existing = storage.load(input.id);
       if (existing.status === "failure") return { status: "failure", error: { code: "storage-failure", operation: "load", message: existing.message } };
@@ -181,8 +202,10 @@ export function createAuthoringOperations(storage: ProjectStorage) {
       if (result.status === "failure") return result;
       const token = result.value.tokens.find(token => token.id === input.tokenId && token.projectId === input.projectId);
       if (token === undefined) return missingEntity("token", input.tokenId);
+      const rampGroup=result.value.groups.find(g=>g.colorRamp?.members.some(m=>m.tokenId===token.id));
       let revised: Token;
       try {
+        if (rampGroup && (input.value.kind !== "literal" || (input.layer !== undefined && input.layer !== "primitive"))) throw new RangeError("Ramp members require a Primitive unconditional literal color.");
         if (!canReviseColorToken(token)) {
           throw new RangeError("Color revision requires one unconditional color literal or reference on a non-component token");
         }
@@ -211,7 +234,9 @@ export function createAuthoringOperations(storage: ProjectStorage) {
         if (!(error instanceof RangeError)) throw error;
         return { status: "failure", error: { code: "invalid-domain-input", message: error.message } };
       }
-      return accept({ ...result.value, tokens: result.value.tokens.map(current => current.id === input.tokenId ? revised : current) }, revised);
+      const colorChanged=input.markManual === true || JSON.stringify(token.definition)!==JSON.stringify(revised.definition);
+      const groups=rampGroup&&colorChanged?result.value.groups.map(g=>g.id===rampGroup.id?{...g,colorRamp:{...g.colorRamp!,members:g.colorRamp!.members.map(m=>m.tokenId===token.id?{...m,colorOrigin:"manual" as const}:m)}}:g):result.value.groups;
+      return accept({ ...result.value, groups, tokens: result.value.tokens.map(current => current.id === input.tokenId ? revised : current) }, revised,result.value);
     },
 
     inspectToken(projectId: string, tokenId: string): ApplicationResult<TokenInspection> {

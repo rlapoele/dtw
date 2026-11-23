@@ -17,9 +17,9 @@ export const TRANSITION_FIELD_TYPES = {
 export type TransitionValue = {
   readonly kind: "composite";
   readonly valueType: "transition";
-  readonly duration: DurationLiteralValue | TokenReference;
-  readonly delay: DurationLiteralValue | TokenReference;
-  readonly timingFunction: CubicBezierLiteralValue | TokenReference;
+  readonly duration?: DurationLiteralValue | TokenReference;
+  readonly delay?: DurationLiteralValue | TokenReference;
+  readonly timingFunction?: CubicBezierLiteralValue | TokenReference;
 };
 
 export type TransitionInput = Pick<TransitionValue, TransitionField>;
@@ -48,28 +48,20 @@ export function isTransitionFieldValue(
 }
 
 export function createTransition(input: TransitionInput): TransitionValue {
-  for (const field of TRANSITION_FIELDS) {
-    if (!isTransitionFieldValue(input[field], field)) {
-      throw new RangeError(`A transition requires a correctly typed ${field} field`);
+  function fields(source: object): Record<string, unknown> {
+    const result: Record<string, unknown> = {};
+    for (const key of Object.keys(source)) {
+      if (![...TRANSITION_FIELDS, "kind", "valueType"].includes(key)) throw new RangeError("Unknown transition field");
     }
+    for (const field of TRANSITION_FIELDS) {
+      if (!Object.hasOwn(source, field)) continue;
+      const value = (source as Record<string, unknown>)[field];
+      if (!isTransitionFieldValue(value, field)) throw new RangeError(`Invalid ${field} field`);
+      if (value.kind === "token-reference") { result[field] = createTokenReference(value); continue; }
+      if (value.valueType === "cubicBezier") result[field] = createCubicBezierLiteral(value.controlPoints);
+      else { if (field === "duration" && !isValidTransitionDuration(value)) throw new RangeError("Transition duration must be non-negative"); result[field] = createDurationLiteral(value.value,value.unit); }
+    }
+    return result;
   }
-  const duration = copyDurationField(input.duration);
-  if (duration.kind === "literal" && !isValidTransitionDuration(duration)) {
-    throw new RangeError("A transition duration must be non-negative");
-  }
-  return {
-    kind: "composite",
-    valueType: "transition",
-    duration,
-    delay: copyDurationField(input.delay),
-    timingFunction: input.timingFunction.kind === "token-reference"
-      ? createTokenReference(input.timingFunction)
-      : createCubicBezierLiteral(input.timingFunction.controlPoints),
-  };
-}
-
-function copyDurationField(value: DurationLiteralValue | TokenReference): DurationLiteralValue | TokenReference {
-  return value.kind === "token-reference"
-    ? createTokenReference(value)
-    : createDurationLiteral(value.value, value.unit);
+  return {kind:"composite", valueType:"transition", ...fields(input)} as TransitionValue;
 }

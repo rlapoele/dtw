@@ -1,3 +1,4 @@
+import type {CreateRampInput, ApplyRampInput, RefillColorInput} from "@application/color-ramp-authoring";
 import type { ProjectPreferences } from "@domain/project";
 import type { ProjectSnapshot } from "@application/project-storage";
 import type {
@@ -6,6 +7,9 @@ import type {
 } from "@application/authoring";
 import type { TokenGroupInput } from "@domain/token-group";
 export type AuthoringCommand =
+  | {operation:"createColorRamp";input:CreateRampInput}
+  | {operation:"applyColorRamp";input:ApplyRampInput}
+  | {operation:"refillColor";input:RefillColorInput}
   | { operation: "createGroup"; input: TokenGroupInput }
   | {
       operation: "renameGroup";
@@ -40,7 +44,7 @@ export type WriteIdentity = {
 };
 export type RetainedRecord = {
   readonly recordVersion: 1 | 2;
-  readonly authoredVersion: 1 | 2 | 3;
+  readonly authoredVersion: 1 | 2 | 3 | 4;
   readonly revision: string;
   readonly lastAcceptedCommand: CommandReceipt;
   readonly snapshot: ProjectSnapshot;

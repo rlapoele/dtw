@@ -154,7 +154,7 @@ export function createRetainedWorkbench(
         expectedRevision,
         record: {
           recordVersion: operation === "undo" || operation === "redo" ? 2 : (read.record?.recordVersion ?? 1),
-          authoredVersion: 3,
+          authoredVersion: 4,
           revision,
           lastAcceptedCommand: receipt,
           snapshot,
@@ -269,6 +269,9 @@ export function createRetainedWorkbench(
                 ? operations.createGroup(command.input)
                 : command.operation === "createColorToken"
                   ? operations.createColorToken(command.input)
+                  : command.operation === "createColorRamp" ? operations.createColorRamp(command.input)
+                  : command.operation === "applyColorRamp" ? operations.applyColorRamp(command.input)
+                  : command.operation === "refillColor" ? operations.refillColor(command.input)
                   : operations.reviseColorToken(command.input);
           if (result.status === "failure")
             throw Error(JSON.stringify(result.error));
@@ -279,7 +282,7 @@ export function createRetainedWorkbench(
             snapshot: candidate.value,
             entityKind:
               command.operation === "createGroup" ||
-              command.operation === "renameGroup"
+              command.operation === "renameGroup" || command.operation === "createColorRamp" || command.operation === "applyColorRamp"
                 ? "group"
                 : "token",
             id: result.value.id,

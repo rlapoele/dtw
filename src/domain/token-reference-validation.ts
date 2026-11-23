@@ -117,7 +117,7 @@ function validateReference(
   return issues;
 }
 
-function collectReferenceUses(value: ImplementedAuthoredValue, expectedType: TokenType): {
+export function collectReferenceUses(value: ImplementedAuthoredValue, expectedType: TokenType): {
   reference: TokenReference;
   expectedType: TokenType;
   path: readonly number[];

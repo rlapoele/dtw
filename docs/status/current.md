@@ -2,13 +2,38 @@
 
 > Last updated: 23 November 2026
 >
-> Phase: Increment 023 implemented and independently reviewed; user acceptance pending. Increment 022 completed, independently reviewed and user-accepted; verification limits retained. Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
+> Phase: Increment 024 implemented and independently reviewed, with acceptance gaps retained. Increment 023 implemented and independently reviewed; user acceptance pending. Increment 022 completed, independently reviewed and user-accepted; verification limits retained. Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
 > completed and user-accepted. Earlier qualification limits retained. Increment 013 implemented/reviewed;
 > earlier acceptance gaps preserved
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## Increment 024 implemented and reviewed — 23 November 2026
+
+The user agreed the final contract and authorized implementation. The separate developer
+implemented ramp creation/editing, explicit replacement and reference review, incomplete
+shadow-color refill, authored v4 metadata, backup and atomic history. The independent
+reviewer rechecked three corrected draft/routing defects and two developer-found fixes.
+[Completion evidence and remaining gaps](../increments/024-color-ramp-authoring.md#implementation-completion-report--23-november-2026)
+identify the exact reviewed snapshot.
+
+Delivery is partially completed: implementation and independent review are done, but
+browser focus/refill/20-step acceptance, focused ramp recovery evidence, and a minor
+ramp support-file organization correction remain. No further blocking behavior defect
+was found in the bounded review. Settled decisions remain closed.
+
+The pre-correction full suite passed 1,258 tests; 57 affected tests passed after fixes;
+final typecheck/build passed. Reviewer checks passed separately. Coordinator in-app
+browser checks covered creation, replacement/Discard, description/protection, Apply
+and Undo; this is not Chrome qualification or full accessibility evidence.
+
+Verification stopped at approximately 45/45 aggregate minutes, zero harness repairs.
+Do not restart earlier qualification or this exhausted allowance without an explicitly
+authorized bounded follow-up. Next: user acceptance and a focused follow-up for the
+listed gaps. Staging, committing and pushing remain with the user.
+Suggested commit: `feat: add atomic color ramp authoring and reference review`.
 
 ## Increment 024 final analyst review completed — 23 November 2026
 
@@ -18,8 +43,8 @@ decision** across the accepted flows, numerical draft, persistence/history/backu
 validation integration. The coordinator corrected only stale wording that still
 requested completed D1/D5 preparation. Settled decisions remain closed.
 
-Next: user full-contract agreement and explicit implementation authorization with a
-bounded essential verification plan. No implementation has started. The historical
+Historical next gate (subsequently satisfied): user full-contract agreement and explicit
+implementation authorization with a bounded essential verification plan. The historical
 neutral observation and future numerical/integrity checks remain evidence obligations;
 a successful document review does not establish runtime or numerical correctness.
 No numerical, browser or retention qualification restarted.

@@ -165,6 +165,7 @@ export type SelectedToken = {
       >
     | ColorLiteralValue;
   authoredKind: string;
+  missingColorLayers?: readonly number[];
   editable: boolean;
   path: DisplayPath;
   resolution:
@@ -253,6 +254,7 @@ export function selectedInspection(
       ...(definition ? { definition: { type: definition.type } } : {}),
     },
     authoredKind: value?.kind ?? "No assignment",
+    ...(value?.kind==="composite" && value.valueType==="shadow" && value.layers.some(layer=>!Object.hasOwn(layer,"color")) ? {missingColorLayers:value.layers.flatMap((layer,index)=>Object.hasOwn(layer,"color")?[]:[index])}:{}),
     ...(value?.kind === "token-reference" ||
     (value?.kind === "literal" && value.valueType === "color")
       ? { authoredValue: value }

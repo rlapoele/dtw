@@ -1,7 +1,7 @@
 # Increment 024: Color ramp authoring
 
-- Contract status: **Draft; final consolidated analyst review completed 23 November 2026** — no material findings; user full-contract agreement remains pending.
-- Delivery status: **Not started; no implementation authorized**.
+- Contract status: **Agreed by the user — 23 November 2026**, following the final consolidated analyst review.
+- Delivery status: **Partially completed — implemented and independently reviewed; acceptance gaps and minor organization follow-up remain — 23 November 2026**.
 - Authority: V2 received analyst review, then the user made the replacement and
   reference-impact decisions consolidated here. The user authorized this contract
   cleanup and new wireframes. The user reviewed V3 as covering the scenarios, then
@@ -9,8 +9,8 @@
   was accepted as good enough for now on 22 November; further UX polish is deferred.
   V3 remains the coverage/workspace reference. The user authorized renewed analyst
   review on 23 November; the original review and later focused consolidated review
-  are recorded below. Final full-contract agreement
-  and implementation authorization remain pending.
+  are recorded below. The user subsequently agreed the final contract and
+  authorized implementation on 23 November 2026.
 - References: [owning ramp direction](../project/guided-color-palette-generation.md),
   [creation V3](../project/workbench-layout/color-ramp-creation-v3.md),
   [scale model](../design-tokens/conceptual-model.md#scale-generation),
@@ -58,8 +58,9 @@ UX version; the renewed analyst consistency review is recorded below.
 
 ## Acceptance criteria
 
-These criteria describe intended delivery, not implemented behavior. Explicit user
-decisions are requirements; **proposed** details and D1–D5 remain subject to agreement.
+These criteria describe the agreed delivery contract. The final agreement covers
+the consolidated decisions and linked D1–D5 specifications; historical proposal
+labels record preparation chronology, not remaining implementation choices.
 Material design revisions must return to the user before further analyst review.
 The accepted V4 and retained V3 workspace received renewed review on 23 November.
 
@@ -1010,10 +1011,37 @@ dependency, test, numerical, browser, rendering or retention changes/runs. The a
 reviewed the stable snapshot above; the coordinator checked the subsequent editorial
 recording changes. No independent re-review of that editorial diff is claimed.
 
+## Implementation authorization — 23 November 2026
+
+After the final consolidated analyst review, the user agreed the final contract and
+explicitly authorized implementation, with bounded verification, settled decisions
+closed, and staging/committing/pushing reserved to the user. This supersedes earlier
+preparation-only prohibitions for the agreed Increment 024 scope, including its
+numerical and persistence/validation specifications and accepted UX references.
+Baseline: clean commit `82d8ebc984a9c188f169c6a13eeba12cf11d645f`.
+
+A separate developer implements the complete slice, followed by a fresh-context
+reviewer against an identified stable snapshot. One code-writing agent at a time.
+No dependency expansion or broader product changes are planned. Material ambiguities
+return to the user; routine implementation choices follow the agreed contracts.
+
+Bounded essential implementation verification: **45 aggregate minutes, at most two
+harness-repair cycles**, allocated initially developer 20, independent reviewer 15,
+coordinator 10. The larger-than-default ceiling reflects numerical mapping, authored
+version changes, atomic reference/history behavior and a new multi-step UI in this
+single slice. This is a ceiling, not a target; stop earlier when checks answer the
+relevant questions. Track cumulative consumption and unresolved evidence at handoff.
+No numerical research/stress, retention stress or broad browser/engine qualification
+restarts. Use targeted domain/application tests, typecheck/build and a representative
+Chrome creation/edit/replacement/refill/recovery check where tooling permits. Existing
+historical limits stay explicit; runtime or numerical failures cannot silently weaken
+the agreed behavior. Product defect correction remains within authorization; exhausting
+verification allowance requires an honest handoff, not an automatic budget reset.
+
 ## Verification approach and limits
 
-No production tests, new numerical research or browser qualification occur in this pass.
-After final agreement, target evidence to the criteria:
+Earlier preparation passes ran no production tests or new qualification. Implementation
+is now authorized under the bounded plan above; target essential evidence to the criteria:
 
 - **Essential function:** creation cancel/back/Advanced/gamut/placement; counts 2/6/11/20;
   both intensities; numerical fixtures after D1; ordinary Protected preservation and
@@ -1127,8 +1155,85 @@ follow-up grants no runtime or numerical allowance.
 - 23 November: numerical and metadata/history/backup/validation drafts completed;
   focused final consolidated analyst review found no material contradiction or new
   product decision. Only stale preparation-next-step wording needed correction.
-- Next: user full-contract agreement, then explicit implementation authorization with
-  bounded essential verification. Material design revisions return to the user before
-  further review. No implementation yet.
+- 23 November: the user agreed the final contract and authorized implementation with
+  bounded essential verification. Material design revisions still return to the user.
 - Capture actual base commit and stable diff/new files before later implementation/review.
   Leave staging, committing and pushing to the user.
+
+
+## Implementation completion report — 23 November 2026
+
+Delivery is **partially completed**: the application slice is implemented and independently
+reviewed; the runtime acceptance gaps and minor organization finding below remain.
+No settled product decision changed. No dependencies, staging, commits or pushes changed.
+
+### Reviewed snapshot and result
+
+Base: `82d8ebc984a9c188f169c6a13eeba12cf11d645f`. The exact 50 README/source/test
+files, including new files, are identified by the
+[reviewed SHA-256 manifest](024-implementation-snapshot.json). Its SHA-256 is
+`373af51239f6ecbd4765ee0d275dd75dc8a51a479a88382d906a6022e68a4a59`.
+The independent reviewer verified every listed hash. Coordinator completion/status
+records are outside that implementation snapshot.
+
+New group now offers provisional four-stage ramp creation. Saved ramps open a shared
+workspace/inspector draft, with protection, explicit count replacement and individual
+reference choices. Atomic Apply, incomplete shadow-color refill, authored v4 metadata,
+exact backups and whole-snapshot history are integrated. README documents usage and
+compatibility boundaries.
+
+### Acceptance evidence
+
+| Criteria | Evidence and limits | Status |
+|---|---|---|
+| AC-1–6 — creation and numerical behavior | Domain fixtures cover counts 2/6/11/20, exact anchor/alpha, `#040404` neutrality, endpoint placement, both curves, deterministic fitting/preview and explicit adjustments in five spaces. Coordinator created an 11-step ramp in the in-app browser. Later creation-edge corrections were source/test checked, not browser-replayed. | Verified for listed cases; broader boundaries unverified |
+| AC-7–12 — shared editing, protection and draft lifecycle | Application fixtures cover ordinary regeneration and Manual/Protected distinctions. Coordinator exercised count replacement/Discard and latest description/protection survival. Focused component-state test covers invalid-first dirty state, seed reset on Discard and saved-description Revert; it mocks hooks and is not browser-focus evidence. | Verified for listed transitions; focus gaps below |
+| AC-13–15 — replacement and member integrity | Application fixtures cover returning identity/description/protection, reset remappings, unknown-recipe isolation, member restrictions and unrelated metadata preservation. | Source and fixture verified |
+| AC-16–18 — atomicity, compatibility and recovery | Retention fixture covers one-entry creation/replacement, exact backup, no-op and Undo/Redo identities. Historical codec/lifecycle expectations updated for strict legacy readers and v4 writes. Coordinator observed one Apply history entry and Undo restoring 11 steps. Existing recovery mechanisms reused; new ramp fault-injection scenarios not exercised. | Listed persistence/history cases verified; recovery gap retained |
+| AC-19 — accessible/responsive review | Owned controls/icons reused; coordinator inspected desktop and narrow rendering with horizontal ramp overflow. No overlap observed. Keyboard/focus return and 20-step runtime reachability not established. | Partially verified |
+| AC-20–22 — reference impact, Unspecified and refill | Application tests cover individual shadow occurrences, field-only omission, indirect chain preservation, refill and truthful alias-versus-missing-field routing. Reviewer inspected accepted-choice handling. No browser field-review/refill run. | Source and fixture verified; browser gap retained |
+
+### Checks and review dispositions
+
+- Developer: `npm test` passed **69 files / 1,258 tests** before the corrective pass;
+  the affected suite passed **57 tests** afterward. Final `npm run build` passed all
+  TypeScript targets and Vite. The >500 kB bundle advisory remains; no build failure.
+- Independent reviewer `/root/review_024_impl`: four numerical/application/retention/
+  repairable-data test files passed **23 tests**; updated ramp-draft/application files
+  passed **9 tests**. The reviewer inspected the final manifest, source and affected tree.
+- Coordinator: synthetic project on a separate localhost origin in the ChatGPT in-app
+  browser; creation, replacement draft, Discard, latest description/protection,
+  Apply and Undo observed. No console errors/warnings captured in that pass.
+  This was not an installed-Chrome qualification run. Final fixes were not browser-replayed.
+- `git diff --check` passed. No broader numerical, retention, cross-engine or stress
+  qualification was restarted.
+
+| Finding | Disposition |
+|---|---|
+| R1, high: invalid first seed/step input did not protect departure | Fixed: pending invalid fields participate in dirty state; independently source/test rechecked. |
+| R2, medium: Discard left discarded seed text/Advanced state visible | Fixed: seed editor resets on discard epoch; independently source/test rechecked. |
+| R3, medium: whole-shadow aliases entered the missing-color editor | Fixed: projection exposes actual locally missing color fields; other shadows retain ordinary inspection; independently rechecked. |
+| Developer findings: Revert retained a newly added description when saved description was absent; Apply dropped member semantic role | Fixed by whole-step restoration and preservation of existing metadata; independently rechecked. |
+| Minor organization convention: ramp support files remain flat behind `ColorRamp.tsx` barrel | Open. MissingColorEditor was moved to its workbench owner, but prescribed support categories remain a small follow-up. No demonstrated runtime defect. |
+
+No unresolved product disagreement or further concrete blocking behavior defect was
+found within the review scope. This is bounded evidence, not exhaustive correctness.
+
+### Verification stopping point and next action
+
+Approximately **45/45 aggregate verification minutes** consumed: developer 17,
+reviewer 15, coordinator 13; **zero harness-repair cycles**. Estimates include setup,
+diagnostics, review and reruns. Verification stops here. Earlier qualification limits
+remain intact; another agent or chat must not reset this budget.
+
+Remaining work is explicit: the minor file-organization correction, browser checks for
+creation/Advanced focus and return focus, field-reference review/refill, narrow/20-step
+reachability, and focused stale/unknown-write evidence for ramp commands. These are
+unverified requirements or organizational work, not newly rejected product decisions.
+A further automated verification pass needs an explicitly authorized bounded follow-up.
+User acceptance remains separate: start with New group → Generate a color ramp, then
+edit a step, change count, Discard and Apply. Expect latest descriptions/protection to
+survive replacement and one Undo entry per Apply. A reference-bearing fixture is useful
+for later field-review/refill acceptance; do not ask the user to repeat the entire test suite.
+
+Suggested commit: `feat: add atomic color ramp authoring and reference review`.

@@ -95,9 +95,9 @@ describe("repairable stored data through application inspection", () => {
       referenceDiagnostics: [{ code: "missing-reference", tokenId: "a", targetTokenId: "absent-token", condition: [] }],
     });
     expect(ok(app.readProject("p")).groups[0].path).toEqual({ status: "invalid", diagnostics: [{ code: "missing-parent-group", entityKind: "group", entityId: "broken-group", parentGroupId: "absent-group" }] });
-    // Normal writes check the candidate, including existing broken relationships.
-    expect(app.renameGroup("p", "broken-group", "new")).toMatchObject({ status: "failure", error: { code: "invalid-candidate" } });
-    expect(storage.load("p")).toEqual(before);
+    // Increment 024 permits unchanged causal problems during unrelated metadata edits.
+    expect(app.renameGroup("p", "broken-group", "new")).toMatchObject({ status: "ok" });
+    expect(ok(app.readProject("p")).groups[0].authored.localName).toBe("new");
   });
 
   it("preserves foreign relationship diagnostics while refusing access to foreign authored entities", () => {

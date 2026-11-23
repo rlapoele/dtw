@@ -23,11 +23,11 @@ type TypographyLiteral = FontFamilyLiteralValue | FontWeightLiteralValue | Dimen
 export type TypographyValue = {
   readonly kind: "composite";
   readonly valueType: "typography";
-  readonly fontFamily: FontFamilyLiteralValue | TokenReference;
-  readonly fontSize: DimensionLiteralValue | TokenReference;
-  readonly fontWeight: FontWeightLiteralValue | TokenReference;
-  readonly letterSpacing: DimensionLiteralValue | TokenReference;
-  readonly lineHeight: NumberLiteralValue | TokenReference;
+  readonly fontFamily?: FontFamilyLiteralValue | TokenReference;
+  readonly fontSize?: DimensionLiteralValue | TokenReference;
+  readonly fontWeight?: FontWeightLiteralValue | TokenReference;
+  readonly letterSpacing?: DimensionLiteralValue | TokenReference;
+  readonly lineHeight?: NumberLiteralValue | TokenReference;
 };
 export type TypographyInput = Pick<TypographyValue, TypographyField>;
 export type ResolvedTypographyValue = {
@@ -56,33 +56,21 @@ export function isTypographyFieldValue(
 }
 
 export function createTypography(input: TypographyInput): TypographyValue {
-  for (const field of TYPOGRAPHY_FIELDS) {
-    if (!isTypographyFieldValue(input[field], field)) {
-      throw new RangeError(`Typography requires a correctly typed ${field} field`);
+  function fields(source: object): Record<string, unknown> {
+    const result: Record<string, unknown> = {};
+    for (const key of Object.keys(source)) {
+      if (![...TYPOGRAPHY_FIELDS, "kind", "valueType"].includes(key)) throw new RangeError("Unknown typography field");
     }
+    for (const field of TYPOGRAPHY_FIELDS) {
+      if (!Object.hasOwn(source, field)) continue;
+      const value = (source as Record<string, unknown>)[field];
+      if (!isTypographyFieldValue(value, field)) throw new RangeError(`Invalid ${field} field`);
+      if (value.kind === "token-reference") { result[field] = createTokenReference(value); continue; }
+      if (value.valueType === "fontFamily") result[field] = createFontFamilyLiteral(value.families);
+      else if (value.valueType === "fontWeight") result[field] = createFontWeightLiteral(value.value);
+      else { if ((field === "fontSize" || field === "lineHeight") && !isNonNegativeTypographyValue(value)) throw new RangeError("Typography size must be non-negative"); result[field] = value.valueType === "number" ? createNumberLiteral(value.value) : createDimensionLiteral(value.value,value.unit); }
+    }
+    return result;
   }
-  const fontSize = copyDimensionField(input.fontSize);
-  const lineHeight = input.lineHeight.kind === "token-reference"
-    ? createTokenReference(input.lineHeight) : createNumberLiteral(input.lineHeight.value);
-  if (fontSize.kind === "literal" && !isNonNegativeTypographyValue(fontSize)) {
-    throw new RangeError("Typography font size must be non-negative");
-  }
-  if (lineHeight.kind === "literal" && !isNonNegativeTypographyValue(lineHeight)) {
-    throw new RangeError("Typography line height must be non-negative");
-  }
-  return {
-    kind: "composite",
-    valueType: "typography",
-    fontFamily: input.fontFamily.kind === "token-reference"
-      ? createTokenReference(input.fontFamily) : createFontFamilyLiteral(input.fontFamily.families),
-    fontSize,
-    fontWeight: input.fontWeight.kind === "token-reference"
-      ? createTokenReference(input.fontWeight) : createFontWeightLiteral(input.fontWeight.value),
-    letterSpacing: copyDimensionField(input.letterSpacing),
-    lineHeight,
-  };
-}
-
-function copyDimensionField(value: DimensionLiteralValue | TokenReference): DimensionLiteralValue | TokenReference {
-  return value.kind === "token-reference" ? createTokenReference(value) : createDimensionLiteral(value.value, value.unit);
+  return {kind:"composite", valueType:"typography", ...fields(input)} as TypographyValue;
 }

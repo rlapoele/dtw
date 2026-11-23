@@ -38,9 +38,11 @@ describe("createShadow", () => {
   it.each([undefined, null, {}, [], new Array(1), [null], [undefined]])("rejects malformed or empty stacks: %j", layers => {
     expect(() => createShadow({ layers } as unknown as Parameters<typeof createShadow>[0])).toThrow(RangeError);
   });
-  it.each(SHADOW_FIELDS)("requires %s without defaults", field => {
+  it.each(SHADOW_FIELDS)("preserves absent %s without defaults", field => {
     const input: Record<string, unknown> = { ...layer() };
     delete input[field];
+    expect(createShadow({ layers: [input as ShadowLayer] }).layers[0]).not.toHaveProperty(field);
+    input[field]=undefined;
     expect(() => createShadow({ layers: [input as ShadowLayer] })).toThrow(RangeError);
   });
   it.each(SHADOW_FIELDS)("rejects wrong types and direct expressions in %s", field => {
@@ -59,7 +61,7 @@ describe("createShadow", () => {
     expect(value.layers).not.toBe(input.layers);
     expect(value.layers[0]).not.toBe(input.layers[0]);
     expect(value.layers[0].color).not.toBe(color);
-    if (value.layers[0].color.kind === "literal") expect(value.layers[0].color.components).not.toBe(color.components);
+    if (value.layers[0].color?.kind === "literal") expect(value.layers[0].color.components).not.toBe(color.components);
     expect(value.layers[1].offsetX).not.toBe(input.layers[1].offsetX);
     input.layers.reverse();
     expect(value.layers[0]).toEqual(layer());
@@ -86,7 +88,7 @@ describe("shadow assignments and resolution", () => {
     const fields = Object.fromEntries(SHADOW_FIELDS.map(field => [field, ref(field)])) as ShadowLayer;
     const value = createShadow({ layers: [fields, layer()] });
     const tokens = [token("a", "shadow", ref("b")), token("b", "shadow", ref("base")), token("base", "shadow", value), ...SHADOW_FIELDS.map(field => {
-      const literal = layer()[field];
+      const literal = layer()[field]!;
       if (literal.kind !== "literal") throw new Error("Expected literal fixture");
       return token(field, literal.valueType, literal);
     })];

@@ -29,9 +29,11 @@ describe("createTypography", () => {
   it("preserves explicit literal fields, authored units, and signed spacing", () => {
     expect(createTypography(fields())).toEqual({ kind: "composite", valueType: "typography", ...fields() });
   });
-  it.each(TYPOGRAPHY_FIELDS)("requires %s without supplying a default", field => {
+  it.each(TYPOGRAPHY_FIELDS)("preserves absent %s without supplying a default", field => {
     const input: Record<string, unknown> = { ...fields() };
     delete input[field];
+    expect(createTypography(input as unknown as TypographyInput)).not.toHaveProperty(field);
+    input[field]=undefined;
     expect(() => createTypography(input as unknown as TypographyInput)).toThrow(RangeError);
   });
   it.each(TYPOGRAPHY_FIELDS)("rejects a wrongly typed literal or direct expression in %s", field => {

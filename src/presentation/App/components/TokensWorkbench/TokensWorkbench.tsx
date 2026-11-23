@@ -1,3 +1,5 @@
+import {MissingColorEditor} from "@presentation/App/components/TokensWorkbench/components/MissingColorEditor/MissingColorEditor";
+import {RampWorkbench} from "@presentation/App/components/TokensWorkbench/components/ColorRamp/ColorRamp";
 import { effectiveDefaultColorSpace } from "@domain/project";
 import { tokenListRows } from "@presentation/App/components/TokensWorkbench/helpers/token-list-order";
 import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
@@ -51,6 +53,8 @@ export function TokensWorkbench({
     >(null);
   const [view, setView] = useState<TokenBrowseView>({ kind: "all-tokens" });
   const group = creationParent(view);
+  const [rampInspector,setRampInspector]=useState<HTMLElement|null>(null);
+  const rampApply=useRef<(()=>Promise<boolean>)|null>(null);
   const [collapsedNavigation, setCollapsedNavigation] = useState<Set<string>>(() => new Set());
   const [query, setQuery] = useState("");
   const [error, setError] = useState(""),
@@ -85,6 +89,7 @@ export function TokensWorkbench({
     reading,
     current,
   } = useProjectReadback(host, initial, selection);
+  const activeRamp=view.kind==="group"&&context?.groups.some(g=>g.authored.id===view.id&&g.authored.colorRamp)?view.id:null;
   const [lifecycleBlocked, setLifecycleBlocked] = useState(false);
   const {
     busy,
@@ -237,7 +242,7 @@ export function TokensWorkbench({
       unavailable={blocked}
       onSelect={(next) => {
         if (!busy) {
-          setView(next);
+          if(activeRamp){request(()=>{setView(next);setDirty(false);});}else setView(next);
           if (compact) back(false);
           navigationReturn.current = "workspace";
           setNavigationOpen(false);
@@ -246,7 +251,7 @@ export function TokensWorkbench({
       onCreateGroup={() => open("group")}
       onAllContent={() => {
         if (!busy) {
-          setView({ kind: "all-content" });
+          if(activeRamp){request(()=>{setView({kind:"all-content"});setDirty(false);});}else setView({ kind: "all-content" });
           if (compact) back(false);
           navigationReturn.current = "workspace";
           setNavigationOpen(false);
@@ -288,6 +293,7 @@ export function TokensWorkbench({
           ? document.querySelector<HTMLElement>('[role="dialog"] input')
           : panel.current
       }
+      onApply={activeRamp&&!historyIntent&&!unknown?async()=>{const action=pending;if(await rampApply.current?.()){setPending(null);action?.();}}:undefined}
       onDiscard={() => {
         const action = pending;
         setPending(null);
@@ -340,7 +346,11 @@ export function TokensWorkbench({
             {navigation}
           </TokenNavigationPane>
       }
-      workspace={<TokenWorkspace
+      workspace={activeRamp?<RampWorkbench key={JSON.stringify([activeRamp,editorVersion])} host={host} header={header} groupId={activeRamp} inspector={rampInspector} panel={panel} hidden={narrow&&surface==="inspect"} disabled={blocked} onDirty={setDirty} applyAction={rampApply} onRename={()=>open("rename")} onInspect={showInspector} onSave={async input=>{
+        completion.current=()=>{setDirty(false);setEditorVersion(v=>v+1);outcomes.publish("Ramp changes applied and retained.");};
+        const result=await accept({operation:"applyColorRamp",input});
+        if(result.status==="unchanged"||(result.status==="retained"&&result.readback==="available")){const finish=completion.current;completion.current=undefined;finish?.();return true;}return false;
+      }}/>:<TokenWorkspace
           panel={panel}
           surfaceRef={browse}
           hidden={narrow && surface === "inspect"}
@@ -378,7 +388,7 @@ export function TokensWorkbench({
             />
           }
         />}
-      inspector={<SelectionInspector
+      inspector={activeRamp?<aside hidden={narrow&&surface!=="inspect"} className="min-h-0 flex flex-col bg-surface overflow-hidden"><Button className="touch:block hidden" onClick={()=>back()}>Back to ramp</Button><div ref={setRampInspector} className="flex-1 min-h-0"/></aside>:<SelectionInspector
           surfaceRef={inspector}
           hidden={narrow && surface !== "inspect"}
           selection={selection}
@@ -391,7 +401,10 @@ export function TokensWorkbench({
           requestSource={(id) => source("group", id)}
         >
           {selection?.kind === "token" && inspection && context ? (
-            <TokenEditor
+            ((inspection.missingColorLayers?.length??0)>0||(inspection.token.definition?.type==="color"&&inspection.authoredKind==="No assignment"))?<MissingColorEditor key={JSON.stringify([selection.id,editorVersion])} host={host} header={header} tokenId={selection.id} project={context} disabled={blocked} onDirty={setDirty} onSave={async input=>{
+              completion.current=()=>{setDirty(false);setEditorVersion(v=>v+1);outcomes.publish("Color field applied and retained.");};
+              const result=await accept({operation:"refillColor",input});if(result.status==="unchanged"||(result.status==="retained"&&result.readback==="available")){const finish=completion.current;completion.current=undefined;finish?.();return true;}return false;
+            }}/>:<TokenEditor
               inspectorExpanded={inspectorExpanded}
               onToggle={() => narrow ? back() : setInspectorExpanded(!inspectorExpanded)}
               readFailure={readFailure}
@@ -410,7 +423,7 @@ export function TokensWorkbench({
               targetUnavailable={targetUnavailable}
               revision={header.revision}
               requestSource={() => source("token", selection.id)}
-              onApply={async (value, layer, description) => {
+              onApply={async (value, layer, description, markManual) => {
                 completion.current = (clarification) => {
                   setEditorVersion((v) => v + 1);
                   setDirty(false);
@@ -422,6 +435,7 @@ export function TokensWorkbench({
                     projectId: header.project.id,
                     tokenId: selection.id,
                     value,
+                    ...(markManual===undefined?{}:{markManual}),
                     ...(layer === undefined ? {} : { layer }),
                     ...(description === undefined ? {} : { description }),
                   },
@@ -516,6 +530,7 @@ export function TokensWorkbench({
         finalFocus={() => authoringReturn.current?.isConnected && authoringReturn.current.getClientRects().length ? authoringReturn.current : panel.current}
         onClose={() => request(close)}
         onSubmit={() => void create()}
+        onCreateRamp={value=>void create(value)}
         onRetry={() => void retryReading()}
         submissionBlocked={
           !!formBaseline &&

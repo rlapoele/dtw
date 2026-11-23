@@ -47,7 +47,7 @@ describe("portable retained envelope", () => {
   );
   it("emits wrapper and authored record fields in schema order", () => {
     expect(encodeBackup(snapshot, "2026-11-10T12:00:00.000Z")).toBe(
-      '{"format":"dtw.project-backup","formatVersion":1,"authoredVersion":3,"createdAt":"2026-11-10T12:00:00.000Z","snapshot":{"project":{"id":"","name":"  Exact  "},"groups":[],"tokens":[]}}\n',
+      '{"format":"dtw.project-backup","formatVersion":1,"authoredVersion":4,"createdAt":"2026-11-10T12:00:00.000Z","snapshot":{"project":{"id":"","name":"  Exact  "},"groups":[],"tokens":[]}}\n',
     );
   });
   it("rejects unknown shape, cross-project membership and same-kind duplicate IDs whole", () => {

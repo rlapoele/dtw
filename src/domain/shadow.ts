@@ -16,12 +16,12 @@ export const SHADOW_FIELD_TYPES = {
 } as const;
 
 export type ShadowLayer = {
-  readonly color: ColorLiteralValue | TokenReference;
-  readonly offsetX: DimensionLiteralValue | TokenReference;
-  readonly offsetY: DimensionLiteralValue | TokenReference;
-  readonly blur: DimensionLiteralValue | TokenReference;
-  readonly spread: DimensionLiteralValue | TokenReference;
-  readonly inset: BooleanLiteralValue | TokenReference;
+  readonly color?: ColorLiteralValue | TokenReference;
+  readonly offsetX?: DimensionLiteralValue | TokenReference;
+  readonly offsetY?: DimensionLiteralValue | TokenReference;
+  readonly blur?: DimensionLiteralValue | TokenReference;
+  readonly spread?: DimensionLiteralValue | TokenReference;
+  readonly inset?: BooleanLiteralValue | TokenReference;
 };
 export type ResolvedShadowLayer = {
   readonly color: ColorLiteralValue;
@@ -54,27 +54,23 @@ export function isShadowFieldValue(value: unknown, field: ShadowField): value is
 }
 
 export function createShadow(input: ShadowInput): ShadowValue {
-  if (!Array.isArray(input.layers) || input.layers.length === 0) {
-    throw new RangeError("A shadow requires a non-empty ordered layer stack");
-  }
-  // Array.from visits holes so sparse stacks cannot bypass layer validation.
-  const layers = Array.from(input.layers, layer => {
-    if (typeof layer !== "object" || layer === null) throw new RangeError("A shadow requires explicit layers");
-    for (const field of SHADOW_FIELDS) {
-      if (!isShadowFieldValue(layer[field], field)) throw new RangeError(`A shadow layer requires a correctly typed ${field} field`);
+  function fields(source: object): Record<string, unknown> {
+    const result: Record<string, unknown> = {};
+    for (const key of Object.keys(source)) {
+      if (!(SHADOW_FIELDS as readonly string[]).includes(key)) throw new RangeError("Unknown shadow field");
     }
-    const blur = copyDimension(layer.blur);
-    if (blur.kind === "literal" && !isValidShadowBlur(blur)) throw new RangeError("Shadow blur must be non-negative");
-    return {
-      color: layer.color.kind === "token-reference" ? createTokenReference(layer.color) : createColorLiteral(layer.color),
-      offsetX: copyDimension(layer.offsetX), offsetY: copyDimension(layer.offsetY),
-      blur, spread: copyDimension(layer.spread),
-      inset: layer.inset.kind === "token-reference" ? createTokenReference(layer.inset) : createBooleanLiteral(layer.inset.value),
-    };
-  });
+    for (const field of SHADOW_FIELDS) {
+      if (!Object.hasOwn(source, field)) continue;
+      const value = (source as Record<string, unknown>)[field];
+      if (!isShadowFieldValue(value, field)) throw new RangeError(`Invalid ${field} field`);
+      if (value.kind === "token-reference") { result[field] = createTokenReference(value); continue; }
+      if (value.valueType === "color") result[field] = createColorLiteral(value);
+      else if (value.valueType === "boolean") result[field] = createBooleanLiteral(value.value);
+      else { if (field === "blur" && !isValidShadowBlur(value)) throw new RangeError("Shadow blur must be non-negative"); result[field] = createDimensionLiteral(value.value, value.unit); }
+    }
+    return result;
+  }
+  if (!Array.isArray(input.layers) || !input.layers.length) throw new RangeError("A shadow requires a non-empty layer stack");
+  const layers = Array.from(input.layers, layer => { if (!layer || typeof layer !== "object") throw new RangeError("Invalid shadow layer"); return fields(layer) as ShadowLayer; });
   return { kind: "composite", valueType: "shadow", layers: layers as [ShadowLayer, ...ShadowLayer[]] };
-}
-
-function copyDimension(value: DimensionLiteralValue | TokenReference): DimensionLiteralValue | TokenReference {
-  return value.kind === "token-reference" ? createTokenReference(value) : createDimensionLiteral(value.value, value.unit);
 }

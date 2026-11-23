@@ -258,8 +258,9 @@ const fields: Record<string, Record<string, string>> = {
     inset: "boolean",
   },
 };
-function compositeFields(v: Obj, type: string) {
+function compositeFields(v: Obj, type: string, partial = false) {
   for (const [key, expected] of Object.entries(fields[type])) {
+    if (partial && !Object.hasOwn(v,key)) continue;
     const x = object(
       v[key],
       ["kind"],
@@ -286,7 +287,7 @@ function compositeFields(v: Obj, type: string) {
     }
   }
 }
-function authoredValue(root: Json, expected: string, totals: { ast: number }) {
+function authoredValue(root: Json, expected: string, totals: { ast: number }, partial = false) {
   const work: {
     value: Json;
     expected?: string;
@@ -373,11 +374,11 @@ function authoredValue(root: Json, expected: string, totals: { ast: number }) {
         const layers = array(v.layers, 256);
         if (!layers.length) fail("empty-shadow");
         for (const x of layers)
-          compositeFields(object(x, Object.keys(fields.shadow)), type);
+          compositeFields(object(x, partial ? [] : Object.keys(fields.shadow), partial ? Object.keys(fields.shadow) : []), type, partial);
       } else
         compositeFields(
-          object(v, ["kind", "valueType", ...Object.keys(fields[type])]),
-          type,
+          object(v, ["kind", "valueType", ...(partial ? [] : Object.keys(fields[type]))], partial ? Object.keys(fields[type]) : []),
+          type, partial,
         );
       continue;
     }
@@ -517,7 +518,7 @@ export function utf8Bytes(text: string): number {
 }
 // Closed shapes are emitted deterministically; array/operand order stays exact.
 const schemaKeys =
-  "format formatVersion authoredVersion createdAt creationDate lastUpdatedDate snapshot project groups tokens id name description preferences defaultColorSpace projectId localName parentGroupId layer semanticRole componentDefinitionId definition type assignments condition value authoring regeneration kind valueType colorSpace components alpha unit ratio families family controlPoints duration delay timingFunction fontFamily fontSize fontWeight letterSpacing lineHeight layers color offsetX offsetY blur spread inset targetTokenId valuePath key index operation operands".split(
+  "colorRamp schemaVersion recipe seed targetGamut seedPosition members tokenId colorOrigin mode label intensity version format formatVersion authoredVersion createdAt creationDate lastUpdatedDate snapshot project groups tokens id name description preferences defaultColorSpace projectId localName parentGroupId layer semanticRole componentDefinitionId definition type assignments condition value authoring regeneration kind valueType colorSpace components alpha unit ratio families family controlPoints duration delay timingFunction fontFamily fontSize fontWeight letterSpacing lineHeight layers color offsetX offsetY blur spread inset targetTokenId valuePath key index operation operands".split(
     " ",
   );
 const schemaRank = new Map(schemaKeys.map((key, index) => [key, index]));
@@ -538,10 +539,10 @@ export function assertTimestamp(value: unknown): asserts value is string {
     !Number.isFinite(Date.parse(value)) || new Date(value).toISOString() !== value)
     fail("invalid-snapshot-date");
 }
-export function admitSnapshot(input: unknown, authoredVersion: 1 | 2 | 3 = 3): ProjectSnapshot {
-  if (authoredVersion !== 1 && authoredVersion !== 2 && authoredVersion !== 3) fail("unsupported-authored-version");
+export function admitSnapshot(input: unknown, authoredVersion: 1 | 2 | 3 | 4 = 4): ProjectSnapshot {
+  if (authoredVersion !== 1 && authoredVersion !== 2 && authoredVersion !== 3 && authoredVersion !== 4) fail("unsupported-authored-version");
   const s = object(plainTree(input), ["project", "groups", "tokens"]);
-  const p = object(s.project, ["id", "name"], authoredVersion === 1 ? ["description"] : ["description", "creationDate", "lastUpdatedDate", ...(authoredVersion === 3 ? ["preferences"] : [])]);
+  const p = object(s.project, ["id", "name"], authoredVersion === 1 ? ["description"] : ["description", "creationDate", "lastUpdatedDate", ...(authoredVersion >= 3 ? ["preferences"] : [])]);
   for (const key of ["creationDate", "lastUpdatedDate"])
     if (Object.hasOwn(p, key)) assertTimestamp(p[key]);
   for (const [key, value] of Object.entries(p)) {
@@ -571,7 +572,7 @@ export function admitSnapshot(input: unknown, authoredVersion: 1 | 2 | 3 = 3): P
               "componentDefinitionId",
               "definition",
             ]
-          : ["description"],
+          : ["description", ...(authoredVersion >= 4 ? ["colorRamp"] : [])],
       );
       for (const k of [
         "id",
@@ -582,6 +583,7 @@ export function admitSnapshot(input: unknown, authoredVersion: 1 | 2 | 3 = 3): P
         "componentDefinitionId",
       ])
         if (Object.hasOwn(x, k)) string(x[k]);
+      if (kind === "groups" && Object.hasOwn(x,"colorRamp")) rampMetadata(x.colorRamp);
       const id = string(x.id);
       if (ids.has(id)) fail("duplicate-identity", kind);
       ids.add(id);
@@ -612,7 +614,7 @@ export function admitSnapshot(input: unknown, authoredVersion: 1 | 2 | 3 = 3): P
           for (const assignment of array(d.assignments, 1)) {
             const a = object(assignment, ["condition", "value"]);
             array(a.condition, 0);
-            authoredValue(a.value, type, totals);
+            authoredValue(a.value, type, totals, authoredVersion >= 4);
           }
         }
       }
@@ -743,7 +745,7 @@ export function decodeBackup(text: string): BackupPreview {
   if (
     wrapper.format !== "dtw.project-backup" ||
     wrapper.formatVersion !== 1 ||
-    (wrapper.authoredVersion !== 1 && wrapper.authoredVersion !== 2 && wrapper.authoredVersion !== 3)
+    (wrapper.authoredVersion !== 1 && wrapper.authoredVersion !== 2 && wrapper.authoredVersion !== 3 && wrapper.authoredVersion !== 4)
   )
     fail("unsupported-backup-version");
   const createdAt = string(wrapper.createdAt);
@@ -753,7 +755,7 @@ export function decodeBackup(text: string): BackupPreview {
     new Date(createdAt).toISOString() !== createdAt
   )
     fail("invalid-snapshot-date");
-  const snapshot = admitSnapshot(wrapper.snapshot, wrapper.authoredVersion as 1 | 2 | 3);
+  const snapshot = admitSnapshot(wrapper.snapshot, wrapper.authoredVersion as 1 | 2 | 3 | 4);
   checkOutput(snapshot, createdAt);
   return { snapshot, createdAt };
 }
@@ -762,7 +764,7 @@ function checkOutput(snapshot: ProjectSnapshot, createdAt: string): string {
     ordered({
       format: "dtw.project-backup",
       formatVersion: 1,
-      authoredVersion: 3,
+      authoredVersion: 4,
       createdAt,
       snapshot: snapshot as unknown as Json,
     }) + "\n";
@@ -778,4 +780,18 @@ export function encodeBackup(input: unknown, createdAt: string): string {
   )
     fail("invalid-snapshot-date");
   return checkOutput(snapshot, createdAt);
+}
+
+function rampMetadata(input: Json) {
+  const r = object(input,["schemaVersion","recipe","seed","targetGamut","seedPosition","members"]);
+  if (r.schemaVersion !== 1) fail("unsupported-ramp-schema");
+  const recipe = object(r.recipe,["id","version","intensity"]);
+  if (!string(recipe.id).trim() || string(recipe.id).length > 128) fail("ramp-recipe-id"); if (!Number.isSafeInteger(recipe.version) || Number(recipe.version) < 1) fail("ramp-recipe-version");
+  member(recipe.intensity,["retained","restrained"]); member(r.targetGamut,["srgb","display-p3"]);
+  literal(object(r.seed,["kind","valueType","colorSpace","components","alpha"]));
+  if ((r.seed as Obj).valueType !== "color") fail("ramp-seed-type");
+  const position = object(r.seedPosition,["mode","label"]); member(position.mode,["auto","manual"]); string(position.label);
+  const members = array(r.members,20); if (members.length < 2) fail("ramp-member-count");
+  const ids = new Set<string>();
+  for (const item of members) { const m = object(item,["tokenId","colorOrigin"]); const id=string(m.tokenId); if(ids.has(id)) fail("duplicate-ramp-member"); ids.add(id); member(m.colorOrigin,["generated","manual"]); }
 }

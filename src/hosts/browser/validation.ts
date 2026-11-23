@@ -45,12 +45,15 @@ function command(value: unknown) {
     "createGroup",
     "createColorToken",
     "reviseColorToken",
+    "createColorRamp", "applyColorRamp", "refillColor",
   ]);
   shape(v, ["operation", "input"]);
+  if (v.operation === "createColorRamp" || v.operation === "applyColorRamp" || v.operation === "refillColor") { rampCommand(v.operation, v.input); return; }
   if (v.operation === "reviseColorToken") {
-    const x = shape(v.input, ["projectId", "tokenId", "value"], ["layer", "description"]);
+    const x = shape(v.input, ["projectId", "tokenId", "value"], ["layer", "description", "markManual"]);
     text(x.projectId);
     text(x.tokenId);
+    if(x.markManual !== undefined && typeof x.markManual !== "boolean")throw Error("Invalid manual edit intent");
     colorValue(x.value);
     if (Object.hasOwn(x, "description") && x.description !== null) text(x.description);
     if (x.layer !== undefined && x.layer !== null) enumeration(x.layer, ["primitive", "semantic"]);
@@ -169,6 +172,7 @@ export function validateHostInput(
         throw Error("Source frame count out of range");
       return;
     }
+    case "rampSnapshot":
     case "context":
     case "rows":
     case "inspection":
@@ -265,6 +269,7 @@ function acceptance(
       "renameGroup",
       "createColorToken",
       "reviseColorToken",
+    "createColorRamp", "applyColorRamp", "refillColor",
     ]);
     const r = shape(c.result, ["entityKind", "id"]);
     enumeration(r.entityKind, ["project", "group", "token"]);
@@ -429,6 +434,7 @@ export function validateHostOutput(
         throw Error("Source response correlation mismatch");
       return;
     }
+    case "rampSnapshot": { const snapshot=admitSnapshot(output); if(snapshot.project.id !== (input as {projectId:string}).projectId)throw Error("Snapshot ownership mismatch"); return; }
     case "context": {
       const v = shape(output, ["project", "groups", "tokens"]);
       const request = shape(input, ["projectId", "revision"]);
@@ -444,7 +450,7 @@ export function validateHostOutput(
         const g = shape(
           entry.authored,
           ["id", "projectId", "localName", "parentGroupId"],
-          ["description"],
+          ["description", "colorRamp"],
         );
         text(g.id);
         text(g.localName);
@@ -528,8 +534,9 @@ export function validateHostOutput(
       const v = shape(
         output,
         ["token", "authoredKind", "editable", "path", "resolution"],
-        ["authoredValue"],
+        ["authoredValue", "missingColorLayers"],
       );
+      if(v.missingColorLayers!==undefined){if(!Array.isArray(v.missingColorLayers)||v.missingColorLayers.some(x=>!Number.isInteger(x)||x<0||x>=256)||new Set(v.missingColorLayers).size!==v.missingColorLayers.length)throw Error("Invalid missing color field locations");}
       const request = shape(input, ["projectId", "revision", "tokenId"]);
       const token = shape(
         v.token,
@@ -695,11 +702,11 @@ export function validateHostOutput(
                 "value",
                 "description",
                 "layer",
-                "semanticRole",
+                "semanticRole", "markManual", "group", "settings", "members", "seedDescription", "groupId", "steps", "choices", "layerIndex",
               ],
             );
       const kind =
-        c.operation === "renameGroup" || c.operation === "createGroup"
+        c.operation === "renameGroup" || c.operation === "createGroup" || c.operation === "createColorRamp" || c.operation === "applyColorRamp"
           ? "group"
           : "token";
       acceptance(
@@ -709,9 +716,9 @@ export function validateHostOutput(
         text(
           c.operation === "renameGroup"
             ? c.groupId
-            : c.operation === "reviseColorToken"
+            : (c.operation === "reviseColorToken" || c.operation === "refillColor")
               ? details.tokenId
-              : details.id,
+              : c.operation === "createColorRamp" ? (details.group as Data).id : c.operation === "applyColorRamp" ? details.groupId : details.id,
         ),
       );
       return;
@@ -840,19 +847,19 @@ export function validateAttempt(
               "regeneration",
               "layer",
               "semanticRole",
-              "value",
+              "value", "markManual", "group", "settings", "members", "seedDescription", "groupId", "steps", "choices", "layerIndex",
             ],
           );
     const kind =
-      c.operation === "renameGroup" || c.operation === "createGroup"
+      c.operation === "renameGroup" || c.operation === "createGroup" || c.operation === "createColorRamp" || c.operation === "applyColorRamp"
         ? "group"
         : "token";
     const id =
       c.operation === "renameGroup"
         ? c.groupId
-        : c.operation === "reviseColorToken"
+        : (c.operation === "reviseColorToken" || c.operation === "refillColor")
           ? details.tokenId
-          : details.id;
+          : c.operation === "createColorRamp" ? (details.group as Data).id : c.operation === "applyColorRamp" ? details.groupId : details.id;
     if (
       v.operation !== c.operation ||
       v.projectId !== details.projectId ||
@@ -889,6 +896,7 @@ function validateWriteIdentity(value: unknown) {
     "renameGroup",
     "createColorToken",
     "reviseColorToken",
+    "createColorRamp", "applyColorRamp", "refillColor",
   ]);
   const result = shape(v.result, ["entityKind", "id"]);
   text(result.id);
@@ -896,7 +904,7 @@ function validateWriteIdentity(value: unknown) {
   const kind =
     v.operation === "createProject" || v.operation === "restoreProject" || v.operation === "undo" || v.operation === "redo"
       ? "project"
-      : v.operation === "createGroup" || v.operation === "renameGroup"
+      : v.operation === "createGroup" || v.operation === "renameGroup" || v.operation === "createColorRamp" || v.operation === "applyColorRamp"
         ? "group"
         : "token";
   if (
@@ -904,4 +912,19 @@ function validateWriteIdentity(value: unknown) {
     (kind === "project" && result.id !== v.projectId)
   )
     throw Error("Interrupted result kind mismatch");
+}
+
+function rampCommand(operation:string, input:unknown) {
+ const x=shape(input,["projectId",...(operation==="createColorRamp"?["group","settings","members"]:operation==="applyColorRamp"?["groupId","settings","steps","choices"]:["tokenId","value"])],operation==="createColorRamp"?["seedDescription"]:operation==="refillColor"?["layerIndex"]:[]);
+ text(x.projectId);
+ if(operation==="refillColor"){text(x.tokenId);if(x.layerIndex!==undefined&&(!Number.isSafeInteger(x.layerIndex)||Number(x.layerIndex)<0))throw Error("Invalid layer index"); const v=shape(x.value,["kind"],["valueType","colorSpace","components","alpha","targetTokenId","valuePath"]);const {valueType:_,...withoutType}=v;colorValue(withoutType);return;}
+ const settings=shape(x.settings,["seed","targetGamut","recipe","seedPosition"]);
+ const metadata={...settings,schemaVersion:1,members:(operation==="createColorRamp"?x.members:x.steps as unknown) as unknown};
+ const list=operation==="createColorRamp"?x.members:x.steps;
+ if(!Array.isArray(list)||list.length<2||list.length>20)throw Error("Invalid ramp member count");
+ metadata.members=list.map(item=>{const step=shape(item,operation==="createColorRamp"?["id","label"]:["id","label","value","protected","colorOrigin"],operation==="applyColorRamp"?["description"]:[]);text(step.id);text(step.label);if(operation==="applyColorRamp"){if(typeof step.protected!=="boolean")throw Error("Invalid protection");if(step.description!==undefined)text(step.description);const {valueType:_,...value}=shape(step.value,["kind","valueType","colorSpace","components","alpha"]);colorValue(value);}return {tokenId:step.id,colorOrigin:step.colorOrigin??"generated"};});
+ const group=operation==="createColorRamp"?shape(x.group,["id","projectId","localName","parentGroupId"],["description"]):{id:x.groupId,projectId:x.projectId,localName:"ramp",parentGroupId:null};
+ admitSnapshot({project:{id:x.projectId,name:"ramp validation"},groups:[{...group,colorRamp:metadata}],tokens:[]});
+ if(operation==="applyColorRamp"){text(x.groupId);if(!Array.isArray(x.choices))throw Error("Invalid choices");for(const c of x.choices){const choice=shape(c,["key","target"]);text(choice.key);if(choice.target!==null)text(choice.target);}}
+ if(x.seedDescription!==undefined)text(x.seedDescription);
 }

@@ -67,6 +67,7 @@ export function TokenEditorContent({
     targetUnavailable,
   } = editor;
   const { sections, toggleSection, descriptionRef, changeDescription, revealDescription } = editor;
+  const rampMember=project.groups.some(g=>g.authored.colorRamp?.members.some(m=>m.tokenId===token.id));
   const disabled = !editable || accepting || readOnly || readUnavailable || !!targetUnavailable || (!!recovery && !recovery.reviewed);
   const invalid = session.mode === "literal" ? session.hexInvalid || session.byteInvalid || !!literalIssue(session.literal) : session.reference === null;
   const descriptionId = useId();
@@ -184,19 +185,19 @@ export function TokenEditorContent({
             <label htmlFor={layerId} className="block text-caption font-medium mb-1">Layer</label>
             <Select id={layerId} ref={layerRef} value={session.layer ?? ""}
               aria-describedby={`${layerId}-help`}
-              disabled={!editable || accepting || readOnly || readUnavailable || !!targetUnavailable || (!!recovery && !recovery.reviewed)}
+              disabled={rampMember || !editable || accepting || readOnly || readUnavailable || !!targetUnavailable || (!!recovery && !recovery.reviewed)}
               onChange={event => changeLayer(event.target.value === "" ? null : event.target.value as "primitive" | "semantic")}>
               <option value="">Unspecified</option>
               <option value="primitive">Primitive</option>
               <option value="semantic">Semantic</option>
               <option value="component" disabled>Component</option>
             </Select>
-            <p id={`${layerId}-help`} className="text-caption text-muted-foreground mt-2">Component requires a component association; editing it is not available yet.</p>
+            <p id={`${layerId}-help`} className="text-caption text-muted-foreground mt-2">{rampMember ? "Ramp members remain Primitive literal colors while membership applies." : "Component requires a component association; editing it is not available yet."}</p>
           </div>
                 <fieldset disabled={disabled} className="mb-0">
                   <legend className="sr-only">Value source</legend>
                   <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-                    {(["literal", "reference"] as const).map(mode => <label key={mode} className="inline-flex min-h-9 items-center gap-2 text-caption cursor-pointer">
+                    {(rampMember?(["literal"] as const):(["literal", "reference"] as const)).map(mode => <label key={mode} className="inline-flex min-h-9 items-center gap-2 text-caption cursor-pointer">
                       <input
                         type="radio"
                         name={modeName}

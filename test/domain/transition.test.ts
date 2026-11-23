@@ -30,9 +30,11 @@ describe("createTransition", () => {
     expect(createTransition(fields())).toEqual({ kind: "composite", valueType: "transition", ...fields() });
     expect(createTransition({ ...fields(), duration: duration("0", "s") }).duration).toEqual(duration("0", "s"));
   });
-  it.each(["duration", "delay", "timingFunction"])("rejects a missing %s without inventing defaults", field => {
+  it.each(["duration", "delay", "timingFunction"])("preserves missing %s without inventing defaults", field => {
     const input: Record<string, unknown> = { ...fields() };
     delete input[field];
+    expect(createTransition(input as unknown as TransitionInput)).not.toHaveProperty(field);
+    input[field]=undefined;
     expect(() => createTransition(input as unknown as TransitionInput)).toThrow(RangeError);
   });
   it.each(["duration", "delay", "timingFunction"])("rejects a wrong literal or expression in %s", field => {

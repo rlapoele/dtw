@@ -257,14 +257,16 @@ export class WorkerWorkbenchHost implements WorkbenchHost {
       result = {
         entityKind:
           command.operation === "renameGroup" ||
-          command.operation === "createGroup"
+          command.operation === "createGroup" || command.operation === "createColorRamp" || command.operation === "applyColorRamp"
             ? "group"
             : "token",
         id:
           command.operation === "renameGroup"
             ? command.groupId
-            : command.operation === "reviseColorToken"
+            : (command.operation === "reviseColorToken" || command.operation === "refillColor")
               ? command.input.tokenId
+              : command.operation === "createColorRamp" ? command.input.group.id
+              : command.operation === "applyColorRamp" ? command.input.groupId
               : command.input.id,
       };
     }

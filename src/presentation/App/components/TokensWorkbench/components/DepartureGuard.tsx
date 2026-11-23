@@ -10,6 +10,7 @@ export function DepartureGuard({
   busy,
   onStay,
   onDiscard,
+  onApply,
   finalFocus,
 }: {
   historyIntent?: {direction: "undo" | "redo"; label: string};
@@ -18,6 +19,7 @@ export function DepartureGuard({
   busy: boolean;
   onStay: () => void;
   onDiscard: () => void;
+  onApply?:()=>void;
   finalFocus: () => HTMLElement | null;
 }) {
   return (
@@ -40,6 +42,7 @@ export function DepartureGuard({
           <Dialog.Close render={<Button />}>
             {unknown ? "Stay here" : "Keep editing"}
           </Dialog.Close>
+          {onApply&&<Button disabled={busy} onClick={onApply}>Apply and leave</Button>}
           <Button variant="default" disabled={busy} onClick={onDiscard}>
             {historyIntent ? `Discard and ${historyIntent.direction}` : unknown ? "Leave project" : "Discard draft"}
           </Button>

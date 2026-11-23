@@ -16,7 +16,7 @@ describe("shared icons", () => {
     expect(paths(render({ name: "folder" })))
       .toEqual(paths(renderToStaticMarkup(createElement(FolderIcon))));
     const html = render({ name: "plus" });
-    expect(html).toContain('class="size-4 shrink-0"');
+    expect(html).toContain('class="size-4 shrink-0 stroke-2"');
     expect(html).toContain('aria-hidden="true"');
     expect(html).toContain('focusable="false"');
   });

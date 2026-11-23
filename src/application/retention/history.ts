@@ -30,6 +30,9 @@ function path(s: ProjectSnapshot, kind: string, id: string): string {
 function label(before: ProjectSnapshot, after: ProjectSnapshot, receipt: CommandReceipt) {
   const name = path(after, receipt.result.entityKind, receipt.result.id);
   switch (receipt.operation) {
+    case "createColorRamp": return `Create ramp ${name}`;
+    case "applyColorRamp": return `Apply ramp ${name}`;
+    case "refillColor": return `Fill missing color ${name}`;
     case "createGroup": return `Create group ${name}`;
     case "renameGroup": return `Rename ${path(before, "group", receipt.result.id)} to ${name}`;
     case "createColorToken": return `Create ${name}`;

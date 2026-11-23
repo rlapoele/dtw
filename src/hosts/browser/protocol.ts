@@ -34,6 +34,7 @@ export type RestorePreview = {
   local: { revision: string; name: string } | null;
 };
 export interface HostCalls {
+  rampSnapshot: {input:{projectId:string;revision:string};output:import("@application/project-storage").ProjectSnapshot};
   historyState: {input: {projectId: string; revision: string}; output: HistoryState};
   traverse: {input: {direction: HistoryDirection; projectId: string; revision: string; stepId: string}; output: PublicAcceptance};
   recoverInterrupted: { input: WriteIdentity; output: PublicAcceptance };

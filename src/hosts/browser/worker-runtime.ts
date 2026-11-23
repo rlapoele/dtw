@@ -148,6 +148,7 @@ export function installWorkbenchWorker(storage: BrowserRetention) {
         ),
       );
     },
+    async rampSnapshot(input) { return snapshot(input.projectId,input.revision); },
     async context(input) {
       return projectContext(snapshot(input.projectId, input.revision));
     },
