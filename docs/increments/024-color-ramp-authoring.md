@@ -8,7 +8,8 @@
   agreed progressive-disclosure refinement. [Editing V4](../project/workbench-layout/color-ramp-editing-v4.md)
   was accepted as good enough for now on 22 November; further UX polish is deferred.
   V3 remains the coverage/workspace reference. The user authorized renewed analyst
-  review on 23 November; that review is recorded below. Final full-contract agreement
+  review on 23 November; the original review and later focused consolidated review
+  are recorded below. Final full-contract agreement
   and implementation authorization remain pending.
 - References: [owning ramp direction](../project/guided-color-palette-generation.md),
   [creation V3](../project/workbench-layout/color-ramp-creation-v3.md),
@@ -301,10 +302,14 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
 - **AC-21 — Chains and Unspecified.** Preserve reference chains. If button.background
   references action.primary, which references a disappearing ramp step, edit the latter
   connection only. Show the indirect button impact and updated preview. Explicitly
-  choosing Unspecified removes the affected token's reference/value under the technical
-  representation to define in D4; downstream references stay intact and may resolve to
-  no color. Clearly disclose that before Apply, show unresolved previews, and invent
-  no fallback. An explicitly accepted unresolved outcome does not remain an unanswered
+  choosing Unspecified on a whole-color alias clears its value assignment while
+  preserving the token and color type. On a composite color-field reference, clear
+  only that field's reference/value, retaining the composite assignment, all other
+  fields/layers and token metadata. The composite becomes incomplete under the
+  shared contract; do not clear the whole composite. Downstream references stay
+  connected and may resolve unavailable. Disclose those consequences before Apply,
+  show unavailable previews and invent no fallback. D4 and the shared draft retain
+  technical representation and field-interaction preparation. An explicitly accepted unresolved outcome does not remain an unanswered
   choice or require remapping every indirect token.
 - **AC-22 — Remapping draft lifetime.** Reference edits share the ramp draft/Apply.
   Seed-only changes preserve accepted remappings with still-valid targets; refresh
@@ -554,6 +559,46 @@ Markdown, local file links and whitespace checked. No tests, source changes, bro
 numerical or retention qualification; previous stops remain unchanged. This is analyst
 preparation, not independent review of the resulting draft or all late amendments.
 
+### Focused consolidated analyst review — 23 November 2026
+
+The user explicitly authorized this follow-up after the minimal composite draft.
+A separate analyst reviewed clean commit
+`2a79bd58b6d60fd53039e5bc26d71fae93f86431`: this contract, the minimal composite
+contract, owning decisions, creation V3, retained editing V3 and accepted V4 notes/
+relevant SVG text, with bounded checks of current source. No implementation review,
+new rendering, final user agreement or runtime/usability evidence is claimed.
+
+**Outcome:** the consolidated behavior is coherent. Omitted known fields, derived
+completeness, present-field validation and complete resolved outputs need no broader
+model or repair system. No settled product decision needs reopening.
+
+| ID | Classification | Finding and disposition |
+| --- | --- | --- |
+| C1 | Documentary inconsistency, corrected | AC-21 still described clearing a token value generally. It now distinguishes whole-color assignment removal from composite field-only clearing, preserving other fields/layers. |
+| C2 | Documentary inconsistency, corrected | V3's count-return wording still said “earlier individual edits”. Narrowed to manual color adjustments and remapping choices; preserved identity/description/protection continuity. No artwork polish. |
+| G1 | Required interaction handoff, open | V4 examples identify whole-color tokens. Prepare one small example identifying each composite reference by token, layer and field, including accepted/Change/Cancel and Unspecified consequences. Multiple occurrences in one token must stay distinguishable. |
+| G2 | Required completion path, open | Define the focused inspector interaction and application operation for refilling a missing composite color field or typed-but-unassigned color token. Current ordinary revision eligibility excludes both. No full composite editor is needed. |
+
+Checked consistency includes Manual/Protected regeneration, count replacement and
+returning saved/draft-only continuity, Revert/Reset/no-op semantics, grouped Undo,
+member constraints and field-only Unspecified with intact chains. The user-facing
+AC-15 unaffected-work rule still requires integration with whole-candidate validation;
+its existing technical gap remains open, not permission to suppress errors. Numerical
+policy and final metadata/versioning remain pending.
+
+Next: surface a narrowly scoped field-aware review/refill handoff to the user before
+further analyst review of material interaction changes. Preserve V4's compact layout
+and safeguards. Final contract/design agreement and implementation authorization
+remain separate gates.
+
+The explicitly authorized follow-up had a **12 aggregate-minute ceiling**, zero
+harness repairs. It used approximately **10 minutes** (analyst 5, coordinator focused
+inspection/reconciliation/checks 5), then stopped. Changed Markdown, local file links
+and whitespace checked. No production code, tests, numerical, browser or retention
+qualification; all previous stopping decisions remain unchanged. Corrections were
+checked by the coordinator against the analyst's findings; no separate re-review of
+the corrected diff is claimed.
+
 ### D4 preparation — source findings and proposal, 23 November 2026
 
 **Historical source preparation, before the subsequent incomplete-composite agreement.**
@@ -773,8 +818,11 @@ follow-up grants no runtime or numerical allowance.
   using field-level Unspecified. The proposed composite blocker remains undecided.
 - 23 November: minimal shared incomplete-composite source assessment and draft
   contract completed at the user's request; technical proposals remain Draft.
-- Next: agree the identified minimal contract and prepare only necessary field-review/
-  completion interactions before focused analyst consistency review, then continue remaining
+- 23 November: focused consolidated analyst review completed; two documentary
+  inconsistencies corrected. Field-aware review/refill interactions remain the next
+  bounded handoff; numerical, metadata/versioning and validation integration stay open.
+- Next: present that small interaction handoff to the user, then arrange affected
+  analyst review and continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

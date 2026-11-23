@@ -93,8 +93,8 @@ The confirmation lists consequences without a list of departing steps:
   inherit no description or protection from removed steps.
 - Referencing tokens may receive a changed color or need a new target. Required
   choices are resolved in the same draft before Apply.
-- Changing back to an earlier count does not restore earlier individual edits or
-  remapping choices. Each confirmed count change prepares a fresh replacement.
+- Changing back to an earlier count does not restore earlier manual color adjustments
+  or remapping choices. Each confirmed count change prepares a fresh replacement.
 - The saved ramp remains unchanged until Apply. Discard the whole draft to restore
   it; do not describe confirmation as an irreversible save.
 
