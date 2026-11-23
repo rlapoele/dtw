@@ -234,9 +234,15 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   restore discarded manual colors or remapping choices; remaining identity bookkeeping is specified in D5.
 - **AC-16 — Atomic application and history.** Creation and whole-ramp Apply coordinate
   all accepted values, member creations/removals, references, settings, descriptions,
-  Manual and protection changes together. Proposed: one atomic application operation
-  and one Undo/Redo entry. A genuinely unchanged result writes nothing; settings-only
-  changes may matter. Domain generation remains pure; application operations coordinate
+  Manual and protection changes together. **Apply history agreed 23 November:**
+  each successful, substantive whole-ramp Apply creates one Undo/Redo entry. Undo
+  restores the complete pre-Apply authored state, including token identities and
+  membership, colors, recipe/settings, descriptions, Manual/protection and affected
+  references; Redo reapplies the complete change. Draft edits create no history entries.
+  Preserve existing session-only history and lifecycle/revision rules. One atomic
+  application operation remains the technical proposal; creation history details and
+  versioned representation remain D5. A genuinely unchanged result writes nothing
+  and creates no entry; settings-only changes may matter. Domain generation remains pure; application operations coordinate
   accepted changes. UI does not implement token semantics. D2/D5 complete this contract.
 - **AC-17 — Retention and compatibility.** Preserve applied settings/recipe identity,
   exact seed, placement, member identities and statuses through reload and exact backup.
@@ -478,8 +484,10 @@ color edits or remapping choices. Original saved ramp members still exist until 
 do not mistake them for unrelated non-members. Preserve returning saved members'
 latest saved/pending descriptions and protection under AC-13. Specify remaining
 bookkeeping for draft-only members, atomic removals, accepted
-reference changes and history together. Recommend one Undo/Redo entry per Apply;
-no schema version or storage platform is selected here.
+reference changes and history together. One Undo/Redo entry per substantive ramp
+Apply is now agreed in AC-16, with no entries for draft edits. Creation history and
+exact operation/schema representation still require preparation; no schema version
+or storage platform is selected here.
 
 ## Verification approach and limits
 
@@ -565,7 +573,9 @@ follow-up grants no runtime or numerical allowance.
   amendment needs inclusion in the pending focused analyst consistency check.
 - 23 November, subsequent decision: members contain literal colors only; reference
   mode is unavailable in both editors for members. External references remain allowed.
-- Next: confirm whole-ramp Undo/Redo grouping under D5, then continue remaining
+- 23 November, subsequent decision: each substantive ramp Apply has one Undo/Redo
+  entry for the complete authored change; draft edits create none (AC-16).
+- Next: decide draft-only member bookkeeping under D5, then continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

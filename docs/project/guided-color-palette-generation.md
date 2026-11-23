@@ -226,6 +226,19 @@ analyst review and authorized reconciliation of the draft contract. This is not
 final complete contract agreement or implementation authorization. Exact draft reconciliation and numerical
 policies remain unresolved. Static wireframes illustrate intended behavior only.
 
+### Whole-ramp Apply history — agreed 23 November 2026
+
+Each successful, substantive ramp Apply creates one Undo/Redo entry covering the
+complete change. Undo restores the pre-Apply authored state together: token identities
+and membership, colors, recipe/settings, descriptions, Manual/protection and affected
+references. Redo reapplies that complete change. For example, applying an eleven-to-six
+replacement with description edits and reference remappings is one history entry,
+not independent token and reference entries. Draft edits create no history entries;
+a genuinely unchanged Apply writes nothing and adds none. Existing session-only
+history, lifecycle timestamps and revision/recovery rules remain in force. This is a
+user-facing grouping decision, not a selected operation/schema implementation or a
+restart of retention qualification. Creation history remains to specify in Draft 024.
+
 ### Unapplied count round trips — agreed 22 November 2026
 
 **Superseded later on 22 November by the confirmed replacement lifecycle below.**
@@ -682,6 +695,6 @@ requested by recording these choices.
 7. Which exact reference forms can participate in the agreed impact review/remapping, and how is an explicitly accepted unspecified value represented and validated? Count replacement, non-member collisions and color resets follow the agreements above.
 8. What is the versioned ramp-metadata schema, and how do retention, backup and each export profile preserve or omit it? How are ordered step membership, renamed/moved tokens, references and missing members handled?
 9. How should Manual and ramp-step protection be represented technically? Ordinary regeneration preserves protected values without prompts; confirmed count replacement is the agreed exception. What precise ordinary-edit Revert behavior remains outside the agreed replacement reset?
-10. What atomic operation/Undo and persistence compatibility contract implements the agreed shared Apply? Creation V3 and the V3 workspace with accepted V4 review flows supply the identified interaction designs; numerical and implementation contracts remain unfinished.
+10. What atomic operation, creation history and persistence compatibility contract implements the agreed shared Apply and its one-entry Undo/Redo grouping? Creation V3 and the V3 workspace with accepted V4 review flows supply the identified interaction designs; numerical and implementation contracts remain unfinished.
 
 When this work is explicitly resumed, use this concept and the [open questions](../planning/open-questions.md#guided-color-foundations-and-interface-semantics) to prepare a bounded proposal through the existing designer/user/analyst workflow. The first exploration is agreed in direction only; its design, contract, and execution still require the usual authorization.
