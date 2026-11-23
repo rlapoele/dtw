@@ -68,14 +68,17 @@ Creation navigation and cancellation create no entries (AC-16).
 The user also agreed that individual members cannot be renamed or moved while in
 a ramp, including through ordinary editing. Ramp group renaming remains allowed
 (AC-15); no detach workflow is introduced.
-Next: decide individual member deletion under D3.
+Individual member deletion through ordinary editing is now prohibited as well;
+step removal uses confirmed count replacement and its reference-resolution/shared
+Apply rules (AC-15). Whole-group removal is not selected by this decision.
+Next: define supported member assignment shape under D3.
 Listed D2 decisions are recorded; the focused consistency check of post-review
 amendments, including this ordinary-editor restriction, remains pending.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: keep ramp member names and location fixed`.
+`docs: prevent individual ramp member deletion`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.

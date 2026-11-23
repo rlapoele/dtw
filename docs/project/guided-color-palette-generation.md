@@ -234,8 +234,13 @@ location within the ramp group fixed. Renaming the ramp group itself remains
 allowed and preserves stable member identities and reference connections.
 This scoped constraint does not introduce a detach workflow or authorize silently
 repairing incompatible loaded data. Missing/renamed/moved-member recovery remains
-technical preparation; it must respect the authoring restrictions. Individual
-member deletion is a separate unresolved question.
+technical preparation; it must respect the authoring restrictions.
+
+**Individual deletion subsequently agreed 23 November:** ordinary editing cannot
+delete a token while it belongs to a ramp. Step removal goes through confirmed count
+replacement, including reference resolution and the shared Apply. This prevents
+ordinary deletion from leaving a gap in the expected ramp members. It does not
+select a whole-group removal policy or add a detach workflow.
 
 ### Whole-ramp Apply history — agreed 23 November 2026
 

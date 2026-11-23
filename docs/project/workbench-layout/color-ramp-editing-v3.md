@@ -44,7 +44,9 @@ Reference mode is unavailable in both ramp and ordinary token editing for member
 External tokens can still reference steps. **Member structure also agreed
 23 November:** individual members cannot be renamed or moved while they belong
 to a ramp, including in ordinary editing. The ramp group itself can be renamed.
-Individual deletion remains unresolved; no detach workflow is added. The main matrix has named rounded swatches, HEX previews, one ghost
+Individual deletion through ordinary editing is also prohibited (agreed
+23 November); remove steps through confirmed count replacement. No detach workflow
+is added. The main matrix has named rounded swatches, HEX previews, one ghost
 lock per step and three component rows with editable values. Viewing another color
 space changes presentation only; actual edits follow the existing authored/derived
 policy. Component space is synchronized with the inspector and initially uses the

@@ -239,7 +239,10 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   is not converted into a token. No second independently saving editor is authorized.
 - **AC-15 — Structural integrity.** **Agreed 23 November:** individual ramp members
   cannot be renamed or moved while they belong to a ramp, including through ordinary
-  editing. Keep their numerical names and membership location fixed. Renaming the
+  editing. **Individual deletion also prohibited, agreed 23 November:** ordinary
+  editing cannot delete a ramp member. Step removal goes through confirmed count
+  replacement with reference resolution and shared Apply. Keep numerical names and
+  membership location fixed. Renaming the
   ramp group itself remains allowed and preserves stable associations. This does not
   add a detach workflow. Missing, moved, renamed or unsupported members encountered
   in data need truthful diagnostics and cannot be silently recreated, converted or
@@ -476,8 +479,10 @@ and missing/renamed/moved or incompatible-member recovery without alias flatteni
 Non-member adoption remains excluded under AC-14. Individual member renaming/moving
 is now explicitly prohibited while membership applies (AC-15); group renaming remains
 allowed. Exact incompatible-data recovery must respect these restrictions rather
-than presume unrestricted ordinary editing. Individual member deletion remains to
-specify; no detach workflow is introduced.
+than presume unrestricted ordinary editing. Individual member deletion through
+ordinary editing is now prohibited; step removal uses confirmed count replacement
+(AC-15). No detach workflow is introduced. This does not select a whole-group
+removal policy.
 
 Seed-description ownership is settled in AC-6: only the final creation anchor token
 receives it; afterward ordinary token-description preservation applies. Surviving
@@ -606,7 +611,9 @@ follow-up grants no runtime or numerical allowance.
   for group, members and settings; Redo restores identical identities/authored data.
 - 23 November, subsequent decision: individual members cannot be renamed or moved
   while in a ramp; renaming the ramp group remains allowed (AC-15).
-- Next: decide individual member deletion under D3, then continue remaining
+- 23 November, subsequent decision: ordinary editing cannot delete individual
+  members; step removal uses confirmed count replacement (AC-15).
+- Next: define supported member assignment shape under D3, then continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

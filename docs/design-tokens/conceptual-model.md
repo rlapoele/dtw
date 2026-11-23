@@ -843,7 +843,10 @@ requires truthful diagnosis and an explicit recovery contract in Increment 024.
 renamed or moved while they belong to a ramp, including through ordinary editing.
 Their numerical names and membership location stay fixed. The ramp group itself
 may be renamed without changing stable member identities or references. This does
-not introduce a detach workflow or settle individual member deletion.
+not introduce a detach workflow. **Individual deletion also prohibited, agreed
+23 November:** ordinary editing cannot delete a member; step removal uses confirmed
+count replacement with reference resolution and shared Apply. This does not select
+a whole-group removal policy.
 
 This explicitly settles recipe retention for color ramps while preserving the
 scale-helper boundary: changed settings produce reviewed proposals, never automatic
