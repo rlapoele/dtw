@@ -38,10 +38,11 @@ state, not a fabricated swatch or an old token with a matching name.
 Keep the familiar color-token header and Current/New comparison, Edit token fields,
 precise component inputs and horizontal sliders, alpha, applied/details sections and
 bottom protection state. Layer is **Primitive**, read-only/disabled. Description,
-color and lock choices belong to the same draft. Reference remains unavailable in
-this ramp proposal pending exact value-form eligibility. **Agreed 23 November:**
-only Primitive tokens may participate, and Layer is also read-only in the ordinary
-token editor for ramp members. Other ordinary-editor restrictions are not implied. The main matrix has named rounded swatches, HEX previews, one ghost
+color and lock choices belong to the same draft. **Agreed 23 November:** only
+Primitive tokens containing literal colors may participate. Layer is read-only and
+Reference mode is unavailable in both ramp and ordinary token editing for members.
+External tokens can still reference steps. Other ordinary-editor restrictions are
+not implied. The main matrix has named rounded swatches, HEX previews, one ghost
 lock per step and three component rows with editable values. Viewing another color
 space changes presentation only; actual edits follow the existing authored/derived
 policy. Component space is synchronized with the inspector and initially uses the

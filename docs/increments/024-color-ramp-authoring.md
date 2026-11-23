@@ -123,9 +123,11 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   Primitive tokens may participate in a ramp. Layer is fixed Primitive and read-only
   in both the ramp inspector and ordinary token editor while the token belongs to
   a ramp; ordinary editing cannot change or clear it. This scoped restriction is
-  explicit, not a general restriction on non-member tokens. Reference-mode editing
-  in the ramp inspector remains unavailable pending D3; do not mislabel incompatible
-  data or silently convert it. Precise inputs remain
+  explicit, not a general restriction on non-member tokens. **Value-form rule agreed
+  23 November:** members must contain literal colors; reference mode is unavailable
+  in both editors while a token belongs to a ramp. External tokens may still reference
+  ramp steps. Do not mislabel incompatible data, flatten aliases or silently convert
+  it. Precise inputs remain
   available for otherwise valid values outside the slider's visual range.
 - **AC-8 — View and edit semantics.** Proposed: initialize Component space from the
   effective project default and synchronize matrix/inspector viewing during the session.
@@ -442,11 +444,13 @@ This supersedes the proposal to permit ordinary-editor layer changes and diagnos
 incompatibility afterward. Existing incompatible data still needs truthful diagnosis,
 not relabeling or coercion; exact recovery remains to specify.
 
-Literal-only color membership remains a recommendation, not an agreement: Primitive
-layer alone does not determine literal versus reference eligibility. Specify supported
-assignments and reference behavior without alias flattening, plus missing/renamed/
-moved-member recovery. Non-member adoption remains excluded under AC-14. Do not infer
-other ordinary-editor restrictions from the explicitly agreed layer lock.
+**Also agreed 23 November:** ramp members contain literal colors only. Reference
+mode is unavailable in both ramp and ordinary token editors while membership applies;
+external referencing tokens remain allowed. This is an explicit ramp constraint,
+not an implication of Primitive layer generally. Specify supported assignment shape
+and missing/renamed/moved or incompatible-member recovery without alias flattening.
+Non-member adoption remains excluded under AC-14. Do not infer other ordinary-editor
+restrictions from the agreed layer and value-form constraints.
 
 Seed-description ownership is settled in AC-6: only the final creation anchor token
 receives it; afterward ordinary token-description preservation applies. Surviving
@@ -559,7 +563,9 @@ follow-up grants no runtime or numerical allowance.
 - 23 November, subsequent decision: only Primitive members; their layer cannot be
   changed or cleared in either ramp or ordinary editing (AC-7). This post-review
   amendment needs inclusion in the pending focused analyst consistency check.
-- Next: decide literal-versus-reference member eligibility under D3, then continue remaining
+- 23 November, subsequent decision: members contain literal colors only; reference
+  mode is unavailable in both editors for members. External references remain allowed.
+- Next: confirm whole-ramp Undo/Redo grouping under D5, then continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

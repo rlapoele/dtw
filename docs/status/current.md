@@ -52,14 +52,17 @@ color edit-return retains Manual and can produce a metadata-only Apply (AC-9).
 Exact black at 950 is the mirror of white at 50, allowing lighter preceding steps.
 The user agreed Primitive-only membership and prohibited layer changes/clearing in
 ordinary editing as well as the ramp inspector while a token belongs to a ramp
-(AC-7). Literal-versus-reference membership is still open; it is the next D3 decision.
+(AC-7). The user subsequently agreed literal-color-only membership, disabling
+reference mode in both editors for members while allowing external tokens to
+reference ramp steps. Assignment shape and incompatible-member recovery remain open.
+Next: confirm whole-ramp Undo/Redo grouping under D5.
 Listed D2 decisions are recorded; the focused consistency check of post-review
 amendments, including this ordinary-editor restriction, remains pending.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: require Primitive ramp members and lock their layer`.
+`docs: require literal colors for ramp members`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.

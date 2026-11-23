@@ -832,10 +832,12 @@ containment still determines paths.
 **Ramp membership constraint — agreed 23 November 2026:** only explicitly Primitive
 tokens may participate in a ramp. While a token is a ramp member, neither ramp nor
 ordinary token editing may change or clear its layer. Non-member layer editing is
-unchanged. This scoped authoring constraint does not introduce group-level type/layer
-inheritance, automatically coerce incompatible data or decide literal/reference
-eligibility. Incompatible loaded membership requires truthful diagnosis and an
-explicit recovery contract in Increment 024.
+unchanged. **Value-form constraint also agreed 23 November:** ramp members contain
+literal colors only, with reference mode unavailable in both editors while membership
+applies. External tokens may reference ramp steps normally. These scoped constraints
+do not introduce group-level type/layer inheritance, prohibit references on Primitive
+non-members, flatten aliases or coerce incompatible data. Incompatible loaded membership
+requires truthful diagnosis and an explicit recovery contract in Increment 024.
 
 This explicitly settles recipe retention for color ramps while preserving the
 scale-helper boundary: changed settings produce reviewed proposals, never automatic

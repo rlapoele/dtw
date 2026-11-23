@@ -198,7 +198,11 @@ The user agreed a single Apply boundary and requested updated wireframes:
   (explicit user amendment, 22 November). **Amended 23 November:** only Primitive
   tokens may participate in a ramp. Layer cannot be changed or cleared in either
   the ramp inspector or the ordinary token editor while the token is a ramp member.
-  This does not restrict non-member layers or settle literal/reference eligibility.
+  Non-member layers remain unchanged. **Subsequently agreed 23 November:** members
+  must contain literal colors; reference mode is unavailable in both editors while
+  membership applies. External tokens can still reference ramp steps. This scoped
+  constraint does not imply all Primitive tokens must be literals or authorize
+  flattening incompatible member references.
 - **Revert step changes** in ordinary editing without count replacement restores
   the selected step's saved color, Manual status, description and protection
   (**field scope agreed 23 November 2026**). Preserve other steps' pending edits
