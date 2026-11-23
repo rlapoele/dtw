@@ -446,6 +446,14 @@ what must be completed before generation. Do not invent missing color informatio
 or apply an obsolete preview. Extended-coordinate eligibility and numerical
 neutral/extreme classification remain technical preparation in D1.
 
+**Repeated-preview comparison agreed — 23 November:** compare the derived 8-bit
+sRGB preview color and alpha, independently of Checkerboard/Light/Dark backgrounds.
+Matching RGB and alpha produces non-blocking repeated-preview feedback; switching
+backgrounds does not change the comparison. This describes matching previews, not
+identical authored colors or perceptual equivalence. Do not bake backgrounds into
+colors or compare composited pixels. Exact mapping/quantization and alpha comparison
+precision remain technical preparation in Draft 024 D1.
+
 ### Creation seed description — agreed 23 November 2026
 
 The entered seed description initializes only the token at the final seed position.

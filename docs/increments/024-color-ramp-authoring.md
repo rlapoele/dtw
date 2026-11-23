@@ -538,6 +538,16 @@ do not invent a color, discard the draft or permit applying an obsolete preview.
 This agreement does not select numerical thresholds for neutral/extreme classification
 or settle the remaining extended-coordinate seed domain.
 
+**Repeated-preview comparison — agreed 23 November 2026.** Compare the derived
+8-bit sRGB preview color together with alpha, independently of the selected
+Checkerboard/Light/Dark background. Matching RGB with matching alpha produces the
+non-blocking repeated-preview notice; changing background does not change that
+comparison. The notice identifies matching previews, not identical authored values
+or perceptual equivalence. Keep alpha separate; do not compare background-composited
+pixels. Exact P3-to-sRGB preview mapping, quantization and alpha comparison precision
+remain technical specification work; this agreement selects no new tolerance or
+perceptual threshold.
+
 **Remaining proposal sequence**, discussed one decision at a time:
 
 | Area | Recommended direction for preparation | Still to specify or establish |
@@ -545,7 +555,7 @@ or settle the remaining extended-coordinate seed domain.
 | Generated gamut fitting and explicit seed adjustment | Generated fitting direction now agreed above: reduce chroma while preserving lightness/hue; seed adjustment remains separately previewed and explicitly accepted. | Exact mapping algorithm, boundary tolerance, termination and behavior where chroma reduction cannot yield a valid target color. No clipping rule or epsilon is selected here. |
 | Precision and determinism | Agreed above: reuse bounded conversion and up-to-12-significant-digit, ties-to-even formatting; preserve prepared seed/alpha and regenerate from versioned recipe inputs. | Mapping/rounding order and final membership check; versioned reproducibility and representative accuracy evidence. Formatting precision is not an accuracy guarantee. |
 | Seed eligibility and neutral/extreme classification | Incomplete-seed handling agreed above: accept missing hue only in the existing exactly-powerless cases; preserve input and explain missing information. | Exact ramp seed domain, extended-coordinate handling, white/black classification after conversion and treatment of numerical boundary error. Do not silently promote a near-neutral or near-white seed to an exact one. |
-| Alpha and repeated previews | Keep alpha separate and exact; compare derived previews, not authored equality or colors baked onto a background. Keep native color previews and honest sRGB HEX labeling. | Exact duplicate comparison including alpha, P3 preview versus sRGB HEX disclosure, and background-dependent presentation. No perceptual threshold is proposed. |
+| Alpha and repeated previews | Agreed above: compare derived 8-bit sRGB color and alpha independently of background; never imply authored equality. Keep native previews and honest sRGB HEX labeling. | Exact P3-to-sRGB preview mapping, quantization, alpha comparison precision and P3 preview versus sRGB HEX disclosure. No perceptual threshold is proposed. |
 
 The [recipe comparison](../project/workbench-layout/color-ramp-recipes-v1.md) owns
 the illustrative formulas; the [endpoint report](../project/workbench-layout/color-ramp-endpoints-v1.md)
