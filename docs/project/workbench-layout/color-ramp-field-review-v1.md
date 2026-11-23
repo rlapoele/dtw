@@ -1,7 +1,9 @@
 # Ramp field review and missing-color refill V1
 
-**Focused design proposal — 23 November 2026.** Not user-accepted or analyst-reviewed;
-no implementation authorization. Prepared against clean base `2bf52db` following the
+**Focused flow accepted and analyst-reviewed — 23 November 2026.** The user accepted
+the flow for focused analyst review; that review found no material contradiction or
+new interaction gap. Final Draft 024 agreement and implementation authorization remain
+outstanding. Prepared against clean base `2bf52db` following the
 [consolidated review findings G1/G2](../../increments/024-color-ramp-authoring.md#focused-consolidated-analyst-review--23-november-2026).
 
 Keep [V4](color-ramp-editing-v4.md)'s compact reference review and the retained
@@ -103,12 +105,17 @@ ordinary token session; it is not a separate persistence transaction inside that
 
 ## Proposal boundaries and evidence
 
-The new interaction choices requiring user acceptance are the persistent token/layer/
+The interaction choices accepted for this focused handoff are the persistent token/layer/
 field row identity and counts, the ordinary **Edit color** entry point, and the focused
 Current/New refill section using the owning Apply/Cancel boundary. This proposal
 implements no application behavior and does not settle schema versions, numerical
 policy, invalid-ramp recovery or whole-group deletion. Material revisions return to
-the user before analyst review; no analyst approval is claimed.
+the user before renewed analyst review. The separate analyst reviewed committed
+snapshot `1ec4abd0de122d0e402ee894f5dfa4db4955ee9d`, including both retained PNGs.
+G1 and G2 are covered at design-contract level; production eligibility, authoring
+operations and validation integration remain unimplemented. See the
+[review record](../../increments/024-color-ramp-authoring.md#field-reviewrefill-v1-analyst-review--23-november-2026)
+for scope and verification limits.
 
 The two SVGs reuse V4's neutral structure, typography, spacing and compact action
 hierarchy. Color examples are illustrative reused samples, not numerical fixtures.

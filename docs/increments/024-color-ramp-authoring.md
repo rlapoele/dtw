@@ -576,8 +576,8 @@ model or repair system. No settled product decision needs reopening.
 | --- | --- | --- |
 | C1 | Documentary inconsistency, corrected | AC-21 still described clearing a token value generally. It now distinguishes whole-color assignment removal from composite field-only clearing, preserving other fields/layers. |
 | C2 | Documentary inconsistency, corrected | V3's count-return wording still said “earlier individual edits”. Narrowed to manual color adjustments and remapping choices; preserved identity/description/protection continuity. No artwork polish. |
-| G1 | Required interaction handoff, open | V4 examples identify whole-color tokens. Prepare one small example identifying each composite reference by token, layer and field, including accepted/Change/Cancel and Unspecified consequences. Multiple occurrences in one token must stay distinguishable. |
-| G2 | Required completion path, open | Define the focused inspector interaction and application operation for refilling a missing composite color field or typed-but-unassigned color token. Current ordinary revision eligibility excludes both. No full composite editor is needed. |
+| G1 | Initially open; covered by V1 design review below | V4 examples identify whole-color tokens. Prepare one small example identifying each composite reference by token, layer and field, including accepted/Change/Cancel and Unspecified consequences. Multiple occurrences in one token must stay distinguishable. |
+| G2 | Initially open; covered by V1 design review below; implementation pending | Define the focused inspector interaction and application operation for refilling a missing composite color field or typed-but-unassigned color token. Current ordinary revision eligibility excludes both. No full composite editor is needed. |
 
 Checked consistency includes Manual/Protected regeneration, count replacement and
 returning saved/draft-only continuity, Revert/Reset/no-op semantics, grouped Undo,
@@ -618,7 +618,8 @@ Completed two identified SVG sheets and PNG previews: occurrence-aware review
 inspection/refill plus a parallel Unspecified whole-color example. New interaction
 choices are the persistent token/layer/field context, occurrence counts, Edit color
 entry and focused Current/New editing with ordinary token Apply/Cancel. These are
-proposals awaiting user review, not accepted requirements or analyst-reviewed design.
+initially submitted for user review. The subsequent user acceptance and focused
+analyst outcome are recorded below.
 
 Static checks stopped at approximately **11/12 aggregate minutes** (designer 7,
 coordinator 4), zero harness repairs. SVG XML, local links and whitespace passed.
@@ -628,7 +629,35 @@ PNGs, identified a crowded refill caption, and re-rendered/rechecked its shorten
 version. Both sheets are legible without observed overlap after that correction.
 PNG lower whitespace comes from the temporary square render canvas. No runtime,
 keyboard/accessibility, numerical or retention evidence is claimed. No final design/
-contract agreement, analyst review of V1 or implementation authorization is implied.
+contract agreement or implementation authorization is implied by these static checks.
+
+### Field review/refill V1 analyst review — 23 November 2026
+
+The user confirmed that the flow looks right and explicitly authorized focused analyst
+review of V1. A separate analyst reviewed committed snapshot
+`1ec4abd0de122d0e402ee894f5dfa4db4955ee9d`: the V1 notes, both SVGs and retained
+PNG previews, AC-20–22, the minimal composite contract and owning decisions.
+
+**Outcome:** no material design contradiction, new interaction gap or optional polish
+recommendation. G1 is covered by persistent token/layer/field identity, occurrence
+counts, field-only Unspecified consequences, preserved chains and accepted/Change/
+Cancel behavior. G2 is covered at design-contract level by the focused missing-field
+and whole-color refill paths, Literal/Reference controls, owning ordinary-token
+Apply/Cancel, data preservation and history boundary. No independent save occurs
+inside an active ramp draft. Validation, departure and focus notes are coherent.
+
+Only lifecycle wording was reconciled; no artwork or product behavior changed.
+Current production eligibility and authoring operations still need implementation;
+AC-15 whole-candidate validation integration, D1 numerical policy and D5 metadata/
+versioning preparation remain open. User acceptance of this flow and analyst
+consistency evidence do not constitute final Draft 024 agreement or implementation
+authorization. Material revisions return to the user before renewed review.
+
+This explicitly authorized follow-up had an **8 aggregate-minute ceiling**, zero
+repairs. Approximately **7 minutes** were used (analyst 4, coordinator reconciliation/
+document checks 3), then checks stopped. Local links and Markdown whitespace checked.
+No new rendering, tests, runtime/accessibility proof, numerical or retention
+qualification; all prior stopping decisions remain unchanged.
 
 ### D4 preparation — source findings and proposal, 23 November 2026
 
@@ -853,10 +882,11 @@ follow-up grants no runtime or numerical allowance.
   inconsistencies corrected. Field-aware review/refill interactions remain the next
   bounded handoff; numerical, metadata/versioning and validation integration stay open.
 - 23 November: designer prepared field review/refill V1 and coordinator inspected
-  rendered sheets. Await user feedback/approval for affected analyst review.
-- Next: user reviews the identified V1 handoff, then arrange affected analyst review
-  if authorized and continue remaining
-  D1–D5 questions one at a time. Material design revisions return to the user before
+  rendered sheets. The user subsequently accepted the flow for focused analyst review.
+- 23 November: separate V1 analyst review found G1/G2 covered at design-contract
+  level, with no material contradiction or new interaction gap. Implementation pending.
+- Next: prepare the remaining D1 numerical and D5 metadata/versioning proposals,
+  retaining AC-15 validation integration; discuss decisions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.
 - Capture actual base commit and stable diff/new files before later implementation/review.

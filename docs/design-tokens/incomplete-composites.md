@@ -86,9 +86,11 @@ transition editor solely to support ramp reference removal. Future composite cre
 and editing must use this saveable partial representation. For the concrete cleared
 color-field case, plan a focused way to assign a literal color or reference again,
 reusing existing controls and validation, preserving other fields and token identity.
-The exact small inspector interaction needs a later design handoff; it is not a
-separate repair wizard. The analogous typed-but-unassigned color-token refill gap
-must be covered too. Do not claim either completion path already exists.
+The [field review/refill V1 handoff](../project/workbench-layout/color-ramp-field-review-v1.md)
+now specifies that focused inspector interaction and the analogous typed-but-unassigned
+color-token refill. The user accepted the flow for focused analyst review, which
+found both paths coherent. Neither completion path is implemented; no separate
+repair wizard is needed.
 
 Use the next authored-data version to admit missing composite fields, coordinated
 with Increment 024's metadata versioning rather than issuing independent migrations.
@@ -148,7 +150,7 @@ found this minimal model coherent with the later ramp decisions. It identified t
 already-open field-aware review and focused completion interactions as the next
 required handoff; no broader model or repair system is needed. The subsequent
 [field review/refill V1 proposal](../project/workbench-layout/color-ramp-field-review-v1.md)
-now illustrates those interactions and awaits user feedback before analyst review. Those interactions
-must be surfaced to the user before review of material revisions. Final contract
+now covers those interactions at design-contract level following user flow acceptance
+and focused analyst review. Material revisions must return to the user before review. Final contract
 agreement, numerical/versioning preparation and implementation authorization remain
 outstanding. This is consistency evidence, not implementation or usability proof.
