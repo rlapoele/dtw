@@ -237,7 +237,14 @@ not independent token and reference entries. Draft edits create no history entri
 a genuinely unchanged Apply writes nothing and adds none. Existing session-only
 history, lifecycle timestamps and revision/recovery rules remain in force. This is a
 user-facing grouping decision, not a selected operation/schema implementation or a
-restart of retention qualification. Creation history remains to specify in Draft 024.
+restart of retention qualification.
+
+**Creation grouping subsequently agreed 23 November:** successful Create ramp also
+creates one history entry covering the new group, its steps and ramp settings. Undo
+removes them together; Redo restores them together with the same identities and
+authored data. Navigating or cancelling the creation dialog creates no history entry.
+Existing history/revision/recovery rules still apply; this does not persist drafts
+or history across reload.
 
 ### Unapplied count round trips — agreed 22 November 2026
 
@@ -712,6 +719,6 @@ requested by recording these choices.
 7. Which exact reference forms can participate in the agreed impact review/remapping, and how is an explicitly accepted unspecified value represented and validated? Count replacement, non-member collisions and color resets follow the agreements above.
 8. What is the versioned ramp-metadata schema, and how do retention, backup and each export profile preserve or omit it? How are ordered step membership, renamed/moved tokens, references and missing members handled?
 9. How should Manual and ramp-step protection be represented technically? Ordinary regeneration preserves protected values without prompts; confirmed count replacement is the agreed exception. What precise ordinary-edit Revert behavior remains outside the agreed replacement reset?
-10. What atomic operation, creation history and persistence compatibility contract implements the agreed shared Apply and its one-entry Undo/Redo grouping? Creation V3 and the V3 workspace with accepted V4 review flows supply the identified interaction designs; numerical and implementation contracts remain unfinished.
+10. What atomic operation and persistence compatibility contract implements the agreed creation/shared Apply and their one-entry Undo/Redo grouping? Creation V3 and the V3 workspace with accepted V4 review flows supply the identified interaction designs; numerical and implementation contracts remain unfinished.
 
 When this work is explicitly resumed, use this concept and the [open questions](../planning/open-questions.md#guided-color-foundations-and-interface-semantics) to prepare a bounded proposal through the existing designer/user/analyst workflow. The first exploration is agreed in direction only; its design, contract, and execution still require the usual authorization.

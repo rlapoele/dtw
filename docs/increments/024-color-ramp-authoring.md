@@ -250,9 +250,12 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   restores the complete pre-Apply authored state, including token identities and
   membership, colors, recipe/settings, descriptions, Manual/protection and affected
   references; Redo reapplies the complete change. Draft edits create no history entries.
-  Preserve existing session-only history and lifecycle/revision rules. One atomic
-  application operation remains the technical proposal; creation history details and
-  versioned representation remain D5. A genuinely unchanged result writes nothing
+  **Creation history also agreed 23 November:** successful Create ramp creates one
+  history entry for the new group, all member tokens and ramp settings. Undo removes
+  that complete creation; Redo restores it with the same identities and authored data.
+  Creation-dialog navigation and cancellation create no history entries. Preserve
+  existing session-only history and lifecycle/revision rules. One atomic application
+  operation remains the technical proposal; versioned representation remains D5. A genuinely unchanged result writes nothing
   and creates no entry; settings-only changes may matter. Domain generation remains pure; application operations coordinate
   accepted changes. UI does not implement token semantics. D2/D5 complete this contract.
 - **AC-17 — Retention and compatibility.** Preserve applied settings/recipe identity,
@@ -498,9 +501,10 @@ members likewise retain draft identity and latest description/protection until A
 or Discard, as now agreed in AC-13. Define the technical representation of this
 session-only continuity, atomic removals, accepted reference changes and history
 together; do not persist absent draft-only members. One Undo/Redo entry per substantive ramp
-Apply is now agreed in AC-16, with no entries for draft edits. Creation history and
-exact operation/schema representation still require preparation; no schema version
-or storage platform is selected here.
+Apply and one entry for successful creation are agreed in AC-16, with no entries
+for draft edits, creation navigation or cancellation. Exact operation/schema
+representation still requires preparation; no schema version or storage platform
+is selected here.
 
 ## Verification approach and limits
 
@@ -591,7 +595,9 @@ follow-up grants no runtime or numerical allowance.
 - 23 November, subsequent decision: returning draft-only members retain their draft
   identity and latest description/protection; colors regenerate and remapping choices
   clear (AC-13).
-- Next: confirm creation Undo/Redo grouping under D5, then continue remaining
+- 23 November, subsequent decision: successful creation has one Undo/Redo entry
+  for group, members and settings; Redo restores identical identities/authored data.
+- Next: decide ordinary member rename/move behavior under D3, then continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

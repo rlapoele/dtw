@@ -26,7 +26,10 @@ still needs reconciliation before final contract/design agreement.
 The sheets show successive states of the same dialog, not four simultaneous
 windows. Back retains every draft field. Cancel/close offers the existing
 discard/keep-editing protection when needed. No group, token or history entry is
-saved until **Create group and tokens** succeeds.
+saved until **Create group and tokens** succeeds. **Creation history agreed
+23 November:** success creates one entry for the group, all steps and ramp settings.
+Undo removes that creation together; Redo restores the same identities and authored
+data. Navigation and cancellation create no entries.
 
 1. **Group:** keep ordinary New group with name, parent and path preview. Checking
    **Generate a color ramp** changes the next action to Continue. Unchecked group
