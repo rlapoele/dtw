@@ -10,17 +10,21 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Ramp endpoint chroma agreed; numerical preparation continues — 23 November 2026
+## Ramp endpoint defaults and gamut direction agreed — 23 November 2026
 
 At the user's request, the coordinator and a separate analyst prepared a
 [D1 numerical-policy proposal](../increments/024-color-ramp-authoring.md#d1-proposal-preparation--23-november-2026)
 from existing decisions, comparison notes and the current conversion boundary.
-After discussing the rationale and evidence limits, the user agreed fixed endpoint
-chroma at 5% of seed chroma on the light side and 15% on the dark side, before gamut
-fitting. No new controls; a seed at an endpoint remains exact. The owning direction
-and AC-2 now record this agreement.
+The user agreed default endpoint chroma at 5% of seed chroma on the light side and
+15% on the dark side, before gamut fitting, and requested a way to customize these
+parameters for Retained/Restrained. Customization is explicitly outside Increment 024,
+which uses the agreed defaults without extra controls. Revisit customization most
+likely with general system preferences; placement and details remain undecided.
+Generated out-of-target colors should automatically reduce chroma while
+preserving calculated lightness/hue and alpha; seed adjustment still requires explicit
+acceptance. The owning direction and D1 record these agreements.
 
-Next: discuss generated-color gamut handling, followed by remaining precision,
+Next: discuss remaining precision,
 seed eligibility and preview details one at a time. Exact mapping/tolerances and the
 recorded neutral-rounding observation remain unresolved; no production numerical
 contract is claimed complete. D5 metadata/versioning and AC-15 validation integration
@@ -30,7 +34,7 @@ required.
 Document/source checks stopped at about 6/8 aggregate minutes, zero repairs. Local
 links and whitespace passed. No numerical scripts, tests, rendering, browser or
 retention qualification ran. Changes remain for user staging/commit/push.
-Suggested commit: `docs: prepare ramp numerical policy proposal`.
+Suggested commit: `docs: record ramp gamut fitting and endpoint customization`.
 
 ## Ramp field review/refill V1 analyst review completed — 23 November 2026
 

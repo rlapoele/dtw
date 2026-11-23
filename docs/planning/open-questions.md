@@ -91,6 +91,15 @@ These questions remain open beyond that bounded subset. Culori 4.0.2 is installe
 
 ## Guided color foundations and interface semantics
 
+**Endpoint customization requirement — 23 November 2026:** users should be able to
+change the Retained/Restrained recipes' default light/dark endpoint chroma proportions.
+The defaults are 5%/15%. Customization is explicitly outside Increment 024 and will
+most likely be discussed with general system preferences; that placement is tentative.
+Permitted ranges, ownership and effects on existing ramps remain open. See the
+[owning direction](../project/guided-color-palette-generation.md#first-increment-decisions--21-november-2026).
+No interface or implementation expansion is implicit in this record.
+
+
 **Latest first-slice decisions — 21–22 November 2026; no implementation authorized:**
 one seed, 2–20 steps (11 default), positional naming, constant OKLCH hue, Retained
 chroma by default with Restrained available, uniform seed alpha, OKLCH generated

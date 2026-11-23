@@ -460,7 +460,8 @@ algorithm, thresholds or qualification campaign is authorized by this consolidat
 
 #### D1 proposal preparation — 23 November 2026
 
-**Preparation; endpoint proportions subsequently agreed, remainder proposed.** No
+**Preparation; endpoint defaults and generated gamut-fitting direction agreed,
+remaining numerical details proposed.** No
 implementation authorized. After the V1 analyst handoff, the user
 asked to proceed with numerical-policy preparation. The coordinator and a separate
 analyst used the retained recipe/endpoint notes and current conversion boundary;
@@ -470,8 +471,9 @@ alpha, protection and shared Apply behavior remain constraints.
 
 **First decision — requested endpoint chroma, agreed 23 November 2026.** After
 reviewing the rationale and its evidence limits, the user accepted the comparison's
-light-end ratio `0.05` and dark-end ratio `0.15` as fixed recipe parameters for the
-first version, without adding controls. This keeps a small amount of the seed's hue
+light-end ratio `0.05` and dark-end ratio `0.15` as recipe defaults. The subsequent
+customization requirement below is explicitly deferred beyond Increment 024.
+This keeps a small amount of the seed's hue
 at each end, with more requested chroma at the dark end. It preserves the example
 behavior the user selected, but the examples alone do not prove these are optimal
 values for every seed. The alternative of zero at both ends would produce neutral
@@ -494,11 +496,30 @@ applies only to generated endpoints. Gamut fitting may reduce the requested chro
 These percentages describe OKLCH chroma, not opacity or a percentage of perceived
 colorfulness. No new swatches or numerical evidence were generated for this proposal.
 
+**User-requested customization — 23 November 2026.** Users should have a way to
+change the default ramp endpoint chroma proportions for the Retained and Restrained
+recipes. Record this as a product requirement, not permanently fixed constants.
+The user explicitly excluded this customization from Increment 024. This increment
+uses the agreed 5%/15% defaults without customization controls. Revisit the requirement
+most likely during general system-preferences discussions; that placement is tentative,
+not a selected design. Valid ranges, ownership and effects on existing ramps remain
+future decisions. No preference infrastructure or implementation is authorized.
+
+**Generated gamut fitting — agreed 23 November 2026.** When a generated candidate
+falls outside the selected sRGB or Display P3 gamut, automatically reduce its chroma
+only as needed to fit, preserving calculated OKLCH lightness and hue and exact alpha.
+This applies to generated candidates under the existing regeneration/protection rules;
+it does not authorize altering protected steps during ordinary regeneration. The
+prepared seed remains exact unless the user explicitly accepts a previewed seed
+adjustment under AC-4. This agreement selects the generated-color behavior, not the
+precise mapping algorithm, tolerance or seed-adjustment algorithm. Those numerical
+details and unsupported-case handling remain to be specified.
+
 **Remaining proposal sequence**, discussed one decision at a time:
 
 | Area | Recommended direction for preparation | Still to specify or establish |
 | --- | --- | --- |
-| Generated gamut fitting and explicit seed adjustment | Reduce chroma along the agreed fixed-hue/lightness path for generated colors; keep seed adjustment separately previewed and explicitly accepted. | Exact mapping algorithm, boundary tolerance, termination and behavior where chroma reduction cannot yield a valid target color. No clipping rule or epsilon is selected here. |
+| Generated gamut fitting and explicit seed adjustment | Generated fitting direction now agreed above: reduce chroma while preserving lightness/hue; seed adjustment remains separately previewed and explicitly accepted. | Exact mapping algorithm, boundary tolerance, termination and behavior where chroma reduction cannot yield a valid target color. No clipping rule or epsilon is selected here. |
 | Precision and determinism | Reuse the bounded conversion service; propose its existing 12-significant-digit, ties-to-even formatting for generated coordinates. Preserve exact prepared seed and alpha; regenerate from recipe inputs, never rounded HEX previews. | Mapping/rounding order and final membership check; versioned reproducibility and representative accuracy evidence. Formatting precision is not an accuracy guarantee. |
 | Seed eligibility and neutral/extreme classification | Preserve exact-neutral semantics; accept missing hue only when powerless under the existing conversion rules. Preserve unsupported input and show why calculation is unavailable. | Exact ramp seed domain, extended-coordinate handling, white/black classification after conversion and treatment of numerical boundary error. Do not silently promote a near-neutral or near-white seed to an exact one. |
 | Alpha and repeated previews | Keep alpha separate and exact; compare derived previews, not authored equality or colors baked onto a background. Keep native color previews and honest sRGB HEX labeling. | Exact duplicate comparison including alpha, P3 preview versus sRGB HEX disclosure, and background-dependent presentation. No perceptual threshold is proposed. |

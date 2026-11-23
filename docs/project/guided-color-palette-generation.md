@@ -406,12 +406,27 @@ The comparison records the quadratic retained-chroma and linear taper formulas
 that demonstrate the selected behaviors. The lightness endpoint and Auto policies above are now agreed in direction.
 **Endpoint chroma proportions agreed 23 November:** use 5% of seed chroma at the
 generated light endpoint and 15% at the generated dark endpoint for both intensity
-recipes, before gamut fitting. Add no controls for these proportions. Neutral seeds
+recipes as defaults, before gamut fitting. Neutral seeds
 stay neutral; a seed occupying an endpoint stays exact. These retain the comparison
 parameters as a first-version choice, not a claim of optimality across all seeds.
 Exact gamut mapping, precision and remaining alpha-preview/edge-case rules still
 require a production calculation contract.
 The neutral-conversion rounding observation in the endpoint report remains open.
+
+**Customization requirement — 23 November:** users should have a way to change
+these default endpoint chroma proportions for Retained and Restrained. This supersedes
+the earlier blanket no-controls wording as a long-term restriction. The user
+explicitly excluded customization from Increment 024, which uses the agreed 5%/15%
+defaults without customization controls. Revisit it most likely with general system
+preferences; that location remains tentative. Permitted ranges, ownership and effects
+on existing ramps remain future decisions. No preference infrastructure is authorized.
+
+**Generated gamut fitting agreed — 23 November:** automatically reduce an
+out-of-target generated candidate's chroma only as needed to fit the selected sRGB
+or Display P3 gamut, preserving calculated OKLCH lightness/hue and exact alpha.
+Existing protection rules still apply. This does not silently alter the prepared
+seed: seed adjustment retains the explicit preview/acceptance requirement. Exact
+mapping, tolerances and unsupported-case handling remain with Draft 024 D1.
 
 ### Creation seed description — agreed 23 November 2026
 
