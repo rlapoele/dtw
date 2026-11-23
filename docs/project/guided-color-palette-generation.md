@@ -110,14 +110,16 @@ ramps without introducing live computed token values.
   override, leaving the saved recipe seed unchanged (agreed 20 November 2026).
   The applied anchor-step token may therefore differ from the recipe seed; the
   ramp editor must make that difference explicit.
-- Generated steps are eligible for proposed changes when settings change.
+- Unprotected steps are eligible for generation when settings change, whether
+  currently Manual or Generated (amended 23 November 2026).
 - An intentional manual value edit, whether in the ramp preview or ordinary token
-  inspector, marks that step as manual and preserves its value by default during
-  regeneration. Renaming or changing a description does not create an override.
-- Show manual steps visibly. Offer **Keep manual value** by default and **Use
-  generated value** to preview the current generated candidate. Only accepting
-  that candidate removes the override; returning manually to an earlier value
-  does not silently re-enable generation.
+  inspector, marks that step Manual without changing protection. Renaming or changing
+  a description does not establish Manual. Manual describes authorship, not immunity
+  from regeneration.
+- Show Manual visibly. Ordinary generation-setting changes regenerate unprotected
+  Manual steps without a per-step acceptance requirement, clearing Manual when the
+  generated color replaces the edit. Returning manually to an earlier color does
+  not itself clear Manual. The earlier default Keep manual value rule is superseded.
 - A manual override affects its own step, not neighbouring candidates. Turning it
   into another generation anchor would be a separate future capability.
 - If a step-count or naming change would remove an overridden step, surface that
@@ -126,28 +128,32 @@ ramps without introducing live computed token values.
 
 ### Manual status and regeneration protection
 
-**Agreed 22 November 2026; not implemented.**
+**Agreed 22 November; regeneration rule amended 23 November 2026; not implemented.**
 
 Keep **Manual** ramp status separate from **Protected from regeneration**.
 Protection controls in this increment apply to ramp steps only.
 Manual identifies an intentionally edited or retained ramp-step value; Protected
-is a safeguard against generated updates generally. Either condition keeps the
-current value by default. Ordinary manual editing remains allowed.
+alone determines preservation during ordinary regeneration. Ordinary manual editing
+remains allowed. The user explicitly superseded automatic Manual preservation on
+23 November: seed, intensity and seed-position changes regenerate every unprotected
+step. Protected steps retain their colors, whether Manual or Generated.
 
 - A manual value edit marks the ramp member Manual without changing its existing
   protection. Do not automatically protect every manual ramp edit.
-- Regeneration keeps Manual and Protected tokens by default and explains the
-  applicable reason(s). A token can have both states.
+- Ordinary regeneration preserves Protected colors only. Unprotected colors are
+  regenerated and become Generated when replaced, including previously Manual colors.
+  A token can be both Manual and Protected; Manual alone does not preserve it.
 - Ordinary regeneration preserves Protected steps without replacement prompts.
   Remove **Use generated value once** from this flow. To participate in ordinary
-  regeneration, a step must be explicitly unlocked; separate Manual rules still apply.
+  regeneration, a protected step must be explicitly unlocked. Manual is not another gate.
 - Confirmed count replacement is the agreed exception: its disclosed consequences
   authorize replacing protected values and removing disappearing protected steps,
   subject to reference resolution, while preserving surviving protection choices.
   An accepted generated replacement clears Manual under the applicable rules.
 - Allowing future regeneration requires an explicit protection change. Removing
-  protection alone does not clear Manual status. Neither state is silently cleared
-  by the other action, settings changes or an ordinary manual edit.
+  protection alone does not clear Manual status or regenerate a color. Ordinary
+  manual edits do not change protection. A subsequent generation-setting change
+  replaces unprotected colors and clears Manual as described above.
 - Count replacement follows the later replacement/remapping agreements below,
   not the historical ordinary-token-retention policy.
 
@@ -185,9 +191,11 @@ The user agreed a single Apply boundary and requested updated wireframes:
   visual structure and controls as closely as possible, adding ramp-specific context.
   The ramp-step inspector displays Layer as **Primitive**, read-only/disabled
   (explicit user amendment, 22 November). It cannot change layer in this surface.
-- **Revert step changes** restores the selected step to its applied state while
-  preserving other steps' pending edits and ramp settings. This is distinct from requesting a
-  generated replacement; reverting does not silently clear an applied Manual state.
+- **Revert step changes** in ordinary editing without count replacement restores
+  the selected step's saved color, Manual status, description and protection
+  (**field scope agreed 23 November 2026**). Preserve other steps' pending edits
+  and ramp settings. This is distinct from requesting a generated replacement;
+  reverting does not clear an applied Manual state.
 - **Apply ramp changes**, available after the inspector's editable fields, saves
   the complete reviewed draft. Show the overall scope of pending changes beside it.
 - Switching steps or opening **Ramp settings** changes inspector content and keeps
@@ -526,8 +534,9 @@ non-member collision rule above blocks replacement.
 Changing the seed or other ordinary generation settings leaves Protected ramp-step
 colors unchanged, without prompting to replace them. Remove **Use generated value
 once** and its candidate re-acceptance workflow from ordinary regeneration. Manual
-editing remains allowed. Explicit unlocking permits participation subject to the
-separate Manual rules; unlocking alone does not clear Manual or replace a color.
+editing remains allowed. Under the 23 November amendment, all unprotected steps
+participate regardless of Manual status; unlocking alone does not clear Manual or
+replace a color.
 Confirmed step-count replacement is the sole agreed regeneration exception, with
 its explicit confirmation and shared Apply. This supersedes earlier per-protected-step
 one-time replacement proposals and the associated V2 review state.
@@ -577,8 +586,9 @@ to the replacement's generated color using **Reset color to generated**. Clear t
 new Manual color adjustment; leave description and protection unchanged. This
 applies to the replacement candidate rather than restoring the old saved color.
 The whole saved ramp remains recoverable through Discard draft. Reset is a draft
-action, not a save or a new count replacement. The ordinary non-replacement Revert
-behavior remains a separate context.
+action, not a save or a new count replacement. Ordinary non-replacement Revert
+restores the selected step's saved color, Manual status, description and protection,
+under the 23 November agreement above; other steps and ramp settings stay unchanged.
 
 ### Departing steps during later editing
 

@@ -49,10 +49,14 @@ project's effective default, as proposed in V2.
 **Reset color to generated** is the agreed action after confirmed replacement: clear
 the new Manual adjustment and restore the replacement's generated candidate while
 leaving description and protection unchanged. It does not recover the discarded old
-color. In ordinary editing without replacement, the earlier Revert contract remains
-a separate context to finish specifying; V3 does not select its unresolved edge cases.
+color. **Ordinary Revert scope agreed 23 November:** without count replacement,
+restore the selected step's saved color, Manual status, description and protection.
+Preserve other steps' pending edits and ramp settings. This is distinct from the
+color-only generated reset after replacement.
 
-Ordinary seed/settings regeneration preserves Protected colors without prompts.
+**Regeneration amended 23 November:** seed, intensity and seed-position changes
+regenerate every unprotected step, including Manual steps, and clear Manual when
+replaced. Ordinary regeneration preserves Protected colors without prompts.
 There is no one-time protected replacement action. Manual editing remains possible;
 unlocking does not itself replace a color or clear Manual. Protection controls are
 limited to ramp steps in this increment. A closed lock can therefore coexist with
@@ -174,8 +178,8 @@ Known agreed behavior is represented rather than reopened. Remaining work includ
   agreement now preserves returning saved-member identities, original connections
   and latest description/protection choices. Earlier artwork's “earlier edits”
   reset wording means manual colors and remapping choices, not that metadata.
-- Ordinary non-replacement Revert field scope and reset baseline if generation
-  settings change after a replacement and subsequent manual edits.
+- Generated reset baseline if generation settings change after a replacement and
+  subsequent manual edits. Ordinary Revert field scope is now settled above.
 - The exact pre-Apply impact-list organization and final responsive/focus contract.
 
 The main visual structure is carried from source-grounded V2; no production source

@@ -28,7 +28,8 @@ member identities; it does not create live computed values or group type inherit
   Retained intensity by default and Restrained available.
 - Creation has four stages and no per-step editing. Later editing has a shared draft
   for settings, values, descriptions, ramp-step protection and reference changes.
-- Ordinary regeneration preserves Manual and Protected colors. Count changes are
+- Ordinary regeneration preserves Protected colors and regenerates all unprotected
+  colors, including Manual ones (amended 23 November). Count changes are
   explicitly confirmed replacements: confirmation replaces the draft, Apply saves,
   and Discard draft restores the saved ramp.
 - Replacement removes absent steps rather than leaving ordinary-token leftovers.
@@ -129,10 +130,11 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
 - **AC-9 — Manual and recipe seed.** Intentional value edits mark that ramp member
   Manual, without changing protection or neighbouring candidates. Editing the seed-step
   token leaves the recipe seed unchanged; clearly expose any difference. Returning
-  manually to an older color does not itself clear Manual. Ordinary regeneration keeps
-  Manual values by default. For an unprotected Manual step, the already agreed explicit
-  Use generated value choice previews the candidate; accepting it clears Manual. This
-  is distinct from the removed protected override. Count replacement follows AC-13.
+  manually to an older color does not itself clear Manual. **Amended 23 November:**
+  Manual describes authorship, not preservation. Ordinary generation-setting changes
+  regenerate unprotected Manual steps and clear Manual when generated colors replace
+  them, without per-step acceptance. Protected colors remain unchanged. This supersedes
+  the earlier Keep manual value default; count replacement follows AC-13.
 - **AC-10 — Protection.** Open/closed ghost locks and the inspector control share one
   pending protection state. Manual editing remains allowed. Ordinary regeneration
   preserves Protected colors without prompts; there is no Use generated value once
@@ -145,14 +147,18 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   selecting another step/settings view preserves it. Apply ramp changes saves the whole
   reviewed draft and displays scope. Unanswered required choices, invalid input and
   pending work block Apply with reasons; explicitly accepted Unspecified is distinct
-  (AC-21). In ordinary editing, Revert restores the selected step to applied state
-  without changing other steps/settings or erasing an applied Manual status; its exact
-  field scope remains D2. After count replacement use Reset color to generated: restore
+  (AC-21). In ordinary editing without count replacement, Revert restores the
+  selected step's saved color, Manual status, description and protection (field scope
+  agreed 23 November). Other steps' pending edits and ramp settings remain unchanged.
+  After count replacement use Reset color to generated: restore
   the replacement candidate, clear the new Manual adjustment, and leave description
   and protection unchanged. Leaving offers Apply and leave / Discard and leave / Keep
   editing. Navigate after confirmed save success only; failure retains the draft.
 - **AC-12 — Ordinary generation settings.** Seed and ordinary generation-setting
-  changes prepare draft candidates while preserving Manual/Protected values. Manual
+  changes (including seed, intensity and seed position) regenerate every unprotected
+  step in the shared draft, clearing Manual when its color is replaced. Protected
+  colors remain unchanged whether Manual or Generated. Description and protection
+  choices remain unchanged. Manual
   step edits, view/background changes and lock toggles do not regenerate neighbours.
   Count replacement follows AC-13 instead. Reopening does not regenerate. Detailed
   non-count placement/setting reconciliation remains D2. Accepted reference remappings
@@ -338,6 +344,22 @@ The earlier proposed restoration of saved metadata was rejected and is not polic
 Fresh replacement resets manual colors and remapping choices, not these metadata
 choices. D1–D5 remain bounded below.
 
+## Ordinary regeneration amendment — agreed 23 November 2026
+
+After the renewed analyst review, the user explicitly changed the earlier Manual
+preservation rule. Manual describes authorship; Protected alone preserves a color
+during ordinary regeneration. Seed, intensity and seed-position changes regenerate
+all unprotected steps, clearing Manual when a generated color replaces the edit.
+Protected colors remain untouched; manual editing and lock toggling alone do not
+regenerate neighbours. Confirmed count replacement remains the explicit protection
+exception. AC-9/10/12 and the owning direction reflect this agreement.
+
+The earlier analyst review assessed the previous rule, not this amendment. A focused
+analyst consistency check remains pending before final contract agreement; no new
+review, runtime/numerical checks or implementation is claimed. The user's approval
+settles this behavioral revision; it does not authorize implementation. The generated
+reset baseline question remains open for cases still relevant under this rule.
+
 ## Remaining preparation and decisions
 
 Do not reopen agreed replacement, reference notices/remapping, protection defaults,
@@ -358,8 +380,10 @@ algorithm, thresholds or qualification campaign is authorized by this consolidat
 ### D2 — Ordinary editing and remaining draft details
 
 Count replacement and its reset/lifetime rules are settled above. Remaining details
-are ordinary, non-replacement Revert's field scope (color/description/protection),
-no-op versus intentional edit-then-return handling, and non-count seed edits that invalidate a retained position.
+are no-op versus intentional edit-then-return handling, and non-count seed edits
+that invalidate a retained position. Ordinary non-replacement Revert's field scope
+was agreed on 23 November: saved color, Manual status, description and protection,
+with other steps and ramp settings preserved (AC-11).
 Clarify these without reintroducing protected replacement prompts or automatic
 count-round-trip recovery. Exact reset-candidate behavior after subsequent ordinary
 setting changes also needs an identified state rule; do not silently restore an older
@@ -410,7 +434,8 @@ No production tests, new numerical research or browser qualification occur in th
 After final agreement, target evidence to the criteria:
 
 - **Essential function:** creation cancel/back/Advanced/gamut/placement; counts 2/6/11/20;
-  both intensities; numerical fixtures after D1; ordinary Manual/Protected preservation;
+  both intensities; numerical fixtures after D1; ordinary Protected preservation and
+  regeneration of unprotected Manual/Generated colors;
   replacement confirmation/cancel/repeated count changes; generated reset; survivor
   description/protection/identity; seed-position survival/Auto; new-step defaults.
 - **Reference and integrity:** direct/indirect notices; nearest-label ties; individual
@@ -469,7 +494,9 @@ follow-up grants no runtime or numerical allowance.
   description/protection choices through temporary absence; AC-13 records it.
 - 23 November, subsequent decision: V4 Change preserves acceptance on opening;
   changing the selection blocks Apply until acceptance or Cancel change (AC-22).
-- Next: decide ordinary non-replacement Revert field scope, then resolve remaining
+- 23 November, subsequent decision: ordinary Revert restores the selected step’s
+  saved color, Manual status, description and protection; other steps/settings stay.
+- Next: decide the generated reset baseline after subsequent settings changes, then resolve remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

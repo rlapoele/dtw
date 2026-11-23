@@ -98,7 +98,8 @@ values, and explicit seed/gamut/endpoint decisions. Creation has no individual-s
 editing; subsequent editing uses one shared draft/Apply and read-only Primitive layer.
 
 The [owning direction](../project/guided-color-palette-generation.md) now distinguishes
-ordinary regeneration (Manual/Protected preserved) from confirmed count replacement
+ordinary regeneration (Protected preserved; unprotected Manual/Generated colors
+regenerated under the 23 November amendment) from confirmed count replacement
 (color adjustments reset; absent steps removed; no ordinary-token leftovers or
 count-round-trip draft recovery). Surviving names retain identities, latest descriptions
 and protection; new steps are Generated/unprotected. Required non-member name conflicts

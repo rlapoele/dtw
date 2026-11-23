@@ -836,15 +836,17 @@ ramp metadata; interchange handling belongs to each export profile.
 
 The [agreed ramp direction](../project/guided-color-palette-generation.md#agreed-ramp-direction--20-november-2026)
 owns manual-override and automatic-placement behavior. Intentional value edits in
-both ramp and token editors mark the affected step Manual and preserve its value
-by default during ordinary regeneration, without changing protection or reshaping
-its neighbours. Accepting a generated replacement explicitly clears that override.
+both ramp and token editors mark the affected step Manual without changing protection
+or reshaping its neighbours. Under the 23 November amendment, Manual describes
+authorship only: ordinary generation-setting changes regenerate all unprotected
+steps and clear Manual when generated colors replace them. Protected colors remain
+unchanged, whether Manual or Generated.
 The saved recipe seed remains a generation input. Editing its corresponding token
 in the ordinary inspector creates a manual override without changing that seed;
 the applied token may then differ from the recipe anchor (agreed 20 November 2026). Auto placement
 suggests a recipe-dependent step; the accepted position is saved, with explicit
 recalculation rather than movement on reopening. Schema, fitting algorithm,
-membership details remain open. The [22 November Manual/protection agreement](../project/guided-color-palette-generation.md#manual-status-and-regeneration-protection)
+membership details remain open. The [Manual/protection agreement, amended 23 November](../project/guided-color-palette-generation.md#manual-status-and-regeneration-protection)
 keeps Manual status and protection separate. For the first ramp increment,
 protection controls apply only to ramp steps. Ordinary regeneration preserves
 Protected values without replacement prompts; removing protection alone does not

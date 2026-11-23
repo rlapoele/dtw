@@ -91,6 +91,15 @@ unresolved color; Apply can proceed when all other requirements are met. No fall
 or chain flattening is introduced. Seed-only changes retain valid accepted targets
 and refresh notices/previews; another confirmed count replacement clears older choices.
 
+## Subsequent regeneration amendment — 23 November 2026
+
+The user agreed that Manual describes authorship; Protected alone preserves a color
+during ordinary regeneration. Seed, intensity and seed-position changes regenerate
+all unprotected steps, clearing Manual when replaced. Count replacement remains the
+explicit protection exception. The V3 workspace note and Draft 024 reflect this
+behavioral revision; the earlier analyst review predates it. No artwork redesign
+or additional review is claimed here.
+
 ## Access, scope and checks
 
 Use keyboard-operable disclosure controls with expanded state and relationships,
@@ -105,7 +114,7 @@ are unchanged from V3 and the owning direction. V4 adds no “don't ask again”
 acceptance, skip-review mode, automatic remapping or new behavioral policy.
 
 Outstanding numerical, reference eligibility/Unspecified, repeated-replacement identity,
-ordinary Revert and metadata/history contracts remain the [Draft 024](../../increments/024-color-ramp-authoring.md)
+remaining ordinary-edit details and metadata/history contracts remain the [Draft 024](../../increments/024-color-ramp-authoring.md)
 questions. UX acceptance does not settle them. A renewed analyst check remains
 a separate next step; no implementation is authorized.
 

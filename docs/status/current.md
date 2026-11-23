@@ -28,12 +28,20 @@ temporary absence. Count replacement resets manual colors and remapping choices;
 it does not revert that metadata to saved values. The user also settled V4 Change:
 opening it preserves acceptance; selecting a different target blocks Apply until
 explicit acceptance or cancellation back to the previous accepted choice (AC-22).
-Next: decide ordinary non-replacement Revert field scope, one decision at a time.
+Ordinary non-replacement Revert now restores the selected step's saved color,
+Manual status, description and protection, preserving other steps and ramp settings
+(AC-11, user agreement on 23 November).
+The user then amended ordinary regeneration: seed, intensity and seed-position
+changes regenerate all unprotected steps, including Manual colors; Protected alone
+preserves colors. AC-9/12 and the owning direction supersede the earlier Manual
+preservation rule. This amendment postdates the analyst review and needs a focused
+consistency check before final agreement. Next: finish the remaining generated-reset
+baseline question under this revised rule.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: define acceptance when changing ramp reference choices`.
+`docs: make protection govern ordinary ramp regeneration`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.
