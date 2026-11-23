@@ -179,6 +179,13 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   existing Auto placement for the unchanged recipe seed without another confirmation.
   Show the position and permit manual selection or explicit Auto recalculation before
   Apply. Reference remapping uses label distance, not this lightness-based seed rule.
+
+  **Saved-member return — agreed 23 November 2026:** if a saved member disappears
+  from an intermediate replacement draft and returns before Apply (11 → 6 → 11),
+  retain its original saved identity and original reference connections. Generate
+  its color freshly and clear earlier remapping choices under AC-22. No intermediate
+  removal was saved. Returning description/protection baselines remain unresolved
+  in D5; this agreement does not restore discarded color edits.
 - **AC-14 — Non-member name conflicts.** A required name occupied by a non-member
   token blocks replacement. Do not adopt, overwrite, silently rename, skip a required
   step or mutate that token/references. Explain the conflict and preserve the current
@@ -303,20 +310,20 @@ Consistency review does not establish usability, numerical correctness or access
 | R1 | Documentary contradiction, corrected | Current gates still requested V3/user review before analyst review despite V4 acceptance and renewed authorization. Updated active gates and linked design notes; preserved dated historical evidence. |
 | R2 | Documentary ambiguity, corrected | The model said manual edits “protect” steps by default. Clarified Manual preservation without changing Protected state, matching the owning agreement. |
 | R3 | Unresolved requirement, D2 | V4 Change does not define interim acceptance/Apply behavior. Added the explicit decision to D2 without choosing it. |
-| R4 | Unresolved requirement, D5 | Saved 11 → 6 → 11 before Apply does not yet define reintroduced saved-member identity/reference and description/protection baselines. Survivor rules alone do not resolve it. |
+| R4 | Partly resolved, D5 | Saved-member identity/reference continuity was agreed after review on 23 November (AC-13). Returning description/protection baselines remain open; survivor rules alone do not resolve them. |
 | R5 | Unresolved requirement, D3/D4 | Literal Primitive membership, reference forms/traversal and canonical Unspecified need exact contracts. Existing `typed-unassigned` is a possible representation, not an agreed ramp operation. |
 
 The old resumed-design paragraph in the owning direction is now explicitly historical.
 Changing SVG “Proposal” labels solely for presentation is optional polish and deferred.
 No settled decision was reopened; no artwork or production behavior changed.
 
-**Recommended next decision, not yet agreed:** retain the original saved identity
+**User decision after review — 23 November 2026:** retain the original saved identity
 when a saved step returns during repeated replacement before Apply. For saved
-`color.brand.300` referenced by `color.action.primary`, 11 → 6 → 11 would preserve
+`color.brand.300` referenced by `color.action.primary`, 11 → 6 → 11 preserves
 that connection while generating fresh colors and clearing prior remapping choices.
-This avoids deletion/recreation without an intermediate save. Returning description
-and protection baselines remain a separate question; identity agreement must not
-silently settle them. D1–D5 remain the exact preparation list below.
+This avoids deletion/recreation without an intermediate save. AC-13 records the
+agreement. Returning description and protection baselines are the next separate
+question; identity agreement does not settle them. D1–D5 remain bounded below.
 
 ## Remaining preparation and decisions
 
@@ -378,10 +385,11 @@ Prepare typed versioned group metadata and application-operation proposals: reci
 identifiers, stable membership identities, accepted seed position/mode, Manual and
 ramp protection, validation, unknown readers/recipes, historical absence, retention
 and exact backup. Preserve existing protection data without expanding this feature's
-controls outside ramps. Define repeated-draft replacement identity bookkeeping against
-saved data without restoring discarded color edits. Original saved ramp members still
-exist until Apply; do not mistake them for unrelated non-members during a repeated
-draft replacement. Specify atomic removals, accepted
+controls outside ramps. Repeated-draft replacement must preserve returning saved-member
+identities and original reference connections under AC-13, without restoring discarded
+color edits or remapping choices. Original saved ramp members still exist until Apply;
+do not mistake them for unrelated non-members. Specify the remaining returning
+saved-member description/protection baseline and bookkeeping for draft-only members. Specify atomic removals, accepted
 reference changes and history together. Recommend one Undo/Redo entry per Apply;
 no schema version or storage platform is selected here.
 
@@ -444,7 +452,9 @@ follow-up grants no runtime or numerical allowance.
   its coverage and accepted V4's compact review as good enough for now.
 - 23 November: user-authorized renewed analyst review completed; findings and
   documentary reconciliation are recorded above. No material design revision needed.
-- Next: decide saved-member identity on repeated replacement, then resolve remaining
+- 23 November, after review: user agreed saved-member identity/reference continuity
+  on return before Apply; AC-13 records it.
+- Next: decide returning saved-member description/protection baselines, then resolve remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

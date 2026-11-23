@@ -452,6 +452,17 @@ This explicitly supersedes the earlier unapplied count-round-trip restoration ru
 Surviving token identities and descriptions are preserved under the agreements
 above. Other metadata details remain separate decisions. No implementation authorized.
 
+### Returning saved-member identity — agreed 23 November 2026
+
+When a saved ramp member disappears from an intermediate replacement draft and
+returns before Apply, keep its original saved identity and original reference
+connections. For example, saved `color.action.primary` → `color.brand.300` remains
+connected after 11 → 6 → 11 before Apply. No intermediate removal was saved.
+Generate fresh colors and clear prior remapping choices as already agreed; identity
+continuity does not recover discarded color edits. Returning description/protection
+baselines remain a separate unresolved decision. This does not select identity
+bookkeeping for draft-only steps or authorize implementation.
+
 ### Disappearing seed position on replacement — agreed 22 November 2026
 
 When confirmed count replacement removes the seed's assigned label, use the existing

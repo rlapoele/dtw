@@ -18,15 +18,17 @@ need for a design revision. [Findings and dispositions](../increments/024-color-
 record corrected review chronology and Manual/protection wording, plus the unresolved
 V4 Change acceptance state now included in D2. No further UX polish was undertaken.
 
-Next: decide whether an original saved step returning during 11 → 6 → 11 before
-Apply keeps its saved identity/reference connections; the analyst recommends yes,
-with fresh generated colors and cleared remapping choices. This is a recommendation,
-not an agreement. Returning descriptions/protection remain a separate question.
+After review, the user agreed that an original saved step returning during
+11 → 6 → 11 before Apply keeps its saved identity and original reference connections,
+with fresh generated colors and cleared remapping choices. The
+[owning decision](../project/guided-color-palette-generation.md#returning-saved-member-identity--agreed-23-november-2026)
+and AC-13 record this. Next: decide returning saved-member description/protection
+baselines; identity agreement does not settle them.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: record renewed ramp analyst review and reconcile gates`.
+`docs: preserve returning saved ramp member identities`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.
