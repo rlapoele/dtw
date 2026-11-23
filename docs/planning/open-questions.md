@@ -99,6 +99,8 @@ editing; subsequent editing uses one shared draft/Apply. Only Primitive tokens m
 participate; their layer is read-only in ramp and ordinary token editing (23 November).
 Members contain literal colors only; reference mode is unavailable in both editors
 while membership applies. External tokens may still reference ramp steps.
+Individual members cannot be renamed or moved while in a ramp; group renaming remains
+allowed. Individual member deletion and incompatible-data recovery remain open.
 
 The [owning direction](../project/guided-color-palette-generation.md) now distinguishes
 ordinary regeneration (Protected preserved; unprotected Manual/Generated colors

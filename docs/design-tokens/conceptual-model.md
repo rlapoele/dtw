@@ -839,6 +839,12 @@ do not introduce group-level type/layer inheritance, prohibit references on Prim
 non-members, flatten aliases or coerce incompatible data. Incompatible loaded membership
 requires truthful diagnosis and an explicit recovery contract in Increment 024.
 
+**Member structure also agreed 23 November:** individual member tokens cannot be
+renamed or moved while they belong to a ramp, including through ordinary editing.
+Their numerical names and membership location stay fixed. The ramp group itself
+may be renamed without changing stable member identities or references. This does
+not introduce a detach workflow or settle individual member deletion.
+
 This explicitly settles recipe retention for color ramps while preserving the
 scale-helper boundary: changed settings produce reviewed proposals, never automatic
 updates or live computed dependencies. Retention and project backups should preserve

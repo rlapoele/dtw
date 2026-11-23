@@ -65,14 +65,17 @@ unsaved, and Discard abandons them. Technical representation remains open.
 Creation Undo/Redo grouping is now agreed: successful creation has one entry for
 group, steps and settings; Redo restores the same identities and authored data.
 Creation navigation and cancellation create no entries (AC-16).
-Next: decide ordinary member rename/move behavior under D3.
+The user also agreed that individual members cannot be renamed or moved while in
+a ramp, including through ordinary editing. Ramp group renaming remains allowed
+(AC-15); no detach workflow is introduced.
+Next: decide individual member deletion under D3.
 Listed D2 decisions are recorded; the focused consistency check of post-review
 amendments, including this ordinary-editor restriction, remains pending.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: group ramp creation into one undo entry`.
+`docs: keep ramp member names and location fixed`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.

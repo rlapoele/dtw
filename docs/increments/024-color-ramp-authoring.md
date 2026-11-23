@@ -237,10 +237,14 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   draft. The user can choose another count or resolve the name through ordinary editing
   before retrying, respecting the existing draft/departure guard. A conflicting group
   is not converted into a token. No second independently saving editor is authorized.
-- **AC-15 — Structural integrity.** Preserve stable associations on group rename.
-  Missing, moved, renamed or unsupported members need truthful diagnostics and cannot
-  be silently recreated, converted or reassigned by path. Proposed first boundary:
-  block affected regeneration until repaired through ordinary editing (D3). Keep
+- **AC-15 — Structural integrity.** **Agreed 23 November:** individual ramp members
+  cannot be renamed or moved while they belong to a ramp, including through ordinary
+  editing. Keep their numerical names and membership location fixed. Renaming the
+  ramp group itself remains allowed and preserves stable associations. This does not
+  add a detach workflow. Missing, moved, renamed or unsupported members encountered
+  in data need truthful diagnostics and cannot be silently recreated, converted or
+  reassigned by path. Proposed first boundary: block affected regeneration until
+  repaired; the recovery route remains D3 and cannot bypass member restrictions. Keep
   layer/type/role/composition separate. Repeated draft replacement must not silently
   restore discarded manual colors or remapping choices; remaining identity bookkeeping is specified in D5.
 - **AC-16 — Atomic application and history.** Creation and whole-ramp Apply coordinate
@@ -469,8 +473,11 @@ mode is unavailable in both ramp and ordinary token editors while membership app
 external referencing tokens remain allowed. This is an explicit ramp constraint,
 not an implication of Primitive layer generally. Specify supported assignment shape
 and missing/renamed/moved or incompatible-member recovery without alias flattening.
-Non-member adoption remains excluded under AC-14. Do not infer other ordinary-editor
-restrictions from the agreed layer and value-form constraints.
+Non-member adoption remains excluded under AC-14. Individual member renaming/moving
+is now explicitly prohibited while membership applies (AC-15); group renaming remains
+allowed. Exact incompatible-data recovery must respect these restrictions rather
+than presume unrestricted ordinary editing. Individual member deletion remains to
+specify; no detach workflow is introduced.
 
 Seed-description ownership is settled in AC-6: only the final creation anchor token
 receives it; afterward ordinary token-description preservation applies. Surviving
@@ -597,7 +604,9 @@ follow-up grants no runtime or numerical allowance.
   clear (AC-13).
 - 23 November, subsequent decision: successful creation has one Undo/Redo entry
   for group, members and settings; Redo restores identical identities/authored data.
-- Next: decide ordinary member rename/move behavior under D3, then continue remaining
+- 23 November, subsequent decision: individual members cannot be renamed or moved
+  while in a ramp; renaming the ramp group remains allowed (AC-15).
+- Next: decide individual member deletion under D3, then continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

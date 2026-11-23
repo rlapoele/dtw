@@ -226,6 +226,17 @@ analyst review and authorized reconciliation of the draft contract. This is not
 final complete contract agreement or implementation authorization. Exact draft reconciliation and numerical
 policies remain unresolved. Static wireframes illustrate intended behavior only.
 
+### Member names and location — agreed 23 November 2026
+
+Individual ramp steps cannot be renamed or moved while they belong to a ramp,
+including through ordinary editing. Keep the numerical step labels and member
+location within the ramp group fixed. Renaming the ramp group itself remains
+allowed and preserves stable member identities and reference connections.
+This scoped constraint does not introduce a detach workflow or authorize silently
+repairing incompatible loaded data. Missing/renamed/moved-member recovery remains
+technical preparation; it must respect the authoring restrictions. Individual
+member deletion is a separate unresolved question.
+
 ### Whole-ramp Apply history — agreed 23 November 2026
 
 Each successful, substantive ramp Apply creates one Undo/Redo entry covering the
