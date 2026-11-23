@@ -107,7 +107,9 @@ found the later product rules and minimal incomplete-composite model coherent.
 The existing artwork still illustrates whole-color aliases, not multiple field
 occurrences in a composite. A small identified review example must add token/layer/
 field context, field-only Unspecified consequences and accepted/Change/Cancel states;
-a focused refill interaction is also pending. This is a required handoff, not an
+a focused refill interaction is also needed. [Field review/refill V1](color-ramp-field-review-v1.md)
+now supplies that proposed handoff, awaiting user review; it is not accepted or
+analyst-reviewed. This is a required handoff, not an
 invitation to polish V4 generally. No new design, runtime evidence or implementation
 is claimed by recording the findings.
 

@@ -10,6 +10,25 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp field review/refill V1 ready for user review — 23 November 2026
+
+The authorized designer prepared [two focused sheets and interaction notes](../project/workbench-layout/color-ramp-field-review-v1.md):
+field-aware reference review preserving V4, and later missing-color refill in the
+ordinary token inspector. Each decision retains token/layer/field identity; Unspecified
+clears only that field. Refill uses owned Literal color/Reference controls and the
+ordinary token Apply/Cancel boundary after the ramp draft has ended. No full composite
+editor or second save inside ramp review is proposed.
+
+The coordinator visually inspected both PNGs and corrected/rechecked one crowded
+caption. SVG XML, local links and whitespace passed. Static checks stopped at about
+11/12 aggregate minutes, zero harness repairs; the renderer required a permission-only
+retry, with no harness changes. No runtime/numerical/retention qualification restarted.
+Next: user reviews V1 and authorizes any affected analyst review. The proposal is not
+accepted, analyst-reviewed or implementation-authorized. Numerical policy, final
+metadata/versioning and validation integration remain open. Leave staging, committing
+and pushing to the user. Suggested commit:
+`docs: propose field-aware ramp reference review and refill`.
+
 ## Increment 024 consolidated review completed — 23 November 2026
 
 The user-authorized separate analyst review of the minimal incomplete-composite

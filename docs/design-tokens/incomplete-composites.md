@@ -146,7 +146,9 @@ Draft 024.
 The subsequent [focused consolidated analyst review](../increments/024-color-ramp-authoring.md#focused-consolidated-analyst-review--23-november-2026)
 found this minimal model coherent with the later ramp decisions. It identified the
 already-open field-aware review and focused completion interactions as the next
-required handoff; no broader model or repair system is needed. Those interactions
+required handoff; no broader model or repair system is needed. The subsequent
+[field review/refill V1 proposal](../project/workbench-layout/color-ramp-field-review-v1.md)
+now illustrates those interactions and awaits user feedback before analyst review. Those interactions
 must be surfaced to the user before review of material revisions. Final contract
 agreement, numerical/versioning preparation and implementation authorization remain
 outstanding. This is consistency evidence, not implementation or usability proof.

@@ -599,6 +599,37 @@ qualification; all previous stopping decisions remain unchanged. Corrections wer
 checked by the coordinator against the analyst's findings; no separate re-review of
 the corrected diff is claimed.
 
+### Field-aware design follow-up — authorized 23 November 2026
+
+After committing the consolidated review, the user authorized the proposed small
+field-aware review/refill handoff. A separate designer prepared
+[field review/refill V1](../project/workbench-layout/color-ramp-field-review-v1.md)
+against clean base `2bf52db`, preserving V4 and the V3 workspace. Scope is
+occurrence labels, field-only Unspecified consequences, accepted/Change/Cancel and
+focused refill after ramp Apply; no general composite editor or production change.
+The proposal must be shown to the user before further analyst review.
+
+This explicitly authorized follow-up has a **12 aggregate-minute static-check ceiling**,
+zero harness repairs (designer up to 8, coordinator up to 4). Essential checks are
+scenario consistency, rendered legibility, SVG/local links and Markdown whitespace.
+No numerical, browser or retention qualification; earlier stopping decisions remain.
+Completed two identified SVG sheets and PNG previews: occurrence-aware review
+(two shadow-layer color references, Unspecified and Change/Cancel), and post-Apply
+inspection/refill plus a parallel Unspecified whole-color example. New interaction
+choices are the persistent token/layer/field context, occurrence counts, Edit color
+entry and focused Current/New editing with ordinary token Apply/Cancel. These are
+proposals awaiting user review, not accepted requirements or analyst-reviewed design.
+
+Static checks stopped at approximately **11/12 aggregate minutes** (designer 7,
+coordinator 4), zero harness repairs. SVG XML, local links and whitespace passed.
+Quick Look initially failed at sandbox initialization; a permission-only retry of
+the same renderer succeeded, with no harness changes. The coordinator inspected both
+PNGs, identified a crowded refill caption, and re-rendered/rechecked its shortened
+version. Both sheets are legible without observed overlap after that correction.
+PNG lower whitespace comes from the temporary square render canvas. No runtime,
+keyboard/accessibility, numerical or retention evidence is claimed. No final design/
+contract agreement, analyst review of V1 or implementation authorization is implied.
+
 ### D4 preparation — source findings and proposal, 23 November 2026
 
 **Historical source preparation, before the subsequent incomplete-composite agreement.**
@@ -821,8 +852,10 @@ follow-up grants no runtime or numerical allowance.
 - 23 November: focused consolidated analyst review completed; two documentary
   inconsistencies corrected. Field-aware review/refill interactions remain the next
   bounded handoff; numerical, metadata/versioning and validation integration stay open.
-- Next: present that small interaction handoff to the user, then arrange affected
-  analyst review and continue remaining
+- 23 November: designer prepared field review/refill V1 and coordinator inspected
+  rendered sheets. Await user feedback/approval for affected analyst review.
+- Next: user reviews the identified V1 handoff, then arrange affected analyst review
+  if authorized and continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.
