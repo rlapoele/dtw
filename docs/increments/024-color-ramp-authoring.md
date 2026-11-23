@@ -528,13 +528,23 @@ Formatting precision is not a promise of 12-digit numerical accuracy. Exact mapp
 rounding order, post-rounding gamut validation and representative accuracy evidence
 remain open. This agreement authorizes no implementation or renewed numerical checks.
 
+**Incomplete seed values — agreed 23 November 2026.** Generation requires enough
+seed information for calculation under the existing conversion rules. A numeric
+OKLCH seed with exactly zero chroma may omit hue; a colored seed with nonzero chroma
+requires hue. Apply the existing equivalent exactly-powerless HSL rule rather than
+inventing a ramp-specific hue fallback. Other required components must be present.
+Preserve incomplete input and explain what must be completed before generation;
+do not invent a color, discard the draft or permit applying an obsolete preview.
+This agreement does not select numerical thresholds for neutral/extreme classification
+or settle the remaining extended-coordinate seed domain.
+
 **Remaining proposal sequence**, discussed one decision at a time:
 
 | Area | Recommended direction for preparation | Still to specify or establish |
 | --- | --- | --- |
 | Generated gamut fitting and explicit seed adjustment | Generated fitting direction now agreed above: reduce chroma while preserving lightness/hue; seed adjustment remains separately previewed and explicitly accepted. | Exact mapping algorithm, boundary tolerance, termination and behavior where chroma reduction cannot yield a valid target color. No clipping rule or epsilon is selected here. |
 | Precision and determinism | Agreed above: reuse bounded conversion and up-to-12-significant-digit, ties-to-even formatting; preserve prepared seed/alpha and regenerate from versioned recipe inputs. | Mapping/rounding order and final membership check; versioned reproducibility and representative accuracy evidence. Formatting precision is not an accuracy guarantee. |
-| Seed eligibility and neutral/extreme classification | Preserve exact-neutral semantics; accept missing hue only when powerless under the existing conversion rules. Preserve unsupported input and show why calculation is unavailable. | Exact ramp seed domain, extended-coordinate handling, white/black classification after conversion and treatment of numerical boundary error. Do not silently promote a near-neutral or near-white seed to an exact one. |
+| Seed eligibility and neutral/extreme classification | Incomplete-seed handling agreed above: accept missing hue only in the existing exactly-powerless cases; preserve input and explain missing information. | Exact ramp seed domain, extended-coordinate handling, white/black classification after conversion and treatment of numerical boundary error. Do not silently promote a near-neutral or near-white seed to an exact one. |
 | Alpha and repeated previews | Keep alpha separate and exact; compare derived previews, not authored equality or colors baked onto a background. Keep native color previews and honest sRGB HEX labeling. | Exact duplicate comparison including alpha, P3 preview versus sRGB HEX disclosure, and background-dependent presentation. No perceptual threshold is proposed. |
 
 The [recipe comparison](../project/workbench-layout/color-ramp-recipes-v1.md) owns

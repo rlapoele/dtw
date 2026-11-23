@@ -438,6 +438,14 @@ protection rules. This does not restore discarded manual edits or remapping choi
 Twelve digits describes formatting, not guaranteed numerical accuracy. Post-rounding
 gamut validation and exact calculation ordering remain technical preparation in D1.
 
+**Incomplete seed values agreed — 23 November:** require sufficient information
+for calculation. An OKLCH seed with exactly zero chroma may omit hue; a nonzero-chroma
+seed must supply it. Reuse the existing equivalent powerless-hue conversion rules;
+other required components must be present. Preserve incomplete input and explain
+what must be completed before generation. Do not invent missing color information
+or apply an obsolete preview. Extended-coordinate eligibility and numerical
+neutral/extreme classification remain technical preparation in D1.
+
 ### Creation seed description — agreed 23 November 2026
 
 The entered seed description initializes only the token at the final seed position.
