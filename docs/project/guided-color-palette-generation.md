@@ -428,6 +428,16 @@ Existing protection rules still apply. This does not silently alter the prepared
 seed: seed adjustment retains the explicit preview/acceptance requirement. Exact
 mapping, tolerances and unsupported-case handling remain with Draft 024 D1.
 
+**Upper-lightness seed adjustment agreed — 23 November:** when a calculable
+extended seed has OKLCH lightness above 1, offer a previewed candidate capped at 1.
+Show original and adjusted values, explain the cap to 100% and any chroma reduction
+needed to fit the target, and preserve alpha. Require explicit acceptance before
+replacing the draft seed; retain Create/Apply and Restore original behavior. Apply
+existing seed-position rules: adjusted white requires step 50, with an invalid manual
+position visibly resolved rather than silently moved. This is an explicit seed
+adjustment, not permission to change lightness during ordinary generated gamut
+fitting. Lower-than-zero adjustment is not settled by this upper-cap agreement.
+
 **Precision and repeatability agreed — 23 November:** use the existing bounded
 conversion policy, with up to 12 significant digits and ties-to-even rounding for
 newly calculated generated coordinates. Preserve the prepared seed and alpha exactly.

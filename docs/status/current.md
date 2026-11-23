@@ -19,18 +19,23 @@ and sRGB-plus-exact-alpha preview comparison. Source inspection found clipping
 fallbacks in installed gamut helpers, so adopting them wholesale would not preserve
 the agreed generated-color behavior. No new backend or implementation is proposed.
 
-Next user decision: require editing of extended seeds whose lightness cannot fit the
-supported range, rather than automatically changing lightness. The draft recommends
-editing for Increment 024. Mapping details are proposed, not validated; cross-space
-exact-endpoint classification and seed-adjustment representation still need technical
-reconciliation. D1 remains open, alongside D5 metadata/versioning and AC-15 validation
-integration. Final contract agreement and implementation authorization remain required.
+The user subsequently agreed a previewed upper-lightness cap for calculable extended
+seeds: show original/adjusted values, explain capping to 100% and any chroma reduction,
+and require acceptance before replacing the draft seed. Preserve alpha and existing
+save/Restore original/position rules; adjusted white requires step 50. This replaces
+the earlier edit-only recommendation for above-range lightness.
+
+Next: reconcile remaining technical details, including cross-space exact-endpoint
+classification and adjusted-seed representation; below-zero handling remains an open
+product choice. Mapping details remain proposed, not validated. D1 remains open,
+alongside D5 metadata/versioning and AC-15 validation integration. Final contract
+agreement and implementation authorization remain required.
 
 Document/source checks stopped at about 7/8 aggregate minutes, zero repairs. Local
 links/whitespace checked. No numerical calculations, tests, browser, rendering or
 retention qualification restarted. The neutral-rounding observation remains unresolved.
 Leave staging, committing and pushing to the user. Suggested commit:
-`docs: draft ramp numerical calculation specification`.
+`docs: agree explicit seed lightness adjustment`.
 
 ## Ramp numerical decisions: repeated-preview comparison agreed — 23 November 2026
 

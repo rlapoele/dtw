@@ -108,13 +108,23 @@ prepared value and D5; this document does not select hidden provenance, snap sto
 coordinates, or claim an approximate value proves exact white/black. Ordinary white
 and black must work across supported creation paths before delivery.
 
-**User decision required — extended seeds outside supported lightness.** Canonical
-extended RGB can be valid authored data while not producing ramp lightness in
-`[0,1]`. For example, an extended neutral seed with all channels above `1` has no
-chroma to reduce to bring its lightness into range. Recommend requiring seed editing
-for this case in Increment 024, preserving the entered value and explaining the
-constraint. Automatically proposing a changed lightness would be an additional
-seed-adjustment policy. Do not silently replace it with white or black.
+**Upper-lightness seed adjustment — agreed 23 November 2026.** For a calculable
+extended seed whose OKLCH lightness exceeds `1`, offer a candidate capped at `1`
+through the existing explicit adjustment flow. Show original and adjusted values
+and explain “Lightness reduced to 100% to fit the supported range.” Fit chroma as
+needed for the candidate's target gamut, preserve exact alpha, and disclose any
+additional chroma change. The original remains unchanged until the user accepts;
+acceptance replaces the draft seed only, with the existing Create/Apply save boundary
+and Restore original behavior retained. This supersedes the earlier edit-only
+recommendation for above-range lightness. It is not automatic capping with a notice.
+
+Apply the existing seed-position rules to the accepted candidate. An adjusted white
+seed requires step 50; an invalid manual position must be resolved through the
+existing flow, not silently moved. Generated-color gamut fitting still preserves
+calculated lightness/hue: this explicit seed adjustment is a distinct operation.
+Lower-than-zero lightness handling has not been agreed by this upper-cap decision;
+keep it open rather than implicitly selecting symmetric black adjustment. Unsupported
+or failed calculations retain input and cannot claim a valid adjusted preview.
 
 For eligible seeds whose lightness is supported, propose the same fixed-lightness/
 hue chroma-fitting direction for a previewed sRGB seed-adjustment candidate, with

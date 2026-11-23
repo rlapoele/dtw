@@ -95,7 +95,10 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   or explicit adjustment, with no invented wider target. Show original and adjusted
   values; Restore original seed remains available in the draft and reopens a required
   choice. Recheck after seed edits, preserve other fields/alpha and show the resolved
-  target at final review. Mapping, limits and tolerances require D1; a monitor preview
+  target at final review. For calculable seed lightness above 1, offer an explicitly
+  accepted candidate capped at 1, explaining the cap and any needed chroma adjustment
+  (agreed 23 November). Preserve alpha and apply existing seed-position rules.
+  Mapping, limits and tolerances require D1; a monitor preview
   does not prove numerical gamut membership.
 - **AC-5 — Lightness and placement.** Default endpoints are 0.97 / 0.20. Auto picks
   the nearest reference lightness `0.97 − 0.77 × (step − 50) / 900`, ties toward
@@ -586,10 +589,14 @@ silently. No dependency or production change was made.
 
 The draft is not numerically qualified. The 64-bisection work bound, strict membership,
 rounding behavior and comparison quantization are technical proposals. Cross-space
-exact-endpoint preparation/metadata remains unresolved. The next product question is
-whether extended seeds outside supported lightness must be edited; the recommendation
-is yes for Increment 024, without automatic lightness adjustment. Seed-adjustment
-representation also remains to be specified. D1 is not closed.
+exact-endpoint preparation/metadata remains unresolved. The user subsequently agreed
+a previewed, explicitly accepted upper-lightness cap for extended seeds, superseding
+the initial edit-only recommendation for that case. Show original/adjusted values,
+explain the cap to 100%, fit chroma as needed and preserve alpha. Acceptance replaces
+only the draft seed; existing save, Restore original and seed-position rules remain.
+An adjusted white seed requires step 50 without silently moving an invalid manual
+position. Lower-than-zero handling and adjusted-seed representation remain open.
+The linked specification records this agreement. D1 is not closed.
 
 Document/source checks stopped at about 7/8 aggregate minutes (analyst 4, coordinator
 3), zero repairs. This is the newly authorized specification task, not renewed
