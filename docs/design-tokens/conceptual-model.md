@@ -836,7 +836,8 @@ ramp metadata; interchange handling belongs to each export profile.
 
 The [agreed ramp direction](../project/guided-color-palette-generation.md#agreed-ramp-direction--20-november-2026)
 owns manual-override and automatic-placement behavior. Intentional value edits in
-both ramp and token editors protect the affected step by default, without reshaping
+both ramp and token editors mark the affected step Manual and preserve its value
+by default during ordinary regeneration, without changing protection or reshaping
 its neighbours. Accepting a generated replacement explicitly clears that override.
 The saved recipe seed remains a generation input. Editing its corresponding token
 in the ordinary inspector creates a manual override without changing that seed;

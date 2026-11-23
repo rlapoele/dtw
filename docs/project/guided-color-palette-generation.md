@@ -158,6 +158,10 @@ and exact eligibility still need specification.
 
 ### Ramp-editing design resumed — 22 November 2026
 
+**Historical exploration:** the paragraph below predates the later replacement and
+protection agreements and the V2 and V4/V3 analyst reviews. Protected one-time
+replacement prompts and its pending-review gate are superseded.
+
 The user resumed preparation of central-workspace and inspector wireframes,
 including settings changes, manual overrides, count-change conflicts and protected
 one-time replacements. The requested central workspace includes a color-space
@@ -353,8 +357,10 @@ direction keeps the behavior and safeguards while shortening their presentation:
 The user accepted [Editing V4](workbench-layout/color-ramp-editing-v4.md) as good
 enough for now on 22 November. Further UX polish is deferred. V3 remains the
 scenario-coverage/workspace reference; V4 owns the accepted compact confirmation
-and impact review. Acceptance does not imply completed analyst review, full contract
-agreement or implementation authorization.
+and impact review. The user-authorized renewed analyst review completed on
+23 November; [Draft 024](../increments/024-color-ramp-authoring.md#renewed-v4v3-analyst-review--23-november-2026)
+records its findings. No material design revision was required. Full contract
+agreement and implementation authorization remain pending.
 
 ### Count replacement and reference remapping — 22 November 2026
 
@@ -424,7 +430,7 @@ Exact impacted-reference eligibility and unspecified-value representation need t
 technical contract. The earlier count-round-trip agreement is superseded by the lifecycle below.
 The user authorized consolidation into [Editing V3](workbench-layout/color-ramp-editing-v3.md)
 and the active draft contract. The user accepted the subsequent V4 UX refinement;
-a renewed analyst check remains separate. No implementation is authorized.
+the renewed analyst check is recorded in Draft 024. No implementation is authorized.
 
 ### Confirmed replacement lifecycle — agreed 22 November 2026
 

@@ -2,6 +2,13 @@
 
 **Scenario-coverage reference — 22 November 2026.**
 
+**Review update — 23 November 2026:** the user-authorized renewed analyst review
+of accepted V4, the retained V3 workspace and consolidated Draft 024 is complete.
+See [findings and remaining decisions](../../increments/024-color-ramp-authoring.md#renewed-v4v3-analyst-review--23-november-2026).
+No material design revision was required; final full-contract agreement and
+implementation authorization remain pending. Earlier review gates and check claims
+below describe this artifact's preparation date, not the current authorization.
+
 The user reviewed this proposal as covering the scenarios and requested a more
 compact presentation for repeated use. [Editing V4](./color-ramp-editing-v4.md)
 explores progressive disclosure without changing these behaviors. No analyst

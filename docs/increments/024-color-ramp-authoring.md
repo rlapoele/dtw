@@ -7,8 +7,9 @@
   cleanup and new wireframes. The user reviewed V3 as covering the scenarios, then
   agreed progressive-disclosure refinement. [Editing V4](../project/workbench-layout/color-ramp-editing-v4.md)
   was accepted as good enough for now on 22 November; further UX polish is deferred.
-  V3 remains the coverage/workspace reference. No completed V3/V4 analyst review,
-  final full-contract agreement or implementation authorization is implied.
+  V3 remains the coverage/workspace reference. The user authorized renewed analyst
+  review on 23 November; that review is recorded below. Final full-contract agreement
+  and implementation authorization remain pending.
 - References: [owning ramp direction](../project/guided-color-palette-generation.md),
   [creation V3](../project/workbench-layout/color-ramp-creation-v3.md),
   [scale model](../design-tokens/conceptual-model.md#scale-generation),
@@ -50,14 +51,15 @@ The [progressive-disclosure direction](../project/guided-color-palette-generatio
 shortens repeated reading without changing the requirements: important consequences
 stay visible, optional detail expands, pending reference decisions come first, and
 accepted choices collapse with Change. Individual remapping acceptance and explicit
-Unspecified consequence disclosure remain mandatory. V4 is the user-accepted static UX version; a renewed analyst check remains a
-separate next step.
+Unspecified consequence disclosure remain mandatory. V4 is the user-accepted static
+UX version; the renewed analyst consistency review is recorded below.
 
 ## Acceptance criteria
 
 These criteria describe intended delivery, not implemented behavior. Explicit user
 decisions are requirements; **proposed** details and D1–D5 remain subject to agreement.
-The latest design must return to the user before renewed analyst review.
+Material design revisions must return to the user before further analyst review.
+The accepted V4 and retained V3 workspace received renewed review on 23 November.
 
 ### Creation and calculation
 
@@ -283,6 +285,39 @@ conflicts. F3/F5/F7 still require numerical, eligibility and metadata proposals.
 Reference-impact requirements AC-20–22 are new since V2 review. This consolidation
 is editorial/contract preparation, not renewed independent review of V3.
 
+## Renewed V4/V3 analyst review — 23 November 2026
+
+The user explicitly authorized this review, not implementation. A separate analyst
+reviewed clean commit `f4a37017ec5417b3c2e87aad091aec2929ebb3da`: accepted V4 notes
+and two SVGs, retained V3 notes and three SVGs, accepted creation V3, this consolidated
+draft and its owning product/model/architecture/interoperability decisions. Bounded
+source inspection checked existing token/reference representations. SVG inspection
+covered textual scenarios; no new render or runtime evidence is claimed.
+
+**Outcome:** no material contradiction in the settled V4/V3 behavior and no material
+design revision required. D1–D5 still prevent a complete implementation contract.
+Consistency review does not establish usability, numerical correctness or accessibility.
+
+| ID | Classification | Finding and disposition |
+| --- | --- | --- |
+| R1 | Documentary contradiction, corrected | Current gates still requested V3/user review before analyst review despite V4 acceptance and renewed authorization. Updated active gates and linked design notes; preserved dated historical evidence. |
+| R2 | Documentary ambiguity, corrected | The model said manual edits “protect” steps by default. Clarified Manual preservation without changing Protected state, matching the owning agreement. |
+| R3 | Unresolved requirement, D2 | V4 Change does not define interim acceptance/Apply behavior. Added the explicit decision to D2 without choosing it. |
+| R4 | Unresolved requirement, D5 | Saved 11 → 6 → 11 before Apply does not yet define reintroduced saved-member identity/reference and description/protection baselines. Survivor rules alone do not resolve it. |
+| R5 | Unresolved requirement, D3/D4 | Literal Primitive membership, reference forms/traversal and canonical Unspecified need exact contracts. Existing `typed-unassigned` is a possible representation, not an agreed ramp operation. |
+
+The old resumed-design paragraph in the owning direction is now explicitly historical.
+Changing SVG “Proposal” labels solely for presentation is optional polish and deferred.
+No settled decision was reopened; no artwork or production behavior changed.
+
+**Recommended next decision, not yet agreed:** retain the original saved identity
+when a saved step returns during repeated replacement before Apply. For saved
+`color.brand.300` referenced by `color.action.primary`, 11 → 6 → 11 would preserve
+that connection while generating fresh colors and clearing prior remapping choices.
+This avoids deletion/recreation without an intermediate save. Returning description
+and protection baselines remain a separate question; identity agreement must not
+silently settle them. D1–D5 remain the exact preparation list below.
+
 ## Remaining preparation and decisions
 
 Do not reopen agreed replacement, reference notices/remapping, protection defaults,
@@ -309,6 +344,12 @@ Clarify these without reintroducing protected replacement prompts or automatic
 count-round-trip recovery. Exact reset-candidate behavior after subsequent ordinary
 setting changes also needs an identified state rule; do not silently restore an older
 replacement recipe. These are small interaction decisions, not implementation latitude.
+
+V4 also leaves the interim **Change** state open: after accepting 300 → 200, opening
+Change and selecting 400 must not silently accept 400. Specify when the previous
+acceptance is suspended, when Apply is blocked and how the prior choice can be
+restored. Record the decision before implementation; the static design does not
+select a state rule.
 
 ### D3 — Member eligibility and creation field ownership
 
@@ -383,6 +424,14 @@ stopped at approximately **14/15 aggregate minutes** (designer 8, contract 3,
 coordinator 3), zero harness repairs. The coordinator visually inspected the three
 rendered sheets. This is static inspection, not independent V3 analyst review.
 
+The explicitly authorized 23 November analyst follow-up has a **15 aggregate minute**
+document/source-review ceiling and zero harness repairs. It used approximately
+**14 minutes** (analyst 7, coordinator reading/reconciliation/checks 7), zero repairs,
+and stopped after the focused review and documentary corrections. Checks cover changed
+Markdown, local link targets, whitespace and alignment with settled decisions. Earlier
+V1–V4, numerical, browser and retention stopping decisions remain unchanged; this
+follow-up grants no runtime or numerical allowance.
+
 ## History and next gate
 
 - 20–21 November: initial fixed 11 scope evolved into 2–20 steps, both intensities,
@@ -391,11 +440,13 @@ rendered sheets. This is static inspection, not independent V3 analyst review.
 - 22 November: V2 plus fixed Primitive received analyst review. Later user decisions
   replaced ordinary-token retention with confirmed count replacement, removed protected
   override prompts and settled reference review, draft lifecycle and seed-count placement.
-- Current pass: consolidated the active contract and prepared V3 for user review.
-  V3 has not received analyst review or final approval. Earlier V2 findings do not
-  certify the changed design.
-- Next: user reviews V3; material revisions return to the user before a separately
-  authorized analyst check. Prepare D1–D5 as needed, then obtain final contract/design
-  agreement and explicit implementation authorization. No implementation yet.
+- 22 November: consolidated the active contract and prepared V3; the user endorsed
+  its coverage and accepted V4's compact review as good enough for now.
+- 23 November: user-authorized renewed analyst review completed; findings and
+  documentary reconciliation are recorded above. No material design revision needed.
+- Next: decide saved-member identity on repeated replacement, then resolve remaining
+  D1–D5 questions one at a time. Material design revisions return to the user before
+  further review. Final contract/design agreement and explicit implementation
+  authorization remain required. No implementation yet.
 - Capture actual base commit and stable diff/new files before later implementation/review.
   Leave staging, committing and pushing to the user.
