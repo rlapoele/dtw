@@ -512,6 +512,95 @@ do not invent fallback values or silently claim support for unknown forms. Detai
 ordinary name-repair navigation under existing guards; the user-facing collision policy
 itself is settled, with no adoption/overwrite workflow to design.
 
+### D4 preparation — source findings and proposal, 23 November 2026
+
+**Preparation only; reference mutation scope is not yet agreed.** The coordinator
+and a separate analyst inspected current source at
+`68bf96900690d67ef05dfa274745b0e6b4f8b0ec`. This is targeted technical preparation,
+not the pending consistency review of all post-review product amendments. No code,
+schema, dependency or runtime behavior changed.
+
+#### Observed implementation boundaries
+
+- [Token operations](../../src/domain/token.ts) preserve token metadata when removing
+  an assignment; a retained type with zero assignments derives `typed-unassigned`.
+  [Reference validation](../../src/domain/token-reference-validation.ts) checks target
+  existence/type/path, not assignment availability. An alias to a typed-but-unassigned
+  color therefore need not become a dangling or type-invalid reference; resolution
+  reports `missing-assignment` through the chain instead.
+- The [retention codec](../../src/application/retention/codec.ts) accepts zero or one
+  assignment and requires its condition to be empty (lines 610–615). Domain-level
+  conditional assignments do not establish retained-product theme support. No new
+  value representation is needed merely to express a color with no assignment;
+  versioned ramp metadata remains separate D5 work.
+- Valid authored references include whole-token aliases and composite fields. A
+  [shadow layer](../../src/domain/shadow.ts) requires its color field to contain a
+  literal or reference; it has no absent-field Unspecified representation. Transition
+  and typography fields are also traversed, but are not direct color consumers.
+  [Expressions](../../src/domain/expression.ts) currently support number/dimension
+  math, not color expressions. Nonempty reference value paths remain unsupported.
+- The validator traverses authored references in all assignments and supported
+  composites/operands, but returns issues rather than a complete dependency inventory.
+  Its selected cycle graph excludes invalid edges. The
+  [diagnostics display](../../src/application/retention/diagnostics.ts) caps output
+  at 1,000 entries; it cannot establish complete impact counts or remapping coverage.
+- [Ordinary authoring](../../src/application/authoring.ts) rejects candidates containing
+  any namespace/reference diagnostics. Its current color revision operation requires
+  an existing single assignment; [revision eligibility](../../src/application/color-revision-policy.ts)
+  rejects typed-but-unassigned tokens. The accepted Unspecified outcome can be
+  represented, but the existing ordinary editor cannot subsequently fill that empty
+  color value. This recovery gap must be addressed explicitly before implementation.
+
+#### Proposed technical contract
+
+1. Support remapping/Unspecified for a direct whole-value color alias with exactly
+   one unconditional assignment and an empty value path. Preserve identity, color
+   type, layer, description and other metadata. Explicit Unspecified removes that
+   assignment: `definition: { type: "color", assignments: [] }`. Do not remove the
+   token/type, substitute transparent/black, retain the removed target or flatten
+   downstream chains. The acceptance marker belongs to the shared draft; saved
+   authored data needs no special “accepted error” value kind.
+2. Build the impact inventory from authored references, retaining owner identity
+   and assignment/field/layer/operand location. Compare saved and proposed graphs;
+   traverse reverse dependencies with cycle termination. Disclose surviving-target
+   and transitive impacts, including indirect shadow consequences. Preserve chains
+   and report unavailable previews honestly; no composite-rendering capability is
+   assumed. Do not treat truncated diagnostics as complete coverage.
+3. **Product choice pending:** if a disappearing step has a direct reference from
+   a form outside that mutation scope, such as `shadow.layers[0].color`, block the
+   count replacement with its exact token/field location. Preserve the draft and
+   data; do not erase the whole shadow, leave a dangling reference or invent a
+   field-level Unspecified value. Such references to surviving targets still receive
+   impact notices. This is a proposed first-slice limitation, not an agreed exception
+   to AC-20/21. Broadening composite-field editing needs an explicit alternative
+   contract, including what Unspecified removes.
+4. For accepted Unspecified on a whole color alias, downstream color aliases and
+   composites keep their connections and may resolve unavailable. Distinguish this
+   deliberate missing assignment from unanswered choices, missing tokens, cycles,
+   invalid types/paths and unsupported edits. Revalidate the complete staged change
+   against the reviewed revision; never suppress diagnostic categories globally.
+5. Prepare a bounded way to assign a literal/reference again to an external
+   typed-but-unassigned color token without changing its identity. This is a necessary
+   ordinary-authoring recovery proposal, not ramp-member reference permission or an
+   implemented capability. Identify the affected editor/operation contract before
+   implementation; Undo alone should not silently become the only recovery route.
+6. Keep invalid ramp metadata/member eligibility diagnostics separate from canonical
+   reference/namespace validation. Some incompatible ramps can therefore be isolated
+   without broadening existing validation. Where loaded missing members also produce
+   canonical errors, keeping unrelated work available needs an explicit baseline-aware
+   validation proposal. Do not claim current operations already satisfy AC-15 or grant
+   blanket permission to commit invalid candidates. This integration remains open.
+
+**Next decision:** accept the proposed blocker for direct composite references to
+removed steps, or broaden mutation support and design their Unspecified semantics.
+The narrow proposal preserves existing rich data while bounding this increment;
+it limits which count changes can be completed for such projects.
+
+**Evidence limits:** approximately 8/10 aggregate minutes for this explicitly
+authorized preparation (analyst 4, coordinator 4), zero harness repairs. Source and
+changed-document inspection only; whitespace/local link checks. No tests, numerical,
+browser or retention qualification. Prior stopping decisions remain unchanged.
+
 ### D5 — Metadata, history and compatibility
 
 Prepare typed versioned group metadata and application-operation proposals: recipe
@@ -632,8 +721,9 @@ follow-up grants no runtime or numerical allowance.
   are the likely theme direction, not a finalized theme contract.
 - 23 November, subsequent decision: incompatible ramps remain inspectable but cannot
   be edited/regenerated; preserve data and unaffected work, with no repair workflow.
-- Next: prepare reference technical scope/Unspecified under D4 and the validation
-  implications of the D3 boundary, then continue remaining
+- 23 November: targeted D4 source preparation recorded above. Typed-unassigned fits
+  whole-color Unspecified; direct composite-reference mutation needs a scope decision.
+- Next: decide the proposed direct-composite blocker, then continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

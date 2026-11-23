@@ -78,14 +78,23 @@ The user agreed that incompatible ramps remain inspectable but unavailable for
 editing/regeneration, with precise diagnostics, preserved data and unaffected work
 available. No dedicated repair workflow is included (AC-15). Technical integration
 with existing project validation still needs preparation.
-Next: prepare reference scope/Unspecified under D4 and D3 validation implications.
+D4 source preparation is now recorded in the
+[increment proposal](../increments/024-color-ramp-authoring.md#d4-preparation--source-findings-and-proposal-23-november-2026).
+Existing typed-unassigned color data can represent Unspecified without breaking
+reference identities. Direct shadow-color references need a separate mutation policy;
+the proposal limits mutation to whole-color aliases and blocks count replacement
+when an unsupported direct reference would lose its target. This limit is not agreed.
+Next: decide that direct-composite boundary. Ordinary editing of typed-unassigned
+colors and baseline-aware validation for unaffected work remain technical preparation.
+This targeted source pass used approximately 8/10 aggregate minutes, zero repairs;
+no tests or qualification runs. It is not a full renewed amendment review.
 Listed D2 decisions are recorded; the focused consistency check of post-review
 amendments, including this ordinary-editor restriction, remains pending.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: define incompatible ramp inspection boundary`.
+`docs: prepare ramp reference scope and unspecified representation`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.

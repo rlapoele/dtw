@@ -134,7 +134,12 @@ policy; remaining ordinary-edit reconciliation (Revert and invalid seed-position
 handling are now agreed in Draft 024); member eligibility
 and creation description ownership; reference forms/Unspecified/traversal; and versioned
 metadata/history/backup. Settled count/protection/remapping choices are not reopened.
-Final contract/design agreement and implementation authorization remain pending.
+[D4 source preparation](../increments/024-color-ramp-authoring.md#d4-preparation--source-findings-and-proposal-23-november-2026)
+proposes typed-unassigned for whole-color Unspecified and a blocker when direct
+composite references would lose their targets. The latter scope limit requires a
+user decision; typed-unassigned editing recovery and unaffected-work validation also
+need technical preparation. Final contract/design agreement and implementation
+authorization remain pending.
 
 **Broader confirmed future direction — 10 November 2026; work deferred:** support a
 color foundation first, followed by optional semantic-token recipes for light and
