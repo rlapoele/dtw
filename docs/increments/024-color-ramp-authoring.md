@@ -205,8 +205,9 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
 
   Surviving labels retain token identities, existing references and their latest
   saved/pending descriptions and protection. Replace saved/pending manual colors with
-  generated values and clear Manual; subsequent edits establish Manual again. New
-  steps start Generated and unprotected, with no transferred description/protection.
+  generated values and clear Manual; subsequent edits establish Manual again.
+  Genuinely new steps start Generated and unprotected, with no transferred description/
+  protection. Returning draft-only members follow the continuity rule below.
   Retain a surviving valid seed position; otherwise, when its label disappears, use
   existing Auto placement for the unchanged recipe seed without another confirmation.
   Show the position and permit manual selection or explicit Auto recalculation before
@@ -220,6 +221,16 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   choices across its temporary absence, until Apply or whole-draft Discard. This
   does not restore discarded manual colors or remapping choices. Applying a count
   that omits the step removes it; these choices do not transfer to a later new step.
+  **Draft-only member return — agreed 23 November 2026:** a member first introduced
+  in the current draft keeps its draft identity and latest description/protection
+  if it temporarily disappears and returns before Apply. For saved six steps, create
+  300 in an eleven-step draft, describe/protect it, then confirm six and eleven again:
+  returning 300 keeps that identity, description and protection. Generate its color
+  freshly, clear Manual and discard earlier remapping choices as for every confirmed
+  replacement. This continuity is session-draft state, not a hidden ordinary token or
+  persisted absent member. Apply includes only the final members; an omitted draft-only
+  step is never created. Discard abandons draft-only members. First-time new-step
+  defaults and non-member conflict blocking remain unchanged.
 - **AC-14 — Non-member name conflicts.** A required name occupied by a non-member
   token blocks replacement. Do not adopt, overwrite, silently rename, skip a required
   step or mutate that token/references. Explain the conflict and preserve the current
@@ -482,9 +493,11 @@ controls outside ramps. Repeated-draft replacement must preserve returning saved
 identities and original reference connections under AC-13, without restoring discarded
 color edits or remapping choices. Original saved ramp members still exist until Apply;
 do not mistake them for unrelated non-members. Preserve returning saved members'
-latest saved/pending descriptions and protection under AC-13. Specify remaining
-bookkeeping for draft-only members, atomic removals, accepted
-reference changes and history together. One Undo/Redo entry per substantive ramp
+latest saved/pending descriptions and protection under AC-13. Returning draft-only
+members likewise retain draft identity and latest description/protection until Apply
+or Discard, as now agreed in AC-13. Define the technical representation of this
+session-only continuity, atomic removals, accepted reference changes and history
+together; do not persist absent draft-only members. One Undo/Redo entry per substantive ramp
 Apply is now agreed in AC-16, with no entries for draft edits. Creation history and
 exact operation/schema representation still require preparation; no schema version
 or storage platform is selected here.
@@ -575,7 +588,10 @@ follow-up grants no runtime or numerical allowance.
   mode is unavailable in both editors for members. External references remain allowed.
 - 23 November, subsequent decision: each substantive ramp Apply has one Undo/Redo
   entry for the complete authored change; draft edits create none (AC-16).
-- Next: decide draft-only member bookkeeping under D5, then continue remaining
+- 23 November, subsequent decision: returning draft-only members retain their draft
+  identity and latest description/protection; colors regenerate and remapping choices
+  clear (AC-13).
+- Next: confirm creation Undo/Redo grouping under D5, then continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

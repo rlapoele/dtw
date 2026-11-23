@@ -113,7 +113,7 @@ The inspector's shared Apply footer remains reachable. Existing narrow-view beha
 are unchanged from V3 and the owning direction. V4 adds no “don't ask again”, implicit
 acceptance, skip-review mode, automatic remapping or new behavioral policy.
 
-Outstanding numerical, reference eligibility/Unspecified, repeated-replacement identity,
+Outstanding numerical, reference eligibility/Unspecified, repeated-replacement representation,
 remaining ordinary-edit details and metadata/history contracts remain the [Draft 024](../../increments/024-color-ramp-authoring.md)
 questions. UX acceptance does not settle them. A renewed analyst check remains
 a separate next step; no implementation is authorized.

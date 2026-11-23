@@ -58,14 +58,18 @@ reference ramp steps. Assignment shape and incompatible-member recovery remain o
 The user agreed one Undo/Redo entry for each substantive ramp Apply, restoring or
 reapplying the complete authored change together. Draft edits create no history
 entries; unchanged Apply creates none (AC-16). Session-only history is unchanged.
-Next: decide draft-only member bookkeeping under D5.
+The user agreed that returning draft-only steps retain draft identity and latest
+description/protection, while colors regenerate and prior remapping choices clear
+(AC-13). Only final members are created on Apply; omitted draft-only members remain
+unsaved, and Discard abandons them. Technical representation remains open.
+Next: confirm creation Undo/Redo grouping under D5.
 Listed D2 decisions are recorded; the focused consistency check of post-review
 amendments, including this ordinary-editor restriction, remains pending.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: group ramp Apply into one undo entry`.
+`docs: preserve returning draft-only ramp member metadata`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.

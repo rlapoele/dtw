@@ -186,9 +186,9 @@ Known agreed behavior is represented rather than reopened. Remaining work includ
 
 - Exact numerical generation/mapping/precision and supported member/reference forms;
   canonical Unspecified, versioned metadata and atomic persistence/history contract.
-- Remaining identity bookkeeping for draft-only members. The 23 November AC-13
-  agreement now preserves returning saved-member identities, original connections
-  and latest description/protection choices. Earlier artwork's “earlier edits”
+- Technical representation of repeated-replacement continuity. The 23 November AC-13
+  agreements preserve returning saved-member identities/original connections, and
+  returning draft-only identities, with latest description/protection choices for both. Earlier artwork's “earlier edits”
   reset wording means manual colors and remapping choices, not that metadata.
 - Consistency check of subsequent ordinary-edit agreements: unchanged input does not
   establish Manual, intentional color edit-return retains it, and ordinary Revert

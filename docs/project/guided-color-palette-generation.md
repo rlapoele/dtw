@@ -521,8 +521,25 @@ unlocked, with a freshly generated color. Do not revert these choices to saved
 metadata. Fresh replacement resets manual colors and remapping choices specifically.
 If Apply removes step 300 at six steps, those choices do not transfer to a new step
 created by a later increase. Whole-draft Discard still restores the saved ramp.
-This does not select identity bookkeeping for draft-only steps or authorize
-implementation.
+The subsequent draft-only continuity agreement below completes the corresponding
+product rule for members not yet saved. Technical representation remains open;
+implementation is not authorized.
+
+### Returning draft-only members — agreed 23 November 2026
+
+A step first introduced in the current draft retains its draft identity and latest
+description/protection if it temporarily disappears and returns before Apply.
+For example, start with saved six steps, confirm eleven, describe and protect new
+300, then confirm six and eleven again. Returning 300 retains those choices and its
+draft identity, but receives a fresh generated color with Manual cleared. Earlier
+remapping choices are discarded under the existing replacement rule.
+
+This is continuity within the shared draft, not recovery of earlier manual colors
+or remappings, transfer to a different step, or creation of hidden ordinary tokens.
+Only final members are created on Apply; omitted draft-only members are never saved.
+Discard abandons them. A step introduced for the first time still starts Generated,
+unprotected and without an inherited description. Non-member name conflicts still
+block replacement. Exact session-state representation remains to specify.
 
 ### Disappearing seed position on replacement — agreed 22 November 2026
 
