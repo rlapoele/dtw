@@ -240,8 +240,15 @@ including through ordinary editing. Keep the numerical step labels and member
 location within the ramp group fixed. Renaming the ramp group itself remains
 allowed and preserves stable member identities and reference connections.
 This scoped constraint does not introduce a detach workflow or authorize silently
-repairing incompatible loaded data. Missing/renamed/moved-member recovery remains
-technical preparation; it must respect the authoring restrictions.
+repairing incompatible loaded data.
+
+**Incompatible-member boundary subsequently agreed 23 November:** if loaded ramp
+data has a missing, renamed, moved or unsupported member, keep the affected ramp
+inspectable but unavailable for editing/regeneration. Explain the precise issue,
+preserve the data and keep unaffected project work available. Do not silently
+recreate members, convert references to literals, relabel or coerce data. A dedicated
+repair workflow is outside this increment. Technical validation and diagnostic
+integration remain to specify; inspection is not an ordinary-editor repair bypass.
 
 **Individual deletion subsequently agreed 23 November:** ordinary editing cannot
 delete a token while it belongs to a ramp. Step removal goes through confirmed count

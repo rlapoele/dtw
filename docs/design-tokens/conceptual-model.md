@@ -840,7 +840,10 @@ ramp steps normally. The likely theme direction is to reuse these primitive valu
 through differing semantic mappings; broader theme semantics remain separate. These scoped constraints
 do not introduce group-level type/layer inheritance, prohibit references on Primitive
 non-members, flatten aliases or coerce incompatible data. Incompatible loaded membership
-requires truthful diagnosis and an explicit recovery contract in Increment 024.
+makes the affected ramp inspectable but unavailable for editing/regeneration
+(boundary agreed 23 November). Preserve the data, explain the precise issue and
+keep unaffected project work available. No dedicated repair workflow is included;
+Increment 024 owns the remaining technical validation/diagnostic integration.
 
 **Member structure also agreed 23 November:** individual member tokens cannot be
 renamed or moved while they belong to a ramp, including through ordinary editing.

@@ -247,8 +247,12 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   ramp group itself remains allowed and preserves stable associations. This does not
   add a detach workflow. Missing, moved, renamed or unsupported members encountered
   in data need truthful diagnostics and cannot be silently recreated, converted or
-  reassigned by path. Proposed first boundary: block affected regeneration until
-  repaired; the recovery route remains D3 and cannot bypass member restrictions. Keep
+  reassigned by path. **Incompatible-member boundary agreed 23 November:** keep the
+  affected ramp inspectable but unavailable for editing or regeneration, with a
+  precise explanation of the incompatible or missing member. Preserve its data and
+  keep unaffected project work available; do not silently recreate tokens, flatten
+  references or coerce values. No dedicated repair workflow is included in this
+  increment. D3 retains technical diagnosis and enforcement preparation. Keep
   layer/type/role/composition separate. Repeated draft replacement must not silently
   restore discarded manual colors or remapping choices; remaining identity bookkeeping is specified in D5.
 - **AC-16 — Atomic application and history.** Creation and whole-ramp Apply coordinate
@@ -469,22 +473,27 @@ it is no longer an open D2 decision.
 **Agreed 23 November:** only Primitive tokens may participate. Both the ramp inspector
 and ordinary token editor prevent changing or clearing a member's layer (AC-7).
 This supersedes the proposal to permit ordinary-editor layer changes and diagnose
-incompatibility afterward. Existing incompatible data still needs truthful diagnosis,
-not relabeling or coercion; exact recovery remains to specify.
+incompatibility afterward. **Recovery boundary now agreed:** incompatible loaded
+members make the affected ramp inspectable but unavailable for editing/regeneration,
+with precise diagnostics and preserved data (AC-15). Unaffected project work stays
+available. No dedicated repair workflow is included.
 
 **Also agreed 23 November:** ramp members contain literal colors only. Reference
 mode is unavailable in both ramp and ordinary token editors while membership applies;
 external referencing tokens remain allowed. This is an explicit ramp constraint,
 not an implication of Primitive layer generally. **Assignment shape agreed
 23 November:** one unconditional literal color per member; no theme-dependent
-member values. Record this shape in the technical contract and define missing/
-renamed/moved or incompatible-member recovery without flattening or coercion.
+member values. Record this shape and the agreed incompatible-member boundary in
+technical validation/diagnostics, without flattening or coercion.
 The user's likely theme direction is to reuse the primitive palette through different
 semantic mappings; this is not a finalized theme contract or implementation scope.
 Non-member adoption remains excluded under AC-14. Individual member renaming/moving
 is now explicitly prohibited while membership applies (AC-15); group renaming remains
-allowed. Exact incompatible-data recovery must respect these restrictions rather
-than presume unrestricted ordinary editing. Individual member deletion through
+allowed. Diagnostic inspection must respect these restrictions rather than offer
+ordinary editing as an implicit repair route. Prepare how ramp-local diagnostics
+coexist with existing project validation so unaffected work stays available without
+bypassing unrelated integrity gates; the product decision does not itself prove
+current operations support that boundary. Individual member deletion through
 ordinary editing is now prohibited; step removal uses confirmed count replacement
 (AC-15). No detach workflow is introduced. This does not select a whole-group
 removal policy.
@@ -621,7 +630,10 @@ follow-up grants no runtime or numerical allowance.
 - 23 November, subsequent decision: each member has one unconditional literal color;
   no theme-dependent member values. Shared primitives with differing semantic mappings
   are the likely theme direction, not a finalized theme contract.
-- Next: decide incompatible-member recovery boundary under D3, then continue remaining
+- 23 November, subsequent decision: incompatible ramps remain inspectable but cannot
+  be edited/regenerated; preserve data and unaffected work, with no repair workflow.
+- Next: prepare reference technical scope/Unspecified under D4 and the validation
+  implications of the D3 boundary, then continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

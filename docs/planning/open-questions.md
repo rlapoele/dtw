@@ -102,7 +102,10 @@ reference mode and conditional/theme-specific value authoring are unavailable in
 editors while membership applies. External tokens may still reference ramp steps.
 Individual members cannot be renamed or moved while in a ramp; group renaming remains
 allowed. Individual deletion through ordinary editing is prohibited; step removal
-uses confirmed count replacement. Incompatible-data recovery remains open. The likely
+uses confirmed count replacement. Incompatible loaded members leave the ramp
+inspectable but unavailable for editing/regeneration, with data preserved and unaffected
+work available; no dedicated repair workflow is included. Technical validation and
+diagnostic integration remain open. The likely
 broader theme direction reuses the primitive palette through differing semantic
 mappings; that theme contract is not finalized here.
 

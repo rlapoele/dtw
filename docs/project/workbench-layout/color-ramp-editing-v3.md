@@ -186,6 +186,14 @@ sticky component labels. At narrow width, use the existing separate inspector vi
 with Back to ramp and preserved draft/scroll context. No narrow artifact or runtime
 keyboard, screen-reader, focus, scroll or accessibility result is claimed here.
 
+## Incompatible loaded members — agreed 23 November 2026
+
+Keep an affected ramp inspectable but unavailable for editing/regeneration when a
+member is missing or incompatible. Explain the exact issue and preserve the data;
+keep unaffected project work available. Do not silently recreate tokens or convert
+references to literals. No dedicated repair workflow is included. Technical diagnosis
+and enforcement remain with Draft 024; this note adds no new artwork or runtime proof.
+
 ## Remaining decisions and evidence
 
 Known agreed behavior is represented rather than reopened. Remaining work includes:
