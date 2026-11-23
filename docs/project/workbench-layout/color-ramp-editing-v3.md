@@ -47,8 +47,9 @@ policy. Component space is synchronized with the inspector and initially uses th
 project's effective default, as proposed in V2.
 
 **Reset color to generated** is the agreed action after confirmed replacement: clear
-the new Manual adjustment and restore the replacement's generated candidate while
-leaving description and protection unchanged. It does not recover the discarded old
+the new Manual adjustment and use the generated candidate from the latest valid
+draft recipe/settings, including subsequent seed changes (agreed 23 November),
+while leaving description and protection unchanged. It does not recover the discarded old
 color. **Ordinary Revert scope agreed 23 November:** without count replacement,
 restore the selected step's saved color, Manual status, description and protection.
 Preserve other steps' pending edits and ramp settings. This is distinct from the
@@ -178,8 +179,9 @@ Known agreed behavior is represented rather than reopened. Remaining work includ
   agreement now preserves returning saved-member identities, original connections
   and latest description/protection choices. Earlier artwork's “earlier edits”
   reset wording means manual colors and remapping choices, not that metadata.
-- Generated reset baseline if generation settings change after a replacement and
-  subsequent manual edits. Ordinary Revert field scope is now settled above.
+- Remaining ordinary-edit reconciliation, including invalid retained seed positions
+  and no-op versus intentional edit-return handling. Generated reset baseline and
+  ordinary Revert field scope are settled above.
 - The exact pre-Apply impact-list organization and final responsive/focus contract.
 
 The main visual structure is carried from source-grounded V2; no production source

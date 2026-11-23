@@ -150,9 +150,10 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   (AC-21). In ordinary editing without count replacement, Revert restores the
   selected step's saved color, Manual status, description and protection (field scope
   agreed 23 November). Other steps' pending edits and ramp settings remain unchanged.
-  After count replacement use Reset color to generated: restore
-  the replacement candidate, clear the new Manual adjustment, and leave description
-  and protection unchanged. Leaving offers Apply and leave / Discard and leave / Keep
+  After count replacement use Reset color to generated: use the generated candidate
+  from the latest valid draft recipe/settings, including subsequent seed changes
+  (baseline agreed 23 November). Clear Manual; leave description and protection
+  unchanged. Do not restore the original replacement recipe or saved color. Leaving offers Apply and leave / Discard and leave / Keep
   editing. Navigate after confirmed save success only; failure retains the draft.
 - **AC-12 — Ordinary generation settings.** Seed and ordinary generation-setting
   changes (including seed, intensity and seed position) regenerate every unprotected
@@ -357,8 +358,23 @@ exception. AC-9/10/12 and the owning direction reflect this agreement.
 The earlier analyst review assessed the previous rule, not this amendment. A focused
 analyst consistency check remains pending before final contract agreement; no new
 review, runtime/numerical checks or implementation is claimed. The user's approval
-settles this behavioral revision; it does not authorize implementation. The generated
-reset baseline question remains open for cases still relevant under this rule.
+settles this behavioral revision; it does not authorize implementation. The user
+subsequently agreed that generated reset uses the latest draft recipe/settings
+(AC-11), through this step-by-step example:
+
+1. Start with a saved blue eleven-step ramp; step 400 is Generated, unprotected,
+   with description “Primary accent”.
+2. Confirm six-step replacement: 400 survives with fresh generated color, unchanged
+   identity, description and protection. Nothing is saved yet.
+3. Manually edit 400 to purple: it becomes Manual without changing the recipe seed
+   or neighbouring colors.
+4. Change the recipe seed to green: unprotected 400 regenerates and becomes Generated;
+   the purple edit is not retained for recovery. Protected steps keep their colors.
+5. Manually edit 400 to orange, then Reset color to generated: use the current green
+   six-step candidate and clear Manual, keeping description and protection unchanged.
+
+Discard throughout this sequence restores the original saved eleven-step ramp.
+These are agreed behavioral examples, not numerical fixtures or runtime evidence.
 
 ## Remaining preparation and decisions
 
@@ -385,9 +401,9 @@ that invalidate a retained position. Ordinary non-replacement Revert's field sco
 was agreed on 23 November: saved color, Manual status, description and protection,
 with other steps and ramp settings preserved (AC-11).
 Clarify these without reintroducing protected replacement prompts or automatic
-count-round-trip recovery. Exact reset-candidate behavior after subsequent ordinary
-setting changes also needs an identified state rule; do not silently restore an older
-replacement recipe. These are small interaction decisions, not implementation latitude.
+count-round-trip recovery. Reset after subsequent settings changes uses the latest
+draft recipe/settings, as agreed in AC-11. Remaining questions are interaction
+decisions, not implementation latitude.
 
 V4's interim **Change** state was settled on 23 November and is specified in AC-22;
 it is no longer an open D2 decision.
@@ -496,7 +512,9 @@ follow-up grants no runtime or numerical allowance.
   changing the selection blocks Apply until acceptance or Cancel change (AC-22).
 - 23 November, subsequent decision: ordinary Revert restores the selected step’s
   saved color, Manual status, description and protection; other steps/settings stay.
-- Next: decide the generated reset baseline after subsequent settings changes, then resolve remaining
+- 23 November, subsequent decision: generated reset uses the latest draft recipe;
+  the agreed blue → green six-step example above records the behavior.
+- Next: decide non-count seed edits that invalidate a retained position, then resolve remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

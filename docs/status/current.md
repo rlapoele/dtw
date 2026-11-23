@@ -35,13 +35,16 @@ The user then amended ordinary regeneration: seed, intensity and seed-position
 changes regenerate all unprotected steps, including Manual colors; Protected alone
 preserves colors. AC-9/12 and the owning direction supersede the earlier Manual
 preservation rule. This amendment postdates the analyst review and needs a focused
-consistency check before final agreement. Next: finish the remaining generated-reset
-baseline question under this revised rule.
+consistency check before final agreement. The user then confirmed step by step that
+Reset color to generated uses the latest draft recipe/settings, clearing Manual and
+preserving description/protection (AC-11). The blue → green six-step example is
+recorded in Draft 024; it is behavioral agreement, not numerical verification.
+Next: decide non-count seed edits that invalidate a retained position.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: make protection govern ordinary ramp regeneration`.
+`docs: define generated reset from current ramp settings`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.

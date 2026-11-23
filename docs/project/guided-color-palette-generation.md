@@ -582,9 +582,12 @@ which follows the separate fresh-draft rule, or resolve invalid-target handling.
 ### Color reset after replacement — agreed 22 November 2026
 
 After confirming count replacement, an individually edited candidate can be reset
-to the replacement's generated color using **Reset color to generated**. Clear the
-new Manual color adjustment; leave description and protection unchanged. This
-applies to the replacement candidate rather than restoring the old saved color.
+using **Reset color to generated**. **Baseline agreed 23 November:** use the generated
+candidate from the latest valid draft recipe/settings, including subsequent seed
+changes. Clear Manual; leave description and protection unchanged. Do not restore
+the earlier replacement recipe or old saved color. For example, after blue six-step
+replacement, a change to green regenerates an unprotected Manual step; a later orange
+manual edit resets to the current green six-step candidate.
 The whole saved ramp remains recoverable through Discard draft. Reset is a draft
 action, not a save or a new count replacement. Ordinary non-replacement Revert
 restores the selected step's saved color, Manual status, description and protection,
