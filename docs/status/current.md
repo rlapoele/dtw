@@ -39,12 +39,15 @@ consistency check before final agreement. The user then confirmed step by step t
 Reset color to generated uses the latest draft recipe/settings, clearing Manual and
 preserving description/protection (AC-11). The blue → green six-step example is
 recorded in Draft 024; it is behavioral agreement, not numerical verification.
-Next: decide non-count seed edits that invalidate a retained position.
+The user also agreed that a non-count seed edit invalidating the retained position
+keeps the requested position visible and blocks Apply until explicit position
+correction or a seed edit (AC-12). No silent repositioning.
+Next: confirm creation seed-description ownership.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: define generated reset from current ramp settings`.
+`docs: define correction for invalid ramp seed positions`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.

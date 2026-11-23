@@ -104,6 +104,11 @@ placement confirmation is required. The illustrated blue seed moves from 500 to 
 in the six-step proposal. Recalculate Auto or choose another valid label before Apply.
 This is different from numerical-label proximity for references.
 
+**Non-count seed edits — agreed 23 November:** if editing the recipe seed makes its
+retained position invalid, keep that position visible, explain the conflict and
+block Apply until explicit correction. For exact white at 500, offer Use step 50
+or Edit seed; exact black requires 950. Do not silently move the seed.
+
 **Review reference impacts** opens the contextual review below. Its count reports
 unanswered required choices, not informational notices. Apply is unavailable while
 required choices, invalid fields, stale state or other blocking failures remain.
@@ -179,8 +184,8 @@ Known agreed behavior is represented rather than reopened. Remaining work includ
   agreement now preserves returning saved-member identities, original connections
   and latest description/protection choices. Earlier artwork's “earlier edits”
   reset wording means manual colors and remapping choices, not that metadata.
-- Remaining ordinary-edit reconciliation, including invalid retained seed positions
-  and no-op versus intentional edit-return handling. Generated reset baseline and
+- Remaining ordinary-edit reconciliation, including no-op versus intentional
+  edit-return handling. Invalid retained seed positions follow the correction gate above. Generated reset baseline and
   ordinary Revert field scope are settled above.
 - The exact pre-Apply impact-list organization and final responsive/focus contract.
 

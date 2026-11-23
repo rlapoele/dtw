@@ -509,6 +509,17 @@ Do not automatically reposition it merely because the count changed. The user ca
 still select another valid position or explicitly recalculate Auto placement before
 Apply.
 
+### Invalid seed position after a seed edit — agreed 23 November 2026
+
+If a non-count recipe-seed edit makes the retained seed position invalid, keep the
+requested position visible, explain the conflict and block Apply until the user
+explicitly chooses a valid position or edits the seed. For exact white at step 500,
+offer Use step 50 or Edit seed; exact black has the corresponding 950 restriction.
+Do not silently reposition. This later-editing rule is distinct from the agreed
+Auto placement when count replacement removes the assigned label. Numerical
+classification/tolerances remain with Draft 024 D1; this agreement selects no new
+threshold or algorithm.
+
 ### Non-member name conflicts — agreed 22 November 2026
 
 An occupied required step name belonging to a token outside the ramp blocks count

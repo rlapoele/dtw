@@ -118,7 +118,8 @@ and records the historical V2 and renewed 23 November V4/V3 analyst reviews.
 [Editing V4](../project/workbench-layout/color-ramp-editing-v4.md) is accepted as good
 enough for now; V3 retains workspace/scenario coverage. No material design revision
 was required by renewed review. Remaining D1–D5 concern exact numerical
-policy; ordinary editing/revert and non-count invalid seed placement; member eligibility
+policy; remaining ordinary-edit reconciliation (Revert and invalid seed-position
+handling are now agreed in Draft 024); member eligibility
 and creation description ownership; reference forms/Unspecified/traversal; and versioned
 metadata/history/backup. Settled count/protection/remapping choices are not reopened.
 Final contract/design agreement and implementation authorization remain pending.

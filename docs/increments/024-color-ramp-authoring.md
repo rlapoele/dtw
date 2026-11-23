@@ -102,7 +102,7 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   recalculates after seed/count changes; a valid surviving manual label stays.
   Removed/invalid manual positions remain visible and require a confirmed valid
   replacement. No illustrative replacement label selects an algorithm. Save the
-  accepted placement; reopening never moves it. Later count replacement follows AC-13; non-count setting changes remain in D2; numerical edges need D1.
+  accepted placement; reopening never moves it. Later count replacement follows AC-13; non-count position invalidation follows AC-12; numerical edges need D1.
 - **AC-6 — Preview truthfulness.** Show full names, paths and values even at 20
   steps, using scrolling as needed. Repeated 8-bit sRGB previews produce non-blocking
   feedback identifying steps, without claiming authored equality or perceptual
@@ -161,8 +161,14 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   colors remain unchanged whether Manual or Generated. Description and protection
   choices remain unchanged. Manual
   step edits, view/background changes and lock toggles do not regenerate neighbours.
-  Count replacement follows AC-13 instead. Reopening does not regenerate. Detailed
-  non-count placement/setting reconciliation remains D2. Accepted reference remappings
+  Count replacement follows AC-13 instead. Reopening does not regenerate.
+  **Position invalidation — agreed 23 November:** if a non-count recipe-seed edit
+  invalidates the retained seed position, keep that requested position visible,
+  explain the conflict and block Apply until the user explicitly chooses a valid
+  position or edits the seed. For exact white at 500, offer Use step 50 or Edit seed;
+  exact black has the corresponding 950 restriction. Do not silently reposition.
+  The disappearing-position Auto rule for confirmed count replacement stays distinct.
+  Accepted reference remappings
   survive seed-only changes while their targets remain valid; refresh all impacted
   notices and previews without requiring acceptance solely for changed color (AC-22).
 
@@ -396,8 +402,9 @@ algorithm, thresholds or qualification campaign is authorized by this consolidat
 ### D2 — Ordinary editing and remaining draft details
 
 Count replacement and its reset/lifetime rules are settled above. Remaining details
-are no-op versus intentional edit-then-return handling, and non-count seed edits
-that invalidate a retained position. Ordinary non-replacement Revert's field scope
+include no-op versus intentional edit-then-return handling. Non-count seed edits
+that invalidate a retained position now follow AC-12's explicit correction gate.
+Ordinary non-replacement Revert's field scope
 was agreed on 23 November: saved color, Manual status, description and protection,
 with other steps and ramp settings preserved (AC-11).
 Clarify these without reintroducing protected replacement prompts or automatic
@@ -514,7 +521,9 @@ follow-up grants no runtime or numerical allowance.
   saved color, Manual status, description and protection; other steps/settings stay.
 - 23 November, subsequent decision: generated reset uses the latest draft recipe;
   the agreed blue → green six-step example above records the behavior.
-- Next: decide non-count seed edits that invalidate a retained position, then resolve remaining
+- 23 November, subsequent decision: non-count seed-position invalidation keeps the
+  requested position visible and blocks Apply until explicit correction (AC-12).
+- Next: confirm creation seed-description ownership, then resolve remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.
