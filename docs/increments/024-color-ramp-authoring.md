@@ -512,9 +512,32 @@ do not invent fallback values or silently claim support for unknown forms. Detai
 ordinary name-repair navigation under existing guards; the user-facing collision policy
 itself is settled, with no adoption/overwrite workflow to design.
 
+### Shared incomplete-composite dependency — agreed 23 November 2026
+
+The user agreed to saved incomplete composites with explicit missing fields and
+automatically derived completeness. The
+[conceptual model](../design-tokens/conceptual-model.md#saved-incomplete-composites)
+owns this shared direction. In the ramp case, explicit Unspecified should remove
+only the affected composite field's reference, retain the other fields/layers and
+token identity, and leave the composite saved but incomplete. Preserve incoming
+reference chains and disclose unresolved consequences before Apply; no fallback.
+This is not the whole-color-token operation of removing its entire assignment.
+
+The concrete field state, validation/resolution, editor completion, versioned
+retention/backup, interoperability and reference-use review contract must be prepared
+before implementation. Do not implement optional composite fields as a local ramp
+shortcut. Present invalid data and intentionally missing fields must stay distinct.
+The proposed direct-composite blocker below remains **undecided** while this shared
+contract is prepared; it was not accepted as the final product boundary. No complete
+composite design, schema migration or application implementation is authorized.
+Material interface changes return to the user before further analyst review.
+
 ### D4 preparation — source findings and proposal, 23 November 2026
 
-**Preparation only; reference mutation scope is not yet agreed.** The coordinator
+**Historical source preparation, before the subsequent incomplete-composite agreement.**
+Current source findings still apply; the narrow direct-composite blocker is undecided,
+and the shared dependency above now guides preparation. The full reference mutation
+contract is not yet agreed. The coordinator
 and a separate analyst inspected current source at
 `68bf96900690d67ef05dfa274745b0e6b4f8b0ec`. This is targeted technical preparation,
 not the pending consistency review of all post-review product amendments. No code,
@@ -591,10 +614,10 @@ schema, dependency or runtime behavior changed.
    validation proposal. Do not claim current operations already satisfy AC-15 or grant
    blanket permission to commit invalid candidates. This integration remains open.
 
-**Next decision:** accept the proposed blocker for direct composite references to
-removed steps, or broaden mutation support and design their Unspecified semantics.
-The narrow proposal preserves existing rich data while bounding this increment;
-it limits which count changes can be completed for such projects.
+**Subsequent disposition:** the user agreed the shared incomplete-composite direction
+above. Prepare that contract and its field-level Unspecified use before returning to
+the exact reference mutation scope. The narrow blocker remains undecided, not an
+accepted limitation or a reason to silently omit composite dependencies.
 
 **Evidence limits:** approximately 8/10 aggregate minutes for this explicitly
 authorized preparation (analyst 4, coordinator 4), zero harness repairs. Source and
@@ -723,7 +746,11 @@ follow-up grants no runtime or numerical allowance.
   be edited/regenerated; preserve data and unaffected work, with no repair workflow.
 - 23 November: targeted D4 source preparation recorded above. Typed-unassigned fits
   whole-color Unspecified; direct composite-reference mutation needs a scope decision.
-- Next: decide the proposed direct-composite blocker, then continue remaining
+- 23 November, subsequent decision: support saved incomplete composites through
+  explicit missing fields and derived completeness; prepare a shared contract before
+  using field-level Unspecified. The proposed composite blocker remains undecided.
+- Next: prepare that shared contract and its ramp reference-review implications,
+  then continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

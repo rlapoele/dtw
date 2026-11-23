@@ -346,6 +346,39 @@ The columns answer different questions; an item appearing in one does not force 
 
 Generic `object`, generic `array`, arbitrary `CSS value`, alias, expression, layer names, and theme options are not token types. Alias and expression describe authored-value forms; primitive, semantic, and component describe layers; theme choices belong to variation axes. `paint` is not part of the selected canonical type set: a solid value remains a `color`, while a gradient uses the `gradient` composite.
 
+#### Saved incomplete composites
+
+**Agreed product/model direction — 23 November 2026; not implemented.**
+
+Users must be able to save an unfinished composite with explicitly missing fields,
+preserving the fields already authored. Derive completeness from the content rather
+than storing an independently editable completion status. Distinguish unsaved draft
+changes, saved incomplete content and invalid content such as incompatible field
+values or reference cycles. These are separate assessments, not necessarily mutually
+exclusive statuses. Saving incomplete content does not authorize accepting malformed
+present fields or silently treating every invalid reference as an empty field.
+
+For example, a shadow with offsets and blur but no color can be saved as incomplete,
+with a precise missing-color diagnostic. Its complete preview is unavailable; do not
+invent a color or silently drop the layer. Later completion preserves the existing
+composite content and token identity. This is authored canonical content, distinct
+from session-only unfinished UI forms.
+
+The same shared contract should support explicitly clearing a composite color-field
+reference when its ramp target disappears: preserve other fields and layers, leave
+that field explicitly missing, derive incompleteness and disclose downstream unresolved
+consequences. Preserve incoming references; no fallback or chain flattening. Exact
+reference-use review and field mutation contracts remain to prepare in Increment 024.
+
+The concrete representation of a missing field (omission versus a dedicated field
+state), nested/list completeness, schema validation, diagnostics, authoring/recovery,
+resolution, versioned retention/backup and interoperability treatment remain open.
+This does not introduce a generic `EmptyValue`, make raw malformed data valid or
+select a schema version. The complete-value schemas below describe current contracts;
+their required fields are not yet replaced by optional implementation fields. Prepare
+one shared incomplete-composite contract before using this in ramp authoring. No
+implementation or new qualification is authorized.
+
 #### Typography values
 
 **Working decision — 27 October 2026**

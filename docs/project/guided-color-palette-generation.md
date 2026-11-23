@@ -738,6 +738,21 @@ The earlier Increment 024 draft must be reconciled with these decisions before
 final contract/design agreement. No implementation or broader verification is
 requested by recording these choices.
 
+### Incomplete composites and reference removal — agreed direction 23 November 2026
+
+The user agreed that incomplete composites must be saveable, with explicit missing
+fields and completeness derived from authored content. The
+[shared model direction](../design-tokens/conceptual-model.md#saved-incomplete-composites)
+owns the distinction from unsaved changes and invalid data. For a composite field
+referencing a disappearing ramp step, explicit Unspecified should clear that field's
+reference, preserve other fields/layers and leave the composite incomplete. Incoming
+reference chains remain connected; unresolved consequences are disclosed before Apply.
+
+Prepare the shared model, editing, validation, retention/backup and field-review
+contract first. The proposed first-slice composite blocker remains undecided during
+this preparation. This direction does not select a serialized empty-field shape,
+a schema version, a final design or implementation authorization.
+
 ## Questions for future work
 
 1. With the first-slice count, constant-hue direction and chroma choices agreed above, what chroma endpoint proportions, precision, alpha-preview/edge-case handling, numerical conversion and gamut-mapping rules complete the production calculation contract? How should the agreed creation placement rules be expressed in detailed validation/recovery states outside confirmed count replacement?

@@ -96,7 +96,13 @@ An identity-less expression operand that names one typed value required from an 
 
 ## Definition completeness
 
-A derived assessment of whether a token contains the type and authored assignments required for an operation. A name-only token is a valid project member with an incomplete definition; incompleteness is not represented by an `EmptyValue` or a stored lifecycle status.
+A derived assessment of whether a token contains the type, authored assignments and
+required constituent fields needed for an operation. A name-only token is a valid
+project member with an incomplete definition. The 23 November 2026 direction also
+supports saved composites with explicitly missing fields; the shared contract is
+not implemented yet. Incompleteness is distinct from unsaved draft changes and
+invalid present content, and is not a stored editable lifecycle status or a generic
+`EmptyValue`. See [saved incomplete composites](conceptual-model.md#saved-incomplete-composites).
 
 ## Decimal
 

@@ -82,10 +82,16 @@ D4 source preparation is now recorded in the
 [increment proposal](../increments/024-color-ramp-authoring.md#d4-preparation--source-findings-and-proposal-23-november-2026).
 Existing typed-unassigned color data can represent Unspecified without breaking
 reference identities. Direct shadow-color references need a separate mutation policy;
-the proposal limits mutation to whole-color aliases and blocks count replacement
-when an unsupported direct reference would lose its target. This limit is not agreed.
-Next: decide that direct-composite boundary. Ordinary editing of typed-unassigned
-colors and baseline-aware validation for unaffected work remain technical preparation.
+the initial proposal limited mutation to whole-color aliases and proposed blocking
+unsupported direct composite references. That blocker remains undecided. The user
+subsequently agreed saved incomplete composites with explicit missing fields and
+automatically derived completeness, distinct from unsaved changes and invalid data.
+The [shared model direction](../design-tokens/conceptual-model.md#saved-incomplete-composites)
+and Draft 024 record field-level Unspecified preserving other composite content and
+incoming chains. Next: prepare the shared incomplete-composite contract before its
+ramp integration. Schema, editing, validation/resolution, retention/backup and
+interoperability remain open; no implementation is authorized. Ordinary editing of
+typed-unassigned colors and unaffected-work validation also remain preparation.
 This targeted source pass used approximately 8/10 aggregate minutes, zero repairs;
 no tests or qualification runs. It is not a full renewed amendment review.
 Listed D2 decisions are recorded; the focused consistency check of post-review
@@ -94,7 +100,7 @@ D1–D5 still require preparation; full contract agreement and implementation ar
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: prepare ramp reference scope and unspecified representation`.
+`docs: establish saved incomplete composite direction`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.

@@ -135,9 +135,13 @@ handling are now agreed in Draft 024); member eligibility
 and creation description ownership; reference forms/Unspecified/traversal; and versioned
 metadata/history/backup. Settled count/protection/remapping choices are not reopened.
 [D4 source preparation](../increments/024-color-ramp-authoring.md#d4-preparation--source-findings-and-proposal-23-november-2026)
-proposes typed-unassigned for whole-color Unspecified and a blocker when direct
-composite references would lose their targets. The latter scope limit requires a
-user decision; typed-unassigned editing recovery and unaffected-work validation also
+proposes typed-unassigned for whole-color Unspecified. The user subsequently agreed
+[saved incomplete composites](../design-tokens/conceptual-model.md#saved-incomplete-composites)
+with explicit missing fields and derived completeness, enabling a shared contract
+for clearing only the affected composite reference field. That contract needs field
+representation, validation/resolution, completion editing, versioned retention/backup
+and interoperability preparation. The earlier direct-composite blocker remains
+undecided. Typed-unassigned editing recovery and unaffected-work validation also
 need technical preparation. Final contract/design agreement and implementation
 authorization remain pending.
 
