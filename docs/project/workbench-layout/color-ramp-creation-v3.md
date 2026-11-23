@@ -35,8 +35,9 @@ saved until **Create group and tokens** succeeds.
 2. **Seed:** enter HEX, optionally describe the seed, or open Advanced color. Show
    Primitive as read-only for these new ramp tokens. The **Seed description** label
    denotes the seed token, not a group description or automatic description for
-   every generated token. Assigning it only to the anchor token is the intended
-   contract detail to confirm during reconciliation. Resolve seed/target-gamut
+   every generated token. **Agreed 23 November:** assign it only to the token at the
+   final seed position. Before creation it follows placement; afterward it is that
+   token's ordinary description under the agreed preservation rules. Resolve seed/target-gamut
    choices here before continuing.
 3. **Scale:** choose an integer count from 2–20, default 11, and **Color intensity**:
    **Retained** by default or **Restrained**. Show a preview, with no token-value
@@ -151,7 +152,8 @@ The user accepted the four-stage flow, same-dialog Advanced return, inline gamut
 decision and final positioning review. The latest authorized amendment is HEX input
 using the project default, with explicit Advanced space preserved. This is not
 approval to send the proposal to the analyst until the user explicitly agrees.
-Manual replacement selection, seed-description persistence, mapped/alpha preview
+Seed-description ownership was agreed on 23 November as recorded above.
+Manual replacement selection, mapped/alpha preview
 feedback, calculation precision and the documented neutral-conversion observation
 still need contract-level resolution. Later central-workbench editing requires a
 separate refinement, especially count changes and manual overrides after creation.

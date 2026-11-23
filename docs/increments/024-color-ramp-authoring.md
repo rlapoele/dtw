@@ -108,8 +108,10 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   feedback identifying steps, without claiming authored equality or perceptual
   equivalence. HEX is an sRGB preview, not the authored representation or full P3
   color. Checkerboard/Light/Dark affect compositing only. D1 must specify alpha and
-  target-gamut comparison details. Seed description belonging only to the created
-  anchor token is proposed, not a group/all-step description (D3).
+  target-gamut comparison details. **Seed description — agreed 23 November:** save it
+  only on the token at the final seed position, not the group or other generated
+  steps. Before creation it follows the seed's final placement; afterward it is that
+  token's ordinary description and follows the agreed preservation rules.
 
 ### Shared editing draft
 
@@ -423,8 +425,9 @@ without coercion, false Primitive labels or alias flattening. Define missing/ren
 moved-member recovery. Non-member adoption is excluded, so eligibility is not a route
 to bypass AC-14. Existing ordinary-editor behavior must not be silently restricted.
 
-Seed description initializing only the creation anchor remains proposed. Surviving
-replacement descriptions are already agreed to persist; do not reopen that rule.
+Seed-description ownership is settled in AC-6: only the final creation anchor token
+receives it; afterward ordinary token-description preservation applies. Surviving
+replacement descriptions remain preserved.
 
 ### D4 — Reference technical scope
 
@@ -523,7 +526,9 @@ follow-up grants no runtime or numerical allowance.
   the agreed blue → green six-step example above records the behavior.
 - 23 November, subsequent decision: non-count seed-position invalidation keeps the
   requested position visible and blocks Apply until explicit correction (AC-12).
-- Next: confirm creation seed-description ownership, then resolve remaining
+- 23 November, subsequent decision: seed description initializes only the final
+  creation anchor token and then becomes its ordinary description (AC-6).
+- Next: clarify the user’s white-seed/darker-ramp question before continuing remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

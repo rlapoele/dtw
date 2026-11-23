@@ -42,12 +42,16 @@ recorded in Draft 024; it is behavioral agreement, not numerical verification.
 The user also agreed that a non-count seed edit invalidating the retained position
 keeps the requested position visible and blocks Apply until explicit position
 correction or a seed edit (AC-12). No silent repositioning.
-Next: confirm creation seed-description ownership.
+Creation seed-description ownership is now agreed: only the final anchor token
+receives it; after creation it is that token's ordinary description (AC-6).
+Next: clarify the user's white-seed/darker-ramp question. The current endpoint rule
+still permits white at 50 with darker generated steps; no placement-policy change
+has been agreed by that question.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: define correction for invalid ramp seed positions`.
+`docs: define creation seed description ownership`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.

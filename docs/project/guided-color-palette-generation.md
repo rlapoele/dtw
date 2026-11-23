@@ -346,6 +346,14 @@ Chroma endpoint proportions, exact gamut mapping, precision and remaining
 alpha-preview/edge-case rules still require a production calculation contract.
 The neutral-conversion rounding observation in the endpoint report remains open.
 
+### Creation seed description — agreed 23 November 2026
+
+The entered seed description initializes only the token at the final seed position.
+It does not describe the group or populate other generated steps. Repositioning the
+seed before creation moves this intended assignment to the final anchor. After
+creation it is that token's ordinary description, subject to the agreed preservation
+rules; later seed-position changes do not transfer it to a different token.
+
 ### Progressive disclosure for ramp review — agreed 22 November 2026
 
 The user reviewed V3 as covering the scenarios, but requested a simpler, faster
