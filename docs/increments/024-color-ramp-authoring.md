@@ -124,8 +124,9 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   in both the ramp inspector and ordinary token editor while the token belongs to
   a ramp; ordinary editing cannot change or clear it. This scoped restriction is
   explicit, not a general restriction on non-member tokens. **Value-form rule agreed
-  23 November:** members must contain literal colors; reference mode is unavailable
-  in both editors while a token belongs to a ramp. External tokens may still reference
+  23 November:** each member contains one unconditional literal color, with no
+  theme-dependent values. Reference mode and conditional/theme-specific value
+  authoring are unavailable for members in both editors while membership applies. External tokens may still reference
   ramp steps. Do not mislabel incompatible data, flatten aliases or silently convert
   it. Precise inputs remain
   available for otherwise valid values outside the slider's visual range.
@@ -474,8 +475,12 @@ not relabeling or coercion; exact recovery remains to specify.
 **Also agreed 23 November:** ramp members contain literal colors only. Reference
 mode is unavailable in both ramp and ordinary token editors while membership applies;
 external referencing tokens remain allowed. This is an explicit ramp constraint,
-not an implication of Primitive layer generally. Specify supported assignment shape
-and missing/renamed/moved or incompatible-member recovery without alias flattening.
+not an implication of Primitive layer generally. **Assignment shape agreed
+23 November:** one unconditional literal color per member; no theme-dependent
+member values. Record this shape in the technical contract and define missing/
+renamed/moved or incompatible-member recovery without flattening or coercion.
+The user's likely theme direction is to reuse the primitive palette through different
+semantic mappings; this is not a finalized theme contract or implementation scope.
 Non-member adoption remains excluded under AC-14. Individual member renaming/moving
 is now explicitly prohibited while membership applies (AC-15); group renaming remains
 allowed. Exact incompatible-data recovery must respect these restrictions rather
@@ -613,7 +618,10 @@ follow-up grants no runtime or numerical allowance.
   while in a ramp; renaming the ramp group remains allowed (AC-15).
 - 23 November, subsequent decision: ordinary editing cannot delete individual
   members; step removal uses confirmed count replacement (AC-15).
-- Next: define supported member assignment shape under D3, then continue remaining
+- 23 November, subsequent decision: each member has one unconditional literal color;
+  no theme-dependent member values. Shared primitives with differing semantic mappings
+  are the likely theme direction, not a finalized theme contract.
+- Next: decide incompatible-member recovery boundary under D3, then continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

@@ -39,8 +39,10 @@ Keep the familiar color-token header and Current/New comparison, Edit token fiel
 precise component inputs and horizontal sliders, alpha, applied/details sections and
 bottom protection state. Layer is **Primitive**, read-only/disabled. Description,
 color and lock choices belong to the same draft. **Agreed 23 November:** only
-Primitive tokens containing literal colors may participate. Layer is read-only and
-Reference mode is unavailable in both ramp and ordinary token editing for members.
+Primitive tokens containing one unconditional literal color may participate, without
+theme-dependent member values. Layer is read-only; Reference mode and conditional/
+theme-specific value authoring are unavailable in both ramp and ordinary token editing
+for members.
 External tokens can still reference steps. **Member structure also agreed
 23 November:** individual members cannot be renamed or moved while they belong
 to a ramp, including in ordinary editing. The ramp group itself can be renamed.

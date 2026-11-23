@@ -63,6 +63,12 @@ The recipe must express assumptions rather than infer interface meaning from pri
 
 **Working proposal:** preview a small interface specimen alongside the proposed semantic mappings and their contrast diagnostics. Light and dark mappings should follow the existing [variation-axis and conditional-value model](../design-tokens/conceptual-model.md#themes-and-modes), rather than introduce separate token trees or theme-owned values.
 
+**User direction — 23 November 2026:** ramp members do not vary by theme. The
+likely theme approach reuses the same primitive palette with different mappings
+at the semantic level. The ramp-member constraint is agreed; “likely” preserves
+the provisional nature of the broader theme approach. It does not finalize semantic
+recipes, theme architecture or additional implementation scope.
+
 ## Contrast guidance
 
 The highest-value contrast checks are expected during semantic authoring, because the recipe can identify intended pairs such as content on surfaces, content on accent fills, and feedback content on subtle feedback surfaces. Contrast should remain consultable after generation as project colors and references evolve.
@@ -199,8 +205,9 @@ The user agreed a single Apply boundary and requested updated wireframes:
   tokens may participate in a ramp. Layer cannot be changed or cleared in either
   the ramp inspector or the ordinary token editor while the token is a ramp member.
   Non-member layers remain unchanged. **Subsequently agreed 23 November:** members
-  must contain literal colors; reference mode is unavailable in both editors while
-  membership applies. External tokens can still reference ramp steps. This scoped
+  must contain one unconditional literal color, without theme-dependent values;
+  reference mode and conditional/theme-specific value authoring are unavailable in
+  both editors while membership applies. External tokens can still reference ramp steps. This scoped
   constraint does not imply all Primitive tokens must be literals or authorize
   flattening incompatible member references.
 - **Revert step changes** in ordinary editing without count replacement restores

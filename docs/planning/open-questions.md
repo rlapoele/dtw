@@ -97,12 +97,14 @@ chroma by default with Restrained available, uniform seed alpha, OKLCH generated
 values, and explicit seed/gamut/endpoint decisions. Creation has no individual-step
 editing; subsequent editing uses one shared draft/Apply. Only Primitive tokens may
 participate; their layer is read-only in ramp and ordinary token editing (23 November).
-Members contain literal colors only; reference mode is unavailable in both editors
-while membership applies. External tokens may still reference ramp steps.
+Members contain one unconditional literal color each, with no theme-dependent values;
+reference mode and conditional/theme-specific value authoring are unavailable in both
+editors while membership applies. External tokens may still reference ramp steps.
 Individual members cannot be renamed or moved while in a ramp; group renaming remains
 allowed. Individual deletion through ordinary editing is prohibited; step removal
-uses confirmed count replacement. Supported assignment shape and incompatible-data
-recovery remain open.
+uses confirmed count replacement. Incompatible-data recovery remains open. The likely
+broader theme direction reuses the primitive palette through differing semantic
+mappings; that theme contract is not finalized here.
 
 The [owning direction](../project/guided-color-palette-generation.md) now distinguishes
 ordinary regeneration (Protected preserved; unprotected Manual/Generated colors

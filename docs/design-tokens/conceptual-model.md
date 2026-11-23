@@ -833,8 +833,11 @@ containment still determines paths.
 tokens may participate in a ramp. While a token is a ramp member, neither ramp nor
 ordinary token editing may change or clear its layer. Non-member layer editing is
 unchanged. **Value-form constraint also agreed 23 November:** ramp members contain
-literal colors only, with reference mode unavailable in both editors while membership
-applies. External tokens may reference ramp steps normally. These scoped constraints
+one unconditional literal color each, without theme-dependent member values.
+Reference mode and conditional/theme-specific value authoring are unavailable for
+members in both editors while membership applies. External tokens may reference
+ramp steps normally. The likely theme direction is to reuse these primitive values
+through differing semantic mappings; broader theme semantics remain separate. These scoped constraints
 do not introduce group-level type/layer inheritance, prohibit references on Primitive
 non-members, flatten aliases or coerce incompatible data. Incompatible loaded membership
 requires truthful diagnosis and an explicit recovery contract in Increment 024.

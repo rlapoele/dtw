@@ -71,14 +71,17 @@ a ramp, including through ordinary editing. Ramp group renaming remains allowed
 Individual member deletion through ordinary editing is now prohibited as well;
 step removal uses confirmed count replacement and its reference-resolution/shared
 Apply rules (AC-15). Whole-group removal is not selected by this decision.
-Next: define supported member assignment shape under D3.
+The user agreed one unconditional literal color per member, with no theme-dependent
+values. Reusing the primitive palette through different semantic mappings is the
+likely theme direction, not a finalized theme contract (AC-7/D3).
+Next: decide the incompatible-member recovery boundary under D3.
 Listed D2 decisions are recorded; the focused consistency check of post-review
 amendments, including this ordinary-editor restriction, remains pending.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: prevent individual ramp member deletion`.
+`docs: keep ramp member values independent of themes`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.
