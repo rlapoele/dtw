@@ -168,7 +168,10 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   invalidates the retained seed position, keep that requested position visible,
   explain the conflict and block Apply until the user explicitly chooses a valid
   position or edits the seed. For exact white at 500, offer Use step 50 or Edit seed;
-  exact black has the corresponding 950 restriction. Do not silently reposition.
+  exact black has the corresponding 950 restriction. Use the agreed white-seed
+  message: “White needs to start the ramp. Move the seed to 50 to generate darker
+  steps.” White at 50 permits a darker ramp; do not imply white itself is unsupported
+  or silently reposition the seed.
   The disappearing-position Auto rule for confirmed count replacement stays distinct.
   Accepted reference remappings
   survive seed-only changes while their targets remain valid; refresh all impacted
@@ -528,7 +531,9 @@ follow-up grants no runtime or numerical allowance.
   requested position visible and blocks Apply until explicit correction (AC-12).
 - 23 November, subsequent decision: seed description initializes only the final
   creation anchor token and then becomes its ordinary description (AC-6).
-- Next: clarify the user’s white-seed/darker-ramp question before continuing remaining
+- 23 November, clarification: white at 50 supports a darker ramp; the user retained
+  the position-correction behavior and agreed clearer explanatory wording (AC-12).
+- Next: settle no-op versus intentional edit-return handling, then continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

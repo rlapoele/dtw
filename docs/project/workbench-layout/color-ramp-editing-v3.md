@@ -107,7 +107,9 @@ This is different from numerical-label proximity for references.
 **Non-count seed edits — agreed 23 November:** if editing the recipe seed makes its
 retained position invalid, keep that position visible, explain the conflict and
 block Apply until explicit correction. For exact white at 500, offer Use step 50
-or Edit seed; exact black requires 950. Do not silently move the seed.
+or Edit seed; exact black requires 950. The agreed explanation is: “White needs to
+start the ramp. Move the seed to 50 to generate darker steps.” Do not silently move
+the seed or imply that a white seed cannot generate a ramp.
 
 **Review reference impacts** opens the contextual review below. Its count reports
 unanswered required choices, not informational notices. Apply is unavailable while

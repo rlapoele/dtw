@@ -44,14 +44,15 @@ keeps the requested position visible and blocks Apply until explicit position
 correction or a seed edit (AC-12). No silent repositioning.
 Creation seed-description ownership is now agreed: only the final anchor token
 receives it; after creation it is that token's ordinary description (AC-6).
-Next: clarify the user's white-seed/darker-ramp question. The current endpoint rule
-still permits white at 50 with darker generated steps; no placement-policy change
-has been agreed by that question.
+The user retained the white-seed position rule and agreed clearer wording: “White
+needs to start the ramp. Move the seed to 50 to generate darker steps.” A white seed
+is supported; only its invalid retained position needs correction.
+Next: settle no-op versus intentional edit-return handling.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: define creation seed description ownership`.
+`docs: clarify white seed position guidance`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.

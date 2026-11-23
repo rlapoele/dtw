@@ -523,7 +523,11 @@ If a non-count recipe-seed edit makes the retained seed position invalid, keep t
 requested position visible, explain the conflict and block Apply until the user
 explicitly chooses a valid position or edits the seed. For exact white at step 500,
 offer Use step 50 or Edit seed; exact black has the corresponding 950 restriction.
-Do not silently reposition. This later-editing rule is distinct from the agreed
+The user confirmed this behavior and the clearer white-seed wording:
+**“White needs to start the ramp. Move the seed to 50 to generate darker steps.”**
+A white seed at 50 is supported: remaining steps can be progressively darker.
+The conflict is retaining an interior position with a lighter side above white,
+not using white as a seed. Do not silently reposition. This later-editing rule is distinct from the agreed
 Auto placement when count replacement removes the assigned label. Numerical
 classification/tolerances remain with Draft 024 D1; this agreement selects no new
 threshold or algorithm.
