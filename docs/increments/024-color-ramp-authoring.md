@@ -77,7 +77,10 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   50, 200, 400, 600, 800, 950. Retained is default; Restrained is available. Both
   keep seed hue constant and neutrals neutral. Generated steps preserve seed alpha
   uniformly and are authored in OKLCH; the exact prepared seed retains its own
-  authored representation at the anchor. D1 completes precision and chroma rules.
+  authored representation at the anchor. Generated endpoints request 5% of seed
+  chroma on the light side and 15% on the dark side before gamut fitting (agreed
+  23 November); an endpoint occupied by the seed remains exact. D1 completes
+  precision and gamut rules.
 - **AC-3 — Seed entry and authored space.** HEX denotes sRGB input, converted once
   into the project's effective default authored space, with the quiet project-default
   helper and no conversion-confirmation step. Preserve original HEX in the draft
@@ -445,8 +448,8 @@ seed-count placement or single-Apply decisions. The remaining work is bounded be
 
 ### D1 — Production numerical contract
 
-Prepare versioned exact A/B formulas and chroma endpoint proportions; the samples'
-0.05/0.15 are not production approval. Specify generated-color and seed-adjustment
+Complete the versioned exact A/B calculation contract using the endpoint chroma
+ratios agreed below on 23 November: light 0.05, dark 0.15. Specify generated-color and seed-adjustment
 gamut mapping, tolerances, precision, accepted seed domain, missing/powerless hue,
 neutral preservation, white/black classification, extended values, alpha/compositing
 and repeated-preview equality. Preserve the accepted endpoint/Auto formulas.
@@ -454,6 +457,69 @@ and repeated-preview equality. Preserve the accepted endpoint/Auto formulas.
 Use representative fixtures and the existing conversion boundary where applicable;
 address the recorded neutral-rounding observation explicitly. No new numerical
 algorithm, thresholds or qualification campaign is authorized by this consolidation.
+
+#### D1 proposal preparation — 23 November 2026
+
+**Preparation; endpoint proportions subsequently agreed, remainder proposed.** No
+implementation authorized. After the V1 analyst handoff, the user
+asked to proceed with numerical-policy preparation. The coordinator and a separate
+analyst used the retained recipe/endpoint notes and current conversion boundary;
+this is document/source preparation, not renewed numerical qualification. The
+accepted counts, labels, endpoint/Auto rules, exact prepared anchor, constant hue,
+alpha, protection and shared Apply behavior remain constraints.
+
+**First decision — requested endpoint chroma, agreed 23 November 2026.** After
+reviewing the rationale and its evidence limits, the user accepted the comparison's
+light-end ratio `0.05` and dark-end ratio `0.15` as fixed recipe parameters for the
+first version, without adding controls. This keeps a small amount of the seed's hue
+at each end, with more requested chroma at the dark end. It preserves the example
+behavior the user selected, but the examples alone do not prove these are optimal
+values for every seed. The alternative of zero at both ends would produce neutral
+endpoints for colored seeds and change that behavior.
+
+For seed chroma `Cs`, seed label `a` and a generated step label `x`, use distance
+`t = (a - x) / (a - 50)` on the light side or
+`t = (x - a) / (950 - a)` on the dark side. Only evaluate a side that exists;
+the anchor is copied exactly, never recalculated with a zero denominator.
+With `e = 0.05` on the light side and `e = 0.15` on the dark side:
+
+- Restrained: `C = Cs × (e + (1 - e) × (1 - t))`.
+- Retained: `C = Cs × (e + (1 - e) × (1 - t²))`.
+
+Example arithmetic, not a converted-color fixture: `Cs = 0.20` requests chroma
+`0.01` at the light endpoint and `0.03` at the dark endpoint. Both intensities have
+those endpoints; Retained keeps more chroma between seed and endpoints. A neutral
+seed stays neutral. A seed placed at an endpoint keeps its exact color; the ratio
+applies only to generated endpoints. Gamut fitting may reduce the requested chroma.
+These percentages describe OKLCH chroma, not opacity or a percentage of perceived
+colorfulness. No new swatches or numerical evidence were generated for this proposal.
+
+**Remaining proposal sequence**, discussed one decision at a time:
+
+| Area | Recommended direction for preparation | Still to specify or establish |
+| --- | --- | --- |
+| Generated gamut fitting and explicit seed adjustment | Reduce chroma along the agreed fixed-hue/lightness path for generated colors; keep seed adjustment separately previewed and explicitly accepted. | Exact mapping algorithm, boundary tolerance, termination and behavior where chroma reduction cannot yield a valid target color. No clipping rule or epsilon is selected here. |
+| Precision and determinism | Reuse the bounded conversion service; propose its existing 12-significant-digit, ties-to-even formatting for generated coordinates. Preserve exact prepared seed and alpha; regenerate from recipe inputs, never rounded HEX previews. | Mapping/rounding order and final membership check; versioned reproducibility and representative accuracy evidence. Formatting precision is not an accuracy guarantee. |
+| Seed eligibility and neutral/extreme classification | Preserve exact-neutral semantics; accept missing hue only when powerless under the existing conversion rules. Preserve unsupported input and show why calculation is unavailable. | Exact ramp seed domain, extended-coordinate handling, white/black classification after conversion and treatment of numerical boundary error. Do not silently promote a near-neutral or near-white seed to an exact one. |
+| Alpha and repeated previews | Keep alpha separate and exact; compare derived previews, not authored equality or colors baked onto a background. Keep native color previews and honest sRGB HEX labeling. | Exact duplicate comparison including alpha, P3 preview versus sRGB HEX disclosure, and background-dependent presentation. No perceptual threshold is proposed. |
+
+The [recipe comparison](../project/workbench-layout/color-ramp-recipes-v1.md) owns
+the illustrative formulas; the [endpoint report](../project/workbench-layout/color-ramp-endpoints-v1.md)
+retains the unresolved `#040404` neutral-rounding observation. Current
+[src/domain/color-calculation.ts](../../src/domain/color-calculation.ts) explicitly
+handles exact neutral conversion and rounds converted coordinates to 12 significant
+digits. Reading that code does not show the old observation is fixed or that ramp
+generation is implemented. The [current conversion policy](003-color-policy-proposal.md)
+also superseded the old preview-only `1e-10` allowance; it must not become a ramp
+gamut tolerance by accident. No new conversion backend or dependency is proposed.
+
+Document consistency checks have an **8 aggregate-minute ceiling**, zero repairs
+(analyst up to 5, coordinator up to 3). No calculations, tests, rendering, neutral
+investigation, browser or retention runs are authorized by this preparation.
+Checks stopped after approximately **6 aggregate minutes** (analyst 3, coordinator 3),
+zero repairs. Changed Markdown and local links checked. All prior verification
+stopping decisions remain intact. Product choices remain proposals until agreed;
+technical evidence gaps remain explicit before implementation.
 
 ### D2 — Ordinary editing and remaining draft details
 

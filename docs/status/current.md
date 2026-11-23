@@ -10,6 +10,28 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp endpoint chroma agreed; numerical preparation continues — 23 November 2026
+
+At the user's request, the coordinator and a separate analyst prepared a
+[D1 numerical-policy proposal](../increments/024-color-ramp-authoring.md#d1-proposal-preparation--23-november-2026)
+from existing decisions, comparison notes and the current conversion boundary.
+After discussing the rationale and evidence limits, the user agreed fixed endpoint
+chroma at 5% of seed chroma on the light side and 15% on the dark side, before gamut
+fitting. No new controls; a seed at an endpoint remains exact. The owning direction
+and AC-2 now record this agreement.
+
+Next: discuss generated-color gamut handling, followed by remaining precision,
+seed eligibility and preview details one at a time. Exact mapping/tolerances and the
+recorded neutral-rounding observation remain unresolved; no production numerical
+contract is claimed complete. D5 metadata/versioning and AC-15 validation integration
+remain outstanding. Final contract agreement and implementation authorization remain
+required.
+
+Document/source checks stopped at about 6/8 aggregate minutes, zero repairs. Local
+links and whitespace passed. No numerical scripts, tests, rendering, browser or
+retention qualification ran. Changes remain for user staging/commit/push.
+Suggested commit: `docs: prepare ramp numerical policy proposal`.
+
 ## Ramp field review/refill V1 analyst review completed — 23 November 2026
 
 The authorized designer prepared [two focused sheets and interaction notes](../project/workbench-layout/color-ramp-field-review-v1.md):

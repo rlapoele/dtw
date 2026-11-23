@@ -404,8 +404,13 @@ not constitute final contract/design agreement or implementation authorization.
 
 The comparison records the quadratic retained-chroma and linear taper formulas
 that demonstrate the selected behaviors. The lightness endpoint and Auto policies above are now agreed in direction.
-Chroma endpoint proportions, exact gamut mapping, precision and remaining
-alpha-preview/edge-case rules still require a production calculation contract.
+**Endpoint chroma proportions agreed 23 November:** use 5% of seed chroma at the
+generated light endpoint and 15% at the generated dark endpoint for both intensity
+recipes, before gamut fitting. Add no controls for these proportions. Neutral seeds
+stay neutral; a seed occupying an endpoint stays exact. These retain the comparison
+parameters as a first-version choice, not a claim of optimality across all seeds.
+Exact gamut mapping, precision and remaining alpha-preview/edge-case rules still
+require a production calculation contract.
 The neutral-conversion rounding observation in the endpoint report remains open.
 
 ### Creation seed description — agreed 23 November 2026
