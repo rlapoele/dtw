@@ -68,8 +68,10 @@ The normal path is one **Accept** action per affected direct reference:
   The compact row never relies on hidden text to identify which token is being edited.
 - After acceptance, collapse the row to its token, old/new target and **Change**.
   Accept records a choice in the shared draft; it never saves independently. Opening
-  Change edits that choice in place. Exact interim dirty-choice handling must preserve
-  the established Apply gates rather than silently accept the newly selected option.
+  Change edits that choice in place. **Agreed 23 November:** opening Change alone
+  keeps the choice accepted. Selecting a different target makes it pending and blocks
+  Apply until explicit acceptance or Cancel change. Cancellation restores the previous
+  accepted choice. Unspecified retains its disclosure and explicit acceptance below.
 - **Other affected tokens · n** remains visibly counted, with the information-only
   summary “Connections stay intact; colors change.” Expand to inspect token paths,
   direct surviving-target versus indirect effects, and per-token previews. These

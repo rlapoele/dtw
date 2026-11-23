@@ -250,6 +250,14 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   the saved references along with the saved ramp. D4 defines supported reference forms,
   impact traversal and technical representation without weakening these behaviors.
 
+  **Change an accepted choice — agreed 23 November 2026:** opening Change alone
+  preserves the accepted choice. Selecting a different target makes the choice
+  pending and blocks Apply until explicit acceptance or Cancel change. Cancel change
+  restores the previous accepted choice. For example, after accepting 300 → 200,
+  selecting 400 requires Accept 400 or cancellation back to accepted 200. Selecting
+  Unspecified retains AC-21's consequence disclosure and explicit acceptance. These
+  actions affect only the shared draft; they never save independently.
+
 ## Historical V2 analyst review — 22 November 2026
 
 This is the review of V2 before the later replacement decisions, not a review of
@@ -311,7 +319,7 @@ Consistency review does not establish usability, numerical correctness or access
 | --- | --- | --- |
 | R1 | Documentary contradiction, corrected | Current gates still requested V3/user review before analyst review despite V4 acceptance and renewed authorization. Updated active gates and linked design notes; preserved dated historical evidence. |
 | R2 | Documentary ambiguity, corrected | The model said manual edits “protect” steps by default. Clarified Manual preservation without changing Protected state, matching the owning agreement. |
-| R3 | Unresolved requirement, D2 | V4 Change does not define interim acceptance/Apply behavior. Added the explicit decision to D2 without choosing it. |
+| R3 | Resolved by user decision, 23 November | Opening Change preserves acceptance; selecting a different target makes the choice pending and blocks Apply until acceptance or cancellation back to the previous accepted choice. AC-22 records the agreement. |
 | R4 | Product decision resolved; bookkeeping remains D5 | On 23 November the user agreed saved-member identity/reference continuity and preservation of latest saved/pending descriptions and protection through temporary draft absence (AC-13). Draft-only identity bookkeeping remains open. |
 | R5 | Unresolved requirement, D3/D4 | Literal Primitive membership, reference forms/traversal and canonical Unspecified need exact contracts. Existing `typed-unassigned` is a possible representation, not an agreed ramp operation. |
 
@@ -357,11 +365,8 @@ count-round-trip recovery. Exact reset-candidate behavior after subsequent ordin
 setting changes also needs an identified state rule; do not silently restore an older
 replacement recipe. These are small interaction decisions, not implementation latitude.
 
-V4 also leaves the interim **Change** state open: after accepting 300 → 200, opening
-Change and selecting 400 must not silently accept 400. Specify when the previous
-acceptance is suspended, when Apply is blocked and how the prior choice can be
-restored. Record the decision before implementation; the static design does not
-select a state rule.
+V4's interim **Change** state was settled on 23 November and is specified in AC-22;
+it is no longer an open D2 decision.
 
 ### D3 — Member eligibility and creation field ownership
 
@@ -462,7 +467,9 @@ follow-up grants no runtime or numerical allowance.
   on return before Apply; AC-13 records it.
 - 23 November, subsequent decision: preserve returning saved members’ latest
   description/protection choices through temporary absence; AC-13 records it.
-- Next: decide V4 Change interim acceptance behavior, then resolve remaining
+- 23 November, subsequent decision: V4 Change preserves acceptance on opening;
+  changing the selection blocks Apply until acceptance or Cancel change (AC-22).
+- Next: decide ordinary non-replacement Revert field scope, then resolve remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

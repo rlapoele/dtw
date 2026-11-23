@@ -25,13 +25,15 @@ with fresh generated colors and cleared remapping choices. The
 and AC-13 record this. The user subsequently agreed that returning saved members
 also retain their latest saved/pending descriptions and protection choices through
 temporary absence. Count replacement resets manual colors and remapping choices;
-it does not revert that metadata to saved values. Next: decide V4 Change interim
-acceptance behavior, one decision at a time.
+it does not revert that metadata to saved values. The user also settled V4 Change:
+opening it preserves acceptance; selecting a different target blocks Apply until
+explicit acceptance or cancellation back to the previous accepted choice (AC-22).
+Next: decide ordinary non-replacement Revert field scope, one decision at a time.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: preserve returning ramp step descriptions and protection`.
+`docs: define acceptance when changing ramp reference choices`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.

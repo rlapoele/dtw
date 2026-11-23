@@ -362,6 +362,17 @@ and impact review. The user-authorized renewed analyst review completed on
 records its findings. No material design revision was required. Full contract
 agreement and implementation authorization remain pending.
 
+### Changing an accepted reference choice — agreed 23 November 2026
+
+Opening Change alone keeps the previous choice accepted. Selecting a different
+target makes the choice pending and blocks Apply until the user explicitly accepts
+it or cancels the change. Cancel change restores the previous accepted choice.
+For example, after accepting 300 → 200, selecting 400 requires Accept 400 or
+cancellation back to accepted 200. Unspecified still requires its visible consequences
+and explicit acceptance. All actions remain in the shared draft; none saves separately.
+This completes V4's previously open interim acceptance rule without a visual redesign
+or implementation authorization.
+
 ### Count replacement and reference remapping — 22 November 2026
 
 **Latest direction; supersedes ordinary-token retention on count changes below.**
