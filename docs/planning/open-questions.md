@@ -138,9 +138,10 @@ metadata/history/backup. Settled count/protection/remapping choices are not reop
 proposes typed-unassigned for whole-color Unspecified. The user subsequently agreed
 [saved incomplete composites](../design-tokens/conceptual-model.md#saved-incomplete-composites)
 with explicit missing fields and derived completeness, enabling a shared contract
-for clearing only the affected composite reference field. That contract needs field
-representation, validation/resolution, completion editing, versioned retention/backup
-and interoperability preparation. The earlier direct-composite blocker remains
+for clearing only the affected composite reference field. The [minimal shared draft](../design-tokens/incomplete-composites.md) proposes omission
+of known fields, present-value validation, derived completeness, narrow field edits
+and versioned retention/backup. Source assessment and contract drafting are complete;
+agreement and necessary field-review/completion interaction details remain pending. The earlier direct-composite blocker remains
 undecided. Typed-unassigned editing recovery and unaffected-work validation also
 need technical preparation. Final contract/design agreement and implementation
 authorization remain pending.

@@ -748,8 +748,10 @@ referencing a disappearing ramp step, explicit Unspecified should clear that fie
 reference, preserve other fields/layers and leave the composite incomplete. Incoming
 reference chains remain connected; unresolved consequences are disclosed before Apply.
 
-Prepare the shared model, editing, validation, retention/backup and field-review
-contract first. The proposed first-slice composite blocker remains undecided during
+The [minimal shared draft](../design-tokens/incomplete-composites.md) now supplies
+the source assessment and proposed model/validation, field changes, completion and
+versioned storage contract. It proposes absent known fields, preserving other authored
+data and deriving completeness; no broad composite editor or repair system is required. The proposed first-slice composite blocker remains undecided during
 this preparation. This direction does not select a serialized empty-field shape,
 a schema version, a final design or implementation authorization.
 

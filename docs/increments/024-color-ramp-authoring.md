@@ -523,14 +523,36 @@ token identity, and leave the composite saved but incomplete. Preserve incoming
 reference chains and disclose unresolved consequences before Apply; no fallback.
 This is not the whole-color-token operation of removing its entire assignment.
 
-The concrete field state, validation/resolution, editor completion, versioned
-retention/backup, interoperability and reference-use review contract must be prepared
-before implementation. Do not implement optional composite fields as a local ramp
+The [minimal shared draft contract](../design-tokens/incomplete-composites.md) now
+records the source assessment and proposed field representation, validation/resolution,
+completion path, versioned retention/backup and reference-use contract. It proposes
+omitting unset known fields, keeping present-field validation and complete resolved
+types, and reusing existing snapshot/history mechanisms. The user authorized this
+preparation without further questions, prioritizing simple token authoring over
+speculative scenarios. Technical proposals remain Draft, not implemented behavior. Do not implement optional composite fields as a local ramp
 shortcut. Present invalid data and intentionally missing fields must stay distinct.
 The proposed direct-composite blocker below remains **undecided** while this shared
-contract is prepared; it was not accepted as the final product boundary. No complete
+contract is reviewed; it was not accepted as the final product boundary. The current
+draft instead supports reviewed shadow-color remapping and field-only Unspecified. No complete
 composite design, schema migration or application implementation is authorized.
 Material interface changes return to the user before further analyst review.
+
+### Minimal composite contract preparation — 23 November 2026
+
+Steps 1 and 2 requested by the user are complete: a separate analyst assessed the
+current source, and the coordinator prepared the linked shared draft. Stable source
+baseline: `1d240da3487a59f8df09725f2ff94cc0f822fd7f`. The contract records current
+constructor/resolver/codec limitations and the absence of a general composite editor.
+It limits changes to partial authored forms for existing shadow/typography/transition
+schemas, field-aware ramp review/mutation, derived completeness, and versioned storage.
+A focused refill path may reuse existing controls; a full composite editor is not a
+prerequisite. Whole-ramp deletion is not designed or authorized here.
+
+The newly authorized preparation used approximately **9/10 aggregate minutes**
+(analyst 4, coordinator synthesis/document checks 5), zero harness repairs. Changed
+Markdown, local file links and whitespace checked. No tests, source changes, browser,
+numerical or retention qualification; previous stops remain unchanged. This is analyst
+preparation, not independent review of the resulting draft or all late amendments.
 
 ### D4 preparation — source findings and proposal, 23 November 2026
 
@@ -749,8 +771,10 @@ follow-up grants no runtime or numerical allowance.
 - 23 November, subsequent decision: support saved incomplete composites through
   explicit missing fields and derived completeness; prepare a shared contract before
   using field-level Unspecified. The proposed composite blocker remains undecided.
-- Next: prepare that shared contract and its ramp reference-review implications,
-  then continue remaining
+- 23 November: minimal shared incomplete-composite source assessment and draft
+  contract completed at the user's request; technical proposals remain Draft.
+- Next: agree the identified minimal contract and prepare only necessary field-review/
+  completion interactions before focused analyst consistency review, then continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

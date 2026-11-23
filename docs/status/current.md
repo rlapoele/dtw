@@ -88,9 +88,17 @@ subsequently agreed saved incomplete composites with explicit missing fields and
 automatically derived completeness, distinct from unsaved changes and invalid data.
 The [shared model direction](../design-tokens/conceptual-model.md#saved-incomplete-composites)
 and Draft 024 record field-level Unspecified preserving other composite content and
-incoming chains. Next: prepare the shared incomplete-composite contract before its
-ramp integration. Schema, editing, validation/resolution, retention/backup and
-interoperability remain open; no implementation is authorized. Ordinary editing of
+incoming chains. At the user's request, steps 1 and 2 are now complete:
+[the minimal shared draft](../design-tokens/incomplete-composites.md) contains a separate
+analyst's source assessment and the coordinator's proposed contract. It uses omitted
+known fields, derived completeness, validated present values and the next shared
+authored-schema version. No full composite editor, generic repair system or new
+composite family is proposed. The current three composite schemas and snapshot
+history provide the bounded starting point. Source/document preparation stopped at
+approximately 9/10 aggregate minutes, zero repairs; no tests or qualification runs.
+Next: agree the draft and prepare only the necessary field-review/completion details,
+then perform the pending focused analyst consistency check. No implementation is
+authorized. Ordinary editing of
 typed-unassigned colors and unaffected-work validation also remain preparation.
 This targeted source pass used approximately 8/10 aggregate minutes, zero repairs;
 no tests or qualification runs. It is not a full renewed amendment review.
@@ -100,7 +108,7 @@ D1–D5 still require preparation; full contract agreement and implementation ar
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: establish saved incomplete composite direction`.
+`docs: draft minimal incomplete composite contract`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.

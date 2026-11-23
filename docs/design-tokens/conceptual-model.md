@@ -370,13 +370,15 @@ that field explicitly missing, derive incompleteness and disclose downstream unr
 consequences. Preserve incoming references; no fallback or chain flattening. Exact
 reference-use review and field mutation contracts remain to prepare in Increment 024.
 
-The concrete representation of a missing field (omission versus a dedicated field
-state), nested/list completeness, schema validation, diagnostics, authoring/recovery,
-resolution, versioned retention/backup and interoperability treatment remain open.
+The [minimal draft contract](incomplete-composites.md) proposes omitted known fields,
+derived missing-field diagnostics, unchanged validation of present fields, complete
+resolved types and the next shared authored-schema version. It covers existing
+shadow/typography/transition shapes, not arbitrary nesting or new composite families.
+These technical proposals require agreement; no generic repair system is needed.
 This does not introduce a generic `EmptyValue`, make raw malformed data valid or
 select a schema version. The complete-value schemas below describe current contracts;
 their required fields are not yet replaced by optional implementation fields. Prepare
-one shared incomplete-composite contract before using this in ramp authoring. No
+the identified shared draft before using this in ramp authoring. No
 implementation or new qualification is authorized.
 
 #### Typography values
