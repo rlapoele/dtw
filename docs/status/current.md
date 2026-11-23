@@ -10,7 +10,7 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Ramp endpoint defaults and gamut direction agreed — 23 November 2026
+## Ramp numerical decisions: precision and repeatability agreed — 23 November 2026
 
 At the user's request, the coordinator and a separate analyst prepared a
 [D1 numerical-policy proposal](../increments/024-color-ramp-authoring.md#d1-proposal-preparation--23-november-2026)
@@ -24,8 +24,12 @@ Generated out-of-target colors should automatically reduce chroma while
 preserving calculated lightness/hue and alpha; seed adjustment still requires explicit
 acceptance. The owning direction and D1 record these agreements.
 
-Next: discuss remaining precision,
-seed eligibility and preview details one at a time. Exact mapping/tolerances and the
+The user also agreed reuse of the existing bounded conversion policy: up to 12
+significant digits with ties-to-even rounding for generated coordinates, exact
+prepared seed/alpha preservation and repeatable generation from versioned recipe
+inputs rather than rounded previews. Formatting precision is not an accuracy guarantee.
+
+Next: discuss seed eligibility and preview details one at a time. Exact mapping/tolerances and the
 recorded neutral-rounding observation remain unresolved; no production numerical
 contract is claimed complete. D5 metadata/versioning and AC-15 validation integration
 remain outstanding. Final contract agreement and implementation authorization remain
@@ -34,7 +38,7 @@ required.
 Document/source checks stopped at about 6/8 aggregate minutes, zero repairs. Local
 links and whitespace passed. No numerical scripts, tests, rendering, browser or
 retention qualification ran. Changes remain for user staging/commit/push.
-Suggested commit: `docs: record ramp gamut fitting and endpoint customization`.
+Suggested commit: `docs: agree ramp precision and repeatability`.
 
 ## Ramp field review/refill V1 analyst review completed — 23 November 2026
 

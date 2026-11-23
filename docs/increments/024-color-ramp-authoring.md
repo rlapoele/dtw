@@ -460,8 +460,8 @@ algorithm, thresholds or qualification campaign is authorized by this consolidat
 
 #### D1 proposal preparation — 23 November 2026
 
-**Preparation; endpoint defaults and generated gamut-fitting direction agreed,
-remaining numerical details proposed.** No
+**Preparation; endpoint defaults, generated gamut-fitting direction and precision/
+repeatability agreed; remaining numerical details proposed.** No
 implementation authorized. After the V1 analyst handoff, the user
 asked to proceed with numerical-policy preparation. The coordinator and a separate
 analyst used the retained recipe/endpoint notes and current conversion boundary;
@@ -515,12 +515,25 @@ adjustment under AC-4. This agreement selects the generated-color behavior, not 
 precise mapping algorithm, tolerance or seed-adjustment algorithm. Those numerical
 details and unsupported-case handling remain to be specified.
 
+**Precision and repeatability — agreed 23 November 2026.** Reuse the existing bounded
+conversion policy: format newly calculated generated coordinates with up to 12
+significant digits and ties-to-even rounding. Preserve the prepared anchor's authored
+value and exact seed alpha; do not re-round them under the generated-coordinate rule.
+Generate from the prepared seed, settings and recipe version, never from display
+values or the preceding generated ramp. Returning to the same inputs and recipe
+version must reproduce the same generated values without cumulative rounding drift.
+Existing protection and confirmed count-replacement rules remain unchanged; this
+repeatability requirement does not restore prior manual edits or remapping choices.
+Formatting precision is not a promise of 12-digit numerical accuracy. Exact mapping/
+rounding order, post-rounding gamut validation and representative accuracy evidence
+remain open. This agreement authorizes no implementation or renewed numerical checks.
+
 **Remaining proposal sequence**, discussed one decision at a time:
 
 | Area | Recommended direction for preparation | Still to specify or establish |
 | --- | --- | --- |
 | Generated gamut fitting and explicit seed adjustment | Generated fitting direction now agreed above: reduce chroma while preserving lightness/hue; seed adjustment remains separately previewed and explicitly accepted. | Exact mapping algorithm, boundary tolerance, termination and behavior where chroma reduction cannot yield a valid target color. No clipping rule or epsilon is selected here. |
-| Precision and determinism | Reuse the bounded conversion service; propose its existing 12-significant-digit, ties-to-even formatting for generated coordinates. Preserve exact prepared seed and alpha; regenerate from recipe inputs, never rounded HEX previews. | Mapping/rounding order and final membership check; versioned reproducibility and representative accuracy evidence. Formatting precision is not an accuracy guarantee. |
+| Precision and determinism | Agreed above: reuse bounded conversion and up-to-12-significant-digit, ties-to-even formatting; preserve prepared seed/alpha and regenerate from versioned recipe inputs. | Mapping/rounding order and final membership check; versioned reproducibility and representative accuracy evidence. Formatting precision is not an accuracy guarantee. |
 | Seed eligibility and neutral/extreme classification | Preserve exact-neutral semantics; accept missing hue only when powerless under the existing conversion rules. Preserve unsupported input and show why calculation is unavailable. | Exact ramp seed domain, extended-coordinate handling, white/black classification after conversion and treatment of numerical boundary error. Do not silently promote a near-neutral or near-white seed to an exact one. |
 | Alpha and repeated previews | Keep alpha separate and exact; compare derived previews, not authored equality or colors baked onto a background. Keep native color previews and honest sRGB HEX labeling. | Exact duplicate comparison including alpha, P3 preview versus sRGB HEX disclosure, and background-dependent presentation. No perceptual threshold is proposed. |
 

@@ -409,7 +409,7 @@ generated light endpoint and 15% at the generated dark endpoint for both intensi
 recipes as defaults, before gamut fitting. Neutral seeds
 stay neutral; a seed occupying an endpoint stays exact. These retain the comparison
 parameters as a first-version choice, not a claim of optimality across all seeds.
-Exact gamut mapping, precision and remaining alpha-preview/edge-case rules still
+Exact gamut mapping, precision integration and remaining alpha-preview/edge-case rules still
 require a production calculation contract.
 The neutral-conversion rounding observation in the endpoint report remains open.
 
@@ -427,6 +427,16 @@ or Display P3 gamut, preserving calculated OKLCH lightness/hue and exact alpha.
 Existing protection rules still apply. This does not silently alter the prepared
 seed: seed adjustment retains the explicit preview/acceptance requirement. Exact
 mapping, tolerances and unsupported-case handling remain with Draft 024 D1.
+
+**Precision and repeatability agreed — 23 November:** use the existing bounded
+conversion policy, with up to 12 significant digits and ties-to-even rounding for
+newly calculated generated coordinates. Preserve the prepared seed and alpha exactly.
+Regenerate from the prepared seed, settings and recipe version, never rounded
+previews or the preceding generated ramp. The same inputs/version reproduce the
+same generated values without accumulated rounding drift, subject to the existing
+protection rules. This does not restore discarded manual edits or remapping choices.
+Twelve digits describes formatting, not guaranteed numerical accuracy. Post-rounding
+gamut validation and exact calculation ordering remain technical preparation in D1.
 
 ### Creation seed description — agreed 23 November 2026
 
