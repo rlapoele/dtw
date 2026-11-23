@@ -1,6 +1,8 @@
 # Increment 024: numerical specification draft
 
-**Technical proposal — 23 November 2026. Not implemented or numerically qualified.**
+**Completed numerical draft for final contract review — 23 November 2026.**
+Not implemented or numerically qualified. Product agreements and technical proposals
+remain distinguished below; completing this draft is not final contract acceptance.
 Parent: [Draft 024 D1](024-color-ramp-authoring.md#d1--production-numerical-contract).
 The user authorized specification preparation after agreeing the product behaviors
 recorded there. This document makes a concrete technical proposal; it does not turn
@@ -52,8 +54,9 @@ generated results; this never restores discarded manual colors or remapping choi
 
 The membership predicate converts the serialized candidate through the existing raw
 conversion boundary into the selected RGB space, requires finite numeric channels,
-and checks each channel in `[0,1]`. Same-space RGB seed membership can use exact
-Decimal comparisons. Alpha does not affect membership. Do not borrow the superseded
+and checks each channel in `[0,1]`, with zero boundary tolerance. Exact endpoint
+equivalences below bypass noisy conversion for known white/black only. Same-space
+RGB seed membership uses exact Decimal channel comparisons. Alpha does not affect membership. Do not borrow the superseded
 preview-only `1e-10` allowance or silently clip a channel into range.
 
 - Return an admissible requested candidate unchanged if it passes.
@@ -65,8 +68,17 @@ preview-only `1e-10` allowance or silently clip a channel into range.
   an unavailable result, not evidence that the trial is simply out of gamut.
 - Proposed deterministic work bound: at most **64 bisections**, stopping earlier if
   the binary midpoint equals a bound. Update the numeric bounds from the trial
-  position and its serialized candidate's admissibility. This is a finite engineering
-  bound, not an established error tolerance or a promise of exact maximal chroma.
+  position and its serialized candidate's admissibility: initialize `low = 0`,
+  `high = requested C`; evaluate `mid = low + (high - low) / 2`. On a passing trial
+  set `low = mid`; otherwise set `high = mid`. Update the retained literal only
+  when its serialized chroma exceeds the retained passing value. Equal serialized
+  candidates still update numeric bounds; they do not trigger additional loops.
+  This is a finite engineering bound, not a validated error tolerance or a promise
+  of exact maximal chroma. For an authored OKLCH seed, the admissibility ceiling is
+  its exact canonical Decimal chroma. For other spaces, use the calculation-only seed
+  C used by the recipe, represented by its shortest decimal text. Do not use a
+  separately rounded display or another conversion as the ceiling. If requested C
+  is zero, test it once and skip the search.
 - Return the retained passing candidate after a final check. Never fall back to RGB
   clipping or alter lightness/hue to make a generated step pass.
 
@@ -83,7 +95,7 @@ chroma range divided by `2^13`; `toGamut` also contains endpoint/clipping behavi
 This finding comes from local source inspection, not execution. Keep a small ramp
 policy around existing conversions instead of adopting those hidden fallbacks.
 
-## Seed classification and remaining product choice
+## Seed preparation, classification and explicit adjustment
 
 Proposed exact classification uses authored semantics, never rounded HEX:
 
@@ -99,14 +111,33 @@ endpoint classification does not broaden missing-hue eligibility: the accepted
 missing-hue exception still requires exactly zero saturation. Do not promote a
 near-neutral, near-white or near-black input through a numerical threshold.
 
-**Cross-space integration remains open:** HEX creation converts into the project
-space before establishing the prepared seed. An exact RGB endpoint can acquire
-approximation in that conversion. A possible approach is to carry exact input
-classification through preparation and versioned recipe metadata, invalidating it
-on relevant seed edits. That proposal needs reconciliation with the authoritative
-prepared value and D5; this document does not select hidden provenance, snap stored
-coordinates, or claim an approximate value proves exact white/black. Ordinary white
-and black must work across supported creation paths before delivery.
+**Exact endpoint conversion — technical proposal.** During ramp seed preparation,
+classify only the exact source conditions above before any approximate conversion.
+When changing space for a known exact endpoint, construct its exact equivalent:
+
+| Target space | Black | White |
+| --- | --- | --- |
+| sRGB / Display P3 | `[0, 0, 0]` | `[1, 1, 1]` |
+| HSL | `[none, 0, 0]` | `[none, 0, 100]` |
+| OKLAB | `[0, 0, 0]` | `[1, 0, 0]` |
+| OKLCH | `[0, 0, none]` | `[1, 0, none]` |
+
+Preserve exact alpha. Identity/same-space preparation retains the original literal,
+including numeric powerless hue; the exact anchor is never reconstructed merely for
+calculation. The same endpoint equivalences govern calculation-only conversion and
+RGB membership/preview conversion within this ramp operation. Thus HEX white prepared
+in an OKLCH project becomes exactly `[1, 0, none]`, with no epsilon and no hidden
+provenance flag. Advanced edits are classified from their new authored value. A
+near-white value is never promoted to exact white because it looks white or rounds
+to white in HEX. This supersedes the earlier durable-classification-metadata idea.
+It is a narrow ramp operation rule, not a global ordinary-editor conversion change.
+
+For all other seeds use the existing bounded raw conversion boundary. Calculation-only
+coordinates may be outside canonical OKLCH lightness bounds during adjustment
+preparation; they are not authored literals and must not be passed through a clamping
+constructor. Require finite results and existing input eligibility. Within `[0,1]`,
+retain calculated L; outside it, prepare the explicit adjustment below. A failed
+calculation yields no candidate and preserves input, never a guessed endpoint.
 
 **Upper-lightness seed adjustment — agreed 23 November 2026.** For a calculable
 extended seed whose OKLCH lightness exceeds `1`, offer a candidate capped at `1`
@@ -122,15 +153,40 @@ Apply the existing seed-position rules to the accepted candidate. An adjusted wh
 seed requires step 50; an invalid manual position must be resolved through the
 existing flow, not silently moved. Generated-color gamut fitting still preserves
 calculated lightness/hue: this explicit seed adjustment is a distinct operation.
-Lower-than-zero lightness handling has not been agreed by this upper-cap decision;
-keep it open rather than implicitly selecting symmetric black adjustment. Unsupported
-or failed calculations retain input and cannot claim a valid adjusted preview.
+**Lower-lightness seed adjustment — agreed 23 November 2026.** Mirror the upper
+case for calculable lightness below `0`: preview a candidate raised to `0`, explain
+the increase to 0% and any chroma reduction, preserve alpha, and require acceptance.
+An adjusted black seed requires step 950 under the existing position rules. Neither
+case moves an invalid manual position silently. Unsupported or failed calculations
+retain input and cannot claim a valid adjusted preview.
 
-For eligible seeds whose lightness is supported, propose the same fixed-lightness/
-hue chroma-fitting direction for a previewed sRGB seed-adjustment candidate, with
-explicit acceptance before it replaces the draft seed. Exact adjusted-seed authored
-representation remains to be specified alongside this operation; generated-step
-mapping does not itself authorize seed changes.
+**Adjusted-seed authored representation — technical proposal.** Preserve the
+prepared seed's authored space (explicit Advanced selection or effective project
+space used for HEX preparation). Retain that authored-space choice through candidate
+preparation. Do not
+silently switch to OKLCH or RGB because adjustment uses it internally.
+
+For a seed needing adjustment, bound calculation-only L to `[0,1]` under the explicit
+rules above; retain hue while reducing chroma to fit sRGB. For supported L this is
+chroma-only adjustment. At either endpoint the neutral candidate is exact black or
+white; construct its equivalent through the table above. Show all resulting changes
+before acceptance. Original alpha remains exact, including zero.
+
+Use the same bounded search with an adjustment-specific candidate predicate: form
+the OKLCH trial, convert it back to the intended authored space using endpoint
+semantics or the existing conversion boundary, format it, construct the literal,
+and check the **final returned literal** for sRGB membership. Retain that tested
+literal as the preview/acceptance value. This prevents a subsequent conversion from
+undoing a successful gamut check. Invalid or failed conversions return unavailable
+with input intact; they are not mere out-of-gamut search results. Do not save a
+rounded display reconstruction or run another conversion on acceptance.
+
+The fixed L/hue promise applies to the adjustment calculation path; conversion back
+to the chosen space inherits existing approximate-conversion limits. For generated
+steps, fixed serialized OKLCH L/hue remains the stricter rule. No universal exact
+cross-space round-trip promise is introduced. Seed acceptance triggers classification,
+position validity and preview refresh using the accepted literal. Restore original
+restores the original authored input and reopens required gamut/adjustment decisions.
 
 ## Repeated-preview key
 
@@ -170,3 +226,29 @@ performed. Earlier qualification stops remain intact. This preparation had an
 minutes used (analyst 4, coordinator 3). Markdown links and whitespace checked,
 then checks stopped. Final contract agreement and implementation authorization remain
 outstanding; numerical qualification needs its own explicitly authorized bounded work.
+
+## Completion of numerical detail preparation — 23 November 2026
+
+The user authorized completing numerical details and explicitly accepted the
+below-zero adjustment. A separate analyst supplied source-based recommendations;
+the coordinator reconciled exact endpoint conversion, authored-space preservation,
+final-literal adjustment validation and deterministic search updates into this draft.
+No endpoint-provenance metadata or new conversion backend is required by this proposal.
+D5 still owns recipe version storage; it must carry the selected policy/version,
+prepared seed and settings without inventing additional numerical semantics.
+
+No numerical product question is intentionally left open in this draft. The mapping
+and serialization rules are technical proposals for final contract review, not proof
+of accuracy or successful operation. Representative evidence must cover ordinary
+colors, exact and near endpoints, neutral output (including the historical observation),
+final serialized gamut membership, explicit adjustments in each supported seed space,
+repeatability and preview keys. This names future essential checks; it does not run
+or authorize a new qualification campaign. A failure returns for correction or an
+explicit decision, not silent weakening of the contract.
+
+This follow-up used approximately 7 of its 8 aggregate document/source-check minutes
+(analyst 3, coordinator 4), zero repairs. Local Markdown links and whitespace checked.
+No production changes, calculations, tests, browser/rendering or retention runs.
+Previous evidence and stopping limits above remain intact. The completed numerical
+draft still needs the final consolidated analyst check after remaining contract
+preparation; no independent review of this resulting document is claimed.

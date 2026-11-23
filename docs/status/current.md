@@ -10,6 +10,27 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp numerical specification draft completed — 23 November 2026
+
+The user requested completion of numerical details and agreed the below-zero explicit
+adjustment, mirroring the upper cap. The separate analyst and coordinator completed
+[the numerical draft](../increments/024-ramp-numerical-specification.md): exact endpoint
+conversion without provenance metadata, chosen-space adjusted seeds, final serialized
+candidate validation, deterministic fitting mechanics and exact-alpha preview keys.
+No currently identified numerical product question remains open in that draft.
+
+This is specification completion, not final acceptance or numerical proof. Boundary,
+neutral, fitting, adjustment, repeatability and preview behavior still need essential
+implementation checks; the historical neutral-rounding observation is unresolved.
+No numerical, browser or retention qualification restarted. Document/source checks
+stopped at about 7/8 aggregate minutes, zero repairs; links and whitespace passed.
+
+Next: prepare D5 metadata/history/backup representation and AC-15 validation integration,
+then obtain the focused final consolidated analyst check and user contract agreement/
+implementation authorization. D1's technical draft remains subject to that review.
+No implementation is authorized. Leave staging, committing and pushing to the user.
+Suggested commit: `docs: complete ramp numerical specification draft`.
+
 ## Ramp numerical technical draft prepared — 23 November 2026
 
 The user authorized the next specification task. The separate analyst and coordinator
@@ -25,9 +46,9 @@ and require acceptance before replacing the draft seed. Preserve alpha and exist
 save/Restore original/position rules; adjusted white requires step 50. This replaces
 the earlier edit-only recommendation for above-range lightness.
 
-Next: reconcile remaining technical details, including cross-space exact-endpoint
-classification and adjusted-seed representation; below-zero handling remains an open
-product choice. Mapping details remain proposed, not validated. D1 remains open,
+At this stage, cross-space exact-endpoint classification, adjusted-seed representation
+and below-zero handling remained open; the subsequent completion above addresses them.
+Mapping details remain proposed, not validated. D1 remains subject to final review,
 alongside D5 metadata/versioning and AC-15 validation integration. Final contract
 agreement and implementation authorization remain required.
 

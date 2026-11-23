@@ -95,9 +95,10 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   or explicit adjustment, with no invented wider target. Show original and adjusted
   values; Restore original seed remains available in the draft and reopens a required
   choice. Recheck after seed edits, preserve other fields/alpha and show the resolved
-  target at final review. For calculable seed lightness above 1, offer an explicitly
-  accepted candidate capped at 1, explaining the cap and any needed chroma adjustment
-  (agreed 23 November). Preserve alpha and apply existing seed-position rules.
+  target at final review. For calculable seed lightness outside [0,1], offer an
+  explicitly accepted candidate capped at 1 or raised to 0, explaining the lightness
+  change and any needed chroma adjustment (agreed 23 November). Preserve alpha and
+  apply existing seed-position rules: white requires 50, black requires 950.
   Mapping, limits and tolerances require D1; a monitor preview
   does not prove numerical gamut membership.
 - **AC-5 — Lightness and placement.** Default endpoints are 0.97 / 0.20. Auto picks
@@ -588,21 +589,41 @@ Installed Culori mapping helpers have clipping fallbacks that must not be inheri
 silently. No dependency or production change was made.
 
 The draft is not numerically qualified. The 64-bisection work bound, strict membership,
-rounding behavior and comparison quantization are technical proposals. Cross-space
-exact-endpoint preparation/metadata remains unresolved. The user subsequently agreed
-a previewed, explicitly accepted upper-lightness cap for extended seeds, superseding
-the initial edit-only recommendation for that case. Show original/adjusted values,
-explain the cap to 100%, fit chroma as needed and preserve alpha. Acceptance replaces
-only the draft seed; existing save, Restore original and seed-position rules remain.
-An adjusted white seed requires step 50 without silently moving an invalid manual
-position. Lower-than-zero handling and adjusted-seed representation remain open.
-The linked specification records this agreement. D1 is not closed.
+rounding behavior and comparison quantization are technical proposals. The initial
+cross-space and seed-representation gaps were subsequently addressed by the completion
+pass below. The user accepted explicit upper and lower lightness adjustments, with
+original/adjusted previews and exact alpha preservation. Acceptance replaces only the
+draft seed; save, Restore original and seed-position rules remain. White requires 50;
+black requires 950, without silently moving invalid manual positions.
 
 Document/source checks stopped at about 7/8 aggregate minutes (analyst 4, coordinator
 3), zero repairs. This is the newly authorized specification task, not renewed
 numerical qualification. Earlier stops and the unresolved neutral observation remain;
 no calculations, tests, rendering, browser or retention runs. Details and evidence
 limits are in the linked draft. Final agreement/implementation gates remain intact.
+
+#### D1 numerical draft completed for final review — 23 November 2026
+
+The user asked to complete numerical details and explicitly accepted the below-zero
+adjustment. A separate analyst and coordinator completed the linked specification's
+technical choices: exact endpoint equivalents during ramp-only conversion, preservation
+of the seed's chosen authored space during adjustment, validation of the final
+serialized adjusted literal, and explicit bisection bound updates/return behavior.
+No hidden endpoint-provenance metadata is needed; D5 still stores/version-controls the
+prepared seed, settings and numerical policy. Preview keys use mapped RGB bytes with
+ties-to-even quantization and exact canonical alpha.
+
+This closes the currently identified numerical specification questions as a draft,
+not as final contract agreement or numerical validation. Essential future evidence
+includes ordinary boundaries, neutral preservation, final gamut membership, adjustment
+round trips, repeatability and preview comparison. Historical numerical limits remain;
+no qualification was restarted. Unexpected failures must return for correction or
+explicit decision rather than silently weakening rules. The final consolidated analyst
+review remains after remaining contract preparation, before implementation authorization.
+
+This completion pass used about 7/8 aggregate document/source-check minutes (analyst
+3, coordinator 4), zero repairs; Markdown/local links/whitespace checked. No production,
+dependency, test, numerical, rendering, browser or retention changes/runs.
 
 ### D2 — Ordinary editing and remaining draft details
 

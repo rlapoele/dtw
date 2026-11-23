@@ -436,7 +436,18 @@ replacing the draft seed; retain Create/Apply and Restore original behavior. App
 existing seed-position rules: adjusted white requires step 50, with an invalid manual
 position visibly resolved rather than silently moved. This is an explicit seed
 adjustment, not permission to change lightness during ordinary generated gamut
-fitting. Lower-than-zero adjustment is not settled by this upper-cap agreement.
+fitting. The subsequent lower-bound agreement is recorded immediately below.
+
+**Lower-lightness seed adjustment agreed — 23 November:** mirror the explicit
+upper adjustment for calculable lightness below 0: preview a candidate raised to 0,
+explain the increase and any chroma reduction, preserve alpha, and require acceptance.
+An adjusted black seed requires step 950 under the existing position rules. This
+resolves the previously open lower-bound choice without authorizing automatic capping.
+
+The [completed numerical draft](../increments/024-ramp-numerical-specification.md)
+specifies exact endpoint equivalents during ramp preparation, chosen-space seed
+adjustments and final serialized-value checks. These are technical proposals for
+final contract review, not evidence of numerical correctness or implementation.
 
 **Precision and repeatability agreed — 23 November:** use the existing bounded
 conversion policy, with up to 12 significant digits and ties-to-even rounding for
