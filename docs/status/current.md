@@ -22,13 +22,16 @@ After review, the user agreed that an original saved step returning during
 11 → 6 → 11 before Apply keeps its saved identity and original reference connections,
 with fresh generated colors and cleared remapping choices. The
 [owning decision](../project/guided-color-palette-generation.md#returning-saved-member-identity--agreed-23-november-2026)
-and AC-13 record this. Next: decide returning saved-member description/protection
-baselines; identity agreement does not settle them.
+and AC-13 record this. The user subsequently agreed that returning saved members
+also retain their latest saved/pending descriptions and protection choices through
+temporary absence. Count replacement resets manual colors and remapping choices;
+it does not revert that metadata to saved values. Next: decide V4 Change interim
+acceptance behavior, one decision at a time.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: preserve returning saved ramp member identities`.
+`docs: preserve returning ramp step descriptions and protection`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.

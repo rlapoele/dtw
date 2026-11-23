@@ -184,8 +184,10 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   from an intermediate replacement draft and returns before Apply (11 → 6 → 11),
   retain its original saved identity and original reference connections. Generate
   its color freshly and clear earlier remapping choices under AC-22. No intermediate
-  removal was saved. Returning description/protection baselines remain unresolved
-  in D5; this agreement does not restore discarded color edits.
+  removal was saved. Preserve its latest saved/pending description and protection
+  choices across its temporary absence, until Apply or whole-draft Discard. This
+  does not restore discarded manual colors or remapping choices. Applying a count
+  that omits the step removes it; these choices do not transfer to a later new step.
 - **AC-14 — Non-member name conflicts.** A required name occupied by a non-member
   token blocks replacement. Do not adopt, overwrite, silently rename, skip a required
   step or mutate that token/references. Explain the conflict and preserve the current
@@ -197,7 +199,7 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   be silently recreated, converted or reassigned by path. Proposed first boundary:
   block affected regeneration until repaired through ordinary editing (D3). Keep
   layer/type/role/composition separate. Repeated draft replacement must not silently
-  restore discarded edits; exact retained/new identity bookkeeping is specified in D5.
+  restore discarded manual colors or remapping choices; remaining identity bookkeeping is specified in D5.
 - **AC-16 — Atomic application and history.** Creation and whole-ramp Apply coordinate
   all accepted values, member creations/removals, references, settings, descriptions,
   Manual and protection changes together. Proposed: one atomic application operation
@@ -310,7 +312,7 @@ Consistency review does not establish usability, numerical correctness or access
 | R1 | Documentary contradiction, corrected | Current gates still requested V3/user review before analyst review despite V4 acceptance and renewed authorization. Updated active gates and linked design notes; preserved dated historical evidence. |
 | R2 | Documentary ambiguity, corrected | The model said manual edits “protect” steps by default. Clarified Manual preservation without changing Protected state, matching the owning agreement. |
 | R3 | Unresolved requirement, D2 | V4 Change does not define interim acceptance/Apply behavior. Added the explicit decision to D2 without choosing it. |
-| R4 | Partly resolved, D5 | Saved-member identity/reference continuity was agreed after review on 23 November (AC-13). Returning description/protection baselines remain open; survivor rules alone do not resolve them. |
+| R4 | Product decision resolved; bookkeeping remains D5 | On 23 November the user agreed saved-member identity/reference continuity and preservation of latest saved/pending descriptions and protection through temporary draft absence (AC-13). Draft-only identity bookkeeping remains open. |
 | R5 | Unresolved requirement, D3/D4 | Literal Primitive membership, reference forms/traversal and canonical Unspecified need exact contracts. Existing `typed-unassigned` is a possible representation, not an agreed ramp operation. |
 
 The old resumed-design paragraph in the owning direction is now explicitly historical.
@@ -322,8 +324,11 @@ when a saved step returns during repeated replacement before Apply. For saved
 `color.brand.300` referenced by `color.action.primary`, 11 → 6 → 11 preserves
 that connection while generating fresh colors and clearing prior remapping choices.
 This avoids deletion/recreation without an intermediate save. AC-13 records the
-agreement. Returning description and protection baselines are the next separate
-question; identity agreement does not settle them. D1–D5 remain bounded below.
+agreement. In a subsequent explicit decision, the user also agreed to preserve the
+latest saved/pending description and protection choices through temporary absence.
+The earlier proposed restoration of saved metadata was rejected and is not policy.
+Fresh replacement resets manual colors and remapping choices, not these metadata
+choices. D1–D5 remain bounded below.
 
 ## Remaining preparation and decisions
 
@@ -388,8 +393,9 @@ and exact backup. Preserve existing protection data without expanding this featu
 controls outside ramps. Repeated-draft replacement must preserve returning saved-member
 identities and original reference connections under AC-13, without restoring discarded
 color edits or remapping choices. Original saved ramp members still exist until Apply;
-do not mistake them for unrelated non-members. Specify the remaining returning
-saved-member description/protection baseline and bookkeeping for draft-only members. Specify atomic removals, accepted
+do not mistake them for unrelated non-members. Preserve returning saved members'
+latest saved/pending descriptions and protection under AC-13. Specify remaining
+bookkeeping for draft-only members, atomic removals, accepted
 reference changes and history together. Recommend one Undo/Redo entry per Apply;
 no schema version or storage platform is selected here.
 
@@ -454,7 +460,9 @@ follow-up grants no runtime or numerical allowance.
   documentary reconciliation are recorded above. No material design revision needed.
 - 23 November, after review: user agreed saved-member identity/reference continuity
   on return before Apply; AC-13 records it.
-- Next: decide returning saved-member description/protection baselines, then resolve remaining
+- 23 November, subsequent decision: preserve returning saved members’ latest
+  description/protection choices through temporary absence; AC-13 records it.
+- Next: decide V4 Change interim acceptance behavior, then resolve remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

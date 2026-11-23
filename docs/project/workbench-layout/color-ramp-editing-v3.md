@@ -170,9 +170,10 @@ Known agreed behavior is represented rather than reopened. Remaining work includ
 
 - Exact numerical generation/mapping/precision and supported member/reference forms;
   canonical Unspecified, versioned metadata and atomic persistence/history contract.
-- Identity/metadata treatment when successive confirmed replacements remove a saved
-  label and later reintroduce it before Apply. No old individual draft edits return,
-  but that alone does not specify every identity/reference-baseline detail.
+- Remaining identity bookkeeping for draft-only members. The 23 November AC-13
+  agreement now preserves returning saved-member identities, original connections
+  and latest description/protection choices. Earlier artwork's “earlier edits”
+  reset wording means manual colors and remapping choices, not that metadata.
 - Ordinary non-replacement Revert field scope and reset baseline if generation
   settings change after a replacement and subsequent manual edits.
 - The exact pre-Apply impact-list organization and final responsive/focus contract.

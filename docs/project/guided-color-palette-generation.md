@@ -439,12 +439,12 @@ saves it, and discarding the whole draft restores the saved ramp**.
 
 - Cancel the replacement confirmation to preserve the current draft unchanged.
 - Confirm a count change to prepare a fresh replacement draft. Do not retain older
-  individual edits or remapping choices for automatic recovery when returning to
+  manual color adjustments or remapping choices for automatic recovery when returning to
   an earlier count. Every confirmed count change is another replacement.
 - Clearly disclose that individual color adjustments are replaced, protected values
   may be replaced and protected disappearing steps removed, and affected references
-  require explicit resolution. Returning to an earlier count does not recover the
-  earlier draft. Retain the saved ramp until the shared Apply succeeds.
+  require explicit resolution. Returning to an earlier count does not recover earlier
+  manual colors or remapping choices. Retain the saved ramp until Apply succeeds.
 - Discarding the whole draft restores the saved ramp; confirmation is not a save
   and does not eliminate that escape route. Avoid misleading “no going back” copy.
 
@@ -459,9 +459,18 @@ returns before Apply, keep its original saved identity and original reference
 connections. For example, saved `color.action.primary` → `color.brand.300` remains
 connected after 11 → 6 → 11 before Apply. No intermediate removal was saved.
 Generate fresh colors and clear prior remapping choices as already agreed; identity
-continuity does not recover discarded color edits. Returning description/protection
-baselines remain a separate unresolved decision. This does not select identity
-bookkeeping for draft-only steps or authorize implementation.
+continuity does not recover discarded color edits.
+
+**Returning metadata — subsequently agreed 23 November 2026:** preserve the saved
+member's latest saved/pending description and protection choices through its temporary
+absence until Apply or whole-draft Discard. If the user edits step 300's description
+and unlocks it before 11 → 6 → 11, it returns with that description and remains
+unlocked, with a freshly generated color. Do not revert these choices to saved
+metadata. Fresh replacement resets manual colors and remapping choices specifically.
+If Apply removes step 300 at six steps, those choices do not transfer to a new step
+created by a later increase. Whole-draft Discard still restores the saved ramp.
+This does not select identity bookkeeping for draft-only steps or authorize
+implementation.
 
 ### Disappearing seed position on replacement — agreed 22 November 2026
 

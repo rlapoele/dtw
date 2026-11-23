@@ -30,7 +30,7 @@ reset behavior and the single Apply boundary are unchanged.
 
 Changing Step count opens the short confirmation with Details collapsed. Essential
 consequences remain visible: regenerate Manual/Protected colors, remove missing
-steps even when protected, no recovery of earlier draft edits by changing the count
+steps even when protected, no recovery of manual colors/remapping choices by changing the count
 back, live reference-impact counts and no saved change until Apply. No departing-step
 list is introduced. Cancel retains the draft; Replace in draft starts the agreed
 replacement. The collapsed dialog fits its content rather than reserving the expanded
