@@ -1,7 +1,7 @@
 # Increment 024: Color ramp authoring
 
 - Contract status: **Agreed by the user — 23 November 2026**, following the final consolidated analyst review.
-- Delivery status: **Partially completed — implemented and independently reviewed; acceptance gaps and minor organization follow-up remain — 23 November 2026**.
+- Delivery status: **Implemented and independently reviewed; authorized bounded follow-up completed — 23 November 2026. Human acceptance pending; verification limits below remain.**
 - Authority: V2 received analyst review, then the user made the replacement and
   reference-impact decisions consolidated here. The user authorized this contract
   cleanup and new wireframes. The user reviewed V3 as covering the scenarios, then
@@ -1237,3 +1237,80 @@ survive replacement and one Undo entry per Apply. A reference-bearing fixture is
 for later field-review/refill acceptance; do not ask the user to repeat the entire test suite.
 
 Suggested commit: `feat: add atomic color ramp authoring and reference review`.
+
+
+## Authorized bounded implementation follow-up — 23 November 2026
+
+The user authorized the file-organization correction and remaining verification gaps.
+Baseline is committed implementation `0692bac`; the working tree was clean at intake.
+Settled decisions remain closed; staging, committing and pushing remain user-owned.
+
+This follow-up has a **30 aggregate-minute ceiling, at most one harness repair**:
+developer initially up to 10 minutes for ownership cleanup and focused stale/unknown-write
+fixtures, coordinator up to 12 for creation/Advanced focus, field-review/refill and
+narrow/20-step runtime checks, independent reviewer up to 8 for the stable correction
+and evidence. During execution, two minutes were reassigned from reviewer to developer
+(final allocation 12/12/6, same 30 total). Genuine defects found in these scenarios may be corrected within scope.
+Prior 45-minute consumption remains historical; this explicit follow-up does not
+restart numerical research, retention stress or broad engine qualification. Stop at
+the ceiling or earlier if tooling dominates; report remaining gaps faithfully.
+
+
+### Bounded follow-up results — 23 November 2026
+
+The organization finding is resolved. `RampWorkbench` owns its impact/review components;
+`AuthoringDialog` owns `RampCreation`; shared seed, preview and literal fields sit at
+`TokensWorkbench`, their nearest common production owner. The obsolete barrel/folder
+was removed. Callers, keys and draft ownership remain unchanged. Focus corrections
+are explicit behavior fixes to the accepted contract, not a redesign.
+
+The [follow-up snapshot](024-followup-snapshot.json) identifies changed/deleted source
+and test paths against `0692bac`; manifest SHA-256 is
+`d6434f5568897803c2ee27ca5dc68d272a233823486c83c972c5cf4678ca20be`.
+The earlier implementation manifest remains historical evidence, not a current path map.
+
+- Developer: 13 focused tests initially passed; five affected tests and all TypeScript
+  targets passed after the first focus correction. Final small focus corrections were
+  handed to the reviewer for their remaining check. No dependency changes.
+- New recovery fixtures reject stale creation/replacement without extra writes/history
+  or retained-record changes. Unknown committed creation/replacement blocks duplicate
+  mutation; reconciliation exposes before/after and records history exactly once.
+- Coordinator browser: restored a synthetic backup through normal staged restore;
+  three individual reference occurrences required acceptance; suggestions used lower
+  numeric ties; Unspecified disclosed missing shadow color and downstream unavailability;
+  changed accepted choice blocked Apply and Cancel change restored the accepted target
+  and Change focus. Apply retained the replacement, then ordinary field refill saved a
+  literal color. The fixture intentionally omitted other shadow fields, so continued
+  unresolved whole-shadow output was expected, not proof of complete shadow authoring.
+- Creation/Advanced stage headings received focus; a 20-step ramp was created at an
+  800-pixel viewport, and step 950 was reachable through horizontal overflow with its
+  inspector and actions available. Temporary viewport override was reset.
+- Browser-rechecked focus: Advanced Cancel → Advanced button; field edit → value-source
+  control; field Cancel → originating Edit color; field Apply → expanded Currently
+  applied summary. Initial Advanced Use lost focus; both close paths share the corrected
+  synchronous return. The final Back-to-Name and one-shot refill-focus corrections are
+  source/typecheck evidence, not subsequently repeated browser evidence.
+- Console captured development HMR missing-module messages while files were moving.
+  Reload restored the stable retained project; no new runtime defect was observed in
+  the subsequent targeted flow. Do not describe this session as console-error-free.
+
+Independent reviewer `/root/followup024_reviewer` confirmed the resulting ownership
+and checked the recovery fixtures. Its initial five targeted tests passed. Review
+identified Back-to-first-stage focus and a refill focus intent persisting across later
+remounts; both were corrected before the final snapshot.
+
+This explicitly authorized follow-up consumes approximately **30/30 aggregate minutes**
+(developer 12, coordinator 12, reviewer 6), zero harness repairs. Stop verification here;
+prior 45-minute work remains historical consumption. No broad numerical, retention
+stress or engine qualification restarted. Remaining limits are broader fault paths
+(unknown-not-committed, ownership-loss UI), exhaustive keyboard/accessibility coverage,
+and other browser engines; the focused evidence does not claim those qualifications.
+Human product acceptance remains separate.
+
+Suggested commit: `fix: organize ramp components and close focused verification gaps`.
+
+Final independent recheck: all 24 final manifest entries matched; two files / five
+targeted tests, all typechecks and whitespace checks passed. Both final focus fixes
+were source-rechecked. No remaining actionable finding in the bounded follow-up scope.
+The last two fixes were not browser-replayed; visible draft preservation under write
+faults remains unverified by this fixture set. These limits are retained explicitly.

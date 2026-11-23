@@ -1,6 +1,6 @@
-import {useState,useEffect} from "react";
+import {useState,useEffect,useRef} from "react";
 import {effectiveDefaultColorSpace} from "@domain/project";
-import {RampCreation,type RampCreationValue} from "@presentation/App/components/TokensWorkbench/components/ColorRamp/ColorRamp";
+import {RampCreation,type RampCreationValue} from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/components/RampCreation";
 import type { ColorSpace } from "@domain/color-literal";
 import { COLOR_COMPONENTS, COMPONENT_NAMES } from "@domain/color-components";
 import { spaceName } from "@presentation/App/helpers/color-space";
@@ -76,6 +76,8 @@ export function AuthoringDialog({
   guard?: import("react").ReactNode;
   submissionBlocked?: string;
 }) {
+  const nameField = useRef<HTMLInputElement>(null), returningToName = useRef(false);
+  useEffect(() => { if (!rampOpen && returningToName.current) { nameField.current?.focus(); returningToName.current=false; } });
   const [generate,setGenerate]=useState(false),[rampOpen,setRampOpen]=useState(false);
   useEffect(()=>{if(!open){setGenerate(false);setRampOpen(false);}},[open]);
   const preview = namingPreview(
@@ -113,7 +115,7 @@ export function AuthoringDialog({
             : "Groups organize paths; names do not define types."}
         </Dialog.Description>
         {recovery}
-        {form.kind==="group"&&generate&&<div hidden={!rampOpen}><RampCreation defaultSpace={project?effectiveDefaultColorSpace(project.project):"srgb"} path={preview.path?.join(" / ")??form.name} disabled={pending||!!submissionBlocked||!!readFailure} onBack={()=>setRampOpen(false)} onCancel={onClose} onCreate={onCreateRamp}/></div>}
+        {form.kind==="group"&&generate&&<div hidden={!rampOpen}><RampCreation active={rampOpen} defaultSpace={project?effectiveDefaultColorSpace(project.project):"srgb"} path={preview.path?.join(" / ")??form.name} disabled={pending||!!submissionBlocked||!!readFailure} onBack={()=>{returningToName.current=true;setRampOpen(false);}} onCancel={onClose} onCreate={onCreateRamp}/></div>}
         <form hidden={rampOpen}
           className="min-h-0 overflow-auto p-1.5"
           onSubmit={(e) => {
@@ -126,6 +128,7 @@ export function AuthoringDialog({
             <Field>
               Name
               <Input
+                ref={nameField}
                 readOnly={pending}
                 value={form.name}
                 onChange={(e) => form.onNameChange(e.target.value)}

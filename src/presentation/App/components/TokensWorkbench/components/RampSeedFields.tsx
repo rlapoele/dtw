@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   createColorLiteral,
   type ColorLiteralValue,
@@ -12,7 +12,7 @@ import {
   rampPreviewKey,
   type RampGamut,
 } from "@domain/color-ramp";
-import { RampColorFields } from "@presentation/App/components/TokensWorkbench/components/ColorRamp/RampColorFields";
+import { ColorLiteralFields } from "@presentation/App/components/TokensWorkbench/components/ColorLiteralFields";
 import { Button } from "@presentation/ui/button";
 import { Field } from "@presentation/ui/field";
 import { Input } from "@presentation/ui/input";
@@ -32,6 +32,12 @@ export function RampSeedFields({
   onValidity: (valid: boolean) => void;
   disabled?: boolean;
 }) {
+  const advancedButton = useRef<HTMLButtonElement>(null);
+  const advancedHeading = useRef<HTMLHeadingElement>(null);
+  function closeAdvanced() {
+    advancedButton.current?.focus();
+    setAdvanced(false);
+  }
   function seedHex(value: ColorLiteralValue) {
     try {
       return (
@@ -111,12 +117,14 @@ export function RampSeedFields({
         Alpha stays separate.
       </p>
       <Button
+        ref={advancedButton}
         disabled={disabled}
         onClick={() => {
           setAdvancedSeed(seed);
           setAdvancedSpace(seed.colorSpace);
           setAdvancedValid(true);
           setAdvanced(true);
+          requestAnimationFrame(() => advancedHeading.current?.focus());
           onValidity(false);
         }}
       >
@@ -124,8 +132,8 @@ export function RampSeedFields({
       </Button>
       {advanced && (
         <section className="border border-border rounded p-3">
-          <h3>Advanced seed color</h3>
-          <RampColorFields
+          <h3 ref={advancedHeading} tabIndex={-1}>Advanced seed color</h3>
+          <ColorLiteralFields
             key={String(advanced)}
             value={advancedSeed}
             onChange={setAdvancedSeed}
@@ -139,7 +147,7 @@ export function RampSeedFields({
                 const prepared = prepareRampSeed(advancedSeed, advancedSpace);
                 changed(prepared);
                 setHex(seedHex(prepared));
-                setAdvanced(false);
+                closeAdvanced();
               } catch (e) {
                 setError(
                   e instanceof Error
@@ -153,7 +161,7 @@ export function RampSeedFields({
           </Button>
           <Button
             onClick={() => {
-              setAdvanced(false);
+              closeAdvanced();
               onValidity(!error);
             }}
           >

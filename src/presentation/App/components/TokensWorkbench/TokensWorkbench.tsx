@@ -1,5 +1,5 @@
 import {MissingColorEditor} from "@presentation/App/components/TokensWorkbench/components/MissingColorEditor/MissingColorEditor";
-import {RampWorkbench} from "@presentation/App/components/TokensWorkbench/components/ColorRamp/ColorRamp";
+import {RampWorkbench} from "@presentation/App/components/TokensWorkbench/components/RampWorkbench/RampWorkbench";
 import { effectiveDefaultColorSpace } from "@domain/project";
 import { tokenListRows } from "@presentation/App/components/TokensWorkbench/helpers/token-list-order";
 import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";
@@ -54,6 +54,7 @@ export function TokensWorkbench({
   const [view, setView] = useState<TokenBrowseView>({ kind: "all-tokens" });
   const group = creationParent(view);
   const [rampInspector,setRampInspector]=useState<HTMLElement|null>(null);
+  const refillFocus = useRef<{tokenId:string; layer:number|"whole"}|undefined>(undefined);
   const rampApply=useRef<(()=>Promise<boolean>)|null>(null);
   const [collapsedNavigation, setCollapsedNavigation] = useState<Set<string>>(() => new Set());
   const [query, setQuery] = useState("");
@@ -401,10 +402,12 @@ export function TokensWorkbench({
           requestSource={(id) => source("group", id)}
         >
           {selection?.kind === "token" && inspection && context ? (
-            ((inspection.missingColorLayers?.length??0)>0||(inspection.token.definition?.type==="color"&&inspection.authoredKind==="No assignment"))?<MissingColorEditor key={JSON.stringify([selection.id,editorVersion])} host={host} header={header} tokenId={selection.id} project={context} disabled={blocked} onDirty={setDirty} onSave={async input=>{
-              completion.current=()=>{setDirty(false);setEditorVersion(v=>v+1);outcomes.publish("Color field applied and retained.");};
+            ((inspection.missingColorLayers?.length??0)>0||(inspection.token.definition?.type==="color"&&inspection.authoredKind==="No assignment"))?<MissingColorEditor key={JSON.stringify([selection.id,editorVersion])} host={host} header={header} tokenId={selection.id} focusSummary={refillFocus.current?.tokenId===selection.id?refillFocus.current.layer:undefined} onSummaryFocused={()=>{refillFocus.current=undefined;}} project={context} disabled={blocked} onDirty={setDirty} onSave={async input=>{
+              completion.current=()=>{refillFocus.current={tokenId:input.tokenId,layer:input.layerIndex??"whole"};setDirty(false);setEditorVersion(v=>v+1);outcomes.publish("Color field applied and retained.");};
               const result=await accept({operation:"refillColor",input});if(result.status==="unchanged"||(result.status==="retained"&&result.readback==="available")){const finish=completion.current;completion.current=undefined;finish?.();return true;}return false;
             }}/>:<TokenEditor
+              focusApplied={refillFocus.current?.tokenId===selection.id}
+              onAppliedFocused={()=>{refillFocus.current=undefined;}}
               inspectorExpanded={inspectorExpanded}
               onToggle={() => narrow ? back() : setInspectorExpanded(!inspectorExpanded)}
               readFailure={readFailure}

@@ -251,7 +251,7 @@ export function TokenEditorContent({
                 unavailable and unverified.
               </p>
             )}
-            <InspectorSection title={targetUnavailable ? "Previous applied · target unavailable" : "Currently applied"} open={sections.applied} onToggle={() => toggleSection("applied")}>
+            <InspectorSection appliedSummary title={targetUnavailable ? "Previous applied · target unavailable" : "Currently applied"} open={sections.applied} onToggle={() => toggleSection("applied")}>
               <dl className="text-caption mb-3"><dt className="text-muted-foreground">Description</dt><dd className="whitespace-pre-wrap wrap-anywhere">{token.description ?? "No description"}</dd><dt className="text-muted-foreground mt-3">Layer</dt><dd>{token.layer ?? "Unspecified"}</dd></dl>
               <div className="text-caption">
                 {projected && !value ? (

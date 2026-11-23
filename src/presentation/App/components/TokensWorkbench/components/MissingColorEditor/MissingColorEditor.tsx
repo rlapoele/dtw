@@ -7,7 +7,7 @@ import { createTokenReference } from "@domain/token-reference";
 import type { RefillColorInput } from "@application/color-ramp-authoring";
 import { Button } from "@presentation/ui/button";
 import { Select } from "@presentation/ui/select";
-import { RampColorFields } from "@presentation/App/components/TokensWorkbench/components/ColorRamp/ColorRamp";
+import { ColorLiteralFields } from "@presentation/App/components/TokensWorkbench/components/ColorLiteralFields";
 export function MissingColorEditor({
   host,
   header,
@@ -16,6 +16,8 @@ export function MissingColorEditor({
   disabled,
   onDirty,
   onSave,
+  focusSummary,
+  onSummaryFocused,
 }: {
   host: WorkbenchHost;
   header: ProjectHeader;
@@ -23,6 +25,8 @@ export function MissingColorEditor({
   project: ProjectContext;
   disabled: boolean;
   onDirty: (dirty: boolean) => void;
+  focusSummary?: number | "whole";
+  onSummaryFocused?: () => void;
   onSave: (input: RefillColorInput) => Promise<boolean>;
 }) {
   const [token, setToken] = useState<Token>(),
@@ -40,7 +44,21 @@ export function MissingColorEditor({
     [error, setError] = useState("");
   const baseline = useRef(header.revision),
     container = useRef<HTMLDivElement>(null),
-    returnFocus = useRef<HTMLElement | null>(null);
+    editButtons = useRef(new Map<number | "whole", HTMLButtonElement>()),
+    returnField = useRef<number | "whole">("whole"),
+    restoreEdit = useRef(false);
+  useEffect(() => {
+    if (field === null && restoreEdit.current) {
+      editButtons.current.get(returnField.current)?.focus();
+      restoreEdit.current = false;
+    }
+  }, [field]);
+  useEffect(() => {
+    if (token && focusSummary !== undefined) {
+      const summary = container.current?.querySelector<HTMLElement>(`[data-refill-summary="${focusSummary}"]`);
+      if (summary) { summary.focus(); onSummaryFocused?.(); }
+    }
+  }, [token, focusSummary]);
   useEffect(() => {
     let live = true;
     host
@@ -63,7 +81,7 @@ export function MissingColorEditor({
         ? value
         : undefined;
   function open(which: number | "whole") {
-    returnFocus.current = document.activeElement as HTMLElement;
+    returnField.current = which;
     setField(which);
     setValid(false);
     setTarget("");
@@ -74,9 +92,9 @@ export function MissingColorEditor({
     );
   }
   function cancel() {
+    restoreEdit.current = true;
     setField(null);
     onDirty(false);
-    requestAnimationFrame(() => returnFocus.current?.focus());
   }
   return (
     <div ref={container} className="overflow-auto min-h-0 p-5 space-y-4">
@@ -88,7 +106,7 @@ export function MissingColorEditor({
           {shadow ? (
             shadow.layers.map((layer, i) => (
               <section key={i} className="space-y-2">
-                <h3>Layer {i + 1}</h3>
+                <h3 tabIndex={-1} data-refill-summary={i}>Layer {i + 1}</h3>
                 {!layer.color && (
                   <>
                     <p>Incomplete — Layer {i + 1} color missing</p>
@@ -97,6 +115,7 @@ export function MissingColorEditor({
                       are complete.
                     </p>
                     <Button
+                      ref={node => { if (node) editButtons.current.set(i, node); else editButtons.current.delete(i); }}
                       disabled={disabled}
                       onClick={() => open(i)}
                       aria-label={`Edit ${token.localName} Layer ${i + 1} color`}
@@ -115,8 +134,8 @@ export function MissingColorEditor({
             ))
           ) : (
             <>
-              <p>Current: Unspecified · Color token</p>
-              <Button disabled={disabled} onClick={() => open("whole")}>
+              <p tabIndex={-1} data-refill-summary="whole">Current: Unspecified · Color token</p>
+              <Button ref={node => { if (node) editButtons.current.set("whole", node); else editButtons.current.delete("whole"); }} disabled={disabled} onClick={() => open("whole")}>
                 Edit color
               </Button>
             </>
@@ -148,7 +167,7 @@ export function MissingColorEditor({
             ))}
           </fieldset>
           {mode === "literal" ? (
-            <RampColorFields
+            <ColorLiteralFields
               value={literal}
               disabled={disabled}
               onChange={(value) => {
@@ -208,7 +227,7 @@ export function MissingColorEditor({
                           valuePath: [],
                         }),
                 });
-                if (ok) cancel();
+                if (ok) { setField(null); onDirty(false); }
               }}
             >
               Apply

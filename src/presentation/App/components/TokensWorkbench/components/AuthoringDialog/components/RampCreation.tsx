@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createColorLiteral, type ColorSpace } from "@domain/color-literal";
 import {
   prepareRampSeed,
@@ -9,8 +9,8 @@ import {
   rampLabels,
   type RampSettings,
 } from "@domain/color-ramp";
-import { RampSeedFields } from "@presentation/App/components/TokensWorkbench/components/ColorRamp/RampSeedFields";
-import { RampPreview } from "@presentation/App/components/TokensWorkbench/components/ColorRamp/RampPreview";
+import { RampSeedFields } from "@presentation/App/components/TokensWorkbench/components/RampSeedFields";
+import { RampPreview } from "@presentation/App/components/TokensWorkbench/components/RampPreview";
 import { Button } from "@presentation/ui/button";
 import { Field } from "@presentation/ui/field";
 import { Input } from "@presentation/ui/input";
@@ -22,6 +22,7 @@ export type RampCreationValue = {
 };
 export function RampCreation({
   defaultSpace,
+  active,
   path,
   onBack,
   onCancel,
@@ -29,6 +30,7 @@ export function RampCreation({
   disabled,
 }: {
   defaultSpace: ColorSpace;
+  active: boolean;
   path: string;
   onBack: () => void;
   onCancel: () => void;
@@ -55,6 +57,10 @@ export function RampCreation({
       seedPosition: { mode: "auto", label: autoRampPosition(seed, 11) },
     };
   });
+  const heading = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    if (active) heading.current?.focus();
+  }, [active, stage]);
   let steps: ReturnType<typeof generateColorRamp> = [],
     error = "";
   try {
@@ -83,7 +89,7 @@ export function RampCreation({
   }
   return (
     <section className="space-y-4">
-      <h3>
+      <h3 ref={heading} tabIndex={-1}>
         {stage === 1
           ? "2 · Seed color"
           : stage === 2

@@ -1,4 +1,4 @@
-import type {RampCreationValue} from "@presentation/App/components/TokensWorkbench/components/ColorRamp/ColorRamp";
+import type {RampCreationValue} from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/components/RampCreation";
 import {rampLabels} from "@domain/color-ramp";
 import { effectiveDefaultColorSpace } from "@domain/project";
 import { useOutcomeFeedback } from "@presentation/App/components/OutcomeFeedback/OutcomeFeedback";

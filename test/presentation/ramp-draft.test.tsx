@@ -37,9 +37,9 @@ vi.mock("react-dom", async (original) => ({
   ...(await original<typeof import("react-dom")>()),
   createPortal: (children: any) => children,
 }));
-import { RampWorkbench } from "@presentation/App/components/TokensWorkbench/components/ColorRamp/RampWorkbench";
-import { RampSeedFields } from "@presentation/App/components/TokensWorkbench/components/ColorRamp/RampSeedFields";
-import { RampColorFields } from "@presentation/App/components/TokensWorkbench/components/ColorRamp/RampColorFields";
+import { RampWorkbench } from "@presentation/App/components/TokensWorkbench/components/RampWorkbench/RampWorkbench";
+import { RampSeedFields } from "@presentation/App/components/TokensWorkbench/components/RampSeedFields";
+import { ColorLiteralFields } from "@presentation/App/components/TokensWorkbench/components/ColorLiteralFields";
 import { Input } from "@presentation/ui/input";
 import { createRampCandidate } from "@application/color-ramp-authoring";
 import { createProject } from "@domain/project";
@@ -116,7 +116,7 @@ it("guards invalid-first step/seed edits, remounts discarded seed state and full
   let tree = render();
   effects();
   expect(dirty).toHaveBeenLastCalledWith(false);
-  tree.find((n) => n.type === RampColorFields).props.onValidity(false);
+  tree.find((n) => n.type === ColorLiteralFields).props.onValidity(false);
   tree = render();
   effects();
   expect(dirty).toHaveBeenLastCalledWith(true);

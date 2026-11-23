@@ -1,0 +1,101 @@
+{
+  "baseline": "0692bacc4f40018241db487fd22c370d4446a119",
+  "files": [
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/TokensWorkbench.tsx",
+      "sha256": "5afdf741391a061e4285ac868810854d9c637b462002e838ae6fbf9514ced81e"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/AuthoringDialog/AuthoringDialog.tsx",
+      "sha256": "ffabd14d5426f4271d61322750ddd14117e361940925e6fbd8f8f86dd289c4b9"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/AuthoringDialog/components/RampCreation.tsx",
+      "sha256": "e9458119b7f57ef566ee282bc50a0d52e8291222151909fed385dcfe91eef6d3"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/AuthoringDialog/hooks/useAuthoringForm.ts",
+      "sha256": "05726b271731ebd1332d5d18c0e8bfa8b5735995f27c7df6558e5c37e3a259c9"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/ColorLiteralFields.tsx",
+      "sha256": "34fad704e99f48938b6b4dcfd85f52a314832bdcebfb208be8f191bf6e6395b3"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/ColorRamp/ColorRamp.tsx",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/ColorRamp/RampColorFields.tsx",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/ColorRamp/RampCreation.tsx",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/ColorRamp/RampImpactPreview.tsx",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/ColorRamp/RampPreview.tsx",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/ColorRamp/RampReferenceReview.tsx",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/ColorRamp/RampSeedFields.tsx",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/ColorRamp/RampWorkbench.tsx",
+      "sha256": null
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/MissingColorEditor/MissingColorEditor.tsx",
+      "sha256": "7f3e909c8914bb452ad07da057b56d7a7bf575c542b8f6a941cfa33eee98c97c"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/RampPreview.tsx",
+      "sha256": "510939d674056398514740bf5634c54b302ecdb0813c755920792e32b2e317c7"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/RampSeedFields.tsx",
+      "sha256": "33e6c1a7b7091b9abb754a7632caac079a0e2b84389dd5e60952c218e7d52b8a"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/RampWorkbench/RampWorkbench.tsx",
+      "sha256": "01b92ec5a66c338eac3061821a8599bf04857194d604694906dc5b6a125f1579"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/RampWorkbench/components/RampImpactPreview.tsx",
+      "sha256": "d19a7025dbaa083985626cc64407ae24587b61abcbf59ce3fb1693ba4a7acbed"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/RampWorkbench/components/RampReferenceReview.tsx",
+      "sha256": "1980d386a560cdca266215e4a4b4a4c856b5433410747fe99320717e846f9dfd"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorSection.tsx",
+      "sha256": "fde4c8eb85a4030cffd0aa963abea8961a306652bb1a9f619c20775a4f92728e"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/TokenEditor.tsx",
+      "sha256": "3fceef92bb3206ab021494d33c635e59e2602db69cda45370489f91a9cdc76a5"
+    },
+    {
+      "path": "src/presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent.tsx",
+      "sha256": "171c78676f2e4bd776aa27b4ca7e271f597a51409e2a5802f093b2675d4651c2"
+    },
+    {
+      "path": "test/application/retention/color-ramp.test.ts",
+      "sha256": "a8e10b0060d68921c51212c27bf00d0f5cfaeb047304c2535bf77665a9786907"
+    },
+    {
+      "path": "test/presentation/ramp-draft.test.tsx",
+      "sha256": "7853c645791c93d810c77ec80c7168cb705714e92c3b821e2e1468864d1fbba0"
+    }
+  ]
+}

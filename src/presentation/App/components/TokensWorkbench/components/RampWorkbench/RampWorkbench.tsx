@@ -1,5 +1,5 @@
-import { RampReferenceReview } from "@presentation/App/components/TokensWorkbench/components/ColorRamp/RampReferenceReview";
-import { RampImpactPreview } from "@presentation/App/components/TokensWorkbench/components/ColorRamp/RampImpactPreview";
+import { RampReferenceReview } from "@presentation/App/components/TokensWorkbench/components/RampWorkbench/components/RampReferenceReview";
+import { RampImpactPreview } from "@presentation/App/components/TokensWorkbench/components/RampWorkbench/components/RampImpactPreview";
 import {
   useEffect,
   useState,
@@ -45,9 +45,9 @@ import type { ProjectSnapshot } from "@application/project-storage";
 import type { WorkbenchHost, ProjectHeader } from "@hosts/browser/protocol";
 import { deriveTokenPath, deriveTokenGroupPath } from "@domain/namespace";
 import { colorPreview } from "@presentation/App/components/TokensWorkbench/helpers/color-preview";
-import { RampColorFields } from "@presentation/App/components/TokensWorkbench/components/ColorRamp/RampColorFields";
-import { RampSeedFields } from "@presentation/App/components/TokensWorkbench/components/ColorRamp/RampSeedFields";
-import { RampPreview } from "@presentation/App/components/TokensWorkbench/components/ColorRamp/RampPreview";
+import { ColorLiteralFields } from "@presentation/App/components/TokensWorkbench/components/ColorLiteralFields";
+import { RampSeedFields } from "@presentation/App/components/TokensWorkbench/components/RampSeedFields";
+import { RampPreview } from "@presentation/App/components/TokensWorkbench/components/RampPreview";
 export function RampWorkbench({
   host,
   header,
@@ -372,7 +372,7 @@ export function RampWorkbench({
                   </p>
                 </section>
               </div>
-              <RampColorFields
+              <ColorLiteralFields
                 key={`${step.id}/${epoch}/${fieldVersions[step.id] ?? 0}/${space}`}
                 value={step.value}
                 space={space}

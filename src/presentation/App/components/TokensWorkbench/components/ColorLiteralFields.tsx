@@ -10,7 +10,7 @@ import {
   changeView,
   type DraftSession,
 } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session";
-export function RampColorFields({
+export function ColorLiteralFields({
   value,
   space,
   disabled,

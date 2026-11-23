@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import type { RampDraft, rampImpacts } from "@application/color-ramp-authoring";
 import { Button } from "@presentation/ui/button";
 import { Select } from "@presentation/ui/select";
-import { RampPreview } from "@presentation/App/components/TokensWorkbench/components/ColorRamp/RampPreview";
+import { RampPreview } from "@presentation/App/components/TokensWorkbench/components/RampPreview";
 export function RampReferenceReview({
   use,
   draft,
