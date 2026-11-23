@@ -829,6 +829,14 @@ so users can reopen the ramp. Exact schema remains unresolved. Tokens retain the
 normal identity, explicit type and independently authored values; namespace
 containment still determines paths.
 
+**Ramp membership constraint — agreed 23 November 2026:** only explicitly Primitive
+tokens may participate in a ramp. While a token is a ramp member, neither ramp nor
+ordinary token editing may change or clear its layer. Non-member layer editing is
+unchanged. This scoped authoring constraint does not introduce group-level type/layer
+inheritance, automatically coerce incompatible data or decide literal/reference
+eligibility. Incompatible loaded membership requires truthful diagnosis and an
+explicit recovery contract in Increment 024.
+
 This explicitly settles recipe retention for color ramps while preserving the
 scale-helper boundary: changed settings produce reviewed proposals, never automatic
 updates or live computed dependencies. Retention and project backups should preserve

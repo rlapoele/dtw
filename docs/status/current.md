@@ -50,13 +50,16 @@ is supported; only its invalid retained position needs correction.
 The user agreed that unchanged input does not establish Manual, while intentional
 color edit-return retains Manual and can produce a metadata-only Apply (AC-9).
 Exact black at 950 is the mirror of white at 50, allowing lighter preceding steps.
-Next: decide member eligibility under D3. Listed D2 decisions are recorded; the
-focused consistency check of post-review amendments remains pending.
+The user agreed Primitive-only membership and prohibited layer changes/clearing in
+ordinary editing as well as the ramp inspector while a token belongs to a ramp
+(AC-7). Literal-versus-reference membership is still open; it is the next D3 decision.
+Listed D2 decisions are recorded; the focused consistency check of post-review
+amendments, including this ordinary-editor restriction, remains pending.
 D1–D5 still require preparation; full contract agreement and implementation are not
 authorized. Document/source checks stopped at approximately 14/15 aggregate minutes,
 zero repairs. No browser, numerical or retention qualification restarted. Leave
 staging, committing and pushing to the user. Suggested commit:
-`docs: define intentional ramp edits and clarify black seed placement`.
+`docs: require Primitive ramp members and lock their layer`.
 
 The dated entries below retain earlier handoff evidence; their next-step wording is
 superseded by this current entry and the owning increment.

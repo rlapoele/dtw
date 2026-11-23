@@ -95,7 +95,9 @@ These questions remain open beyond that bounded subset. Culori 4.0.2 is installe
 one seed, 2–20 steps (11 default), positional naming, constant OKLCH hue, Retained
 chroma by default with Restrained available, uniform seed alpha, OKLCH generated
 values, and explicit seed/gamut/endpoint decisions. Creation has no individual-step
-editing; subsequent editing uses one shared draft/Apply and read-only Primitive layer.
+editing; subsequent editing uses one shared draft/Apply. Only Primitive tokens may
+participate; their layer is read-only in ramp and ordinary token editing (23 November).
+Literal-versus-reference membership remains open.
 
 The [owning direction](../project/guided-color-palette-generation.md) now distinguishes
 ordinary regeneration (Protected preserved; unprotected Manual/Generated colors

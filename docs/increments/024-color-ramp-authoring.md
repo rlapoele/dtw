@@ -119,9 +119,13 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
   regeneration. Show named rounded swatches, HEX previews and three aligned component
   rows with thin vertical sliders and values. Selected-step details use the familiar
   token inspector with Current/New comparison, description, color fields, alpha and
-  read-only details. Layer is fixed Primitive and disabled/read-only. Reference-mode
-  editing in the ramp inspector remains unavailable pending D3; do not mislabel an
-  incompatible token or remove ordinary-editor capabilities. Precise inputs remain
+  read-only details. **Membership/layer rule agreed 23 November:** only explicitly
+  Primitive tokens may participate in a ramp. Layer is fixed Primitive and read-only
+  in both the ramp inspector and ordinary token editor while the token belongs to
+  a ramp; ordinary editing cannot change or clear it. This scoped restriction is
+  explicit, not a general restriction on non-member tokens. Reference-mode editing
+  in the ramp inspector remains unavailable pending D3; do not mislabel incompatible
+  data or silently convert it. Precise inputs remain
   available for otherwise valid values outside the slider's visual range.
 - **AC-8 — View and edit semantics.** Proposed: initialize Component space from the
   effective project default and synchronize matrix/inspector viewing during the session.
@@ -432,11 +436,17 @@ it is no longer an open D2 decision.
 
 ### D3 — Member eligibility and creation field ownership
 
-Recommendation still awaiting agreement: support literal Primitive color members in
-the calculation domain; diagnose incompatible ordinary-editor layer/reference changes
-without coercion, false Primitive labels or alias flattening. Define missing/renamed/
-moved-member recovery. Non-member adoption is excluded, so eligibility is not a route
-to bypass AC-14. Existing ordinary-editor behavior must not be silently restricted.
+**Agreed 23 November:** only Primitive tokens may participate. Both the ramp inspector
+and ordinary token editor prevent changing or clearing a member's layer (AC-7).
+This supersedes the proposal to permit ordinary-editor layer changes and diagnose
+incompatibility afterward. Existing incompatible data still needs truthful diagnosis,
+not relabeling or coercion; exact recovery remains to specify.
+
+Literal-only color membership remains a recommendation, not an agreement: Primitive
+layer alone does not determine literal versus reference eligibility. Specify supported
+assignments and reference behavior without alias flattening, plus missing/renamed/
+moved-member recovery. Non-member adoption remains excluded under AC-14. Do not infer
+other ordinary-editor restrictions from the explicitly agreed layer lock.
 
 Seed-description ownership is settled in AC-6: only the final creation anchor token
 receives it; afterward ordinary token-description preservation applies. Surviving
@@ -546,7 +556,10 @@ follow-up grants no runtime or numerical allowance.
 - 23 November, subsequent decision: unchanged input does not establish Manual;
   intentional edit-return retains it and may be a metadata-only Apply (AC-9).
   Exact black at 950 is the mirror of the white-at-50 rule (AC-12).
-- Next: decide member eligibility under D3, then continue remaining
+- 23 November, subsequent decision: only Primitive members; their layer cannot be
+  changed or cleared in either ramp or ordinary editing (AC-7). This post-review
+  amendment needs inclusion in the pending focused analyst consistency check.
+- Next: decide literal-versus-reference member eligibility under D3, then continue remaining
   D1–D5 questions one at a time. Material design revisions return to the user before
   further review. Final contract/design agreement and explicit implementation
   authorization remain required. No implementation yet.

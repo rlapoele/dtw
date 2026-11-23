@@ -195,7 +195,10 @@ The user agreed a single Apply boundary and requested updated wireframes:
 - Show Current/New color comparison and retain the existing color-token inspector's
   visual structure and controls as closely as possible, adding ramp-specific context.
   The ramp-step inspector displays Layer as **Primitive**, read-only/disabled
-  (explicit user amendment, 22 November). It cannot change layer in this surface.
+  (explicit user amendment, 22 November). **Amended 23 November:** only Primitive
+  tokens may participate in a ramp. Layer cannot be changed or cleared in either
+  the ramp inspector or the ordinary token editor while the token is a ramp member.
+  This does not restrict non-member layers or settle literal/reference eligibility.
 - **Revert step changes** in ordinary editing without count replacement restores
   the selected step's saved color, Manual status, description and protection
   (**field scope agreed 23 November 2026**). Preserve other steps' pending edits
