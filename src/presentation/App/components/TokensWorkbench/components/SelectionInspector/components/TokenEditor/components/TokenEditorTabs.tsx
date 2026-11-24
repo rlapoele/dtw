@@ -3,7 +3,7 @@ import { Tabs } from "@base-ui/react/tabs";
 export function TokenEditorTabs() {
   return (
     <Tabs.List
-      className="tabs flex border-b-hairline border-border px-6 gap-5.5 source-compact:px-5 source-compact:gap-4.5"
+      className="tabs flex border-b-hairline border-border px-6 gap-5.5 compact:px-5 compact:gap-4.5"
       aria-label="Token inspection"
     >
       <Tabs.Tab

@@ -146,7 +146,7 @@ export function AuthoringDialog({
                   rows={2}
                   value={form.description}
                   onChange={(e) => form.onDescriptionChange(e.target.value)}
-                  className="w-full min-w-0 rounded-md border-2 border-input bg-background text-foreground px-2.5 py-2 text-xs/normal small:text-base/normal hover:border-control-hover resize-y"
+                  className="w-full min-w-0 rounded-md border-2 border-input bg-background text-foreground px-2.5 py-2 text-xs/normal mobile:text-base/normal hover:border-control-hover resize-y"
                 />
               </Field>
             )}

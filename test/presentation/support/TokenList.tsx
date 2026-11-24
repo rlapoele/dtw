@@ -44,7 +44,7 @@ export function TokenList({
             <span className="flex gap-3 min-w-0 items-start">
               <TokenSwatch css={preview.css} />
               <span className="token-identity flex-1 min-w-0">
-                <strong className="block text-xs/normal small:text-caption token-name wrap-anywhere">
+                <strong className="block text-xs/normal mobile:text-caption token-name wrap-anywhere">
                   {labels.get(t.authored.id)}
                 </strong>
                 <small className="block text-secondary mt-1 wrap-anywhere">

@@ -50,11 +50,11 @@ export function WorkspaceToolbar({
           </div>
         </div>
         <div className="workspace-creation flex flex-nowrap gap-2">
-          <Button size="panel" className="workspace-create" title="New group" aria-label="New group" disabled={blocked} onClick={onCreateGroup}>
-            <Icon name="folder" /><span className="hidden sm:inline">New group</span>
+          <Button size="panel" className="workspace-create mobile:w-9 mobile:min-w-9 mobile:px-0" title="New group" aria-label="New group" disabled={blocked} onClick={onCreateGroup}>
+            <Icon name="folder" /><span className="inline mobile:hidden">New group</span>
           </Button>
         <Button
-          className="workspace-create"
+          className="workspace-create mobile:w-9 mobile:min-w-9 mobile:px-0"
           title="New token"
           aria-label="New token"
           variant="default"
@@ -63,7 +63,7 @@ export function WorkspaceToolbar({
           onClick={() => onCreateToken()}
         >
           <Icon name="plus" />
-          <span className="hidden sm:inline">New token</span>
+          <span className="inline mobile:hidden">New token</span>
         </Button>
         </div>
         <p className="col-span-2 text-xs/normal text-muted-foreground">
@@ -71,7 +71,7 @@ export function WorkspaceToolbar({
         </p>
       </div>
       {!allContent && (
-        <div className="list-tools compact:flex-wrap narrow:gap-2 flex gap-3 items-center mb-5">
+        <div className="list-tools compact:flex-wrap mobile:gap-2 flex gap-3 items-center mb-5">
           <label className="search tablet:min-w-25 flex-1 max-w-75 relative">
             <Icon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground" />
             <Input

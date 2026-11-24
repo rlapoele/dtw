@@ -233,7 +233,7 @@ export function ColorEditor({
                   />
                 </>
               ) : (
-                <p className="helper text-muted-foreground font-normal range-unavailable flex min-h-10 items-center wrap-anywhere small:min-h-11">
+                <p className="helper text-muted-foreground font-normal range-unavailable flex min-h-10 items-center wrap-anywhere mobile:min-h-11">
                   {value === "none"
                     ? "Missing component · use exact entry."
                     : rangeState === "outside"
@@ -298,7 +298,7 @@ export function ColorEditor({
             }
           />
         ) : (
-          <p className="helper text-muted-foreground font-normal range-unavailable flex min-h-10 items-center wrap-anywhere small:min-h-11">
+          <p className="helper text-muted-foreground font-normal range-unavailable flex min-h-10 items-center wrap-anywhere mobile:min-h-11">
             {alphaRangeState === "outside"
               ? "Outside visual range · exact alpha retained."
               : "Complete alpha in exact entry."}

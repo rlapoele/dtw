@@ -89,13 +89,13 @@ export function TokenEditorContent({
   );
   return (
     <aside
-      className="inspector small:min-h-0 flex min-w-0 min-h-full flex-col bg-surface"
+      className="inspector mobile:min-h-0 flex min-w-0 min-h-full flex-col bg-surface"
       aria-label="Selected token"
       hidden={readUnavailable}
     >
       <div ref={headingRef} className="inspector-heading sticky top-0 z-10 bg-surface border-b-hairline border-border p-4">
         <div className="flex items-start gap-2 min-w-0">
-          <span aria-hidden="true" className="size-9 shrink-0 touch:hidden" />
+          <span aria-hidden="true" className="size-9 shrink-0 mobile:hidden" />
           <div className="flex flex-wrap items-start gap-3 min-w-0 flex-1">
             <div className="min-w-0 max-w-full">
               <span className="eyebrow uppercase text-muted-foreground font-semibold">{token.definition?.type ?? "Unassigned"} token</span>
@@ -105,7 +105,7 @@ export function TokenEditorContent({
           </div>
         </div>
       </div>
-      <div className="px-6 touch:px-4">
+      <div className="px-6 mobile:px-4">
         <InspectorSection title="Edit token" open={sections.edit} onToggle={() => toggleSection("edit")}
           badge={!sections.edit && dirty ? "Unapplied changes" : !editable ? "Inspection only" : undefined}
           footer={<div className="pb-4">
@@ -243,7 +243,7 @@ export function TokenEditorContent({
       </div>
       <Tabs.Root value={tab} onValueChange={selectTab}>
         <TokenEditorTabs />
-        <Tabs.Panel value={tab} className="editor-body bg-surface px-6 pb-6 touch:px-4 touch:pb-4">
+        <Tabs.Panel value={tab} className="editor-body bg-surface px-6 pb-6 mobile:px-4 mobile:pb-4">
           {tab === "authored" ? <>
             {token.layer === "component" && (
               <p role="status" className="helper text-muted-foreground">

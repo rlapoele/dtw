@@ -29,7 +29,7 @@ export function SelectionInspector({
 }) {
   return (
     <section ref={surfaceRef} hidden={hidden} tabIndex={-1}
-      className="inspector-shell relative touch:border-l-0 small:border-t-hairline small:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l-hairline border-border bg-surface"
+      className="inspector-shell relative mobile:border-l-0 mobile:border-t-hairline mobile:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l-hairline border-border bg-surface"
       aria-label="Inspector pane"
     >
       {children || (

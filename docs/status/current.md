@@ -1,6 +1,6 @@
 # Current Project Status
 
-> Last updated: 23 November 2026
+> Last updated: 24 November 2026
 >
 > Phase: Increment 024 implemented and independently reviewed; bounded follow-up complete, human acceptance pending. Increment 023 implemented and independently reviewed; user acceptance pending. Increment 022 completed, independently reviewed and user-accepted; verification limits retained. Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
@@ -9,6 +9,25 @@
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## CSS/Tailwind maintenance completed — 24 November 2026
+
+The user requested stylesheet cleanup before further ramp annotations.
+[Audit and completion evidence](../planning/css-architecture-cleanup.md) record the
+layer/token/dimension consolidation and three responsive modes. Utilities intentionally
+override component styles; application selector rules no longer use unlayered CSS.
+Notification and preview chrome use shared colors, and ordinary dimensions use the
+Tailwind spacing scale with documented exceptions. State/domain behavior is unchanged.
+
+Final build/all typechecks and focused tests passed. Independent review found and
+rechecked one corrected toast measurement mismatch. Representative in-app browser
+checks covered actual480/1000/1280px widths; limits are in the audit. Checks stopped at
+approximately30/30 aggregate minutes, zero repairs. Earlier qualification stays closed.
+
+Next: user ramp annotations/manual review. The user reports many UI details to adjust
+and difficulty finding how to reopen a saved ramp; this cleanup does not settle those
+interaction changes or claim user acceptance. Staging/committing/pushing remain user-owned.
+Suggested commit: `refactor: consolidate presentation styles and responsive modes`.
 
 ## Increment 024 bounded follow-up completed — 23 November 2026
 

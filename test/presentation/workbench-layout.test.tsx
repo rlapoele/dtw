@@ -39,7 +39,7 @@ it("observes both exact thresholds, calls current policy only on transitions and
   vi.stubGlobal("window", { innerWidth: 1000 });
   vi.stubGlobal("matchMedia", (query: string) => {
     const listeners = new Set<() => void>();
-    const item = { matches: query.includes("1119"), listeners, addEventListener: (_: string, cb: () => void) => listeners.add(cb), removeEventListener: (_: string, cb: () => void) => listeners.delete(cb) };
+    const item = { matches: query.includes("1120"), listeners, addEventListener: (_: string, cb: () => void) => listeners.add(cb), removeEventListener: (_: string, cb: () => void) => listeners.delete(cb) };
     media.set(query, item); return item;
   });
   const initial = vi.fn(), current = vi.fn();
@@ -47,12 +47,12 @@ it("observes both exact thresholds, calls current policy only on transitions and
   const cleanup = runtime.effects[0]() as () => void;
   expect(initial).not.toHaveBeenCalled();
   render(current);
-  expect([...media.keys()]).toEqual(["(max-width:1119px)", "(max-width:879px)"]);
-  const narrow = media.get("(max-width:879px)")!; narrow.matches = true;
+  expect([...media.keys()]).toEqual(["(width < 1120px)", "(width < 880px)"]);
+  const narrow = media.get("(width < 880px)")!; narrow.matches = true;
   narrow.listeners.forEach(cb => cb());
   expect(current).toHaveBeenLastCalledWith({ compact: true, narrow: true }, "narrow");
   expect(render(current)).toEqual({ compact: true, narrow: true });
-  const compact = media.get("(max-width:1119px)")!; compact.matches = false;
+  const compact = media.get("(width < 1120px)")!; compact.matches = false;
   compact.listeners.forEach(cb => cb());
   expect(current).toHaveBeenLastCalledWith({ compact: false, narrow: true }, "compact");
   cleanup(); expect([...media.values()].every(item => item.listeners.size === 0)).toBe(true);

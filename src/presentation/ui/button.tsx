@@ -11,9 +11,9 @@ const variants = {
 };
 const sizes = {
   default: "min-h-9 px-3 justify-center gap-2 rounded-md",
-  history: "min-h-9 min-w-9 px-0 sm:px-3 justify-center gap-2 rounded-md w-9 sm:w-auto",
+  history: "min-h-9 min-w-9 px-3 mobile:px-0 justify-center gap-2 rounded-md w-auto mobile:w-9",
   panel:
-    "min-h-9 px-3 justify-center gap-2 rounded-md source-compact:px-2.5 source-compact:text-caption",
+    "min-h-9 px-3 justify-center gap-2 rounded-md compact:px-2.5 compact:text-caption",
   navigation: "min-h-9 px-3 justify-start gap-2.5 rounded-none text-xs/normal",
   group:
     "h-auto min-h-9 pl-7 pr-3 py-2 justify-start gap-2.5 rounded-none text-xs/normal",
@@ -42,7 +42,7 @@ export function Button({
     ? "motion-safe:transition-transform duration-150 ease-out motion-safe:not-disabled:not-data-disabled:hover:scale-[1.05] motion-safe:not-disabled:not-data-disabled:active:scale-[0.95]"
     : "";
   const borderWidth = variant === "default" || variant === "outline" ? "border-2" : "border-hairline";
-  const owned = `button ${motionClasses} inline-flex items-center ${borderWidth} text-caption font-medium disabled:opacity-45 disabled:cursor-default ${sizes[size]} ${variants[variant]}`;
+  const owned = `button in-[.notification]:text-inherit in-[.notification]:bg-transparent in-[.notification]:border-current in-[.notification]:hover:bg-current/10 ${motionClasses} inline-flex items-center ${borderWidth} text-caption font-medium disabled:opacity-45 disabled:cursor-default ${sizes[size]} ${variants[variant]}`;
   return (
     <Primitive
       {...props}

@@ -303,7 +303,7 @@ alpha. Authored previews and checkerboards remain separate data/decoration.
 Geist UI roles are page 1.5rem/600/1.25, inspector 1.25rem/600/1.3,
 section 1rem/500/1.5, body .875rem/400/1.5 and caption/control .75rem/400–500/1.5.
 Technical paths, values, exact source and numeric color entry use Geist Mono
-.75rem/400–500/1.5. Actual narrow text entry uses1rem below768px; labels/prose
+.75rem/400–500/1.5. Actual mobile text entry uses 1rem below 880px; labels/prose
 retain Geist. Local fonts, upstream versions, hashes and licenses live in
 [`styles/fonts/`](../../src/presentation/styles/fonts/README.md). No remote font
 service or new offline shell is involved.
@@ -332,7 +332,7 @@ Focused stylesheet exceptions remain: WorkbenchLayout pane/grid formulas;
 collapsed navigation/inspector state; modal/drawer viewport sizing and transition;
 dialog action wrapping; native slider pseudo-elements/gradients; TokenTable
 selection marker and staged row containment; ExactSource local native scrolling;
-trace decoration and the unlayered `[hidden]` invariant. Runtime authored colors
+trace decoration and the base-layer `[hidden]` invariant. Runtime authored colors
 and illustrative gradients remain at their current consumers. No component/state
 owners or mounted ancestry were moved. Confirmed unused `.project-start`,
 `.range-ends`, `.exact-data` and the statically positioned `.editor-actions`
@@ -500,3 +500,33 @@ The user approved native radio inputs for Literal color / Reference. Both share
 a per-editor name and the existing Value source fieldset/disabled gate, retain
 explicit labels and invoke the existing changeMode action. Apply/Cancel focus
 continues to target the literal choice; draft ownership and validation are unchanged.
+
+
+## CSS ownership and responsive modes — 24 November 2026
+
+The stylesheet has one semantic `:root` inside `@layer base`, one `@theme inline`
+mapping, one direct `@theme` block and one `@layer components` block. Top-level
+`@utility` declarations retain variant-capable strokes and annotation typography.
+Component rules are overridable by utilities. Native `[hidden]` alone deliberately
+uses `display: none !important` in base: mounted pane state must win over any
+normal display utility. Native file-selector sizing also belongs to base.
+
+Viewport modes share the observer's CSS-pixel boundaries: mobile below 880px,
+tablet from 880px to below 1120px, and desktop from 1120px. `compact` is only the
+mobile/tablet union and is declared before mobile so the narrower mode wins
+when both apply. Former small/narrow/touch/source-compact and 640px label rules
+now follow these modes. Consequently labels, square creation/history actions,
+input typography, row padding and toast offset change at the mobile boundary;
+this is an intentional cosmetic consolidation. The project-list 42rem container
+query and token-list container queries remain actual-content-width decisions.
+
+Focused CSS geometry uses Tailwind `--spacing()` for scale-based dimensions,
+a shared expanded-pane width and control size; typography, radii, strokes and
+illustrative/authored previews retain their appropriate existing units. Success,
+information and warning roles reference the shared Tailwind palette; errors reuse
+the existing destructive/error roles. Notifications no longer own a raw palette.
+Their controls explicitly inherit foreground/border and a current-color hover tint
+through shared Button context utilities (and the native toast dismissal control).
+Notification borders and radii belong to `.notification`; toast rules own their
+specific padding/grid geometry. Collapsed toggle border and position belong to
+conditional consumer utilities, preventing component-layer specificity conflicts.

@@ -556,9 +556,9 @@ it("keeps one responsive surface state, follows pane focus, and yields to modal 
   owner.browse.current = { querySelector: vi.fn(), contains: (node: any) => node === "browse", focus: vi.fn() } as any;
   owner.inspector.current = { querySelector: vi.fn(), contains: (node: any) => node === "editor", focus: vi.fn() } as any;
   effects();
-  media.get("(max-width:1119px)")!.matches = true;
-  media.get("(max-width:879px)")!.matches = true;
-  listeners.get("(max-width:879px)")!();
+  media.get("(width < 1120px)")!.matches = true;
+  media.get("(width < 880px)")!.matches = true;
+  listeners.get("(width < 880px)")!();
   owner = render(useTokensLayout);
   expect(owner.narrow).toBe(true); expect(owner.surface).toBe("inspect");
   owner.back(); owner = render(useTokensLayout);
@@ -566,14 +566,14 @@ it("keeps one responsive surface state, follows pane focus, and yields to modal 
   owner.showInspector(); owner = render(useTokensLayout);
   expect(owner.surface).toBe("inspect");
   modal = "other"; active = "browse";
-  listeners.get("(max-width:879px)")!(); owner = render(useTokensLayout);
+  listeners.get("(width < 880px)")!(); owner = render(useTokensLayout);
   expect(owner.surface).toBe("inspect");
   modal = false; owner.setInspectorExpanded(false); owner = render(useTokensLayout);
-  listeners.get("(max-width:879px)")!(); owner = render(useTokensLayout);
+  listeners.get("(width < 880px)")!(); owner = render(useTokensLayout);
   expect(owner.surface).toBe("browse"); expect(owner.inspectorExpanded).toBe(false);
   modal = "drawer"; active = { closest: () => ({}) };
   const triggerFocus = vi.fn(); owner.navigationTrigger.current = { focus: triggerFocus } as any;
-  listeners.get("(max-width:879px)")!();
+  listeners.get("(width < 880px)")!();
   expect(triggerFocus).not.toHaveBeenCalled();
 });
 
@@ -741,11 +741,11 @@ it("runs Projects resize policy only at 880, never on mount or a compact-only tr
   effects();
   expect(browse.scrollTop).toBe(12);
   expect(onView).not.toHaveBeenCalled();
-  media.get("(max-width:1119px)")!.matches = true;
-  listeners.get("(max-width:1119px)")!();
+  media.get("(width < 1120px)")!.matches = true;
+  listeners.get("(width < 1120px)")!();
   expect(onView).not.toHaveBeenCalled();
-  media.get("(max-width:879px)")!.matches = true;
-  listeners.get("(max-width:879px)")!();
+  media.get("(width < 880px)")!.matches = true;
+  listeners.get("(width < 880px)")!();
   expect(onView).toHaveBeenCalledExactlyOnceWith({ scroll: 12, surface: "browse" });
   expect(render(hook).narrow).toBe(true);
 });

@@ -35,7 +35,7 @@ export function TokenNavigationPane({
       <div
         inert={!expanded}
         aria-hidden={!expanded}
-        className="sidebar-content flex-1 p-6 touch:p-4 flex flex-col min-h-0 overflow-auto"
+        className="sidebar-content flex-1 p-6 mobile:p-4 flex flex-col min-h-0 overflow-auto"
       >
         {children}
       </div>
@@ -71,7 +71,7 @@ export function TokenNavigationDrawer({
           <Dialog.Description className="sr-only">
             Browse tokens and groups. Closing preserves drafts.
           </Dialog.Description>
-          <nav className="sidebar-content flex-1 min-h-0 p-6 touch:p-4 overflow-auto">
+          <nav className="sidebar-content flex-1 min-h-0 p-6 mobile:p-4 overflow-auto">
             {children}
           </nav>
         </Dialog.Popup>

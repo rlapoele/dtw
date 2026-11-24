@@ -27,7 +27,7 @@ export function TokenEditor({
   }, [focusApplied]);
   return (
     <>
-      <div className="token-inspector-toggle absolute top-4 left-4 z-20 touch:hidden">
+      <div className={`token-inspector-toggle absolute z-20 mobile:hidden ${inspectorExpanded ? "top-4 left-4" : "top-1.5 left-1.5"}`}>
         <InspectorToggle expanded={inspectorExpanded} onToggle={onToggle} />
       </div>
       {editor.readUnavailable && inspectorExpanded && (

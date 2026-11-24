@@ -127,7 +127,7 @@ export function ProjectsWorkbench({
       narrow={layout.narrow} surface={view.surface}
       header={<ApplicationHeader actions={<span className="projects-header-context text-caption text-muted-foreground">Browser local</span>} />}
       workspace={
-        <main ref={layout.browse} tabIndex={-1} hidden={layout.narrow && view.surface === "inspect"} onScroll={event => onView({ ...view, scroll: event.currentTarget.scrollTop })} className="projects-browse min-w-0 overflow-auto p-7 touch:px-4 touch:py-5">
+        <main ref={layout.browse} tabIndex={-1} hidden={layout.narrow && view.surface === "inspect"} onScroll={event => onView({ ...view, scroll: event.currentTarget.scrollTop })} className="projects-browse min-w-0 overflow-auto p-7 mobile:px-4 mobile:py-5">
           <div className="flex flex-wrap items-start justify-between gap-3 mb-6">
             <div><p className="eyebrow text-muted-foreground uppercase mb-2">Projects</p><h1>All projects</h1></div>
             <div className="flex flex-wrap gap-2">
@@ -144,7 +144,7 @@ export function ProjectsWorkbench({
             <p>Selected project is outside this list.</p><Button onClick={() => onView({ ...view, query: "" })}>Show selected project</Button>
           </section>}
           <section className="project-list-container border-t-hairline border-border" aria-label="Project collection">
-            <div aria-hidden="true" className="project-table-head table-heading p-3 narrow:px-2 border-b-hairline border-border gap-3 text-muted-foreground"><span>Project</span><span>Contents</span><span className="project-date-column">Created</span><span className="project-date-column">Last updated</span></div>
+            <div aria-hidden="true" className="project-table-head table-heading p-3 mobile:px-2 border-b-hairline border-border gap-3 text-muted-foreground"><span>Project</span><span>Contents</span><span className="project-date-column">Created</span><span className="project-date-column">Last updated</span></div>
             {entries === undefined ? <p role="status" className="py-12 text-center">{error ? "Projects unavailable. Existing browser data is unchanged." : "Loading projects…"}</p>
               : entries.length === 0 ? <div className="py-12 text-center space-y-3"><h2>No projects yet</h2><p className="text-muted-foreground">No projects retained in this browser.</p><Button variant="default" disabled={createDisabled} onClick={() => beginDialog(creation.onOpen)}>New project</Button></div>
               : visible.length === 0 ? <div className="py-12 text-center space-y-3"><h2>No matching projects</h2><p className="text-muted-foreground">Try another name, description or identity.</p><Button onClick={() => onView({ ...view, query: "" })}>Clear search</Button></div>
@@ -155,7 +155,7 @@ export function ProjectsWorkbench({
           <StorageProtection status={storageStatus} disabled={openDisabled} onRetry={onRetryStorage} />
         </main>
       }
-      inspector={<section ref={layout.inspector} tabIndex={-1} aria-label="Project inspector" hidden={layout.narrow && view.surface !== "inspect"} className="projects-inspector min-w-0 overflow-auto border-l-hairline touch:border-l-0 border-border bg-surface">
+      inspector={<section ref={layout.inspector} tabIndex={-1} aria-label="Project inspector" hidden={layout.narrow && view.surface !== "inspect"} className="projects-inspector min-w-0 overflow-auto border-l-hairline mobile:border-l-0 border-border bg-surface">
         {layout.narrow && <div className="p-4 border-b-hairline border-border"><Button onClick={() => layout.show("browse")}>Back to projects</Button></div>}
         <ProjectInspector entry={selected} missing={missing} catalogueUnavailable={entries === undefined} disabled={openDisabled || entries === undefined} onOpen={onOpen} onDownload={onDownload} />
       </section>}

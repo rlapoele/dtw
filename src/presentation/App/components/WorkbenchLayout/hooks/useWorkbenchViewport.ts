@@ -9,7 +9,7 @@ export function useWorkbenchViewport(onChange: (viewport: Viewport, threshold: k
   }));
   const current = useRef(onChange); current.current = onChange;
   useEffect(() => {
-    const compact = matchMedia("(max-width:1119px)"), narrow = matchMedia("(max-width:879px)");
+    const compact = matchMedia("(width < 1120px)"), narrow = matchMedia("(width < 880px)");
     const update = (threshold: keyof Viewport) => {
       const next = { compact: compact.matches, narrow: narrow.matches };
       current.current(next, threshold);
