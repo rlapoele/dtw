@@ -36,6 +36,9 @@ The coordinator checked the desktop presentation, independent disclosure without
 
 JavaScript syntax checking passed. Approximately four minutes of focused browser checks; no production tests, numerical or retention qualification, exhaustive keyboard audit or cross-engine testing. Earlier verification stopping decisions remain closed. No production files, dependencies, staging or commits changed.
 
-Next: user agreement to the reviewed criteria and explicit implementation authorization. Prototype approval and completed analyst review are not production implementation authorization.
+The user subsequently agreed the reviewed criteria and explicitly authorized
+implementation. Production completion evidence belongs to the
+[focused follow-up record](../../docs/planning/token-list-disclosure-review.md);
+this prototype remains the accepted illustrative design, not runtime evidence.
 
 Suggested commit: `docs: add token list disclosure prototype v1`.

@@ -478,7 +478,7 @@ grid cell, with long values allowed to wrap within narrow cells. Following the
 the summary row wraps when space is limited. Authored/converted visibility, precision and color emphasis
 are unchanged. TokenValue owns this presentation through Tailwind utilities.
 
-**Approved design update — 24 November 2026; implementation pending.**
+**Approved design update — 24 November 2026.**
 [Token-list disclosure V1](../../prototypes/token-list-disclosure-v1/DESIGN-V1.md)
 supersedes the previous visibility behavior: show only the authored color space
 by default at every width, retaining HEX and separate Alpha. Other representations

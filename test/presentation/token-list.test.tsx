@@ -45,7 +45,7 @@ describe("production token list properties and contextual ordering", () => {
     for (const id of ["broken", "self", "path"]) expect(rows.find(row => row.id === id)?.preview).toBeUndefined();
     expect(rows.find(row => row.id === "semantic")?.preview).toEqual(color);
   });
-  it("renders full identity, protection, all five spaces, separate alpha and an unemphasized alias stack", () => {
+  it("renders full identity, protection, authored summary, collapsed other spaces and a resolved alias stack", () => {
     const source = snapshot(), context = projectContext(source), rows = displayRows(source, 0, 100);
     const render = (id: string) => renderToStaticMarkup(<TokenTable context={context} rows={rows.filter(row => row.id === id)} selected={id} query="" onSelect={() => {}} onEmptyAction={() => {}} />);
     const literal = render("c2"), alias = render("semantic");
@@ -55,7 +55,26 @@ describe("production token list properties and contextual ordering", () => {
     expect(literal).toContain('class="block text-foreground"');
     expect(alias).not.toContain('class="block text-foreground"');
     expect(alias).toContain("root / 2 / 2");
+    expect(alias).toContain("Resolved · sRGB");
+    expect(literal).not.toContain("Resolved ·");
+    expect(literal).toContain('aria-expanded="false"');
+    expect(literal).toMatch(/id="[^"]+" hidden=""/);
+    expect(literal).not.toMatch(/<button[^>]*class="token-row/);
+    expect(render("broken")).toContain("Color unavailable");
+    expect(render("dimension")).toContain("12 px");
   });
+  it("offers only explicit members a renamed ramp destination, not siblings or aliases", () => {
+    const source = snapshot(), context = projectContext(source), rows = displayRows(source, 0, 100);
+    const group = context.groups.find(group => group.authored.id === "sub2")!;
+    const changed = { ...context, groups: context.groups.map(entry => entry === group ? {
+      ...entry, path: {status: "derived" as const, path: ["renamed"]}, authored: {...entry.authored, localName: "renamed", colorRamp: {members: [{tokenId: "c2", colorOrigin: "generated"}]}}
+    } : entry) } as typeof context;
+    const render = (id: string) => renderToStaticMarkup(<TokenTable context={changed} rows={rows.filter(row => row.id === id)} selected={null} query="" onSelect={() => {}} onEmptyAction={() => {}} onOpenRamp={() => {}} />);
+    expect(render("c2")).toContain("Ramp · renamed");
+    expect(render("c10")).not.toContain("Ramp ·");
+    expect(render("semantic")).not.toContain("Ramp ·");
+  });
+
 });
 
 describe("hierarchical token navigation", () => {

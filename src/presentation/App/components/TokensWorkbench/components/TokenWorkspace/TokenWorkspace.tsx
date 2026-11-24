@@ -31,6 +31,7 @@ export function TokenWorkspace({
   onRenameGroup,
   onReveal,
   choose,
+  onOpenRamp,
 }: {
   panel: RefObject<HTMLElement | null>;
   surfaceRef?: RefObject<HTMLElement | null>;
@@ -53,6 +54,7 @@ export function TokenWorkspace({
   onCreateGroup: () => void;
   onRenameGroup: () => void;
   onReveal: () => void;
+  onOpenRamp: (groupId: string) => void;
   choose: (kind: "token" | "group", id: string) => void;
 }) {
   const allContent = view.kind === "all-content",
@@ -105,6 +107,8 @@ export function TokenWorkspace({
           <>
             <TokenTable
               context={context}
+              onOpenRamp={onOpenRamp}
+              rampNavigationBlocked={blocked}
               creationParentLabel={
                 group === null
                   ? "Project root"

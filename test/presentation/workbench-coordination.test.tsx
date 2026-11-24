@@ -40,7 +40,7 @@ vi.mock("react", async (original) => {
       const index = runtime.cursor++;
       const previous = runtime.cells[index];
       if (
-        !previous ||
+        !previous || !deps ||
         deps.some((dep, i) => !Object.is(dep, previous.deps[i]))
       ) {
         runtime.effects.push(() => {
@@ -1000,4 +1000,45 @@ it("loads source only on disclosure, rejects stale completions, and retries a fa
   const error = content(view).find((child: any) => child?.props?.role === "status" && child?.type === "div");
   expect(error).toBeDefined(); error.props.children[1].props.onClick(); await Promise.resolve();
   view = render(component); expect(JSON.stringify(content(view))).toContain("retried");
+});
+
+it("guards member-ramp entry from a dirty token, restores Cancel's trigger and opens the saved destination without writes", async () => {
+  const { TokensWorkbench } = await import("@presentation/App/components/TokensWorkbench/TokensWorkbench");
+  const { DepartureGuard } = await import("@presentation/App/components/TokensWorkbench/components/DepartureGuard");
+  const { RampWorkbench } = await import("@presentation/App/components/TokensWorkbench/components/RampWorkbench/RampWorkbench");
+  class Element { isConnected = true; focus = vi.fn(); }
+  const trigger = new Element();
+  vi.stubGlobal("HTMLElement", Element);
+  vi.stubGlobal("document", { activeElement: trigger, querySelector: () => null, addEventListener: vi.fn(), removeEventListener: vi.fn() });
+  vi.stubGlobal("window", { innerWidth: 600 });
+  vi.stubGlobal("matchMedia", () => ({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() }));
+  vi.stubGlobal("addEventListener", vi.fn()); vi.stubGlobal("removeEventListener", vi.fn());
+  vi.stubGlobal("requestAnimationFrame", (callback: () => void) => callback());
+  const rampContext = { ...context, groups: [{ authored: { id: "ramp", localName: "renamed", parentGroupId: null, projectId: "p", colorRamp: { members: [{tokenId: "member"}] } }, path: {status: "derived", path: ["renamed"]} }] };
+  const service = host(async op => op === "context" ? rampContext : op === "inspection" ? {token: {id: "ordinary", definition: {type: "color"}}, editable: true} : []);
+  const hook = () => TokensWorkbench({host: service, initial: header, onProjects: vi.fn(), onProject: vi.fn()});
+  const guard = (page: any) => page.props.overlays.props.children.find((node: any) => node?.type === DepartureGuard);
+  let page = render(hook); effects(); await Promise.resolve();
+  page = render(hook); effects();
+  page.props.workspace.props.choose("token", "ordinary"); await Promise.resolve();
+  page = render(hook);
+  page.props.inspector.props.children.props.onDirty(true);
+  page = render(hook);
+  const editorKey = page.props.inspector.props.children.key;
+  vi.mocked(service.call).mockClear();
+  page.props.workspace.props.onOpenRamp("ramp");
+  page = render(hook);
+  expect(guard(page).props.open).toBe(true);
+  expect(page.props.workspace.props.selection).toEqual({kind: "token", id: "ordinary"});
+  guard(page).props.onStay(); page = render(hook);
+  expect(guard(page).props.finalFocus()).toBe(trigger);
+  expect(page.props.inspector.props.children.key).toBe(editorKey);
+  page.props.workspace.props.onOpenRamp("ramp"); page = render(hook);
+  expect(guard(page).props.open).toBe(true);
+  guard(page).props.onDiscard(); page = render(hook);
+  expect(page.props.workspace.type).toBe(RampWorkbench);
+  expect(page.props.workspace.props.groupId).toBe("ramp");
+  expect(page.props.workspace.props.hidden).toBe(false);
+  expect(page.props.inspectorCollapsed).toBe(false);
+  expect(service.call).not.toHaveBeenCalled();
 });

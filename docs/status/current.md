@@ -10,7 +10,7 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Token-list annotation V1 analyst review — 24 November 2026
+## Token-list disclosure and ramp access implemented — 24 November 2026
 
 The user approved the designer's direction for compact authored-space summaries,
 optional other-space disclosure, and an actionable ramp membership indicator.
@@ -21,8 +21,16 @@ found no material design contradiction or new product decision. Integration must
 preserve authored/resolved distinctions, stable-ID membership, independent controls
 and existing draft/navigation guards. The presentation conventions now record the
 approved visibility change. Focused prototype checks remain recorded in V1.
-No production implementation changed or is authorized. Next: user authorization
-before implementing this bounded follow-up against the reviewed criteria.
+The user agreed the reviewed criteria and authorized this bounded follow-up.
+Implementation and independent review are complete with no actionable findings.
+Rows now expose other color spaces on demand; explicit ramp members provide a
+control opening their saved ramp through existing departure guards.
+57 targeted tests and all typechecks passed. Browser checks covered disclosure,
+keyboard collapse and narrow layout. Actual ramp navigation/dialog-close focus was
+not browser-replayed; controlled owner tests and source review cover state/guards.
+The [completion evidence and limits](../planning/token-list-disclosure-review.md#implementation-outcome--24-november-2026)
+record approximately 25/30 cumulative minutes and 2/2 harness repairs; checks stop.
+Next: user manual acceptance of the two changes. No further product decision needed.
 Earlier verification stopping decisions remain closed. Staging, committing and
 pushing remain user-owned.
 

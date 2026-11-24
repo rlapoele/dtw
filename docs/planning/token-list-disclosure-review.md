@@ -1,13 +1,14 @@
 # Token-list disclosure — focused analyst review
 
-**24 November 2026 — review complete; implementation not authorized.**
+**24 November 2026 — implemented and independently reviewed; user acceptance pending.**
 
 The user accepted [prototype V1](../../prototypes/token-list-disclosure-v1/DESIGN-V1.md)
 and authorized review of its two changes only: compact authored-space summaries
 with other-space disclosure, and opening a saved ramp from a member token.
 No material design contradiction or unresolved user behavior decision was found.
-The criteria below are an analyst handoff for agreement, not an implemented or
-user-agreed delivery contract.
+The user subsequently agreed the seven criteria below and explicitly authorized
+implementation of these two changes, with bounded verification and user-owned
+staging, committing and pushing. This authorization does not reopen settled decisions.
 
 ## Baseline and boundaries
 
@@ -69,8 +70,8 @@ supersession. No material prototype revision was required.
   editor caller/key/lifetime and command ownership. Reuse semantic Tailwind styles,
   owned controls and shared Heroicons rather than copying prototype CSS or glyphs.
 
-**Unresolved user decisions:** none identified within these two changes. Final
-agreement on this handoff and explicit implementation authorization remain required.
+**Unresolved user decisions:** none identified within these two changes. The user
+has agreed this handoff and authorized implementation.
 
 **Optional polish:** none required before implementation; no additional visual
 variants, persistent display preference or navigation history are proposed.
@@ -119,3 +120,56 @@ stress, compatibility or unrelated navigation repairs.
 
 Only this report was written by the analyst. Staging, committing and pushing remain
 user-owned. Suggested commit: `docs: record token list disclosure analyst review`.
+
+## Implementation verification budget — 24 November 2026
+
+One cumulative 30-minute ceiling covers this follow-up: approximately four minutes
+of prototype checks, five of analyst review and two of coordinator review already
+consumed (11 total). The remaining 19 minutes are allocated provisionally to developer
+checks (8), independent review (6), and coordinator browser/handoff checks (5).
+At most two harness-repair cycles; zero consumed. Stop earlier when the focused
+criteria are supported. Targeted component/integration checks, relevant typechecks
+and representative browser navigation/focus checks are essential; exhaustive suites,
+numerical, retention, stress and cross-engine qualification remain excluded.
+Earlier increment and CSS verification stopping decisions remain closed.
+
+## Implementation outcome — 24 November 2026
+
+Implemented authored-only color summaries with independent other-space disclosure,
+resolved alias labels, and stable-member ramp controls. Identity selection and
+secondary actions are separate. Ramp entry uses the existing departure guard,
+retains cancellation focus, and reveals the existing ramp workspace and inspector.
+No domain, persistence, dependency or navigation-history changes were introduced.
+
+Independent review examined base `42b9cca` plus the final uncommitted changes to
+TokensWorkbench, TokenWorkspace, TokenTable, TokenValue and the two existing
+presentation test files, including the final `guardReturn` naming change. It found
+no actionable issue and confirmed ownership and consumer boundaries.
+
+Evidence:
+
+- 57 targeted presentation tests passed; all `npm run typecheck` checks passed.
+  Tests cover literal/resolved/unavailable summaries, explicit membership and rename,
+  dirty-token Cancel preserving editor identity/selection, and Discard entering the
+  narrow ramp browse state with its inspector and no navigation-induced host calls.
+- Browser checks exercised the actual app's sRGB and OKLCH source summaries,
+  independent expansion with unchanged selection, unavailable HSL, keyboard collapse
+  and visible focus, plus an observed 582 CSS-pixel layout without horizontal overflow.
+  [Implemented default view](../../output/playwright/token-list-disclosure-implementation/default.jpg).
+- Source/diff checks passed. Reviewer read the tests independently without rerunning
+  them. The final post-test code change was a ref/comment rename only.
+
+Limits: browser data contained no ramp members, so actual saved-ramp navigation,
+dialog-close focus timing and narrow ramp focus were not replayed in the browser.
+Controlled owner tests establish navigation state/guards, not DOM focus. Source
+review found meaningful destination targets (ramp heading/panel), not a demonstrated
+focus defect. No full-suite, numerical, retention or cross-engine campaign ran.
+
+Approximately 25/30 aggregate verification minutes consumed: prior 11, developer 4,
+independent review 5, coordinator browser/document/handoff checks 5. Both allowed
+harness repairs were consumed while adapting the existing deterministic hook tests;
+no further harness work is authorized under this budget. Verification stops here;
+earlier qualification limits remain closed. Human acceptance remains pending.
+
+No staging, commits or pushes performed. Suggested commit:
+`feat: add token color disclosure and ramp navigation`.

@@ -169,8 +169,10 @@ export function TokensWorkbench({
   useEffect(() => {
     if (error) formError.current?.focus();
   }, [error]);
-  function request(action: () => void) {
+  const departureReturn = useRef<HTMLElement | null>(null);
+  function request(action: () => void, returnFocus: HTMLElement | null = null) {
     if (busy || reading.current) return;
+    departureReturn.current = returnFocus;
     if (dirty || formDirty || unknown) setPending(() => action);
     else action();
   }
@@ -222,6 +224,21 @@ export function TokensWorkbench({
     () => identityLabels(context?.groups ?? [], ["Project root", "All tokens"]),
     [context],
   );
+  function openRamp(groupId: string) {
+    if (blocked || !context?.groups.some(group => group.authored.id === groupId && group.authored.colorRamp)) return;
+    const trigger = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    request(() => {
+      setView({ kind: "group", id: groupId });
+      setDirty(false);
+      setInspectorExpanded(true);
+      back(false);
+      requestAnimationFrame(() => {
+        const heading = panel.current?.querySelector<HTMLElement>("h1");
+        if (heading) heading.tabIndex = -1;
+        (heading ?? panel.current)?.focus({ preventScroll: true });
+      });
+    }, trigger);
+  }
   const source = (kind: "project" | "group" | "token", id: string) =>
     readExactSource(host, header.project.id, header.revision, kind, id);
   const onProjectsClick = () =>
@@ -278,10 +295,10 @@ export function TokensWorkbench({
     />
   );
   // Closing clears intent before Base UI invokes its latest finalFocus callback.
-  // Keep the captured history target through close; every ordinary guard opening
-  // resets it so unrelated departures retain their existing return behavior.
-  const guardHistoryReturn = useRef<HTMLElement | null>(null);
-  if (pending !== null) guardHistoryReturn.current = historyIntent ? historyReturn.current : null;
+  // Keep the captured trigger through close; requests without a return target
+  // retain the existing panel/dialog return behavior.
+  const guardReturn = useRef<HTMLElement | null>(null);
+  if (pending !== null) guardReturn.current = historyIntent ? historyReturn.current : departureReturn.current;
   const departureGuard = (
     <DepartureGuard
       historyIntent={historyIntent}
@@ -290,7 +307,7 @@ export function TokensWorkbench({
       busy={busy}
       onStay={() => { setPending(null); clearHistoryIntent(); }}
       finalFocus={() =>
-        guardHistoryReturn.current?.isConnected ? guardHistoryReturn.current : dialog
+        guardReturn.current?.isConnected ? guardReturn.current : dialog
           ? document.querySelector<HTMLElement>('[role="dialog"] input')
           : panel.current
       }
@@ -372,6 +389,7 @@ export function TokensWorkbench({
           onCreateGroup={() => open("group")}
           onRenameGroup={() => open("rename")}
           choose={choose}
+          onOpenRamp={openRamp}
           onReveal={() => {
             setView({ kind: "all-tokens" });
             setQuery("");
