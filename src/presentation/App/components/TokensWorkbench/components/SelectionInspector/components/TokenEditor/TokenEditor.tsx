@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { InspectorToggle } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorToggle";
+import { InspectorHeader } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorHeader";
 import { useTokenEditor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor";
 import { TokenEditorContent } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent";
 export function TokenEditor({
@@ -27,14 +27,15 @@ export function TokenEditor({
   }, [focusApplied]);
   return (
     <>
-      <div className={`token-inspector-toggle absolute z-20 mobile:hidden ${inspectorExpanded ? "top-4 left-4" : "top-1.5 left-1.5"}`}>
-        <InspectorToggle expanded={inspectorExpanded} onToggle={onToggle} />
-      </div>
-      {editor.readUnavailable && inspectorExpanded && (
-        <p role="status" className="notification notification-warning text-caption wrap-anywhere m-4">
-          {readFailure || props.targetUnavailable || "Inspection unavailable"}
-        </p>
-      )}
+      <InspectorHeader
+        title={`${editor.token.definition?.type ?? "Unassigned"} token`.toUpperCase()}
+        readFailure={editor.readUnavailable ? readFailure || "Inspection unavailable" : ""}
+        targetUnavailable={props.targetUnavailable ?? ""}
+        editable={editor.editable}
+        selected
+        inspectorExpanded={inspectorExpanded}
+        onToggle={onToggle}
+      />
       <div
         ref={content}
         id="token-inspector-content"

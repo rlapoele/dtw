@@ -1,5 +1,6 @@
 import { it, expect, vi, afterEach } from "vitest";
 const runtime = vi.hoisted(() => ({
+  conversionUnavailable: false,
   cells: [] as any[],
   cursor: 0,
   effects: [] as (() => void)[],
@@ -37,6 +38,16 @@ vi.mock("react-dom", async (original) => ({
   ...(await original<typeof import("react-dom")>()),
   createPortal: (children: any) => children,
 }));
+vi.mock("@domain/color-calculation", async (original) => {
+  const actual = await original<typeof import("@domain/color-calculation")>();
+  return {
+    ...actual,
+    convertColor: (...args: Parameters<typeof actual.convertColor>) => runtime.conversionUnavailable
+      ? { ok: false, reason: "calculation-guard" }
+      : actual.convertColor(...args),
+  };
+});
+import { colorDecimalDisplay } from "@presentation/App/components/TokensWorkbench/helpers/color-decimal-display";
 import { RampWorkbench } from "@presentation/App/components/TokensWorkbench/components/RampWorkbench/RampWorkbench";
 import { RampSeedFields } from "@presentation/App/components/TokensWorkbench/components/RampSeedFields";
 import { ColorLiteralFields } from "@presentation/App/components/TokensWorkbench/components/ColorLiteralFields";
@@ -54,6 +65,7 @@ function effects() {
   for (const run of runtime.effects.splice(0)) run();
 }
 afterEach(() => {
+  runtime.conversionUnavailable = false;
   runtime.cells = [];
   runtime.cursor = 0;
   runtime.effects = [];
@@ -116,6 +128,22 @@ it("guards invalid-first step/seed edits, remounts discarded seed state and full
   let tree = render();
   effects();
   expect(dirty).toHaveBeenLastCalledWith(false);
+  const sliders = tree.filter(n => n.type === "input" && n.props.type === "range");
+  expect(sliders).toHaveLength(18);
+  expect(tree.filter(n => n.type === "th" && n.props.scope === "row")).toHaveLength(3);
+  expect(sliders.every(n => /^\d+ .+/.test(n.props["aria-label"]))).toBe(true);
+  const readouts = tree.filter(n => n.type === "span" && n.props.className === "max-w-24 truncate");
+  expect(readouts).toHaveLength(18);
+  expect(readouts.every(n => n.props.children === colorDecimalDisplay(n.props.title))).toBe(true);
+  runtime.conversionUnavailable = true;
+  const unavailable = render();
+  expect(unavailable.filter(n => n.type === "input" && n.props.type === "range")).toHaveLength(0);
+  expect(unavailable.filter(n => n.type === "td" && n.props.children === "Unavailable")).toHaveLength(18);
+  effects();
+  expect(dirty).toHaveBeenLastCalledWith(false);
+  runtime.conversionUnavailable = false;
+  tree = render();
+
   tree.find((n) => n.type === ColorLiteralFields).props.onValidity(false);
   tree = render();
   effects();

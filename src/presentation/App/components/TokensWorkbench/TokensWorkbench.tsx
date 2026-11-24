@@ -407,7 +407,7 @@ export function TokensWorkbench({
             />
           }
         />}
-      inspector={activeRamp?<aside hidden={narrow&&surface!=="inspect"} className="min-h-0 flex flex-col bg-surface overflow-hidden"><Button className="mobile:block hidden" onClick={()=>back()}>Back to ramp</Button><div ref={setRampInspector} className="flex-1 min-h-0"/></aside>:<SelectionInspector
+      inspector={activeRamp?<aside hidden={narrow&&surface!=="inspect"} className="min-h-0 flex flex-col bg-surface overflow-hidden"><div ref={setRampInspector} className="flex-1 min-h-0"/></aside>:<SelectionInspector
           surfaceRef={inspector}
           hidden={narrow && surface !== "inspect"}
           selection={selection}

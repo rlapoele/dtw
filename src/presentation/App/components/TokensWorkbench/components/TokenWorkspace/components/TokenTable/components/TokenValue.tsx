@@ -7,6 +7,7 @@ import { COLOR_SPACES, type ColorLiteralValue } from "@domain/color-literal";
 import type { DisplayRow } from "@application/retention/projections";
 import { authoredColorCoordinates } from "@presentation/App/components/TokensWorkbench/helpers/authored-color";
 import { colorDecimalDisplay } from "@presentation/App/components/TokensWorkbench/helpers/color-decimal-display";
+import { Button } from "@presentation/ui/button";
 import { Icon } from "@presentation/ui/icon";
 import { hexPreview } from "@presentation/App/components/TokensWorkbench/helpers/hex-preview";
 
@@ -40,10 +41,10 @@ const ColorRepresentations = memo(function ColorRepresentations({ source, author
       <span className="font-normal text-muted-foreground whitespace-nowrap"><span className="font-semibold">Alpha</span> {colorDecimalDisplay(source.alpha)}</span>
     </span>
     <span className="block mt-2">{representation(display.spaces[0])}</span>
-    <button type="button" className="flex items-center gap-1.5 min-h-9 mt-1 text-muted-foreground text-caption font-sans rounded-sm hover:text-foreground"
+    <Button variant="ghost" size="sm" className="mt-1 text-muted-foreground font-sans"
       aria-expanded={expanded} aria-controls={contentId} onClick={() => setExpanded(value => !value)}>
       <Icon name={expanded ? "chevron-down" : "chevron-right"} />Other color spaces
-    </button>
+    </Button>
     <span id={contentId} hidden={!expanded} className="space-y-3">
       {display.spaces.slice(1).map(representation)}
     </span>

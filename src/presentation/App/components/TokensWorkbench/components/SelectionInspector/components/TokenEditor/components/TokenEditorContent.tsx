@@ -94,15 +94,9 @@ export function TokenEditorContent({
       hidden={readUnavailable}
     >
       <div ref={headingRef} className="inspector-heading sticky top-0 z-10 bg-surface border-b-hairline border-border p-4">
-        <div className="flex items-start gap-2 min-w-0">
-          <span aria-hidden="true" className="size-9 shrink-0 mobile:hidden" />
-          <div className="flex flex-wrap items-start gap-3 min-w-0 flex-1">
-            <div className="min-w-0 max-w-full">
-              <span className="eyebrow uppercase text-muted-foreground font-semibold">{token.definition?.type ?? "Unassigned"} token</span>
-              <h2 className="wrap-anywhere my-1 text-inspector font-semibold">{tokenLabels.get(token.id) ?? (token.localName || "(unnamed original token)")}</h2>
-            </div>
-            {editable && !targetUnavailable && <TokenValueComparison feedback={editor.feedback} />}
-          </div>
+        <div className="flex flex-wrap items-start gap-3 min-w-0">
+          <h2 className="wrap-anywhere my-1 text-inspector font-semibold min-w-0 max-w-full">{tokenLabels.get(token.id) ?? (token.localName || "(unnamed original token)")}</h2>
+          {editable && !targetUnavailable && <TokenValueComparison feedback={editor.feedback} />}
         </div>
       </div>
       <div className="px-6 mobile:px-4">

@@ -44,6 +44,7 @@ import {
 import type { ProjectSnapshot } from "@application/project-storage";
 import type { WorkbenchHost, ProjectHeader } from "@hosts/browser/protocol";
 import { deriveTokenPath, deriveTokenGroupPath } from "@domain/namespace";
+import { colorDecimalDisplay } from "@presentation/App/components/TokensWorkbench/helpers/color-decimal-display";
 import { colorPreview } from "@presentation/App/components/TokensWorkbench/helpers/color-preview";
 import { ColorLiteralFields } from "@presentation/App/components/TokensWorkbench/components/ColorLiteralFields";
 import { RampSeedFields } from "@presentation/App/components/TokensWorkbench/components/RampSeedFields";
@@ -240,7 +241,6 @@ export function RampWorkbench({
           <p className="text-caption">
             One shared draft · {draft.steps.length} Primitive color tokens
           </p>
-          <Button onClick={() => setSelected(null)}>Ramp settings</Button>
           <div hidden={selected !== null} className="space-y-4">
             <RampSeedFields
               key={epoch}
@@ -592,7 +592,7 @@ export function RampWorkbench({
         </p>
         {draft && (
           <>
-            <div className="flex flex-wrap gap-3 mb-4">
+            <div className="flex flex-wrap items-end gap-3 mb-4">
               <Field>
                 Component space
                 <Select
@@ -629,12 +629,14 @@ export function RampWorkbench({
               </Button>
             </div>
             <div className="overflow-x-auto">
-              <div className="flex gap-3 min-w-max">
-                {draft.steps.map((step) => {
-                  const conversion = convertColor(step.value, space),
-                    view = conversion.ok ? conversion.value : step.value;
-                  return (
-                    <section key={step.id} className="w-24 shrink-0 space-y-2">
+              <table className="border-separate border-spacing-3 min-w-max">
+                <caption className="sr-only">Ramp steps and color components in {space}</caption>
+                <thead>
+                  <tr>
+                    <td />
+                    {draft.steps.map((step) => (
+                      <th key={step.id} scope="col" className="w-24 min-w-24 font-normal align-top">
+                        <div className="space-y-2">
                       <Button
                         className="w-full"
                         variant="ghost"
@@ -667,7 +669,7 @@ export function RampWorkbench({
                           style={{ background: colorPreview(step.value).css }}
                         />
                       </button>
-                      <p className="text-caption truncate">
+                      <p className="text-caption truncate text-center">
                         {(() => {
                           try {
                             return (
@@ -686,9 +688,10 @@ export function RampWorkbench({
                           }
                         })()}
                       </p>
-                      <p className="text-caption">{step.colorOrigin}</p>
+                      <p className="text-caption text-center">{step.colorOrigin}</p>
                       <Button
                         variant="ghost"
+                        className="w-full"
                         aria-label={`${step.protected ? "Unprotect" : "Protect"} step ${step.label}`}
                         aria-pressed={step.protected}
                         disabled={disabled}
@@ -700,64 +703,65 @@ export function RampWorkbench({
                           name={step.protected ? "protected" : "unprotected"}
                         />
                       </Button>
-                      {view.components.map((component, index) => {
-                        const identity =
-                            COLOR_COMPONENTS[view.colorSpace][index],
-                          min = identity === "a" || identity === "b" ? -0.4 : 0,
-                          max =
-                            identity === "hue"
-                              ? 360
-                              : view.colorSpace === "hsl"
-                                ? 100
-                                : identity === "chroma"
-                                  ? 0.4
-                                  : 1;
+                        </div>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {COLOR_COMPONENTS[space].map((identity, index) => (
+                    <tr key={identity}>
+                      <th scope="row" className="text-caption text-left font-medium align-middle pr-2">
+                        {COMPONENT_NAMES[identity]}
+                      </th>
+                      {draft.steps.map((step) => {
+                        const conversion = convertColor(step.value, space);
+                        if (!conversion.ok) return (
+                          <td key={step.id} className="text-caption text-center text-muted-foreground">
+                            Unavailable
+                          </td>
+                        );
+                        const view = conversion.value;
+                        const component = view.components[index];
+                        const min = identity === "a" || identity === "b" ? -0.4 : 0;
+                        const max = identity === "hue" ? 360 : space === "hsl" ? 100 : identity === "chroma" ? 0.4 : 1;
                         return (
-                          <label
-                            key={index}
-                            className="flex flex-col items-center text-caption gap-1"
-                          >
-                            <span>{COMPONENT_NAMES[identity]}</span>
-                            <input
-                              type="range"
-                              className="ramp-component-slider h-24"
-                              min={min}
-                              max={max}
-                              step="any"
-                              value={
-                                component === "none" ? min : Number(component)
-                              }
-                              disabled={disabled || !conversion.ok}
-                              aria-label={`${step.label} ${COMPONENT_NAMES[identity]}`}
-                              onChange={(e) => {
-                                try {
-                                  const components: string[] = [
-                                    ...view.components,
-                                  ];
-                                  components[index] = e.target.value;
-                                  updateStep(step.id, {
-                                    value: createColorLiteral({
-                                      ...view,
-                                      components,
-                                    }),
-                                    colorOrigin: "manual",
-                                  });
-                                  resetFields([step.id]);
-                                } catch (e) {
-                                  setError(String(e));
-                                }
-                              }}
-                            />
-                            <span className="max-w-full truncate">
-                              {component}
-                            </span>
-                          </label>
+                          <td key={step.id} className="text-center">
+                            <label className="flex flex-col items-center text-caption gap-1">
+                              <input
+                                type="range"
+                                className="ramp-component-slider h-24"
+                                min={min}
+                                max={max}
+                                step="any"
+                                value={component === "none" ? min : Number(component)}
+                                disabled={disabled}
+                                aria-label={`${step.label} ${COMPONENT_NAMES[identity]}`}
+                                onChange={(e) => {
+                                  try {
+                                    const components: string[] = [...view.components];
+                                    components[index] = e.target.value;
+                                    updateStep(step.id, {
+                                      value: createColorLiteral({ ...view, components }),
+                                      colorOrigin: "manual",
+                                    });
+                                    resetFields([step.id]);
+                                  } catch (e) {
+                                    setError(String(e));
+                                  }
+                                }}
+                              />
+                              <span className="max-w-24 truncate" title={component}>
+                                {colorDecimalDisplay(component)}
+                              </span>
+                            </label>
+                          </td>
                         );
                       })}
-                    </section>
-                  );
-                })}
-              </div>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
             <p className="text-caption mt-4">
               Alpha:{" "}

@@ -10,6 +10,20 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp and inspector refinements implemented — 24 November 2026
+
+The user authorized direct implementation of eleven browser annotations after the
+focused designer assessment. [Outcome and evidence](../planning/ramp-inspector-refinements.md)
+record the aligned ramp matrix, rounded readouts, centered step metadata, shared
+controls, corrected inspector hierarchy and visibly disabled member Layer.
+The redundant Back to ramp was removed; existing narrow shell Back was verified.
+62 targeted tests and all typechecks passed; independent review found no remaining
+actionable findings. Browser checks used the saved neutral ramp without saving edits.
+Approximately25/30 aggregate minutes, zero harness repairs; checks stopped.
+Next: user acceptance. The user's separate question about two-stage creation is
+recorded as a proposal only; creation already saves on its final Create action.
+Staging, committing and pushing remain user-owned.
+
 ## Token-list disclosure and ramp access implemented — 24 November 2026
 
 The user approved the designer's direction for compact authored-space summaries,

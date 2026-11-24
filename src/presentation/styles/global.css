@@ -206,9 +206,6 @@
       visibility:hidden;
       transition-delay:0s, var(--panel-motion-duration);
     }
-    .token-inspector-toggle {
-      transition:top var(--panel-motion-duration) var(--panel-motion-easing), left var(--panel-motion-duration) var(--panel-motion-easing);
-    }
   }
   @media (width < 55rem) {
     .workbench.compact-navigation, .projects-layout { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr); }
@@ -220,7 +217,7 @@
     transition:rotate var(--panel-motion-duration) var(--panel-motion-easing), transform var(--panel-motion-duration) var(--panel-motion-easing);
   }
   @media (prefers-reduced-motion: reduce) {
-    .workbench, .panel-motion-chevron, .token-inspector-toggle,
+    .workbench, .panel-motion-chevron,
     .workbench > .sidebar > .sidebar-content, .sidebar-heading,
     .workbench > .inspector-shell > .inspector-content, .inspector-heading-label {
       transition:none;
