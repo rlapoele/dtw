@@ -1,0 +1,10 @@
+{
+  "base": "4abe69b2c1d42b42cf1a1b6a8f30c25186c02f5d",
+  "files": {
+    "src/presentation/App/components/TokensWorkbench/components/AuthoringDialog/AuthoringDialog.tsx": "81567cbdeef377a9b0f8ac5434e656cc2c9823f387688163f4d7065f342012fb",
+    "src/presentation/App/components/TokensWorkbench/components/AuthoringDialog/components/RampCreation.tsx": "20de203e39c70507c286c06ac61a041edd5dc71dcc7d9d3fd800236473e000b9",
+    "src/presentation/App/components/TokensWorkbench/components/RampPreview.tsx": "7d12db851a8ed2eb620b89ff9a9143ba715bbd18f38986be87323452ddbcba52",
+    "src/presentation/App/components/TokensWorkbench/components/RampSeedFields.tsx": "9809e0138b504f75156e334b6f2014659b7b2525c1dc4c54a7c3e90577267ba5",
+    "test/presentation/ramp-draft.test.tsx": "f2da8b3f2b1fc7b74f8fa258302499e8d03152d78b389a9fd0faea98ae3be715"
+  }
+}

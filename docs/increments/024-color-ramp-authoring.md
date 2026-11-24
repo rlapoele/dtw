@@ -12,7 +12,8 @@
   are recorded below. The user subsequently agreed the final contract and
   authorized implementation on 23 November 2026.
 - References: [owning ramp direction](../project/guided-color-palette-generation.md),
-  [creation V3](../project/workbench-layout/color-ramp-creation-v3.md),
+  [creation V4](../project/workbench-layout/color-ramp-creation-v4.md) (agreed two-stage
+  refinement, 24 November; V3 remains historical),
   [scale model](../design-tokens/conceptual-model.md#scale-generation),
   [architecture](../project/architecture.md), [interoperability](../design-tokens/interoperability.md),
   [workflow](../workflow/agent-roles.md), [presentation conventions](../project/presentation-conventions.md),
@@ -27,7 +28,8 @@ member identities; it does not create live computed values or group type inherit
 
 - Counts 2–20, default 11; positional labels; constant OKLCH hue; seed alpha;
   Retained intensity by default and Restrained available.
-- Creation has four stages and no per-step editing. Later editing has a shared draft
+- Creation has Configure and read-only Review stages, with no per-step editing
+  (V4 amendment agreed 24 November). Later editing has a shared draft
   for settings, values, descriptions, ramp-step protection and reference changes.
 - Ordinary regeneration preserves Protected colors and regenerates all unprotected
   colors, including Manual ones (amended 23 November). Count changes are
@@ -67,11 +69,16 @@ The accepted V4 and retained V3 workspace received renewed review on 23 November
 ### Creation and calculation
 
 - **AC-1 — Provisional creation.** The existing New group form offers Generate a
-  color ramp. Unchecked behavior is unchanged; checked Continue opens the dialog
-  without applying an empty group. Validate name, parent and path collisions. Back
-  preserves the draft; Cancel writes nothing. Final positioning is the final review,
-  with full paths, values, target and feedback; creating succeeds for group, tokens
-  and settings together. No separate final confirmation or per-step editing occurs.
+  color ramp. Unchecked behavior is unchanged. Checked reveals a single Configure
+  form for group identity, seed, scale and placement without applying an empty group.
+  Ramp controls remain visible but disabled until name, parent and path/collision
+  validation pass; invalidating identity preserves the ramp draft while disabling
+  its controls. Review ramp opens read-only final review with full paths, values,
+  target and feedback. Back preserves the draft; Cancel uses existing departure
+  protection and writes nothing. Create saves group, tokens and settings together.
+  No separate final confirmation or per-step editing occurs. The agreed
+  [V4 criteria](../project/workbench-layout/color-ramp-creation-v4.md#observable-acceptance-criteria-for-implementation)
+  own the detailed presentation and integration amendment; later ramp Apply is unchanged.
 - **AC-2 — Count, labels and recipe.** Accept integers 2–20 only, default 11. First
   label is `50`, last `950`, interiors are `round(1000 × i / (n − 1))`, where `i`
   is the zero-based index. At 11 this gives 50, 100…900, 950; at 6 it gives

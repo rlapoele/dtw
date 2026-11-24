@@ -22,6 +22,7 @@ vi.mock("react", async (original) => {
   return {
     ...react,
     useState: state,
+    useId: () => state("ramp-seed-error")[0],
     useRef: (value: any) => state(() => ({ current: value }))[0],
     useEffect: (effect: any, deps?: any[]) => {
       const i = runtime.cursor++,
@@ -48,6 +49,11 @@ vi.mock("@domain/color-calculation", async (original) => {
   };
 });
 import { colorDecimalDisplay } from "@presentation/App/components/TokensWorkbench/helpers/color-decimal-display";
+import { AuthoringDialog } from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/AuthoringDialog";
+import { RampCreation } from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/components/RampCreation";
+import { RampPreview } from "@presentation/App/components/TokensWorkbench/components/RampPreview";
+import { Input } from "@presentation/ui/input";
+import { Button } from "@presentation/ui/button";
 import { RampWorkbench } from "@presentation/App/components/TokensWorkbench/components/RampWorkbench/RampWorkbench";
 import { RampSeedFields } from "@presentation/App/components/TokensWorkbench/components/RampSeedFields";
 import { ColorLiteralFields } from "@presentation/App/components/TokensWorkbench/components/ColorLiteralFields";
@@ -189,4 +195,157 @@ it("guards invalid-first step/seed edits, remounts discarded seed state and full
   render();
   effects();
   expect(dirty).toHaveBeenLastCalledWith(false);
+});
+
+
+it("keeps two-stage creation draft, guards combined inputs, and creates only deliberately from review", () => {
+  const create = vi.fn();
+  const props = {
+    defaultSpace: "srgb" as const, path: "brand", identity: "Group identity",
+    identityReady: false, feedback: "Shared recovery", disabled: false, pending: false,
+    onCancel: vi.fn(), onCreate: create,
+  };
+  function render() { runtime.cursor = 0; return RampCreation(props); }
+  function text(root: any): string {
+    if (typeof root === "string" || typeof root === "number") return String(root);
+    if (Array.isArray(root)) return root.map(text).join("");
+    return root?.props ? text(root.props.children) : "";
+  }
+  function button(root: any, label: string) { return nodes(root).find(n => n.type === Button && text(n) === label); }
+  function countField(root: any) { return nodes(root).find(n => n.type === Input && n.props.type === "number"); }
+  let root = render();
+  expect(nodes(root).find(n => n.type === RampSeedFields).props.disabled).toBe(true);
+  expect(button(root, "Review ramp").props.disabled).toBe(true);
+  props.identityReady = true;
+  root = render();
+  countField(root).props.onChange({target:{value:"6"}});
+  root = render();
+  nodes(root).find(n => n.type === Input && n.props.type !== "number").props.onChange({target:{value:"Seed description"}});
+  root = render();
+  root.props.onSubmit({preventDefault:vi.fn()});
+  expect(create).not.toHaveBeenCalled();
+  root = render();
+  expect(button(root,"Create color ramp")).toBeDefined();
+  root.props.onSubmit({preventDefault:vi.fn()});
+  expect(create).not.toHaveBeenCalled();
+  button(root,"Back").props.onClick();
+  root = render();
+  expect(countField(root).props.value).toBe("6");
+  expect(nodes(root).find(n => n.type === Input && n.props.type !== "number").props.value).toBe("Seed description");
+  props.identityReady = false;
+  root = render();
+  expect(countField(root).props.value).toBe("6");
+  expect(nodes(root).find(n => n.type === RampSeedFields).props.disabled).toBe(true);
+  props.identityReady = true;
+  root = render();
+  countField(root).props.onChange({target:{value:""}});
+  root = render();
+  expect(button(root,"Use Auto position").props.disabled).toBe(true);
+  expect(button(root,"Review ramp").props.disabled).toBe(true);
+  expect(nodes(root).filter(n => n.type === RampPreview)).toHaveLength(0);
+  expect(() => button(root,"Use Auto position").props.onClick()).not.toThrow();
+  countField(root).props.onChange({target:{value:"6"}});
+  root = render();
+  nodes(root).find(n => n.type === RampSeedFields).props.onValidity(false);
+  root = render();
+  expect(button(root,"Review ramp").props.disabled).toBe(true);
+  expect(nodes(root).filter(n => n.type === RampPreview)).toHaveLength(0);
+  nodes(root).find(n => n.type === RampSeedFields).props.onValidity(true);
+  root = render();
+  root.props.onSubmit({preventDefault:vi.fn()});
+  props.disabled = true;
+  root = render();
+  expect(button(root,"Create color ramp").props.disabled).toBe(true);
+  button(root,"Create color ramp").props.onClick();
+  expect(create).not.toHaveBeenCalled();
+  expect(text(root)).toContain("Shared recovery");
+  props.disabled = false;
+  root = render();
+  button(root,"Create color ramp").props.onClick();
+  expect(create).toHaveBeenCalledOnce();
+  expect(create.mock.calls[0][0]).toMatchObject({count:6,seedDescription:"Seed description"});
+});
+
+
+it("routes checked group creation directly to Configure and gates missing parents and collisions", () => {
+  const submit = vi.fn(), create = vi.fn();
+  const props = {
+    open: true,
+    form: {kind: "group" as const, name: "", parent: null as string | null, onNameChange: vi.fn(), onParentChange: vi.fn()},
+    project: {project:createProject({id:"p",name:"Project"}),groups:[],tokens:[]} as any,
+    readFailure:"",error:"",formError:{current:null},finalFocus:()=>null,
+    onClose:vi.fn(),onSubmit:submit,onCreateRamp:create,onRetry:vi.fn(),
+  };
+  function render() { runtime.cursor=0; return AuthoringDialog(props); }
+  let root=render();
+  expect(nodes(root).some(n=>n.type===RampCreation)).toBe(false);
+  nodes(root).find(n=>n.type==="form").props.onSubmit({preventDefault:vi.fn()});
+  expect(submit).toHaveBeenCalledOnce();
+  nodes(root).find(n=>n.type==="input" && n.props.type==="checkbox").props.onChange({target:{checked:true}});
+  root=render();
+  let ramp=nodes(root).find(n=>n.type===RampCreation);
+  expect(ramp.props.identityReady).toBe(false);
+  expect(nodes(root).some(n=>n.type==="form")).toBe(false);
+  props.form.name="brand";
+  root=render();
+  expect(nodes(root).find(n=>n.type===RampCreation).props.identityReady).toBe(true);
+  props.form.parent="missing";
+  root=render();
+  expect(nodes(root).find(n=>n.type===RampCreation).props.identityReady).toBe(false);
+  props.form.parent=null;
+  props.project.groups=[{authored:{id:"g",projectId:"p",parentGroupId:null,localName:"brand"},path:["brand"]}];
+  root=render();
+  ramp=nodes(root).find(n=>n.type===RampCreation);
+  expect(ramp.props.identityReady).toBe(false);
+  nodes(ramp.props.identity).find(n=>n.type==="input" && n.props.type==="checkbox").props.onChange({target:{checked:false}});
+  root=render();
+  expect(nodes(root).some(n=>n.type===RampCreation)).toBe(false);
+  expect(props.form.name).toBe("brand");
+  expect(create).not.toHaveBeenCalled();
+  expect(submit).toHaveBeenCalledOnce();
+});
+
+
+it("recalculates Auto after Advanced Cancel or valid seed recovery following count edits, preserving manual requests", () => {
+  const props = {
+    defaultSpace: "srgb" as const, path: "brand", identity: null,
+    identityReady: true, feedback: null, disabled: false, pending: false,
+    onCancel: vi.fn(), onCreate: vi.fn(),
+  };
+  function render() { runtime.cursor = 0; return nodes(RampCreation(props)); }
+  const seedFields = (tree: any[]) => tree.find(n => n.type === RampSeedFields);
+  const countField = (tree: any[]) => tree.find(n => n.type === Input && n.props.type === "number");
+  const position = (tree: any[]) => tree.find(n => n.type === Select && n.props["aria-describedby"]);
+  let tree = render();
+  countField(tree).props.onChange({target:{value:"20"}});
+  tree = render();
+  expect(position(tree).props.value).toBe("579");
+  seedFields(tree).props.onValidity(false); // Advanced opens.
+  tree = render();
+  countField(tree).props.onChange({target:{value:"6"}});
+  tree = render();
+  seedFields(tree).props.onValidity(true); // Advanced Cancel restores accepted seed.
+  tree = render();
+  expect(position(tree).props.value).toBe("600");
+  expect(tree.find(n => n.props?.children === "Review ramp").props.disabled).toBe(false);
+  seedFields(tree).props.onValidity(false);
+  tree = render();
+  countField(tree).props.onChange({target:{value:"11"}});
+  tree = render();
+  const white = createColorLiteral({colorSpace:"srgb",components:["1","1","1"],alpha:"1"});
+  // Use color / corrected HEX emits the new seed and validity in one event.
+  seedFields(tree).props.onChange(white, "srgb");
+  seedFields(tree).props.onValidity(true);
+  tree = render();
+  expect(position(tree).props.value).toBe("50");
+  position(tree).props.onChange({target:{value:"500"}});
+  tree = render();
+  seedFields(tree).props.onValidity(false);
+  tree = render();
+  countField(tree).props.onChange({target:{value:"6"}});
+  tree = render();
+  seedFields(tree).props.onValidity(true);
+  tree = render();
+  expect(position(tree).props.value).toBe("500");
+  expect(tree.find(n => n.props?.children === "Review ramp").props.disabled).toBe(true);
 });

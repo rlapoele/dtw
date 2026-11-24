@@ -10,7 +10,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Two-stage ramp creation review completed — 24 November 2026
+## Two-stage ramp creation implemented — 24 November 2026
+
+Agreed V4 and the valid-name prerequisite are implemented and independently reviewed.
+Configure combines group identity, seed, scale and placement; Review is read-only
+and final Create saves everything together. Invalid identity disables ramp fields
+without clearing their draft. Existing ramp behavior and save ownership remain.
+[Completion evidence](../project/workbench-layout/color-ramp-creation-v4.md#implementation-completion--24-november-2026)
+records 52 focused tests and all typechecks, then four affected tests/typechecks after
+the Auto-after-Advanced correction. Independent recheck found no remaining actionable
+findings. Isolated Chrome confirmed identity gates, preserved drafts, Enter/Back,
+corrected Auto placement, narrow 20-member review and final Create with one history
+entry. Approximately24/30 aggregate minutes, one harness repair; checks stopped.
+Fault paths, exhaustive keyboard and broad qualification remain untested. Next:
+user acceptance of the creation flow. Staging, committing and pushing remain user-owned.
+
+### Agreement and preparation history
 
 The user requested proceeding with one configuration form followed by review.
 The separate designer prepared [creation V4](../project/workbench-layout/color-ramp-creation-v4.md)
@@ -27,7 +42,11 @@ parent/path validation are error-free. V4 now records this prerequisite in place
 the proposed ramp-first dirty-state handling; invalidating identity preserves the
 existing ramp draft while disabling its controls. This direct user amendment has
 not triggered another review or implementation.
-Next: user agreement to V4 with these criteria and explicit implementation authority.
+The user agreed V4 with the valid-name prerequisite and authorized implementation
+and independent review. Active AC-1 and the owning direction now record Configure
+then read-only Review. The implementation verification plan allowed 30 aggregate
+minutes and at most two harness repairs, focused UI checks only.
+Prior review evidence below remains historical; previous campaigns are not restarted.
 No application changes or runtime checks ran. Review stopped at approximately eight
 of ten aggregate minutes, zero repairs. Earlier verification campaigns remain stopped.
 Staging, committing and pushing remain user-owned.

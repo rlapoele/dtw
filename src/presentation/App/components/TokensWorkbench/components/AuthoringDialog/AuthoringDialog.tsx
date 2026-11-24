@@ -1,6 +1,6 @@
-import {useState,useEffect,useRef} from "react";
-import {effectiveDefaultColorSpace} from "@domain/project";
-import {RampCreation,type RampCreationValue} from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/components/RampCreation";
+import { useState, useEffect, useRef } from "react";
+import { effectiveDefaultColorSpace } from "@domain/project";
+import { RampCreation, type RampCreationValue } from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/components/RampCreation";
 import type { ColorSpace } from "@domain/color-literal";
 import { COLOR_COMPONENTS, COMPONENT_NAMES } from "@domain/color-components";
 import { spaceName } from "@presentation/App/helpers/color-space";
@@ -69,17 +69,16 @@ export function AuthoringDialog({
   finalFocus: () => HTMLElement | null;
   onClose: () => void;
   onSubmit: () => void;
-  onCreateRamp: (value:RampCreationValue)=>void;
+  onCreateRamp: (value: RampCreationValue) => void;
   onRetry: () => void;
   pending?: boolean;
   recovery?: import("react").ReactNode;
   guard?: import("react").ReactNode;
   submissionBlocked?: string;
 }) {
-  const nameField = useRef<HTMLInputElement>(null), returningToName = useRef(false);
-  useEffect(() => { if (!rampOpen && returningToName.current) { nameField.current?.focus(); returningToName.current=false; } });
-  const [generate,setGenerate]=useState(false),[rampOpen,setRampOpen]=useState(false);
-  useEffect(()=>{if(!open){setGenerate(false);setRampOpen(false);}},[open]);
+  const nameField = useRef<HTMLInputElement>(null);
+  const [generate, setGenerate] = useState(false);
+  useEffect(() => { if (!open) setGenerate(false); }, [open]);
   const preview = namingPreview(
     project,
     open ? form.kind : null,
@@ -91,40 +90,9 @@ export function AuthoringDialog({
     "Project root",
     "All tokens",
   ]);
-  return (
-    <Dialog.Root
-      open={open}
-      onOpenChange={(o) => {
-        if (!o && !pending) onClose();
-      }}
-    >
-      <DialogContent
-        className="dialog-popup flex flex-col"
-        finalFocus={finalFocus}
-      >
-        <Dialog.Title className="dialog-title mb-2.5">
-          {form.kind === "token"
-            ? "Create a color token"
-            : form.kind === "rename"
-              ? "Rename group"
-              : "Create a group"}
-        </Dialog.Title>
-        <Dialog.Description className="text-xs/normal text-muted-foreground mb-6">
-          {form.kind === "token"
-            ? `Create a color token with an opaque black ${spaceName(form.defaultColorSpace)} value.`
-            : "Groups organize paths; names do not define types."}
-        </Dialog.Description>
-        {recovery}
-        {form.kind==="group"&&generate&&<div hidden={!rampOpen}><RampCreation active={rampOpen} defaultSpace={project?effectiveDefaultColorSpace(project.project):"srgb"} path={preview.path?.join(" / ")??form.name} disabled={pending||!!submissionBlocked||!!readFailure} onBack={()=>{returningToName.current=true;setRampOpen(false);}} onCancel={onClose} onCreate={onCreateRamp}/></div>}
-        <form hidden={rampOpen}
-          className="min-h-0 overflow-auto p-1.5"
-          onSubmit={(e) => {
-            e.preventDefault();
-            if(form.kind==="group"&&generate&&!preview.error&&!preview.collisions.length)setRampOpen(true);else onSubmit();
-          }}
-        >
+  const identity = (
           <fieldset>
-            {form.kind==="group"&&<label className="flex gap-2 mb-4"><input type="checkbox" checked={generate} onChange={e=>setGenerate(e.target.checked)}/>Generate a color ramp</label>}
+            {form.kind==="group"&&<label className="flex gap-2 mb-4"><input type="checkbox" disabled={pending} checked={generate} onChange={e=>setGenerate(e.target.checked)}/>Generate a color ramp</label>}
             <Field>
               Name
               <Input
@@ -133,7 +101,7 @@ export function AuthoringDialog({
                 value={form.name}
                 onChange={(e) => form.onNameChange(e.target.value)}
                 aria-describedby="name-preview creation-error"
-                aria-invalid={!!error || undefined}
+                aria-invalid={!!error || !!preview.error || !!preview.collisions.length || undefined}
               />
             </Field>
             {form.kind === "token" && (
@@ -279,6 +247,9 @@ export function AuthoringDialog({
               </>
             )}
           </fieldset>
+  );
+  const feedback = (<>
+    {recovery}
           {readFailure && (
             <div
               className="notification notification-warning text-caption mt-4"
@@ -311,6 +282,50 @@ export function AuthoringDialog({
               {submissionBlocked}
             </p>
           )}
+  </>);
+  const ramp = form.kind === "group" && generate;
+  const identityReady = !!preview.path && !preview.error && !preview.collisions.length;
+  return (
+    <Dialog.Root
+      open={open}
+      onOpenChange={(o) => {
+        if (!o && !pending) onClose();
+      }}
+    >
+      <DialogContent
+        className="dialog-popup flex flex-col"
+        finalFocus={finalFocus}
+      >
+        <Dialog.Title className="dialog-title mb-2.5">
+          {form.kind === "token"
+            ? "Create a color token"
+            : form.kind === "rename"
+              ? "Rename group"
+              : "Create a group"}
+        </Dialog.Title>
+        <Dialog.Description className="text-xs/normal text-muted-foreground mb-6">
+          {form.kind === "token"
+            ? `Create a color token with an opaque black ${spaceName(form.defaultColorSpace)} value.`
+            : "Groups organize paths; names do not define types."}
+        </Dialog.Description>
+        {ramp ? (
+          <RampCreation
+            defaultSpace={project ? effectiveDefaultColorSpace(project.project) : "srgb"}
+            path={preview.path?.join(" / ") ?? form.name}
+            identity={identity}
+            identityReady={identityReady}
+            feedback={feedback}
+            disabled={pending || !!submissionBlocked || !!readFailure}
+            pending={pending}
+            onCancel={onClose}
+            onCreate={onCreateRamp}
+          />
+        ) : <form
+          className="min-h-0 overflow-auto p-1.5"
+          onSubmit={(e) => { e.preventDefault(); onSubmit(); }}
+        >
+          {identity}
+          {feedback}
           <div className="dialog-actions sticky bottom-0 bg-background justify-end flex gap-2.5 mt-4 py-3">
             <Dialog.Close render={<Button disabled={pending} />}>
               Cancel
@@ -320,10 +335,10 @@ export function AuthoringDialog({
               variant="default"
               disabled={!!readFailure || pending || !!submissionBlocked}
             >
-              {form.kind === "rename" ? "Rename group" : generate&&form.kind==="group"?"Continue":"Create"}
+              {form.kind === "rename" ? "Rename group" : "Create"}
             </Button>
           </div>
-        </form>
+        </form>}
         {guard}
       </DialogContent>
     </Dialog.Root>

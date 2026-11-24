@@ -395,8 +395,13 @@ not constitute final contract/design agreement or implementation authorization.
   if a count change removes it, propose a replacement and require confirmation.
   Exact white/black restrictions still apply after a seed change; never silently
   accept an invalid interior position. Exact recovery wording remains design work.
-- Review on the final positioning view, showing full paths, ramp preview, resolved
-  target gamut and any non-blocking repeated-preview feedback. **Create ramp**
+- **Creation V4 amendment agreed 24 November:** combine group identity, seed, scale
+  and placement in one Configure form, followed by read-only Review showing full
+  paths, ramp preview, resolved target gamut and non-blocking repeated-preview feedback.
+  Ramp controls stay visible but disabled until group name/parent/path validation
+  is error-free; preserve their draft if identity later becomes invalid. Back keeps
+  the same draft. See [the agreed V4 criteria](workbench-layout/color-ramp-creation-v4.md).
+  **Create ramp**
   creates the group, tokens and settings together; no separate confirmation screen.
   Offer checkerboard, light and dark preview backgrounds without altering authored
   colors or alpha. No individual token is created while navigating these views.

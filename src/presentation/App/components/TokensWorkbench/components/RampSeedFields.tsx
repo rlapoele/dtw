@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import {
   createColorLiteral,
   type ColorLiteralValue,
@@ -32,6 +32,7 @@ export function RampSeedFields({
   onValidity: (valid: boolean) => void;
   disabled?: boolean;
 }) {
+  const errorId = useId();
   const advancedButton = useRef<HTMLButtonElement>(null);
   const advancedHeading = useRef<HTMLHeadingElement>(null);
   function closeAdvanced() {
@@ -83,6 +84,8 @@ export function RampSeedFields({
         Seed HEX
         <Input
           value={hex}
+          aria-invalid={!!error || undefined}
+          aria-describedby={errorId}
           placeholder="Enter sRGB HEX"
           disabled={disabled}
           onChange={(e) => {
@@ -105,6 +108,7 @@ export function RampSeedFields({
                 alpha: seed.alpha,
               });
               changed(prepareRampSeed(source, defaultSpace));
+              onValidity(!advanced);
             } catch (e) {
               onValidity(false);
               setError(e instanceof Error ? e.message : "Invalid HEX");
@@ -117,6 +121,7 @@ export function RampSeedFields({
         Alpha stays separate.
       </p>
       <Button
+        type="button"
         ref={advancedButton}
         disabled={disabled}
         onClick={() => {
@@ -136,11 +141,13 @@ export function RampSeedFields({
           <ColorLiteralFields
             key={String(advanced)}
             value={advancedSeed}
+            disabled={disabled}
             onChange={setAdvancedSeed}
             onViewChange={setAdvancedSpace}
             onValidity={setAdvancedValid}
           />
           <Button
+            type="button"
             disabled={!advancedValid}
             onClick={() => {
               try {
@@ -160,6 +167,7 @@ export function RampSeedFields({
             Use color
           </Button>
           <Button
+            type="button"
             onClick={() => {
               closeAdvanced();
               onValidity(!error);
@@ -184,7 +192,7 @@ export function RampSeedFields({
             {seed.alpha}
           </p>
           {p3 && (
-            <Button onClick={() => onChange(seed, "display-p3")}>
+            <Button type="button" onClick={() => onChange(seed, "display-p3")}>
               Preserve exact seed with Display P3
             </Button>
           )}
@@ -196,6 +204,7 @@ export function RampSeedFields({
                 Lightness is bounded to 0–100%; chroma may be reduced.
               </p>
               <Button
+                type="button"
                 onClick={() => {
                   setOriginal(seed);
                   onChange(candidate!, "srgb");
@@ -211,6 +220,7 @@ export function RampSeedFields({
       )}
       {original && (
         <Button
+          type="button"
           onClick={() => {
             onChange(original, "srgb");
             setHex(seedHex(original));
@@ -220,7 +230,7 @@ export function RampSeedFields({
           Restore original seed
         </Button>
       )}
-      {error && <p role="alert">{error}</p>}
+      <p id={errorId} role={error ? "alert" : undefined}>{error}</p>
     </fieldset>
   );
 }

@@ -1,6 +1,27 @@
-# Color ramp creation V4 — two-stage proposal
+# Color ramp creation V4 — two-stage creation
 
-**Focused analyst review complete — 24 November 2026. Final agreement and implementation authorization remain pending.**
+**Agreed and implementation authorized — 24 November 2026**, including the valid
+group-name prerequisite and V4-1–8 below. Earlier preparation/review status statements
+describe their historical gates; this agreement supersedes them.
+
+**Implemented and independently reviewed — 24 November 2026.** Human acceptance
+remains pending; the completion evidence and verification limits are recorded below.
+
+## Authorized implementation and verification
+
+Baseline: `4abe69b`; clean working tree at intake. The user authorized implementation
+and independent review, preserving existing ramp behavior and user-owned Git actions.
+One 30-minute aggregate verification ceiling covers this follow-up: developer 10,
+independent reviewer 8, coordinator browser/document checks 8, reserve 4; at most
+two harness repairs across all roles. Stop earlier once sufficient evidence exists.
+This is a bounded UI integration change using existing domain/application operations.
+Essential checks: valid-name disabling/preservation, Configure/Review/Back and Advanced
+state, invalid input/Auto gates, ordinary group route, visible failure/recovery,
+stage-aware submission, representative desktop/narrow focus and final Create.
+Use synthetic isolated browser data. No numerical, retention stress, cross-engine,
+full-suite or exhaustive accessibility qualification; earlier campaigns remain stopped.
+Implementation work is separate from this verification ceiling. Record actual checks,
+consumption and limits in this document. No staging, committing or pushing.
 
 The user approved this identified V4 for bounded analyst review, preserving existing
 ramp behavior. This review has a ten aggregate-minute ceiling: up to six analyst
@@ -11,7 +32,7 @@ or cross-engine qualification. Earlier campaigns remain stopped.
 The user asked to proceed with the previously proposed one-form / one-review direction.
 This static design consolidates the existing creation inputs; it changes no generation,
 seed, placement, membership, persistence or history rules. It supersedes the four-stage
-presentation in [creation V3](color-ramp-creation-v3.md) only if agreed.
+presentation in [creation V3](color-ramp-creation-v3.md) under the agreement above.
 The [Increment 024 contract](../../increments/024-color-ramp-authoring.md) remains authoritative.
 
 ![One creation form followed by final review](color-ramp-creation-v4.svg)
@@ -188,9 +209,9 @@ to agree V4 with these integration requirements before authorizing implementatio
 This does not settle unrelated historical gaps or reopen numerical, persistence,
 replacement, history, saved-ramp editing or recovery policies.
 
-### Proposed observable acceptance criteria for implementation
+### Observable acceptance criteria for implementation
 
-These criteria are proposed for final agreement, not already implemented or verified.
+These criteria are agreed under the authorization above; implementation evidence follows separately.
 
 1. **V4-1 — Routes and identity.** Checking Generate immediately reveals identity,
    seed, scale and placement in Configure. The unchecked ordinary-group route remains
@@ -277,3 +298,70 @@ controls remain representative. This is a direct user amendment, not a new analy
 review or implementation authorization. Final agreement to the remaining V4 criteria
 and implementation authority remain pending. Documentation-only consistency and
 whitespace checks; earlier review and qualification stopping decisions remain intact.
+
+## Implementation completion — 24 November 2026
+
+Configure now combines identity, seed, scale and placement, followed by read-only
+Review and the existing atomic Create command. Identity errors disable ramp controls
+without clearing their draft. Configure remains mounted behind Review, preserving
+raw seed input and Advanced state. Shared feedback is reachable in both stages.
+Existing saved-ramp behavior and command/draft owners remain unchanged.
+
+The [reviewed snapshot](../../../output/playwright/ramp-creation-v4/reviewed-snapshot.json)
+identifies the four production files and one test file against `4abe69b`. The separate
+reviewer verified the initial hashes, then the two corrected file hashes. Private
+creation stays under AuthoringDialog; shared seed/preview files retain real sibling
+consumers. No new production files, wrappers, dependencies, icons, CSS exceptions,
+domain rules or persistence changes were introduced. Active AC-1, owning direction
+and README now describe the agreed two-stage flow; older evidence remains historical.
+
+### Evidence and review outcomes
+
+- Developer: 52 focused ramp/coordination tests and all TypeScript scopes passed.
+  After correction, all TypeScript scopes and four ramp tests passed. These use
+  lightweight component/hook fixtures, not browser-focus or fault-injection proof.
+- Independent review found one P2 Auto-placement regression: changing count while
+  Advanced was open then cancelling could retain the old Auto label. It was fixed
+  using the latest accepted seed/count when validity returns, preserving manual
+  requests. The reviewer reran four focused tests and accepted the correction with
+  no remaining actionable findings. Coordinator also corrected misleading pending
+  copy: the shared gate can represent recovery, not only an active Create.
+- Isolated Chrome session with a synthetic project: empty-name disabling, valid-name
+  enabling, invalidating/revalidating without losing count/description, invalid HEX
+  blocking Review, Review/Back state preservation and Enter advancing without saving
+  were exercised. Stage-heading and Advanced-return focus were observed.
+- The exact Auto regression was reproduced, then replayed after correction:
+  20 steps / Auto 579 → Advanced → 6 steps → Cancel now selects Auto 600 and enables
+  Review. No numerical qualification is inferred from this UI-transition check.
+- Desktop 1280×1000 and narrow 600×850 views were inspected. All 20 review members
+  remained present; scrolling reached step 950 above the persistent Create footer.
+  Final Create closed the dialog, opened the saved 20-token ramp and exposed one
+  `Create ramp blue` history entry, with no later Apply needed. Undo itself was not
+  exercised in this follow-up. Browser console reported zero errors/warnings.
+- Changed Markdown/local links and whitespace were checked. The isolated browser
+  was closed afterward; no user browser projects or drafts were accessed.
+
+Screenshots: [Configure desktop](../../../output/playwright/ramp-creation-v4/configure-desktop.png),
+[Review desktop, scrolled](../../../output/playwright/ramp-creation-v4/review-desktop.png),
+[Review narrow](../../../output/playwright/ramp-creation-v4/review-narrow.png),
+[last review member and footer](../../../output/playwright/ramp-creation-v4/review-narrow-last.png).
+
+### Stopping point and next action
+
+Approximately **24/30 aggregate verification minutes**: developer 7, reviewer 7,
+coordinator browser/setup/documents 10 (including two reserve minutes). **One harness
+repair**: stalled npx wrapper replaced by the cached Playwright CLI. Sandbox access
+was required for the local server/browser. A checkbox CLI wait timed out after its
+successful remount; a snapshot confirmed the state without a harness change.
+Checks stop here with sufficient focused evidence; earlier stopping decisions remain.
+
+Recovery/failure visibility, ordinary-group/collision routing and manual-position
+rules received source/component evidence, not exhaustive browser replay. Gamut
+adjustment/original restoration and Cancel/keep-editing were not browser-replayed in
+this pass. No write-fault, retention stress, numerical, cross-engine or exhaustive
+keyboard/accessibility campaign ran. These limits are not a claim of complete
+qualification. Human acceptance remains pending: New group → Generate a color ramp,
+enter a valid name, configure, Review, Back if needed, then Create.
+
+Nothing staged, committed or pushed. Suggested commit:
+`feat: streamline color ramp creation into configure and review`.

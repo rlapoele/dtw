@@ -86,7 +86,11 @@ The separate designer prepared [creation V4](../project/workbench-layout/color-r
 a static one-form / one-review proposal. The user subsequently approved focused
 analyst review, now completed with integration requirements and eight proposed criteria
 in V4. No new product decision was identified. Final agreement and implementation
-authorization remain pending; the active four-stage contract is not changed yet.
+authorization were subsequently granted, including the valid-name prerequisite.
+The [V4 completion record](../project/workbench-layout/color-ramp-creation-v4.md#implementation-completion--24-november-2026)
+now documents implementation, independent review, corrected Auto placement and
+bounded browser evidence. The active contract describes two-stage creation; human
+acceptance remains pending and earlier verification stopping decisions remain intact.
 
 ## Clean draft actions and consistent step inspector — 24 November 2026
 

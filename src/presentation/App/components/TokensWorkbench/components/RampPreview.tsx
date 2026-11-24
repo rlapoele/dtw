@@ -4,9 +4,11 @@ import { colorPreview } from "@presentation/App/components/TokensWorkbench/helpe
 export function RampPreview({
   steps,
   path,
+  layout = "scroll",
 }: {
   steps: readonly { label: string; value: ColorLiteralValue }[];
   path: string;
+  layout?: "scroll" | "full" | "compact";
 }) {
   const keys = new Map<string, string[]>();
   let unavailable = false;
@@ -20,17 +22,17 @@ export function RampPreview({
   }
   return (
     <>
-      <div className="max-h-80 overflow-auto space-y-2">
+      <div className={layout === "compact" ? "flex flex-wrap gap-1" : layout === "scroll" ? "max-h-80 overflow-auto space-y-2" : "space-y-2"}>
         {steps.map((step) => (
           <div
             key={step.label}
-            className="flex gap-3 items-start border-b border-border py-2"
+            className={layout === "compact" ? "flex flex-col gap-1 items-center text-caption" : "flex gap-3 items-start border-b border-border py-2"}
           >
             <span
               className="size-10 shrink-0 rounded"
               style={{ background: colorPreview(step.value).css }}
             />
-            <div className="min-w-0 text-caption wrap-anywhere">
+            {layout === "compact" ? <span>{step.label}</span> : <div className="min-w-0 text-caption wrap-anywhere">
               <strong>
                 {path} / {step.label}
               </strong>
@@ -55,7 +57,7 @@ export function RampPreview({
                   }
                 })()}
               </p>
-            </div>
+            </div>}
           </div>
         ))}
       </div>
