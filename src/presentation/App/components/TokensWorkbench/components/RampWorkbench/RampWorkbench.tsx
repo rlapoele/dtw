@@ -1,3 +1,4 @@
+import { WorkspaceHeading } from "@presentation/App/components/TokensWorkbench/components/WorkspaceHeading";
 import { RampReferenceReview } from "@presentation/App/components/TokensWorkbench/components/RampWorkbench/components/RampReferenceReview";
 import { RampImpactPreview } from "@presentation/App/components/TokensWorkbench/components/RampWorkbench/components/RampImpactPreview";
 import {
@@ -62,6 +63,7 @@ export function RampWorkbench({
   applyAction,
   onRename,
   onInspect,
+  inspectorVisible = true,
 }: {
   host: WorkbenchHost;
   header: ProjectHeader;
@@ -74,6 +76,7 @@ export function RampWorkbench({
   onSave: (input: ApplyRampInput) => Promise<boolean>;
   onRename: () => void;
   onInspect: () => void;
+  inspectorVisible?: boolean;
   applyAction: MutableRefObject<(() => Promise<boolean>) | null>;
 }) {
   const [snapshot, setSnapshot] = useState<ProjectSnapshot>(),
@@ -585,7 +588,7 @@ export function RampWorkbench({
         tabIndex={-1}
         className="token-panel overflow-auto min-w-0 p-6"
       >
-        <h1>{title}</h1>
+        <WorkspaceHeading title={title} onRename={onRename} renameDisabled={disabled} />
         <p className="text-caption mb-4">
           Colors are authored tokens. Settings do not regenerate them when
           reopening.
@@ -616,17 +619,16 @@ export function RampWorkbench({
                   <option value="dark">Dark</option>
                 </Select>
               </Field>
-              <Button
+              {(!inspectorVisible || selected !== null) && <Button
+                variant="ghost"
+                className="mb-4.25"
                 onClick={() => {
                   setSelected(null);
                   onInspect();
                 }}
               >
-                Settings
-              </Button>
-              <Button disabled={disabled} onClick={onRename}>
-                Rename group
-              </Button>
+                Ramp settings
+              </Button>}
             </div>
             <div className="overflow-x-auto">
               <table className="border-separate border-spacing-3 min-w-max">

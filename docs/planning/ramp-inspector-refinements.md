@@ -80,3 +80,24 @@ advanced and exceptional decisions contextually, then review and create atomical
 The current final Create action already saves the group, members and recipe; later
 Apply is for subsequent edits. This simplification is proposed only and was not
 implemented in the annotation follow-up.
+
+## Heading and settings annotation follow-up — 24 November 2026
+
+The next three annotations requested the normal group heading/pencil rename pattern,
+removal of the toolbar Rename button, and contextual settings navigation aligned
+with the fields. A shared WorkspaceHeading now serves both normal and ramp views.
+Ramp settings uses a ghost button only when a step is selected or the settings
+inspector is not visible (including narrow layout and collapsed desktop inspector).
+Matching the fields' existing bottom margin aligns all three controls.
+
+Presentation typecheck and 11 existing tests across three focused files passed.
+Independent review found one collapsed-inspector reachability issue; it was fixed
+and source-rechecked with no remaining finding. Browser checks confirmed the pencil
+heading, settings appearing on step selection, settings navigation hiding the now
+redundant control, and identical control top/height geometry. No values were saved.
+[Heading and aligned settings](../../output/playwright/ramp-inspector-refinements/heading.jpg).
+Narrow/collapsed conditions were source-reviewed, not browser-replayed in this slice.
+Approximately seven additional aggregate minutes for this separately requested small
+follow-up, zero harness repairs; prior campaigns remain stopped.
+
+Suggested commit: `fix: unify ramp group heading and settings navigation`.

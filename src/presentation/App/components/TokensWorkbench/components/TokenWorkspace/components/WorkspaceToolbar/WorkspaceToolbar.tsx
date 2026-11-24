@@ -1,3 +1,4 @@
+import { WorkspaceHeading } from "@presentation/App/components/TokensWorkbench/components/WorkspaceHeading";
 import { typeScopeLabel } from "@presentation/App/components/TokensWorkbench/helpers/token-navigation";
 import type { TokenBrowseView } from "@presentation/App/components/TokensWorkbench/helpers/browse-view";
 import { Button } from "@presentation/ui/button";
@@ -28,27 +29,13 @@ export function WorkspaceToolbar({
   return (
     <>
       <div className="panel-header mb-6.5 grid  items-start gap-x-3 gap-y-2">
-        <div>
-          {!allContent && (
-            <span className="eyebrow uppercase text-muted-foreground font-semibold">
-              Tokens
-            </span>
-          )}
-          <div className="flex items-center gap-2">
-            <h1 className="my-1.5 small-title min-w-0 wrap-anywhere">
-              {view.kind === "type" ? typeScopeLabel(view, groupLabels) : allContent
-                ? "All content"
-                : group === null
-                  ? "All tokens"
-                  : (groupLabels.get(group) ?? "Missing group")}
-            </h1>
-            {group !== null && (
-              <Button size="icon" variant="ghost" title="Rename group" aria-label="Rename group" disabled={blocked} onClick={onRenameGroup}>
-                <Icon name="pencil" />
-              </Button>
-            )}
-          </div>
-        </div>
+        <WorkspaceHeading
+          eyebrow={allContent ? "" : "Tokens"}
+          title={view.kind === "type" ? typeScopeLabel(view, groupLabels) : allContent
+            ? "All content" : group === null ? "All tokens" : (groupLabels.get(group) ?? "Missing group")}
+          onRename={group === null ? undefined : onRenameGroup}
+          renameDisabled={blocked}
+        />
         <div className="workspace-creation flex flex-nowrap gap-2">
           <Button size="panel" className="workspace-create mobile:w-9 mobile:min-w-9 mobile:px-0" title="New group" aria-label="New group" disabled={blocked} onClick={onCreateGroup}>
             <Icon name="folder" /><span className="inline mobile:hidden">New group</span>

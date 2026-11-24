@@ -364,7 +364,7 @@ export function TokensWorkbench({
             {navigation}
           </TokenNavigationPane>
       }
-      workspace={activeRamp?<RampWorkbench key={JSON.stringify([activeRamp,editorVersion])} host={host} header={header} groupId={activeRamp} inspector={rampInspector} panel={panel} hidden={narrow&&surface==="inspect"} disabled={blocked} onDirty={setDirty} applyAction={rampApply} onRename={()=>open("rename")} onInspect={showInspector} onSave={async input=>{
+      workspace={activeRamp?<RampWorkbench key={JSON.stringify([activeRamp,editorVersion])} host={host} header={header} groupId={activeRamp} inspectorVisible={!narrow && inspectorExpanded} inspector={rampInspector} panel={panel} hidden={narrow&&surface==="inspect"} disabled={blocked} onDirty={setDirty} applyAction={rampApply} onRename={()=>open("rename")} onInspect={showInspector} onSave={async input=>{
         completion.current=()=>{setDirty(false);setEditorVersion(v=>v+1);outcomes.publish("Ramp changes applied and retained.");};
         const result=await accept({operation:"applyColorRamp",input});
         if(result.status==="unchanged"||(result.status==="retained"&&result.readback==="available")){const finish=completion.current;completion.current=undefined;finish?.();return true;}return false;

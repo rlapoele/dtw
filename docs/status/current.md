@@ -12,6 +12,14 @@
 
 ## Ramp and inspector refinements implemented — 24 November 2026
 
+The subsequent three heading annotations are also implemented: normal/ramp groups
+share the heading and pencil rename control; duplicate toolbar rename is removed.
+Ramp settings uses aligned ghost navigation and appears only when the settings
+inspector is not already visible. Presentation typecheck and11 focused tests passed;
+independent review's collapsed-inspector finding was corrected and rechecked.
+Browser checks confirmed heading, alignment and settings navigation. Evidence and
+limits are in the refinement record below. User acceptance remains pending.
+
 The user authorized direct implementation of eleven browser annotations after the
 focused designer assessment. [Outcome and evidence](../planning/ramp-inspector-refinements.md)
 record the aligned ramp matrix, rounded readouts, centered step metadata, shared
