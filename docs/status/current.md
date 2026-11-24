@@ -10,6 +10,17 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Two-stage ramp creation proposal — 24 November 2026
+
+The user requested proceeding with one configuration form followed by review.
+The separate designer prepared [creation V4](../project/workbench-layout/color-ramp-creation-v4.md)
+and its static wireframe: identity, seed, scale and placement together; read-only
+review followed by the existing atomic Create. Advanced and required gamut decisions,
+draft preservation, ordinary group creation and saved-ramp Apply semantics remain.
+This identified layout awaits user inspection and approval for focused analyst review;
+no application implementation or analyst review has run. Previous verification
+campaigns remain stopped. Staging, committing and pushing remain user-owned.
+
 ## Ramp and inspector refinements implemented — 24 November 2026
 
 Latest annotations are implemented: clean ramps disable Apply/Discard, and ramp-step

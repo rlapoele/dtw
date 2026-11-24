@@ -81,6 +81,11 @@ The current final Create action already saves the group, members and recipe; lat
 Apply is for subsequent edits. This simplification is proposed only and was not
 implemented in the annotation follow-up.
 
+**Follow-up — 24 November 2026:** the user asked to proceed with that direction.
+The separate designer prepared [creation V4](../project/workbench-layout/color-ramp-creation-v4.md),
+a static one-form / one-review proposal. The identified layout awaits user inspection
+before analyst review; it is not implemented and does not change the existing contract yet.
+
 ## Clean draft actions and consistent step inspector — 24 November 2026
 
 The next annotations identify enabled Apply/Discard on unchanged ramps and ask for
