@@ -21,7 +21,12 @@ The user approved V4 for focused analyst review. The separate analyst found no n
 product decision or material conflict beyond the intended stage amendment. Its
 [integration requirements and eight proposed criteria](../project/workbench-layout/color-ramp-creation-v4.md#focused-analyst-review--24-november-2026)
 cover mounted draft preservation, complete validity/Auto guards, visible failures,
-ramp-first departure protection, stage-aware submission and full review access.
+departure protection, stage-aware submission and full review access.
+The user subsequently chose to keep ramp fields disabled until the group name and
+parent/path validation are error-free. V4 now records this prerequisite in place of
+the proposed ramp-first dirty-state handling; invalidating identity preserves the
+existing ramp draft while disabling its controls. This direct user amendment has
+not triggered another review or implementation.
 Next: user agreement to V4 with these criteria and explicit implementation authority.
 No application changes or runtime checks ran. Review stopped at approximately eight
 of ten aggregate minutes, zero repairs. Earlier verification campaigns remain stopped.

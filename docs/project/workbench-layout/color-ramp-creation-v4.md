@@ -32,6 +32,13 @@ A compact, non-editable swatch strip on the form gives immediate context.
 
 - Group identity first: Generate a color ramp checkbox, Name, Parent group and the
   existing truthful name/path preview, including collision details when relevant.
+- **User amendment — 24 November:** keep ramp fields visible but disabled until
+  the group name is properly filled out and its identity validation is error-free,
+  including parent/path availability and collisions. This covers Seed, Advanced,
+  description, gamut actions, count, intensity, placement and Auto. Name, Parent
+  group and Generate remain available. Explain the prerequisite beside the fields.
+  If identity becomes invalid again, disable ramp controls without clearing their
+  draft; correcting identity restores access to the same inputs.
 - Seed: HEX input, authored-space/alpha summary and specimen, quiet project-default
   helper, Advanced disclosure, and optional Seed description. Preserve the explanation
   that description belongs only to the token at the final seed position.
@@ -74,7 +81,7 @@ retain the existing shared draft and ramp-level Apply boundary.
 | Advanced color | Expand the existing color fields inline below Seed. Use color accepts; its Cancel abandons only that advanced edit. Return focus to Advanced. Keep the existing alpha and explicit-space rules. |
 | Seed outside target / bounded lightness | Automatically show the existing original/candidate comparison and applicable explicit choices beside Seed, never behind optional disclosure. Do not preselect a gamut decision, silently clip or expand targets. Restore original remains available under the existing rule. |
 | Invalid manual position after count/seed change | Retain the requested label visibly, explain why it needs review and block Review. Offer valid position choice or existing Auto action. Preserve exact white/black endpoint rules and the distinction between Auto and manual placement. |
-| Name/parent problem | Retain the existing path/collision evidence beside identity. No empty group is created to get to review. |
+| Name/parent problem | Retain the existing path/collision evidence beside identity. Ramp fields stay visible but disabled until identity is valid; preserve any existing ramp draft while disabled. No empty group is created to get to review. |
 | Read failure, unavailable/unknown result, or save failure | Show existing failure/recovery content in both stages, outside stage-hidden panels. Keep the draft, truthfully gate actions and use existing recovery; do not add blind retry or claim success. |
 | Cancel/close | Use the existing creation departure/discard policy. No project write on cancellation. Do not add a third confirmation stage to successful creation. |
 | Pending create | Keep pending feedback visible, gate duplicate submission and preserve the existing close/departure restrictions. |
@@ -154,7 +161,7 @@ consistency review, not evidence of runtime correctness or implementation approv
    stage-hidden panels. A failed final submission must preserve the review/draft,
    expose its explanation and let the existing recovery owner govern what follows.
    Revalidate after baseline review; entering Review does not accept a stale baseline.
-5. **Departure protection must cover the newly exposed order of edits.** Current
+5. **Original finding; superseded by the user's identity prerequisite below.** Current
    ramp-local changes do not update `formDirty`; the sequential route normally
    requires an ordinary name edit before reaching those controls. In V4 a user can
    edit the seed or count before touching Name. Connect that dirty state to the
@@ -162,6 +169,11 @@ consistency review, not evidence of runtime correctness or implementation approv
    editing protection when needed, including incomplete input. This preserves V3's
    protection requirement through the changed ordering; it does not introduce a new
    confirmation policy or change the expressly retained uncheck reset behavior.
+   **User disposition — 24 November:** disable ramp fields until the group name
+   is filled out without identity errors. Ramp-first edits are therefore unavailable;
+   no additional ramp-first dirty-state mechanism is required by this finding.
+   Retain the existing departure guard and preserve drafts if identity later becomes
+   invalid. The Generate-uncheck reset exception remains unchanged.
 6. **Layout and submission need deliberate integration.** `RampPreview` currently
    supplies its own `max-h-80 overflow-auto` list; it is not directly the proposed
    compact strip or single-scroll review. Keep all members and existing truthful
@@ -183,8 +195,11 @@ These criteria are proposed for final agreement, not already implemented or veri
 1. **V4-1 — Routes and identity.** Checking Generate immediately reveals identity,
    seed, scale and placement in Configure. The unchecked ordinary-group route remains
    unchanged. Unchecking resets only ramp-specific state and preserves identity.
-   Invalid name/parent or collision blocks Review with truthful path evidence and
-   never falls through to ordinary group creation.
+   Ramp fields are visible but disabled until the group name and parent/path checks
+   are valid and collision-free. Invalidating identity disables them again without
+   clearing ramp inputs; correcting it restores those inputs. Invalid name/parent
+   or collision blocks Review with truthful path evidence and never falls through
+   to ordinary group creation. Identity controls remain editable.
 2. **V4-2 — Draft lifetime.** Review then Back preserves name, parent, raw HEX,
    accepted seed representation/alpha, description, count, intensity, Auto/manual
    request, accepted gamut and original-seed restoration state without reconversion.
@@ -207,8 +222,10 @@ These criteria are proposed for final agreement, not already implemented or veri
    Failure retains the draft and uses existing recovery; confirmed success selects
    the new group with the existing single creation-history boundary and no later Apply.
 6. **V4-6 — Departure.** Cancel/close writes nothing and uses the existing departure
-   protection for modified ramp inputs even before an identity edit. Keep editing
-   preserves the session. Existing pending/unknown departure restrictions remain;
+   protection. Ramp edits cannot precede valid identity entry under the user's
+   amendment; no new ramp-first dirty-state mechanism is required. Keep editing
+   preserves the session, including when identity has become invalid again.
+   Existing pending/unknown departure restrictions remain;
    the Generate-uncheck reset exception remains unchanged.
 7. **V4-7 — Keyboard and layout.** Configure Enter requests Review only; Advanced
    actions do not submit the form. Review entry/Back focus their respective heading;
@@ -250,3 +267,13 @@ without changing the Generate-uncheck reset exception. Changed Markdown, local l
 and whitespace were checked; no application or user-data changes were made.
 
 Suggested commit: `docs: review two-stage ramp creation contract`.
+
+## User refinement after review — 24 November 2026
+
+The user selected disabled ramp fields until group identity is valid, replacing
+the review's proposed handling of ramp-first edits. Configure and V4-1/V4-6 above
+record this refinement. The wireframe shows an already-valid name, so its enabled
+controls remain representative. This is a direct user amendment, not a new analyst
+review or implementation authorization. Final agreement to the remaining V4 criteria
+and implementation authority remain pending. Documentation-only consistency and
+whitespace checks; earlier review and qualification stopping decisions remain intact.
