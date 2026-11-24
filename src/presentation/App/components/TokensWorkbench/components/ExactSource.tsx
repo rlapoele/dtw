@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { InspectorSection } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorSection";
+import { InspectorSection } from "@presentation/App/components/TokensWorkbench/components/InspectorSection";
 import { Button } from "@presentation/ui/button";
 export function ExactSource({
   revision,

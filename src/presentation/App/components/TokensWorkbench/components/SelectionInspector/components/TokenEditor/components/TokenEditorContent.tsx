@@ -1,20 +1,21 @@
-import { InspectorSection } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorSection";
-import { ExactSource } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/ExactSource";
+import { InspectorSection } from "@presentation/App/components/TokensWorkbench/components/InspectorSection";
+import { ExactSource } from "@presentation/App/components/TokensWorkbench/components/ExactSource";
 import { Button } from "@presentation/ui/button";
 import { literalIssue } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/state/editor-session";
 import { hexPreview } from "@presentation/App/components/TokensWorkbench/helpers/hex-preview";
 import { resolvedColor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/helpers/resolved-color";
-import { useId, useLayoutEffect, useRef } from "react";
-import { TokenValueComparison } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenValueComparison";
+import { useId } from "react";
+import { InspectorHeading } from "@presentation/App/components/TokensWorkbench/components/InspectorHeading";
+import { TokenValueComparison } from "@presentation/App/components/TokensWorkbench/components/TokenValueComparison";
 import { EditorActions } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditorActions";
 import { EditRecovery } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/EditRecovery";
 import { ReferenceFields } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ReferenceFields";
-import { TokenMetadata } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenMetadata";
-import { ResolvedTokenPanel } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/ResolvedTokenPanel";
+import { TokenMetadata } from "@presentation/App/components/TokensWorkbench/components/TokenMetadata";
+import { ResolvedTokenPanel } from "@presentation/App/components/TokensWorkbench/components/ResolvedTokenPanel";
 import type { useTokenEditor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor";
 
 import { AuthoredValue } from "@presentation/App/components/TokensWorkbench/components/AuthoredValue";
-import { TokenEditorTabs } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorTabs";
+import { TokenEditorTabs } from "@presentation/App/components/TokensWorkbench/components/TokenEditorTabs";
 import { Select } from "@presentation/ui/select";
 
 
@@ -73,17 +74,6 @@ export function TokenEditorContent({
   const descriptionId = useId();
   const modeName = useId();
   const layerId = useId();
-  const headingRef = useRef<HTMLDivElement>(null);
-  useLayoutEffect(() => {
-    const heading = headingRef.current;
-    const scroller = heading?.closest<HTMLElement>(".inspector-content");
-    if (!heading || !scroller) return;
-    // The title may wrap, and root text can grow: reserve the actual sticky height.
-    const update = () => { scroller.style.scrollPaddingTop = `${heading.getBoundingClientRect().height + 8}px`; };
-    update();
-    const observer = new ResizeObserver(update); observer.observe(heading);
-    return () => { observer.disconnect(); scroller.style.scrollPaddingTop = ""; };
-  }, []);
   const appliedHex = hexPreview(
     value?.kind === "literal" && value.valueType === "color" ? value : resolvedColor(i),
   );
@@ -93,12 +83,12 @@ export function TokenEditorContent({
       aria-label="Selected token"
       hidden={readUnavailable}
     >
-      <div ref={headingRef} className="inspector-heading sticky top-0 z-10 bg-surface border-b-hairline border-border p-4">
+      <InspectorHeading>
         <div className="flex flex-wrap items-start gap-3 min-w-0">
           <h2 className="wrap-anywhere my-1 text-inspector font-semibold min-w-0 max-w-full">{tokenLabels.get(token.id) ?? (token.localName || "(unnamed original token)")}</h2>
           {editable && !targetUnavailable && <TokenValueComparison feedback={editor.feedback} />}
         </div>
-      </div>
+      </InspectorHeading>
       <div className="px-6 mobile:px-4">
         <InspectorSection title="Edit token" open={sections.edit} onToggle={() => toggleSection("edit")}
           badge={!sections.edit && dirty ? "Unapplied changes" : !editable ? "Inspection only" : undefined}

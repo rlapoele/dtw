@@ -983,7 +983,7 @@ it.each([undefined, ""])("omits untouched description %s during an unrelated edi
 });
 
 it("loads source only on disclosure, rejects stale completions, and retries a failed current request", async () => {
-  const { ExactSource } = await import("@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/ExactSource");
+  const { ExactSource } = await import("@presentation/App/components/TokensWorkbench/components/ExactSource");
   const first = deferred<string>(), second = deferred<string>();
   const request = vi.fn().mockReturnValueOnce(first.promise).mockReturnValueOnce(second.promise).mockRejectedValueOnce(Error("failure")).mockResolvedValue("retried");
   let expanded = false, revision = "r1";

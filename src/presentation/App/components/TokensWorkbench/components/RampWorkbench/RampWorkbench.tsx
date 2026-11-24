@@ -1,3 +1,4 @@
+import { InspectorHeading } from "@presentation/App/components/TokensWorkbench/components/InspectorHeading";
 import { WorkspaceHeading } from "@presentation/App/components/TokensWorkbench/components/WorkspaceHeading";
 import { RampReferenceReview } from "@presentation/App/components/TokensWorkbench/components/RampWorkbench/components/RampReferenceReview";
 import { RampImpactPreview } from "@presentation/App/components/TokensWorkbench/components/RampWorkbench/components/RampImpactPreview";
@@ -12,7 +13,10 @@ import { createPortal } from "react-dom";
 import { Dialog } from "@base-ui/react/dialog";
 import { DialogContent } from "@presentation/ui/dialog-content";
 import { Button } from "@presentation/ui/button";
-import { Input } from "@presentation/ui/input";
+import { InspectorHeader } from "@presentation/App/components/TokensWorkbench/components/InspectorHeader";
+import { InspectorSection } from "@presentation/App/components/TokensWorkbench/components/InspectorSection";
+import { TokenValueComparison } from "@presentation/App/components/TokensWorkbench/components/TokenValueComparison";
+import { RampStepInspection } from "@presentation/App/components/TokensWorkbench/components/RampWorkbench/components/RampStepInspection";
 import { Select } from "@presentation/ui/select";
 import { Field } from "@presentation/ui/field";
 import { Icon } from "@presentation/ui/icon";
@@ -64,6 +68,8 @@ export function RampWorkbench({
   onRename,
   onInspect,
   inspectorVisible = true,
+  inspectorExpanded = true,
+  onToggleInspector = () => {},
 }: {
   host: WorkbenchHost;
   header: ProjectHeader;
@@ -77,6 +83,8 @@ export function RampWorkbench({
   onRename: () => void;
   onInspect: () => void;
   inspectorVisible?: boolean;
+  inspectorExpanded?: boolean;
+  onToggleInspector?: () => void;
   applyAction: MutableRefObject<(() => Promise<boolean>) | null>;
 }) {
   const [snapshot, setSnapshot] = useState<ProjectSnapshot>(),
@@ -99,6 +107,8 @@ export function RampWorkbench({
       ...Object.fromEntries(ids.map((id) => [id, (v[id] ?? 0) + 1])),
     }));
   }
+  const [inspectionTabs, setInspectionTabs] = useState<Record<string, string>>({});
+  const [editSections, setEditSections] = useState<Record<string, boolean>>({});
   const baselineRevision = useRef(header.revision);
   useEffect(() => {
     let live = true;
@@ -157,6 +167,7 @@ export function RampWorkbench({
     baselineRevision.current !== header.revision;
   async function save() {
     if (blocked || !draft) return false;
+    if (!dirty) return true;
     const ok = await onSave({
       projectId: header.project.id,
       groupId,
@@ -235,16 +246,11 @@ export function RampWorkbench({
   const details =
     draft && snapshot ? (
       <div className="flex flex-col min-h-0 h-full">
-        <div className="overflow-auto min-h-0 p-5 space-y-4">
-          <h2>
-            {selected
-              ? `${title} / ${draft.steps.find((s) => s.id === selected)?.label}`
-              : "Ramp settings"}
-          </h2>
-          <p className="text-caption">
-            One shared draft · {draft.steps.length} Primitive color tokens
-          </p>
-          <div hidden={selected !== null} className="space-y-4">
+        <InspectorHeader title={selected ? "COLOR TOKEN" : "RAMP SETTINGS"} readFailure="" targetUnavailable="" editable selected inspectorExpanded={inspectorExpanded} onToggle={onToggleInspector} />
+        <div id="token-inspector-content" inert={!inspectorExpanded} aria-hidden={!inspectorExpanded} className="inspector-content overflow-auto min-h-0 flex-1 bg-surface">
+          <div hidden={selected !== null} className="p-5 space-y-4">
+            <h2>Ramp settings</h2>
+            <p className="text-caption">One shared draft · {draft.steps.length} Primitive color tokens</p>
             <RampSeedFields
               key={epoch}
               seed={draft.settings.seed}
@@ -341,40 +347,28 @@ export function RampWorkbench({
             <div
               key={step.id}
               hidden={selected !== step.id}
-              className="space-y-3"
+              className="inspector flex min-w-0 flex-col bg-surface"
             >
-              <p>
-                Layer: Primitive · Literal color only · Name and membership
-                fixed
-              </p>
-              <div className="grid grid-cols-2 gap-3">
-                <section>
-                  <h3>Current</h3>
-                  <div
-                    className="h-14 rounded"
-                    style={{
-                      background: colorPreview(
-                        original?.steps.find((s) => s.id === step.id)?.value,
-                      ).css,
-                    }}
-                  />
-                  <p className="text-caption">
-                    {original?.steps
-                      .find((s) => s.id === step.id)
-                      ?.value.components.join(" / ") ?? "New step"}
-                  </p>
-                </section>
-                <section>
-                  <h3>New · {step.colorOrigin}</h3>
-                  <div
-                    className="h-14 rounded"
-                    style={{ background: colorPreview(step.value).css }}
-                  />
-                  <p className="text-caption">
-                    {step.value.colorSpace} {step.value.components.join(" / ")}
-                  </p>
-                </section>
-              </div>
+              <InspectorHeading active={selected === step.id}>
+                <div className="flex flex-wrap items-start gap-3 min-w-0">
+                  <h2 className="wrap-anywhere my-1 text-inspector font-semibold min-w-0 max-w-full">{title} / {step.label}</h2>
+                  <TokenValueComparison feedback={{ tokenId: step.id, tab: inspectionTabs[step.id] ?? "authored", applied: colorPreview(original?.steps.find(s => s.id === step.id)?.value).css, draft: invalid[step.id] ? undefined : colorPreview(step.value).css, appliedMessage: original?.steps.some(s => s.id === step.id) ? "Currently applied color" : "New step; no applied color", draftMessage: invalid[step.id] ? "Complete invalid color input" : "Unapplied ramp color" }} />
+                </div>
+              </InspectorHeading>
+              <div className="px-6 mobile:px-4">
+              <InspectorSection title="Edit token" open={editSections[step.id] !== false} onToggle={() => setEditSections(v => ({ ...v, [step.id]: v[step.id] === false }))}>
+                <label className="block text-caption font-medium mb-1.75" htmlFor={`ramp-description-${step.id}`}>Description</label>
+                <textarea id={`ramp-description-${step.id}`} rows={3} disabled={disabled} value={step.description ?? ""} onChange={e => updateStep(step.id, { description: e.target.value })} className="block w-full min-w-0 rounded-md border-2 border-input bg-background text-foreground px-2.5 py-2 text-caption resize-y mb-4.25" />
+                <div className="w-full mb-4.25">
+                  <label className="block text-caption font-medium mb-1" htmlFor={`ramp-layer-${step.id}`}>Layer</label>
+                  <Select id={`ramp-layer-${step.id}`} disabled value="primitive"><option value="primitive">Primitive</option></Select>
+                  <p className="text-caption text-muted-foreground mt-2">Ramp members remain Primitive literal colors while membership applies.</p>
+                </div>
+                <fieldset disabled={disabled} className="mb-0">
+                  <legend className="sr-only">Value source</legend>
+                  <label className="inline-flex min-h-9 items-center gap-2 text-caption"><input type="radio" checked readOnly name={`ramp-source-${step.id}`} className="size-4 shrink-0 accent-primary disabled:cursor-default" />Literal color</label>
+                </fieldset>
+                <div className="mt-4.25">
               <ColorLiteralFields
                 key={`${step.id}/${epoch}/${fieldVersions[step.id] ?? 0}/${space}`}
                 value={step.value}
@@ -394,16 +388,8 @@ export function RampWorkbench({
                   updateStep(step.id, { value, colorOrigin: "manual" })
                 }
               />
-              <Field>
-                Description
-                <Input
-                  disabled={disabled}
-                  value={step.description ?? ""}
-                  onChange={(e) =>
-                    updateStep(step.id, { description: e.target.value })
-                  }
-                />
-              </Field>
+                </div>
+                <p className="helper text-muted-foreground font-normal preview-detail mt-2 wrap-anywhere">Draft preview: {invalid[step.id] ? "Unavailable: finish valid exact component and alpha entries." : colorPreview(step.value).message}</p>
               <label className="flex gap-2">
                 <input
                   type="checkbox"
@@ -455,16 +441,10 @@ export function RampWorkbench({
               >
                 {draft.replacement ? "Reset color to generated" : "Revert"}
               </Button>
-              <details>
-                <summary>Read-only details</summary>
-                <p className="wrap-anywhere">
-                  Identity: {step.id}
-                  <br />
-                  Path: {title} / {step.label}
-                  <br />
-                  Authored space: {step.value.colorSpace}
-                </p>
-              </details>
+              </InspectorSection>
+              </div>
+              {selected === step.id && <RampStepInspection tab={inspectionTabs[step.id] ?? "authored"} onTabChange={tab => setInspectionTabs(v => ({ ...v, [step.id]: tab }))} snapshot={snapshot} tokenId={step.id} revision={baselineRevision.current} />}
+
             </div>
           ))}
           {impacts && impacts.required.length > 0 && (
@@ -544,20 +524,20 @@ export function RampWorkbench({
             <p>Complete the invalid step inputs before Apply.</p>
           )}
         </div>
-        <footer className="border-t border-border bg-background p-4 flex flex-wrap gap-2">
+        <footer hidden={!inspectorExpanded} className="border-t border-border bg-background p-4 flex flex-wrap gap-2">
           <p className="w-full text-caption">
             Apply saves the complete ramp and {impacts?.required.length ?? 0}{" "}
             reviewed reference occurrences.
           </p>
           <Button
             variant="default"
-            disabled={blocked}
+            disabled={blocked || !dirty}
             onClick={() => void save()}
           >
             Apply ramp changes
           </Button>
           <Button
-            disabled={disabled}
+            disabled={disabled || !dirty}
             onClick={() => {
               setDraft(original);
               setInvalid({});

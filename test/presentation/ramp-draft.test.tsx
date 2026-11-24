@@ -51,7 +51,7 @@ import { colorDecimalDisplay } from "@presentation/App/components/TokensWorkbenc
 import { RampWorkbench } from "@presentation/App/components/TokensWorkbench/components/RampWorkbench/RampWorkbench";
 import { RampSeedFields } from "@presentation/App/components/TokensWorkbench/components/RampSeedFields";
 import { ColorLiteralFields } from "@presentation/App/components/TokensWorkbench/components/ColorLiteralFields";
-import { Input } from "@presentation/ui/input";
+import { Select } from "@presentation/ui/select";
 import { createRampCandidate } from "@application/color-ramp-authoring";
 import { createProject } from "@domain/project";
 import { createColorLiteral } from "@domain/color-literal";
@@ -113,8 +113,8 @@ it("guards invalid-first step/seed edits, remounts discarded seed state and full
     hidden: false,
     disabled: false,
     onDirty: dirty,
-    onSave: async () => true,
-    applyAction: { current: null },
+    onSave: vi.fn(async () => true),
+    applyAction: { current: null as (() => Promise<boolean>) | null },
     onRename: () => {},
     onInspect: () => {},
   };
@@ -128,6 +128,20 @@ it("guards invalid-first step/seed edits, remounts discarded seed state and full
   let tree = render();
   effects();
   expect(dirty).toHaveBeenLastCalledWith(false);
+  expect(tree.find(n => n.props?.children === "Apply ramp changes").props.disabled).toBe(true);
+  expect(tree.find(n => n.props?.children === "Discard draft").props.disabled).toBe(true);
+  expect(await props.applyAction.current?.()).toBe(true);
+  expect(props.onSave).not.toHaveBeenCalled();
+  const keys = tree.filter(n => n.type === ColorLiteralFields).map(n => n.key);
+  tree.find(n => n.props?.children === "50" && n.props.onClick).props.onClick();
+  tree = render(); effects();
+  expect(tree.filter(n => n.type === ColorLiteralFields).map(n => n.key)).toEqual(keys);
+  const viewSelects = tree.filter(n => n.type === Select);
+  viewSelects.find(n => n.props.value === "checkerboard").props.onChange({ target: { value: "dark" } });
+  viewSelects.find(n => n.props.value === "oklch" && n.props.onChange).props.onChange({ target: { value: "srgb" } });
+  tree = render(); effects();
+  expect(dirty).toHaveBeenLastCalledWith(false);
+  expect(tree.find(n => n.props?.children === "Discard draft").props.disabled).toBe(true);
   const sliders = tree.filter(n => n.type === "input" && n.props.type === "range");
   expect(sliders).toHaveLength(18);
   expect(tree.filter(n => n.type === "th" && n.props.scope === "row")).toHaveLength(3);
@@ -148,6 +162,10 @@ it("guards invalid-first step/seed edits, remounts discarded seed state and full
   tree = render();
   effects();
   expect(dirty).toHaveBeenLastCalledWith(true);
+  expect(tree.find(n => n.props?.children === "Apply ramp changes").props.disabled).toBe(true);
+  expect(tree.find(n => n.props?.children === "Discard draft").props.disabled).toBe(false);
+  expect(await props.applyAction.current?.()).toBe(false);
+  expect(props.onSave).not.toHaveBeenCalled();
   const seedKey = tree.find((n) => n.type === RampSeedFields).key;
   tree.find((n) => n.props?.children === "Discard draft").props.onClick();
   tree = render();
@@ -162,7 +180,7 @@ it("guards invalid-first step/seed edits, remounts discarded seed state and full
   tree = render();
   effects();
   tree
-    .find((n) => n.type === Input && n.props.value === "")
+    .find((n) => n.type === "textarea" && n.props.value === "")
     .props.onChange({ target: { value: "Temporary description" } });
   tree = render();
   effects();

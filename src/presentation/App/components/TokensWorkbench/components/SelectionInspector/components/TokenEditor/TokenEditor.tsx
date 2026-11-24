@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { InspectorHeader } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorHeader";
+import { InspectorHeader } from "@presentation/App/components/TokensWorkbench/components/InspectorHeader";
 import { useTokenEditor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/hooks/useTokenEditor";
 import { TokenEditorContent } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenEditorContent";
 export function TokenEditor({

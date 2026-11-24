@@ -1,5 +1,5 @@
 import { GroupInspector } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/GroupInspector/GroupInspector";
-import { InspectorHeader } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorHeader";
+import { InspectorHeader } from "@presentation/App/components/TokensWorkbench/components/InspectorHeader";
 import type { Selection } from "@presentation/App/components/TokensWorkbench/hooks/useProjectReadback";
 import type { ProjectContext } from "@application/retention/projections";
 import type { ProjectHeader } from "@hosts/browser/protocol";

@@ -1,7 +1,7 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { expect, it } from "vitest";
-import { TokenMetadata } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/components/TokenMetadata";
+import { TokenMetadata } from "@presentation/App/components/TokensWorkbench/components/TokenMetadata";
 import { createToken } from "@domain/token";
 
 const token = createToken({id: 't"exact', projectId: "p", localName: "name", parentGroupId: "missing", regeneration: "protected"}, []);

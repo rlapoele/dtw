@@ -81,6 +81,54 @@ The current final Create action already saves the group, members and recipe; lat
 Apply is for subsequent edits. This simplification is proposed only and was not
 implemented in the annotation follow-up.
 
+## Clean draft actions and consistent step inspector — 24 November 2026
+
+The next annotations identify enabled Apply/Discard on unchanged ramps and ask for
+the regular color-token inspection experience for ramp steps. Direct correction
+continues within the user's implementation direction.
+
+Acceptance: clean drafts disable both actions; invalid pending input remains
+discardable but cannot Apply; passive inspection/view changes do not create edits.
+Ramp step presentation reuses regular inspector conventions and appropriate shared
+components: token-type header, path/current/new preview block, description and
+visibly locked Primitive layer, literal color fields and inspection details.
+Ramp-specific protection/reset remains available. The ramp owner keeps all draft
+state and the single Apply boundary; this is not a second ordinary-token editor.
+No fabricated resolution information or change to settled replacement semantics.
+
+Scoped verification ceiling:30 aggregate minutes, at most2 harness repairs;
+developer10, reviewer6, coordinator8, reserve6. Focus on dirty/action transitions,
+state-preserving reuse, representative ordinary/ramp inspector rendering and focus.
+No broader numerical/retention/compatibility campaign. Earlier checks stay stopped.
+
+**Completed; user acceptance pending.** The user explicitly clarified that visual
+presentation must be identical except for ramp-related controls/restrictions.
+Regular and ramp inspection now share header/toggle, measured sticky heading,
+Current/New comparison, sections, tabs, metadata, source and resolved presentation.
+Moved components live at their actual shared TokensWorkbench owner; private
+RampStepInspection adapts the saved snapshot, including explicit absence of saved
+data for newly proposed steps. Existing color fields remain mounted; no second save
+owner was introduced. Apply and Discard are disabled on clean drafts; invalid
+pending input is still discardable. A clean internal save is a no-write success
+so coordinated departure remains possible.
+
+All typecheck scopes and 237 presentation tests passed. After the final shared
+sticky-heading correction, typechecks and 50 affected tests passed. Independent
+review of base `0b20535` plus the source/test changes identified the missing scroll
+padding protection, then verified its correction; no actionable findings remain.
+Browser checks confirmed both buttons disabled initially, both enabled after a
+temporary description edit, and both disabled after discarding that edit. The saved
+green/600 inspector visibly uses the regular layout with Primitive disabled and
+shared inspection sections. Measured heading scroll padding was present. No edits
+were saved. [Final inspector](../../output/playwright/ramp-inspector-refinements/step-inspector.jpg).
+
+Approximately20/30 aggregate minutes (developer5, reviewer7, coordinator8), one
+test-selector harness repair. Checks stop; no new broad numerical/retention,
+cross-engine or exhaustive keyboard campaign. Narrow behavior and all read-only
+tabs were source/test reviewed, not exhaustively browser-replayed.
+
+Suggested commit: `fix: align ramp step inspection and disable unchanged actions`.
+
 ## Heading and settings annotation follow-up — 24 November 2026
 
 The next three annotations requested the normal group heading/pencil rename pattern,

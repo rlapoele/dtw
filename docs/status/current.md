@@ -12,6 +12,17 @@
 
 ## Ramp and inspector refinements implemented — 24 November 2026
 
+Latest annotations are implemented: clean ramps disable Apply/Discard, and ramp-step
+inspection uses the same shared visual components as regular token inspection,
+with ramp-specific controls and one shared save boundary retained. The user's
+explicit visual-parity clarification is recorded in the refinement record.
+237 presentation tests and all typechecks passed; final sticky-heading correction
+passed50 affected tests and typechecks. Independent review's focus finding was
+corrected and rechecked, with no remaining actionable issues. Browser checks
+confirmed clean/edit/discard action transitions and the final inspector presentation.
+Approximately20/30 minutes, one harness repair; this check stops here. User acceptance
+remains pending; staging, committing and pushing remain user-owned.
+
 The subsequent three heading annotations are also implemented: normal/ramp groups
 share the heading and pencil rename control; duplicate toolbar rename is removed.
 Ramp settings uses aligned ghost navigation and appears only when the settings

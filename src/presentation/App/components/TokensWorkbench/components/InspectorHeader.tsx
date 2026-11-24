@@ -1,4 +1,4 @@
-import { InspectorToggle } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorToggle";
+import { InspectorToggle } from "@presentation/App/components/TokensWorkbench/components/InspectorToggle";
 export function InspectorHeader({
   title = "INSPECTOR",
   readFailure,

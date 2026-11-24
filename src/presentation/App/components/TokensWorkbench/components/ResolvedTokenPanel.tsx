@@ -1,5 +1,5 @@
-import { InspectorSection } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/InspectorSection";
-import { ExactSource } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/ExactSource";
+import { InspectorSection } from "@presentation/App/components/TokensWorkbench/components/InspectorSection";
+import { ExactSource } from "@presentation/App/components/TokensWorkbench/components/ExactSource";
 import { colorDecimalDisplay } from "@presentation/App/components/TokensWorkbench/helpers/color-decimal-display";
 import type {
   SelectedToken,
