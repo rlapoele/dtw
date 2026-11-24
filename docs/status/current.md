@@ -10,6 +10,18 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Token-list annotation prototype V1 — 24 November 2026
+
+The user approved the designer's direction for compact authored-space summaries,
+optional other-space disclosure, and an actionable ramp membership indicator.
+[Interactive prototype V1](../../prototypes/token-list-disclosure-v1/DESIGN-V1.md)
+is ready for user review, with a resolved-alias example and representative ramp
+navigation. Focused interaction and desktop/narrow visual checks are recorded there.
+No production implementation changed. User review comes before focused analyst
+review; neither that review nor implementation is yet authorized for these changes.
+Earlier verification stopping decisions remain closed. Staging, committing and
+pushing remain user-owned.
+
 ## CSS/Tailwind maintenance completed — 24 November 2026
 
 The user requested stylesheet cleanup before further ramp annotations.

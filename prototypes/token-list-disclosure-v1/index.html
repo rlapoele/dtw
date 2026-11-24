@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DTW · Token list V1</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="app-header"><strong>Design Token Workbench</strong><span>Acme design system</span><span class="prototype">Prototype V1</span></header>
+<div class="shell">
+<aside class="navigation" aria-label="Project context"><h2>Acme design system</h2><p class="muted">3 tokens · 1 ramp</p><div class="nav-item selected-nav">All tokens <span>3</span></div><h3>Groups</h3><div class="nav-item">colors / blue <span>2</span></div><div class="nav-item">semantic <span>1</span></div><p class="navigation-note">Open a saved ramp directly from a member token.</p></aside>
+<main id="workspace">
+<section id="tokens-view" aria-labelledby="tokens-title"><div class="workspace-heading"><div><p class="eyebrow">Acme design system</p><h1 id="tokens-title" tabindex="-1">All tokens</h1><p class="muted">Browse authored values and inspect their representations.</p></div><span class="count">3 tokens</span></div><div class="table-heading" aria-hidden="true"><span>Token</span><span>Type</span><span>Layer</span><span>Value</span></div><div id="token-list"></div></section>
+<section id="ramp-view" aria-labelledby="ramp-title" hidden><button id="back" class="button">← Back to tokens</button><div class="workspace-heading"><div><p class="eyebrow">colors / blue</p><h1 id="ramp-title" tabindex="-1">blue</h1><p class="muted">Saved color ramp · 2 members</p></div><span class="count">Applied</span></div><div class="ramp-strip"><div style="--color:#60a5fa"><span>400</span><code>#60A5FA</code></div><div style="--color:#3b82f6"><span>500</span><code>#3B82F6</code></div></div><div class="destination-note"><h2>Saved ramp workspace</h2><p>This preview demonstrates opening the existing ramp from its member tokens. Ramp authoring controls are outside this prototype.</p></div><dl class="ramp-facts"><div><dt>Group</dt><dd>colors / blue</dd></div><div><dt>Members</dt><dd>400, 500</dd></div><div><dt>Member values</dt><dd>Independent literal colors</dd></div></dl></section>
+</main>
+<aside class="inspector" aria-labelledby="inspector-title"><p class="eyebrow">Selection</p><h2 id="inspector-title">400</h2><p id="inspector-path" class="mono muted">colors / blue / 400</p><div id="inspector-swatch" style="background:#60a5fa"></div><dl id="inspector-facts"></dl><p class="muted inspector-note">Select a token to inspect it. Expanding representations keeps your selection.</p></aside>
+</div><script src="script.js"></script>
+</body></html>
