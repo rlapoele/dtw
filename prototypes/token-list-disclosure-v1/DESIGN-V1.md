@@ -1,6 +1,6 @@
 # Token list disclosure — V1
 
-**Prototype for user review — 24 November 2026.** Isolated, illustrative artifact; no production implementation or change to Increment 024 semantics.
+**User-approved prototype; focused analyst review complete — 24 November 2026.** Isolated, illustrative artifact; no production implementation or change to Increment 024 semantics. The user accepted V1 and authorized review of these two changes only, explicitly excluding implementation. The [focused review](../../docs/planning/token-list-disclosure-review.md) found no material design contradiction or unresolved product decision and records the integration criteria.
 
 ## Open
 
@@ -36,6 +36,6 @@ The coordinator checked the desktop presentation, independent disclosure without
 
 JavaScript syntax checking passed. Approximately four minutes of focused browser checks; no production tests, numerical or retention qualification, exhaustive keyboard audit or cross-engine testing. Earlier verification stopping decisions remain closed. No production files, dependencies, staging or commits changed.
 
-Next: user reviews V1 before authorizing focused analyst review. Prototype approval is not production implementation authorization.
+Next: user agreement to the reviewed criteria and explicit implementation authorization. Prototype approval and completed analyst review are not production implementation authorization.
 
 Suggested commit: `docs: add token list disclosure prototype v1`.

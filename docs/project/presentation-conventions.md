@@ -478,6 +478,17 @@ grid cell, with long values allowed to wrap within narrow cells. Following the
 the summary row wraps when space is limited. Authored/converted visibility, precision and color emphasis
 are unchanged. TokenValue owns this presentation through Tailwind utilities.
 
+**Approved design update — 24 November 2026; implementation pending.**
+[Token-list disclosure V1](../../prototypes/token-list-disclosure-v1/DESIGN-V1.md)
+supersedes the previous visibility behavior: show only the authored color space
+by default at every width, retaining HEX and separate Alpha. Other representations
+use a per-token disclosure. Alias previews identify their resolved space rather
+than claiming an authored literal space. The coordinate grid, precision and color
+emphasis remain unchanged. Actual ramp members gain a named control opening the
+existing ramp workspace; membership comes from stable member identities, not
+paths or alias targets. Selection, disclosure and ramp navigation use separate
+controls. Existing draft guards and ramp behavior remain applicable.
+
 ### Token table column balance — 19 November 2026
 
 At the user's request, the wide token table uses 12 equal tracks: Token spans 4,

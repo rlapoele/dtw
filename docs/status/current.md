@@ -10,15 +10,19 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Token-list annotation prototype V1 — 24 November 2026
+## Token-list annotation V1 analyst review — 24 November 2026
 
 The user approved the designer's direction for compact authored-space summaries,
 optional other-space disclosure, and an actionable ramp membership indicator.
 [Interactive prototype V1](../../prototypes/token-list-disclosure-v1/DESIGN-V1.md)
-is ready for user review, with a resolved-alias example and representative ramp
-navigation. Focused interaction and desktop/narrow visual checks are recorded there.
-No production implementation changed. User review comes before focused analyst
-review; neither that review nor implementation is yet authorized for these changes.
+was accepted by the user, who authorized a focused analyst review only.
+The [review and acceptance criteria](../planning/token-list-disclosure-review.md)
+found no material design contradiction or new product decision. Integration must
+preserve authored/resolved distinctions, stable-ID membership, independent controls
+and existing draft/navigation guards. The presentation conventions now record the
+approved visibility change. Focused prototype checks remain recorded in V1.
+No production implementation changed or is authorized. Next: user authorization
+before implementing this bounded follow-up against the reviewed criteria.
 Earlier verification stopping decisions remain closed. Staging, committing and
 pushing remain user-owned.
 
