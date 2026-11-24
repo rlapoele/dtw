@@ -10,16 +10,22 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
-## Two-stage ramp creation proposal — 24 November 2026
+## Two-stage ramp creation review completed — 24 November 2026
 
 The user requested proceeding with one configuration form followed by review.
 The separate designer prepared [creation V4](../project/workbench-layout/color-ramp-creation-v4.md)
 and its static wireframe: identity, seed, scale and placement together; read-only
 review followed by the existing atomic Create. Advanced and required gamut decisions,
 draft preservation, ordinary group creation and saved-ramp Apply semantics remain.
-This identified layout awaits user inspection and approval for focused analyst review;
-no application implementation or analyst review has run. Previous verification
-campaigns remain stopped. Staging, committing and pushing remain user-owned.
+The user approved V4 for focused analyst review. The separate analyst found no new
+product decision or material conflict beyond the intended stage amendment. Its
+[integration requirements and eight proposed criteria](../project/workbench-layout/color-ramp-creation-v4.md#focused-analyst-review--24-november-2026)
+cover mounted draft preservation, complete validity/Auto guards, visible failures,
+ramp-first departure protection, stage-aware submission and full review access.
+Next: user agreement to V4 with these criteria and explicit implementation authority.
+No application changes or runtime checks ran. Review stopped at approximately eight
+of ten aggregate minutes, zero repairs. Earlier verification campaigns remain stopped.
+Staging, committing and pushing remain user-owned.
 
 ## Ramp and inspector refinements implemented — 24 November 2026
 

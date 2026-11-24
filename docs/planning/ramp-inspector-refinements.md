@@ -83,8 +83,10 @@ implemented in the annotation follow-up.
 
 **Follow-up — 24 November 2026:** the user asked to proceed with that direction.
 The separate designer prepared [creation V4](../project/workbench-layout/color-ramp-creation-v4.md),
-a static one-form / one-review proposal. The identified layout awaits user inspection
-before analyst review; it is not implemented and does not change the existing contract yet.
+a static one-form / one-review proposal. The user subsequently approved focused
+analyst review, now completed with integration requirements and eight proposed criteria
+in V4. No new product decision was identified. Final agreement and implementation
+authorization remain pending; the active four-stage contract is not changed yet.
 
 ## Clean draft actions and consistent step inspector — 24 November 2026
 

@@ -1,6 +1,12 @@
 # Color ramp creation V4 — two-stage proposal
 
-**Proposed — 24 November 2026. Not yet approved for analyst review or implementation.**
+**Focused analyst review complete — 24 November 2026. Final agreement and implementation authorization remain pending.**
+
+The user approved this identified V4 for bounded analyst review, preserving existing
+ramp behavior. This review has a ten aggregate-minute ceiling: up to six analyst
+minutes and four coordinator minutes, no harness repairs. Inspect the proposal,
+owning contracts and relevant source only; no tests, browser, numerical, retention
+or cross-engine qualification. Earlier campaigns remain stopped.
 
 The user asked to proceed with the previously proposed one-form / one-review direction.
 This static design consolidates the existing creation inputs; it changes no generation,
@@ -96,9 +102,9 @@ persistence format, numerical algorithm, recovery policy or save owner is propos
 The current source resets ramp fields when Generate is unchecked; that behavior is
 retained. A future request to preserve those fields is separate.
 
-No additional product decision was identified beyond agreement to this identified
-layout and progression. The user must see this proposal before analyst review per the
-repository workflow. A focused analyst check should cover existing creation criteria,
+No additional product decision was identified by the designer beyond agreement to this
+identified layout and progression. The user has now approved focused analyst review.
+The check covers existing creation criteria,
 state preservation and both-stage error/recovery visibility before implementation.
 
 Source/design inspection only; no browser interaction, tests, numerical runs or old
@@ -107,3 +113,140 @@ repairs; the six-minute source/design review ceiling is stopped. Static layout h
 been browser-tested and does not establish runtime accessibility or numerical accuracy.
 
 Suggested commit: `docs: propose two-stage ramp creation`.
+
+
+## Focused analyst review — 24 November 2026
+
+**Reviewed proposal; final agreement and implementation authorization remain pending.**
+Baseline: production source at `41d2625`, with the coordinator's V4 review-approval
+and budget annotation. The two-stage proposal is consistent with existing creation
+semantics, subject to the integration requirements below. This is a source/design
+consistency review, not evidence of runtime correctness or implementation approval.
+
+### Findings and integration requirements
+
+1. **Intentional contract amendment, not an accidental contradiction.** Increment
+   024 AC-1 and its scope currently describe checked Continue and four stages, with
+   positioning on final review. V4 intentionally replaces that presentation with
+   Configure and read-only Review. On final agreement, reconcile those active
+   descriptions and the owning direction's final-positioning wording; retain V3
+   as historical design evidence. AC-2–6 and AC-16–19 retain their semantics.
+2. **Preserve mounted draft owners.** `RampCreation` currently remains mounted when
+   returning to group identity, and its `RampSeedFields` remains mounted across
+   stages. The latter owns raw HEX, Advanced draft/space/validity and the original
+   seed for restoration. Hiding Configure during Review must preserve that state,
+   not reconstruct it from accepted settings or a HEX preview. Unchecking Generate
+   currently unmounts ramp state while retaining group identity; keep that explicit
+   exception. `useAuthoringForm` remains called by `TokensWorkbench`, and Create
+   still reaches its existing `createColorRamp` command through `create(value)`.
+3. **Combined inputs need complete validity gates.** Current sequential UI separates
+   count editing from placement. V4 exposes both simultaneously: an empty/fractional/
+   out-of-range count or invalid seed must not let Use Auto call the calculation
+   with unusable inputs. Review and final Create must check current name/parent/path,
+   seed/Advanced acceptance, count, placement and existing read/pending/recovery gates.
+   Invalid HEX currently leaves the previous accepted seed available for calculation;
+   a compact preview must not present those old swatches as a valid new proposal.
+   These are presentation integration requirements, not new numerical policy.
+4. **Shared failures must be reachable in both stages.** In the current
+   `AuthoringDialog`, read failure, creation error and submission-blocked explanation
+   sit inside the group form hidden during ramp stages. Recovery itself is outside.
+   V4 explicitly requires all applicable feedback and its focus target outside
+   stage-hidden panels. A failed final submission must preserve the review/draft,
+   expose its explanation and let the existing recovery owner govern what follows.
+   Revalidate after baseline review; entering Review does not accept a stale baseline.
+5. **Departure protection must cover the newly exposed order of edits.** Current
+   ramp-local changes do not update `formDirty`; the sequential route normally
+   requires an ordinary name edit before reaching those controls. In V4 a user can
+   edit the seed or count before touching Name. Connect that dirty state to the
+   existing departure guard so Cancel/close offers the established discard/keep-
+   editing protection when needed, including incomplete input. This preserves V3's
+   protection requirement through the changed ordering; it does not introduce a new
+   confirmation policy or change the expressly retained uncheck reset behavior.
+6. **Layout and submission need deliberate integration.** `RampPreview` currently
+   supplies its own `max-h-80 overflow-auto` list; it is not directly the proposed
+   compact strip or single-scroll review. Keep all members and existing truthful
+   values/repeated-preview feedback while adapting layout. The current group form
+   can fall through to ordinary `onSubmit` when ramp identity is invalid; the new
+   checked form must never take that route. Configure Enter can only request Review;
+   entering Review must not submit creation through the same event. Preserve
+   Advanced button/heading focus and give both stage headings explicit focus targets.
+
+No additional product decision is required by these findings. The recommendation is
+to agree V4 with these integration requirements before authorizing implementation.
+This does not settle unrelated historical gaps or reopen numerical, persistence,
+replacement, history, saved-ramp editing or recovery policies.
+
+### Proposed observable acceptance criteria for implementation
+
+These criteria are proposed for final agreement, not already implemented or verified.
+
+1. **V4-1 — Routes and identity.** Checking Generate immediately reveals identity,
+   seed, scale and placement in Configure. The unchecked ordinary-group route remains
+   unchanged. Unchecking resets only ramp-specific state and preserves identity.
+   Invalid name/parent or collision blocks Review with truthful path evidence and
+   never falls through to ordinary group creation.
+2. **V4-2 — Draft lifetime.** Review then Back preserves name, parent, raw HEX,
+   accepted seed representation/alpha, description, count, intensity, Auto/manual
+   request, accepted gamut and original-seed restoration state without reconversion.
+   Advanced Use color/Cancel retain their existing acceptance boundaries; unaccepted
+   Advanced input blocks Review. Stage changes create no project/history writes.
+3. **V4-3 — Validity and preview.** Invalid seed, count or placement and unresolved
+   gamut choices visibly block progression. Count/seed changes preserve existing
+   Auto/manual and endpoint rules; unavailable Auto calculations cannot be invoked.
+   A compact preview is shown only as a valid proposal when the contributing draft
+   inputs are valid. No generated member becomes individually editable.
+4. **V4-4 — Read-only review.** Review shows current group path, count/intensity,
+   actual seed position and mode, target, generated space, Primitive layer and
+   truthful seed/description. Every proposed member from 2 through 20 is reachable,
+   with full wrapping path, authored space/components/alpha and explicitly labelled
+   sRGB HEX preview. Existing repeated-preview feedback stays non-blocking.
+5. **V4-5 — Final command and recovery.** Only deliberate Review submission invokes
+   existing atomic Create. It rechecks current validity and owner gates; pending or
+   unknown outcomes prevent duplicate submission. Read/save failures, stale-baseline
+   explanations and recovery controls remain visible/reachable in either stage.
+   Failure retains the draft and uses existing recovery; confirmed success selects
+   the new group with the existing single creation-history boundary and no later Apply.
+6. **V4-6 — Departure.** Cancel/close writes nothing and uses the existing departure
+   protection for modified ramp inputs even before an identity edit. Keep editing
+   preserves the session. Existing pending/unknown departure restrictions remain;
+   the Generate-uncheck reset exception remains unchanged.
+7. **V4-7 — Keyboard and layout.** Configure Enter requests Review only; Advanced
+   actions do not submit the form. Review entry/Back focus their respective heading;
+   Advanced returns focus to its trigger and dialog close uses existing owner return
+   focus. Inputs expose associated errors and shared failures remain announced.
+   One scrollable content area and persistent footer keep focused controls and all
+   review members reachable, with narrow stacking and no nested short preview scroll.
+8. **V4-8 — Ownership and scope.** Existing domain generation, atomic application
+   command and workbench draft/recovery owners remain authoritative. Use owned
+   controls/theme/icon conventions; assess any changed file placement against actual
+   consumers. No new dependency, algorithm, persistence format or saved-ramp Apply
+   boundary is introduced.
+
+### Evidence and stopping boundary
+
+Inspected: repository `AGENTS.md`; workflow role briefs; this V4 Markdown and SVG
+source; creation V3; Increment 024 creation criteria and lifecycle/recovery boundaries;
+the relevant guided-color direction; current status and ramp-inspector refinement
+record; architecture and applicable presentation ownership/control conventions.
+Product foundations and open-question headings were consulted for scope, not treated
+as permission to revisit settled decisions.
+
+Production source inspected under
+`src/presentation/App/components/TokensWorkbench/`: `TokensWorkbench.tsx`,
+`components/AuthoringDialog/AuthoringDialog.tsx`,
+`components/AuthoringDialog/components/RampCreation.tsx`,
+`components/AuthoringDialog/hooks/useAuthoringForm.ts`,
+`components/RampSeedFields.tsx`, and `components/RampPreview.tsx`.
+
+Approximately five analyst minutes of the allocated six; zero harness repairs.
+Stopped after enough source evidence to identify the integration obligations. No
+application edits, tests, browser interaction, rendering validation, numerical runs,
+retention or cross-engine qualification. Keyboard, focus, scrolling and failure
+behavior remain implementation checks; this review does not assert they work today.
+Coordinator source, findings and document checks consumed approximately three minutes:
+about eight of ten aggregate minutes total, zero harness repairs. Checks stop here.
+The coordinator confirmed the departure requirement follows existing protection,
+without changing the Generate-uncheck reset exception. Changed Markdown, local links
+and whitespace were checked; no application or user-data changes were made.
+
+Suggested commit: `docs: review two-stage ramp creation contract`.
