@@ -431,6 +431,26 @@ pane and drawer. Existing button padding, count columns and transitions remain.
 
 ### Centered Projects and common rails — 18 November 2026
 
+**Superseded geometry — 25 November 2026.** The historical balancing formula below
+has been replaced at the user's request. Both workbenches now consume the shared
+`--pane-expanded-width: clamp(20rem, 25vw, 25rem)` decision, expressed using the
+existing spacing scale in CSS. On desktop (1120px and above at the default root),
+Projects' blank left grid track equals its inspector width, matching Tokens' expanded
+side tracks. This remains a blank balancing column, not a navigation component.
+From 880px to below 1120px, the blank track becomes zero-width, matching Tokens'
+navigation-free workspace/inspector mode. Below880px the existing Projects single-
+surface browse/inspect behavior remains. No state owners or mounted ancestry change.
+
+Live Firefox at a measured 1303px viewport reported grid tracks of 325.75px / 651.5px /
+325.75px. Inspector buttons and metadata remained within the pane's measured bounds.
+Vite compilation and whitespace checks passed, with the existing bundle-size advisory.
+This bounded CSS follow-up used approximately five minutes of an eight-minute ceiling,
+no code harness repairs; implementing-agent review only. Tablet/mobile rules were
+source-reviewed, not browser-replayed. A native shortcut unexpectedly opened Firefox's
+quit confirmation during cleanup; it was cancelled, no tab closed, and Developer
+Tools were closed through their visible button. Existing project selection/data remain.
+No tests or earlier qualification campaigns were restarted.
+
 Approved Projects geometry uses a borderless balancing left grid track,
 `clamp(0rem, calc(100vw - 67rem), 25rem)`, and a25rem right inspector. At wide
 widths the side regions match; the blank track yields first below1472px and

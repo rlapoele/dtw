@@ -10,6 +10,19 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Projects aligned with fluid token panels — 25 November 2026
+
+The user requested the same panel sizing and balanced desktop columns on Projects.
+Both screens now share the fluid width token. Projects' empty left track matches
+the inspector on desktop and disappears below 1120px; the existing below 880px
+browse/inspect behavior remains. Live Firefox at 1303px measured 325.75px side tracks
+and 651.5px workspace; populated inspector controls/metadata fit their pane.
+[Convention and bounded evidence](../project/presentation-conventions.md#centered-projects-and-common-rails--18-november-2026)
+record compilation success and remaining limits. Tablet/mobile source-reviewed only;
+no broad qualification. Checks stopped at approximately five of eight minutes.
+Project data and selection were preserved. Staging, committing and pushing remain
+user-owned. Suggested commit: `fix: align projects with fluid workbench columns`.
+
 ## Fluid workbench panels accepted — 25 November 2026
 
 The user requested narrower panels on laptop screens and approved equal fluid widths.

@@ -126,7 +126,7 @@
     --warning: var(--color-amber-800);
     --warning-foreground: var(--color-amber-50);
     --warning-border: var(--color-amber-700);
-    --pane-expanded-width: --spacing(100);
+    --pane-expanded-width: clamp(--spacing(80), 25vw, --spacing(100));
     --control-size: --spacing(9);
     font-family: var(--font-sans);
     color: var(--foreground);
@@ -158,11 +158,11 @@
 
   /* Pane layouts and coordinated motion.
      Page-owned pane geometry preserves one mounted editor across modes. */
-  .workbench { --collapsed-pane-width:--spacing(13); --groups-expanded-width:var(--inspector-expanded-width); --inspector-expanded-width:clamp(--spacing(80), 25vw, var(--pane-expanded-width)); --groups-width:var(--groups-expanded-width); --inspector-width:var(--inspector-expanded-width); grid-template-columns: var(--groups-width) minmax(0, 1fr) var(--inspector-width); }
+  .workbench { --collapsed-pane-width:--spacing(13); --groups-expanded-width:var(--inspector-expanded-width); --inspector-expanded-width:var(--pane-expanded-width); --groups-width:var(--groups-expanded-width); --inspector-width:var(--inspector-expanded-width); grid-template-columns: var(--groups-width) minmax(0, 1fr) var(--inspector-width); }
   .groups-collapsed { --groups-width: var(--collapsed-pane-width); }
   .inspector-collapsed { --inspector-width: var(--collapsed-pane-width); }
-  /* The blank left track balances the inspector, yielding first on smaller desktops. */
-  .projects-layout { --project-inspector-width:var(--pane-expanded-width); --project-balance-width:clamp(--spacing(0), calc(100vw - --spacing(268)), var(--pane-expanded-width)); grid-template-columns:var(--project-balance-width) minmax(0, 1fr) var(--project-inspector-width); }
+  /* Match the token workbench's expanded side tracks without adding navigation. */
+  .projects-layout { --project-inspector-width:var(--pane-expanded-width); --project-balance-width:var(--project-inspector-width); grid-template-columns:var(--project-balance-width) minmax(0, 1fr) var(--project-inspector-width); }
   @media (width >= 55rem) {
     .projects-layout::before { content:""; grid-column:1; grid-row:1; }
     .projects-layout > .projects-browse { grid-column:2; grid-row:1; }
@@ -178,6 +178,7 @@
   .navigation-drawer[data-starting-style], .navigation-drawer[data-ending-style] { transform: translateX(-100%); }
   @media (55rem <= width < 70rem) {
     .workbench.compact-navigation { grid-template-columns: minmax(0,1fr) var(--inspector-width); }
+    .projects-layout { --project-balance-width: --spacing(0); }
   }
   @media (width >= 55rem) {
     .workbench { transition: grid-template-columns var(--panel-motion-duration) var(--panel-motion-easing); }
