@@ -1,3 +1,4 @@
+import { colorDecimalDisplay } from "@presentation/App/components/TokensWorkbench/helpers/color-decimal-display";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { createColorLiteral, type ColorSpace } from "@domain/color-literal";
 import {
@@ -190,7 +191,7 @@ export function RampCreation({
             <p>{count} steps · {settings.recipe.intensity === "retained" ? "Retained" : "Restrained"} intensity</p>
             <p>Seed at {settings.seedPosition.label} · {settings.seedPosition.mode === "auto" ? "Auto" : "Manual"}</p>
             <p>Target: {settings.targetGamut} · Generated space: OKLCH · Primitive tokens</p>
-            <p>Seed: {settings.seed.colorSpace} {settings.seed.components.join(" / ")} · Alpha {settings.seed.alpha}</p>
+            <p title={`${settings.seed.colorSpace} ${settings.seed.components.join(" / ")} · Alpha ${settings.seed.alpha}`}>Seed: {settings.seed.colorSpace} {settings.seed.components.map(colorDecimalDisplay).join(" / ")} · Alpha {colorDecimalDisplay(settings.seed.alpha)}</p>
             {description && <p>Seed description: {description}</p>}
           </section>
           {!identityReady && <p role="alert">The group identity needs review. Go Back to check its name and parent.</p>}

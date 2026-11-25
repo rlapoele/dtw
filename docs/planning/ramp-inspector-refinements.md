@@ -160,3 +160,19 @@ Approximately seven additional aggregate minutes for this separately requested s
 follow-up, zero harness repairs; prior campaigns remain stopped.
 
 Suggested commit: `fix: unify ramp group heading and settings navigation`.
+
+## Color summary precision follow-up — 25 November 2026
+
+The creation review annotation identified full-precision seed and generated-step
+coordinates. Ramp previews, the review seed summary, and shared seed/gamut summaries
+now use the existing color display formatter: up to four decimal places, including
+alpha, without padding trailing zeros. Titles retain the exact original values.
+Stored precision, generation, editable inputs and save ownership are unchanged.
+
+Presentation typecheck and 29 existing authored-value and ramp-draft tests passed.
+Checks stopped after this focused verification. This small presentation
+fix was source-reviewed by the implementing agent; no independent review or browser
+replay was performed, and the user's open creation draft was not manipulated.
+Prior broad verification stopping decisions remain in force.
+
+Suggested commit: `fix: round ramp color summaries to four decimal places`.

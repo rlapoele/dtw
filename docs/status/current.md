@@ -10,6 +10,16 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp color summaries rounded — 25 November 2026
+
+The user's creation-review annotation is addressed with the existing four-decimal
+display formatter across ramp preview and seed summaries, including alpha. Exact
+values remain available in titles and stored precision is unchanged.
+[Follow-up evidence](../planning/ramp-inspector-refinements.md#color-summary-precision-follow-up--25-november-2026)
+records the focused checks and limits. Human visual acceptance remains pending;
+the open creation draft was not manipulated. Staging, committing and pushing remain
+user-owned.
+
 ## Projects aligned with fluid token panels — 25 November 2026
 
 The user requested the same panel sizing and balanced desktop columns on Projects.

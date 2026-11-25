@@ -1,3 +1,4 @@
+import { colorDecimalDisplay } from "@presentation/App/components/TokensWorkbench/helpers/color-decimal-display";
 import { useId, useRef, useState } from "react";
 import {
   createColorLiteral,
@@ -177,8 +178,8 @@ export function RampSeedFields({
           </Button>
         </section>
       )}
-      <p className="text-caption wrap-anywhere">
-        {seed.colorSpace} {seed.components.join(" / ")} · Alpha {seed.alpha}
+      <p className="text-caption wrap-anywhere" title={`${seed.colorSpace} ${seed.components.join(" / ")} · Alpha ${seed.alpha}`}>
+        {seed.colorSpace} {seed.components.map(colorDecimalDisplay).join(" / ")} · Alpha {colorDecimalDisplay(seed.alpha)}
       </p>
       <div
         className="h-10 rounded border border-border"
@@ -187,9 +188,9 @@ export function RampSeedFields({
       {!srgb && !(gamut === "display-p3" && p3) && (
         <section className="notification notification-warning space-y-2">
           <h3>Choose the seed gamut</h3>
-          <p>
-            Original: {seed.colorSpace} {seed.components.join(" / ")} · Alpha{" "}
-            {seed.alpha}
+          <p title={`${seed.colorSpace} ${seed.components.join(" / ")} · Alpha ${seed.alpha}`}>
+            Original: {seed.colorSpace} {seed.components.map(colorDecimalDisplay).join(" / ")} · Alpha{" "}
+            {colorDecimalDisplay(seed.alpha)}
           </p>
           {p3 && (
             <Button type="button" onClick={() => onChange(seed, "display-p3")}>
@@ -198,9 +199,9 @@ export function RampSeedFields({
           )}
           {candidate && (
             <>
-              <p>
+              <p title={`${candidate.colorSpace} ${candidate.components.join(" / ")} · Alpha ${candidate.alpha}`}>
                 Adjusted sRGB candidate: {candidate.colorSpace}{" "}
-                {candidate.components.join(" / ")} · Alpha {candidate.alpha}.
+                {candidate.components.map(colorDecimalDisplay).join(" / ")} · Alpha {colorDecimalDisplay(candidate.alpha)}.
                 Lightness is bounded to 0–100%; chroma may be reduced.
               </p>
               <Button

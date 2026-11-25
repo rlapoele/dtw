@@ -1,3 +1,4 @@
+import { colorDecimalDisplay } from "@presentation/App/components/TokensWorkbench/helpers/color-decimal-display";
 import type { ColorLiteralValue } from "@domain/color-literal";
 import { rampPreviewKey } from "@domain/color-ramp";
 import { colorPreview } from "@presentation/App/components/TokensWorkbench/helpers/color-preview";
@@ -36,9 +37,9 @@ export function RampPreview({
               <strong>
                 {path} / {step.label}
               </strong>
-              <p>
-                {step.value.colorSpace} {step.value.components.join(" / ")} ·
-                Alpha {step.value.alpha}
+              <p title={`${step.value.colorSpace} ${step.value.components.join(" / ")} · Alpha ${step.value.alpha}`}>
+                {step.value.colorSpace} {step.value.components.map(colorDecimalDisplay).join(" / ")} ·
+                Alpha {colorDecimalDisplay(step.value.alpha)}
               </p>
               <p>
                 {(() => {
