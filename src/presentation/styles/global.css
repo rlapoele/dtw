@@ -158,7 +158,7 @@
 
   /* Pane layouts and coordinated motion.
      Page-owned pane geometry preserves one mounted editor across modes. */
-  .workbench { --collapsed-pane-width:--spacing(13); --groups-expanded-width:var(--inspector-expanded-width); --inspector-expanded-width:var(--pane-expanded-width); --groups-width:var(--groups-expanded-width); --inspector-width:var(--inspector-expanded-width); grid-template-columns: var(--groups-width) minmax(0, 1fr) var(--inspector-width); }
+  .workbench { --collapsed-pane-width:--spacing(13); --groups-expanded-width:var(--inspector-expanded-width); --inspector-expanded-width:clamp(--spacing(80), 25vw, var(--pane-expanded-width)); --groups-width:var(--groups-expanded-width); --inspector-width:var(--inspector-expanded-width); grid-template-columns: var(--groups-width) minmax(0, 1fr) var(--inspector-width); }
   .groups-collapsed { --groups-width: var(--collapsed-pane-width); }
   .inspector-collapsed { --inspector-width: var(--collapsed-pane-width); }
   /* The blank left track balances the inspector, yielding first on smaller desktops. */

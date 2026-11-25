@@ -406,6 +406,24 @@ shares the inspector's 25rem expanded width through the existing pane geometry
 variable. Collapsed rails, drawer width and responsive breakpoints retain their
 existing behavior. The central workspace receives the remaining space.
 
+**Fluid-width amendment — agreed, implemented and visually accepted 25 November 2026.**
+TokensWorkbench now gives both expanded panels `clamp(20rem, 25vw, 25rem)` through
+its existing inspector/navigation geometry variables. At the default root size,
+panels stay 320px through 1280px, grow to 400px at 1600px, then stop growing.
+The workspace receives the recovered width without a jump at 1440px. The focused
+CSS uses `--spacing(80)` and the existing maximum token; Projects retains its
+400px inspector and balancing geometry. Collapse rails, motion/content widths,
+mounted state and the existing responsive mode thresholds are unchanged.
+
+The user approved the result in their active Firefox tab after hot reload.
+Vite production compilation passed with the existing bundle-size advisory;
+whitespace and preservation of the three pre-existing form-control edits were
+checked. This was a small implementing-agent review, not independent review.
+Checks stopped after the user's visual acceptance, within the eight-minute ceiling;
+approximately three minutes, no harness repairs. The visible empty workbench was
+checked; populated-inspector and breakpoint sweeps were not run. No numerical,
+retention or broader browser qualification was restarted.
+
 TypeBranch layer text aligns with the type label after its size-4 icon and
 navigation button gap-2.5: a pl-6.5 wrapper offsets the layer by1.625rem.
 Namespace leaves use pl-9.5, a further .75rem. The same content is used in the

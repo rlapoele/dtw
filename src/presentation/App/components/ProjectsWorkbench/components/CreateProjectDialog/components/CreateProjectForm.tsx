@@ -58,7 +58,7 @@ export function CreateProjectForm({
           disabled={disabled}
           onChange={(e) => onDescriptionChange(e.target.value)}
           aria-describedby="project-name-error"
-          className="w-full min-w-0 rounded-md border-2 border-input bg-background text-foreground px-2.5 py-2 text-xs/normal mobile:text-base/normal hover:border-control-hover resize-y"
+          className="w-full min-w-0 rounded-md border-2 border-input bg-background text-foreground px-2.5 py-2 text-xs/normal hover:border-control-hover resize-y"
         />
       </Field>
       <fieldset className="mt-5">

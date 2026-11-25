@@ -1,6 +1,6 @@
 # Current Project Status
 
-> Last updated: 24 November 2026
+> Last updated: 25 November 2026
 >
 > Phase: Increment 024 implemented and independently reviewed; bounded follow-up complete, human acceptance pending. Increment 023 implemented and independently reviewed; user acceptance pending. Increment 022 completed, independently reviewed and user-accepted; verification limits retained. Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
@@ -9,6 +9,19 @@
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## Fluid workbench panels accepted — 25 November 2026
+
+The user requested narrower panels on laptop screens and approved equal fluid widths.
+TokensWorkbench now uses 320–400px panels at the default root size, with 25vw between
+those limits. Projects, collapse behavior, responsive modes and editor state remain
+unchanged. The user visually accepted the live Firefox result as much better.
+[Convention and evidence](../project/presentation-conventions.md#equal-expanded-side-panels--18-november-2026)
+record the small CSS change and limits. Vite compilation and whitespace checks passed;
+the existing bundle advisory remains. Checks stopped after visual acceptance at about
+three of eight minutes, no repairs; no populated-inspector or breakpoint sweep ran.
+The three existing form-control edits were preserved. Staging, committing and pushing
+remain user-owned. Suggested commit: `fix: adapt workbench panel widths to laptop screens`.
 
 ## Two-stage ramp creation implemented — 24 November 2026
 
