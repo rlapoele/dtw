@@ -14,7 +14,7 @@ export function InspectorSection({ title, open, onToggle, children, footer, badg
       if (event.target === event.currentTarget && event.currentTarget.open !== open) onToggle();
     }}>
       <summary
-        className="inspector-section-summary flex items-center gap-3 w-full min-h-14 text-left text-caption font-semibold bg-transparent py-3 focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2 rounded cursor-pointer list-none">
+        className="inspector-section-summary flex items-center gap-3 w-full min-h-14 text-left text-caption font-semibold bg-transparent py-3 focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-dashed focus-visible:outline-offset-2 rounded cursor-pointer list-none">
         {title}{badge && <span className="text-muted-foreground font-normal">{badge}</span>}
         <Icon name="chevron-right" className={`ml-auto shrink-0 transition-transform duration-150 motion-reduce:transition-none ${open ? "rotate-90" : ""}`} />
       </summary>

@@ -356,7 +356,7 @@ export function RampWorkbench({
                 </div>
               </InspectorHeading>
               <div className="px-6 mobile:px-4">
-              <InspectorSection title="Edit token" open={editSections[step.id] !== false} onToggle={() => setEditSections(v => ({ ...v, [step.id]: v[step.id] === false }))}>
+              <InspectorSection title="Token details" open={editSections[step.id] !== false} onToggle={() => setEditSections(v => ({ ...v, [step.id]: v[step.id] === false }))}>
                 <label className="block text-caption font-medium mb-1.75" htmlFor={`ramp-description-${step.id}`}>Description</label>
                 <textarea id={`ramp-description-${step.id}`} rows={3} disabled={disabled} value={step.description ?? ""} onChange={e => updateStep(step.id, { description: e.target.value })} className="block w-full min-w-0 rounded-md border-2 border-input bg-background text-foreground px-2.5 py-2 text-caption resize-y mb-4.25" />
                 <div className="w-full mb-4.25">

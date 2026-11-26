@@ -90,7 +90,7 @@ export function TokenEditorContent({
         </div>
       </InspectorHeading>
       <div className="px-6 mobile:px-4">
-        <InspectorSection title="Edit token" open={sections.edit} onToggle={() => toggleSection("edit")}
+        <InspectorSection title="Token details" open={sections.edit} onToggle={() => toggleSection("edit")}
           badge={!sections.edit && dirty ? "Unapplied changes" : !editable ? "Inspection only" : undefined}
           footer={<div className="pb-4">
             {targetUnavailable && (
