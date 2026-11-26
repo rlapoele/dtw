@@ -26,6 +26,9 @@
 @utility border-l-hairline { border-left-width: .0625rem; }
 @utility annotation { font-size: var(--text-caption); line-height: 1.5; }
 
+/* Safari's native summary marker is separate from the list marker. */
+.inspector-section-summary::-webkit-details-marker { display: none; }
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

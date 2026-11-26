@@ -367,6 +367,38 @@ hidden when the exit finishes. Reduced motion removes transitions. The generic
 are recorded in the current status handoff.
 
 
+### Native inspector disclosures — 26 November 2026
+
+Shared InspectorSection uses native `details`/`summary`, retaining its existing
+caller-owned open state and mounted children. Native toggle notifications update
+the owner only when the DOM state differs; nested disclosure events and controlled
+prop notifications do not flip the owner again. The action footer remains outside
+the disclosure. No exclusive `name` grouping is introduced.
+
+The [HTML standard](https://html.spec.whatwg.org/dev/interactive-elements.html#the-details-element)
+permits flow content, including form controls, after the summary and demonstrates
+collapsible inputs. Inputs, textareas and selects remain in that content, not in
+the summary. Closing a disclosure hides its contents; it does not reset or disable
+form controls. Existing application validation and save ownership remain unchanged.
+
+Headings inside summary are valid, but [MDN documents inconsistent exposure of
+their heading roles](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/summary#summaries_as_headings).
+A visually hidden level-three heading therefore stays outside details, followed
+by the visible summary label. This preserves heading navigation without overriding
+native disclosure semantics. Existing typography, spacing, focus ring and chevron
+are reused. The scoped WebKit marker suppression in `global.css` is a necessary
+pseudo-element exception to prevent a second native marker.
+
+Presentation typecheck and six affected tests passed. An isolated Chrome fixture
+using the production component checked pointer/Enter/Space toggles, controlled
+updates, nested disclosures, retained controlled textarea and uncontrolled input
+values, and the visible footer. The accessibility snapshot exposed the level-three
+heading; summary height remained 56px. The fixture screenshot is
+[recorded here](../../output/playwright/inspector-disclosure.png).
+One fixture module-import repair; checks stopped after this focused pass.
+Full inspector visual acceptance, assistive-technology and other-engine checks
+remain unperformed. No user project or browser draft was changed.
+
 ### Token list properties — Increment 017
 
 The [agreed token-list scope](../increments/017-token-list-properties-and-ordering.md)

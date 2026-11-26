@@ -24,7 +24,7 @@ it.each(["authored", "resolved"])("renders one shared editable layer and action 
     expect(summary).not.toContain("#FF0000");
   }
   expect(html).toContain("Description</label>");
-  expect(html).toContain('aria-expanded="true"');
+  expect(html).toContain('<details open="">');
   expect((html.match(/>Regeneration</g) ?? [])).toHaveLength(tab === "authored" ? 1 : 0);
   expect(html).toContain('value="semantic" selected=""');
   expect(html).toContain('value="component" disabled=""');

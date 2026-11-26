@@ -1,6 +1,6 @@
 # Current Project Status
 
-> Last updated: 25 November 2026
+> Last updated: 26 November 2026
 >
 > Phase: Increment 024 implemented and independently reviewed; bounded follow-up complete, human acceptance pending. Increment 023 implemented and independently reviewed; user acceptance pending. Increment 022 completed, independently reviewed and user-accepted; verification limits retained. Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
@@ -9,6 +9,18 @@
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## Native shared inspector disclosures — 26 November 2026
+
+The user authorized native disclosures after checking heading and form support.
+InspectorSection now uses details/summary with an external visually hidden heading,
+existing caller-owned open state, mounted fields and an always-reachable footer.
+[Convention, sources and bounded evidence](../project/presentation-conventions.md#native-inspector-disclosures--26-november-2026)
+record passing presentation typecheck, six affected tests and an isolated Chrome
+component check. Verification stopped; full-app visual acceptance and screen-reader
+or other-engine checks remain unperformed. User drafts were untouched. Staging,
+committing and pushing remain user-owned.
+Suggested commit: `refactor: use native disclosures in shared inspector sections`.
 
 ## Ramp color summaries rounded — 25 November 2026
 
