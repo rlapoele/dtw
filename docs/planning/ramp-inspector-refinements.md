@@ -176,3 +176,37 @@ replay was performed, and the user's open creation draft was not manipulated.
 Prior broad verification stopping decisions remain in force.
 
 Suggested commit: `fix: round ramp color summaries to four decimal places`.
+
+## Inspector container border follow-up — 27 November 2026
+
+The ramp inspector's outer container now matches SelectionInspector's shell
+utilities: surface background, left hairline, mobile top hairline without a left
+border, minimum dimensions, relative positioning, isolation and clipping. It also
+has the same pane label and programmatic focusability. The existing ramp portal,
+mounted ancestry, content scrolling and draft ownership remain unchanged.
+
+Presentation typecheck and production compilation passed; the existing bundle
+size advisory remains. Source and whitespace review completed. No browser replay
+or expanded qualification ran for this small container correction; visual acceptance
+remains pending.
+
+Suggested commit: `fix: align ramp inspector container with token inspector`.
+
+## Shared InspectorPane extraction — 27 November 2026
+
+Following user authorization, both inspector containers now render InspectorPane
+at their existing shared TokensWorkbench owner. It owns identical shell utilities,
+the pane label and programmatic focusability, with children, hidden state, an
+optional surface ref and the existing section/aside choice. It adds no DOM wrapper,
+state owner, scroll container or portal target. SelectionInspector keeps its
+fallback; TokensWorkbench keeps the ramp target div and stable callback ref.
+Token editor keys, hook callers and ramp createPortal destination are unchanged.
+
+Presentation typecheck and six existing layer-editing/ramp-draft tests passed.
+Source review checked both consumers, unchanged resulting DOM geometry and portal
+ownership; whitespace checks passed. Verification stopped without a new browser
+campaign. This small refactor was reviewed by the implementing agent, not a separate
+reviewer. Previous uncommitted border correction was preserved. Visual acceptance
+remains pending.
+
+Suggested commit: `refactor: share inspector pane container`.

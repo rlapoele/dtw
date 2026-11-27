@@ -1,5 +1,6 @@
 import { GroupInspector } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/GroupInspector/GroupInspector";
 import { InspectorHeader } from "@presentation/App/components/TokensWorkbench/components/InspectorHeader";
+import { InspectorPane } from "@presentation/App/components/TokensWorkbench/components/InspectorPane";
 import type { Selection } from "@presentation/App/components/TokensWorkbench/hooks/useProjectReadback";
 import type { ProjectContext } from "@application/retention/projections";
 import type { ProjectHeader } from "@hosts/browser/protocol";
@@ -28,10 +29,7 @@ export function SelectionInspector({
   requestSource: (id: string) => Promise<string>;
 }) {
   return (
-    <section ref={surfaceRef} hidden={hidden} tabIndex={-1}
-      className="inspector-shell relative mobile:border-l-0 mobile:border-t-hairline mobile:isolate flex min-w-0 min-h-0 flex-col overflow-clip border-l-hairline border-border bg-surface"
-      aria-label="Inspector pane"
-    >
+    <InspectorPane surfaceRef={surfaceRef} hidden={hidden}>
       {children || (
         <>
           <InspectorHeader
@@ -70,6 +68,6 @@ export function SelectionInspector({
           </div>
         </>
       )}
-    </section>
+    </InspectorPane>
   );
 }

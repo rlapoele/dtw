@@ -10,6 +10,23 @@
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
 
+## Ramp inspector container aligned — 27 November 2026
+
+The user subsequently authorized extracting shared InspectorPane. Both inspectors
+now use it, retaining their original DOM elements, content and portal target.
+[Extraction evidence](../planning/ramp-inspector-refinements.md#shared-inspectorpane-extraction--27-november-2026)
+records passing presentation typecheck and six focused tests; no browser campaign
+restarted. The previous uncommitted correction is preserved. Suggested combined
+commit: `refactor: share inspector pane container`.
+
+The annotated missing left border is corrected. Ramp inspector shell utilities now
+match the regular inspector, including the mobile top-border treatment and clipping.
+The portal and draft ownership remain unchanged.
+[Bounded evidence](../planning/ramp-inspector-refinements.md#inspector-container-border-follow-up--27-november-2026)
+records passing presentation typecheck and production compilation. Visual acceptance
+remains pending; no broader verification restarted. Staging, committing and pushing
+remain user-owned. Suggested commit: `fix: align ramp inspector container with token inspector`.
+
 ## Fully rounded shared action buttons — 27 November 2026
 
 The annotated Projects actions and equivalent action buttons across the app now

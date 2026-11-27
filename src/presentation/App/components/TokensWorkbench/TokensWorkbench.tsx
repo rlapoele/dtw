@@ -30,6 +30,7 @@ import type { ProjectHeader, WorkbenchHost } from "@hosts/browser/protocol";
 import { Button } from "@presentation/ui/button";
 
 import { SelectionInspector } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/SelectionInspector";
+import { InspectorPane } from "@presentation/App/components/TokensWorkbench/components/InspectorPane";
 import { TokenEditor } from "@presentation/App/components/TokensWorkbench/components/SelectionInspector/components/TokenEditor/TokenEditor";
 import { AuthoringDialog } from "@presentation/App/components/TokensWorkbench/components/AuthoringDialog/AuthoringDialog";
 import { NavigationContent } from "@presentation/App/components/TokensWorkbench/components/TokenNavigation/components/NavigationContent";
@@ -407,7 +408,7 @@ export function TokensWorkbench({
             />
           }
         />}
-      inspector={activeRamp?<aside hidden={narrow&&surface!=="inspect"} className="min-h-0 flex flex-col bg-surface overflow-hidden"><div ref={setRampInspector} className="flex-1 min-h-0"/></aside>:<SelectionInspector
+      inspector={activeRamp?<InspectorPane as="aside" hidden={narrow&&surface!=="inspect"}><div ref={setRampInspector} className="flex-1 min-h-0"/></InspectorPane>:<SelectionInspector
           surfaceRef={inspector}
           hidden={narrow && surface !== "inspect"}
           selection={selection}
