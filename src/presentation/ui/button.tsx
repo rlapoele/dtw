@@ -10,10 +10,10 @@ const variants = {
   mode: "border-0 bg-transparent text-muted-foreground aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm",
 };
 const sizes = {
-  default: "min-h-9 px-3 justify-center gap-2 rounded-md",
-  history: "min-h-9 min-w-9 px-3 mobile:px-0 justify-center gap-2 rounded-md w-auto mobile:w-9",
+  default: "min-h-9 px-3 justify-center gap-2 rounded-full",
+  history: "min-h-9 min-w-9 px-3 mobile:px-0 justify-center gap-2 rounded-full w-auto mobile:w-9",
   panel:
-    "min-h-9 px-3 justify-center gap-2 rounded-md compact:px-2.5 compact:text-caption",
+    "min-h-9 px-3 justify-center gap-2 rounded-full compact:px-2.5 compact:text-caption",
   navigation: "min-h-9 px-3 justify-start gap-2.5 rounded-none text-xs/normal",
   group:
     "h-auto min-h-9 pl-7 pr-3 py-2 justify-start gap-2.5 rounded-none text-xs/normal",
@@ -21,8 +21,8 @@ const sizes = {
   icon: "min-h-9 w-9 min-w-9 p-0 justify-center gap-2 rounded-md shrink-0",
   mode: "min-h-9 px-3 flex-1 justify-center gap-2 rounded-md text-caption shadow-none",
   inventory: "h-auto min-h-9 w-full px-3 py-2 justify-start gap-2 rounded-md text-left whitespace-normal",
-  selection: "min-h-9 px-3 justify-center gap-2 rounded-md text-caption",
-  sm: "min-h-9 px-2 justify-center gap-2 rounded-md",
+  selection: "min-h-9 px-3 justify-center gap-2 rounded-full text-caption",
+  sm: "min-h-9 px-2 justify-center gap-2 rounded-full",
 };
 
 export type ButtonProps = Primitive.Props & {

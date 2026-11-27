@@ -1,6 +1,6 @@
 # Current Project Status
 
-> Last updated: 26 November 2026
+> Last updated: 27 November 2026
 >
 > Phase: Increment 024 implemented and independently reviewed; bounded follow-up complete, human acceptance pending. Increment 023 implemented and independently reviewed; user acceptance pending. Increment 022 completed, independently reviewed and user-accepted; verification limits retained. Increment 021 implemented and independently reviewed; user acceptance pending. Increment 020 completed, independently reviewed and user-accepted; verification limits retained. Increment 019 completed, independently reviewed and user-accepted; verification limits retained. Increment 018 implemented and independently reviewed; runtime acceptance gaps remain. Increment 017 implemented and independently reviewed; user acceptance pending. Increment 016 completed, independently reviewed and user-accepted; verification limits retained.
 > Increment 015 completed, independently reviewed and user-accepted; Increment 014
@@ -9,6 +9,15 @@
 >
 > Applied projects remain browser-profile/origin local. Drafts/forms remain
 > session-only. Applied Undo/Redo history is session-only; drafts/forms remain separate.
+
+## Fully rounded shared action buttons — 27 November 2026
+
+The annotated Projects actions and equivalent action buttons across the app now
+use `rounded-full` through shared `ui/Button` size definitions.
+[Convention and bounded checks](../project/presentation-conventions.md#fully-rounded-action-buttons--27-november-2026)
+record the scope and passing production compilation. Visual acceptance remains
+pending; no state or behavior changed. Staging, committing and pushing remain
+user-owned. Suggested commit: `style: make shared action buttons fully rounded`.
 
 ## Native shared inspector disclosures — 26 November 2026
 

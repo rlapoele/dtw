@@ -537,6 +537,19 @@ selects and textareas use Tailwind `border-2` (2px at the default root size,
 double the previous hairline). Transparent/borderless buttons, structural
 separators and focus outlines retain their existing treatment.
 
+### Fully rounded action buttons — 27 November 2026
+
+The user requested pill-shaped action buttons throughout the app, illustrated by
+Restore backup, New project, Open project and Download backup. Shared `ui/Button`
+owns this through `rounded-full` for default, history, panel, sm and selection
+sizes. Existing dimensions, borders, motion and behavior remain. Structural
+navigation/pane rows, mode segments, inventory rows and icon controls retain their
+existing geometry. No per-screen overrides or new tokens are needed.
+
+Vite production compilation and diff whitespace checks passed. The existing bundle
+size advisory remains. This radius-only change was source-reviewed; no additional
+tests or browser campaign ran. Human visual acceptance remains pending.
+
 ### Color summary component grid — 19 November 2026
 
 The user approved a three-column grid in token-table color summaries. Each color
